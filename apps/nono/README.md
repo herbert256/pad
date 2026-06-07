@@ -1,17 +1,22 @@
-# Nono Application
+# Non-PAD Application
 
-A plain PHP application that does **not** use the PAD templating framework.
+## Introduction
+
+A plain PHP application that runs without the PAD template engine.
 
 ## Purpose
 
-This application demonstrates that the PAD directory structure can also host traditional PHP applications without using PAD's template engine.
+Demonstrates that the PAD framework can host traditional PHP applications that don't use PAD templating. Useful for:
+- Legacy PHP code integration
+- Simple API endpoints
+- PHP scripts that don't need templating
 
 ## Files
 
 | File | Description |
 |------|-------------|
-| `index.php` | Plain PHP file with direct echo output |
-| `_config/config.php` | Configuration file |
+| `_config/` | Configuration (minimal) |
+| `index.php` | Plain PHP output without templates |
 
 ## Code
 
@@ -22,12 +27,9 @@ This application demonstrates that the PAD directory structure can also host tra
 ?>
 ```
 
-## When to Use
+## Concept
 
-Use this pattern when:
-- You need a simple PHP script without templating
-- You want to integrate non-PAD code into a PAD installation
-- You're testing PHP functionality outside of PAD
+While PAD typically pairs `.php` data files with `.pad` templates, this app shows that you can run plain PHP when no `.pad` template exists.
 
 ## Access
 

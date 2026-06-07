@@ -1,0 +1,63 @@
+<style>
+  .browse-page { text-align: left; display: inline-block; }
+  .browse-container { display: flex; gap: 20px; }
+  .file-list { min-width: 150px; }
+  .file-list ul { list-style: none; padding: 0; margin: 0; }
+  .file-list li { padding: 2px 0; }
+  .file-list a { text-decoration: none; }
+  .file-list a:hover { text-decoration: underline; }
+  .file-list .current { font-weight: bold; }
+  .file-list .dir { font-weight: bold; }
+  .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+  .source-view { overflow-x: auto; }
+  .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+  .back-link { margin-bottom: 10px; }
+  .path-info { color: #666; margin-bottom: 5px; }
+</style>
+
+<div class="browse-page">
+
+{if $app ne ''}
+
+  <div class="browse-container">
+
+    <div class="file-list">
+      <ul>
+        {if $hasParent}
+          <li class="parent">
+            {if $parentDir ne ''}
+              <a href="?browse&app={$app}&dir={$parentDir}">..</a>
+            @else@
+              <a href="?browse&app={$app}">..</a>
+            {/if}
+          </li>
+        {/if}
+        {appDirs}
+          <li class="dir"><a href="?browse&app={$app}&dir={$path}">{$name}/</a></li>
+        {/appDirs}
+        {appFiles}
+          {if $currentFile eq $path}
+            <li class="current">{$name}</li>
+          {/if}
+          {if $currentFile ne $path}
+            <li><a href="?browse&app={$app}&dir={$dir}&file={$path}">{$name}</a></li>
+          {/if}
+        {/appFiles}
+      </ul>
+    </div>
+
+    {if $currentFile ne ''}
+      <div class="source-view">
+        <h3>{$currentFile}</h3>
+        {!source}
+      </div>
+    {/if}
+
+  </div>
+
+{/if}
+
+{if $app eq ''}
+  <p>No application specified. <a href="?index">Return to applications list</a>.</p>
+{/if}
+</div>

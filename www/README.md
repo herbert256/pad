@@ -24,7 +24,6 @@ Browser → www/pad/index.php → www/pad.php → pad/pad.php
 |------|-------------|
 | `pad.php` | Centralized bootstrap: OS detection, path setup, framework inclusion |
 | `index.php` | Root entry point (loads the `pad` app by default) |
-| `info.php` | PHP info page |
 | `DATA` | Symlink to `../DATA` runtime directory |
 
 ## App Entry Points
@@ -33,7 +32,6 @@ Each app has a subdirectory with a minimal `index.php`:
 
 ```php
 <?php
-  $padApp = basename ( __DIR__ );
   include __DIR__ . '/../pad.php'
 ?>
 ```
@@ -42,15 +40,20 @@ The app name is automatically derived from the directory name.
 
 | Directory | Application | Static Assets |
 |-----------|-------------|---------------|
-| `pad/` | Reference app (manual + tests) | - |
+| `apps/` | Application listing | - |
+| `check/` | Test suite | - |
+| `chess/` | Chess application | index.html |
 | `demo/` | Demo application | style.css |
+| `develop/` | Development tools | - |
 | `hello/` | Hello World example | - |
-| `minimal/` | Minimal example | - |
-| `support/` | Support utilities | - |
-| `structure/` | Directory structure demo | - |
-| `test/` | Test application | - |
-| `nono/` | Nono application | - |
+| `manual/` | Interactive documentation | - |
+| `nono/` | Plain PHP (non-PAD) | - |
+| `pad/` | PAD reference app | - |
 | `react/` | PAD + React integration | JavaScript files (see below) |
+| `reference/` | Cross-reference utilities | - |
+| `regression/` | Regression testing | - |
+| `sequence/` | Sequence demos | - |
+| `structure/` | Directory structure demo | - |
 
 ## React App Static Assets
 
@@ -70,8 +73,12 @@ react/
 ├── components/            # JavaScript for components page
 │   ├── demo.js            # ComponentsDemo (Card & Button)
 │   └── todo.js            # TodoApp
-└── counter/               # JavaScript for counter page
-    └── app.js             # CounterApp
+├── counter/               # JavaScript for counter page
+│   └── app.js             # CounterApp
+└── topic/                 # JavaScript for topic page
+    ├── display.js         # DisplayComponent
+    ├── simple.js          # SimpleComponent
+    └── test.js            # TestComponent
 ```
 
 **Philosophy:** Just as PAD separates PHP from templates, the React app separates:
@@ -100,7 +107,6 @@ The centralized bootstrap:
 2. Create `www/newapp/index.php`:
    ```php
    <?php
-     $padApp = basename ( __DIR__ );
      include __DIR__ . '/../pad.php'
    ?>
    ```

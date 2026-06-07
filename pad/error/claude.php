@@ -2,7 +2,10 @@
 
   function padClaudeCheck () {
 
-    if ( $_SERVER ['REMOTE_ADDR'] == '::1' and str_contains($_SERVER ['HTTP_USER_AGENT'], 'curl') )
+    $addr  = $_SERVER ['REMOTE_ADDR']     ?? '';
+    $agent = $_SERVER ['HTTP_USER_AGENT'] ?? '';
+
+    if ( ! $addr or $addr == '::1' and str_contains($agent, 'curl') )
       return TRUE;
     else
       return FALSE;

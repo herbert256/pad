@@ -35,18 +35,6 @@
 
   }
 
-  function padOutput ( $output ) {
-
-    global $padGo, $padPage;
-
-    $output = padUnescape ( $output );
-
-    $output = str_replace ( '@pad@',  $padGo,            $output );
-    $output = str_replace ( '@self@', $padGo . $padPage, $output );
-
-    return $output;
-
-  }
 
   function padTidy ( $data, $fragment=FALSE ) {
 
@@ -100,25 +88,17 @@
       'new-inline-tags' => ''
     ];
 
-#    try {
+    $tidy = new tidy;
+    $tidy->parseString($data, $config, $padTidyCcsid );
+    $tidy->cleanRepair();
 
-      $tidy = new tidy;
-      $tidy->parseString($data, $config, $padTidyCcsid );
-      $tidy->cleanRepair();
+    $result = $tidy->value ?? $data;
 
-      $result = $tidy->value ?? $data;
+    $result = str_replace  ( ["\r", "\n", "\t"], '', $result );
+    $result = preg_replace ( '/ {2,}/', ' ',         $result );
+    $result = preg_replace ( '/>\s+</', '><', $result );
 
-      $result = str_replace  ( ["\r", "\n", "\t"], '', $result );
-      $result = preg_replace ( '/ {2,}/', ' ',         $result );
-      $result = preg_replace ( '/>\s+</', '><', $result );
-
-      return $result;
-
- #   } catch (Throwable $e) {
-
-  #    return $data;
-
-   # }
+    return $result;
 
   }
 

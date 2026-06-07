@@ -4,9 +4,14 @@
 
     if ( ! $dir )
       return [];
-   
-    foreach ( padFiles ( DAT . "reference/sequence/$dir/" ) as $item ) {
-      $item = str_replace ( '.txt', '', $item );   
+
+    $path = DAT . "reference/sequence/$dir/";
+
+    if ( ! is_dir ( $path ) )
+      return [];
+
+    foreach ( padFiles ( $path ) as $item ) {
+      $item = str_replace ( '.txt', '', $item );
       $files [$item] ['item']  = $item;
     }
 

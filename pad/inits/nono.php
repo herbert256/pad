@@ -17,6 +17,6 @@
 
   include $padNoNo;
 
-  padExit ();
+  exit;
 
 ?>

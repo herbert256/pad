@@ -1,26 +1,15 @@
 <?php
 
-  if ( isset ( $GLOBALS ['padStrCod'] ) )
-    unset ( $GLOBALS ['padStrCod'] );
+  global $pad, $padOut;
 
-  $GLOBALS ['padStrFun'] = TRUE;
-  $GLOBALS ['padStrFunCnt']++;
-  $GLOBALS ['padStrFunVar'] [ $GLOBALS ['padStrFunCnt'] ] = [];
+  $padFunctionPad  = $pad;
+  $padFunctionData = $padOut [$pad];
 
-  foreach ( $GLOBALS as $padStrKey => $padStrVal )
-    global $$padStrKey;
+  $padFunctionReturn = include PAD . 'start/pad/function.php';
 
-  $padLvlFun [$pad] = $padStrFunCnt;
-  $padStrFunResult = include PAD . 'start/pad.php';
+  $pad           = $padFunctionPad;
+  $padOut [$pad] = $padFunctionData;
 
-  if ( ! $padStrBox and ! $padStrCln )
-    foreach ( get_defined_vars () as $padStrKey => $padStrVal )
-      if ( padValidStore ( $padStrKey ) )
-        if ( ! isset ( $GLOBALS [$padStrKey] ) )
-          $GLOBALS [$padStrKey] = $padStrVal;
-
-  $padStrFunCnt--;
-
-  return $padStrFunResult;
+  return $padFunctionReturn;
 
 ?>

@@ -1,0 +1,1864 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - pages/prefix
+    </title>
+    <style>.diffDeleted {
+        background-color: OrangeRed;
+        font-family: monospace;
+        font-size: 75%;
+    }
+    .diffUnmodified {
+        background-color: white;
+        font-family: monospace;
+        font-size: 75%;
+    }
+    .diffInserted {
+        background-color: Chartreuse;
+        font-family: monospace;
+        font-size: 75%;
+    }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Pages/prefix
+          </h1>
+          <table style="max-width:95%;" border="1" cellpadding="10" cellspacing="0">
+            <tbody><tr>
+              <td bgcolor="#DDDDDD" align="center">
+                <font size="+1"><b>OLD</b></font>
+              </td>
+              <td bgcolor="#DDDDDD" align="center">
+                <font size="+1"><b>NEW</b></font> &nbsp;<a href="../manual/index%EF%B9%96pages%EA%A4%B7prefix&amp;padInclude.html">go</a> &nbsp;<a href="index%EF%B9%96index&amp;padSesID=DiM2hOlW&amp;padReqID=z9T6tjRx.html">ok</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                It can get confusing because a PAD tag can be so many things,<br>
+                to solve this, use a prefix that gives the tag type.
+                <p></p>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tbody><tr>
+                    <th bgcolor="#DDDDDD">
+                      HTML
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      RESULT
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;From an pad tag&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">From an pad tag</span></code>
+                      </h3><code><span style="color: #000000">Foo tag from pad<!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;From an application tag &lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">app</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">From an application tag</span></code>
+                      </h3><code><span style="color: #000000">Foo tag from app<!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;From the <b>{<font color="blue">content</font><font color="red"></font>}</b> tag &lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">From the {content} tag</span></code>
+                      </h3><code><span style="color: #000000">This is from content<!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;From a PHP function !&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">From a PHP function !</span></code>
+                      </h3><code><span style="color: #000000">This is a function<!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;From an own PAD function &lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">function</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">From an own PAD function</span></code>
+                      </h3><code><span style="color: #000000">From an own function<!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;From an defined bool&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  Bool 'foo' is true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  Bool 'foo' is false<br><b>{/<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">From an defined bool</span></code>
+                      </h3><code><span style="color: #000000">Bool 'foo' is true<!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;From a PHP array&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">From a PHP array</span></code>
+                      </h3><code><span style="color: #000000">This is a PHP array - 1<br>
+                      This is a PHP array - 2<br>
+                      This is a PHP array - 3<br>
+                      <!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;A defined constant&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">constant</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">constant</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">A defined constant</span></code>
+                      </h3><code><span style="color: #000000">This is a constant - 1<br>
+                      This is a constant - 2<br>
+                      This is a constant - 3<br>
+                      <!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;From the <b>{<font color="blue">data</font><font color="red"></font>}</b> tag&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">From the {data} tag</span></code>
+                      </h3><code><span style="color: #000000">This is a json array - 1<br>
+                      This is a json array - 2<br>
+                      This is a json array - 3<br>
+                      <!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;From the local _data directory&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">From the local _data directory</span></code>
+                      </h3><code><span style="color: #000000">From the _data directory - 1<br>
+                      From the _data directory - 2<br>
+                      From the _data directory - 3<br>
+                      <!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;From the local _scripts directory&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">script</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">From the local _scripts directory</span></code>
+                      </h3><code><span style="color: #000000">Hello from foo.py<!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                </tbody></table>
+                <p></p>
+                <hr>
+                <h3>
+                  The list with PAD tag types
+                </h3><a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=action.html">action</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=app.html">app</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=array.html">array</a> &nbsp; bool &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=common.html">common</a> &nbsp; constant &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=content.html">content</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=data.html">data</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=field.html">field</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=flag.html">flag</a> &nbsp; function &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=include.html">include</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=keep.html">keep</a> &nbsp; level &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=local.html">local</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=make.html">make</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=pad.html">pad</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=php.html">php</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=property.html">property</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=pull.html">pull</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=remove.html">remove</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=script.html">script</a> &nbsp; select &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=sequence.html">sequence</a> &nbsp;
+                <p></p>
+                <h2>
+                  Extra files used
+                </h2>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tbody><tr>
+                    <th bgcolor="#BBBBBB">
+                      PHP
+                    </th>
+                    <th bgcolor="#BBBBBB">
+                      PAD
+                    </th>
+                    <th bgcolor="#BBBBBB">
+                      OTHER
+                    </th>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#EEEEEE">
+                      _functions/foo.php
+                    </td>
+                    <td bgcolor="#EEEEEE"></td>
+                    <td bgcolor="#EEEEEE"></td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">return </span><span style="color: #DD0000">"From an own function"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#EEEEEE"></td>
+                    <td bgcolor="#EEEEEE"></td>
+                    <td bgcolor="#EEEEEE">
+                      _scripts/foo.py
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">#!/usr/bin/env python3<br><br>import sys<br>import os<br><br>me = sys.argv[1:]<br><br>print ( "Hello from", os.path.basename(__file__) )<br></code></pre>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#EEEEEE">
+                      _tags/foo.php
+                    </td>
+                    <td bgcolor="#EEEEEE"></td>
+                    <td bgcolor="#EEEEEE"></td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">return </span><span style="color: #DD0000">"Foo tag from app"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#EEEEEE"></td>
+                    <td bgcolor="#EEEEEE"></td>
+                    <td bgcolor="#EEEEEE">
+                      prefix/_data/foo.xml
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;xml&gt;<br>  &lt;line foo="From the _data directory - 1" /&gt;<br>  &lt;line foo="From the _data directory - 2" /&gt;<br>  &lt;line foo="From the _data directory - 3" /&gt;<br>&lt;/xml&gt;</code></pre>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#EEEEEE"></td>
+                    <td bgcolor="#EEEEEE">
+                      prefix/_lib/foo.pad
+                    </td>
+                    <td bgcolor="#EEEEEE"></td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>foo<font color="black">'</font></font>}</b><br>  This is from content<br><b>{/<font color="blue">content</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>foo<font color="black">'</font></font>}</b><br>  [ { "foo": "This is a json array - 1" },<br>    { "foo": "This is a json array - 2" },<br>    { "foo": "This is a json array - 3" } ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">bool </font><font color="red"><font color="black">'</font>foo<font color="black">'</font></font>}</b>1<b>{/<font color="blue">bool</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#EEEEEE">
+                      prefix/_lib/foo.php
+                    </td>
+                    <td bgcolor="#EEEEEE"></td>
+                    <td bgcolor="#EEEEEE"></td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">function </span><span style="color: #0000BB">foo </span><span style="color: #007700">() {<br><br>     return </span><span style="color: #DD0000">"This is a function"</span><span style="color: #007700">;<br><br>  }<br><br>  </span><span style="color: #0000BB">$foo </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'This is a PHP array - 1'</span><span style="color: #007700">,<br>           </span><span style="color: #DD0000">'This is a PHP array - 2'</span><span style="color: #007700">,<br>           </span><span style="color: #DD0000">'This is a PHP array - 3'<br>         </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">define </span><span style="color: #007700">( </span><span style="color: #DD0000">'foo'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'This is a constant - 1'</span><span style="color: #007700">,<br>                    </span><span style="color: #DD0000">'This is a constant - 2'</span><span style="color: #007700">,<br>                    </span><span style="color: #DD0000">'This is a constant - 3'<br>                  </span><span style="color: #007700">] );<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                  </tr>
+                </tbody></table>
+                <p></p>
+              </td>
+              <td>
+                It can get confusing because a PAD tag can be so many things,<br>
+                to solve this, use a prefix that gives the tag type.
+                <p></p>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tbody><tr>
+                    <th bgcolor="#DDDDDD">
+                      HTML
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      RESULT
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;From an pad tag&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">From an pad tag</span></code>
+                      </h3><code><span style="color: #000000">Foo tag from pad<!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;From an application tag &lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">app</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">From an application tag</span></code>
+                      </h3><code><span style="color: #000000">Foo tag from app<!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;From the <b>{<font color="blue">content</font><font color="red"></font>}</b> tag &lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">From the {content} tag</span></code>
+                      </h3><code><span style="color: #000000">This is from content<!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;From a PHP function !&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">From a PHP function !</span></code>
+                      </h3><code><span style="color: #000000">This is a function<!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;From an own PAD function &lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">function</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">From an own PAD function</span></code>
+                      </h3><code><span style="color: #000000">From an own function<!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;From an defined bool&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  Bool 'foo' is true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  Bool 'foo' is false<br><b>{/<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">From an defined bool</span></code>
+                      </h3><code><span style="color: #000000">Bool 'foo' is true<!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;From a PHP array&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">From a PHP array</span></code>
+                      </h3><code><span style="color: #000000">This is a PHP array - 1<br>
+                      This is a PHP array - 2<br>
+                      This is a PHP array - 3<br>
+                      <!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;A defined constant&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">constant</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">constant</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">A defined constant</span></code>
+                      </h3><code><span style="color: #000000">This is a constant - 1<br>
+                      This is a constant - 2<br>
+                      This is a constant - 3<br>
+                      <!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;From the <b>{<font color="blue">data</font><font color="red"></font>}</b> tag&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">From the {data} tag</span></code>
+                      </h3><code><span style="color: #000000">This is a json array - 1<br>
+                      This is a json array - 2<br>
+                      This is a json array - 3<br>
+                      <!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;From the local _data directory&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">From the local _data directory</span></code>
+                      </h3><code><span style="color: #000000">From the _data directory - 1<br>
+                      From the _data directory - 2<br>
+                      From the _data directory - 3<br>
+                      <!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000">&lt;h3&gt;From the local _scripts directory&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">script</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                      <h3>
+                        <code><span style="color: #000000">From the local _scripts directory</span></code>
+                      </h3><code><span style="color: #000000">Hello from foo.py<!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                </tbody></table>
+                <p></p>
+                <hr>
+                <h3>
+                  The list with PAD tag types
+                </h3><a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=action.html">action</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=app.html">app</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=array.html">array</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=bool.html">bool</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=common.html">common</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=constant.html">constant</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=content.html">content</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=data.html">data</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=field.html">field</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=flag.html">flag</a> &nbsp; <a href="../reference/index%EF%B9%96pages&amp;padSesID=DiM2hOlW&amp;padReqID=o3MULund&amp;type=Tag+types&amp;xref=tag%EA%A4%B7function&amp;item=foo.html">function</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=include.html">include</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=keep.html">keep</a> &nbsp; level &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=local.html">local</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=make.html">make</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=pad.html">pad</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=php.html">php</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=property.html">property</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=pull.html">pull</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=remove.html">remove</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=script.html">script</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=select.html">select</a> &nbsp; <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=sequence.html">sequence</a> &nbsp;
+                <p></p>
+                <h2>
+                  Extra files used
+                </h2>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tbody><tr>
+                    <th bgcolor="#BBBBBB">
+                      PHP
+                    </th>
+                    <th bgcolor="#BBBBBB">
+                      PAD
+                    </th>
+                    <th bgcolor="#BBBBBB">
+                      OTHER
+                    </th>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#EEEEEE">
+                      _functions/foo.php
+                    </td>
+                    <td bgcolor="#EEEEEE"></td>
+                    <td bgcolor="#EEEEEE"></td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">return </span><span style="color: #DD0000">"From an own function"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#EEEEEE"></td>
+                    <td bgcolor="#EEEEEE"></td>
+                    <td bgcolor="#EEEEEE">
+                      _scripts/foo.py
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">#!/usr/bin/env python3<br><br>import sys<br>import os<br><br>me = sys.argv[1:]<br><br>print ( "Hello from", os.path.basename(__file__) )<br></code></pre>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#EEEEEE">
+                      _tags/foo.php
+                    </td>
+                    <td bgcolor="#EEEEEE"></td>
+                    <td bgcolor="#EEEEEE"></td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">return </span><span style="color: #DD0000">"Foo tag from app"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#EEEEEE"></td>
+                    <td bgcolor="#EEEEEE"></td>
+                    <td bgcolor="#EEEEEE">
+                      prefix/_data/foo.xml
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;xml&gt;<br>  &lt;line foo="From the _data directory - 1" /&gt;<br>  &lt;line foo="From the _data directory - 2" /&gt;<br>  &lt;line foo="From the _data directory - 3" /&gt;<br>&lt;/xml&gt;</code></pre>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#EEEEEE"></td>
+                    <td bgcolor="#EEEEEE">
+                      prefix/_lib/foo.pad
+                    </td>
+                    <td bgcolor="#EEEEEE"></td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>foo<font color="black">'</font></font>}</b><br>  This is from content<br><b>{/<font color="blue">content</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>foo<font color="black">'</font></font>}</b><br>  [ { "foo": "This is a json array - 1" },<br>    { "foo": "This is a json array - 2" },<br>    { "foo": "This is a json array - 3" } ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">bool </font><font color="red"><font color="black">'</font>foo<font color="black">'</font></font>}</b>1<b>{/<font color="blue">bool</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#EEEEEE">
+                      prefix/_lib/foo.php
+                    </td>
+                    <td bgcolor="#EEEEEE"></td>
+                    <td bgcolor="#EEEEEE"></td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">function </span><span style="color: #0000BB">foo </span><span style="color: #007700">() {<br><br>     return </span><span style="color: #DD0000">"This is a function"</span><span style="color: #007700">;<br><br>  }<br><br>  </span><span style="color: #0000BB">$foo </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'This is a PHP array - 1'</span><span style="color: #007700">,<br>           </span><span style="color: #DD0000">'This is a PHP array - 2'</span><span style="color: #007700">,<br>           </span><span style="color: #DD0000">'This is a PHP array - 3'<br>         </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">define </span><span style="color: #007700">( </span><span style="color: #DD0000">'foo'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'This is a constant - 1'</span><span style="color: #007700">,<br>                    </span><span style="color: #DD0000">'This is a constant - 2'</span><span style="color: #007700">,<br>                    </span><span style="color: #DD0000">'This is a constant - 3'<br>                  </span><span style="color: #007700">] );<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                    <td style="vertical-align:top">
+                      <code style="color: #000000"></code>
+                    </td>
+                  </tr>
+                </tbody></table>
+                <p></p>
+              </td>
+            </tr>
+            <tr>
+              <td bgcolor="#DDDDDD" align="center">
+                <font size="+1"><b>Old Source</b></font>
+              </td>
+              <td bgcolor="#DDDDDD" align="center">
+                <font size="+1"><b>New Source</b></font>
+              </td>
+            </tr>
+            <tr>
+              <td class="diffUnmodified">
+                It can get confusing because a PAD tag can be so many things,&lt;br&gt;<br>
+                to solve this, use a prefix that gives the tag type.<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;p&gt;<br>
+                &lt;table border="1" cellpadding="10" cellspacing="0"&gt;<br>
+                &lt;tr&gt;<br>
+                <br>
+                <br>
+                <br>
+                &lt;th bgcolor="#dddddd"&gt;HTML&lt;/th&gt;<br>
+                &lt;th bgcolor="#dddddd"&gt;RESULT&lt;/th&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                <br>
+                &lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;From an pad tag&amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;pad&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;From an pad tag&lt;/h3&gt;<br>
+                <br>
+                Foo tag from pad&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;From an application tag &amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;app&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;From an application tag &lt;/h3&gt;<br>
+                <br>
+                Foo tag from app&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;From the &lt;b&gt;{&lt;font color="blue"&gt;content&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt; tag &amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;content&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;From the {content} tag &lt;/h3&gt;<br>
+                <br>
+                <br>
+                This is from content&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;From a PHP function !&amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;php&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;From a PHP function !&lt;/h3&gt;<br>
+                <br>
+                This is a function&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;From an own PAD function &amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;function&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;From an own PAD function &lt;/h3&gt;<br>
+                <br>
+                From an own function&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;From an defined bool&amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;bool&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;br&gt; Bool 'foo' is true&lt;br&gt;&lt;b&gt;&lt;font color="black"&gt;@&lt;/font&gt;&lt;font color="purple"&gt;else&lt;/font&gt;&lt;font color="black"&gt;@&lt;/font&gt;&lt;/b&gt;&lt;br&gt; Bool 'foo' is false&lt;br&gt;&lt;b&gt;{/&lt;font color="blue"&gt;&lt;font color="purple"&gt;bool&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;From an defined bool&lt;/h3&gt;<br>
+                <br>
+                <br>
+                Bool 'foo' is true&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;From a PHP array&amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;array&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;br&gt; &lt;b&gt;{&lt;font color="green"&gt;&lt;font color="red"&gt;$&lt;/font&gt;foo&lt;/font&gt;}&lt;/b&gt; &amp;lt;br&amp;gt;&lt;br&gt;&lt;b&gt;{/&lt;font color="blue"&gt;&lt;font color="purple"&gt;array&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;From a PHP array&lt;/h3&gt;<br>
+                <br>
+                <br>
+                This is a PHP array - 1 &lt;br&gt;<br>
+                <br>
+                This is a PHP array - 2 &lt;br&gt;<br>
+                <br>
+                This is a PHP array - 3 &lt;br&gt;&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;A defined constant&amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;constant&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;br&gt; &lt;b&gt;{&lt;font color="green"&gt;&lt;font color="red"&gt;$&lt;/font&gt;foo&lt;/font&gt;}&lt;/b&gt; &amp;lt;br&amp;gt;&lt;br&gt;&lt;b&gt;{/&lt;font color="blue"&gt;&lt;font color="purple"&gt;constant&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;A defined constant&lt;/h3&gt;<br>
+                <br>
+                <br>
+                This is a constant - 1 &lt;br&gt;<br>
+                <br>
+                This is a constant - 2 &lt;br&gt;<br>
+                <br>
+                This is a constant - 3 &lt;br&gt;&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;From the &lt;b&gt;{&lt;font color="blue"&gt;data&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt; tag&amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;data&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;br&gt; &lt;b&gt;{&lt;font color="green"&gt;&lt;font color="red"&gt;$&lt;/font&gt;foo&lt;/font&gt;}&lt;/b&gt; &amp;lt;br&amp;gt;&lt;br&gt;&lt;b&gt;{/&lt;font color="blue"&gt;&lt;font color="purple"&gt;data&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;From the {data} tag&lt;/h3&gt;<br>
+                <br>
+                <br>
+                This is a json array - 1 &lt;br&gt;<br>
+                <br>
+                This is a json array - 2 &lt;br&gt;<br>
+                <br>
+                This is a json array - 3 &lt;br&gt;&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;From the local _data directory&amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;local&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;br&gt; &lt;b&gt;{&lt;font color="green"&gt;&lt;font color="red"&gt;$&lt;/font&gt;foo&lt;/font&gt;}&lt;/b&gt; &amp;lt;br&amp;gt;&lt;br&gt;&lt;b&gt;{/&lt;font color="blue"&gt;&lt;font color="purple"&gt;local&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;From the local _data directory&lt;/h3&gt;<br>
+                <br>
+                <br>
+                From the _data directory - 1 &lt;br&gt;<br>
+                <br>
+                From the _data directory - 2 &lt;br&gt;<br>
+                <br>
+                From the _data directory - 3 &lt;br&gt;&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;From the local _scripts directory&amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;script&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;From the local _scripts directory&lt;/h3&gt;<br>
+                <br>
+                Hello from foo.py&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;<br>
+                <br>
+                <br>
+                &lt;/table&gt;<br>
+                &lt;/p&gt;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;hr&gt;<br>
+                <br>
+                &lt;h3&gt; The list with PAD tag types&lt;/h3&gt;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=action.html"&gt;action&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=app.html"&gt;app&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=array.html"&gt;array&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+              </td>
+              <td class="diffUnmodified">
+                It can get confusing because a PAD tag can be so many things,&lt;br&gt;<br>
+                to solve this, use a prefix that gives the tag type.<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;p&gt;<br>
+                &lt;table border="1" cellpadding="10" cellspacing="0"&gt;<br>
+                &lt;tr&gt;<br>
+                <br>
+                <br>
+                <br>
+                &lt;th bgcolor="#dddddd"&gt;HTML&lt;/th&gt;<br>
+                &lt;th bgcolor="#dddddd"&gt;RESULT&lt;/th&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                <br>
+                &lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;From an pad tag&amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;pad&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;From an pad tag&lt;/h3&gt;<br>
+                <br>
+                Foo tag from pad&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;From an application tag &amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;app&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;From an application tag &lt;/h3&gt;<br>
+                <br>
+                Foo tag from app&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;From the &lt;b&gt;{&lt;font color="blue"&gt;content&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt; tag &amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;content&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;From the {content} tag &lt;/h3&gt;<br>
+                <br>
+                <br>
+                This is from content&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;From a PHP function !&amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;php&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;From a PHP function !&lt;/h3&gt;<br>
+                <br>
+                This is a function&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;From an own PAD function &amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;function&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;From an own PAD function &lt;/h3&gt;<br>
+                <br>
+                From an own function&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;From an defined bool&amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;bool&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;br&gt; Bool 'foo' is true&lt;br&gt;&lt;b&gt;&lt;font color="black"&gt;@&lt;/font&gt;&lt;font color="purple"&gt;else&lt;/font&gt;&lt;font color="black"&gt;@&lt;/font&gt;&lt;/b&gt;&lt;br&gt; Bool 'foo' is false&lt;br&gt;&lt;b&gt;{/&lt;font color="blue"&gt;&lt;font color="purple"&gt;bool&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;From an defined bool&lt;/h3&gt;<br>
+                <br>
+                <br>
+                Bool 'foo' is true&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;From a PHP array&amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;array&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;br&gt; &lt;b&gt;{&lt;font color="green"&gt;&lt;font color="red"&gt;$&lt;/font&gt;foo&lt;/font&gt;}&lt;/b&gt; &amp;lt;br&amp;gt;&lt;br&gt;&lt;b&gt;{/&lt;font color="blue"&gt;&lt;font color="purple"&gt;array&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;From a PHP array&lt;/h3&gt;<br>
+                <br>
+                <br>
+                This is a PHP array - 1 &lt;br&gt;<br>
+                <br>
+                This is a PHP array - 2 &lt;br&gt;<br>
+                <br>
+                This is a PHP array - 3 &lt;br&gt;&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;A defined constant&amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;constant&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;br&gt; &lt;b&gt;{&lt;font color="green"&gt;&lt;font color="red"&gt;$&lt;/font&gt;foo&lt;/font&gt;}&lt;/b&gt; &amp;lt;br&amp;gt;&lt;br&gt;&lt;b&gt;{/&lt;font color="blue"&gt;&lt;font color="purple"&gt;constant&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;A defined constant&lt;/h3&gt;<br>
+                <br>
+                <br>
+                This is a constant - 1 &lt;br&gt;<br>
+                <br>
+                This is a constant - 2 &lt;br&gt;<br>
+                <br>
+                This is a constant - 3 &lt;br&gt;&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;From the &lt;b&gt;{&lt;font color="blue"&gt;data&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt; tag&amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;data&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;br&gt; &lt;b&gt;{&lt;font color="green"&gt;&lt;font color="red"&gt;$&lt;/font&gt;foo&lt;/font&gt;}&lt;/b&gt; &amp;lt;br&amp;gt;&lt;br&gt;&lt;b&gt;{/&lt;font color="blue"&gt;&lt;font color="purple"&gt;data&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;From the {data} tag&lt;/h3&gt;<br>
+                <br>
+                <br>
+                This is a json array - 1 &lt;br&gt;<br>
+                <br>
+                This is a json array - 2 &lt;br&gt;<br>
+                <br>
+                This is a json array - 3 &lt;br&gt;&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;From the local _data directory&amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;local&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;br&gt; &lt;b&gt;{&lt;font color="green"&gt;&lt;font color="red"&gt;$&lt;/font&gt;foo&lt;/font&gt;}&lt;/b&gt; &amp;lt;br&amp;gt;&lt;br&gt;&lt;b&gt;{/&lt;font color="blue"&gt;&lt;font color="purple"&gt;local&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;From the local _data directory&lt;/h3&gt;<br>
+                <br>
+                <br>
+                From the _data directory - 1 &lt;br&gt;<br>
+                <br>
+                From the _data directory - 2 &lt;br&gt;<br>
+                <br>
+                From the _data directory - 3 &lt;br&gt;&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align:top"&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;h3&amp;gt;From the local _scripts directory&amp;lt;/h3&amp;gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;&lt;font color="purple"&gt;script&lt;/font&gt;&lt;font color="black"&gt;&lt;b&gt;:&lt;/b&gt;&lt;/font&gt;foo&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style="vertical-align:top"&gt;&lt;code&gt;&lt;span style="color: #000000"&gt;&lt;!-- START DEMO RESULT --&gt;&lt;h3&gt;From the local _scripts directory&lt;/h3&gt;<br>
+                <br>
+                Hello from foo.py&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;<br>
+                <br>
+                <br>
+                &lt;/table&gt;<br>
+                &lt;/p&gt;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;hr&gt;<br>
+                <br>
+                &lt;h3&gt; The list with PAD tag types&lt;/h3&gt;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=action.html"&gt;action&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=app.html"&gt;app&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=array.html"&gt;array&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+              </td>
+            </tr>
+            <tr>
+              <td class="diffDeleted">
+                bool
+              </td>
+              <td class="diffInserted">
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=bool.html"&gt;bool&lt;/a&gt;
+              </td>
+            </tr>
+            <tr>
+              <td class="diffUnmodified">
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=common.html"&gt;common&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+              </td>
+              <td class="diffUnmodified">
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=common.html"&gt;common&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+              </td>
+            </tr>
+            <tr>
+              <td class="diffDeleted">
+                constant
+              </td>
+              <td class="diffInserted">
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=constant.html"&gt;constant&lt;/a&gt;
+              </td>
+            </tr>
+            <tr>
+              <td class="diffUnmodified">
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=content.html"&gt;content&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=data.html"&gt;data&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=field.html"&gt;field&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=flag.html"&gt;flag&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+              </td>
+              <td class="diffUnmodified">
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=content.html"&gt;content&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=data.html"&gt;data&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=field.html"&gt;field&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=flag.html"&gt;flag&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+              </td>
+            </tr>
+            <tr>
+              <td class="diffDeleted">
+                function
+              </td>
+              <td class="diffInserted">
+                &lt;a href="../reference/index%EF%B9%96pages&amp;padSesID=DiM2hOlW&amp;padReqID=o3MULund&amp;type=Tag+types&amp;xref=tag%EA%A4%B7function&amp;item=foo.html"&gt;function&lt;/a&gt;
+              </td>
+            </tr>
+            <tr>
+              <td class="diffUnmodified">
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=include.html"&gt;include&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=keep.html"&gt;keep&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                level<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=local.html"&gt;local&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=make.html"&gt;make&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=pad.html"&gt;pad&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=php.html"&gt;php&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=property.html"&gt;property&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=pull.html"&gt;pull&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=remove.html"&gt;remove&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=script.html"&gt;script&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+              </td>
+              <td class="diffUnmodified">
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=include.html"&gt;include&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=keep.html"&gt;keep&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                level<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=local.html"&gt;local&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=make.html"&gt;make&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=pad.html"&gt;pad&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=php.html"&gt;php&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=property.html"&gt;property&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=pull.html"&gt;pull&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=remove.html"&gt;remove&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=script.html"&gt;script&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+              </td>
+            </tr>
+            <tr>
+              <td class="diffDeleted">
+                select
+              </td>
+              <td class="diffInserted">
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=select.html"&gt;select&lt;/a&gt;
+              </td>
+            </tr>
+            <tr>
+              <td class="diffUnmodified">
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=sequence.html"&gt;sequence&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;p&gt;<br>
+                <br>
+                &lt;h2&gt;Extra files used&lt;/h2&gt;<br>
+                <br>
+                &lt;table border="1" cellpadding="10" cellspacing="0"&gt;<br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;th bgcolor="#bbbbbb"&gt;PHP&lt;/th&gt;<br>
+                &lt;th bgcolor="#bbbbbb"&gt;PAD&lt;/th&gt;<br>
+                &lt;th bgcolor="#bbbbbb"&gt;OTHER&lt;/th&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                <br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;_functions/foo.php&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&lt;span style="color: #0000BB"&gt;&amp;lt;?php&lt;br&gt;&lt;br&gt; &lt;/span&gt;&lt;span style="color: #007700"&gt;return &lt;/span&gt;&lt;span style="color: #DD0000"&gt;"From an own function"&lt;/span&gt;&lt;span style="color: #007700"&gt;;&lt;br&gt;&lt;br&gt;&lt;/span&gt;&lt;span style="color: #0000BB"&gt;?&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                <br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;_scripts/foo.py&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;#!/usr/bin/env python3&lt;br&gt;&lt;br&gt;import sys&lt;br&gt;import os&lt;br&gt;&lt;br&gt;me = sys.argv[1:]&lt;br&gt;&lt;br&gt;print ( "Hello from", os.path.basename(__file__) )&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                <br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;_tags/foo.php&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&lt;span style="color: #0000BB"&gt;&amp;lt;?php&lt;br&gt;&lt;br&gt; &lt;/span&gt;&lt;span style="color: #007700"&gt;return &lt;/span&gt;&lt;span style="color: #DD0000"&gt;"Foo tag from app"&lt;/span&gt;&lt;span style="color: #007700"&gt;;&lt;br&gt;&lt;br&gt;&lt;/span&gt;&lt;span style="color: #0000BB"&gt;?&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                <br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;prefix/_data/foo.xml&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;xml&amp;gt;&lt;br&gt; &amp;lt;line foo="From the _data directory - 1" /&amp;gt;&lt;br&gt; &amp;lt;line foo="From the _data directory - 2" /&amp;gt;&lt;br&gt; &amp;lt;line foo="From the _data directory - 3" /&amp;gt;&lt;br&gt;&amp;lt;/xml&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                <br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;prefix/_lib/foo.pad&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&lt;b&gt;{&lt;font color="blue"&gt;content &lt;/font&gt;&lt;font color="red"&gt;&lt;font color="black"&gt;'&lt;/font&gt;foo&lt;font color="black"&gt;'&lt;/font&gt;&lt;/font&gt;}&lt;/b&gt;&lt;br&gt; This is from content&lt;br&gt;&lt;b&gt;{/&lt;font color="blue"&gt;content&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;data &lt;/font&gt;&lt;font color="red"&gt;&lt;font color="black"&gt;'&lt;/font&gt;foo&lt;font color="black"&gt;'&lt;/font&gt;&lt;/font&gt;}&lt;/b&gt;&lt;br&gt; [ { "foo": "This is a json array - 1" },&lt;br&gt; { "foo": "This is a json array - 2" },&lt;br&gt; { "foo": "This is a json array - 3" } ]&lt;br&gt;&lt;b&gt;{/&lt;font color="blue"&gt;data&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;bool &lt;/font&gt;&lt;font color="red"&gt;&lt;font color="black"&gt;'&lt;/font&gt;foo&lt;font color="black"&gt;'&lt;/font&gt;&lt;/font&gt;}&lt;/b&gt;1&lt;b&gt;{/&lt;font color="blue"&gt;bool&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                <br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;prefix/_lib/foo.php&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&lt;span style="color: #0000BB"&gt;&amp;lt;?php&lt;br&gt;&lt;br&gt; &lt;/span&gt;&lt;span style="color: #007700"&gt;function &lt;/span&gt;&lt;span style="color: #0000BB"&gt;foo &lt;/span&gt;&lt;span style="color: #007700"&gt;() {&lt;br&gt;&lt;br&gt; return &lt;/span&gt;&lt;span style="color: #DD0000"&gt;"This is a function"&lt;/span&gt;&lt;span style="color: #007700"&gt;;&lt;br&gt;&lt;br&gt; }&lt;br&gt;&lt;br&gt; &lt;/span&gt;&lt;span style="color: #0000BB"&gt;$foo &lt;/span&gt;&lt;span style="color: #007700"&gt;= [ &lt;/span&gt;&lt;span style="color: #DD0000"&gt;'This is a PHP array - 1'&lt;/span&gt;&lt;span style="color: #007700"&gt;,&lt;br&gt; &lt;/span&gt;&lt;span style="color: #DD0000"&gt;'This is a PHP array - 2'&lt;/span&gt;&lt;span style="color: #007700"&gt;,&lt;br&gt; &lt;/span&gt;&lt;span style="color: #DD0000"&gt;'This is a PHP array - 3'&lt;br&gt; &lt;/span&gt;&lt;span style="color: #007700"&gt;];&lt;br&gt;&lt;br&gt; &lt;/span&gt;&lt;span style="color: #0000BB"&gt;define &lt;/span&gt;&lt;span style="color: #007700"&gt;( &lt;/span&gt;&lt;span style="color: #DD0000"&gt;'foo'&lt;/span&gt;&lt;span style="color: #007700"&gt;, [ &lt;/span&gt;&lt;span style="color: #DD0000"&gt;'This is a constant - 1'&lt;/span&gt;&lt;span style="color: #007700"&gt;,&lt;br&gt; &lt;/span&gt;&lt;span style="color: #DD0000"&gt;'This is a constant - 2'&lt;/span&gt;&lt;span style="color: #007700"&gt;,&lt;br&gt; &lt;/span&gt;&lt;span style="color: #DD0000"&gt;'This is a constant - 3'&lt;br&gt; &lt;/span&gt;&lt;span style="color: #007700"&gt;] );&lt;br&gt;&lt;br&gt;&lt;/span&gt;&lt;span style="color: #0000BB"&gt;?&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                <br>
+                <br>
+                &lt;/table&gt;<br>
+                <br>
+                &lt;/p&gt;
+              </td>
+              <td class="diffUnmodified">
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=sequence.html"&gt;sequence&lt;/a&gt;<br>
+                <br>
+                <br>
+                &amp;nbsp;<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                &lt;p&gt;<br>
+                <br>
+                &lt;h2&gt;Extra files used&lt;/h2&gt;<br>
+                <br>
+                &lt;table border="1" cellpadding="10" cellspacing="0"&gt;<br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;th bgcolor="#bbbbbb"&gt;PHP&lt;/th&gt;<br>
+                &lt;th bgcolor="#bbbbbb"&gt;PAD&lt;/th&gt;<br>
+                &lt;th bgcolor="#bbbbbb"&gt;OTHER&lt;/th&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                <br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;_functions/foo.php&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&lt;span style="color: #0000BB"&gt;&amp;lt;?php&lt;br&gt;&lt;br&gt; &lt;/span&gt;&lt;span style="color: #007700"&gt;return &lt;/span&gt;&lt;span style="color: #DD0000"&gt;"From an own function"&lt;/span&gt;&lt;span style="color: #007700"&gt;;&lt;br&gt;&lt;br&gt;&lt;/span&gt;&lt;span style="color: #0000BB"&gt;?&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                <br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;_scripts/foo.py&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;#!/usr/bin/env python3&lt;br&gt;&lt;br&gt;import sys&lt;br&gt;import os&lt;br&gt;&lt;br&gt;me = sys.argv[1:]&lt;br&gt;&lt;br&gt;print ( "Hello from", os.path.basename(__file__) )&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                <br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;_tags/foo.php&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&lt;span style="color: #0000BB"&gt;&amp;lt;?php&lt;br&gt;&lt;br&gt; &lt;/span&gt;&lt;span style="color: #007700"&gt;return &lt;/span&gt;&lt;span style="color: #DD0000"&gt;"Foo tag from app"&lt;/span&gt;&lt;span style="color: #007700"&gt;;&lt;br&gt;&lt;br&gt;&lt;/span&gt;&lt;span style="color: #0000BB"&gt;?&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                <br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;prefix/_data/foo.xml&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&amp;lt;xml&amp;gt;&lt;br&gt; &amp;lt;line foo="From the _data directory - 1" /&amp;gt;&lt;br&gt; &amp;lt;line foo="From the _data directory - 2" /&amp;gt;&lt;br&gt; &amp;lt;line foo="From the _data directory - 3" /&amp;gt;&lt;br&gt;&amp;lt;/xml&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                <br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;prefix/_lib/foo.pad&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&lt;b&gt;{&lt;font color="blue"&gt;content &lt;/font&gt;&lt;font color="red"&gt;&lt;font color="black"&gt;'&lt;/font&gt;foo&lt;font color="black"&gt;'&lt;/font&gt;&lt;/font&gt;}&lt;/b&gt;&lt;br&gt; This is from content&lt;br&gt;&lt;b&gt;{/&lt;font color="blue"&gt;content&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;data &lt;/font&gt;&lt;font color="red"&gt;&lt;font color="black"&gt;'&lt;/font&gt;foo&lt;font color="black"&gt;'&lt;/font&gt;&lt;/font&gt;}&lt;/b&gt;&lt;br&gt; [ { "foo": "This is a json array - 1" },&lt;br&gt; { "foo": "This is a json array - 2" },&lt;br&gt; { "foo": "This is a json array - 3" } ]&lt;br&gt;&lt;b&gt;{/&lt;font color="blue"&gt;data&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;{&lt;font color="blue"&gt;bool &lt;/font&gt;&lt;font color="red"&gt;&lt;font color="black"&gt;'&lt;/font&gt;foo&lt;font color="black"&gt;'&lt;/font&gt;&lt;/font&gt;}&lt;/b&gt;1&lt;b&gt;{/&lt;font color="blue"&gt;bool&lt;/font&gt;&lt;font color="red"&gt;&lt;/font&gt;}&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                <br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;prefix/_lib/foo.php&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;td bgcolor="#eeeeee"&gt;&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                &lt;tr&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;pre&gt;&lt;code style="color: #000000"&gt;&lt;span style="color: #0000BB"&gt;&amp;lt;?php&lt;br&gt;&lt;br&gt; &lt;/span&gt;&lt;span style="color: #007700"&gt;function &lt;/span&gt;&lt;span style="color: #0000BB"&gt;foo &lt;/span&gt;&lt;span style="color: #007700"&gt;() {&lt;br&gt;&lt;br&gt; return &lt;/span&gt;&lt;span style="color: #DD0000"&gt;"This is a function"&lt;/span&gt;&lt;span style="color: #007700"&gt;;&lt;br&gt;&lt;br&gt; }&lt;br&gt;&lt;br&gt; &lt;/span&gt;&lt;span style="color: #0000BB"&gt;$foo &lt;/span&gt;&lt;span style="color: #007700"&gt;= [ &lt;/span&gt;&lt;span style="color: #DD0000"&gt;'This is a PHP array - 1'&lt;/span&gt;&lt;span style="color: #007700"&gt;,&lt;br&gt; &lt;/span&gt;&lt;span style="color: #DD0000"&gt;'This is a PHP array - 2'&lt;/span&gt;&lt;span style="color: #007700"&gt;,&lt;br&gt; &lt;/span&gt;&lt;span style="color: #DD0000"&gt;'This is a PHP array - 3'&lt;br&gt; &lt;/span&gt;&lt;span style="color: #007700"&gt;];&lt;br&gt;&lt;br&gt; &lt;/span&gt;&lt;span style="color: #0000BB"&gt;define &lt;/span&gt;&lt;span style="color: #007700"&gt;( &lt;/span&gt;&lt;span style="color: #DD0000"&gt;'foo'&lt;/span&gt;&lt;span style="color: #007700"&gt;, [ &lt;/span&gt;&lt;span style="color: #DD0000"&gt;'This is a constant - 1'&lt;/span&gt;&lt;span style="color: #007700"&gt;,&lt;br&gt; &lt;/span&gt;&lt;span style="color: #DD0000"&gt;'This is a constant - 2'&lt;/span&gt;&lt;span style="color: #007700"&gt;,&lt;br&gt; &lt;/span&gt;&lt;span style="color: #DD0000"&gt;'This is a constant - 3'&lt;br&gt; &lt;/span&gt;&lt;span style="color: #007700"&gt;] );&lt;br&gt;&lt;br&gt;&lt;/span&gt;&lt;span style="color: #0000BB"&gt;?&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;td style="vertical-align:top"&gt;&lt;code style="color: #000000"&gt;&lt;/code&gt;&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+                <br>
+                <br>
+                <br>
+                &lt;/table&gt;<br>
+                <br>
+                &lt;/p&gt;
+              </td>
+            </tr>
+          </tbody></table><br>
+          <table border="1" cellpadding="10" cellspacing="0">
+            <tbody><tr>
+              <th bgcolor="#DDDDDD">
+                PHP<br>
+                <font size="-2"></font>
+              </th>
+              <th bgcolor="#DDDDDD">
+                HTML<br>
+                <font size="-2">pages/prefix.pad</font>
+              </th>
+              <th bgcolor="#DDDDDD">
+                Result
+              </th>
+            </tr>
+            <tr>
+              <td style="vertical-align:top"></td>
+              <td style="vertical-align:top">
+                <pre><code style="color: #000000">It can get confusing because a PAD tag can be so many things,&lt;br&gt;<br>to solve this, use a prefix that gives the tag type. <br><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>prefix/prefix<font color="black">'</font></font>}</b><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>prefix/types<font color="black">'</font></font>}</b><br><b>{<font color="blue">extra </font><font color="red"><font color="black">'</font>prefix/prefix<font color="black">'</font></font>}</b></code></pre>
+              </td>
+              <td style="vertical-align:top">
+                <div id="padAjaxNX6c6v6k">It can get confusing because a PAD tag can be so many things,<br>
+to solve this, use a prefix that gives the tag type. 
+
+
+
+
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From an pad tag&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From an pad tag</h3>
+
+Foo tag from pad<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From an application tag &lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">app</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From an application tag </h3>
+
+Foo tag from app<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From the <b>{<font color="blue">content</font><font color="red"></font>}</b> tag &lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From the {content} tag </h3>
+
+
+  This is from content<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From a PHP function !&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From a PHP function !</h3>
+
+This is a function<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From an own PAD function &lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">function</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From an own PAD function </h3>
+
+From an own function<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From an defined bool&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  Bool 'foo' is true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  Bool 'foo' is false<br><b>{/<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From an defined bool</h3>
+
+
+  Bool 'foo' is true<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From a PHP array&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From a PHP array</h3>
+
+
+  This is a PHP array - 1 <br>
+
+  This is a PHP array - 2 <br>
+
+  This is a PHP array - 3 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;A defined constant&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">constant</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">constant</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>A defined constant</h3>
+
+
+  This is a constant - 1 <br>
+
+  This is a constant - 2 <br>
+
+  This is a constant - 3 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From the <b>{<font color="blue">data</font><font color="red"></font>}</b> tag&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From the {data} tag</h3>
+
+
+  This is a json array - 1 <br>
+
+  This is a json array - 2 <br>
+
+  This is a json array - 3 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From the local _data directory&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From the local _data directory</h3>
+
+
+  From the _data directory - 1 <br>
+
+  From the _data directory - 2 <br>
+
+  From the _data directory - 3 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From the local _scripts directory&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">script</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From the local _scripts directory</h3>
+
+Hello from foo.py<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p>
+
+
+
+
+<hr>
+
+<h3> The list with PAD tag types</h3>
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=action.html">action</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=app.html">app</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=array.html">array</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=bool.html">bool</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=common.html">common</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=constant.html">constant</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=content.html">content</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=data.html">data</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=field.html">field</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=flag.html">flag</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96pages&amp;padSesID=DiM2hOlW&amp;padReqID=o3MULund&amp;type=Tag+types&amp;xref=tag%EA%A4%B7function&amp;item=foo.html">function</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=include.html">include</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=keep.html">keep</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    level
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=local.html">local</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=make.html">make</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=pad.html">pad</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=php.html">php</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=property.html">property</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=pull.html">pull</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=remove.html">remove</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=script.html">script</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=select.html">select</a>
+  
+
+  &nbsp; 
+
+
+
+  
+    <a href="../reference/index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=sequence.html">sequence</a>
+  
+
+  &nbsp; 
+
+
+
+
+  <p> 
+
+    </p><h2>Extra files used</h2>
+    
+    <table border="1" cellpadding="10" cellspacing="0">
+
+      <tbody><tr>
+        <th bgcolor="#bbbbbb">PHP</th>
+        <th bgcolor="#bbbbbb">PAD</th>
+        <th bgcolor="#bbbbbb">OTHER</th>
+      </tr>
+   
+      
+
+        <tr>
+          <td bgcolor="#eeeeee">_functions/foo.php</td>
+          <td bgcolor="#eeeeee"></td>
+          <td bgcolor="#eeeeee"></td>
+        </tr>
+
+        <tr>
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">return </span><span style="color: #DD0000">"From an own function"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre></td>
+          <td style="vertical-align:top"><code style="color: #000000"></code></td>
+          <td style="vertical-align:top"><code style="color: #000000"></code></td>
+        </tr>
+   
+      
+
+        <tr>
+          <td bgcolor="#eeeeee"></td>
+          <td bgcolor="#eeeeee"></td>
+          <td bgcolor="#eeeeee">_scripts/foo.py</td>
+        </tr>
+
+        <tr>
+          <td style="vertical-align:top"><code style="color: #000000"></code></td>
+          <td style="vertical-align:top"><code style="color: #000000"></code></td>
+          <td style="vertical-align:top"><pre><code style="color: #000000">#!/usr/bin/env python3<br><br>import sys<br>import os<br><br>me = sys.argv[1:]<br><br>print ( "Hello from", os.path.basename(__file__) )<br></code></pre></td>
+        </tr>
+   
+      
+
+        <tr>
+          <td bgcolor="#eeeeee">_tags/foo.php</td>
+          <td bgcolor="#eeeeee"></td>
+          <td bgcolor="#eeeeee"></td>
+        </tr>
+
+        <tr>
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">return </span><span style="color: #DD0000">"Foo tag from app"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre></td>
+          <td style="vertical-align:top"><code style="color: #000000"></code></td>
+          <td style="vertical-align:top"><code style="color: #000000"></code></td>
+        </tr>
+   
+      
+
+        <tr>
+          <td bgcolor="#eeeeee"></td>
+          <td bgcolor="#eeeeee"></td>
+          <td bgcolor="#eeeeee">prefix/_data/foo.xml</td>
+        </tr>
+
+        <tr>
+          <td style="vertical-align:top"><code style="color: #000000"></code></td>
+          <td style="vertical-align:top"><code style="color: #000000"></code></td>
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;xml&gt;<br>  &lt;line foo="From the _data directory - 1" /&gt;<br>  &lt;line foo="From the _data directory - 2" /&gt;<br>  &lt;line foo="From the _data directory - 3" /&gt;<br>&lt;/xml&gt;</code></pre></td>
+        </tr>
+   
+      
+
+        <tr>
+          <td bgcolor="#eeeeee"></td>
+          <td bgcolor="#eeeeee">prefix/_lib/foo.pad</td>
+          <td bgcolor="#eeeeee"></td>
+        </tr>
+
+        <tr>
+          <td style="vertical-align:top"><code style="color: #000000"></code></td>
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>foo<font color="black">'</font></font>}</b><br>  This is from content<br><b>{/<font color="blue">content</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>foo<font color="black">'</font></font>}</b><br>  [ { "foo": "This is a json array - 1" },<br>    { "foo": "This is a json array - 2" },<br>    { "foo": "This is a json array - 3" } ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">bool </font><font color="red"><font color="black">'</font>foo<font color="black">'</font></font>}</b>1<b>{/<font color="blue">bool</font><font color="red"></font>}</b></code></pre></td>
+          <td style="vertical-align:top"><code style="color: #000000"></code></td>
+        </tr>
+   
+      
+
+        <tr>
+          <td bgcolor="#eeeeee">prefix/_lib/foo.php</td>
+          <td bgcolor="#eeeeee"></td>
+          <td bgcolor="#eeeeee"></td>
+        </tr>
+
+        <tr>
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">function </span><span style="color: #0000BB">foo </span><span style="color: #007700">() {<br><br>     return </span><span style="color: #DD0000">"This is a function"</span><span style="color: #007700">;<br><br>  }<br><br>  </span><span style="color: #0000BB">$foo </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'This is a PHP array - 1'</span><span style="color: #007700">,<br>           </span><span style="color: #DD0000">'This is a PHP array - 2'</span><span style="color: #007700">,<br>           </span><span style="color: #DD0000">'This is a PHP array - 3'<br>         </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">define </span><span style="color: #007700">( </span><span style="color: #DD0000">'foo'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'This is a constant - 1'</span><span style="color: #007700">,<br>                    </span><span style="color: #DD0000">'This is a constant - 2'</span><span style="color: #007700">,<br>                    </span><span style="color: #DD0000">'This is a constant - 3'<br>                  </span><span style="color: #007700">] );<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre></td>
+          <td style="vertical-align:top"><code style="color: #000000"></code></td>
+          <td style="vertical-align:top"><code style="color: #000000"></code></td>
+        </tr>
+   
+      
+
+    </tbody></table>
+
+  <p></p>
+
+</div>
+                <script>
+                padAjaxNX6c6v6k = new XMLHttpRequest();
+                padAjaxNX6c6v6k.onreadystatechange=function() {
+                if (padAjaxNX6c6v6k.readyState === 4) {
+                if (padAjaxNX6c6v6k.status === 200) {
+                document.getElementById("padAjaxNX6c6v6k").innerHTML=padAjaxNX6c6v6k.responseText;
+                } else {
+                document.getElementById("padAjaxNX6c6v6k").innerHTML=padAjaxNX6c6v6k.statusText;
+                }
+                }
+                }
+                padAjaxNX6c6v6k.open("GET","http://localhost/manual/?pages/prefix&padInclude&padSesID=DiM2hOlW&padReqID=KPOvSD4H",true);
+                padAjaxNX6c6v6k.send();
+                </script>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Reference - PAD functions - ucwords
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - PAD functions - ucwords
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: check - Page: fragments/pipes_1<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/pipes_1.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/pipes_1.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $name </span><span style="color: #007700">= </span><span style="color: #DD0000">'john doe'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$email </span><span style="color: #007700">= </span><span style="color: #DD0000">'ALICE@EXAMPLE.COM'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$price </span><span style="color: #007700">= </span><span style="color: #0000BB">1234.56</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;Original: <b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Uppercase: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>name <font color="black">|</font> upper</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Capitalize: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>name <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;<br><br>&lt;p&gt;Original: <b>{<font color="green"><font color="red">$</font>email</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Lowercase: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>email <font color="black">|</font> lower</font>}</b>&lt;/p&gt;<br><br>&lt;p&gt;Original: <b>{<font color="green"><font color="red">$</font>price</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Formatted: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>price <font color="black">|</font> number_format(2)</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5ZkTP6r4"><p>Original: john doe</p>
+<p>Uppercase: JOHN DOE</p>
+<p>Capitalize: John Doe</p>
+
+<p>Original: ALICE@EXAMPLE.COM</p>
+<p>Lowercase: alice@example.com</p>
+
+<p>Original: 1234.56</p>
+<p>Formatted: 2</p></div>
+                        <script>
+                        padAjax5ZkTP6r4 = new XMLHttpRequest();
+                        padAjax5ZkTP6r4.onreadystatechange=function() {
+                        if (padAjax5ZkTP6r4.readyState === 4) {
+                        if (padAjax5ZkTP6r4.status === 200) {
+                        document.getElementById("padAjax5ZkTP6r4").innerHTML=padAjax5ZkTP6r4.responseText;
+                        } else {
+                        document.getElementById("padAjax5ZkTP6r4").innerHTML=padAjax5ZkTP6r4.statusText;
+                        }
+                        }
+                        }
+                        padAjax5ZkTP6r4.open("GET","http://localhost/check/?fragments/pipes_1&padInclude&padSesID=DiM2hOlW&padReqID=UbYFyvqe",true);
+                        padAjax5ZkTP6r4.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: fragments/pipes_3<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/pipes_3.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/pipes_3.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $rawText </span><span style="color: #007700">= </span><span style="color: #DD0000">'  hello world  '</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$message </span><span style="color: #007700">= </span><span style="color: #DD0000">'the quick brown fox'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;Chain multiple pipes together:&lt;/p&gt;<br><br>&lt;p&gt;Original: [<b>{<font color="green"><font color="red">$</font>rawText</font>}</b>]&lt;/p&gt;<br>&lt;p&gt;Trimmed and uppercase: [<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>rawText <font color="black">|</font> trim <font color="black">|</font> upper</font>}</b>]&lt;/p&gt;<br><br>&lt;p&gt;Original: <b>{<font color="green"><font color="red">$</font>message</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Uppercase first letter of each word: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>message <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Replace and uppercase: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>message <font color="black">|</font> replace(<font color="black">'</font>fox<font color="black">'</font><font color="black">,</font> <font color="black">'</font>dog<font color="black">'</font>) <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxSTzYVRjx"><p>Chain multiple pipes together:</p>
+
+<p>Original: [  hello world  ]</p>
+<p>Trimmed and uppercase: [HELLO WORLD]</p>
+
+<p>Original: the quick brown fox</p>
+<p>Uppercase first letter of each word: The Quick Brown Fox</p>
+<p>Replace and uppercase: The Quick Brown Dog</p></div>
+                        <script>
+                        padAjaxSTzYVRjx = new XMLHttpRequest();
+                        padAjaxSTzYVRjx.onreadystatechange=function() {
+                        if (padAjaxSTzYVRjx.readyState === 4) {
+                        if (padAjaxSTzYVRjx.status === 200) {
+                        document.getElementById("padAjaxSTzYVRjx").innerHTML=padAjaxSTzYVRjx.responseText;
+                        } else {
+                        document.getElementById("padAjaxSTzYVRjx").innerHTML=padAjaxSTzYVRjx.statusText;
+                        }
+                        }
+                        }
+                        padAjaxSTzYVRjx.open("GET","http://localhost/check/?fragments/pipes_3&padInclude&padSesID=DiM2hOlW&padReqID=UbYFyvqe",true);
+                        padAjaxSTzYVRjx.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

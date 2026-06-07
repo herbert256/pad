@@ -5,7 +5,7 @@
     global $padBoolStore, $padContentStore, $padDataStore, $padSelect, $pqStore;
 
     if     ( isset              ( $pqStore         [$item]       ) ) return 'pull';
-    elseif ( isset              ( $padBoolStore    [$item]       ) ) return 'flag';
+    elseif ( isset              ( $padBoolStore    [$item]       ) ) return 'bool';
     elseif ( isset              ( $padContentStore [$item]       ) ) return 'content';
     elseif ( isset              ( $padSelect       [$item]       ) ) return 'select';
     elseif ( isset              ( $padDataStore    [$item]       ) ) return 'data';
@@ -53,7 +53,7 @@
     elseif ( padCommonCheck     ( $item                          ) and $type == 'common'   ) return $type;
     elseif ( padCheck           ( PAD . "tags/$item"             ) and $type == 'pad'      ) return $type;
     elseif ( isset              ( $pqStore         [$item]       ) and $type == 'pull'     ) return $type;
-    elseif ( isset              ( $padBoolStore    [$item]       ) and $type == 'flag'     ) return $type;
+    elseif ( isset              ( $padBoolStore    [$item]       ) and $type == 'bool'     ) return $type;
     elseif ( isset              ( $padContentStore [$item]       ) and $type == 'content'  ) return $type;
     elseif ( isset              ( $padSelect       [$item]       ) and $type == 'select'   ) return $type;
     elseif ( isset              ( $padDataStore    [$item]       ) and $type == 'data'     ) return $type;
@@ -68,7 +68,7 @@
     elseif ( padScriptCheck     ( $item                          ) and $type == 'script'   ) return $type;
     elseif ( function_exists    ( $item                          ) and $type == 'php'      ) return $type;
     elseif ( file_exists        ( PT . $item                     ) and $type == 'sequence' ) return $type;
-    elseif ( file_exists        ( PA . "$item.php" ) and $type == 'action'   ) return $type;
+    elseif ( file_exists        ( PA . "$item.php"               ) and $type == 'action'   ) return $type;
     elseif ( padTypeFunction    ( $item, 0                       ) and $type == 'function' ) return $type;
 
     return FALSE;

@@ -1,0 +1,622 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Reference - Tag options - content
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag options - content
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: content/5<br>
+                  <div id="padAjaxuotnt1Vh"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  This is the true content. &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is the false content. &lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">true </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>replace<font color="black">'</font></font>}</b><br>  This is the true base content &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is the false base content &lt;br&gt;<br><b>{/<font color="blue">true</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is the true content. <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">true </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>top<font color="black">'</font></font>}</b><br>  This is the true base content &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is the false base content &lt;br&gt;<br><b>{/<font color="blue">true</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is the true content. <br>
+
+  This is the true base content <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">true </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>bottom<font color="black">'</font></font>}</b><br>  This is the true base content &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is the false base content &lt;br&gt;<br><b>{/<font color="blue">true</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is the true base content <br>
+
+  This is the true content. <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">false </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>replace<font color="black">'</font></font>}</b><br>  This is the true base content &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is the false base content &lt;br&gt;<br><b>{/<font color="blue">false</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is the false content. <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">false </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>top<font color="black">'</font></font>}</b><br>  This is the true base content &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is the false base content &lt;br&gt;<br><b>{/<font color="blue">false</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is the false content. <br>
+
+  This is the false base content <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">false </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>bottom<font color="black">'</font></font>}</b><br>  This is the true base content &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is the false base content &lt;br&gt;<br><b>{/<font color="blue">false</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is the false base content <br>
+
+  This is the false content. <br><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxuotnt1Vh = new XMLHttpRequest();
+                  padAjaxuotnt1Vh.onreadystatechange=function() {
+                  if (padAjaxuotnt1Vh.readyState === 4) {
+                  if (padAjaxuotnt1Vh.status === 200) {
+                  document.getElementById("padAjaxuotnt1Vh").innerHTML=padAjaxuotnt1Vh.responseText;
+                  } else {
+                  document.getElementById("padAjaxuotnt1Vh").innerHTML=padAjaxuotnt1Vh.statusText;
+                  }
+                  }
+                  }
+                  padAjaxuotnt1Vh.open("GET","http://localhost/manual/?content/5&padInclude&padSesID=DiM2hOlW&padReqID=IWWRpWJE",true);
+                  padAjaxuotnt1Vh.send();
+                  </script><br>
+                  <hr>
+                  App: manual - Page: content/6<br>
+                  <div id="padAjaxO3YmOPDE"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+        <th bgcolor="#dddddd">PHP</th>
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top" rowspan="4"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">function </span><span style="color: #0000BB">myFunction </span><span style="color: #007700">() {<br><br>    return </span><span style="color: #DD0000">'This is the tag content &lt;br&gt;'</span><span style="color: #007700">;<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre></td><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  This is content from the <b>{<font color="blue">content</font><font color="red"></font>}</b> tag &lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myFunction </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>replace<font color="black">'</font></font>}</b><br>  This is the base content &lt;br&gt;<br><b>{/<font color="blue">myFunction</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is content from the {content} tag <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myFunction </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>top<font color="black">'</font></font>}</b><br>  This is the base content &lt;br&gt;<br><b>{/<font color="blue">myFunction</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is content from the {content} tag <br>
+This is the tag content <br>
+  This is the base content <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myFunction </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>bottom<font color="black">'</font></font>}</b><br>  This is the base content &lt;br&gt;<br><b>{/<font color="blue">myFunction</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is the base content <br>
+This is the tag content <br>
+  This is content from the {content} tag <br><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxO3YmOPDE = new XMLHttpRequest();
+                  padAjaxO3YmOPDE.onreadystatechange=function() {
+                  if (padAjaxO3YmOPDE.readyState === 4) {
+                  if (padAjaxO3YmOPDE.status === 200) {
+                  document.getElementById("padAjaxO3YmOPDE").innerHTML=padAjaxO3YmOPDE.responseText;
+                  } else {
+                  document.getElementById("padAjaxO3YmOPDE").innerHTML=padAjaxO3YmOPDE.statusText;
+                  }
+                  }
+                  }
+                  padAjaxO3YmOPDE.open("GET","http://localhost/manual/?content/6&padInclude&padSesID=DiM2hOlW&padReqID=IWWRpWJE",true);
+                  padAjaxO3YmOPDE.send();
+                  </script><br>
+                  <hr>
+                  App: manual - Page: content/7<br>
+                  <div id="padAjaxF2Pqn8RZ"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  true: This is the <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b> content. &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false: This is the <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b> content. &lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">true </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false<br><b>{/<font color="blue">true</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->true: This is the 
+  true
+ content. <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">false </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false<br><b>{/<font color="blue">false</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->false: This is the 
+  false
+ content. <br><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p>
+
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">true </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  true: This is the <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b> content. &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false: This is the <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b> content. &lt;br&gt;<br><b>{/<font color="blue">true</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->true: This is the 
+  true
+ content. <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">false </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  true: This is the <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b> content. &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false: This is the <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b> content. &lt;br&gt;<br><b>{/<font color="blue">false</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->false: This is the 
+  false
+ content. <br><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxF2Pqn8RZ = new XMLHttpRequest();
+                  padAjaxF2Pqn8RZ.onreadystatechange=function() {
+                  if (padAjaxF2Pqn8RZ.readyState === 4) {
+                  if (padAjaxF2Pqn8RZ.status === 200) {
+                  document.getElementById("padAjaxF2Pqn8RZ").innerHTML=padAjaxF2Pqn8RZ.responseText;
+                  } else {
+                  document.getElementById("padAjaxF2Pqn8RZ").innerHTML=padAjaxF2Pqn8RZ.statusText;
+                  }
+                  }
+                  }
+                  padAjaxF2Pqn8RZ.open("GET","http://localhost/manual/?content/7&padInclude&padSesID=DiM2hOlW&padReqID=IWWRpWJE",true);
+                  padAjaxF2Pqn8RZ.send();
+                  </script><br>
+                  <hr>
+                  App: check - Page: miscellaneous/local<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">miscellaneous/local.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><br>  &lt;h3&gt;<b>{<font color="purple"><font color="red">&amp;</font>departments<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>option<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>data</font>}</b>&lt;/h3&gt;<br><br>  &lt;table border=1&gt;<br><br>    &lt;tr&gt;<br>      &lt;th&gt; department &lt;/th&gt;<br>      &lt;th&gt; manager &lt;/th&gt;<br>      &lt;th&gt; phone &lt;/th&gt;<br>    &lt;/tr&gt;<br><br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>department</font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>manager</font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br><br>  &lt;/table&gt;<br><br><b>{/<font color="blue">content</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments<font color="black">'</font><font color="black">,</font>      content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.php<font color="black">'</font><font color="black">,</font>  content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.csv<font color="black">'</font><font color="black">,</font>  content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.xml<font color="black">'</font><font color="black">,</font>  content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.json<font color="black">'</font><font color="black">,</font> content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.yaml<font color="black">'</font><font color="black">,</font> content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax76sj50Id">
+
+
+
+  <h3>departments/departments</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-8888 </td>
+      </tr>
+    
+
+  </tbody></table>
+
+
+
+
+  <h3>departments/departments.php</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-7777 </td>
+      </tr>
+    
+
+  </tbody></table>
+
+
+
+
+  <h3>departments/departments.csv</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-5555 </td>
+      </tr>
+    
+
+  </tbody></table>
+
+
+
+
+  <h3>departments/departments.xml</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-8888 </td>
+      </tr>
+    
+
+  </tbody></table>
+
+
+
+
+  <h3>departments/departments.json</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-6666   </td>
+      </tr>
+    
+
+  </tbody></table>
+
+
+
+
+  <h3>departments/departments.yaml</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-9999 </td>
+      </tr>
+    
+
+  </tbody></table>
+
+</div>
+                        <script>
+                        padAjax76sj50Id = new XMLHttpRequest();
+                        padAjax76sj50Id.onreadystatechange=function() {
+                        if (padAjax76sj50Id.readyState === 4) {
+                        if (padAjax76sj50Id.status === 200) {
+                        document.getElementById("padAjax76sj50Id").innerHTML=padAjax76sj50Id.responseText;
+                        } else {
+                        document.getElementById("padAjax76sj50Id").innerHTML=padAjax76sj50Id.statusText;
+                        }
+                        }
+                        }
+                        padAjax76sj50Id.open("GET","http://localhost/check/?miscellaneous/local&padInclude&padSesID=DiM2hOlW&padReqID=IWWRpWJE",true);
+                        padAjax76sj50Id.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: miscellaneous/pad<br>
+                  <div id="padAjaxBpy03Ern"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red"><font color="red">$</font>myColor=<font color="black">'</font>red<font color="black">'</font></font>}</b><br>  &lt;b&gt; &lt;font color="<b>{<font color="green"><font color="red">$</font>myColor</font>}</b>"&gt; Hallo Wereld &lt;/font&gt; &lt;/b&gt; &lt;br&gt;<br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><b> <font color="red"> Hallo Wereld </font> </b> <br><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p>
+
+<table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td>
+  <p>Below example gives a sneak preview of <a href="../manual/index%EF%B9%96pages%EA%A4%B7the_content_tag.html">The content tag</a> and <a href="../manual/index%EF%B9%96pages%EA%A4%B7the_data_tag.html">The data tag</a>, 
+     2 powerfull PAD tags.
+</p></td>
+  </tr>
+</tbody></table>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myData<font color="black">'</font></font>}</b><br>  ( "red", "green", "blue" ) <br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  &lt;b&gt; &lt;font color="<b>{<font color="green"><font color="red">$</font>myData</font>}</b>"&gt; Hello World &lt;/font&gt; &lt;/b&gt; &lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font><font color="black">,</font> content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><b> <font color="red"> Hello World </font> </b> <br>
+
+  <b> <font color="green"> Hello World </font> </b> <br>
+
+  <b> <font color="blue"> Hello World </font> </b> <br><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxBpy03Ern = new XMLHttpRequest();
+                  padAjaxBpy03Ern.onreadystatechange=function() {
+                  if (padAjaxBpy03Ern.readyState === 4) {
+                  if (padAjaxBpy03Ern.status === 200) {
+                  document.getElementById("padAjaxBpy03Ern").innerHTML=padAjaxBpy03Ern.responseText;
+                  } else {
+                  document.getElementById("padAjaxBpy03Ern").innerHTML=padAjaxBpy03Ern.statusText;
+                  }
+                  }
+                  }
+                  padAjaxBpy03Ern.open("GET","http://localhost/manual/?miscellaneous/pad&padInclude&padSesID=DiM2hOlW&padReqID=IWWRpWJE",true);
+                  padAjaxBpy03Ern.send();
+                  </script><br>
+                  <hr>
+                  App: manual - Page: tag_return_values/2<br>
+                  <div id="padAjax9kKgEbd8"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+        <th bgcolor="#dddddd">PHP</th>
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top" rowspan="4"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $var_null  </span><span style="color: #007700">= </span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$var_true  </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$var_false </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$var_value </span><span style="color: #007700">= </span><span style="color: #DD0000">'hello'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$arr_array </span><span style="color: #007700">= [</span><span style="color: #0000BB">1</span><span style="color: #007700">,</span><span style="color: #0000BB">2</span><span style="color: #007700">,</span><span style="color: #0000BB">3</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$arr_empty </span><span style="color: #007700">= [];<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre></td><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">1 - <b>{<font color="blue">var_null</font><font color="red"></font>}</b>  &lt;br&gt;<br>2 - <b>{<font color="blue">var_true</font><font color="red"></font>}</b>  &lt;br&gt;<br>3 - <b>{<font color="blue">var_false</font><font color="red"></font>}</b> &lt;br&gt;<br>4 - <b>{<font color="blue">var_value</font><font color="red"></font>}</b> &lt;br&gt;<br>5 - <b>{<font color="blue">arr_array</font><font color="red"></font>}</b> &lt;br&gt;<br>6 - <b>{<font color="blue">arr_empty</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1 -   <br>
+2 -   <br>
+3 -  <br>
+4 - hello <br>
+5 -  <br>
+6 -<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">1 - <b>{<font color="blue">var_null</font><font color="red"></font>}</b>  true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">var_null</font><font color="red"></font>}</b> &lt;br&gt;<br>2 - <b>{<font color="blue">var_true</font><font color="red"></font>}</b>  true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">var_true</font><font color="red"></font>}</b> &lt;br&gt;<br>3 - <b>{<font color="blue">var_false</font><font color="red"></font>}</b> true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">var_false</font><font color="red"></font>}</b> &lt;br&gt;<br>4 - <b>{<font color="blue">var_value</font><font color="red"></font>}</b> true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">var_value</font><font color="red"></font>}</b> &lt;br&gt;<br>5 - <b>{<font color="blue">arr_array</font><font color="red"></font>}</b> true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">arr_array</font><font color="red"></font>}</b> &lt;br&gt;<br>6 - <b>{<font color="blue">arr_empty</font><font color="red"></font>}</b> true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">arr_empty</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1 -  <br>
+2 -   true  <br>
+3 -  false  <br>
+4 - hello true  <br>
+5 -  true  true  true  <br>
+6 -  false<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myData<font color="black">'</font></font>}</b><br>  (1,2,3)<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  myContent<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">1 - <b>{<font color="blue">var_null </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b> &lt;br&gt;<br>2 - <b>{<font color="blue">var_true </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b> &lt;br&gt;<br>3 - <b>{<font color="blue">var_false </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b> &lt;br&gt;<br>4 - <b>{<font color="blue">var_value </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b> &lt;br&gt;<br>5 - <b>{<font color="blue">arr_array </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b> &lt;br&gt;<br>6 - <b>{<font color="blue">arr_empty </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1 -  <br>
+2 - 
+  myContent
+
+  myContent
+
+  myContent
+ <br>
+3 -  <br>
+4 - 
+  myContent
+hello
+  myContent
+hello
+  myContent
+hello <br>
+5 - 
+  myContent
+
+  myContent
+
+  myContent
+ <br>
+6 -<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjax9kKgEbd8 = new XMLHttpRequest();
+                  padAjax9kKgEbd8.onreadystatechange=function() {
+                  if (padAjax9kKgEbd8.readyState === 4) {
+                  if (padAjax9kKgEbd8.status === 200) {
+                  document.getElementById("padAjax9kKgEbd8").innerHTML=padAjax9kKgEbd8.responseText;
+                  } else {
+                  document.getElementById("padAjax9kKgEbd8").innerHTML=padAjax9kKgEbd8.statusText;
+                  }
+                  }
+                  }
+                  padAjax9kKgEbd8.open("GET","http://localhost/manual/?tag_return_values/2&padInclude&padSesID=DiM2hOlW&padReqID=IWWRpWJE",true);
+                  padAjax9kKgEbd8.send();
+                  </script><br>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

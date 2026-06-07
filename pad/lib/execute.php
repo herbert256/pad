@@ -9,7 +9,7 @@
     $padStrCln = FALSE;
     $padStrBld = 'code';
 
-    return include PAD . 'start/enter/function.php';
+    return include PAD . 'start/function.php';
 
   }
 
@@ -22,13 +22,13 @@
     $padStrCln = TRUE;
     $padStrBld = 'code';
 
-    return include PAD . 'start/enter/function.php';
+    return include PAD . 'start/function.php';
 
   }
 
   function padStrFun (  $padStrCod, $padStrBox, $padStrRes, $padStrCln, $padStrFun ) {
 
-    return include PAD . 'start/function.php';
+    return include PAD . 'start/pad/function.php';
 
   }
 

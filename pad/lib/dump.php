@@ -58,12 +58,12 @@
     echo ( "<div align=\"left\"><pre>" );
 
     padDumpInfo      ( $info );
-    padDumpXXX       ( $pq, 'pq' );
     padDumpStack     ();
     padDumpLevel     ();
     padDumpInput     ();
     padDumpBuffer    ();
     padDumpApp       ();
+    padDumpXXX       ( $pq, 'pq' );
     padDumpRequest   ();
 
     padDumpCurl      ( $pad );
@@ -121,16 +121,15 @@
 
     global $padException, $padTryException;
 
-    if ( isset ( $padException ) and is_object ( $padException ) ) {
-      echo "stack 1:<br>"; padDumpStackGo ( $padException->getTrace() );
-    }
+    if ( isset ( $padException ) and is_object ( $padException ) ) 
+      padDumpStackGo ( $padException->getTrace() );
 
-    if ( isset ( $padTryException )  and is_object ( $padTryException ) ) {
-      echo "stack 2:<br>"; padDumpStackGo ( $padTryException->getTrace() );
-    }
+    if ( isset ( $padTryException )  and is_object ( $padTryException ) )
+      padDumpStackGo ( $padTryException->getTrace() );
 
-    echo "stack 3:<br>"; padDumpStackGo ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS), 2 );
-    echo "stack 4:<br>"; padDumpStackGo ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS), 1 );
+    padDumpStackGo ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS), 2 );
+    echo "<br>";
+    padDumpStackGo ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS), 1 );
 
     return TRUE;
         

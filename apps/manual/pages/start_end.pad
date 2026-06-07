@@ -1,0 +1,51 @@
+{block}
+<p>The {construct 'start'} & {construct 'end'} constructs limits the occurce content of a tag to the content between those 2 constructs</p>
+{/block}
+
+{table}{demo}
+
+{data 'myArray'}
+  [1,2,3]
+{/data}
+
+{/demo}{demo}
+
+{myArray}
+
+  <table border="1">
+    <tr> <td> Before the first occurrence </td> </tr>
+
+    @start@
+      <tr> <td> For every occurence       </td> </tr>
+    @end@
+
+    <tr> <td> After the last occurrence   </td> </tr>
+  </table>
+
+{/myArray}
+
+{/demo}{demo}
+
+{data 'myArray'}
+ []
+{/data}
+
+{/demo}{demo}
+
+{myArray}
+
+  <table border="1">
+    <tr> <td> Before the first occurrence </td> </tr>
+    @start@
+      <tr> <td> For every occurence       </td> </tr>
+    @end@
+    <tr> <td> After the last occurrence   </td> </tr>
+  </table>
+
+@else@
+
+  <p> No occurences at all </p>
+
+{/myArray}
+
+{/demo}{/table}

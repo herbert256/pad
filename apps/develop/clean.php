@@ -1,5 +1,5 @@
 <?php
 
-  trimFiles ( '/home/herbert/pad/' );
+  trimFiles ( $padHome );
 
 ?>

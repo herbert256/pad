@@ -1,5 +1,7 @@
 #!/bin/bash
 
+exit;
+
 rm -rf /home/herbert/pad/DATA
 rm -rf /home/herbert/pad/www/DATA
 

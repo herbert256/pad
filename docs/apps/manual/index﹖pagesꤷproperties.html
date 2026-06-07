@@ -1,0 +1,1365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - properties
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Properties
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  Tag properties give information about a tag, they can be used:
+                  <p></p>
+                  <table border="0">
+                    <tbody><tr>
+                      <td>
+                        - as a pad tag
+                      </td>
+                      <td>
+                        <code style="color: #000000"><b>{<font color="blue">first</font><font color="red"></font>}</b> ... <b>{/<font color="blue">first</font><font color="red"></font>}</b></code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        - as a variable with the &amp; prefix &nbsp;
+                      </td>
+                      <td>
+                        <code style="color: #000000"><b>{<font color="blue">if</font> <font color="red">&amp;first</font>}</b> ... <b>{/<font color="blue">if</font><font color="red"></font>}</b></code>
+                      </td>
+                    </tr>
+                  </tbody></table>
+                  <p></p>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        HTML
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        RESULT
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <!-- START DEMO SOURCE -->
+                        <pre><code style="color: #000000"><b>{<font color="blue">myContent1</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>              &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">first</font><font color="red"></font>}</b>  X <b>{/<font color="blue">first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">border</font><font color="red"></font>}</b> X <b>{/<font color="blue">border</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">middle</font><font color="red"></font>}</b> X <b>{/<font color="blue">middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">last</font><font color="red"></font>}</b>   X <b>{/<font color="blue">last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">even</font><font color="red"></font>}</b>   X <b>{/<font color="blue">even</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">odd</font><font color="red"></font>}</b>    X <b>{/<font color="blue">odd</font><font color="red"></font>}</b>    &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                      </td>
+                      <td style="vertical-align:top">
+                        <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                        <table border="1" valign="center">
+                          <tbody><tr>
+                            <th></th>
+                            <th>
+                              first
+                            </th>
+                            <th>
+                              border
+                            </th>
+                            <th>
+                              middle
+                            </th>
+                            <th>
+                              last
+                            </th>
+                            <th>
+                              even
+                            </th>
+                            <th>
+                              odd
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              joe
+                            </td>
+                            <td>
+                              X
+                            </td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jim
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              john
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jack
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jerry
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                          </tr>
+                        </tbody></table><!-- END DEMO RESULT -->
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <!-- START DEMO SOURCE -->
+                        <pre><code style="color: #000000"><b>{<font color="blue">myContent1</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>              &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;first</font>}</b>  X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;border</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;middle</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;last</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;even</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;odd</font>}</b>    X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                      </td>
+                      <td style="vertical-align:top">
+                        <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                        <table border="1" valign="center">
+                          <tbody><tr>
+                            <th></th>
+                            <th>
+                              first
+                            </th>
+                            <th>
+                              border
+                            </th>
+                            <th>
+                              middle
+                            </th>
+                            <th>
+                              last
+                            </th>
+                            <th>
+                              even
+                            </th>
+                            <th>
+                              odd
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              joe
+                            </td>
+                            <td>
+                              X
+                            </td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jim
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              john
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jack
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jerry
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                          </tr>
+                        </tbody></table><!-- END DEMO RESULT -->
+                      </td>
+                    </tr>
+                  </tbody></table>
+                  <p></p>
+                  <p>
+                    When working with properties of a tag that is deeper in the stack of tags, the name of that tag must be given.
+                  </p>
+                  <p></p>
+                  <table border="0">
+                    <tbody><tr>
+                      <td>
+                        - as parameter when used as tag
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        - as prefix, when used as &amp;var
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        - relative level number
+                      </td>
+                    </tr>
+                  </tbody></table>
+                  <p></p>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        HTML
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        RESULT
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <!-- START DEMO SOURCE -->
+                        <pre><code style="color: #000000"><b>{<font color="blue">myContent1</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                      &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">first </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>  X <b>{/<font color="blue">first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">border </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b> X <b>{/<font color="blue">border</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">middle </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b> X <b>{/<font color="blue">middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">last </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>   X <b>{/<font color="blue">last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">even </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>   X <b>{/<font color="blue">even</font><font color="red"></font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">odd </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>    X <b>{/<font color="blue">odd</font><font color="red"></font>}</b>    &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                      </td>
+                      <td style="vertical-align:top">
+                        <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                        <table border="1" valign="center">
+                          <tbody><tr>
+                            <th></th>
+                            <th>
+                              first
+                            </th>
+                            <th>
+                              border
+                            </th>
+                            <th>
+                              middle
+                            </th>
+                            <th>
+                              last
+                            </th>
+                            <th>
+                              even
+                            </th>
+                            <th>
+                              odd
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              joe
+                            </td>
+                            <td>
+                              X
+                            </td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jim
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              john
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jack
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jerry
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                          </tr>
+                        </tbody></table><!-- END DEMO RESULT -->
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <!-- START DEMO SOURCE -->
+                        <pre><code style="color: #000000"><b>{<font color="blue">myContent1</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                    &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff<font color="black">:</font>first</font>}</b>  X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff<font color="black">:</font>border</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff<font color="black">:</font>middle</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff<font color="black">:</font>last</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff<font color="black">:</font>even</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff<font color="black">:</font>odd</font>}</b>    X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                      </td>
+                      <td style="vertical-align:top">
+                        <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                        <table border="1" valign="center">
+                          <tbody><tr>
+                            <th></th>
+                            <th>
+                              first
+                            </th>
+                            <th>
+                              border
+                            </th>
+                            <th>
+                              middle
+                            </th>
+                            <th>
+                              last
+                            </th>
+                            <th>
+                              even
+                            </th>
+                            <th>
+                              odd
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              joe
+                            </td>
+                            <td>
+                              X
+                            </td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jim
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              john
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jack
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jerry
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                          </tr>
+                        </tbody></table><!-- END DEMO RESULT -->
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <!-- START DEMO SOURCE -->
+                        <pre><code style="color: #000000"><b>{<font color="blue">myContent1</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>     <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      &lt;tr&gt; <br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                 &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">first </font><font color="red">-2</font>}</b>  X <b>{/<font color="blue">first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">border </font><font color="red">-2</font>}</b> X <b>{/<font color="blue">border</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">middle </font><font color="red">-2</font>}</b> X <b>{/<font color="blue">middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">last </font><font color="red">-2</font>}</b>   X <b>{/<font color="blue">last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">even </font><font color="red">-2</font>}</b>   X <b>{/<font color="blue">even</font><font color="red"></font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">odd </font><font color="red">-2</font>}</b>    X <b>{/<font color="blue">odd</font><font color="red"></font>}</b>    &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                      </td>
+                      <td style="vertical-align:top">
+                        <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                        <table border="1" valign="center">
+                          <tbody><tr>
+                            <th></th>
+                            <th>
+                              first
+                            </th>
+                            <th>
+                              border
+                            </th>
+                            <th>
+                              middle
+                            </th>
+                            <th>
+                              last
+                            </th>
+                            <th>
+                              even
+                            </th>
+                            <th>
+                              odd
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              joe
+                            </td>
+                            <td>
+                              X
+                            </td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jim
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              john
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jack
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jerry
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                          </tr>
+                        </tbody></table><!-- END DEMO RESULT -->
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <!-- START DEMO SOURCE -->
+                        <pre><code style="color: #000000"><b>{<font color="blue">myContent1</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>     <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                 &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2<font color="black">:</font>first</font>}</b>  X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2<font color="black">:</font>border</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2<font color="black">:</font>middle</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2<font color="black">:</font>last</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2<font color="black">:</font>even</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2<font color="black">:</font>odd</font>}</b>    X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                      </td>
+                      <td style="vertical-align:top">
+                        <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                        <table border="1" valign="center">
+                          <tbody><tr>
+                            <th></th>
+                            <th>
+                              first
+                            </th>
+                            <th>
+                              border
+                            </th>
+                            <th>
+                              middle
+                            </th>
+                            <th>
+                              last
+                            </th>
+                            <th>
+                              even
+                            </th>
+                            <th>
+                              odd
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              joe
+                            </td>
+                            <td>
+                              X
+                            </td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jim
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              john
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jack
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jerry
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                            <td></td>
+                            <td>
+                              X
+                            </td>
+                          </tr>
+                        </tbody></table><!-- END DEMO RESULT -->
+                      </td>
+                    </tr>
+                  </tbody></table>
+                  <p></p>
+                  <p>
+                    todo-1
+                  </p>
+                  <p></p>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        HTML
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        RESULT
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <!-- START DEMO SOURCE -->
+                        <pre><code style="color: #000000"><b>{<font color="blue">myContent2</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>      &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&amp;</font>name</font>}</b>      &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&amp;</font>count</font>}</b>     &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&amp;</font>key</font>}</b>       &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&amp;</font>current</font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&amp;</font>done</font>}</b>      &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&amp;</font>remaining</font>}</b> &lt;/td&gt;   <br>      &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent2</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                      </td>
+                      <td style="vertical-align:top">
+                        <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                        <table border="1">
+                          <tbody><tr>
+                            <th></th>
+                            <th>
+                              name
+                            </th>
+                            <th>
+                              count
+                            </th>
+                            <th>
+                              key
+                            </th>
+                            <th>
+                              current
+                            </th>
+                            <th>
+                              done
+                            </th>
+                            <th>
+                              remain
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              joe
+                            </td>
+                            <td>
+                              staff
+                            </td>
+                            <td>
+                              5
+                            </td>
+                            <td>
+                              0
+                            </td>
+                            <td>
+                              1
+                            </td>
+                            <td>
+                              0
+                            </td>
+                            <td>
+                              4
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jim
+                            </td>
+                            <td>
+                              staff
+                            </td>
+                            <td>
+                              5
+                            </td>
+                            <td>
+                              1
+                            </td>
+                            <td>
+                              2
+                            </td>
+                            <td>
+                              1
+                            </td>
+                            <td>
+                              3
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              john
+                            </td>
+                            <td>
+                              staff
+                            </td>
+                            <td>
+                              5
+                            </td>
+                            <td>
+                              2
+                            </td>
+                            <td>
+                              3
+                            </td>
+                            <td>
+                              2
+                            </td>
+                            <td>
+                              2
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jack
+                            </td>
+                            <td>
+                              staff
+                            </td>
+                            <td>
+                              5
+                            </td>
+                            <td>
+                              3
+                            </td>
+                            <td>
+                              4
+                            </td>
+                            <td>
+                              3
+                            </td>
+                            <td>
+                              1
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jerry
+                            </td>
+                            <td>
+                              staff
+                            </td>
+                            <td>
+                              5
+                            </td>
+                            <td>
+                              4
+                            </td>
+                            <td>
+                              5
+                            </td>
+                            <td>
+                              4
+                            </td>
+                            <td>
+                              0
+                            </td>
+                          </tr>
+                        </tbody></table><!-- END DEMO RESULT -->
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <!-- START DEMO SOURCE -->
+                        <pre><code style="color: #000000"><b>{<font color="blue">myContent2</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      <b>{<font color="blue">true</font><font color="red"></font>}</b><br>        &lt;tr&gt;<br>          &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>         &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>name</font>}</b>      &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>count</font>}</b>     &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>key</font>}</b>       &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>current</font>}</b>   &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>done</font>}</b>      &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>remaining</font>}</b> &lt;/td&gt; <br>        &lt;/tr&gt;<br>      <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent2</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                      </td>
+                      <td style="vertical-align:top">
+                        <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                        <table border="1">
+                          <tbody><tr>
+                            <th></th>
+                            <th>
+                              name
+                            </th>
+                            <th>
+                              count
+                            </th>
+                            <th>
+                              key
+                            </th>
+                            <th>
+                              current
+                            </th>
+                            <th>
+                              done
+                            </th>
+                            <th>
+                              remain
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              joe
+                            </td>
+                            <td>
+                              staff
+                            </td>
+                            <td>
+                              5
+                            </td>
+                            <td>
+                              0
+                            </td>
+                            <td>
+                              1
+                            </td>
+                            <td>
+                              0
+                            </td>
+                            <td>
+                              4
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jim
+                            </td>
+                            <td>
+                              staff
+                            </td>
+                            <td>
+                              5
+                            </td>
+                            <td>
+                              1
+                            </td>
+                            <td>
+                              2
+                            </td>
+                            <td>
+                              1
+                            </td>
+                            <td>
+                              3
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              john
+                            </td>
+                            <td>
+                              staff
+                            </td>
+                            <td>
+                              5
+                            </td>
+                            <td>
+                              2
+                            </td>
+                            <td>
+                              3
+                            </td>
+                            <td>
+                              2
+                            </td>
+                            <td>
+                              2
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jack
+                            </td>
+                            <td>
+                              staff
+                            </td>
+                            <td>
+                              5
+                            </td>
+                            <td>
+                              3
+                            </td>
+                            <td>
+                              4
+                            </td>
+                            <td>
+                              3
+                            </td>
+                            <td>
+                              1
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jerry
+                            </td>
+                            <td>
+                              staff
+                            </td>
+                            <td>
+                              5
+                            </td>
+                            <td>
+                              4
+                            </td>
+                            <td>
+                              5
+                            </td>
+                            <td>
+                              4
+                            </td>
+                            <td>
+                              0
+                            </td>
+                          </tr>
+                        </tbody></table><!-- END DEMO RESULT -->
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <!-- START DEMO SOURCE -->
+                        <pre><code style="color: #000000"><b>{<font color="blue">myContent2</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      <b>{<font color="blue">true</font><font color="red"></font>}</b><br>        &lt;tr&gt;<br>          &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>            &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>name</font>}</b>      &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>count</font>}</b>     &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>key</font>}</b>       &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>current</font>}</b>   &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>done</font>}</b>      &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>remaining</font>}</b> &lt;/td&gt;   <br>        &lt;/tr&gt;<br>      <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent2</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                      </td>
+                      <td style="vertical-align:top">
+                        <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                        <table border="1">
+                          <tbody><tr>
+                            <th></th>
+                            <th>
+                              name
+                            </th>
+                            <th>
+                              count
+                            </th>
+                            <th>
+                              key
+                            </th>
+                            <th>
+                              current
+                            </th>
+                            <th>
+                              done
+                            </th>
+                            <th>
+                              remain
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              joe
+                            </td>
+                            <td>
+                              staff
+                            </td>
+                            <td>
+                              5
+                            </td>
+                            <td>
+                              0
+                            </td>
+                            <td>
+                              1
+                            </td>
+                            <td>
+                              0
+                            </td>
+                            <td>
+                              4
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jim
+                            </td>
+                            <td>
+                              staff
+                            </td>
+                            <td>
+                              5
+                            </td>
+                            <td>
+                              1
+                            </td>
+                            <td>
+                              2
+                            </td>
+                            <td>
+                              1
+                            </td>
+                            <td>
+                              3
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              john
+                            </td>
+                            <td>
+                              staff
+                            </td>
+                            <td>
+                              5
+                            </td>
+                            <td>
+                              2
+                            </td>
+                            <td>
+                              3
+                            </td>
+                            <td>
+                              2
+                            </td>
+                            <td>
+                              2
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jack
+                            </td>
+                            <td>
+                              staff
+                            </td>
+                            <td>
+                              5
+                            </td>
+                            <td>
+                              3
+                            </td>
+                            <td>
+                              4
+                            </td>
+                            <td>
+                              3
+                            </td>
+                            <td>
+                              1
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jerry
+                            </td>
+                            <td>
+                              staff
+                            </td>
+                            <td>
+                              5
+                            </td>
+                            <td>
+                              4
+                            </td>
+                            <td>
+                              5
+                            </td>
+                            <td>
+                              4
+                            </td>
+                            <td>
+                              0
+                            </td>
+                          </tr>
+                        </tbody></table><!-- END DEMO RESULT -->
+                      </td>
+                    </tr>
+                  </tbody></table>
+                  <p></p>
+                  <hr>
+                  <p>
+                    This manual page uses below PAD fragment.
+                  </p>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent1<font color="black">'</font></font>}</b><br>  &lt;table border=1 valign=center&gt;<br>    &lt;tr&gt;<br>      &lt;th&gt;        &lt;/th&gt;<br>      &lt;th&gt; first  &lt;/th&gt;<br>      &lt;th&gt; border &lt;/th&gt;<br>      &lt;th&gt; middle &lt;/th&gt;<br>      &lt;th&gt; last   &lt;/th&gt;<br>      &lt;th&gt; even   &lt;/th&gt;<br>      &lt;th&gt; odd    &lt;/th&gt;<br>    &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b><br>  &lt;/table&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b><br><br><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent2<font color="black">'</font></font>}</b><br>    &lt;table border=1&gt;<br>      &lt;tr&gt;<br>        &lt;th&gt;         &lt;/th&gt;<br>        &lt;th&gt; name    &lt;/th&gt;<br>        &lt;th&gt; count   &lt;/th&gt;<br>        &lt;th&gt; key     &lt;/th&gt;<br>        &lt;th&gt; current &lt;/th&gt;<br>        &lt;th&gt; done    &lt;/th&gt;<br>        &lt;th&gt; remain  &lt;/th&gt;<br>      &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b><br>  &lt;/table&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                    </tr>
+                  </tbody></table>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <hr>
+                <table valign="top" align="center">
+                  <tbody><tr>
+                    <td valign="top">
+                      <h3 align="center">
+                        Basic Concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tags.html">Tags</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7examples_used_in_this_manual.html">Examples used in this manual</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7parse.html">Parse</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7levels_and_occurrences.html">Levels and occurrences</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_content_tag.html">The content tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_data_tag.html">The data tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7php_and_html.html">Php and html</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7properties.html">Properties</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Advanced concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7prefix.html">Prefix</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7options_variables_parameters.html">Options variables parameters</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7callback.html">Callback</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7escaping_special_PAD_chars.html">Escaping special PAD chars</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tag_return_values.html">Tag return values</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7level_and_occurrence_variables.html">Level and occurrence variables</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7walking.html">Walking</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7data_handling.html">Data handling</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Constructs
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7else.html">Else</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7start_end.html">Start end</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7content.html">Content</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page.html">Page</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Miscellaneous
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ignore.html">Ignore</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody></table>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

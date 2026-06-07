@@ -1,7 +1,8 @@
 <?php
 
-  $padBase [$pad] = $padStrCod;
+  $padStrBld  = 'code';
+  $padStrCod  = $padBase [$pad];
 
-  include PAD . 'occurrence/occurrence.php';
+  return include PAD . 'start/pad/parms.php';
 
 ?>

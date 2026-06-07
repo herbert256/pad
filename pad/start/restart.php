@@ -1,0 +1,18 @@
+<?php
+
+  padEmptyBuffers ( $padIgnored );
+
+  $padPage = $padRestart;
+
+  if ( isset ( $padRestartVars ) ) {
+
+    foreach ( $padRestartVars as $padK => $padV )
+      $GLOBALS [$padK] = $padV;
+
+    $padRestartVars = [];
+
+  }
+
+  include PAD . 'start/pad/go.php';
+
+?>

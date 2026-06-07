@@ -1,5 +1,7 @@
 # Hello World Application
 
+## Introduction
+
 The simplest possible PAD application demonstrating the basic page pairing concept.
 
 ## Files

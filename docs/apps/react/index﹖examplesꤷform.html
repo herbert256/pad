@@ -1,0 +1,276 @@
+<html lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+    <title>PAD - form</title>
+  
+  <script>"use strict";
+
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function FormExample() {
+  var _React$useState = React.useState(''),
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    name = _React$useState2[0],
+    setName = _React$useState2[1];
+  var _React$useState3 = React.useState(''),
+    _React$useState4 = _slicedToArray(_React$useState3, 2),
+    email = _React$useState4[0],
+    setEmail = _React$useState4[1];
+  var _React$useState5 = React.useState(false),
+    _React$useState6 = _slicedToArray(_React$useState5, 2),
+    submitted = _React$useState6[0],
+    setSubmitted = _React$useState6[1];
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    className: "react-component"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "react-component-label"
+  }, "\u269B\uFE0F CONTROLLED FORM"), !submitted ? /*#__PURE__*/React.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: '10px'
+    }
+  }, /*#__PURE__*/React.createElement("label", null, "Name:", /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    value: name,
+    onChange: function onChange(e) {
+      return setName(e.target.value);
+    },
+    style: {
+      marginLeft: '10px',
+      padding: '5px',
+      borderRadius: '3px',
+      border: '1px solid #ccc'
+    },
+    required: true
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: '10px'
+    }
+  }, /*#__PURE__*/React.createElement("label", null, "Email:", /*#__PURE__*/React.createElement("input", {
+    type: "email",
+    value: email,
+    onChange: function onChange(e) {
+      return setEmail(e.target.value);
+    },
+    style: {
+      marginLeft: '10px',
+      padding: '5px',
+      borderRadius: '3px',
+      border: '1px solid #ccc'
+    },
+    required: true
+  }))), /*#__PURE__*/React.createElement("button", {
+    type: "submit"
+  }, "Submit")) : /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '15px',
+      background: '#d4edda',
+      borderRadius: '5px'
+    }
+  }, /*#__PURE__*/React.createElement("strong", null, "Form submitted!"), /*#__PURE__*/React.createElement("p", null, "Name: ", name), /*#__PURE__*/React.createElement("p", null, "Email: ", email), /*#__PURE__*/React.createElement("button", {
+    onClick: function onClick() {
+      return setSubmitted(false);
+    },
+    style: {
+      marginTop: '10px'
+    }
+  }, "Reset Form")));
+}
+ReactDOM.createRoot(document.getElementById('example2')).render(/*#__PURE__*/React.createElement(FormExample, null));
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJGb3JtRXhhbXBsZSIsIl9SZWFjdCR1c2VTdGF0ZSIsIlJlYWN0IiwidXNlU3RhdGUiLCJfUmVhY3QkdXNlU3RhdGUyIiwiX3NsaWNlZFRvQXJyYXkiLCJuYW1lIiwic2V0TmFtZSIsIl9SZWFjdCR1c2VTdGF0ZTMiLCJfUmVhY3QkdXNlU3RhdGU0IiwiZW1haWwiLCJzZXRFbWFpbCIsIl9SZWFjdCR1c2VTdGF0ZTUiLCJfUmVhY3QkdXNlU3RhdGU2Iiwic3VibWl0dGVkIiwic2V0U3VibWl0dGVkIiwiaGFuZGxlU3VibWl0IiwiZSIsInByZXZlbnREZWZhdWx0IiwiY3JlYXRlRWxlbWVudCIsImNsYXNzTmFtZSIsIm9uU3VibWl0Iiwic3R5bGUiLCJtYXJnaW5Cb3R0b20iLCJ0eXBlIiwidmFsdWUiLCJvbkNoYW5nZSIsInRhcmdldCIsIm1hcmdpbkxlZnQiLCJwYWRkaW5nIiwiYm9yZGVyUmFkaXVzIiwiYm9yZGVyIiwicmVxdWlyZWQiLCJiYWNrZ3JvdW5kIiwib25DbGljayIsIm1hcmdpblRvcCIsIlJlYWN0RE9NIiwiY3JlYXRlUm9vdCIsImRvY3VtZW50IiwiZ2V0RWxlbWVudEJ5SWQiLCJyZW5kZXIiXSwic291cmNlcyI6WyJodHRwOi8vbG9jYWxob3N0L3JlYWN0L2V4YW1wbGVzL2Zvcm0uanMiXSwic291cmNlc0NvbnRlbnQiOlsiZnVuY3Rpb24gRm9ybUV4YW1wbGUoKSB7XG4gIGNvbnN0IFtuYW1lLCBzZXROYW1lXSA9IFJlYWN0LnVzZVN0YXRlKCcnKTtcbiAgY29uc3QgW2VtYWlsLCBzZXRFbWFpbF0gPSBSZWFjdC51c2VTdGF0ZSgnJyk7XG4gIGNvbnN0IFtzdWJtaXR0ZWQsIHNldFN1Ym1pdHRlZF0gPSBSZWFjdC51c2VTdGF0ZShmYWxzZSk7XG5cbiAgY29uc3QgaGFuZGxlU3VibWl0ID0gKGUpID0+IHtcbiAgICBlLnByZXZlbnREZWZhdWx0KCk7XG4gICAgc2V0U3VibWl0dGVkKHRydWUpO1xuICB9O1xuXG4gIHJldHVybiAoXG4gICAgPGRpdiBjbGFzc05hbWU9XCJyZWFjdC1jb21wb25lbnRcIj5cbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwicmVhY3QtY29tcG9uZW50LWxhYmVsXCI+4pqb77iPIENPTlRST0xMRUQgRk9STTwvZGl2PlxuICAgICAgeyFzdWJtaXR0ZWQgPyAoXG4gICAgICAgIDxmb3JtIG9uU3VibWl0PXtoYW5kbGVTdWJtaXR9PlxuICAgICAgICAgIDxkaXYgc3R5bGU9e3ttYXJnaW5Cb3R0b206ICcxMHB4J319PlxuICAgICAgICAgICAgPGxhYmVsPlxuICAgICAgICAgICAgICBOYW1lOlxuICAgICAgICAgICAgICA8aW5wdXRcbiAgICAgICAgICAgICAgICB0eXBlPVwidGV4dFwiXG4gICAgICAgICAgICAgICAgdmFsdWU9e25hbWV9XG4gICAgICAgICAgICAgICAgb25DaGFuZ2U9eyhlKSA9PiBzZXROYW1lKGUudGFyZ2V0LnZhbHVlKX1cbiAgICAgICAgICAgICAgICBzdHlsZT17e21hcmdpbkxlZnQ6ICcxMHB4JywgcGFkZGluZzogJzVweCcsIGJvcmRlclJhZGl1czogJzNweCcsIGJvcmRlcjogJzFweCBzb2xpZCAjY2NjJ319XG4gICAgICAgICAgICAgICAgcmVxdWlyZWRcbiAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgIDwvbGFiZWw+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPGRpdiBzdHlsZT17e21hcmdpbkJvdHRvbTogJzEwcHgnfX0+XG4gICAgICAgICAgICA8bGFiZWw+XG4gICAgICAgICAgICAgIEVtYWlsOlxuICAgICAgICAgICAgICA8aW5wdXRcbiAgICAgICAgICAgICAgICB0eXBlPVwiZW1haWxcIlxuICAgICAgICAgICAgICAgIHZhbHVlPXtlbWFpbH1cbiAgICAgICAgICAgICAgICBvbkNoYW5nZT17KGUpID0+IHNldEVtYWlsKGUudGFyZ2V0LnZhbHVlKX1cbiAgICAgICAgICAgICAgICBzdHlsZT17e21hcmdpbkxlZnQ6ICcxMHB4JywgcGFkZGluZzogJzVweCcsIGJvcmRlclJhZGl1czogJzNweCcsIGJvcmRlcjogJzFweCBzb2xpZCAjY2NjJ319XG4gICAgICAgICAgICAgICAgcmVxdWlyZWRcbiAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgIDwvbGFiZWw+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPGJ1dHRvbiB0eXBlPVwic3VibWl0XCI+U3VibWl0PC9idXR0b24+XG4gICAgICAgIDwvZm9ybT5cbiAgICAgICkgOiAoXG4gICAgICAgIDxkaXYgc3R5bGU9e3twYWRkaW5nOiAnMTVweCcsIGJhY2tncm91bmQ6ICcjZDRlZGRhJywgYm9yZGVyUmFkaXVzOiAnNXB4J319PlxuICAgICAgICAgIDxzdHJvbmc+Rm9ybSBzdWJtaXR0ZWQhPC9zdHJvbmc+XG4gICAgICAgICAgPHA+TmFtZToge25hbWV9PC9wPlxuICAgICAgICAgIDxwPkVtYWlsOiB7ZW1haWx9PC9wPlxuICAgICAgICAgIDxidXR0b24gb25DbGljaz17KCkgPT4gc2V0U3VibWl0dGVkKGZhbHNlKX0gc3R5bGU9e3ttYXJnaW5Ub3A6ICcxMHB4J319PlxuICAgICAgICAgICAgUmVzZXQgRm9ybVxuICAgICAgICAgIDwvYnV0dG9uPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICl9XG4gICAgPC9kaXY+XG4gICk7XG59XG5cblJlYWN0RE9NLmNyZWF0ZVJvb3QoZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2V4YW1wbGUyJykpLnJlbmRlcig8Rm9ybUV4YW1wbGUgLz4pO1xuIl0sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFBLFNBQVNBLFdBQVdBLENBQUEsRUFBRztFQUNyQixJQUFBQyxlQUFBLEdBQXdCQyxLQUFLLENBQUNDLFFBQVEsQ0FBQyxFQUFFLENBQUM7SUFBQUMsZ0JBQUEsR0FBQUMsY0FBQSxDQUFBSixlQUFBO0lBQW5DSyxJQUFJLEdBQUFGLGdCQUFBO0lBQUVHLE9BQU8sR0FBQUgsZ0JBQUE7RUFDcEIsSUFBQUksZ0JBQUEsR0FBMEJOLEtBQUssQ0FBQ0MsUUFBUSxDQUFDLEVBQUUsQ0FBQztJQUFBTSxnQkFBQSxHQUFBSixjQUFBLENBQUFHLGdCQUFBO0lBQXJDRSxLQUFLLEdBQUFELGdCQUFBO0lBQUVFLFFBQVEsR0FBQUYsZ0JBQUE7RUFDdEIsSUFBQUcsZ0JBQUEsR0FBa0NWLEtBQUssQ0FBQ0MsUUFBUSxDQUFDLEtBQUssQ0FBQztJQUFBVSxnQkFBQSxHQUFBUixjQUFBLENBQUFPLGdCQUFBO0lBQWhERSxTQUFTLEdBQUFELGdCQUFBO0lBQUVFLFlBQVksR0FBQUYsZ0JBQUE7RUFFOUIsSUFBTUcsWUFBWSxHQUFHLFNBQWZBLFlBQVlBLENBQUlDLENBQUMsRUFBSztJQUMxQkEsQ0FBQyxDQUFDQyxjQUFjLENBQUMsQ0FBQztJQUNsQkgsWUFBWSxDQUFDLElBQUksQ0FBQztFQUNwQixDQUFDO0VBRUQsb0JBQ0ViLEtBQUEsQ0FBQWlCLGFBQUE7SUFBS0MsU0FBUyxFQUFDO0VBQWlCLGdCQUM5QmxCLEtBQUEsQ0FBQWlCLGFBQUE7SUFBS0MsU0FBUyxFQUFDO0VBQXVCLEdBQUMsOEJBQXVCLENBQUMsRUFDOUQsQ0FBQ04sU0FBUyxnQkFDVFosS0FBQSxDQUFBaUIsYUFBQTtJQUFNRSxRQUFRLEVBQUVMO0VBQWEsZ0JBQzNCZCxLQUFBLENBQUFpQixhQUFBO0lBQUtHLEtBQUssRUFBRTtNQUFDQyxZQUFZLEVBQUU7SUFBTTtFQUFFLGdCQUNqQ3JCLEtBQUEsQ0FBQWlCLGFBQUEsZ0JBQU8sT0FFTCxlQUFBakIsS0FBQSxDQUFBaUIsYUFBQTtJQUNFSyxJQUFJLEVBQUMsTUFBTTtJQUNYQyxLQUFLLEVBQUVuQixJQUFLO0lBQ1pvQixRQUFRLEVBQUUsU0FBVkEsUUFBUUEsQ0FBR1QsQ0FBQztNQUFBLE9BQUtWLE9BQU8sQ0FBQ1UsQ0FBQyxDQUFDVSxNQUFNLENBQUNGLEtBQUssQ0FBQztJQUFBLENBQUM7SUFDekNILEtBQUssRUFBRTtNQUFDTSxVQUFVLEVBQUUsTUFBTTtNQUFFQyxPQUFPLEVBQUUsS0FBSztNQUFFQyxZQUFZLEVBQUUsS0FBSztNQUFFQyxNQUFNLEVBQUU7SUFBZ0IsQ0FBRTtJQUMzRkMsUUFBUTtFQUFBLENBQ1QsQ0FDSSxDQUNKLENBQUMsZUFDTjlCLEtBQUEsQ0FBQWlCLGFBQUE7SUFBS0csS0FBSyxFQUFFO01BQUNDLFlBQVksRUFBRTtJQUFNO0VBQUUsZ0JBQ2pDckIsS0FBQSxDQUFBaUIsYUFBQSxnQkFBTyxRQUVMLGVBQUFqQixLQUFBLENBQUFpQixhQUFBO0lBQ0VLLElBQUksRUFBQyxPQUFPO0lBQ1pDLEtBQUssRUFBRWYsS0FBTTtJQUNiZ0IsUUFBUSxFQUFFLFNBQVZBLFFBQVFBLENBQUdULENBQUM7TUFBQSxPQUFLTixRQUFRLENBQUNNLENBQUMsQ0FBQ1UsTUFBTSxDQUFDRixLQUFLLENBQUM7SUFBQSxDQUFDO0lBQzFDSCxLQUFLLEVBQUU7TUFBQ00sVUFBVSxFQUFFLE1BQU07TUFBRUMsT0FBTyxFQUFFLEtBQUs7TUFBRUMsWUFBWSxFQUFFLEtBQUs7TUFBRUMsTUFBTSxFQUFFO0lBQWdCLENBQUU7SUFDM0ZDLFFBQVE7RUFBQSxDQUNULENBQ0ksQ0FDSixDQUFDLGVBQ045QixLQUFBLENBQUFpQixhQUFBO0lBQVFLLElBQUksRUFBQztFQUFRLEdBQUMsUUFBYyxDQUNoQyxDQUFDLGdCQUVQdEIsS0FBQSxDQUFBaUIsYUFBQTtJQUFLRyxLQUFLLEVBQUU7TUFBQ08sT0FBTyxFQUFFLE1BQU07TUFBRUksVUFBVSxFQUFFLFNBQVM7TUFBRUgsWUFBWSxFQUFFO0lBQUs7RUFBRSxnQkFDeEU1QixLQUFBLENBQUFpQixhQUFBLGlCQUFRLGlCQUF1QixDQUFDLGVBQ2hDakIsS0FBQSxDQUFBaUIsYUFBQSxZQUFHLFFBQU0sRUFBQ2IsSUFBUSxDQUFDLGVBQ25CSixLQUFBLENBQUFpQixhQUFBLFlBQUcsU0FBTyxFQUFDVCxLQUFTLENBQUMsZUFDckJSLEtBQUEsQ0FBQWlCLGFBQUE7SUFBUWUsT0FBTyxFQUFFLFNBQVRBLE9BQU9BLENBQUE7TUFBQSxPQUFRbkIsWUFBWSxDQUFDLEtBQUssQ0FBQztJQUFBLENBQUM7SUFBQ08sS0FBSyxFQUFFO01BQUNhLFNBQVMsRUFBRTtJQUFNO0VBQUUsR0FBQyxZQUVoRSxDQUNMLENBRUosQ0FBQztBQUVWO0FBRUFDLFFBQVEsQ0FBQ0MsVUFBVSxDQUFDQyxRQUFRLENBQUNDLGNBQWMsQ0FBQyxVQUFVLENBQUMsQ0FBQyxDQUFDQyxNQUFNLGNBQUN0QyxLQUFBLENBQUFpQixhQUFBLENBQUNuQixXQUFXLE1BQUUsQ0FBQyxDQUFDIiwiaWdub3JlTGlzdCI6W119</script></head>
+  
+  <body>
+
+    
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>form</title>
+
+  <!-- React and ReactDOM from CDN (Development mode) -->
+  <script src="../../unpkg.com/react@18.3.1/umd/react.development.js"></script>
+  <script src="../../unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+
+  <!-- Babel Standalone for JSX transformation in browser (Development only) -->
+  <script src="../../unpkg.com/@babel/standalone@7.28.6/babel.min.js"></script>
+
+  <style>* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    code {
+      font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      background: #282c34;
+      color: white;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    nav {
+      margin-top: 15px;
+    }
+
+    nav a {
+      color: #61dafb;
+      text-decoration: none;
+      margin-right: 20px;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    nav a.active {
+      color: #fff;
+      border-bottom: 2px solid #61dafb;
+    }
+
+    .content {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .react-component {
+      border: 2px dashed #61dafb;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      background: #f0f8ff;
+    }
+
+    .react-component-label {
+      color: #61dafb;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background: #61dafb;
+      color: #282c34;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #4fa8c5;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      text-align: center;
+      color: #666;
+      border-top: 1px solid #ddd;
+    }
+
+    .info-box {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+
+    .info-box strong {
+      color: #856404;
+    }
+  </style>
+
+
+  <header>
+    <div class="container">
+      <h1>PAD + React Application</h1>
+      <nav>
+        
+          <a href="index%EF%B9%96index.html">🏠 Home</a>
+        
+          <a href="index%EF%B9%96examples%EA%A4%B7index.html">📚 Examples</a>
+        
+          <a href="index%EF%B9%96components.html">🧩 Components</a>
+        
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="content">
+      <h1>Form with Controlled Components</h1>
+
+<p>Demonstrates controlled form inputs in React.</p>
+
+<div id="example2"><div class="react-component"><div class="react-component-label">⚛️ CONTROLLED FORM</div><form><div style="margin-bottom: 10px;"><label>Name:<input type="text" required="" value="" style="margin-left: 10px; padding: 5px; border-radius: 3px; border: 1px solid rgb(204, 204, 204);"></label></div><div style="margin-bottom: 10px;"><label>Email:<input type="email" required="" value="" style="margin-left: 10px; padding: 5px; border-radius: 3px; border: 1px solid rgb(204, 204, 204);"></label></div><button type="submit">Submit</button></form></div></div>
+<script type="text/babel" src="examples/form.js"></script>
+
+<div style="margin-top: 30px;">
+  <a href="index%EF%B9%96examples%EA%A4%B7index.html" class="btn">← Back to Examples</a>
+</div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>Powered by <strong>PAD Framework</strong> (Server-Side) + <strong>React</strong> (Client-Side)</p>
+      <p style="margin-top: 10px; font-size: 14px;">
+        PAD handles routing, data, and templates • React handles interactive UI components
+      </p>
+    </div>
+  </footer>
+
+ 
+
+  
+
+</body></html>

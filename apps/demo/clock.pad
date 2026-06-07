@@ -57,7 +57,7 @@
   </tr>
   <tr>
     <td>Day of Year</td>
-    <td>{clock 'z' | + 1} of {if {clock 'L'} eq 1}366{else}365{/if}</td>
+    <td>{clock 'z' | + 1} of {if {clock 'L'} eq 1}366@else@365{/if}</td>
   </tr>
   <tr>
     <td>Week of Year</td>
@@ -69,11 +69,11 @@
   </tr>
   <tr>
     <td>Days Remaining in Year</td>
-    <td>{if {clock 'L'} eq 1}{echo 365 - {clock 'z'}}{else}{echo 364 - {clock 'z'}}{/if}</td>
+    <td>{if {clock 'L'} eq 1}{echo 365 - {clock 'z'}}@else@{echo 364 - {clock 'z'}}{/if}</td>
   </tr>
   <tr>
     <td>Leap Year</td>
-    <td>{if {clock 'L'} eq 1}Yes{else}No{/if}</td>
+    <td>{if {clock 'L'} eq 1}Yes@else@No{/if}</td>
   </tr>
   <tr>
     <td>Timezone</td>

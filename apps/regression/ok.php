@@ -1,10 +1,10 @@
 <?php
 
-  $curl = getPage ($item);
+  $curl = padCurl ( "$padHost/$app?$item&include" );
 
-  filePutFile ( 'regression', "$item.html", $curl ['data'] );
-  filePutFile ( 'regression', "$item.txt",  'ok'           );
+  padFilePut ( DAT . "regression/$app/$item.html", $curl ['data'] );
+  padFilePut ( DAT . "regression/$app/$item.txt", 'ok' );
 
-  padRedirect ( "regression" );
+  padRedirect ( 'index' );
 
 ?>

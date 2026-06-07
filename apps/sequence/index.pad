@@ -1,8 +1,8 @@
 {lines}
   {concepts}
     {if &concepts:key NE $concept}
-      <a href="@self@&go=index&concept={&concepts:key}">{&concepts:key | ucfirst}</a>
-    {else}
+      <a href="?index&go=index&concept={&concepts:key}">{&concepts:key | ucfirst}</a>
+    @else@
       <b> {&concepts:key | ucfirst} <b>
     {/if}
     {notLast} | {/notLast}

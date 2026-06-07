@@ -1,6 +1,6 @@
 <?php
 
-  $curl = padCurl ( "$padHost/$app?$item" );
+  $curl = padCurl ( "$padHost/$app?$item&padInclude" );
 
   if ( ! str_starts_with ( $curl ['result'], '2') )
     padRedirect ( $item, [ 'padInclude' => 1 ], $app );
@@ -9,7 +9,7 @@
 
   $title = $item;
   $new   = $curl ['data'];
-  $old   = padFileGet ( APP . "regression/DATA/$item.html" );
+  $old   = padFileGet ( DAT . "regression/$app/$item.html" );
   $diff  = diff ( $old, $new );
 
   $check = $old;

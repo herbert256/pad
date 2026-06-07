@@ -22,6 +22,6 @@
   chdir            ( APP );
   set_include_path ( APP );
 
-  include PAD . 'start/enter/pad.php';
+  include PAD . 'start/pad.php';
 
 ?>

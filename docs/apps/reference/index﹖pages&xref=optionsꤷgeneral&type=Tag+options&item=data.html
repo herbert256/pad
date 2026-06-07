@@ -1,0 +1,6551 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Reference - Tag options - data
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag options - data
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: data/2<br>
+                  <div id="padAjaxH6kN1Hcr"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myXML<font color="black">'</font></font>}</b><br>  &lt;data&gt;<br>    &lt;row name="bob"   phone="555-1111" /&gt;<br>    &lt;row name="jim"   phone="555-2222" /&gt;<br>    &lt;row name="joe"   phone="555-3333" /&gt;<br>    &lt;row name="jerry" phone="555-4444" /&gt;<br>  &lt;/data&gt;<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myJSON<font color="black">'</font></font>}</b><br>  [ { "name": "bob",   "phone": "555-5555" },<br>    { "name": "jim",   "phone": "555-6666" },<br>    { "name": "joe",   "phone": "555-7777" },      <br>    { "name": "jerry", "phone": "555-8888" } ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myYAML<font color="black">'</font></font>}</b><br>  ---<br>  - name: bob<br>    phone: 555-3425<br>  - name: jim<br>    phone: 555-4364<br>  - name: joe<br>    phone: 555-3422<br>  - name: jerry<br>    phone: 555-4973<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myCSV<font color="black">'</font></font>}</b><br>  name,phone<br>  bob,555-3425<br>  jim,555-4364<br>  joe,555-3422<br>  jerry,555-4973<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myList<font color="black">'</font></font>}</b><br>  ( 'myXML', 'myJSON', 'myYAML', 'myCSV' )<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myList</font><font color="red"></font>}</b><br>  &lt;p&gt;<br>    &lt;table border=1&gt;<br>      &lt;tr&gt;<br>        &lt;th colspan="2"&gt;<br>          <b>{<font color="green"><font color="red">$</font>myList</font>}</b><br>        &lt;/th&gt;<br>      &lt;/tr&gt;<br>      <b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>myList</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br>        &lt;tr&gt;<br>          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt; <br>          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>        &lt;/tr&gt;<br>      <b>{/<font color="blue">pad</font><font color="red"></font>}</b><br>    &lt;/table&gt;<br>  &lt;/p&gt;<br><b>{/<font color="blue">myList</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><p>
+    <table border="1">
+      <tbody><tr>
+        <th colspan="2">
+          myXML
+        </th>
+      </tr>
+      
+        <tr>
+          <td>bob</td> 
+          <td>555-1111</td>
+        </tr>
+      
+        <tr>
+          <td>jim</td> 
+          <td>555-2222</td>
+        </tr>
+      
+        <tr>
+          <td>joe</td> 
+          <td>555-3333</td>
+        </tr>
+      
+        <tr>
+          <td>jerry</td> 
+          <td>555-4444</td>
+        </tr>
+      
+    </tbody></table>
+  </p>
+
+  <p>
+    <table border="1">
+      <tbody><tr>
+        <th colspan="2">
+          myJSON
+        </th>
+      </tr>
+      
+        <tr>
+          <td>bob</td> 
+          <td>555-5555</td>
+        </tr>
+      
+        <tr>
+          <td>jim</td> 
+          <td>555-6666</td>
+        </tr>
+      
+        <tr>
+          <td>joe</td> 
+          <td>555-7777</td>
+        </tr>
+      
+        <tr>
+          <td>jerry</td> 
+          <td>555-8888</td>
+        </tr>
+      
+    </tbody></table>
+  </p>
+
+  <p>
+    <table border="1">
+      <tbody><tr>
+        <th colspan="2">
+          myYAML
+        </th>
+      </tr>
+      
+        <tr>
+          <td>bob</td> 
+          <td>555-3425</td>
+        </tr>
+      
+        <tr>
+          <td>jim</td> 
+          <td>555-4364</td>
+        </tr>
+      
+        <tr>
+          <td>joe</td> 
+          <td>555-3422</td>
+        </tr>
+      
+        <tr>
+          <td>jerry</td> 
+          <td>555-4973</td>
+        </tr>
+      
+    </tbody></table>
+  </p>
+
+  <p>
+    <table border="1">
+      <tbody><tr>
+        <th colspan="2">
+          myCSV
+        </th>
+      </tr>
+      
+        <tr>
+          <td>bob</td> 
+          <td>555-3425</td>
+        </tr>
+      
+        <tr>
+          <td>jim</td> 
+          <td>555-4364</td>
+        </tr>
+      
+        <tr>
+          <td>joe</td> 
+          <td>555-3422</td>
+        </tr>
+      
+        <tr>
+          <td>jerry</td> 
+          <td>555-4973</td>
+        </tr>
+      
+    </tbody></table>
+  </p><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxH6kN1Hcr = new XMLHttpRequest();
+                  padAjaxH6kN1Hcr.onreadystatechange=function() {
+                  if (padAjaxH6kN1Hcr.readyState === 4) {
+                  if (padAjaxH6kN1Hcr.status === 200) {
+                  document.getElementById("padAjaxH6kN1Hcr").innerHTML=padAjaxH6kN1Hcr.responseText;
+                  } else {
+                  document.getElementById("padAjaxH6kN1Hcr").innerHTML=padAjaxH6kN1Hcr.statusText;
+                  }
+                  }
+                  }
+                  padAjaxH6kN1Hcr.open("GET","http://localhost/manual/?data/2&padInclude&padSesID=DiM2hOlW&padReqID=SunFYcxW",true);
+                  padAjaxH6kN1Hcr.send();
+                  </script><br>
+                  <hr>
+                  App: reference - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;blockquote&gt;<br><br><b>{<font color="blue">block</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>reference<font color="black">'</font></font>}</b><br><br>    <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>lvl</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br>      &lt;blockquote&gt;<br>    <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br><br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>type</font>}</b>&lt;/h3&gt;<br><br>    &lt;blockquote&gt;<br><br>      <b>{<font color="blue">getReference </font><font color="red"><font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>dir</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> <font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>xref</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br><br>        <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>dir</font>}</b><br>          &lt;a href="?dir<b>{<font color="green">?xref</font>}</b><b>{<font color="green">?type</font>}</b><b>{<font color="green">?item</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>item</font>}</b>&lt;/a&gt;<br>        <b>{<font color="blue">elseif </font><font color="red"><font color="red">$</font>pages</font>}</b><br>          &lt;a href="?pages<b>{<font color="green">?xref</font>}</b><b>{<font color="green">?type</font>}</b><b>{<font color="green">?item</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>item</font>}</b>&lt;/a&gt;<br>        <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>          <b>{<font color="green"><font color="red">$</font>item</font>}</b><br>        <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>        &amp;nbsp; <br>        <br>      <b>{/<font color="blue">getReference</font><font color="red"></font>}</b><br>            <br>    &lt;/blockquote&gt;<br><br>    <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>lvl</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br>      &lt;/blockquote&gt;<br>    <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br><br>  <b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br>&lt;/blockquote&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxvVbEuIrI"><blockquote>
+
+<table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td>
+
+  
+
+    
+      <blockquote>
+    
+
+    <h3>Tags</h3>
+
+    <blockquote>
+
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>PAD tags</h3>
+
+    <blockquote>
+
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=action.html">action</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          ajax
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=array.html">array</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=at.html">at</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=bool.html">bool</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          break
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=case.html">case</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=cease.html">cease</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=check.html">check</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=close.html">close</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=code.html">code</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=content.html">content</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          continue
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=count.html">count</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          curl
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=data.html">data</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          decrement
+        
+
+        &nbsp; 
+        
+      
+
+        
+          dir
+        
+
+        &nbsp; 
+        
+      
+
+        
+          dump
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=echo.html">echo</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          error
+        
+
+        &nbsp; 
+        
+      
+
+        
+          exception
+        
+
+        &nbsp; 
+        
+      
+
+        
+          exists
+        
+
+        &nbsp; 
+        
+      
+
+        
+          exit
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=false.html">false</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=field.html">field</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=file.html">file</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          files
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=flag.html">flag</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=foo.html">foo</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          get
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=if.html">if</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=ignore.html">ignore</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=increment.html">increment</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=keep.html">keep</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=make.html">make</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          null
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=open.html">open</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          output
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=pad.html">pad</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          page
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=pull.html">pull</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=reactData.html">reactData</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=record.html">record</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          redirect
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=remove.html">remove</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=restart.html">restart</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=resume.html">resume</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          sandbox
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=sequence.html">sequence</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=set.html">set</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=switch.html">switch</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          tidy
+        
+
+        &nbsp; 
+        
+      
+
+        
+          trace
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=true.html">true</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=until.html">until</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=while.html">while</a>
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Tag types</h3>
+
+    <blockquote>
+
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=action.html">action</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=app.html">app</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=array.html">array</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=bool.html">bool</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=common.html">common</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=constant.html">constant</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=content.html">content</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=data.html">data</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=field.html">field</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=flag.html">flag</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;padSesID=DiM2hOlW&amp;padReqID=dRheoTam&amp;type=Tag+types&amp;xref=tag%EA%A4%B7function&amp;item=foo.html">function</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=include.html">include</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=keep.html">keep</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          level
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=local.html">local</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=make.html">make</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=pad.html">pad</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=php.html">php</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=property.html">property</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=pull.html">pull</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=remove.html">remove</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=script.html">script</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=select.html">select</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=sequence.html">sequence</a>
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Tag properties</h3>
+
+    <blockquote>
+
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=border.html">border</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=count.html">count</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=current.html">current</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          data
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=done.html">done</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=even.html">even</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=fields.html">fields</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=first.html">first</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          firstFieldName
+        
+
+        &nbsp; 
+        
+      
+
+        
+          firstFieldValue
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=key.html">key</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          keys
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=last.html">last</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=middle.html">middle</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=name.html">name</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=notFirst.html">notFirst</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=notLast.html">notLast</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=odd.html">odd</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=option.html">option</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=options.html">options</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=parameter.html">parameter</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=parameters.html">parameters</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=remaining.html">remaining</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=variable.html">variable</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=variables.html">variables</a>
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Tag options</h3>
+
+    <blockquote>
+
+      
+
+        
+          bool
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=close.html">close</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=content.html">content</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=data.html">data</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=demand.html">demand</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          dump
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=else.html">else</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          error
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=glue.html">glue</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          go
+        
+
+        &nbsp; 
+        
+      
+
+        
+          ignore
+        
+
+        &nbsp; 
+        
+      
+
+        
+          noError
+        
+
+        &nbsp; 
+        
+      
+
+        
+          notOk
+        
+
+        &nbsp; 
+        
+      
+
+        
+          null
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=open.html">open</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=optional.html">optional</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=print.html">print</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=quote.html">quote</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          tidy
+        
+
+        &nbsp; 
+        
+      
+
+        
+          toBool
+        
+
+        &nbsp; 
+        
+      
+
+        
+          toContent
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=toData.html">toData</a>
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+
+    <h3>Functions</h3>
+
+    <blockquote>
+
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>PAD functions</h3>
+
+    <blockquote>
+
+      
+
+        
+          after
+        
+
+        &nbsp; 
+        
+      
+
+        
+          afterLast
+        
+
+        &nbsp; 
+        
+      
+
+        
+          before
+        
+
+        &nbsp; 
+        
+      
+
+        
+          beforeLast
+        
+
+        &nbsp; 
+        
+      
+
+        
+          between
+        
+
+        &nbsp; 
+        
+      
+
+        
+          bold
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=capitalize.html">capitalize</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          close
+        
+
+        &nbsp; 
+        
+      
+
+        
+          contains
+        
+
+        &nbsp; 
+        
+      
+
+        
+          cut
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=date.html">date</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          encodeHigh
+        
+
+        &nbsp; 
+        
+      
+
+        
+          exists
+        
+
+        &nbsp; 
+        
+      
+
+        
+          html
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=ignore.html">ignore</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=in.html">in</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          left
+        
+
+        &nbsp; 
+        
+      
+
+        
+          like
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=lower.html">lower</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          max_len
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=mid.html">mid</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          nbsp
+        
+
+        &nbsp; 
+        
+      
+
+        
+          now
+        
+
+        &nbsp; 
+        
+      
+
+        
+          open
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=optional.html">optional</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=range.html">range</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=replace.html">replace</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          right
+        
+
+        &nbsp; 
+        
+      
+
+        
+          sanitize
+        
+
+        &nbsp; 
+        
+      
+
+        
+          slashes
+        
+
+        &nbsp; 
+        
+      
+
+        
+          stripLow
+        
+
+        &nbsp; 
+        
+      
+
+        
+          stripslashes
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=substr.html">substr</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          tag
+        
+
+        &nbsp; 
+        
+      
+
+        
+          time
+        
+
+        &nbsp; 
+        
+      
+
+        
+          timestamp
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=trim.html">trim</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=ucwords.html">ucwords</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=upper.html">upper</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=url.html">url</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          white
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Single functions</h3>
+
+    <blockquote>
+
+      
+
+        
+          array
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=functions%EA%A4%B7single&amp;type=Single+functions&amp;item=constant.html">constant</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          content
+        
+
+        &nbsp; 
+        
+      
+
+        
+          data
+        
+
+        &nbsp; 
+        
+      
+
+        
+          field
+        
+
+        &nbsp; 
+        
+      
+
+        
+          flag
+        
+
+        &nbsp; 
+        
+      
+
+        
+          include
+        
+
+        &nbsp; 
+        
+      
+
+        
+          level
+        
+
+        &nbsp; 
+        
+      
+
+        
+          local
+        
+
+        &nbsp; 
+        
+      
+
+        
+          object
+        
+
+        &nbsp; 
+        
+      
+
+        
+          parm
+        
+
+        &nbsp; 
+        
+      
+
+        
+          property
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=functions%EA%A4%B7single&amp;type=Single+functions&amp;item=pull.html">pull</a>
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Parms functions</h3>
+
+    <blockquote>
+
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=functions%EA%A4%B7parms&amp;type=Parms+functions&amp;item=app.html">app</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=functions%EA%A4%B7parms&amp;type=Parms+functions&amp;item=pad.html">pad</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=functions%EA%A4%B7parms&amp;type=Parms+functions&amp;item=php.html">php</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=functions%EA%A4%B7parms&amp;type=Parms+functions&amp;item=sequence.html">sequence</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          tag
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+
+    <h3>Data handling</h3>
+
+    <blockquote>
+
+      
+
+        
+          dedup
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=end.html">end</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=first.html">first</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=last.html">last</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=page.html">page</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=random.html">random</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=reverse.html">reverse</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=row.html">row</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=rows.html">rows</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=shuffle.html">shuffle</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=slice.html">slice</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=sort.html">sort</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=splice.html">splice</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=start.html">start</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=trim.html">trim</a>
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+
+    <h3>@xxx@ constructs</h3>
+
+    <blockquote>
+
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=constructs&amp;type=@xxx@+constructs&amp;item=.html"></a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=constructs&amp;type=@xxx@+constructs&amp;item=content.html">content</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=constructs&amp;type=@xxx@+constructs&amp;item=end.html">end</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          page
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=constructs&amp;type=@xxx@+constructs&amp;item=start.html">start</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          tidy
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+
+    <h3>At (x@y)</h3>
+
+    <blockquote>
+
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>At - tag groups</h3>
+
+    <blockquote>
+
+      
+
+        
+          any
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7groups&amp;type=At+-+tag+groups&amp;item=current.html">current</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          function
+        
+
+        &nbsp; 
+        
+      
+
+        
+          level
+        
+
+        &nbsp; 
+        
+      
+
+        
+          options
+        
+
+        &nbsp; 
+        
+      
+
+        
+          parameters
+        
+
+        &nbsp; 
+        
+      
+
+        
+          providers
+        
+
+        &nbsp; 
+        
+      
+
+        
+          saved
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7groups&amp;type=At+-+tag+groups&amp;item=variables.html">variables</a>
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>At - tag properties</h3>
+
+    <blockquote>
+
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7properties&amp;type=At+-+tag+properties&amp;item=border.html">border</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          count
+        
+
+        &nbsp; 
+        
+      
+
+        
+          current
+        
+
+        &nbsp; 
+        
+      
+
+        
+          data
+        
+
+        &nbsp; 
+        
+      
+
+        
+          done
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7properties&amp;type=At+-+tag+properties&amp;item=even.html">even</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7properties&amp;type=At+-+tag+properties&amp;item=fields.html">fields</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7properties&amp;type=At+-+tag+properties&amp;item=first.html">first</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          key
+        
+
+        &nbsp; 
+        
+      
+
+        
+          keys
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7properties&amp;type=At+-+tag+properties&amp;item=last.html">last</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7properties&amp;type=At+-+tag+properties&amp;item=middle.html">middle</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          name
+        
+
+        &nbsp; 
+        
+      
+
+        
+          notFirst
+        
+
+        &nbsp; 
+        
+      
+
+        
+          notLast
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7properties&amp;type=At+-+tag+properties&amp;item=odd.html">odd</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          options
+        
+
+        &nbsp; 
+        
+      
+
+        
+          parameters
+        
+
+        &nbsp; 
+        
+      
+
+        
+          remaining
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7properties&amp;type=At+-+tag+properties&amp;item=variables.html">variables</a>
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>At - types</h3>
+
+    <blockquote>
+
+      
+
+        
+          all
+        
+
+        &nbsp; 
+        
+      
+
+        
+          data
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7types&amp;type=At+-+types&amp;item=globals.html">globals</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          sequences
+        
+
+        &nbsp; 
+        
+      
+
+        
+          tags
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+</td>
+  </tr>
+</tbody></table>
+
+</blockquote></div>
+                        <script>
+                        padAjaxvVbEuIrI = new XMLHttpRequest();
+                        padAjaxvVbEuIrI.onreadystatechange=function() {
+                        if (padAjaxvVbEuIrI.readyState === 4) {
+                        if (padAjaxvVbEuIrI.status === 200) {
+                        document.getElementById("padAjaxvVbEuIrI").innerHTML=padAjaxvVbEuIrI.responseText;
+                        } else {
+                        document.getElementById("padAjaxvVbEuIrI").innerHTML=padAjaxvVbEuIrI.statusText;
+                        }
+                        }
+                        }
+                        padAjaxvVbEuIrI.open("GET","http://localhost/reference/?index&padInclude&padSesID=DiM2hOlW&padReqID=SunFYcxW",true);
+                        padAjaxvVbEuIrI.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: lvl_occ/9<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">lvl_occ/9.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myJson<font color="black">'</font></font>}</b><br>[<br>  { "column": [ 11, 12, 13, 14, 15 ] },<br>  { "column": [ 21, 22, 23, 24, 35 ] },<br>  { "column": [ 31, 32, 33, 34, 35 ] }<br>]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>myJson<font color="black">'</font></font>}</b><br>  &lt;table border='1'&gt;<br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt;<br>        <b>{<font color="blue">column</font><font color="red"></font>}</b><br>          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>column</font>}</b>&lt;/td&gt;<br>        <b>{/<font color="blue">column</font><font color="red"></font>}</b><br>      &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br>  &lt;/table&gt;<br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxowqnkmZI">
+
+
+  <table border="1">
+    
+      <tbody><tr>
+        
+          <td>11</td>
+        
+          <td>12</td>
+        
+          <td>13</td>
+        
+          <td>14</td>
+        
+          <td>15</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>21</td>
+        
+          <td>22</td>
+        
+          <td>23</td>
+        
+          <td>24</td>
+        
+          <td>35</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>31</td>
+        
+          <td>32</td>
+        
+          <td>33</td>
+        
+          <td>34</td>
+        
+          <td>35</td>
+        
+      </tr>
+    
+  </tbody></table>
+</div>
+                        <script>
+                        padAjaxowqnkmZI = new XMLHttpRequest();
+                        padAjaxowqnkmZI.onreadystatechange=function() {
+                        if (padAjaxowqnkmZI.readyState === 4) {
+                        if (padAjaxowqnkmZI.status === 200) {
+                        document.getElementById("padAjaxowqnkmZI").innerHTML=padAjaxowqnkmZI.responseText;
+                        } else {
+                        document.getElementById("padAjaxowqnkmZI").innerHTML=padAjaxowqnkmZI.statusText;
+                        }
+                        }
+                        }
+                        padAjaxowqnkmZI.open("GET","http://localhost/manual/?lvl_occ/9&padInclude&padSesID=DiM2hOlW&padReqID=SunFYcxW",true);
+                        padAjaxowqnkmZI.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: miscellaneous/local<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">miscellaneous/local.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><br>  &lt;h3&gt;<b>{<font color="purple"><font color="red">&amp;</font>departments<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>option<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>data</font>}</b>&lt;/h3&gt;<br><br>  &lt;table border=1&gt;<br><br>    &lt;tr&gt;<br>      &lt;th&gt; department &lt;/th&gt;<br>      &lt;th&gt; manager &lt;/th&gt;<br>      &lt;th&gt; phone &lt;/th&gt;<br>    &lt;/tr&gt;<br><br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>department</font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>manager</font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br><br>  &lt;/table&gt;<br><br><b>{/<font color="blue">content</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments<font color="black">'</font><font color="black">,</font>      content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.php<font color="black">'</font><font color="black">,</font>  content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.csv<font color="black">'</font><font color="black">,</font>  content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.xml<font color="black">'</font><font color="black">,</font>  content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.json<font color="black">'</font><font color="black">,</font> content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.yaml<font color="black">'</font><font color="black">,</font> content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax7JIl9eDp">
+
+
+
+  <h3>departments/departments</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-8888 </td>
+      </tr>
+    
+
+  </tbody></table>
+
+
+
+
+  <h3>departments/departments.php</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-7777 </td>
+      </tr>
+    
+
+  </tbody></table>
+
+
+
+
+  <h3>departments/departments.csv</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-5555 </td>
+      </tr>
+    
+
+  </tbody></table>
+
+
+
+
+  <h3>departments/departments.xml</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-8888 </td>
+      </tr>
+    
+
+  </tbody></table>
+
+
+
+
+  <h3>departments/departments.json</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-6666   </td>
+      </tr>
+    
+
+  </tbody></table>
+
+
+
+
+  <h3>departments/departments.yaml</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-9999 </td>
+      </tr>
+    
+
+  </tbody></table>
+
+</div>
+                        <script>
+                        padAjax7JIl9eDp = new XMLHttpRequest();
+                        padAjax7JIl9eDp.onreadystatechange=function() {
+                        if (padAjax7JIl9eDp.readyState === 4) {
+                        if (padAjax7JIl9eDp.status === 200) {
+                        document.getElementById("padAjax7JIl9eDp").innerHTML=padAjax7JIl9eDp.responseText;
+                        } else {
+                        document.getElementById("padAjax7JIl9eDp").innerHTML=padAjax7JIl9eDp.statusText;
+                        }
+                        }
+                        }
+                        padAjax7JIl9eDp.open("GET","http://localhost/check/?miscellaneous/local&padInclude&padSesID=DiM2hOlW&padReqID=SunFYcxW",true);
+                        padAjax7JIl9eDp.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: miscellaneous/pad<br>
+                  <div id="padAjax7YUmM5Xi"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red"><font color="red">$</font>myColor=<font color="black">'</font>red<font color="black">'</font></font>}</b><br>  &lt;b&gt; &lt;font color="<b>{<font color="green"><font color="red">$</font>myColor</font>}</b>"&gt; Hallo Wereld &lt;/font&gt; &lt;/b&gt; &lt;br&gt;<br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><b> <font color="red"> Hallo Wereld </font> </b> <br><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p>
+
+<table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td>
+  <p>Below example gives a sneak preview of <a href="../manual/index%EF%B9%96pages%EA%A4%B7the_content_tag.html">The content tag</a> and <a href="../manual/index%EF%B9%96pages%EA%A4%B7the_data_tag.html">The data tag</a>, 
+     2 powerfull PAD tags.
+</p></td>
+  </tr>
+</tbody></table>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myData<font color="black">'</font></font>}</b><br>  ( "red", "green", "blue" ) <br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  &lt;b&gt; &lt;font color="<b>{<font color="green"><font color="red">$</font>myData</font>}</b>"&gt; Hello World &lt;/font&gt; &lt;/b&gt; &lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font><font color="black">,</font> content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><b> <font color="red"> Hello World </font> </b> <br>
+
+  <b> <font color="green"> Hello World </font> </b> <br>
+
+  <b> <font color="blue"> Hello World </font> </b> <br><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjax7YUmM5Xi = new XMLHttpRequest();
+                  padAjax7YUmM5Xi.onreadystatechange=function() {
+                  if (padAjax7YUmM5Xi.readyState === 4) {
+                  if (padAjax7YUmM5Xi.status === 200) {
+                  document.getElementById("padAjax7YUmM5Xi").innerHTML=padAjax7YUmM5Xi.responseText;
+                  } else {
+                  document.getElementById("padAjax7YUmM5Xi").innerHTML=padAjax7YUmM5Xi.statusText;
+                  }
+                  }
+                  }
+                  padAjax7YUmM5Xi.open("GET","http://localhost/manual/?miscellaneous/pad&padInclude&padSesID=DiM2hOlW&padReqID=SunFYcxW",true);
+                  padAjax7YUmM5Xi.send();
+                  </script><br>
+                  <hr>
+                  App: check - Page: options/sort<br>
+                  <div id="padAjaxL54Vp2PC"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  &lt;table border=1&gt;<br>    &lt;tr&gt;<br>      &lt;th&gt; volume   &lt;/th&gt;<br>      &lt;th&gt; edition  &lt;/th&gt;<br>      &lt;th&gt; file     &lt;/th&gt;<br>    &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>volume</font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>edition</font>}</b>  &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>file</font>}</b>     &lt;/td&gt;<br>      &lt;/tr&gt;    <br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br>  &lt;/table&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myData<font color="black">'</font></font>}</b><br>  [ { "volume": 55, "edition": 3, "file": "file1.xml"  },<br>    { "volume": 33, "edition": 1, "file": "file2.xml"  },<br>    { "volume": 55, "edition": 2, "file": "file11.xml" },<br>    { "volume": 33, "edition": 3, "file": "file12.xml" },<br>    { "volume": 55, "edition": 1, "file": "file21.xml" },<br>    { "volume": 33, "edition": 2, "file": "file8.xml"  } ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+    <tbody><tr>
+      <th> volume   </th>
+      <th> edition  </th>
+      <th> file     </th>
+    </tr>
+    
+      <tr>
+        <td> 55   </td>
+        <td> 3  </td>
+        <td> file1.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 1  </td>
+        <td> file2.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 2  </td>
+        <td> file11.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 3  </td>
+        <td> file12.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 1  </td>
+        <td> file21.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 2  </td>
+        <td> file8.xml     </td>
+      </tr>    
+    
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>volume;edition<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+    <tbody><tr>
+      <th> volume   </th>
+      <th> edition  </th>
+      <th> file     </th>
+    </tr>
+    
+      <tr>
+        <td> 33   </td>
+        <td> 1  </td>
+        <td> file2.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 2  </td>
+        <td> file8.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 3  </td>
+        <td> file12.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 1  </td>
+        <td> file21.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 2  </td>
+        <td> file11.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 3  </td>
+        <td> file1.xml     </td>
+      </tr>    
+    
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>volume DESC; edition DESC<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+    <tbody><tr>
+      <th> volume   </th>
+      <th> edition  </th>
+      <th> file     </th>
+    </tr>
+    
+      <tr>
+        <td> 55   </td>
+        <td> 3  </td>
+        <td> file1.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 2  </td>
+        <td> file11.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 1  </td>
+        <td> file21.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 3  </td>
+        <td> file12.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 2  </td>
+        <td> file8.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 1  </td>
+        <td> file2.xml     </td>
+      </tr>    
+    
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>file<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+    <tbody><tr>
+      <th> volume   </th>
+      <th> edition  </th>
+      <th> file     </th>
+    </tr>
+    
+      <tr>
+        <td> 55   </td>
+        <td> 3  </td>
+        <td> file1.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 2  </td>
+        <td> file11.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 3  </td>
+        <td> file12.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 1  </td>
+        <td> file2.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 1  </td>
+        <td> file21.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 2  </td>
+        <td> file8.xml     </td>
+      </tr>    
+    
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>file NATURAL<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+    <tbody><tr>
+      <th> volume   </th>
+      <th> edition  </th>
+      <th> file     </th>
+    </tr>
+    
+      <tr>
+        <td> 55   </td>
+        <td> 3  </td>
+        <td> file1.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 1  </td>
+        <td> file2.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 2  </td>
+        <td> file8.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 2  </td>
+        <td> file11.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 3  </td>
+        <td> file12.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 1  </td>
+        <td> file21.xml     </td>
+      </tr>    
+    
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxL54Vp2PC = new XMLHttpRequest();
+                  padAjaxL54Vp2PC.onreadystatechange=function() {
+                  if (padAjaxL54Vp2PC.readyState === 4) {
+                  if (padAjaxL54Vp2PC.status === 200) {
+                  document.getElementById("padAjaxL54Vp2PC").innerHTML=padAjaxL54Vp2PC.responseText;
+                  } else {
+                  document.getElementById("padAjaxL54Vp2PC").innerHTML=padAjaxL54Vp2PC.statusText;
+                  }
+                  }
+                  }
+                  padAjaxL54Vp2PC.open("GET","http://localhost/check/?options/sort&padInclude&padSesID=DiM2hOlW&padReqID=SunFYcxW",true);
+                  padAjaxL54Vp2PC.send();
+                  </script><br>
+                  <hr>
+                  App: sequence - Page: reference<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">reference.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;blockquote&gt;<br><br><b>{<font color="blue">block</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>reference<font color="black">'</font></font>}</b><br><br>    <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>lvl</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br>      &lt;blockquote&gt;<br>    <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br><br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>type</font>}</b>&lt;/h3&gt;<br><br>    &lt;blockquote&gt;<br><br>      <b>{<font color="blue">getXref </font><font color="red"><font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>dir</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br><br>        &lt;a href="?reference2<b>{<font color="green">?dir</font>}</b><b>{<font color="green">?type</font>}</b><b>{<font color="green">?item</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>item</font>}</b>&lt;/a&gt;<br><br>        &amp;nbsp; <br>        <br>      <b>{/<font color="blue">getXref</font><font color="red"></font>}</b><br>            <br>    &lt;/blockquote&gt;<br><br>    <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>lvl</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br>      &lt;/blockquote&gt;<br>    <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br><br>  <b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br>&lt;/blockquote&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxlTu76qkh"><blockquote>
+
+<table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td>
+
+  
+
+    
+      <blockquote>
+    
+
+    <h3>Sequences</h3>
+
+    <blockquote>
+
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Sequences</h3>
+
+    <blockquote>
+
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=add.html">add</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=and.html">and</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=antiprime.html">antiprime</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=bell.html">bell</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=biquadratic.html">biquadratic</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=catalan.html">catalan</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=caterer.html">caterer</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=ceil.html">ceil</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=chance.html">chance</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=composite.html">composite</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=cubic.html">cubic</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=cullen.html">cullen</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=decagonal.html">decagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=divide.html">divide</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=emirp.html">emirp</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=enneadecagonal.html">enneadecagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=eval.html">eval</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=even.html">even</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=exponentiation.html">exponentiation</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=fibonacci.html">fibonacci</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=floor.html">floor</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=gnomonic.html">gnomonic</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=golomb.html">golomb</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=gould.html">gould</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=happy.html">happy</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=harshad.html">harshad</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=heptadecagonal.html">heptadecagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=heptagonal.html">heptagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=hexagonal.html">hexagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=icosihenagonal.html">icosihenagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=identity.html">identity</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=kaprekar.html">kaprekar</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=kolakoski.html">kolakoski</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=kynea.html">kynea</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=list.html">list</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=loop.html">loop</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=lucas.html">lucas</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=lucky.html">lucky</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=mersenne.html">mersenne</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=modulo.html">modulo</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=moserdebruijn.html">moserdebruijn</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=multiple.html">multiple</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=multiply.html">multiply</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=nand.html">nand</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=negation.html">negation</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=newmanConway.html">newmanConway</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=nor.html">nor</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=not.html">not</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=octagonal.html">octagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=octahedral.html">octahedral</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=odd.html">odd</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=oeis.html">oeis</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=or.html">or</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=palindrome.html">palindrome</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=pell.html">pell</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=pentagonal.html">pentagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=perfect.html">perfect</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=perrin.html">perrin</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=polite.html">polite</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=power.html">power</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=powerful.html">powerful</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=prime.html">prime</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=pronic.html">pronic</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=random.html">random</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=range.html">range</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=recaman.html">recaman</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=repeat.html">repeat</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=round.html">round</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=semiprime.html">semiprime</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=square.html">square</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=step.html">step</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=strong.html">strong</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=subtract.html">subtract</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=sylvester.html">sylvester</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=tetrahedral.html">tetrahedral</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=triangular.html">triangular</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=tribonacci.html">tribonacci</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=xnor.html">xnor</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=xor.html">xor</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=sequences&amp;type=Sequences&amp;item=xpadovan.html">xpadovan</a>
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Options</h3>
+
+    <blockquote>
+
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=action.html">action</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=atLeastOnce.html">atLeastOnce</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=both.html">both</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=count.html">count</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=duplicates.html">duplicates</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=from.html">from</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=increment.html">increment</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=keep.html">keep</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=left.html">left</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=make.html">make</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=name.html">name</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=negative.html">negative</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=orderly.html">orderly</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=pull.html">pull</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=push.html">push</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=randomly.html">randomly</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=remove.html">remove</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=right.html">right</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=rows.html">rows</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=store.html">store</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=to.html">to</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=options&amp;type=Options&amp;item=unique.html">unique</a>
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Builds</h3>
+
+    <blockquote>
+
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=builds&amp;type=Builds&amp;item=bool.html">bool</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=builds&amp;type=Builds&amp;item=build.html">build</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=builds&amp;type=Builds&amp;item=check.html">check</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=builds&amp;type=Builds&amp;item=fixed.html">fixed</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=builds&amp;type=Builds&amp;item=function.html">function</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=builds&amp;type=Builds&amp;item=given.html">given</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=builds&amp;type=Builds&amp;item=loop.html">loop</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=builds&amp;type=Builds&amp;item=make.html">make</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=builds&amp;type=Builds&amp;item=order.html">order</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=builds&amp;type=Builds&amp;item=pull.html">pull</a>
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Actions</h3>
+
+    <blockquote>
+
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Single</h3>
+
+    <blockquote>
+
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7single&amp;type=Single&amp;item=average.html">average</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7single&amp;type=Single&amp;item=count.html">count</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7single&amp;type=Single&amp;item=dedup.html">dedup</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7single&amp;type=Single&amp;item=distinct.html">distinct</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7single&amp;type=Single&amp;item=element.html">element</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7single&amp;type=Single&amp;item=first.html">first</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7single&amp;type=Single&amp;item=last.html">last</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7single&amp;type=Single&amp;item=maximum.html">maximum</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7single&amp;type=Single&amp;item=median.html">median</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7single&amp;type=Single&amp;item=minimum.html">minimum</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7single&amp;type=Single&amp;item=pop.html">pop</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7single&amp;type=Single&amp;item=product.html">product</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7single&amp;type=Single&amp;item=randomize.html">randomize</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7single&amp;type=Single&amp;item=reverse.html">reverse</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7single&amp;type=Single&amp;item=shift.html">shift</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7single&amp;type=Single&amp;item=shuffle.html">shuffle</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7single&amp;type=Single&amp;item=sort.html">sort</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7single&amp;type=Single&amp;item=sum.html">sum</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7single&amp;type=Single&amp;item=trim.html">trim</a>
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Double</h3>
+
+    <blockquote>
+
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7double&amp;type=Double&amp;item=append.html">append</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7double&amp;type=Double&amp;item=combine.html">combine</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7double&amp;type=Double&amp;item=difference.html">difference</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7double&amp;type=Double&amp;item=intersection.html">intersection</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7double&amp;type=Double&amp;item=merge.html">merge</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7double&amp;type=Double&amp;item=onlyNow.html">onlyNow</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7double&amp;type=Double&amp;item=onlyStore.html">onlyStore</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7double&amp;type=Double&amp;item=prepend.html">prepend</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=actions%EA%A4%B7double&amp;type=Double&amp;item=splice.html">splice</a>
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Plays</h3>
+
+    <blockquote>
+
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Make</h3>
+
+    <blockquote>
+
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=add.html">add</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=and.html">and</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=antiprime.html">antiprime</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=bell.html">bell</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=biquadratic.html">biquadratic</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=catalan.html">catalan</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=caterer.html">caterer</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=ceil.html">ceil</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=chance.html">chance</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=composite.html">composite</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=cubic.html">cubic</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=cullen.html">cullen</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=decagonal.html">decagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=divide.html">divide</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=emirp.html">emirp</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=enneadecagonal.html">enneadecagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=eval.html">eval</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=even.html">even</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=exponentiation.html">exponentiation</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=fibonacci.html">fibonacci</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=floor.html">floor</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=gnomonic.html">gnomonic</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=golomb.html">golomb</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=gould.html">gould</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=happy.html">happy</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=harshad.html">harshad</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=heptadecagonal.html">heptadecagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=heptagonal.html">heptagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=hexagonal.html">hexagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=icosihenagonal.html">icosihenagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=identity.html">identity</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=kaprekar.html">kaprekar</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=kolakoski.html">kolakoski</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=kynea.html">kynea</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=list.html">list</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=loop.html">loop</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=lucas.html">lucas</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=lucky.html">lucky</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=mersenne.html">mersenne</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=modulo.html">modulo</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=moserdebruijn.html">moserdebruijn</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=multiple.html">multiple</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=multiply.html">multiply</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=nand.html">nand</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=negation.html">negation</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=newmanConway.html">newmanConway</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=nor.html">nor</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=not.html">not</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=octagonal.html">octagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=octahedral.html">octahedral</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=odd.html">odd</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=oeis.html">oeis</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=or.html">or</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=palindrome.html">palindrome</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=pell.html">pell</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=pentagonal.html">pentagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=perfect.html">perfect</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=perrin.html">perrin</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=polite.html">polite</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=power.html">power</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=powerful.html">powerful</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=prime.html">prime</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=pronic.html">pronic</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=random.html">random</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=range.html">range</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=recaman.html">recaman</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=repeat.html">repeat</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=round.html">round</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=semiprime.html">semiprime</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=square.html">square</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=step.html">step</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=strong.html">strong</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=subtract.html">subtract</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=sylvester.html">sylvester</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=tetrahedral.html">tetrahedral</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=triangular.html">triangular</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=tribonacci.html">tribonacci</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=xnor.html">xnor</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=xor.html">xor</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7make&amp;type=Make&amp;item=xpadovan.html">xpadovan</a>
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Keep </h3>
+
+    <blockquote>
+
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=add.html">add</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=and.html">and</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=antiprime.html">antiprime</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=bell.html">bell</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=biquadratic.html">biquadratic</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=catalan.html">catalan</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=caterer.html">caterer</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=ceil.html">ceil</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=chance.html">chance</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=composite.html">composite</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=cubic.html">cubic</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=cullen.html">cullen</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=decagonal.html">decagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=divide.html">divide</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=emirp.html">emirp</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=enneadecagonal.html">enneadecagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=eval.html">eval</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=even.html">even</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=exponentiation.html">exponentiation</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=fibonacci.html">fibonacci</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=floor.html">floor</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=gnomonic.html">gnomonic</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=golomb.html">golomb</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=gould.html">gould</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=happy.html">happy</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=harshad.html">harshad</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=heptadecagonal.html">heptadecagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=heptagonal.html">heptagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=hexagonal.html">hexagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=icosihenagonal.html">icosihenagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=identity.html">identity</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=kaprekar.html">kaprekar</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=kolakoski.html">kolakoski</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=kynea.html">kynea</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=list.html">list</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=loop.html">loop</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=lucas.html">lucas</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=lucky.html">lucky</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=mersenne.html">mersenne</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=modulo.html">modulo</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=moserdebruijn.html">moserdebruijn</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=multiple.html">multiple</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=multiply.html">multiply</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=nand.html">nand</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=negation.html">negation</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=newmanConway.html">newmanConway</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=nor.html">nor</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=not.html">not</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=octagonal.html">octagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=octahedral.html">octahedral</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=odd.html">odd</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=oeis.html">oeis</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=or.html">or</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=palindrome.html">palindrome</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=pell.html">pell</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=pentagonal.html">pentagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=perfect.html">perfect</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=perrin.html">perrin</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=polite.html">polite</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=power.html">power</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=powerful.html">powerful</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=prime.html">prime</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=pronic.html">pronic</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=random.html">random</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=range.html">range</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=recaman.html">recaman</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=repeat.html">repeat</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=round.html">round</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=semiprime.html">semiprime</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=square.html">square</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=step.html">step</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=strong.html">strong</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=subtract.html">subtract</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=sylvester.html">sylvester</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=tetrahedral.html">tetrahedral</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=triangular.html">triangular</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=tribonacci.html">tribonacci</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=xnor.html">xnor</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=xor.html">xor</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7keep&amp;type=Keep+&amp;item=xpadovan.html">xpadovan</a>
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Remove</h3>
+
+    <blockquote>
+
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=add.html">add</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=and.html">and</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=antiprime.html">antiprime</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=bell.html">bell</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=biquadratic.html">biquadratic</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=catalan.html">catalan</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=caterer.html">caterer</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=ceil.html">ceil</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=chance.html">chance</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=composite.html">composite</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=cubic.html">cubic</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=cullen.html">cullen</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=decagonal.html">decagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=divide.html">divide</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=emirp.html">emirp</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=enneadecagonal.html">enneadecagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=eval.html">eval</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=even.html">even</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=exponentiation.html">exponentiation</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=fibonacci.html">fibonacci</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=floor.html">floor</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=gnomonic.html">gnomonic</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=golomb.html">golomb</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=gould.html">gould</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=happy.html">happy</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=harshad.html">harshad</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=heptadecagonal.html">heptadecagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=heptagonal.html">heptagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=hexagonal.html">hexagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=icosihenagonal.html">icosihenagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=identity.html">identity</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=kaprekar.html">kaprekar</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=kolakoski.html">kolakoski</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=kynea.html">kynea</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=list.html">list</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=loop.html">loop</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=lucas.html">lucas</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=lucky.html">lucky</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=mersenne.html">mersenne</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=modulo.html">modulo</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=moserdebruijn.html">moserdebruijn</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=multiple.html">multiple</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=multiply.html">multiply</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=nand.html">nand</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=negation.html">negation</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=newmanConway.html">newmanConway</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=nor.html">nor</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=not.html">not</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=octagonal.html">octagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=octahedral.html">octahedral</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=odd.html">odd</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=oeis.html">oeis</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=or.html">or</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=palindrome.html">palindrome</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=pell.html">pell</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=pentagonal.html">pentagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=perfect.html">perfect</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=perrin.html">perrin</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=polite.html">polite</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=power.html">power</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=powerful.html">powerful</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=prime.html">prime</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=pronic.html">pronic</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=random.html">random</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=range.html">range</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=recaman.html">recaman</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=repeat.html">repeat</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=round.html">round</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=semiprime.html">semiprime</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=square.html">square</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=step.html">step</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=strong.html">strong</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=subtract.html">subtract</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=sylvester.html">sylvester</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=tetrahedral.html">tetrahedral</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=triangular.html">triangular</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=tribonacci.html">tribonacci</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=xnor.html">xnor</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=xor.html">xor</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7remove&amp;type=Remove&amp;item=xpadovan.html">xpadovan</a>
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Flag </h3>
+
+    <blockquote>
+
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=add.html">add</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=and.html">and</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=antiprime.html">antiprime</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=bell.html">bell</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=biquadratic.html">biquadratic</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=catalan.html">catalan</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=caterer.html">caterer</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=ceil.html">ceil</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=chance.html">chance</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=composite.html">composite</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=cubic.html">cubic</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=cullen.html">cullen</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=decagonal.html">decagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=divide.html">divide</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=emirp.html">emirp</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=enneadecagonal.html">enneadecagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=eval.html">eval</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=even.html">even</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=exponentiation.html">exponentiation</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=fibonacci.html">fibonacci</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=floor.html">floor</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=gnomonic.html">gnomonic</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=golomb.html">golomb</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=gould.html">gould</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=happy.html">happy</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=harshad.html">harshad</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=heptadecagonal.html">heptadecagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=heptagonal.html">heptagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=hexagonal.html">hexagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=icosihenagonal.html">icosihenagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=identity.html">identity</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=kaprekar.html">kaprekar</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=kolakoski.html">kolakoski</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=kynea.html">kynea</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=list.html">list</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=loop.html">loop</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=lucas.html">lucas</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=lucky.html">lucky</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=mersenne.html">mersenne</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=modulo.html">modulo</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=moserdebruijn.html">moserdebruijn</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=multiple.html">multiple</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=multiply.html">multiply</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=nand.html">nand</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=negation.html">negation</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=newmanConway.html">newmanConway</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=nor.html">nor</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=not.html">not</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=octagonal.html">octagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=octahedral.html">octahedral</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=odd.html">odd</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=oeis.html">oeis</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=or.html">or</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=palindrome.html">palindrome</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=pell.html">pell</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=pentagonal.html">pentagonal</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=perfect.html">perfect</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=perrin.html">perrin</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=polite.html">polite</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=power.html">power</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=powerful.html">powerful</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=prime.html">prime</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=pronic.html">pronic</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=random.html">random</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=range.html">range</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=recaman.html">recaman</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=repeat.html">repeat</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=round.html">round</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=semiprime.html">semiprime</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=square.html">square</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=step.html">step</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=strong.html">strong</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=subtract.html">subtract</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=sylvester.html">sylvester</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=tetrahedral.html">tetrahedral</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=triangular.html">triangular</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=tribonacci.html">tribonacci</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=xnor.html">xnor</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=xor.html">xor</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=plays%EA%A4%B7flag&amp;type=Flag+&amp;item=xpadovan.html">xpadovan</a>
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Start</h3>
+
+    <blockquote>
+
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Types</h3>
+
+    <blockquote>
+
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=start%EA%A4%B7types&amp;type=Types&amp;item=action.html">action</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=start%EA%A4%B7types&amp;type=Types&amp;item=flag.html">flag</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=start%EA%A4%B7types&amp;type=Types&amp;item=keep.html">keep</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=start%EA%A4%B7types&amp;type=Types&amp;item=make.html">make</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=start%EA%A4%B7types&amp;type=Types&amp;item=pull.html">pull</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=start%EA%A4%B7types&amp;type=Types&amp;item=remove.html">remove</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=start%EA%A4%B7types&amp;type=Types&amp;item=sequence.html">sequence</a>
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Tags</h3>
+
+    <blockquote>
+
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=start%EA%A4%B7tags&amp;type=Tags&amp;item=action.html">action</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=start%EA%A4%B7tags&amp;type=Tags&amp;item=flag.html">flag</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=start%EA%A4%B7tags&amp;type=Tags&amp;item=keep.html">keep</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=start%EA%A4%B7tags&amp;type=Tags&amp;item=make.html">make</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=start%EA%A4%B7tags&amp;type=Tags&amp;item=pull.html">pull</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=start%EA%A4%B7tags&amp;type=Tags&amp;item=remove.html">remove</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=start%EA%A4%B7tags&amp;type=Tags&amp;item=resume.html">resume</a>
+
+        &nbsp; 
+        
+      
+
+        <a href="index%EF%B9%96reference2&amp;dir=start%EA%A4%B7tags&amp;type=Tags&amp;item=sequence.html">sequence</a>
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+</td>
+  </tr>
+</tbody></table>
+
+</blockquote></div>
+                        <script>
+                        padAjaxlTu76qkh = new XMLHttpRequest();
+                        padAjaxlTu76qkh.onreadystatechange=function() {
+                        if (padAjaxlTu76qkh.readyState === 4) {
+                        if (padAjaxlTu76qkh.status === 200) {
+                        document.getElementById("padAjaxlTu76qkh").innerHTML=padAjaxlTu76qkh.responseText;
+                        } else {
+                        document.getElementById("padAjaxlTu76qkh").innerHTML=padAjaxlTu76qkh.statusText;
+                        }
+                        }
+                        }
+                        padAjaxlTu76qkh.open("GET","http://localhost/sequence/?reference&padInclude&padSesID=DiM2hOlW&padReqID=SunFYcxW",true);
+                        padAjaxlTu76qkh.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: tag_return_values/2<br>
+                  <div id="padAjaxJFr4vwF4"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+        <th bgcolor="#dddddd">PHP</th>
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top" rowspan="4"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $var_null  </span><span style="color: #007700">= </span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$var_true  </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$var_false </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$var_value </span><span style="color: #007700">= </span><span style="color: #DD0000">'hello'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$arr_array </span><span style="color: #007700">= [</span><span style="color: #0000BB">1</span><span style="color: #007700">,</span><span style="color: #0000BB">2</span><span style="color: #007700">,</span><span style="color: #0000BB">3</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$arr_empty </span><span style="color: #007700">= [];<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre></td><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">1 - <b>{<font color="blue">var_null</font><font color="red"></font>}</b>  &lt;br&gt;<br>2 - <b>{<font color="blue">var_true</font><font color="red"></font>}</b>  &lt;br&gt;<br>3 - <b>{<font color="blue">var_false</font><font color="red"></font>}</b> &lt;br&gt;<br>4 - <b>{<font color="blue">var_value</font><font color="red"></font>}</b> &lt;br&gt;<br>5 - <b>{<font color="blue">arr_array</font><font color="red"></font>}</b> &lt;br&gt;<br>6 - <b>{<font color="blue">arr_empty</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1 -   <br>
+2 -   <br>
+3 -  <br>
+4 - hello <br>
+5 -  <br>
+6 -<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">1 - <b>{<font color="blue">var_null</font><font color="red"></font>}</b>  true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">var_null</font><font color="red"></font>}</b> &lt;br&gt;<br>2 - <b>{<font color="blue">var_true</font><font color="red"></font>}</b>  true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">var_true</font><font color="red"></font>}</b> &lt;br&gt;<br>3 - <b>{<font color="blue">var_false</font><font color="red"></font>}</b> true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">var_false</font><font color="red"></font>}</b> &lt;br&gt;<br>4 - <b>{<font color="blue">var_value</font><font color="red"></font>}</b> true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">var_value</font><font color="red"></font>}</b> &lt;br&gt;<br>5 - <b>{<font color="blue">arr_array</font><font color="red"></font>}</b> true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">arr_array</font><font color="red"></font>}</b> &lt;br&gt;<br>6 - <b>{<font color="blue">arr_empty</font><font color="red"></font>}</b> true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">arr_empty</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1 -  <br>
+2 -   true  <br>
+3 -  false  <br>
+4 - hello true  <br>
+5 -  true  true  true  <br>
+6 -  false<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myData<font color="black">'</font></font>}</b><br>  (1,2,3)<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  myContent<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">1 - <b>{<font color="blue">var_null </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b> &lt;br&gt;<br>2 - <b>{<font color="blue">var_true </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b> &lt;br&gt;<br>3 - <b>{<font color="blue">var_false </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b> &lt;br&gt;<br>4 - <b>{<font color="blue">var_value </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b> &lt;br&gt;<br>5 - <b>{<font color="blue">arr_array </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b> &lt;br&gt;<br>6 - <b>{<font color="blue">arr_empty </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1 -  <br>
+2 - 
+  myContent
+
+  myContent
+
+  myContent
+ <br>
+3 -  <br>
+4 - 
+  myContent
+hello
+  myContent
+hello
+  myContent
+hello <br>
+5 - 
+  myContent
+
+  myContent
+
+  myContent
+ <br>
+6 -<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxJFr4vwF4 = new XMLHttpRequest();
+                  padAjaxJFr4vwF4.onreadystatechange=function() {
+                  if (padAjaxJFr4vwF4.readyState === 4) {
+                  if (padAjaxJFr4vwF4.status === 200) {
+                  document.getElementById("padAjaxJFr4vwF4").innerHTML=padAjaxJFr4vwF4.responseText;
+                  } else {
+                  document.getElementById("padAjaxJFr4vwF4").innerHTML=padAjaxJFr4vwF4.statusText;
+                  }
+                  }
+                  }
+                  padAjaxJFr4vwF4.open("GET","http://localhost/manual/?tag_return_values/2&padInclude&padSesID=DiM2hOlW&padReqID=SunFYcxW",true);
+                  padAjaxJFr4vwF4.send();
+                  </script><br>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

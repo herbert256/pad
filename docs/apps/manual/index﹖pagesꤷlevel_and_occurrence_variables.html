@@ -1,0 +1,341 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - level_and_occurrence_variables
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Level and occurrence variables
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+                    <tbody><tr>
+                      <td>
+                        $xxx variables are set once at the beginning of a level<br>
+                        %xxx variables are set on every occurence inside a level<br>
+                      </td>
+                    </tr>
+                  </tbody></table>
+                  <p></p>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        HTML
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        RESULT
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <!-- START DEMO SOURCE -->
+                        <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>range = 10</font>}</b><br><br>&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Level&lt;/th&gt;<br>    &lt;th&gt;Occurence&lt;/th&gt;<br>  &lt;/tr&gt;<br><br>  <b>{<font color="blue">sequence </font><font color="red">range=<font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> <font color="red">$</font>abc=<font color="red">$</font>range<font color="black">,</font> <font color="black">%</font>xyz=<font color="red">$</font>range</font>}</b> <br>        &lt;tr&gt;<br>          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>abc</font>}</b>&lt;/td&gt;<br>          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>xyz</font>}</b>&lt;/td&gt;<br>        &lt;/tr&gt;<br>  <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br><br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE -->
+                      </td>
+                      <td style="vertical-align:top">
+                        <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                        <table border="1">
+                          <tbody><tr>
+                            <th>
+                              Level
+                            </th>
+                            <th>
+                              Occurence
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              10
+                            </td>
+                            <td>
+                              1
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              10
+                            </td>
+                            <td>
+                              2
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              10
+                            </td>
+                            <td>
+                              3
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              10
+                            </td>
+                            <td>
+                              4
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              10
+                            </td>
+                            <td>
+                              5
+                            </td>
+                          </tr>
+                        </tbody></table><!-- END DEMO RESULT -->
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <!-- START DEMO SOURCE -->
+                        <pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue">staff </font><font color="red"><font color="black">%</font>total = <font color="red">$</font>salary + <font color="red">$</font>bonus</font>}</b><br><br>    &lt;tr align="right"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br> <br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE -->
+                      </td>
+                      <td style="vertical-align:top">
+                        <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                        <table border="1">
+                          <tbody><tr>
+                            <th>
+                              Name
+                            </th>
+                            <th>
+                              Salary
+                            </th>
+                            <th>
+                              Bonus
+                            </th>
+                            <th>
+                              Total
+                            </th>
+                          </tr>
+                          <tr align="right">
+                            <td align="left">
+                              joe
+                            </td>
+                            <td>
+                              1000.00
+                            </td>
+                            <td>
+                              500.00
+                            </td>
+                            <td>
+                              1500.00
+                            </td>
+                          </tr>
+                          <tr align="right">
+                            <td align="left">
+                              jim
+                            </td>
+                            <td>
+                              2000.00
+                            </td>
+                            <td>
+                              400.00
+                            </td>
+                            <td>
+                              2400.00
+                            </td>
+                          </tr>
+                          <tr align="right">
+                            <td align="left">
+                              john
+                            </td>
+                            <td>
+                              3000.00
+                            </td>
+                            <td>
+                              300.00
+                            </td>
+                            <td>
+                              3300.00
+                            </td>
+                          </tr>
+                          <tr align="right">
+                            <td align="left">
+                              jack
+                            </td>
+                            <td>
+                              4000.00
+                            </td>
+                            <td>
+                              200.00
+                            </td>
+                            <td>
+                              4200.00
+                            </td>
+                          </tr>
+                          <tr align="right">
+                            <td align="left">
+                              jerry
+                            </td>
+                            <td>
+                              5000.00
+                            </td>
+                            <td>
+                              100.00
+                            </td>
+                            <td>
+                              5100.00
+                            </td>
+                          </tr>
+                        </tbody></table><!-- END DEMO RESULT -->
+                      </td>
+                    </tr>
+                  </tbody></table>
+                  <p></p>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <hr>
+                <table valign="top" align="center">
+                  <tbody><tr>
+                    <td valign="top">
+                      <h3 align="center">
+                        Basic Concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tags.html">Tags</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7examples_used_in_this_manual.html">Examples used in this manual</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7parse.html">Parse</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7levels_and_occurrences.html">Levels and occurrences</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_content_tag.html">The content tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_data_tag.html">The data tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7php_and_html.html">Php and html</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7properties.html">Properties</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Advanced concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7prefix.html">Prefix</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7options_variables_parameters.html">Options variables parameters</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7callback.html">Callback</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7escaping_special_PAD_chars.html">Escaping special PAD chars</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tag_return_values.html">Tag return values</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7level_and_occurrence_variables.html">Level and occurrence variables</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7walking.html">Walking</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7data_handling.html">Data handling</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Constructs
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7else.html">Else</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7start_end.html">Start end</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7content.html">Content</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page.html">Page</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Miscellaneous
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ignore.html">Ignore</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody></table>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

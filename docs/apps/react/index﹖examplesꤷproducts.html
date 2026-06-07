@@ -1,0 +1,282 @@
+<html lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+    <title>PAD - products</title>
+  
+  <script>"use strict";
+
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function ProductList() {
+  var productsData = JSON.parse(document.getElementById('example3').dataset.products);
+  var _React$useState = React.useState(productsData),
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    products = _React$useState2[0],
+    setProducts = _React$useState2[1];
+  var _React$useState3 = React.useState('name'),
+    _React$useState4 = _slicedToArray(_React$useState3, 2),
+    sortBy = _React$useState4[0],
+    setSortBy = _React$useState4[1];
+  var sortedProducts = _toConsumableArray(products).sort(function (a, b) {
+    if (sortBy === 'name') {
+      return a.name.localeCompare(b.name);
+    } else {
+      return a.price - b.price;
+    }
+  });
+  return /*#__PURE__*/React.createElement("div", {
+    className: "react-component"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "react-component-label"
+  }, "\u269B\uFE0F PRODUCT LIST (from PAD server)"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: '15px'
+    }
+  }, /*#__PURE__*/React.createElement("label", null, "Sort by:", /*#__PURE__*/React.createElement("select", {
+    value: sortBy,
+    onChange: function onChange(e) {
+      return setSortBy(e.target.value);
+    },
+    style: {
+      marginLeft: '10px',
+      padding: '5px',
+      borderRadius: '3px'
+    }
+  }, /*#__PURE__*/React.createElement("option", {
+    value: "name"
+  }, "Name"), /*#__PURE__*/React.createElement("option", {
+    value: "price"
+  }, "Price")))), /*#__PURE__*/React.createElement("table", {
+    style: {
+      width: '100%',
+      borderCollapse: 'collapse'
+    }
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", {
+    style: {
+      background: '#f0f0f0'
+    }
+  }, /*#__PURE__*/React.createElement("th", {
+    style: {
+      padding: '10px',
+      textAlign: 'left'
+    }
+  }, "Product"), /*#__PURE__*/React.createElement("th", {
+    style: {
+      padding: '10px',
+      textAlign: 'right'
+    }
+  }, "Price"))), /*#__PURE__*/React.createElement("tbody", null, sortedProducts.map(function (product) {
+    return /*#__PURE__*/React.createElement("tr", {
+      key: product.id,
+      style: {
+        borderBottom: '1px solid #ddd'
+      }
+    }, /*#__PURE__*/React.createElement("td", {
+      style: {
+        padding: '10px'
+      }
+    }, product.name), /*#__PURE__*/React.createElement("td", {
+      style: {
+        padding: '10px',
+        textAlign: 'right'
+      }
+    }, "$", product.price.toFixed(2)));
+  }))));
+}
+ReactDOM.createRoot(document.getElementById('example3')).render(/*#__PURE__*/React.createElement(ProductList, null));
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJQcm9kdWN0TGlzdCIsInByb2R1Y3RzRGF0YSIsIkpTT04iLCJwYXJzZSIsImRvY3VtZW50IiwiZ2V0RWxlbWVudEJ5SWQiLCJkYXRhc2V0IiwicHJvZHVjdHMiLCJfUmVhY3QkdXNlU3RhdGUiLCJSZWFjdCIsInVzZVN0YXRlIiwiX1JlYWN0JHVzZVN0YXRlMiIsIl9zbGljZWRUb0FycmF5Iiwic2V0UHJvZHVjdHMiLCJfUmVhY3QkdXNlU3RhdGUzIiwiX1JlYWN0JHVzZVN0YXRlNCIsInNvcnRCeSIsInNldFNvcnRCeSIsInNvcnRlZFByb2R1Y3RzIiwiX3RvQ29uc3VtYWJsZUFycmF5Iiwic29ydCIsImEiLCJiIiwibmFtZSIsImxvY2FsZUNvbXBhcmUiLCJwcmljZSIsImNyZWF0ZUVsZW1lbnQiLCJjbGFzc05hbWUiLCJzdHlsZSIsIm1hcmdpbkJvdHRvbSIsInZhbHVlIiwib25DaGFuZ2UiLCJlIiwidGFyZ2V0IiwibWFyZ2luTGVmdCIsInBhZGRpbmciLCJib3JkZXJSYWRpdXMiLCJ3aWR0aCIsImJvcmRlckNvbGxhcHNlIiwiYmFja2dyb3VuZCIsInRleHRBbGlnbiIsIm1hcCIsInByb2R1Y3QiLCJrZXkiLCJpZCIsImJvcmRlckJvdHRvbSIsInRvRml4ZWQiLCJSZWFjdERPTSIsImNyZWF0ZVJvb3QiLCJyZW5kZXIiXSwic291cmNlcyI6WyJodHRwOi8vbG9jYWxob3N0L3JlYWN0L2V4YW1wbGVzL3Byb2R1Y3RzLmpzIl0sInNvdXJjZXNDb250ZW50IjpbImZ1bmN0aW9uIFByb2R1Y3RMaXN0KCkge1xuICBjb25zdCBwcm9kdWN0c0RhdGEgPSBKU09OLnBhcnNlKGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdleGFtcGxlMycpLmRhdGFzZXQucHJvZHVjdHMpO1xuICBjb25zdCBbcHJvZHVjdHMsIHNldFByb2R1Y3RzXSA9IFJlYWN0LnVzZVN0YXRlKHByb2R1Y3RzRGF0YSk7XG4gIGNvbnN0IFtzb3J0QnksIHNldFNvcnRCeV0gPSBSZWFjdC51c2VTdGF0ZSgnbmFtZScpO1xuXG4gIGNvbnN0IHNvcnRlZFByb2R1Y3RzID0gWy4uLnByb2R1Y3RzXS5zb3J0KChhLCBiKSA9PiB7XG4gICAgaWYgKHNvcnRCeSA9PT0gJ25hbWUnKSB7XG4gICAgICByZXR1cm4gYS5uYW1lLmxvY2FsZUNvbXBhcmUoYi5uYW1lKTtcbiAgICB9IGVsc2Uge1xuICAgICAgcmV0dXJuIGEucHJpY2UgLSBiLnByaWNlO1xuICAgIH1cbiAgfSk7XG5cbiAgcmV0dXJuIChcbiAgICA8ZGl2IGNsYXNzTmFtZT1cInJlYWN0LWNvbXBvbmVudFwiPlxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJyZWFjdC1jb21wb25lbnQtbGFiZWxcIj7impvvuI8gUFJPRFVDVCBMSVNUIChmcm9tIFBBRCBzZXJ2ZXIpPC9kaXY+XG5cbiAgICAgIDxkaXYgc3R5bGU9e3ttYXJnaW5Cb3R0b206ICcxNXB4J319PlxuICAgICAgICA8bGFiZWw+XG4gICAgICAgICAgU29ydCBieTpcbiAgICAgICAgICA8c2VsZWN0XG4gICAgICAgICAgICB2YWx1ZT17c29ydEJ5fVxuICAgICAgICAgICAgb25DaGFuZ2U9eyhlKSA9PiBzZXRTb3J0QnkoZS50YXJnZXQudmFsdWUpfVxuICAgICAgICAgICAgc3R5bGU9e3ttYXJnaW5MZWZ0OiAnMTBweCcsIHBhZGRpbmc6ICc1cHgnLCBib3JkZXJSYWRpdXM6ICczcHgnfX1cbiAgICAgICAgICA+XG4gICAgICAgICAgICA8b3B0aW9uIHZhbHVlPVwibmFtZVwiPk5hbWU8L29wdGlvbj5cbiAgICAgICAgICAgIDxvcHRpb24gdmFsdWU9XCJwcmljZVwiPlByaWNlPC9vcHRpb24+XG4gICAgICAgICAgPC9zZWxlY3Q+XG4gICAgICAgIDwvbGFiZWw+XG4gICAgICA8L2Rpdj5cblxuICAgICAgPHRhYmxlIHN0eWxlPXt7d2lkdGg6ICcxMDAlJywgYm9yZGVyQ29sbGFwc2U6ICdjb2xsYXBzZSd9fT5cbiAgICAgICAgPHRoZWFkPlxuICAgICAgICAgIDx0ciBzdHlsZT17e2JhY2tncm91bmQ6ICcjZjBmMGYwJ319PlxuICAgICAgICAgICAgPHRoIHN0eWxlPXt7cGFkZGluZzogJzEwcHgnLCB0ZXh0QWxpZ246ICdsZWZ0J319PlByb2R1Y3Q8L3RoPlxuICAgICAgICAgICAgPHRoIHN0eWxlPXt7cGFkZGluZzogJzEwcHgnLCB0ZXh0QWxpZ246ICdyaWdodCd9fT5QcmljZTwvdGg+XG4gICAgICAgICAgPC90cj5cbiAgICAgICAgPC90aGVhZD5cbiAgICAgICAgPHRib2R5PlxuICAgICAgICAgIHtzb3J0ZWRQcm9kdWN0cy5tYXAocHJvZHVjdCA9PiAoXG4gICAgICAgICAgICA8dHIga2V5PXtwcm9kdWN0LmlkfSBzdHlsZT17e2JvcmRlckJvdHRvbTogJzFweCBzb2xpZCAjZGRkJ319PlxuICAgICAgICAgICAgICA8dGQgc3R5bGU9e3twYWRkaW5nOiAnMTBweCd9fT57cHJvZHVjdC5uYW1lfTwvdGQ+XG4gICAgICAgICAgICAgIDx0ZCBzdHlsZT17e3BhZGRpbmc6ICcxMHB4JywgdGV4dEFsaWduOiAncmlnaHQnfX0+JHtwcm9kdWN0LnByaWNlLnRvRml4ZWQoMil9PC90ZD5cbiAgICAgICAgICAgIDwvdHI+XG4gICAgICAgICAgKSl9XG4gICAgICAgIDwvdGJvZHk+XG4gICAgICA8L3RhYmxlPlxuICAgIDwvZGl2PlxuICApO1xufVxuXG5SZWFjdERPTS5jcmVhdGVSb290KGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdleGFtcGxlMycpKS5yZW5kZXIoPFByb2R1Y3RMaXN0IC8+KTtcbiJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7O0FBQUEsU0FBU0EsV0FBV0EsQ0FBQSxFQUFHO0VBQ3JCLElBQU1DLFlBQVksR0FBR0MsSUFBSSxDQUFDQyxLQUFLLENBQUNDLFFBQVEsQ0FBQ0MsY0FBYyxDQUFDLFVBQVUsQ0FBQyxDQUFDQyxPQUFPLENBQUNDLFFBQVEsQ0FBQztFQUNyRixJQUFBQyxlQUFBLEdBQWdDQyxLQUFLLENBQUNDLFFBQVEsQ0FBQ1QsWUFBWSxDQUFDO0lBQUFV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</script></head>
+  
+  <body>
+
+    
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>products</title>
+
+  <!-- React and ReactDOM from CDN (Development mode) -->
+  <script src="../../unpkg.com/react@18.3.1/umd/react.development.js"></script>
+  <script src="../../unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+
+  <!-- Babel Standalone for JSX transformation in browser (Development only) -->
+  <script src="../../unpkg.com/@babel/standalone@7.28.6/babel.min.js"></script>
+
+  <style>* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    code {
+      font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      background: #282c34;
+      color: white;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    nav {
+      margin-top: 15px;
+    }
+
+    nav a {
+      color: #61dafb;
+      text-decoration: none;
+      margin-right: 20px;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    nav a.active {
+      color: #fff;
+      border-bottom: 2px solid #61dafb;
+    }
+
+    .content {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .react-component {
+      border: 2px dashed #61dafb;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      background: #f0f8ff;
+    }
+
+    .react-component-label {
+      color: #61dafb;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background: #61dafb;
+      color: #282c34;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #4fa8c5;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      text-align: center;
+      color: #666;
+      border-top: 1px solid #ddd;
+    }
+
+    .info-box {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+
+    .info-box strong {
+      color: #856404;
+    }
+  </style>
+
+
+  <header>
+    <div class="container">
+      <h1>PAD + React Application</h1>
+      <nav>
+        
+          <a href="index%EF%B9%96index.html">🏠 Home</a>
+        
+          <a href="index%EF%B9%96examples%EA%A4%B7index.html">📚 Examples</a>
+        
+          <a href="index%EF%B9%96components.html">🧩 Components</a>
+        
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="content">
+      <h1>Product List from Server Data</h1>
+
+<p>Shows how to use the <code>{json}</code> tag to pass server data to React components.</p>
+
+<div id="example3" data-products="[{&quot;id&quot;:1,&quot;name&quot;:&quot;Laptop&quot;,&quot;price&quot;:999.99},{&quot;id&quot;:2,&quot;name&quot;:&quot;Mouse&quot;,&quot;price&quot;:29.99},{&quot;id&quot;:3,&quot;name&quot;:&quot;Keyboard&quot;,&quot;price&quot;:79.99},{&quot;id&quot;:4,&quot;name&quot;:&quot;Monitor&quot;,&quot;price&quot;:299.99}]"><div class="react-component"><div class="react-component-label">⚛️ PRODUCT LIST (from PAD server)</div><div style="margin-bottom: 15px;"><label>Sort by:<select style="margin-left: 10px; padding: 5px; border-radius: 3px;"><option value="name">Name</option><option value="price">Price</option></select></label></div><table style="width: 100%; border-collapse: collapse;"><thead><tr style="background: rgb(240, 240, 240);"><th style="padding: 10px; text-align: left;">Product</th><th style="padding: 10px; text-align: right;">Price</th></tr></thead><tbody><tr style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(221, 221, 221);"><td style="padding: 10px;">Keyboard</td><td style="padding: 10px; text-align: right;">$79.99</td></tr><tr style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(221, 221, 221);"><td style="padding: 10px;">Laptop</td><td style="padding: 10px; text-align: right;">$999.99</td></tr><tr style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(221, 221, 221);"><td style="padding: 10px;">Monitor</td><td style="padding: 10px; text-align: right;">$299.99</td></tr><tr style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(221, 221, 221);"><td style="padding: 10px;">Mouse</td><td style="padding: 10px; text-align: right;">$29.99</td></tr></tbody></table></div></div>
+<script type="text/babel" src="examples/products.js"></script>
+
+<div style="margin-top: 30px;">
+  <a href="index%EF%B9%96examples%EA%A4%B7index.html" class="btn">← Back to Examples</a>
+</div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>Powered by <strong>PAD Framework</strong> (Server-Side) + <strong>React</strong> (Client-Side)</p>
+      <p style="margin-top: 10px; font-size: 14px;">
+        PAD handles routing, data, and templates • React handles interactive UI components
+      </p>
+    </div>
+  </footer>
+
+ 
+
+  
+
+</body></html>

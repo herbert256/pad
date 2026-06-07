@@ -1,8 +1,17 @@
 #!/usr/bin/env php
 <?php
 
-  $padApp = basename ( __DIR__ );
+  $padOS = strtolower ( substr ( php_uname ('s'), 0, 3 ) );
 
-  include __DIR__ . '/../../www/pad.php';
+  if     ( $padOS == 'lin' ) $padHome = '/home/herbert/pad';
+  elseif ( $padOS == 'dar' ) $padHome = '/Users/herbert/pad';
+  elseif ( $padOS == 'win' ) $padHome = '/pad';
+  else                       die ( "Unsuported OS: $padOS" );
+
+  $padApp  = 'cli';
+  $padApps = "$padHome/apps/";
+  $padData = "$padHome/DATA/";
+  
+  include "$padHome/pad/pad.php";
 
 ?>

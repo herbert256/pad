@@ -1,0 +1,2558 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Reference - Tag types - tag
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - tag
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: pages/3_ways_to_make_a_table<br>
+                  <div id="padAjaxBiBvOaHB"><table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td>
+<p>The <b>@</b><b>start</b><b>@</b> / <b>@</b><b>end</b><b>@</b> &amp; <b>@</b><b>else</b><b>@</b>  constructs act on the number of occurences.</p>
+<p>The <b>{first}</b> &amp; <b>{last}</b> tags are part of the special <a href="../manual/index%EF%B9%96pages%EA%A4%B7properties.html">Properties</a> tags.</p>
+<p></p>
+</td>
+  </tr>
+</tbody></table>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myArray<font color="black">'</font></font>}</b><br>  [1,2,3]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b><br><br>  &lt;table border="1"&gt;<br>    &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br>    &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>  &lt;/table&gt;<br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+    <tbody><tr> <td> Before the first occurrence </td> </tr>
+    
+      <tr> <td> For every occurence </td> </tr>
+    
+      <tr> <td> For every occurence </td> </tr>
+    
+      <tr> <td> For every occurence </td> </tr>
+    
+    <tr> <td> After the last occurrence </td> </tr>
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">first</font><font color="red"></font>}</b><br>    &lt;table border="1"&gt;<br>      &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{/<font color="blue">first</font><font color="red"></font>}</b><br>      &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{<font color="blue">last</font><font color="red"></font>}</b><br>      &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>    &lt;/table&gt;<br>  <b>{/<font color="blue">last</font><font color="red"></font>}</b><br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+      <tbody><tr> <td> Before the first occurrence </td> </tr>
+  
+      <tr> <td> For every occurence </td> </tr>
+  
+
+
+
+  
+      <tr> <td> For every occurence </td> </tr>
+  
+
+
+
+  
+      <tr> <td> For every occurence </td> </tr>
+  
+      <tr> <td> After the last occurrence </td> </tr>
+    </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">count </font><font color="red"><font color="black">'</font>myArray<font color="black">'</font></font>}</b><br><br>  &lt;table border="1"&gt;<br>    &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{<font color="blue">myArray</font><font color="red"></font>}</b><br>    &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{/<font color="blue">myArray</font><font color="red"></font>}</b><br>    &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>  &lt;/table&gt;<br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">count</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+    <tbody><tr> <td> Before the first occurrence </td> </tr>
+  
+    <tr> <td> For every occurence </td> </tr>
+  
+    <tr> <td> For every occurence </td> </tr>
+  
+    <tr> <td> For every occurence </td> </tr>
+  
+    <tr> <td> After the last occurrence </td> </tr>
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p>
+
+<br><hr><br>
+
+<table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td>
+<p>Now the same code with an empty array</p>
+<p>The {else} construct comes active when there are zero occurences for a PAD tag.</p>
+</td>
+  </tr>
+</tbody></table>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myArray<font color="black">'</font></font>}</b><br> []<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b><br><br>  &lt;table border="1"&gt;<br>    &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br>    &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>  &lt;/table&gt;<br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><p> No occurences at all </p><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">first</font><font color="red"></font>}</b><br>    &lt;table border="1"&gt;<br>      &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{/<font color="blue">first</font><font color="red"></font>}</b><br>      &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{<font color="blue">last</font><font color="red"></font>}</b><br>      &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>    &lt;/table&gt;<br>  <b>{/<font color="blue">last</font><font color="red"></font>}</b><br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><p> No occurences at all </p><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">count </font><font color="red"><font color="black">'</font>myArray<font color="black">'</font></font>}</b><br><br>  &lt;table border="1"&gt;<br>    &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{<font color="blue">myArray</font><font color="red"></font>}</b><br>    &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{/<font color="blue">myArray</font><font color="red"></font>}</b><br>    &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>  &lt;/table&gt;<br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">count</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><p> No occurences at all </p><!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxBiBvOaHB = new XMLHttpRequest();
+                  padAjaxBiBvOaHB.onreadystatechange=function() {
+                  if (padAjaxBiBvOaHB.readyState === 4) {
+                  if (padAjaxBiBvOaHB.status === 200) {
+                  document.getElementById("padAjaxBiBvOaHB").innerHTML=padAjaxBiBvOaHB.responseText;
+                  } else {
+                  document.getElementById("padAjaxBiBvOaHB").innerHTML=padAjaxBiBvOaHB.statusText;
+                  }
+                  }
+                  }
+                  padAjaxBiBvOaHB.open("GET","http://localhost/manual/?pages/3_ways_to_make_a_table&padInclude&padSesID=DiM2hOlW&padReqID=DZ3g6JvL",true);
+                  padAjaxBiBvOaHB.send();
+                  </script><br>
+                  <hr>
+                  App: manual - Page: pages/data_handling<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/data_handling.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;It is possible to process the data from a <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>tag<font color="black">'</font></font>}</b> before it is used by PAD to construct the output.<br>&lt;p&gt;This is done by using one of the below options.<br>&lt;p&gt;dedup, end, first, last, page, random, reverse, row, rows, shuffle, slice, sort, splice, start, trim<br><br>  <b>{<font color="blue">example </font><font color="red"><font color="black">'</font>miscellaneous/handling<font color="black">'</font><font color="black">,</font> onlyPHP<font color="black">,</font> skipHeader</font>}</b><br><br>  <b>{<font color="blue">page </font><font color="red"><font color="black">'</font>miscellaneous/handling<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxqldHSk0N"><p>It is possible to process the data from a <b>{tag}</b> before it is used by PAD to construct the output.
+</p><p>This is done by using one of the below options.
+</p><p>dedup, end, first, last, page, random, reverse, row, rows, shuffle, slice, sort, splice, start, trim
+
+  
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+
+      <tbody><tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $myArray </span><span style="color: #007700">= [<br>    </span><span style="color: #0000BB">11</span><span style="color: #007700">,</span><span style="color: #0000BB">12</span><span style="color: #007700">,</span><span style="color: #0000BB">13</span><span style="color: #007700">,</span><span style="color: #0000BB">14</span><span style="color: #007700">,</span><span style="color: #0000BB">15</span><span style="color: #007700">,</span><span style="color: #0000BB">16</span><span style="color: #007700">,</span><span style="color: #0000BB">17</span><span style="color: #007700">,</span><span style="color: #0000BB">18</span><span style="color: #007700">,</span><span style="color: #0000BB">19</span><span style="color: #007700">,</span><span style="color: #0000BB">20</span><span style="color: #007700">,<br>    </span><span style="color: #0000BB">21</span><span style="color: #007700">,</span><span style="color: #0000BB">22</span><span style="color: #007700">,</span><span style="color: #0000BB">23</span><span style="color: #007700">,</span><span style="color: #0000BB">24</span><span style="color: #007700">,</span><span style="color: #0000BB">25</span><span style="color: #007700">,</span><span style="color: #0000BB">26</span><span style="color: #007700">,</span><span style="color: #0000BB">27</span><span style="color: #007700">,</span><span style="color: #0000BB">28</span><span style="color: #007700">,</span><span style="color: #0000BB">29</span><span style="color: #007700">,</span><span style="color: #0000BB">30</span><span style="color: #007700">,<br>    </span><span style="color: #0000BB">31</span><span style="color: #007700">,</span><span style="color: #0000BB">32</span><span style="color: #007700">,</span><span style="color: #0000BB">33</span><span style="color: #007700">,</span><span style="color: #0000BB">34</span><span style="color: #007700">,</span><span style="color: #0000BB">35</span><span style="color: #007700">,</span><span style="color: #0000BB">36</span><span style="color: #007700">,</span><span style="color: #0000BB">37</span><span style="color: #007700">,</span><span style="color: #0000BB">38</span><span style="color: #007700">,</span><span style="color: #0000BB">39</span><span style="color: #007700">,</span><span style="color: #0000BB">40<br>  </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
+        
+        
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+
+
+  </p><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                      <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                       12                       13                       14                       15                       16                       17                       18                       19                       20                       21                       22                       23                       24                       25                       26                       27                       28                       29                       30                       31                       32                       33                       34                       35                       36                       37                       38                       39                       40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">row  = 10           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->20<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">rows = 10           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">rows = 10<font color="black">,</font> page = 2 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                       <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                        12                        13                        14                        15                        16                        17                        18                        19                        20                        21                        22                        23                        24                        25                        26                        27                        28                        29                        30                        31                        32                        33                        34                        35                        36                        37                        38                        39                        40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = 10           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">end   = 20           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = 10<font color="black">,</font> end = 20 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->20  21  22  23  24  25  26  27  28  29  30<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                         <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                          12                          13                          14                          15                          16                          17                          18                          19                          20                          21                          22                          23                          24                          25                          26                          27                          28                          29                          30                          31                          32                          33                          34                          35                          36                          37                          38                          39                          40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = -20            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">end   = -10            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = -20<font color="black">,</font> end = 20  </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = -20<font color="black">,</font> end = -10 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                        <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                         12                         13                         14                         15                         16                         17                         18                         19                         20                         21                         22                         23                         24                         25                         26                         27                         28                         29                         30                         31                         32                         33                         34                         35                         36                         37                         38                         39                         40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start =  20<font color="black">,</font> rows = 5 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->30  31  32  33  34<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">end   =  10<font color="black">,</font> rows = 5 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->16  17  18  19  20<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = -20<font color="black">,</font> rows = 5 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">end   = -10<font color="black">,</font> rows = 5 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->26  27  28  29  30<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>          <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11           12           13           14           15           16           17           18           19           20           21           22           23           24           25           26           27           28           29           30           31           32           33           34           35           36           37           38           39           40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">first</font>}</b>    <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">first=10</font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">last</font>}</b>     <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">last=10</font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->31   32   33   34   35   36   37   38   39   40<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                 12                 13                 14                 15                 16                 17                 18                 19                 20                 21                 22                 23                 24                 25                 26                 27                 28                 29                 30                 31                 32                 33                 34                 35                 36                 37                 38                 39                 40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">trim</font>}</b>           <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->12            13            14            15            16            17            18            19            20            21            22            23            24            25            26            27            28            29            30            31            32            33            34            35            36            37            38            39<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">trim=10</font>}</b>        <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21         22         23         24         25         26         27         28         29         30<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">trim=10<font color="black">,</font> left</font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21   22   23   24   25   26   27   28   29   30   31   32   33   34   35   36   37   38   39   40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">trim=10<font color="black">,</font> right</font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">trim=10<font color="black">,</font> both</font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21   22   23   24   25   26   27   28   29   30<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                   <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                    12                    13                    14                    15                    16                    17                    18                    19                    20                    21                    22                    23                    24                    25                    26                    27                    28                    29                    30                    31                    32                    33                    34                    35                    36                    37                    38                    39                    40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = 10</font>}</b>       <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11        12        13        14        15        16        17        18        19        20<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = 10</font>}</b>       <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21        22        23        24        25        26        27        28        29        30        31        32        33        34        35        36        37        38        39        40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = -10</font>}</b>      <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->31       32       33       34       35       36       37       38       39       40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = -10</font>}</b>      <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11       12       13       14       15       16       17       18       19       20       21       22       23       24       25       26       27       28       29       30<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font></font>}</b>   <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21    22    23    24    25<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font></font>}</b>   <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11    12    13    14    15    16    17    18    19    20    26    27    28    29    30    31    32    33    34    35    36    37    38    39    40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font></font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21   22   23   24   25   26   27   28   29   30   31   32   33   34   35<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font></font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11   12   13   14   15   16   17   18   19   20   36   37   38   39   40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font></font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21   22   23   24   25<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font></font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11   12   13   14   15   16   17   18   19   20   26   27   28   29   30   31   32   33   34   35   36   37   38   39   40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font></font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30  31  32  33  34  35<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font></font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>         <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11          12          13          14          15          16          17          18          19          20          21          22          23          24          25          26          27          28          29          30          31          32          33          34          35          36          37          38          39          40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->40  39  38  37  36  35  34  33  32  31  30  29  28  27  26  25  24  23  22  21  20  19  18  17  16  15  14  13  12  11<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">shuffle</font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->28  20  40  11  35  34  14  38  26  32  37  13  25  16  15  29  27  39  12  19  22  17  30  23  21  36  18  31  24  33<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">random</font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->16   17   20   31   11   30   25   34   28   18   37   35   36   23   14   26   40   15   38   22   33   13   24   39   27   29   21   19   12   32<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                                <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                                 12                                 13                                 14                                 15                                 16                                 17                                 18                                 19                                 20                                 21                                 22                                 23                                 24                                 25                                 26                                 27                                 28                                 29                                 30                                 31                                 32                                 33                                 34                                 35                                 36                                 37                                 38                                 39                                 40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">random=20</font>}</b>                      <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->20                       12                       26                       38                       29                       18                       16                       40                       32                       21                       34                       13                       28                       23                       31                       22                       25                       33                       39                       11<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">random=20<font color="black">,</font> orderly</font>}</b>             <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->12              14              16              17              19              21              22              23              24              25              27              28              31              33              35              36              37              38              39              40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">random=20<font color="black">,</font> duplicates</font>}</b>          <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->39           36           32           36           19           13           36           33           25           40           20           40           31           19           25           33           35           15           23           28<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">random=20<font color="black">,</font> orderly<font color="black">,</font> duplicates</font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  14  16  17  19  19  21  22  25  28  28  28  31  31  32  35  36  37  39  39<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p>
+
+<p>With the 'negative' option, the result is the negative of the handling option.
+
+</p><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                    <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                     12                     13                     14                     15                     16                     17                     18                     19                     20                     21                     22                     23                     24                     25                     26                     27                     28                     29                     30                     31                     32                     33                     34                     35                     36                     37                     38                     39                     40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">first=5           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">first=5<font color="black">,</font> negative </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                               12                               13                               14                               15                               16                               17                               18                               19                               20                               21                               22                               23                               24                               25                               26                               27                               28                               29                               30                               31                               32                               33                               34                               35                               36                               37                               38                               39                               40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = 10                 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = 10<font color="black">,</font> negative       </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = 10                 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = 10<font color="black">,</font> negative       </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                               12                               13                               14                               15                               16                               17                               18                               19                               20                               21                               22                               23                               24                               25                               26                               27                               28                               29                               30                               31                               32                               33                               34                               35                               36                               37                               38                               39                               40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = -10                </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = -10<font color="black">,</font> negative      </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = -10                </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = -10<font color="black">,</font> negative      </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                               12                               13                               14                               15                               16                               17                               18                               19                               20                               21                               22                               23                               24                               25                               26                               27                               28                               29                               30                               31                               32                               33                               34                               35                               36                               37                               38                               39                               40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font>             </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font><font color="black">,</font> negative   </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font>             </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font><font color="black">,</font> negative   </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                               12                               13                               14                               15                               16                               17                               18                               19                               20                               21                               22                               23                               24                               25                               26                               27                               28                               29                               30                               31                               32                               33                               34                               35                               36                               37                               38                               39                               40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font>            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30  31  32  33  34  35<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font><font color="black">,</font> negative  </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font>            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font><font color="black">,</font> negative  </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30  31  32  33  34  35<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                               12                               13                               14                               15                               16                               17                               18                               19                               20                               21                               22                               23                               24                               25                               26                               27                               28                               29                               30                               31                               32                               33                               34                               35                               36                               37                               38                               39                               40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font>            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font><font color="black">,</font> negative  </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font>            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font><font color="black">,</font> negative  </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                               12                               13                               14                               15                               16                               17                               18                               19                               20                               21                               22                               23                               24                               25                               26                               27                               28                               29                               30                               31                               32                               33                               34                               35                               36                               37                               38                               39                               40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font>           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30  31  32  33  34  35<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font><font color="black">,</font> negative </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font>           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font><font color="black">,</font> negative </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30  31  32  33  34  35<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p></div>
+                        <script>
+                        padAjaxqldHSk0N = new XMLHttpRequest();
+                        padAjaxqldHSk0N.onreadystatechange=function() {
+                        if (padAjaxqldHSk0N.readyState === 4) {
+                        if (padAjaxqldHSk0N.status === 200) {
+                        document.getElementById("padAjaxqldHSk0N").innerHTML=padAjaxqldHSk0N.responseText;
+                        } else {
+                        document.getElementById("padAjaxqldHSk0N").innerHTML=padAjaxqldHSk0N.statusText;
+                        }
+                        }
+                        }
+                        padAjaxqldHSk0N.open("GET","http://localhost/manual/?pages/data_handling&padInclude&padSesID=DiM2hOlW&padReqID=DZ3g6JvL",true);
+                        padAjaxqldHSk0N.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: pages/examples_used_in_this_manual<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/examples_used_in_this_manual.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">block</font><font color="red"></font>}</b><br>  &lt;p&gt;This manual will use the <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b> tag for general PAD features.<br>  &lt;p&gt;Below the internal PHP code for the <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b> tag. That is not so much ))&lt;/p&gt;<br>  &lt;p&gt;<b>{<font color="blue">example </font><font color="red"><font color="black">'</font>miscellaneous/true<font color="black">'</font><font color="black">,</font> skipHeader<font color="black">,</font> skipPad<font color="black">,</font> skipResult</font>}</b>&lt;/p&gt;<br>  &lt;p&gt;As the <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b> tag does not do anything itself, it must be given content &amp; data. <br>  &lt;br&gt;(if there is no data assigned to it then it will have default 1 data occurence)<br><b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>miscellaneous/pad<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>staff/index<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxOu7gdiQu"><table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td>
+  <p>This manual will use the <b>{pad}</b> tag for general PAD features.
+  </p><p>Below the internal PHP code for the <b>{pad}</b> tag. That is not so much ))</p>
+  <p>
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+
+      <tbody><tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">return </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
+        
+        
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+</p>
+  <p>As the <b>{pad}</b> tag does not do anything itself, it must be given content &amp; data. 
+  <br>(if there is no data assigned to it then it will have default 1 data occurence)
+</p></td>
+  </tr>
+</tbody></table>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red"><font color="red">$</font>myColor=<font color="black">'</font>red<font color="black">'</font></font>}</b><br>  &lt;b&gt; &lt;font color="<b>{<font color="green"><font color="red">$</font>myColor</font>}</b>"&gt; Hallo Wereld &lt;/font&gt; &lt;/b&gt; &lt;br&gt;<br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><b> <font color="red"> Hallo Wereld </font> </b> <br><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p>
+
+<table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td>
+  <p>Below example gives a sneak preview of <a href="../manual/index%EF%B9%96pages%EA%A4%B7the_content_tag.html">The content tag</a> and <a href="../manual/index%EF%B9%96pages%EA%A4%B7the_data_tag.html">The data tag</a>, 
+     2 powerfull PAD tags.
+</p></td>
+  </tr>
+</tbody></table>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myData<font color="black">'</font></font>}</b><br>  ( "red", "green", "blue" ) <br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  &lt;b&gt; &lt;font color="<b>{<font color="green"><font color="red">$</font>myData</font>}</b>"&gt; Hello World &lt;/font&gt; &lt;/b&gt; &lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font><font color="black">,</font> content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><b> <font color="red"> Hello World </font> </b> <br>
+
+  <b> <font color="green"> Hello World </font> </b> <br>
+
+  <b> <font color="blue"> Hello World </font> </b> <br><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p>
+
+<p>In the _data directory there is the file staff.xml, it is often used in this manual.
+
+</p><p>
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+
+      <tbody><tr>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;xml&gt;<br>  &lt;row name="joe"   salary="1000" bonus="500" phone="555-1111" /&gt;<br>  &lt;row name="jim"   salary="2000" bonus="400" phone="555-2222" /&gt;<br>  &lt;row name="john"  salary="3000" bonus="300" phone="555-3333" /&gt;<br>  &lt;row name="jack"  salary="4000" bonus="200" phone="555-4444" /&gt;<br>  &lt;row name="jerry" salary="5000" bonus="100" phone="555-5555" /&gt;<br>&lt;/xml&gt;</code></pre></td>
+        
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+
+
+</p><p>Files placed in the _data directory can be used as a PAD tag.
+
+</p><p>
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+
+      <tbody><tr>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <table border="1">
+  
+    <tbody><tr>
+      <td> joe </td>
+      <td> 555-1111 </td>
+    </tr>
+  
+    <tr>
+      <td> jim </td>
+      <td> 555-2222 </td>
+    </tr>
+  
+    <tr>
+      <td> john </td>
+      <td> 555-3333 </td>
+    </tr>
+  
+    <tr>
+      <td> jack </td>
+      <td> 555-4444 </td>
+    </tr>
+  
+    <tr>
+      <td> jerry </td>
+      <td> 555-5555 </td>
+    </tr>
+  
+</tbody></table>
+</td>
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+</p></div>
+                        <script>
+                        padAjaxOu7gdiQu = new XMLHttpRequest();
+                        padAjaxOu7gdiQu.onreadystatechange=function() {
+                        if (padAjaxOu7gdiQu.readyState === 4) {
+                        if (padAjaxOu7gdiQu.status === 200) {
+                        document.getElementById("padAjaxOu7gdiQu").innerHTML=padAjaxOu7gdiQu.responseText;
+                        } else {
+                        document.getElementById("padAjaxOu7gdiQu").innerHTML=padAjaxOu7gdiQu.statusText;
+                        }
+                        }
+                        }
+                        padAjaxOu7gdiQu.open("GET","http://localhost/manual/?pages/examples_used_in_this_manual&padInclude&padSesID=DiM2hOlW&padReqID=DZ3g6JvL",true);
+                        padAjaxOu7gdiQu.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: pages/ignore<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/ignore.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;h1&gt;Ignore - Preventing PAD from Parsing Curly Braces&lt;/h1&gt;<br><br>&lt;p&gt;The <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>ignore<font color="black">'</font></font>}</b> feature tells PAD not to parse curly braces &lt;code&gt;{}&lt;/code&gt; as PAD tags within specific content. This is essential when working with JavaScript, JSON data, CSS, or any content that uses curly braces for its own syntax.&lt;/p&gt;<br><br>&lt;h2&gt;Why Use Ignore?&lt;/h2&gt;<br><br>&lt;p&gt;PAD normally parses all &lt;code&gt;{}&lt;/code&gt; pairs as potential PAD tags. When your content contains curly braces that should be treated as literal text (like JavaScript code or JSON data), you need to tell PAD to ignore them.&lt;/p&gt;<br><br>&lt;h2&gt;Three Ways to Use Ignore&lt;/h2&gt;<br><br>&lt;h3&gt;1. As a Tag Pair: &lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b>...<b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt;&lt;/h3&gt;<br><br>&lt;p&gt;Wrap content in ignore tags to prevent PAD from parsing any curly braces within that block. This is commonly used for inline JavaScript or CSS.&lt;/p&gt;<br><br>&lt;h4&gt;Example 1: JavaScript with Object Literals&lt;/h4&gt;<br><br>&lt;p&gt;Without <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>ignore<font color="black">'</font></font>}</b>, PAD would try to parse the JavaScript object literal as PAD tags:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/ignore_1<font color="black">'</font></font>}</b><br><br>&lt;h4&gt;Example 2: Inline CSS with Selector Blocks&lt;/h4&gt;<br><br>&lt;p&gt;CSS uses curly braces for selector blocks. Wrap in <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>ignore<font color="black">'</font></font>}</b> to prevent PAD from parsing them:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/ignore_2<font color="black">'</font></font>}</b><br><br>&lt;h3&gt;2. As a Pipe Function: &lt;code&gt;| ignore&lt;/code&gt;&lt;/h3&gt;<br><br>&lt;p&gt;Apply ignore to the output of an expression to prevent PAD from parsing curly braces in that output. This is useful when passing JSON data to JavaScript.&lt;/p&gt;<br><br>&lt;h4&gt;Example 3: JSON Data in Attributes&lt;/h4&gt;<br><br>&lt;p&gt;When a variable contains JSON data, use the <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>ignore<font color="black">'</font></font>}</b> pipe function to prevent PAD from parsing the curly braces:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/ignore_4<font color="black">'</font></font>}</b><br><br>&lt;p&gt;The JSON data was passed from PAD/PHP through a data attribute using &lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>usersJson <font color="black">|</font> ignore</font>}</b>&lt;/code&gt;.&lt;/p&gt;<br><br>&lt;h3&gt;3. As an Option: &lt;code&gt;ignore&lt;/code&gt;&lt;/h3&gt;<br><br>&lt;p&gt;Add the ignore option to a tag to prevent PAD from parsing curly braces in its content.&lt;/p&gt;<br><br>&lt;h4&gt;Example 4: Data Tag with JSON&lt;/h4&gt;<br><br>&lt;p&gt;Use the <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>ignore<font color="black">'</font></font>}</b> option on a tag to prevent PAD from parsing curly braces in its content:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/ignore_5<font color="black">'</font></font>}</b><br><br>&lt;p&gt;Without the ignore option, PAD would try to parse &lt;code&gt;{"theme": "dark"}&lt;/code&gt; as PAD tags, causing errors.&lt;/p&gt;<br><br>&lt;h2&gt;Best Practices&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;strong&gt;Always use <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>ignore<font color="black">'</font></font>}</b> for JavaScript blocks&lt;/strong&gt; - Any &lt;code&gt;&lt;script&gt;&lt;/code&gt; tag with JavaScript should be wrapped&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Use &lt;code&gt;| ignore&lt;/code&gt; for dynamic JSON&lt;/strong&gt; - When expressions output JSON, pipe through ignore&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Keep CSS in external files&lt;/strong&gt; - But if inline CSS is needed, wrap in <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>ignore<font color="black">'</font></font>}</b>&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Minimal scope&lt;/strong&gt; - Only wrap what needs to be ignored, not entire templates&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Not needed for HTML&lt;/strong&gt; - Regular HTML doesn't use curly braces, no ignore needed&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;What Gets Ignored?&lt;/h2&gt;<br><br>&lt;p&gt;When ignore is active, PAD will NOT parse:&lt;/p&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;<b>{<font color="blue">variableName</font><font color="red"></font>}</b>&lt;/code&gt; - Not treated as a variable reference&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;<b>{<font color="blue">tagName</font><font color="red"></font>}</b>&lt;/code&gt; - Not treated as a PAD tag&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;<b>{<font color="blue">if </font><font color="red">condition</font>}</b>...<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/code&gt; - Not treated as conditional&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>expr</font>}</b>&lt;/code&gt; - Not treated as expression&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;p&gt;Everything within ignored content is treated as &lt;strong&gt;literal text&lt;/strong&gt;.&lt;/p&gt;<br><br>&lt;h2&gt;Common Use Cases&lt;/h2&gt;<br><br>&lt;table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;"&gt;<br>  &lt;tr style="background: #f0f0f0;"&gt;<br>    &lt;th&gt;Scenario&lt;/th&gt;<br>    &lt;th&gt;Method&lt;/th&gt;<br>    &lt;th&gt;Example&lt;/th&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Inline JavaScript&lt;/td&gt;<br>    &lt;td&gt;Tag Pair&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b>&lt;script&gt;...<b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Inline CSS&lt;/td&gt;<br>    &lt;td&gt;Tag Pair&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b>&lt;style&gt;...<b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;React/JSX Code&lt;/td&gt;<br>    &lt;td&gt;Tag Pair&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b>&lt;script type="text/babel"&gt;...<b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;JSON in Attributes&lt;/td&gt;<br>    &lt;td&gt;Pipe Function&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;data-json="<b>{<font color="green">$jsonVar</font> <font color="black">|</font> <font color="blue">ignore</font>}</b>"&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;JSON in Data Block&lt;/td&gt;<br>    &lt;td&gt;Option&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">data </font><font color="red"><font color="black">'</font>name<font color="black">'</font> ignore</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;h2&gt;Important Notes&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;strong&gt;Cannot nest&lt;/strong&gt; - Once inside an ignore block, all content is literal until &lt;code&gt;<b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt;&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Use sparingly&lt;/strong&gt; - Only use where necessary to avoid confusion&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;External files preferred&lt;/strong&gt; - For large JavaScript or CSS, use external files instead of inline code&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Summary&lt;/h2&gt;<br><br>&lt;table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;"&gt;<br>  &lt;tr style="background: #f0f0f0;"&gt;<br>    &lt;th&gt;Method&lt;/th&gt;<br>    &lt;th&gt;Syntax&lt;/th&gt;<br>    &lt;th&gt;Use Case&lt;/th&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;&lt;strong&gt;Tag Pair&lt;/strong&gt;&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b>...<b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt;&lt;/td&gt;<br>    &lt;td&gt;Inline JavaScript, CSS, large blocks of code&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;&lt;strong&gt;Pipe Function&lt;/strong&gt;&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">expression </font><font color="red"><font color="black">|</font> ignore</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>    &lt;td&gt;Expression output contains JSON or curly braces&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;&lt;strong&gt;Option&lt;/strong&gt;&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">tag </font><font color="red">ignore</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>    &lt;td&gt;Tag content should not be parsed&lt;/td&gt;<br>  &lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;h2&gt;See Also&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>open<font color="black">'</font></font>}</b> - Output opening brace &lt;code&gt;<b>{<font color="green">&lt;/code&gt;&lt;/li&gt;<br>  &lt;li&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>close<font color="black">'</font></font>}</b> - Output closing brace &lt;code&gt;</font>}</b>&lt;/code&gt;&lt;/li&gt;<br>  &lt;li&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>echo<font color="black">'</font></font>}</b> - Evaluate expressions&lt;/li&gt;<br>  &lt;li&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>data<font color="black">'</font></font>}</b> - Define inline data&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax4iP6bXre"><h1>Ignore - Preventing PAD from Parsing Curly Braces</h1>
+
+<p>The <b>{ignore}</b> feature tells PAD not to parse curly braces <code>{}</code> as PAD tags within specific content. This is essential when working with JavaScript, JSON data, CSS, or any content that uses curly braces for its own syntax.</p>
+
+<h2>Why Use Ignore?</h2>
+
+<p>PAD normally parses all <code>{}</code> pairs as potential PAD tags. When your content contains curly braces that should be treated as literal text (like JavaScript code or JSON data), you need to tell PAD to ignore them.</p>
+
+<h2>Three Ways to Use Ignore</h2>
+
+<h3>1. As a Tag Pair: <code>{ignore}...{/ignore}</code></h3>
+
+<p>Wrap content in ignore tags to prevent PAD from parsing any curly braces within that block. This is commonly used for inline JavaScript or CSS.</p>
+
+<h4>Example 1: JavaScript with Object Literals</h4>
+
+<p>Without <b>{ignore}</b>, PAD would try to parse the JavaScript object literal as PAD tags:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tbody><tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"></td>
+        
+        
+          <td style="vertical-align:top">
+  
+</td>
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+
+
+<h4>Example 2: Inline CSS with Selector Blocks</h4>
+
+<p>CSS uses curly braces for selector blocks. Wrap in <b>{ignore}</b> to prevent PAD from parsing them:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tbody><tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"></td>
+        
+        
+          <td style="vertical-align:top">
+  
+</td>
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+
+
+<h3>2. As a Pipe Function: <code>| ignore</code></h3>
+
+<p>Apply ignore to the output of an expression to prevent PAD from parsing curly braces in that output. This is useful when passing JSON data to JavaScript.</p>
+
+<h4>Example 3: JSON Data in Attributes</h4>
+
+<p>When a variable contains JSON data, use the <b>{ignore}</b> pipe function to prevent PAD from parsing the curly braces:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tbody><tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"></td>
+        
+        
+          <td style="vertical-align:top">
+  
+</td>
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+
+
+<p>The JSON data was passed from PAD/PHP through a data attribute using <code>{echo $usersJson | ignore}</code>.</p>
+
+<h3>3. As an Option: <code>ignore</code></h3>
+
+<p>Add the ignore option to a tag to prevent PAD from parsing curly braces in its content.</p>
+
+<h4>Example 4: Data Tag with JSON</h4>
+
+<p>Use the <b>{ignore}</b> option on a tag to prevent PAD from parsing curly braces in its content:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tbody><tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"></td>
+        
+        
+          <td style="vertical-align:top">
+  
+</td>
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+
+
+<p>Without the ignore option, PAD would try to parse <code>{"theme": "dark"}</code> as PAD tags, causing errors.</p>
+
+<h2>Best Practices</h2>
+
+<ul>
+  <li><strong>Always use <b>{ignore}</b> for JavaScript blocks</strong> - Any <code>&lt;script&gt;</code> tag with JavaScript should be wrapped</li>
+  <li><strong>Use <code>| ignore</code> for dynamic JSON</strong> - When expressions output JSON, pipe through ignore</li>
+  <li><strong>Keep CSS in external files</strong> - But if inline CSS is needed, wrap in <b>{ignore}</b></li>
+  <li><strong>Minimal scope</strong> - Only wrap what needs to be ignored, not entire templates</li>
+  <li><strong>Not needed for HTML</strong> - Regular HTML doesn't use curly braces, no ignore needed</li>
+</ul>
+
+<h2>What Gets Ignored?</h2>
+
+<p>When ignore is active, PAD will NOT parse:</p>
+
+<ul>
+  <li><code>{variableName}</code> - Not treated as a variable reference</li>
+  <li><code>{tagName}</code> - Not treated as a PAD tag</li>
+  <li><code>{if condition}...{/if}</code> - Not treated as conditional</li>
+  <li><code>{echo $expr}</code> - Not treated as expression</li>
+</ul>
+
+<p>Everything within ignored content is treated as <strong>literal text</strong>.</p>
+
+<h2>Common Use Cases</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+  <tbody><tr style="background: #f0f0f0;">
+    <th>Scenario</th>
+    <th>Method</th>
+    <th>Example</th>
+  </tr>
+  <tr>
+    <td>Inline JavaScript</td>
+    <td>Tag Pair</td>
+    <td><code>{ignore}&lt;script&gt;...{/ignore}</code></td>
+  </tr>
+  <tr>
+    <td>Inline CSS</td>
+    <td>Tag Pair</td>
+    <td><code>{ignore}&lt;style&gt;...{/ignore}</code></td>
+  </tr>
+  <tr>
+    <td>React/JSX Code</td>
+    <td>Tag Pair</td>
+    <td><code>{ignore}&lt;script type="text/babel"&gt;...{/ignore}</code></td>
+  </tr>
+  <tr>
+    <td>JSON in Attributes</td>
+    <td>Pipe Function</td>
+    <td><code>data-json="{$jsonVar | ignore}"</code></td>
+  </tr>
+  <tr>
+    <td>JSON in Data Block</td>
+    <td>Option</td>
+    <td><code>{data 'name' ignore}</code></td>
+  </tr>
+</tbody></table>
+
+<h2>Important Notes</h2>
+
+<ul>
+  <li><strong>Cannot nest</strong> - Once inside an ignore block, all content is literal until <code>{/ignore}</code></li>
+  <li><strong>Use sparingly</strong> - Only use where necessary to avoid confusion</li>
+  <li><strong>External files preferred</strong> - For large JavaScript or CSS, use external files instead of inline code</li>
+</ul>
+
+<h2>Summary</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+  <tbody><tr style="background: #f0f0f0;">
+    <th>Method</th>
+    <th>Syntax</th>
+    <th>Use Case</th>
+  </tr>
+  <tr>
+    <td><strong>Tag Pair</strong></td>
+    <td><code>{ignore}...{/ignore}</code></td>
+    <td>Inline JavaScript, CSS, large blocks of code</td>
+  </tr>
+  <tr>
+    <td><strong>Pipe Function</strong></td>
+    <td><code>{expression | ignore}</code></td>
+    <td>Expression output contains JSON or curly braces</td>
+  </tr>
+  <tr>
+    <td><strong>Option</strong></td>
+    <td><code>{tag ignore}</code></td>
+    <td>Tag content should not be parsed</td>
+  </tr>
+</tbody></table>
+
+<h2>See Also</h2>
+
+<ul>
+  <li><b>{open}</b> - Output opening brace <code>{</code></li>
+  <li><b>{close}</b> - Output closing brace <code>}</code></li>
+  <li><b>{echo}</b> - Evaluate expressions</li>
+  <li><b>{data}</b> - Define inline data</li>
+</ul></div>
+                        <script>
+                        padAjax4iP6bXre = new XMLHttpRequest();
+                        padAjax4iP6bXre.onreadystatechange=function() {
+                        if (padAjax4iP6bXre.readyState === 4) {
+                        if (padAjax4iP6bXre.status === 200) {
+                        document.getElementById("padAjax4iP6bXre").innerHTML=padAjax4iP6bXre.responseText;
+                        } else {
+                        document.getElementById("padAjax4iP6bXre").innerHTML=padAjax4iP6bXre.statusText;
+                        }
+                        }
+                        }
+                        padAjax4iP6bXre.open("GET","http://localhost/manual/?pages/ignore&padInclude&padSesID=DiM2hOlW&padReqID=DZ3g6JvL",true);
+                        padAjax4iP6bXre.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: pages/name<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/name.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">Every PAD tag gets a name, generated by PAD.<br><br>&lt;p&gt;- Most of the time it is just the tag name<br>&lt;br&gt;- Or the first parameter ( for example with the tags <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>content<font color="black">'</font></font>}</b> &amp; <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>data<font color="black">'</font></font>}</b> )<br>&lt;br&gt;- Or something else PAD thinks it is smart to use as name.<br> <br>&lt;p&gt;It is possible to override the name that PAD generates with the name option.<br><br>&lt;p&gt;<b>{<font color="blue">source</font><font color="red"></font>}</b><b>{<font color="blue">pad </font><font color="red">name=<font color="black">'</font>myTag<font color="black">'</font></font>}</b><b>{/<font color="blue">source</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxPld42szT">Every PAD tag gets a name, generated by PAD.
+
+<p>- Most of the time it is just the tag name
+<br>- Or the first parameter ( for example with the tags <b>{content}</b> &amp; <b>{data}</b> )
+<br>- Or something else PAD thinks it is smart to use as name.
+ 
+</p><p>It is possible to override the name that PAD generates with the name option.
+
+</p><p><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">name=<font color="black">'</font>myTag<font color="black">'</font></font>}</b></code></p></div>
+                        <script>
+                        padAjaxPld42szT = new XMLHttpRequest();
+                        padAjaxPld42szT.onreadystatechange=function() {
+                        if (padAjaxPld42szT.readyState === 4) {
+                        if (padAjaxPld42szT.status === 200) {
+                        document.getElementById("padAjaxPld42szT").innerHTML=padAjaxPld42szT.responseText;
+                        } else {
+                        document.getElementById("padAjaxPld42szT").innerHTML=padAjaxPld42szT.statusText;
+                        }
+                        }
+                        }
+                        padAjaxPld42szT.open("GET","http://localhost/manual/?pages/name&padInclude&padSesID=DiM2hOlW&padReqID=DZ3g6JvL",true);
+                        padAjaxPld42szT.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: pages/options_variables_parameters<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/options_variables_parameters.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">block</font><font color="red"></font>}</b><br>A pad tag can have variables/options/parameters<br>&lt;p&gt;&lt;table border=0&gt;<br>&lt;tr&gt;&lt;td&gt;- variables are:&lt;/td&gt;&lt;td&gt; $name=&lt;expresion&gt;&lt;/td&gt;&lt;/tr&gt;<br>&lt;tr&gt;&lt;td&gt;- options are:&lt;/td&gt;&lt;td&gt; name=&lt;expresion&gt;&lt;/td&gt;&lt;/tr&gt;<br>&lt;tr&gt;&lt;td&gt;- parameters are: &amp;nbsp; &lt;/td&gt;&lt;td&gt; &lt;expresion&gt;&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br>&lt;p&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>variables<font color="black">'</font></font>}</b>, <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>options<font color="black">'</font></font>}</b> &amp; <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>parameters<font color="black">'</font></font>}</b> belong to the  &lt;a href="?manual/properties"&gt;properties&lt;/a&gt; tags<br><b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>miscellaneous/options_variables_parameters<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxICbFmxqc"><table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td>
+A pad tag can have variables/options/parameters
+<p><table border="0">
+<tbody><tr><td>- variables are:</td><td> $name=&lt;expresion&gt;</td></tr>
+<tr><td>- options are:</td><td> name=&lt;expresion&gt;</td></tr>
+<tr><td>- parameters are: &nbsp; </td><td> &lt;expresion&gt;</td></tr>
+</tbody></table>
+</p><p><b>{variables}</b>, <b>{options}</b> &amp; <b>{parameters}</b> belong to the  <a href="index%EF%B9%96manual%EA%A4%B7properties.html">properties</a> tags
+</p></td>
+  </tr>
+</tbody></table>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">name=<font color="black">'</font>cool<font color="black">'</font><font color="black">,</font> abc=123<font color="black">,</font> <font color="black">'</font>fiets<font color="black">'</font><font color="black">,</font> <font color="red">$</font>abc=<font color="black">'</font>banaan<font color="black">'</font><font color="black">,</font> <font color="red">$</font>go=<font color="black">'</font>nuts<font color="black">'</font><font color="black">,</font> xyz=789<font color="black">,</font> 12*15</font>}</b><br><br>  &lt;h3&gt;variables&lt;/h3&gt;<br>  <br>  &lt;table border="1"&gt;<br>    &lt;th&gt;name&lt;/th&gt;<br>    &lt;th&gt;value&lt;/th&gt;<br>    <b>{<font color="blue">variables</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">variables</font><font color="red"></font>}</b><br>  &lt;/table&gt;<br><br>  &lt;h3&gt;options&lt;/h3&gt;<br>  <br>  &lt;table border="1"&gt;<br>    &lt;th&gt;name&lt;/th&gt;<br>    &lt;th&gt;value&lt;/th&gt;<br>    <b>{<font color="blue">options</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">options</font><font color="red"></font>}</b><br>  &lt;/table&gt;<br><br>  &lt;h3&gt;parameters&lt;/h3&gt;<br>  <br>  &lt;table border="1"&gt;<br>    &lt;th&gt;name&lt;/th&gt;<br>    &lt;th&gt;value&lt;/th&gt;<br>    <b>{<font color="blue">parameters</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">parameters</font><font color="red"></font>}</b><br>  &lt;/table&gt;<br><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>variables</h3>
+  
+  <table border="1">
+    <tbody><tr><th>name</th>
+    <th>value</th>
+    
+      </tr><tr>
+        <td>abc</td>
+        <td>banaan</td>
+      </tr>
+    
+      <tr>
+        <td>go</td>
+        <td>nuts</td>
+      </tr>
+    
+  </tbody></table>
+
+  <h3>options</h3>
+  
+  <table border="1">
+    <tbody><tr><th>name</th>
+    <th>value</th>
+    
+      </tr><tr>
+        <td>name</td>
+        <td>cool</td>
+      </tr>
+    
+      <tr>
+        <td>abc</td>
+        <td>123</td>
+      </tr>
+    
+      <tr>
+        <td>xyz</td>
+        <td>789</td>
+      </tr>
+    
+  </tbody></table>
+
+  <h3>parameters</h3>
+  
+  <table border="1">
+    <tbody><tr><th>name</th>
+    <th>value</th>
+    
+      </tr><tr>
+        <td>1</td>
+        <td>fiets</td>
+      </tr>
+    
+      <tr>
+        <td>2</td>
+        <td>180</td>
+      </tr>
+    
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">name=<font color="black">'</font>cool<font color="black">'</font><font color="black">,</font> abc=123<font color="black">,</font> <font color="black">'</font>fiets<font color="black">'</font><font color="black">,</font> <font color="red">$</font>abc=<font color="black">'</font>banaan<font color="black">'</font><font color="black">,</font> <font color="red">$</font>go=<font color="black">'</font>nuts<font color="black">'</font><font color="black">,</font> xyz=789<font color="black">,</font> 12*15</font>}</b><br><br>  &lt;h3&gt;variables&lt;/h3&gt;<br><br>  The value of variable 'abc' is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>variable<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>abc</font>}</b> &lt;br&gt;<br>  The value of variable 'go' is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>variable<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>go</font>}</b> &lt;br&gt;<br>  <br>  &lt;h3&gt;options&lt;/h3&gt;<br>  <br>  The value of option 'abc' is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>option<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>abc</font>}</b> &lt;br&gt;<br>  The value of option 'xyz' is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>option<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>xyz</font>}</b> &lt;br&gt;<br>  <br>  &lt;h3&gt;parameters&lt;/h3&gt;<br>  <br>  The first parameters is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>parameter<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>1</font>}</b> &lt;br&gt;<br>  The second parameter is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>parameter<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>2</font>}</b> &lt;br&gt;<br>  <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>variables</h3>
+
+  The value of variable 'abc' is: banaan <br>
+  The value of variable 'go' is: nuts <br>
+  
+  <h3>options</h3>
+  
+  The value of option 'abc' is: 123 <br>
+  The value of option 'xyz' is: 789 <br>
+  
+  <h3>parameters</h3>
+  
+  The first parameters is: fiets <br>
+  The second parameter is: 180 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">name=<font color="black">'</font>cool<font color="black">'</font><font color="black">,</font> abc=123<font color="black">,</font> <font color="black">'</font>fiets<font color="black">'</font><font color="black">,</font> <font color="red">$</font>abc=<font color="black">'</font>banaan<font color="black">'</font><font color="black">,</font> <font color="red">$</font>go=<font color="black">'</font>nuts<font color="black">'</font><font color="black">,</font> xyz=789<font color="black">,</font> 12*15</font>}</b><br><br>  &lt;h3&gt;variables&lt;/h3&gt;<br><br>  Variables can be directy accessed with the $ char &lt;br&gt;<br>  - variable 'abc' - <b>{<font color="green"><font color="red">$</font>abc</font>}</b> &lt;br&gt;<br>  - variable 'go' - <b>{<font color="green"><font color="red">$</font>go</font>}</b> &lt;br&gt;<br>  <br>  &lt;h3&gt;options&lt;/h3&gt;<br><br>  Options can be directy accessed with the # char &lt;br&gt;<br>  - option 'abc' - <b>{<font color="green"><font color="red">#</font>abc</font>}</b> &lt;br&gt;<br>  - option 'xyz' - <b>{<font color="green"><font color="red">#</font>xyz</font>}</b> &lt;br&gt;<br>    <br>  &lt;h3&gt;parameters&lt;/h3&gt;<br>  <br>  Parameters can be directy accesed with the $ char  &lt;br&gt;<br>  - The first parameters is: <b>{<font color="green"><font color="red">$</font>1</font>}</b> &lt;br&gt;<br>  - The second parameter is: <b>{<font color="green"><font color="red">$</font>2</font>}</b> &lt;br&gt;<br>  <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>variables</h3>
+
+  Variables can be directy accessed with the $ char <br>
+  - variable 'abc' - banaan <br>
+  - variable 'go' - nuts <br>
+  
+  <h3>options</h3>
+
+  Options can be directy accessed with the # char <br>
+  - option 'abc' - 123 <br>
+  - option 'xyz' - 789 <br>
+    
+  <h3>parameters</h3>
+  
+  Parameters can be directy accesed with the $ char  <br>
+  - The first parameters is: fiets <br>
+  - The second parameter is: 180 <br><!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p></div>
+                        <script>
+                        padAjaxICbFmxqc = new XMLHttpRequest();
+                        padAjaxICbFmxqc.onreadystatechange=function() {
+                        if (padAjaxICbFmxqc.readyState === 4) {
+                        if (padAjaxICbFmxqc.status === 200) {
+                        document.getElementById("padAjaxICbFmxqc").innerHTML=padAjaxICbFmxqc.responseText;
+                        } else {
+                        document.getElementById("padAjaxICbFmxqc").innerHTML=padAjaxICbFmxqc.statusText;
+                        }
+                        }
+                        }
+                        padAjaxICbFmxqc.open("GET","http://localhost/manual/?pages/options_variables_parameters&padInclude&padSesID=DiM2hOlW&padReqID=DZ3g6JvL",true);
+                        padAjaxICbFmxqc.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: pages/parse<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/parse.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">block</font><font color="red"></font>}</b><br><br>&lt;p&gt;<br>PAD parses on the fly (on demand) it searches for the first &lt;b&gt;}&lt;/b&gt;, then it takes the first &lt;b&gt;{&lt;/b&gt; before it, and analyses it to see if it is a PAD tag or a PAD variable.<br>&lt;/p&gt;<br><br>&lt;p&gt;<br>In below example, the <b>{<font color="blue">source</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>myVar</font>}</b><b>{/<font color="blue">source</font><font color="red"></font>}</b> part is parsed first and executed.<br>&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>miscellaneous/parse/1<font color="black">'</font><font color="black">,</font> skipResult<font color="black">,</font> skipPhp<font color="black">,</font> skipHeader</font>}</b><br><br>&lt;p&gt;<br>Lets assume <b>{<font color="blue">source</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>myVar</font>}</b><b>{/<font color="blue">source</font><font color="red"></font>}</b> has the value ABC, then the result will be below, and now the <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b> tag will be processed.<br>&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>miscellaneous/parse/2<font color="black">'</font><font color="black">,</font> skipResult<font color="black">,</font> skipPhp<font color="black">,</font> skipHeader</font>}</b><br><br>&lt;p&gt;<br>If you do not put quotes around <b>{<font color="blue">source</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>myVar</font>}</b><b>{/<font color="blue">source</font><font color="red"></font>}</b> then below will be executed, and PAD will give the error that the constant ABC does not exists<br>&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>miscellaneous/parse/3<font color="black">'</font><font color="black">,</font> skipResult<font color="black">,</font> skipPhp<font color="black">,</font> skipHeader</font>}</b><br><br><br><b>{/<font color="blue">block</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxutII5TD0"><table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td>
+
+<p>
+PAD parses on the fly (on demand) it searches for the first <b>}</b>, then it takes the first <b>{</b> before it, and analyses it to see if it is a PAD tag or a PAD variable.
+</p>
+
+<p>
+In below example, the <code style="color: #000000"><b>{<font color="green"><font color="red">$</font>myVar</font>}</b></code> part is parsed first and executed.
+</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+
+      <tbody><tr>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">myOption=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>myVar</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> <font color="red">$</font>xyz=789</font>}</b><br>   ....<br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+
+
+<p>
+Lets assume <code style="color: #000000"><b>{<font color="green"><font color="red">$</font>myVar</font>}</b></code> has the value ABC, then the result will be below, and now the <b>{pad}</b> tag will be processed.
+</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+
+      <tbody><tr>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">myOption=<font color="black">'</font>ABC<font color="black">'</font><font color="black">,</font> <font color="red">$</font>xyz=789</font>}</b><br>   ....<br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+
+
+<p>
+If you do not put quotes around <code style="color: #000000"><b>{<font color="green"><font color="red">$</font>myVar</font>}</b></code> then below will be executed, and PAD will give the error that the constant ABC does not exists
+</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+
+      <tbody><tr>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">myOption=ABC<font color="black">,</font> <font color="red">$</font>xyz=789</font>}</b><br>   ....<br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+
+
+
+</td>
+  </tr>
+</tbody></table></div>
+                        <script>
+                        padAjaxutII5TD0 = new XMLHttpRequest();
+                        padAjaxutII5TD0.onreadystatechange=function() {
+                        if (padAjaxutII5TD0.readyState === 4) {
+                        if (padAjaxutII5TD0.status === 200) {
+                        document.getElementById("padAjaxutII5TD0").innerHTML=padAjaxutII5TD0.responseText;
+                        } else {
+                        document.getElementById("padAjaxutII5TD0").innerHTML=padAjaxutII5TD0.statusText;
+                        }
+                        }
+                        }
+                        padAjaxutII5TD0.open("GET","http://localhost/manual/?pages/parse&padInclude&padSesID=DiM2hOlW&padReqID=DZ3g6JvL",true);
+                        padAjaxutII5TD0.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: pages/pipes<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/pipes.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;h1&gt;Pipes - Transform Output with Functions&lt;/h1&gt;<br><br>&lt;p&gt;Pipes allow you to pass output through functions to transform it. Use the pipe symbol &lt;code&gt;|&lt;/code&gt; followed by a function name to process data.&lt;/p&gt;<br><br>&lt;h2&gt;Two Ways to Use Pipes&lt;/h2&gt;<br><br>&lt;h3&gt;1. Variable Pipes&lt;/h3&gt;<br><br>&lt;p&gt;Apply functions to variables using &lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>variable <font color="black">|</font> function</font>}</b>&lt;/code&gt;:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/pipes_1<font color="black">'</font></font>}</b><br><br>&lt;h3&gt;2. Tag Pipes&lt;/h3&gt;<br><br>&lt;p&gt;Apply functions to tag output. Pipes can be placed on the opening tag or closing tag:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/pipes_2<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Pipe Timing: Opening vs Closing Tag&lt;/h2&gt;<br><br>&lt;p&gt;The placement of the pipe determines &lt;strong&gt;when&lt;/strong&gt; the function is applied:&lt;/p&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;strong&gt;Opening tag&lt;/strong&gt; &lt;code&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">|</font> function</font>}</b>&lt;/code&gt; - Processes data BEFORE the tag content is rendered&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Closing tag&lt;/strong&gt; &lt;code&gt;<b>{/<font color="blue">tag </font><font color="red"><font color="black">|</font> function</font>}</b>&lt;/code&gt; - Processes output AFTER the tag is finished&lt;/li&gt;<br>&lt;/ul&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/pipes_4<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Chaining Pipes&lt;/h2&gt;<br><br>&lt;p&gt;Chain multiple pipe functions together by separating them with &lt;code&gt;|&lt;/code&gt;. Functions are applied left to right:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/pipes_3<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Common Pipe Functions&lt;/h2&gt;<br><br>&lt;table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;"&gt;<br>  &lt;tr style="background: #f0f0f0;"&gt;<br>    &lt;th&gt;Function&lt;/th&gt;<br>    &lt;th&gt;Description&lt;/th&gt;<br>    &lt;th&gt;Example&lt;/th&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;&lt;code&gt;upper&lt;/code&gt;&lt;/td&gt;<br>    &lt;td&gt;Convert to uppercase&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> upper</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;&lt;code&gt;lower&lt;/code&gt;&lt;/td&gt;<br>    &lt;td&gt;Convert to lowercase&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> lower</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;&lt;code&gt;ucwords&lt;/code&gt;&lt;/td&gt;<br>    &lt;td&gt;Capitalize each word&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> ucwords</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;&lt;code&gt;trim&lt;/code&gt;&lt;/td&gt;<br>    &lt;td&gt;Remove whitespace&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> trim</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;&lt;code&gt;html&lt;/code&gt;&lt;/td&gt;<br>    &lt;td&gt;HTML encode&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> html</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;&lt;code&gt;replace(a,b)&lt;/code&gt;&lt;/td&gt;<br>    &lt;td&gt;Replace text&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> replace(<font color="black">'</font>old<font color="black">'</font><font color="black">,</font><font color="black">'</font>new<font color="black">'</font>)</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;&lt;code&gt;+ n&lt;/code&gt;&lt;/td&gt;<br>    &lt;td&gt;Add number&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>count <font color="black">|</font> + 1</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;&lt;code&gt;date(fmt)&lt;/code&gt;&lt;/td&gt;<br>    &lt;td&gt;Format date&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>timestamp <font color="black">|</font> date(<font color="black">'</font>Y-m-d<font color="black">'</font>)</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;h2&gt;Important Rules&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;strong&gt;Use <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>echo<font color="black">'</font></font>}</b> with variables&lt;/strong&gt; - &lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>var <font color="black">|</font> function</font>}</b>&lt;/code&gt; NOT &lt;code&gt;<b>{<font color="green">$var</font> <font color="black">|</font> <font color="blue">function</font>}</b>&lt;/code&gt;&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Arithmetic needs spaces&lt;/strong&gt; - &lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>x <font color="black">|</font> + 1</font>}</b>&lt;/code&gt; NOT &lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>x <font color="black">|</font> +1</font>}</b>&lt;/code&gt;&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Quote string parameters&lt;/strong&gt; - &lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>x <font color="black">|</font> replace(<font color="black">'</font>a<font color="black">'</font><font color="black">,</font><font color="black">'</font>b<font color="black">'</font>)</font>}</b>&lt;/code&gt;&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Functions apply left to right&lt;/strong&gt; - &lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>x <font color="black">|</font> trim <font color="black">|</font> upper</font>}</b>&lt;/code&gt; trims first, then uppercases&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;When to Use Opening vs Closing Tag Pipes&lt;/h2&gt;<br><br>&lt;table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;"&gt;<br>  &lt;tr style="background: #f0f0f0;"&gt;<br>    &lt;th&gt;Use Case&lt;/th&gt;<br>    &lt;th&gt;Placement&lt;/th&gt;<br>    &lt;th&gt;Example&lt;/th&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Transform input data before processing&lt;/td&gt;<br>    &lt;td&gt;Opening tag&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">items </font><font color="red"><font color="black">|</font> sort</font>}</b>...<b>{/<font color="blue">items</font><font color="red"></font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Transform final output after rendering&lt;/td&gt;<br>    &lt;td&gt;Closing tag&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">tag</font><font color="red"></font>}</b>...<b>{/<font color="blue">tag </font><font color="red"><font color="black">|</font> upper</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Format variable values&lt;/td&gt;<br>    &lt;td&gt;Variable pipe&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>price <font color="black">|</font> number_format(2)</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;h2&gt;See Also&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>echo<font color="black">'</font></font>}</b> - Evaluate and output expressions&lt;/li&gt;<br>  &lt;li&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>functions<font color="black">'</font></font>}</b> - List of all pipe functions&lt;/li&gt;<br>  &lt;li&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>options<font color="black">'</font></font>}</b> - Tag options reference&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxDpnVr3Lj"><h1>Pipes - Transform Output with Functions</h1>
+
+<p>Pipes allow you to pass output through functions to transform it. Use the pipe symbol <code>|</code> followed by a function name to process data.</p>
+
+<h2>Two Ways to Use Pipes</h2>
+
+<h3>1. Variable Pipes</h3>
+
+<p>Apply functions to variables using <code>{echo $variable | function}</code>:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tbody><tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"></td>
+        
+        
+          <td style="vertical-align:top">
+  
+</td>
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+
+
+<h3>2. Tag Pipes</h3>
+
+<p>Apply functions to tag output. Pipes can be placed on the opening tag or closing tag:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tbody><tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"></td>
+        
+        
+          <td style="vertical-align:top">
+  
+</td>
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+
+
+<h2>Pipe Timing: Opening vs Closing Tag</h2>
+
+<p>The placement of the pipe determines <strong>when</strong> the function is applied:</p>
+
+<ul>
+  <li><strong>Opening tag</strong> <code>{tag | function}</code> - Processes data BEFORE the tag content is rendered</li>
+  <li><strong>Closing tag</strong> <code>{/tag | function}</code> - Processes output AFTER the tag is finished</li>
+</ul>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tbody><tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"></td>
+        
+        
+          <td style="vertical-align:top">
+  
+</td>
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+
+
+<h2>Chaining Pipes</h2>
+
+<p>Chain multiple pipe functions together by separating them with <code>|</code>. Functions are applied left to right:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tbody><tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"></td>
+        
+        
+          <td style="vertical-align:top">
+  
+</td>
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+
+
+<h2>Common Pipe Functions</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+  <tbody><tr style="background: #f0f0f0;">
+    <th>Function</th>
+    <th>Description</th>
+    <th>Example</th>
+  </tr>
+  <tr>
+    <td><code>upper</code></td>
+    <td>Convert to uppercase</td>
+    <td><code>{echo $text | upper}</code></td>
+  </tr>
+  <tr>
+    <td><code>lower</code></td>
+    <td>Convert to lowercase</td>
+    <td><code>{echo $text | lower}</code></td>
+  </tr>
+  <tr>
+    <td><code>ucwords</code></td>
+    <td>Capitalize each word</td>
+    <td><code>{echo $text | ucwords}</code></td>
+  </tr>
+  <tr>
+    <td><code>trim</code></td>
+    <td>Remove whitespace</td>
+    <td><code>{echo $text | trim}</code></td>
+  </tr>
+  <tr>
+    <td><code>html</code></td>
+    <td>HTML encode</td>
+    <td><code>{echo $text | html}</code></td>
+  </tr>
+  <tr>
+    <td><code>replace(a,b)</code></td>
+    <td>Replace text</td>
+    <td><code>{echo $text | replace('old','new')}</code></td>
+  </tr>
+  <tr>
+    <td><code>+ n</code></td>
+    <td>Add number</td>
+    <td><code>{echo $count | + 1}</code></td>
+  </tr>
+  <tr>
+    <td><code>date(fmt)</code></td>
+    <td>Format date</td>
+    <td><code>{echo $timestamp | date('Y-m-d')}</code></td>
+  </tr>
+</tbody></table>
+
+<h2>Important Rules</h2>
+
+<ul>
+  <li><strong>Use <b>{echo}</b> with variables</strong> - <code>{echo $var | function}</code> NOT <code>{$var | function}</code></li>
+  <li><strong>Arithmetic needs spaces</strong> - <code>{echo $x | + 1}</code> NOT <code>{echo $x | +1}</code></li>
+  <li><strong>Quote string parameters</strong> - <code>{echo $x | replace('a','b')}</code></li>
+  <li><strong>Functions apply left to right</strong> - <code>{echo $x | trim | upper}</code> trims first, then uppercases</li>
+</ul>
+
+<h2>When to Use Opening vs Closing Tag Pipes</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+  <tbody><tr style="background: #f0f0f0;">
+    <th>Use Case</th>
+    <th>Placement</th>
+    <th>Example</th>
+  </tr>
+  <tr>
+    <td>Transform input data before processing</td>
+    <td>Opening tag</td>
+    <td><code>{items | sort}...{/items}</code></td>
+  </tr>
+  <tr>
+    <td>Transform final output after rendering</td>
+    <td>Closing tag</td>
+    <td><code>{tag}...{/tag | upper}</code></td>
+  </tr>
+  <tr>
+    <td>Format variable values</td>
+    <td>Variable pipe</td>
+    <td><code>{echo $price | number_format(2)}</code></td>
+  </tr>
+</tbody></table>
+
+<h2>See Also</h2>
+
+<ul>
+  <li><b>{echo}</b> - Evaluate and output expressions</li>
+  <li><b>{functions}</b> - List of all pipe functions</li>
+  <li><b>{options}</b> - Tag options reference</li>
+</ul></div>
+                        <script>
+                        padAjaxDpnVr3Lj = new XMLHttpRequest();
+                        padAjaxDpnVr3Lj.onreadystatechange=function() {
+                        if (padAjaxDpnVr3Lj.readyState === 4) {
+                        if (padAjaxDpnVr3Lj.status === 200) {
+                        document.getElementById("padAjaxDpnVr3Lj").innerHTML=padAjaxDpnVr3Lj.responseText;
+                        } else {
+                        document.getElementById("padAjaxDpnVr3Lj").innerHTML=padAjaxDpnVr3Lj.statusText;
+                        }
+                        }
+                        }
+                        padAjaxDpnVr3Lj.open("GET","http://localhost/manual/?pages/pipes&padInclude&padSesID=DiM2hOlW&padReqID=DZ3g6JvL",true);
+                        padAjaxDpnVr3Lj.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: pages/tags<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/tags.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">PAD is about <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>tags<font color="black">'</font></font>}</b><br><br>&lt;p&gt;<br>A single <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>tag<font color="black">'</font></font>}</b> or <br>an open/close combination <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>tag<font color="black">'</font></font>}</b> .... <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>tag<font color="black">'</font><font color="black">,</font> close</font>}</b><br><br>&lt;p&gt;<br>Optional a single <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>tag<font color="black">'</font><font color="black">,</font> single</font>}</b> can be closed with a traling &lt;b&gt;/&lt;/b&gt; character. &lt;br&gt;( the PAD parser likes you when you do this )<br><br>&lt;br&gt;&lt;br&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxddLUURDq">PAD is about <b>{tags}</b>
+
+<p>
+A single <b>{tag}</b> or 
+an open/close combination <b>{tag}</b> .... <b>{/tag}</b>
+
+</p><p>
+Optional a single <b>{tag/}</b> can be closed with a traling <b>/</b> character. <br>( the PAD parser likes you when you do this )
+
+<br><br></p></div>
+                        <script>
+                        padAjaxddLUURDq = new XMLHttpRequest();
+                        padAjaxddLUURDq.onreadystatechange=function() {
+                        if (padAjaxddLUURDq.readyState === 4) {
+                        if (padAjaxddLUURDq.status === 200) {
+                        document.getElementById("padAjaxddLUURDq").innerHTML=padAjaxddLUURDq.responseText;
+                        } else {
+                        document.getElementById("padAjaxddLUURDq").innerHTML=padAjaxddLUURDq.statusText;
+                        }
+                        }
+                        }
+                        padAjaxddLUURDq.open("GET","http://localhost/manual/?pages/tags&padInclude&padSesID=DiM2hOlW&padReqID=DZ3g6JvL",true);
+                        padAjaxddLUURDq.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: pages/walking<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/walking.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">block</font><font color="red"></font>}</b><br>&lt;p&gt;<br>Normally all the occurences for a level are retrieved and placed in an internal table before<br>the processing takes place.&lt;br&gt;<br>When this table is processed PAD knows for example when it is handling the last Occurence.&lt;br&gt;<br>The below example with the <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>sequence<font color="black">'</font></font>}</b> tag does do that:<br>&lt;/p&gt;<br><b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>walk/1<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">block</font><font color="red"></font>}</b><br>&lt;p&gt;<br>  But some PAD tags use the PAD construct 'walking', then the occurences are processed one by one.&lt;br&gt;<br>  The tags <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>while<font color="black">'</font></font>}</b> &amp;amp; <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>until<font color="black">'</font></font>}</b> are an example of this.&lt;br&gt;<br>  This 'walking' construct breaks those special pad tags like <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>last<font color="black">'</font></font>}</b> &amp; <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>border<font color="black">'</font></font>}</b> that give information about a <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>tag<font color="black">'</font></font>}</b>&lt;br&gt;<br>  Also the 'Data Handling' options are broken since those work on the all occurences at once.<br>&lt;/p&gt;<br><b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>walk/2<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">block</font><font color="red"></font>}</b><br>&lt;p&gt;<br>  To solve above breaking, place the result of a walking tag into the Data Store, and use it as a own tag.<br>&lt;/p&gt;<br><b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>walk/3<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>walk/_lib/lib<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxxtR9i6m5"><table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td>
+<p>
+Normally all the occurences for a level are retrieved and placed in an internal table before
+the processing takes place.<br>
+When this table is processed PAD knows for example when it is handling the last Occurence.<br>
+The below example with the <b>{sequence}</b> tag does do that:
+</p>
+</td>
+  </tr>
+</tbody></table>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myTable</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font></font>}</b><br><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="blue">first</font><font color="red"></font>}</b>  X <b>{/<font color="blue">first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">middle</font><font color="red"></font>}</b> X <b>{/<font color="blue">middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">last</font><font color="red"></font>}</b>   X <b>{/<font color="blue">last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">border</font><font color="red"></font>}</b> X <b>{/<font color="blue">border</font><font color="red"></font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br><br><b>{/<font color="blue">myTable</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+
+    <tbody><tr>
+      <th> first  </th>
+      <th> middle </th>
+      <th> last   </th>
+      <th> border </th>
+     </tr>
+
+    
+
+  
+
+    <tr>
+      <td>   X   </td>
+      <td>  </td>
+      <td>    </td>
+      <td>  X  </td>
+    </tr>
+
+  
+
+    <tr>
+      <td>   </td>
+      <td>  X  </td>
+      <td>    </td>
+      <td>  </td>
+    </tr>
+
+  
+
+    <tr>
+      <td>   </td>
+      <td>  X  </td>
+      <td>    </td>
+      <td>  </td>
+    </tr>
+
+  
+
+    <tr>
+      <td>   </td>
+      <td>  X  </td>
+      <td>    </td>
+      <td>  </td>
+    </tr>
+
+  
+
+    <tr>
+      <td>   </td>
+      <td>  </td>
+      <td>    X    </td>
+      <td>  X  </td>
+    </tr>
+
+  
+
+
+
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p>
+
+<table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td>
+<p>
+  But some PAD tags use the PAD construct 'walking', then the occurences are processed one by one.<br>
+  The tags <b>{while}</b> &amp; <b>{until}</b> are an example of this.<br>
+  This 'walking' construct breaks those special pad tags like <b>{last}</b> &amp; <b>{border}</b> that give information about a <b>{tag}</b><br>
+  Also the 'Data Handling' options are broken since those work on the all occurences at once.
+</p>
+</td>
+  </tr>
+</tbody></table>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myTable</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>loop = 1</font>}</b><br><br>  <b>{<font color="blue">while </font><font color="red"><font color="red">$</font>loop LE 5</font>}</b><br><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="blue">first</font><font color="red"></font>}</b>  X <b>{/<font color="blue">first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">middle</font><font color="red"></font>}</b> X <b>{/<font color="blue">middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">last</font><font color="red"></font>}</b>   X <b>{/<font color="blue">last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">border</font><font color="red"></font>}</b> X <b>{/<font color="blue">border</font><font color="red"></font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br><br>    <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>loop</font>}</b><br><br>  <b>{/<font color="blue">while</font><font color="red"></font>}</b><br><br><b>{/<font color="blue">myTable</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+
+    <tbody><tr>
+      <th> first  </th>
+      <th> middle </th>
+      <th> last   </th>
+      <th> border </th>
+     </tr>
+
+    
+
+  
+
+  
+
+    <tr>
+      <td>   X   </td>
+      <td>  </td>
+      <td>    X    </td>
+      <td>  X  </td>
+    </tr>
+
+    
+
+  
+
+    <tr>
+      <td>   </td>
+      <td>  </td>
+      <td>    X    </td>
+      <td>  X  </td>
+    </tr>
+
+    
+
+  
+
+    <tr>
+      <td>   </td>
+      <td>  </td>
+      <td>    X    </td>
+      <td>  X  </td>
+    </tr>
+
+    
+
+  
+
+    <tr>
+      <td>   </td>
+      <td>  </td>
+      <td>    X    </td>
+      <td>  X  </td>
+    </tr>
+
+    
+
+  
+
+    <tr>
+      <td>   </td>
+      <td>  </td>
+      <td>    X    </td>
+      <td>  X  </td>
+    </tr>
+
+    
+
+  
+
+
+
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p>
+
+<table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td>
+<p>
+  To solve above breaking, place the result of a walking tag into the Data Store, and use it as a own tag.
+</p>
+</td>
+  </tr>
+</tbody></table>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>loop = 1</font>}</b><br><br><b>{<font color="blue">while </font><font color="red"><font color="red">$</font>loop LE 5<font color="black">,</font> toData=<font color="black">'</font>abc<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>loop</font>}</b><br><b>{/<font color="blue">while</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myTable</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">abc</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="blue">first</font><font color="red"></font>}</b>  X <b>{/<font color="blue">first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">middle</font><font color="red"></font>}</b> X <b>{/<font color="blue">middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">last</font><font color="red"></font>}</b>   X <b>{/<font color="blue">last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">border</font><font color="red"></font>}</b> X <b>{/<font color="blue">border</font><font color="red"></font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">abc</font><font color="red"></font>}</b><br><br><b>{/<font color="blue">myTable</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+
+    <tbody><tr>
+      <th> first  </th>
+      <th> middle </th>
+      <th> last   </th>
+      <th> border </th>
+     </tr>
+
+    
+
+  
+    <tr>
+      <td>   X   </td>
+      <td>  </td>
+      <td>    </td>
+      <td>  X  </td>
+    </tr>
+  
+    <tr>
+      <td>   </td>
+      <td>  X  </td>
+      <td>    </td>
+      <td>  </td>
+    </tr>
+  
+    <tr>
+      <td>   </td>
+      <td>  X  </td>
+      <td>    </td>
+      <td>  </td>
+    </tr>
+  
+    <tr>
+      <td>   </td>
+      <td>  X  </td>
+      <td>    </td>
+      <td>  </td>
+    </tr>
+  
+    <tr>
+      <td>   </td>
+      <td>  </td>
+      <td>    X    </td>
+      <td>  X  </td>
+    </tr>
+  
+
+
+
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p>
+
+<hr><p>This manual page uses below PAD fragment.
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+
+      <tbody><tr>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myTable<font color="black">'</font></font>}</b><br><br>  &lt;table border=1&gt;<br><br>    &lt;tr&gt;<br>      &lt;th&gt; first  &lt;/th&gt;<br>      &lt;th&gt; middle &lt;/th&gt;<br>      &lt;th&gt; last   &lt;/th&gt;<br>      &lt;th&gt; border &lt;/th&gt;<br>     &lt;/tr&gt;<br><br>    <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b><br><br>  &lt;/table&gt;<br><br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+</p></div>
+                        <script>
+                        padAjaxxtR9i6m5 = new XMLHttpRequest();
+                        padAjaxxtR9i6m5.onreadystatechange=function() {
+                        if (padAjaxxtR9i6m5.readyState === 4) {
+                        if (padAjaxxtR9i6m5.status === 200) {
+                        document.getElementById("padAjaxxtR9i6m5").innerHTML=padAjaxxtR9i6m5.responseText;
+                        } else {
+                        document.getElementById("padAjaxxtR9i6m5").innerHTML=padAjaxxtR9i6m5.statusText;
+                        }
+                        }
+                        }
+                        padAjaxxtR9i6m5.open("GET","http://localhost/manual/?pages/walking&padInclude&padSesID=DiM2hOlW&padReqID=DZ3g6JvL",true);
+                        padAjaxxtR9i6m5.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: vars/at/6<br>
+                  <div id="padAjaxpklHza1N"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        <b>{<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b><br>          &lt;th&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/th&gt;<br>        <b>{/<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b><br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b><br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b> &lt;/td&gt;<br>      <b>{/<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+  
+    
+      <tbody><tr>
+        
+          <th> name </th>
+        
+          <th> salary </th>
+        
+          <th> bonus </th>
+        
+          <th> phone </th>
+        
+      </tr>
+    
+    <tr>
+      
+        <td> joe </td>
+      
+        <td> 1000 </td>
+      
+        <td> 500 </td>
+      
+        <td> 555-1111 </td>
+      
+    </tr>
+  
+    
+    <tr>
+      
+        <td> jim </td>
+      
+        <td> 2000 </td>
+      
+        <td> 400 </td>
+      
+        <td> 555-2222 </td>
+      
+    </tr>
+  
+    
+    <tr>
+      
+        <td> john </td>
+      
+        <td> 3000 </td>
+      
+        <td> 300 </td>
+      
+        <td> 555-3333 </td>
+      
+    </tr>
+  
+    
+    <tr>
+      
+        <td> jack </td>
+      
+        <td> 4000 </td>
+      
+        <td> 200 </td>
+      
+        <td> 555-4444 </td>
+      
+    </tr>
+  
+    
+    <tr>
+      
+        <td> jerry </td>
+      
+        <td> 5000 </td>
+      
+        <td> 100 </td>
+      
+        <td> 555-5555 </td>
+      
+    </tr>
+  
+</tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      <b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b> <br>        &lt;tr&gt;<br>          <b>{<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>-3</font><font color="red"></font>}</b><br>            &lt;th&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/th&gt;<br>          <b>{/<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>-3</font><font color="red"></font>}</b><br>        &lt;/tr&gt;<br>      <b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        <b>{<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b><br>          &lt;td&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b> &lt;/td&gt;<br>        <b>{/<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b><br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+  
+    
+       
+        <tbody><tr>
+          
+        </tr>
+      
+      <tr>
+        
+      </tr>
+    
+  
+    
+       
+        <tr>
+          
+        </tr>
+      
+      <tr>
+        
+      </tr>
+    
+  
+    
+       
+        <tr>
+          
+        </tr>
+      
+      <tr>
+        
+      </tr>
+    
+  
+    
+       
+        <tr>
+          
+        </tr>
+      
+      <tr>
+        
+      </tr>
+    
+  
+    
+       
+        <tr>
+          
+        </tr>
+      
+      <tr>
+        
+      </tr>
+    
+  
+</tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>3</font><font color="red"></font>}</b> <br>      &lt;tr&gt;<br>        <b>{<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>3</font><font color="red"></font>}</b><br>          &lt;th&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/th&gt;<br>        <b>{/<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>3</font><font color="red"></font>}</b><br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>3</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>3</font><font color="red"></font>}</b><br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b> &lt;/td&gt;<br>      <b>{/<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>3</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;p&gt;Level 3 because this part is wrapped in the <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>table<font color="black">'</font></font>}</b> and <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>demo<font color="black">'</font></font>}</b> tags</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+  
+     
+      <tbody><tr>
+        
+          <th> name </th>
+        
+          <th> salary </th>
+        
+          <th> bonus </th>
+        
+          <th> phone </th>
+        
+      </tr>
+    
+    <tr>
+      
+        <td> joe </td>
+      
+        <td> 1000 </td>
+      
+        <td> 500 </td>
+      
+        <td> 555-1111 </td>
+      
+    </tr>
+  
+    
+    <tr>
+      
+        <td> jim </td>
+      
+        <td> 2000 </td>
+      
+        <td> 400 </td>
+      
+        <td> 555-2222 </td>
+      
+    </tr>
+  
+    
+    <tr>
+      
+        <td> john </td>
+      
+        <td> 3000 </td>
+      
+        <td> 300 </td>
+      
+        <td> 555-3333 </td>
+      
+    </tr>
+  
+    
+    <tr>
+      
+        <td> jack </td>
+      
+        <td> 4000 </td>
+      
+        <td> 200 </td>
+      
+        <td> 555-4444 </td>
+      
+    </tr>
+  
+    
+    <tr>
+      
+        <td> jerry </td>
+      
+        <td> 5000 </td>
+      
+        <td> 100 </td>
+      
+        <td> 555-5555 </td>
+      
+    </tr>
+  
+</tbody></table>
+
+</span></code><p><code>Level 3 because this part is wrapped in the <b>{table}</b> and <b>{demo}</b> tags<!-- END DEMO RESULT --></code></p></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxpklHza1N = new XMLHttpRequest();
+                  padAjaxpklHza1N.onreadystatechange=function() {
+                  if (padAjaxpklHza1N.readyState === 4) {
+                  if (padAjaxpklHza1N.status === 200) {
+                  document.getElementById("padAjaxpklHza1N").innerHTML=padAjaxpklHza1N.responseText;
+                  } else {
+                  document.getElementById("padAjaxpklHza1N").innerHTML=padAjaxpklHza1N.statusText;
+                  }
+                  }
+                  }
+                  padAjaxpklHza1N.open("GET","http://localhost/check/?vars/at/6&padInclude&padSesID=DiM2hOlW&padReqID=DZ3g6JvL",true);
+                  padAjaxpklHza1N.send();
+                  </script><br>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

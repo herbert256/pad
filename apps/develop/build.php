@@ -1,10 +1,15 @@
 <?php
 
   include APP . 'clean.php';
-  include APP . 'reference.php';
-  include APP . 'examples.php';
-  include APP . 'regression.php';
 
-  padRedirect ( 'errors' );
+  padDeleteDataDir ( DAT . 'reference'  );
+  padDeleteDataDir ( DAT . 'regression' );
+  padDeleteDataDir ( DAT . 'dumps'      );
+  padDeleteDataDir ( DAT . 'temp'       );
+  padDeleteDataDir ( DAT . 'examples'   );
+
+  getRegression ( '&padExamples&padReference' );
+
+  padRestart ( 'errors2' );
 
 ?>

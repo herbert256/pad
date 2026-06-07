@@ -20,7 +20,7 @@
   {list}
     {if $example eq $list}
       <b>{$list}</b>
-    {else}
+    @else@
       <a href="?examples&example={$list}{?item}">{$list}</a>
     {/if}
   {notLast} | {/notLast}
@@ -34,7 +34,7 @@
   {exam} 
     {if $item eq $exam}
       <b>{$exam}</b>
-    {else}
+    @else@
       <a href="?examples&example={$example}&item={$exam}">{$exam}</a>
     {/if}
     &nbsp;
@@ -54,7 +54,7 @@
         {example '{$list}/{$item}', onlyResult}
       {/exists}
     {/list}
-  {else}
+  @else@
     {example '{$example}/{$item}', onlyResult, include}
   {/if}
 

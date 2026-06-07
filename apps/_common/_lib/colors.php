@@ -9,12 +9,56 @@
 
   }
 
+  function padColorsRedactOne ( $source, $pattern ) {
+
+    return preg_replace_callback ( $pattern, 
+
+      function($matches) {   
+        return $matches[1] . $matches[2] . $matches[3] . '*REDACTED*' . $matches[3];
+      },
+
+      $source );
+
+  }
+
+
+  function padColorsRedact ( $source ) {
+
+    $sensitiveKeywords = [
+      'password', 'passwd', 'pwd', 'pass',
+      'secret',
+      'token',
+      'apikey', 'api_key', 'key',
+      'credential', 'cred',
+      'auth',
+      'private',
+      'salt',
+      'hash',
+      'cipher',
+      'encrypt',
+    ];
+
+    $keywords = implode( '|', $sensitiveKeywords) ;
+
+    // Match:    $varName = 'value' or $varName = "value" (with optional spaces)
+    //           also handle array definitions like 'password' => 'value'
+    // Captures: 1=variable with $, 2=equals and spaces, 3=quote char, 4=value, 5=closing quote
+
+    $source = padColorsRedactOne ( $source, '/(\$\w*(?:' . $keywords . ')\w*)\s*(=\s*)([\'"])(.+?)\3/i' );
+    $source = padColorsRedactOne ( $source, '/([\'"](?:' . $keywords . ')[\'"])\s*(=>\s*)([\'"])(.+?)\3/i' ); 
+
+    return $source;
+
+  }
+
+
   function padColorsHighLight ( $source ) {
 
-    $source = padUnescape ( $source );
+    $source = padColorsRedact  ( $source );
+    $source = padUnescape      ( $source );
     $source = highlight_string ( $source, TRUE );
-    $source = str_replace ( "\r\n", '<br>', $source );
-    $source = str_replace ( "\n",   '<br>', $source );
+    $source = str_replace      ( "\r\n", '<br>', $source );
+    $source = str_replace      ( "\n",   '<br>', $source );
 
     return $source;
 

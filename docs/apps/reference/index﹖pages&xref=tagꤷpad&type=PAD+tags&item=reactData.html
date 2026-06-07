@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Reference - PAD tags - reactData
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - PAD tags - reactData
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: react - Page: examples/topic<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/topic.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">reactData </font><font color="red">id=<font color="black">'</font>topic<font color="black">'</font><font color="black">,</font> provider=<font color="black">'</font>topic<font color="black">'</font><font color="black">,</font> <font color="red">$</font>id=1</font>}</b><br><b>{<font color="blue">reactData </font><font color="red">id=<font color="black">'</font>board<font color="black">'</font><font color="black">,</font> provider=<font color="black">'</font>board_from_topic<font color="black">'</font></font>}</b><br><b>{<font color="blue">reactData </font><font color="red">id=<font color="black">'</font>user<font color="black">'</font><font color="black">,</font>  provider=<font color="black">'</font>user_from_topic<font color="black">'</font></font>}</b><br><b>{<font color="blue">reactData </font><font color="red">id=<font color="black">'</font>posts<font color="black">'</font><font color="black">,</font> provider=<font color="black">'</font>posts_from_topic<font color="black">'</font></font>}</b><br><br>&lt;div id="topic-display"&gt;&lt;/div&gt;<br>&lt;script type="text/babel" src="/react/topic/display.js"&gt;&lt;/script&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxqrwwiFlT"><div id="topic" data="{&quot;id&quot;:1,&quot;board_id&quot;:2,&quot;user_id&quot;:1,&quot;title&quot;:&quot;Topic Title&quot;,&quot;created_at&quot;:&quot;2025-12-19 16:40:15&quot;,&quot;updated_at&quot;:&quot;2025-12-20 01:36:38&quot;,&quot;views&quot;:13,&quot;is_pinned&quot;:0,&quot;is_locked&quot;:0}"></div>
+<div id="board" data="{&quot;id&quot;:2,&quot;name&quot;:&quot;PAD Tags &amp; Templates&quot;,&quot;slug&quot;:&quot;tags&quot;,&quot;description&quot;:&quot;Discussions about PAD template tags and syntax&quot;,&quot;sort_order&quot;:2}"></div>
+<div id="user" data="{&quot;id&quot;:1,&quot;username&quot;:&quot;admin&quot;,&quot;email&quot;:&quot;admin@pad.local&quot;,&quot;role&quot;:&quot;admin&quot;,&quot;created_at&quot;:&quot;2025-12-14 15:45:54&quot;}"></div>
+<div id="posts" data="[{&quot;id&quot;:1,&quot;topic_id&quot;:1,&quot;user_id&quot;:2,&quot;content&quot;:&quot;My first posting&quot;,&quot;created_at&quot;:&quot;2025-12-19 16:41:01&quot;,&quot;updated_at&quot;:&quot;2025-12-19 16:41:01&quot;,&quot;username&quot;:&quot;herbert&quot;},{&quot;id&quot;:2,&quot;topic_id&quot;:1,&quot;user_id&quot;:2,&quot;content&quot;:&quot;My second posting&quot;,&quot;created_at&quot;:&quot;2025-12-19 18:35:29&quot;,&quot;updated_at&quot;:&quot;2025-12-19 18:35:29&quot;,&quot;username&quot;:&quot;herbert&quot;}]"></div>
+
+<div id="topic-display"></div>
+<script type="text/babel" src="../react/topic/display.js"></script></div>
+                        <script>
+                        padAjaxqrwwiFlT = new XMLHttpRequest();
+                        padAjaxqrwwiFlT.onreadystatechange=function() {
+                        if (padAjaxqrwwiFlT.readyState === 4) {
+                        if (padAjaxqrwwiFlT.status === 200) {
+                        document.getElementById("padAjaxqrwwiFlT").innerHTML=padAjaxqrwwiFlT.responseText;
+                        } else {
+                        document.getElementById("padAjaxqrwwiFlT").innerHTML=padAjaxqrwwiFlT.statusText;
+                        }
+                        }
+                        }
+                        padAjaxqrwwiFlT.open("GET","http://localhost/react/?examples/topic&padInclude&padSesID=DiM2hOlW&padReqID=G8LWSOFp",true);
+                        padAjaxqrwwiFlT.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>
