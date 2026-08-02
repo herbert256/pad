@@ -38,6 +38,8 @@ db("SELECT * FROM users WHERE name={0}", [$name]);    // WRONG for strings
 
 ## Template Database Tags
 
+The tag name becomes the `db()` command word - `{field "X"}` runs `db("field X")`, and so on. Do NOT write `SELECT` in the tag parameter; the command adds it.
+
 ### {field} - Query Single Value
 
 ```
@@ -45,29 +47,33 @@ db("SELECT * FROM users WHERE name={0}", [$name]);    // WRONG for strings
 {field "name from users where id=5"}
 ```
 
-### {table} - Query and Iterate Rows
-
-```
-{table "SELECT * FROM users"}
-  <tr><td>{$name}</td><td>{$email}</td></tr>
-{/table}
-```
-
 ### {record} - Query Single Record
 
 ```
-{record "SELECT * FROM users WHERE id=5"}
+{record "* from users where id=5"}
   Name: {$name}, Email: {$email}
 {/record}
 ```
 
-### {array} - Query as Array
+### {array} - Query and Iterate Rows
 
 ```
-{array 'users'}
-  {$name}
+{array "* from users order by name"}
+  <tr><td>{$name}</td><td>{$email}</td></tr>
 {/array}
 ```
+
+### {check} - Boolean Existence Test
+
+Uses the same special syntax as `db("CHECK ...")` - table name first, NO `* FROM`:
+
+```
+{check "users where email='x@y.z'"}
+  Address is already registered.
+{/check}
+```
+
+To iterate a whole table by name without writing SQL, use the PAD Select subsystem below.
 
 ---
 

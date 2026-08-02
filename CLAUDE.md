@@ -87,7 +87,7 @@ apps/myapp/
 ├── index.pad              # Home page template
 │
 ├── _inits.php             # Runs BEFORE all pages (optional)
-├── _inits.pad             # Wraps ALL pages - use @pad@ placeholder (optional)
+├── _inits.pad             # Wraps ALL pages - use @page@ placeholder (optional)
 ├── _exits.php             # Runs AFTER all pages (optional)
 ├── _exits.pad             # Closing wrapper (optional)
 │
@@ -456,19 +456,27 @@ Resolve naming conflicts with explicit prefixes:
 | Prefix | Purpose | Example |
 |--------|---------|---------|
 | `app:` | App tag from `_tags/` | `{app:mytag}` |
+| `common:` | Tag from the `_common` app | `{common:menu}` |
 | `pad:` | Built-in PAD tag | `{pad:if}` |
 | `php:` | Call PHP function | `{php:strlen(@)}` |
 | `function:` | Custom PAD function | `{$x \| function:myfunc}` |
 | `data:` | Defined data block | `{data:items}` |
 | `content:` | Content block | `{content:header}` |
+| `include:` | Snippet from `_include/` | `{include:header}` |
 | `pull:` | Stored sequence | `{pull:mySeq}` |
 | `field:` | Database field | `{field:"name from users"}` |
-| `table:` | Database table | `{table:users}` |
+| `select:` | Declared select table | `{select:users}` |
 | `local:` | Files from `_data/` | `{local:menu.json}` |
 | `constant:` | PHP constant | `{constant:PHP_VERSION}` |
 | `bool:` | Boolean store | `{bool:isAdmin}` |
 | `array:` | Access array as loop | `{array:items}` |
+| `level:` | Level variable | `{level:varName}` |
+| `parm:` | Tag parameter value | `{parm:name}` |
+| `property:` | Tag property | `{property:id}` |
+| `script:` | Script from `_scripts/` | `{script:backup}` |
+| `sequence:` | Sequence type | `{sequence:fibonacci}` |
 | `action:` | Sequence action | `{action:reverse}` |
+| `flag:` / `make:` / `keep:` / `remove:` | Sequence operations | `{make:fibonacci}` |
 
 ---
 
@@ -534,14 +542,21 @@ $padCache = false;
 
 ## Entry Point Pattern
 
+The `www/` directory is the web docroot; each app is served at `http://localhost/<app>/`. An app's entry point (`www/myapp/index.php`) is just:
+
 ```php
 <?php
-include __DIR__ . '/../padHome.php';
-define('APP', "$padHome/apps/myapp/");
-define('DAT', "$padHome/DATA/");
-include "$padHome/pad/pad.php";
+  include __DIR__ . '/../pad.php';
 ?>
 ```
+
+`www/pad.php` does the actual bootstrapping:
+1. Detects the OS and sets `$padHome` (the repo root)
+2. Sets `$padApps` (`$padHome/apps/`) and `$padData` (`$padHome/DATA/`)
+3. Derives `$padApp` from the first `REQUEST_URI` path segment that matches a directory under `apps/` (falling back to `pad`)
+4. Includes `pad/pad.php`, which defines the constants (`PAD`, `APP`, `DAT`, `APPS`, `DATA`, `COMMON`) and runs the request
+
+The CLI variant (`apps/cli/pad`) sets `$padApp = 'cli'` explicitly and includes `pad/pad.php` directly.
 
 ---
 
@@ -560,14 +575,14 @@ Wrap all pages with a common layout:
     <a href="?about">About</a>
   </nav>
 
-  @pad@
+  @page@
 
   <footer>&copy; 2025 My App</footer>
 </body>
 </html>
 ```
 
-The `@pad@` placeholder is replaced with each page's content.
+The `@page@` placeholder is replaced with each page's content.
 
 ---
 
@@ -719,7 +734,7 @@ Output: `Alice, Bob, Charlie`
 ### Execution Flow
 ```
 Request → pad.php → config → start/
-                          → build/ (page assembly: _inits + @pad@ + _exits)
+                          → build/ (page assembly: _inits + @page@ + _exits)
                           → level/ (tag processing loop)
                           → Response
 
@@ -754,11 +769,11 @@ Each `{tag}` creates a new level scope. PAD maintains global variables per level
 ┌─────────────────────────────────────────────────────────────────┐
 │  build/                                                          │
 │  ├── Collect _lib files                                         │
-│  ├── Build base structure (_inits.pad + @pad@ + _exits.pad)     │
+│  ├── Build base structure (_inits.pad + @page@ + _exits.pad)     │
 │  ├── Execute _inits.php                                         │
 │  ├── Execute page.php → get data                                │
 │  ├── Load page.pad template                                     │
-│  └── Replace @pad@ with content                                 │
+│  └── Replace @page@ with content                                 │
 └─────────────────────────────────────────────────────────────────┘
                               │
                               ▼
@@ -804,7 +819,7 @@ You can fetch and analyze PAD pages directly from a running server using `curl`:
 curl "http://localhost/demo/?clock"
 
 # Fetch with headers
-curl -i "http://localhost/pad/?manual"
+curl -i "http://localhost/manual/"
 
 # Fetch and save output
 curl -o output.html "http://localhost/myapp/?page/subpage"
@@ -820,10 +835,10 @@ curl "http://localhost/demo/?index"        # Home page
 curl "http://localhost/demo/?guestbook"    # Guestbook
 curl "http://localhost/demo/?clock"        # Clock with date/time
 
-# PAD reference application
-curl "http://localhost/pad/?manual"        # Framework manual
-curl "http://localhost/pad/?reference"     # Cross-reference
-curl "http://localhost/pad/?hello/hello"   # Hello World test
+# Documentation and reference apps (each is its own app)
+curl "http://localhost/manual/"            # Framework manual
+curl "http://localhost/reference/"         # Cross-reference
+curl "http://localhost/pad/?hello"         # Hello World test
 
 # Debugging output
 curl "http://localhost/app/?page&padInfo=trace"  # With trace
@@ -842,14 +857,23 @@ This is particularly useful for:
 
 | App | Type | Description |
 |-----|------|-------------|
-| `pad` | Reference | Framework manual, regression tests, examples |
+| `_common` | Shared | Shared resources and utilities for all applications |
+| `apps` | Standard | Lists all PAD applications with descriptions from README files |
+| `check` | Test | Comprehensive test suite for PAD framework features |
+| `cli` | CLI | Command-line interface for running PAD from terminal |
 | `demo` | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
-| `hello` | Standard | Minimal Hello World example |
-| `minimal` | Minimal | Single template file (no .php) |
-| `cli` | CLI | Command-line interface for running PAD |
-| `support` | Standard | Support portal with forum, news, tickets |
-| `structure` | Example | Demo of nested _xxx directories and inheritance |
-| `nono` | Non-PAD | Plain PHP without PAD framework |
+| `develop` | Standard | Development tools and utilities for PAD |
+| `hello` | Minimal | Hello World example demonstrating page pairing |
+| `manual` | Standard | Interactive documentation and examples |
+| `nono` | Plain PHP | PHP application without PAD templating |
+| `pad` | Standard | PAD framework introduction and reference |
+| `react` | Standard | PAD + React integration examples |
+| `reference` | Standard | Cross-reference and directory utilities |
+| `regression` | Standard | Automated regression testing for PAD |
+| `sequence` | Standard | Mathematical sequence subsystem demos |
+| `structure` | Example | Demonstrates nested `_xxx` directories and inheritance |
+
+See [apps/README.md](apps/README.md) for the same list with links.
 
 ---
 

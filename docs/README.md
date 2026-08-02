@@ -11,7 +11,7 @@ See [herbert256.github.io/pad/apps/](https://herbert256.github.io/pad/apps/) for
 | [/README.md](https://github.com/herbert256/pad/blob/master/README.md) | Main project README - overview and quick start |
 | [apps/README.md](https://github.com/herbert256/pad/blob/master/apps/README.md) | PAD applications and examples |
 | [pad/README.md](https://github.com/herbert256/pad/blob/master/pad/README.md) | PAD framework core - template engine, module documentation |
-| [www/README.md](https://github.com/herbert256/pad/blob/master/www/README.md) | Aopplication entry points for the webserver|
+| [www/README.md](https://github.com/herbert256/pad/blob/master/www/README.md) | Application entry points for the webserver|
 
 ## Additional Documents
 

@@ -26,8 +26,8 @@ Explicitly specify the type for disambiguation.
 
 **Examples:**
 ```
-{users}              ← Auto-detected as 'table' type
-{table:users}        ← Explicitly specified as table type
+{users}              ← Auto-detected as 'select' type (if declared in $padSelect)
+{select:users}       ← Explicitly specified as select type
 {field:username}     ← Explicitly field type
 {php:strtoupper}     ← Explicitly PHP function type
 ```
@@ -36,28 +36,29 @@ Explicitly specify the type for disambiguation.
 
 ## Type Detection Order
 
-When no explicit type is given, PAD checks in this order:
+When no explicit type is given, PAD checks in this order (see `padTypeTag()` and `padTypeCommon()` in `PAD/lib/type.php`):
 
-1. **app** - Application tag in `APP2/`
-2. **pad** - Built-in PAD tag in `PAD/tags/`
-3. **pull** - Sequence store value
-4. **flag** - Boolean flag store
-5. **content** - Content store
-6. **data** - Data store
-7. **include** - Application include file
-8. **field** - Database field value
-9. **property** - Tag property
-10. **array** - Array value
-11. **parm** - Parameter value
-12. **level** - Level variable
-13. **constant** - PHP constant
-14. **local** - Local data file
-15. **script** - External script
-16. **php** - PHP function
-17. **page** - Application page
-18. **sequence** - Sequence type
-19. **action** - Sequence action
-20. **function** - PAD function (fallback)
+1. **app** - Application tag in the app's `_tags/` directories
+2. **common** - Tag in the shared `_common` app
+3. **pad** - Built-in PAD tag in `PAD/tags/`
+4. **pull** - Sequence store value
+5. **bool** - Boolean store
+6. **content** - Content store
+7. **select** - Declared select table
+8. **data** - Data store
+9. **include** - Application include file
+10. **property** - Tag property
+11. **field** - Database field value
+12. **array** - Array value
+13. **parm** - Parameter value
+14. **level** - Level variable
+15. **constant** - PHP constant
+16. **local** - Local data file
+17. **script** - External script
+18. **php** - PHP function
+19. **sequence** - Sequence type
+20. **action** - Sequence action
+21. **function** - PAD function (fallback)
 
 ---
 
@@ -98,6 +99,21 @@ Loads built-in PAD tags from the `PAD/tags/` directory.
 - `PAD/tags/{name}.pad` - PAD template
 
 **Use case:** Core PAD framework tags.
+
+---
+
+### common
+
+Loads shared tags from the `apps/_common/` application.
+
+```
+{menu}
+{common:menu}
+```
+
+**Resolution:** `padCommonCheck()` - checked after `app`, before `pad`, so a common tag overrides a built-in of the same name but not an app-local one. Can be disabled per app with `$padCommon = FALSE`.
+
+**Use case:** Tags shared by all applications (navigation, layout helpers).
 
 ---
 
@@ -296,25 +312,27 @@ Includes content from application include files.
 
 ---
 
-### table
+### select
 
-Queries database tables.
+Queries database tables declared in the PAD Select subsystem.
 
 ```
-{table:users}
-{users}  ← If 'users' is a known table
+{select:users}
+{users}  ← If 'users' is declared in $padSelect
 ```
 
-**Resolution:** `padTable($tagName)`
+**Resolution:** `isset($padSelect[$tagName])` - tables are declared in the app's `_lib/select.php` via `$padSelect` (and relations via `$padRelations`).
 
-**Returns:** Query results as array.
+**Returns:** Query results as iterable data; nested select tags join automatically through `$padRelations`.
 
 **Example:**
 ```
-{table:users where="active=1"}
-  {$name}
-{/table:users}
+{users $id=5}
+  {$username}
+{/users}
 ```
+
+See [DATABASE.md](../DATABASE.md) for the full Select subsystem reference.
 
 ---
 
@@ -386,33 +404,6 @@ Executes external shell scripts.
 ```
 {script:generate.sh template="main"}
 ```
-
----
-
-### page
-
-Loads application pages.
-
-```
-{page:home}
-{xyz:dashboard}
-```
-
-**Resolution:** `padAppPageCheck($tagName)`
-
-**Returns:** Page content via `PAD/get/page.php`.
-
----
-
-### xyz
-
-Alias for page type.
-
-```
-{xyz:pageName}
-```
-
-**Implementation:** Includes `PAD/get/page.php`.
 
 ---
 
@@ -521,7 +512,8 @@ Removes sequence values.
 
 | Type | Source | Description |
 |------|--------|-------------|
-| `app` | APP2/ | Application-specific tags |
+| `app` | App `_tags/` | Application-specific tags |
+| `common` | apps/_common/ | Shared tags |
 | `pad` | PAD/tags/ | Built-in PAD tags |
 | `data` | $padDataStore | Stored data arrays |
 | `content` | $padContentStore | Stored content strings |
@@ -533,12 +525,10 @@ Removes sequence values.
 | `constant` | PHP | PHP constants |
 | `local` | Files | Local data files |
 | `include` | APP | Include files |
-| `table` | Database | Table queries |
+| `select` | $padSelect | Declared select tables |
 | `function` | PAD/functions/ | PAD functions |
 | `php` | PHP | PHP functions |
 | `script` | Scripts | Shell scripts |
-| `page` | APP | Application pages |
-| `xyz` | APP | Page alias |
 | `sequence` | PQ | Sequence types |
 | `action` | PQ | Sequence actions |
 | `pull` | pqStore | Sequence values |
@@ -559,6 +549,7 @@ types/
 ├── app.php         → Application tag
 ├── array.php       → Array value
 ├── bool.php        → Boolean store
+├── common.php      → Shared _common tag
 ├── constant.php    → PHP constant
 ├── content.php     → Content store
 ├── data.php        → Data store
@@ -576,12 +567,10 @@ types/
 ├── pull.php        → Sequence pull
 ├── remove.php      → Sequence remove
 ├── script.php      → Shell script
+├── select.php      → Select table query
 ├── sequence.php    → Sequence type
-├── table.php       → Database table
-├── xyz.php         → Page type
-└── go/
+└── _go/
     ├── local.php   → Local file processing
-    ├── table.php   → Table processing
     └── tag.php     → Tag file loading
 ```
 

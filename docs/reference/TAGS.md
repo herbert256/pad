@@ -163,19 +163,34 @@ Store boolean value to store.
 
 ---
 
-### field / array / record
-Database record access tags.
+### field / array / record / check
+Database access tags. The tag name becomes the `db()` command word, so do NOT write `SELECT` in the parameter:
 
 ```html
-{field 'tablename fieldname'}
-{array 'tablename'}
-{record 'SQL query'}
+{field "count(*) from users"}                     <!-- single value -->
+{record "* from users where id=5"}...{/record}    <!-- single row -->
+{array "* from users order by name"}...{/array}   <!-- iterate rows -->
+{check "users where email='x@y.z'"}...{/check}    <!-- existence test -->
 ```
 
 **Parameters:**
-- First parameter: SQL query or table/field reference
+- First parameter: the SQL after the command word (`check` uses the special `table WHERE ...` form, no `* FROM`)
 
-**Returns:** Database query results
+**Returns:** Query results (`check` returns TRUE/FALSE)
+
+---
+
+### at
+Evaluate an `@` expression (for example against a sequence or data set).
+
+```html
+{at "country.id='f0_325'@mondial"}
+```
+
+**Parameters:**
+- First parameter: The `@` expression to evaluate
+
+**Returns:** The evaluated value via `padAtValue()`
 
 ---
 
@@ -505,6 +520,22 @@ Escape PAD syntax in content.
 
 ---
 
+### reactData
+Render a mount point `<div>` for a React component, filled with data from a provider.
+
+```html
+{reactData id="products" provider="products" type="array"}
+```
+
+**Parameters:**
+- `id` - DOM id of the generated div (default `myReactId`)
+- `provider` - Provider file in `_providers/<name>.php` (defaults to `id`)
+- `type` - `record`, `array` or `check` (default `record`)
+
+**Behavior:** Runs the provider, stores the result in `$padProviders`, and outputs `<div id="..." data="...">` with the JSON HTML-escaped for the attribute. Read it in JS with `getAttribute('data')`. See [REACT.md](../REACT.md).
+
+---
+
 ## Debugging Tags
 
 ### dump
@@ -722,6 +753,17 @@ Transform sequence values.
 
 ---
 
+### resume
+Resume a previously ceased sequence iteration.
+
+```html
+{resume reverse}
+```
+
+**Behavior:** Delegates to the sequence subsystem (`sequence/start/tags/resume.php`); continues iteration of a stored sequence, optionally through an action. See [sequences](../sequences/).
+
+---
+
 ## Summary Table
 
 | Tag | Category | Description |
@@ -736,9 +778,11 @@ Transform sequence values.
 | `data` | Variables | Store/iterate data |
 | `content` | Variables | Store content |
 | `bool` | Variables | Store boolean |
-| `field` | Database | Query field |
-| `array` | Database | Query array |
-| `record` | Database | Execute SQL |
+| `field` | Database | Query single value |
+| `array` | Database | Query and iterate rows |
+| `record` | Database | Query single row |
+| `check` | Database | Boolean existence test |
+| `at` | Variables | Evaluate @ expression |
 | `count` | Counters | Check element count |
 | `increment` | Counters | Increment variable |
 | `decrement` | Counters | Decrement variable |
@@ -761,6 +805,7 @@ Transform sequence values.
 | `output` | Output | Set output type |
 | `tidy` | Output | Format HTML |
 | `ignore` | Output | Escape content |
+| `reactData` | Output | React mount point with provider data |
 | `dump` | Debug | Dump info |
 | `trace` | Debug | Enable tracing |
 | `error` | Errors | Trigger error |
@@ -778,6 +823,7 @@ Transform sequence values.
 | `keep` | Sequences | Keep matching |
 | `remove` | Sequences | Remove matching |
 | `make` | Sequences | Transform values |
+| `resume` | Sequences | Resume ceased iteration |
 
 ---
 
@@ -788,19 +834,27 @@ Resolve naming conflicts with explicit prefixes:
 | Prefix | Purpose | Example |
 |--------|---------|---------|
 | `app:` | App tag from `_tags/` | `{app:mytag}` |
+| `common:` | Tag from the `_common` app | `{common:menu}` |
 | `pad:` | Built-in PAD tag | `{pad:if}` |
 | `php:` | Call PHP function | `{php:strlen(@)}` |
 | `function:` | Custom PAD function | `{$x \| function:myfunc}` |
 | `data:` | Defined data block | `{data:items}` |
 | `content:` | Content block | `{content:header}` |
+| `include:` | Snippet from `_include/` | `{include:header}` |
 | `pull:` | Stored sequence | `{pull:mySeq}` |
 | `field:` | Database field | `{field:"name from users"}` |
-| `table:` | Database table | `{table:users}` |
+| `select:` | Declared select table | `{select:users}` |
 | `local:` | Files from `_data/` | `{local:menu.json}` |
 | `constant:` | PHP constant | `{constant:PHP_VERSION}` |
 | `bool:` | Boolean store | `{bool:isAdmin}` |
 | `array:` | Access array as loop | `{array:items}` |
+| `level:` | Level variable | `{level:varName}` |
+| `parm:` | Tag parameter value | `{parm:name}` |
+| `property:` | Tag property | `{property:id}` |
+| `script:` | Script from `_scripts/` | `{script:backup}` |
+| `sequence:` | Sequence type | `{sequence:fibonacci}` |
 | `action:` | Sequence action | `{action:reverse}` |
+| `flag:` / `make:` / `keep:` / `remove:` | Sequence operations | `{make:fibonacci}` |
 
 ---
 

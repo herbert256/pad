@@ -10,10 +10,12 @@ PAD applications can use special directories (prefixed with `_`) to organize fun
 
 ## Directory Structure
 
+Every level - the root, both first-level branches (`abc/`, `def/`), their `klm/` subdirectories, and the third-level `abc/klm/xyz/` - carries the complete set of `_xxx` directories, wrappers, and a demo page:
+
 ```
 structure/
 ├── _callbacks/          # Iteration callbacks
-├── _config/             # Application configuration
+├── _config/             # Application configuration (root only)
 ├── _data/               # Static data files (XML, JSON)
 ├── _functions/          # Custom pipe functions
 ├── _include/            # Template snippets
@@ -25,31 +27,22 @@ structure/
 ├── _inits.pad           # Wraps all pages (top)
 ├── _exits.php           # Runs after all pages
 ├── _exits.pad           # Wraps all pages (bottom)
-├── index.php            # Home page data
+├── index.php            # Home page (redirects to ?page)
 ├── page.pad             # Demo page template
 ├── page.php             # Demo page data
 │
 ├── abc/                 # First-level subdirectory
-│   ├── _callbacks/      # Subdirectory callbacks
-│   ├── _functions/      # Subdirectory functions
-│   ├── _include/        # Subdirectory includes
-│   ├── _lib/            # Subdirectory lib
-│   ├── _options/        # Subdirectory options
-│   ├── _tags/           # Subdirectory tags
-│   ├── _inits.pad       # Subdirectory wrapper (top)
-│   ├── _exits.pad       # Subdirectory wrapper (bottom)
-│   ├── page.pad
+│   ├── _callbacks/ _data/ _functions/ _include/ _lib/ _options/ _scripts/ _tags/
+│   ├── _inits.php / _inits.pad / _exits.php / _exits.pad
+│   ├── page.php / page.pad
 │   │
-│   └── klm/             # Second-level subdirectory
-│       ├── _callbacks/
-│       ├── _functions/
-│       ├── _include/
-│       ├── _lib/
-│       ├── _options/
-│       ├── _tags/
-│       ├── _inits.pad
-│       ├── _exits.pad
-│       └── page.pad
+│   └── klm/             # Second-level subdirectory (same full set)
+│       │
+│       └── xyz/         # Third-level subdirectory (same full set)
+│
+└── def/                 # Sibling first-level branch (same full set)
+    │
+    └── klm/             # Its own second level (same full set)
 ```
 
 ## Special Directories
@@ -112,8 +105,11 @@ Example: Accessing `?abc/klm/page` will:
 - `?page` - Root level demo
 - `?abc/page` - First subdirectory demo
 - `?abc/klm/page` - Second subdirectory demo
+- `?abc/klm/xyz/page` - Third subdirectory demo
+- `?def/page` - Sibling branch demo (shows branch isolation)
+- `?def/klm/page` - Sibling branch, second level
 
-Each page demonstrates tags, functions, includes, callbacks, and options from its directory level.
+Each page demonstrates tags, functions, includes, callbacks, and options from its directory level. The `def/` branch shows that sibling branches inherit from the root but not from each other.
 
 ## Key Concepts Demonstrated
 

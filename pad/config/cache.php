@@ -6,12 +6,15 @@
 
   $padCacheClientAge = 0;
 
-  $padCacheServerType      = 'memory';
+  $padCacheServerType      = 'memcached';
   $padCacheServerGzip      = TRUE;
   $padCacheServerNoData    = FALSE;
 
-  $padCacheMemoryHost      = 'localhost';
-  $padCacheMemoryPort      = '11211';
+  $padCacheMemcachedHost   = 'localhost';
+  $padCacheMemcachedPort   = '11211';
+
+  $padCacheRedisHost       = 'localhost';
+  $padCacheRedisPort       = 6379;
 
   $padCacheDbHost          = 'localhost';
   $padCacheDbDatabase      = 'cache';

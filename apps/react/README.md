@@ -17,9 +17,9 @@ Access the application at: `http://localhost/react/`
 ### URLs
 
 - `?index` - Home page with introduction and examples
-- `?examples` - Various React patterns and examples
+- `?examples` - Various React patterns and examples (click, form, products, toggle, topic)
 - `?components` - Reusable component patterns
-- `?counter` - Interactive counter demo
+- `?examples/counter` - Interactive counter demo
 
 ## Architecture
 
@@ -37,12 +37,27 @@ apps/react/
 │   ├── nav.json        # Navigation menu
 │   ├── products.json   # Product data
 │   └── users.json      # User data
+├── _lib/
+│   └── select.php      # $padSelect / $padRelations declarations
+├── _providers/         # Data providers for {reactData}
+│   ├── board_from_topic.php
+│   ├── posts_from_topic.php
+│   ├── test.php
+│   ├── topic.php
+│   └── user_from_topic.php
 ├── _tags/              # Custom PAD tags
 │   └── json.php        # {json} tag for data passing to React
 ├── index.php/pad       # Home page (data + template)
 ├── examples.php/pad    # Examples page
 ├── components.php/pad  # Components page
-└── counter.php/pad     # Counter demo
+└── examples/           # Example subpages
+    ├── index.pad
+    ├── click.pad
+    ├── counter.php/pad # Counter demo
+    ├── form.pad
+    ├── products.pad
+    ├── toggle.pad
+    └── topic.pad
 ```
 
 ### Client-Side (React)
@@ -261,7 +276,7 @@ Following PAD's philosophy of separating data from presentation, the navigation 
 - Props and children
 - Todo list application
 
-### Counter Demo (`?counter`)
+### Counter Demo (`?examples/counter`)
 - State management
 - Multiple state variables
 - History tracking
@@ -309,7 +324,7 @@ Then copy the built files to PAD and reference them in `_inits.pad`.
 1. **Start with Home** (`?index`) - Understand the basics
 2. **Explore Examples** (`?examples`) - See common patterns
 3. **Study Components** (`?components`) - Learn composition
-4. **Try Counter Demo** (`?counter`) - Build something interactive
+4. **Try Counter Demo** (`?examples/counter`) - Build something interactive
 5. **Create your own pages** - Add new `.php` and `.pad` files
 
 ## Creating New Pages

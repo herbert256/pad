@@ -7,12 +7,11 @@ This document provides a complete reference for all PAD constructs - special `@s
 PAD constructs are special placeholder markers that control template structure and content flow. They use the `@name@` syntax and are processed during template building and rendering.
 
 ```
-@pad@
+@page@
 @content@
 @start@
 @end@
-@self@
-@page@
+@else@
 @tidy@
 ```
 
@@ -20,7 +19,7 @@ PAD constructs are special placeholder markers that control template structure a
 
 ## Template Structure Constructs
 
-### @pad@
+### @page@
 
 The main content placeholder that marks where page content should be inserted.
 
@@ -32,52 +31,32 @@ The main content placeholder that marks where page content should be inserted.
 <html>
 <head><title>My App</title></head>
 <body>
-  @pad@
+  @page@
 </body>
 </html>
 ```
 
 **Behavior:**
 - Used in `_inits.pad` and `_exits.pad` files to wrap page content
-- During build, `@pad@` is replaced with the actual page content
-- Multiple init/exit files are nested around `@pad@`
+- During build, `@page@` is replaced with the actual page content
+- Multiple init/exit files are nested around `@page@`
 
-**Build Process:**
-1. Starts with `@pad@` as the base
+**Build Process** (see `build/base.php` and `build/build.php`):
+1. Starts with `@page@` as the base
 2. Each directory's `_inits.pad` and `_exits.pad` wrap around it
-3. Final page content replaces `@pad@`
+3. Final page content replaces `@page@`
 
 **Example with Init/Exit:**
 ```html
 <!-- _inits.pad -->
 <html><body>
-@pad@
+@page@
 
 <!-- _exits.pad -->
 </body></html>
 
 <!-- Result: <html><body> [page content] </body></html> -->
 ```
-
----
-
-### @page@
-
-Page-level placeholder, converted to `@pad@` during build.
-
-**Purpose:** Alternative marker for page content, normalized to `@pad@`.
-
-**Usage:**
-```html
-<div class="page-wrapper">
-  @page@
-</div>
-```
-
-**Behavior:**
-- Automatically replaced with `@pad@` during the build process
-- Allows templates to use a more semantic name
-- Functionally equivalent to `@pad@` after conversion
 
 ---
 
@@ -98,8 +77,7 @@ Content merge placeholder for inserting content into parent templates.
 ```
 
 **Behavior:**
-- Used in the content merging system
-- `padContentBeforeAfter()` finds `@content@` to split templates
+- Used in the content merging system (`lib/content.php`)
 - Content before `@content@` becomes the prefix
 - Content after `@content@` becomes the suffix
 - Child content is inserted at the `@content@` position
@@ -129,7 +107,7 @@ Start marker that splits content for deferred processing.
 ```
 
 **Behavior:**
-- Detected by `padOpenCloseOk()` function
+- Detected by `padOpenCloseOk()` (see `level/start.php`)
 - Splits `$padBase` into two parts at the `@start@` marker
 - Content before `@start@` is processed immediately
 - Content after `@start@` is stored in `$padStartBase` for later processing
@@ -158,7 +136,7 @@ End marker that splits content for pre-processing.
 ```
 
 **Behavior:**
-- Detected by `padOpenCloseOk()` function
+- Detected by `padOpenCloseOk()` (see `level/start.php`)
 - Splits `$padBase` at the `@end@` marker
 - Content before `@end@` is the main content
 - Content after `@end@` is stored in `$padEndBase`
@@ -171,30 +149,28 @@ End marker that splits content for pre-processing.
 
 ---
 
-### @self@
+### @else@
 
-Self-referential marker that inserts the current page path.
+True/false branch separator inside a tag's content.
 
-**Purpose:** Provides a way to reference the current page within templates.
+**Purpose:** Splits a tag's content into a "truthy" part and a fallback part - a compact alternative to the `{else}` tag.
 
 **Usage:**
 ```html
-<form action="@self@" method="post">
-  <!-- Form submits to current page -->
-</form>
-
-<a href="@self@?refresh=1">Refresh</a>
+{if $hasEntries}
+  {entries}
+    <div>{$name}: {$comment}</div>
+  {/entries}
+@else@
+  <p>No entries yet. Be the first to sign!</p>
+{/if}
 ```
 
 **Behavior:**
-- Replaced with `$padGo . $padPage` (current page path)
-- Useful for self-referencing forms and links
-- Maintains current page context in URLs
-
-**Example Replacement:**
-```
-@self@ → /myapp/users/edit
-```
+- Detected in `level/split.php` (and at build time in `build/split.php`)
+- Only an `@else@` at the current tag's own nesting level splits the content (markers inside nested open/close tag pairs are ignored)
+- Content before `@else@` renders when the tag's condition/data is truthy
+- Content after `@else@` renders when it is falsy or empty
 
 ---
 
@@ -235,31 +211,28 @@ Tidy marker that triggers HTML output formatting.
 
 | Construct | Purpose | Replaced With |
 |-----------|---------|---------------|
-| `@pad@` | Main content placeholder | Page content |
-| `@page@` | Page placeholder (alias) | Converted to `@pad@` |
+| `@page@` | Main content placeholder | Page content |
 | `@content@` | Content merge point | Child content |
 | `@start@` | Deferred section start | Split marker |
 | `@end@` | Pre-closure section | Split marker |
-| `@self@` | Current page reference | Page path |
+| `@else@` | True/false branch separator | Split marker |
 | `@tidy@` | HTML formatting trigger | Removed (triggers tidy) |
 
 ---
 
 ## Construct Files
 
-Each construct has a validation file in `PAD/constructs/`:
+Constructs are registered by validation files in `PAD/constructs/`:
 
 | File | Construct | Purpose |
 |------|-----------|---------|
-| `pad.php` | `@pad@` | Validates pad construct |
 | `page.php` | `@page@` | Validates page construct |
 | `content.php` | `@content@` | Validates content construct |
 | `start.php` | `@start@` | Validates start construct |
 | `end.php` | `@end@` | Validates end construct |
-| `self.php` | `@self@` | Validates self construct |
 | `tidy.php` | `@tidy@` | Validates tidy construct |
 
-All validation files return `TRUE` to indicate the construct is recognized and valid.
+All validation files return `TRUE` to indicate the construct is recognized and valid. (`@else@` is handled directly by the split logic in `level/split.php` and `build/split.php` and has no validation file.)
 
 ---
 
@@ -278,7 +251,7 @@ All validation files return `TRUE` to indicate the construct is recognized and v
 <body>
   <nav>{include:navigation}</nav>
   <main>
-@pad@
+@page@
 ```
 
 **_exits.pad:**
@@ -307,13 +280,14 @@ All validation files return `TRUE` to indicate the construct is recognized and v
 <p>Page content goes here...</p>
 ```
 
-### Self-Referencing Form
+### Empty-Data Fallback
 
 ```html
-<form action="@self@" method="post">
-  <input type="text" name="search" value="{$search}">
-  <button type="submit">Search</button>
-</form>
+{entries}
+  <div>{$name}: {$comment}</div>
+@else@
+  <p>No entries found.</p>
+{/entries}
 ```
 
 ### Two-Phase Processing
@@ -329,14 +303,14 @@ All validation files return `TRUE` to indicate the construct is recognized and v
   @end@
   {-- Footer processed last --}
   </table>
-  <p>Total: {@count} users</p>
+  <p>Total: {count@users} users</p>
 {/users}
 ```
 
 ### Conditional Tidy
 
 ```html
-{if $debug}
+{if $debug eq 1}
   @tidy@
 {/if}
 <html>
@@ -348,10 +322,8 @@ All validation files return `TRUE` to indicate the construct is recognized and v
 
 ## Processing Order
 
-1. **Build Phase:** `@page@` → `@pad@` conversion
-2. **Build Phase:** Init/exit wrapping around `@pad@`
-3. **Build Phase:** `@pad@` replaced with page content
-4. **Render Phase:** `@start@` and `@end@` splitting
-5. **Render Phase:** `@content@` merging
-6. **Render Phase:** `@self@` replacement
-7. **Exit Phase:** `@tidy@` detection and HTML tidying
+1. **Build Phase:** Init/exit wrapping around `@page@`
+2. **Build Phase:** `@page@` replaced with page content
+3. **Render Phase:** `@start@`, `@end@` and `@else@` splitting
+4. **Render Phase:** `@content@` merging
+5. **Exit Phase:** `@tidy@` detection and HTML tidying

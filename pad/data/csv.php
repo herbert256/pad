@@ -5,7 +5,7 @@
   $enc = preg_replace_callback(
       '/"(.*?)"/s',
       function ($field) {
-          return urlencode(utf8_encode($field[1]));
+          return urlencode(mb_convert_encoding($field[1], 'UTF-8', 'ISO-8859-1'));
       },
       preg_replace('/(?<!")""/', '!!Q!!', trim($data))
   );

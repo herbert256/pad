@@ -29,7 +29,7 @@ apps/myapp/
 ├── index.pad              # Home page template
 │
 ├── _inits.php             # Runs BEFORE all pages (optional)
-├── _inits.pad             # Wraps ALL pages - use @pad@ placeholder (optional)
+├── _inits.pad             # Wraps ALL pages - use @page@ placeholder (optional)
 ├── _exits.php             # Runs AFTER all pages (optional)
 ├── _exits.pad             # Closing wrapper (optional)
 │
@@ -169,12 +169,11 @@ PAD runs through Apache or similar. Entry points are in `www/`.
 **Entry point pattern** (`www/myapp/index.php`):
 ```php
 <?php
-  include __DIR__ . '/../padHome.php';
-  define ( 'APP', "$padHome/apps/myapp/"  );
-  define ( 'DAT', "$padHome/DATA/"        );
-  include "$padHome/pad/pad.php";
+  include __DIR__ . '/../pad.php';
 ?>
 ```
+
+`www/pad.php` detects the OS, derives the app name from the first `REQUEST_URI` path segment matching a directory under `apps/`, and includes `pad/pad.php` (which defines `APP`, `DAT` and the other constants).
 
 ## Creating a New Application
 
@@ -188,10 +187,7 @@ mkdir -p apps/myapp
 **2. Create the Entry Point** (`www/myapp/index.php`):
 ```php
 <?php
-  include __DIR__ . '/../padHome.php';
-  define ( 'APP', "$padHome/apps/myapp/"  );
-  define ( 'DAT', "$padHome/DATA/"        );
-  include "$padHome/pad/pad.php";
+  include __DIR__ . '/../pad.php';
 ?>
 ```
 
@@ -650,9 +646,9 @@ Query databases directly from templates:
 {field "count(*) from users"}                    # Single value
 {field "name from users where id = 1"}           # Single field
 
-{table "SELECT * FROM users ORDER BY name"}
+{array "* from users order by name"}
   <tr><td>{$name}</td><td>{$email}</td></tr>
-{/table}
+{/array}
 ```
 
 ---
@@ -693,20 +689,20 @@ PAD parses `{ }` as template tags. CSS and JavaScript use braces extensively, ca
 </style>
 ```
 
-### Table Subsystem vs Direct SQL
+### Select Subsystem vs Direct SQL
 PAD has two approaches for database access:
 
 1. **Direct SQL with `db()`** - Write your own queries
-2. **Table Subsystem** - Define `$padTables` and let PAD handle queries
+2. **Select Subsystem** - Declare `$padSelect` tables and let PAD handle queries
 
-**Do NOT mix them.** If using direct SQL queries, do NOT set `$padTables` or `$padRelations`:
+**Do NOT mix them.** If using direct SQL queries, do NOT declare `$padSelect` or `$padRelations`:
 ```php
 // If using db() for all queries, DON'T add these:
-// $padTables['users'] = ['db' => 'users', 'key' => 'id'];
-// $padRelations['posts']['author'] = ['table' => 'users', 'key' => 'user_id'];
+// $padSelect['users'] = ['key' => 'id'];
+// $padRelations['posts']['users'] = ['key' => 'user_id'];
 ```
 
-Setting `$padTables` activates the table subsystem (`pad/lib/table.php`) which can conflict with direct SQL and cause infinite loops.
+Declaring `$padSelect` activates the select subsystem (`pad/lib/select.php`, type handler `pad/types/select.php`) which can conflict with direct SQL and cause infinite loops. See [DATABASE.md](DATABASE.md) for the full Select reference.
 
 ### Pipe Functions
 PAD pipe functions come from two sources:
@@ -761,7 +757,7 @@ Tags can have multiple sources (app tags, data, sequences, etc.). Use type prefi
 | `bool:` | Access bool definition |
 | `pull:` | Retrieved stored sequence |
 | `field:` | Database field query |
-| `table:` | Database table query |
+| `select:` | Declared select table |
 | `action:` | Sequence action |
 | `shift:` | Sequence shift operation |
 
@@ -927,14 +923,14 @@ Wrap all pages with a common layout:
     <a href="?about">About</a>
   </nav>
 
-  @pad@
+  @page@
 
   <footer>&copy; 2025 My App</footer>
 </body>
 </html>
 ```
 
-The `@pad@` placeholder is replaced with each page's content.
+The `@page@` placeholder is replaced with each page's content.
 
 ---
 

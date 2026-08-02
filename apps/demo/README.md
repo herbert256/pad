@@ -21,20 +21,23 @@ demo/
 ├── index.php / index.pad     # Home page with example list
 ├── guestbook.php / .pad      # Guestbook example
 ├── todo.php / .pad           # Todo list example
+├── todoPost.php              # Todo form POST handler
 ├── contact.php / .pad        # Contact form example
 ├── counter.php / .pad        # Page counter example
 ├── clock.pad                 # Clock display
+├── else.php                  # PHP-only page (no template)
 ├── _inits.php / .pad         # Global layout wrapper
+├── _include/todo.pad         # Todo list snippet
 ├── _tags/clock.php           # Custom clock tag
-└── _data/menu.json           # Navigation menu data
+└── _data/navigate.json       # Navigation menu data
 ```
 
 ## Features Demonstrated
 
 - **Page pairing**: `.php` data files paired with `.pad` templates
-- **Global wrapper**: `_inits.pad` provides consistent layout with `@pad@` placeholder
+- **Global wrapper**: `_inits.pad` provides consistent layout with `@page@` placeholder
 - **Custom tags**: `_tags/clock.php` shows how to create application-specific tags
-- **Data files**: `_data/menu.json` demonstrates JSON data integration
+- **Data files**: `_data/navigate.json` demonstrates JSON data integration
 - **Form handling**: Contact form shows POST processing
 - **Data iteration**: Examples of iterating over arrays
 

@@ -6,25 +6,24 @@ This directory contains web server entry points for PAD applications. Point your
 
 The setup uses a centralized bootstrap pattern:
 
-1. **App entry points** (`app/index.php`) set `$padApp` and include `pad.php`
-2. **pad.php** detects the OS, sets paths, and includes the PAD framework
+1. **App entry points** (`app/index.php`) just include `pad.php`
+2. **pad.php** detects the OS, sets paths, derives the app from the request URL, and includes the PAD framework
 
 ### Request Flow
 
 ```
 Browser → www/pad/index.php → www/pad.php → pad/pad.php
                 ↓                   ↓
-          sets $padApp        sets APP, DAT
-          (from dirname)      includes framework
+          includes ../pad.php  sets $padApp        defines APP, DAT
+                               (from REQUEST_URI)  runs framework
 ```
 
 ## Files
 
 | File | Description |
 |------|-------------|
-| `pad.php` | Centralized bootstrap: OS detection, path setup, framework inclusion |
+| `pad.php` | Centralized bootstrap: OS detection, path setup, app detection, framework inclusion |
 | `index.php` | Root entry point (loads the `pad` app by default) |
-| `DATA` | Symlink to `../DATA` runtime directory |
 
 ## App Entry Points
 
@@ -36,19 +35,20 @@ Each app has a subdirectory with a minimal `index.php`:
 ?>
 ```
 
-The app name is automatically derived from the directory name.
+The app name is derived in `pad.php` from the first `REQUEST_URI` path segment that matches a directory under `apps/`.
 
 | Directory | Application | Static Assets |
 |-----------|-------------|---------------|
 | `apps/` | Application listing | - |
 | `check/` | Test suite | - |
-| `chess/` | Chess application | index.html |
+| `chess/` | Standalone static page (not a PAD app) | index.html |
+| `cli/` | CLI app (web entry) | - |
 | `demo/` | Demo application | style.css |
 | `develop/` | Development tools | - |
 | `hello/` | Hello World example | - |
 | `manual/` | Interactive documentation | - |
 | `nono/` | Plain PHP (non-PAD) | - |
-| `pad/` | PAD reference app | - |
+| `pad/` | PAD reference app | level_demo.yaml |
 | `react/` | PAD + React integration | JavaScript files (see below) |
 | `reference/` | Cross-reference utilities | - |
 | `regression/` | Regression testing | - |
@@ -93,13 +93,12 @@ Templates reference external scripts: `<script type="text/babel" src="/react/[pa
 
 The centralized bootstrap:
 
-1. Requires `$padApp` to be set
-2. Detects OS (`lin`/`dar`/`win`)
-3. Sets `$padHome` based on platform
-4. Defines constants:
+1. Detects OS (`lin`/`dar`/`win`)
+2. Sets `$padHome` based on platform, plus `$padApps` and `$padData`
+3. Derives `$padApp` from the first `REQUEST_URI` path segment matching a directory under `apps/` (falls back to `pad`)
+4. Includes `pad/pad.php`, which defines the constants:
    - `APP` → `$padHome/apps/$padApp/`
-   - `DAT` → `$padHome/DATA/$padApp/`
-5. Includes the PAD framework
+   - `DAT` → `$padHome/DATA/`
 
 ## Adding a New App
 

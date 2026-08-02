@@ -61,20 +61,16 @@ Child directories automatically inherit parent templates. The `_inits.pad` files
 
 ### Installation
 
-1. Set up two constants before including PAD:
-   - `APP` - Path to your application directory (must end with `/`)
-   - `DAT` - Path to your data directory (must end with `/`)
-
-2. Include the PAD framework:
+1. Create your app directory under `apps/myapp/`
+2. Create the entry point `www/myapp/index.php`:
 
 ```php
 <?php
-include __DIR__ . '/../padHome.php';
-define('APP', "$padHome/apps/myapp/");
-define('DAT', "$padHome/DATA/");
-include "$padHome/pad/pad.php";
+  include __DIR__ . '/../pad.php';
 ?>
 ```
+
+`www/pad.php` detects the platform, derives the app name from the request URL, and includes `pad/pad.php`, which defines the framework constants (`PAD`, `APP`, `DAT`, `APPS`, `DATA`, `COMMON`).
 
 ### Hello World Example
 
@@ -247,20 +243,22 @@ $exists = db("CHECK users WHERE email='{0}'", [$email]);
 ```
 
 ```
-// In templates
+// In templates (the tag name becomes the db() command word)
 {field "count(*) from users"}
-{table "SELECT * FROM users"}
+{record "* from users where id=5"}
+  Name: {$name}
+{/record}
+{array "* from users order by name"}
   <tr><td>{$name}</td></tr>
-{/table}
+{/array}
 
-{users table}                  {# Query users table #}
+// Or declare tables in _lib/select.php ($padSelect) and use them as tags
+{users}
   {$name} - {$email}
 {/users}
-
-{orders table where="user_id = $userId" sort="date DESC"}
-  Order #{$id}: {$total}
-{/orders}
 ```
+
+See [DATABASE.md](DATABASE.md) for the `db()` command words and the Select subsystem.
 
 ### Sequence Subsystem
 
@@ -301,7 +299,7 @@ build/build.php
 ├── build/_lib.php      → Collect library files
 ├── build/base.php      → Build template structure
 │   ├── _inits.pad files (outer to inner)
-│   ├── @pad@ placeholder
+│   ├── @page@ placeholder
 │   └── _exits.pad files (inner to outer)
 └── build/page.php      → Process page
     ├── _inits.php execution
@@ -310,7 +308,7 @@ build/build.php
     └── _exits.php execution
 ```
 
-The `@pad@` placeholder is replaced with the page content, creating a nested structure where parent templates wrap child content.
+The `@page@` placeholder is replaced with the page content, creating a nested structure where parent templates wrap child content.
 
 ### 3. Level Processing
 
@@ -476,11 +474,11 @@ pad/
 ┌─────────────────────────────────────────────────────────────────┐
 │  build/                                                          │
 │  ├── Collect _lib files                                         │
-│  ├── Build base structure (_inits.pad + @pad@ + _exits.pad)     │
+│  ├── Build base structure (_inits.pad + @page@ + _exits.pad)     │
 │  ├── Execute _inits.php                                         │
 │  ├── Execute page.php → get data                                │
 │  ├── Load page.pad template                                     │
-│  └── Replace @pad@ with content                                 │
+│  └── Replace @page@ with content                                 │
 └─────────────────────────────────────────────────────────────────┘
                               │
                               ▼
@@ -515,7 +513,7 @@ pad/
 apps/myapp/
 ├── index.php / index.pad     # Page pair
 ├── _inits.php                # Runs before all pages
-├── _inits.pad                # Wraps all pages (use @pad@ placeholder)
+├── _inits.pad                # Wraps all pages (use @page@ placeholder)
 ├── _exits.php / _exits.pad   # Runs after all pages
 ├── _lib/                     # Auto-included PHP functions
 ├── _tags/                    # Custom template tags

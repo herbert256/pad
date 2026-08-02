@@ -29,8 +29,8 @@ Or from another directory:
 ## How It Works
 
 The `pad` script:
-1. Sets `$padApp` to the directory name (`cli`)
-2. Includes the shared bootstrap from `www/pad.php`
+1. Detects the OS and sets `$padHome`, `$padApps` and `$padData` itself
+2. Sets `$padApp = 'cli'` and includes `pad/pad.php` directly
 3. PAD processes `index.pad` and outputs to the console
 
 ## Output Type

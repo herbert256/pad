@@ -123,6 +123,7 @@ Functions for encoding and escaping text for various contexts.
 | `stripslashes` | - | Removes backslashes (PHP `stripslashes`) |
 | `encodeHigh` | - | Encodes high ASCII characters (>127) |
 | `stripLow` | - | Strips low ASCII control characters |
+| `ignore` | - | Escapes PAD syntax characters (`{ } \| = , @`) so the output is not parsed as PAD tags |
 
 ### Examples
 
@@ -130,6 +131,7 @@ Functions for encoding and escaping text for various contexts.
 {'<script>' | html}         → '&lt;script&gt;'
 {'hello world' | url}       → 'hello%20world'
 {"it's here" | slashes}     → "it\'s here"
+{json 'products' | ignore}  → JSON safe to embed in an HTML attribute
 ```
 
 ---
@@ -352,7 +354,7 @@ Functions for working with PAD template syntax.
 `trim`, `replace`, `cut`, `white`
 
 ### Encoding
-`html`, `sanitize`, `url`, `slashes`, `stripslashes`, `encodeHigh`, `stripLow`
+`html`, `sanitize`, `url`, `slashes`, `stripslashes`, `encodeHigh`, `stripLow`, `ignore`
 
 ### HTML
 `bold`, `nbsp`
