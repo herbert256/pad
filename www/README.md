@@ -1,6 +1,6 @@
 # Web Server Entry Points
 
-This directory contains web server entry points for PAD applications. Point your web server's document root here.
+This directory contains web server entry points for PAD applications. Point your web server's document root here, or mount it under a URL prefix (e.g. a `pad` symlink in an existing docroot serving everything at `/pad/<app>/`) - `www/pad.php` detects the mount point (`$padRoot`) automatically and all generated links respect it.
 
 ## How It Works
 
@@ -12,10 +12,10 @@ The setup uses a centralized bootstrap pattern:
 ### Request Flow
 
 ```
-Browser → www/pad/index.php → www/pad.php → pad/pad.php
+Browser → www/demo/index.php → www/pad.php → pad/pad.php
                 ↓                   ↓
-          includes ../pad.php  sets $padApp        defines APP, DAT
-                               (from REQUEST_URI)  runs framework
+          includes ../pad.php  sets $padApp, $padRoot   defines APP, DAT
+                               (from SCRIPT_NAME)       runs framework
 ```
 
 ## Files
@@ -24,6 +24,7 @@ Browser → www/pad/index.php → www/pad.php → pad/pad.php
 |------|-------------|
 | `pad.php` | Centralized bootstrap: OS detection, path setup, app detection, framework inclusion |
 | `index.php` | Root entry point (loads the `pad` app by default) |
+| `DATA` | Symlink to `../DATA` so runtime output (dumps, regression results) is browsable over HTTP (created by `pad/install/data.sh`; git-ignored) |
 
 ## App Entry Points
 
@@ -35,7 +36,7 @@ Each app has a subdirectory with a minimal `index.php`:
 ?>
 ```
 
-The app name is derived in `pad.php` from the first `REQUEST_URI` path segment that matches a directory under `apps/`.
+The app name and the mount prefix (`$padRoot`) are derived in `pad.php` from `SCRIPT_NAME`: the entry script's directory names the app, and anything above it is the mount prefix.
 
 | Directory | Application | Static Assets |
 |-----------|-------------|---------------|
@@ -95,10 +96,12 @@ The centralized bootstrap:
 
 1. Detects OS (`lin`/`dar`/`win`)
 2. Sets `$padHome` based on platform, plus `$padApps` and `$padData`
-3. Derives `$padApp` from the first `REQUEST_URI` path segment matching a directory under `apps/` (falls back to `pad`)
+3. Derives `$padApp` and the URL mount prefix `$padRoot` from `SCRIPT_NAME`/`SCRIPT_FILENAME` (the entry directory names the app; falls back to `pad` for the root entry point)
 4. Includes `pad/pad.php`, which defines the constants:
    - `APP` → `$padHome/apps/$padApp/`
    - `DAT` → `$padHome/DATA/`
+
+Cross-app links are generated from `$padRootExt` (`$padHost . $padRoot`, set in `pad/inits/host.php`), so the same tree works served at the root or under any prefix.
 
 ## Adding a New App
 

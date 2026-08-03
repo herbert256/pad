@@ -11,7 +11,7 @@
        . "{demo}{sequence one, $type='two'}\n  {\$sequence}\n{/sequence}{/demo}\n\n"
        . "{/table}";
 
-  filePutFile ( "sequence/types/$type/flags/playDouble", 1 );
-  filePutFile ( APP . "sequence/play/double/{$type}.pad", $one );
+  padFilePut ( PT . "$type/flags/playDouble", 1 );
+  padFilePut ( APP . "sequence/play/double/{$type}.pad", $one );
 
 ?>

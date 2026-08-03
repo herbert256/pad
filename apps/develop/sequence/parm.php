@@ -3,6 +3,6 @@
   $parm = pqParm ( $type );
 
   if ( $parm )
-    filePutFile ( PAD ."sequence/types/$type/flags/parm", 1 );
+    padFilePut ( PT . "$type/flags/parm", 1 );
 
 ?>

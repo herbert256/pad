@@ -11,6 +11,6 @@
   $one .= "{demo}{sequence $go}\n  {\$sequence}\n{/sequence}{/demo}\n\n";
   $one .= "{/table}";
 
-  filePutFile ( APP . "sequence/basic/{$type}.pad", $one );
+  padFilePut ( APP . "sequence/basic/{$type}.pad", $one );
 
 ?>

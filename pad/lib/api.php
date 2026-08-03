@@ -21,12 +21,12 @@
 
   function padRedirect ( $go='', $vars=[], $app='' ) {
 
-    global $padGoExt, $padHost, $padReqID, $padSesID, $padApp, $padPage;
+    global $padGoExt, $padReqID, $padSesID, $padApp, $padPage, $padRootExt;
 
     if ( ! $app ) $app = $padApp;
     if ( ! $go  ) $go  = $padPage;
 
-    $go = ( $go ) ? "$padHost/$app/?$go" : "$padHost/$app/";
+    $go = ( $go ) ? "$padRootExt$app/?$go" : "$padRootExt$app/";
 
     $go = padAddGet ( $go, 'padSesID', $padSesID );
     $go = padAddGet ( $go, 'padReqID', $padReqID );

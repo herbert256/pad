@@ -173,7 +173,7 @@ PAD runs through Apache or similar. Entry points are in `www/`.
 ?>
 ```
 
-`www/pad.php` detects the OS, derives the app name from the first `REQUEST_URI` path segment matching a directory under `apps/`, and includes `pad/pad.php` (which defines `APP`, `DAT` and the other constants).
+`www/pad.php` detects the OS, derives the app name and the URL mount prefix (`$padRoot`) from the entry script's `SCRIPT_NAME`, and includes `pad/pad.php` (which defines `APP`, `DAT` and the other constants). The `www/` tree can be served at the domain root or mounted under a prefix; generated cross-app links use `$padRootExt` and follow the mount automatically.
 
 ## Creating a New Application
 

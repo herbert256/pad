@@ -51,7 +51,7 @@
 
   function padListFiltered () {
 
-    foreach ( padList () as $one ) {
+    foreach ( padAppsList () as $one ) {
 
       if ( str_contains ( $one ['path'], 'develop')     ) continue;
       if ( str_contains ( $one ['path'], 'manual')      ) continue;

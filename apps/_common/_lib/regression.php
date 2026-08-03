@@ -18,12 +18,12 @@
 
   function getRegressionGo ( $app, $item, $extra='' ) {
 
-    global $padHost;
+    global $padRootExt;
 
     $include = ( $item <> 'index' ) ? '&padInclude' : '';
     $store   = DAT . "regression/$app/$item.html";
- 
-    $curl   = padCurl    ( "$padHost/$app/?$item$include$extra" );
+
+    $curl   = padCurl    ( "$padRootExt$app/?$item$include$extra" );
     $source = padFileGet ( APPS . "$app/$item.pad" );
     $old    = padFileGet ( $store );
 

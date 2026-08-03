@@ -9,11 +9,11 @@
 
   $title = "Benchmark";
 
-  foreach ( padList () as $one ) {
+  foreach ( padAppsList () as $one ) {
 
     $item = $one ['item'];
 
-    $store = DAT . "_regression/$item.txt";
+    $store = DAT . "regression/" . $one ['app'] . "/$item.txt";
     $bm    = DAT . "_benchmark/$item.json";
 
     $status = padFileGet ( $store );
@@ -28,7 +28,7 @@
     $list [$item] = $curl ['stats'];
     $list [$item] ['item'] = $item;
 
-    filePutFile ( $bm, $curl ['stats']  );
+    padFilePut ( $bm, padJson ( $curl ['stats'] ) );
 
   }
 

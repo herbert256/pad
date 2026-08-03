@@ -542,7 +542,7 @@ $padCache = false;
 
 ## Entry Point Pattern
 
-The `www/` directory is the web docroot; each app is served at `http://localhost/<app>/`. An app's entry point (`www/myapp/index.php`) is just:
+The `www/` directory can be served as the docroot itself (apps at `http://host/<app>/`) or mounted under a URL prefix (apps at `http://host/pad/<app>/` - the current local setup, via a `pad` symlink in the Apache docroot). An app's entry point (`www/myapp/index.php`) is just:
 
 ```php
 <?php
@@ -553,8 +553,10 @@ The `www/` directory is the web docroot; each app is served at `http://localhost
 `www/pad.php` does the actual bootstrapping:
 1. Detects the OS and sets `$padHome` (the repo root)
 2. Sets `$padApps` (`$padHome/apps/`) and `$padData` (`$padHome/DATA/`)
-3. Derives `$padApp` from the first `REQUEST_URI` path segment that matches a directory under `apps/` (falling back to `pad`)
+3. Derives `$padApp` and the mount prefix `$padRoot` (e.g. `/` or `/pad/`) from `SCRIPT_NAME`/`SCRIPT_FILENAME`
 4. Includes `pad/pad.php`, which defines the constants (`PAD`, `APP`, `DAT`, `APPS`, `DATA`, `COMMON`) and runs the request
+
+Cross-app URLs (menu links, `padRedirect()`, the regression harness) are built from `$padRootExt` (`$padHost . $padRoot`), so they work under any mount prefix. Page-internal links use `$padGo`/`?page` and are prefix-safe automatically.
 
 The CLI variant (`apps/cli/pad`) sets `$padApp = 'cli'` explicitly and includes `pad/pad.php` directly.
 
@@ -812,36 +814,39 @@ Each `{tag}` creates a new level scope. PAD maintains global variables per level
 
 ### Testing PAD Pages from Command Line
 
-You can fetch and analyze PAD pages directly from a running server using `curl`:
+You can fetch and analyze PAD pages directly from a running server using `curl`. On this machine `www/` is mounted at `http://localhost/pad/`, so every app URL carries that prefix:
 
 ```bash
 # Fetch a PAD page
-curl "http://localhost/demo/?clock"
+curl "http://localhost/pad/demo/?clock"
 
 # Fetch with headers
-curl -i "http://localhost/manual/"
+curl -i "http://localhost/pad/manual/"
 
 # Fetch and save output
-curl -o output.html "http://localhost/myapp/?page/subpage"
+curl -o output.html "http://localhost/pad/myapp/?page/subpage"
 
 # Fetch with query parameters
-curl "http://localhost/app/?page&param=value"
+curl "http://localhost/pad/app/?page&param=value"
 ```
 
 **Examples:**
 ```bash
 # Demo application pages
-curl "http://localhost/demo/?index"        # Home page
-curl "http://localhost/demo/?guestbook"    # Guestbook
-curl "http://localhost/demo/?clock"        # Clock with date/time
+curl "http://localhost/pad/demo/?index"        # Home page
+curl "http://localhost/pad/demo/?guestbook"    # Guestbook
+curl "http://localhost/pad/demo/?clock"        # Clock with date/time
 
 # Documentation and reference apps (each is its own app)
-curl "http://localhost/manual/"            # Framework manual
-curl "http://localhost/reference/"         # Cross-reference
-curl "http://localhost/pad/?hello"         # Hello World test
+curl "http://localhost/pad/manual/"            # Framework manual
+curl "http://localhost/pad/reference/"         # Cross-reference
+curl "http://localhost/pad/pad/?hello"         # Hello World test
 
 # Debugging output
-curl "http://localhost/app/?page&padInfo=trace"  # With trace
+curl "http://localhost/pad/app/?page&padInfo=trace"  # With trace
+
+# Run the full regression suite (~10s, results in DATA/regression/)
+curl "http://localhost/pad/regression/?index&go"
 ```
 
 This is particularly useful for:

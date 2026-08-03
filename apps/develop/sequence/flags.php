@@ -1,8 +1,12 @@
 <?php
 
-  fileDeleteDir ( "sequence/types/$type/flags/" );
-  mkdir     ( "sequence/types/$type/flags/" );
+  $flagDir = PT . "$type/flags/";
 
-  filePutFile ( "sequence/types/$type/flags/readme.txt", 'This directory is generared' );
+  if ( is_dir ( $flagDir ) )
+    foreach ( glob ( $flagDir . '*' ) as $file ) unlink ( $file );
+  else
+    mkdir ( $flagDir );
+
+  padFilePut ( $flagDir . 'readme.txt', 'This directory is generated' );
 
 ?>

@@ -1,5 +1,7 @@
 <?php
 
+  global $padRoot;
+
   $title = 'PAD Applications';
 
   // Get the apps directory (parent of current app)
@@ -29,7 +31,7 @@
     $app = [
       'name' => $dir,
       'path' => $appPath,
-      'link' => ($dir === '_common') ? '' : '/' . $dir . '/',
+      'link' => ($dir === '_common') ? '' : $padRoot . $dir . '/',
       'description' => ''
     ];
 

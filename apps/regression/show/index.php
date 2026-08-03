@@ -1,6 +1,6 @@
 <?php
 
-  $curl = padCurl ( "$padHost/$app?$item&padInclude" );
+  $curl = padCurl ( "$padRootExt$app/?$item&padInclude" );
 
   if ( ! str_starts_with ( $curl ['result'], '2') )
     padRedirect ( $item, [ 'padInclude' => 1 ], $app );

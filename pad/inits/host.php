@@ -15,6 +15,11 @@
 
   $padHost = $padRequestScheme . '://' . $padHttpHost;
 
+  if ( ! isset ( $padRoot ) )
+    $padRoot = '/';
+
+  $padRootExt = $padHost . $padRoot;
+
   $padGo    = $padScript . "?";
   $padGoExt = $padHost . $padGo;
 

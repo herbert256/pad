@@ -10,7 +10,7 @@
   if ( $padPageAjax )
     return padPageAjax ( $padPagePage, $padPageInclude, $padPageApp );
 
-  $padPageUrl  = "$padHost/$padPageApp/?$padPagePage$padPageInclude";  
+  $padPageUrl  = "$padRootExt$padPageApp/?$padPagePage$padPageInclude";
   $padPageCurl = padCurl ( $padPageUrl );
 
   if ( ! str_starts_with ( $padPageCurl ['result'], '2' ) )
