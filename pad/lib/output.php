@@ -52,7 +52,7 @@
     if ( isset ( $padSent ) )
       padError ( "Content already sent with download" );
 
-    if ( $padStop <> 200 )
+    if ( $padStop != 200 )
       padError ( "HTTP status not 200 with download" );
 
     padHeader ( "Content-Type: $contentType");
@@ -94,13 +94,13 @@
     if ( $stop == 200 and $padGzip and $padClientGzip )
       padHeader ( 'Content-Encoding: gzip' );
 
-    if ( $stop <> 302 and $stop <> 304 )
+    if ( $stop != 302 and $stop != 304 )
       padHeader ( 'Content-Type: ' . $padContentType );
 
     if ( $stop == 200 and $padLen )
       padHeader ( 'Content-Length: ' . $padLen );
 
-    if ( ! isset ( $padCacheClientAge ) or ( $stop <> 200 and $stop <> 304 ) )
+    if ( ! isset ( $padCacheClientAge ) or ( $stop != 200 and $stop != 304 ) )
       padHeader ( 'Cache-Control: no-cache, no-store' );
     else
       padWebCacheHeaders ();

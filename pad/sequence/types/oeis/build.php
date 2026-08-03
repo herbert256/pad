@@ -1,6 +1,8 @@
 <?php
 
-  $w = file ( '/home/herbert/host/Downloads/stripped', TRUE);
+  global $padHome;
+
+  $w = file ( dirname ( $padHome ) . '/host/Downloads/stripped', TRUE);
 
   foreach ( $w as $l ) {
 
@@ -25,6 +27,6 @@
 
   $t = substr ( $t, 0, -1) . "\n];\n\n?>";
 
-  padFilePut ( "/pad/seq/types/oeis/test.php", $t );
+  padFilePut ( PT . "oeis/test.php", $t );
 
 ?>

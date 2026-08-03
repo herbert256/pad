@@ -62,7 +62,7 @@ The `padEvalParse()` function tokenizes the expression into an array of tokens. 
 - Hexadecimal numbers: `0xFF`
 - Scientific notation: `1.5E-10`
 - Negative numbers: `-42`
-- Two-character operators: `**`, `<=`, `>=`, `==`, `<>`
+- Two-character operators: `**`, `<=`, `>=`, `==`, `<>`, `!=`
 
 ### Step 2: Type Resolution (`lib/eval/after.php`)
 
@@ -84,7 +84,7 @@ The `padEvalAfter()` function processes the parsed tokens:
 | `>` | `GT` |
 | `>=` | `GE` |
 | `=` or `==` | `EQ` |
-| `<>` | `NE` |
+| `<>` or `!=` | `NE` |
 
 ### Step 3: Pipe Splitting (`lib/eval/pipes.php`)
 
@@ -166,7 +166,7 @@ if ( $opr == 'LE' )  $now = ($left <= $right) ? 1 : '';
 if ( $opr == 'EQ' )  $now = ($left == $right) ? 1 : '';
 if ( $opr == 'GE' )  $now = ($left >= $right) ? 1 : '';
 if ( $opr == 'GT' )  $now = ($left >  $right) ? 1 : '';
-if ( $opr == 'NE' )  $now = ($left <> $right) ? 1 : '';
+if ( $opr == 'NE' )  $now = ($left != $right) ? 1 : '';
 
 // Logical operators
 if ( $opr == 'AND' ) $now = ($left AND $right) ? 1 : '';

@@ -49,7 +49,7 @@ function padSplitOnUnquotedColon ( $str ) {
           return $key;
 
     for ( $key = $pad-1; $key >=0 ; $key-- )
-      if ( $padTag [$key] <> 'if' and $padTag [$key] <> 'case' )
+      if ( $padTag [$key] != 'if' and $padTag [$key] != 'case' )
         return $key;
 
     return $pad - 1;

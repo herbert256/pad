@@ -6,7 +6,7 @@
 
     $build = pqBuild ( $type );
 
-    if ( $build <> 'order' and $build <> 'fixed' ) {
+    if ( $build != 'order' and $build != 'fixed' ) {
       $a = padCode ( "{sequence $type=3, rows=15}{\$sequence}{/sequence}" );
       $b = padCode ( "{sequence $type=5, rows=15}{\$sequence}{/sequence}" );
     }
@@ -16,7 +16,7 @@
         if ( str_contains ( padFileGet ( "types/$type/$check.php"), "pqParm" ) )
           $e = TRUE;
 
-    if ( $e or $a <> $b )
+    if ( $e or $a != $b )
       $parm = '=4';
 
     return $parm;

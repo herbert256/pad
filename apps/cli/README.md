@@ -29,7 +29,7 @@ Or from another directory:
 ## How It Works
 
 The `pad` script:
-1. Detects the OS and sets `$padHome`, `$padApps` and `$padData` itself
+1. Includes `home/home.php` to get `$padHome`, then sets `$padApps` and `$padData`
 2. Sets `$padApp = 'cli'` and includes `pad/pad.php` directly
 3. PAD processes `index.pad` and outputs to the console
 

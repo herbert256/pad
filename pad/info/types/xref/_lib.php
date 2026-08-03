@@ -11,10 +11,10 @@
       return padInfoXrefGo ( $dir1, $dir2, $dir3 );
 
     if ( padInsideOther ()         ) return;
-    if ( $padPage <> $padStartPage ) return;
+    if ( $padPage != $padStartPage ) return;
 
-    if ( $dir1 == 'tag'       and $dir2 <> 'pad' ) return padInfoXrefGo ( $dir1, $dir2, $dir3 );
-    if ( $dir1 == 'functions' and $dir2 <> 'pad' ) return padInfoXrefGo ( $dir1, $dir2, $dir3 );
+    if ( $dir1 == 'tag'       and $dir2 != 'pad' ) return padInfoXrefGo ( $dir1, $dir2, $dir3 );
+    if ( $dir1 == 'functions' and $dir2 != 'pad' ) return padInfoXrefGo ( $dir1, $dir2, $dir3 );
 
     if (   $dir3 and strpos ( $padInfoXrefSource, $dir3 ) === FALSE ) return;
     if ( ! $dir3 and strpos ( $padInfoXrefSource, $dir2 ) === FALSE ) return;

@@ -8,7 +8,7 @@
 
         if ( ! count ( $padData [$pad] )                        ) continue;
     elseif ( $padTagSeq [$pad]                                  ) continue;
-    elseif ( $padPrmKind <> 'option'                            ) continue;
+    elseif ( $padPrmKind != 'option'                            ) continue;
     elseif ( ! file_exists ( PAD . "handling/types/$padPrmName.php" ) ) continue;
 
     $padHandName = $padPrmName;

@@ -22,7 +22,7 @@ Browser → www/demo/index.php → www/pad.php → pad/pad.php
 
 | File | Description |
 |------|-------------|
-| `pad.php` | Centralized bootstrap: OS detection, path setup, app detection, framework inclusion |
+| `pad.php` | Centralized bootstrap: includes `home/home.php` for the machine-specific `$padHome`, then path setup, app detection, framework inclusion |
 | `index.php` | Root entry point (loads the `pad` app by default) |
 | `DATA` | Symlink to `../DATA` so runtime output (dumps, regression results) is browsable over HTTP (created by `pad/install/data.sh`; git-ignored) |
 
@@ -94,8 +94,8 @@ Templates reference external scripts: `<script type="text/babel" src="/react/[pa
 
 The centralized bootstrap:
 
-1. Detects OS (`lin`/`dar`/`win`)
-2. Sets `$padHome` based on platform, plus `$padApps` and `$padData`
+1. Includes `home/home.php` (OS detection → `$padHome`; the only place with machine-specific paths)
+2. Sets `$padApps` and `$padData`
 3. Derives `$padApp` and the URL mount prefix `$padRoot` from `SCRIPT_NAME`/`SCRIPT_FILENAME` (the entry directory names the app; falls back to `pad` for the root entry point)
 4. Includes `pad/pad.php`, which defines the constants:
    - `APP` → `$padHome/apps/$padApp/`

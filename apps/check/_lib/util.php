@@ -23,7 +23,7 @@
 
       if ( $item == 'index'                ) continue;
       if ( $item == 'all'                  ) continue;
-      if ( $ext <> 'pad' and $ext <> 'php' ) continue;
+      if ( $ext != 'pad' and $ext != 'php' ) continue;
 
       $list [$item] ['item'] = $item;
 

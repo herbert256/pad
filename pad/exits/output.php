@@ -4,7 +4,7 @@
 
   padCheckBuffers ();
 
-  if ( $padOutputType <> 'web' and $padCacheStop == 200 and $padCacheServerGzip )
+  if ( $padOutputType != 'web' and $padCacheStop == 200 and $padCacheServerGzip )
     $padOutput = padUnzip ( $padOutput );
 
   include PAD . "exits/output/$padOutputType.php";

@@ -8,7 +8,7 @@
 
     $occur = $padOccur [$pad] ?? 0;
 
-    if ( $occur <> 0 and $occur <> 99999 )
+    if ( $occur != 0 and $occur != 99999 )
       $return .= "/$occur";
 
     return $return;
@@ -33,7 +33,7 @@
 
     while ( ( $file = readdir ( $loop ) ) !== FALSE )
 
-      if ( $file <> '.' and $file <> '..' )
+      if ( $file != '.' and $file != '..' )
         if ( is_dir ( "$dir/$file" ) )
           padInfoDelete ( "$dir/$file" );
         else

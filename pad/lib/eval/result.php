@@ -12,7 +12,7 @@
 
     if     ( count($result) < 1        ) padError ("No result back: $eval");
     elseif ( count($result) > 1        ) padError ("More then one reault back: $eval");
-    elseif ( $result[$key][1] <> 'VAL' ) padError ("Result is not a value: $eval");
+    elseif ( $result[$key][1] != 'VAL' ) padError ("Result is not a value: $eval");
 
     return $result [$key] [0];
 

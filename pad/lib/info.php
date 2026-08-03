@@ -17,8 +17,8 @@
     global $padInfoCnt;
 
     foreach ( $GLOBALS as $k => $v )
-      if ( str_starts_with($k, 'padInfo') and $k <> 'padInfoBackup' )
-        if ( $k <> 'padInfoCnt' and $k <> 'padInfoTraceId' )
+      if ( str_starts_with($k, 'padInfo') and $k != 'padInfoBackup' )
+        if ( $k != 'padInfoCnt' and $k != 'padInfoTraceId' )
           $GLOBALS ['padInfoBackup'] [$padInfoCnt] [$k] = $v;
 
   }
@@ -28,8 +28,8 @@
     global $padInfoCnt;
 
     foreach ( $GLOBALS as $k => $v )
-      if ( str_starts_with($k, 'padInfo') and $k <> 'padInfoBackup' )
-        if ( $k <> 'padInfoCnt' and $k <> 'padInfoTraceId' )
+      if ( str_starts_with($k, 'padInfo') and $k != 'padInfoBackup' )
+        if ( $k != 'padInfoCnt' and $k != 'padInfoTraceId' )
           unset ( $GLOBALS [$k] );
 
     foreach ( $GLOBALS ['padInfoBackup'] [$padInfoCnt] as $k => $v )

@@ -117,7 +117,7 @@
       if ( ! isset ( $current [$key] [$before] ) )
         continue;
 
-      if     ( str_contains($name, '<>') ) { if ( $current [$key] [$before] <> $after ) return $key; }
+      if     ( str_contains($name, '<>') ) { if ( $current [$key] [$before] != $after ) return $key; }
       elseif ( str_contains($name, '<=') ) { if ( $current [$key] [$before] <= $after ) return $key; }
       elseif ( str_contains($name, '>=') ) { if ( $current [$key] [$before] >= $after ) return $key; }
       elseif ( str_contains($name, '<')  ) { if ( $current [$key] [$before] <  $after ) return $key; }

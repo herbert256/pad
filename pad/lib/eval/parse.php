@@ -348,6 +348,19 @@
 
       }
 
+      if ( $one == '!' and $next == '=' ) {
+
+        $i += 100;
+        $result [$i] [0] = 'NE';
+        $result [$i] [1] = 'OPR';
+
+        $is_other = FALSE;
+        $skip = 1;
+
+        continue;
+
+      }
+
       if ( in_array($one.$next, padEval_2) ) {
 
         $i += 100;

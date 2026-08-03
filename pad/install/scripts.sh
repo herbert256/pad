@@ -1,3 +1,5 @@
 #!/bin/bash
 
-chmod 755 /home/herbert/pad/apps/pad/_scripts/*
+. "$(dirname "$0")/../../home/home.sh"
+
+find "$padHome/apps" -path '*/_scripts/*' -type f -exec chmod 755 {} +

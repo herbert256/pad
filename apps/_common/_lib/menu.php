@@ -26,7 +26,7 @@
 
     }
 
-    if ( str_starts_with ( $padPage, 'develop/') and $padPage <> 'develop/index') {
+    if ( str_starts_with ( $padPage, 'develop/') and $padPage != 'develop/index') {
 
       if ( str_starts_with ( $padPage, 'develop/show') ) {
         $parts ['now'] ['part'] = $item;

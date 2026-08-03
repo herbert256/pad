@@ -52,7 +52,7 @@
       $pad1 = strpos($sql, '{'.$i.'}' );
 
       if ( $pad1 !== FALSE )
-        if (substr($i, 0, 1) <> 'x')
+        if (substr($i, 0, 1) != 'x')
           $sql = str_replace('{'.$i.'}', mysqli_real_escape_string($padSqlConnect, $replace), $sql);
         else
           $sql = str_replace('{'.$i.'}', $replace, $sql);

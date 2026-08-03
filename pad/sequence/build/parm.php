@@ -1,6 +1,6 @@
 <?php
 
-  if ( $pqRandomParm and $pqSeq <> 'range' ) {
+  if ( $pqRandomParm and $pqSeq != 'range' ) {
     $pqParm = $pqRandomParm;
     pqRandomParm ( $pqParm );
   }

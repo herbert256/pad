@@ -40,7 +40,7 @@
 
     $padVarsBefore = [];
     foreach ($GLOBALS as $padK => $padV)
-      if ( $padK <> 'row' and padValidStore ($padK) ) {
+      if ( $padK != 'row' and padValidStore ($padK) ) {
         $padVarsBefore [] = $padK;
         $$padK = $padV;
       }
@@ -56,7 +56,7 @@
         unset( $GLOBALS [$padV] );
 
     foreach ($padVarsAfter as $padK => $padV)
-      if ( $padK <> 'row' and padValidStore ($padK) ) {
+      if ( $padK != 'row' and padValidStore ($padK) ) {
         if ( isset( $GLOBALS [$padK] ) )
           unset( $GLOBALS [$padK] );
         $GLOBALS [$padK] = $padV;

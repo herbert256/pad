@@ -1,12 +1,14 @@
 #!/bin/bash
 
+. "$(dirname "$0")/../../home/home.sh"
+
 exit;
 
-rm -rf /home/herbert/pad/DATA
-rm -rf /home/herbert/pad/www/DATA
+rm -rf "$padHome/DATA"
+rm -rf "$padHome/www/DATA"
 
-mkdir /home/herbert/pad/DATA
-ln -s /home/herbert/pad/DATA /home/herbert/pad/www/DATA
+mkdir "$padHome/DATA"
+ln -s "$padHome/DATA" "$padHome/www/DATA"
 
-chown herbert:herbert /home/herbert/pad/DATA
-chown herbert:herbert /home/herbert/pad/www/DATA
+chown herbert:herbert "$padHome/DATA"
+chown herbert:herbert "$padHome/www/DATA"

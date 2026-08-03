@@ -551,7 +551,7 @@ The `www/` directory can be served as the docroot itself (apps at `http://host/<
 ```
 
 `www/pad.php` does the actual bootstrapping:
-1. Detects the OS and sets `$padHome` (the repo root)
+1. Includes `home/home.php`, which detects the OS and sets `$padHome` (the repo root) - the single place where machine-specific paths live (shell scripts source `home/home.sh` for the same purpose)
 2. Sets `$padApps` (`$padHome/apps/`) and `$padData` (`$padHome/DATA/`)
 3. Derives `$padApp` and the mount prefix `$padRoot` (e.g. `/` or `/pad/`) from `SCRIPT_NAME`/`SCRIPT_FILENAME`
 4. Includes `pad/pad.php`, which defines the constants (`PAD`, `APP`, `DAT`, `APPS`, `DATA`, `COMMON`) and runs the request

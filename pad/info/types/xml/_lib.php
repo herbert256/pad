@@ -41,8 +41,8 @@
     else
       $options ['parm'] = $parm;
 
-    if ( $type   <> 'pad'     ) $options ['type']   = $type;
-    if ( $source <> 'content' ) $options ['source'] = $source;
+    if ( $type   != 'pad'     ) $options ['type']   = $type;
+    if ( $source != 'content' ) $options ['source'] = $source;
 
     if ( $padInfoXmlCompact )
       $options = [];

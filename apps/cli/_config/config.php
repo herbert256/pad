@@ -5,5 +5,4 @@
   $padTidy       = FALSE;
   $padCommon     = FALSE;
 
-
 ?>

@@ -185,7 +185,7 @@
 
   function padAtGlobals ( $names, $parts ) {
 
-    if ( count ($parts) <> 1 )
+    if ( count ($parts) != 1 )
       return INF;
 
     $array = reset ($parts);

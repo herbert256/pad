@@ -57,7 +57,7 @@
     $start = ($flag) ? $pad-1 : $pad;
 
     for ($i=$start; $i; $i--)
-      if ( $padTag [$i] <> 'if' and $padTag [$i] <> 'case' and $padType[$i] <> 'tag' )
+      if ( $padTag [$i] != 'if' and $padTag [$i] != 'case' and $padType[$i] != 'tag' )
         return $i;
 
     return $pad - 1;
@@ -71,7 +71,7 @@
     $start = $pad-$lvl;
 
     for ($i=$start; $i; $i--)
-      if ( $padType[$i] <> 'tag' )
+      if ( $padType[$i] != 'tag' )
         return $i;
 
     return $pad - 1;

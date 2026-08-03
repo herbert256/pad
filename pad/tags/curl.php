@@ -10,7 +10,7 @@
 
   $padCurl = padCurl ( $padPrm [$pad]);
 
-  if ( $padCurl ['result'] <> '200' )
+  if ( $padCurl ['result'] != '200' )
     padError ( "Curl failed: " . $padCurl ['result'] . ' ' . $padCurl ['url'] );
 
   return $padCurl ['data'];

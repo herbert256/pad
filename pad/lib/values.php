@@ -161,7 +161,7 @@
   function padIsDefaultData ( $data ) {
 
     if ( ! is_array ( $data ) ) return FALSE;
-    if ( count ( $data ) <> 1 ) return FALSE;
+    if ( count ( $data ) != 1 ) return FALSE;
 
     $key = array_key_first ( $data );
 

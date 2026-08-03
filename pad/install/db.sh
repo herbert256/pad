@@ -1,8 +1,10 @@
 #!/bin/bash
 
-mysql < /home/herbert/pad/pad/database/database.sql
-mysql < /home/herbert/pad/pad/database/pad.sql
-mysql < /home/herbert/pad/pad/database/cache.sql
+. "$(dirname "$0")/../../home/home.sh"
 
-mysql < /home/herbert/pad/apps/pad/_install/demo.sql
-mysql < /home/herbert/pad/apps/pad/_install/classicmodels.sql
+mysql < "$padHome/pad/database/database.sql"
+mysql < "$padHome/pad/database/pad.sql"
+mysql < "$padHome/pad/database/cache.sql"
+
+mysql < "$padHome/apps/pad/_install/demo.sql"
+mysql < "$padHome/apps/pad/_install/classicmodels.sql"

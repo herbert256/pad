@@ -20,7 +20,7 @@
 
     global $padRootExt;
 
-    $include = ( $item <> 'index' ) ? '&padInclude' : '';
+    $include = ( $item != 'index' ) ? '&padInclude' : '';
     $store   = DAT . "regression/$app/$item.html";
 
     $curl   = padCurl    ( "$padRootExt$app/?$item$include$extra" );
@@ -44,7 +44,7 @@
 
     padFilePut ( str_replace ( '.html', '.txt', $store ), $status ) ;
 
-    if ( ! $extra <> '&padExamples' or ! str_starts_with ( $curl ['result'], '2' ) )
+    if ( ! $extra != '&padExamples' or ! str_starts_with ( $curl ['result'], '2' ) )
       return;
 
     if ( str_contains ( $source, '{page'    ) ) return;
@@ -76,7 +76,7 @@
 
       $ext = substr($path, strrpos($path, '.')+1 );
 
-      if ( $ext <> 'pad' ) 
+      if ( $ext != 'pad' ) 
         continue;
 
       $file  = str_replace ( APPS, '', $path );
@@ -85,9 +85,9 @@
       $file  = substr($file,    strpos($file, '/')+1 );
       $item  = substr($file, 0, strrpos($file, '.')   );
 
-      $files [$item] ['path'] = $path;
-      $files [$item] ['app']  = $app;
-      $files [$item] ['item'] = $item;
+      $files ["$app/$item"] ['path'] = $path;
+      $files ["$app/$item"] ['app']  = $app;
+      $files ["$app/$item"] ['item'] = $item;
 
     }
 

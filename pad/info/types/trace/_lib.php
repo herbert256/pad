@@ -87,7 +87,7 @@
     global $padInfoTraceId, $padInfoTraceIds, $padInfoTraceOccurId;
 
     $prefix = $pad;
-    if ( $pad >= 0 and $padOccur [$pad] and $padOccur [$pad] <> 99999 )
+    if ( $pad >= 0 and $padOccur [$pad] and $padOccur [$pad] != 99999 )
       $prefix .= '/' . $padOccur [$pad];
 
     if     ( $type == 'level' )                      $id = $padInfoTraceIds [$pad]         ?? 0;

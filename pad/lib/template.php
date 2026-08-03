@@ -56,7 +56,7 @@
   function padOpenCloseCountOne ( $string, $tag ) {
 
     if ( ( substr_count($string, '{'.$tag.' ' ) + substr_count($string, '{'.$tag.'}' ) )
-           <>
+           !=
          ( substr_count($string, '{/'.$tag.' ') + substr_count($string, '{/'.$tag.'}') ) )
       return FALSE;
 

@@ -20,7 +20,7 @@
       $path = $one->getPathname() ;
       $ext  = $one->getExtension() ;
 
-      if ( $ext <> 'html' and $ext <> 'txt' ) continue;
+      if ( $ext != 'html' and $ext != 'txt' ) continue;
 
       $base = str_replace ( $regPath, '', $path );
       list ( $app, $file ) = explode ( '/', $base, 2 );

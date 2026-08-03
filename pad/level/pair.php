@@ -14,7 +14,7 @@
 
     $padBetweenCheck = substr ($padOut [$pad], $padPos+1, $padEnd [$pad]-$padPos-1);
 
-  } while ( substr_count($padBetweenCheck, '{') <> substr_count($padBetweenCheck, '}') );
+  } while ( substr_count($padBetweenCheck, '{') != substr_count($padBetweenCheck, '}') );
 
   include PAD . 'level/pipes/end.php';
 

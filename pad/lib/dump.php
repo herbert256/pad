@@ -152,7 +152,7 @@
       if ( $flag == 1 and ! $error ) continue;
       if ( $flag == 2 and   $error ) continue;
 
-      if ( $file <> '???' )
+      if ( $file != '???' )
         echo ( "$file:$line - $function\n");
 
       unset ($file);

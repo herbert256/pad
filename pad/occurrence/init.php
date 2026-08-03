@@ -10,7 +10,7 @@
   $padKey     [$pad] = key($padData [$pad]);
   $padCurrent [$pad] = $padData [$pad] [$padKey [$pad]];
 
-  if ( $padWalk [$pad] <> 'start' )
+  if ( $padWalk [$pad] != 'start' )
     $padWalkData [$pad] [] = $padCurrent [$pad];
 
 ?>

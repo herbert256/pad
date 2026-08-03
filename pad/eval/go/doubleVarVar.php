@@ -5,7 +5,7 @@
   elseif ( $opr == 'EQ'  ) $now = ($left ==  $right) ? 1 : '';
   elseif ( $opr == 'GE'  ) $now = ($left >=  $right) ? 1 : '';
   elseif ( $opr == 'GT'  ) $now = ($left >   $right) ? 1 : '';
-  elseif ( $opr == 'NE'  ) $now = ($left <>  $right) ? 1 : '';
+  elseif ( $opr == 'NE'  ) $now = ($left !=  $right) ? 1 : '';
   elseif ( $opr == 'AND' ) $now = ($left AND $right) ? 1 : '';
   elseif ( $opr == 'OR'  ) $now = ($left OR  $right) ? 1 : '';
   elseif ( $opr == 'XOR' ) $now = ($left XOR $right) ? 1 : '';

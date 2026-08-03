@@ -1,5 +1,7 @@
 <?php
 
+  global $padRootExt;
+
   $padCurlStats = TRUE;
 
   $list = [];
@@ -17,10 +19,10 @@
     $bm    = DAT . "_benchmark/$item.json";
 
     $status = padFileGet ( $store );
-    if ( $status <> 'ok' )
+    if ( $status != 'ok' )
       continue;
 
-    $curl = getPage ( $one ['item'], 1, 1 );
+    $curl = padCurl ( $padRootExt . $one ['app'] . "/?$item&padInclude" );
 
     if ( ! str_starts_with ( $curl ['result'], '2') ) continue;
     if ( ! isset           ( $curl ['stats'] )      ) continue;

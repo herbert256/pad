@@ -107,7 +107,7 @@
 
       $idx=0;
       foreach ($result[array_key_first($result)] as $key => $value) {
-        if ( $key <> $idx ) {
+        if ( $key != $idx ) {
           $idx = 0;
           break;
         }

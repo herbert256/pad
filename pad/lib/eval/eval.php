@@ -4,7 +4,7 @@
 
     global $_eval, $_eval_last;
 
-    if ( $result <> $_eval_last )
+    if ( $result != $_eval_last )
       $_eval [] [$type] = $result;
 
     $_eval_last = $result;

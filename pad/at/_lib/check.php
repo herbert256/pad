@@ -11,7 +11,7 @@
     $field = rtrim ( $field );
 
     if ( preg_match ( '/\s/', $field  ) ) return FALSE;
-    if ( substr_count($field, '@') <> 1 ) return FALSE;
+    if ( substr_count($field, '@') != 1 ) return FALSE;
 
     padSplit ( '@', $field, $before, $after );
 
@@ -83,7 +83,7 @@
 
     $parts = explode ( $condition, $part );
 
-    if ( count ( $parts ) <> 2       ) return FALSE;
+    if ( count ( $parts ) != 2       ) return FALSE;
     if ( ! strlen ( $parts [0] )     ) return FALSE;
     if ( ! strlen ( $parts [1] )     ) return FALSE;
     if ( ! padAtValid ( $parts [0] ) ) return FALSE;

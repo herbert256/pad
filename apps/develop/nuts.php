@@ -2,9 +2,9 @@
 
   $title = "Everything";
 
-  foreach ( padAppsList () as $one ) {
-    $item = $one ['item'];
-    $items [$item] ['item'] = $item;
+  foreach ( padAppsList () as $key => $one ) {
+    $items [$key] ['app']  = $one ['app'];
+    $items [$key] ['item'] = $one ['item'];
   }
 
   ksort ($items);

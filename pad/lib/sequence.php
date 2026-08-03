@@ -221,7 +221,7 @@
 
     $loop = rand ( $start, $end );
 
-    if ( $inc <> 1 ) {
+    if ( $inc != 1 ) {
       $done = $loop - $start;
       $loop = $start + round ( $done / $inc ) * $inc;
       if ( $loop > $end )

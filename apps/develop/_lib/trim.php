@@ -10,13 +10,13 @@
       $file = $loop_info->getPathname();
       $ext  = substr($file, strrpos($file, '.')+1 );
 
-      if ( $ext <> 'php' and $ext <> 'pad' )
+      if ( $ext != 'php' and $ext != 'pad' )
         continue;
 
       $old = padFileGet ($file);
       $new = trim($old);
 
-      if ($old <> $new)
+      if ($old != $new)
         file_put_contents ( $file, $new, LOCK_EX );
 
     }

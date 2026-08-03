@@ -4,9 +4,9 @@
 
   include PAD . 'config/cache.php';
 
-  if ( $padOutputType <> 'web' )
+  if ( $padOutputType != 'web' )
     $padCache = FALSE;
-  elseif ( isset ( $_SERVER['REQUEST_METHOD'] ) and $_SERVER['REQUEST_METHOD'] <> 'GET' )
+  elseif ( isset ( $_SERVER['REQUEST_METHOD'] ) and $_SERVER['REQUEST_METHOD'] != 'GET' )
     $padCache = FALSE;
   elseif ( ! $padCacheServerAge )
     $padCache = FALSE;
