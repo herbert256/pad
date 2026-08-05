@@ -173,7 +173,7 @@ PAD runs through Apache or similar. Entry points are in `www/`.
 ?>
 ```
 
-`www/pad.php` detects the OS, derives the app name and the URL mount prefix (`$padRoot`) from the entry script's `SCRIPT_NAME`, and includes `pad/pad.php` (which defines `APP`, `DAT` and the other constants). The `www/` tree can be served at the domain root or mounted under a prefix; generated cross-app links use `$padRootExt` and follow the mount automatically.
+`www/pad.php` detects the OS, derives the app name and the URL mount prefix (`$padRoot`) from the entry script's `SCRIPT_NAME`, and includes `pad/pad.php` (which defines `APP`, `DATA` and the other constants). The `www/` tree can be served at the domain root or mounted under a prefix; generated cross-app links use `$padPath` and follow the mount automatically.
 
 ## Creating a New Application
 
@@ -976,15 +976,15 @@ Override framework settings:
 
 ## Data Storage
 
-Use the `DAT` directory for writable data:
+Use the `DATA` directory for writable data:
 
 ```php
 <?php
-  $dataFile = DAT . 'myapp/data.json';
+  $dataFile = DATA . 'myapp/data.json';
 
   // Ensure directory exists
-  if ( ! is_dir ( DAT . 'myapp' ) )
-    mkdir ( DAT . 'myapp', 0755, TRUE );
+  if ( ! is_dir ( DATA . 'myapp' ) )
+    mkdir ( DATA . 'myapp', 0755, TRUE );
 
   // Read
   $data = json_decode ( file_get_contents ( $dataFile ), TRUE );

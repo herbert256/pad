@@ -1,7 +1,7 @@
 <?php
 
   $title    = 'Todo List';
-  $dataFile = DAT . 'demo/todos.json';
+  $dataFile = DATA . 'demo/todos.json';
   $message  = '';
 
   $todos = [];

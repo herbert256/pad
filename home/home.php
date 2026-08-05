@@ -5,6 +5,6 @@
   if     ( $padOS == 'lin' ) $padHome = '/home/herbert/pad';
   elseif ( $padOS == 'dar' ) $padHome = '/Users/herbert/pad';
   elseif ( $padOS == 'win' ) $padHome = '/pad';
-  else                       die ( "Unsuported OS: $padOS" );
+  else                       die ( 'Unsuported OS: ' . php_uname ('s') );
 
 ?>

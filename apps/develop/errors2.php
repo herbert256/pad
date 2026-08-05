@@ -1,6 +1,6 @@
 <?php
 
-  $dir = new RecursiveDirectoryIterator ( DAT . 'dumps' );
+  $dir = new RecursiveDirectoryIterator ( DATA . 'dumps' );
   $dir = new RecursiveIteratorIterator  ( $dir );
 
   $list = [];
@@ -13,7 +13,7 @@
     if ( str_contains ( $path, '/error' )        ) continue;
     if ( str_contains ( $path, '/support/' )     ) continue;
 
-    $list [] = [ 'url' => substr ( str_replace ( DAT , '', $path ), 0, -11),
+    $list [] = [ 'url' => substr ( str_replace ( DATA , '', $path ), 0, -11),
                  'txt' => padFileGet ($path) ];
 
   }

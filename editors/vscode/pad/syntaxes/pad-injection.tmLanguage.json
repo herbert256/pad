@@ -1,0 +1,161 @@
+{
+    "name": "PAD (injection)",
+    "scopeName": "text.pad.injection",
+    "injectionSelector": "L:text.html.pad -meta.raw.ignore.pad -comment.block.pad -meta.embedded.pad -string.quoted.single.pad -string.quoted.double.pad",
+    "patterns": [
+        { "include": "#pad-ignore" },
+        { "include": "#pad-comment" },
+        { "include": "#pad-construct" },
+        { "include": "#pad-tag" }
+    ],
+    "repository": {
+        "pad-ignore": {
+            "begin": "(\\{)(ignore)(\\})",
+            "beginCaptures": {
+                "1": { "name": "punctuation.section.embedded.begin.pad" },
+                "2": { "name": "keyword.control.tag.pad" },
+                "3": { "name": "punctuation.section.embedded.end.pad" }
+            },
+            "end": "(\\{)(/ignore)(\\})",
+            "endCaptures": {
+                "1": { "name": "punctuation.section.embedded.begin.pad" },
+                "2": { "name": "keyword.control.tag.pad" },
+                "3": { "name": "punctuation.section.embedded.end.pad" }
+            },
+            "contentName": "meta.raw.ignore.pad",
+            "patterns": [
+                { "include": "text.html.basic" }
+            ]
+        },
+        "pad-comment": {
+            "begin": "\\{--",
+            "beginCaptures": {
+                "0": { "name": "punctuation.definition.comment.begin.pad" }
+            },
+            "end": "--\\}",
+            "endCaptures": {
+                "0": { "name": "punctuation.definition.comment.end.pad" }
+            },
+            "name": "comment.block.pad"
+        },
+        "pad-construct": {
+            "match": "@(page|content|start|end|else|tidy)@",
+            "name": "keyword.control.construct.pad"
+        },
+        "pad-tag": {
+            "begin": "\\{(?=[/A-Za-z_$%!@])",
+            "beginCaptures": {
+                "0": { "name": "punctuation.section.embedded.begin.pad" }
+            },
+            "end": "\\}",
+            "endCaptures": {
+                "0": { "name": "punctuation.section.embedded.end.pad" }
+            },
+            "name": "meta.embedded.pad",
+            "patterns": [
+                { "include": "#pad-comment" },
+                { "include": "#pad-tag" },
+                {
+                    "match": "(?<=\\{)(/?)(?:([A-Za-z_][A-Za-z0-9_]*)(:))?([A-Za-z_][A-Za-z0-9_]*)",
+                    "captures": {
+                        "1": { "name": "punctuation.definition.tag.pad" },
+                        "2": { "name": "storage.type.prefix.pad" },
+                        "3": { "name": "punctuation.separator.type.pad" },
+                        "4": { "name": "keyword.control.tag.pad" }
+                    }
+                },
+                {
+                    "match": "(?<=\\{)([A-Za-z_][A-Za-z0-9_]*)(:)(?=['\"])",
+                    "captures": {
+                        "1": { "name": "storage.type.prefix.pad" },
+                        "2": { "name": "punctuation.separator.type.pad" }
+                    }
+                },
+                {
+                    "match": "(?<=\\{)(!)([A-Za-z_][A-Za-z0-9_]*)",
+                    "captures": {
+                        "1": { "name": "keyword.operator.pad" },
+                        "2": { "name": "variable.other.pad" }
+                    }
+                },
+                {
+                    "begin": "'",
+                    "beginCaptures": {
+                        "0": { "name": "punctuation.definition.string.begin.pad" }
+                    },
+                    "end": "'",
+                    "endCaptures": {
+                        "0": { "name": "punctuation.definition.string.end.pad" }
+                    },
+                    "name": "string.quoted.single.pad",
+                    "patterns": [
+                        { "match": "\\\\.", "name": "constant.character.escape.pad" }
+                    ]
+                },
+                {
+                    "begin": "\"",
+                    "beginCaptures": {
+                        "0": { "name": "punctuation.definition.string.begin.pad" }
+                    },
+                    "end": "\"",
+                    "endCaptures": {
+                        "0": { "name": "punctuation.definition.string.end.pad" }
+                    },
+                    "name": "string.quoted.double.pad",
+                    "patterns": [
+                        { "match": "\\\\.", "name": "constant.character.escape.pad" }
+                    ]
+                },
+                {
+                    "match": "(\\$)([A-Za-z_][A-Za-z0-9_]*((\\.[A-Za-z0-9_]+)|(\\[[^\\]]*\\]))*)",
+                    "captures": {
+                        "1": { "name": "punctuation.definition.variable.pad" },
+                        "2": { "name": "variable.other.pad" }
+                    }
+                },
+                {
+                    "match": "(%)([A-Za-z_][A-Za-z0-9_]*)",
+                    "captures": {
+                        "1": { "name": "punctuation.definition.variable.pad" },
+                        "2": { "name": "variable.other.occurrence.pad" }
+                    }
+                },
+                {
+                    "match": "\\b([A-Za-z_][A-Za-z0-9_]*)(@)([A-Za-z_][A-Za-z0-9_]*)\\b",
+                    "captures": {
+                        "1": { "name": "support.function.property.pad" },
+                        "2": { "name": "punctuation.accessor.pad" },
+                        "3": { "name": "variable.parameter.pad" }
+                    }
+                },
+                {
+                    "match": "@",
+                    "name": "variable.language.placeholder.pad"
+                },
+                {
+                    "match": "\\b(?i:eq|ne|gt|lt|ge|le|and|or|xor|not|range)\\b",
+                    "name": "keyword.operator.word.pad"
+                },
+                {
+                    "match": "\\b\\d+(\\.\\d+)?\\b",
+                    "name": "constant.numeric.pad"
+                },
+                {
+                    "match": "\\b([A-Za-z_][A-Za-z0-9_]*)\\s*(=)(?![=>])",
+                    "captures": {
+                        "1": { "name": "entity.other.attribute-name.pad" },
+                        "2": { "name": "keyword.operator.assignment.pad" }
+                    }
+                },
+                {
+                    "match": "\\|",
+                    "name": "keyword.operator.pipe.pad"
+                },
+                {
+                    "match": "\\*\\*|==|!=|<>|<=|>=|[<>=+\\-*/%.]",
+                    "name": "keyword.operator.pad"
+                }
+            ]
+        }
+    }
+}

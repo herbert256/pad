@@ -31,7 +31,7 @@
 
   function padCurl ($input) {
 
-    global $padCurlLast, $padCurlStats, $padGo, $padGoExt, $padHost, $padInfo, $padPage, $padReqID, $padSesID;
+    global $padCurlLast, $padCurlStats, $padGoExt, $padHost, $padInfo, $padPage, $padReqID, $padSesID;
 
     $output             = [];
     $output ['url']     = '';
@@ -77,7 +77,7 @@
     }
 
     if ( ! strpos( $url, '://') ) {
-      $url = $padHost . $padGo  . $url;
+      $url = $padGoExt . $url;
       $output ['url'] = $url;
     }
 

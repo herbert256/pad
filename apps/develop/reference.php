@@ -1,6 +1,6 @@
 <?php
 
-  padDeleteDataDir ( DAT . 'reference' );
+  padDeleteDataDir ( DATA . 'reference' );
 
   getRegression ( '&padReference' );
 

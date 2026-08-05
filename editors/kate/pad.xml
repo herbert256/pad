@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language>
+<!-- Kate / KWrite / KDevelop / Qt Creator syntax for PAD templates -->
+<language name="PAD" section="Markup" version="1" kateversion="5.0"
+          extensions="*.pad" mimetype="" author="PAD" license="GPLv3">
+  <highlighting>
+    <list name="wordops">
+      <item>eq</item><item>ne</item><item>gt</item><item>lt</item>
+      <item>ge</item><item>le</item><item>and</item><item>or</item>
+      <item>xor</item><item>not</item><item>range</item>
+    </list>
+    <contexts>
+      <context name="Start" attribute="Normal" lineEndContext="#stay">
+        <StringDetect String="{--" context="PadComment" attribute="Comment" />
+        <RegExpr String="@(page|content|start|end|else|tidy)@" attribute="Construct" context="#stay" />
+        <RegExpr String="\{(?=[/A-Za-z_$%!@])" attribute="Brace" context="PadTag" />
+        <IncludeRules context="##HTML" />
+      </context>
+
+      <context name="PadComment" attribute="Comment" lineEndContext="#stay">
+        <StringDetect String="--}" context="#pop" attribute="Comment" />
+      </context>
+
+      <context name="PadTag" attribute="PadCode" lineEndContext="#stay">
+        <DetectChar char="}" attribute="Brace" context="#pop" />
+        <StringDetect String="{--" context="PadComment" attribute="Comment" />
+        <RegExpr String="\{(?=[/A-Za-z_$%!@])" attribute="Brace" context="PadTag" />
+        <RegExpr String="(?&lt;=\{)/?(?:[A-Za-z_][A-Za-z0-9_]*:)?[A-Za-z_][A-Za-z0-9_]*" attribute="TagName" context="#stay" />
+        <DetectChar char="'" attribute="String" context="PadStringS" />
+        <DetectChar char="&quot;" attribute="String" context="PadStringD" />
+        <RegExpr String="[$%][A-Za-z_][A-Za-z0-9_.]*(\[[^\]]*\])?" attribute="Variable" context="#stay" />
+        <RegExpr String="\b[A-Za-z_][A-Za-z0-9_]*@[A-Za-z_][A-Za-z0-9_]*\b" attribute="Property" context="#stay" />
+        <keyword String="wordops" attribute="Operator" context="#stay" />
+        <RegExpr String="\b\d+(\.\d+)?\b" attribute="Number" context="#stay" />
+        <RegExpr String="\*\*|==|!=|&lt;&gt;|&lt;=|&gt;=|[&lt;&gt;=+\-*/%.|]" attribute="Operator" context="#stay" />
+      </context>
+
+      <context name="PadStringS" attribute="String" lineEndContext="#stay">
+        <DetectChar char="\" context="PadStringEscape" attribute="String" />
+        <DetectChar char="'" attribute="String" context="#pop" />
+      </context>
+      <context name="PadStringD" attribute="String" lineEndContext="#stay">
+        <DetectChar char="\" context="PadStringEscape" attribute="String" />
+        <DetectChar char="&quot;" attribute="String" context="#pop" />
+      </context>
+      <context name="PadStringEscape" attribute="String" lineEndContext="#pop">
+        <RegExpr String="." context="#pop" attribute="String" />
+      </context>
+    </contexts>
+
+    <itemDatas>
+      <itemData name="Normal"    defStyleNum="dsNormal" />
+      <itemData name="PadCode"   defStyleNum="dsNormal" />
+      <itemData name="Comment"   defStyleNum="dsComment" />
+      <itemData name="Construct" defStyleNum="dsPreprocessor" bold="1" />
+      <itemData name="Brace"     defStyleNum="dsFunction" />
+      <itemData name="TagName"   defStyleNum="dsKeyword" bold="1" />
+      <itemData name="Variable"  defStyleNum="dsVariable" />
+      <itemData name="Property"  defStyleNum="dsBuiltIn" />
+      <itemData name="Operator"  defStyleNum="dsOperator" />
+      <itemData name="Number"    defStyleNum="dsDecVal" />
+      <itemData name="String"    defStyleNum="dsString" />
+    </itemDatas>
+  </highlighting>
+  <general>
+    <comments>
+      <comment name="multiLine" start="{--" end="--}" />
+    </comments>
+  </general>
+</language>

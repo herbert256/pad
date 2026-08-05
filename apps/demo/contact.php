@@ -1,13 +1,13 @@
 <?php
 
   $title = 'Contact Form';
-  $dataFile = DAT . 'demo/messages.json';
+  $dataFile = DATA . 'demo/messages.json';
   $successMsg = '';
   $error = '';
   $errors = [];
 
-  if ( ! is_dir ( DAT . 'demo' ) )
-    @mkdir ( DAT . 'demo', 0755, TRUE );
+  if ( ! is_dir ( DATA . 'demo' ) )
+    @mkdir ( DATA . 'demo', 0755, TRUE );
 
   $formName    = $name    ?? '';
   $formEmail   = $email   ?? '';

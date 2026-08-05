@@ -1,0 +1,178 @@
+%YAML 1.2
+---
+# Sublime Text syntax for PAD templates (*.pad)
+# HTML is highlighted normally; PAD constructs get prominent scopes.
+# Install: copy to Packages/User/ (Preferences > Browse Packages...)
+name: PAD
+scope: text.html.pad
+version: 2
+
+extends: Packages/HTML/HTML.sublime-syntax
+
+file_extensions:
+  - pad
+
+variables:
+  ident: '[A-Za-z_][A-Za-z0-9_]*'
+
+contexts:
+  # Injected into every context inherited from the HTML syntax
+  prototype:
+    - include: pad-ignore
+    - include: pad-comment
+    - include: pad-construct
+    - include: pad-tag
+
+  # The HTML syntax excludes the prototype inside attribute values, but all
+  # of them (generic, class, href, id; quoted and unquoted) funnel through
+  # this shared context - prepend the PAD rules there so {$name} works in
+  # href="?browse&app={$name}" etc.
+  tag-attribute-value-content:
+    - meta_prepend: true
+    - include: pad-comment
+    - include: pad-construct
+    - include: pad-tag
+
+  # {ignore} ... {/ignore} - plain HTML, no PAD parsing inside
+  pad-ignore:
+    - match: '(\{)(ignore)(\})'
+      captures:
+        1: punctuation.section.embedded.begin.pad
+        2: keyword.control.tag.pad
+        3: punctuation.section.embedded.end.pad
+      embed: 'scope:text.html.basic'
+      embed_scope: meta.raw.ignore.pad
+      escape: '(?=\{/ignore\})'
+    - match: '(\{)(/ignore)(\})'
+      captures:
+        1: punctuation.section.embedded.begin.pad
+        2: keyword.control.tag.pad
+        3: punctuation.section.embedded.end.pad
+
+  # {-- comment --}
+  pad-comment:
+    - match: '\{--'
+      scope: punctuation.definition.comment.begin.pad
+      push: pad-comment-body
+
+  pad-comment-body:
+    - meta_include_prototype: false
+    - meta_scope: comment.block.pad
+    - match: '--\}'
+      scope: punctuation.definition.comment.end.pad
+      pop: true
+
+  # @page@, @content@, @start@, @end@, @else@, @tidy@
+  pad-construct:
+    - match: '(@)(page|content|start|end|else|tidy)(@)'
+      captures:
+        1: punctuation.definition.construct.pad
+        2: keyword.control.construct.pad
+        3: punctuation.definition.construct.pad
+
+  # { ... } PAD tag
+  pad-tag:
+    - match: '\{(?=[/A-Za-z_$%!@])'
+      scope: punctuation.section.embedded.begin.pad
+      push: pad-tag-body
+
+  pad-tag-body:
+    - meta_include_prototype: false
+    - meta_scope: meta.embedded.pad
+    - match: '\}'
+      scope: punctuation.section.embedded.end.pad
+      pop: true
+
+    # nested tags inside a tag: {example 'x{$var}', opt{notFirst}...}
+    - include: pad-comment
+    - include: pad-tag
+
+    # tag name right after the brace, with optional type prefix
+    # {items}  {/items}  {app:mytag}  {pad:if}  {php:strlen(@)}
+    - match: '(?<=\{)(/?)(?:({{ident}})(:))?({{ident}})'
+      captures:
+        1: punctuation.definition.tag.pad
+        2: storage.type.prefix.pad
+        3: punctuation.separator.type.pad
+        4: keyword.control.tag.pad
+
+    # prefix directly followed by a string: {field:"name from users"}
+    - match: '(?<=\{)({{ident}})(:)(?=[''"])'
+      captures:
+        1: storage.type.prefix.pad
+        2: punctuation.separator.type.pad
+
+    # {!text} shorthand
+    - match: '(?<=\{)(!)({{ident}})'
+      captures:
+        1: keyword.operator.pad
+        2: variable.other.pad
+
+    # strings
+    - match: "'"
+      scope: punctuation.definition.string.begin.pad
+      push: pad-string-single
+    - match: '"'
+      scope: punctuation.definition.string.begin.pad
+      push: pad-string-double
+
+    # level and occurrence variables: $name, $user.name, $items[0], %total
+    - match: '(\$)({{ident}}((\.[A-Za-z0-9_]+)|(\[[^\]]*\]))*)'
+      captures:
+        1: punctuation.definition.variable.pad
+        2: variable.other.pad
+    - match: '(%)({{ident}})'
+      captures:
+        1: punctuation.definition.variable.pad
+        2: variable.other.occurrence.pad
+
+    # iteration properties: first@items, count@items, even@items
+    - match: '\b({{ident}})(@)({{ident}})\b'
+      captures:
+        1: support.function.property.pad
+        2: punctuation.accessor.pad
+        3: variable.parameter.pad
+
+    # the @ placeholder (current value in pipes)
+    - match: '@'
+      scope: variable.language.placeholder.pad
+
+    # word operators
+    - match: '\b(?i:eq|ne|gt|lt|ge|le|and|or|xor|not|range)\b'
+      scope: keyword.operator.word.pad
+
+    # numbers
+    - match: '\b\d+(\.\d+)?\b'
+      scope: constant.numeric.pad
+
+    # parameter assignment: name='value', rows=10
+    - match: '\b({{ident}})\s*(=)(?![=>])'
+      captures:
+        1: entity.other.attribute-name.pad
+        2: keyword.operator.assignment.pad
+
+    # pipe
+    - match: '\|'
+      scope: keyword.operator.pipe.pad
+
+    # symbol operators
+    - match: '\*\*|==|!=|<>|<=|>=|[<>=+\-*/%.]'
+      scope: keyword.operator.pad
+
+  pad-string-single:
+    - meta_include_prototype: false
+    - meta_scope: string.quoted.single.pad
+    - match: '\\.'
+      scope: constant.character.escape.pad
+    - match: "'"
+      scope: punctuation.definition.string.end.pad
+      pop: true
+
+  pad-string-double:
+    - meta_include_prototype: false
+    - meta_scope: string.quoted.double.pad
+    - match: '\\.'
+      scope: constant.character.escape.pad
+    - match: '"'
+      scope: punctuation.definition.string.end.pad
+      pop: true

@@ -4,7 +4,7 @@
   if ( ! isset ( $dir  ) ) $dir  = 'sequences';
   if ( ! isset ( $item ) ) $item = 'happy';
 
-  foreach ( file ( DAT . "reference/sequence/$dir/$item.txt", FILE_IGNORE_NEW_LINES ) as $file ) {
+  foreach ( file ( DATA . "reference/sequence/$dir/$item.txt", FILE_IGNORE_NEW_LINES ) as $file ) {
 
     list ( $app, $page ) = explode ( ';', $file );
 

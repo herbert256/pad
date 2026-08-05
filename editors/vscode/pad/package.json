@@ -1,0 +1,88 @@
+{
+    "name": "pad-lang",
+    "displayName": "PAD",
+    "description": "PAD template language support: syntax highlighting, completions, tag closing",
+    "version": "0.1.0",
+    "publisher": "herbert",
+    "engines": { "vscode": "^1.70.0" },
+    "main": "./extension.js",
+    "activationEvents": [ "onLanguage:pad" ],
+    "categories": [ "Programming Languages" ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "pad",
+                "aliases": [ "PAD" ],
+                "extensions": [ ".pad" ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "pad",
+                "scopeName": "text.html.pad",
+                "path": "./syntaxes/pad.tmLanguage.json",
+                "embeddedLanguages": {
+                    "source.js": "javascript",
+                    "source.css": "css"
+                }
+            },
+            {
+                "scopeName": "text.pad.injection",
+                "path": "./syntaxes/pad-injection.tmLanguage.json",
+                "injectTo": [ "text.html.pad" ]
+            }
+        ],
+        "snippets": [
+            { "language": "pad", "path": "./snippets/pad.code-snippets" }
+        ],
+        "commands": [
+            { "command": "pad.closeTag", "title": "PAD: Close Tag" }
+        ],
+        "keybindings": [
+            {
+                "command": "pad.closeTag",
+                "key": "alt+cmd+.",
+                "when": "editorTextFocus && editorLangId == pad"
+            }
+        ],
+        "configurationDefaults": {
+            "editor.tokenColorCustomizations": {
+                "textMateRules": [
+                    {
+                        "scope": [ "keyword.control.tag.pad", "keyword.control.construct.pad" ],
+                        "settings": { "foreground": "#C695C6", "fontStyle": "bold" }
+                    },
+                    {
+                        "scope": "storage.type.prefix.pad",
+                        "settings": { "foreground": "#C695C6", "fontStyle": "italic" }
+                    },
+                    {
+                        "scope": [ "keyword.operator.word.pad", "keyword.operator.pipe.pad", "keyword.operator.pad", "entity.other.attribute-name.pad" ],
+                        "settings": { "foreground": "#C695C6" }
+                    },
+                    {
+                        "scope": [ "punctuation.section.embedded.begin.pad", "punctuation.section.embedded.end.pad", "punctuation.definition.tag.pad" ],
+                        "settings": { "foreground": "#5FB4B4" }
+                    },
+                    {
+                        "scope": "punctuation.definition.variable.pad",
+                        "settings": { "foreground": "#EC5F66" }
+                    },
+                    {
+                        "scope": [ "variable.other.pad", "variable.other.occurrence.pad" ],
+                        "settings": { "foreground": "#F7EC6E" }
+                    },
+                    {
+                        "scope": "support.function.property.pad",
+                        "settings": { "foreground": "#6699CC" }
+                    },
+                    {
+                        "scope": "variable.language.placeholder.pad",
+                        "settings": { "foreground": "#EC5F66" }
+                    }
+                ]
+            }
+        }
+    }
+}

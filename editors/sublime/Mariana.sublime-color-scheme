@@ -1,0 +1,91 @@
+{
+    // Override for the default Mariana scheme (goes in Packages/User/).
+    // Goal: PAD code owns the purple; HTML and JavaScript move off it.
+    "rules":
+    [
+        // ---------- PAD keeps the purple, and springs out ----------
+        {
+            "scope": "meta.embedded.pad",
+            "background": "color(var(pink) alpha(0.07))"
+        },
+        // braces and construct @ signs same color as HTML's < >
+        {
+            "scope": "punctuation.section.embedded.begin.pad, punctuation.section.embedded.end.pad, punctuation.definition.construct.pad",
+            "foreground": "var(blue5)"
+        },
+        {
+            "scope": "keyword.control.tag.pad, keyword.control.construct.pad",
+            "foreground": "var(pink)",
+            "font_style": "bold"
+        },
+        {
+            "scope": "storage.type.prefix.pad",
+            "foreground": "var(pink)",
+            "font_style": "italic"
+        },
+        {
+            "scope": "keyword.operator.word.pad, keyword.operator.pipe.pad, keyword.operator.pad",
+            "foreground": "var(pink)"
+        },
+        {
+            "scope": "entity.other.attribute-name.pad",
+            "foreground": "var(pink)"
+        },
+        // PAD variables: red $ / % sigil, yellow name
+        {
+            "scope": "punctuation.definition.variable.pad",
+            "foreground": "var(red)"
+        },
+        {
+            "scope": "variable.other.pad, variable.other.occurrence.pad",
+            "foreground": "hsl(55, 90%, 70%)"
+        },
+
+        // ---------- HTML loses the purple ----------
+        // attribute names (class=, href=, ...) become soft yellow
+        {
+            "scope": "entity.other.attribute-name - entity.other.attribute-name.pad",
+            "foreground": "var(orange3)"
+        },
+        // entities (&amp; ...) become muted blue-grey
+        {
+            "scope": "text.html constant.character.entity",
+            "foreground": "var(blue6)"
+        },
+        // <!DOCTYPE html> boilerplate: muted, not purple
+        {
+            "scope": "keyword.declaration.doctype, constant.language.doctype",
+            "foreground": "var(blue6)"
+        },
+
+        // ---------- JavaScript loses the purple ----------
+        // keywords and storage (function, const, if, return, typeof ...)
+        // join the operator family (orange-red)
+        {
+            "scope": "source.js keyword, source.js storage",
+            "foreground": "var(red2)"
+        },
+        // built-in constants (Math, JSON, true, null ...) become blue
+        {
+            "scope": "source.js support.constant, source.js constant.other, source.js constant.character, source.js constant.language",
+            "foreground": "var(blue)"
+        },
+
+        // ---------- CSS loses the purple too ----------
+        // value constants (block, center, bold ...)
+        {
+            "scope": "source.css support.constant",
+            "foreground": "var(orange3)"
+        },
+        // units (px, em, %, rem ...) - green, next to the orange number
+        {
+            "scope": "source.css keyword.other.unit",
+            "foreground": "var(green)"
+        },
+        // remaining keywords (@media, !important, and ...) join the operator family
+        {
+            "scope": "source.css keyword, source.css storage",
+            "foreground": "var(red2)"
+        }
+    ]
+}

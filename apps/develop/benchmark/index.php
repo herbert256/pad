@@ -1,6 +1,6 @@
 <?php
 
-  global $padRootExt;
+  global $padHost;
 
   $padCurlStats = TRUE;
 
@@ -15,14 +15,14 @@
 
     $item = $one ['item'];
 
-    $store = DAT . "regression/" . $one ['app'] . "/$item.txt";
-    $bm    = DAT . "_benchmark/$item.json";
+    $store = DATA . "regression/" . $one ['app'] . "/$item.txt";
+    $bm    = DATA . "_benchmark/$item.json";
 
     $status = padFileGet ( $store );
     if ( $status != 'ok' )
       continue;
 
-    $curl = padCurl ( $padRootExt . $one ['app'] . "/?$item&padInclude" );
+    $curl = padCurl ( $padHost . $one ['app'] . "/?$item&padInclude" );
 
     if ( ! str_starts_with ( $curl ['result'], '2') ) continue;
     if ( ! isset           ( $curl ['stats'] )      ) continue;

@@ -1,9 +1,9 @@
 <?php
 
-  $curl = padCurl ( "$padRootExt$app/?$item&include" );
+  $curl = padCurl ( "$padHost$app/?$item&include" );
 
-  padFilePut ( DAT . "regression/$app/$item.html", $curl ['data'] );
-  padFilePut ( DAT . "regression/$app/$item.txt", 'ok' );
+  padFilePut ( DATA . "regression/$app/$item.html", $curl ['data'] );
+  padFilePut ( DATA . "regression/$app/$item.txt", 'ok' );
 
   padRedirect ( 'index' );
 

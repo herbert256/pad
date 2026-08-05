@@ -5,7 +5,7 @@
     if ( ! $dir )
       return [];
 
-    $path = DAT . "reference/sequence/$dir/";
+    $path = DATA . "reference/sequence/$dir/";
 
     if ( ! is_dir ( $path ) )
       return [];

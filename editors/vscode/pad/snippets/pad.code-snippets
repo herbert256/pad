@@ -1,0 +1,48 @@
+{
+    "PAD if block": {
+        "prefix": "padif",
+        "body": [
+            "{if \\$${1:var} ${2:eq} ${3:1}}",
+            "\t$0",
+            "{/if}"
+        ],
+        "description": "PAD if block"
+    },
+    "PAD data iteration": {
+        "prefix": "padloop",
+        "body": [
+            "{${1:items}}",
+            "\t$0",
+            "{/${1:items}}"
+        ],
+        "description": "PAD data iteration pair"
+    },
+    "PAD data definition": {
+        "prefix": "paddata",
+        "body": [
+            "{data '${1:name}'}",
+            "\t$0",
+            "{/data}"
+        ],
+        "description": "PAD data definition"
+    },
+    "PAD ignore block": {
+        "prefix": "padignore",
+        "body": [
+            "{ignore}",
+            "$0",
+            "{/ignore}"
+        ],
+        "description": "PAD ignore block (raw braces)"
+    },
+    "PAD case block": {
+        "prefix": "padcase",
+        "body": [
+            "{case \\$${1:var}}",
+            "\t{when '${2:value}'} $0",
+            "\t{else}",
+            "{/case}"
+        ],
+        "description": "PAD case/when block"
+    }
+}

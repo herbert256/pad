@@ -35,14 +35,14 @@
 
   function padPageAjax ( $page, $qry, $app='' ) {
 
-    global $padGo, $padHost, $padRootExt;
+    global $padGoExt, $padHost;
 
     $ajax = 'padAjax' . padRandomString(8);
 
     if ( $app )
-      $url = "$padRootExt$app/?$page$qry";
+      $url = "$padHost$app/?$page$qry";
     else
-      $url = "$padHost$padGo$page$qry";
+      $url = "$padGoExt$page$qry";
 
     $url = padAddIds ( $url );
 

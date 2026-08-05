@@ -2,7 +2,7 @@
 
   function padFastLink ( $padPage, $vars ) {
 
-    global $padFastLink, $padSesID, $padReqID, $padHost, $padScript;
+    global $padFastLink, $padSesID, $padReqID, $padGoExt;
 
     $vars ['padPage']  = $padPage;
     $vars ['padSesID'] = $padSesID;
@@ -15,18 +15,18 @@
       [$fast, serialize($vars)]
     );
 
-    return "$padHost$padScript?$fast";
+    return "$padGoExt$fast";
 
   }
 
   function padRedirect ( $go='', $vars=[], $app='' ) {
 
-    global $padGoExt, $padReqID, $padSesID, $padApp, $padPage, $padRootExt;
+    global $padHost, $padReqID, $padSesID, $padApp, $padPage;
 
     if ( ! $app ) $app = $padApp;
     if ( ! $go  ) $go  = $padPage;
 
-    $go = ( $go ) ? "$padRootExt$app/?$go" : "$padRootExt$app/";
+    $go = ( $go ) ? "$padHost$app/?$go" : "$padHost$app/";
 
     $go = padAddGet ( $go, 'padSesID', $padSesID );
     $go = padAddGet ( $go, 'padReqID', $padReqID );

@@ -38,7 +38,7 @@
     $target = "reference/$file.txt";
     $xref   = "$padApp;$padStartPage";
 
-    $check = DAT . $target;
+    $check = DATA . $target;
     if ( file_exists ($check) and in_array ( $xref, file ( $check, FILE_IGNORE_NEW_LINES ) ) )
       return;
 

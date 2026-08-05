@@ -2,11 +2,11 @@
 
   include APP . 'clean.php';
 
-  padDeleteDataDir ( DAT . 'reference'  );
-  padDeleteDataDir ( DAT . 'regression' );
-  padDeleteDataDir ( DAT . 'dumps'      );
-  padDeleteDataDir ( DAT . 'temp'       );
-  padDeleteDataDir ( DAT . 'examples'   );
+  padDeleteDataDir ( DATA . 'reference'  );
+  padDeleteDataDir ( DATA . 'regression' );
+  padDeleteDataDir ( DATA . 'dumps'      );
+  padDeleteDataDir ( DATA . 'temp'       );
+  padDeleteDataDir ( DATA . 'examples'   );
 
   getRegression ( '&padExamples&padReference' );
 

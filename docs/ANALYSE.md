@@ -606,7 +606,7 @@ class ValidationTest extends TestCase {
 
     public function testValidFile(): void {
         define('APP', '/app/');
-        define('DAT', '/data/');
+        define('DATA', '/data/');
         define('PAD', '/pad/');
 
         $this->assertTrue(padValidFile('/app/test.php'));
@@ -668,7 +668,7 @@ class FileRegistry {
 ```php
 class TemplateCache {
     public static function get(string $template): ?string {
-        $cacheFile = DAT . 'cache/' . md5($template) . '.php';
+        $cacheFile = DATA . 'cache/' . md5($template) . '.php';
 
         if (file_exists($cacheFile)) {
             $cached = include $cacheFile;
@@ -681,7 +681,7 @@ class TemplateCache {
     }
 
     public static function set(string $template, string $compiled): void {
-        $cacheFile = DAT . 'cache/' . md5($template) . '.php';
+        $cacheFile = DATA . 'cache/' . md5($template) . '.php';
         $content = [
             'mtime' => time(),
             'content' => $compiled,

@@ -1,12 +1,12 @@
 <?php
 
   $title = 'Guestbook';
-  $dataFile = DAT . 'demo/guestbook.json';
+  $dataFile = DATA . 'demo/guestbook.json';
   $message = '';
   $error = '';
 
-  if ( ! is_dir ( DAT . 'demo' ) )
-    @mkdir ( DAT . 'demo', 0755, TRUE );
+  if ( ! is_dir ( DATA . 'demo' ) )
+    @mkdir ( DATA . 'demo', 0755, TRUE );
 
   $entries = [];
   if ( file_exists ( $dataFile ) ) {

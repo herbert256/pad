@@ -134,7 +134,7 @@ function padFileCheck($file) {
 
 **Problems:**
 - No `realpath()` check for symlink attacks
-- No validation file is within APP/DAT/PAD boundaries
+- No validation file is within APP/DATA/PAD boundaries
 - Case sensitivity issues on some filesystems
 
 ---

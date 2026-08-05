@@ -11,7 +11,7 @@
   $padFilesGroup         = padTagParm ('group');
 
   if     ( $padFilesBase == 'app'  ) $padFilesScan = APP . "$padFilesDir";
-  elseif ( $padFilesBase == 'data' ) $padFilesScan = DAT . "$padFilesDir";
+  elseif ( $padFilesBase == 'data' ) $padFilesScan = DATA . "$padFilesDir";
   elseif ( $padFilesBase == 'pad'  ) $padFilesScan = "$padFilesDir";
   else                               $padFilesScan = "/$padFilesDir";
 

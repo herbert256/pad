@@ -1,5 +1,7 @@
 <?php
 
-  include __DIR__ . '/pad.php'
+  header ( 'Location:./pad/' );
+  
+  die();
 
 ?>

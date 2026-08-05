@@ -4,7 +4,7 @@
   if ( ! isset ( $xref ) ) $xref = 'tag';
   if ( ! isset ( $item ) ) $item = 'pad';
 
-  foreach ( padFiles ( DAT . "reference/$xref/$item" ) as $file ) 
+  foreach ( padFiles ( DATA . "reference/$xref/$item" ) as $file ) 
     $hits [$file] ['item'] = str_replace ( '.txt', '', $file );
 
   $xref = "$xref/$item";

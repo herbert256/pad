@@ -70,7 +70,7 @@ Child directories automatically inherit parent templates. The `_inits.pad` files
 ?>
 ```
 
-`www/pad.php` detects the platform, derives the app name from the request URL, and includes `pad/pad.php`, which defines the framework constants (`PAD`, `APP`, `DAT`, `APPS`, `DATA`, `COMMON`).
+`www/pad.php` detects the platform, derives the app name from the request URL, and includes `pad/pad.php`, which defines the framework constants (`PAD`, `APP`, `APPS`, `DATA`, `COMMON`).
 
 ### Hello World Example
 
@@ -284,7 +284,7 @@ Request → pad.php → config/config.php → start/enter/start.php
 
 The entry point:
 - Defines the `PAD` constant (framework path)
-- Validates `APP` and `DAT` constants
+- Validates `APP` and `DATA` constants
 - Changes to the APP directory
 - Loads configuration
 - Starts the execution engine
@@ -458,7 +458,7 @@ pad/
 ┌─────────────────────────────────────────────────────────────────┐
 │  pad.php                                                         │
 │  ├── Define PAD constant                                        │
-│  ├── Validate APP/DAT                                           │
+│  ├── Validate APP/DATA                                          │
 │  └── Include config & start                                     │
 └─────────────────────────────────────────────────────────────────┘
                               │

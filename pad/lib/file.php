@@ -10,7 +10,7 @@
 
     if ( ! str_starts_with($file, PAD) and 
          ! str_starts_with($file, APPS) and 
-         ! str_starts_with($file, DAT) )
+         ! str_starts_with($file, DATA) )
       $file = PAD . $file;
 
     $check = padFileCheck ( $file );
@@ -35,8 +35,8 @@
 
     global $padInfo, $padDirMode, $padFileMode;
 
-    if ( ! str_starts_with ( $file, DAT ) )
-      $file = DAT . $file;
+    if ( ! str_starts_with ( $file, DATA ) )
+      $file = DATA . $file;
 
     $check = padFileCheck ( $file );
     if ( $check )
@@ -108,7 +108,7 @@
 
     if ( ! file_exists     ( $dir           ) ) return;
     if ( ! is_dir          ( $dir           ) ) return;
-    if ( ! str_starts_with ( $dir, DAT      ) ) return;
+    if ( ! str_starts_with ( $dir, DATA      ) ) return;
 
     foreach ( padFiles ( $dir ) as $file )
       if ( is_dir ( "$dir/$file" ) and ! is_link ( "$dir/$file" ) )

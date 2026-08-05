@@ -1,7 +1,7 @@
 <?php
 
-  global $padRootExt;
+  global $padHost;
 
-  $yamlUrl = "{$padRootExt}pad/level_demo.yaml";
+  $yamlUrl = "{$padHost}pad/level_demo.yaml";
 
 ?>

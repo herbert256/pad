@@ -86,7 +86,7 @@
     padFilePut (
       "track/requests/$padLog.json",
         [ 'pad' => padInfo (),
-          'in'  => json_decode ( padInfoGet ( DAT . "track/requests/$padLog-entry.json" ) ),
+          'in'  => json_decode ( padInfoGet ( DATA . "track/requests/$padLog-entry.json" ) ),
           'out' => [
              'http'    => $http,
              'headers' => [
@@ -98,7 +98,7 @@
         ]
     );
 
-    unlink ( DAT . "track/requests/$padLog-entry.json" );
+    unlink ( DATA . "track/requests/$padLog-entry.json" );
 
   }
 

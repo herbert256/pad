@@ -88,7 +88,7 @@ The PAD framework itself - the template engine, tag processors, expression evalu
 
 ### www/
 
-Web server document root files. Contains PHP entry points that configure `APP` and `DAT` constants and include the PAD framework.
+Web server document root files. Contains PHP entry points that configure `APP` and `DATA` constants and include the PAD framework.
 
 - See [www/README.md](www/README.md) for web server setup.
 

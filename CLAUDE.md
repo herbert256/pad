@@ -554,9 +554,9 @@ The `www/` directory can be served as the docroot itself (apps at `http://host/<
 1. Includes `home/home.php`, which detects the OS and sets `$padHome` (the repo root) - the single place where machine-specific paths live (shell scripts source `home/home.sh` for the same purpose)
 2. Sets `$padApps` (`$padHome/apps/`) and `$padData` (`$padHome/DATA/`)
 3. Derives `$padApp` and the mount prefix `$padRoot` (e.g. `/` or `/pad/`) from `SCRIPT_NAME`/`SCRIPT_FILENAME`
-4. Includes `pad/pad.php`, which defines the constants (`PAD`, `APP`, `DAT`, `APPS`, `DATA`, `COMMON`) and runs the request
+4. Includes `pad/pad.php`, which defines the constants (`PAD`, `APP`, `APPS`, `DATA`, `COMMON`) and runs the request
 
-Cross-app URLs (menu links, `padRedirect()`, the regression harness) are built from `$padRootExt` (`$padHost . $padRoot`), so they work under any mount prefix. Page-internal links use `$padGo`/`?page` and are prefix-safe automatically.
+Cross-app URLs (menu links, `padRedirect()`, the regression harness) are built from `$padHost`, which includes the mount prefix (`scheme://host` . `$padRoot`), so they work under any mount prefix. Page-internal links use `$padGo`/`?page` (from `SCRIPT_NAME`, with `$padGoExt` as the absolute form) and are prefix-safe automatically.
 
 The CLI variant (`apps/cli/pad`) sets `$padApp = 'cli'` explicitly and includes `pad/pad.php` directly.
 
@@ -763,7 +763,7 @@ Each `{tag}` creates a new level scope. PAD maintains global variables per level
 ┌─────────────────────────────────────────────────────────────────┐
 │  pad.php                                                         │
 │  ├── Define PAD constant                                        │
-│  ├── Validate APP/DAT                                           │
+│  ├── Validate APP/DATA                                          │
 │  └── Include config & start                                     │
 └─────────────────────────────────────────────────────────────────┘
                               │

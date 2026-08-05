@@ -183,7 +183,7 @@
 
     $target = "$padInfoTraceDir/$add$location";
 
-    if ( $type == 'file' and file_exists ( DAT . $target ) )
+    if ( $type == 'file' and file_exists ( DATA . $target ) )
       return;
 
     if ( $type == 'line' )
@@ -330,8 +330,8 @@
     $dir = "$padInfoTraceDir/$dir";
 
     $new  = $dir . '-' . $childs;
-    $from = DAT . $dir;
-    $to   = DAT . $new;
+    $from = DATA . $dir;
+    $to   = DATA . $new;
 
     if ( ! file_exists ( $from ) or file_exists ( $to) )
       return;
@@ -356,8 +356,8 @@
 
     global $padInfoTraceDir;
 
-    $file1 = DAT . "$padInfoTraceDir/$dir/$file1.txt";
-    $file2 = DAT . "$padInfoTraceDir/$dir/$file2.txt";
+    $file1 = DATA . "$padInfoTraceDir/$dir/$file1.txt";
+    $file2 = DATA . "$padInfoTraceDir/$dir/$file2.txt";
 
     $file1 = str_replace ( '//', '/', $file1 );
     $file2 = str_replace ( '//', '/', $file2 );

@@ -19,8 +19,8 @@
             : $file;
 
       $items [$item] ['item']  = $item;
-      $items [$item] ['dir']   = is_dir      ( DAT . "reference/$xref/$item"     );
-      $items [$item] ['pages'] = file_exists ( DAT . "reference/$xref/$item.txt" );
+      $items [$item] ['dir']   = is_dir      ( DATA . "reference/$xref/$item"     );
+      $items [$item] ['pages'] = file_exists ( DATA . "reference/$xref/$item.txt" );
 
     }
 

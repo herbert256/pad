@@ -4,7 +4,7 @@
   if ( ! isset ( $xref ) ) $xref = 'tag/pad';
   if ( ! isset ( $item ) ) $item = 'switch';
 
-  foreach ( file ( DAT . "reference/$xref/$item.txt", FILE_IGNORE_NEW_LINES ) as $file ) {
+  foreach ( file ( DATA . "reference/$xref/$item.txt", FILE_IGNORE_NEW_LINES ) as $file ) {
 
     list ( $app, $page ) = explode ( ';', $file );
 

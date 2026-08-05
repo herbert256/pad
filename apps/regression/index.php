@@ -8,7 +8,7 @@
   }
 
   $list = [];
-  $regPath = DAT . 'regression/';
+  $regPath = DATA . 'regression/';
 
   if ( is_dir ( $regPath ) ) {
 

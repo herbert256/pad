@@ -2,12 +2,12 @@
 
   function getPage ( $page, $ignoreErrors=0, $include=1 ) {
 
-    global $padHost, $padScript;
+    global $padGoExt;
 
     if ($include) $include = '&padInclude';
     else          $include = '';
 
-    $url  = "$padHost$padScript?$page$include";
+    $url  = "$padGoExt$page$include";
     $curl = padCurl ($url);
 
     if ( ! $ignoreErrors and ! str_starts_with ( $curl ['result'], '2') )

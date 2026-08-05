@@ -1,10 +1,10 @@
 <?php
 
   $title = 'Page Counter';
-  $dataFile = DAT . 'demo/counter.json';
+  $dataFile = DATA . 'demo/counter.json';
 
-  if ( ! is_dir ( DAT . 'demo' ) )
-    @mkdir ( DAT . 'demo', 0755, TRUE );
+  if ( ! is_dir ( DATA . 'demo' ) )
+    @mkdir ( DATA . 'demo', 0755, TRUE );
 
   $data = [ 'total' => 0, 'today' => 0, 'date' => date ( 'Y-m-d' ) ];
   if ( file_exists ( $dataFile ) ) {

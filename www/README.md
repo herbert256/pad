@@ -14,7 +14,7 @@ The setup uses a centralized bootstrap pattern:
 ```
 Browser → www/demo/index.php → www/pad.php → pad/pad.php
                 ↓                   ↓
-          includes ../pad.php  sets $padApp, $padRoot   defines APP, DAT
+          includes ../pad.php  sets $padApp, $padRoot   defines APP, DATA
                                (from SCRIPT_NAME)       runs framework
 ```
 
@@ -99,9 +99,9 @@ The centralized bootstrap:
 3. Derives `$padApp` and the URL mount prefix `$padRoot` from `SCRIPT_NAME`/`SCRIPT_FILENAME` (the entry directory names the app; falls back to `pad` for the root entry point)
 4. Includes `pad/pad.php`, which defines the constants:
    - `APP` → `$padHome/apps/$padApp/`
-   - `DAT` → `$padHome/DATA/`
+   - `DATA` → `$padHome/DATA/`
 
-Cross-app links are generated from `$padRootExt` (`$padHost . $padRoot`, set in `pad/inits/host.php`), so the same tree works served at the root or under any prefix.
+Cross-app links are generated from `$padHost`, which includes the mount prefix (`scheme://host` . `$padRoot`, set in `pad/inits/host.php`), so the same tree works served at the root or under any prefix.
 
 ## Adding a New App
 
