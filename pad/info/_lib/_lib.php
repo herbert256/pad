@@ -1,5 +1,15 @@
 <?php
 
+  // Small helpers shared by all $padInfo report modes, loaded once by info/start/config.php
+  // and info/start/tag.php.
+  //
+  // padInfoPadOccur  labels the current position as "level" or "level/occurrence", leaving the
+  //                  inits (0) and exits (99999) sentinel occurrences off
+  // padInfoGet       reads a report file, returning '' instead of failing when it is absent
+  // padInfoDelete    removes a report directory and everything below it
+  //
+  // Only padInfoGet currently has callers; the other two are kept for report tooling.
+
   function padInfoPadOccur () {
 
     global $pad, $padOccur;

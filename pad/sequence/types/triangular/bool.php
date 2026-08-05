@@ -1,5 +1,12 @@
 <?php
 
+  // Membership predicate and generation path for triangular: pqBoolTriangular($n) is TRUE
+  // when n = k(k+1)/2 for a whole k - 1, 3, 6, 10, 15, 21, 28, ...
+  //
+  // Solves that as a quadratic rather than searching: k^2 + k - 2n = 0 has a whole positive
+  // root exactly when n is triangular. The only file in the type, so pqBuild() runs the
+  // whole range through it.
+
 function pqBoolTriangular ($num) {
 
     if ($num < 0)

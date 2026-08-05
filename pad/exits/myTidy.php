@@ -1,5 +1,12 @@
 <?php
 
+  // PAD's own lightweight stand-in for HTML Tidy, for when the tidy extension is not
+  // wanted or not there.
+  //
+  // Applies the $padMyTidy* switches from config/tidy.php to $padOutput in order: filter
+  // sanitizing, tabs to spaces, trim, whitespace between tags, leading indentation, empty
+  // lines, and finally all newlines. Pure text munging - it never parses the markup.
+
   if ( count ($padMyTidySanitize) ) {
 
     $padSanitizeFlags = 0;

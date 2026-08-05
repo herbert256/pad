@@ -1,5 +1,14 @@
 <?php
 
+  // Keeps the $padInfo* debug switches (stats, trace, track, xml, xref) usable.
+  //
+  // padInfoSet      defaults every switch to FALSE so later code can test them unguarded
+  // padInfoBackup   snapshots all padInfo* globals into $padInfoBackup[$padInfoCnt]
+  // padInfoRestore  drops the current padInfo* globals and puts that snapshot back
+  //
+  // Backup/restore let a tag run under its own info settings (info/start/tag.php) without
+  // leaking them; $padInfoCnt and $padInfoTraceId are excluded as they must survive.
+
   function padInfoSet ( ) {
 
     global $padInfoStats, $padInfoTrace, $padInfoTrack, $padInfoXml, $padInfoXref;

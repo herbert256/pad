@@ -1,5 +1,13 @@
 <?php
 
+  // Function build for recaman: pqRecaman($n) is the nth term of Recaman's sequence, which
+  // starts at 0 and at step i steps back by i when that lands on a new non-negative value
+  // and forward by i otherwise - 0, 1, 3, 6, 2, 7, 13, 20, 12, 21, 11, 22, 10, ...
+  //
+  // Nothing is kept between calls, so each term rebuilds the whole history and searches it
+  // with in_array; generating m terms costs on the order of m^3. Membership tests take the
+  // cheaper route through the precomputed table in generated.php.
+
 function pqRecaman($n)
 {
   if($n <= 1)

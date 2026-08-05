@@ -1,5 +1,15 @@
 <?php
 
+  // Opens a new level: increments $pad and gives the new slot a clean set of state in the
+  // parallel per-level global arrays (inits/const.php lists them all as padLevelVars).
+  //
+  // The tag's identity ($padTag, $padType, $padGiven, $padPrefix, $padPair, $padPrmType),
+  // its template text ($padBase, $padOrg, $padSource) and its two pipe halves are taken
+  // from the $pad*Set scratch variables that level/tag.php and level/pipes/*.php have just
+  // filled in; everything else - data, output, walk state, flags, save/delete lists -
+  // starts empty. Levels may nest 100 deep. inits/level.php reuses this to fabricate the
+  // root level of a template run.
+
   $pad++;
 
   if ( $pad > 100 )

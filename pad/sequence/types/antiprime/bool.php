@@ -1,5 +1,15 @@
 <?php
 
+  // Build strategy 'bool' for the antiprime sequence - the highly composite numbers, those
+  // with strictly more divisors than every smaller number: 1, 2, 4, 6, 12, 24, 36, 48, 60,
+  // 120, 180, 240, 360, ...
+  //
+  // pqBoolAntiprime() counts the divisors of n and rejects it as soon as any smaller number
+  // matches or beats that count, so a single test costs O(n sqrt n) and the sequence is
+  // only practical over small ranges - generated.php caches the 20 terms up to 7560.
+  // pqBoolAntiprimeDivisors() is the divisor count itself, walking to sqrt(a) and counting
+  // each factor pair once, or once only when the two halves coincide.
+
   function pqBoolAntiprime ($n, $p=0) {
 
     $init = pqBoolAntiprimeDivisors ($n);

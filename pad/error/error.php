@@ -1,5 +1,17 @@
 <?php
 
+  // Installs PAD's own runtime error handlers, taking over from the boot net in error/boot.php.
+  //
+  // Included by each error/types/<action>.php that wants them (all but boot and php), so the
+  // handlers are live before that action defines padErrorGo. padErrorReporting maps the
+  // $padErrorLevel setting - none, error, warning, notice, all - onto error_reporting.
+  //
+  // padErrorHandler, padErrorException and padErrorShutdown catch a PHP error, an uncaught
+  // throwable and a fatal at shutdown; each one calls padErrorGo, which is the hook the chosen
+  // $padErrorAction supplies and which decides whether the request continues or ends. The
+  // exception path also records $padException* for the dump, and the shutdown hook stands down
+  // once exits/exit.php has set $padSkipShutdown.
+
   padErrorReporting   ( $padErrorLevel );
   padErrorRestoreBoot ();
 

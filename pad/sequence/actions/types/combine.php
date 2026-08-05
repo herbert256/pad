@@ -1,5 +1,11 @@
 <?php
 
+  // combine='seq', and merge='seq' which delegates here - folds each named store into the
+  // current sequence, walking the two in step and always taking the smaller value first,
+  // so two ascending sequences come out ascending. combine keeps duplicates; merge (any
+  // $pqAction other than 'combine') skips a value that is already in the result. The
+  // result is renumbered.
+
   foreach ( $pqActionList as $pqMergeKey ) {
 
     $pqMerge1 = $pqResult;

@@ -1,5 +1,12 @@
 <?php
 
+  // Traces the start of one occurrence - one pass of a data iteration - from events/occurStart.php.
+  //
+  // Besides the 'occur start' line it keeps the child counters: every enclosing level, and the
+  // occurrence each of those is currently in, gains one child, which is the number
+  // padInfoTraceChilds later stamps onto the directory names. With $padInfoTraceDataOcc the row
+  // being iterated is traced as well and written as data-<n>.json beside it.
+
   if ( $padInfoTraceStartEndOcc )
    padInfoTrace ( 'occur', 'start' );
 

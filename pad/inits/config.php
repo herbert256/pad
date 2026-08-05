@@ -1,5 +1,19 @@
 <?php
 
+  // Assembles this request's configuration, lowest precedence first: the framework defaults
+  // in config/, then the shared _common application, then the $padInfo debug selectors, then
+  // the application's own _config/config.php.
+  //
+  // The application config is included twice on purpose. The first pass lets it choose the
+  // debug and output settings; the output selector config/output/$padOutputType.php is then
+  // applied, and the second pass gives the application the last word over whatever that
+  // selector changed. On the command line a 'web' output type is silently turned into
+  // 'console' in between.
+  //
+  // Finally any settings queued in $padSetConfig (used by exits/output/file.php to hand the
+  // next page a different output type) are folded in through inits/configSet.php, and the
+  // try/catch settings are loaded when $padErrorTry asks for them.
+
   include PAD    . 'config/config.php';
   include PAD    . 'config/sequence.php';
   include COMMON . '_config/config.php';

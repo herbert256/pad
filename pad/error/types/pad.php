@@ -1,5 +1,17 @@
 <?php
 
+  // $padErrorAction 'pad', the default: report the error the PAD way and abort with a 500.
+  //
+  // padErrorGo wraps padErrorTry so that an error raised while reporting becomes a throwable
+  // and is handled by padErrorStop (pad/lib/error.php) instead of looping. padErrorTry stores
+  // the message in $padErrorGo / $padErrorFile / $padErrorLine, marks it in the trace via
+  // padInfoTraceError, logs it when $padErrorLog, writes a dump directory when $padErrorReport,
+  // and finally calls padDump (pad/lib/dump.php) to render the PAD error page.
+  //
+  // A second error arriving while the first is still being reported is caught by the
+  // $padErrorGo guard and diverted to padErrorDouble, which only logs both messages and shows
+  // them; a third gives up and goes straight to exits/exit.php.
+
   include PAD . "error/error.php";
 
   function padErrorGo ( $error, $file, $line ) {

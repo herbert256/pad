@@ -1,5 +1,15 @@
 <?php
 
+  // Syntax check for an @ reference, run by padAt() before any lookup is attempted, so
+  // that a stray @ in ordinary text is never treated as a reference.
+  //
+  // padAtCheck demands exactly one @, no whitespace, and a non-empty path on either side
+  // that neither starts nor ends with a dot; @* is validated as if it were @1. Each part
+  // of the target must pass padAtCheckPart (numeric, alphabetic or a valid store name)
+  // and each element of the path padAtCheckNamePart, which additionally allows the *
+  // wildcard and the search forms 3<, 2> and name=value / name<>value. padAtCheckCondition
+  // vets one such comparison and returns TRUE when the operator does not occur at all.
+
  function padAtCheck ( $field ) {
 
     if ( str_ends_with ( $field, '@' ) )

@@ -1,5 +1,14 @@
 <?php
 
+  // Memcached backend for the page cache, the default $padCacheServerType: the ETag key
+  // holds the entry's age, the hashed URL key holds [age, etag], and "x<etag>" holds the
+  // body, all written with $padCacheServerAge as their expiry.
+  //
+  // Implements the padCacheInit/Etag/Url/Get/Store/Update/Delete interface that
+  // cache/inits.php and cache/exits.php call; padCacheInit opens the connection from the
+  // $padCacheMemcached* settings. With $padCacheServerNoData only the age key is written,
+  // so the cache answers 304 from a client ETag but never serves a body.
+
   function padCacheInit ($url, $etag) {
 
     global $padCacheMemcached, $padCacheMemcachedHost, $padCacheMemcachedPort;

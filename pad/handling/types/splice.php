@@ -1,5 +1,14 @@
 <?php
 
+  // Handles the splice and slice options: removes (splice) or keeps (slice) a stretch of
+  // the tag's data set.
+  //
+  // The option value is "offset" or "offset|length". With a length both numbers go
+  // straight to array_splice()/array_slice(); a positive offset on its own means that many
+  // rows from the front, a negative one that many rows counted off the end. slice keeps
+  // the original keys, splice renumbers them. Reached for slice through
+  // handling/types/slice.php, which includes this file.
+
   $padHandCount = (int) count ( $padData [$pad] );
 
   $padExplode = explode ( '|', $padHandParm, 2 );

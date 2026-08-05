@@ -1,5 +1,14 @@
 <?php
 
+  // Framework entry point: turns a caller-supplied application selection into a running request.
+  //
+  // The caller (www/pad.php for the web, apps/cli/pad for the command line) must already have
+  // set $padApps, $padApp and $padData. This file normalises those, records the request start
+  // time ($padMicro / $padHR, later reported by the stats info type), defines the path
+  // constants the rest of the engine is built on - PAD, APP, DATA, APPS, COMMON - makes the
+  // application directory both the working directory and the include path, and then hands over
+  // to start/pad.php, which boots error handling, config and the level loop.
+
   if ( ! isset ( $padMicro ) ) $padMicro = microtime ( TRUE );
   if ( ! isset ( $padHR )    ) $padHR    = hrtime    ( TRUE );
 

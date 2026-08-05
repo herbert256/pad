@@ -1,5 +1,28 @@
 <?php
 
+  // Shared helpers for the sequence subsystem (pad/sequence/, prefix pq*), used by the
+  // {sequence} tag, its actions and the individual sequence types.
+  //
+  // Which sequence, which variant:
+  //   pqSeq / pqAction  does a type directory PT/<name> or an action PA/<name>.php exist
+  //   pqBuild           picks the file inside a type directory to run - the named one, or
+  //                     loop, make, function, bool, order, build, fixed, generated
+  //   pqStore / pqPlay  classify a keyword as a store (pull, fixed, build, given) or a
+  //                     play operation (make, keep, remove, flag)
+  //
+  // Parameters: pqCorrectParms spreads a pipe-separated parameter over the three sequence
+  // parameters; pqRandomParm and pqRandomParm3 turn "a..b" and "a...b" into a random value
+  // in that range; pqActionArray takes an action's first parameter, unwrapping a single
+  // nested array; pqDone removes a handled option from the option list.
+  //
+  // Picking and reordering: pqRandom with pqRandomKeys and pqRandomDups draw $count
+  // members, with or without duplicates and in original or shuffled order; pqShuffle
+  // shuffles while keeping keys; pqRandomLy picks a random step in a loop; pqTruncate
+  // cuts members off either end; padTypeReverse reverses a number's digits.
+  //
+  // pqArray goes the other way round: it renders {sequence ...} through padCode and hands
+  // the result back to PHP as an array.
+
   function pqActionArray ( &$parms ) {
 
     $pqFirst = array_shift ( $parms );

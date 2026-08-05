@@ -1,5 +1,27 @@
 <?php
 
+  // The PAD select subsystem: builds and runs the SQL behind a {select:table} tag, so a
+  // template can walk related tables without writing any SQL.
+  //
+  // padSelect is the entry point. Every clause is taken from the tag's parameters, falling
+  // back to the table's declaration in $padSelect (padSelectGetDB, which also inherits
+  // from a base= table). The clause builders each own one part: padSelectStart
+  // (all/distinct), padSelectFields with padSelectAddFields (field list and aliases),
+  // padSelectJoin with padSelectJoinAdd (joins and their on conditions), padSelectGroup
+  // (group by, with rollup), padSelectOrder, padSelectLimit (page/rows into an offset,
+  // marked padDone so an outer pager does not apply it twice), padSelectUnion (recurses
+  // into padSelect with $unionBuild set to get the union member instead of the result),
+  // padSelectKeys and padSelectField (backtick quoting).
+  //
+  // padSelectWhere is where the automatic joining happens: besides the given where= it
+  // adds a condition for each key set at this level, and then walks up the level stack
+  // looking for enclosing select tags. For each it consults $padRelations (in both
+  // directions, and along base= chains) and, via padSelectWhereRelation,
+  // padSelectWhereKeys and padSelectWhereAdd, constrains this query by the current row of
+  // the outer one - that is what makes a nested {select:} follow the relation.
+  //
+  // Statements are collected in $_SELECT and $_UNION; the result comes back through db().
+
   function padSelect ( $table, $unionBuild = 0 ) {
 
     global $_SELECT, $_UNION, $pad, $padPrm, $padHtmlAttrJson;

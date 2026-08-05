@@ -1,5 +1,13 @@
 <?php
 
+  // Works out which play mode - make, keep, remove or flag - the tag is asking for, and turns
+  // each one found into a build strategy.
+  //
+  // A mode can arrive four ways: as an option ({sequence prime, keep}), as the resolved type,
+  // as the prefix, or as the tag name ({keep:prime}, {prime keep}, {keep prime}). All four
+  // are read here, then each of the four modes is offered in turn to inits/check/go.php,
+  // which ignores the ones that were not asked for.
+
   $pqMake   = $padPrm [$pad] ['make']     ?? '';
   $pqFlag   = $padPrm [$pad] ['flag']     ?? '';
   $pqKeep   = $padPrm [$pad] ['keep']     ?? '';

@@ -1,5 +1,15 @@
 <?php
 
+  // Resolves tag properties - the field lookups padField routes here as types 7 and 8, and
+  // the retries when a plain name matched nothing else.
+  //
+  // A name matching a file in properties/ is a built-in iteration property (first, last,
+  // current, count, even, odd and the rest); the file is included against level $padIdx and
+  // its return value is the answer. Failing that, when padField split a trailing :name or
+  // :value off the reference and passed it as $parm, the remaining $field is read as a
+  // 1-based column number into that level's current row and the matching key or value is
+  // returned. INF when neither applies.
+
   function padTag ( $field, $padIdx, $type, $parm ) {
 
     if ( file_exists ( PAD . "properties/".$field.".php" ) )

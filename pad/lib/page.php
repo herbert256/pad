@@ -1,5 +1,17 @@
 <?php
 
+  // Resolving a requested page name to a real page in the application, and fetching one
+  // page from inside another.
+  //
+  // padPageCheck  the guarded entry: rejects anything that is not a safe relative page
+  //               name (no //, no trailing /, and no /_ so the _xxx directories stay
+  //               private) before handing over to padPage
+  // padPage       walks the name segment by segment from APP down, and returns the page,
+  //               or "$page/index" when the name turned out to be a directory, or FALSE
+  // padPageAjax   returns a div plus an XMLHttpRequest that loads another PAD page into
+  //               it at the client, carrying the session and request ids along
+  // padPageGet    fetches another page server side over curl and returns its body
+
   function padPageCheck ( $page ) {
 
     if ( ! preg_match ( '/^[a-zA-Z0-9][a-zA-Z0-9_\/-]*$/', $page ) ) return FALSE;

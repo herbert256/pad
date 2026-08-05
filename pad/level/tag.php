@@ -1,5 +1,15 @@
 <?php
 
+  // Decides whether the tag is a single tag or one half of an open/close pair, and locates
+  // its closing tag.
+  //
+  // A trailing '/' ({tag /}) forces the single form, after the opening pipe has been split
+  // off. Otherwise $padOut [$pad] is scanned forward for {/<tag>, using the prefixed or
+  // sequence form of the name where one applies, skipping any match that would leave the
+  // pair unbalanced (padOpenCloseCountOne) or that is only the prefix of a longer name.
+  // A match hands over to level/pair.php; no match leaves $padPairSet FALSE and the tag is
+  // treated as single.
+
   $padPairSet    = FALSE;
   $padBaseSet    = '';
   $padPrmTypeSet = ( count($padWords) > 1 ) ? 'open' : 'none';

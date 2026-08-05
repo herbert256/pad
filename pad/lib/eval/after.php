@@ -1,5 +1,19 @@
 <?php
 
+  // Stage two of the evaluator: turn the raw tokens from padEvalParse into resolved ones.
+  // Runs twice over &$result.
+  //
+  // First pass, over 'other' tokens that are not operator words: an explicit type:name
+  // splits on the colon, a bare word is offered to padTypeFunction to see whether it names
+  // a pad/app/common function or a tag. Either way the token becomes TYPE, with the kind
+  // in [2] and a parameter-end marker in [3] for eval/type/ to fill in later.
+  //
+  // Second pass resolves everything still symbolic into a plain VAL: remaining 'other'
+  // tokens become an operator (padEval_alt for symbols like <=, padEval_txt for words like
+  // AND) or else a constant lookup; '$' asks padFieldValue, '&' padTagValue, '#'
+  // padOptValue, and hex is decoded. After this only VAL, OPR, TYPE and the structural
+  // tokens are left, which is all padEvalResult knows how to handle.
+
   function padEvalAfter ( &$result ) {
 
     foreach ($result as $k => $one)

@@ -1,5 +1,23 @@
 <?php
 
+  // Normalises any value into PAD's canonical data shape - a list of occurrences, each an
+  // associative array of named fields - which is what the occurrence loop iterates over.
+  //
+  // padData first reduces the input: NULL, FALSE, NAN, INF and empty give no occurrences,
+  // TRUE gives one empty occurrence, arrays/objects/resources are taken as they are, and a
+  // string is parsed by data/<type>.php with padContentType sniffing $type when not given.
+  // It then runs a chain of shape fixers, each returning the data untouched unless it
+  // recognises its own case:
+  //
+  //   padDataChkSimpleArray  a flat list becomes one named field per occurrence
+  //   padDataChkChkOne       a single wrapper around a numeric list is unwrapped
+  //   padDataChkDataAttr     XML attr sub-arrays are folded into their parent
+  //   padDataChkCheckRecord  one record becomes a one-occurrence list
+  //   padDataChkCheckArray   a vector of scalars becomes nested named occurrences
+  //
+  // Names for invented fields come from padDataName: the name= parameter, else
+  // $padForceDataName, toData=, or the tag's own name.
+
   function padData ( $input, $type='', $name='' ) {
 
     global $padDataSetRecord;

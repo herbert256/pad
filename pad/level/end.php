@@ -1,5 +1,15 @@
 <?php
 
+  // Reached when no '}' is left in $padOut [$pad]: the current occurrence has rendered, so
+  // either advance the level or close it down.
+  //
+  // The occurrence is banked into $padResult [$pad] (occurrence/end.php) and, while rows
+  // remain in $padData [$pad] - or a {walk} asks for another pass, or a deferred @start@ /
+  // @end@ section is still pending - control goes back to occurrence/occurrence.php.
+  // Otherwise the walk end pass, the exit callback, the end-of-level options and the
+  // closing pipe run, padResetLvl() restores the globals this level shadowed, $pad drops by
+  // one and padLevel() splices $padResult back into the parent level's text.
+
   if ( isset ( $padOccurStart [$pad] ) )
     if ( isset ( $padOccurStart [$pad] [$padOccur[$pad]] ) )
       include PAD . 'occurrence/end.php';

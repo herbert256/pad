@@ -1,5 +1,12 @@
 <?php
 
+  // Fires from level/parms/parms.php once a tag's parameters have all been parsed into
+  // $padOpt, $padPrm and the level/occurrence variable sets.
+  //
+  // For the xref it records which tag types use which option; for the xml report it adds the
+  // level's parameter block; for the trace it dumps every parameter, option and $-/%-variable
+  // assignment when $padInfoTraceParms is on.
+
   global $padInfoTrace, $padInfoTraceParms, $padInfoXml, $padInfoXref;
 
   if (  $padInfoXref )

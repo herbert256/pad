@@ -1,5 +1,19 @@
 <?php
 
+  // Runs the registered plays over one candidate term - the filter and transform stage.
+  //
+  // Included by build/one.php with the candidate in $pq, whenever the tag carried any
+  // {make}/{keep}/{remove}/{flag} option. Each $pqPlays entry names a sequence, a parm and
+  // its own build strategy; a play is evaluated by including plays/play/$pqBuild.php,
+  // which returns TRUE, FALSE, or the term that sequence has at this position.
+  //
+  // That raw answer is then reinterpreted according to the kind of play: make substitutes
+  // the returned value, keep drops the term unless it matches, remove drops it when it
+  // does, flag replaces it with 1 or 0. A FALSE outcome rejects the term and ends the
+  // chain. Every play's own answer is kept in $pqPlaysSet, which build/one.php stores so
+  // it can be published as an extra field per row. $pqSeq/$pqBuild/$pqParm belong to the
+  // main sequence and are saved and restored around the loop.
+
   $pqPlaysSet  = [];
   $pqSeqSave   = $pqSeq;
   $pqBuildSave = $pqBuild;

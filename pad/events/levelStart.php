@@ -1,5 +1,12 @@
 <?php
 
+  // Fires from level/start.php once a level is fully set up - parameters parsed, data, base
+  // and options resolved - and immediately before its occurrences are iterated.
+  //
+  // Writes the trace report's level block, and for the xref records the tag under its type
+  // (with any @property suffix stripped off) plus, for plain 'tag' types, an entry in the
+  // properties index.
+
   global $padInfoTrace, $padInfoXref;
 
   if ( $padInfoTrace )

@@ -1,5 +1,16 @@
 <?php
 
+  // Everything-at-one-level lookup: resolve the path $names against level $padIdx by
+  // trying that level's stores in turn. Included by padAtTag() for a plain names@level
+  // reference, by the any group, and level by level by at/any/tags.php.
+  //
+  // A single-name path is answered straight from the current occurrence row, the level's
+  // positional parameters, its level variables, its named options or an occurrence
+  // variable (whose value lives in $GLOBALS). A longer path is searched with padAtSearch
+  // in roughly that order, then through the level's function variables, its iteration
+  // properties and finally its whole data set. Returns INF when $padIdx is FALSE or
+  // nothing matched.
+
   if ( ! $padIdx )
     return INF;
 

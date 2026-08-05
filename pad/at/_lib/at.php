@@ -1,5 +1,24 @@
 <?php
 
+  // Resolver behind every field reference that contains an @ or a dot - {$name@users},
+  // {first@items}, {at "country.id='f0_325'@mondial"}. Reached from padField() via
+  // lib/field/at.php; $cor is a level correction added to the level a reference lands on.
+  //
+  // A reference reads as names@parts: the dot-separated $names are the path to look up,
+  // the colon-separated $parts say where to look - $first is a level number, a level or
+  // tag name, a group or a type, $second a group within that level or a store within that
+  // type. INF is the "nothing here" sentinel, passed back unchanged so a caller can tell
+  // a miss from a legitimately empty value.
+  //
+  // padAtValue tries the resolvers in order, first hit wins: padAtTag (one whole level,
+  // via at/any/tag.php), padAtLevelGroup and padAtGroups (at/groups/), padAtProperties
+  // (at/properties/), padAtType (at/types/), padAtStore ($pqStore then $padDataStore),
+  // padAtGlobals (a named array anywhere in $GLOBALS) and padAtData (a data store, built
+  // through padData() on first use). padAtValueAny expands the @* wildcard by retrying the
+  // chain at every level from $pad down; padAtSpecial searches the request superglobals on
+  // behalf of at/types/globals.php, and padAtPad would do the same for the engine's own
+  // pad* arrays but currently has no caller.
+
   function padAt ( $field, $cor=0 ) {
 
     if ( ! padAtCheck ( $field ) )

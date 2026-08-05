@@ -1,5 +1,23 @@
 <?php
 
+  // Resolves a plain, unprefixed field name by searching outwards from the current level.
+  // This is the common case behind {$name}, and the search order is what gives PAD its
+  // scoping rules:
+  //
+  //   1  a name like -2 is a relative level - return the first scalar of that level's row
+  //   2  a numeric name indexes the current level's options
+  //   3  levels $pad down to 1: the iteration row $padCurrent, then names registered by
+  //      {set} as occurrence or level variables ($padSetOcc / $padSetLvl, whose values
+  //      live in $GLOBALS)
+  //   4  $GLOBALS itself - the variables a page's .php file left behind
+  //   5  any global array that happens to carry the key, skipping pad* and pq* engine state
+  //   6  down the level stack again for tag parameters, then options, then function-level
+  //      variables
+  //
+  // $type decides which candidates count: 1/2 accept only scalars, 3/4 only arrays, 9 asks
+  // whether the value is present and NULL. A candidate of the wrong shape is skipped and
+  // the search continues. INF comes back when nothing matched at all.
+
   function padFieldLevel ( $field, $type ) {
 
     global $pad, $padCurrent, $padPrm, $padOpt, $padName, $padLvlFunVar;

@@ -1,5 +1,26 @@
 <?php
 
+  // Scope handling for the level stack: setting template variables as real PHP globals
+  // without letting them escape the tag they belong to, plus lookups up the stack.
+  //
+  // padSetGlobalLvl / padSetGlobalOcc  publish $var (level) and %var (occurrence) values
+  //                   into $GLOBALS, first recording in $padSaveLvl/$padSaveOcc what was
+  //                   there before, or in $padDeleteLvl/$padDeleteOcc that there was
+  //                   nothing. padValidVar keeps engine names out
+  // padResetLvl / padResetOcc  undo exactly that when the level or occurrence ends, which
+  //                   is what makes nesting and shadowing work
+  //
+  // padFindIdx        the nearest enclosing level running a given tag
+  // padChkLevel / padGetLevelArray  search $padCurrent outwards for a named array, so an
+  //                   inner tag can reach an outer loop's data
+  // padInsideOther    TRUE when somewhere above us is an include, get, page or example
+  // padStartAndClose  TRUE for a tag written as a single self-closing {tag/}, and it
+  //                   redirects the walk to $go so such a tag runs once
+  // padTagParm        the value of a parameter on the current tag, or $default; it also
+  //                   marks the parameter handled through padDone
+  // padDone / padIsDone  that bookkeeping - which parameters and options a tag consumed,
+  //                   so the engine can spot ones nobody looked at
+
   function padFindIdx ( $tag ) {
 
     global $pad, $padTag;

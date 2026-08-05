@@ -1,5 +1,16 @@
 <?php
 
+  // Stage four of the evaluator: reduces the tokens of one pipe segment to a single value
+  // and returns it. $value is the segment's input (the previous pipe's result, or the
+  // caller's starting value) and is threaded through as $myself so that @ and operators
+  // with a missing operand can reach it; $eval is the original text, kept only for error
+  // messages.
+  //
+  // Order matters: inject the input value, collapse [ ] arrays, collapse ( ) groups, apply
+  // operators by precedence, then concatenate whatever adjacent literals are left. What
+  // survives must be exactly one VAL token, otherwise the expression was malformed and
+  // padError says so.
+
   function padEvalResult ( $result, $value, $eval ) {
 
     padEvalValue  ( $result, $value );  padEvalTrace ( 'value1', $result );

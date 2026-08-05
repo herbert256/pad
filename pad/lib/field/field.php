@@ -1,5 +1,31 @@
 <?php
 
+  // Front door to field resolution: given a name written in a template, find the value it
+  // refers to in the current level context. Everything that reads a {$field}, an option, a
+  // tag parameter or an iteration property comes through here.
+  //
+  // The nine wrappers are one function, padField, with a numeric $type that picks both
+  // where to look and how the answer is shaped:
+  //
+  //   1 padFieldCheck   2 padFieldValue   scalar field - exists / value
+  //   3 padArrayCheck   4 padArrayValue   array field  - exists / value
+  //   5 padOptCheck     6 padOptValue     tag option, resolved via padParm
+  //   7 padTagCheck     8 padTagValue     tag property, resolved via padTag
+  //   9 padFieldNull                      is the field present and NULL
+  //
+  // A name containing @ or . is at-syntax (name@tag, dotted paths) and goes to padFieldAt,
+  // which normalises the missing half to @* and hands over to the at/ subsystem. Otherwise
+  // a leading prefix: selects the level to search - padFieldGetLevel for an explicit one,
+  // padFieldFirstParmTag for options, padFieldFirstNonTag for properties, the current level
+  // otherwise - and padFieldPrefix or padFieldLevel does the lookup.
+  //
+  // INF is the internal "not found" marker, never a value; padField retries a plain field
+  // as a property and then as an option before shaping INF into ''/FALSE for the caller.
+  // The name 'pad' is reserved and always yields $padGo, the app's own URL prefix.
+  //
+  // padRawValue, padUrlValue and padJsonEscape are output helpers on top of padFieldValue,
+  // for embedding a value in template text, in a query string and in HTML respectively.
+
   function padFieldCheck   ( $parm, $lvl=0 ) { return padField ( $parm, 1, $lvl  ); }
 
   function padFieldValue   ( $parm, $lvl=0 ) { return padField ( $parm, 2, $lvl  ); }

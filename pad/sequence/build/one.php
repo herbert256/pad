@@ -1,5 +1,19 @@
 <?php
 
+  // Turns one candidate into at most one result term - the heart of the build.
+  //
+  // Called by both iterators (build/types/type/loop.php and .../fixed.php) with the
+  // candidate in $pqLoop. Returns TRUE to keep iterating, FALSE to end the whole build:
+  // try limit exhausted, stop= value reached, rows= filled, or a float out of int range.
+  //
+  // Refreshes a random or store-driven parm, optionally replaces $pqLoop with a random
+  // pick, then produces $pq using the strategy named by $pqBuild. Plays get to filter or
+  // rewrite $pq next, then minimal/maximal, unique and skip are applied. Accepted terms go
+  // to $pqResult, with the pre-plays value in $pqOrgHit and each play's own answer in
+  // $pqPlaysHit, which sequence/exits/extra/ exposes as extra fields on the tag's data.
+  // An order build also appends every generated term to $pqOrder, since later terms are
+  // computed from earlier ones, and suppresses the terms before the requested from=.
+
   $pqTries++;
 
   if ( $pqTries > $pqTry )

@@ -1,5 +1,11 @@
 <?php
 
+  // Pipe function like(pattern): SQL LIKE matching. The pattern is translated into a regular
+  // expression, with % standing for any run of characters, _ for a single character, and
+  // \% \_ \\ for those characters taken literally. The match is anchored at both ends and
+  // case-insensitive, and the result is '1' or ''. Note that it reads $parm as a plain
+  // string while the pipe machinery always passes an array of arguments.
+
   $escape = '\\';
 
   $expr = '/((?:'.preg_quote($escape, '/').')?(?:'.preg_quote($escape, '/').'|%|_))/';

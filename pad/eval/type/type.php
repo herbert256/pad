@@ -1,5 +1,15 @@
 <?php
 
+  // Resolves one TYPE token - a type-prefixed value such as field:name or data:key - into a
+  // plain value.
+  //
+  // Included by padEvalType() with $k the token's key: [2] holds the kind and [0] the name.
+  // A kind that has a file in eval/single/ is a parameterless lookup and goes through
+  // eval/type/single.php; every other kind takes arguments and goes through eval/type/parms.php.
+  // The token is rewritten in place as a VAL, its type slots dropped, and padEvalOpr() is
+  // re-entered to carry on with the rest of the expression. $padGetName is published for the
+  // handlers that read it.
+
   global $padInfo;
 
   $kind = $result [$k] [2];

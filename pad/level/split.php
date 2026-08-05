@@ -1,5 +1,12 @@
 <?php
 
+  // Splits the level's template text on an @else@ marker belonging to this tag.
+  //
+  // Text before the marker stays in $padBase [$pad] as the true branch; text after it goes
+  // to $padFalse, which level/base.php uses when the tag turns out null or empty. A marker
+  // is only this level's if every open/close tag pair before it - the pairs found in the
+  // text plus this tag itself - is balanced, so @else@ inside a nested pair is skipped.
+
   $padOpenClose = padOpenCloseList ( $padBase [$pad] ) ;
 
   if ( $padGiven [$pad] )

@@ -1,5 +1,10 @@
 <?php
 
+  // Last step of padEvalResult: concatenates values that ended up next to each other with
+  // no operator between them, so an expression like {echo 'a' $b 'c'} yields one string.
+  // Only scalar neighbours are joined - a pair involving an array is left alone, and
+  // padEvalResult will then complain that more than one result came back.
+
   function padEvalMulti( &$result ) {
 
     $previous = NULL;

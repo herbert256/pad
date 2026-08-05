@@ -1,5 +1,11 @@
 <?php
 
+  // padParseOptions splits a tag's parameter text on commas, character by character, so
+  // that commas inside 'single quotes', "double quotes", (parentheses) or [brackets] are
+  // kept as part of one option. This is what lets an option carry a function call or a
+  // list, as in {echo $d | date('D, d M')}. Unbalanced ) or ] raises a padError and the
+  // whole option list is discarded.
+
   function padParseOptions ( $parms ) {
 
     $input  = str_split ( $parms );

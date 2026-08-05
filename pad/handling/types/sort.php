@@ -1,5 +1,14 @@
 <?php
 
+  // Handles the sort option: orders the tag's data set by one or more of its fields.
+  //
+  // The option value is a ';'-separated list of "field [ASC|DESC] [flag ...]" specs, e.g.
+  // sort="dept ASC; name NATURAL DESC"; every word that is not a direction names a PHP
+  // SORT_* flag. A bare sort, or an empty value, sorts on all fields of the first row.
+  // Each spec adds a column of values plus its direction and flags to the argument list
+  // of array_multisort(), which reorders $padData [$pad] by reference. Empty data sets
+  // return at once.
+
   if ( ! count ($padData [$pad] ) )
     return;
 

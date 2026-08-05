@@ -1,5 +1,9 @@
 <?php
 
+  // difference='seq' - the symmetric difference: the values found only in the current
+  // sequence followed by the values found only in the named store, produced by running
+  // onlyNow.php and onlyStore.php over the same input and concatenating their results.
+
   $pqTmp = $pqResult;
   include PQ . 'actions/types/onlyNow.php';
   $pqTmp1 = $pqResult;

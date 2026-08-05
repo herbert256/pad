@@ -1,5 +1,26 @@
 <?php
 
+  // Stage one of the evaluator: the tokeniser. padEvalParse walks the expression text one
+  // character at a time and fills &$result with tokens, keyed 100 apart so later stages
+  // can splice values in and drop tokens without renumbering. Each token is
+  // [0] => text, [1] => kind, and later stages add [2]/[3] for typed references.
+  //
+  // Kinds produced here: VAL (quoted string, number, hex payload), OPR (operator), '$'
+  // (field), '&' (tag), '#' (option), '$$' (the @ placeholder holding the piped value),
+  // pipe, open/close for ( ), a-open/a-close for [ ], hex, and 'other' for a bare word
+  // that only padEvalAfter can classify. An expression starting with % is not tokenised
+  // at all - it is kept whole as a printf format for padEvalValue.
+  //
+  // The two predicates decide where a $name ends: padEvalParseStart says whether the
+  // character after $ can open a name, padEvalParseValid whether a character continues
+  // one. Both are deliberately generous so name@tag, dotted paths, prefixes with : and
+  // the <, > and * wildcards of the at-syntax stay inside a single token instead of being
+  // torn apart as operators.
+  //
+  // Numbers accept a leading sign, decimals, exponents and 0x hex; strings accept both
+  // quote styles with \n \r \t \\ \' \" escapes. Whitespace and commas end the current
+  // token and are otherwise ignored, so parameter lists need no special handling.
+
   function padEvalParseStart ( $next, $next2 ) {
 
     if ( $next == '-' and ctype_xdigit($next2) )         return TRUE;

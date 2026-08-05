@@ -1,5 +1,14 @@
 <?php
 
+  // Reads the run's named parameters and their defaults - from the tag's parameters for a tag
+  // entry, from $pqSetParms for a direct one.
+  //
+  // Covers the range and its filters (from, to, sole, minimal, maximal, increment), the
+  // limits (rows, try, stop, skip) and the behaviour flags (randomly, unique, name, build,
+  // toData, negative, pull, push). Anything not given keeps a neutral default - mostly
+  // PHP_INT_MAX / PHP_INT_MIN or 0 - which later stages read as "not set": inits/limits.php
+  // tests $pqTo and $pqStop against PHP_INT_MAX exactly this way.
+
   if ( $pqEntry == 'tag')
     $pqParms = $padPrm [$pad];
   else

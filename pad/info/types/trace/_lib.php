@@ -1,5 +1,25 @@
 <?php
 
+  // The writer behind the 'trace' info mode: a human-readable execution trace laid out as a
+  // directory tree under DATA/trace/<page>/ that mirrors the nesting of the template.
+  //
+  // padInfoTrace is the single entry point - the hooks in pad/events/ and the level/ and occur/
+  // files of this mode call it with a type, an event and some info. It stamps a running
+  // $padInfoTraceId, drops events filtered out by level (padInfoTraceSkip), has padInfoTraceInfo
+  // format the fixed-width line - long info is cut off and kept whole under more/ by
+  // padInfoTraceMore - and copies it to the enabled destinations: root.txt at the top, tree.txt
+  // at every enclosing level, local.txt at the current one, one file per event kind.
+  //
+  // padInfoTraceWrite does the writing and resolves the target directory, which padInfoTraceSet
+  // composes from the parent's path plus this level's tag and padInfoTraceOccur extends with the
+  // occurrence - inits/, exits/ or a number, left out for plain single-pass levels
+  // (padInfoTraceDefault). padInfoTraceStart gives the level a scope began at.
+  //
+  // The remainder tidies up as a level or occurrence ends: padInfoTraceStatus and StatusGo write
+  // a status marker, padInfoTraceChilds renames a directory to carry its child count,
+  // padInfoTraceDeleteDir removes empty ones and padInfoTraceCheckLocal drops files that turned
+  // out identical. padInfoTraceError parks a dump beside the trace when the run fails.
+
   function padInfoTraceStart ( ) {
 
     global $padInfoTraceCnt, $padInfoTraceLvl;

@@ -1,5 +1,12 @@
 <?php
 
+  // Settings for the final HTML clean-up pass, included by exits/tidy.php just before it
+  // runs.
+  //
+  // $padTidyCcsid and $padTidyConfig are handed straight to PHP's tidy extension and apply
+  // when $padTidy is on. The $padMyTidy* flags configure PAD's own lightweight fallback
+  // (exits/myTidy.php), used when tidy is off but $padMyTidy is on.
+
   $padTidyCcsid  = 'utf8';
   $padTidyConfig = [
     'output-html'         => TRUE,

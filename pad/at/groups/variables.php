@@ -1,5 +1,11 @@
 <?php
 
+  // The variables group: look the path $names up in the variables level $padIdx declared
+  // on its tag. $padParmParse remembers per name whether it was a level variable ($var,
+  // kept in $padSetLvl) or an occurrence variable (%var, whose live value is the global
+  // of that name), so the two are gathered into one array before searching. A miss then
+  // retries $name as an ordinal into that list and as a plain variable name.
+
   global $padSetLvl, $padSetOcc, $padParmParse;
 
   $temp = [];

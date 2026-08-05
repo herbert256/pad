@@ -1,5 +1,19 @@
 <?php
 
+  // Turns XML text into a PAD data array; pulled in with include_once by data/xml.php.
+  //
+  //   padXmlToArray          strips a leading doctype/prolog, wraps the fragment in a
+  //                          synthetic <x> root so several top-level elements are legal,
+  //                          parses with SimpleXML and retries through tidy when that
+  //                          fails, then unwraps the root back off the result
+  //   padXmlToArrayIterator  walks the SimpleXML tree; a childless attribute-less element
+  //                          becomes its text, otherwise attributes become fields (a name
+  //                          clash gets an _ prefix) and children go under '_children'
+  //   padXmlToArrayCheck     folds those '_children' entries up into their parent (a name
+  //                          clash gets a _ suffix) and unwraps single-element lists
+  //
+  // Every element name is kept as a list so repeated tags iterate naturally in templates.
+
   function padXmlToArray ( $data ) {
 
     $input = str_replace ( '&nbsp;', ' ', trim($data) );

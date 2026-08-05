@@ -1,5 +1,16 @@
 <?php
 
+  // {files 'dir', mask='*.pad', recursive} scans a directory and returns it as this
+  // level's data, one occurrence per entry with the fields path, file, ext, item and dir.
+  // item is the entry relative to the scanned directory, with its extension taken off for
+  // files, so it is the name a page or template is addressed by; dir is the part of item
+  // before the last /.
+  //
+  // base= says what the directory is relative to: app for APP, data for DATA, pad for the
+  // path as given, and anything else for the filesystem root. recursive picks the
+  // recursive iterator; mask, exclude, onlyFiles, onlyDirs and includeHidden drop entries
+  // as they come by; group makes item the array key instead of a running number.
+
   $padFilesDir           = padTagParm ('dir', $padParm);
   $padFilesMask          = padTagParm ('mask');
   $padFilesOnlyFiles     = padTagParm ('onlyFiles');

@@ -1,5 +1,10 @@
 <?php
 
+  // Extra columns for a chained sequence: when this run pulled a store, copies the fields the
+  // run that filled that store left in $padSeqData[$pqPull] into the matching rows here, so
+  // the org/play/action columns of the whole chain stay visible. Fields this run already set
+  // win, so the newest values are never overwritten by the replayed ones.
+
   if ( ! $pqPull                         ) return;
   if ( ! isset ( $padSeqData [$pqPull] ) ) return;
 

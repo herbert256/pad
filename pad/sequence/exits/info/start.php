@@ -1,5 +1,10 @@
 <?php
 
+  // Info block: records where the sequence subsystem was entered. Every start/ handler stamps
+  // its own __FILE__ into $pqSetStart; this strips that back to "<kind>/<name>" (kind being
+  // tags, types or eval) and files it as $pqInfo['start/<kind>'][] = <name>, then unsets it
+  // so the next run cannot inherit it. 'unknown/type' when nothing stamped it.
+
   if ( ! isset ( $pqSetStart) )
     $pqSetStart = 'unknown/type';
 

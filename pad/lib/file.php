@@ -1,5 +1,22 @@
 <?php
 
+  // All file access by the engine and by applications goes through here, so that reads and
+  // writes stay inside the tree and get logged.
+  //
+  // padFileGet   reads a file, returning $default rather than failing. A relative path is
+  //              taken as relative to PAD, and only PAD, APPS and DATA are reachable;
+  //              php://input is the one special case, for a raw request body
+  // padFilePut   writes (or appends) under DATA only - a relative path is forced there -
+  //              creating the directory with $padDirMode and the file with $padFileMode if
+  //              needed, encoding arrays and objects as JSON, and locking the write
+  // padFileCheck the shared path guard: absolute, no .., no //, no control characters. It
+  //              returns a message on rejection and '' when the path is acceptable
+  //
+  // padDeleteDataDir removes a directory tree, but only under DATA and never following a
+  //              symlink; padFiles is scandir without . and .., padGetPath is realpath
+  //              with backslashes normalised.
+  //
+  // With info on, reads and writes are recorded through events/get.php and events/put.php.
 
   function padFileGet ( $file, $default='' ) {
 

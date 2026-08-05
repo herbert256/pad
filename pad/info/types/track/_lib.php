@@ -1,5 +1,19 @@
 <?php
 
+  // The writers of the 'track' info mode, loaded by info/types/track/start.php and called from
+  // its start and end files.
+  //
+  // padInfoTrackDbSession  counts the request against $padSesID in track_session and, when
+  //                        $padInfoTrackDbRequest is on, adds a track_request row with the page,
+  //                        duration, length, status, etag, URI, referer, address and user agent
+  // padInfoTrackDbData     stores the response body in track_data once per distinct $padEtag
+  // padInfoTrackStart      dumps everything that came in to DATA/track/requests/<log>-entry.json
+  // padInfoTrackEnd        rewrites that as <log>.json with the response added - status, PAD and
+  //                        PHP headers kept apart, length and body - and drops the entry file
+  // padInfoTrackData       saves the bare page under DATA/track/data/complete or /include
+  //
+  // All database work goes through padDb, so it lands in the PAD database, not the app's.
+
   function padInfoTrackDbSession () {
 
     global $padEtag, $padInfoTrackDbRequest, $padLen, $padReqID, $padSesID, $padStartPage, $padStop;

@@ -1,5 +1,17 @@
 <?php
 
+  // Opens and runs a level for a tag whose type has been resolved - the spine of the
+  // pipeline.
+  //
+  // In order: level/setup.php claims a new $pad slot, level/parms/ parses the parameters,
+  // level/split.php cuts off an @else@ branch, the else= and data= options are applied and
+  // $name= assignments are published as globals; then the tag handler runs guarded by
+  // try/try.php ($padTry = 'level/go'). Afterwards the level's content and iteration data
+  // are settled (base, before-pipe, data, name and handling/), the dump and app option
+  // hooks fire, a callback= is initialised and an @end@ section is put aside. Finally
+  // occurrence/occurrence.php renders the first occurrence - unless an @start@ section
+  // defers the body, or a {break}/{continue} asked to jump to an outer level.
+
   include PAD . 'level/setup.php';
 
   include PAD . 'level/parms/parms.php';

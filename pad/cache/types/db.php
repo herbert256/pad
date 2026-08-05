@@ -1,5 +1,16 @@
 <?php
 
+  // Database backend for the page cache: table 'etag' holds the age per ETag, 'url' maps
+  // the hashed request URI to its ETag and age, and 'data' holds the bodies.
+  //
+  // Implements the padCacheInit/Etag/Url/Get/Store/Update/Delete interface that
+  // cache/inits.php and cache/exits.php call. padCacheInit opens its own connection from
+  // the $padCacheDb* settings - the cache never shares the application connection - and
+  // padCacheDb runs every statement over it in PAD's own short SQL dialect.
+  //
+  // With $padCacheServerNoData only the etag table is maintained, so the cache answers
+  // 304 from a client ETag but has no url or data rows to serve a body from.
+
   function padCacheInit ($url, $etag) {
 
     global $padCacheDbConnect, $padCacheDbHost, $padCacheDbUser, $padCacheDbPassword, $padCacheDbDatabase;

@@ -1,5 +1,25 @@
 <?php
 
+  // Two unrelated jobs: "does this application resource exist" lookups, and deciding
+  // which globals belong to the application rather than to the engine.
+  //
+  // The lookups implement directory inheritance. padAppCheck walks the list from padDirs
+  // (current page directory up to the application root) and returns the first match as a
+  // path relative to APP2, so a subdirectory can override a parent. On top of it sit
+  // padAppPageCheck, padAppIncludeCheck, padAppTagCheck, padAppFunctionCheck, and the
+  // same idea for padScriptCheck, padCallBackCheck and padOptionCheck. padCommonCheck and
+  // its two helpers look in the _common application instead; padCheck is the primitive
+  // that accepts either a .pad or a .php file.
+  //
+  // padContentType sniffs a data block and names its format - list, json, yaml, xml, pad,
+  // html, range, curl, file, else csv - and may trim $content to the part it recognised.
+  //
+  // padValidStore and padStrPad split the globals: the first says a name is application
+  // data (not pad*/pq*, not a superglobal) and so may be handed to callbacks and code
+  // blocks, the second says a name is engine state that a sandbox must reset, sparing the
+  // padStr* machinery, the padStrSto stores, padLevelVars and the info counters.
+  // padValidFirstChar is the plain "starts with a letter" test.
+
   function padCommonCheck  ( $check ) { 
     
     if     ( padCommonTagCheck      ( $check ) ) return TRUE;

@@ -1,5 +1,17 @@
 <?php
 
+  // Runs an application's _callbacks/ script over a tag's data, called from
+  // callback/before.php once for 'init', once per row, once for 'exit'.
+  //
+  // Both functions do the same trick: lift every application-visible global (those
+  // padValidStore accepts) into local scope, include the callback dispatcher, then push
+  // the locals back out as globals. That is what lets a callback read and write template
+  // variables as ordinary PHP variables.
+  //
+  // padCallbackBeforeXxx  the init and exit callbacks, which see the whole data set
+  // padCallbackBeforeRow  one row, passed in and taken back out through the local $row;
+  //                       any pre-existing global $row is saved and restored around it
+
   function padCallbackBeforeXxx ($padCallbackType) {
 
     global $padOptionsCallback, $padResult, $pad, $padPrm;

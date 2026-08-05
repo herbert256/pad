@@ -1,5 +1,14 @@
 <?php
 
+  // Runs the tag itself: includes types/<type>.php and collects what it produces.
+  //
+  // Reached through try/try.php ($padTry = 'level/go') from level/start.php and
+  // walk/next.php. The handler sees $padParm (first parameter), $padContent (the text
+  // between the tags) and $padGetName; its return value lands in $padTagResult and anything
+  // it echoes in $padTagContent. Afterwards level/flags.php turns the result into this
+  // level's hit/null/else/array flags, a leading '?' in the option text runs
+  // level/ternary.php, and the dump and content= options are applied.
+
   $padParm       = $padOpt [$pad] [1] ?? '';
   $padContent    = $padBase [$pad];
   $padTagContent = '';

@@ -1,5 +1,14 @@
 <?php
 
+  // APCu backend for the page cache, i.e. the local shared-memory one: the ETag key holds
+  // the entry's age, the hashed URL key holds [age, etag], and "x<etag>" holds the body,
+  // all written with $padCacheServerAge as their TTL.
+  //
+  // Implements the padCacheInit/Etag/Url/Get/Store/Update/Delete interface that
+  // cache/inits.php and cache/exits.php call; padCacheInit has nothing to open, APCu is
+  // simply there. With $padCacheServerNoData only the age key is written, so the cache
+  // answers 304 from a client ETag but never serves a body.
+
   function padCacheInit ($url, $etag) {}
 
   function padCacheEtag ($get) {

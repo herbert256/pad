@@ -1,5 +1,14 @@
 <?php
 
+  // Parses the tag's comma-separated option list into this level's parameter state.
+  //
+  // Options taken from a closing tag are resolved first by level/close.php. Each item is
+  // split on '=' and routed by its shape: $name / %name assignments go to
+  // parms/variable.php, plain identifiers to parms/option.php, everything else to
+  // parms/parameter.php as a positional parameter - filling $padSetLvl/$padSetOcc, $padPrm
+  // and $padOpt respectively. Every item also leaves a record in $padParms [$pad], which
+  // handling/ and the trace output walk.
+
   if ( $padPrmType [$pad] == 'close' )
     include PAD . 'level/close.php';
 

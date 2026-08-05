@@ -1,5 +1,18 @@
 <?php
 
+  // Runs PAD source from inside PHP, and bridges between tags and pipe functions.
+  //
+  // padCode           renders a template string in the current variable scope and returns
+  //                   the result; the general "evaluate this PAD fragment" call
+  // padSandbox        the same, but sandboxed, reset and cleaned, so the fragment cannot
+  //                   see or leave behind variables (used for _data/ files)
+  // padStrFun         the full form, taking the sandbox/reset/clean flags plus a function
+  //                   name; start/pad/parms.php calls it for {start function=...}
+  // padFunctionAsTag  runs a pipe function as if it were a tag, by handing a synthetic
+  //                   tag/value list to padEvalType; used by types/function.php
+  // padTagAsFunction  the reverse - wraps value and parameters as {tag ...}value{/tag}
+  //                   and renders it with padCode, so a tag can be used in a pipe
+
   function padCode ( $padStrCod ) {
 
     global $padStrBld, $padStrBox, $padStrCln, $padStrRes;

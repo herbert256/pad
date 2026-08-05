@@ -1,5 +1,21 @@
 <?php
 
+  // HTML/XML cleanup through ext-tidy, plus header and output-buffer handling. Everything
+  // tidy-related degrades quietly: without the extension the data is returned untouched.
+  //
+  // padFileXmlTidy  reformats an XML file in place, and only writes it back if tidy
+  //                 actually produced something
+  // padTidy         the general pass over page output using $padTidyConfig; for a
+  //                 fragment or an included page it emits the body only
+  // padTidySmall    an aggressive minifier - drops comments and empty elements, then
+  //                 strips newlines, runs of spaces and whitespace between tags
+  //
+  // padHeader       sends a header and records it in $padHeaders for the dump, ignoring
+  //                 the call once headers have gone out
+  // padEmptyBuffers collects and closes every open output buffer into $output
+  // padCheckBuffers the same, but treats anything buffered as an error - used where the
+  //                 engine must own the output, e.g. before a redirect or a download
+
   function padFileXmlTidy ( $file ) {
 
     $options = [

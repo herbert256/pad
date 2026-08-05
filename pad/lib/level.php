@@ -1,5 +1,26 @@
 <?php
 
+  // The text surgery behind the tag loop. A level works on $padOut[$pad] and locates the
+  // current tag with $padStart[$pad] and $padEnd[$pad], the braces either side of it.
+  //
+  // padLevelEnd / padLevelStart  find the next } and then the { that opens it, which is
+  //                    how the parser always takes the innermost tag first
+  // padLevelBetween    lifts the text between those braces into $padBetween (and keeps
+  //                    the untouched original in $padOrgSet)
+  // padLevel           replaces the tag, braces included, with its result
+  // padLevelNo         puts the tag back escaped as &open;...&close;, so it is left in the
+  //                    output as literal text rather than parsed again; padLevelNoSingle,
+  //                    padLevelNoPair and padLevelNoOpen are the variants for a single
+  //                    tag, a whole pair, and just neutralising the opening brace
+  // padCommentCheck / padCommentGo  a {#...#} comment, dropped from the output
+  //
+  // Quote-aware splitters used while parsing a tag: padPipeSplit cuts at the first | that
+  // is not inside quotes, padSplitOnUnquotedColon does the same for the type prefix.
+  //
+  // padFindContinueBreak resolves the target of {continue}, {cease} and {break}: a level
+  // name, a negative offset, an absolute level number, or by default the nearest enclosing
+  // level that is not an if or case - so loop control skips over conditionals.
+
 function padSplitOnUnquotedColon ( $str ) {
 
     $len = strlen($str);

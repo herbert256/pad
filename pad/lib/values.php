@@ -1,5 +1,24 @@
 <?php
 
+  // Value coercion - the rules by which any PHP value becomes a template truth value, a
+  // piece of output, or an array.
+  //
+  // padSingleValue / padSpecialValue  is this a plain scalar that can simply be printed,
+  //                    or one of FALSE, TRUE, NULL, INF, NAN, which the engine reads as
+  //                    meaning rather than as content
+  // padMakeFlag        the truth test behind {if} and a tag's hit/miss: empty is false, an
+  //                    array is true when it holds more than the default occurrence, and a
+  //                    string is handed to padEval
+  // padMakeContent     the output form; NULL and FALSE print as nothing, TRUE as 1
+  // padToArray         casts an object or resource to an array with errors silenced
+  // padJson            json_encode with the engine's flags, never throwing
+  // padArrayNumericValues  turns numeric strings into real numbers throughout an array
+  // padConstant        a defined constant's value, else the name unchanged
+  // padFieldName       drops a leading $ from a field name
+  // padDataForcePad    rewrites a name => value map into occurrences with name and value
+  //                    fields, the shape {fields@record} iterates
+  // padDefaultData / padIsDefaultData  the single empty occurrence a tag stands in with
+  //                    when it has no data of its own, and the test for it
 
   function padArrayNumericValues ( &$parm ) {
 

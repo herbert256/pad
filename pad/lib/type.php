@@ -1,5 +1,25 @@
 <?php
 
+  // Type detection: given the name inside a {tag}, work out what kind of thing it is.
+  // level/type.php calls into here for every tag, and the answer selects the handler
+  // types/<type>.php that will run it.
+  //
+  // padTypeTag       the plain name case, resolved in priority order: application _tags/,
+  //                  the _common application, a built-in pad tag, then the shared cases
+  //                  below, and finally a pipe function used as a tag
+  // padTypeFunction  the mirror image for a name in a pipe: _functions/, built-in
+  //                  function, shared cases, then a tag used as a function. The $goTag /
+  //                  $goFunction flags stop the two from recursing into each other
+  // padTypeCommon    everything both can be: a stored sequence, bool, content block,
+  //                  select, data block, _include/ snippet, tag property, field, array,
+  //                  parameter, level variable, PHP constant, _data/ file, _scripts/
+  //                  script, PHP function, sequence type, sequence action - in that order
+  // padTypeTagCheck  used when the template gave an explicit prefix (app:, pad:, php: ...)
+  //                  - it verifies that one type instead of searching, so the prefix both
+  //                  disambiguates and asserts
+  // padTypeSeq       resolves prefixed sequence forms, where prefix and name may appear
+  //                  either way round (make:fibonacci as well as fibonacci:make)
+
   function padTypeCommon ( $item ) {
 
     global $padBoolStore, $padContentStore, $padDataStore, $padSelect, $pqStore;

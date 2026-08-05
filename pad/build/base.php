@@ -1,5 +1,15 @@
 <?php
 
+  // Builds the frame the page is rendered into: the _inits.pad and _exits.pad of every
+  // directory in $padBuildDirs, nested outermost first, with one @page@ hole left in the
+  // middle for the page itself.
+  //
+  // A directory that writes its own @page@ in _inits.pad or _exits.pad decides where the
+  // inner levels land; when neither contains one, @page@ is appended to _inits.pad so
+  // _exits.pad closes below the page. With $padCommon the result is wrapped once more in
+  // the _common app's _inits.pad. Include requests ($padInclude) get a bare '@page@' and
+  // no wrappers at all, since their output is a fragment.
+
   $padBuildBase = '@page@';
 
   if ( $padInclude )

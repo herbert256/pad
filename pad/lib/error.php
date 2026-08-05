@@ -1,5 +1,26 @@
 <?php
 
+  // The last-resort error path. Reporting an error may itself fail, so this file is built
+  // as a ladder of fallbacks: each step wraps its work in set_error_handler(padErrorThrow)
+  // and a try, and hands a further failure down to the next, quieter step. Whatever
+  // happens, the request ends through padExit(500) rather than dying mid-page.
+  //
+  // padError        what applications and the engine call. It records the caller's file
+  //                 and line and hands over to padErrorGo, whose definition comes from
+  //                 error/types/<$padErrorAction>.php (pad, boot, php, stop, exit, ignore,
+  //                 log, dump) - that is how the configured error action is selected. It
+  //                 always returns FALSE, so `return padError(...)` reads naturally
+  // padErrorThrow   converts a PHP warning or notice into an ErrorException, respecting
+  //                 the current error_reporting mask; installed around risky sections
+  // padErrorGet     file:line message of a Throwable, the standard one-line form
+  //
+  // The reporting ladder, most to least capable: padErrorStop (with its Try/Catch and the
+  // deeper padErrorStopCatch, ...CatchCatch, ...CatchCatchCatch steps), padErrorLog to the
+  // SAPI log, padErrorFile appending to DATA/error_log.txt, padErrorConsole echoing to the
+  // page, and padErrorExit which flushes the buffers and prints. Detail is only shown when
+  // padLocal() says the request is local; otherwise the visitor gets the request id alone.
+  //
+  // padErrorRestoreBoot drops PAD's handlers and lets the boot handler take over again.
 
   function padErrorThrow ( $type, $error, $file, $line ) {
 

@@ -1,5 +1,13 @@
 <?php
 
+  // Reads $data as JSON and returns it as a PAD data array. Included by padData() as
+  // data/<type>.php.
+  //
+  // Braces first have to be put back: template text reaches here with { and } already
+  // protected as &open; / &close; so the tag scanner left the JSON alone. Whatever sits
+  // outside the outermost {...} or [...] pair is then trimmed off, which lets a JSON blob
+  // embedded in surrounding text be used directly.
+
   $data = str_replace ( ['&open;', '&close;'], ['{', '}'], $data );
 
   $first1 = strpos  ($data, '{');

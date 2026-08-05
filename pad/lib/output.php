@@ -1,5 +1,22 @@
 <?php
 
+  // Sends the finished page to the browser: gzip decision, HTTP headers, body, and the
+  // early hand-back to the web server. Called from the exit path (lib/exit.php,
+  // exits/) and by the download tags.
+  //
+  // padWebSend           the one place the body is echoed. Reconciles how $padOutput is
+  //                      currently stored (cached gzipped or not) with what the client
+  //                      accepts, records $padLen, sets $padSent, then flushes and calls
+  //                      fastcgi_finish_request so shutdown work costs the user nothing
+  // padDownLoadHeaders   attachment headers for the download output type
+  // padWebHeaders        header entry point, guarded so it happens once, choosing between
+  // padWebNoHeaders      just the status code ($padWebNoHeaders mode), and
+  // padWebPadHeaders     the full set: PAD id, stats, encoding, content type and length,
+  //                      plus caching
+  // padWebStats          adds the PAD-Stats header when info stats are on
+  // padWebCacheHeaders   Cache-Control, Vary, Date, Expires and Etag, with the ages
+  //                      counted down by how long this request has already taken
+
   function padWebSend ( $stop ) {
 
     global $padCacheServerGzip, $padCacheStop, $padClientGzip, $padGzip, $padLen, $padOutput, $padSent;

@@ -1,5 +1,12 @@
 <?php
 
+  // Traces a tag as it is found in the output: the raw '{...}' text, up to 50 characters of
+  // the output preceding it, and everything that follows it - active when $padInfoTraceParse
+  // is on.
+  //
+  // Nothing includes this file at present; it belongs where level/level.php locates the tag
+  // delimiters and sets $padBetween, $padStart [$pad] and $padEnd [$pad].
+
   global $padInfoTrace;
 
   if ( ! $padInfoTrace )

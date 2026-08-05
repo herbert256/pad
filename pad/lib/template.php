@@ -1,5 +1,24 @@
 <?php
 
+  // String handling for template text: telling whether a stretch of source is balanced,
+  // and the general splitting helpers the whole engine uses.
+  //
+  // The balance group answers "may I cut here without breaking a tag pair". padOpenCloseList
+  // collects every tag that has a closing {/tag} in the string, padOpenCloseCountOne checks
+  // that one tag opens as often as it closes, padOpenCloseCount does that for a whole list,
+  // padOpenCloseOk combines them for the text following a marker, and padCheckTag is a
+  // single-tag shorthand. lib/content.php uses these to place @content@ and @else@ at the
+  // right nesting depth.
+  //
+  // padSplit    splits once on a needle, trimming both halves
+  // padBetween  extracts before/between/after around an open and close delimiter
+  // padExplode  the engine's standard explode: trims, drops empty parts, reindexes, and
+  //             restores the &pipe; &eq; &comma; escapes when splitting on | = ,
+  // padMakeSafe flattens any value to a single-line, control-character-free, length-capped
+  //             string, for log lines and error messages
+  // padGetRange turns "1..10" (or "10", or nothing) into a PHP range
+  // padGetList  splits a semicolon list, converting numeric entries to int
+
   function padOpenCloseOk ( $string, $check) {
 
     if ( strpos ( $string, $check ) === FALSE )

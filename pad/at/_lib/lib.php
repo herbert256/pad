@@ -1,5 +1,15 @@
 <?php
 
+  // Small helpers shared by the @ resolver.
+  //
+  //   padAtDataNew  defines a data store on demand through padData(), searches it, and
+  //                 drops it again when the path was not found there
+  //   padAtIdx      turns the target of a reference into a level index: a level name, a
+  //                 negative offset from $pad (shifted by $cor), a plain level number or
+  //                 a tag name, searching from the current level down; FALSE if no match
+  //   padAtKey      maps a 1-based ordinal onto the nth key of an associative array
+  //   padAtSetTag   marks the current level as type 'tag' once a property has resolved
+
    function padAtDataNew ( $name, $names ) {
 
     global $padDataStore;

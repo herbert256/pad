@@ -1,5 +1,17 @@
 <?php
 
+  // The recorder of the 'xref' info mode: builds, page by page, the answer to "which app and
+  // page uses this tag, type, function, option, property, construct or sequence?".
+  //
+  // The hooks in pad/events/ - tag, levelStart, parms, option(s), handling, start/end/else/
+  // content, functionParms, fieldClassic, sequence - call padInfoXref with a category and one
+  // or two names. It drops everything raised while an include or another page is being rendered
+  // (padInsideOther, $padPage != $padStartPage) and everything whose name does not occur in the
+  // page source captured in $padInfoXrefSource, so only what the template itself asks for is
+  // counted; sequences and non-pad tags and functions bypass that source test.
+  //
+  // padInfoXrefGo appends "<app>;<page>" to DATA/reference/<category>/<name>.txt, once per page.
+
   function padInfoXref ( $dir1, $dir2, $dir3='' ) {
 
     global $padInfoXref, $padInfoXrefSource, $padPage, $padStartPage;

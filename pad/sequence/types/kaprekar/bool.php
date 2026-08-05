@@ -1,5 +1,13 @@
 <?php
 
+  // Build strategy 'bool' for the kaprekar sequence: pqBoolKaprekar() is TRUE when the
+  // digits of n squared can be cut into a left and a right part that add back up to n -
+  // 297^2 = 88209 and 88 + 209 = 297. The terms are 1, 9, 45, 55, 99, 297, 703, 999, ...
+  //
+  // It counts the digits of n squared, then tries every cut position, skipping the one
+  // whose power of ten equals n itself so that a number like 10 cannot qualify on its
+  // trailing zeros. 1 is taken as a member by definition.
+
 function pqBoolKaprekar($n, $p=0)
 {
     if ($n == 1)

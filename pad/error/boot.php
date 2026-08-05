@@ -1,5 +1,21 @@
 <?php
 
+  // The boot-time error net: installed by start/pad.php before config, lib or the engine
+  // exist, so a failure there still gives a controlled 500 instead of a blank page.
+  //
+  // Saves the previous settings in $padDisplayErrors / $padErrorReporting (error/types/php.php
+  // restores them) and registers padBootHandler, padBootException and padBootShutdown, plus
+  // padBootError for a deliberate abort; all four funnel into padBootStop.
+  //
+  // padBootStop first offers the failure to padClaudeError (error/claude.php), then discards
+  // every output buffer, sends 500 and prints the message via padShowErrorLocal - or, off-box,
+  // logs it and echoes only a request id (padShowErrorRemote). A failure while doing that lands
+  // in padBootStopCatch / padBootProblems; padBootExit ends the request through padExit if lib
+  // is loaded, else through exits/exit.php. $padBootShutdown marks the net as spent, so the
+  // shutdown hook stays quiet once padErrorRestoreBoot or a normal exit has run.
+  //
+  // padLocal, defined here, is the engine-wide "CLI or localhost request" test.
+
   $padDisplayErrors  = ini_set ('display_errors', 0);
   $padErrorReporting = error_reporting (E_ALL);
 

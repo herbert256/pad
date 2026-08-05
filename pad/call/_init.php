@@ -1,5 +1,8 @@
 <?php
 
+  // Opening half of a call: clears $padCallPHP and $padCallOB, fires the 'call' event and
+  // starts the output buffer that will capture whatever the included file echoes.
+
   global $padInfo;
 
   $padCallPHP = $padCallOB = '';

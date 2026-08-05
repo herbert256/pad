@@ -1,5 +1,11 @@
 <?php
 
+  // $padInfo selector 'none': the mirror image of all.php, switching every debug facility and
+  // every sub-flag off.
+  //
+  // Useful as the first word of a $padInfo list to wipe the slate before naming the few
+  // things wanted, e.g. padInfo=none,trace.
+
   $padInfoTrack            = FALSE;
   $padInfoXml              = FALSE;
   $padInfoStats            = FALSE;

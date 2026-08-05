@@ -1,5 +1,22 @@
 <?php
 
+  // The renderer of the 'xml' info mode, run once by info/types/xml/end.php when the page is
+  // finished. Nothing here is called while the page runs.
+  //
+  // padInfoXml walks $padInfoXmlEvents in the order the engine produced them and hands each to
+  // padInfoXmlLevelStart, padInfoXmlLevelEnd, padInfoXmlOccurStart or padInfoXmlOccurEnd, which
+  // look the level up in $padInfoXmlTree and decide whether it becomes an element with children
+  // or a single self-closing line, and which attributes it carries - size, result, parm, type,
+  // source. padInfoXmlLevelParms writes the <parms> block when a level has more than one
+  // parameter; occurrences only get an <occurs> block when there really is more than one.
+  //
+  // padInfoXmlOpen, padInfoXmlLine and padInfoXmlClose keep $padInfoXmlDepth for the indentation
+  // and go through padInfoXmlWrite, which appends a line to $padInfoXmlFile; padInfoXmlMore
+  // escapes the attributes.
+  //
+  // Compact mode strips the attributes and occurrences and skips levels that produced no output,
+  // leaving a bare skeleton of the processing tree.
+
   function padInfoXml () {
 
     global $padInfoXmlEvents, $padInfoXmlFile;

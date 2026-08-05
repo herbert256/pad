@@ -1,5 +1,25 @@
 <?php
 
+  // Fetching remote (and local) content for the {curl} tag, padPageGet and the curl data
+  // type. Everything goes through padCurl, which always returns the same array shape -
+  // url, input, options, result, type, info, headers, cookies, data (plus ERROR on
+  // failure) - and leaves a copy in $padCurlLast.
+  //
+  // padCurl takes either a plain URL or an array with url, get, post, user/password,
+  // cookies, headers and raw options. Its notable behaviour:
+  //   - a name with no scheme is resolved first as a _data/ file, and only then treated
+  //     as a page of this application ($padGoExt)
+  //   - a URL on our own $padHost gets the session and request cookies, so a PAD page
+  //     fetching another PAD page stays in the same request chain
+  //   - the response is split on the reported header size; headers, Set-Cookie values and
+  //     a content type ('html', 'xml', 'json', 'csv', 'yaml') are picked out, falling back
+  //     to the filename in Content-Disposition and then to padContentType on the body
+  //   - with $padCurlStats set the callee's PAD-Stats header is decoded into ['stats']
+  //
+  // padNoCurl is the fallback when ext-curl is missing: it just reads the URL as a file.
+  // padCurlOpt sets a default that the caller's own options can override, and padCurlError
+  // records the failure in the same array with result 999 instead of throwing.
+
   function padNoCurl ( $output ) {
 
     set_error_handler ( 'padErrorThrow' );

@@ -1,5 +1,27 @@
 <?php
 
+  // Everything the engine shows or files when a request dies: the {dump} tag, the 'dump'
+  // error action, and the snapshots under DATA/dumps/<app>/.
+  //
+  // padDump is the entry point (padDumpTry inside an error handler, ending in padExit 500).
+  // It closes any open HTML, then picks an audience: padDumpConsole for CLI, padDumpLocal
+  // for a local request - the full report inline - and padDumpRemote for anyone else, who
+  // sees only the request id while the report goes to disk.
+  //
+  // The report is assembled from single-topic collectors, each printing one block:
+  // padDumpInfo (the error), padDumpStack / padDumpStackGo (backtraces, engine frames
+  // shown apart from application ones), padDumpLevel / padDumpGetLevel (every level of the
+  // tag stack with its tag, type, parameters, content and flags), padDumpApp, padDumpXXX
+  // (globals by prefix), padDumpCurl, padDumpSQL, padDumpHeaders, padDumpRequest,
+  // padDumpInput, padDumpFiles, padDumpFunctions, padDumpConstants, padDumpGlobals,
+  // padDumpPhpInfo. padDumpFields sorts $GLOBALS into config, info, ids, PHP superglobals,
+  // level, pad and pq groups; padDumpLines prints, with padDumpClean and padDumpShort
+  // cutting values down to one readable line.
+  //
+  // padDumpToDir writes the same blocks as separate files (padDumpToDirGo buffers each
+  // collector, padDumpFile and padDumpFilePut store them). Its Catch layers, like those in
+  // lib/error.php, keep a failure while dumping from replacing the real error.
+
   function padDump ( $error='' ) {
 
     set_error_handler ( 'padErrorThrow' );

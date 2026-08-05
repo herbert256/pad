@@ -1,5 +1,14 @@
 <?php
 
+  // $padInfo selector 'trace': enables the execution trace (info/types/trace/) with a
+  // readable default set of detail flags rather than everything.
+  //
+  // On are the root level, line numbers, local tags, the start/end markers for levels and
+  // occurrences, and the content each level produced; off are the noisier per-tag internals
+  // - the tree, types, parse/parms/options, flags, data and the store/eval/sql/curl event
+  // lines. Also included directly by tags/trace.php, so a {trace} tag traces just its own
+  // part of the page with exactly these settings.
+
   $padInfoTrace            = TRUE;
 
   $padInfoTraceLines       = TRUE;

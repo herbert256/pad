@@ -1,5 +1,15 @@
 <?php
 
+  // Renders the variable tag forms - {$x}, {!x}, {#x}, {&x}, {?x} - without a new level.
+  //
+  // Reached from level/level.php through try/try.php ($padTry = 'level/var'). The name runs
+  // up to the first '|', anything after it is the pipe expression; a second '$' ({$$x})
+  // means one round of indirection. The leading character picks the source: field, raw
+  // (unescaped) field, tag option, tag property, or url parameter. A name that does not
+  // exist is an error unless the pipe starts with 'optional'. Plain fields additionally run
+  // through the $padDataDefaultStart and $padDataDefaultEnd chains from config (sanitize by
+  // default), and padLevel() splices the value straight back into the surrounding text.
+
   $padPipe = strpos ( $padBetween, '|' );
 
   if ( $padPipe ) {

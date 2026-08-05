@@ -1,5 +1,14 @@
 <?php
 
+  // Works out the timings of the 'stats' info mode and publishes them.
+  //
+  // Splits the elapsed time into total, boot (up to $padMicro), usr (engine work) and call
+  // ($padAppTime, time spent in application PHP), leaving them in $padInfoStatsInfo and, encoded,
+  // in $padInfoStatsJson - which padWebStats (pad/lib/output.php) sends as the PAD-Stats header.
+  //
+  // Reached either from info/end/config.php or, earlier, from padWebStats itself when the
+  // headers go out first; events/stats.php then feeds the same numbers into the trace.
+
   global $padInfoStatsInfo, $padInfoStatsJson, $padInfoStatsStarted;
 
   if ( ! isset ( $padInfoStatsStarted ) )

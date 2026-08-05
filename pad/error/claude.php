@@ -1,5 +1,15 @@
 <?php
 
+  // Machine-readable error output for local tooling: when the request comes from the CLI or
+  // from curl on ::1 (padClaudeCheck), padClaudeError answers with a 500 and a JSON body
+  // holding the message, file, line, backtrace and every global - bucketed by padClaudeFields
+  // into pad (pad*), sequence (pq*), php (_*) and application variables - then exits.
+  //
+  // Included first of all by start/pad.php, so it is available to the boot net. padBootStop
+  // calls padClaudeError ahead of any human-facing output, and inits/error.php uses
+  // padClaudeCheck to force $padErrorAction to 'boot' for such requests, keeping this path
+  // in charge instead of the configured error action.
+
   function padClaudeCheck () {
 
     $addr  = $_SERVER ['REMOTE_ADDR']     ?? '';

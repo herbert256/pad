@@ -1,5 +1,18 @@
 <?php
 
+  // File backend for the page cache, under $padCacheFile: a url/<hash> file holds the
+  // ETag of the page last built for that URL, an etag/<etag> file holds the body, and the
+  // file's mtime is the entry's age.
+  //
+  // Implements the backend interface cache/inits.php and cache/exits.php call -
+  // padCacheInit (nothing to open here), padCacheEtag, padCacheUrl, padCacheGet,
+  // padCacheStore, padCacheUpdate, padCacheDelete - on top of the local helpers
+  // padCacheExists, padCacheTouch, padCacheChkDir, padCacheDeleteFile and padCacheTime,
+  // which prefix every path with $padCacheFile and create directories on demand.
+  //
+  // With $padCacheServerNoData only an empty timestamp file is kept per ETag, so the cache
+  // can still answer 304 but never serves a body.
+
   function padCacheInit ($url, $etag) {}
 
   function padCacheEtag ($etag) {

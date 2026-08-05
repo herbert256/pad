@@ -1,5 +1,14 @@
 <?php
 
+  // Gathers the arguments of a type that takes parameters, then dispatches to
+  // eval/parms/$kind.php.
+  //
+  // The tokens after the type token, up to the end position the parser recorded in [3] (or just
+  // the next token when it recorded none), are collected into $parm and removed from $result.
+  // A VAL token sitting immediately before the type is what is being piped in, so it becomes
+  // $value and is consumed too; otherwise the segment's own input $myself is used. Returns
+  // whatever the eval/parms/ handler produces.
+
   if ( $result [$k] [3] == 0 ) {
     $padEvalNextKey = padEvalNextKey ( $result, $k );
     $result [$k] [3] = ( $padEvalNextKey and $padEvalNextKey <= $end ) ? $padEvalNextKey + 1 : 0;

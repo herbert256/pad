@@ -1,5 +1,12 @@
 <?php
 
+  // $padInfo selector 'all': switches on every debug facility at once.
+  //
+  // Reached as config/info/all.php from inits/config.php (or inits/configSet.php) for each
+  // comma-separated word in $padInfo. Enables all five info types - track, xml, stats, trace,
+  // xref - and then every sub-flag each of them honours, so nothing the engine can record is
+  // left out. Expensive; none.php is its mirror image.
+
   $padInfoTrack            = TRUE;
   $padInfoXml              = TRUE;
   $padInfoStats            = TRUE;

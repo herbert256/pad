@@ -1,5 +1,10 @@
 <?php
 
+  // Earlier single-file version of the debug info block, now split over exits/info.php and
+  // exits/info/{start,actions,options,plays}.php. Nothing includes it any more, and it has
+  // drifted from the live copies (it explodes $pqStartParts, which is never set, and keys
+  // $pqInfo as 'start<x>' rather than 'start/<x>'). Kept for reference only.
+
   if ( ! $padInfo )
     return;
 

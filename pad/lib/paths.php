@@ -1,5 +1,23 @@
 <?php
 
+  // Directory, file name and URL construction.
+  //
+  // padDirs          the search order behind directory inheritance: the current page's
+  //                  directory first, then each parent, ending at the application root.
+  //                  Every _tags/, _include/, _data/ ... lookup walks this list
+  // padDir           the directory part of $padPage; padPath is APP plus $padDir
+  // padCorrectPath   normalises Windows backslashes
+  // padValidatePath  rejects empty paths, .. and control characters
+  // padFileName      assembles an output file name from the {file} tag globals - name,
+  //                  optional directory, optional date, timestamp and random suffix,
+  //                  then the extension
+  // padDataFileName  finds a _data/ file by bare name, trying the known extensions in
+  //                  turn (xml, json, yaml, csv, php, curl, sql) up the padDirs chain and
+  //                  finally in the _common application; returns '' when nothing matches
+  // padDataFileData  loads such a file through types/_go/local.php
+  // padAddGet        appends one urlencoded key=value, picking ? or & as needed
+  // padAddIds        appends the session and request ids, so links keep the request chain
+
   function padDirs () {
 
     global $padDir;

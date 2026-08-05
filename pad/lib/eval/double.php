@@ -1,5 +1,11 @@
 <?php
 
+  // Deals with two operators standing next to each other, which precedence alone cannot
+  // resolve because the first one has no right-hand operand. The first of the pair is
+  // applied "alone" - both its operands being $myself, the pipe input - and the scan
+  // restarts until no adjacent pair is left. Called by padEvalOpr before it starts working
+  // through the precedence list.
+
   function padEvalDouble ( &$result, $myself, $start, $end) {
 
     $previous = NULL;

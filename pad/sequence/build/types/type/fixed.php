@@ -1,5 +1,15 @@
 <?php
 
+  // The fixed iterator: walks the already-known term list in $pqFixed, offering each entry
+  // to build/one.php.
+  //
+  // Shared by every store-style strategy - fixed, build, given and pull - and by the second
+  // pass of the randomly= fallback. Here from/to select a 1-based slice of the list rather
+  // than a value range, and the try limit is lifted since nothing is being searched for.
+  // An increment greater than 1 is honoured by skipping that many entries after each
+  // candidate, unless the increment was already consumed by the sequence type itself; a
+  // random increment (increment=a...b) is re-rolled every step.
+
   include PQ . 'build/randomly/init.php';
 
   $pqSkipNow   = 0;

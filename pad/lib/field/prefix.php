@@ -1,5 +1,16 @@
 <?php
 
+  // Resolves the field half of a prefix:field name against a single container, rather than
+  // searching outwards the way padFieldLevel does.
+  //
+  // padFieldPrefix picks the container: a level whose name= matches the prefix supplies its
+  // current iteration row, otherwise a global array of that name is tried, otherwise the
+  // row of level $idx that padField already worked out - or $GLOBALS at level 0.
+  //
+  // padFieldSearch does the actual read: objects and resources are cast to arrays first,
+  // and a hit still has to match what the caller asked for - types 1 and 2 want a scalar,
+  // 3 and 4 an array. A missing key or the wrong shape both give INF, the not-found marker.
+
   function padFieldPrefix ( $field, $idx, $type, $prefix ) {
 
     if ( $prefix and ! is_numeric ( $prefix) ) {

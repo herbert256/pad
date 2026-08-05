@@ -1,5 +1,15 @@
 <?php
 
+  // Framework-wide configuration defaults - one place listing every $pad* setting an
+  // application may override.
+  //
+  // Loaded first by start/pad.php and again by inits/config.php, always before _common's
+  // and the application's own _config/config.php, so every value here is only a starting
+  // point. Covers error action/level/logging, the $padInfo debug mode, $padOutputType,
+  // caching, the two database connections (the engine's own 'pad' database and the
+  // application database), file and directory modes, date formats, session variables, the
+  // default data pipelines, tidy, the select subsystem, and misc request options.
+
   $padErrorAction    = 'pad';
 
   $padErrorLevel     = 'all';

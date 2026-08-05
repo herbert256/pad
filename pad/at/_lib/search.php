@@ -1,5 +1,17 @@
 <?php
 
+  // The path walker every at/ lookup ends in: given an array and the dot-separated $names
+  // of an @ reference, return the value at that path or INF.
+  //
+  // padAtSearch tries the path at this level first (padAtSearchGo) and then, unless
+  // $noDeep is set, recurses into every nested array whose key is a valid store name,
+  // skipping pad* keys so the engine's own state is not walked. padAtSearchGo steps
+  // through the path one name at a time, resolving an ordinal key via padAtKey, the *
+  // wildcard via padAtSearchAny (a random element, or the first one whose remaining path
+  // matches) and a comparison such as id=5 or name<>bob via padAtSearchCondition, which
+  // returns the key of the first row satisfying it. padAtSearchIdx covers the positional
+  // forms 3< (third from the start) and 2> (second from the end).
+
   function padAtSearch ( $current, $names, $noDeep = 0 ) {
 
     $check = padAtSearchGo ( $current, $names );

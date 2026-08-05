@@ -1,5 +1,11 @@
 <?php
 
+  // Handles the trim option: drops $padHandCnt rows from the front and/or the back of the
+  // tag's data set.
+  //
+  // Which end is trimmed comes from the accompanying both, left and right options; both is
+  // assumed when none of them is given. pqTruncate() does the actual cutting.
+
   $padHandBoth  = $padPrm [$pad] ['both']  ?? 0;
   $padHandLeft  = $padPrm [$pad] ['left']  ?? 0;
   $padHandRight = $padPrm [$pad] ['right'] ?? 0;

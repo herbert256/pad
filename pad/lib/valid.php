@@ -1,5 +1,18 @@
 <?php
 
+  // Name and path validators. They are the engine's gatekeepers: a name that fails here
+  // is not treated as a tag, type or variable, and a path that fails is never opened.
+  //
+  // padValid      a general tag/type name, letters then letters, digits, _ : # - or any
+  //               name carrying an @ property (padAtCheck), as in first@items
+  // padValidTag   the tag form of the same test
+  // padValidType  a bare type name, letters only
+  // padValidVar   an application variable: identifier, and never a pad-prefixed name, so
+  //               request input and templates cannot overwrite engine state
+  // padAtValid    one part either side of an @ in a property reference
+  // padValidFile  a file path: safe characters only, no .. or dot segments, and it must
+  //               live under APP, DATA or PAD
+
   function padValid ( $name ) {
 
     if ( trim ( $name ) == '' )

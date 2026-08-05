@@ -1,5 +1,18 @@
 <?php
 
+  // Encoding, hashing and id-generation helpers used across the engine.
+  //
+  // padEscape / padUnescape are the important pair: they swap PAD's syntax characters
+  // ({ } | = , @) for &open;-style entities and back, which is how literal text survives
+  // the tag parser - the ignore option and JSON in attributes rely on it. padUnescape
+  // also restores the @else@ marker.
+  //
+  // The rest are small utilities: padJsonForHtmlAttr (JSON safe inside an HTML attribute,
+  // for {select} and {reactData}), padMD5 with its helpers padPack, padUnpack, padBase64
+  // and padUnbase64 (a 22-character URL-safe digest used for etags and cache keys, with
+  // padMD5Unpack giving the hex form back), padRandomString / padRandomChar (keys for
+  // fast links and ajax element ids), and padZip / padUnzip (gzip for cached output).
+
   function padJsonForHtmlAttr ( $input ) {
   
     return padEscape ( htmlspecialchars ( json_encode ( $input ), ENT_QUOTES, 'UTF-8' ) );
