@@ -1,4 +1,18 @@
-<h3><a href="?index&go">TEST</a></h3>
+<h3><a href="?index&go{if $only eq 'all'}&only=all{/if}">TEST</a></h3>
+
+<p>
+  {if $only eq 'all'}
+    <b>All</b>
+  @else@
+    <a href="?index&only=all">All</a>
+  {/if}
+  &nbsp;|&nbsp;
+  {if $only eq 'tests'}
+    <b>Regression tests</b>
+  @else@
+    <a href="?index">Regression tests</a>
+  {/if}
+</p>
 
 {list}
 
@@ -15,7 +29,7 @@
       {elseif $status eq 'empty'}   style="color:black;background-color: #ffc0cb;"
       {/if} 
 
-      href="?show{?app}{?item}">{$item | cut ''}</a>
+      href="{$link}">{$label}</a>
 
     &nbsp; &nbsp;
 

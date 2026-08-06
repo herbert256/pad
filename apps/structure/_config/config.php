@@ -28,9 +28,7 @@
   $padDirMode  = 0755;
   $padFileMode = 0644;
 
-  $padFmtDate      = 'Y-m-d';
-  $padFmtTime      = 'H:i:s';
-  $padFmtTimestamp = 'Y-m-d H:i:s';
+  $padFmtDate = 'Y-m-d';
 
   $padSessionVars = [];
 

@@ -1,0 +1,45 @@
+<p>
+  <b>{$summary}</b> - {$verdict}
+</p>
+
+<p>
+  {$intro} Every case states the output the engine is supposed to produce. A row marked FAILED
+  means the framework changed: either the change is wrong, or the case needs updating with it.
+  Cases live in <code>apps/regression/regression/_cases/{$group}/</code>.
+</p>
+
+{if $failedCount gt 0}
+
+  <h3>Failed</h3>
+
+  <table border="1" cellpadding="4" cellspacing="0">
+    <tr><th>file</th><th>case</th><th>template</th><th>expected</th><th>got</th></tr>
+    {tests}
+      {if $failed eq 1}
+        <tr>
+          <td>{$group}</td>
+          <td>{$name}</td>
+          <td style="vertical-align:top">{echo $code | ignore}</td>
+          <td><code>{echo $want | ignore}</code></td>
+          <td><code>{echo $got | ignore}</code></td>
+        </tr>
+      {/if}
+    {/tests}
+  </table>
+
+{/if}
+
+<h3>All cases</h3>
+
+<table border="1" cellpadding="4" cellspacing="0">
+  <tr><th>file</th><th>case</th><th>template</th><th>result</th><th>status</th></tr>
+  {tests}
+    <tr>
+      <td>{$group}</td>
+      <td>{$name}</td>
+      <td style="vertical-align:top">{echo $code | ignore}</td>
+      <td><code>{echo $got | ignore}</code></td>
+      <td>{$status}</td>
+    </tr>
+  {/tests}
+</table>

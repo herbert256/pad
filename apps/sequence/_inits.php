@@ -15,6 +15,9 @@
   $nows ['reference'] ['text']  = 'Reference';
   $nows ['reference'] ['now']   = 'reference';
 
+  // The regression suite for this subsystem lives with the other framework suites, in the
+  // regression application under regression/sequence.
+
   $title = 'Sequences';
 
   if ( isset ( $nows [$padPage] ) )
