@@ -33,7 +33,6 @@
   $padInfoTraceLocal       = FALSE;
   $padInfoTraceTypes       = FALSE;
   $padInfoTraceMore        = FALSE;
-  $padInfoTraceXref        = FALSE;
 
   $padInfoTraceStartEnd    = FALSE;
   $padInfoTraceStartEndLvl = FALSE;
@@ -50,19 +49,11 @@
   $padInfoTraceInitsExits  = FALSE;
 
   $padInfoTraceTypesDir    = FALSE;
-  $padInfoTraceRequest     = FALSE;
 
-  $padInfoTraceSession     = FALSE;
   $padInfoTraceBuild       = FALSE;
 
   $padInfoTraceParse       = FALSE;
   $padInfoTraceParms       = FALSE;
-  $padInfoTraceOptions     = FALSE;
-
-  $padInfoTraceStartLvl    = FALSE;
-  $padInfoTraceStartOcc    = FALSE;
-  $padInfoTraceEndLvl      = FALSE;
-  $padInfoTraceEndOcc      = FALSE;
 
   $padInfoTraceContent     = FALSE;
   $padInfoTraceTrue        = FALSE;

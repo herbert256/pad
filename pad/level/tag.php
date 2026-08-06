@@ -15,10 +15,20 @@
   $padPrmTypeSet = ( count($padWords) > 1 ) ? 'open' : 'none';
 
   if ( substr($padBetween, -1) == '/') {
+
     $padBetween = substr($padBetween, 0, -1);
     include PAD . 'level/pipes/start.php';
     include PAD . 'level/between.php';
+
+    // The name is resolved again, because level/level.php resolved it before the slash came
+    // off. With options that made no difference - the slash sat at the end of the options and
+    // the first word was already the name - but with none at all the slash was part of the
+    // name, {box/} was looked up as a tag called "box/", and nothing claimed it.
+
+    include PAD . 'level/type.php';
+
     return;
+
   }
 
   if ( $padTypeSeq )

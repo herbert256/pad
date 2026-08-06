@@ -5,11 +5,17 @@
   // Most important is $pad, the current nesting level, which starts at -1 meaning "no level
   // yet"; inits/level.php then opens the root level. The rest are the accumulating request
   // state: the output being built ($padOutput, $padLen, $padEtag, $padStop), the restart
-  // request, the counters used by strings, evals and info, and the caches for data and
+  // request, the counters used by strings and info, and the caches for data and
   // providers.
   //
   // The pqStore / padLastPush / padLastPull guards keep a sequence store alive across a
-  // restart, and $padPost / $padInclude record how the request arrived.
+  // restart, and $padInclude records how the request arrived.
+  //
+  // The four stores of padStrSto are declared here rather than on first write. A nested pass
+  // that runs inside a PHP function body - padCode() and padSandbox() - binds the globals it
+  // can see at the moment it opens, so a store that does not exist yet is never bound, and
+  // start/start/resetPad.php cannot empty what is not set either. Writing {data 'x'} then
+  // reading {x} would land in two different scopes.
 
   $pad          = -1;
   $padLvlId     = 0;
@@ -21,22 +27,22 @@
   $padLen       = 0;
   $padTime      = $_SERVER ['REQUEST_TIME'];
   $padCacheStop = 0;
-  $padPageLevel = [];
   $padInclude   = isset ( $_REQUEST ['padInclude'] ) ? TRUE : FALSE;
   $padStrCnt    = -1;
   $padStrFunCnt = 0;
   $padInfo      = '';
   $padInfoCnt   = 0;
-  $padEvalCnt   = -1;
 
-  $padData         = [];
-  $padProviders    = [];
-  $padProvidersLvl = [];
+  $padData      = [];
+  $padProviders = [];
 
   if ( ! isset ( $pqStore )     ) $pqStore     = [];
   if ( ! isset ( $padLastPush ) ) $padLastPush = '';
   if ( ! isset ( $padLastPull ) ) $padLastPull = '';
 
-  $padPost = ( isset ( $_SERVER['REQUEST_METHOD'] ) and $_SERVER['REQUEST_METHOD'] == 'POST' );
+  $padBetweenOrg   = $padBetweenOrg   ?? '';
+  $padDataStore    = $padDataStore    ?? [];
+  $padContentStore = $padContentStore ?? [];
+  $padBoolStore    = $padBoolStore    ?? [];
 
 ?>

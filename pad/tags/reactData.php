@@ -22,8 +22,7 @@
 
   padArrayNumericValues ( $padReact );
 
-  $padProviders    [$padReactId] = $padReact;
-  $padProvidersLvl [$padReactId] = $pad;
+  $padProviders [$padReactId] = $padReact;
 
   return '<div id="' 
        . $padReactId

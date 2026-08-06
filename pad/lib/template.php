@@ -170,12 +170,32 @@
     $p1 = $parts[0] ?? '';
     $p2 = $parts[1] ?? '';
 
-    if ( $p2 )
-      return range ( $p1, $p2, $increment );
-    elseif ( $p1 )
-      return range ( 1, $p1, $increment );
-    else
-      return range ( 1, 10, $increment );
+    if     ( $p2 ) { }
+    elseif ( $p1 ) { $p2 = $p1; $p1 = 1;  }
+    else           { $p1 = 1;   $p2 = 10; }
+
+    // range() counts in steps, so a step of zero or no step at all never arrives anywhere and
+    // is an error rather than an empty answer; a step given the wrong way round is the same
+    // walk in reverse, which range() works out from the two ends by itself.
+
+    if ( ! is_numeric ( $increment ) or ! (int) $increment )
+      $increment = 1;
+
+    // '1..z' asks for a range between a number and a letter, which has no meaning; both ends
+    // have to be of one kind, and if they are not there are no values to answer with.
+
+    if ( is_numeric ( $p1 ) != is_numeric ( $p2 ) )
+      return [];
+
+    $increment = abs ( $increment );
+
+    // A step wider than the two ends are apart cannot be taken even once, which range() calls
+    // an error; the whole distance is the widest step that means anything here.
+
+    if ( is_numeric ( $p1 ) and abs ( $p2 - $p1 ) and $increment > abs ( $p2 - $p1 ) )
+      $increment = abs ( $p2 - $p1 );
+
+    return range ( $p1, $p2, $increment );
 
   }
 

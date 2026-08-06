@@ -9,16 +9,24 @@
   // calls padClaudeError ahead of any human-facing output, and inits/error.php uses
   // padClaudeCheck to force $padErrorAction to 'boot' for such requests, keeping this path
   // in charge instead of the configured error action.
+  //
+  // The command line is recognised by the SAPI rather than by REMOTE_ADDR being absent. A
+  // missing REMOTE_ADDR is normal for the CLI but is not proof of it - a server or proxy
+  // arrangement that does not set it would have opened this channel, and everything it
+  // reports, to whoever asked.
 
   function padClaudeCheck () {
+
+    if ( PHP_SAPI === 'cli' )
+      return TRUE;
 
     $addr  = $_SERVER ['REMOTE_ADDR']     ?? '';
     $agent = $_SERVER ['HTTP_USER_AGENT'] ?? '';
 
-    if ( ! $addr or $addr == '::1' and str_contains($agent, 'curl') )
+    if ( $addr == '::1' and str_contains ( $agent, 'curl' ) )
       return TRUE;
-    else
-      return FALSE;
+
+    return FALSE;
 
   }
 

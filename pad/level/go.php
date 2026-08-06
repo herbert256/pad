@@ -40,7 +40,12 @@
   if ( padTagParm ('dump') )
     include PAD . 'options/dump.php';
 
-  if ( $padTagContent )
+  // Tested against '' rather than for truth: a tag whose whole output is the single character
+  // 0 has a falsy $padTagContent in PHP, and testing it for truth dropped that output on the
+  // floor - {echo 0} printed nothing at all, as did any count, total or difference that came
+  // out zero.
+
+  if ( $padTagContent !== '' )
     padContentMerge ( $padContent, $padFalse, $padTagContent, $padHit [$pad] );
 
   if ( padTagParm ('content') ) {

@@ -54,7 +54,11 @@
   if ( padOpenCloseOk ( $padBase[$pad], '@start@') )
     return include PAD . 'level/start_end/start1.php';
 
-  if ( count ( $padData [$pad] ) and $padBase [$pad] )
+  // The base is tested against '' rather than for truth: a level whose whole template is the
+  // single character 0 is falsy in PHP, and testing it for truth skipped the occurrence
+  // altogether, so the level rendered nothing.
+
+  if ( count ( $padData [$pad] ) and $padBase [$pad] !== '' )
     include PAD . 'occurrence/occurrence.php';
 
 ?>

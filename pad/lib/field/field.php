@@ -36,7 +36,7 @@
 
   function padOptCheck     ( $parm )         { return padField ( $parm, 5        ); }
 
-  function padOptValue     ( $parm )         { return padField ( $parm, 6        ); }
+  function padOptValue     ( $parm, $lvl=0 ) { return padField ( $parm, 6, $lvl  ); }
 
   function padTagCheck     ( $parm         ) { return padField ( $parm, 7        ); }
 
@@ -69,7 +69,7 @@
         $prefix = '';
 
       if     ( $prefix                   ) $idx = padFieldGetLevel ($prefix);
-      elseif ( in_array ( $type, [5,6] ) ) $idx = padFieldFirstParmTag ();
+      elseif ( in_array ( $type, [5,6] ) ) $idx = padFieldFirstParmTag ($lvl);
       elseif ( in_array ( $type, [7,8] ) ) $idx = padFieldFirstNonTag ($lvl);
       else                                 $idx = $pad;
 

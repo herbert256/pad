@@ -18,8 +18,6 @@
 
     padSplit ( '=', $padPrmOne, $padPrmName, $padPrmValue );
 
-    $padParmsSet = '';
-
     if ( in_array    ( $padPrmName [0], ['$','%'] ) and
          padValidVar ( substr ( $padPrmName, 1 ) )  and
          strlen      ( $padPrmValue ) )

@@ -4,8 +4,7 @@
   //
   // A null result iterates nothing; an else result is trimmed to a single occurrence so the
   // @else@ branch renders exactly once; a hit that returned an array becomes the data
-  // itself. The outcome is normalised by padData(), and $padCount [$pad] and $padDefault
-  // [$pad] cache its size and whether it is still the one-row placeholder.
+  // itself. The outcome is normalised by padData().
 
   if ( $padNull [$pad] )
 
@@ -21,8 +20,6 @@
 
     $padData [$pad] = $padTagResult;
 
-  $padData    [$pad] = padData          ( $padData [$pad] );
-  $padCount   [$pad] = count            ( $padData [$pad] );
-  $padDefault [$pad] = padIsDefaultData ( $padData [$pad] );
+  $padData [$pad] = padData ( $padData [$pad] );
 
 ?>

@@ -29,6 +29,5 @@
   $padCacheDbPassword      = 'cache';
 
   $padCacheFile            = DATA . 'cache/';
-  $padCacheFileMode        = 755;
 
 ?>

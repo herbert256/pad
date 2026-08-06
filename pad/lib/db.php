@@ -15,8 +15,8 @@
   //     "CHECK table WHERE ..." form), FIELD (one scalar), RECORD (one assoc row), ARRAY
   //     or SELECT (rows, keyed by an id column when the query returns one), INSERT (the
   //     new id, else the row count), UPDATE/DELETE/REPLACE/SET/TRUNCATE/LOAD (row count)
-  //   - every statement is appended to $_SQL and the row count left in $padDbRowsFound;
-  //     failures go through padError, and events/sql.php logs the query when info is on
+  //   - every statement is appended to $_SQL; failures go through padError, and
+  //     events/sql.php logs the query when info is on
 
   function db ( $sql, $vars = [] ) {
 
@@ -61,7 +61,7 @@
 
   function padDbPart2 ( $padSqlConnect, $sql, $vars ) {
 
-    global $_SQL, $pad, $padDataSetRecord, $padDbRowsFound, $padInfo, $padPrm;
+    global $_SQL, $pad, $padDataSetRecord, $padInfo, $padPrm;
 
     $input = $sql;
 
@@ -115,7 +115,7 @@
     if ( ! $query )
       padError ( 'SQL: ' . mysqli_errno ( $padSqlConnect ) . ': ' . mysqli_error ( $padSqlConnect ) . ' / '. $sql );
 
-    $padDbRowsFound = $rows = mysqli_affected_rows($padSqlConnect);
+    $rows = mysqli_affected_rows($padSqlConnect);
 
     if ( $rows > 0 and ($command == 'field' or $command == 'record') )
       $fields = mysqli_fetch_assoc ( $query );

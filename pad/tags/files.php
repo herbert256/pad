@@ -40,9 +40,7 @@
 
   foreach ( $padFilesIterator as $padFilesFile ) {
 
-    $padFilesPath = $padFilesFile->getPathname();
     $padFilesName = $padFilesFile->getFilename();
-    $padFilesExt  = $padFilesFile->getExtension();
 
     if ( $padFilesOnlyFiles       and ! $padFilesFile->isFile()                     ) continue;
     if ( $padFilesOnlyDirs        and ! $padFilesFile->isDir()                      ) continue;

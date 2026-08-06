@@ -12,13 +12,17 @@
   //
   // Parameters: pqCorrectParms spreads a pipe-separated parameter over the three sequence
   // parameters; pqRandomParm and pqRandomParm3 turn "a..b" and "a...b" into a random value
-  // in that range; pqActionArray takes an action's first parameter, unwrapping a single
-  // nested array; pqDone removes a handled option from the option list.
+  // in that range, both through pqRandomBetween, which takes the two ends in either order -
+  // "9..2" is the same range as "2..9" rather than an error; pqActionArray takes an action's
+  // first parameter, unwrapping a single nested array; pqDone removes a handled option from
+  // the option list.
   //
   // Picking and reordering: pqRandom with pqRandomKeys and pqRandomDups draw $count
   // members, with or without duplicates and in original or shuffled order; pqShuffle
   // shuffles while keeping keys; pqRandomLy picks a random step in a loop; pqTruncate
-  // cuts members off either end; padTypeReverse reverses a number's digits.
+  // cuts members off either end, and cuts nothing for a count below 1 - taking 0 off the
+  // right would otherwise slice to 0 and leave nothing at all; padTypeReverse reverses a
+  // number's digits.
   //
   // pqArray goes the other way round: it renders {sequence ...} through padCode and hands
   // the result back to PHP as an array.
@@ -46,14 +50,14 @@
 
   function pqRandomParm ( &$parm ) {
 
-    if ( str_contains ( $parm, '..' ) ) {
+    if     ( str_contains ( $parm, '...' ) ) $split = '...';
+    elseif ( str_contains ( $parm, '..'  ) ) $split = '..';
+    else                                     return;
 
-      padSplit ( '..', $parm, $from, $to );
+    padSplit ( $split, $parm, $from, $to );
 
-      if ( is_numeric ( $from ) and is_numeric ( $to ) )
-        $parm = mt_rand ( $from, $to );
-
-    }
+    if ( is_numeric ( $from ) and is_numeric ( $to ) )
+      $parm = pqRandomBetween ( $from, $to );
 
   }
 
@@ -62,9 +66,21 @@
     padSplit ( '...', $parm, $from, $to );
 
     if ( is_numeric ( $from ) and is_numeric ( $to ) )
-      return mt_rand ( $from, $to );
+      return pqRandomBetween ( $from, $to );
     else
       return $parm;
+
+  }
+
+  function pqRandomBetween ( $from, $to ) {
+
+    $from = (int) $from;
+    $to   = (int) $to;
+
+    if ( $from <= $to )
+      return mt_rand ( $from, $to );
+    else
+      return mt_rand ( $to, $from );
 
   }
 
@@ -292,6 +308,9 @@
   }
 
   function pqTruncate ( $array, $side, $count ) {
+
+    if ( $count < 1 )
+      return $array;
 
     if ( $side == 'left' )
       return array_slice ( $array, $count );

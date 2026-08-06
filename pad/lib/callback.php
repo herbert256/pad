@@ -14,7 +14,7 @@
 
   function padCallbackBeforeXxx ($padCallbackType) {
 
-    global $padOptionsCallback, $padResult, $pad, $padPrm;
+    global $padResult, $pad, $padPrm;
 
     $padVarsBefore = [];
     foreach ($GLOBALS as $padK => $padV)
@@ -42,7 +42,7 @@
 
   function padCallbackBeforeRow ( &$padRowParm ) {
 
-    global $padOptionsCallback, $padResult, $pad, $padPrm;
+    global $padResult, $pad, $padPrm;
 
     if ( isset( $GLOBALS ['row'] ) ) {
       $padRowSave = TRUE;

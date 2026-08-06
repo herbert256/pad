@@ -217,7 +217,7 @@
   function padInfoTraceOccur ( $pad ) {
 
     global $padOccur;
-    global $padInfoTraceOccurs, $padInfoTraceOccursSmart, $padInfoTraceInitsExits, $padInfoTraceDefault, $padInfoTraceHideDefault;
+    global $padInfoTraceOccurs, $padInfoTraceOccursSmart, $padInfoTraceInitsExits, $padInfoTraceDefault;
 
     if ( $pad < 0 )
       return '';
@@ -286,7 +286,7 @@
   function padInfoTraceSet ( $pad ) {
 
     global $padOccur, $padTag;
-    global $padInfoTraceLevel, $padInfoTraceType, $padInfoTraceAddLine;
+    global $padInfoTraceLevel, $padInfoTraceAddLine;
     global $padInfoTraceIds, $padInfoTraceId, $padInfoTraceLevelChilds, $padInfoTraceOccurChilds;
 
     if ( $pad < 0 ) {

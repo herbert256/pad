@@ -17,14 +17,11 @@
 
   $padLvlId++;
 
-  $padLvlIds     [$pad] = $padLvlId;
-
   $padParmParse  [$pad] = [];
 
   $padOpt        [$pad] = [];
   $padPrm        [$pad] = [];
   $padParms      [$pad] = [];
-  $padParmsType  [$pad] = [];
 
   $padSetLvl     [$pad] = [];
   $padSetOcc     [$pad] = [];
@@ -65,8 +62,6 @@
   $padNull       [$pad] = FALSE;
   $padElse       [$pad] = FALSE;
   $padArray      [$pad] = FALSE;
-  $padCount      [$pad] = FALSE;
-  $padDefault    [$pad] = FALSE;
   $padTagSeq     [$pad] = FALSE;
 
   $padSaveLvl    [$pad] = [];
