@@ -313,11 +313,15 @@ Arithmetic pipes require a space between the operator and operand:
 ```
 
 ### Iteration Properties (property@tag syntax)
+
+A property is written as a tag pair, not inside a condition - `{if first@items}` ends the
+request, because a property resolves to an array and comparing one is not implemented.
+
 ```
 {items}
-  {if first@items}<ul>{/if}
+  {first@items}<ul>{/first@items}
   <li class="{even@items ? even : odd}">{$name}</li>
-  {if last@items}</ul>{/if}
+  {last@items}</ul>{/last@items}
   Index: {current@items} of {count@items}
 {/items}
 ```
@@ -374,9 +378,11 @@ Supports JSON, XML, YAML, and CSV formats:
 - `$var` - Level variable (constant for all iterations)
 - `%var` - Occurrence variable (changes each iteration)
 
+The `%` marks the assignment; the value is read back as an ordinary field, with `$`:
+
 ```
 {staff %total = $salary + $bonus}
-  {$name}: {%total}
+  {$name}: {$total}
 {/staff}
 ```
 
@@ -613,9 +619,9 @@ Output: `Alice, Bob, Charlie`
 ### First/Last Wrapper
 ```
 {items}
-  {if first@items}<ul>{/if}
+  {first@items}<ul>{/first@items}
   <li>{$name}</li>
-  {if last@items}</ul>{/if}
+  {last@items}</ul>{/last@items}
 {/items}
 ```
 

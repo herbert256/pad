@@ -2,14 +2,33 @@
 
 This document describes the actions and transformations available for PAD sequences.
 
+An action runs over a sequence once it has been generated. There are 29 of them, listed in
+the summary table at the end. Three other things are written the same way and are easy to
+mistake for actions: **plays** (`add=5`, `keep`, `remove`) apply a sequence type to each
+value as it is generated, and **options** (`rows`, `from`, `to`, `increment`) shape the
+generation itself. They are covered in [SEQUENCES.md](SEQUENCES.md) and
+[PAD.md](PAD.md).
+
 ## Order Manipulation
 
 ```
 {pull:nums reverse}       # Reverse order
 {pull:nums sort}          # Sort ascending
 {pull:nums shuffle}       # Randomize order
-{pull:nums randomize}     # Alias for shuffle
+{pull:nums randomize}     # Pick at random - see below, not the same as shuffle
 ```
+
+`shuffle` reorders every value. `randomize` *picks*: bare it draws as many as there are, so
+it looks like a shuffle, but `randomize=3` draws three. Three options change how it draws:
+
+- `orderly` - the drawn values keep the order they had, instead of coming out shuffled
+- `duplicates` - a value may be drawn more than once
+- `atLeastOnce` - every value is drawn at least once before any is drawn twice, which
+  implies `duplicates`. Asking for fewer than there are cannot satisfy that, and the count
+  gives way: `randomize=2, atLeastOnce` over five values returns all five
+
+`sort`, `dedup` and `reverse` take an optional store name, and then work on the union of the
+two: `{pull:a sort='b'}` sorts a and b together rather than sorting a by a field named b.
 
 ## Selection
 
@@ -17,15 +36,33 @@ This document describes the actions and transformations available for PAD sequen
 {pull:nums first}         # First element
 {pull:nums first=3}       # First 3 elements
 {pull:nums last=3}        # Last 3 elements
-{pull:nums left=5}        # First 5 elements
-{pull:nums right=5}       # Last 5 elements
-{pull:nums from=3}        # From position 3
-{pull:nums to=7}          # To position 7
-{pull:nums shift=2}       # Remove first 2
-{pull:nums pop=2}         # Remove last 2
-{pull:nums element=5}     # Get 5th element
-{pull:nums slice='3|4'}   # From position 3, length 4
-{pull:nums rows=10}       # Limit to 10 rows
+{pull:nums element=5}     # Get 5th element, counting from 1
+{pull:nums slice='3|4}    # From offset 3, length 4 - counting from 0
+{pull:nums minimum}       # Smallest value
+{pull:nums minimum=3}     # The 3 smallest, back in their original order
+{pull:nums maximum=3}     # The 3 largest
+{pull:nums shift=2}       # See "Destructive selection" below
+{pull:nums pop=2}         # See "Destructive selection" below
+```
+
+`element` counts from 1, as `from` and `to` do. `slice` and `splice` count from 0, because
+they are PHP's array functions underneath.
+
+`left=N` and `right=N` are **not** selectors on their own - they do nothing unless `trim` is
+also given, where they say how much to take off each end. See Trim Operations.
+
+A position the sequence does not reach - `element=10` of three values - gives nothing rather
+than an error.
+
+## Destructive selection
+
+`shift` and `pop` take values *out of the stored sequence*. What the tag shows is the part
+removed, and what stays in the store is the remainder:
+
+```
+{sequence '1..10', push='nums'}
+{pull:nums shift=2}{$sequence} {/pull:nums}   # shows 1 2
+{pull:nums}{$sequence} {/pull:nums}           # the store now holds 3 4 5 6 7 8 9 10
 ```
 
 ## Negative Selection (Invert)
@@ -35,14 +72,26 @@ This document describes the actions and transformations available for PAD sequen
 {pull:nums last=5, negative}    # All EXCEPT last 5
 ```
 
+`negative` inverts what an **action** picked, and is applied after each action in turn. It
+does nothing to a play: `keep='prime', negative` is not the complement of `keep='prime'` -
+`remove='prime'` is.
+
 ## Trim Operations
+
+`trim` *removes* values from the ends. `both`, `left` and `right` say how many, and mean
+nothing without it.
 
 ```
 {pull:nums trim, both=5}              # Trim 5 from each end
 {pull:nums trim, left=5}              # Trim 5 from left
 {pull:nums trim, right=5}             # Trim 5 from right
 {pull:nums trim, left=10, right=5}    # Different amounts each side
+{pull:nums trim=2}                    # 2 from each end - a value on trim itself fills both
 ```
+
+A count on `trim` itself fills `both`, and `left` and `right` are then taken off on top of
+it: `trim=2, left=3` removes five from the left and two from the right. A count of 0 removes
+nothing.
 
 ## Eval Parameter
 
@@ -59,16 +108,22 @@ Apply an expression to each element:
 {pull:nums sum}           # Sum of all elements
 {pull:nums product}       # Product of all elements
 {pull:nums average}       # Mean value
-{pull:nums median}        # Median value
-{pull:nums minimum}       # Smallest value
-{pull:nums maximum}       # Largest value
+{pull:nums median}        # Median: values sorted, middle one, or the mean of the two middles
 {pull:nums count}         # Number of elements
 {pull:nums distinct}      # Count of unique values
 {pull:nums dedup}         # Remove duplicates
-{pull:nums unique}        # Alias for dedup
 ```
 
-## Arithmetic Operations
+Over an empty sequence, `count`, `sum`, `distinct` and `product` answer 0, 0, 0 and 1, while
+`average`, `median` and `element` have no answer to give and leave it empty.
+
+`unique` is not an action. It is a generation option that drops a repeated value as the
+sequence is built, so it runs before any action does.
+
+## Arithmetic Operations (plays, not actions)
+
+These are sequence types applied to each value as it is generated, so they run *before* the
+actions do. A parameter that is not a number is reported; `divide` will not take a zero.
 
 ```
 {pull:nums add=5}             # Add 5 to each element
@@ -82,43 +137,47 @@ Apply an expression to each element:
 {pull:nums floor}             # Floor of each
 {pull:nums round}             # Round each
 {pull:nums negation}          # Negate each
-{pull:nums increment}         # Add 1 to each
-{pull:nums increment=5}       # Add 5 to each
 ```
 
-## Logical Operations
+`increment` is not an action either - it is the option that sets the step a sequence counts
+in, and has no effect written after a pull.
+
+## Bitwise Operations (plays, not actions)
+
+These work on the bits of each value, not on true and false:
 
 ```
-{pull:nums and='seqB'}    # Logical AND
-{pull:nums or='seqB'}     # Logical OR
-{pull:nums not}           # Logical NOT
-{pull:nums nand='seqB'}   # Logical NAND
-{pull:nums nor='seqB'}    # Logical NOR
-{pull:nums xor='seqB'}    # Logical XOR
-{pull:nums xnor='seqB'}   # Logical XNOR
-```
-
-## One/Two Value Results
-
-```
-{pull:nums one}           # Return 1 if non-empty
-{pull:nums two}           # Return 2 if has 2+ elements
+{pull:nums and=12}    # Bitwise AND with 12
+{pull:nums or=5}      # Bitwise OR
+{pull:nums not}       # Bitwise NOT
+{pull:nums nand=12}   # Bitwise NAND - runs negative
+{pull:nums nor=5}     # Bitwise NOR - runs negative
+{pull:nums xor=3}     # Bitwise XOR
+{pull:nums xnor=3}    # Bitwise XNOR - runs negative
 ```
 
 ## Multi-Sequence Operations
 
+With `seqA` holding 1 to 6 and `seqB` holding 4 to 9:
+
 ```
-{sequence '1..5', push='seqA'}
-{sequence '3..8', push='seqB'}
-{pull:seqA append='seqB'}        # Add seqB to end
-{pull:seqA prepend='seqB'}       # Add seqB to start
-{pull:seqA combine='seqB'}       # Concatenate preserving duplicates
-{pull:seqA merge='seqB'}         # Merge, remove duplicates
-{pull:seqA intersection='seqB'}  # Elements in both
-{pull:seqA difference='seqB'}    # In seqA but not seqB
-{pull:seqA onlyNow='seqB'}       # Only in current sequence
-{pull:seqA onlyStore='seqB'}     # Only in stored sequence
+{sequence '1..6', push='seqA'}
+{sequence '4..9', push='seqB'}
+{pull:seqA append='seqB'}        # 1 2 3 4 5 6 4 5 6 7 8 9  - seqB on the end
+{pull:seqA prepend='seqB'}       # 4 5 6 7 8 9 1 2 3 4 5 6  - seqB in front
+{pull:seqA combine='seqB'}       # 1 2 3 4 4 5 5 6 6 7 8 9  - in order, duplicates kept
+{pull:seqA merge='seqB'}         # 1 2 3 4 5 6 7 8 9        - in order, duplicates dropped
+{pull:seqA intersection='seqB'}  # 4 5 6                    - in both
+{pull:seqA difference='seqB'}    # 1 2 3 7 8 9              - in one but not both
+{pull:seqA onlyNow='seqB'}       # 1 2 3                    - in seqA only
+{pull:seqA onlyStore='seqB'}     # 7 8 9                    - in seqB only
 ```
+
+`difference` is the symmetric difference: the values only in the sequence, followed by the
+values only in the store. For the one-sided operation use `onlyNow`.
+
+Every one of these needs a store to work with. Named without one, or named with a store that
+was never pushed, they leave the sequence as it is.
 
 ## The `resume` Tag
 
@@ -172,59 +231,41 @@ Avg: {pull:nums average}{$sequence}{/pull:nums}
 
 ## Action Summary Table
 
+The 29 actions, and nothing else - `from`, `to`, `rows`, `increment` and `unique` are
+generation options, and the arithmetic and bitwise entries above are plays.
+
 | Action | Description |
 |--------|-------------|
-| `reverse` | Reverse order |
-| `sort` | Sort ascending |
-| `shuffle` / `randomize` | Randomize order |
-| `first` / `first=N` | First element(s) |
-| `last` / `last=N` | Last element(s) |
-| `left=N` | First N elements |
-| `right=N` | Last N elements |
-| `from=N` | From position N |
-| `to=N` | To position N |
-| `rows=N` | Limit to N rows |
-| `shift=N` | Remove first N |
-| `pop=N` | Remove last N |
-| `element=N` | Get Nth element |
-| `slice='pos\|len'` | Slice from position |
-| `negative` | Invert selection |
-| `trim` | Trim from ends |
-| `eval='expr'` | Apply expression |
-| `sum` | Sum all elements |
-| `product` | Product of all |
-| `average` | Mean value |
-| `median` | Median value |
-| `minimum` | Smallest value |
-| `maximum` | Largest value |
-| `count` | Number of elements |
-| `distinct` | Unique count |
-| `dedup` / `unique` | Remove duplicates |
-| `one` | Return 1 if non-empty |
-| `two` | Return 2 if 2+ elements |
-| `add=N` | Add N to each element |
-| `subtract=N` | Subtract N from each |
-| `multiply=N` | Multiply each by N |
-| `divide=N` | Divide each by N |
-| `modulo=N` | Modulo N of each |
-| `power=N` | Raise each to power N |
-| `increment` / `increment=N` | Add 1 or N to each |
-| `ceil` | Ceiling of each |
-| `floor` | Floor of each |
-| `round` | Round each |
-| `negation` | Negate each |
-| `and='seq'` | Logical AND |
-| `or='seq'` | Logical OR |
-| `not` | Logical NOT |
-| `append='seq'` | Add sequence to end |
-| `prepend='seq'` | Add sequence to start |
-| `merge='seq'` | Merge sequences |
-| `combine='seq'` | Combine sequences |
-| `intersection='seq'` | Common elements |
-| `difference='seq'` | Different elements |
-| `onlyNow='seq'` | Only in current |
-| `onlyStore='seq'` | Only in stored |
-| `splice='pos\|len'` | Splice operation |
+| `reverse` | Reverse order. With a store name, reverses the union |
+| `sort` | Sort ascending. With a store name, sorts the union |
+| `shuffle` | Reorder at random |
+| `randomize` / `randomize=N` | Draw N at random, all of them when bare |
+| `first` / `first=N` | Keep the first N, 1 when bare |
+| `last` / `last=N` | Keep the last N |
+| `element=N` | The Nth value, counting from 1; nothing if there is no Nth |
+| `slice='pos\|len'` | From offset pos, counting from 0, for len values |
+| `splice='pos\|len'` or `'pos\|len\|seq'` | Remove len values at pos, optionally putting a store in their place |
+| `shift=N` | Take the first N out of the store and show them |
+| `pop=N` | Take the last N out of the store and show them |
+| `trim` | Remove from the ends, by `both` / `left` / `right` |
+| `negative` | Invert whatever the action just selected |
+| `sum` | Sum of the values, 0 when empty |
+| `product` | Product of the values, 1 when empty |
+| `average` | Mean; nothing when empty |
+| `median` | Values sorted, the middle one or the mean of the two middles |
+| `minimum` / `minimum=N` | The smallest, or the N smallest in their original order |
+| `maximum` / `maximum=N` | The largest, or the N largest |
+| `count` | How many values, 0 when empty |
+| `distinct` | How many different values |
+| `dedup` | Remove duplicates. With a store name, dedups the union |
+| `append='seq'` | Add a store's values to the end |
+| `prepend='seq'` | Add a store's values to the front |
+| `merge='seq'` | Merge in order, dropping duplicates |
+| `combine='seq'` | Merge in order, keeping duplicates |
+| `intersection='seq'` | Values in both |
+| `difference='seq'` | Values in one or the other but not both |
+| `onlyNow='seq'` | Values in the sequence but not the store |
+| `onlyStore='seq'` | Values in the store but not the sequence |
 
 ## Type Prefixes for Sequences
 

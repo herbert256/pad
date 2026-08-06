@@ -118,7 +118,7 @@ Functions for encoding and escaping text for various contexts.
 |----------|------------|-------------|
 | `html` | - | Escapes HTML special characters (PHP `htmlspecialchars`) |
 | `sanitize` | - | Full special character sanitization (FILTER_SANITIZE_FULL_SPECIAL_CHARS) |
-| `url` | - | URL-encodes the value (PHP `urlencode`) |
+| `url` | - | URL-encodes the value (PHP `urlencode`) - a space becomes `+` |
 | `slashes` | - | Adds backslashes before quotes (PHP `addslashes`) |
 | `stripslashes` | - | Removes backslashes (PHP `stripslashes`) |
 | `encodeHigh` | - | Encodes high ASCII characters (>127) |
@@ -129,7 +129,7 @@ Functions for encoding and escaping text for various contexts.
 
 ```
 {'<script>' | html}         → '&lt;script&gt;'
-{'hello world' | url}       → 'hello%20world'
+{'hello world' | url}       → 'hello+world'
 {"it's here" | slashes}     → "it\'s here"
 {json 'products' | ignore}  → JSON safe to embed in an HTML attribute
 ```

@@ -38,22 +38,22 @@ Parameters control how sequences are generated (`inits/parms.php`):
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
-| `from` | 1 | Starting value for loop |
-| `to` | PHP_INT_MAX | Ending value for loop |
+| `from` | 1 | Where the loop starts - a value for the types that test candidates, a position for the ones that compute the nth term |
+| `to` | PHP_INT_MAX | Where the loop ends, counting the same way as `from` |
 | `sole` | 0 | Generate single value (sets from=to) |
 | `minimal` | PHP_INT_MIN | Minimum acceptable value |
 | `maximal` | PHP_INT_MAX | Maximum acceptable value |
-| `increment` | 1 | Step between iterations |
+| `increment` | 1 | Step between iterations, 1 or more |
 | `rows` | varies | Maximum number of results |
 | `try` | varies | Maximum iterations to attempt |
 | `stop` | PHP_INT_MAX | Stop when value reaches this |
-| `skip` | 0 | Skip first N valid results |
+| `skip` | 0 | Skip the first N candidates offered - not the first N kept, so on a filtered sequence it drops fewer terms than N |
 | `randomly` | '' | Enable random selection |
 | `unique` | '' | Only unique values |
 | `name` | '' | Name for storing sequence |
 | `build` | '' | Override build type |
 | `toData` | '' | Store to data |
-| `negative` | 0 | Apply negative handling |
+| `negative` | 0 | Invert an action's selection; has no effect on a play, which inverts by using `remove` instead of `keep` |
 | `pull` | '' | Pull from stored sequence |
 | `push` | '' | Push to stored sequence |
 
@@ -216,7 +216,7 @@ types/
 - `exponentiation` - Power: n ^ parm
 - `negation` - Negation: -n
 
-**Logical Operations:**
+**Bitwise Operations:** (on the bits of the value, not on true and false)
 - `and`, `or`, `xor`, `nand`, `nor`, `xnor`, `not`
 
 **Number Properties:**
@@ -231,8 +231,8 @@ types/
 - `harshad` - Harshad/Niven numbers
 - `kaprekar` - Kaprekar numbers
 - `emirp` - Primes that are different primes reversed
-- `strong` - Strong primes
-- `lucky` - Lucky numbers
+- `strong` - Strong numbers / factorions (1, 2, 145, 40585), not strong primes
+- `lucky` - Lucky numbers (1, 3, 7, 9, 13, 15, 21, 25, ...)
 - `polite` - Polite numbers
 - `powerful` - Powerful numbers
 - `antiprime` - Highly composite numbers
@@ -252,11 +252,11 @@ types/
 
 **Famous Sequences:**
 - `fibonacci` - 0, 1, 1, 2, 3, 5, 8...
-- `lucas` - 2, 1, 3, 4, 7, 11...
+- `lucas` - 1, 3, 4, 7, 11, 18... (starts at n = 1, so no leading 2)
 - `tribonacci` - Tribonacci sequence
-- `pell` - Pell numbers
-- `catalan` - Catalan numbers
-- `bell` - Bell numbers
+- `pell` - Pell numbers (1, 2, 5, 12, 29...)
+- `catalan` - Catalan numbers (1, 2, 5, 14, 42...)
+- `bell` - Bell numbers (1, 2, 5, 15, 52...)
 - `perrin` - Perrin numbers
 - `xpadovan` - Padovan sequence
 - `sylvester` - Sylvester's sequence
@@ -268,7 +268,7 @@ types/
 - `moserdebruijn` - Moser-de Bruijn sequence
 
 **Special:**
-- `mersenne` - Mersenne numbers (2^n - 1)
+- `mersenne` - Mersenne primes, the 2^p - 1 that are prime (3, 7, 31, 127, 8191, ...)
 - `cullen` - Cullen numbers
 - `kynea` - Kynea numbers
 - `caterer` - Lazy caterer's sequence
@@ -329,9 +329,9 @@ Actions transform the final result array (`actions/types/`):
 - `sum` - Sum of all values
 - `product` - Product of all values
 - `average` - Average value
-- `median` - Median value
-- `minimum` - Minimum value
-- `maximum` - Maximum value
+- `median` - Median: values sorted, the middle one or the mean of the two middles
+- `minimum` - Minimum value, or the N smallest with `minimum=N`
+- `maximum` - Maximum value, or the N largest with `maximum=N`
 - `count` - Count of values
 
 ### Selection
@@ -340,8 +340,8 @@ Actions transform the final result array (`actions/types/`):
 - `element` - Specific element
 - `slice` - Slice of array
 - `splice` - Splice array
-- `pop` - Remove last
-- `shift` - Remove first
+- `pop` - Take the last N out of the store and show them
+- `shift` - Take the first N out of the store and show them
 
 ### Modification
 - `append` - Add to end
@@ -353,7 +353,7 @@ Actions transform the final result array (`actions/types/`):
 - `sort` - Sort ascending
 - `reverse` - Reverse order
 - `shuffle` - Random order
-- `randomize` - Randomize
+- `randomize` - Draw N at random, all of them when bare
 
 ### Filtering
 - `dedup` - Remove duplicates
