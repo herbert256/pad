@@ -8,8 +8,14 @@
   // exponent comes out 1; whatever is left must be 1, since a surviving prime factor would
   // occur only once. The only file in the type, so it is the generation path as well and
   // the whole range is filtered through it.
+  //
+  // Dividing 2 out of 0 leaves 0, so the first loop would never end; the powerful numbers
+  // are positive, so anything under 1 is answered before it.
 
   function pqBoolPowerful ($n, $p=0) {
+
+    if ( $n < 1 )
+      return FALSE;
 
     while ($n % 2 == 0)
     {

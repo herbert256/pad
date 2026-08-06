@@ -9,8 +9,15 @@
   // only practical over small ranges - generated.php caches the 20 terms up to 7560.
   // pqBoolAntiprimeDivisors() is the divisor count itself, walking to sqrt(a) and counting
   // each factor pair once, or once only when the two halves coincide.
+  //
+  // Nothing smaller than 1 can be compared against, so the divisor count of 0 would go
+  // unchallenged and 0 would be reported a member; the sequence is positive, so anything
+  // under 1 is answered first.
 
   function pqBoolAntiprime ($n, $p=0) {
+
+    if ( $n < 1 )
+      return FALSE;
 
     $init = pqBoolAntiprimeDivisors ($n);
 

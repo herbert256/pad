@@ -4,30 +4,22 @@
   // entries in row n-1 of Pascal's triangle, equivalently 2 raised to the number of one
   // bits in n-1. Counting from $pqLoop = 1 the terms are 1, 2, 2, 4, 2, 4, 4, 8, 2, ...
   //
-  // The row is walked with the multiplicative binomial recurrence rather than built, the
-  // odd coefficients being counted on the way. Once the running coefficient passes
-  // PHP_INT_MAX the count so far is returned, so a large argument yields a partial answer
-  // instead of an error. This type has no generated.php cache.
+  // Kummer's theorem is what makes the second reading true, and it is the one used here:
+  // the one bits of n-1 are counted and 2 is shifted that far. Walking the row through the
+  // multiplicative binomial instead needs coefficients far past PHP_INT_MAX to stay exact -
+  // the parity of the count broke from n = 63 - while counting bits stays whole throughout.
+  //
+  // An argument below 1 leaves the count at zero and the shift answers 1, so the loop is
+  // never entered with a negative value. This type has no generated.php cache.
 
   function pqGould ($n) {
 
-    $x = $c = 1;
+    $bits = 0;
 
-    for ($i = 1; $i <= $n; $i++) {
+    for ( $i = $n - 1; $i > 0; $i >>= 1 )
+      $bits += $i & 1;
 
-      $c = $c * ($n - $i) / $i;
-
-      if ( $c > PHP_INT_MAX)
-        return $x;
-
-      $c = (int) $c;
-
-      if ($c % 2 == 1)
-        $x++;
-
-    }
-
-    return $x;
+    return 1 << $bits;
 
   }
 

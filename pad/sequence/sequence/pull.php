@@ -4,8 +4,7 @@
   // $pqStore [$name] untouched.
   //
   // Nothing in the engine includes this file - every pull form goes through sequence/tag.php
-  // or sequence/action.php - and no init sets $name, so it survives as an unused direct-entry
-  // accessor.
+  // or sequence/action.php 
 
   global $pqStore;
 
@@ -14,6 +13,6 @@
   include PQ . 'inits/vars.php';
   include PQ . 'exits/info.php';
 
-  return $pqStore [$name];
+  return $pqStore [ $padName [$pad] ];
 
 ?>

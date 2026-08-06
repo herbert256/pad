@@ -10,6 +10,13 @@
   // way to ask for a fixed number of hits, since a run of misses otherwise exhausts the try
   // limit.
 
+  // init.php refuses a parameter below 1, but one written as a range is drawn afresh for
+  // every candidate and can come up 0 or less here, where there is no draw to make and the
+  // candidate simply does not survive.
+
+  if ( ! str_contains ( $pqParm, '%' ) and $pqParm < 1 )
+    return FALSE;
+
   if ( str_contains ( $pqParm, '%' ) ) {
 
     $pqChance = str_replace('%', '', $pqParm );

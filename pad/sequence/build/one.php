@@ -26,7 +26,7 @@
       if ( pqStore ( $pqBuild ) )  $pq = $pqLoop;
   elseif ($pqBuild == 'bool'    )  $pq = ( 'pqBool' . ucfirst($pqSeq) ) ( $pqLoop, $pqParm );
   elseif ($pqBuild == 'function')  $pq = ( 'pq'     . ucfirst($pqSeq) ) ( $pqLoop );
-  elseif ($pqBuild == 'check'   )  $pq = include PQ . "build/check.php";
+  elseif ($pqBuild == 'check'   )  $pq = include PQ . "build/mode.php";
   elseif ($pqBuild == 'loop'    )  $pq = include PT . "$pqSeq/loop.php";
   elseif ($pqBuild == 'make'    )  $pq = include PT . "$pqSeq/make.php";
   elseif ($pqBuild == 'order'   )  $pq = include PT . "$pqSeq/order.php";

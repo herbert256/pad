@@ -6,7 +6,7 @@
   // main sequence is a stored one (pull/fixed/build/given) there is nothing to generate,
   // so the override is handed to the first play instead of $pqBuild.
 
-  if ( ! $pqBuildName or $pqBuildName == TRUE )
+  if ( ! $pqBuildName or $pqBuildName === TRUE )
     return;
 
   if ( pqStore ( $pqBuild ) ) {

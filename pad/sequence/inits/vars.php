@@ -4,7 +4,8 @@
   // parameters.
   //
   // $pqResult is the values being collected and $pqTries the attempts spent on them;
-  // $pqSeq / $pqBuild / $pqParm say what is being generated and by which strategy; $pqPlays
+  // $pqSeq / $pqBuild / $pqParm say what is being generated and by which strategy, with
+  // $pqCheckPlay carrying which of keep, remove and flag a 'check' build stands for; $pqPlays
   // holds the filters and $pqActions the transformations, each with a matching *Hit array
   // recording what actually fired; $pqDone lists option names already claimed so later passes
   // skip them; $pqInfo collects the {info} report.
@@ -20,6 +21,7 @@
 
   $pqSeq        = '';
   $pqBuild      = '';
+  $pqCheckPlay  = 'keep';
   $pqParm       = '';
   $pqAction     = '';
   $pqActionParm = '';
@@ -33,7 +35,6 @@
   $pqActions    = [];
   $pqPlays      = [];
   $pqPlaysHit   = [];
-  $pqActions    = [];
   $pqActionsHit = [];
   $pqOrgHit     = [];
 

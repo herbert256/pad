@@ -6,8 +6,15 @@
   // enough. The terms are 1, 7, 10, 13, 19, 23, 28, 31, 32, ...
   //
   // pqBoolHappyGo() is the digit-square-sum step itself.
+  //
+  // The digit-square-sum is a fixed point at 0, so a candidate below 1 would never reach
+  // either end and the loop would never return. The sequence is positive, so anything
+  // under 1 is outside it and is answered before the loop starts.
 
   function pqBoolHappy ($num, $p=0) {
+
+    if ( $num < 1 )
+      return FALSE;
 
     $n = $num;
 

@@ -1,19 +1,29 @@
 <?php
 
-  // median - reduces the sequence to its middle entry by position: entry number
-  // count/2 rounded down, so an even-length sequence gives the upper of the two middles.
-  // It picks positionally out of the pre-action snapshot $pqActionStart and does not sort
-  // first, so the value is the true median only when the sequence is already in order.
+  // median - collapses the sequence to the median of its values: the middle one once they
+  // are in order, or the mean of the two middle ones when there is an even number of them.
+  //
+  // The values are sorted into a copy, so the sequence's own order is what it was and only
+  // the answer is affected. Picking the middle entry by position without sorting - which is
+  // what this did - is the median only of a sequence that already happens to be in order,
+  // and answered 5 for [9,1,5,3] where the median is 4.
+  //
+  // An empty sequence has no median and is left empty.
 
-  $pqTmp    = count ( $pqResult ) / 2;
-  $pqMedian = (int) $pqTmp;
+  if ( ! count ( $pqResult ) )
+    return;
 
-  $pqI = 0;
+  $pqMedianValues = array_values ( $pqResult );
 
-  foreach ( $pqActionStart as $padK => $padV ) {
-    if ( $pqI == $pqMedian )
-       $pqResult = [ $padK => $padV ];
-    $pqI++;
-  }
+  sort ( $pqMedianValues, SORT_NUMERIC );
+
+  $pqMedianAt = intdiv ( count ( $pqMedianValues ), 2 );
+
+  if ( count ( $pqMedianValues ) % 2 )
+    $pqMedian = $pqMedianValues [$pqMedianAt];
+  else
+    $pqMedian = ( $pqMedianValues [$pqMedianAt-1] + $pqMedianValues [$pqMedianAt] ) / 2;
+
+  $pqResult = [ $pqActionKey => $pqMedian ];
 
 ?>

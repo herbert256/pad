@@ -8,7 +8,9 @@
   // only: generation goes through loop.php, which pqBuild() prefers.
   //
   // A base of 0, 1 or -1 has no repeated division to do and would spin forever or divide by
-  // zero, so those are answered directly, as is a missing or non-numeric parameter.
+  // zero, so those are answered directly, as is a missing or non-numeric parameter. An x of
+  // 0 is a fixed point of the division for the same reason and no power is ever 0, so it and
+  // anything below it are answered too.
 
   function pqBoolPower ( $x, $y ) {
 
@@ -16,6 +18,9 @@
       return ( $x == $y );
 
     if ( $x == 1 and $y != 1 )
+      return FALSE;
+
+    if ( $x < 1 )
       return FALSE;
 
     while ($x % $y == 0)
