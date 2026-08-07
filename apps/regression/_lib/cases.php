@@ -224,7 +224,6 @@
       'escaping'    => 'What stops PAD reading braces as tags, in each of its spellings',
       'custom'      => 'What an application supplies: _tags, _functions, _include, _data',
       'check'       => 'Pages carried over from the check application',
-      'manual'      => 'The examples the manual embeds, carried over from it',
       'sequence'    => 'The sequence subsystem - types, actions, plays, stores and options',
     ];
 
