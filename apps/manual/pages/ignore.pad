@@ -16,13 +16,13 @@
 
 <p>Without {tag 'ignore'}, PAD would try to parse the JavaScript object literal as PAD tags:</p>
 
-{example 'fragments/ignore_1'}
+{example 'fragments/ignore_1', app='check'}
 
 <h4>Example 2: Inline CSS with Selector Blocks</h4>
 
 <p>CSS uses curly braces for selector blocks. Wrap in {tag 'ignore'} to prevent PAD from parsing them:</p>
 
-{example 'fragments/ignore_2'}
+{example 'fragments/ignore_2', app='check'}
 
 <h3>2. As a Pipe Function: <code>| ignore</code></h3>
 
@@ -32,7 +32,7 @@
 
 <p>When a variable contains JSON data, use the {tag 'ignore'} pipe function to prevent PAD from parsing the curly braces:</p>
 
-{example 'fragments/ignore_4'}
+{example 'fragments/ignore_4', app='check'}
 
 <p>The JSON data was passed from PAD/PHP through a data attribute using <code>{open}echo $usersJson | ignore{close}</code>.</p>
 
@@ -44,7 +44,7 @@
 
 <p>Use the {tag 'ignore'} option on a tag to prevent PAD from parsing curly braces in its content:</p>
 
-{example 'fragments/ignore_5'}
+{example 'fragments/ignore_5', app='check'}
 
 <p>Without the ignore option, PAD would try to parse <code>{open}"theme": "dark"{close}</code> as PAD tags, causing errors.</p>
 

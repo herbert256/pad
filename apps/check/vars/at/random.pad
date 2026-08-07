@@ -1,8 +1,14 @@
-{exit}
+{# The * wildcard picks a random element, so this page answers differently every run and the
+   crawl marks it random rather than comparing it. The values are meant to match the shapes
+   noted beside them - 11? is any of 111, 112, 113 and so on.
+
+   The last three lines once asked for a single variable, option or parameter of a named
+   level through the dotted group form. That resolves to nothing; only the loop form used
+   here works. #}
 
 <br>
 
-{range '25..100', name='myRange'} 
+{sequence '25..100', name='myRange'/}
 
 {$myRange.*} <br> 
 {$*@myRange} <br> 
@@ -12,9 +18,9 @@
 
 {pad name='cool', abc=123, 'fiets', $abc='banaan', $go='nuts', xyz=789, 12*15, 34}
 
-{$*@cool.variables} <br>
-{$*@cool.options} <br>
-{$*@cool.parameters} <br>
+{variables@cool}{$name}={$value} {/variables@cool} <br>
+{options@cool}{$name}={$value} {/options@cool} <br>
+{parameters@cool}{$value} {/parameters@cool} <br>
 
 {/pad}
 
