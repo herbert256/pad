@@ -21,9 +21,11 @@
 <p>The placement of the pipe determines <strong>when</strong> the function is applied:</p>
 
 <ul>
-  <li><strong>Opening tag</strong> <code>{open}tag | function{close}</code> - Processes data BEFORE the tag content is rendered</li>
-  <li><strong>Closing tag</strong> <code>{open}/tag | function{close}</code> - Processes output AFTER the tag is finished</li>
+  <li><strong>Opening tag</strong> <code>{open}tag | function{close}</code> - transforms the content template, once, before any occurrence is rendered. What the function is handed is the source between the tags, not the tag's data.</li>
+  <li><strong>Closing tag</strong> <code>{open}/tag | function{close}</code> - transforms the output, after every occurrence has been rendered and joined.</li>
 </ul>
+
+<p>An opening pipe is therefore not a way to reorder or filter what a tag iterates: a field written inside the content would be transformed along with everything else, and then not resolve. Reshaping the data is what the <a href="?pages/data_handling">data handling</a> options are for.</p>
 
 {example 'fragments/pipes_4', app='check'}
 
@@ -101,9 +103,14 @@
     <th>Example</th>
   </tr>
   <tr>
-    <td>Transform input data before processing</td>
+    <td>Transform the content template before it repeats</td>
     <td>Opening tag</td>
-    <td><code>{open}items | sort{close}...{open}/items{close}</code></td>
+    <td><code>{open}items | trim{close}...{open}/items{close}</code></td>
+  </tr>
+  <tr>
+    <td>Reshape the data itself</td>
+    <td>Option, not a pipe</td>
+    <td><code>{open}items sort{close}...{open}/items{close}</code></td>
   </tr>
   <tr>
     <td>Transform final output after rendering</td>
