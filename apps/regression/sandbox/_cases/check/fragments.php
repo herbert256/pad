@@ -1,9 +1,13 @@
 <?php
 
-  // The manual fragments check renders, which are small enough to assert whole.
+  // The fragments the manual's Ignore and Pipes pages embed, small enough to assert whole.
   //
-  // Each case is the page as check renders it, with the answer it is supposed to give stated
-  // here instead of left to a stored copy of the HTML.
+  // They used to live in the check application and the manual reached into it for them with
+  // app='check'. They are the manual's own now, under manual/fragments/ - documentation is not
+  // check's to hold, and check cannot be retired while another application depends on it.
+  //
+  // Each case is the page as the manual renders it, with the answer it is supposed to give
+  // stated here instead of left to a stored copy of the HTML.
 
   return [
 
@@ -113,9 +117,9 @@
       <p>Lowercase: {echo $email | lower}</p>
       
       <p>Original: {$price}</p>
-      <p>Formatted: {echo $price | number_format(2)}</p>
+      <p>Formatted: {echo $price | number_format(@, 2)}</p>
       PAD,
-      '<p>Original: john doe</p><p>Uppercase: JOHN DOE</p><p>Capitalize: John Doe</p><p>Original: ALICE@EXAMPLE.COM</p><p>Lowercase: alice@example.com</p><p>Original: 1234.56</p><p>Formatted: 2</p>',
+      '<p>Original: john doe</p><p>Uppercase: JOHN DOE</p><p>Capitalize: John Doe</p><p>Original: ALICE@EXAMPLE.COM</p><p>Lowercase: alice@example.com</p><p>Original: 1234.56</p><p>Formatted: 1,234.56</p>',
       [
         'name' => 'john doe',
         'email' => 'ALICE@EXAMPLE.COM',
@@ -160,14 +164,21 @@
         'message' => 'the quick brown fox'
       ] ],
 
+    // This one used to render two empty lines, and the case pinned them. Its data was
+    // {data 'message'}Hello World{/data} - bare text, which comes back as no occurrences at all -
+    // so the example for the difference between the two pipes demonstrated neither. It also
+    // described the opening pipe as processing the data, which is what the Pipes page said and
+    // what tags/pipes.php shows it does not do.
+
     [ 'fragments/pipes_4',
       <<<'PAD'
-      {data 'message'}Hello World{/data}
-      
-      <p>Opening tag pipe (processed BEFORE): {message | lower}Content: {$message}{/message}</p>
-      <p>Closing tag pipe (processed AFTER): {message}Content: {$message}{/message | upper}</p>
+      {data 'words'}("alpha","beta"){/data}
+
+      <p>Closing tag pipe - handed everything the tag rendered: [{words}{$words} {/words | upper}]</p>
+      <p>Opening tag pipe - handed the content template, which then repeats: [{words | upper}row {/words}]</p>
       PAD,
-      '<p>Opening tag pipe (processed BEFORE): </p><p>Closing tag pipe (processed AFTER): </p>' ],
+      '<p>Closing tag pipe - handed everything the tag rendered: [ALPHA BETA ]</p>'
+      . '<p>Opening tag pipe - handed the content template, which then repeats: [ROW ROW ]</p>' ],
 
   ];
 

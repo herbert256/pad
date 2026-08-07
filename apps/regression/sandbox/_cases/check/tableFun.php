@@ -1,9 +1,15 @@
 <?php
 
-  // Table rendering carried over from check.
+  // The ten ways of showing one table that the manual's "3 ways to make a table" page walks
+  // through, which is where they are embedded from.
   //
-  // Each case is the page as check renders it, with the answer it is supposed to give stated
-  // here instead of left to a stored copy of the HTML.
+  // They used to live in the check application and the manual reached into it for them with
+  // app='check'. They are the manual's own now, under manual/tableFun/. Order matters between
+  // them: fun_0 is nothing but the {content 'cell'} definition the rest print through, so the
+  // page embeds it first and each case here restates it.
+  //
+  // Each case is the page as the manual renders it, with the answer it is supposed to give
+  // stated here instead of left to a stored copy of the HTML.
 
   return [
 

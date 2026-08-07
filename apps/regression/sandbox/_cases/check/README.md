@@ -4,9 +4,14 @@ The check application renders 224 pages and asserts nothing: the outer crawl com
 against a stored copy of its HTML, which catches any change but says only that one happened.
 These are the pages of it that can state their answer instead.
 
-The check application itself is **unchanged** - nothing here removes or edits it. A page that
-lives in both places is tested twice, once by comparison and once by assertion, until you
-decide to retire the copy in check.
+A page that lives in both places is tested twice, once by comparison and once by assertion,
+until the copy in check is retired.
+
+Eighteen of them have left check already. `fragments/` and `tableFun/` were never tests: the
+manual embedded them as its own examples with `app='check'`, so an application of documentation
+depended on an application of tests, and check could not be retired while it did. They are
+`manual/fragments/` and `manual/tableFun/` now and the manual reaches them without a prefix. The
+cases stay here, under their old names, and say where they came from.
 
 ## What came over, and what did not
 
