@@ -50,12 +50,58 @@
   // They are taken out of both sides before comparing, and only for comparing: what is stored is
   // still the page as it came, so the show page diffs the real thing.
 
-  function getRegressionCompare ( $text ) {
+  function getRegressionCompare ( $text, $draw = FALSE ) {
 
     $text = preg_replace ( '/padSesID=[A-Za-z0-9]+/', 'padSesID=', $text );
     $text = preg_replace ( '/padReqID=[A-Za-z0-9]+/', 'padReqID=', $text );
 
+    // With $draw, every run of digits goes too. That is what lets a page which draws numbers be
+    // compared at all: the values it happened to pick are the part that cannot match, and the
+    // headings, rows, table structure and everything else around them are the 93% that can.
+
+    if ( $draw )
+      $text = preg_replace ( '/\d+/', '#', $text );
+
     return $text;
+
+  }
+
+
+  // Whether a page says of itself that it draws. The three words are matched with str_contains
+  // rather than strpos, which returns 0 for a word at the very start of a file and reads as false.
+
+  function getRegressionDraws ( $source ) {
+
+    return str_contains ( $source, 'random'  )
+        or str_contains ( $source, 'shuffle' )
+        or str_contains ( $source, 'chance'  );
+
+  }
+
+
+  // What to make of a page that draws. It used to be skipped outright, which meant a regression
+  // in one of the twenty-seven such pages could not be seen: across them that is 4542 lines of
+  // output, of which only 7% actually varies from run to run.
+  //
+  // So the draw is masked and the rest compared. Where that matches, the page is 'random' as
+  // before - the colour still says it cannot be compared exactly - but it now means "looked at
+  // and unchanged" instead of "not looked at".
+  //
+  // Where it does not match, the page is asked for once more. If two fresh draws differ from each
+  // other even masked then the shape itself varies per run and there is nothing to compare, so it
+  // stays 'random'. Otherwise the page really has changed, and that is a warning.
+
+  function getRegressionDraw ( $url, $old, $new ) {
+
+    if ( getRegressionCompare ( $old, TRUE ) == getRegressionCompare ( $new, TRUE ) )
+      return 'random';
+
+    $again = padCurl ( $url ) ['data'];
+
+    if ( getRegressionCompare ( $new, TRUE ) != getRegressionCompare ( $again, TRUE ) )
+      return 'random';
+
+    return 'warning';
 
   }
 
@@ -74,12 +120,17 @@
     $good = str_starts_with ( $curl ['result'], '2');
     $new  = $curl ['data'];
 
-    if     ( ! $good                    ) $status = 'error';
+    // The crawl's own overview lists the status of every page, and those change as the crawl
+    // walks them - so by the time it reaches this one, what it renders no longer matches what
+    // was stored a moment before, and never will. Comparing a report against the run producing
+    // it is circular; it is marked and left alone.
+
+    if     ( "$app/$item" == 'regression/all' ) $status = 'random';
+    elseif ( ! $good                    ) $status = 'error';
     elseif ( ! file_exists ($store)     ) $status = 'new';
     elseif ( ! trim ($new)              ) $status = 'empty';
-    elseif ( strpos($source, 'random')  ) $status = 'random' ;
-    elseif ( strpos($source, 'shuffle') ) $status = 'random' ;
-    elseif ( strpos($source, 'chance')  ) $status = 'random' ;
+    elseif ( getRegressionDraws ( $source ) )
+                                          $status = getRegressionDraw ( "$padHost$app/?$item$include$extra", $old, $new );
     elseif ( getRegressionCompare ( $old ) == getRegressionCompare ( $new ) ) $status = 'ok';
     else                                  $status = 'warning';
 

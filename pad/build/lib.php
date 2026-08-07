@@ -21,4 +21,13 @@
 
   }
 
+  // The two iterators hold an open directory handle each, and this file is included once per
+  // directory of the chain - so a page built inside another page opens them all over again while
+  // the outer set is still held. Nine deep, as the {page} chains are, that was enough to run out
+  // of handles: roughly one request in ten died on "Failed to open directory" for a _lib that was
+  // plainly there, and only ever on a page that nests. Letting them go here rather than at the
+  // end of the request costs nothing and keeps the count flat.
+
+  unset ( $padLibIterator, $padLibDirectory );
+
 ?>
