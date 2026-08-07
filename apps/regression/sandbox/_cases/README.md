@@ -130,14 +130,21 @@ walking and what it breaks, callbacks, the open-tag against close-tag naming of 
 block, PAD's own list format and YAML, naming a property's tag four ways, the `?` and `$$`
 variable kinds, and the six PAD entities.
 
-Two things the manual described could not be turned into cases:
+Two things the manual described could not be turned into cases here, and are `pages/` tests
+instead - a case renders in a nested pass with a scope of its own, and neither of these is
+about a template, it is about a request:
 
 - the row phase of a *streaming* callback, which reads the occurrence's fields as plain PHP
-  variables. A case renders in a nested pass, where those fields are that pass's locals rather
-  than globals, so the callback cannot see them. Its init and exit phases are covered, and the
-  before form is covered whole.
-- the pages that are only about how PHP and HTML files pair up, which is a property of a request
-  rather than of a template.
+  variables. Those fields are the nested pass's locals rather than globals, so the callback
+  cannot see them. `pages/callback` is a real request and does. The init and exit phases and
+  the whole before form are covered here.
+- the pages that are only about how PHP and HTML files pair up. `pages/pairing` is that pair,
+  and `pages/phponly` the half of it with no template at all.
+
+The same split is why `object:` has a case in both: `expressions/references.php` has to render
+in the runner's own scope because a sandboxed pass has the application globals taken out of it,
+and `pages/globals` is the same reference in a request, where a page variable is a global like
+any other.
 
 ## Coverage of the tags and options
 

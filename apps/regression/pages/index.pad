@@ -1,0 +1,24 @@
+<p>
+  <b>{$summary}</b> - {$verdict}
+</p>
+
+<p>
+  Every test here is an ordinary page of this application, fetched over HTTP with
+  <code>&amp;padInclude</code> so it renders bare, and compared with the outcome written beside
+  it. That makes it the kind of test the sandbox cannot be: a real request, with a page's own
+  <code>.php</code> half in scope for its <code>.pad</code> half. Tests live in
+  <code>apps/regression/pages/</code>.
+</p>
+
+<table border="1" cellpadding="4" cellspacing="0">
+  <tr><th>page</th><th>files</th><th>expected</th><th>got</th><th>status</th></tr>
+  {tests}
+    <tr>
+      <td><a href="{$url}">{$name}</a></td>
+      <td>{$pad}</td>
+      <td><pre style="white-space:pre-wrap; margin:0">{$want}</pre></td>
+      <td><pre style="white-space:pre-wrap; margin:0">{$got}</pre></td>
+      <td>{$status}</td>
+    </tr>
+  {/tests}
+</table>

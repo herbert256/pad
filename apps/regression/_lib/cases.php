@@ -1,6 +1,6 @@
 <?php
 
-  // The runner behind every page under regression/: it renders each case in a group and
+  // The runner behind every page under sandbox/: it renders each case in a group and
   // compares what the engine produced against what it is supposed to produce.
   //
   // The pages of the manual demonstrate the framework; they do not assert anything, so a
@@ -28,7 +28,7 @@
     $tests  = [];
     $total  = 0;
     $failed = 0;
-    $dir    = APP . "regression/_cases/$group";
+    $dir    = APP . "sandbox/_cases/$group";
 
     if ( ! is_dir ( $dir ) )
       return [ 'tests' => [], 'summary' => "no cases for '$group'", 'failed' => 1, 'when' => 0 ];
@@ -214,7 +214,7 @@
   }
 
 
-  // The list every page under regression/ is built from, and what the overview walks.
+  // The list every page under sandbox/ is built from, and what the overview walks.
 
   function getCasesGroups () {
 

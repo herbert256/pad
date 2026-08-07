@@ -16,7 +16,7 @@ cases exist to catch - shortening them would quietly retire them.
 
 `library.php` is the only group in the whole suite that uses the fourth `'scope'` entry. Its
 cases reach `pqTruncate()` through the engine's trim option, which no sequence tag calls, so
-they are rendered with `padCode()` and read `$seqFixture` - the list `regression/sequence.php`
+they are rendered with `padCode()` and read `$seqFixture` - the list `sandbox/sequence.php`
 sets up for them.
 
 | file | covers |

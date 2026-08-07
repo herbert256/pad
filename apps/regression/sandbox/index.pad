@@ -6,15 +6,22 @@
   Each group states, case by case, the output the engine is supposed to produce. These suites
   assert; the manual only demonstrates, so a change that quietly alters a result still renders
   there and still looks right. Cases live in
-  <code>apps/regression/regression/_cases/</code>, and
+  <code>apps/regression/sandbox/_cases/</code>, and
   <code>_cases/README.md</code> records what this kind of suite cannot check.
+</p>
+
+<p>
+  A case here is a template rendered inside this request, which is quick and self-contained but
+  is not a request: it has a variable scope of its own. Anything that needs to be a real one - a
+  page's <code>.php</code> half in scope for its <code>.pad</code> half, or a reference that
+  reads <code>$GLOBALS</code> - is a <a href="?pages/index">pages</a> test instead.
 </p>
 
 <table border="1" cellpadding="4" cellspacing="0">
   <tr><th>group</th><th>covers</th><th>cases</th><th>failed</th><th>status</th></tr>
   {groups}
     <tr>
-      <td><a href="?regression/{$group}">{$group}</a></td>
+      <td><a href="?sandbox/{$group}">{$group}</a></td>
       <td>{$what}</td>
       <td align="right">{$cases}</td>
       <td align="right">{$failed}</td>

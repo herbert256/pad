@@ -1,9 +1,9 @@
 <?php
 
-  // The application opens on the framework regression suites - the pages that assert what the
-  // engine is supposed to produce - because that is what it is for. The crawl of every page of
-  // every application, which this page used to be, is one link along at ?all.
+  // The application opens on the sandbox suites - the cases that assert what the engine is
+  // supposed to produce - because that is what it is for. The pages suite is one link along at
+  // ?pages/index, and the crawl of every page of every application at ?all.
 
-  padRedirect ( 'regression/index' );
+  padRedirect ( 'sandbox/index' );
 
 ?>

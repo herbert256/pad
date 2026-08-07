@@ -15,19 +15,26 @@
   // they could only ever appear below the title, because @page@ is what the wrapper replaces
   // and the title is already written by then.
   //
-  // The menu opens with the overview and the crawl, then the groups getCases() knows about,
-  // sorted, so a group added to _lib/cases.php turns up here without anything else being
-  // touched. Each entry carries its own link, because ?all does not live under regression/.
+  // The menu opens with the two suites and the crawl, then the sandbox groups getCases() knows
+  // about, sorted, so a group added to _lib/cases.php turns up here without anything else being
+  // touched. Each entry carries its own link, because neither ?all nor ?pages/index lives under
+  // sandbox/.
+  //
+  // Sandbox and Pages are the two kinds of test: a sandbox case is a template rendered inside
+  // this request, a pages test is a page of this application fetched over HTTP. The groups that
+  // follow all belong to the first.
 
   $skipTitle = TRUE;
 
-  if     ( $padPage == 'all'              ) $suiteTest = '?all&go';
-  elseif ( str_starts_with ( $padPage, 'regression/' ) ) $suiteTest = "?$padPage&test";
-  else                                      $suiteTest = '';
+  if     ( $padPage == 'all'                            ) $suiteTest = '?all&go';
+  elseif ( $padPage == 'pages/index'                    ) $suiteTest = '?pages/index&test';
+  elseif ( str_starts_with ( $padPage, 'sandbox/' )     ) $suiteTest = "?$padPage&test";
+  else                                                    $suiteTest = '';
 
   $suites = [
-    [ 'name' => 'index', 'link' => '?regression/index', 'now' => ( $padPage == 'regression/index' ) ? 1 : 0 ],
-    [ 'name' => 'All',   'link' => '?all',              'now' => ( $padPage == 'all'              ) ? 1 : 0 ]
+    [ 'name' => 'Sandbox', 'link' => '?sandbox/index', 'now' => ( $padPage == 'sandbox/index' ) ? 1 : 0 ],
+    [ 'name' => 'Pages',   'link' => '?pages/index',   'now' => ( $padPage == 'pages/index'   ) ? 1 : 0 ],
+    [ 'name' => 'All',     'link' => '?all',           'now' => ( $padPage == 'all'           ) ? 1 : 0 ]
   ];
 
   $suiteNames = array_keys ( getCasesGroups () );
@@ -37,8 +44,8 @@
   foreach ( $suiteNames as $suiteName )
     $suites [] = [
       'name' => $suiteName,
-      'link' => "?regression/$suiteName",
-      'now'  => ( $padPage == "regression/$suiteName" ) ? 1 : 0
+      'link' => "?sandbox/$suiteName",
+      'now'  => ( $padPage == "sandbox/$suiteName" ) ? 1 : 0
     ];
 
 ?>
