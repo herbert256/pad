@@ -7,17 +7,17 @@
   <code>&amp;padInclude</code> so it renders bare, and compared with the outcome written beside
   it. That makes it the kind of test the sandbox cannot be: a real request, with a page's own
   <code>.php</code> half in scope for its <code>.pad</code> half. Tests live in
-  <code>apps/regression/pages/</code>.
+  <code>apps/regression/pages/</code>, and <code>show</code> is the crawl's own view of one -
+  what it renders now against the copy the last crawl stored.
 </p>
 
 <table border="1" cellpadding="4" cellspacing="0">
-  <tr><th>page</th><th>files</th><th>expected</th><th>got</th><th>status</th></tr>
+  <tr><th>page</th><th>what it checks</th><th>show</th><th>status</th></tr>
   {tests}
     <tr>
       <td><a href="{$url}">{$name}</a></td>
-      <td>{$pad}</td>
-      <td><pre style="white-space:pre-wrap; margin:0">{echo $want | ignore}</pre></td>
-      <td><pre style="white-space:pre-wrap; margin:0">{echo $got | ignore}</pre></td>
+      <td>{echo $what | ignore}</td>
+      <td><a href="{$show}">show</a></td>
       <td>{$status}</td>
     </tr>
   {/tests}
