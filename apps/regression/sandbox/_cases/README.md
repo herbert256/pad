@@ -80,6 +80,30 @@ suite is supposed to carry a known problem.
 | case | what it records |
 |------|-----------------|
 | `functions/encoding.php` - url encodes a space as `+` | matches `urlencode`; FUNCTIONS.md used to show `%20` and has been corrected |
+| `tags/constructs.php` - a walking tag makes every row its own last | the manual says walking breaks the properties, and it does; the case pins it so a fix is noticed |
+
+## Known defects with no case, because a case cannot survive them
+
+**`{code reset}`, `{code clean}` and `{code sandbox}` end the request inside a nested pass.**
+Two lines are enough:
+
+    {code reset}{set $f = 'x'/}{/code}
+
+rendered through `padSandbox()` - which is what every case here is - dies in
+`occurrence/init.php:17`, where `key($padData[$pad])` is NULL and line 18 indexes with it. The
+stack goes through the *outer* request's `build/build.php`, so what the pass corrupts is the
+enclosing build rather than its own level. `start/end/dat.php` already walks each lower level's
+array pointer back to `$padKey` for exactly this reason, so the fault is a level it does not
+cover.
+
+The same three options are fine as pages - `pages/start/code/set/{reset,clean,sandbox}` pass -
+which is why this is about nesting and not about the options.
+
+Worth knowing when reading those pages tests: `reset`, `clean` and `sandbox` produce *identical*
+output in all of them, because each sets `$abc`, which already exists, and the three differ only
+on what a pass newly **creates** (`start/pad/end.php` runs `unsetApp`/`unsetPad` for clean and
+sandbox but not for reset). Nothing tests that difference, and nothing can until the above is
+fixed.
 
 ## One thing a case must not assume
 
