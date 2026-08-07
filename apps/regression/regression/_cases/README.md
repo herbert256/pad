@@ -122,6 +122,23 @@ a unary operator followed by another operator, but `padEvalDouble()` collapses e
 operator pair before the precedence walk begins, so the branch in `lib/eval/operations.php` that
 names the file never fires. The comment in the file itself records this.
 
+## Coverage of the manual
+
+The manual application was read page by page against these groups, and what it described and
+nothing asserted became cases: the data handling options, tag return values, `@start@`/`@end@`,
+walking and what it breaks, callbacks, the open-tag against close-tag naming of a data or content
+block, PAD's own list format and YAML, naming a property's tag four ways, the `?` and `$$`
+variable kinds, and the six PAD entities.
+
+Two things the manual described could not be turned into cases:
+
+- the row phase of a *streaming* callback, which reads the occurrence's fields as plain PHP
+  variables. A case renders in a nested pass, where those fields are that pass's locals rather
+  than globals, so the callback cannot see them. Its init and exit phases are covered, and the
+  before form is covered whole.
+- the pages that are only about how PHP and HTML files pair up, which is a property of a request
+  rather than of a template.
+
 ## Coverage of the tags and options
 
 The `tags` and `options` groups reach 71 of the 112 files under `pad/tags/`, `pad/options/` and
