@@ -7,11 +7,14 @@ These are the pages of it that can state their answer instead.
 A page that lives in both places is tested twice, once by comparison and once by assertion,
 until the copy in check is retired.
 
-Eighteen of them have left check already. `fragments/` and `tableFun/` were never tests: the
-manual embedded them as its own examples with `app='check'`, so an application of documentation
-depended on an application of tests, and check could not be retired while it did. They are
-`manual/fragments/` and `manual/tableFun/` now and the manual reaches them without a prefix. The
-cases stay here, under their old names, and say where they came from.
+Eighteen of them were never tests: the manual embedded them as its own examples with
+`app='check'`, so an application of documentation depended on an application of tests, and check
+could not be retired while it did.
+
+The eight in `fragments/` are `manual/fragments/` now, embedded by the Ignore and Pipes pages
+without a prefix. The ten in `tableFun/` came back: the page that embeds them turned out to be
+one the manual never linked, so it went to `check/manual/table_fun` and they went with it. The
+cases stay here, under their old names, and say where each set lives.
 
 ## What came over, and what did not
 

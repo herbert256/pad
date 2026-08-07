@@ -22,10 +22,12 @@ check/
 ├── file/            # File operation tests
 ├── functions/       # Pipe function tests
 ├── hello/           # Basic hello tests
+├── manual/          # Pages the manual held but never linked
 ├── miscellaneous/   # Miscellaneous tests
 ├── options/         # Tag option tests
 ├── select/          # PAD Select tests
 ├── start/           # Startup tests
+├── tableFun/        # Ten ways to show one table, embedded by manual/table_fun
 ├── tags/            # Tag tests
 └── vars/            # Variable tests
 ```
