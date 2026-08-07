@@ -20,10 +20,19 @@ Write the expected value as a regular expression between slashes when the answer
 stated, such as anything derived from the current time. Slashes at **both** ends are what
 makes it a pattern: `/test` is an ordinary value that `afterLast` produces.
 
-A case may carry a fourth entry, `'scope'`, to be rendered with `padCode()` in the page's own
-scope instead of sandboxed. That is for engine code no tag can reach on its own, and only
-`sequence/library.php` needs it; a case that uses it depends on its page setting up whatever
-it reads, so the isolation the other cases have is given up.
+A case may carry a fourth entry when the template alone cannot set the scene:
+
+- **`'scope'`** renders with `padCode()` in the page's own scope instead of sandboxed. That is
+  for engine code no tag can reach on its own, and only `sequence/library.php` needs it; such a
+  case depends on its page setting up whatever it reads, so it gives up the isolation the
+  others have.
+- **an array** of `name => value` variables to put in place first. A nested pass binds the
+  globals that exist when it opens, so these reach the template even sandboxed, and arrays of
+  any depth come through - `{$a.b.c}` reads one. They are dropped again afterwards.
+
+The array form is what lets a page whose data came from a paired `.php` file be a case at all:
+the data is stated in the case, beside what it is supposed to produce, instead of in a second
+file. `check/setup.php` is nothing but proof of the three shapes it has to carry.
 
 ## Layout
 

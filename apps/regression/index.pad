@@ -1,38 +1,3 @@
-<h3><a href="?index&go{if $only eq 'all'}&only=all{/if}">TEST</a></h3>
-
 <p>
-  {if $only eq 'all'}
-    <b>All</b>
-  @else@
-    <a href="?index&only=all">All</a>
-  {/if}
-  &nbsp;|&nbsp;
-  {if $only eq 'tests'}
-    <b>Regression tests</b>
-  @else@
-    <a href="?index">Regression tests</a>
-  {/if}
+  <a href="?regression/index">Framework regression</a>
 </p>
-
-{list}
-
-  <h3>{$app}</h3>
-
-  {items}
-    <a 
-
-      {if     $status eq 'ok'}      style="color:black;"
-      {elseif $status eq 'error'}   style="color:black;background-color: #f44336;"
-      {elseif $status eq 'warning'} style="color:black;background-color: #ffaa80;"
-      {elseif $status eq 'new'}     style="color:black;background-color: #248f24;"
-      {elseif $status eq 'random'}  style="color:black;background-color: #befffa;"
-      {elseif $status eq 'empty'}   style="color:black;background-color: #ffc0cb;"
-      {/if} 
-
-      href="{$link}">{$label}</a>
-
-    &nbsp; &nbsp;
-
-  {/items}
-
-{/list}

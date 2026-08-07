@@ -1,30 +1,44 @@
 <?php
 
-  // Overview of the framework regression suites: runs every group and reports the totals.
+  // Overview of the framework regression suites: the totals of every group's last run.
   //
-  // The pages beside this one each hold one group and show it case by case; this one is the
-  // single place to look to see whether anything moved. It runs the same getCases() they do,
-  // so a total here can never disagree with the page it links to.
+  // Test here reruns all of them, which is the only place that does; each group page reruns
+  // only its own. A page load never runs anything - it reads what the last run left in DATA,
+  // so opening the overview is reading, not testing.
 
-  $title = 'Framework regression';
+  if ( isset ( $test ) ) {
+
+    foreach ( array_keys ( getCasesGroups () ) as $groupName )
+      getCasesTest ( $groupName );
+
+    padRedirect ( $padPage );
+
+  }
 
   $groups   = [];
   $allTotal = 0;
   $allFail  = 0;
+  $when     = 0;
 
   foreach ( getCasesGroups () as $groupName => $groupWhat ) {
 
-    list ( $groupTests, $groupSummary, $groupFailed ) = getCases ( $groupName );
+    $result = getCases ( $groupName );
 
-    $allTotal += count ( $groupTests );
-    $allFail  += $groupFailed;
+    $allTotal += count ( $result ['tests'] );
+    $allFail  += $result ['failed'];
+
+    // The oldest of the runs, because that is what the totals can be stale by.
+
+    if ( ! $when or ( $result ['when'] and $result ['when'] < $when ) )
+      $when = $result ['when'];
 
     $groups [] = [
       'group'   => $groupName,
       'what'    => $groupWhat,
-      'cases'   => count ( $groupTests ),
-      'failed'  => $groupFailed,
-      'status'  => $groupFailed ? 'FAILED' : 'ok'
+      'cases'   => count ( $result ['tests'] ),
+      'failed'  => $result ['failed'],
+      'ran'     => $result ['when'] ? date ( 'Y-m-d H:i', $result ['when'] ) : 'never',
+      'status'  => $result ['failed'] ? 'FAILED' : 'ok'
     ];
 
   }

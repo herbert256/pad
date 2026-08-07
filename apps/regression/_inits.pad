@@ -1,3 +1,22 @@
 {padOpen}
-  @page@
+
+{if $suiteTest ne ''}
+  <h3><a href="{$suiteTest}">Test</a></h3>
+{/if}
+
+{lines}
+  {suites}
+    {if $now eq 1}
+      <b>{$name}</b>
+    @else@
+      <a href="{$link}">{$name}</a>
+    {/if}
+    {notLast} &nbsp; {/notLast}
+  {/suites}
+{/lines}
+
+<h1>{$title | replace ( '_', ' ') | ucfirst}</h1>
+
+@page@
+
 {padClose}

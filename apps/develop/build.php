@@ -7,6 +7,7 @@
   padDeleteDataDir ( DATA . 'dumps'      );
   padDeleteDataDir ( DATA . 'temp'       );
   padDeleteDataDir ( DATA . 'examples'   );
+  padDeleteDataDir ( DATA . 'suites'     );
 
   getRegression ( '&padExamples&padReference' );
 

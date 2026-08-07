@@ -9,6 +9,11 @@
   //
   // So the cases come in pairs: the same tag with options and without, with the space and without,
   // and against the written-out pair. All four have to agree.
+  //
+  // The last three are the other half of it. level/no.php puts a name nothing claims back into
+  // the page verbatim, and verbatim includes the slash - the same re-parse that found the tag
+  // was rewriting $padBetweenOrg from the stripped text, so {nosuchtag/} came back a character
+  // short. They assert the text is returned exactly as it was written, spacing and all.
 
   return [
 
@@ -55,11 +60,23 @@
       PAD,
       '1' ],
 
-    [ 'a name nothing claims is still left standing',
+    [ 'a name nothing claims comes back exactly as written',
       <<<'PAD'
       {nosuchtag/}
       PAD,
-      '{nosuchtag}' ],
+      '{nosuchtag/}' ],
+
+    [ 'including the space, when there is one',
+      <<<'PAD'
+      {nosuchtag /}
+      PAD,
+      '{nosuchtag /}' ],
+
+    [ 'and its options',
+      <<<'PAD'
+      {nosuch a=1/}
+      PAD,
+      '{nosuch a=1/}' ],
 
   ];
 

@@ -153,21 +153,29 @@
       PAD,
       '' ],
 
-    [ 'code runs its content',
+    [ 'code runs its content and returns only the result',
       <<<'PAD'
       {code}
         {echo 'in'}
       {/code}
       PAD,
-      'inin' ],
+      'in' ],
 
-    [ 'sandbox runs its content too',
+    [ 'code over text and a tag together',
+      <<<'PAD'
+      {code}
+        x{echo 'y'}
+      {/code}
+      PAD,
+      'xy' ],
+
+    [ 'sandbox does the same',
       <<<'PAD'
       {sandbox}
         {echo 'in'}
       {/sandbox}
       PAD,
-      'inin' ],
+      'in' ],
 
     [ 'an unknown tag is put back as it was written',
       <<<'PAD'

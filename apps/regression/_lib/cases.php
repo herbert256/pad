@@ -17,7 +17,7 @@
 
   $seqFixture = [ 1, 2, 3, 4, 5 ];
 
-  function getCases ( $group ) {
+  function getCasesRun ( $group ) {
 
     $tests  = [];
     $total  = 0;
@@ -25,7 +25,7 @@
     $dir    = APP . "regression/_cases/$group";
 
     if ( ! is_dir ( $dir ) )
-      return [ [], "no cases for '$group'", 1 ];
+      return [ 'tests' => [], 'summary' => "no cases for '$group'", 'failed' => 1, 'when' => 0 ];
 
     foreach ( padFiles ( $dir ) as $file ) {
 
@@ -40,15 +40,37 @@
         // the order they run in cannot change the outcome. A case that needs a variable or a
         // stored value therefore sets it up itself, in the same template.
         //
-        // A case may carry a fourth entry, 'scope', to be rendered with padCode() instead:
-        // that shares the page's variables, which is the only way to reach engine code a tag
-        // cannot call on its own - pqTruncate() is reached through the trim option and never
-        // by a sequence tag. The page sets up whatever those cases read.
+        // A fourth entry says how, when the template alone cannot:
+        //
+        //   'scope'   render with padCode() rather than padSandbox(), sharing the page's own
+        //             variables. That is the only way to reach engine code no tag calls -
+        //             pqTruncate() is reached through the trim option and never by a sequence
+        //             tag - and the page sets up whatever those cases read.
+        //
+        //   an array  variables to put in place first, name => value. A nested pass binds the
+        //             globals that exist when it opens, so these are visible to the template
+        //             even sandboxed, and arrays of any depth come through - {$a.b.c} reads
+        //             one. They are dropped again afterwards, so a case still cannot leave
+        //             anything behind for the next.
+        //
+        // The array form is what lets a page whose data came from a paired .php file be a case
+        // at all: the data is stated in the case instead, where it can be read beside what it
+        // is supposed to produce.
 
-        if ( ( $case [3] ?? '' ) == 'scope' )
+        $setup = $case [3] ?? '';
+
+        if ( is_array ( $setup ) )
+          foreach ( $setup as $setupName => $setupValue )
+            $GLOBALS [$setupName] = $setupValue;
+
+        if ( $setup === 'scope' )
           $got = padCode    ( $code );
         else
           $got = padSandbox ( $code );
+
+        if ( is_array ( $setup ) )
+          foreach ( array_keys ( $setup ) as $setupName )
+            unset ( $GLOBALS [$setupName] );
 
         // A tag that produces PAD's own syntax characters - {ignore}, the open/close/tag
         // functions, a tag left standing because nothing claimed it - hands them back escaped
@@ -109,11 +131,63 @@
 
     }
 
-    // The count is returned separately from the per-row 'failed' field, and the pages take it
-    // as $failedCount: a page variable sharing a name with a field of the rows it iterates is
-    // the collision CLAUDE.md warns about, and this template reads both.
+    // The count is kept apart from the per-row 'failed' field, and the pages take it as
+    // $failedCount: a page variable sharing a name with a field of the rows it iterates is the
+    // collision CLAUDE.md warns about, and this template reads both.
 
-    return [ $tests, "$total tests, $failed failed", $failed ];
+    return [
+      'tests'   => $tests,
+      'summary' => "$total tests, $failed failed",
+      'failed'  => $failed,
+      'when'    => time ()
+    ];
+
+  }
+
+
+  // Where a run is kept. DATA is the writable tree and is not in git, which is what a result
+  // that is regenerated on demand should be; the crawler's own baselines live beside it under
+  // regression/, so the suites get a directory of their own rather than sharing that one.
+
+  function getCasesFile ( $group ) {
+
+    return DATA . "suites/$group.json";
+
+  }
+
+
+  // Runs a group and keeps the result. This is what the Test link asks for, and the only thing
+  // that runs a case at all.
+
+  function getCasesTest ( $group ) {
+
+    $result = getCasesRun ( $group );
+
+    padFilePut ( getCasesFile ( $group ), json_encode ( $result ) );
+
+    return $result;
+
+  }
+
+
+  // What a page load reads: the last run, without starting a new one. A group that has never
+  // been run has nothing to show, so that one is run and kept - after which a page load is a
+  // page load again.
+
+  function getCases ( $group ) {
+
+    $file = getCasesFile ( $group );
+
+    if ( file_exists ( $file ) ) {
+
+      $result = json_decode ( padFileGet ( $file ), TRUE );
+
+      if ( is_array ( $result ) and isset ( $result ['summary'] ) )
+        return $result;
+
+    }
+
+    return getCasesTest ( $group );
 
   }
 
@@ -149,6 +223,8 @@
       'prefixes'    => 'The type prefixes that say what a name means',
       'escaping'    => 'What stops PAD reading braces as tags, in each of its spellings',
       'custom'      => 'What an application supplies: _tags, _functions, _include, _data',
+      'check'       => 'Pages carried over from the check application',
+      'manual'      => 'The examples the manual embeds, carried over from it',
       'sequence'    => 'The sequence subsystem - types, actions, plays, stores and options',
     ];
 
