@@ -58,18 +58,22 @@
     return ($random < 10) ? chr($random+48) : ($random < 36 ? chr($random+55) : chr($random+61));
   }
 
+  // Both take NULL for an empty string. A value read out of a database row is NULL where the
+  // column is, and a caller passing one straight in - the select subsystem does, for a row
+  // whose relation field is empty - would otherwise end the request on str_replace().
+
   function padUnescape ( $string ) {
 
     return str_replace ( [ '&open;','&close;','&pipe;', '&eq;','&comma;','&at;', '&else;' ],
                          [ '{',     '}',      '|',      '=',   ',',      '@',    '@else@' ],
-                         $string );
+                         $string ?? '' );
   }
 
   function padEscape ( $string ) {
 
     return str_replace ( [ '{',     '}',      '|',      '=',    ',',     '@'    ],
                          [ '&open;','&close;','&pipe;', '&eq;','&comma;','&at;' ],
-                         $string );
+                         $string ?? '' );
   }
 
   function padZip ($data) {

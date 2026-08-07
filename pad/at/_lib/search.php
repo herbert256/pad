@@ -14,6 +14,16 @@
 
   function padAtSearch ( $current, $names, $noDeep = 0 ) {
 
+    // There has to be something left to walk. padAtSearchAny recurses with whatever remains
+    // of the path after a *, and that lands on a scalar as soon as the path is longer than
+    // the data is deep - {$flat.*} ended the request on foreach() rather than answering.
+
+    if ( is_object ( $current ) or is_resource ( $current ) )
+      $current = (array) $current;
+
+    if ( ! is_array ( $current ) )
+      return INF;
+
     $check = padAtSearchGo ( $current, $names );
     if ( $check !== INF)
       return $check;
@@ -42,20 +52,26 @@
 
   function padAtSearchGo ( $current, $names ) {
 
+    // $key is this name's position in the path and $found the array key it resolves to. They
+    // used to share the one variable: padAtKey overwrote the position before padAtSearchAny
+    // was handed it, and that function reads it as a position to work out what is left of the
+    // path after the *. With the wrong value the remainder was wrong too, so every * either
+    // walked into a scalar or came back not found.
+
     foreach ( $names as $key => $name ) {
 
       if ( is_object ($current) or is_resource ($current) )
         $current = (array) $current;
 
-      $key = padAtKey ( $current, $name );
+      $found = padAtKey ( $current, $name );
 
       if ( ! is_array ($current) or ! count ($current) )
 
         return INF;
 
-      elseif ( $key ) {
+      elseif ( $found ) {
 
-        $current = &$current [$key];
+        $current = &$current [$found];
 
         continue;
 

@@ -16,6 +16,13 @@
 
   if ( substr($padBetween, -1) == '/') {
 
+    // What was written, slash and all. level/pipes/start.php takes $padBetweenOrg from
+    // $padBetween, which by then has had the slash cut off, so the text level/no.php puts
+    // back for a name nothing claims would come out a character short of what it was given -
+    // {nosuchtag/} landing in the page as {nosuchtag}.
+
+    $padTagSlashOrg = $padBetweenOrg;
+
     $padBetween = substr($padBetween, 0, -1);
     include PAD . 'level/pipes/start.php';
     include PAD . 'level/between.php';
@@ -26,6 +33,8 @@
     // name, {box/} was looked up as a tag called "box/", and nothing claimed it.
 
     include PAD . 'level/type.php';
+
+    $padBetweenOrg = $padTagSlashOrg;
 
     return;
 

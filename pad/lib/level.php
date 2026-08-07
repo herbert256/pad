@@ -131,7 +131,11 @@ function padSplitOnUnquotedColon ( $str ) {
 
   function padCommentGo () {
 
-    return padLevelNo ( '' );
+    // A comment leaves nothing behind. It used to go through padLevelNo(), which is for a name
+    // nothing claimed and puts the tag back into the page escaped - with an empty name that is
+    // &open;&close;, so every {# .. #} rendered as a bare {} where it stood.
+
+    return padLevel ( '' );
 
   }
 
