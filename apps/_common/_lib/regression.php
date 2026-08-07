@@ -1,11 +1,28 @@
 <?php
 
 
+  // Where the two suites live. They belong to the regression application wherever they are driven
+  // from - develop's build page calls getRegression() as well - so the directories are named
+  // absolutely rather than against APP.
+  //
+  // Against APP they resolved to whatever application was running. A build run from develop
+  // looked for apps/develop/sandbox/_cases/ and apps/develop/pages/, found neither, and wrote
+  // "no cases for 'tags'" over every stored result; the crawl then stored the suite pages saying
+  // that, and getRegressionWarning('ok') accepted it as the baseline. getPagesUrl() has always
+  // named the application outright, so this only makes the rest of it agree.
+
+  function getRegressionApp () {
+
+    return APPS . 'regression/';
+
+  }
+
+
   function getRegression ( $extra='' ) {
 
-    getRegressionAll     ( $extra );
     getRegressionSandbox ();
     getRegressionPages   ();
+    getRegressionAll     ( $extra );
 
   }
 
@@ -130,7 +147,7 @@
 
   function getPagesDir () {
 
-    return APP . 'pages/';
+    return getRegressionApp () . 'pages/';
 
   }
 
@@ -499,7 +516,7 @@
     $tests  = [];
     $total  = 0;
     $failed = 0;
-    $dir    = APP . "sandbox/_cases/$group";
+    $dir    = getRegressionApp () . "sandbox/_cases/$group";
 
     if ( ! is_dir ( $dir ) )
       return [ 'tests' => [], 'summary' => "no cases for '$group'", 'failed' => 1, 'when' => 0 ];

@@ -49,7 +49,8 @@
 
     global $padGoExt, $padHost;
 
-    $ajax = 'padAjax' . padRandomString(8);
+    $ajax = 'padAjax' . md5 ( $page . $qry . $app ) ;
+    //$ajax = 'padAjax' . padRandomString(8);
 
     if ( $app )
       $url = "$padHost$app/?$page$qry";
