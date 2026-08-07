@@ -6,7 +6,11 @@
   // and '.' concatenates. Everything else is arithmetic, for which both operands are first
   // cast to int, or to float when they contain a '.', so that '007' + 1 behaves as a number.
   // The three array variants in this directory all reduce to this file once they have
-  // unwrapped their operands.
+  // unwrapped or summed their operands.
+  //
+  // ** is one of them. The tokeniser has always recognised it and padEval_precedence has always
+  // ranked it, but no line here computed it, so 2 ** 3 left $now unset and rendered the operator
+  // itself rather than 8.
 
   if     ( $opr == 'LT'  ) $now = ($left <   $right) ? 1 : '';
   elseif ( $opr == 'LE'  ) $now = ($left <=  $right) ? 1 : '';
@@ -26,7 +30,8 @@
     if ( strpos($right, '.') === FALSE ) $right = (int)   $right;
     else                                 $right = (float) $right;
 
-    if     ( $opr == '+' ) $now = $left + $right;
+    if     ( $opr == '**') $now = $left ** $right;
+    elseif ( $opr == '+' ) $now = $left + $right;
     elseif ( $opr == '-' ) $now = $left - $right;
     elseif ( $opr == '*' ) $now = $left * $right;
     elseif ( $opr == '/' ) $now = $left / $right;
