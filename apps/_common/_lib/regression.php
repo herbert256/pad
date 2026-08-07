@@ -42,6 +42,24 @@
   }
 
 
+  // The session and request ids a page carries are different on every request by design, so a
+  // page that writes them into its own output can never match a stored copy. {ajax} does exactly
+  // that - padAddIds() appends padSesID and padReqID to the url it builds - and that alone was
+  // enough to keep reference/pages and regression/show/index permanently on warning.
+  //
+  // They are taken out of both sides before comparing, and only for comparing: what is stored is
+  // still the page as it came, so the show page diffs the real thing.
+
+  function getRegressionCompare ( $text ) {
+
+    $text = preg_replace ( '/padSesID=[A-Za-z0-9]+/', 'padSesID=', $text );
+    $text = preg_replace ( '/padReqID=[A-Za-z0-9]+/', 'padReqID=', $text );
+
+    return $text;
+
+  }
+
+
   function getRegressionGo ( $app, $item, $extra='' ) {
 
     global $padHost;
@@ -62,7 +80,7 @@
     elseif ( strpos($source, 'random')  ) $status = 'random' ;
     elseif ( strpos($source, 'shuffle') ) $status = 'random' ;
     elseif ( strpos($source, 'chance')  ) $status = 'random' ;
-    elseif ( $old == $new               ) $status = 'ok';
+    elseif ( getRegressionCompare ( $old ) == getRegressionCompare ( $new ) ) $status = 'ok';
     else                                  $status = 'warning';
 
     if ( $status == 'new' )
