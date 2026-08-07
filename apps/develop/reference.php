@@ -2,6 +2,6 @@
 
   padDeleteDataDir ( DATA . 'reference' );
 
-  getRegression ( '&padReference' );
+  getRegressionAll ( '&padReference' );
 
 ?>

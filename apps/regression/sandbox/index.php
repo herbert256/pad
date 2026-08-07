@@ -7,12 +7,8 @@
   // so opening the overview is reading, not testing.
 
   if ( isset ( $test ) ) {
-
-    foreach ( array_keys ( getCasesGroups () ) as $groupName )
-      getCasesTest ( $groupName );
-
+    getRegressionSandbox ();
     padRedirect ( $padPage );
-
   }
 
   $groups   = [];

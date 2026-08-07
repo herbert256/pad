@@ -2,7 +2,8 @@
 
   padDeleteDataDir ( DATA . 'dumps' );
 
-  getRegression ();
+  getRegressionAll ();
 
   padRestart ( 'errors2' );
+  
 ?>

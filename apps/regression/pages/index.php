@@ -6,7 +6,7 @@
 
   if ( isset ( $test ) ) {
 
-    getPagesTest ();
+    getRegressionPages ();
 
     padRedirect ( $padPage );
 

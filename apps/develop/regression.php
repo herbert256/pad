@@ -2,6 +2,6 @@
 
   padDeleteDataDir ( DATA . 'regression' );
   
-  getRegression ();
+  getRegressionAll ();
 
 ?>

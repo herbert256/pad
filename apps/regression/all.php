@@ -14,27 +14,6 @@
 
   if ( isset ( $go ) ) {
 
-    // Each group gets the clock reset before it runs. Without that the whole run shares one
-    // limit and the request is cut off part way through - the first seven groups were rerun
-    // and the last six silently kept the results of the run before.
-
-    foreach ( array_keys ( getCasesGroups () ) as $groupName ) {
-
-      set_time_limit ( 60 );
-
-      getCasesTest ( $groupName );
-
-    }
-
-    // The pages suite goes with them: it is the second kind of test and Test here means all of
-    // them. It fetches each of its pages over HTTP, so it has to run before the crawl for the
-    // same reason the sandbox groups do - the crawl stores what this application renders, and
-    // what it renders is the last run.
-
-    set_time_limit ( 60 );
-
-    getPagesTest ();
-
     getRegression ();
 
     padRedirect ( $padPage );
