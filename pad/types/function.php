@@ -10,6 +10,14 @@
   if ( padStartAndClose ('end') )
     return TRUE;
 
-  return padFunctionAsTag ( $padTag [$pad], $padContent, $padOpt[$pad] );
+  // The content has to be cleared once the function has been given it, or the level emits both:
+  // {upper}ab{/upper} rendered ABab, the answer followed by the source it was worked out from.
+  // tags/code.php and tags/sandbox.php had the same fault and are written the same way now.
+
+  $padFunctionResult = padFunctionAsTag ( $padTag [$pad], $padContent, $padOpt[$pad] );
+
+  $padContent = '';
+
+  return $padFunctionResult;
 
 ?>
