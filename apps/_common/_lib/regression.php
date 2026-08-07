@@ -453,7 +453,17 @@
   }
 
 
+  // Runs the pages suite, and like getRegressionSandbox() asks for it over HTTP from anywhere but
+  // the regression application. Each test is a fetch either way, but getPagesWhat() and the
+  // directory walk are APP-relative through getRegressionApp(), and a page under test may read
+  // its own application's resources - so it is run where it lives.
+
   function getRegressionPages () {
+
+    global $padHost;
+
+    if ( APP != getRegressionApp () )
+      return padCurl ( $padHost . 'regression/?pages/index&test' );
 
     set_time_limit ( 60 );
 
@@ -702,7 +712,22 @@
   }
 
 
+  // Runs the sandbox suite. From anywhere but the regression application itself, it is asked for
+  // over HTTP rather than run here.
+  //
+  // A case is rendered by padSandbox() inside the request that is running, so it reaches the
+  // _tags, _callbacks, _functions and _data of whatever application that is. Driven from
+  // develop's build page the cases were found - their directory is named outright now - but
+  // their fixtures were not: {n callback='before.php'} looked for a _callbacks/ develop does not
+  // have, the callback never ran, and the case died on the field it should have set. Asking for
+  // it over HTTP runs it in the application it belongs to, which is the only place it can work.
+
   function getRegressionSandbox () {
+
+    global $padHost;
+
+    if ( APP != getRegressionApp () )
+      return padCurl ( $padHost . 'regression/?sandbox/index&test' );
 
     set_time_limit ( 60 );
 
