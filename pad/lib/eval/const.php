@@ -27,7 +27,12 @@
   const padEval_2   = [ '**'];
   const padEval_txt = [ 'LT', 'LE', 'GT', 'GE', 'EQ', 'NE', 'AND', 'XOR', 'OR', 'NOT' ];
   const padEval_s   = [ '+', '-', '*', '/', '%', '.' ];
-  const padEval_one = ['not','!'];
+  // Written 'not' until now, which never matched: padEval_txt is matched case-insensitively but
+  // stored uppercase, so the token eval/go/go.php tests here is NOT. The word spelling was
+  // therefore not unary at all - it fell through to the binary path, where doubleVarVar.php has
+  // no line for it either, and {echo '' | not 0} rendered 200.
+
+  const padEval_one = ['NOT','!'];
 
   const padEval_alt = [
     '<'  => 'LT',
