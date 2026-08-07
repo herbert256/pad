@@ -124,8 +124,25 @@ names the file never fires. The comment in the file itself records this.
 
 ## Coverage of the manual
 
-The manual application was read page by page against these groups, and what it described and
-nothing asserted became cases: the data handling options, tag return values, `@start@`/`@end@`,
+The manual application has been read page by page against these groups twice. The second pass
+found five things the first had missed, all of them now cases:
+
+- merging a content store with the content of the tag using it - `@content@` from either side,
+  `merge=` in its three spellings, and a store carrying its own `@else@`. Five sections of the
+  content page and not one case: `tags/content.php`.
+- a page *variable* written as a tag, which is the other half of the tag-return-values page from
+  the PHP *function* form that `tags/returns.php` had: `variables/astag.php`.
+- three of the twelve ways the levels page builds one table - two separate stores nested, the same
+  name at both levels, and the data tag reading a file named as its second parameter - plus a bare
+  `{sequence 3}`: `data/levels.php`.
+- the parse order the parse page is entirely about, that the innermost tag is the first resolved:
+  `tags/parse.php`.
+- the `array:` tag form, the one of the prefix page's eleven that nothing reached.
+
+`{script:}` looked missing here and is not: `pages/tags/script` covers it, over the four
+interpreters that are portable.
+
+The first pass, for the record: the data handling options, tag return values, `@start@`/`@end@`,
 walking and what it breaks, callbacks, the open-tag against close-tag naming of a data or content
 block, PAD's own list format and YAML, naming a property's tag four ways, the `?` and `$$`
 variable kinds, and the six PAD entities.

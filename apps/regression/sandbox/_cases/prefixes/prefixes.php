@@ -160,6 +160,17 @@
       PAD,
       '112233112233' ],
 
+    [ 'array: insists on a field that holds an array',
+      <<<'PAD'
+      {data 'r'}
+        [{"sub":[1,2]}]
+      {/data}
+      {r}
+        {array:sub}{$sub},{/array:sub}
+      {/r}
+      PAD,
+      '1,2,' ],
+
     [ 'pull: names a stored sequence',
       <<<'PAD'
       {sequence '1..3', push='p'/}
