@@ -245,23 +245,31 @@ Use in templates: `{echo $price | money}`
 
 ### Pipe Timing: Opening vs Closing Tags
 
-Pipes can be applied to tags at two different points:
+Pipes can be applied to a tag at two points, and they do not act on the same text.
 
-**Opening tag pipe** - Processes data BEFORE the tag content is rendered:
-```
-{items | sort}
-  <li>{$name}</li>
-{/items}
-```
-
-**Closing tag pipe** - Processes output AFTER the tag finishes:
+**Closing tag pipe** - transforms the output, after every occurrence has been rendered and
+joined:
 ```
 {message}
   Content: {$message}
 {/message | upper}
 ```
+They chain left to right, each over what the one before returned.
 
-The placement determines when the pipe function is applied in the processing flow.
+**Opening tag pipe** - transforms the *content template*, once, before any occurrence is
+rendered. What the function is handed is the source between the tags, not the data:
+```
+{items | trim}
+  <li>x</li>
+{/items}
+```
+It is not a way to reorder or filter what a tag iterates - a field written inside would be
+transformed along with everything else and then not resolve. Sorting is an option:
+```
+{items sort}
+  <li>{$name}</li>
+{/items}
+```
 
 ### Pipe Arithmetic
 Arithmetic pipes require a space between the operator and operand:

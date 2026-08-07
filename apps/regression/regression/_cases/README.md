@@ -121,3 +121,18 @@ The one that is not is `eval/actions/singleRight.php`, and no case can reach it.
 a unary operator followed by another operator, but `padEvalDouble()` collapses every adjacent
 operator pair before the precedence walk begins, so the branch in `lib/eval/operations.php` that
 names the file never fires. The comment in the file itself records this.
+
+## Coverage of the tags and options
+
+The `tags` and `options` groups reach 71 of the 112 files under `pad/tags/`, `pad/options/` and
+`pad/types/`. What the rest need is outside what a case can state:
+
+- ending the request - `redirect`, `restart`, `exit`, `error`, `exception`, and the `error` option
+- a database - `field`, `record`, `array`, `check`
+- the network or the response mode - `get`, `curl`, `ajax`, `page`, `output`, `reactData`
+- the filesystem, where the answer depends on the machine - `file`, `files`, `dir`
+- output that differs every run - `dump`, `trace`, and the `dump` option
+
+Three options are dead rather than untested, and each says so in its own file: `bool=` has a
+handler that no phase list names, `demand=` only returns TRUE and nothing reads it, and
+`noError=` is a deliberately empty file. The suppression that does work is `optional`.

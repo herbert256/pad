@@ -33,11 +33,43 @@
       PAD,
       'A' ],
 
+    // Most of these prefixes have a tag spelling as well as the expression one, and the two are
+    // separate handlers - types/php.php against eval/parms/php.php, and so on down.
+
+    [ 'php: as a tag rather than in an expression',
+      <<<'PAD'
+      {php:strtoupper 'ab'}
+      PAD,
+      'AB' ],
+
     [ 'constant: reads a php constant',
       <<<'PAD'
       {echo constant:PHP_INT_SIZE}
       PAD,
       '8' ],
+
+    [ 'constant: as a tag',
+      <<<'PAD'
+      {constant:PHP_INT_SIZE}
+      PAD,
+      '8' ],
+
+    [ 'make: names a sequence type to build',
+      <<<'PAD'
+      {make:fibonacci rows=3}
+        {$sequence},
+      {/make:fibonacci}
+      PAD,
+      '0,1,1,' ],
+
+    [ 'pull as a tag reads a pushed sequence',
+      <<<'PAD'
+      {sequence '1..3', push='s'/}
+      {pull 's'}
+        {$sequence},
+      {/pull}
+      PAD,
+      '1,2,3,' ],
 
     [ 'constant: reads a big one',
       <<<'PAD'
