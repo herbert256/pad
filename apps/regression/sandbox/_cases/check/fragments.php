@@ -3,8 +3,8 @@
   // The fragments the manual's Ignore and Pipes pages embed, small enough to assert whole.
   //
   // They used to live in the check application and the manual reached into it for them with
-  // app='check'. They are the manual's own now, under manual/fragments/ - documentation is not
-  // check's to hold, and check cannot be retired while another application depends on it.
+  // app='check'. They are the manual's own now, under manual/fragments/ - documentation was not
+  // check's to hold, and check could not be retired while another application depended on it.
   //
   // Each case is the page as the manual renders it, with the answer it is supposed to give
   // stated here instead of left to a stored copy of the HTML.

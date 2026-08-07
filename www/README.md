@@ -41,7 +41,6 @@ The app name and the mount prefix (`$padRoot`) are derived in `pad.php` from `SC
 | Directory | Application | Static Assets |
 |-----------|-------------|---------------|
 | `apps/` | Application listing | - |
-| `check/` | Test suite | - |
 | `chess/` | Standalone static page (not a PAD app) | index.html |
 | `cli/` | CLI app (web entry) | - |
 | `demo/` | Demo application | style.css |

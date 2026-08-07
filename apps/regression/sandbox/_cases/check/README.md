@@ -1,46 +1,41 @@
 # Cases carried over from the check application
 
-The check application renders 224 pages and asserts nothing: the outer crawl compares each
-against a stored copy of its HTML, which catches any change but says only that one happened.
-These are the pages of it that can state their answer instead.
+The check application is gone. It rendered 224 pages and asserted nothing: the outer crawl
+compared each against a stored copy of its HTML, which caught any change but said only that one
+happened. This group is the half of it that can state its answer instead.
 
-A page that lives in both places is tested twice, once by comparison and once by assertion,
-until the copy in check is retired.
+The other half is `pages/`. Where a page needed to be a page - a {page} chain nine deep, a
+callback reading an occurrence's fields, a database, a script, a request that ends in an error -
+it moved there and is fetched over HTTP against a recorded answer. Between the two, everything
+check tested is tested, and by assertion rather than by comparison.
 
-Eighteen of them were never tests: the manual embedded them as its own examples with
-`app='check'`, so an application of documentation depended on an application of tests, and check
-could not be retired while it did.
+The group keeps its name because that is where these came from, and the case names are still the
+page paths they had.
 
-The eight in `fragments/` are `manual/fragments/` now, embedded by the Ignore and Pipes pages
-without a prefix. The ten in `tableFun/` came back: the page that embeds them turned out to be
-one the manual never linked, so it went to `check/manual/table_fun` and they went with it. The
-cases stay here, under their old names, and say where each set lives.
+## What became what
 
-## What came over, and what did not
+| check had | where it is |
+|-----------|-------------|
+| 74 self-contained pages | cases here |
+| the `{page}` and `{code}` scenarios under `start/` | `pages/start/` - 111 files, 23 tests |
+| `db/`, `select/`, `deep/`, `error/`, `file/`, `vars/at/`, `tags/`, `functions/` | `pages/` under the same names |
+| `fragments/` | `manual/fragments/` - never tests, the manual's own examples |
+| `tableFun/` and the pages the manual never linked | `pages/manual/` and `pages/tableFun/` |
+| `_data/`, `_scripts/`, the error `_tags/` | moved beside the tests that read them |
 
-Of the 89 pages that looked self-contained, 69 are here. The rest need something a case in
-this application cannot give them:
+## What did not come, and why
 
-| left behind | why |
-|-------------|-----|
-| `vars/at/7,8,9`, `miscellaneous/local` | read check's own `_data` - mondial.xml, bakery.xml, departments |
-| `vars/at/1,2` | use the `@globals` reference form, which does not see a variable put in place by the setup entry |
-| `vars/at/random` | draws a different answer every run |
-| `miscellaneous/parms`, `miscellaneous/scope` | want a query parameter, or a database, at page level |
-| `start/nested`, `start/combi2/page9`, `start/code/{set,increment}/{clean,reset,sandbox}` | end the request with "Using null as an array offset" when run as a case rather than as a page |
-| `file/index` | reads `$padOutputType`, which a case does not set |
-| `deep/four` | renders another page through `{example}` |
-| `vars/at/6` | its `{demo}` blocks do not survive being joined into one case |
-| `miscellaneous/eval` | needs `padColorsString` from the `_common` application |
+Five pages were dropped rather than moved, each already covered:
 
-The eight `{table}{demo}` pages that did come over have that scaffolding stripped: it is
-presentation from `_common`, not behaviour under test. The demos of a page share their data -
-the first defines `{data 'abc'}` and the rest print it - so each page stays one case rather
-than becoming one case per demo.
+- `vars/at/3`, `4`, `5`, `5a`, `10` - the wildcard forms of a dotted reference, which
+  `variables/wildcards.php` asserts over a cube built for the purpose.
+- `vars/at/6` - properties reached by name and by relative level, which
+  `properties/naming.php` asserts in all four spellings. Its own relative levels counted from a
+  nesting the move changed, so it could not have come across unedited anyway.
 
 ## Worth a second look
 
-`start/code/set/*` and `start/code/increment/*` fail as cases with a PHP error rather than an
-answer. That may be a limit of running them outside a page, or it may be a defect in `{code}`
-with the reset, clean and sandbox options - the same area as the doubling that `{code}` had.
-They are listed above rather than quietly dropped.
+`start/code/set/*` and `start/code/increment/*` fail as sandbox cases with a PHP error rather
+than an answer. They are `pages/` tests now and pass there, so the fault is in running them
+outside a page rather than in the pages themselves - but the `{code}` reset, clean and sandbox
+options are the same area as the doubling that `{code}` had, and it is worth knowing.

@@ -7,10 +7,13 @@
   // whose .php file leaves something behind for its .pad file cannot be written as one, and
   // neither can anything that reads $GLOBALS or depends on how a request is built.
   //
-  // A pages test is an ordinary page of this application - name.php with an optional name.pad -
+  // A pages test is an ordinary page of this application - name.pad, name.php, or the pair -
   // fetched over HTTP exactly as a browser would, with &padInclude so it renders bare, without
   // the menu and title the wrapper puts round it. What comes back is compared with name.txt,
   // written beside it.
+  //
+  // A test can also be a whole directory - see getPagesList() for when an index stands for the
+  // files beside it and when it does not.
   //
   // name.txt is written by hand and nothing here ever rewrites it. That is the whole point: an
   // expectation that the harness records for itself is not a prediction, it is a copy of
@@ -25,30 +28,75 @@
   }
 
 
-  // Every page under pages/ except the overview itself and anything an underscore hides. A test
-  // is named by its .php, which is the one file it must have; the .pad half is optional, so the
-  // listing cannot be taken from the templates.
+  // Every test under pages/, walked to the bottom. Either half names a test, so the .pad-only and
+  // .php-only forms both count and a pair counts once. An underscore hides a directory or a file
+  // from the walk, the way it does everywhere else in PAD.
+  //
+  // The rule for a directory holding an index: if that index renders its siblings - if its source
+  // has a {page of them - then it is the only test in the directory, because running it has
+  // already run them. A {page} chain of nine is one answer, not nine, and eight of those files
+  // assert a fragment nobody asks for on its own.
+  //
+  // An index that only links to its siblings collapses nothing. error/index is a menu of ten
+  // error pages and each of those is its own test; deep/index renders deep/two, which renders
+  // three, which renders four, and is one.
+  //
+  // The root index is the overview and never a test.
 
   function getPagesList () {
 
-    $dir  = getPagesDir ();
-    $list = [];
+    return getPagesWalk ( getPagesDir (), '' );
+
+  }
+
+
+  function getPagesRenders ( $dir ) {
+
+    foreach ( [ 'pad', 'php' ] as $half ) {
+
+      $source = padFileGet ( "{$dir}index.$half" );
+
+      if ( str_contains ( $source, '{page' ) )
+        return TRUE;
+
+    }
+
+    return FALSE;
+
+  }
+
+
+  function getPagesWalk ( $dir, $prefix ) {
+
+    $list = $names = $dirs = [];
 
     if ( ! is_dir ( $dir ) )
       return $list;
 
     foreach ( padFiles ( $dir ) as $file ) {
 
-      if ( ! str_ends_with ( $file, '.php' ) ) continue;
-      if ( str_starts_with ( $file, '_'    ) ) continue;
+      if ( str_starts_with ( $file, '_' ) )
+        continue;
 
-      $name = substr ( $file, 0, -4 );
+      if ( is_dir ( "$dir$file" ) )
+        $dirs [] = $file;
 
-      if ( $name == 'index' ) continue;
-
-      $list [] = $name;
+      elseif ( str_ends_with ( $file, '.pad' ) or str_ends_with ( $file, '.php' ) )
+        $names [ substr ( $file, 0, -4 ) ] = TRUE;
 
     }
+
+    if ( $prefix and isset ( $names ['index'] ) and getPagesRenders ( $dir ) )
+      $names = [ 'index' => TRUE ];
+
+    elseif ( ! $prefix )
+      unset ( $names ['index'] );
+
+    foreach ( array_keys ( $names ) as $name )
+      $list [] = $prefix . $name;
+
+    foreach ( $dirs as $one )
+      $list = array_merge ( $list, getPagesWalk ( "$dir$one/", "$prefix$one/" ) );
 
     sort ( $list );
 
@@ -76,8 +124,14 @@
   }
 
 
-  // Fetches every test and compares. The comparison is exact apart from the whitespace at the
-  // two ends, which is what a template's own line breaks leave and says nothing about the page.
+  // Fetches every test and compares. The comparison is exact apart from the whitespace at the two
+  // ends, which is what a template's own line breaks leave and says nothing about the page.
+  //
+  // Two expectations are not a body. A file holding nothing but HTTP <code> asserts the response
+  // code and ignores what came with it, which is the only thing worth asserting about a page that
+  // exists to fail: the error dump carries a request id and absolute paths, so it is different
+  // every run and on every machine. A file with slashes at both ends is a regular expression, the
+  // same convention the sandbox uses, for a page that draws a different answer each time.
 
   function getPagesRun () {
 
@@ -96,12 +150,7 @@
       $got  = trim ( $curl ['data'] );
       $code = $curl ['result'];
 
-      if ( ! str_starts_with ( $code, '2' ) ) {
-
-        $status = 'FAILED';
-        $expect = "http $code";
-
-      } elseif ( ! file_exists ( $want ) ) {
+      if ( ! file_exists ( $want ) ) {
 
         $status = 'new';
         $expect = '';
@@ -109,7 +158,24 @@
       } else {
 
         $expect = trim ( padFileGet ( $want ) );
-        $status = ( $got === $expect ) ? 'ok' : 'FAILED';
+
+        if ( str_starts_with ( $expect, 'HTTP ' ) ) {
+
+          $ok  = ( trim ( substr ( $expect, 5 ) ) === (string) $code );
+          $got = "HTTP $code";
+
+        } elseif ( strlen ( $expect ) > 1 and str_starts_with ( $expect, '/' ) and str_ends_with ( $expect, '/' ) ) {
+
+          $ok = (bool) preg_match ( $expect, $got );
+
+          if ( $ok )
+            $got = "matches $expect";
+
+        } else
+
+          $ok = ( $got === $expect and str_starts_with ( $code, '2' ) );
+
+        $status = $ok ? 'ok' : 'FAILED';
 
       }
 

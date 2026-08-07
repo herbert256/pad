@@ -229,7 +229,7 @@
       'prefixes'    => 'The type prefixes that say what a name means',
       'escaping'    => 'What stops PAD reading braces as tags, in each of its spellings',
       'custom'      => 'What an application supplies: _tags, _functions, _include, _data',
-      'check'       => 'Pages carried over from the check application',
+      'check'       => 'Pages carried over from the check application, which is gone',
       'sequence'    => 'The sequence subsystem - types, actions, plays, stores and options',
     ];
 
