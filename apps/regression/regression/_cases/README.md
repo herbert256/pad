@@ -94,9 +94,12 @@ group had pushed and iterated it.
 These appear in CLAUDE.md or `docs/reference/TAGS.md` and do not work. They are not cases,
 because there is nothing correct to assert:
 
-- `{if first@items}` - a property inside a condition ends the request: it resolves to an array,
-  and `eval/go/doubleArrVar.php` raises `ToDo` for comparing one. The working form is the tag
-  pair, `{first@items}...{/first@items}`, and CLAUDE.md has been corrected to show it.
+- `{if first@items}` - a property inside a condition does not read as a property at all. Within
+  an expression `@` is the current-value placeholder, so `first@items` tokenises as three things:
+  `first`, a property with no target, which is empty; `@`, the value being piped in; and `items`,
+  the tag name, which resolves to its whole data array. It is that array the operator then meets.
+  The working form is the tag pair, `{first@items}...{/first@items}`, and CLAUDE.md has been
+  corrected to show it.
 
 `{else}` and occurrence variables used to be listed here and no longer are. `{else}` is
 implemented; occurrence variables always worked - `%` marks the assignment and the value is

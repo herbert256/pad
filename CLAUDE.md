@@ -314,8 +314,11 @@ Arithmetic pipes require a space between the operator and operand:
 
 ### Iteration Properties (property@tag syntax)
 
-A property is written as a tag pair, not inside a condition - `{if first@items}` ends the
-request, because a property resolves to an array and comparing one is not implemented.
+A property is written as a tag pair, not inside a condition. Inside an expression `@` is the
+current-value placeholder, so `{if first@items}` never reads as a property: it tokenises as
+`first` (a property with no target, which is empty), `@` (the value being piped in) and `items`
+(the tag name, which resolves to its whole data array), and it is that array the comparison
+then meets.
 
 ```
 {items}

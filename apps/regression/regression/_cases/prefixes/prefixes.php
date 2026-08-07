@@ -105,6 +105,29 @@
       PAD,
       'snippet:bob' ],
 
+    // Both of these used to return the literal string 'todo' inside an expression, which read as
+    // data rather than as the failure it was: local:staff.xml came out as todoxml, the .xml having
+    // been taken as the concatenation operator. That is also why the name is written without its
+    // extension here - inside an expression a '.' is an operator, and padDataFileName() tries the
+    // known extensions anyway.
+
+    [ 'include: works in an expression as well as as a tag',
+      <<<'PAD'
+      {set $who = 'bob'/}
+      {echo '' | include:fixture . '!'}
+      PAD,
+      'snippet:bob!' ],
+
+    // What local: hands back is PAD data - a row per element, not a flat list - so it cannot meet
+    // a number. Joined to itself it reduces to its leaves twice over, which is what shows that the
+    // file was really read rather than a placeholder returned.
+
+    [ 'local: works in an expression as well as as a tag',
+      <<<'PAD'
+      {echo '' | local:nums . local:nums}
+      PAD,
+      '112233112233' ],
+
     [ 'pull: names a stored sequence',
       <<<'PAD'
       {sequence '1..3', push='p'/}

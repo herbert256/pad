@@ -970,9 +970,12 @@ Access iteration state and metadata using `property@tag` syntax.
 
 ```
 {items}
-  {if first@items}<ul>{/if}
+  {first@items}<ul>{/first@items}
   <li class="{even@items ? even : odd}">{$name}</li>
-  {if last@items}</ul>{/if}
+  {last@items}</ul>{/last@items}
   Index: {current@items} of {count@items}
 {/items}
 ```
+
+A property is a tag pair, as above, not something an expression can read. Inside an expression
+`@` is the current-value placeholder, so `{if first@items}` is not a property reference at all.
