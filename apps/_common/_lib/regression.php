@@ -59,8 +59,15 @@
     // compared at all: the values it happened to pick are the part that cannot match, and the
     // headings, rows, table structure and everything else around them are the 93% that can.
 
-    if ( $draw )
-      $text = preg_replace ( '/\d+/', '#', $text );
+    // A run of drawn values collapses to one. A page can draw a different *number* of values as
+    // well as different values - {mySeq randomly, unique} drops duplicates, so eight terms one
+    // run and six the next - and without this the row count alone reported a change that was
+    // only ever the draw. A heading, a column or a tag still shows, which is the point.
+
+    if ( $draw ) {
+      $text = preg_replace ( '/\d+/',      '#', $text );
+      $text = preg_replace ( '/#(\s+#)+/', '#', $text );
+    }
 
     return $text;
 
@@ -96,9 +103,11 @@
     if ( getRegressionCompare ( $old, TRUE ) == getRegressionCompare ( $new, TRUE ) )
       return 'random';
 
-    $again = padCurl ( $url ) ['data'];
+    // Asked for once more. Where even two fresh draws differ after masking, the page is one
+    // nothing can be concluded about and it stays 'random'; where they agree, the stored copy is
+    // the odd one out and something really has changed.
 
-    if ( getRegressionCompare ( $new, TRUE ) != getRegressionCompare ( $again, TRUE ) )
+    if ( getRegressionCompare ( $new, TRUE ) != getRegressionCompare ( padCurl ( $url ) ['data'], TRUE ) )
       return 'random';
 
     return 'warning';

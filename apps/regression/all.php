@@ -71,6 +71,24 @@
 
     }
 
+    // Only what needs looking at is listed. A page that is ok has nothing to say and there are
+    // hundreds of them - the list was seven hundred entries deep and the handful that mattered
+    // were lost in it. They are still counted, so the legend above still reports every one.
+    //
+    // The status arrives on the .txt pass and an item is created on the .html one, so the drop
+    // has to happen here rather than inside the loop: the item exists before its status is known.
+
+    foreach ( $list as $app => $one ) {
+
+      foreach ( $one ['items'] as $item => $what )
+        if ( ( $what ['status'] ?? '' ) == 'ok' )
+          unset ( $list [$app] ['items'] [$item] );
+
+      if ( ! count ( $list [$app] ['items'] ) )
+        unset ( $list [$app] );
+
+    }
+
     ksort ( $list );
 
     foreach ( $list as $key => $value )
