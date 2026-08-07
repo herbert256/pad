@@ -101,6 +101,23 @@ because there is nothing correct to assert:
   The working form is the tag pair, `{first@items}...{/first@items}`, and CLAUDE.md has been
   corrected to show it.
 
+- `sequence:<type>` inside an expression. The action half works - `sequence:sum([1,2,3])` and the
+  `action:` prefix both answer - but a name matching a directory in `sequence/types/` does not.
+  `sequence/sequence/sequence.php` runs `actions/set.php`, which files the name as the *action*
+  and picks the build from the first argument, so `sequence:fibonacci(8)` looks for an action
+  called fibonacci and ends the request. Nothing in the repo or the documentation shows what that
+  form is meant to mean, so there is nothing to assert either.
+
 `{else}` and occurrence variables used to be listed here and no longer are. `{else}` is
 implemented; occurrence variables always worked - `%` marks the assignment and the value is
 read back with `$`, which is what CLAUDE.md now says.
+
+## Coverage of the evaluator
+
+The `expressions` group is written against `pad/eval/`, one case for each shape that reaches a
+file there: 37 of its 38 files are entered when the suite runs.
+
+The one that is not is `eval/actions/singleRight.php`, and no case can reach it. It is meant for
+a unary operator followed by another operator, but `padEvalDouble()` collapses every adjacent
+operator pair before the precedence walk begins, so the branch in `lib/eval/operations.php` that
+names the file never fires. The comment in the file itself records this.
