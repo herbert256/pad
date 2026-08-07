@@ -88,6 +88,49 @@
       PAD,
       '6' ],
 
+    // The other half of the same prefix. A name matching a directory in sequence/types/ is a
+    // type rather than an action, and the argument is which term of it is wanted - so this is
+    // how an expression asks for the eighth Fibonacci number. It answers with the term itself
+    // and not a list of one, an action answering with a list because a list is what an action
+    // produces.
+    //
+    // It used to end the request: the run went through actions/set.php, which files the name as
+    // the action, so sequence:fibonacci(8) looked for an action called fibonacci.
+
+    [ 'sequence: over a type gives the nth term',
+      <<<'PAD'
+      {echo '' | sequence:fibonacci(8)}
+      PAD,
+      '13' ],
+
+    [ 'the first term is the first one, not the second',
+      <<<'PAD'
+      {echo '' | sequence:fibonacci(1)}
+      PAD,
+      '0' ],
+
+    [ 'and it is a value, so it takes an operator',
+      <<<'PAD'
+      {echo '' | sequence:fibonacci(8) + 1}
+      PAD,
+      '14' ],
+
+    [ 'any type answers the same way',
+      <<<'PAD'
+      {if sequence:prime(8) eq 19}
+        y
+      {/if}
+      PAD,
+      'y' ],
+
+    [ 'and it reads as a value in a condition',
+      <<<'PAD'
+      {if sequence:square(6) eq 36}
+        y
+      {/if}
+      PAD,
+      'y' ],
+
   ];
 
 ?>

@@ -495,7 +495,7 @@ Resolve naming conflicts with explicit prefixes:
 | `parm:` | Tag parameter value | `{parm:name}` |
 | `property:` | Tag property | `{property:id}` |
 | `script:` | Script from `_scripts/` | `{script:backup}` |
-| `sequence:` | Sequence type | `{sequence:fibonacci}` |
+| `sequence:` | Sequence type | `{sequence:fibonacci}` as a tag, `sequence:fibonacci(8)` in an expression - the 8th term |
 | `action:` | Sequence action | `{action:reverse}` |
 | `flag:` / `make:` / `keep:` / `remove:` | Sequence operations | `{make:fibonacci}` |
 

@@ -232,6 +232,17 @@ Always prefer named sequences for clarity:
 
 ## Special Syntax Rules
 
+**In an expression, `sequence:<type>(n)` is the nth term:**
+
+```
+{echo '' | sequence:fibonacci(8)}     13 - the eighth Fibonacci number
+{echo '' | sequence:prime(8)}         19
+{if sequence:square(6) eq 36}...      the term reads as a value
+```
+
+The action half of the same prefix - `sequence:sum([1,2,3])` - answers with a list instead,
+because a list is what an action produces.
+
 **Some sequences need `sequence:` prefix:**
 ```
 {sequence:repeat 42, rows=5}{$repeat}{/sequence:repeat}

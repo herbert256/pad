@@ -101,12 +101,9 @@ because there is nothing correct to assert:
   The working form is the tag pair, `{first@items}...{/first@items}`, and CLAUDE.md has been
   corrected to show it.
 
-- `sequence:<type>` inside an expression. The action half works - `sequence:sum([1,2,3])` and the
-  `action:` prefix both answer - but a name matching a directory in `sequence/types/` does not.
-  `sequence/sequence/sequence.php` runs `actions/set.php`, which files the name as the *action*
-  and picks the build from the first argument, so `sequence:fibonacci(8)` looks for an action
-  called fibonacci and ends the request. Nothing in the repo or the documentation shows what that
-  form is meant to mean, so there is nothing to assert either.
+`sequence:<type>` used to be listed here as well. It is implemented: the argument is which term
+of the type is wanted, so `sequence:fibonacci(8)` is the eighth Fibonacci number, and
+`expressions/calls.php` has it.
 
 `{else}` and occurrence variables used to be listed here and no longer are. `{else}` is
 implemented; occurrence variables always worked - `%` marks the assignment and the value is
