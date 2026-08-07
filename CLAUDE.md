@@ -871,6 +871,7 @@ This is particularly useful for:
 | `_common` | Shared | Shared resources and utilities for all applications |
 | `apps` | Standard | Lists all PAD applications with descriptions from README files |
 | `check` | Test | Comprehensive test suite for PAD framework features |
+| `classicModels` | Standard | PAD Select over the Classic Models sample database |
 | `cli` | CLI | Command-line interface for running PAD from terminal |
 | `demo` | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
 | `develop` | Standard | Development tools and utilities for PAD |

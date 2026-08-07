@@ -9,6 +9,7 @@ This directory contains PAD applications and examples.
 | [_common](_common/README.md) | Shared | Shared resources and utilities for all applications |
 | [apps](apps/README.md) | Standard | Lists all PAD applications with descriptions from README files |
 | [check](check/README.md) | Test | Comprehensive test suite for PAD framework features |
+| [classicModels](classicModels/README.md) | Standard | PAD Select over the Classic Models sample database |
 | [cli](cli/README.md) | CLI | Command-line interface for running PAD from terminal |
 | [demo](demo/README.md) | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
 | [develop](develop/README.md) | Standard | Development tools and utilities for PAD |
