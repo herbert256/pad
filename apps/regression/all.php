@@ -80,8 +80,13 @@
 
     foreach ( $list as $app => $one ) {
 
+      // An item with no status is not a result. The list is built from both halves - the .html
+      // on one pass and the .txt on the other - so a stored page whose status file is missing
+      // still made a row, with no status to colour it, and came out white and unexplained. Two
+      // of those were left behind by a crawl called by hand with a bad item name.
+
       foreach ( $one ['items'] as $item => $what )
-        if ( ( $what ['status'] ?? '' ) == 'ok' )
+        if ( ( $what ['status'] ?? '' ) == 'ok' or ! isset ( $what ['status'] ) )
           unset ( $list [$app] ['items'] [$item] );
 
       if ( ! count ( $list [$app] ['items'] ) )
