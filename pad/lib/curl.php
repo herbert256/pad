@@ -112,6 +112,13 @@
     padCurlOpt ($options, 'ENCODING',       'gzip' );
     padCurlOpt ($options, 'FOLLOWLOCATION', true);
     padCurlOpt ($options, 'HEADER',         true);
+
+    // A fetch that can hang forever hangs whatever asked for it - the regression crawl most
+    // of all. Callers can widen these through the options; without a bound there was none
+    // at all (the audit's F-13).
+
+    padCurlOpt ($options, 'CONNECTTIMEOUT', 10);
+    padCurlOpt ($options, 'TIMEOUT',        120);
     padCurlOpt ($options, 'USERAGENT',      $_SERVER['HTTP_USER_AGENT'] ?? 'Mozilla/5.0 (X11; CrOS x86_64 13904.77.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.147 Safari/537.36 pad/10.0');
     padCurlOpt ($options, 'REFERER',        $padGoExt . $padPage);
 

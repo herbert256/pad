@@ -47,14 +47,15 @@
       'link'   => "?$suite/index",
       'result' => $result ['summary'],
       'ran'    => $result ['when'] ? date ( 'Y-m-d H:i', $result ['when'] ) : 'never',
-      'status' => $result ['failed'] ? 'FAILURES' : 'ok'
+      'status' => $result ['failed'] ? 'FAILURES' : ( ( $result ['new'] ?? 0 ) ? 'NEW' : 'ok' )
     ];
 
   }
 
-  // The scan has no failed count of its own - what it leaves behind is a status per page, and
-  // the ones that are not ok are what need looking at. All of them are named here; a warning
-  // is the actionable one, so that is what the status column reacts to.
+  // The scan has no failed count of its own - what it leaves behind is a status per page.
+  // All of them are named on the line; the status column reacts to everything that is not
+  // ok, expected or random - an undeclared error, a page that went empty, a new page and a
+  // warning all demand a look, and only warnings used to be gated (the audit's F-02).
 
   $scanCounts = getScanCounts ();
   $scanTotal  = 0;
@@ -79,7 +80,8 @@
     'link'   => '?scan/index',
     'result' => $scanResult,
     'ran'    => $scanWhen ? date ( 'Y-m-d H:i', $scanWhen ) : 'never',
-    'status' => ( $scanCounts ['warning'] ?? 0 ) ? 'WARNINGS' : 'ok'
+    'status' => ( array_sum ( array_diff_key ( $scanCounts,
+                  array_flip ( [ 'ok', 'expected', 'random' ] ) ) ) ) ? 'ATTENTION' : 'ok'
   ];
 
   $title = 'Regression';

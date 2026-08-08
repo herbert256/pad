@@ -1,9 +1,16 @@
 <?php
 
-  $curl = padCurl ( "$padHost$app/?$item&padInclude" );
+  // Fetched the way the crawl fetches: a root index renders full, everything else bare -
+  // one rule, or an unchanged index shows a phantom diff here, which is what happened when
+  // the crawl learnt the full-index rule and this page did not (the audit's F-05).
 
-  if ( ! str_starts_with ( $curl ['result'], '2') )
-    padRedirect ( $item, [ 'padInclude' => 1 ], $app );
+  $include = ( $item != 'index' ) ? '&padInclude' : '';
+
+  $curl = padCurl ( "$padHost$app/?$item$include" );
+
+  // A page that answers with an error stays on this page: what it answered is the evidence
+  // the comparison needs, where the redirect this used to make just abandoned the visitor
+  // on the failing page itself.
 
   $oldRes = $newRes = $newSrc = $compare = $demoLines = [];
 

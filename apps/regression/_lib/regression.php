@@ -261,7 +261,12 @@
 
     padFilePut ( str_replace ( '.html', '.txt', $store ), $status ) ;
 
-    if ( ! $extra != '&padExamples' or ! str_starts_with ( $curl ['result'], '2' ) )
+    // Examples are harvested only on the run that asked for them. The old condition -
+    // if ( ! $extra != '&padExamples' ... ) - was inverted twice over: an ordinary scan fell
+    // through and rewrote every example, and the build's combined flag never equalled the
+    // single string, so the dedicated run returned early instead. The audit's F-04.
+
+    if ( ! str_contains ( $extra, '&padExamples' ) or ! str_starts_with ( $curl ['result'], '2' ) )
       return;
 
     if ( str_contains ( $source, '{page'    ) ) return;
@@ -651,6 +656,7 @@
     $total  = 0;
     $count  = 0;
     $failed = 0;
+    $new    = 0;
 
     foreach ( getPagesList ( $app ) as $name ) {
 
@@ -692,7 +698,11 @@
 
         } elseif ( strlen ( $expect ) > 1 and str_starts_with ( $expect, '/' ) and str_ends_with ( $expect, '/' ) ) {
 
-          $ok = (bool) preg_match ( $expect, $got );
+          // A pattern answer still needs a healthy response: without the status check a
+          // fragment surviving inside an error dump could pass a test that meant to assert
+          // a working page. A failing status is asserted with the HTTP form instead.
+
+          $ok = (bool) preg_match ( $expect, $got ) and str_starts_with ( (string) $code, '2' );
 
           if ( $ok )
             $got = "matches $expect";
@@ -711,6 +721,13 @@
       if ( $status == 'FAILED' )
         $failed++;
 
+      // A test with no recorded answer is not passing - it is waiting for one. It has its
+      // own count rather than a place in 'failed', so the overview can say which it is, and
+      // ci.sh gates on both.
+
+      if ( $status == 'new' )
+        $new++;
+
       $tests [] = [
         'name'   => $name,
         'url'    => $url,
@@ -726,8 +743,9 @@
 
     return [
       'tests'   => $tests,
-      'summary' => "$total pages, $count tests, $failed failed",
+      'summary' => "$total pages, $count tests, $failed failed" . ( $new ? ", $new new" : '' ),
       'failed'  => $failed,
+      'new'     => $new,
       'when'    => time ()
     ];
 
@@ -779,9 +797,11 @@
   }
 
 
-  // What a page load reads: the last run, without starting a new one. Fetching every test is a
-  // request each, so this matters more here than it does for the sandbox - opening the overview
-  // must not put the server through its own suite.
+  // What a page load reads: the last run, without starting a new one - and genuinely never
+  // one: a missing or unreadable result used to fall through to running the whole suite,
+  // which made opening a report on a fresh install cost hundreds of requests and broke the
+  // page's own promise (the audit's F-12). It answers 'never run' now; Test is the only
+  // thing that runs.
 
   function getPages ( $suite ) {
 
@@ -796,7 +816,7 @@
 
     }
 
-    return getPagesTest ( $suite );
+    return [ 'tests' => [], 'summary' => 'never run', 'failed' => 0, 'new' => 0, 'when' => 0 ];
 
   }
 
@@ -910,18 +930,35 @@
 
         $setup = $case [3] ?? '';
 
+        // Setup names are restored, not just unset: a case borrowing a name that already
+        // existed used to erase the original, and a throw skipped the cleanup entirely -
+        // the finally puts the world back either way (the audit's F-15).
+
+        $setupPrior = [];
+
         if ( is_array ( $setup ) )
-          foreach ( $setup as $setupName => $setupValue )
+          foreach ( $setup as $setupName => $setupValue ) {
+            $setupPrior [$setupName] = array_key_exists ( $setupName, $GLOBALS )
+                                     ? [ TRUE, $GLOBALS [$setupName] ] : [ FALSE, NULL ];
             $GLOBALS [$setupName] = $setupValue;
+          }
 
-        if ( $setup === 'scope' )
-          $got = padCode    ( $code );
-        else
-          $got = padSandbox ( $code );
+        try {
 
-        if ( is_array ( $setup ) )
-          foreach ( array_keys ( $setup ) as $setupName )
-            unset ( $GLOBALS [$setupName] );
+          if ( $setup === 'scope' )
+            $got = padCode    ( $code );
+          else
+            $got = padSandbox ( $code );
+
+        } finally {
+
+          foreach ( $setupPrior as $setupName => $setupWas )
+            if ( $setupWas [0] )
+              $GLOBALS [$setupName] = $setupWas [1];
+            else
+              unset ( $GLOBALS [$setupName] );
+
+        }
 
         // A tag that produces PAD's own syntax characters - {ignore}, the open/close/tag
         // functions, a tag left standing because nothing claimed it - hands them back escaped
@@ -1021,9 +1058,10 @@
   }
 
 
-  // What a page load reads: the last run, without starting a new one. A group that has never
-  // been run has nothing to show, so that one is run and kept - after which a page load is a
-  // page load again.
+  // What a page load reads: the last run, without starting a new one - and genuinely never
+  // one: a group that had never been run used to be run on sight, against the page's own
+  // promise (the audit's F-12). It answers 'never run' now; Test is the only thing that
+  // runs.
 
   function getCases ( $group ) {
 
@@ -1038,7 +1076,7 @@
 
     }
 
-    return getCasesTest ( $group );
+    return [ 'tests' => [], 'summary' => 'never run', 'failed' => 0, 'when' => 0 ];
 
   }
 
