@@ -1,0 +1,67 @@
+<h1>Extending PAD</h1>
+
+<p>An application teaches PAD new words by putting files in the right directory - no
+registration, no configuration. The file's name is the name in the template.</p>
+
+<h2>A tag of your own: _tags/</h2>
+
+<p>A file <code>_tags/badge.php</code> makes <code>{open}badge{close}</code> a tag. The file
+reads its parameters with <code>padTagParm ( name, default )</code>, puts what it renders in
+<code>$padContent</code>, and returns TRUE. The <code>app:</code> prefix names it
+explicitly when another meaning of the name is in the way:</p>
+
+{example 'fragments/extending_1'}
+
+{ignore}
+<pre><code>&lt;?php                                   // _tags/badge.php
+
+  $label = padTagParm ( 'label', 'plain' );
+
+  $padContent = "&amp;laquo;$label&amp;raquo;";
+
+  return TRUE;
+
+?&gt;</code></pre>
+{/ignore}
+
+<h2>A pipe function: _functions/</h2>
+
+<p>A file <code>_functions/stars.php</code> makes <code>| stars</code> a pipe. The file gets
+the piped text as <code>$value</code>, its parameters as <code>$parm</code>, and returns the
+answer - and it chains with everything else:</p>
+
+{example 'fragments/extending_2'}
+
+<h2>A snippet: _include/</h2>
+
+<p>A file <code>_include/tip.pad</code> is template, dropped in wherever its name is written
+- bare, or with the <code>include:</code> prefix:</p>
+
+{example 'fragments/extending_3'}
+
+<h2>Functions for every page: _lib/</h2>
+
+<p>Every <code>.php</code> file in <code>_lib/</code> is included on every request, so a
+page's PHP half calls what they define without an include of its own:</p>
+
+{example 'fragments/extending_4'}
+
+<h2>The whole family</h2>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+  <tr><th>directory</th><th>a file there is</th></tr>
+  <tr><td><code>_tags/</code></td><td>a tag</td></tr>
+  <tr><td><code>_functions/</code></td><td>a pipe function</td></tr>
+  <tr><td><code>_include/</code></td><td>a template snippet</td></tr>
+  <tr><td><code>_lib/</code></td><td>PHP functions, included every request</td></tr>
+  <tr><td><code>_callbacks/</code></td><td>a data iteration hook - see <a href="?pages/callback">callback</a></td></tr>
+  <tr><td><code>_options/</code></td><td>a tag option of your own</td></tr>
+  <tr><td><code>_data/</code></td><td>a data file, usable as a tag - see <a href="?pages/the_data_tag">the data tag</a></td></tr>
+  <tr><td><code>_scripts/</code></td><td>a shell script, run by the <code>script:</code> prefix</td></tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p>A subdirectory may carry any of these of its own: its pages see both, and its version of
+a name wins - the story of the
+<a href="?pages/application_structure">application structure</a> page.</p>

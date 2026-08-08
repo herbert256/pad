@@ -1,0 +1,46 @@
+<h1>Requests, Urls and Variables</h1>
+
+<p>A PAD url names the page in the query string:</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+  <tr><th>url</th><th>page</th></tr>
+  <tr><td><code>/myapp/</code></td><td><code>index.pad</code></td></tr>
+  <tr><td><code>/myapp/?about</code></td><td><code>about.pad</code></td></tr>
+  <tr><td><code>/myapp/?admin/users</code></td><td><code>admin/users.pad</code></td></tr>
+  <tr><td><code>/myapp/?about&amp;who=world</code></td><td><code>about.pad</code>, with a parameter</td></tr>
+</table>
+
+<h2>Parameters become variables</h2>
+
+<p>Everything after the page name arrives as plain variables: <code>&amp;who=world</code> is
+<code>$who</code> in the page's PHP and <code>{open}$who{close}</code> in its template. The
+<code>optional</code> pipe reads one that may not be there:</p>
+
+{example 'fragments/requests_1'}
+
+<h2>Building urls: the {open}?var{close} form</h2>
+
+<p>The third variable spelling writes a variable as a url fragment -
+<code>{open}?city{close}</code> renders <code>&amp;city=value</code>, encoded and ready to
+append to a link:</p>
+
+{example 'fragments/requests_2'}
+
+<h2>Forms</h2>
+
+<p>A form posts back to the page it is on - no action needed - and its fields arrive as
+variables like any other. A hidden field commonly says what the page should do with them,
+so the PHP half can branch on <code>$action</code>:</p>
+
+{example 'fragments/requests_3'}
+
+<p>Two habits keep this safe: pass what a visitor typed through
+<code>padMakeSafe ( $input, $len )</code> before using it, and give variables set in
+<code>_inits.php</code> names a form field would never use - a form field named the same
+would be overwritten.</p>
+
+<h2>Carrying more than a url can</h2>
+
+<p><code>padFastLink ( $page, $vars )</code> builds a link that carries a whole set of
+variables to the next page in one opaque token - for when the data is too much, or too
+private, for a query string.</p>
