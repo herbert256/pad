@@ -89,17 +89,17 @@
       <<<'PAD'
       {sequence multiple='2..4', rows=4}
         {$sequence},
-      {/sequence}
+      {/sequence | steps('ceil', 2, 4, 4)}
       PAD,
-      '/^\d+,\d+,\d+,\d+,$/' ],
+      'ok' ],
 
     [ 'divide with a range parameter that can draw zero',
       <<<'PAD'
       {sequence divide='0..3', rows=4}
         {$sequence},
-      {/sequence}
+      {/sequence | steps('divide', 0, 3, 4)}
       PAD,
-      '/^[\d.]+,[\d.]+,[\d.]+,[\d.]+,$/' ],
+      'ok' ],
 
     [ 'fractional parameter, ceil',
       <<<'PAD'
