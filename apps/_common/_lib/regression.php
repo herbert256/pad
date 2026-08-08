@@ -69,6 +69,15 @@
     // behind: demo/clock and demo/counter came up as changed the first time the crawl ran after
     // midnight, every night, and nothing but a fresh baseline would quiet them.
 
+    // What a {demo} produced is the draw itself, and _common marks it out for us. On a page that
+    // draws, the whole of each result goes: sequence/play/double/random draws nothing at all now
+    // and then, so one render says a value where the last said none, and no amount of masking
+    // digits makes those two agree. The sources, headings and table around them still compare,
+    // which is what these pages are worth checking for.
+
+    if ( $draw )
+      $text = preg_replace ( '/(<!-- START DEMO RESULT -->).*?(<!-- END DEMO RESULT -->)/s', '$1#$2', $text );
+
     if ( $draw ) {
       $text = preg_replace ( '/\b(Mon|Tues|Wednes|Thurs|Fri|Satur|Sun)day\b/', 'DAY', $text );
       $text = preg_replace ( '/\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/', 'MONTH', $text );
@@ -110,12 +119,22 @@
     if ( getRegressionCompare ( $old, TRUE ) == getRegressionCompare ( $new, TRUE ) )
       return 'random';
 
-    // Asked for once more. Where even two fresh draws differ after masking, the page is one
-    // nothing can be concluded about and it stays 'random'; where they agree, the stored copy is
-    // the odd one out and something really has changed.
+    // Asked for once more, and the second draw is held against both the first and the stored copy.
+    //
+    // A page can have more than one shape without having changed. sequence/play/double/random
+    // draws nothing at all now and then, so one render says '#' where the last said nothing, and
+    // comparing the two fresh draws alone reported that as a change roughly five times in six.
+    // If the stored shape comes back on the second ask, the page still produces it and the odd
+    // draw was just a draw.
+    //
+    // So a warning needs two independent draws that both differ from what was stored, and agree
+    // with each other about it. Anything less is a page nothing can be concluded about, which is
+    // what 'random' says.
 
-    if ( getRegressionCompare ( $new, TRUE ) != getRegressionCompare ( padCurl ( $url ) ['data'], TRUE ) )
-      return 'random';
+    $again = getRegressionCompare ( padCurl ( $url ) ['data'], TRUE );
+
+    if ( $again == getRegressionCompare ( $old, TRUE ) ) return 'random';
+    if ( $again != getRegressionCompare ( $new, TRUE ) ) return 'random';
 
     return 'warning';
 
