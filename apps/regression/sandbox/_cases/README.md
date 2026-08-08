@@ -62,13 +62,16 @@ suite is supposed to carry a known problem.
 |------|-----------------|
 | `tags/constructs.php` - a walking tag makes every row its own last | the manual says walking breaks the properties, and it does; the case pins it so a fix is noticed |
 
-## One thing a case must not assume
+## The stores are isolated too
 
-**The four stores outlive a case.** `padSandbox()` isolates variables, not stores: the data,
-content, bool and sequence stores are request-scoped on purpose, so a name one case pushes is
-visible to every case after it. A case that needs a name to be *undefined* has to pick one no
-other case anywhere could define - `{b}` in `escaping/` found a sequence store the sequence
-group had pushed and iterated it.
+A sandboxed pass empties the data, content, bool and sequence stores on the way in and puts
+the request's own back on the way out (`start/start/resetPad.php`, `start/end/stores.php`),
+so a case neither sees another case's pushes nor leaves its own behind. A case that pulls a
+store pushes it first, in the same template.
+
+The one exception is `'scope'`: a `padCode()` case runs in the request itself, so what it
+pushes stays - visible to later `'scope'` cases and to the page, never to sandboxed cases,
+which clear the stores at entry.
 
 ## A spelling that reads as something else
 

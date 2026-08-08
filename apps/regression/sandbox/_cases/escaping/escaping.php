@@ -9,10 +9,9 @@
   // and comes back as written rather than as its contents - which is what makes ignore
   // necessary in the first place - and an HTML entity passes through untouched.
   //
-  // That case names something no other case defines, deliberately. The four stores are
-  // request-scoped and survive padSandbox() on purpose, so a name left undefined here can be
-  // claimed by any case in any group that happens to run first - {b} found a sequence store
-  // pushed by the sequence group and iterated it.
+  // The unclaimed names are safe to use: a sandboxed pass empties the four stores on the way
+  // in and restores the request's own on the way out, so nothing another case pushes - many
+  // push 'a' and 'b' - can reach {a} and {b} here.
 
 
   return [

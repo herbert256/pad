@@ -384,11 +384,14 @@ Conditionals must use comparison operators (`eq`, `ne`, `gt`, `lt`, `ge`, `le`, 
 ```
 
 ### Iteration Properties
-Properties use the `property@tag` syntax to access iteration state:
+Properties use the `property@tag` syntax to access iteration state. A boolean property is
+written as a tag pair - its content renders only when the property is true - or in a ternary;
+`{if first@items}` is not supported (inside an expression `@` is the current-value
+placeholder, so the spelling reads as something else and the request ends):
 ```
 {items}
-  {if first@items}First item{/if}
-  {if last@items}Last item{/if}
+  {first@items}First item{/first@items}
+  {last@items}Last item{/last@items}
   {even@items ? Even row : Odd row}
   Count: {count@items}
   Index: {current@items}
@@ -1069,16 +1072,16 @@ Or using the `{switch}` tag:
 ### Conditional Table Wrapper
 ```
 {items}
-  {if first@items}<table border="1">{/if}
+  {first@items}<table border="1">{/first@items}
   <tr><td>{$name}</td></tr>
-  {if last@items}</table>{/if}
+  {last@items}</table>{/last@items}
 {/items}
 ```
 
 ### Comma-Separated List
 ```
 {items}
-  {if notFirst@items}, {/if}{$name}
+  {notFirst@items}, {/notFirst@items}{$name}
 {/items}
 ```
 Output: `Alice, Bob, Charlie`

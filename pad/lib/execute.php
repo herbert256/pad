@@ -5,7 +5,9 @@
   // padCode           renders a template string in the current variable scope and returns
   //                   the result; the general "evaluate this PAD fragment" call
   // padSandbox        the same, but sandboxed, reset and cleaned, so the fragment cannot
-  //                   see or leave behind variables (used for _data/ files)
+  //                   see or leave behind variables, and the four stores - data, content,
+  //                   bool, sequence - are emptied going in and restored coming out
+  //                   (used for _data/ files)
   // padStrFun         the full form, taking the sandbox/reset/clean flags plus a function
   //                   name; start/pad/parms.php calls it for {start function=...}
   // padFunctionAsTag  runs a pipe function as if it were a tag, by handing a synthetic

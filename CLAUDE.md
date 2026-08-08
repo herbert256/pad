@@ -627,7 +627,7 @@ Or using the `{switch}` tag:
 
 ### Comma-Separated List
 ```
-{items}{if notFirst@items}, {/if}{$name}{/items}
+{items}{notFirst@items}, {/notFirst@items}{$name}{/items}
 ```
 Output: `Alice, Bob, Charlie`
 

@@ -24,11 +24,13 @@ Where `tagname` is the name of the iteration/loop context and `property` is the 
 {current@rows}
 ```
 
-### In Conditionals
+### As a Tag Pair
+
+A boolean property written as a tag pair renders its content only when the property is true:
 
 ```
-{if first@users}<ul>{/if}
-{if last@users}</ul>{/if}
+{first@users}<ul>{/first@users}
+{last@users}</ul>{/last@users}
 ```
 
 ### Ternary Conditionals
@@ -36,6 +38,11 @@ Where `tagname` is the name of the iteration/loop context and `property` is the 
 ```
 {even@rows ? class="even" : class="odd"}
 ```
+
+**Not `{if first@users}`.** Inside an `{if}` expression `@` is the current-value placeholder,
+so `first@users` does not read as a property there: it tokenises as `first` (a property with
+no target), `@` (the piped-in value) and `users` (the tag, resolving to its whole data array),
+and the request ends with an error. Use the tag pair or the ternary form instead.
 
 ---
 
@@ -56,7 +63,7 @@ Returns `TRUE` if this is the first iteration.
 **Example:**
 ```html
 {users}
-  {if first@users}<table><tr><th>Name</th></tr>{/if}
+  {first@users}<table><tr><th>Name</th></tr>{/first@users}
   <tr><td>{$name}</td></tr>
 {/users}
 ```
@@ -77,7 +84,7 @@ Returns `TRUE` if this is the last iteration.
 ```html
 {users}
   <tr><td>{$name}</td></tr>
-  {if last@users}</table>{/if}
+  {last@users}</table>{/last@users}
 {/users}
 ```
 
@@ -96,7 +103,7 @@ Returns `TRUE` if this is NOT the first iteration.
 **Example:**
 ```html
 {items}
-  {if notFirst@items}, {/if}{$name}
+  {notFirst@items}, {/notFirst@items}{$name}
 {/items}
 ```
 
@@ -117,7 +124,7 @@ Returns `TRUE` if this is NOT the last iteration.
 **Example:**
 ```html
 {items}
-  {$name}{if notLast@items}|{/if}
+  {$name}{notLast@items}|{/notLast@items}
 {/items}
 ```
 
@@ -138,7 +145,7 @@ Returns `TRUE` if this is either the first OR last iteration.
 **Example:**
 ```html
 {items}
-  <div {if border@items}class="highlight"{/if}>{$name}</div>
+  <div {border@items}class="highlight"{/border@items}>{$name}</div>
 {/items}
 ```
 
@@ -157,7 +164,7 @@ Returns `TRUE` if this is neither first nor last (middle items only).
 **Example:**
 ```html
 {items}
-  {if middle@items}<div class="middle">{$name}</div>{/if}
+  {middle@items}<div class="middle">{$name}</div>{/middle@items}
 {/items}
 ```
 
@@ -630,9 +637,9 @@ Returns all level-scoped variables as an iterable array.
 
 ```html
 {items}
-  {if first@items}<ul>{/if}
+  {first@items}<ul>{/first@items}
   <li>{$name}</li>
-  {if last@items}</ul>{/if}
+  {last@items}</ul>{/last@items}
 {/items}
 ```
 
@@ -640,7 +647,7 @@ Returns all level-scoped variables as an iterable array.
 
 ```html
 {tags}
-  {$name}{if notLast@tags}, {/if}
+  {$name}{notLast@tags}, {/notLast@tags}
 {/tags}
 ```
 
@@ -650,7 +657,7 @@ Returns all level-scoped variables as an iterable array.
 {users}
   <div>
     {current@users} of {count@users}: {$name}
-    {if remaining@users}({remaining@users} remaining){/if}
+    {notLast@users}({remaining@users} remaining){/notLast@users}
   </div>
 {/users}
 ```

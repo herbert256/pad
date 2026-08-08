@@ -171,13 +171,14 @@ Common functions: `trim`, `upper`, `lower`, `html`, `url`, `date`, `replace`, `l
 
 ### Tag Properties
 
-Access iteration state with `property@tag` syntax:
+Access iteration state with `property@tag` syntax - as a tag pair (content renders only when
+the property is true) or in a ternary, not inside `{if}`:
 
 ```
 {items}
-  {if first@items}<ul>{/if}
-  <li class="{if odd@items}odd{/if}">{$name}</li>
-  {if last@items}</ul>{/if}
+  {first@items}<ul>{/first@items}
+  <li class="{odd@items ? odd : even}">{$name}</li>
+  {last@items}</ul>{/last@items}
 {/items}
 ```
 
