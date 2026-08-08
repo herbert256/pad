@@ -7,15 +7,14 @@
   // them. true, false and null are the three fixed answers, and are here because a tag that always
   // renders and one that never does are what every conditional is measured against.
   //
-  // The lone zero is here because it used to be dropped: a tag whose whole output was the
-  // single character 0 printed nothing, PHP reading "0" as false in two of the engine's own
-  // tests. It is asserted rather than described so the day that comes back it fails here.
+  // The lone zero is here because it is the value PHP most likes to read as false: a tag
+  // whose whole output is the single character 0 must still print it, and this is where a
+  // truthiness test in the engine's own plumbing would show.
   //
   // A name nothing claims is put back into the page exactly as it was written, which is what
-  // level/no.php says it does. It used to depend on position - the first unclaimed tag of a
-  // request emptied to {} and only later ones kept their name - because $padBetweenOrg was
-  // created on first write, inside a nested pass, and the read that follows it looks at the
-  // global. inits/vars.php declares it now.
+  // level/no.php says it does. That must not depend on position - a first unclaimed tag and
+  // a later one answer alike - which holds because inits/vars.php declares $padBetweenOrg
+  // at boot, so a nested pass reads and writes the same global as the request around it.
 
   return [
 

@@ -137,11 +137,9 @@
       PAD,
       'snippet:bob' ],
 
-    // Both of these used to return the literal string 'todo' inside an expression, which read as
-    // data rather than as the failure it was: local:staff.xml came out as todoxml, the .xml having
-    // been taken as the concatenation operator. That is also why the name is written without its
-    // extension here - inside an expression a '.' is an operator, and padDataFileName() tries the
-    // known extensions anyway.
+    // The name is written without its extension on purpose: inside an expression a '.' is an
+    // operator, so local:staff.xml reads as local:staff concatenated with xml, and
+    // padDataFileName() tries the known extensions anyway.
 
     [ 'include: works in an expression as well as as a tag',
       <<<'PAD'

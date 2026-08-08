@@ -4,7 +4,7 @@
   //
   // A property is written as a tag pair - {first@xs}...{/first@xs} - not inside a condition:
   // {if first@xs} ends the request, because a property resolves to an array and comparing one
-  // against a value is not implemented. CLAUDE.md used to show the condition form.
+  // against a value is not implemented.
   //
   // The separators are covered from both sides, notFirst@ and notLast@, and border@ as the pair of
   // them; a change that made one of the three agree with the wrong rows would otherwise show up in

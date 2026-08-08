@@ -1,10 +1,7 @@
 <?php
 
-  // A {code} pass inside another nested pass - which is what every case here is, so for a
-  // long time these could not be written at all: {code reset} under padSandbox() died in
-  // occurrence/init.php on a NULL key, and the README carried the diagnosis instead of a
-  // case. The audit-era engine repairs fixed it in passing, so what the README could only
-  // describe is asserted here now.
+  // A {code} pass inside another nested pass - which is what every case here is, since a
+  // sandbox case is itself a nested pass.
   //
   // The four option forms differ on what a pass newly creates: a plain {code} and reset
   // leave the created variable standing, clean and sandbox unset it on the way out -

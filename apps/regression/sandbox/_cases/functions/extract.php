@@ -2,12 +2,11 @@
 
   // The functions that take a value apart: by delimiter, and by position.
   //
-  // The four delimiter functions share one convention now: the whole delimiter is skipped,
-  // multi-character or not, and a value that does not contain it comes back untouched.
-  // afterLast was repaired to that first; the audit of these cases then caught after, before
-  // and beforeLast still carrying the strpos-FALSE accidents the convention repairs - after
-  // ate the value's first character, the before pair answered '' - and the cases here had
-  // recorded those accidents as if they were the answer.
+  // The four delimiter functions share one convention: the whole delimiter is skipped,
+  // multi-character or not, and a value that does not contain it comes back untouched. The
+  // absent-delimiter and multi-character cases below are what hold the convention - a
+  // strpos that answers FALSE is one coercion away from eating a character or emptying the
+  // value, and these are the inputs where that would show.
   //
   // Note also that the position functions do not share a base: substr counts from zero, mid from
   // one. Each is checked past the end of the value as well, where a wrong bound would show.

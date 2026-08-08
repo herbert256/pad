@@ -55,7 +55,7 @@
   // The scan has no failed count of its own - what it leaves behind is a status per page.
   // All of them are named on the line; the status column reacts to everything that is not
   // ok, expected or random - an undeclared error, a page that went empty, a new page and a
-  // warning all demand a look, and only warnings used to be gated (the audit's F-02).
+  // warning all demand a look.
 
   $scanCounts = getScanCounts ();
   $scanTotal  = 0;

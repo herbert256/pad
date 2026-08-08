@@ -94,8 +94,6 @@
     // and not a list of one, an action answering with a list because a list is what an action
     // produces.
     //
-    // It used to end the request: the run went through actions/set.php, which files the name as
-    // the action, so sequence:fibonacci(8) looked for an action called fibonacci.
 
     [ 'sequence: over a type gives the nth term',
       <<<'PAD'

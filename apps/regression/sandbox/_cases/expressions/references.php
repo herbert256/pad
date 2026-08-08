@@ -81,10 +81,8 @@
       PAD,
       '33' ],
 
-    // object: reads a php variable the page left behind. It used to be written as a variable
-    // variable, and since this file is included from inside padEvalType() that reached the
-    // evaluator's own locals instead of the page's - object:myself handed back the piped value,
-    // and no name a page could define resolved at all.
+    // object: reads a php variable the page left behind - through $GLOBALS by name, never as
+    // a variable variable, which from inside the evaluator would reach its own locals.
     //
     // $objFixture comes from _lib/cases.php and the case renders in that scope, because object:
     // reads $GLOBALS and a sandboxed pass has the application globals taken out of it. The usual

@@ -162,13 +162,10 @@
   }
 
 
-  // What to make of a page that draws. It used to be skipped outright, which meant a regression
-  // in one of the twenty-seven such pages could not be seen: across them that is 4542 lines of
-  // output, of which only 7% actually varies from run to run.
-  //
-  // So the draw is masked and the rest compared. Where that matches, the page is 'random' as
-  // before - the colour still says it cannot be compared exactly - but it now means "looked at
-  // and unchanged" instead of "not looked at".
+  // What to make of a page that draws: the draw is masked and the rest compared. Where that
+  // matches, the page is 'random' - the colour says it cannot be compared exactly, and the
+  // status means "looked at and unchanged". Across the drawing pages only a small part of
+  // the output actually varies from run to run; everything around the draw still compares.
   //
   // Where it does not match, the page is asked for once more. If two fresh draws differ from each
   // other even masked then the shape itself varies per run and there is nothing to compare, so it
@@ -261,10 +258,8 @@
 
     padFilePut ( str_replace ( '.html', '.txt', $store ), $status ) ;
 
-    // Examples are harvested only on the run that asked for them. The old condition -
-    // if ( ! $extra != '&padExamples' ... ) - was inverted twice over: an ordinary scan fell
-    // through and rewrote every example, and the build's combined flag never equalled the
-    // single string, so the dedicated run returned early instead. The audit's F-04.
+    // Examples are harvested only on the run that asked for them with the padExamples flag,
+    // and only from a page that answered.
 
     if ( ! str_contains ( $extra, '&padExamples' ) or ! str_starts_with ( $curl ['result'], '2' ) )
       return;
@@ -520,7 +515,7 @@
       'error/throw'               => 'The {exception} tag, which throws a real PHP exception from the template',
       'error/exit'                => 'The {exit} tag, which ends the request where it stands - and ships nothing at all, which the pattern pins',
       'error/dump'                => 'The {dump} tag, which stops the request on the engine state dump',
-      'misc/trace'                => 'The {trace} tag wrapping a scope in the execution trace - it broke two ways before this test existed',
+      'misc/trace'                => 'The {trace} tag wrapping a scope in the execution trace',
       'misc/react'                => 'The {reactData} tag over a static provider, and the @providers reference reading the parked result back',
       'select/support/prefix'     => 'The select: prefix spelling of a declared table, which also says the word the reference matcher looks for',
       'catalog/tags'              => 'One line per built-in tag no other page reaches - the catalogue half of the reference coverage',
@@ -629,11 +624,10 @@
   //
   // Two expectations are not a body. A file opening with HTTP <code> asserts the response code,
   // because the error dump carries a request id and absolute paths, so a page that exists to
-  // fail can never match byte for byte. The code alone proved too little - the shutdown test
-  // answered 500 for a while with the wrong thing broken - so a second line holding /a regular
-  // expression/ asserts what the dump says as well. A file with slashes at both ends is a
-  // regular expression over the whole body, the same convention the sandbox uses, for a page
-  // that draws a different answer each time.
+  // fail can never match byte for byte. The code alone proves only that something failed, so
+  // a second line holding /a regular expression/ asserts that the right thing did. A file
+  // with slashes at both ends is a regular expression over the whole body, the same
+  // convention the sandbox uses, for a page that draws a different answer each time.
 
   // A page is one comparison, but not always one assertion: the catalog/ pages state one
   // assertion per labelled line, so for those the answer's "name: ..." lines are counted as
@@ -797,11 +791,9 @@
   }
 
 
-  // What a page load reads: the last run, without starting a new one - and genuinely never
-  // one: a missing or unreadable result used to fall through to running the whole suite,
-  // which made opening a report on a fresh install cost hundreds of requests and broke the
-  // page's own promise (the audit's F-12). It answers 'never run' now; Test is the only
-  // thing that runs.
+  // What a page load reads: the last run, without starting a new one - a missing or
+  // unreadable result answers 'never run', and Test is the only thing that runs. Fetching
+  // every test is a request each, so opening a report must never cost a suite.
 
   function getPages ( $suite ) {
 
@@ -887,6 +879,13 @@
 
     $GLOBALS ['savedFixture'] = 'outer';
 
+    // What the harness group's counting cases read: a catalogue-shaped answer (two labelled
+    // lines, one continuation) and a rendering-shaped one. Multiline values cannot be written
+    // inside a case template, so they live here like the fixtures above.
+
+    $GLOBALS ['harnessLabelled']  = "one: a\ntwo: b\ncontinuation line";
+    $GLOBALS ['harnessRendering'] = "<p>\n  a page\n</p>";
+
 
   function getCasesRun ( $group ) {
 
@@ -930,9 +929,8 @@
 
         $setup = $case [3] ?? '';
 
-        // Setup names are restored, not just unset: a case borrowing a name that already
-        // existed used to erase the original, and a throw skipped the cleanup entirely -
-        // the finally puts the world back either way (the audit's F-15).
+        // Setup names are restored rather than unset, so a case borrowing a name that
+        // already exists gives the original back - and the finally does so on a throw too.
 
         $setupPrior = [];
 
@@ -1058,10 +1056,8 @@
   }
 
 
-  // What a page load reads: the last run, without starting a new one - and genuinely never
-  // one: a group that had never been run used to be run on sight, against the page's own
-  // promise (the audit's F-12). It answers 'never run' now; Test is the only thing that
-  // runs.
+  // What a page load reads: the last run, without starting a new one - a group that has
+  // never been run answers 'never run', and Test is the only thing that runs.
 
   function getCases ( $group ) {
 
@@ -1139,6 +1135,7 @@
       'custom'      => 'What an application supplies: _tags, _functions, _include, _data',
       'check'       => 'Pages carried over from the check application, which is gone',
       'sequence'    => 'The sequence subsystem - types, actions, plays, stores and options',
+      'harness'     => 'The runner itself - url building, test counting, masking, and the patterns coverage is matched with',
     ];
 
   }

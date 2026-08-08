@@ -10,10 +10,9 @@
   // tag runs.
   //
   // Three options in pad/options/ have no case and cannot have one, each for its own reason:
-  // Nothing here is dead any more. bool= is the {if bool="name"} flag form, error= the
-  // documented alias of notOk=, demand ends the request when its tag produced nothing - each
-  // was found unwired by the audit and connected - and noError swallows an unresolved tag
-  // the way optional does.
+  // bool= is the {if bool="name"} flag form, error= the alias of notOk=, demand ends the
+  // request when its tag produced nothing, and noError swallows an unresolved tag the way
+  // optional does.
 
   return [
 

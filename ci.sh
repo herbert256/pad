@@ -3,7 +3,7 @@
 # The suites as a gate: run everything, read what the runs left in DATA/suites/, and exit
 # nonzero when anything failed - which is what a git hook or a CI step can act on.
 #
-# The gate fails closed (the audit's F-01/F-02): the trigger must answer 2xx/3xx, every
+# The gate fails closed: the trigger must answer 2xx/3xx, every
 # suite result must be fresher than the moment this run started, a page with no recorded
 # answer counts against the verdict, and so does any scan status that is not ok, expected
 # or random - an undeclared error, a page gone empty, a new page. Warnings stay reported
@@ -27,7 +27,7 @@ esac
 
 exit=0
 
-for suite in tags functions options properties expressions variables data prefixes escaping custom check sequence pages common; do
+for suite in tags functions options properties expressions variables data prefixes escaping custom check sequence harness pages common; do
 
   file="$padHome/DATA/suites/$suite.json"
 

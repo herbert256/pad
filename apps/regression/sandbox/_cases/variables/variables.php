@@ -4,7 +4,7 @@
   //
   // A level variable declared on a tag holds the same value for every row; an occurrence variable,
   // declared with %, is worked out again for each one. Both are read back as ordinary fields with
-  // $ - the % is the assignment sigil only, and CLAUDE.md used to show {%total} for the read.
+  // $ - the % is the assignment sigil only.
   //
   // A variable set inside a loop is still there after it: the loop does not get a scope of its
   // own, which is what makes a running total work.

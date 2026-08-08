@@ -4,14 +4,13 @@
   // naming a place, saved reaches the value a level shadowed, providers what a {reactData}
   // provider returned, sequences the sequence subsystem's store.
   //
-  // Three of the group names still have no case, because no spelling of them yields a value
-  // a template can assert. The level group (the whole data set of a level) returns INF for
+  // Three of the group names have no case, because no spelling of them yields a value a
+  // template can assert. The level group (the whole data set of a level) returns INF for
   // every path tried, numeric, dotted or named; the function group captures the driving PHP
   // function's locals, and the storable-name filter leaves none standing in any mode a suite
-  // can reach. The data@ property no longer crashes - the padAtSetTag repair removed the
-  // types/tag.php death - and it resolves internally, but an {echo} of it turns the array
-  // into iteration data that renders nothing, and no reduction spelling tried brings the
-  // values out; the pinned empty lines in regression2's catalog/properties watch all three.
+  // can reach; the data@ property resolves internally, but an {echo} of it turns the array
+  // into iteration data that renders nothing, and no reduction spelling brings the values
+  // out. The pinned empty lines in regression2's catalog/properties watch all three.
 
   return [
 

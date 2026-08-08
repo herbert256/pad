@@ -2,10 +2,6 @@
 
   // The fragments the manual's Ignore and Pipes pages embed, small enough to assert whole.
   //
-  // They used to live in the check application and the manual reached into it for them with
-  // app='check'. They are the manual's own now, under manual/fragments/ - documentation was not
-  // check's to hold, and check could not be retired while another application depended on it.
-  //
   // Each case is the page as the manual renders it, with the answer it is supposed to give
   // stated here instead of left to a stored copy of the HTML.
 
@@ -164,11 +160,8 @@
         'message' => 'the quick brown fox'
       ] ],
 
-    // This one used to render two empty lines, and the case pinned them. Its data was
-    // {data 'message'}Hello World{/data} - bare text, which comes back as no occurrences at all -
-    // so the example for the difference between the two pipes demonstrated neither. It also
-    // described the opening pipe as processing the data, which is what the Pipes page said and
-    // what tags/pipes.php shows it does not do.
+    // The fragment's data is a list on purpose: bare text in a {data} pair comes back as no
+    // occurrences at all, and the difference between the two pipes only shows over rows.
 
     [ 'fragments/pipes_4',
       <<<'PAD'
