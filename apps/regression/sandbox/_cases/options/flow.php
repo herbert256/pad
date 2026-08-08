@@ -10,9 +10,10 @@
   // tag runs.
   //
   // Three options in pad/options/ have no case and cannot have one, each for its own reason:
-  // bool= has a handler that no phase list names, so a flag written that way never reaches it;
-  // demand= only returns TRUE and nothing reads it; noError= is a deliberately empty file. The
-  // suppression that does work is optional, which is the last case here.
+  // Nothing here is dead any more. bool= is the {if bool="name"} flag form, error= the
+  // documented alias of notOk=, demand ends the request when its tag produced nothing - each
+  // was found unwired by the audit and connected - and noError swallows an unresolved tag
+  // the way optional does.
 
   return [
 
@@ -111,7 +112,7 @@
         yes
       {/bool:f}
       PAD,
-      'bayes' ],
+      'yes' ],
 
     [ 'and records false when nothing was',
       <<<'PAD'
@@ -135,6 +136,38 @@
       {/nosuchtag}
       PAD,
       '' ],
+
+    [ 'toData on a pair stores the walked data and prints nothing',
+      <<<'PAD'
+      {data 'x'}
+        ["b","a"]
+      {/data}
+      {x sort, toData='y'}{$x}{/x}
+      {data:y}
+        {$x},
+      {/data:y}
+      PAD,
+      'a,b,' ],
+
+    [ 'error= is the alias of notOk= it was documented as',
+      <<<'PAD'
+      {content 'oopsE'}
+        bad
+      {/content}
+      {false error='oopsE'}
+        yes
+      {/false}
+      PAD,
+      'bad' ],
+
+    [ 'bool= makes a flag the condition of an if',
+      <<<'PAD'
+      {bool 'fOn'}
+        1
+      {/bool}
+      {if bool='fOn'}y{/if}{if bool='fOff'}n{/if}
+      PAD,
+      'y' ],
 
   ];
 

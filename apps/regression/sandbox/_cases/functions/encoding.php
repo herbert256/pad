@@ -2,12 +2,6 @@
 
   // Escaping and encoding, where the whole point is the exact characters that come out.
   //
-  // url encodes a space as + rather than %20, which is what urlencode does and what the function
-  // comment describes; FUNCTIONS.md shows %20. A literal plus in the value has to come back as
-  // %2B, or the two would be indistinguishable after a round trip.
-  //
-  // open, close and tag build the literal text of a PAD tag, so their output is parsed again as a
-  // tag unless ignore follows - which is why each of them is written with it here.
 
   return [
 
@@ -61,9 +55,9 @@
 
     [ 'slashes and stripslashes undo each other',
       <<<'PAD'
-      {echo 'a' | slashes | stripslashes}
+      {echo "it's" | slashes | stripslashes}
       PAD,
-      'a' ],
+      "it's"],
 
     [ 'bold',
       <<<'PAD'
@@ -81,7 +75,7 @@
       <<<'PAD'
       {echo 'café' | encodeHigh}
       PAD,
-      'caf&#195;&#169;' ],
+      'caf&#233;' ],
 
     [ 'open builds a tag, ignore keeps it from being one',
       <<<'PAD'

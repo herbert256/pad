@@ -470,7 +470,7 @@ Returns a specific named parameter value.
 **Example:**
 ```html
 {myTag sort="name" limit="10"}
-  Sort by: {parameter:sort@myTag}
+  Sort by: {parameter.1@myTag}
   Limit: {parameter:limit@myTag}
 {/myTag}
 ```
@@ -512,7 +512,7 @@ Returns a specific positional option value.
 **Example:**
 ```html
 {myTag arg1 arg2 arg3}
-  First: {option:1@myTag}
+  First: {option.sort@myTag}
   Second: {option:2@myTag}
 {/myTag}
 ```
@@ -607,9 +607,9 @@ Returns all level-scoped variables as an iterable array.
 | `firstFieldName@tag` | String | First field's name |
 | `firstFieldValue@tag` | Mixed | First field's value |
 | `name@tag` | String | Tag name |
-| `parameter:x@tag` | Mixed | Named parameter |
+| `parameter.n@tag` | Mixed | Positional parameter n, numbered from 1 |
 | `parameters@tag` | Array | All parameters |
-| `option:n@tag` | Mixed | Positional option |
+| `option.name@tag` | Mixed | The named option's value |
 | `options@tag` | Array | All options |
 | `variable:x@tag` | Mixed | Level variable |
 | `variables@tag` | Array | All variables |

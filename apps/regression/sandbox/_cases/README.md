@@ -70,6 +70,23 @@ the day it comes back it fails here first.
 | `{parm:x}`, `function:` and `action:` ended the request on a missing include | `types/parm.php`, `eval/parms/function.php`, `eval/parms/action.php` |
 | `parm:` answered `1` instead of the value | `lib/field/field.php` - `$lvl` was not forwarded |
 | five properties could not be reached at all | `at/properties/` - the forwarders were missing |
+| `after` ate a character and the `before` pair answered `''` on an absent delimiter | `functions/{after,before,beforeLast}.php` - the `afterLast` convention everywhere |
+| `{break}` and `{continue}` threw away what the row had already printed | `level/nextLevel.php` - only the remainder goes |
+| `{cease}` truncated after a constant key and never stopped over string keys | `tags/cease.php` - the loop's own key |
+| `toContent=`/`toBool=`/`toData=` stored and printed anyway | `options/` - end-phase handlers blank `$padContent`, which the walker copies back |
+| a bare-word ternary branch read as a property of the wrong level | `level/ternary.php` - one bare word is that word |
+| `{first@-2}` landed one level short of `{first -2}` | `at/_lib/lib.php` - one formula for both resolution routes |
+| `action:` in a pipe swallowed its value | `eval/parms/action.php` - passes it through |
+| `@tidy@` shipped to the browser | `exits/tidy.php` - consumed either way |
+| a flat list summed where the same values as data rows ran together | `lib/eval/reduce.php` - flattened before the numeric test |
+| `encodeHigh` encoded bytes, so 'café' rendered mojibake | `functions/encodeHigh.php` - per character |
+| `noError` was parsed and ignored, leaking the tag's own source | `level/no.php` - swallows the way optional does |
+| `@providers` read by level index where `{reactData}` stores by id | `at/groups/providers.php` - the whole store is searched |
+| `error=` reset on an option it does not carry, and nothing included it | `options/error.php`, `level/flags.php`, `try/catch/level/go.php` - the alias notOk= always was |
+| `{if bool="name"}` did nothing - the raw option text fell through to padEval | `tags/if.php`, `options/bool.php` - and an unset flag is FALSE, not a truthy name |
+| `demand` returned TRUE that nothing read | `level/flags.php` - a demanded tag that produced nothing ends the request |
+| `script:` in an expression died on a missing include | `eval/parms/script.php` - the missing half of types/script.php |
+| `{code reset/clean/sandbox}` died inside a nested pass | fixed in passing by the audit-era repairs; `tags/nested.php` asserts all four forms |
 
 ## Known defects recorded as cases
 
@@ -82,28 +99,15 @@ suite is supposed to carry a known problem.
 | `functions/encoding.php` - url encodes a space as `+` | matches `urlencode`; FUNCTIONS.md used to show `%20` and has been corrected |
 | `tags/constructs.php` - a walking tag makes every row its own last | the manual says walking breaks the properties, and it does; the case pins it so a fix is noticed |
 
-## Known defects with no case, because a case cannot survive them
+## Fixed after living here as a known defect
 
-**`{code reset}`, `{code clean}` and `{code sandbox}` end the request inside a nested pass.**
-Two lines are enough:
-
-    {code reset}{set $f = 'x'/}{/code}
-
-rendered through `padSandbox()` - which is what every case here is - dies in
-`occurrence/init.php:17`, where `key($padData[$pad])` is NULL and line 18 indexes with it. The
-stack goes through the *outer* request's `build/build.php`, so what the pass corrupts is the
-enclosing build rather than its own level. `start/end/dat.php` already walks each lower level's
-array pointer back to `$padKey` for exactly this reason, so the fault is a level it does not
-cover.
-
-The same three options are fine as pages - `pages/start/code/set/{reset,clean,sandbox}` pass -
-which is why this is about nesting and not about the options.
-
-Worth knowing when reading those pages tests: `reset`, `clean` and `sandbox` produce *identical*
-output in all of them, because each sets `$abc`, which already exists, and the three differ only
-on what a pass newly **creates** (`start/pad/end.php` runs `unsetApp`/`unsetPad` for clean and
-sandbox but not for reset). Nothing tests that difference, and nothing can until the above is
-fixed.
+**`{code reset}`, `{code clean}` and `{code sandbox}` used to end the request inside a nested
+pass** - `key($padData[$pad])` came back NULL in `occurrence/init.php` and the next line
+indexed with it, so a two-line case died in the *outer* request's build. This section carried
+the diagnosis for as long as no case could survive it. The audit-era engine repairs fixed the
+crash in passing, and `tags/nested.php` now asserts all four option forms, including the
+difference the crash used to hide: a plain pass and `reset` leak what the pass newly created,
+`clean` and `sandbox` unset it (`start/pad/end.php` runs the unset for those two only).
 
 ## One thing a case must not assume
 
@@ -187,14 +191,23 @@ any other.
 ## Coverage of the tags and options
 
 The `tags` and `options` groups reach 71 of the 112 files under `pad/tags/`, `pad/options/` and
-`pad/types/`. What the rest need is outside what a case can state:
+`pad/types/`. What the rest need is outside what a case can state, or was until a spelling
+was found that pins it down - where one was, the case says which trick carries it:
 
-- ending the request - `redirect`, `restart`, `exit`, `error`, `exception`, and the `error` option
-- a database - `field`, `record`, `array`, `check`
-- the network or the response mode - `get`, `curl`, `ajax`, `page`, `output`, `reactData`
-- the filesystem, where the answer depends on the machine - `file`, `files`, `dir`
-- output that differs every run - `dump`, `trace`, and the `dump` option
+- ending the request - `redirect`, `restart`, `exit`, `error`, `exception`, and the `error`
+  option; these are pages tests in regression2 instead
+- a database - `field`, `record`, `array`, `check` - pages tests in regression2
+- the network - `get` and `curl` are cases now, pinned by shape and by a `SELF://` fetch of
+  a stable regression2 page, which needs the local server the suite already needs; `ajax`
+  is pinned by shape; `page` and `reactData` are pages tests
+- the response mode - `output` has a case naming `'web'`, the mode the suite is already in,
+  which is the only one safe to name mid-request
+- the filesystem - `files` and `dir` list this application's own scan/ directory, whose
+  content is part of the suite; `file` writes, and stays a pages test
+- output that differs every run - `dump` and the `dump` option (a state dump under DATA on
+  every run is a side effect a suite must not repeat); `trace` broke two ways the moment a
+  pages test asked, and lives in regression2 with a one-word answer
 
-Three options are dead rather than untested, and each says so in its own file: `bool=` has a
-handler that no phase list names, `demand=` only returns TRUE and nothing reads it, and
-`noError=` is a deliberately empty file. The suppression that does work is `optional`.
+Two options are dead rather than untested, and each says so in its own file: `bool=` has a
+handler that no phase list names, and `demand=` only returns TRUE and nothing reads it.
+`noError` swallows an unresolved tag the way `optional` does.

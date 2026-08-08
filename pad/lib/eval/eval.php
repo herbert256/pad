@@ -43,10 +43,22 @@
 
   }
 
+  // $padEvalBusy counts the evaluations in flight. padAtSetTag() reads it: an @ reference
+  // resolving inside an expression must not mark the level the expression belongs to, and
+  // this is what tells that situation apart from a reference standing as a tag.
+
   function padEval ( $eval, $value='' ) {
 
+    global $padEvalBusy;
+
+    $padEvalBusy = ( $padEvalBusy ?? 0 ) + 1;
+
     $padTry = 'eval/eval';
-    return  include PAD . 'try/try.php';
+    $padEvalValue = include PAD . 'try/try.php';
+
+    $padEvalBusy--;
+
+    return $padEvalValue;
 
   }
 

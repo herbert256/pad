@@ -8,6 +8,9 @@
   if  ( padTagParm ( 'notOk' ) )
     return include PAD . 'options/notOk.php';
 
+  if  ( padTagParm ( 'error' ) )
+    return include PAD . 'options/error.php';
+
   padErrorGo (
     'CATCH: ' .
     $padTryException->getMessage(),

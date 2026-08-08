@@ -5,8 +5,9 @@
   // types/<type>.php that will run it.
   //
   // padTypeTag       the plain name case, resolved in priority order: application _tags/,
-  //                  the _common application, a built-in pad tag, then the shared cases
-  //                  below, and finally a pipe function used as a tag
+  //                  the _common application (unless $padCommon is off - the common: prefix
+  //                  stays available), a built-in pad tag, then the shared cases below, and
+  //                  finally a pipe function used as a tag
   // padTypeFunction  the mirror image for a name in a pipe: _functions/, built-in
   //                  function, shared cases, then a tag used as a function. The $goTag /
   //                  $goFunction flags stop the two from recursing into each other
@@ -48,10 +49,12 @@
 
   function padTypeTag ( $type, $goFunction=1 ) {
 
-    if     ( ! padValid     ( $type              ) ) return FALSE;
-    elseif ( padAppTagCheck ( $type              ) ) return 'app';
-    elseif ( padCommonCheck ( $type              ) ) return 'common';
-    elseif ( padCheck       ( PAD . "tags/$type" ) ) return 'pad';
+    global $padCommon;
+
+    if     ( ! padValid     ( $type              )                 ) return FALSE;
+    elseif ( padAppTagCheck ( $type              )                 ) return 'app';
+    elseif ( padCommonCheck ( $type              ) and $padCommon  ) return 'common';
+    elseif ( padCheck       ( PAD . "tags/$type" )                 ) return 'pad';
 
     $common = padTypeCommon ( $type );
     if ( $common )

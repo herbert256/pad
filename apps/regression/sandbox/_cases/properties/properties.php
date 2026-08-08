@@ -150,9 +150,9 @@
         {even@xs ? even : odd},
       {/xs}
       PAD,
-      '1,,' ],
+      'odd,even,' ],
 
-    [ 'key@ counts from zero',
+    [ 'key@ is the array key, position for a list',
       <<<'PAD'
       {data 'xs'}
         [7,8]
@@ -291,6 +291,45 @@
       {/xs}
       PAD,
       'a,b,a,b,' ],
+
+    [ 'key@ is the name for keyed data',
+      <<<'PAD'
+      {data 'kv' ignore}
+        {"a":1,"b":2}
+      {/data}
+      {kv}
+        {key@kv},
+      {/kv}
+      PAD,
+      'a,b,' ],
+
+    [ 'border@ fires once on a single row, which is both ends',
+      <<<'PAD'
+      {data 'one'}
+        [7]
+      {/data}
+      {one}
+        {border@one}|{/border@one}{$one}
+      {/one}
+      PAD,
+      '|7' ],
+
+    [ 'middle@ never fires under three rows',
+      <<<'PAD'
+      {data 'two'}
+        [7,8]
+      {/data}
+      {data 'single'}
+        [7]
+      {/data}
+      {two}
+        {middle@two}M{/middle@two}
+      {/two}
+      {single}
+        {middle@single}M{/middle@single}
+      {/single}
+      PAD,
+      '' ],
 
   ];
 

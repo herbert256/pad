@@ -104,6 +104,8 @@
 
   function padDataFileName ( $check ) {
 
+    global $padCommon;
+
     foreach ( padDirs () as $key => $value ) {
 
       $file = APP2 . $value . "_data/$check";
@@ -117,7 +119,13 @@
       if ( file_exists ( "$file.curl" )                 ) return "$file.curl";
       if ( file_exists ( "$file.sql"  )                 ) return "$file.sql";
 
-    } 
+    }
+
+    // The shared application's _data/ is a fallback like its _tags/ - and gated the same
+    // way, so an application that switched $padCommon off reads no data from it either.
+
+    if ( ! $padCommon )
+      return '';
 
     $file = COMMON . "_data/$check";
 

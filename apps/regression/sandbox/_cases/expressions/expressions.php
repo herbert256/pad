@@ -164,6 +164,12 @@
       PAD,
       '16' ],
 
+    [ 'range includes both of its ends',
+      <<<'PAD'
+      {if 20 range (20, 40)}a{/if}{if 40 range (20, 40)}b{/if}{if 41 range (20, 40)}c{/if}
+      PAD,
+      'ab' ],
+
   ];
 
 ?>

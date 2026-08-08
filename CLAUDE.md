@@ -236,14 +236,14 @@ Use in templates: `{echo $price | money}`
 {&name}                        # A property of the tag
 ```
 
-### Pipe Functions (CRITICAL: Always need {echo})
+### Pipe Functions
 ```
-{echo $name | upper}              # Correct - uppercase
+{echo $name | upper}              # Uppercase
 {echo $text | trim | lower}       # Chained functions
 {echo $date | date('Y-m-d')}      # With parameters
 {echo $value | + 1}               # Arithmetic (space required!)
 
-{$name | upper}                   # WRONG - bare expression won't work!
+{$name | upper}                   # A field tag pipes too - {echo} is for literals
 {echo $value | +1}                # WRONG - needs space before 1
 ```
 
@@ -458,7 +458,7 @@ The `ignore` feature tells PAD not to parse curly braces `{}` as PAD tags. Essen
 
 ## Critical Syntax Rules (Common Mistakes)
 
-1. **Pipes need `{echo}`** - `{$var | upper}` won't work, use `{echo $var | upper}`
+1. **Pipe a value through `{echo}` or a field tag** - `{$var | upper}` and `{echo $var | upper}` both work; a literal needs the `{echo}`
 2. **Arithmetic needs space** - `{echo $x | + 1}` not `| +1`
 3. **Quote literal strings** - `{count 'items'}` not `{count items}`
 4. **No inline CSS/JS** - PAD parses `{ }` as tags; use external files or `{ignore}` wrapper
@@ -866,8 +866,12 @@ curl "http://localhost/pad/pad/?hello"         # Hello World test
 # Debugging output
 curl "http://localhost/pad/app/?page&padInfo=trace"  # With trace
 
-# Run the full regression suite (~10s, results in DATA/regression/)
-curl "http://localhost/pad/regression/?index&go"
+# Run all four regression test kinds (suites + crawl; suite runs in DATA/suites/, crawl
+# baselines in DATA/regression/)
+curl -L "http://localhost/pad/regression/?index&test"
+
+# Or as a CI gate from the repo root - one line per suite, nonzero exit on any failure
+./ci.sh
 ```
 
 This is particularly useful for:
@@ -897,6 +901,7 @@ This is particularly useful for:
 | `reference` | Standard | Cross-reference and directory utilities |
 | `regression` | Standard | Automated regression testing for PAD - the sandbox cases, the crawl, and the runner for both suites |
 | `regression2` | Test | The pages suite: every test is a real page, fetched over HTTP and compared with the answer beside it |
+| `regression3` | Test | The pages of the suite that use `_common` - `{example}`, `{demo}`, `{table}` - fetched and compared the same way |
 | `sequence` | Standard | Mathematical sequence subsystem demos |
 | `structure` | Example | Demonstrates nested `_xxx` directories and inheritance |
 

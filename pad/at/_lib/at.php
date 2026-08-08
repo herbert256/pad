@@ -286,6 +286,17 @@
     if ( $second )
       return INF;
 
+    // A relative -N names enclosing levels counted from the tag the property is written in,
+    // and a property pair is itself the level the resolution stands in - so the pair's own
+    // step is taken back out. Without this {first@-2} answered about one level nearer than
+    // {first -2} over the same nesting: the vars/at/10 case had every row of a five-row loop
+    // recorded as first and last at once, which is a one-occurrence level's answer.
+
+    if ( strlen ( $first ) > 1 and $first [0] == '-' )
+      file_put_contents('/tmp/atprop.txt', "first=$first cor=$cor pad=" . $GLOBALS['pad'] . "\n", FILE_APPEND);
+    if ( $cor and strlen ( $first ) > 1 and $first [0] == '-' and is_numeric ( substr ( $first, 1 ) ) )
+      $cor--;
+
     $padIdx = padAtIdx ( $first, $cor );
 
     $current = padAtProperty ( $names, $padIdx );

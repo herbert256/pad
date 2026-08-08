@@ -1,10 +1,11 @@
 <?php
 
-  // Handler for the error option, documented as an alias of notOk - but it resets on the notOk
-  // parameter, and nothing includes this file (level/flags.php and try/catch/level/go.php go
-  // straight to options/notOk.php), so error="..." is not actually wired up.
+  // Handler for the error option, the documented alias of notOk=: the named content stands in
+  // for the level's own when the tag did not hit or threw. It used to reset on the notOk
+  // parameter - which an error= tag does not carry - and nothing included it either way, so
+  // the alias was dead twice over until the audit wired both.
 
-  $padReset = 'notOk';
+  $padReset = 'error';
 
   return include PAD . 'options/go/reset.php';
 

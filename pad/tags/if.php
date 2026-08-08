@@ -11,7 +11,16 @@
   // everything up to and including it is dropped, and the scan continues. Returning FALSE
   // leaves the level to fall through to its @else@ half, which level/split.php separated out.
 
-  $padIf  = $padParms [$pad] [0] ['padPrmOrg'];
+  // {if bool="name"} - the documented flag form: when what is written on the tag is the bool
+  // option, the condition is that flag, resolved by options/bool.php against $padBoolStore.
+  // The handler was in no phase list and nothing included it, so the form did nothing until
+  // the audit - the raw option text fell through to padEval and answered TRUE for any name.
+
+  if ( ( $padParms [$pad] [0] ['padPrmName'] ?? '' ) == 'bool' )
+    return ( include PAD . 'options/bool.php' ) ? TRUE : FALSE;
+
+  $padIf  = $padParms [$pad] [0] ['padPrmOrg'] ?? '';
+
   $padChk = strpos ($padContent, '{elseif');
 
   while ($padChk !== FALSE) {

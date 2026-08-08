@@ -9,13 +9,13 @@
 
     [ 'functions/between',
       <<<'PAD'
-      {if 10 range (20, 40)   } NOK @else@ ok  {/if}
-      {if 20 range (20, 40)   } ok  @else@ NOK {/if}
-      {if 30 range (20, 40)   } ok  @else@ NOK {/if}
-      {if 40 range (20, 40)   } ok  @else@ NOK {/if}
-      {if 50 range (20, 40)   } NOK @else@ ok  {/if}
+      {if 10 between (20, 40)   } NOK @else@ ok  {/if}
+      {if 20 between (20, 40)   } NOK @else@ ok  {/if}
+      {if 30 between (20, 40)   } ok  @else@ NOK {/if}
+      {if 40 between (20, 40)   } NOK @else@ ok  {/if}
+      {if 50 between (20, 40)   } NOK @else@ ok  {/if}
       PAD,
-      ' ok  ok  ok  ok  ok  ' ],
+      ' ok  ok  ok  ok  ok  '],
 
     [ 'functions/range',
       <<<'PAD'

@@ -66,7 +66,7 @@
       PAD,
       '2,3,5,7,' ],
 
-    [ 'stop ends on the value it names',
+    [ 'stop ends on the first term that reaches the value it names',
       <<<'PAD'
       {sequence prime, stop=11}
         {$sequence},

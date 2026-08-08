@@ -129,7 +129,7 @@
     [ 'fragments/pipes_2',
       <<<'PAD'
       <p>Items separated by commas:</p>
-      <p>{items glue=", "}{$items}{/items}</p>
+      <p>{items print, glue=", "}</p>
       
       <p>Items in uppercase:</p>
       <ul>
@@ -138,7 +138,7 @@
         {/items | upper}
       </ul>
       PAD,
-      '<p>Items separated by commas:</p><p>applebananacherry</p><p>Items in uppercase:</p><ul><LI>APPLE</LI><LI>BANANA</LI><LI>CHERRY</LI></ul>',
+      '<p>Items separated by commas:</p><p>apple, banana, cherry</p><p>Items in uppercase:</p><ul><LI>APPLE</LI><LI>BANANA</LI><LI>CHERRY</LI></ul>',
       [
         'items' => [
           'apple',

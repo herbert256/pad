@@ -304,17 +304,17 @@ Appends content at the end of the last occurrence only.
 
 ### glue
 
-Adds a separator between items (not after the last one).
+Adds a separator between items (not after the last one). Formatting options - glue, quote, open, close - only run through the print option; written without it they do nothing.
 
 ```
-{tagName glue=", "}
+{tagName print, glue=", "}
 ```
 
 **Implementation:** Wraps in `{notLast}separator{/notLast}`
 
 **Example:**
 ```
-{list glue=", "}  →  item1, item2, item3
+{list print, glue=", "}  →  item1, item2, item3
 ```
 
 ### Combined Formatting

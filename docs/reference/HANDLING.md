@@ -319,7 +319,7 @@ Extracts a portion of the array (keeps selected elements).
 
 **Parameters:**
 - Single number - Keep first N elements (positive) or last N (negative)
-- `start|count` - Start position and number of elements
+- `offset|count` - Offset counted from 0, and number of elements
 
 **Examples:**
 ```html
@@ -330,7 +330,7 @@ Extracts a portion of the array (keeps selected elements).
 {-- Keep last 5 items --}
 
 {items slice="5|3"}
-{-- Keep 3 items starting at position 5 --}
+{-- Keep 3 items starting at offset 5, the sixth --}
 ```
 
 **Implementation:** Uses `array_slice()`.
@@ -359,7 +359,7 @@ Removes a portion of the array (removes selected elements).
 {-- Remove last 3 items --}
 
 {items splice="5|2"}
-{-- Remove 2 items starting at position 5 --}
+{-- Remove 2 items starting at offset 5, the sixth --}
 ```
 
 **Implementation:** Uses `array_splice()`.

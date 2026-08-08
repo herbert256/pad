@@ -90,6 +90,12 @@
       PAD,
       '1,2,3,' ],
 
+    [ 'the @tidy@ marker rides through a nested pass, for the exit to consume',
+      <<<'PAD'
+      @tidy@x
+      PAD,
+      '@tidy@x' ],
+
   ];
 
 ?>

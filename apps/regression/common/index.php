@@ -1,0 +1,27 @@
+<?php
+
+  // Overview of the Common suite - the regression3 tests, the pages that use the _common
+  // application: {example}, {demo}, {table}, the {block} snippet. Every test is fetched over
+  // HTTP, against the outcome recorded beside it. Test here reruns this suite; a page load
+  // reads the last run, because running means one request per test. The pages that need
+  // nothing from _common are the Pages suite, one menu entry back.
+
+  if ( isset ( $test ) ) {
+
+    getPagesTest ( 'common' );
+
+    padRedirect ( $padPage );
+
+  }
+
+  $result = getPages ( 'common' );
+
+  $tests       = $result ['tests'];
+  $summary     = $result ['summary'];
+  $failedCount = $result ['failed'];
+
+  $verdict = $failedCount ? 'FAILURES' : 'all ok';
+
+  $title   = "Common regression - $summary";
+
+?>

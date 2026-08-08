@@ -358,7 +358,7 @@
         {$sequence},
       {/sequence}
       PAD,            '1,4,7,10,13,16,19,22,' ],
-    [ 'strong',          <<<'PAD'
+    [ 'strong, whose fourth term sits past the default try limit',          <<<'PAD'
       {sequence strong, rows=8}
         {$sequence},
       {/sequence}
@@ -368,7 +368,7 @@
         {$sequence},
       {/sequence}
       PAD,        '-2,-1,0,1,2,3,4,5,' ],
-    [ 'sylvester',       <<<'PAD'
+    [ 'sylvester, whose eighth term overflows and ends the build at seven',       <<<'PAD'
       {sequence sylvester, rows=8}
         {$sequence},
       {/sequence}

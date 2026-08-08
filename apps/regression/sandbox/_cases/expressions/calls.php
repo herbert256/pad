@@ -76,11 +76,11 @@
     // With no arguments at all there is nothing for the action to work on, and it answers empty
     // rather than failing - the same as the name without the prefix does.
 
-    [ 'action: with nothing to act on',
+    [ 'action: with nothing written acts on the piped value',
       <<<'PAD'
       {echo 'z' | action:reverse}
       PAD,
-      '' ],
+      'z' ],
 
     [ 'sequence: resolves an action of that name',
       <<<'PAD'

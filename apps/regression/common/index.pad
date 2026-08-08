@@ -1,0 +1,27 @@
+<p>
+  <b>{$summary}</b> - {$verdict}
+</p>
+
+<p>
+  Every test here is an ordinary page, fetched over HTTP with
+  <code>&amp;padInclude</code> so it renders bare, and compared with the outcome written beside
+  it, exactly as in the <a href="?pages/index">Pages</a> suite. The difference is what the page
+  is allowed to reach: these tests live in <code>apps/regression3/</code>, where
+  <code>_common</code> is on, because they use it - <code>{ignore}{example}{/ignore}</code>,
+  <code>{ignore}{demo}{/ignore}</code>, <code>{ignore}{table}{/ignore}</code>, the
+  <code>{ignore}{block}{/ignore}</code> snippet, the colouring functions in
+  <code>_common/_lib/</code>. <code>show</code> is the crawl's own view of a test - what it
+  renders now against the copy the last crawl stored.
+</p>
+
+<table border="1" cellpadding="4" cellspacing="0">
+  <tr><th>page</th><th>what it checks</th><th>show</th><th>status</th></tr>
+  {tests}
+    <tr>
+      <td><a href="{$url}">{$name}</a></td>
+      <td>{echo $what | ignore}</td>
+      <td><a href="{$show}">show</a></td>
+      <td>{$status}</td>
+    </tr>
+  {/tests}
+</table>

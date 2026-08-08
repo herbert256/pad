@@ -14,11 +14,11 @@
     return padError ( "Action '$name' is not a sequence action" );
 
   // The first argument is what the action runs over, so with no arguments at all there is
-  // nothing to act on. The same name without the prefix answers '' rather than failing, and
-  // the two spellings are meant to agree.
+  // nothing to act on and the piped value passes through untouched. This used to answer ''
+  // - swallowing its input, which is the one thing a pipe must never do to a value.
 
   if ( ! $count )
-    return '';
+    return $value;
 
   $pqSetAction = $name;
   $pqSetParms  = $parm;

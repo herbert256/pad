@@ -122,6 +122,18 @@
       PAD,
       '1' ],
 
+    [ 'range inside the ends is true',
+      <<<'PAD'
+      {echo 50 | range(0, 100)}
+      PAD,
+      '1' ],
+
+    [ 'between outside the ends is false',
+      <<<'PAD'
+      {echo 5 | between(17, 66)}
+      PAD,
+      '' ],
+
   ];
 
 ?>

@@ -11,7 +11,7 @@ Pipe functions transform values using the `|` operator. They **always require `{
 {echo $text | trim | lower}       # Chained functions
 {echo $date | date('Y-m-d')}      # With parameters
 
-{$name | upper}                   # WRONG - bare expression won't work!
+{$name | upper}   # a field tag pipes too; {echo} is for literals and expressions
 ```
 
 Multiple functions can be chained:

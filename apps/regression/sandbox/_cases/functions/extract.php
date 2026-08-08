@@ -2,10 +2,12 @@
 
   // The functions that take a value apart: by delimiter, and by position.
   //
-  // after and afterLast used to disagree about the delimiter: after dropped it and afterLast
-  // left it on the front of the answer, which neither FUNCTIONS.md nor after itself agreed
-  // with. afterLast skips the whole delimiter now, so a multi-character one is dropped whole,
-  // and a value that does not contain it comes back untouched rather than a character short.
+  // The four delimiter functions share one convention now: the whole delimiter is skipped,
+  // multi-character or not, and a value that does not contain it comes back untouched.
+  // afterLast was repaired to that first; the audit of these cases then caught after, before
+  // and beforeLast still carrying the strpos-FALSE accidents the convention repairs - after
+  // ate the value's first character, the before pair answered '' - and the cases here had
+  // recorded those accidents as if they were the answer.
   //
   // Note also that the position functions do not share a base: substr counts from zero, mid from
   // one. Each is checked past the end of the value as well, where a wrong bound would show.
@@ -18,11 +20,11 @@
       PAD,
       'world/test' ],
 
-    [ 'after with no delimiter drops one character',
+    [ 'after with no delimiter gives the value back',
       <<<'PAD'
       {echo 'abc' | after('/')}
       PAD,
-      'bc' ],
+      'abc' ],
 
     [ 'afterLast drops the delimiter, as after does',
       <<<'PAD'
@@ -48,11 +50,23 @@
       PAD,
       'hello' ],
 
-    [ 'before with no delimiter gives nothing',
+    [ 'after drops a multi-character delimiter whole',
+      <<<'PAD'
+      {echo 'a--b--c' | after('--')}
+      PAD,
+      'b--c' ],
+
+    [ 'beforeLast with no delimiter gives the value back',
+      <<<'PAD'
+      {echo 'abc' | beforeLast('/')}
+      PAD,
+      'abc' ],
+
+    [ 'before with no delimiter gives the value back',
       <<<'PAD'
       {echo 'abc' | before('/')}
       PAD,
-      '' ],
+      'abc'],
 
     [ 'beforeLast',
       <<<'PAD'
@@ -137,6 +151,18 @@
       {echo 'hello world' | left(5) | upper}
       PAD,
       'HELLO' ],
+
+    [ 'mid past the end gives what is there',
+      <<<'PAD'
+      {echo 'abc' | mid(2, 10)}
+      PAD,
+      'bc' ],
+
+    [ 'substr past the end gives nothing',
+      <<<'PAD'
+      {echo 'abc' | substr(20)}
+      PAD,
+      '' ],
 
   ];
 

@@ -1,3 +1,19 @@
 <p>
-  <a href="?sandbox/index">Framework regression</a>
+  The regression tests of the PAD framework, of four kinds. The sandbox suites render cases
+  inside the running request; the Pages and Common suites fetch real pages over HTTP - Pages
+  from regression2, which runs with _common switched off, Common from regression3, the pages
+  that use it; the scan crawls every page of every application against its stored copy. Each
+  line reports the last run - Test on a suite's own page reruns it.
 </p>
+
+<table border="1" cellpadding="4" cellspacing="0">
+  <tr><th>suite</th><th>last run</th><th>ran</th><th>status</th></tr>
+  {rows}
+    <tr>
+      <td><a href="{$link}">{$name}</a></td>
+      <td>{$result}</td>
+      <td>{$ran}</td>
+      <td>{$status}</td>
+    </tr>
+  {/rows}
+</table>

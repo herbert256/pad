@@ -20,6 +20,7 @@ This directory contains PAD applications and examples.
 | [reference](reference/README.md) | Standard | Cross-reference and directory utilities |
 | [regression](regression/README.md) | Standard | Automated regression testing for PAD - the sandbox cases, the crawl, and the runner for both suites |
 | [regression2](regression2/README.md) | Test | The pages suite: every test is a real page, fetched over HTTP and compared with the answer beside it |
+| [regression3](regression3/README.md) | Test | The pages of the suite that use _common - {example}, {demo}, {table} - fetched and compared the same way |
 | [sequence](sequence/README.md) | Standard | Mathematical sequence subsystem demos |
 | [structure](structure/README.md) | Example | Demonstrates PAD directory structure and nested `_xxx` directories |
 

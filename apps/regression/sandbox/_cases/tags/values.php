@@ -80,11 +80,11 @@
     [ 'at looks a value up through the at subsystem',
       <<<'PAD'
       {data 'x'}
-        [3,1,2]
+        [7,1,2]
       {/data}
       {at 'x'}
       PAD,
-      '3' ],
+      '7' ],
 
     [ 'foo is the built-in the prefix pages compare against',
       <<<'PAD'

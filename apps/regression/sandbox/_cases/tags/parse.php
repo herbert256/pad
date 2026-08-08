@@ -30,7 +30,7 @@
     // {$myVar} inside a parameter does not reach a name, and {data:{$which}} leaves the level
     // without the store. The name has to be written.
 
-    [ 'a built name is not a name',
+    [ 'a written name reaches its store, which a built one cannot',
       <<<'PAD'
       {data 'abc'}(1,2){/data}
       {data:abc}{$abc},{/data:abc}

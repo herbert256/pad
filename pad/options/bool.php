@@ -1,14 +1,15 @@
 <?php
 
-  // Resolves the bool="name" option to the flag of that name in $padBoolStore, falling back to
-  // padMakeFlag() on the option value itself when the store holds no such flag.
-  //
-  // Nothing in the engine includes this file - no phase list names 'bool' - so a flag lookup
-  // written in a template goes through types/bool.php ({bool:name}) instead.
+  // Resolves the bool="name" option to the flag of that name in $padBoolStore; a name the
+  // store does not hold is FALSE, the way an unset flag reads everywhere else. The old
+  // fallback ran padMakeFlag() over the option value itself, which made every unset flag
+  // TRUE - any name is a non-empty string - the moment tags/if.php started including this.
 
-  if ( ! isset ( $padBoolStore [ padTagParm('bool') ] ) )
-    return padMakeFlag ( padTagParm('bool') );
-  else
+  global $padBoolStore;
+
+  if ( isset ( $padBoolStore [ padTagParm('bool') ] ) )
     return $padBoolStore [ padTagParm('bool') ];
+
+  return FALSE;
 
 ?>

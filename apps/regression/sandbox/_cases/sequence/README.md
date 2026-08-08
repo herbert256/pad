@@ -51,6 +51,5 @@ may occupy the request:
 
     {sequence happy, from=0, rows=5}          predicate at zero
     {sequence powerful, from=0, rows=5}       predicate at zero
-    {sequence loop, from=0, rows=4, keep='power|2'}   predicate at zero, as a play
     {sequence loop, from=1, to=10, increment=0}       a step that never advances
     {sequence range, from=1, to=9, increment='0'}     the same through the range type

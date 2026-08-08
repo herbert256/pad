@@ -201,7 +201,11 @@
     else
       $add = $padInfoTraceLevel [$pad] . '/' . padInfoTraceOccur ( $pad );
 
-    $target = "$padInfoTraceDir/$add$location";
+    // Inside a {trace} tag scope the level path opens empty, and the slash it would have
+    // carried doubles - which padValidFile refuses. Collapsed here the way
+    // padInfoTraceCheckLocalOne already does for the same paths.
+
+    $target = str_replace ( '//', '/', "$padInfoTraceDir/$add$location" );
 
     if ( $type == 'file' and file_exists ( DATA . $target ) )
       return;

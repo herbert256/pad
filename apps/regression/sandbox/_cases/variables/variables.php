@@ -169,6 +169,19 @@
       PAD,
       'hi' ],
 
+    [ 'a level variable is evaluated once, not per row',
+      <<<'PAD'
+      {data 'st'}
+        [1,2]
+      {/data}
+      {st $lvl = $caseLvlSrc}
+        {$lvl},
+        {set $caseLvlSrc = 9/}
+      {/st}
+      PAD,
+      '5,5,',
+      [ 'caseLvlSrc' => 5 ] ],
+
   ];
 
 ?>

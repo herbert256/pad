@@ -150,7 +150,7 @@
       PAD,
       'snippet:bob!' ],
 
-    // What local: hands back is PAD data - a row per element, not a flat list - so it cannot meet
+    // What local: hands back is PAD data - a row per element - and numeric leaves sum the same as a flat list would - so it cannot meet
     // a number. Joined to itself it reduces to its leaves twice over, which is what shows that the
     // file was really read rather than a placeholder returned.
 
@@ -158,7 +158,7 @@
       <<<'PAD'
       {echo '' | local:nums . local:nums}
       PAD,
-      '112233112233' ],
+      '6666' ],
 
     [ 'array: insists on a field that holds an array',
       <<<'PAD'

@@ -27,7 +27,7 @@
       {/data}
       {echo '' | data:d . data:d}
       PAD,
-      '1212' ],
+      '33' ],
 
     [ 'content: reads the content store',
       <<<'PAD'

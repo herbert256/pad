@@ -68,8 +68,9 @@ sequence to be mistaken for one, so a typo went unnoticed:
 - `perrin` - Perrin numbers (3, 0, 2, 3, 2, 5, ...)
 
 Where a sequence is conventionally listed with a leading term for n = 0, PAD starts at
-n = 1 and does not produce it: `lucas` begins at 1 rather than 2, and `pell`, `catalan`
-and `bell` omit their leading 1. `fibonacci`, `tribonacci`, `perrin` and `recaman` do
+n = 1 and does not produce it: `lucas` begins at 1 rather than 2, `pell`, `catalan` and
+`bell` omit their leading 1, `caterer` its leading 1 and `moserdebruijn` its leading 0,
+and `gould` is shifted the same way. `fibonacci`, `tribonacci`, `perrin` and `recaman` do
 include their n = 0 term. Every value produced is a genuine member either way - only where
 the listing starts differs.
 

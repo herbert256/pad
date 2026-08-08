@@ -34,7 +34,7 @@
 
     [ 'name on a self-closing tag',
       <<<'PAD'
-      {sequence loop, from=11, to=14, name='s'}
+      {sequence loop, from=11, to=14, name='s'/}
       {sequence s}
         {$sequence},
       {/sequence}

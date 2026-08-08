@@ -26,8 +26,16 @@
   else                                                  $padArray [$pad] = FALSE;
 
   if     ( ! $padHit  [$pad] and padTagParm ( 'notOk' ) ) include PAD . 'options/notOk.php';
+  elseif ( ! $padHit  [$pad] and padTagParm ( 'error' ) ) include PAD . 'options/error.php';
   if     (   $padNull [$pad] and padTagParm ( 'null'  ) ) include PAD . 'options/null.php';
   elseif (   $padElse [$pad] and padTagParm ( 'else'  ) ) include PAD . 'options/else.php';
+
+  // The demand option marks the tag as required: a level that still has no hit once the
+  // recovery options had their chance ends the request. The handler file only returned TRUE
+  // and nothing read it, so {tag demand} used to have no effect at all.
+
+  if ( ! $padHit [$pad] and padTagParm ( 'demand' ) )
+    padError ( "Tag '" . $padTag [$pad] . "' carries demand and produced nothing" );
 
   if ( $padInfo )
     include PAD . 'events/flags.php';

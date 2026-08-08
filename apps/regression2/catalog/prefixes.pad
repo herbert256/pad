@@ -1,0 +1,17 @@
+action:   {echo 'z' | action:reverse}.
+bool:     {bool 'catPb'}1{/bool}{bool:catPb}y{/bool:catPb}
+constant: {constant:PHP_INT_SIZE}
+content:  {content 'catK'}hello{/content}{content:catK}
+data:     {data 'catD'}[1,2]{/data}{echo '' | data:catD . data:catD}
+field:    {set $catF = 'v'/}{echo '' | field:catF . '!'}
+function: {echo 'ab' | function:exclaim}
+include:  {set $who = 'bob'/}{include:fixture}
+keep:     {keep:prime rows=4, from=10}{$sequence},{/keep:prime}
+level:    {data 'catR'}[{"sub":[1,2]}]{/data}{catR}{echo '' | level:sub . level:sub}{/catR}
+local:    {echo '' | local:nums . local:nums}
+make:     {make:fibonacci rows=3}{$sequence},{/make:fibonacci}
+parm:     {true name='v'}{parm:name}{/true}
+property: {data 'catXs'}[7,8]{/data}{catXs}{property:current},{/catXs}
+pull:     {sequence '1..3', push='catPp'/}{echo '' | pull:catPp . pull:catPp}
+remove:   {remove:prime rows=6, from=10}{$sequence},{/remove:prime}
+sequence: {echo '' | sequence:fibonacci(8)}

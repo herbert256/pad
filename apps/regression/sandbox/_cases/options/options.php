@@ -7,7 +7,7 @@
   //
   // open, close and glue only reach the output through print, which is why each is written with
   // it. The last two also pin down what an unknown tag leaves behind, which is not the same for
-  // both spellings - a pair keeps its name where a single tag empties to {}.
+  // both spellings - a pair and a single tag both keep their name.
 
   return [
 
@@ -88,7 +88,7 @@
       {/xs}
       {content:k}
       PAD,
-      '1,2,3,1,2,3,' ],
+      '1,2,3,' ],
 
     [ 'demand renders as usual when there is data',
       <<<'PAD'
@@ -128,13 +128,13 @@
       PAD,
       '{nosuch}x{/nosuch}' ],
 
-    [ 'noError also leaves it standing',
+    [ 'noError swallows an unknown tag, the way optional does',
       <<<'PAD'
       {nosuch noError}
         x
       {/nosuch}
       PAD,
-      '{nosuch noError}x{/nosuch}' ],
+      '' ],
 
     [ 'an empty store renders nothing',
       <<<'PAD'

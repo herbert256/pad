@@ -201,6 +201,19 @@
   }
 
 
+  // Whether a page that answered with an error code was supposed to. The pages suites already
+  // declare it - an expectation file opening with HTTP <code> sits beside the page - so the
+  // crawl reads that declaration rather than asking the page for a marker of its own.
+
+  function getRegressionExpects ( $app, $item, $code ) {
+
+    $want = trim ( padFileGet ( APPS . "$app/$item.txt" ) );
+
+    return str_starts_with ( $want, "HTTP $code" );
+
+  }
+
+
   function getRegressionGo ( $app, $item, $extra='' ) {
 
     global $padHost;
@@ -209,6 +222,7 @@
     $store   = DATA . "regression/$app/$item.html";
 
     $curl   = padCurl    ( "$padHost$app/?$item$include$extra" );
+    
     // The source is read to find the marker that says a page cannot be compared, and to see what
     // an example harvest should skip. A page with no template keeps both of those in its .php,
     // and looking only at the .pad missed them: sequence/sequences says random in its .php and
@@ -222,13 +236,21 @@
 
     // The crawl's own overview lists the status of every page, and those change as the crawl
     // walks them - so by the time it reaches this one, what it renders no longer matches what
-    // was stored a moment before, and never will. Comparing a report against the run producing
-    // it is circular; it is marked and left alone.
+    // was stored a moment before, and never will. The application's index has the same nature
+    // since it took to reporting the scan's counts. Comparing a report against the run
+    // producing it is circular; both are marked and left alone.
 
-    if     ( "$app/$item" == 'regression/all' ) $status = 'random';
-    elseif ( ! $good                    ) $status = 'error';
+    // A page that exists to fail, or to render nothing, is not news. The pages suites already
+    // declare the first kind - an expectation starting with the same HTTP code sits beside the
+    // page - and the second kind is a page whose stored copy is as empty as what just came
+    // back. Both are 'expected': counted, coloured, and left off the list of what needs
+    // looking at. An error nothing declared, or a page that went empty, still shouts.
+
+    if     ( in_array ( "$app/$item", [ 'regression/scan/index', 'regression/index' ] ) )
+                                          $status = 'random';
+    elseif ( ! $good                    ) $status = getRegressionExpects ( $app, $item, $curl ['result'] ) ? 'expected' : 'error';
     elseif ( ! file_exists ($store)     ) $status = 'new';
-    elseif ( ! trim ($new)              ) $status = 'empty';
+    elseif ( ! trim ($new)              ) $status = ( trim ($old) ) ? 'empty' : 'expected';
     elseif ( getRegressionDraws ( $source ) )
                                           $status = getRegressionDraw ( "$padHost$app/?$item$include$extra", $old, $new );
     elseif ( getRegressionCompare ( $old ) == getRegressionCompare ( $new ) ) $status = 'ok';
@@ -276,7 +298,7 @@
 
       // A page with no template is still a page - what its .php echoes is its output - and the
       // crawl had never seen one. Nineteen of them across the tree, the five app-level error
-      // raisers among them, and none had a stored copy or an entry on ?all. A pair keys by the
+      // raisers among them, and none had a stored copy or an entry on the scan. A pair keys by the
       // same name either way, so it still counts once.
       //
       // Except where the .php is not a page but an action. ?ok accepts a baseline, todoPost
@@ -315,17 +337,23 @@
   }
 
 
-  // The runner behind pages/, the second kind of regression test in this application.
+  // The runner behind pages/ and common/, the second kind of regression test in this
+  // application.
   //
   // A sandbox case is a template string rendered inside the running request. That is quick and
   // self-contained, but it is not a request: a nested pass has its own variable scope, so a page
   // whose .php file leaves something behind for its .pad file cannot be written as one, and
   // neither can anything that reads $GLOBALS or depends on how a request is built.
   //
-  // A pages test is an ordinary page of this application - name.pad, name.php, or the pair -
-  // fetched over HTTP exactly as a browser would, with &padInclude so it renders bare, without
-  // the menu and title the wrapper puts round it. What comes back is compared with name.txt,
-  // written beside it.
+  // A pages test is an ordinary page - name.pad, name.php, or the pair - fetched over HTTP
+  // exactly as a browser would, with &padInclude so it renders bare, without the menu and title
+  // the wrapper puts round it. What comes back is compared with name.txt, written beside it.
+  //
+  // The tests live in two applications, one suite each, and which application a page is in is
+  // itself the assertion: regression2 - the Pages suite, driven from pages/ - has _common
+  // switched off, so its pages prove they need nothing but their own application, and
+  // regression3 - the Common suite, driven from common/ - holds the pages that use _common:
+  // {example}, {demo}, {table}, the {block} snippet, the colouring functions in _common/_lib/.
   //
   // A test can also be a whole directory - see getPagesList() for when an index stands for the
   // files beside it and when it does not.
@@ -336,9 +364,16 @@
   // with no name.txt yet comes up 'new' and the overview shows exactly what came back, which is
   // what goes in the file.
 
-  function getPagesDir () {
+  function getPagesSuites () {
 
-    return APPS . 'regression2/';
+    return [ 'pages' => 'regression2', 'common' => 'regression3' ];
+
+  }
+
+
+  function getPagesDir ( $app ) {
+
+    return APPS . "$app/";
 
   }
 
@@ -356,11 +391,14 @@
   // error pages and each of those is its own test; deep/index renders deep/two, which renders
   // three, which renders four, and is one.
   //
-  // The root index is the overview and never a test.
+  // A root index is a test like any other, and the one test of its application that is fetched
+  // without &padInclude - see getPagesUrl() - so what it asserts is the frame itself: the
+  // _common wrapper, the title its _inits.php derives, the tidied whole. Neither application
+  // is obliged to have one; regression2 does not, since its frame is no frame at all.
 
-  function getPagesList () {
+  function getPagesList ( $app ) {
 
-    return getPagesWalk ( getPagesDir (), '' );
+    return getPagesWalk ( getPagesDir ( $app ), '' );
 
   }
 
@@ -404,9 +442,6 @@
     if ( $prefix and isset ( $names ['index'] ) and getPagesRenders ( $dir ) )
       $names = [ 'index' => TRUE ];
 
-    elseif ( ! $prefix )
-      unset ( $names ['index'] );
-
     foreach ( array_keys ( $names ) as $name )
       $list [] = $prefix . $name;
 
@@ -422,20 +457,26 @@
 
   // The url a test is fetched from. $padHost carries the mount prefix, so this is
   // http://host/pad/regression2/?name&padInclude here and the right thing anywhere else. The
-  // tests are an application of their own - the overview that drives them stays in regression.
+  // tests are applications of their own - regression2 with _common switched off, regression3
+  // for the pages that use it - and the overview that drives them stays in regression.
+  //
+  // A root index renders full, the same rule the crawl applies: everything else asserts a bare
+  // page, that one asserts the frame around it.
 
-  function getPagesUrl ( $name ) {
+  function getPagesUrl ( $app, $name ) {
 
     global $padHost;
 
-    return $padHost . "regression2/?$name&padInclude";
+    $include = ( $name != 'index' ) ? '&padInclude' : '';
+
+    return $padHost . "$app/?$name$include";
 
   }
 
 
-  function getPagesWantFile ( $name ) {
+  function getPagesWantFile ( $app, $name ) {
 
-    return getPagesDir () . "$name.txt";
+    return getPagesDir ( $app ) . "$name.txt";
 
   }
 
@@ -449,9 +490,15 @@
   // A name with no entry shows an empty cell rather than an error, so adding a test does not mean
   // editing this first.
 
-  function getPagesWhat ( $name ) {
+  // Looked up under app/name first, then under the name alone: the names rarely collide
+  // across the two applications, so most entries stay short, and the one that does - each
+  // suite has an error/index now - says which it means.
 
-    return getPagesWhatList () [$name] ?? '';
+  function getPagesWhat ( $app, $name ) {
+
+    $list = getPagesWhatList ();
+
+    return $list ["$app/$name"] ?? $list [$name] ?? '';
 
   }
 
@@ -460,6 +507,25 @@
 
     return [
 
+      'index'                     => 'The one test fetched without padInclude: the _common wrapper, padOpen and padClose with the menu, and the title shown through showTitle',
+      'menu'                      => 'The {menu} include - lines.pad around it, menu.json behind it, a link per application',
+      'reference'                 => 'The _common _lib helpers a page calls directly - getReference() over the type handlers, and the Xref link builders',
+      'misc/db'                   => 'The demo database through the credentials _common supplies - the one test that queries it',
+      'regression2/error/index'   => 'The {error} tag with _common switched off - ending a request needs nothing shared',
+      'error/throw'               => 'The {exception} tag, which throws a real PHP exception from the template',
+      'error/exit'                => 'The {exit} tag, which ends the request where it stands - and ships nothing at all, which the pattern pins',
+      'error/dump'                => 'The {dump} tag, which stops the request on the engine state dump',
+      'misc/trace'                => 'The {trace} tag wrapping a scope in the execution trace - it broke two ways before this test existed',
+      'misc/react'                => 'The {reactData} tag over a static provider, and the @providers reference reading the parked result back',
+      'select/support/prefix'     => 'The select: prefix spelling of a declared table, which also says the word the reference matcher looks for',
+      'catalog/tags'              => 'One line per built-in tag no other page reaches - the catalogue half of the reference coverage',
+      'catalog/prefixes'          => 'One line per type prefix, each in its literal spelling',
+      'catalog/properties'        => 'Every property and @ reference form on one page - the last three lines pin what does not answer',
+      'catalog/options'           => 'One line per tag option, including the ones that assert being inert',
+      'catalog/functions'         => 'One line per pipe function over a stated value',
+      'catalog/handling'          => 'The data handling options, each over a list whose answer is obvious',
+      'catalog/volatile'          => 'The two draws - {ajax} ids and now - pinned by shape in one regex',
+      'catalog/common'            => 'The common: prefix reaching the shared application by name - the one catalogue line that needs _common',
       'callback'                  => 'The row phase of a streaming callback, which reads the occurrence fields as plain variables',
       'globals'                   => 'object: over a page variable, which in a request is a global like any other',
       'pairing'                   => 'A page pair: the .php half fills in what the .pad half prints',
@@ -474,8 +540,8 @@
       'db/record2'                => 'The same through the {record} tag',
       'deep/index'                => 'A page rendering a page rendering a page, each level with its own _lib and _include',
       'error/index'               => 'The menu of the pages that end the request; each of those is a test of its own',
-      'error/error_1'             => 'padError() raised from a tag - the request ends and the response is 500',
-      'error/error_2'             => 'padError() raised from the page rather than from a tag',
+      'error/error_1'             => 'An engine-raised PHP warning from a tag - an undefined variable - which $padErrorLevel promotes to an ended request',
+      'error/error_2'             => 'The same engine-raised warning from the page rather than from a tag',
       'error/exception_1'         => 'An uncaught PHP exception from a tag',
       'error/exception_2'         => 'An uncaught PHP exception from a page',
       'error/pad_1'               => 'The {error} tag, which ends the request from the template',
@@ -497,7 +563,7 @@
       'manual/name'               => 'How PAD names a tag, and the name option that overrides it',
       'manual/table_fun'          => 'Ten ways of showing one table, each embedding one of the tableFun pages',
       'manual/variable_kinds'     => 'The variable prefixes, as far as the manual page got',
-      'manual/z99'                => 'A page whose .php returns a value its .pad does not use',
+      'manual/z99'                => 'A page whose .php returns a string, which the build prepends to the page',
       'select/demo/join'          => 'The select subsystem walking a declared relation - a join written as nesting',
       'select/demo/union'         => 'A select table declared over a union of several tables',
       'select/support/test'       => 'A select table with a relation, read by id',
@@ -556,24 +622,42 @@
   // Fetches every test and compares. The comparison is exact apart from the whitespace at the two
   // ends, which is what a template's own line breaks leave and says nothing about the page.
   //
-  // Two expectations are not a body. A file holding nothing but HTTP <code> asserts the response
-  // code and ignores what came with it, which is the only thing worth asserting about a page that
-  // exists to fail: the error dump carries a request id and absolute paths, so it is different
-  // every run and on every machine. A file with slashes at both ends is a regular expression, the
-  // same convention the sandbox uses, for a page that draws a different answer each time.
+  // Two expectations are not a body. A file opening with HTTP <code> asserts the response code,
+  // because the error dump carries a request id and absolute paths, so a page that exists to
+  // fail can never match byte for byte. The code alone proved too little - the shutdown test
+  // answered 500 for a while with the wrong thing broken - so a second line holding /a regular
+  // expression/ asserts what the dump says as well. A file with slashes at both ends is a
+  // regular expression over the whole body, the same convention the sandbox uses, for a page
+  // that draws a different answer each time.
 
-  function getPagesRun () {
+  // A page is one comparison, but not always one assertion: the catalog/ pages state one
+  // assertion per labelled line, so for those the answer's "name: ..." lines are counted as
+  // tests. Every other page - and a catalogue answer that is a code, a pattern, or one
+  // rendering - counts one test however long its answer, because its lines are not a list.
+
+  function getPagesCount ( $name, $expect ) {
+
+    if ( ! str_starts_with ( $name, 'catalog/' ) )
+      return 1;
+
+    return max ( 1, preg_match_all ( '/^\S+: /m', $expect ) );
+
+  }
+
+
+  function getPagesRun ( $app ) {
 
     $tests  = [];
     $total  = 0;
+    $count  = 0;
     $failed = 0;
 
-    foreach ( getPagesList () as $name ) {
+    foreach ( getPagesList ( $app ) as $name ) {
 
       set_time_limit ( 60 );
 
-      $url  = getPagesUrl      ( $name );
-      $want = getPagesWantFile ( $name );
+      $url  = getPagesUrl      ( $app, $name );
+      $want = getPagesWantFile ( $app, $name );
       $curl = padCurl          ( $url );
 
       $got  = trim ( $curl ['data'] );
@@ -590,8 +674,21 @@
 
         if ( str_starts_with ( $expect, 'HTTP ' ) ) {
 
-          $ok  = ( trim ( substr ( $expect, 5 ) ) === (string) $code );
+          $expectLines   = padExplode ( $expect, "\n" );
+          $expectCode    = trim ( substr ( $expectLines [0], 5 ) );
+          $expectPattern = $expectLines [1] ?? '';
+
+          $ok  = ( $expectCode === (string) $code );
           $got = "HTTP $code";
+
+          if ( $ok and $expectPattern ) {
+
+            $ok = (bool) preg_match ( $expectPattern, trim ( $curl ['data'] ) );
+
+            $got = ( $ok ) ? "HTTP $code, matches $expectPattern"
+                           : "HTTP $code\n" . trim ( $curl ['data'] );
+
+          }
 
         } elseif ( strlen ( $expect ) > 1 and str_starts_with ( $expect, '/' ) and str_ends_with ( $expect, '/' ) ) {
 
@@ -609,6 +706,7 @@
       }
 
       $total++;
+      $count += getPagesCount ( $name, $expect );
 
       if ( $status == 'FAILED' )
         $failed++;
@@ -616,8 +714,8 @@
       $tests [] = [
         'name'   => $name,
         'url'    => $url,
-        'what'   => getPagesWhat ( $name ),
-        'show'   => "?show&app=regression2&item=$name",
+        'what'   => getPagesWhat ( $app, $name ),
+        'show'   => "?show&app=$app&item=$name",
         'want'   => htmlspecialchars ( $expect ),
         'got'    => htmlspecialchars ( $got    ),
         'status' => $status,
@@ -628,7 +726,7 @@
 
     return [
       'tests'   => $tests,
-      'summary' => "$total pages, $failed failed",
+      'summary' => "$total pages, $count tests, $failed failed",
       'failed'  => $failed,
       'when'    => time ()
     ];
@@ -636,34 +734,47 @@
   }
 
 
-  // Kept beside the sandbox runs, under the same name a group would have.
+  // Kept beside the sandbox runs, under the same name a group would have - one file per suite,
+  // pages.json and common.json.
 
-  function getPagesFile () {
+  function getPagesFile ( $suite ) {
 
-    return DATA . 'suites/pages.json';
+    return DATA . "suites/$suite.json";
 
   }
 
 
-  // Runs the pages suite, and like getRegressionSandbox() asks for it over HTTP from anywhere but
+  // Runs one suite and keeps the result. This is what the Test link on a suite page asks for,
+  // the way getCasesTest() is for a sandbox group.
+
+  function getPagesTest ( $suite ) {
+
+    set_time_limit ( 60 );
+
+    $result = getPagesRun ( getPagesSuites () [$suite] );
+
+    padFilePut ( getPagesFile ( $suite ), json_encode ( $result ) );
+
+    return $result;
+
+  }
+
+
+  // Runs both suites, and like getRegressionSandbox() asks for them over HTTP from anywhere but
   // the regression application. Each test is a fetch either way, but getPagesWhat() and the
   // directory walk are APP-relative through getRegressionApp(), and a page under test may read
-  // its own application's resources - so it is run where it lives.
+  // its own application's resources - so they are run where they live.
 
   function getRegressionPages () {
 
     global $padHost;
 
-    if ( APP != getRegressionApp () )
-      return padCurl ( $padHost . 'regression/?pages/index&test' );
+    foreach ( array_keys ( getPagesSuites () ) as $suite )
 
-    set_time_limit ( 60 );
-
-    $result = getPagesRun ();
-
-    padFilePut ( getPagesFile (), json_encode ( $result ) );
-
-    return $result;
+      if ( APP != getRegressionApp () )
+        padCurl ( $padHost . "regression/?$suite/index&test" );
+      else
+        getPagesTest ( $suite );
 
   }
 
@@ -672,9 +783,9 @@
   // request each, so this matters more here than it does for the sandbox - opening the overview
   // must not put the server through its own suite.
 
-  function getPages () {
+  function getPages ( $suite ) {
 
-    $file = getPagesFile ();
+    $file = getPagesFile ( $suite );
 
     if ( file_exists ( $file ) ) {
 
@@ -685,7 +796,42 @@
 
     }
 
-    return getRegressionPages ();
+    return getPagesTest ( $suite );
+
+  }
+
+
+  // The stored status of every page the scan keeps, counted by status. The index page reports
+  // these totals; the scan page builds its fuller list itself.
+
+  function getScanCounts () {
+
+    $counts = [];
+
+    $dir = DATA . 'regression/';
+
+    if ( ! is_dir ( $dir ) )
+      return $counts;
+
+    $directory = new RecursiveDirectoryIterator ( $dir );
+    $iterator  = new RecursiveIteratorIterator  ( $directory );
+
+    foreach ( $iterator as $one ) {
+
+      $path = padCorrectPath ( $one->getPathname () );
+
+      if ( ! str_ends_with ( $path, '.txt' ) )
+        continue;
+
+      $status = trim ( padFileGet ( $path ) );
+
+      $counts [$status] = ( $counts [$status] ?? 0 ) + 1;
+
+    }
+
+    ksort ( $counts );
+
+    return $counts;
 
   }
 
@@ -709,11 +855,17 @@
     //
     // Written into $GLOBALS rather than assigned, because where a _lib file's top level ends up
     // is not fixed. They were reachable when the suite was driven from ?sandbox/index and not
-    // when it was driven from ?all, and the whole crawl ended on "Field '$seqFixture' not
+    // when it was driven from the scan page, and the whole crawl ended on "Field '$seqFixture' not
     // found". padCode() renders its pass over the globals, so that is where they have to be.
 
-    $GLOBALS ['seqFixture'] = [ 1, 2, 3, 4, 5 ];
-    $GLOBALS ['objFixture'] = [ 'a', 'b' ];
+    $GLOBALS ['seqFixture']   = [ 1, 2, 3, 4, 5 ];
+    $GLOBALS ['objFixture']   = [ 'a', 'b' ];
+
+    // What the @saved case shadows: the saved group reads what padSetGlobalOcc() put aside,
+    // and it only puts aside what really is a global - a sandboxed pass has none, so the
+    // case runs with 'scope' and shadows this one.
+
+    $GLOBALS ['savedFixture'] = 'outer';
 
 
   function getCasesRun ( $group ) {

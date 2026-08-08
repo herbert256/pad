@@ -3,12 +3,14 @@
 </p>
 
 <p>
-  Every test here is an ordinary page of this application, fetched over HTTP with
+  Every test here is an ordinary page, fetched over HTTP with
   <code>&amp;padInclude</code> so it renders bare, and compared with the outcome written beside
   it. That makes it the kind of test the sandbox cannot be: a real request, with a page's own
-  <code>.php</code> half in scope for its <code>.pad</code> half. Tests live in
-  <code>apps/regression/pages/</code>, and <code>show</code> is the crawl's own view of one -
-  what it renders now against the copy the last crawl stored.
+  <code>.php</code> half in scope for its <code>.pad</code> half. These tests live in
+  <code>apps/regression2/</code>, which has <code>_common</code> switched off, so each one also
+  proves it needs nothing but its own application; the pages that use <code>_common</code> are
+  the <a href="?common/index">Common</a> suite. <code>show</code> is the crawl's own view of a
+  test - what it renders now against the copy the last crawl stored.
 </p>
 
 <table border="1" cellpadding="4" cellspacing="0">

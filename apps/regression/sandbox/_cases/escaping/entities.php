@@ -46,7 +46,7 @@
       PAD,
       'a@b' ],
 
-    [ 'a comma written plainly does separate the parameters',
+    [ 'a plain comma is swallowed by the evaluator and the terms join',
       <<<'PAD'
       {echo 'a','b'}
       PAD,

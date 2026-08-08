@@ -2,9 +2,9 @@
 
   // Overview of the framework regression suites: the totals of every group's last run.
   //
-  // Test here reruns all of them, which is the only place that does; each group page reruns
-  // only its own. A page load never runs anything - it reads what the last run left in DATA,
-  // so opening the overview is reading, not testing.
+  // Test here reruns all of them, which is the only place that does; each group page under
+  // suites/ reruns only its own. A page load never runs anything - it reads what the last run
+  // left in DATA, so opening the overview is reading, not testing.
 
   if ( isset ( $test ) ) {
     getRegressionSandbox ();

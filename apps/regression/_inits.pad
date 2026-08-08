@@ -1,11 +1,10 @@
 {padOpen}
 
-{if $suiteTest ne ''}
-  <h3><a href="{$suiteTest}">Test</a></h3>
-{/if}
-
 {lines}
   {suites}
+    {if $name eq 'Test'}
+      | &nbsp;
+    {/if}
     {if $now eq 1}
       <b>{$name}</b>
     @else@

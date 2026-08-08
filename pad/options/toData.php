@@ -5,7 +5,9 @@
   //
   // A tag with neither a pair nor content stores its data as it stands and leaves the result
   // alone; otherwise what gets stored is the walked data, or the plain data when the walk never
-  // started, and the result is blanked so the storing prints nothing.
+  // started, and the text is blanked so the storing prints nothing - on $padContent, because
+  // the walker copies the result back over it after the phase, which silently undid the
+  // direct $padResult blanking this used to do.
 
   $padStoreName = $padPrm [$pad] ['toData'];
 
@@ -19,6 +21,6 @@
   else
     $padDataStore [$padStoreName] = $padData [$pad];
 
-  $padResult [$pad] = '';
+  $padContent = '';
 
 ?>

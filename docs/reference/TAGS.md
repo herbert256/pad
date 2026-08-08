@@ -48,12 +48,11 @@ Switch-case style conditional based on value matching.
 Rotating switch that cycles through options on each call.
 
 ```html
-{switch 'name', 'odd', 'even'}
+{switch 'odd', 'even'}
 ```
 
 **Parameters:**
-- First parameter: Switch identifier name
-- Additional parameters: Values to cycle through
+- Every parameter is a value to cycle through; the rotation is keyed on the tag's own option text
 
 **Returns:** Next value in rotation sequence
 
@@ -94,7 +93,9 @@ Loop until condition becomes true.
 ## Variable and Data Tags
 
 ### set
-Set one or more global variables.
+Set one or more variables. At the top of a page the variable is a global; inside a level the
+assignment shadows any global of the name and is unwound when the level closes, so what a
+loop sets does not outlive it.
 
 ```html
 {set name='value', count=5, active=TRUE}
@@ -285,14 +286,15 @@ Execute code in isolated sandbox.
 ---
 
 ### action
-Execute a sequence action.
+Execute a sequence action, over a stored sequence.
 
 ```html
-{action 'action_name'}
+{action myStore, reverse}
+{action:reverse myStore}
 ```
 
 **Parameters:**
-- First parameter: Action name
+- The store and the action, in either order; the prefix spelling names the action outright
 
 ---
 
@@ -959,9 +961,9 @@ Access iteration state and metadata using `property@tag` syntax.
 | Property | Description |
 |----------|-------------|
 | `name@tag` | Tag name |
-| `parameter:x@tag` | Named parameter |
+| `parameter.n@tag` | Positional parameter n, numbered from 1 |
 | `parameters@tag` | All parameters |
-| `option:n@tag` | Positional option |
+| `option.name@tag` | The named option's value |
 | `options@tag` | All options |
 | `variable:x@tag` | Level variable |
 | `variables@tag` | All variables |

@@ -48,10 +48,10 @@
       PAD,
       '/^\\d+,\\d+,\\d+,$/' ],
 
-    [ 'randomize orderly keeps the order',
+    [ 'randomize orderly keeps the drawn values ascending',
       <<<'PAD'
       {sequence '1..10', push='nums'/}
-      {pull:nums randomize=4, orderly, sort}
+      {pull:nums randomize=4, orderly}
         {$sequence},
       {/pull:nums}
       PAD,
@@ -459,6 +459,42 @@
       {/pull:e}
       PAD,
       '' ],
+
+    [ 'minimum answers in the original order, not sorted',
+      <<<'PAD'
+      {sequence '9;1;5;3', push='mmix'/}
+      {pull:mmix minimum=3}
+        {$sequence},
+      {/pull:mmix}
+      PAD,
+      '1,5,3,' ],
+
+    [ 'maximum answers in the original order, not sorted',
+      <<<'PAD'
+      {sequence '9;1;5;3', push='mmax'/}
+      {pull:mmax maximum=3}
+        {$sequence},
+      {/pull:mmax}
+      PAD,
+      '9,5,3,' ],
+
+    [ 'product of an empty sequence is 1',
+      <<<'PAD'
+      {sequence '1..3', push='e'/}
+      {pull:e onlyNow='e', product}
+        {$sequence},
+      {/pull:e}
+      PAD,
+      '1,' ],
+
+    [ 'distinct of an empty sequence is 0',
+      <<<'PAD'
+      {sequence '1..3', push='e'/}
+      {pull:e onlyNow='e', distinct}
+        {$sequence},
+      {/pull:e}
+      PAD,
+      '0,' ],
 
   ];
 

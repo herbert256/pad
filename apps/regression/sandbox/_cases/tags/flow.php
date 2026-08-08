@@ -4,7 +4,8 @@
   //
   // The branch a condition does not take must produce nothing, a loop must run exactly as many
   // times as its condition allows, and the three loop controls must differ - break leaves at
-  // once, cease finishes the row it is in, continue skips only the rest of that row.
+  // once (what the row printed before it stays, like PHP's break), cease finishes the row it
+  // is in, continue skips only the rest of that row.
   //
   // Both spellings of the default branch are covered: the @else@ marker, which level/split.php
   // separates out, and the {else} tag, which {if} and {case} now take themselves. {else} used
@@ -318,7 +319,7 @@
         {/if}
       {/xs}
       PAD,
-      '1,' ],
+      '1,2,' ],
 
     [ 'cease finishes the row',
       <<<'PAD'
@@ -347,6 +348,45 @@
       {/xs}
       PAD,
       '1,3,' ],
+
+    [ 'continue keeps what the row printed before it',
+      <<<'PAD'
+      {data 'xs'}
+        [1,2,3]
+      {/data}
+      {xs}
+        {$xs}{if $xs eq 2}{continue 'xs'/}{/if}!
+      {/xs}
+      PAD,
+      '1!23!' ],
+
+    [ 'cease on the first row leaves only that row',
+      <<<'PAD'
+      {data 'xs'}
+        [1,2,3,4]
+      {/data}
+      {xs}
+        {$xs},
+        {if $xs eq 1}
+          {cease 'xs'/}
+        {/if}
+      {/xs}
+      PAD,
+      '1,' ],
+
+    [ 'cease works over string keys too',
+      <<<'PAD'
+      {data 'kv' ignore}
+        {"a":1,"b":2,"c":3}
+      {/data}
+      {kv}
+        {$kv},
+        {if $kv eq 2}
+          {cease 'kv'/}
+        {/if}
+      {/kv}
+      PAD,
+      '1,2,' ],
 
   ];
 

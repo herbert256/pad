@@ -27,12 +27,22 @@
 
   function padEvalReduce ( $array ) {
 
-    if ( padEvalNumeric ( $array ) )
-      return array_sum ( $array );
+    // Flattened before the numeric test, not after: the test used to see the rows a data
+    // name resolves to as arrays and fail, so a flat [1,2,3] summed to 6 where the same
+    // three values as data rows ran together as 123 - the two prefixes disagreeing over
+    // identical values, against what the comment above always said.
+
+    $padFlat = [];
+
+    array_walk_recursive ( $array, function ( $one ) use ( &$padFlat ) { $padFlat [] = $one; } );
+
+    if ( padEvalNumeric ( $padFlat ) )
+      return array_sum ( $padFlat );
 
     $flat = '';
 
-    array_walk_recursive ( $array, function ( $one ) use ( &$flat ) { $flat .= $one; } );
+    foreach ( $padFlat as $one )
+      $flat .= $one;
 
     return $flat;
 
