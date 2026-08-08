@@ -1,0 +1,46 @@
+<h1>Conditions and Branching</h1>
+
+<p>The <code>{open}if{close}</code> pair renders its content when its expression holds, with
+as many <code>{open}elseif{close}</code> branches as needed and an
+<code>{open}else{close}</code> for when none did:</p>
+
+{example 'fragments/conditions_1'}
+
+<h2>The comparison operators</h2>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+  <tr><th>operator</th><th>meaning</th></tr>
+  <tr><td><code>eq</code> or <code>==</code></td><td>equal</td></tr>
+  <tr><td><code>ne</code> or <code>!=</code></td><td>not equal</td></tr>
+  <tr><td><code>gt</code> / <code>lt</code></td><td>greater / less than</td></tr>
+  <tr><td><code>ge</code> / <code>le</code></td><td>greater / less or equal</td></tr>
+  <tr><td><code>and</code> / <code>or</code></td><td>both hold / either holds</td></tr>
+  <tr><td><code>range (a, b)</code></td><td>the value lies between a and b, ends included</td></tr>
+</table>
+
+<p>&nbsp;</p>
+
+{example 'fragments/conditions_2'}
+
+<p><b>A condition needs a comparison.</b> <code>{open}if $flag{close}</code> is not a
+shorthand for testing truth - write what is being compared:
+<code>{open}if $flag eq 1{close}</code>.</p>
+
+<h2>Case and when</h2>
+
+<p>When one value decides between several branches, <code>{open}case{close}</code> reads
+better than a chain of elseifs. Each <code>{open}when{close}</code> names a value, and
+<code>{open}else{close}</code> catches the rest:</p>
+
+{example 'fragments/conditions_3'}
+
+<h2>The ternary</h2>
+
+<p>Inside an expression tag, <code>?</code> and <code>:</code> pick one of two values - the
+usual way to give alternating rows their class, together with the
+<a href="?pages/properties">iteration properties</a>:</p>
+
+{example 'fragments/conditions_4'}
+
+<p>Every tag also carries the <a href="?pages/else">else construct</a>: the part after the
+divider renders when the tag itself produced nothing.</p>

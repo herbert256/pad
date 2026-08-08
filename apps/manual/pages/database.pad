@@ -1,0 +1,50 @@
+<h1>Database</h1>
+
+<p>PAD talks to the application's database - configured in
+<code>_config/config.php</code> - in two places: a page's PHP half calls
+<code>db()</code>, and the template side has tags that ask directly. The examples here read
+the <code>staff</code> table of the demo database, the same people this manual's
+<code>staff.xml</code> file holds.</p>
+
+<h2>db() from the page's PHP</h2>
+
+<p>The first word of the statement says what shape comes back:</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+  <tr><th>word</th><th>answers with</th></tr>
+  <tr><td><code>field</code></td><td>one value</td></tr>
+  <tr><td><code>record</code></td><td>one row, as an array of fields</td></tr>
+  <tr><td><code>array</code></td><td>all rows, ready for a tag to iterate</td></tr>
+  <tr><td><code>check</code></td><td>whether a row exists - written <code>check table where ...</code>, with no column list</td></tr>
+  <tr><td><code>insert</code> / <code>update</code></td><td>writes, taking their values from an array</td></tr>
+</table>
+
+<p>&nbsp;</p>
+
+{example 'fragments/database_1'}
+
+<p>An <code>array</code> lands in a variable, and the variable's name is a tag - with the
+<a href="?pages/else">else construct</a> for when the query found nothing:</p>
+
+{example 'fragments/database_2'}
+
+<h2>Asking from the template</h2>
+
+<p>The same questions can be asked where the answer is used: a <code>{open}field{close}</code>
+tag drops one value into the page, and an <code>{open}array{close}</code> pair iterates its
+query on the spot. A comma inside a tag parameter would read as the next parameter, so a
+column list is written with <code>&amp;comma;</code> - or the query keeps to
+<code>*</code>:</p>
+
+{example 'fragments/database_3'}
+
+<p>A <code>{open}record{close}</code> pair does the same for a single row.</p>
+
+<h2>Declared tables - the select subsystem</h2>
+
+<p>For an application built around its tables there is a third way: declare the tables once
+in the configuration and every one of them is a tag, relations and automatic joins
+included - the <code>select:</code> prefix. The
+<a href="{$padHost}classicModels/">classicModels application</a> is that subsystem
+demonstrated over a whole database, and <code>docs/DATABASE.md</code> in the repository is
+the reference.</p>

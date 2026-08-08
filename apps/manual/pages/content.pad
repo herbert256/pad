@@ -1,1 +1,31 @@
-todo
+<h1>The Content Construct</h1>
+
+<p>A content store is a named block of template, defined once and usable anywhere after it.
+<a href="?pages/the_content_tag">The content tag</a> page covers defining one and the ways
+two blocks merge; this page is about what the construct does for a whole page: one block,
+many tags, each deciding how to wear it.</p>
+
+<h2>A store used by name</h2>
+
+<p>Writing the store's name as a tag renders it. The tag may bring content of its own -
+without <code>merge=</code> the store comes first, and <code>merge='bottom'</code> or
+<code>merge='replace'</code> say otherwise:</p>
+
+{example 'fragments/content_1'}
+
+<h2>The {construct 'content'} placeholder</h2>
+
+<p>Instead of joining end to end, either side may carry {construct 'content'}: whichever
+side has it, the other is dropped into that spot. A store shaped like a frame turns every
+usage into its filling:</p>
+
+{example 'fragments/content_2'}
+
+<h2>content= on any tag, and a store with two halves</h2>
+
+<p>Every tag takes a <code>content=</code> option naming a store, with the same
+<code>merge=</code> choices. And a store may carry an {construct 'else'} of its own: which
+half is used is decided by the tag wearing it - the same store gives its first half to a tag
+that produced something and its second half to one that came up empty:</p>
+
+{example 'fragments/content_3'}

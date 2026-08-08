@@ -485,7 +485,7 @@ Resolve naming conflicts with explicit prefixes:
 | `content:` | Content block | `{content:header}` |
 | `include:` | Snippet from `_include/` | `{include:header}` |
 | `pull:` | Stored sequence | `{pull:mySeq}` |
-| `field:` | Database field | `{field:"name from users"}` |
+| `field:` | Field (variable) value | `{field:name}` - the database single value is the `{field "col from table..."}` tag |
 | `select:` | Declared select table | `{select:users}` |
 | `local:` | Files from `_data/` | `{local:menu.json}` |
 | `constant:` | PHP constant | `{constant:PHP_VERSION}` |

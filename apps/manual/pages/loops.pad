@@ -1,0 +1,30 @@
+<h1>Loops and Loop Control</h1>
+
+<p>Most repetition in PAD is a data tag iterating its rows - that story is on
+<a href="?pages/levels_and_occurrences">levels and occurrences</a>. This page is about the
+counting loops, and about steering any loop from inside.</p>
+
+<h2>while and until</h2>
+
+<p><code>{open}while{close}</code> renders its content as long as its condition holds, and
+<code>{open}until{close}</code> renders until its condition becomes true - checked before
+each pass, so an <code>until</code> that is already true renders nothing.
+<code>{open}increment{close}</code> and <code>{open}decrement{close}</code> step a variable
+by one:</p>
+
+{example 'fragments/loops_1'}
+
+{example 'fragments/loops_2'}
+
+<h2>Steering a loop: continue, cease and break</h2>
+
+<p>All three name the tag they act on, so they reach the right loop from however deep they
+are written. <code>{open}continue 'tag'{close}</code> skips the rest of the current
+occurrence; <code>{open}cease 'tag'{close}</code> is the graceful stop - the current
+occurrence finishes, then the loop ends; <code>{open}break 'tag'{close}</code> is the hard
+stop, ending the occurrence mid-way:</p>
+
+{example 'fragments/loops_3'}
+
+<p>The same value stopped both: <code>cease</code> still shows the 4 its occurrence had
+started, <code>break</code> does not.</p>
