@@ -41,8 +41,21 @@
   if ( ! isset ( $padLastPull ) ) $padLastPull = '';
 
   $padBetweenOrg   = $padBetweenOrg   ?? '';
+  $padOrgSet       = $padOrgSet       ?? '';
   $padDataStore    = $padDataStore    ?? [];
   $padContentStore = $padContentStore ?? [];
   $padBoolStore    = $padBoolStore    ?? [];
+
+  // The {file} tag's six path parts exist for the same reason as the stores above: the tag
+  // writes them bare, padFileName() reads them through global, and a {file} inside a nested
+  // pass needs the two to be the same variable. config/output/file.php runs after this and
+  // still gets the two it sets.
+
+  $padFileDir       = '';
+  $padFileName      = '';
+  $padFileExtension = '';
+  $padFileDate      = '';
+  $padFileTimeStamp = '';
+  $padFileUniqId    = '';
 
 ?>

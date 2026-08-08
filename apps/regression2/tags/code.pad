@@ -1,0 +1,7 @@
+{# The four isolation forms of a nested pass, run from a real page: sandbox and clean unset
+   what the pass created, plain and reset leave it standing. #}
+
+sandbox: [{code sandbox}{set $zq = 'q'/}{/code}{$zq | optional}]
+clean: [{code clean}{set $zc = 'q'/}{/code}{$zc | optional}]
+plain: [{code}{set $zp = 'q'/}{/code}{$zp | optional}]
+reset: [{code reset}{set $zr = 'q'/}{/code}{$zr | optional}]

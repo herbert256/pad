@@ -4,14 +4,16 @@
   // multiple of the parameter. Not the type's build strategy - pqBuild() prefers its
   // loop.php - but the predicate build/check.php calls for {keep multiple=3} and friends.
   //
-  // It reads $pqParm from the globals rather than the second argument its callers pass, so
-  // it answers for whatever parameter the surrounding build or play currently has set.
+  // The parameter is the argument, not the $pqParm global: the subsystem's run state lives
+  // as plain variables in whatever scope the run is in, and inside a nested pass that scope
+  // is not the global one - reading the global here divided by nothing.
 
   function pqBoolMultiple ( $n, $p=0 ) {
 
-    global $pqParm;
+    if ( ! $p )
+      return FALSE;
 
-    return ( $n == ceil ( $n / $pqParm) * $pqParm );
+    return ( $n == ceil ( $n / $p ) * $p );
 
   }
 

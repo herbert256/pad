@@ -20,8 +20,20 @@
   $GLOBALS ['padStrFunCnt']++;
   $GLOBALS ['padStrFunVar'] [ $GLOBALS ['padStrFunCnt'] ] = [];
 
+  // The build and isolation flags are this pass's arguments, and the import below must not
+  // replace them: once any earlier pass has left them behind as globals, `global` rebinds
+  // the four names to those stale values - which is how a {code sandbox} after a padCode()
+  // ran with the padCode's flags and leaked what it should have unset. The source already
+  // has the same protection through the unset of padStrCod above. The build kind comes in
+  // the same way - a padStrFun() parameter, or set by padCode()/padSandbox() - where the
+  // function path used to read it from whatever the last pass left in the global.
+
+  $padStrKeep = [ $padStrBld, $padStrBox, $padStrCln, $padStrRes ];
+
   foreach ( $GLOBALS as $padStrKey => $padStrVal )
     global $$padStrKey;
+
+  list ( $padStrBld, $padStrBox, $padStrCln, $padStrRes ) = $padStrKeep;
 
   $padLvlFun [$pad] = $padStrFunCnt;
   $padStrFunResult = include PAD . 'start/pad/pad.php';

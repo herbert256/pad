@@ -147,6 +147,14 @@
       PAD,
       '-1,-2,-5,' ],
 
+    [ 'a play parameter reaches the multiple predicate',
+      <<<'PAD'
+      {sequence loop, from=1, to=20, keep='multiple|3'}
+        {$sequence},
+      {/sequence}
+      PAD,
+      '3,6,9,12,15,18,' ],
+
     [ 'a play over a parameterised type',
       <<<'PAD'
       {sequence loop, from=6, rows=8, remove='power|2'}

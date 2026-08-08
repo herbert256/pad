@@ -16,6 +16,9 @@
     if ( isset ( $GLOBALS [$padStrVal] ))
       $GLOBALS [$padStrVal] = [];
 
-  unset ( $padSqlConnect );
+  // Through $GLOBALS, not a bare unset: this runs inside the pass's function scope, where a
+  // bare unset only detaches the local alias and db() would keep finding the old handle.
+
+  unset ( $GLOBALS ['padSqlConnect'] );
 
 ?>

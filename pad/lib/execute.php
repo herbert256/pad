@@ -41,7 +41,7 @@
 
   }
 
-  function padStrFun (  $padStrCod, $padStrBox, $padStrRes, $padStrCln, $padStrFun ) {
+  function padStrFun (  $padStrCod, $padStrBox, $padStrRes, $padStrCln, $padStrFun, $padStrBld = 'code' ) {
 
     return include PAD . 'start/pad/function.php';
 
