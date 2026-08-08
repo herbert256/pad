@@ -15,8 +15,16 @@
   $padBetween = 'internal';
   include PAD . 'level/between.php';
 
+  // $padTypeSeq is seeded here for the same reason as the others, and for one more: the
+  // nested pass of start/pad/function.php can only alias globals that exist when it opens
+  // its scope. A global born later - as this one was, inside padTypeSeq() - splits into a
+  // scope copy and a global, and level/tag.php then builds a prefixed sequence pair name
+  // from the blank copy: {prime:keep}...{/prime:keep} inside padCode()/padSandbox() lost
+  // its closing tag that way in a fresh request.
+
   $padTypeCheck  = 'internal';
   $padTypeResult = '';
+  $padTypeSeq    = '';
   $padTypeGiven  = FALSE;
   $padPairSet    = FALSE;
   $padBaseSet    = '';

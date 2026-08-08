@@ -172,6 +172,22 @@
       PAD,
       'A,C,E,G,I,K,' ],
 
+    [ 'an increment wider than the range is capped to its span',
+      <<<'PAD'
+      {sequence '1..3', increment=5}
+        {$sequence},
+      {/sequence}
+      PAD,
+      '1,3,' ],
+
+    [ 'a letter increment wider than the range is capped the same way',
+      <<<'PAD'
+      {sequence 'A..C', increment=5}
+        {$sequence},
+      {/sequence}
+      PAD,
+      'A,C,' ],
+
     [ 'a range with a zero increment still counts by one',
       <<<'PAD'
       {sequence range='1..5', increment=0}

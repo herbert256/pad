@@ -50,7 +50,10 @@
 
       echo json_encode ( $claude );
 
-      exit;
+      // The web side of this channel carries the failure in the 500 header; a shell caller
+      // reads it from the process status instead.
+
+      exit ( ( PHP_SAPI == 'cli' ) ? 1 : 0 );
 
     }
 

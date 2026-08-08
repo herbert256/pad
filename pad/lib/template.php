@@ -190,10 +190,13 @@
     $increment = abs ( $increment );
 
     // A step wider than the two ends are apart cannot be taken even once, which range() calls
-    // an error; the whole distance is the widest step that means anything here.
+    // an error; the whole distance is the widest step that means anything here. Letters are
+    // measured the way range() walks them, by character code.
 
-    if ( is_numeric ( $p1 ) and abs ( $p2 - $p1 ) and $increment > abs ( $p2 - $p1 ) )
-      $increment = abs ( $p2 - $p1 );
+    $span = is_numeric ( $p1 ) ? abs ( $p2 - $p1 ) : abs ( ord ( $p2 ) - ord ( $p1 ) );
+
+    if ( $span and $increment > $span )
+      $increment = $span;
 
     return range ( $p1, $p2, $increment );
 
