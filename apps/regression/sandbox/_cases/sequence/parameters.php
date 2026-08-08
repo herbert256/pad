@@ -32,25 +32,25 @@
       <<<'PAD'
       {sequence add='1..5', rows=4}
         {$sequence},
-      {/sequence}
+      {/sequence | steps('add', 1, 5, 4)}
       PAD,
-      '/^\d+,\d+,\d+,\d+,$/' ],
+      'ok' ],
 
     [ 'three-dot range parameter',
       <<<'PAD'
       {sequence add='1...5', rows=4}
         {$sequence},
-      {/sequence}
+      {/sequence | steps('add', 1, 5, 4)}
       PAD,
-      '/^\d+,\d+,\d+,\d+,$/' ],
+      'ok' ],
 
     [ 'range parameter as a play',
       <<<'PAD'
       {sequence loop, rows=4, make='add|1..5'}
         {$sequence},
-      {/sequence}
+      {/sequence | steps('add', 1, 5, 4)}
       PAD,
-      '/^\d+,\d+,\d+,\d+,$/' ],
+      'ok' ],
 
     [ 'parameter naming a stored sequence',
       <<<'PAD'
@@ -65,9 +65,9 @@
       <<<'PAD'
       {sequence multiply='2..4', rows=4}
         {$sequence},
-      {/sequence}
+      {/sequence | steps('multiply', 2, 4, 4)}
       PAD,
-      '/^\d+,\d+,\d+,\d+,$/' ],
+      'ok' ],
 
     [ 'chance as a percentage',
       <<<'PAD'

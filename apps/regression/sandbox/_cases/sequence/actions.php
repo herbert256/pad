@@ -39,23 +39,41 @@
       PAD,
       '1,2,3,4,5,6,7,8,9,10,' ],
 
-    [ 'randomize draws that many',
+    [ 'randomize draws that many, in range, without repeats',
       <<<'PAD'
       {sequence '1..10', push='nums'/}
       {pull:nums randomize=3}
         {$sequence},
-      {/pull:nums}
+      {/pull:nums | draws(1, 10, 3, 'unique')}
       PAD,
-      '/^\\d+,\\d+,\\d+,$/' ],
+      'ok' ],
 
     [ 'randomize orderly keeps the drawn values ascending',
       <<<'PAD'
       {sequence '1..10', push='nums'/}
       {pull:nums randomize=4, orderly}
         {$sequence},
-      {/pull:nums}
+      {/pull:nums | draws(1, 10, 4, 'unique', 'ascending')}
       PAD,
-      '/^\\d+,\\d+,\\d+,\\d+,$/' ],
+      'ok' ],
+
+    [ 'the draws oracle rejects an impossible value',
+      <<<'PAD'
+      {echo '99,99,99,' | draws(1, 10, 3)}
+      PAD,
+      'out of range 1..10: 99' ],
+
+    [ 'the draws oracle rejects a duplicate',
+      <<<'PAD'
+      {echo '5,5,7,' | draws(1, 10, 3, 'unique')}
+      PAD,
+      'duplicate draw: 5,5,7' ],
+
+    [ 'the draws oracle rejects a disordered draw',
+      <<<'PAD'
+      {echo '9,1,8,2,' | draws(1, 10, 4, 'unique', 'ascending')}
+      PAD,
+      'not ascending: 9,1,8,2' ],
 
 
     [ 'first',

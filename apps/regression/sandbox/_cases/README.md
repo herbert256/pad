@@ -49,7 +49,7 @@ therefore absent, each verified by hand:
 
     {echo 10 | / 0}                     Division by zero
     {$nosuchvariable}                   PAD: Field '$nosuchvariable' not found
-    {if first@xs}...{/if}               PAD: More then one reault back: first@xs
+    {if first@xs}...{/if}               PAD: More than one result back: first@xs
     {echo %t}                           Unknown format specifier "t"
 
 ## Known defects recorded as cases

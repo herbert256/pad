@@ -40,3 +40,14 @@ For CLI applications, set the output type in `_config/config.php`:
 ```php
 $padOutputType = 'console';
 ```
+
+## Exit Status
+
+The process status reports how the request ended, so scripts can test it: 0 when the
+request finished with a 2xx or 3xx status, 1 for everything else - a PAD error, a missing
+page, a request the boot net had to end. A failed request also prints a machine-readable
+JSON error body, but the status alone is enough for a shell gate:
+
+```bash
+./pad mypage || echo "render failed"
+```
