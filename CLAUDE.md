@@ -895,7 +895,8 @@ This is particularly useful for:
 | `pad` | Standard | PAD framework introduction and reference |
 | `react` | Standard | PAD + React integration examples |
 | `reference` | Standard | Cross-reference and directory utilities |
-| `regression` | Standard | Automated regression testing for PAD |
+| `regression` | Standard | Automated regression testing for PAD - the sandbox cases, the crawl, and the runner for both suites |
+| `regression2` | Test | The pages suite: every test is a real page, fetched over HTTP and compared with the answer beside it |
 | `sequence` | Standard | Mathematical sequence subsystem demos |
 | `structure` | Example | Demonstrates nested `_xxx` directories and inheritance |
 

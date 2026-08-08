@@ -16,6 +16,11 @@
 
   function padEvalTrace ( $type, $result ) {
 
+    global $padEvalTrace;
+
+    if ( ! $padEvalTrace )
+      return;
+
     global $_eval, $_eval_last;
 
     if ( $result != $_eval_last )

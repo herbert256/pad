@@ -9,8 +9,6 @@
   // taking the previous one's result as its input. The $_eval* globals collect snapshots for
   // the trace. Returns the final value.
 
-  global $_eval, $_eval_after, $_eval_last, $_eval_parse;
-
   if ( file_exists ( PAD . "functions/$eval.php" ) )
     return include PAD . 'eval/fast.php';
 

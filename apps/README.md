@@ -18,7 +18,8 @@ This directory contains PAD applications and examples.
 | [pad](pad/README.md) | Standard | PAD framework introduction and reference |
 | [react](react/README.md) | Standard | PAD + React integration examples |
 | [reference](reference/README.md) | Standard | Cross-reference and directory utilities |
-| [regression](regression/README.md) | Standard | Automated regression testing for PAD |
+| [regression](regression/README.md) | Standard | Automated regression testing for PAD - the sandbox cases, the crawl, and the runner for both suites |
+| [regression2](regression2/README.md) | Test | The pages suite: every test is a real page, fetched over HTTP and compared with the answer beside it |
 | [sequence](sequence/README.md) | Standard | Mathematical sequence subsystem demos |
 | [structure](structure/README.md) | Example | Demonstrates PAD directory structure and nested `_xxx` directories |
 

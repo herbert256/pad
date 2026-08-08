@@ -19,6 +19,8 @@
   $padErrorLog       = TRUE;
   $padErrorReport    = TRUE;
 
+  $padEvalTrace = FALSE;
+
   $padInfo = '';
 
   $padCommon = TRUE;

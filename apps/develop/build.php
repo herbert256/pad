@@ -9,7 +9,7 @@
   padDeleteDataDir ( DATA . 'examples'   );
   padDeleteDataDir ( DATA . 'suites'     );
 
-  getRegressionBuild ();
+  padCurl ( $padHost . "regression/?build&go=1" );
 
   padRestart ( 'errors2' );
 
