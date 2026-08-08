@@ -10,6 +10,11 @@
   //
   // Note also that the position functions do not share a base: substr counts from zero, mid from
   // one. Each is checked past the end of the value as well, where a wrong bound would show.
+  //
+  // The boundary cases at the end state the decided contracts: a zero or negative count
+  // names no characters, a mid start below 1 is read as 1, and an empty delimiter is found
+  // everywhere - at the start for the first-forms, at the end for the last-forms - so each
+  // of the four answers follows from where it was found.
 
   return [
 
@@ -162,6 +167,66 @@
       {echo 'abc' | substr(20)}
       PAD,
       '' ],
+
+    [ 'left of zero is nothing',
+      <<<'PAD'
+      {echo 'abc' | left(0)}
+      PAD,
+      '' ],
+
+    [ 'right of zero is nothing too',
+      <<<'PAD'
+      {echo 'abc' | right(0)}
+      PAD,
+      '' ],
+
+    [ 'a negative left count is nothing, not a trim',
+      <<<'PAD'
+      {echo 'abc' | left(-1)}
+      PAD,
+      '' ],
+
+    [ 'a negative right count is nothing, not an offset',
+      <<<'PAD'
+      {echo 'abc' | right(-1)}
+      PAD,
+      '' ],
+
+    [ 'a mid start below one is read as one',
+      <<<'PAD'
+      {echo 'abc' | mid(0, 1)}
+      PAD,
+      'a' ],
+
+    [ 'a negative mid length is nothing',
+      <<<'PAD'
+      {echo 'abc' | mid(2, -1)}
+      PAD,
+      '' ],
+
+    [ 'an empty delimiter is found at the start - after gives everything',
+      <<<'PAD'
+      {echo 'abc' | after('')}
+      PAD,
+      'abc' ],
+
+    [ 'and before it there is nothing',
+      <<<'PAD'
+      {echo 'abc' | before('')}
+      PAD,
+      '' ],
+
+    [ 'an empty delimiter is found last at the end - afterLast gives nothing',
+      <<<'PAD'
+      {echo 'abc' | afterLast('')}
+      PAD,
+      '' ],
+
+    [ 'and beforeLast gives everything',
+      <<<'PAD'
+      {echo 'abc' | beforeLast('')}
+      PAD,
+      'abc' ],
 
   ];
 

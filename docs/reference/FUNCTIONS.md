@@ -42,6 +42,11 @@ Functions that extract parts of a string based on a delimiter.
 {'hello/world/test' | beforeLast('/')}  → 'hello/world'
 ```
 
+All four skip the whole delimiter, multi-character or not, and give the value back unchanged
+when it does not contain the delimiter. An empty delimiter is found everywhere: first at the
+start - `after('')` is the whole value, `before('')` is empty - and last at the end -
+`afterLast('')` is empty, `beforeLast('')` is the whole value.
+
 ---
 
 ## Substring Operations
@@ -65,6 +70,12 @@ Functions that extract substrings by position.
 {'Hello World' | substr(0, 5)}   → 'Hello'
 ```
 
+A count of zero or less names no characters: `left(0)`, `right(0)` and the negative counts
+all answer the empty string. `mid` reads a start below 1 as 1 (its documented base), a
+negative or zero length as no characters, and no length at all as the rest of the value.
+`substr` alone keeps PHP's negative-offset semantics - use it when counting from the end is
+what is meant.
+
 ---
 
 ## Case Conversion
@@ -73,8 +84,8 @@ Functions that change the case of text.
 
 | Function | Parameters | Description |
 |----------|------------|-------------|
-| `upper` | - | Converts to uppercase (PHP `strtoupper`) |
-| `lower` | - | Converts to lowercase (PHP `strtolower`) |
+| `upper` | - | Converts to uppercase (PHP `strtoupper`, so ASCII only - accented letters keep their case) |
+| `lower` | - | Converts to lowercase (PHP `strtolower`, so ASCII only - accented letters keep their case) |
 | `capitalize` | - | Capitalizes first letter of each word (PHP `ucwords`) |
 | `ucwords` | - | Alias for `capitalize` |
 
@@ -173,13 +184,15 @@ Functions that limit or control string length.
 
 ## Testing & Conditions
 
-Functions that test values and return boolean results (returns `'1'` for true, `''` for false).
+Functions that test values and return boolean results (returns `'1'` for true, `''` for
+false). The one exception is `exists`, which answers `'0'` rather than `''` for a missing
+file.
 
 | Function | Parameters | Description |
 |----------|------------|-------------|
 | `contains` | needle | Returns TRUE if value contains the needle string |
 | `in` | values... | Returns `'1'` if value is in the list of parameters |
-| `like` | pattern | SQL LIKE pattern matching (`%` = any chars, `_` = single char) |
+| `like` | pattern | SQL LIKE pattern matching (`%` = any chars, `_` = single character, counted as UTF-8 characters rather than bytes) |
 | `between` | min, max | Returns TRUE if value is exclusively between min and max |
 | `range` | min, max | Returns TRUE if value is inclusively in range (min <= value <= max) |
 | `exists` | - | Returns `'1'` if file exists in APP directory, `'0'` otherwise |

@@ -40,7 +40,10 @@
       $lastWasPercent = $part == '%';
   }
 
-  $expr .= '$/i';
+  // The u modifier makes _ and the quantifiers count characters rather than UTF-8 bytes,
+  // so like('_') matches 'é'. A value that is not valid UTF-8 simply does not match.
+
+  $expr .= '$/iu';
 
   return preg_match($expr, $value) ? '1' : '';
 

@@ -92,6 +92,12 @@
       PAD,
       '1' ],
 
+    [ 'like counts characters, not bytes',
+      <<<'PAD'
+      {echo 'é' | like('_')}
+      PAD,
+      '1' ],
+
     [ 'range includes its ends',
       <<<'PAD'
       {echo 100 | range(0, 100)}

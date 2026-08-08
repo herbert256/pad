@@ -20,6 +20,12 @@
       PAD,
       'hello world' ],
 
+    [ 'upper is ASCII only - an accented letter keeps its case',
+      <<<'PAD'
+      {echo 'café' | upper}
+      PAD,
+      'CAFé' ],
+
     [ 'capitalize',
       <<<'PAD'
       {echo 'hello world' | capitalize}
