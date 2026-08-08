@@ -27,6 +27,6 @@ variables: {true $cV='n'}{echo $cV@variables}{/true}
 all:       {echo $catAll@all}
 sequences: {sequence '1..5', push='cSeq'/}{echo $cSeq.3@sequences}
 tags:      {true $cT='7'}{echo $cT@tags}{/true}
-level:     {data 'cLv'}["x","y"]{/data}{cLv}{first@cLv}[{echo $1@level | optional}]{/first@cLv}{/cLv}
-function:  [{echo $nothing@function | optional}]
-dataProp:  {cLv}{first@cLv}[{echo $data@cLv | optional | php:is_array(@)}]{/first@cLv}{/cLv}
+level:     {data 'cLv'}["x","y"]{/data}{cLv}{echo $0.cLv@level}{echo $1.cLv@level},{/cLv}
+function:  {data 'cFn'}[1,2]{/data}{cFn callback='catsum.php', before}{last@cFn}{echo $t@function}{/last@cFn}{/cFn}
+dataProp:  {cLv}{first@cLv}[{data@cLv}{$cLv},{/data@cLv}]{/first@cLv}{/cLv}

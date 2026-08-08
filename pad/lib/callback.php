@@ -27,6 +27,14 @@
 
     $padVarsAfter = get_defined_vars ();
 
+    // The callback's variables are also published to $padLvlFunVar, so the function group
+    // of the @ subsystem can name the level they came from - {$sum@function} beside the
+    // plain global read.
+
+    foreach ( $padVarsAfter as $padK => $padV )
+      if ( padValidStore ( $padK ) )
+        $GLOBALS ['padLvlFunVar'] [ $GLOBALS ['pad'] ] [$padK] = $padV;
+
     foreach ($padVarsBefore as $padK => $padV)
       if ( isset( $GLOBALS [$padV] ) )
         unset( $GLOBALS [$padV] );
@@ -62,6 +70,10 @@
     $padRowParm = $row;
 
     $padVarsAfter = get_defined_vars();
+
+    foreach ( $padVarsAfter as $padK => $padV )
+      if ( $padK != 'row' and padValidStore ( $padK ) )
+        $GLOBALS ['padLvlFunVar'] [ $GLOBALS ['pad'] ] [$padK] = $padV;
 
     foreach ($padVarsBefore as $padK => $padV)
       if ( isset( $GLOBALS [$padV] ) )

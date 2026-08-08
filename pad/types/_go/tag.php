@@ -10,6 +10,15 @@
   $padCall = "$padTagGo.php";
   include PAD . 'call/ob.php';
 
+  // The locals the tag's PHP half leaves behind are published to $padLvlFunVar, where the
+  // function group of the @ subsystem reads them - the store level/function.php fills for a
+  // template driven by a PHP function, and the callbacks fill per phase. The storable-name
+  // filter keeps the engine's own pad-prefixed locals out.
+
+  foreach ( get_defined_vars () as $padK => $padV )
+    if ( padValidStore ( $padK ) and ! array_key_exists ( $padK, $GLOBALS ) )
+      $GLOBALS ['padLvlFunVar'] [ $GLOBALS ['pad'] ] [$padK] = $padV;
+
   $padTagContent = $padCallOB . padFileGet ("$padTagGo.pad");
 
   return $padCallPHP;

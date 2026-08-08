@@ -4,13 +4,11 @@
   // naming a place, saved reaches the value a level shadowed, providers what a {reactData}
   // provider returned, sequences the sequence subsystem's store.
   //
-  // Three of the group names have no case, because no spelling of them yields a value a
-  // template can assert. The level group (the whole data set of a level) returns INF for
-  // every path tried, numeric, dotted or named; the function group captures the driving PHP
-  // function's locals, and the storable-name filter leaves none standing in any mode a suite
-  // can reach; the data@ property resolves internally, but an {echo} of it turns the array
-  // into iteration data that renders nothing, and no reduction spelling brings the values
-  // out. The pinned empty lines in regression2's catalog/properties watch all three.
+  // The level group reaches the whole data set of a level - a dotted path names another
+  // row's field from whatever row is current. The function group reads the locals a level's
+  // PHP left behind - a custom tag's file, a callback's phases. The data@ property is a
+  // data source: the pair iterates the whole set, and toData= stores it, with the fields
+  // keeping the source tag's name either way.
 
   return [
 
@@ -105,6 +103,51 @@
       {/true}
       PAD,
       '9' ],
+
+    [ 'level reaches another row of the set from any row',
+      <<<'PAD'
+      {data 'lv'}
+        ["x","y"]
+      {/data}
+      {lv}
+        {echo $0.lv@level}{echo $1.lv@level},
+      {/lv}
+      PAD,
+      'xy,xy,' ],
+
+    [ 'function reaches what a callback left behind',
+      <<<'PAD'
+      {data 'n'}
+        [1,2,3]
+      {/data}
+      {n callback='before.php', before}
+        {last@n}{echo $sum@function}{/last@n}
+      {/n}
+      PAD,
+      '[6]' ],
+
+    [ 'data as a pair iterates the whole set, fields keeping the source name',
+      <<<'PAD'
+      {data 'dp'}
+        ["x","y"]
+      {/data}
+      {dp}
+        {first@dp}[{data@dp}{$dp},{/data@dp}]{/first@dp}
+      {/dp}
+      PAD,
+      '[x,y,]' ],
+
+    [ 'data with toData stores the set for later',
+      <<<'PAD'
+      {data 'dt'}
+        ["x","y"]
+      {/data}
+      {dt}
+        {first@dt}{data@dt toData='dcopy'/}{/first@dt}
+      {/dt}
+      [{data:dcopy}{$dt},{/data:dcopy}]
+      PAD,
+      '[x,y,]' ],
 
   ];
 

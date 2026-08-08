@@ -520,7 +520,7 @@
       'select/support/prefix'     => 'The select: prefix spelling of a declared table, which also says the word the reference matcher looks for',
       'catalog/tags'              => 'One line per built-in tag no other page reaches - the catalogue half of the reference coverage',
       'catalog/prefixes'          => 'One line per type prefix, each in its literal spelling',
-      'catalog/properties'        => 'Every property and @ reference form on one page - the last three lines pin what does not answer',
+      'catalog/properties'        => 'Every property and @ reference form on one page',
       'catalog/options'           => 'One line per tag option, including the ones that assert being inert',
       'catalog/functions'         => 'One line per pipe function over a stated value',
       'catalog/handling'          => 'The data handling options, each over a list whose answer is obvious',
