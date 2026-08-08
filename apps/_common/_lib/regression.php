@@ -64,7 +64,14 @@
     // run and six the next - and without this the row count alone reported a change that was
     // only ever the draw. A heading, a column or a tag still shows, which is the point.
 
+    // The names of a day and a month go with the digits. A page that prints a date prints them
+    // too - "Friday, August 7, 2026" - and they are words, so masking numbers left the weekday
+    // behind: demo/clock and demo/counter came up as changed the first time the crawl ran after
+    // midnight, every night, and nothing but a fresh baseline would quiet them.
+
     if ( $draw ) {
+      $text = preg_replace ( '/\b(Mon|Tues|Wednes|Thurs|Fri|Satur|Sun)day\b/', 'DAY', $text );
+      $text = preg_replace ( '/\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/', 'MONTH', $text );
       $text = preg_replace ( '/\d+/',      '#', $text );
       $text = preg_replace ( '/#(\s+#)+/', '#', $text );
     }
@@ -123,7 +130,12 @@
     $store   = DATA . "regression/$app/$item.html";
 
     $curl   = padCurl    ( "$padHost$app/?$item$include$extra" );
-    $source = padFileGet ( APPS . "$app/$item.pad" );
+    // The source is read to find the marker that says a page cannot be compared, and to see what
+    // an example harvest should skip. A page with no template keeps both of those in its .php,
+    // and looking only at the .pad missed them: sequence/sequences says random in its .php and
+    // was compared exactly the moment the crawl started walking php-only pages.
+
+    $source = padFileGet ( APPS . "$app/$item.pad" ) . padFileGet ( APPS . "$app/$item.php" );
     $old    = padFileGet ( $store );
 
     $good = str_starts_with ( $curl ['result'], '2');
@@ -180,8 +192,30 @@
 
       $ext = substr($path, strrpos($path, '.')+1 );
 
-      if ( $ext != 'pad' ) 
+      if ( $ext != 'pad' and $ext != 'php' )
         continue;
+
+      // A page with no template is still a page - what its .php echoes is its output - and the
+      // crawl had never seen one. Nineteen of them across the tree, the five app-level error
+      // raisers among them, and none had a stored copy or an entry on ?all. A pair keys by the
+      // same name either way, so it still counts once.
+      //
+      // Except where the .php is not a page but an action. ?ok accepts a baseline, todoPost
+      // writes one, structure/index sends you elsewhere - fetching those changes something, and
+      // a crawl has to be able to run without changing anything. So a page with no template that
+      // redirects, restarts or writes is left out.
+
+      if ( $ext == 'php' and ! file_exists ( substr ( $path, 0, -4 ) . '.pad' ) ) {
+
+        $source = padFileGet ( $path );
+
+        if ( str_contains ( $source, 'padRedirect'      )
+          or str_contains ( $source, 'padRestart'       )
+          or str_contains ( $source, 'padFilePut'       )
+          or str_contains ( $source, 'padDeleteDataDir' ) )
+          continue;
+
+      }
 
       $file  = str_replace ( APPS, '', $path );
 
