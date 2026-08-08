@@ -234,8 +234,10 @@
     // The crawl's own overview lists the status of every page, and those change as the crawl
     // walks them - so by the time it reaches this one, what it renders no longer matches what
     // was stored a moment before, and never will. The application's index has the same nature
-    // since it took to reporting the scan's counts. Comparing a report against the run
-    // producing it is circular; both are marked and left alone.
+    // since it took to reporting the scan's counts, and the demo clock says a different word
+    // - AM or PM, the weekday - whenever enough time has passed, which digit masking cannot
+    // cover. Comparing any of them is noise; each is marked and left alone. The error check
+    // comes first, though: a marked page that stops answering still shouts.
 
     // A page that exists to fail, or to render nothing, is not news. The pages suites already
     // declare the first kind - an expectation starting with the same HTTP code sits beside the
@@ -243,9 +245,9 @@
     // back. Both are 'expected': counted, coloured, and left off the list of what needs
     // looking at. An error nothing declared, or a page that went empty, still shouts.
 
-    if     ( in_array ( "$app/$item", [ 'regression/scan/index', 'regression/index' ] ) )
+    if     ( ! $good                    ) $status = getRegressionExpects ( $app, $item, $curl ['result'] ) ? 'expected' : 'error';
+    elseif ( in_array ( "$app/$item", [ 'regression/scan/index', 'regression/index', 'demo/clock' ] ) )
                                           $status = 'random';
-    elseif ( ! $good                    ) $status = getRegressionExpects ( $app, $item, $curl ['result'] ) ? 'expected' : 'error';
     elseif ( ! file_exists ($store)     ) $status = 'new';
     elseif ( ! trim ($new)              ) $status = ( trim ($old) ) ? 'empty' : 'expected';
     elseif ( getRegressionDraws ( $source ) )
@@ -1133,6 +1135,7 @@
       'prefixes'    => 'The type prefixes that say what a name means',
       'escaping'    => 'What stops PAD reading braces as tags, in each of its spellings',
       'custom'      => 'What an application supplies: _tags, _functions, _include, _data',
+      'passes'      => 'Nested passes - the isolation forms, and what may cross their boundary',
       'check'       => 'Pages carried over from the check application, which is gone',
       'sequence'    => 'The sequence subsystem - types, actions, plays, stores and options',
       'harness'     => 'The runner itself - url building, test counting, masking, and the patterns coverage is matched with',

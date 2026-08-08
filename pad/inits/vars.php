@@ -42,6 +42,7 @@
 
   $padBetweenOrg   = $padBetweenOrg   ?? '';
   $padOrgSet       = $padOrgSet       ?? '';
+  $padSwNow        = $padSwNow        ?? [];
   $padDataStore    = $padDataStore    ?? [];
   $padContentStore = $padContentStore ?? [];
   $padBoolStore    = $padBoolStore    ?? [];

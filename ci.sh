@@ -27,7 +27,7 @@ esac
 
 exit=0
 
-for suite in tags functions options properties expressions variables data prefixes escaping custom check sequence harness pages common; do
+for suite in tags functions options properties expressions variables data prefixes escaping custom passes check sequence harness pages common; do
 
   file="$padHome/DATA/suites/$suite.json"
 

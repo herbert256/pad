@@ -5,7 +5,10 @@
   //
   // The position is kept in $padSwNow, keyed by $padOpt [$pad] [0], the raw text of the tag's
   // parameters. Two switch tags written identically therefore share one rotation and two
-  // written differently never do, and the counter lives for the whole request.
+  // written differently never do, and the counter lives for the whole request - except
+  // across a nested pass, which takes its counting with it: engine state is restored when
+  // any pass returns, so a rotation counted inside one is rolled back with the rest.
+  // Seeded in inits/vars.php so every pass scope shares the one counter.
 
   $padSw = $padOpt [$pad] [0];
 

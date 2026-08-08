@@ -56,6 +56,10 @@ Rotating switch that cycles through options on each call.
 
 **Returns:** Next value in rotation sequence
 
+The rotation lives for the request, but not across a nested pass: engine state is restored
+when a `{code}` pass of any kind returns, so a rotation counted inside one is rolled back
+with it, and a pass starts every rotation it meets from the first value.
+
 ---
 
 ### while
