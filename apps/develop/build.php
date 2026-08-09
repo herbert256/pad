@@ -1,5 +1,8 @@
 <?php
 
+  if ( isset ( $goBuild ) )
+    return;
+
   include APP . 'clean.php';
 
   padDeleteDataDir ( DATA . 'reference'  );
