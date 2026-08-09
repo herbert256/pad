@@ -32,6 +32,11 @@
   if ( in_array ( 'unique', $drawsFlags ) and count ( array_unique ( $draws ) ) != count ( $draws ) )
     return 'duplicate draw: ' . implode ( ',', $draws );
 
+  if ( in_array ( 'complete', $drawsFlags ) )
+    for ( $drawsVal = $drawsFrom; $drawsVal <= $drawsTo; $drawsVal++ )
+      if ( ! in_array ( (string) $drawsVal, $draws ) )
+        return "missing $drawsVal: " . implode ( ',', $draws );
+
   if ( in_array ( 'ascending', $drawsFlags ) )
     for ( $drawsIdx = 1; $drawsIdx < count ( $draws ); $drawsIdx++ )
       if ( $draws [$drawsIdx] <= $draws [$drawsIdx - 1] )

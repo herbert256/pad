@@ -43,6 +43,7 @@
     if ( str_starts_with ( $xref, 'tag'           ) ) return "/\b$q:/";
     if ( str_starts_with ( $xref, 'properties'    ) ) return "/\b$q@|\{\/?$q\b|:$q\b/";
     if ( str_starts_with ( $xref, 'options/general' ) ) return "/\b$q\s*[=,}]/";
+    if ( str_starts_with ( $xref, 'options/select'  ) ) return "/\b$q\s*[=,}]/";
     if ( str_starts_with ( $xref, 'functions'     ) ) return "/\|\s*$q\b|\b$q:/";
     if ( str_starts_with ( $xref, 'constructs'    ) ) return "/@$q@/";
     if ( str_starts_with ( $xref, 'at/properties' ) ) return "/\b$q@|\b$q\.\w+@/";

@@ -6,4 +6,6 @@
   // callback/before.php for the before form). This file exists so the directory-driven
   // reference lists the option; nothing includes it.
 
+  return TRUE;
+
 ?>

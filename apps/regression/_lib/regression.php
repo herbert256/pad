@@ -526,6 +526,7 @@
       'misc/trace'                => 'The {trace} tag wrapping a scope in the execution trace',
       'misc/react'                => 'The {reactData} tag over a static provider, and the @providers reference reading the parked result back',
       'select/support/prefix'     => 'The select: prefix spelling of a declared table, which also says the word the reference matcher looks for',
+      'select/demo/options'       => 'Every option a declared table takes on the tag - where, order, fields, group, having, rollup, distinctrow, db and union - one labelled line each over the staff table',
       'catalog/tags'              => 'One line per built-in tag no other page reaches - the catalogue half of the reference coverage',
       'catalog/prefixes'          => 'One line per type prefix, each in its literal spelling',
       'catalog/properties'        => 'Every property and @ reference form on one page',

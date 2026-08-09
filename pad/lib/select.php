@@ -30,23 +30,29 @@
 
     $parms = padSelectGetDB ($table);
 
-    $db           = $padPrm [$pad] ['db']           ?? $parms ['db']          ?? $table;
-    $all          = $padPrm [$pad] ['all']          ?? $parms ['all']         ?? 0;
-    $distinct     = $padPrm [$pad] ['distinct']     ?? $parms ['distinct']    ?? 0;
-    $distinctrow  = $padPrm [$pad] ['distinctrow']  ?? $parms ['distinctrow'] ?? 0;
-    $keys         = $padPrm [$pad] ['key']          ?? $parms ['key']         ?? '';
-    $fields       = $padPrm [$pad] ['fields']       ?? $parms ['fields']      ?? '*';
-    $type         = $padPrm [$pad] ['type']         ?? $parms ['type']        ?? 'array';
-    $where        = $padPrm [$pad] ['where']        ?? $parms ['where']       ?? '';
-    $group        = $padPrm [$pad] ['group']        ?? $parms ['group']       ?? '';
-    $rollup       = $padPrm [$pad] ['rollup']       ?? $parms ['rollup']      ?? 0;
-    $having       = $padPrm [$pad] ['having']       ?? $parms ['having']      ?? '';
-    $join         = $padPrm [$pad] ['join']         ?? $parms ['join']        ?? [];
-    $union        = $padPrm [$pad] ['union']        ?? $parms ['union']       ?? '';
-    $order        = $padPrm [$pad] ['order']        ?? $parms ['order']       ?? '';
-    $page         = $padPrm [$pad] ['page']         ?? $parms ['page']        ?? 0;
-    $rows         = $padPrm [$pad] ['rows']         ?? $parms ['rows']        ?? 0;
-    $htmlAttrJson = $padPrm [$pad] ['htmlAttrJson'] ?? $parms ['rows']        ?? 0;
+    // A union member is built from its declaration alone: the tag's own options belong to
+    // the outer query, and reading them here made a tag-side union='member' find itself in
+    // the member's build and recurse without end.
+
+    $prm = ( $unionBuild ) ? [] : ( $padPrm [$pad] ?? [] );
+
+    $db           = $prm ['db']           ?? $parms ['db']          ?? $table;
+    $all          = $prm ['all']          ?? $parms ['all']         ?? 0;
+    $distinct     = $prm ['distinct']     ?? $parms ['distinct']    ?? 0;
+    $distinctrow  = $prm ['distinctrow']  ?? $parms ['distinctrow'] ?? 0;
+    $keys         = $prm ['key']          ?? $parms ['key']         ?? '';
+    $fields       = $prm ['fields']       ?? $parms ['fields']      ?? '*';
+    $type         = $prm ['type']         ?? $parms ['type']        ?? 'array';
+    $where        = $prm ['where']        ?? $parms ['where']       ?? '';
+    $group        = $prm ['group']        ?? $parms ['group']       ?? '';
+    $rollup       = $prm ['rollup']       ?? $parms ['rollup']      ?? 0;
+    $having       = $prm ['having']       ?? $parms ['having']      ?? '';
+    $join         = $prm ['join']         ?? $parms ['join']        ?? [];
+    $union        = $prm ['union']        ?? $parms ['union']       ?? '';
+    $order        = $prm ['order']        ?? $parms ['order']       ?? '';
+    $page         = $prm ['page']         ?? $parms ['page']        ?? 0;
+    $rows         = $prm ['rows']         ?? $parms ['rows']        ?? 0;
+    $htmlAttrJson = $prm ['htmlAttrJson'] ?? $parms ['rows']        ?? 0;
 
     if ( ! $padHtmlAttrJson and $htmlAttrJson ) {
       $padHtmlAttrJson = $htmlAttrJson;
@@ -55,18 +61,28 @@
 
     $start  = padSelectStart  ( $all, $distinct, $distinctrow);
     $group  = padSelectGroup  ( $group, $rollup );
+    $having = padSelectHaving ( $having );
     $limit  = padSelectLimit  ( $rows, $page );
     $where  = padSelectWhere  ( $where, $table, $keys );
     $fields = padSelectFields ( $fields, $db );
     $join   = padSelectJoin   ( $join, $fields );
     $keys   = padSelectKeys   ( $keys );
     $order  = padSelectOrder  ( $order, $join, $keys );
+
+    // The outer query's parts are folded into text before the union members are built:
+    // the composition variables are globals - the app dump reads them - and a member's
+    // build writes its own parts into the same names, so a union query composed after it
+    // carried the member's where instead of its own.
+
+    $head = "$start $fields from $db $join $where $group $having";
+    $tail = "$order $limit";
+
     $union  = padSelectUnion  ( $union );
 
     $_UNION [] = $union;
 
-    $base  = "$start $fields from $db $join $where $group $having $union";
-    $sql   = "$type $base $order $limit";
+    $base  = "$head $union";
+    $sql   = "$type $base $tail";
     $union = "union select $base";
 
     $_SELECT [] = $sql;
@@ -108,6 +124,16 @@
       $group .= ' with rollup';
 
     return $group;
+
+  }
+
+  // The keyword comes from here, as where and group get theirs from their builders: the
+  // having= option carries the condition alone. It was concatenated raw before, which no
+  // spelling of the option could satisfy - the keyword had nowhere to come from.
+
+  function padSelectHaving ( $having ) {
+
+    return ( $having ) ? "having $having" : '';
 
   }
 

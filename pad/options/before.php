@@ -5,4 +5,6 @@
   // of one row at a time. Like callback.php beside it, this file only makes the option
   // visible to the directory-driven reference; nothing includes it.
 
+  return TRUE;
+
 ?>

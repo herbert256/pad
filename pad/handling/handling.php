@@ -17,9 +17,16 @@
 
     extract ( $padHand );
 
+    // The modifiers are parameters of the handlers, not handlers of their own: negative is
+    // read once above, and the others are read by the handler they belong to. Their files
+    // under handling/types/ exist for the reference, and running one here - an empty
+    // handler - would answer with an unchanged selection, which negative then inverts to
+    // nothing at all.
+
         if ( ! count ( $padData [$pad] )                        ) continue;
     elseif ( $padTagSeq [$pad]                                  ) continue;
     elseif ( $padPrmKind != 'option'                            ) continue;
+    elseif ( in_array ( $padPrmName, [ 'negative', 'orderly', 'duplicates', 'atLeastOnce', 'left', 'right', 'both' ] ) ) continue;
     elseif ( ! file_exists ( PAD . "handling/types/$padPrmName.php" ) ) continue;
 
     $padHandName = $padPrmName;

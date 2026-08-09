@@ -57,6 +57,24 @@
       PAD,
       'ok' ],
 
+    [ 'randomize with duplicates may repeat, and stays in range',
+      <<<'PAD'
+      {sequence '1..3', push='dnums'/}
+      {pull:dnums randomize=8, duplicates}
+        {$sequence},
+      {/pull:dnums | draws(1, 3, 8)}
+      PAD,
+      'ok' ],
+
+    [ 'atLeastOnce guarantees every value a place among the draws',
+      <<<'PAD'
+      {sequence '1..3', push='anums'/}
+      {pull:anums randomize=8, duplicates, atLeastOnce}
+        {$sequence},
+      {/pull:anums | draws(1, 3, 8, 'complete')}
+      PAD,
+      'ok' ],
+
     [ 'the draws oracle rejects an impossible value',
       <<<'PAD'
       {echo '99,99,99,' | draws(1, 10, 3)}
