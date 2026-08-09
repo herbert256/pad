@@ -1,11 +1,18 @@
 <?php
 
 
+  // The suites run once, the crawl three times. A suite is a deterministic assert against
+  // the .txt files, so a second run answers the same as the first; the crawl is what needs
+  // the cycle - a harvest pass whose extras can leak into pages that echo their query
+  // string, a plain pass that stores the real bodies, the accept, and a verify pass.
+  // Running the suites first also settles their overview pages before the crawl stores
+  // them: a rerun would change the 'ran' stamps and put those pages on warning forever.
+
   function getRegressionBuild ( ) {
     getRegression        ( '&padExamples&padReference' );
-    getRegression        ( );
+    getRegressionAll     ( );
     getRegressionWarning ( 'ok' );
-    getRegression        ( );
+    getRegressionAll     ( );
   }
 
 
