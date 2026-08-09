@@ -49,6 +49,21 @@ The property name is what makes this read as one reference: only the names on th
 (the files in `pad/properties/`), and the target names an iterating tag. Elsewhere in an
 expression `@` is still the current-value placeholder.
 
+**The sigil decides what a colliding name means.** When a row carries a field named like a
+property - a `first` column, say - the bare spelling is still the property and the
+`$`-spelling is the field:
+
+```
+{if first@orders}                  the iteration state - is this the first row
+{$first@orders}                    the row's 'first' field
+{if $first@orders eq 'Dave'}       comparing that field
+```
+
+The tag pair resolves fields first, as it always has - `{first@orders}...{/first@orders}`
+over such rows prints the field and renders its content on every row. From inside the level
+the `property:` prefix reaches the property whatever the row carries:
+`{if property:first}`.
+
 ### Ternary Conditionals
 
 ```

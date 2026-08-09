@@ -330,7 +330,9 @@ A property is written as a tag pair, in a ternary, or as a value inside a condit
 `{if first@items}` reads the property alone, `{if current@items eq 2}` with an operator. A
 property name followed by `@` and a target is one reference inside an expression; only the
 names in `pad/properties/` read that way, and any other word before `@` leaves `@` as the
-current-value placeholder.
+current-value placeholder. The sigil decides a name collision: with a row field named
+`first`, `{if first@orders}` is still the iteration state and `{$first@orders}` is the
+field.
 
 ```
 {items}

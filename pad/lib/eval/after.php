@@ -66,6 +66,11 @@
         $result[$k][1] = 'VAL';
         $result[$k][0] = padFieldValue ( $one[0] );
 
+      } elseif ( $one[1] == 'prop' ) {
+
+        $result[$k][1] = 'VAL';
+        $result[$k][0] = padPropertyValue ( $one[0] );
+
       } elseif ( $one[1] == '&' ) {
 
         $result[$k][1] = 'VAL';

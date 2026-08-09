@@ -986,4 +986,6 @@ Access iteration state and metadata using `property@tag` syntax.
 A property also reads as a value inside an expression - `{if first@items}`, `{if current@items
 eq 2}` - because a property name followed by `@` and a target is one reference there. Any other
 word before `@` keeps the placeholder reading: elsewhere in an expression `@` is the current
-value being piped in.
+value being piped in. The bare spelling is the property and nothing else; a row field of the
+same name is what the `$`-spelling reads - `{$first@orders}` - so the sigil resolves the
+collision.

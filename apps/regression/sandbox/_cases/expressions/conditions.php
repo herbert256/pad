@@ -152,6 +152,82 @@
       PAD,
       'zzxyy' ],
 
+    // The sigil decides what a colliding name means: rows here carry fields named 'first'
+    // and 'count', and the bare spelling still answers the iteration state while the
+    // $-spelling answers the row. Each case defines its own data - the stores do not
+    // survive from one case to the next.
+
+    [ 'a field named first does not shadow the bare property',
+      <<<'PAD'
+      {data 'sh1' ignore}[{"first":"Dave"},{"first":""},{"first":"Eve"}]{/data}
+      {sh1}{if first@sh1}F{else}.{/if}{/sh1}
+      PAD,
+      'F..' ],
+
+    [ 'the dollar spelling reads that field',
+      <<<'PAD'
+      {data 'sh2' ignore}[{"first":"Dave"},{"first":""},{"first":"Eve"}]{/data}
+      {sh2}{$first@sh2},{/sh2}
+      PAD,
+      'Dave,,Eve,' ],
+
+    [ 'and compares it',
+      <<<'PAD'
+      {data 'sh3' ignore}[{"first":"Dave"},{"first":""},{"first":"Eve"}]{/data}
+      {sh3}{if $first@sh3 eq 'Dave'}D{else}.{/if}{/sh3}
+      PAD,
+      'D..' ],
+
+    [ 'the dollar spelling tests the field truth, not the row position',
+      <<<'PAD'
+      {data 'sh4' ignore}[{"first":"Dave"},{"first":""},{"first":"Eve"}]{/data}
+      {sh4}{if $first@sh4}t{else}f{/if}{/sh4}
+      PAD,
+      'tft' ],
+
+    [ 'a field named count does not shadow the bare count',
+      <<<'PAD'
+      {data 'sh5' ignore}[{"count":"9"},{"count":"9"},{"count":"9"}]{/data}
+      {sh5}{if count@sh5 eq 3}3{/if}{/sh5}
+      PAD,
+      '333' ],
+
+    [ 'while the dollar count is the field',
+      <<<'PAD'
+      {data 'sh6' ignore}[{"count":"9"},{"count":"9"},{"count":"9"}]{/data}
+      {sh6}{$count@sh6}{/sh6}
+      PAD,
+      '999' ],
+
+    [ 'both sigils stand in one condition',
+      <<<'PAD'
+      {data 'sh7' ignore}[{"first":"Dave"},{"first":""},{"first":"Eve"}]{/data}
+      {sh7}{if first@sh7 and $first@sh7 eq 'Dave'}Y{else}.{/if}{/sh7}
+      PAD,
+      'Y..' ],
+
+    [ 'a shadowed set still assigns the property',
+      <<<'PAD'
+      {data 'sh8' ignore}[{"count":"9"},{"count":"9"},{"count":"9"}]{/data}
+      {sh8}{if first@sh8}{set $sh8N = count@sh8/}{/if}{/sh8}
+      [{$sh8N}]
+      PAD,
+      '[3]' ],
+
+    [ 'key as a bare property under an operator',
+      <<<'PAD'
+      {data 'sh9'}["p","q","r"]{/data}
+      {sh9}{if key@sh9 eq 1}K{else}.{/if}{/sh9}
+      PAD,
+      '.K.' ],
+
+    [ 'name answers the tag it iterates as',
+      <<<'PAD'
+      {data 'shA'}["p","q","r"]{/data}
+      {shA}{if name@shA eq 'shA'}N{/if}{/shA}
+      PAD,
+      'NNN' ],
+
   ];
 
 ?>

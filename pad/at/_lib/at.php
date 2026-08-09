@@ -281,6 +281,27 @@
 
   }
 
+  // The property-only resolution behind the bare spelling in expressions: {if first@orders}
+  // asks for the property and nothing else, where the $-spelling asks the whole resolver
+  // chain - fields first - as it always has. The sigil is the meaning: $first@orders is a
+  // field of the row, first@orders is the iteration state, and a row field named 'first'
+  // shadows only the former. INF shapes to empty, so a missing target answers '' here the
+  // same as everywhere.
+
+  function padPropertyValue ( $field ) {
+
+    padSplit ( '@', $field, $before, $after );
+
+    $names = padExplode ( $before, '.' );
+    $name  = reset ( $names );
+    $parts = padExplode ( $after,  ':' );
+
+    $check = padAtProperties ( $name, $names, $parts [0] ?? '', $parts [1] ?? '', 0 );
+
+    return ( $check === INF ) ? '' : $check;
+
+  }
+
   function padAtProperties ( $name, $names, $first, $second, $cor ) {
 
     if ( $second )
