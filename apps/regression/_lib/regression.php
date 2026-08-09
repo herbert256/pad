@@ -121,16 +121,20 @@
 
     }
 
-    // The cache applications stay out of the window. Their index pages prove a backend by
-    // fetching the same probe twice and expecting one body, and a concurrent crawl fetch
-    // of that probe lands between the two, restores a fresh draw into the cache entry, and
-    // turns a working backend into a NO. They test shared state; they get it to themselves.
+    // The self-testing applications - regression_cache_*, regression_error_*,
+    // regression_output_*, regression_info - stay out of the window. Each of their index
+    // pages proves its subsystem by fetching its own probe from inside the request, and
+    // the window works against that twice over: a concurrent crawl fetch of a cache probe
+    // lands between an index's two fetches and turns a working backend into a NO, and
+    // twelve pages each spawning a nested request can momentarily starve the worker pool,
+    // failing a fetch that is the verdict. They test shared state and their own requests;
+    // they get the server to themselves, after the flock.
 
     $flock = [];
     $solo  = [];
 
     foreach ( padAppsList () as $one )
-      if ( str_starts_with ( $one ['app'], 'regression_cache' ) )
+      if ( str_starts_with ( $one ['app'], 'regression_' ) )
         $solo  [] = $one;
       else
         $flock [] = $one;
