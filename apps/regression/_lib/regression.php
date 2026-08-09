@@ -94,15 +94,68 @@
   }
 
 
+  // The plain crawl goes twelve pages at a time: the fetches are independent GETs against
+  // a server with as many workers, so a window of them is fetched through padCurlMulti and
+  // the answers are compared and stored one by one, in order, as before.
+  //
+  // A run with extras stays one page at a time. With &padReference every crawled page
+  // appends what it used to the shared reference files as it renders, behind a read-check-
+  // append that is not safe against itself running twelve-wide - and the harvest is one
+  // run per build, so its pace hardly matters.
+
   function getRegressionAll ( $extra='' ) {
 
     set_time_limit ( 60 );
 
-    foreach ( padAppsList () as $one ) {
+    if ( $extra ) {
 
-      extract ( $one );
+      foreach ( padAppsList () as $one ) {
 
-      getRegressionGo ( $app, $item, $extra );
+        extract ( $one );
+
+        getRegressionGo ( $app, $item, $extra );
+
+      }
+
+      return;
+
+    }
+
+    // The cache applications stay out of the window. Their index pages prove a backend by
+    // fetching the same probe twice and expecting one body, and a concurrent crawl fetch
+    // of that probe lands between the two, restores a fresh draw into the cache entry, and
+    // turns a working backend into a NO. They test shared state; they get it to themselves.
+
+    $flock = [];
+    $solo  = [];
+
+    foreach ( padAppsList () as $one )
+      if ( str_starts_with ( $one ['app'], 'regression_cache' ) )
+        $solo  [] = $one;
+      else
+        $flock [] = $one;
+
+    foreach ( array_chunk ( $flock, 48 ) as $chunk ) {
+
+      set_time_limit ( 60 );
+
+      $urls = [];
+
+      foreach ( $chunk as $i => $one )
+        $urls [$i] = getRegressionUrl ( $one ['app'], $one ['item'] );
+
+      $fetched = padCurlMulti ( $urls );
+
+      foreach ( $chunk as $i => $one )
+        getRegressionGo ( $one ['app'], $one ['item'], '', $fetched [$i] ?? NULL );
+
+    }
+
+    foreach ( $solo as $one ) {
+
+      set_time_limit ( 60 );
+
+      getRegressionGo ( $one ['app'], $one ['item'] );
 
     }
 
@@ -231,15 +284,30 @@
   }
 
 
-  function getRegressionGo ( $app, $item, $extra='' ) {
+  function getRegressionUrl ( $app, $item, $extra='' ) {
+
+    global $padHost;
+
+    $include = ( $item != 'index' ) ? '&padInclude' : '';
+
+    return "$padHost$app/?$item$include$extra";
+
+  }
+
+
+  // $fetched lets the crawl hand in a response it already holds - getRegressionAll fetches
+  // a window of pages concurrently and walks the answers - and a call without one fetches
+  // for itself, exactly as before.
+
+  function getRegressionGo ( $app, $item, $extra='', $fetched=NULL ) {
 
     global $padHost;
 
     $include = ( $item != 'index' ) ? '&padInclude' : '';
     $store   = DATA . "regression/$app/$item.html";
 
-    $curl   = padCurl    ( "$padHost$app/?$item$include$extra" );
-    
+    $curl   = $fetched ?? padCurl ( getRegressionUrl ( $app, $item, $extra ) );
+
     // The source is read to find the marker that says a page cannot be compared, and to see what
     // an example harvest should skip. A page with no template keeps both of those in its .php,
     // and looking only at the .pad missed them: sequence/sequences says random in its .php and
@@ -906,55 +974,69 @@
     $failed = 0;
     $new    = 0;
 
-    foreach ( getFrameworkList () as $name ) {
+    // Nine hundred independent GETs, so they go a window at a time through padCurlMulti,
+    // and the answers are judged in order as before.
+
+    foreach ( array_chunk ( getFrameworkList (), 48 ) as $chunk ) {
 
       set_time_limit ( 60 );
 
-      $url  = getFrameworkUrl ( $name );
-      $want = getFrameworkDir () . "$name.txt";
-      $curl = padCurl ( $url );
+      $urls = [];
 
-      $got  = trim ( preg_replace ( '/\n\s*/', '', $curl ['data'] ) );
-      $code = $curl ['result'];
+      foreach ( $chunk as $i => $name )
+        $urls [$i] = getFrameworkUrl ( $name );
 
-      if ( ! file_exists ( $want ) ) {
+      $fetched = padCurlMulti ( $urls );
 
-        $status = 'new';
-        $expect = '';
+      foreach ( $chunk as $i => $name ) {
 
-      } else {
+        $url  = $urls [$i];
+        $want = getFrameworkDir () . "$name.txt";
+        $curl = $fetched [$i] ?? [ 'data' => '', 'result' => '999' ];
 
-        $expect = trim ( padFileGet ( $want ) );
+        $got  = trim ( preg_replace ( '/\n\s*/', '', $curl ['data'] ) );
+        $code = $curl ['result'];
 
-        if ( strlen ( $expect ) > 1 and str_starts_with ( $expect, '/' ) and str_ends_with ( $expect, '/' ) ) {
+        if ( ! file_exists ( $want ) ) {
 
-          $ok = (bool) preg_match ( $expect, $got ) and str_starts_with ( (string) $code, '2' );
+          $status = 'new';
+          $expect = '';
 
-          if ( $ok )
-            $got = "matches $expect";
+        } else {
 
-        } else
+          $expect = trim ( padFileGet ( $want ) );
 
-          $ok = ( $got === $expect and str_starts_with ( (string) $code, '2' ) );
+          if ( strlen ( $expect ) > 1 and str_starts_with ( $expect, '/' ) and str_ends_with ( $expect, '/' ) ) {
 
-        $status = $ok ? 'ok' : 'FAILED';
+            $ok = (bool) preg_match ( $expect, $got ) and str_starts_with ( (string) $code, '2' );
+
+            if ( $ok )
+              $got = "matches $expect";
+
+          } else
+
+            $ok = ( $got === $expect and str_starts_with ( (string) $code, '2' ) );
+
+          $status = $ok ? 'ok' : 'FAILED';
+
+        }
+
+        $total++;
+        $groups [ substr ( $name, 0, strpos ( $name, '/' ) ) ] = TRUE;
+
+        if ( $status == 'FAILED' ) $failed++;
+        if ( $status == 'new'    ) $new++;
+
+        $tests [] = [
+          'name'   => $name,
+          'url'    => $url,
+          'want'   => htmlspecialchars ( $expect ),
+          'got'    => htmlspecialchars ( $got    ),
+          'status' => $status,
+          'failed' => ( $status == 'FAILED' ) ? 1 : 0
+        ];
 
       }
-
-      $total++;
-      $groups [ substr ( $name, 0, strpos ( $name, '/' ) ) ] = TRUE;
-
-      if ( $status == 'FAILED' ) $failed++;
-      if ( $status == 'new'    ) $new++;
-
-      $tests [] = [
-        'name'   => $name,
-        'url'    => $url,
-        'want'   => htmlspecialchars ( $expect ),
-        'got'    => htmlspecialchars ( $got    ),
-        'status' => $status,
-        'failed' => ( $status == 'FAILED' ) ? 1 : 0
-      ];
 
     }
 

@@ -16,6 +16,12 @@
   //     to the filename in Content-Disposition and then to padContentType on the body
   //   - with $padCurlStats set the callee's PAD-Stats header is decoded into ['stats']
   //
+  // padCurlMulti takes a whole array of such inputs and fetches them concurrently through
+  // curl_multi, a rolling window at a time, returning an output per input under the same
+  // key. The building and the parsing are padCurl's own - padCurlBuild readies the url and
+  // options, padCurlParse turns a response into the output shape - so one fetch answers
+  // the same whichever road it took. The regression crawl is the caller this exists for.
+  //
   // padNoCurl is the fallback when ext-curl is missing: it just reads the URL as a file.
   // padCurlOpt sets a default that the caller's own options can override, and padCurlError
   // records the failure in the same array with result 999 instead of throwing.
@@ -49,9 +55,13 @@
 
   }
 
-  function padCurl ($input) {
+  // Everything before the wire: the url resolved, the cookies added, the options filled in
+  // with their defaults. A name that turns out to be a _data/ file is answered on the spot -
+  // the output comes back with 'done' set and nothing left to fetch.
 
-    global $padCurlLast, $padCurlStats, $padGoExt, $padHost, $padInfo, $padPage, $padReqID, $padSesID;
+  function padCurlBuild ( $input ) {
+
+    global $padGoExt, $padHost, $padPage, $padReqID, $padSesID;
 
     $output             = [];
     $output ['url']     = '';
@@ -63,8 +73,6 @@
     $output ['headers'] = [];
     $output ['cookies'] = [];
     $output ['data']    = '';
-
-    $stats = isset ( $padCurlStats );
 
     $url = ( is_array($input) ) ? $input ['url'] : $input;
 
@@ -87,8 +95,7 @@
         $output ['data']   = padDataFileData ( $check );
         $output ['type']   = padContentType  ( $output ['data'] );
         $output ['result'] = '200';
-
-        $padCurlLast = $output;
+        $output ['done']   = TRUE;
 
         return $output;
 
@@ -149,48 +156,27 @@
 
     $output ['options'] = $options;
 
-    if ( ! function_exists ( 'curl_init') )
-      return padNoCurl ( $output );
+    return $output;
 
-    set_error_handler ( 'padErrorThrow' );
-    $errorReporting = error_reporting (0);
+  }
 
-    try {
+  // Everything after the wire: the raw response split on the reported header size, the
+  // headers, cookies and content type picked out, the body cleaned. The caller has already
+  // put curl_getinfo's answer in ['info'].
 
-      $curl = curl_init ( $url );
+  function padCurlParse ( $output, $result ) {
 
-      if ($curl === FALSE)
-        return padCurlError ($output, 'curl_init = FALSE');
-
-      foreach ( $options as $key => $val )
-        curl_setopt ( $curl, constant('CURLOPT_'.$key), $val );
-
-      if ( $stats ) $start = hrtime ( TRUE );
-      $result = curl_exec ($curl);
-      if ( $stats ) $end = hrtime ( TRUE );
-
-      if ($result === FALSE)
-        return padCurlError ($output, 'curl_exec = FALSE');
-
-      $output ['info'] = curl_getinfo ($curl);
-
-    } catch (Throwable $e) {
-
-      return padCurlError ( $output,  $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage() );
-
-    }
-
-    restore_error_handler ();
-    error_reporting ( $errorReporting );
+    global $padCurlStats, $padInfo;
 
     if ( isset ( $output ['info'] ['http_code'] ) )
       $output ['result'] = $output ['info'] ['http_code'];
     else
       $output ['result'] = 'xxx';
 
+    $file = '';
+
     if ( isset($output ['info']['header_size']) and $output ['info']['header_size'] > 0 ) {
 
-      $file = '';
       $headers = explode( "\r\n", substr ( $result, 0, $output ['info'] ['header_size'] ) );
 
       foreach ($headers as $key => $val) {
@@ -233,10 +219,13 @@
 
     }
 
-    if ( $stats and isset ( $output ['headers'] ['PAD-Stats'] ) ) {
+    if ( isset ( $padCurlStats ) and isset ( $output ['headers'] ['PAD-Stats'] ) ) {
       $output ['stats'] = json_decode ( $output ['headers'] ['PAD-Stats'], TRUE ) ;
-      $output ['stats'] ['curl']   = $end - $start;
+      $output ['stats'] ['curl'] = $output ['curlTime']
+                                ?? (int) ( ( $output ['info'] ['total_time'] ?? 0 ) * 1e9 );
     }
+
+    unset ( $output ['curlTime'] );
 
     if ( isset($output ['info']['header_size']) )
       $output ['data'] = trim(substr($result, $output ['info']['header_size']));
@@ -254,12 +243,186 @@
     if ( ! $output ['type'] )
       $output ['type'] = padContentType ( $output ['data'] );
 
+    // The event traces $url, which was a local of the old one-piece padCurl - the split
+    // keeps the name alive for it.
+
+    $url = $output ['url'];
+
     if ( $padInfo )
       include PAD . 'events/curl.php';
+
+    return $output;
+
+  }
+
+  function padCurl ($input) {
+
+    global $padCurlLast, $padCurlStats;
+
+    $output = padCurlBuild ( $input );
+
+    if ( isset ( $output ['done'] ) ) {
+      unset ( $output ['done'] );
+      $padCurlLast = $output;
+      return $output;
+    }
+
+    if ( ! function_exists ( 'curl_init') )
+      return padNoCurl ( $output );
+
+    $stats = isset ( $padCurlStats );
+
+    set_error_handler ( 'padErrorThrow' );
+    $errorReporting = error_reporting (0);
+
+    try {
+
+      $curl = curl_init ( $output ['url'] );
+
+      if ($curl === FALSE)
+        return padCurlError ($output, 'curl_init = FALSE');
+
+      foreach ( $output ['options'] as $key => $val )
+        curl_setopt ( $curl, constant('CURLOPT_'.$key), $val );
+
+      if ( $stats ) $start = hrtime ( TRUE );
+      $result = curl_exec ($curl);
+      if ( $stats ) $end = hrtime ( TRUE );
+
+      if ($result === FALSE)
+        return padCurlError ($output, 'curl_exec = FALSE');
+
+      $output ['info'] = curl_getinfo ($curl);
+
+    } catch (Throwable $e) {
+
+      return padCurlError ( $output,  $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage() );
+
+    }
+
+    restore_error_handler ();
+    error_reporting ( $errorReporting );
+
+    if ( $stats )
+      $output ['curlTime'] = $end - $start;
+
+    $output = padCurlParse ( $output, $result );
 
     $padCurlLast = $output;
 
     return $output;
+
+  }
+
+  // The concurrent form: the inputs are fetched through one curl_multi handle, at most
+  // $window on the wire at once, and the outputs come back under the inputs' own keys.
+  //
+  // The window is the point: the local crawl talks to a server with a dozen workers, and
+  // one fetch at a time leaves eleven of them idle. Everything the caller of padCurl may
+  // rely on holds here too - same option defaults, same output shape, same 999-with-ERROR
+  // on a failed transfer - except $padCurlLast, which is only meaningful for one fetch and
+  // is left alone. Without ext-curl the inputs are simply fetched one by one.
+
+  function padCurlMulti ( $inputs, $window = 12 ) {
+
+    $results = [];
+
+    if ( ! function_exists ( 'curl_multi_init' ) ) {
+
+      foreach ( $inputs as $key => $input )
+        $results [$key] = padCurl ( $input );
+
+      return $results;
+
+    }
+
+    $outputs = [];
+    $queue   = [];
+
+    foreach ( $inputs as $key => $input ) {
+
+      $output = padCurlBuild ( $input );
+
+      if ( isset ( $output ['done'] ) ) {
+        unset ( $output ['done'] );
+        $results [$key] = $output;
+      }
+
+      else {
+        $outputs [$key] = $output;
+        $queue [] = $key;
+      }
+
+    }
+
+    set_error_handler ( 'padErrorThrow' );
+    $errorReporting = error_reporting (0);
+
+    try {
+
+      $multi   = curl_multi_init ();
+      $flying  = [];
+
+      while ( $queue or $flying ) {
+
+        while ( $queue and count ( $flying ) < $window ) {
+
+          $key  = array_shift ( $queue );
+          $curl = curl_init ( $outputs [$key] ['url'] );
+
+          foreach ( $outputs [$key] ['options'] as $name => $val )
+            curl_setopt ( $curl, constant ( 'CURLOPT_' . $name ), $val );
+
+          curl_multi_add_handle ( $multi, $curl );
+          $flying [ spl_object_id ( $curl ) ] = [ $curl, $key ];
+
+        }
+
+        do {
+          $state = curl_multi_exec ( $multi, $running );
+        } while ( $state == CURLM_CALL_MULTI_PERFORM );
+
+        if ( $running )
+          curl_multi_select ( $multi, 0.1 );
+
+        while ( $done = curl_multi_info_read ( $multi ) ) {
+
+          $curl = $done ['handle'];
+          list ( , $key ) = $flying [ spl_object_id ( $curl ) ];
+
+          $result = curl_multi_getcontent ( $curl );
+          $outputs [$key] ['info'] = curl_getinfo ( $curl );
+
+          if ( $done ['result'] !== CURLE_OK or $result === FALSE or $result === NULL )
+            $results [$key] = padCurlError ( $outputs [$key], 'curl_multi: ' . curl_strerror ( $done ['result'] ) );
+          else
+            $results [$key] = padCurlParse ( $outputs [$key], $result );
+
+          unset ( $flying [ spl_object_id ( $curl ) ] );
+          curl_multi_remove_handle ( $multi, $curl );
+
+        }
+
+      }
+
+      curl_multi_close ( $multi );
+
+    } catch ( Throwable $e ) {
+
+      // Whatever was in the air when something threw comes back as the failure it is, so
+      // the caller still gets one output per input.
+
+      foreach ( $inputs as $key => $input )
+        if ( ! isset ( $results [$key] ) )
+          $results [$key] = padCurlError ( $outputs [$key] ?? padCurlBuild ( $input ),
+                                           $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage() );
+
+    }
+
+    restore_error_handler ();
+    error_reporting ( $errorReporting );
+
+    return $results;
 
   }
 
