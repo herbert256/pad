@@ -23,6 +23,7 @@ This directory contains PAD applications and examples.
 | [regression3](regression3/README.md) | Test | The pages of the suite that use _common - {example}, {demo}, {table} - fetched and compared the same way |
 | [sequence](sequence/README.md) | Standard | Mathematical sequence subsystem demos |
 | [structure](structure/README.md) | Example | Demonstrates PAD directory structure and nested `_xxx` directories |
+| [test](test/README.md) | Minimal | A scratch application for trying things out, with `_common` switched off |
 
 ## Application Types
 

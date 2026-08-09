@@ -906,6 +906,7 @@ This is particularly useful for:
 | `regression3` | Test | The pages of the suite that use `_common` - `{example}`, `{demo}`, `{table}` - fetched and compared the same way |
 | `sequence` | Standard | Mathematical sequence subsystem demos |
 | `structure` | Example | Demonstrates nested `_xxx` directories and inheritance |
+| `test` | Minimal | A scratch application for trying things out, `_common` switched off |
 
 See [apps/README.md](apps/README.md) for the same list with links.
 
