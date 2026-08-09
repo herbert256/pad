@@ -1,2 +1,7 @@
 <p>action: {$action}</p>
-<p>the boom page behaved as this action promises: <b>{$verdict}</b></p>
+
+{if $tested eq 1}
+  <p>the boom page behaved as this action promises: <b>{$verdict}</b></p>
+{else}
+  <p><a href="?index&test">Test</a> the boom page</p>
+{/if}

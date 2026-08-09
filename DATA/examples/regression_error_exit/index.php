@@ -1,13 +1,20 @@
 <?php
 
-  // Fetches the boom page - an undefined variable its .php reads - and asserts what the
-  // 'exit' error action is supposed to do with it: the request ends where it stood, shipping nothing.
+  // Test fetches the boom page - an undefined variable its .php reads - and asserts what
+  // the 'exit' error action is supposed to do with it: the request ends where it stood,
+  // shipping nothing. A plain load only offers the link, so a crawl raises nothing.
 
-  $r    = padCurl ( $padHost . 'regression_error_exit/?boom&padInclude' );
-  $code = $r ['result'];
-  $body = $r ['data'];
+  $tested = isset ( $test ) ? 1 : 0;
 
-  $verdict = ( $code == 200 and trim ( $body ) == "" ) ? "yes" : "NO";
+  if ( $tested ) {
+
+    $r    = padCurl ( $padHost . 'regression_error_exit/?boom&padInclude' );
+    $code = $r ['result'];
+    $body = $r ['data'];
+
+    $verdict = ( $code == 200 and trim ( $body ) == "" ) ? "yes" : "NO";
+
+  }
 
   $action = $padErrorAction;
 

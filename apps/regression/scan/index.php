@@ -27,7 +27,7 @@
 
   if ( isset ( $acceptWarnings ) ) {
 
-    getRegressionWarning ( 'ok' );
+    getRegressionWarning ( );
 
     padRedirect ( $padPage );
 

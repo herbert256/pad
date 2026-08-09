@@ -31,7 +31,7 @@
   //
   // Returns the items accepted, "app/item" each, in the order they were found.
 
-  function getRegressionWarning ( $kind ) {
+  function getRegressionWarning ( ) {
 
     global $padHost;
 
@@ -58,10 +58,7 @@
 
       set_time_limit ( 60 );
 
-      if ( $kind == 'ok' )
-        padCurl ( $padHost . "regression/?ok&app=$app&item=" . urlencode ( $item ) );
-      else
-        getRegressionGo ( $app, $item );
+      padCurl ( $padHost . "regression/?ok&app=$app&item=" . urlencode ( $item ) );
 
     }
 
@@ -122,13 +119,14 @@
     }
 
     // The self-testing applications - regression_cache_*, regression_error_*,
-    // regression_output_*, regression_info - stay out of the window. Each of their index
-    // pages proves its subsystem by fetching its own probe from inside the request, and
-    // the window works against that twice over: a concurrent crawl fetch of a cache probe
-    // lands between an index's two fetches and turns a working backend into a NO, and
-    // twelve pages each spawning a nested request can momentarily starve the worker pool,
-    // failing a fetch that is the verdict. They test shared state and their own requests;
-    // they get the server to themselves, after the flock.
+    // regression_output_*, regression_info - stay out of the window. Their index pages
+    // prove their subsystem by fetching their own probe from inside the request - the
+    // error apps only behind their Test link, the others on load - and the window works
+    // against that twice over: a concurrent crawl fetch of a cache probe lands between an
+    // index's two fetches and turns a working backend into a NO, and twelve pages each
+    // spawning a nested request can momentarily starve the worker pool, failing a fetch
+    // that is the verdict. They test shared state and their own requests; they get the
+    // server to themselves, after the flock.
 
     $flock = [];
     $solo  = [];

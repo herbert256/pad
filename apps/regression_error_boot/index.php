@@ -1,19 +1,26 @@
 <?php
 
-  // Fetches the boom page - an undefined variable its .php reads - and asserts what the
-  // 'boot' error action is supposed to do with it: a 500 whose body is the machine-readable
-  // JSON dump, message, file and line included.
+  // Test fetches the boom page - an undefined variable its .php reads - and asserts what
+  // the 'boot' error action is supposed to do with it: a 500 whose body is the machine-
+  // readable JSON dump, message, file and line included. A plain load only offers the
+  // link, so a crawl of this page raises nothing.
 
-  $r    = padCurl ( $padHost . 'regression_error_boot/?boom&padInclude' );
-  $code = $r ['result'];
-  $body = $r ['data'];
-  $json = json_decode ( $body, TRUE );
+  $tested = isset ( $test ) ? 1 : 0;
 
-  $verdict = ( $code == 500
-               and is_array ( $json )
-               and str_contains ( $json ['error'] ?? '', 'neverSetAnywhere' )
-               and str_contains ( $json ['file']  ?? '', 'boom.php' )
-               and isset ( $json ['pad'] ) ) ? 'yes' : 'NO';
+  if ( $tested ) {
+
+    $r    = padCurl ( $padHost . 'regression_error_boot/?boom&padInclude' );
+    $code = $r ['result'];
+    $body = $r ['data'];
+    $json = json_decode ( $body, TRUE );
+
+    $verdict = ( $code == 500
+                 and is_array ( $json )
+                 and str_contains ( $json ['error'] ?? '', 'neverSetAnywhere' )
+                 and str_contains ( $json ['file']  ?? '', 'boom.php' )
+                 and isset ( $json ['pad'] ) ) ? 'yes' : 'NO';
+
+  }
 
   $action = $padErrorAction;
 

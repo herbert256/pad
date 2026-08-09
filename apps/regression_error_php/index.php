@@ -1,14 +1,21 @@
 <?php
 
-  // Fetches the boom page - an undefined variable its .php reads - and asserts what the
-  // 'php' error action is supposed to do with it: PHP reports the warning itself and the page finishes.
+  // Test fetches the boom page - an undefined variable its .php reads - and asserts what
+  // the 'php' error action is supposed to do with it: PHP reports the warning itself and
+  // the page finishes. A plain load only offers the link, so a crawl raises nothing.
 
-  $r    = padCurl ( $padHost . 'regression_error_php/?boom&padInclude' );
-  $code = $r ['result'];
-  $body = $r ['data'];
+  $tested = isset ( $test ) ? 1 : 0;
 
-  $verdict = ( $code == 200 and str_contains ( $body, "Warning" )
-             and str_contains ( $body, "after" ) ) ? "yes" : "NO";
+  if ( $tested ) {
+
+    $r    = padCurl ( $padHost . 'regression_error_php/?boom&padInclude' );
+    $code = $r ['result'];
+    $body = $r ['data'];
+
+    $verdict = ( $code == 200 and str_contains ( $body, "Warning" )
+               and str_contains ( $body, "after" ) ) ? "yes" : "NO";
+
+  }
 
   $action = $padErrorAction;
 

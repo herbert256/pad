@@ -1,14 +1,21 @@
 <?php
 
-  // Fetches the boom page - an undefined variable its .php reads - and asserts what the
-  // 'pad' error action is supposed to do with it: a 500 whose page carries the message.
+  // Test fetches the boom page - an undefined variable its .php reads - and asserts what
+  // the 'pad' error action is supposed to do with it: a 500 whose page carries the
+  // message. A plain load only offers the link, so a crawl of this page raises nothing.
 
-  $r    = padCurl ( $padHost . 'regression_error_pad/?boom&padInclude' );
-  $code = $r ['result'];
-  $body = $r ['data'];
+  $tested = isset ( $test ) ? 1 : 0;
 
-  $verdict = ( $code == 500 and str_contains ( $body, "Undefined variable" )
-             and str_contains ( $body, "neverSetAnywhere" ) ) ? "yes" : "NO";
+  if ( $tested ) {
+
+    $r    = padCurl ( $padHost . 'regression_error_pad/?boom&padInclude' );
+    $code = $r ['result'];
+    $body = $r ['data'];
+
+    $verdict = ( $code == 500 and str_contains ( $body, "Undefined variable" )
+               and str_contains ( $body, "neverSetAnywhere" ) ) ? "yes" : "NO";
+
+  }
 
   $action = $padErrorAction;
 
