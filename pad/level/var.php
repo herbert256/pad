@@ -45,7 +45,7 @@
       $padVal = padEval ( $padOptOne, $padVal );
 
   if ( $padVarOpts )
-    $padVal = padEval ( $padVarOpts, $padVal );
+    $padVal = padEval ( $padVarOpts, $padVal, TRUE );
 
   if ( $padFirst == '$' )
     foreach ( $padDataDefaultEnd as $padOptOne )

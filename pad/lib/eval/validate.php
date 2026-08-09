@@ -84,6 +84,59 @@
 
   }
 
+  // A second, token-level check, run after the tokeniser has split the expression: the
+  // word that follows a | must name a pipe function (or a tag, which the type system can
+  // apply as one). Without this a misspelled function is silently taken for a bare constant
+  // - {echo $x | uppr} quietly returns the word "uppr" rather than the upper-cased value -
+  // which is the single most confusing way an expression can go wrong.
+  //
+  // $pipe says the whole expression is itself a pipe body - what an opening or closing tag
+  // pipe, or a {$x | ...} variable pipe, applies to a value - and there the head word is a
+  // function too, not the value it would be in a general expression. So with $pipe the head
+  // segment is judged as well; without it, only what follows each | is.
+  //
+  // Only a segment that is one bare word is judged. A quoted string, a number, a $field or
+  // an @ placeholder is a value the pipe deliberately substitutes; an operator word (eq,
+  // and, ...) is the unary-with-the-piped-value form; an explicit type:name is checked
+  // where it resolves, and already reports itself. Everything longer is an expression that
+  // the later stages judge on their own terms.
+
+  function padEvalCheckPipes ( $result, $eval, $pipe = FALSE ) {
+
+    $seg      = 0;
+    $segments = [ 0 => [] ];
+
+    foreach ( $result as $token )
+      if ( $token [1] == 'pipe' ) {
+        $seg++;
+        $segments [$seg] = [];
+      } else
+        $segments [$seg] [] = $token;
+
+    foreach ( $segments as $idx => $tokens ) {
+
+      if ( $idx == 0 and ! $pipe       ) continue;   // in a general expression the head is a value
+      if ( count ( $tokens ) != 1     ) continue;   // an expression judges itself in the stages after
+      if ( $tokens [0] [1] != 'other' ) continue;   // a quoted string, number, $field or @ is a value
+
+      $word = $tokens [0] [0];
+      $up   = strtoupper ( $word );
+
+      if ( in_array ( $up, padEval_txt )        ) continue;   // eq, and, or ... the unary operator form
+      if ( in_array ( $up, padEval_precedence ) ) continue;
+      if ( isset ( padEval_alt [$word] )        ) continue;
+      if ( str_contains ( $word, ':' )          ) continue;   // an explicit prefix reports itself elsewhere
+      if ( padTypeFunction ( $word )            ) continue;   // a real function, or a tag applied as one
+      if ( defined ( $word )                    ) continue;   // a defined constant
+
+      return padEvalValidateError ( "there is no pipe function named '$word'", $eval );
+
+    }
+
+    return TRUE;
+
+  }
+
   function padEvalValidateError ( $why, $text ) {
 
     padError ( "Expression error: $why  ->  $text" );

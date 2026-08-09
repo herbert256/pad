@@ -23,6 +23,16 @@
   $_eval_last = [];
 
   padEvalParse ( $result, $eval );  padEvalTrace ( 'parse', $result ); $_eval_parse [] = $result;
+
+  // A word standing alone after a | must be a pipe function, not a silently-swallowed
+  // constant. In a pipe body - the expression a tag or variable pipe applies - the head
+  // word is a function too, so $pipe extends the check to it; in a general expression the
+  // head is a value and is left alone.
+
+  if ( ! padEvalCheckPipes ( $result, $eval, $pipe ) )
+    return '';
+
+
   padEvalAfter ( $result );         padEvalTrace ( 'after', $result ); $_eval_after [] = $result;
   padEvalPipes ( $result, $pipes );
 

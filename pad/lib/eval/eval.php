@@ -47,7 +47,7 @@
   // resolving inside an expression must not mark the level the expression belongs to, and
   // this is what tells that situation apart from a reference standing as a tag.
 
-  function padEval ( $eval, $value='' ) {
+  function padEval ( $eval, $value='', $pipe=FALSE ) {
 
     global $padEvalBusy;
 

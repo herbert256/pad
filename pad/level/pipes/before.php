@@ -7,6 +7,6 @@
   if ( ! $padPipeBefore [$pad] )
     return;
 
-  $padBase [$pad] = padEval ( $padPipeBefore [$pad], $padBase [$pad] );
+  $padBase [$pad] = padEval ( $padPipeBefore [$pad], $padBase [$pad], TRUE );
 
 ?>
