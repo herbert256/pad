@@ -333,11 +333,11 @@
     // cover. Comparing any of them is noise; each is marked and left alone. The error check
     // comes first, though: a marked page that stops answering still shouts.
 
-    // A page that exists to fail, or to render nothing, is not news. The pages suites already
-    // declare the first kind - an expectation starting with the same HTTP code sits beside the
-    // page - and the second kind is a page whose stored copy is as empty as what just came
-    // back. Both are 'expected': counted, coloured, and left off the list of what needs
-    // looking at. An error nothing declared, or a page that went empty, still shouts.
+    // A page that exists to fail is not news: the pages suites declare it - an expectation
+    // starting with the same HTTP code sits beside the page - and the answer is 'expected',
+    // counted, coloured, and left off the list of what needs looking at. An error nothing
+    // declared still shouts. A page whose render is as empty as its stored copy is simply a
+    // match - 'ok', like any other - and only a page that *went* empty is called out.
 
     if     ( ! $good                    ) $status = getRegressionExpects ( $app, $item, $curl ['result'] ) ? 'expected' : 'error';
     elseif ( in_array ( "$app/$item", [ 'regression/scan/index', 'regression/index', 'demo/clock',
@@ -345,7 +345,7 @@
                                         'regression_cache_memcached/probe', 'regression_cache_redis/probe' ] ) )
                                           $status = 'random';
     elseif ( ! file_exists ($store)     ) $status = 'new';
-    elseif ( ! trim ($new)              ) $status = ( trim ($old) ) ? 'empty' : 'expected';
+    elseif ( ! trim ($new)              ) $status = ( trim ($old) ) ? 'empty' : 'ok';
     elseif ( getRegressionPatterned ( $app, $item ) )
                                           $status = 'random';
     elseif ( getRegressionDraws ( $source ) )

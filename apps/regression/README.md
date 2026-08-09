@@ -47,9 +47,9 @@ with no `.txt` yet comes up `new`, and the overview shows exactly what came back
 
 **Scan** - `?scan/index`. Crawls every page of every application, compares each against the copy
 in `DATA/regression/`, and reports ok / expected / new / warning / error / random / empty.
-`expected` is a page that fails or renders nothing on purpose - a 500 its suite expectation
-declares, or a page as empty as its stored copy - counted but kept off the list of what needs
-looking at. This kind catches what none of the others is looking at, at the cost of saying only
+`expected` is a page that fails on purpose - a 500 its suite expectation declares - counted
+but kept off the list of what needs looking at; a page as empty as its stored copy is simply
+`ok`. This kind catches what none of the others is looking at, at the cost of saying only
 "this changed". After a deliberate change the page offers to accept every warning as the new
 baselines in one step; read the list first, a page that keeps coming back is telling you
 something.
