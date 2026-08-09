@@ -12,6 +12,13 @@
   if ( file_exists ( PAD . "functions/$eval.php" ) )
     return include PAD . 'eval/fast.php';
 
+  // A malformed expression is reported here, in the source's own terms, before the
+  // tokeniser can turn it into something obscure downstream. A reported fault ends the
+  // evaluation with an empty value.
+
+  if ( ! padEvalValidate ( $eval ) )
+    return '';
+
   $_eval      = [];
   $_eval_last = [];
 
