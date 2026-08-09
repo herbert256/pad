@@ -1,3 +1,5 @@
-{# The probe prints a random-looking number on every build, which is the point - the crawl
-   reads the word random here and knows not to compare it. #}
+{# The probe prints a different number on every build - but the cache serves the same body
+   twice, which defeats the crawl's random-word double-draw check: its two draws agree and
+   differ from the stored copy. So the crawl marks this page uncomparable by name instead,
+   in getRegressionGo's list. #}
 {$stamp}
