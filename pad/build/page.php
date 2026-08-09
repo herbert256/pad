@@ -35,7 +35,7 @@
   if ( ! is_array ($padCallPHP) and $padCallPHP !== TRUE and $padCallPHP !== FALSE )
     $padBuildTrue .= $padCallPHP;
 
-  $padBuildTrue .= padFileGet ( APP . "$padPage.pad" );
+  $padBuildTrue .= padPageTemplate ( APP . $padPage );
 
   foreach ( array_reverse ($padBuildDirs) as $padCall ) {
     $padCall .= '/_exits.php';

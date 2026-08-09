@@ -11,4 +11,5 @@ configuration, so everything a page here uses has to come from this application 
 |------|-------------|
 | `index.php` | Home page data |
 | `index.pad` | Home page template |
+| `abc.html` | An html file as a page - `?abc` renders it, PAD tags would resolve in it |
 | `_config/config.php` | Sets `$padCommon = FALSE` |

@@ -8,6 +8,10 @@
   //               private) before handing over to padPage
   // padPage       walks the name segment by segment from APP down, and returns the page,
   //               or "$page/index" when the name turned out to be a directory, or FALSE
+  // padPageExists    does any of the three page files exist for this base - .php, .pad
+  //                  or .html, which is a template like .pad in every way
+  // padPageTemplate  the template text for a page base: the .pad, or failing that the
+  //                  .html - so when both exist the .pad wins
   // padPageAjax   returns a div plus an XMLHttpRequest that loads another PAD page into
   //               it at the client, carrying the session and request ids along
   // padPageGet    fetches another page server side over curl and returns its body
@@ -24,13 +28,30 @@
 
   }
 
+  function padPageExists ( $base ) {
+
+    return (    file_exists ( "$base.php"  )
+             or file_exists ( "$base.pad"  )
+             or file_exists ( "$base.html" ) );
+
+  }
+
+  function padPageTemplate ( $base ) {
+
+    if ( file_exists ( "$base.pad" ) )
+      return padFileGet ( "$base.pad" );
+
+    return padFileGet ( "$base.html" );
+
+  }
+
   function padPage ( $page ) {
 
     $location = APP;
     $part     = padExplode ( $page, '/' );
 
     foreach ($part as $key => $value)
-      if ( $key == array_key_last($part) and ( file_exists ( "$location$value.php" ) or file_exists ( "$location$value.pad" ) ) )
+      if ( $key == array_key_last($part) and padPageExists ( "$location$value" ) )
         return $page;
       else
         if ( is_dir ( "$location$value" ) )
@@ -38,7 +59,7 @@
         else
           return FALSE;
 
-    if ( file_exists ( $location . 'index.php' ) or file_exists ( $location . 'index.pad' ) )
+    if ( padPageExists ( $location . 'index' ) )
       return "$page/index";
     else
       return FALSE;

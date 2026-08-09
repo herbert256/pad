@@ -29,6 +29,10 @@ Every page consists of two files that PAD automatically pairs:
 - `pagename.php` - Returns data (variables, arrays)
 - `pagename.pad` - Template that renders the data
 
+A `pagename.html` file is a template exactly like a `.pad`: it pairs with the `.php` and PAD
+tags resolve in it, so an existing html file dropped in the application directory is a page.
+When both a `.pad` and an `.html` exist, the `.pad` wins.
+
 ### URL Structure
 Pages are accessed via query string:
 - `/myapp/` → `index.pad`
@@ -218,7 +222,7 @@ Resolve naming conflicts with explicit type prefixes:
 {php:strlen(@)}          # Call PHP function
 {data:items}             # Defined data block
 {pull:mySequence}        # Stored sequence
-{field:"name from users"}  # Database field
+{field "name from users"}  # Database single value (the field: prefix reads a variable)
 ```
 
 ### Custom Tags

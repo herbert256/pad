@@ -225,7 +225,9 @@
     // and looking only at the .pad missed them: sequence/sequences says random in its .php and
     // was compared exactly the moment the crawl started walking php-only pages.
 
-    $source = padFileGet ( APPS . "$app/$item.pad" ) . padFileGet ( APPS . "$app/$item.php" );
+    $source = padFileGet ( APPS . "$app/$item.pad"  )
+            . padFileGet ( APPS . "$app/$item.html" )
+            . padFileGet ( APPS . "$app/$item.php"  );
     $old    = padFileGet ( $store );
 
     $good = str_starts_with ( $curl ['result'], '2');
@@ -295,7 +297,7 @@
 
       $ext = substr($path, strrpos($path, '.')+1 );
 
-      if ( $ext != 'pad' and $ext != 'php' )
+      if ( $ext != 'pad' and $ext != 'php' and $ext != 'html' )
         continue;
 
       // A page with no template is still a page - what its .php echoes is its output - and the
@@ -308,7 +310,8 @@
       // a crawl has to be able to run without changing anything. So a page with no template that
       // redirects, restarts or writes is left out.
 
-      if ( $ext == 'php' and ! file_exists ( substr ( $path, 0, -4 ) . '.pad' ) ) {
+      if ( $ext == 'php' and ! file_exists ( substr ( $path, 0, -4 ) . '.pad' )
+                         and ! file_exists ( substr ( $path, 0, -4 ) . '.html' ) ) {
 
         $source = padFileGet ( $path );
 
@@ -439,6 +442,9 @@
       elseif ( str_ends_with ( $file, '.pad' ) or str_ends_with ( $file, '.php' ) )
         $names [ substr ( $file, 0, -4 ) ] = TRUE;
 
+      elseif ( str_ends_with ( $file, '.html' ) )
+        $names [ substr ( $file, 0, -5 ) ] = TRUE;
+
     }
 
     if ( $prefix and isset ( $names ['index'] ) and getPagesRenders ( $dir ) )
@@ -532,6 +538,9 @@
       'globals'                   => 'object: over a page variable, which in a request is a global like any other',
       'pairing'                   => 'A page pair: the .php half fills in what the .pad half prints',
       'phponly'                   => 'A page with no template at all - what its .php echoes is the page',
+      'htmlpage'                  => 'An .html file as the template half of a pair - variables, pipes, a loop and a property all resolve in it',
+      'htmlboth'                  => 'A page with both a .pad and an .html - the .pad wins',
+      'htmlonly'                  => 'An .html page with no .php half, carrying a tag of its own',
       'db/array'                  => 'The db() array command through a page variable, and the else branch when nothing matches',
       'db/array2'                 => 'The same through the {array} tag, which hands its parameter to db() as the command word',
       'db/check'                  => 'The db() check command, which answers whether a row exists rather than returning one',

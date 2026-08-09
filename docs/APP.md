@@ -13,6 +13,10 @@ Every page consists of two files:
 - `pagename.php` - Returns data (variables, arrays)
 - `pagename.pad` - Template that renders the data
 
+A `pagename.html` file is a template exactly like a `.pad`: it pairs with the `.php` and PAD
+tags resolve in it, so an existing html file dropped in the application directory is a page.
+When both a `.pad` and an `.html` exist, the `.pad` wins.
+
 ### URL Structure
 Pages are accessed via query string:
 - `/myapp/` → `index.pad`
