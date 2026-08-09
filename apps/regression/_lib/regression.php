@@ -337,8 +337,13 @@
     // wrapper on. Storing it anyway put a bare body behind every index baseline after a
     // wipe, and the next crawl warned about each one just so the accept could refetch it.
     // The baselines and statuses are left to the plain crawls that follow.
+    //
+    // The three suite applications are crawled too - so the reference and the examples
+    // harvest from their pages like any other - but they get no scan baseline of their own:
+    // the Pages, Common and Framework suites already check every one of their pages against
+    // a handwritten answer, a stricter test than a stored copy, so the scan leaves them be.
 
-    if ( $extra )
+    if ( $extra or in_array ( $app, [ 'regression2', 'regression3', 'regression4' ] ) )
       $status = '';
 
     // A page that exists to fail is not news: the pages suites declare it - an expectation
@@ -433,15 +438,6 @@
       $app   = substr($file, 0, strpos($file, '/')   );
       $file  = substr($file,    strpos($file, '/')+1 );
       $item  = substr($file, 0, strrpos($file, '.')   );
-
-      // The three suite applications are left out of the crawl. Every page of regression2,
-      // regression3 and regression4 is already fetched and compared against a handwritten
-      // answer by the Pages, Common and Framework suites - a stricter check than a stored
-      // baseline - so crawling them again is redundant, and their 1,100-odd cases are most
-      // of what the crawl walks. The scan is for the applications no suite asserts.
-
-      if ( in_array ( $app, [ 'regression2', 'regression3', 'regression4' ] ) )
-        continue;
 
       $files ["$app/$item"] ['path'] = $path;
       $files ["$app/$item"] ['app']  = $app;

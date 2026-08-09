@@ -15,7 +15,7 @@ regression/
 ├── pages/index.pad/.php     # the Pages suite overview     - its tests live in apps/regression2/
 ├── common/index.pad/.php    # the Common suite overview    - its tests live in apps/regression3/
 ├── framework/index.pad/.php # the Framework suite overview - its tests live in apps/regression4/
-├── scan/index.pad/.php      # the crawl of every application the suites do not assert
+├── scan/index.pad/.php      # the crawl of every application (no baseline for the three suite apps)
 ├── ok.php                   # accepts what a page renders now as its baseline
 └── show/                    # what one crawled page renders, against its stored copy
 ```
@@ -45,13 +45,15 @@ pattern/` the body must match too, so a page that exists to fail asserts the rig
 a file that is one `/pattern/` is matched against the whole body, for a page that draws. A test
 with no `.txt` yet comes up `new`, and the overview shows exactly what came back.
 
-**Scan** - `?scan/index`. Crawls every page of every application the suites do not already
-assert - regression2, regression3 and regression4 are left out, since Pages, Common and Framework
-fetch and check each of their pages against a handwritten answer. It compares each crawled page against the copy
+**Scan** - `?scan/index`. Crawls every page of every application, and compares each against the copy
 in `DATA/regression/`, and reports ok / expected / new / warning / error / random / empty.
 `expected` is a page that fails on purpose - a 500 its suite expectation declares - counted
 but kept off the list of what needs looking at; a page as empty as its stored copy is simply
-`ok`. This kind catches what none of the others is looking at, at the cost of saying only
+`ok`. The three suite applications - regression2, regression3, regression4 - are crawled
+too, so the reference and the examples harvest from them, but no baseline is stored for them:
+their pages are already checked against a handwritten answer by the Pages, Common and
+Framework suites, so the scan leaves them out of its comparison. This kind catches what none
+of the others is looking at, at the cost of saying only
 "this changed". After a deliberate change the page offers to accept every warning as the new
 baselines in one step; read the list first, a page that keeps coming back is telling you
 something.

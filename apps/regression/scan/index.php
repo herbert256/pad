@@ -2,8 +2,9 @@
 
   $title = "Regression test";
 
-  // The dashboard lists what the crawl stored, every page of every application the suites do
-  // not already assert - regression2, regression3 and regression4 are left out. The suites
+  // The dashboard lists what the crawl stored - every application but the three suite ones,
+  // regression2, regression3 and regression4, which are crawled for the reference and the
+  // examples but left without a baseline, their pages being suite-asserted already. The suites
   // that assert an answer rather than only rendering one have a page of their own, reached
   // from the menu: the overview reports what each suite actually found, which is more use
   // than the status of its stored copy.
