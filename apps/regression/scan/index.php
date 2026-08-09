@@ -21,7 +21,7 @@
   }
 
   // After a deliberate change, every page it touched is a warning; accepting them one link at
-  // a time is what getRegressionWarning('ok') replaces. It refetches each and stores what came
+  // a time is what getRegressionWarning() replaces. It refetches each and stores what came
   // back, so read the list before asking for this - a page that keeps coming back has more to
   // say than a stale baseline.
 

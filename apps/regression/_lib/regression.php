@@ -11,7 +11,7 @@
   function getRegressionBuild ( ) {
     getRegression        ( '&padExamples&padReference' );
     getRegressionAll     ( );
-    getRegressionWarning ( 'ok' );
+    getRegressionWarning ( );
     getRegressionAll     ( );
   }
 
@@ -72,7 +72,7 @@
   // Against APP they resolved to whatever application was running. A build run from develop
   // looked for apps/develop/sandbox/_cases/ and apps/develop/pages/, found neither, and wrote
   // "no cases for 'tags'" over every stored result; the crawl then stored the suite pages saying
-  // that, and getRegressionWarning('ok') accepted it as the baseline. getPagesUrl() has always
+  // that, and getRegressionWarning() accepted it as the baseline. getPagesUrl() has always
   // named the application outright, so this only makes the rest of it agree.
 
   function getRegressionApp () {
