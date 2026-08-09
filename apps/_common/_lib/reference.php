@@ -74,10 +74,10 @@
   }
 
 
-  // The text of a stored sandbox case, restored to what the template said: the colouring
-  // wraps names in font tags, and PAD's own syntax characters travel as &open;-style
-  // entities until the request ends - padUnescape() is the pair of that - so both are
-  // undone before a pattern can meet the source spelling.
+  // The text of a stored, coloured rendering restored to what the template said: the
+  // colouring wraps names in font tags, and PAD's own syntax characters travel as
+  // &open;-style entities until the request ends - padUnescape() is the pair of that - so
+  // both are undone before a pattern can meet the source spelling.
 
   function getReferenceText ( $code ) {
 
@@ -86,46 +86,16 @@
   }
 
 
-  // Every test whose source uses the item. Two kinds are read: the sandbox cases, from the
-  // runs the suites keep in DATA/suites/ - a row with a 'code' field is a sandbox case,
-  // restored to template text by getReferenceText() - and the pages tests, which are files
-  // of the regression2 and regression3 applications, matched on their sources on disk. The
-  // second kind is what covers the tags no sandbox case can hold: {error}, {redirect},
-  // {exit} and the rest that end the request they stand in. The match is the section's
-  // pattern from getReferencePattern(), so an option and a tag of the same name no longer
-  // answer for each other.
+  // Every test whose source uses the item: the pages tests of the regression2, regression3
+  // and regression4 applications, matched on their sources on disk. The match is the
+  // section's pattern from getReferencePattern(), so an option and a tag of the same name
+  // no longer answer for each other.
 
   function getReferenceCaseList ( $item, $xref = '' ) {
 
     $match = getReferencePattern ( $item, $xref );
 
     $cases = [];
-
-    foreach ( glob ( DATA . 'suites/*.json' ) as $file ) {
-
-      $result = json_decode ( padFileGet ( $file ), TRUE );
-
-      foreach ( $result ['tests'] ?? [] as $test ) {
-
-        if ( ! isset ( $test ['code'] ) )
-          continue;
-
-        if ( ! preg_match ( $match, getReferenceText ( $test ['code'] ) ) )
-          continue;
-
-        $cases [] = [
-          'suite'  => basename ( $file, '.json' ),
-          'group'  => $test ['group'],
-          'name'   => $test ['name'],
-          'code'   => $test ['code'],
-          'want'   => $test ['want'],
-          'status' => $test ['status'],
-          'link'   => 'regression/?sandbox/suites/' . basename ( $file, '.json' )
-        ];
-
-      }
-
-    }
 
     foreach ( getReferencePagesTests () as $test )
 
@@ -147,7 +117,7 @@
 
 
   // The pages tests, one row per test: the two halves' sources joined, the recorded answer,
-  // and the status of the last run. The two applications are named here rather than asked
+  // and the status of the last run. The applications are named here rather than asked
   // for, so the reference application needs nothing from the regression one.
 
   function getReferencePagesTests () {
@@ -159,7 +129,7 @@
 
     $tests = [];
 
-    foreach ( [ 'pages' => 'regression2', 'common' => 'regression3' ] as $suite => $app ) {
+    foreach ( [ 'pages' => 'regression2', 'common' => 'regression3', 'framework' => 'regression4' ] as $suite => $app ) {
 
       $status = [];
 
@@ -180,6 +150,11 @@
           continue;
 
         $name = substr ( $path, strlen ( APPS . $app ) + 1, -4 );
+
+        // The framework application's root index is the suite's home page, not a case.
+
+        if ( $suite == 'framework' and $name == 'index' )
+          continue;
 
         $source = padFileGet ( $path ) . padFileGet ( substr ( $path, 0, -4 ) . '.php' );
 
@@ -218,16 +193,6 @@
     if ( $codes === NULL ) {
 
       $codes = '';
-
-      foreach ( glob ( DATA . 'suites/*.json' ) as $file ) {
-
-        $result = json_decode ( padFileGet ( $file ), TRUE );
-
-        foreach ( $result ['tests'] ?? [] as $test )
-          if ( isset ( $test ['code'] ) )
-            $codes .= "\n" . getReferenceText ( $test ['code'] );
-
-      }
 
       foreach ( getReferencePagesTests () as $test )
         $codes .= "\n" . $test ['source'];

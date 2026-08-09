@@ -1,7 +1,7 @@
 <?php
 
-  // The sandbox cases whose template names the item, from the last run of each group - the
-  // asserted counterpart of the pages view, which shows real usage.
+  // The regression tests whose source names the item - the asserted counterpart of the
+  // pages view, which shows real usage.
 
   if ( ! isset ( $type ) ) $type = 'PAD Tags';
   if ( ! isset ( $xref ) ) $xref = 'tag/pad';
@@ -10,6 +10,6 @@
   $caseRows   = getReferenceCaseList ( $item, $xref );
   $casesCount = count ( $caseRows );
 
-  $title = "Reference - $type - $item - sandbox cases";
+  $title = "Reference - $type - $item - test cases";
 
 ?>

@@ -15,7 +15,7 @@
   if ( count ( $go ) > 15 )
     $go = array_slice ( $go, 0, 15 );
 
-  // The sandbox cases naming the item - real usage above, asserted usage below.
+  // The regression tests naming the item - real usage above, asserted usage below.
 
   $caseList    = getReferenceCaseList ( $item, $xref );
   $casesCount  = count ( $caseList );
