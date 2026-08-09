@@ -1,6 +1,6 @@
 <?php
 
-  // Guarded include: runs PAD . "$padTry.php" and, when $padErrorTry is on, catches any
+  // Guarded include: runs PAD . $padTry and, when $padErrorTry is on, catches any
   // Throwable it raises and includes the matching handler under try/catch/ instead.
   //
   // The value of the include is returned either way, so a caller uses this exactly like a
@@ -12,15 +12,15 @@
   global $padErrorTry;
 
   if ( ! $padErrorTry )
-    return include PAD . "$padTry.php";
+    return include PAD . $padTry;
 
   try {
 
-    return include PAD . "$padTry.php";
+    return include PAD . $padTry;
 
   } catch (Throwable $padTryException) {
 
-    return include PAD . "try/catch/$padTry.php";
+    return include PAD . "try/catch/$padTry";
 
   }
 

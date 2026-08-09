@@ -53,8 +53,7 @@
 
     $padEvalBusy = ( $padEvalBusy ?? 0 ) + 1;
 
-    $padTry = 'eval/eval';
-    $padEvalValue = include PAD . 'try/try.php';
+    $padEvalValue = include PAD . 'try/eval/eval.php';
 
     $padEvalBusy--;
 

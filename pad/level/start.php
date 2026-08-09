@@ -22,8 +22,7 @@
 
   include PAD . 'level/set.php';
 
-  $padTry = 'level/go';
-  include PAD . 'try/try.php';
+  include PAD . 'try/level/go.php';
 
   if ( $padNextPadLevel )
     return include PAD . 'level/nextLevel.php';

@@ -17,8 +17,7 @@
     if ( $padInfo )
       include PAD . 'events/callStart.php';
 
-    $padTry = 'call/_try';
-    $padCallPHP = include PAD . 'try/try.php';
+    $padCallPHP = include PAD . 'try/call/_try.php';
 
     if ( $padInfo )
       include PAD . 'events/callEnd.php';

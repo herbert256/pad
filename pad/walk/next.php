@@ -13,9 +13,7 @@
 
   $padWalk [$pad] = 'next';
 
-  $padTry = 'level/go';
-  include PAD . 'try/try.php';
-
+  include PAD . 'try/level/go.php';
   include PAD . 'level/flags.php';
 
   if ( $padWalk [$pad] ) {
