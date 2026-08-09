@@ -24,9 +24,4 @@
   $GLOBALS ['harnessLabelled']  = "one: a\ntwo: b\ncontinuation line";
   $GLOBALS ['harnessRendering'] = "<p>\n  a page\n</p>";
 
-  // The coverage-pattern cases call the reference matchers, which live with the shared
-  // application's library - included by path, since _common itself is switched off here.
-
-  include_once APPS . '_common/_lib/reference.php';
-
 ?>

@@ -15,12 +15,6 @@
   if ( count ( $go ) > 15 )
     $go = array_slice ( $go, 0, 15 );
 
-  // The regression tests naming the item - real usage above, asserted usage below.
-
-  $caseList    = getReferenceCaseList ( $item, $xref );
-  $casesCount  = count ( $caseList );
-  $casesGroups = implode ( ', ', array_unique ( array_column ( $caseList, 'suite' ) ) );
-
   $title = "Reference - $type - $item";
 
 ?>
