@@ -920,6 +920,7 @@ This is particularly useful for:
 | `regression_error_pad` | Test | Regression test for the 'pad' error action |
 | `regression_error_php` | Test | Regression test for the 'php' error action |
 | `regression_error_stop` | Test | Regression test for the 'stop' error action |
+| `regression_info` | Test | Regression test for the five info modes, every option on |
 | `regression_output_download` | Test | Regression test for the 'download' output type |
 | `regression_output_web` | Test | Regression test for the 'web' output type |
 | `regression3` | Test | The pages of the suite that use `_common` - `{example}`, `{demo}`, `{table}` - fetched and compared the same way |

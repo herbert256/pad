@@ -73,7 +73,10 @@
   if ( $padCache and ( $padCacheServerType ?? '' )         ) $padConfigSet ['cache']      = $padCacheServerType;
   elseif ( $padCache != $padConfigDefault ['cache'] and is_string ( $padCache ) )
                                                              $padConfigSet ['cache']      = $padCache;
-  if ( $padInfo        != $padConfigDefault ['info'] and $padInfo )
-                                                             $padConfigSet ['info']       = $padInfo;
+  // The info selector is a comma list, so the family carries every chosen mode - each is
+  // an example of its own name.
+
+  if ( $padInfo != $padConfigDefault ['info'] and $padInfo )
+    $padConfigSet ['info'] = padExplode ( $padInfo, ',' );
 
 ?>

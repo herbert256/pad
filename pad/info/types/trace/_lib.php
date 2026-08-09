@@ -210,10 +210,24 @@
     if ( $type == 'file' and file_exists ( DATA . $target ) )
       return;
 
+    // The trace's own writes go through padFilePut, and with $padInfoTracePut on that fires
+    // the put event, which asks for a trace line of the write - of a path one level deeper
+    // every pass, so nothing ever deduplicated and the request recursed to its death. While
+    // the recorder writes, it does not listen.
+
+    global $padInfoTraceWriting;
+
+    if ( $padInfoTraceWriting )
+      return;
+
+    $padInfoTraceWriting = TRUE;
+
     if ( $type == 'line' )
       padFilePut ( $target, $trace, 1 );
     else
       padFilePut ( $target, $trace );
+
+    $padInfoTraceWriting = FALSE;
 
   }
 
