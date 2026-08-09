@@ -21,8 +21,10 @@
 
     global $padCacheServerGzip, $padCacheStop, $padClientGzip, $padGzip, $padLen, $padOutput, $padSent;
 
-    if ( ! $padOutput       ) return;
-    if ( isset ( $padSent ) ) return;
+    // The empty test is strict: a page whose whole output is '0' is still a page.
+
+    if ( ( $padOutput ?? '' ) === '' ) return;
+    if ( isset ( $padSent )          ) return;
 
     if ( $padCacheStop == 200 ) {
 

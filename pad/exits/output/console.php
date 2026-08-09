@@ -4,7 +4,7 @@
   // and exits. $padSent guards against a second write should the exit path be reached
   // twice.
 
-  if ( ! $padOutput or isset ( $padSent ) )
+  if ( ( $padOutput ?? '' ) === '' or isset ( $padSent ) )
     return;
 
   echo trim($padOutput) . "\n";
