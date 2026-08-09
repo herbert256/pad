@@ -102,13 +102,17 @@
 
   function padWebPadHeaders ( $stop ) {
 
-    global $padCacheClientAge, $padClientGzip, $padContentType, $padGzip, $padLen, $padReqID, $padSesID;
+    global $padCacheClientAge, $padCacheServerGzip, $padCacheStop, $padClientGzip, $padContentType, $padGzip, $padLen, $padReqID, $padSesID;
 
     padHeader       ('PAD: ' . $padSesID . '-' . $padReqID);
     padWebStats     ();
     padWebNoHeaders ($stop);
 
-    if ( $stop == 200 and $padGzip and $padClientGzip )
+    // The same decision padWebSend makes about the body: a cache hit keeps its stored gzip
+    // for a client that accepts it, and saying so only when the on-the-fly $padGzip was
+    // configured shipped compressed bytes with no Content-Encoding at all.
+
+    if ( $stop == 200 and $padClientGzip and ( $padGzip or ( $padCacheStop == 200 and $padCacheServerGzip ) ) )
       padHeader ( 'Content-Encoding: gzip' );
 
     if ( $stop != 302 and $stop != 304 )
