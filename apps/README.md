@@ -25,6 +25,13 @@ This directory contains PAD applications and examples.
 | [regression_cache_file](regression_cache_file/README.md) | Test | Regression test for the 'file' page cache - the index turns NO when the backend stops caching |
 | [regression_cache_memcached](regression_cache_memcached/README.md) | Test | Regression test for the 'memcached' page cache - the index turns NO when the backend stops caching |
 | [regression_cache_redis](regression_cache_redis/README.md) | Test | Regression test for the 'redis' page cache - the index turns NO when the backend stops caching |
+| [regression_error_dump](regression_error_dump/README.md) | Test | Regression test for the 'dump' error action - the index turns NO when the action stops behaving |
+| [regression_error_exit](regression_error_exit/README.md) | Test | Regression test for the 'exit' error action - the index turns NO when the action stops behaving |
+| [regression_error_ignore](regression_error_ignore/README.md) | Test | Regression test for the 'ignore' error action - the index turns NO when the action stops behaving |
+| [regression_error_log](regression_error_log/README.md) | Test | Regression test for the 'log' error action - the index turns NO when the action stops behaving |
+| [regression_error_pad](regression_error_pad/README.md) | Test | Regression test for the 'pad' error action - the index turns NO when the action stops behaving |
+| [regression_error_php](regression_error_php/README.md) | Test | Regression test for the 'php' error action - the index turns NO when the action stops behaving |
+| [regression_error_stop](regression_error_stop/README.md) | Test | Regression test for the 'stop' error action - the index turns NO when the action stops behaving |
 | [regression3](regression3/README.md) | Test | The pages of the suite that use _common - {example}, {demo}, {table} - fetched and compared the same way |
 | [sequence](sequence/README.md) | Standard | Mathematical sequence subsystem demos |
 | [structure](structure/README.md) | Example | Demonstrates PAD directory structure and nested `_xxx` directories |

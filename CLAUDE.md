@@ -912,6 +912,13 @@ This is particularly useful for:
 | `regression_cache_file` | Test | Regression test for the 'file' page cache |
 | `regression_cache_memcached` | Test | Regression test for the 'memcached' page cache |
 | `regression_cache_redis` | Test | Regression test for the 'redis' page cache |
+| `regression_error_dump` | Test | Regression test for the 'dump' error action |
+| `regression_error_exit` | Test | Regression test for the 'exit' error action |
+| `regression_error_ignore` | Test | Regression test for the 'ignore' error action |
+| `regression_error_log` | Test | Regression test for the 'log' error action |
+| `regression_error_pad` | Test | Regression test for the 'pad' error action |
+| `regression_error_php` | Test | Regression test for the 'php' error action |
+| `regression_error_stop` | Test | Regression test for the 'stop' error action |
 | `regression3` | Test | The pages of the suite that use `_common` - `{example}`, `{demo}`, `{table}` - fetched and compared the same way |
 | `sequence` | Standard | Mathematical sequence subsystem demos |
 | `structure` | Example | Demonstrates nested `_xxx` directories and inheritance |

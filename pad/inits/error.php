@@ -9,9 +9,11 @@
   //
   // Local curl requests (padClaudeCheck) are forced back to the boot handler, which answers
   // with a 500 and a JSON dump of the engine state instead of an HTML page - much easier to
-  // read from the command line.
+  // read from the command line. Only as a convenience default though: an application that
+  // chose its error action in its own configuration gets the action it chose, whoever asks
+  // - the error-action regression applications exist to show exactly that.
 
-  if ( padClaudeCheck ( ) ) {
+  if ( padClaudeCheck ( ) and ( $padConfigSet ['error'] ?? '' ) == '' ) {
     $padErrorAction = 'boot';
     return include_once PAD . "error/types/boot.php";
   }

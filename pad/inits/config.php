@@ -60,7 +60,14 @@
 
   $padConfigSet = [];
 
-  if ( $padErrorAction != $padConfigDefault ['error']      ) $padConfigSet ['error']      = $padErrorAction;
+  // The error action is deliberate when the value differs - or when the application's own
+  // config says the word, because choosing 'pad' out loud is a choice the value cannot
+  // show: it is also the default.
+
+  $padConfigApp = file_exists ( APP . '_config/config.php' ) ? padFileGet ( APP . '_config/config.php' ) : '';
+
+  if ( $padErrorAction != $padConfigDefault ['error']
+       or str_contains ( $padConfigApp, 'padErrorAction' )   ) $padConfigSet ['error']      = $padErrorAction;
   if ( $padOutputType  != $padConfigDefault ['outputType'] ) $padConfigSet ['outputType'] = $padOutputType;
   if ( $padCache and ( $padCacheServerType ?? '' )         ) $padConfigSet ['cache']      = $padCacheServerType;
   elseif ( $padCache != $padConfigDefault ['cache'] and is_string ( $padCache ) )
