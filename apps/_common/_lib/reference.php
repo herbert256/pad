@@ -1,13 +1,23 @@
 <?php
 
+  // A section's dir is engine-rooted, unless it says common: - the shared application's
+  // own toolkit lives under apps/_common/, out of the engine tree's reach.
+
   function getReference ( $dir, $xref ) {
 
     if ( ! $dir )
       return [];
 
+    $root = PAD;
+
+    if ( str_starts_with ( $dir, 'common:' ) ) {
+      $root = COMMON;
+      $dir  = substr ( $dir, 7 );
+    }
+
     $items = [];
 
-    foreach ( scandir ( PAD . $dir ) as $file ) {
+    foreach ( scandir ( $root . $dir ) as $file ) {
 
       if ( $file == '.'                     ) continue;
       if ( $file == '..'                    ) continue;
@@ -40,6 +50,8 @@
     $q = preg_quote ( $item, '/' );
 
     if ( str_starts_with ( $xref, 'tag/pad'       ) ) return "/\{\/?$q\b/";
+    if ( str_starts_with ( $xref, 'tag/common'    ) ) return "/\{\/?$q\b/";
+    if ( str_starts_with ( $xref, 'config'        ) ) return "/'$q'/";
     if ( str_starts_with ( $xref, 'tag'           ) ) return "/\b$q:/";
     if ( str_starts_with ( $xref, 'properties'    ) ) return "/\b$q@|\{\/?$q\b|:$q\b/";
     if ( str_starts_with ( $xref, 'options/general' ) ) return "/\b$q\s*[=,}]/";
