@@ -912,6 +912,7 @@ This is particularly useful for:
 | `regression_cache_file` | Test | Regression test for the 'file' page cache |
 | `regression_cache_memcached` | Test | Regression test for the 'memcached' page cache |
 | `regression_cache_redis` | Test | Regression test for the 'redis' page cache |
+| `regression_error_boot` | Test | Regression test for the 'boot' error action |
 | `regression_error_dump` | Test | Regression test for the 'dump' error action |
 | `regression_error_exit` | Test | Regression test for the 'exit' error action |
 | `regression_error_ignore` | Test | Regression test for the 'ignore' error action |
