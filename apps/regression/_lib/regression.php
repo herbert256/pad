@@ -104,6 +104,10 @@
 
     set_time_limit ( 60 );
 
+    // A run with extras is the build's harvest pass, and it walks everything: the reference
+    // and the examples are gathered from the suite applications' pages too, so they are
+    // fetched here even though the plain crawl below leaves them out.
+
     if ( $extra ) {
 
       foreach ( padAppsList () as $one ) {
@@ -117,6 +121,12 @@
       return;
 
     }
+
+    // The plain crawl - the store pass, the verify pass, and every standalone scan - leaves
+    // the three suite applications out. Their pages are already fetched and checked against
+    // a handwritten answer by the Pages, Common and Framework suites, a stricter test than a
+    // stored baseline, and they are 1,100-odd of the 1,750 pages a crawl would walk. They
+    // keep no baseline of their own; only the once-per-build harvest pass above visits them.
 
     // The self-testing applications - regression_cache_*, regression_error_*,
     // regression_output_*, regression_info - stay out of the window. Their index pages
@@ -132,7 +142,9 @@
     $solo  = [];
 
     foreach ( padAppsList () as $one )
-      if ( str_starts_with ( $one ['app'], 'regression_' ) )
+      if ( in_array ( $one ['app'], [ 'regression2', 'regression3', 'regression4' ] ) )
+        continue;
+      elseif ( str_starts_with ( $one ['app'], 'regression_' ) )
         $solo  [] = $one;
       else
         $flock [] = $one;
@@ -338,12 +350,7 @@
     // wipe, and the next crawl warned about each one just so the accept could refetch it.
     // The baselines and statuses are left to the plain crawls that follow.
     //
-    // The three suite applications are crawled too - so the reference and the examples
-    // harvest from their pages like any other - but they get no scan baseline of their own:
-    // the Pages, Common and Framework suites already check every one of their pages against
-    // a handwritten answer, a stricter test than a stored copy, so the scan leaves them be.
-
-    if ( $extra or in_array ( $app, [ 'regression2', 'regression3', 'regression4' ] ) )
+    if ( $extra )
       $status = '';
 
     // A page that exists to fail is not news: the pages suites declare it - an expectation
