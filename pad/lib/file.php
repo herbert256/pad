@@ -62,26 +62,23 @@
     if ( $padInfo )
       include PAD . 'events/put.php';
 
+    // No pre-flight refusals: within one long request - a build crawls the same stores
+    // hundreds of times - PHP's stat cache answers is_writeable() from before the file
+    // existed, and a perfectly writable file was refused as unwritable. The directory is
+    // made when it is missing, a new file gets its mode, and whether the write works is
+    // for the write itself to say.
+
+    clearstatcache ( TRUE, $file );
+
     $dir = substr ( $file, 0, strrpos ( $file, '/' ) );
 
-    if ( ! is_writeable ( $dir ) ) {
-
-      if ( file_exists ( $dir)  )
-        return padError ( "Directory can not be written: $dir" );
-
-      if ( ! mkdir ($dir, $padDirMode, true ) )
+    if ( ! is_dir ( $dir ) )
+      if ( ! @mkdir ( $dir, $padDirMode, true ) and ! is_dir ( $dir ) )
         return padError ( "Error creating directory: $dir" );
 
-    }
-
-    if ( ! is_writeable ( $file ) ) {
-
-      if ( file_exists ( $file ) )
-        return padError ( "File can not be written: $file" );
-
-      touch($file);
-      chmod($file, $padFileMode);
-
+    if ( ! file_exists ( $file ) ) {
+      @touch ( $file );
+      @chmod ( $file, $padFileMode );
     }
 
     if ( is_array($data) or is_object($data) )
