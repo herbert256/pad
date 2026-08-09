@@ -16,6 +16,6 @@ group asserts.
 
 | File | Description |
 |------|-------------|
-| `<group>/<case>.pad` | One case per page, generated from the sandbox case arrays |
+| `<group>/<case>.pad` | One case per page, its name saying what it asserts |
 | `<group>/<case>.txt` | The outcome beside it - a `/regex/` for a case that draws |
 | `_lib/fixtures.php` | Includes the regression runner - functions and fixture globals |

@@ -1,9 +1,8 @@
 <?php
 
-  // Overview of the Framework suite - the sandbox cases run as fetched pages, one request
-  // per case, each fetched directly from regression4. Test here reruns the suite; a page load reads the
-  // last run, because running means nine hundred requests. The sandbox itself still runs
-  // the same cases in-request, one menu entry back.
+  // Overview of the Framework suite - the engine cases as fetched pages, one request per
+  // case, each fetched directly from regression4. Test here reruns the suite; a page load
+  // reads the last run, because running means nine hundred requests.
 
   if ( isset ( $test ) ) {
 

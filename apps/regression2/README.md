@@ -3,11 +3,11 @@
 Every test here is an ordinary PAD page. It is fetched over HTTP with `&padInclude`, so it renders
 bare, and what comes back is compared with the `.txt` beside it.
 
-That is the whole point: a real request. A sandbox case in the `regression` application is a
-template string rendered inside the running request, so it has a variable scope of its own - a
-page whose `.php` half leaves something for its `.pad` half cannot be written as one, and neither
-can anything that reads `$GLOBALS`, chains `{page}`, runs a `{script}`, redirects, restarts, or
-ends the request.
+That is the whole point: a real request. A template rendered inside another running request - a
+nested pass - has a variable scope of its own, so a page whose `.php` half leaves something for
+its `.pad` half cannot be tested as one, and neither can anything that reads `$GLOBALS`, chains
+`{page}`, runs a `{script}`, redirects, restarts, or ends the request. A fetched page can be all
+of those.
 
 They live in an application of their own because they are pages, not fixtures: nothing here is
 support for something else, and keeping them apart means a test cannot accidentally read the

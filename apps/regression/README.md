@@ -9,38 +9,35 @@ an overview that reports all of them on one line each.
 
 ```
 regression/
-├── _inits.pad/.php       # the menu every page carries: Index Sandbox Pages Common Scan | Test
-├── _lib/regression.php   # the runner behind all four kinds
-├── index.pad/.php        # the overview the application opens on - totals per kind
-├── sandbox/              # the sandbox suites
-│   ├── index.pad/.php    # group totals
-│   ├── suites/           # one page per group
-│   └── _cases/<group>/   # the cases
-├── pages/index.pad/.php  # the Pages suite overview  - its tests live in apps/regression2/
-├── common/index.pad/.php # the Common suite overview - its tests live in apps/regression3/
-├── scan/index.pad/.php   # the crawl of every page of every application
-├── ok.php                # accepts what a page renders now as its baseline
-└── show/                 # what one crawled page renders, against its stored copy
+├── _inits.pad/.php          # the menu every page carries: Index Pages Common Framework Scan | Test
+├── _lib/regression.php      # the runner behind all four kinds
+├── index.pad/.php           # the overview the application opens on - totals per kind
+├── pages/index.pad/.php     # the Pages suite overview     - its tests live in apps/regression2/
+├── common/index.pad/.php    # the Common suite overview    - its tests live in apps/regression3/
+├── framework/index.pad/.php # the Framework suite overview - its tests live in apps/regression4/
+├── scan/index.pad/.php      # the crawl of every page of every application
+├── ok.php                   # accepts what a page renders now as its baseline
+└── show/                    # what one crawled page renders, against its stored copy
 ```
 
 ## The four kinds
 
-**Sandbox** - `?sandbox/index`. A case is `[ name, template, expected ]`: the template is
-rendered inside the running request and compared with the output it states. Fast, self-contained,
-and the right place for anything about the engine itself - tags, options, expressions, functions,
-properties, the sequence subsystem. See `sandbox/_cases/README.md` for the format and for what
-this kind of test cannot check.
-
 **Pages** - `?pages/index`. A test is an ordinary page of the `regression2` application, fetched
 over HTTP with `&padInclude` so it renders bare, and compared with the `name.txt` beside it.
-Being a real request is the one thing a sandbox case cannot be: a page's `.php` half is in scope
-for its `.pad` half, a page variable is a global, and `{page}`, `{restart}`, `{script}` and
-callbacks behave as they do in production. `regression2` runs with `$padCommon` switched off, so
-every test there also proves it needs nothing but its own application.
+Being a real request means a page's `.php` half is in scope for its `.pad` half, a page variable
+is a global, and `{page}`, `{restart}`, `{script}` and callbacks behave as they do in production.
+`regression2` runs with `$padCommon` switched off, so every test there also proves it needs
+nothing but its own application.
 
 **Common** - `?common/index`. The same kind of test, from the `regression3` application, for the
 pages that use `_common`: `{example}`, `{demo}`, `{table}`, the `{block}` snippet, the menu, the
 colouring functions in `_common/_lib/`. Which application a page is in is itself the assertion.
+
+**Framework** - `?framework/index`. The engine cases, from the `regression4` application: tags,
+options, expressions, functions, properties, the sequence subsystem. Every case is a page of its
+own in a group directory - the `.pad` its template, the `.txt` the outcome beside it, an optional
+`.php` its variables - so a case gets the isolation a request brings by construction. Nine
+hundred requests a run, which is why Test runs and a page load only reads.
 
 `name.txt` is written by hand and the runner never rewrites it. Three spellings: a body compares
 exactly; `HTTP <code>` asserts the response code, with an optional second line holding `/a
@@ -60,9 +57,9 @@ something.
 ## Running
 
 Every page carries the menu, and where there is something to run, a **Test** entry: on the index
-it runs all four kinds, on a suite page that suite, on a sandbox group page that group, and on
-the scan page the suites and then the crawl. A page load never runs anything - it reads what the
-last run left behind, and the index shows when that was.
+it runs everything, on a suite page that suite, and on the scan page the suites and then the
+crawl. A page load never runs anything - it reads what the last run left behind, and the index
+shows when that was.
 
 Suite runs are kept in `DATA/suites/`, crawl baselines in `DATA/regression/`.
 

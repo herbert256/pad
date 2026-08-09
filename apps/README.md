@@ -18,9 +18,9 @@ This directory contains PAD applications and examples.
 | [pad](pad/README.md) | Standard | PAD framework introduction and reference |
 | [react](react/README.md) | Standard | PAD + React integration examples |
 | [reference](reference/README.md) | Standard | Cross-reference and directory utilities |
-| [regression](regression/README.md) | Standard | Automated regression testing for PAD - the sandbox cases, the crawl, and the runner for both suites |
+| [regression](regression/README.md) | Standard | Automated regression testing for PAD - the runner for the three suites, and the crawl |
 | [regression2](regression2/README.md) | Test | The pages suite: every test is a real page, fetched over HTTP and compared with the answer beside it |
-| [regression4](regression4/README.md) | Test | The Framework suite: the sandbox cases as pages, one fetched per case |
+| [regression4](regression4/README.md) | Test | The Framework suite: the engine cases as pages, one fetched per case |
 | [regression_cache_apcu](regression_cache_apcu/README.md) | Test | Regression test for the 'apcu' page cache - the index turns NO when the backend stops caching |
 | [regression_cache_db](regression_cache_db/README.md) | Test | Regression test for the 'db' page cache - the index turns NO when the backend stops caching |
 | [regression_cache_file](regression_cache_file/README.md) | Test | Regression test for the 'file' page cache - the index turns NO when the backend stops caching |

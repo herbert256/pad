@@ -1,9 +1,9 @@
 <?php
 
-  // The overview the application opens on: one line per kind of test - the sandbox suites,
-  // the two pages suites and the scan - each with the totals of its last run. A page load
-  // never runs anything; each line links to the page where its own Test lives, and Test here
-  // runs all four kinds: the sandbox groups, both pages suites, and the scan.
+  // The overview the application opens on: one line per kind of test - the three pages
+  // suites and the scan - each with the totals of its last run. A page load never runs
+  // anything; each line links to the page where its own Test lives, and Test here runs
+  // everything: the three suites and the scan.
 
   if ( isset ( $test ) ) {
     getRegression ();
@@ -11,32 +11,6 @@
   }
 
   $rows = [];
-
-  $sandboxTotal = 0;
-  $sandboxFail  = 0;
-  $sandboxWhen  = 0;
-
-  foreach ( array_keys ( getCasesGroups () ) as $groupName ) {
-
-    $result = getCases ( $groupName );
-
-    $sandboxTotal += count ( $result ['tests'] );
-    $sandboxFail  += $result ['failed'];
-
-    // The oldest of the group runs, because that is what the totals can be stale by.
-
-    if ( ! $sandboxWhen or ( $result ['when'] and $result ['when'] < $sandboxWhen ) )
-      $sandboxWhen = $result ['when'];
-
-  }
-
-  $rows [] = [
-    'name'   => 'Sandbox',
-    'link'   => '?sandbox/index',
-    'result' => "$sandboxTotal tests, $sandboxFail failed",
-    'ran'    => $sandboxWhen ? date ( 'Y-m-d H:i', $sandboxWhen ) : 'never',
-    'status' => $sandboxFail ? 'FAILURES' : 'ok'
-  ];
 
   foreach ( [ 'Pages' => 'pages', 'Common' => 'common', 'Framework' => 'framework' ] as $suiteName => $suite ) {
 
