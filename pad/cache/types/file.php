@@ -21,10 +21,17 @@
 
   }
 
+  // The reads and writes go through $padCacheFile like every helper below: the bare
+  // relative spellings this file started with made padFilePut root them under DATA/
+  // itself, so the store wrote to DATA/url/ while every lookup read DATA/cache/url/,
+  // and no entry ever came back.
+
   function padCacheUrl ($url) {
 
+    global $padCacheFile;
+
     if ( padCacheExists ("url/$url") ) {
-      $etag = padFileGet ("url/$url");
+      $etag = padFileGet ($padCacheFile . "url/$url");
       if ( padCacheExists ("etag/$etag") )
         return [padCacheTime ("etag/$etag"), $etag];
     }
@@ -35,20 +42,22 @@
 
   function padCacheGet ($etag) {
 
-    return ( padCacheExists ("etag/$etag" ) ) ? padFileGet ("etag/$etag") : FALSE;
+    global $padCacheFile;
+
+    return ( padCacheExists ("etag/$etag" ) ) ? padFileGet ($padCacheFile . "etag/$etag") : FALSE;
 
   }
 
   function padCacheStore ($url, $etag, $data) {
 
-    global $padCacheServerNoData;
+    global $padCacheFile, $padCacheServerNoData;
 
-    padFilePut ("url/$url", $etag);
+    padFilePut ($padCacheFile . "url/$url", $etag);
 
     if ( $padCacheServerNoData )
       padCacheTouch ("etag/$etag", $_SERVER['REQUEST_TIME']);
     else
-      padFilePut ("etag/$etag", $data);
+      padFilePut ($padCacheFile . "etag/$etag", $data);
 
   }
 

@@ -6,28 +6,33 @@
   // Sets the three cache lifetimes (server side, proxy, client), selects the server-side
   // backend through $padCacheServerType, and carries the connection details for each
   // supported backend: memcached, redis, a database, or plain files under DATA/cache/.
+  //
+  // Every setting is a default, not a decision: the application's _config/config.php ran
+  // before this file, and what it chose stands - an unconditional assignment here zeroed
+  // the age an application had just configured, which is why no application could ever
+  // switch caching on.
 
-  $padCacheServerAge = 0;
+  $padCacheServerAge = $padCacheServerAge ?? 0;
 
-  $padCacheProxyAge  = 0;
+  $padCacheProxyAge  = $padCacheProxyAge  ?? 0;
 
-  $padCacheClientAge = 0;
+  $padCacheClientAge = $padCacheClientAge ?? 0;
 
-  $padCacheServerType      = 'memcached';
-  $padCacheServerGzip      = TRUE;
-  $padCacheServerNoData    = FALSE;
+  $padCacheServerType      = $padCacheServerType   ?? 'memcached';
+  $padCacheServerGzip      = $padCacheServerGzip   ?? TRUE;
+  $padCacheServerNoData    = $padCacheServerNoData ?? FALSE;
 
-  $padCacheMemcachedHost   = 'localhost';
-  $padCacheMemcachedPort   = '11211';
+  $padCacheMemcachedHost   = $padCacheMemcachedHost ?? 'localhost';
+  $padCacheMemcachedPort   = $padCacheMemcachedPort ?? '11211';
 
-  $padCacheRedisHost       = 'localhost';
-  $padCacheRedisPort       = 6379;
+  $padCacheRedisHost       = $padCacheRedisHost ?? 'localhost';
+  $padCacheRedisPort       = $padCacheRedisPort ?? 6379;
 
-  $padCacheDbHost          = 'localhost';
-  $padCacheDbDatabase      = 'cache';
-  $padCacheDbUser          = 'cache';
-  $padCacheDbPassword      = 'cache';
+  $padCacheDbHost          = $padCacheDbHost     ?? '127.0.0.1';
+  $padCacheDbDatabase      = $padCacheDbDatabase ?? 'cache';
+  $padCacheDbUser          = $padCacheDbUser     ?? 'cache';
+  $padCacheDbPassword      = $padCacheDbPassword ?? 'cache';
 
-  $padCacheFile            = DATA . 'cache/';
+  $padCacheFile            = $padCacheFile ?? DATA . 'cache/';
 
 ?>

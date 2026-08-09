@@ -62,7 +62,8 @@
 
   if ( $padErrorAction != $padConfigDefault ['error']      ) $padConfigSet ['error']      = $padErrorAction;
   if ( $padOutputType  != $padConfigDefault ['outputType'] ) $padConfigSet ['outputType'] = $padOutputType;
-  if ( $padCache       != $padConfigDefault ['cache'] and is_string ( $padCache ) )
+  if ( $padCache and ( $padCacheServerType ?? '' )         ) $padConfigSet ['cache']      = $padCacheServerType;
+  elseif ( $padCache != $padConfigDefault ['cache'] and is_string ( $padCache ) )
                                                              $padConfigSet ['cache']      = $padCache;
   if ( $padInfo        != $padConfigDefault ['info'] and $padInfo )
                                                              $padConfigSet ['info']       = $padInfo;

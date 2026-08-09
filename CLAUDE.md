@@ -907,6 +907,10 @@ This is particularly useful for:
 | `reference` | Standard | Cross-reference and directory utilities |
 | `regression` | Standard | Automated regression testing for PAD - the sandbox cases, the crawl, and the runner for both suites |
 | `regression2` | Test | The pages suite: every test is a real page, fetched over HTTP and compared with the answer beside it |
+| `regression_cache_db` | Test | Regression test for the 'db' page cache |
+| `regression_cache_file` | Test | Regression test for the 'file' page cache |
+| `regression_cache_memcached` | Test | Regression test for the 'memcached' page cache |
+| `regression_cache_redis` | Test | Regression test for the 'redis' page cache |
 | `regression3` | Test | The pages of the suite that use `_common` - `{example}`, `{demo}`, `{table}` - fetched and compared the same way |
 | `sequence` | Standard | Mathematical sequence subsystem demos |
 | `structure` | Example | Demonstrates nested `_xxx` directories and inheritance |
