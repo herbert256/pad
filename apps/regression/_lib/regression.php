@@ -570,6 +570,7 @@
       'misc/eval'                 => 'The evaluator over the forms the manual shows - precedence, the @ placeholder, pipes',
       'misc/local'                => 'Reading a file from _data/ by name, in each format padData() accepts',
       'misc/parms'                => 'Parameters, options and variables on a tag, over a PHP array, a constant and a store',
+      'misc/datatypes'            => 'The html and range data types: a tidied document walked to its values, and both range spellings',
       'manual/3_ways_to_make_a_table' => 'The start, end and else constructs over one table',
       'manual/doc3'               => 'Tag properties read through a content store',
       'manual/name'               => 'How PAD names a tag, and the name option that overrides it',

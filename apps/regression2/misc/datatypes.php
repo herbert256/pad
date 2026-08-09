@@ -1,0 +1,12 @@
+<?php
+
+  // The two data types nothing else parses. The html type runs the input through tidy into
+  // well-formed XML and then the XML parser; the tree nests by element, so the PHP half
+  // walks to the values and the template prints them. The range type is template-side.
+
+  $tree = padData ( '<html><head><title>T</title></head><body><p>alpha</p><p>beta</p></body></html>', 'html' );
+
+  $title = $tree ['head'] [0] ['title'] ?? '?';
+  $paras = implode ( ',', $tree ['body'] [0] ['p'] ?? [] );
+
+?>
