@@ -563,7 +563,21 @@ $padOutputType = 'web';
 
 // Cache enabled
 $padCache = false;
+
+// Strict expressions: report an undefined $field inside an expression instead of
+// resolving it to empty (the {$x} tag form already does this). Off by default.
+$padEvalStrict = false;
 ```
+
+### Expression errors
+
+The expression evaluator reports a malformed expression in the source's own terms, naming
+the exact fault and its position:
+- unbalanced quotes, `( )` or `[ ]` — `{echo (1 + 2}` → *the ( at position ... is never closed*
+- a misspelled pipe function — `{echo $x | uppr}` → *there is no pipe function named 'uppr'*
+- a comparison operator missing an operand where no pipe value can stand in for it —
+  `{if $x eq}` → *the operator 'eq' has nothing on its right*
+- with `$padEvalStrict`, an undefined field — `{if $typo eq 1}` → *there is no field named '$typo'*
 
 ---
 

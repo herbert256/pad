@@ -16,6 +16,8 @@
 
   function padEvalAfter ( &$result ) {
 
+    global $padEvalStrict;
+
     foreach ($result as $k => $one)
 
       if ( $one[1] == 'other' and ! in_array ( strtoupper ( $one[0] ), padEval_precedence ) ) {
@@ -62,6 +64,13 @@
         }
 
       } elseif ( $one[1] == '$' ) {
+
+        // With strict evaluation on, a field that does not exist is named rather than read
+        // as empty - the discipline {$x} already keeps at level/var.php, here inside an
+        // expression. padFieldCheck is the same existence test that form uses.
+
+        if ( $padEvalStrict and ! padFieldCheck ( $one[0] ) )
+          padError ( "Expression error: there is no field named '\${$one[0]}'" );
 
         $result[$k][1] = 'VAL';
         $result[$k][0] = padFieldValue ( $one[0] );

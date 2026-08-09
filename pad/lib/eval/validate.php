@@ -133,7 +133,43 @@
 
     }
 
+    // A comparison or logical operator needs a value on both sides. When one is missing the
+    // evaluator borrows the pipe value for it, which is the point of {echo $x | + 1} - so
+    // the check is made only where there is no pipe value to borrow: a single-segment
+    // expression that is not itself a pipe body. There a leading or trailing eq, ne, and,
+    // or the rest is a mistake - {if $x eq} - not a shorthand, and is named as one.
+
+    if ( ! $pipe and count ( $segments ) == 1 and $segments [0] ) {
+
+      $tokens = array_values ( $segments [0] );
+      $first  = $tokens [0];
+      $last   = $tokens [ count ( $tokens ) - 1 ];
+
+      if ( padEvalComparison ( $first ) )
+        return padEvalValidateError ( "the operator '{$first[0]}' has nothing on its left", $eval );
+
+      if ( count ( $tokens ) > 1 and padEvalComparison ( $last ) )
+        return padEvalValidateError ( "the operator '{$last[0]}' has nothing on its right", $eval );
+
+    }
+
     return TRUE;
+
+  }
+
+  // Whether a parse token is a two-sided comparison or logical operator - the ones a dangling
+  // operand is a mistake for. The words and their symbol spellings both count; the unary NOT
+  // and the arithmetic operators, which the pipe forms lean on, do not.
+
+  function padEvalComparison ( $token ) {
+
+    $compare = [ 'LT', 'LE', 'GT', 'GE', 'EQ', 'NE', 'AND', 'OR', 'XOR' ];
+
+    if ( $token [1] == 'other' and in_array ( strtoupper ( $token [0] ), $compare ) ) return TRUE;
+    if ( $token [1] == 'other' and isset ( padEval_alt [ $token [0] ] )             ) return TRUE;
+    if ( $token [1] == 'OPR'   and in_array ( $token [0], $compare )                ) return TRUE;
+
+    return FALSE;
 
   }
 

@@ -21,6 +21,15 @@
 
   $padEvalTrace = FALSE;
 
+  // Strict expression evaluation, off by default. When on, a $field that does not exist is
+  // reported inside an expression rather than resolving to empty - the same discipline {$x}
+  // already applies, taken into {if}, {echo} and the rest. Left off, an expression keeps
+  // PAD's lenient contract that a missing field is empty. (A comparison operator left
+  // without an operand is reported regardless of this flag, but only where no pipe value
+  // could have stood in for the missing side.)
+
+  $padEvalStrict = FALSE;
+
   $padInfo = '';
 
   $padCommon = TRUE;
