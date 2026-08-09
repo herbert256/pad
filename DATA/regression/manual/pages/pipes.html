@@ -1,0 +1,379 @@
+<h1>Pipes - Transform Output with Functions</h1>
+
+<p>Pipes allow you to pass output through functions to transform it. Use the pipe symbol <code>|</code> followed by a function name to process data.</p>
+
+<h2>Two Ways to Use Pipes</h2>
+
+<h3>1. Variable Pipes</h3>
+
+<p>Apply functions to variables using <code>{echo $variable | function}</code>:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/pipes_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/pipes_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $name </span><span style="color: #007700">= </span><span style="color: #DD0000">'john doe'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$email </span><span style="color: #007700">= </span><span style="color: #DD0000">'ALICE@EXAMPLE.COM'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$price </span><span style="color: #007700">= </span><span style="color: #0000BB">1234.56</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;Original: <b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Uppercase: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>name <font color="black">|</font> upper</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Capitalize: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>name <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;<br><br>&lt;p&gt;Original: <b>{<font color="green"><font color="red">$</font>email</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Lowercase: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>email <font color="black">|</font> lower</font>}</b>&lt;/p&gt;<br><br>&lt;p&gt;Original: <b>{<font color="green"><font color="red">$</font>price</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Formatted: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>price <font color="black">|</font> number_format(<font color="black">@</font><font color="black">,</font> 2)</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>Original: john doe</p>
+<p>Uppercase: JOHN DOE</p>
+<p>Capitalize: John Doe</p>
+
+<p>Original: ALICE@EXAMPLE.COM</p>
+<p>Lowercase: alice@example.com</p>
+
+<p>Original: 1234.56</p>
+<p>Formatted: 1,234.56</p>
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<h3>2. Tag Pipes</h3>
+
+<p>Apply functions to tag output. Pipes can be placed on the opening tag or closing tag:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/pipes_2.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/pipes_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $items </span><span style="color: #007700">= [</span><span style="color: #DD0000">'apple'</span><span style="color: #007700">, </span><span style="color: #DD0000">'banana'</span><span style="color: #007700">, </span><span style="color: #DD0000">'cherry'</span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;Items separated by commas:&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">items </font><font color="red">print<font color="black">,</font> glue="<font color="black">,</font> "</font>}</b>&lt;/p&gt;<br><br>&lt;p&gt;Items in uppercase:&lt;/p&gt;<br>&lt;ul&gt;<br>  <b>{<font color="blue">items</font><font color="red"></font>}</b><br>    &lt;li&gt;<b>{<font color="green"><font color="red">$</font>items</font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue">items </font><font color="red"><font color="black">|</font> upper</font>}</b><br>&lt;/ul&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>Items separated by commas:</p>
+<p>apple, banana, cherry</p>
+
+<p>Items in uppercase:</p>
+<ul>
+  
+    <LI>APPLE</LI>
+  
+    <LI>BANANA</LI>
+  
+    <LI>CHERRY</LI>
+  
+</ul>
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<h2>Pipe Timing: Opening vs Closing Tag</h2>
+
+<p>The placement of the pipe determines <strong>when</strong> the function is applied:</p>
+
+<ul>
+  <li><strong>Opening tag</strong> <code>{tag | function}</code> - transforms the content template, once, before any occurrence is rendered. What the function is handed is the source between the tags, not the tag's data.</li>
+  <li><strong>Closing tag</strong> <code>{/tag | function}</code> - transforms the output, after every occurrence has been rendered and joined.</li>
+</ul>
+
+<p>An opening pipe is therefore not a way to reorder or filter what a tag iterates: a field written inside the content would be transformed along with everything else, and then not resolve. Reshaping the data is what the <a href="?pages/data_handling">data handling</a> options are for.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/pipes_4.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>words<font color="black">'</font></font>}</b>("alpha","beta")<b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br>&lt;p&gt;Closing tag pipe - handed everything the tag rendered: [<b>{<font color="blue">words</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>words</font>}</b> <b>{/<font color="blue">words </font><font color="red"><font color="black">|</font> upper</font>}</b>]&lt;/p&gt;<br>&lt;p&gt;Opening tag pipe - handed the content template, which then repeats: [<b>{<font color="blue">words </font><font color="red"><font color="black">|</font> upper</font>}</b>row <b>{/<font color="blue">words</font><font color="red"></font>}</b>]&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+
+<p>Closing tag pipe - handed everything the tag rendered: [ALPHA BETA ]</p>
+<p>Opening tag pipe - handed the content template, which then repeats: [ROW ROW ]</p>
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<h2>Chaining Pipes</h2>
+
+<p>Chain multiple pipe functions together by separating them with <code>|</code>. Functions are applied left to right:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/pipes_3.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/pipes_3.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $rawText </span><span style="color: #007700">= </span><span style="color: #DD0000">'  hello world  '</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$message </span><span style="color: #007700">= </span><span style="color: #DD0000">'the quick brown fox'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;Chain multiple pipes together:&lt;/p&gt;<br><br>&lt;p&gt;Original: [<b>{<font color="green"><font color="red">$</font>rawText</font>}</b>]&lt;/p&gt;<br>&lt;p&gt;Trimmed and uppercase: [<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>rawText <font color="black">|</font> trim <font color="black">|</font> upper</font>}</b>]&lt;/p&gt;<br><br>&lt;p&gt;Original: <b>{<font color="green"><font color="red">$</font>message</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Uppercase first letter of each word: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>message <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Replace and uppercase: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>message <font color="black">|</font> replace(<font color="black">'</font>fox<font color="black">'</font><font color="black">,</font> <font color="black">'</font>dog<font color="black">'</font>) <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>Chain multiple pipes together:</p>
+
+<p>Original: [  hello world  ]</p>
+<p>Trimmed and uppercase: [HELLO WORLD]</p>
+
+<p>Original: the quick brown fox</p>
+<p>Uppercase first letter of each word: The Quick Brown Fox</p>
+<p>Replace and uppercase: The Quick Brown Dog</p>
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<h2>Common Pipe Functions</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+  <tr style="background: #f0f0f0;">
+    <th>Function</th>
+    <th>Description</th>
+    <th>Example</th>
+  </tr>
+  <tr>
+    <td><code>upper</code></td>
+    <td>Convert to uppercase</td>
+    <td><code>{echo $text | upper}</code></td>
+  </tr>
+  <tr>
+    <td><code>lower</code></td>
+    <td>Convert to lowercase</td>
+    <td><code>{echo $text | lower}</code></td>
+  </tr>
+  <tr>
+    <td><code>ucwords</code></td>
+    <td>Capitalize each word</td>
+    <td><code>{echo $text | ucwords}</code></td>
+  </tr>
+  <tr>
+    <td><code>trim</code></td>
+    <td>Remove whitespace</td>
+    <td><code>{echo $text | trim}</code></td>
+  </tr>
+  <tr>
+    <td><code>html</code></td>
+    <td>HTML encode</td>
+    <td><code>{echo $text | html}</code></td>
+  </tr>
+  <tr>
+    <td><code>replace(a,b)</code></td>
+    <td>Replace text</td>
+    <td><code>{echo $text | replace('old','new')}</code></td>
+  </tr>
+  <tr>
+    <td><code>+ n</code></td>
+    <td>Add number</td>
+    <td><code>{echo $count | + 1}</code></td>
+  </tr>
+  <tr>
+    <td><code>date(fmt)</code></td>
+    <td>Format date</td>
+    <td><code>{echo $timestamp | date('Y-m-d')}</code></td>
+  </tr>
+</table>
+
+<h2>Important Rules</h2>
+
+<ul>
+  <li><strong>Use <b>{echo}</b> with variables</strong> - <code>{echo $var | function}</code> NOT <code>{$var | function}</code></li>
+  <li><strong>Arithmetic needs spaces</strong> - <code>{echo $x | + 1}</code> NOT <code>{echo $x | +1}</code></li>
+  <li><strong>Quote string parameters</strong> - <code>{echo $x | replace('a','b')}</code></li>
+  <li><strong>Functions apply left to right</strong> - <code>{echo $x | trim | upper}</code> trims first, then uppercases</li>
+</ul>
+
+<h2>When to Use Opening vs Closing Tag Pipes</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+  <tr style="background: #f0f0f0;">
+    <th>Use Case</th>
+    <th>Placement</th>
+    <th>Example</th>
+  </tr>
+  <tr>
+    <td>Transform the content template before it repeats</td>
+    <td>Opening tag</td>
+    <td><code>{items | trim}...{/items}</code></td>
+  </tr>
+  <tr>
+    <td>Reshape the data itself</td>
+    <td>Option, not a pipe</td>
+    <td><code>{items sort}...{/items}</code></td>
+  </tr>
+  <tr>
+    <td>Transform final output after rendering</td>
+    <td>Closing tag</td>
+    <td><code>{tag}...{/tag | upper}</code></td>
+  </tr>
+  <tr>
+    <td>Format variable values</td>
+    <td>Variable pipe</td>
+    <td><code>{echo $price | number_format(2)}</code></td>
+  </tr>
+</table>
+
+<h2>See Also</h2>
+
+<ul>
+  <li><b>{echo}</b> - Evaluate and output expressions</li>
+  <li><b>{functions}</b> - List of all pipe functions</li>
+  <li><b>{options}</b> - Tag options reference</li>
+</ul>

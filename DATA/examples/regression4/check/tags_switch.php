@@ -1,0 +1,28 @@
+<?php
+
+  // Setup carried over from the sandbox case.
+
+  $users = array (
+  0 => 
+  array (
+    'name' => 'bob',
+    'phone' => '555-3425',
+  ),
+  1 => 
+  array (
+    'name' => 'jim',
+    'phone' => '555-4364',
+  ),
+  2 => 
+  array (
+    'name' => 'joe',
+    'phone' => '555-3422',
+  ),
+  3 => 
+  array (
+    'name' => 'jerry',
+    'phone' => '555-4973',
+  ),
+);
+
+?>

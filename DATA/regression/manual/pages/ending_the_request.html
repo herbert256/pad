@@ -1,0 +1,43 @@
+<h1>Ending the Request</h1>
+
+<p>Some pages do not end by reaching their last line: a form handler redirects, a guard
+refuses, an error stops everything. PAD has a tag or a function for each - and none of them
+can be demonstrated live on this page, because each one would end the request this page is.
+The examples are therefore shown, not run.</p>
+
+<h2>Redirecting</h2>
+
+<p>From a page's PHP, <code>padRedirect()</code> sends the browser to another page and ends
+the request cleanly - session closed, buffers flushed, headers sent:</p>
+
+
+<pre><code>padRedirect ( 'tickets/index' );           // to a page of this application
+padRedirect ( 'tickets/index', $vars );    // with variables carried along</code></pre>
+
+
+<p><b>Never use PHP's <code>exit</code> or <code>die</code></b>, and not
+<code>header()</code> either: they end PHP mid-request, skipping everything PAD still had to
+do. The same goes for a restart - <code>padRestart('page')</code> renders another page in
+place of this one without a round trip to the browser.</p>
+
+<h2>The tags that end a request</h2>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+  <tr><th>tag</th><th>what it does</th></tr>
+  <tr><td><code>{exit}</code></td><td>ends the request where it stands - nothing is shipped, not even the output so far</td></tr>
+  <tr><td><code>{error 'message'}</code></td><td>reports an error through the configured error action, which normally ends the request with a 500</td></tr>
+  <tr><td><code>{exception 'message'}</code></td><td>throws a real PHP exception, for testing the nets that catch one</td></tr>
+  <tr><td><code>{dump}</code></td><td>stops the request on a dump of the engine state, the heavy debugging tool</td></tr>
+</table>
+
+<h2>What happens on an error</h2>
+
+<p>Any error - a tag that misses, a PHP warning, a thrown exception - ends the request
+through the configured <code>$padErrorAction</code>: <code>pad</code> renders an error page,
+<code>log</code> and <code>ignore</code> carry on, <code>dump</code> stops on the state
+dump. The request answers with HTTP 500, and a command-line run exits with status 1, so a
+script can test the outcome without reading the output.</p>
+
+<p>A <code>demand</code> option turns an empty tag into an error: a page that is meaningless
+without its data can say so - <code>{users demand}...{/users}</code> -
+instead of rendering a hole.</p>

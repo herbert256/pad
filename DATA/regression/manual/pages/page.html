@@ -1,0 +1,344 @@
+<h1>Nested Passes - {code} and {page}</h1>
+
+<p>A nested pass is the engine run inside itself: the content of a <code>{code}</code>
+pair, or the page a <code>{page}</code> tag names, is rendered as a complete PAD run
+of its own, and what it produced lands in the surrounding page. The pass sees the request it
+runs in - its variables, its stores - unless it asks for isolation.</p>
+
+<h2>A pass and what it leaves behind</h2>
+
+<p>A plain <code>{code}</code> shares everything. What the pass creates is still
+there when it returns:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/page_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">code</font><font color="red"></font>}</b><br>  <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>made = <font color="black">'</font>and left this behind<font color="black">'</font></font>/}</b><br>  The pass ran<br><b>{/<font color="blue">code</font><font color="red"></font>}</b><br>&lt;p&gt;After it: <b>{<font color="green"><font color="red">$</font>made</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+  
+  The pass ran
+
+<p>After it: and left this behind</p>
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<h2>The four isolation forms</h2>
+
+<p>Three options decide how much of the request a pass sees, and how much of the pass the
+request keeps. They differ on both sides of the boundary:</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+  <tr><th>form</th><th>sees the outer state</th><th>what it created afterwards</th></tr>
+  <tr><td><code>{code}</code></td>         <td>yes</td><td>still there</td></tr>
+  <tr><td><code>{code reset}</code></td>   <td>no - a blank slate going in</td><td>still there</td></tr>
+  <tr><td><code>{code clean}</code></td>   <td>yes</td><td>taken back out</td></tr>
+  <tr><td><code>{code sandbox}</code></td> <td>no</td><td>taken back out</td></tr>
+</table>
+
+<p>&nbsp;</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/page_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;plain: [<b>{<font color="blue">code</font><font color="red"></font>}</b><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>f1 = <font color="black">'</font>x<font color="black">'</font></font>/}</b><b>{/<font color="blue">code</font><font color="red"></font>}</b><b>{<font color="green">$f1</font> <font color="black">|</font> <font color="blue">optional</font>}</b>]&lt;/p&gt;<br>&lt;p&gt;reset: [<b>{<font color="blue">code </font><font color="red">reset</font>}</b><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>f2 = <font color="black">'</font>x<font color="black">'</font></font>/}</b><b>{/<font color="blue">code</font><font color="red"></font>}</b><b>{<font color="green">$f2</font> <font color="black">|</font> <font color="blue">optional</font>}</b>]&lt;/p&gt;<br>&lt;p&gt;clean: [<b>{<font color="blue">code </font><font color="red">clean</font>}</b><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>f3 = <font color="black">'</font>x<font color="black">'</font></font>/}</b><b>{/<font color="blue">code</font><font color="red"></font>}</b><b>{<font color="green">$f3</font> <font color="black">|</font> <font color="blue">optional</font>}</b>]&lt;/p&gt;<br>&lt;p&gt;sandbox: [<b>{<font color="blue">code </font><font color="red">sandbox</font>}</b><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>f4 = <font color="black">'</font>x<font color="black">'</font></font>/}</b><b>{/<font color="blue">code</font><font color="red"></font>}</b><b>{<font color="green">$f4</font> <font color="black">|</font> <font color="blue">optional</font>}</b>]&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>plain: [x]</p>
+<p>reset: [x]</p>
+<p>clean: []</p>
+<p>sandbox: []</p>
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<h2>Another page as a pass</h2>
+
+<p><code>{page 'name'}</code> runs that page - its .php and its .pad - as a pass,
+with the same isolation options. A <code>function</code> option gives the pass a real PHP
+variable scope of its own, which is what a page whose .php half must not touch the caller's
+variables wants:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/page_3.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello/hello<font color="black">'</font></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <h3>
+  Hello World !
+</h3>
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<h2>Stores cross the boundary by the same rules</h2>
+
+<p>The data, content, bool and sequence stores follow the isolation form. A
+<code>clean</code> pass reads the request's stores; a <code>sandbox</code> or
+<code>reset</code> pass starts without them. On the way out, only a plain pass's pushes
+stay: each of the three isolated forms puts the request's stores back exactly as they
+were, its own pushes included:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/page_4.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>fruit<font color="black">'</font></font>}</b>["apple","pear"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br>&lt;p&gt;A clean pass sees the store: <b>{<font color="blue">code </font><font color="red">clean</font>}</b><b>{<font color="blue">fruit</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>fruit</font>}</b> <b>{/<font color="blue">fruit</font><font color="red"></font>}</b><b>{/<font color="blue">code</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{<font color="blue">code</font><font color="red"></font>}</b><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>7;8;9<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>nums<font color="black">'</font></font>/}</b><b>{/<font color="blue">code</font><font color="red"></font>}</b><br>&lt;p&gt;A plain pass pushed nums, and it survived: <b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>nums</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>nums</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+<p>A clean pass sees the store: apple pear </p>
+
+<p>A plain pass pushed nums, and it survived: 7 8 9 </p>
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<h2>Engine state is always put back</h2>
+
+<p>Whatever the isolation form, the engine itself returns to where it was: a loop the pass
+ran inside continues from the same row, and a request-lived counter such as
+<code>{switch}</code>'s rotation is rolled back with the rest - a pass takes its
+counting with it:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/page_5.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;Inside a pass: <b>{<font color="blue">code</font><font color="red"></font>}</b><b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>first<font color="black">'</font><font color="black">,</font> <font color="black">'</font>second<font color="black">'</font></font>}</b><b>{/<font color="blue">code</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;After it: <b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>first<font color="black">'</font><font color="black">,</font> <font color="black">'</font>second<font color="black">'</font></font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>Inside a pass: first</p>
+<p>After it: first</p>
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<p>Both calls answer the first value: the rotation the pass advanced was restored when the
+pass returned.</p>

@@ -1,0 +1,46 @@
+<?php
+
+  // Fetches the probe - a loop, a pipe and a sequence, rendered with all five info modes on
+  // and every option of each - and asserts that every mode recorded something for that very
+  // request: not that artifacts exist, but that this fetch grew them.
+
+  $traceBefore = count ( glob ( DATA . 'trace/probe/*' ) ?: [] );
+  $trackBefore = count ( glob ( DATA . 'track/requests/*' ) ?: [] );
+  $xmlBefore   = file_exists ( DATA . '_xml/compact/include/probe.xml' )
+               ? filesize ( DATA . '_xml/compact/include/probe.xml' ) : 0;
+  $dbBefore    = (int) padDb ( "field count(*) from track_request" );
+
+  $r = padCurl ( $padHost . 'regression_info/?probe&padInclude' );
+
+  $stats = json_decode ( $r ['headers'] ['PAD-Stats'] ?? '', TRUE );
+
+  // The recorders finish after the probe's response has already been flushed back, so the
+  // growth is given a moment to land before it is read.
+
+  for ( $settle = 0; $settle < 20; $settle++ ) {
+
+    clearstatcache ();
+
+    $traceAfter = count ( glob ( DATA . 'trace/probe/*' ) ?: [] );
+    $trackAfter = count ( glob ( DATA . 'track/requests/*' ) ?: [] );
+    $xmlAfter   = file_exists ( DATA . '_xml/compact/include/probe.xml' )
+                ? filesize ( DATA . '_xml/compact/include/probe.xml' ) : 0;
+    $dbAfter    = (int) padDb ( "field count(*) from track_request" );
+
+    if ( $traceAfter > $traceBefore and $trackAfter > $trackBefore
+         and $xmlAfter > $xmlBefore and $dbAfter > $dbBefore )
+      break;
+
+    usleep ( 100000 );
+
+  }
+
+  $xref = padFileGet ( DATA . 'reference/tag/pad/sequence.txt' );
+
+  $vStats = ( is_array ( $stats ) and isset ( $stats ['total'] ) )      ? 'yes' : 'NO';
+  $vTrace = ( $traceAfter > $traceBefore )                              ? 'yes' : 'NO';
+  $vTrack = ( $trackAfter > $trackBefore and $dbAfter > $dbBefore )     ? 'yes' : 'NO';
+  $vXml   = ( $xmlAfter > $xmlBefore )                                  ? 'yes' : 'NO';
+  $vXref  = ( str_contains ( $xref, 'regression_info;probe' ) )         ? 'yes' : 'NO';
+
+?>

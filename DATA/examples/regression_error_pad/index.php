@@ -1,0 +1,15 @@
+<?php
+
+  // Fetches the boom page - an undefined variable its .php reads - and asserts what the
+  // 'pad' error action is supposed to do with it: a 500 whose page carries the message.
+
+  $r    = padCurl ( $padHost . 'regression_error_pad/?boom&padInclude' );
+  $code = $r ['result'];
+  $body = $r ['data'];
+
+  $verdict = ( $code == 500 and str_contains ( $body, "Undefined variable" )
+             and str_contains ( $body, "neverSetAnywhere" ) ) ? "yes" : "NO";
+
+  $action = $padErrorAction;
+
+?>

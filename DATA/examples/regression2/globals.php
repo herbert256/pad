@@ -1,0 +1,9 @@
+<?php
+
+  // object: reads $GLOBALS, and a sandboxed pass has the application globals taken out of it.
+  // In a real request a page variable is a global like any other and the reference resolves
+  // without help, which is what this page pins.
+
+  $colours = [ 'red', 'green' ];
+
+?>

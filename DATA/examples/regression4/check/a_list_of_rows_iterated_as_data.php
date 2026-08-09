@@ -1,0 +1,16 @@
+<?php
+
+  // Setup carried over from the sandbox case.
+
+  $rows = array (
+  0 => 
+  array (
+    'name' => 'ann',
+  ),
+  1 => 
+  array (
+    'name' => 'bob',
+  ),
+);
+
+?>
