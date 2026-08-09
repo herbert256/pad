@@ -121,6 +121,25 @@ function padSplitOnUnquotedColon ( $str ) {
 
   }
 
+
+  function padCloseCheck () {
+
+    global $padBetween;
+
+    return ( $padBetween [0] == '/' ) ;
+
+  }
+
+
+  function padWhiteCheck () {
+
+    global $padBetween;
+
+    return ( ctype_space ( $padBetween [0] ) );
+
+  }
+
+
   function padCommentCheck () {
 
     global $padBetween;
@@ -129,15 +148,31 @@ function padSplitOnUnquotedColon ( $str ) {
 
   }
 
-  function padCommentGo () {
 
-    // A comment leaves nothing behind. It used to go through padLevelNo(), which is for a name
-    // nothing claimed and puts the tag back into the page escaped - with an empty name that is
-    // &open;&close;, so every {# .. #} rendered as a bare {} where it stood.
+  function padCloseHit () {
+
+    global $padBetween;
+
+    return padError ( "Closing tag found without an open tag: {" . $padBetween . "}" );
+
+  }
+
+
+  function padWhiteHit () {
+
+    global $padBetween;
+
+    padLevelNo ( $padBetween );
+
+  }
+
+
+  function padCommentHit () {
 
     return padLevel ( '' );
 
   }
+
 
   function padLevelNo ( $no ) {
 
@@ -171,7 +206,7 @@ function padSplitOnUnquotedColon ( $str ) {
 
   }
 
-  function padLevelNoOpen () {
+  function padLevelNoStart () {
 
     global $padOut, $padStart, $padEnd, $pad;
 
@@ -185,6 +220,8 @@ function padSplitOnUnquotedColon ( $str ) {
 
     $padStart [$pad] = strrpos ( $padOut [$pad], '{', $padEnd [$pad] - strlen ( $padOut [$pad] ) );
 
+    return $padStart [$pad];
+
   }
 
   function padLevelEnd () {
@@ -192,6 +229,8 @@ function padSplitOnUnquotedColon ( $str ) {
     global $padOut, $padStart, $padEnd, $pad;
 
     $padEnd [$pad] = strpos ( $padOut [$pad], '}' );
+
+    return $padEnd [$pad];
 
   }
 

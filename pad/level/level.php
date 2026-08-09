@@ -13,26 +13,17 @@
   if ( $padRestart )
     return include PAD . 'start/restart.php';
 
-  padLevelEnd ();
-  if ( $padEnd [$pad] === FALSE )
-    return include PAD . 'level/end.php';
-
-  padLevelStart ();
-  if ( $padStart [$pad] === FALSE )
-    return padLevelNoOpen ();
+  if ( padLevelEnd   () === FALSE ) return include PAD . 'level/end.php';
+  if ( padLevelStart () === FALSE ) return include PAD . 'level/done.php';
 
   padLevelBetween ();
+
+  if ( padWhiteCheck   () ) return padWhiteHit   ();
+  if ( padCloseCheck   () ) return padCloseHit   ();
+  if ( padCommentCheck () ) return padCommentHit ();
+
   include PAD . 'level/pipes/start.php';
   include PAD . 'level/between.php';
-
-  if ( padCommentCheck () )
-    return padCommentGo ();
-
-  if ( $padFirst == '/' )
-    return padError ( "Closing tag found without an open tag: {" . $padBetween . "}" );
-
-  if ( ctype_space ( $padFirst ) )
-    return padLevelNoSingle ();
 
   if ( $pad and $padLvlFun [$pad-1] )
     include PAD . 'level/function.php';
