@@ -15,8 +15,8 @@
   // next page a different output type) are folded in through inits/configSet.php, and the
   // try/catch settings are loaded when $padErrorTry asks for them.
 
-  include PAD    . 'config/config.php';
-  include PAD    . 'config/sequence.php';
+  include PAD . 'config/config.php';
+  include PAD . 'config/sequence.php';
 
   if ( file_exists ( APP . '_config/config.php' ) )
     include APP . '_config/config.php';
