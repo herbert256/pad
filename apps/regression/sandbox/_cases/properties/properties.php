@@ -2,9 +2,9 @@
 
   // The property@tag values an iteration publishes.
   //
-  // A property is written as a tag pair - {first@xs}...{/first@xs} - not inside a condition:
-  // {if first@xs} ends the request, because a property resolves to an array and comparing one
-  // against a value is not implemented.
+  // A property is written as a tag pair - {first@xs}...{/first@xs} - or read as a value
+  // inside an expression: {if first@xs} works, and expressions/conditions.php holds those
+  // cases. This group is the tag-pair side.
   //
   // The separators are covered from both sides, notFirst@ and notLast@, and border@ as the pair of
   // them; a change that made one of the three agree with the wrong rows would otherwise show up in

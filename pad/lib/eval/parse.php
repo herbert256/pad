@@ -217,6 +217,31 @@
 
       if ($one == '@') {
 
+        // A property name followed by @ and a target is one reference, not the placeholder:
+        // {if first@items} means what {if $first@items} means. Only the names with a file in
+        // pad/properties/ read this way - a closed set, so any other word@word keeps the
+        // tokenisation it always had - and the target is a level name or a relative -N.
+        // The token becomes the $ kind, whose resolution already knows the at-syntax.
+
+        if ( $is_other and ! empty ( $result[$i][0] )
+             and file_exists ( PAD . 'properties/' . $result[$i][0] . '.php' ) ) {
+
+          $padEvalRest = implode ( '', array_slice ( $input, $key + 1 ) );
+
+          if ( preg_match ( '/^([a-zA-Z_][a-zA-Z0-9_]*|-\d+)/', $padEvalRest, $padEvalTarget ) ) {
+
+            $result[$i][0] .= '@' . $padEvalTarget[1];
+            $result[$i][1]  = '$';
+
+            $is_other = FALSE;
+            $skip     = strlen ( $padEvalTarget[1] );
+
+            continue;
+
+          }
+
+        }
+
         $i += 100;
         $result[$i][1] = '$$';
 

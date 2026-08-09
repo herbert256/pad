@@ -983,5 +983,7 @@ Access iteration state and metadata using `property@tag` syntax.
 {/items}
 ```
 
-A property is a tag pair, as above, not something an expression can read. Inside an expression
-`@` is the current-value placeholder, so `{if first@items}` is not a property reference at all.
+A property also reads as a value inside an expression - `{if first@items}`, `{if current@items
+eq 2}` - because a property name followed by `@` and a target is one reference there. Any other
+word before `@` keeps the placeholder reading: elsewhere in an expression `@` is the current
+value being piped in.

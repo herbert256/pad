@@ -33,16 +33,27 @@ A boolean property written as a tag pair renders its content only when the prope
 {last@users}</ul>{/last@users}
 ```
 
+### In Conditionals
+
+A property reads as a value inside an expression, so it stands in a condition - alone for the
+boolean ones, with an operator for the counting ones, and combined freely:
+
+```
+{if first@users}<ul>{/if}
+{if notFirst@items}, {/if}
+{if current@rows eq 2}the second row{/if}
+{if first@items or last@items}an end{/if}
+```
+
+The property name is what makes this read as one reference: only the names on this page do
+(the files in `pad/properties/`), and the target names an iterating tag. Elsewhere in an
+expression `@` is still the current-value placeholder.
+
 ### Ternary Conditionals
 
 ```
 {even@rows ? class="even" : class="odd"}
 ```
-
-**Not `{if first@users}`.** Inside an `{if}` expression `@` is the current-value placeholder,
-so `first@users` does not read as a property there: it tokenises as `first` (a property with
-no target), `@` (the piped-in value) and `users` (the tag, resolving to its whole data array),
-and the request ends with an error. Use the tag pair or the ternary form instead.
 
 ---
 

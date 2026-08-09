@@ -172,7 +172,7 @@ Common functions: `trim`, `upper`, `lower`, `html`, `url`, `date`, `replace`, `l
 ### Tag Properties
 
 Access iteration state with `property@tag` syntax - as a tag pair (content renders only when
-the property is true) or in a ternary, not inside `{if}`:
+the property is true), in a ternary, or as a value in any condition (`{if first@items}`):
 
 ```
 {items}

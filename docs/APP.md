@@ -385,9 +385,9 @@ Conditionals must use comparison operators (`eq`, `ne`, `gt`, `lt`, `ge`, `le`, 
 
 ### Iteration Properties
 Properties use the `property@tag` syntax to access iteration state. A boolean property is
-written as a tag pair - its content renders only when the property is true - or in a ternary;
-`{if first@items}` is not supported (inside an expression `@` is the current-value
-placeholder, so the spelling reads as something else and the request ends):
+written as a tag pair - its content renders only when the property is true - in a ternary,
+or in a condition: `{if first@items}` reads the property as a value, alone or with any
+operator:
 ```
 {items}
   {first@items}First item{/first@items}

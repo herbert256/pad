@@ -49,7 +49,6 @@ therefore absent, each verified by hand:
 
     {echo 10 | / 0}                     Division by zero
     {$nosuchvariable}                   PAD: Field '$nosuchvariable' not found
-    {if first@xs}...{/if}               PAD: More than one result back: first@xs
     {echo %t}                           Unknown format specifier "t"
 
 ## Known defects recorded as cases
@@ -73,15 +72,14 @@ The one exception is `'scope'`: a `padCode()` case runs in the request itself, s
 pushes stays - visible to later `'scope'` cases and to the page, never to sandboxed cases,
 which clear the stores at entry.
 
-## A spelling that reads as something else
+## A spelling with its own tokeniser rule
 
-`{if first@items}` - a property inside a condition does not read as a property at all. Within
-an expression `@` is the current-value placeholder, so `first@items` tokenises as three things:
-`first`, a property with no target, which is empty; `@`, the value being piped in; and `items`,
-the tag name, which resolves to its whole data array. It is that array the operator then meets,
-and comparing an array against a value is not implemented, so the request ends. The working
-form is the tag pair, `{first@items}...{/first@items}`, which is what the documentation shows.
-There is no case, because there is nothing correct to assert.
+`{if first@items}` - a property name followed by `@` and a target is one reference inside an
+expression, resolved the way the `$first@items` spelling always was. The names are a closed
+set, the files in `pad/properties/`, so any other word before `@` keeps the placeholder
+tokenisation: `@` elsewhere in an expression is still the value being piped in.
+`expressions/conditions.php` holds the cases - each boolean property standing alone, the
+counting ones with operators, compounds, and the placeholder untouched beside them.
 
 ## Coverage of the evaluator
 
