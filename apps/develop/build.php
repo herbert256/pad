@@ -1,6 +1,6 @@
 <?php
 
-  if ( isset ( $goBuild ) )
+  if ( ! isset ( $goBuild ) )
     return;
 
   include APP . 'clean.php';
