@@ -907,6 +907,7 @@ This is particularly useful for:
 | `reference` | Standard | Cross-reference and directory utilities |
 | `regression` | Standard | Automated regression testing for PAD - the sandbox cases, the crawl, and the runner for both suites |
 | `regression2` | Test | The pages suite: every test is a real page, fetched over HTTP and compared with the answer beside it |
+| `regression4` | Test | The Framework suite: the sandbox cases as pages, one fetched per case |
 | `regression_cache_apcu` | Test | Regression test for the 'apcu' page cache |
 | `regression_cache_db` | Test | Regression test for the 'db' page cache |
 | `regression_cache_file` | Test | Regression test for the 'file' page cache |

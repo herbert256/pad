@@ -212,6 +212,19 @@
   }
 
 
+  // A page whose declared answer is a regular expression has said of itself that no two
+  // renderings are byte-equal - the suite holds it to its pattern, and the crawl marks it
+  // random rather than warning about every fresh draw.
+
+  function getRegressionPatterned ( $app, $item ) {
+
+    $want = trim ( padFileGet ( APPS . "$app/$item.txt" ) );
+
+    return ( strlen ( $want ) > 1 and str_starts_with ( $want, '/' ) and str_ends_with ( $want, '/' ) );
+
+  }
+
+
   function getRegressionGo ( $app, $item, $extra='' ) {
 
     global $padHost;
@@ -255,6 +268,8 @@
                                           $status = 'random';
     elseif ( ! file_exists ($store)     ) $status = 'new';
     elseif ( ! trim ($new)              ) $status = ( trim ($old) ) ? 'empty' : 'expected';
+    elseif ( getRegressionPatterned ( $app, $item ) )
+                                          $status = 'random';
     elseif ( getRegressionDraws ( $source ) )
                                           $status = getRegressionDraw ( "$padHost$app/?$item$include$extra", $old, $new );
     elseif ( getRegressionCompare ( $old ) == getRegressionCompare ( $new ) ) $status = 'ok';
@@ -829,11 +844,11 @@
   }
 
 
-  // The Framework suite: the sandbox cases as fetched pages. Every case is a triple under
-  // framework/_suites/<group>/ - the .pad is the template, the .txt the outcome, an optional
-  // .php the variables - and framework/run.php renders one per request, so each case is a
-  // real request with the isolation a request brings. The underscore directory keeps the
-  // cases off the router and out of the crawl; the run page is their one door.
+  // The Framework suite: the sandbox cases as fetched pages, exactly the Pages model. Every
+  // case is a triple under apps/regression4/<group>/ - the .pad is the template, the .txt
+  // the outcome beside it, an optional .php the variables - and each is fetched directly as
+  // the page it is, so a case gets the isolation a request brings and the crawl walks it
+  // like any other page.
   //
   // The comparison is the sandbox's: a case is written one statement to a line, so every
   // line break and the indentation after it come out of the body before it meets the
@@ -842,7 +857,7 @@
 
   function getFrameworkDir () {
 
-    return getRegressionApp () . 'framework/_suites/';
+    return APPS . 'regression4/';
 
   }
 
@@ -852,6 +867,9 @@
     $list = [];
 
     foreach ( padFiles ( getFrameworkDir () ) as $group ) {
+
+      if ( str_starts_with ( $group, '_' ) )
+        continue;
 
       if ( ! is_dir ( getFrameworkDir () . $group ) )
         continue;
@@ -873,7 +891,7 @@
 
     global $padHost;
 
-    return $padHost . "regression/?framework/run&case=$name&padInclude";
+    return $padHost . "regression4/?$name&padInclude";
 
   }
 
