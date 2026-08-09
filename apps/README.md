@@ -33,6 +33,8 @@ This directory contains PAD applications and examples.
 | [regression_error_pad](regression_error_pad/README.md) | Test | Regression test for the 'pad' error action - the index turns NO when the action stops behaving |
 | [regression_error_php](regression_error_php/README.md) | Test | Regression test for the 'php' error action - the index turns NO when the action stops behaving |
 | [regression_error_stop](regression_error_stop/README.md) | Test | Regression test for the 'stop' error action - the index turns NO when the action stops behaving |
+| [regression_output_download](regression_output_download/README.md) | Test | Regression test for the 'download' output type - the index turns NO when the writer stops behaving |
+| [regression_output_web](regression_output_web/README.md) | Test | Regression test for the 'web' output type - the index turns NO when the writer stops behaving |
 | [regression3](regression3/README.md) | Test | The pages of the suite that use _common - {example}, {demo}, {table} - fetched and compared the same way |
 | [sequence](sequence/README.md) | Standard | Mathematical sequence subsystem demos |
 | [structure](structure/README.md) | Example | Demonstrates PAD directory structure and nested `_xxx` directories |
