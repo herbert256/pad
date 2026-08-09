@@ -434,6 +434,15 @@
       $file  = substr($file,    strpos($file, '/')+1 );
       $item  = substr($file, 0, strrpos($file, '.')   );
 
+      // The three suite applications are left out of the crawl. Every page of regression2,
+      // regression3 and regression4 is already fetched and compared against a handwritten
+      // answer by the Pages, Common and Framework suites - a stricter check than a stored
+      // baseline - so crawling them again is redundant, and their 1,100-odd cases are most
+      // of what the crawl walks. The scan is for the applications no suite asserts.
+
+      if ( in_array ( $app, [ 'regression2', 'regression3', 'regression4' ] ) )
+        continue;
+
       $files ["$app/$item"] ['path'] = $path;
       $files ["$app/$item"] ['app']  = $app;
       $files ["$app/$item"] ['item'] = $item;

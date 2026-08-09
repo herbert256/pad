@@ -15,7 +15,7 @@ regression/
 ├── pages/index.pad/.php     # the Pages suite overview     - its tests live in apps/regression2/
 ├── common/index.pad/.php    # the Common suite overview    - its tests live in apps/regression3/
 ├── framework/index.pad/.php # the Framework suite overview - its tests live in apps/regression4/
-├── scan/index.pad/.php      # the crawl of every page of every application
+├── scan/index.pad/.php      # the crawl of every application the suites do not assert
 ├── ok.php                   # accepts what a page renders now as its baseline
 └── show/                    # what one crawled page renders, against its stored copy
 ```
@@ -45,7 +45,9 @@ pattern/` the body must match too, so a page that exists to fail asserts the rig
 a file that is one `/pattern/` is matched against the whole body, for a page that draws. A test
 with no `.txt` yet comes up `new`, and the overview shows exactly what came back.
 
-**Scan** - `?scan/index`. Crawls every page of every application, compares each against the copy
+**Scan** - `?scan/index`. Crawls every page of every application the suites do not already
+assert - regression2, regression3 and regression4 are left out, since Pages, Common and Framework
+fetch and check each of their pages against a handwritten answer. It compares each crawled page against the copy
 in `DATA/regression/`, and reports ok / expected / new / warning / error / random / empty.
 `expected` is a page that fails on purpose - a 500 its suite expectation declares - counted
 but kept off the list of what needs looking at; a page as empty as its stored copy is simply

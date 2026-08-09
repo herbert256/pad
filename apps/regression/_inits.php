@@ -19,7 +19,8 @@
   // Pages, Common and Framework are the suites, every test a page fetched over HTTP - from
   // regression2 for Pages, which runs with _common switched off, from regression3 for
   // Common, the pages that use it, and from regression4 for Framework, where every engine
-  // case is a page of its own. Scan is the crawl of every page of every application.
+  // case is a page of its own. Scan is the crawl of every application the suites do not
+  // assert - regression2, regression3 and regression4 are left out, being suite-covered.
 
   $skipTitle = TRUE;
 
