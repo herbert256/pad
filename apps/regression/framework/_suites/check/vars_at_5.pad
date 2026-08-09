@@ -1,0 +1,34 @@
+{pad name='cool', abc=123, 'fiets', $abc='banaan', $go='nuts', xyz=789, 12*15, 34}
+
+<h3>variables</h3>
+
+  1 - {$go} <br>
+  2 - {@go} <br>
+  3 - {$go@cool} <br>
+  4 - {$go@cool:variables} <br>
+  5 - {$go@variables} <br>
+
+<br>
+
+  1 - {$<@variables} <br>
+  2 - {$<@cool:variables} <br>
+
+<br>
+
+  1 - {$>@variables} <br>
+  2 - {$>@cool:variables} <br>
+
+<br>
+
+  <table border="1">
+    <th>name</th>
+    <th>value</th>
+    {variables@cool}
+      <tr>
+        <td>{$name}</td>
+        <td>{$value}</td>
+      </tr>
+    {/variables@cool}
+  </table>
+  
+{/pad}

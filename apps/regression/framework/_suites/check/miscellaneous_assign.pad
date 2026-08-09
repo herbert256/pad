@@ -1,0 +1,21 @@
+{set $abc = '1234567890'}
+{$abc}
+
+<hr>
+
+{set $abc = '1234567890'}
+{$abc | . ' after' | 'before ' . }
+
+<hr>
+
+{set $abc = '1234567890'}
+{$abc | @ . ' after' | 'before ' . @}
+
+<hr>
+
+{set $abc = '1234567890'}
+{$abc | . '"'}<br>
+{$abc | '"' . }<br>
+{$abc | . '"' . }
+
+<hr>

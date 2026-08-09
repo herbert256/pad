@@ -38,7 +38,7 @@
     'status' => $sandboxFail ? 'FAILURES' : 'ok'
   ];
 
-  foreach ( [ 'Pages' => 'pages', 'Common' => 'common' ] as $suiteName => $suite ) {
+  foreach ( [ 'Pages' => 'pages', 'Common' => 'common', 'Framework' => 'framework' ] as $suiteName => $suite ) {
 
     $result = getPages ( $suite );
 

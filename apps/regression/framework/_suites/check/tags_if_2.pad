@@ -1,0 +1,15 @@
+<p>
+  {if $fruit eq 'banana'}
+    {if $color eq 'pink'}
+      <b> A pink banana </b>
+    @else@
+      <b> Not a pink banana </b>
+    {/if}
+  @else@
+    {if $color eq 'green'}
+      <b> An {$fruit} is {$color}</b>
+    @else@
+      <b> Not a green fruit </b>
+    {/if}
+  {/if}
+</p>

@@ -80,9 +80,10 @@
 
   function getRegression ( $extra='' ) {
 
-    getRegressionSandbox ();
-    getRegressionPages   ();
-    getRegressionAll     ( $extra );
+    getRegressionSandbox   ();
+    getRegressionPages     ();
+    getRegressionFramework ();
+    getRegressionAll       ( $extra );
 
   }
 
@@ -824,6 +825,151 @@
     }
 
     return [ 'tests' => [], 'summary' => 'never run', 'failed' => 0, 'new' => 0, 'when' => 0 ];
+
+  }
+
+
+  // The Framework suite: the sandbox cases as fetched pages. Every case is a triple under
+  // framework/_suites/<group>/ - the .pad is the template, the .txt the outcome, an optional
+  // .php the variables - and framework/run.php renders one per request, so each case is a
+  // real request with the isolation a request brings. The underscore directory keeps the
+  // cases off the router and out of the crawl; the run page is their one door.
+  //
+  // The comparison is the sandbox's: a case is written one statement to a line, so every
+  // line break and the indentation after it come out of the body before it meets the
+  // outcome - and the two ends are trimmed, which is what padCurl does to a body anyway.
+  // A .txt with slashes at both ends is a regular expression, as everywhere else.
+
+  function getFrameworkDir () {
+
+    return getRegressionApp () . 'framework/_suites/';
+
+  }
+
+
+  function getFrameworkList () {
+
+    $list = [];
+
+    foreach ( padFiles ( getFrameworkDir () ) as $group ) {
+
+      if ( ! is_dir ( getFrameworkDir () . $group ) )
+        continue;
+
+      foreach ( padFiles ( getFrameworkDir () . $group ) as $file )
+        if ( str_ends_with ( $file, '.pad' ) )
+          $list [] = "$group/" . substr ( $file, 0, -4 );
+
+    }
+
+    sort ( $list );
+
+    return $list;
+
+  }
+
+
+  function getFrameworkUrl ( $name ) {
+
+    global $padHost;
+
+    return $padHost . "regression/?framework/run&case=$name&padInclude";
+
+  }
+
+
+  function getFrameworkRun () {
+
+    $tests  = [];
+    $groups = [];
+    $total  = 0;
+    $failed = 0;
+    $new    = 0;
+
+    foreach ( getFrameworkList () as $name ) {
+
+      set_time_limit ( 60 );
+
+      $url  = getFrameworkUrl ( $name );
+      $want = getFrameworkDir () . "$name.txt";
+      $curl = padCurl ( $url );
+
+      $got  = trim ( preg_replace ( '/\n\s*/', '', $curl ['data'] ) );
+      $code = $curl ['result'];
+
+      if ( ! file_exists ( $want ) ) {
+
+        $status = 'new';
+        $expect = '';
+
+      } else {
+
+        $expect = trim ( padFileGet ( $want ) );
+
+        if ( strlen ( $expect ) > 1 and str_starts_with ( $expect, '/' ) and str_ends_with ( $expect, '/' ) ) {
+
+          $ok = (bool) preg_match ( $expect, $got ) and str_starts_with ( (string) $code, '2' );
+
+          if ( $ok )
+            $got = "matches $expect";
+
+        } else
+
+          $ok = ( $got === $expect and str_starts_with ( (string) $code, '2' ) );
+
+        $status = $ok ? 'ok' : 'FAILED';
+
+      }
+
+      $total++;
+      $groups [ substr ( $name, 0, strpos ( $name, '/' ) ) ] = TRUE;
+
+      if ( $status == 'FAILED' ) $failed++;
+      if ( $status == 'new'    ) $new++;
+
+      $tests [] = [
+        'name'   => $name,
+        'url'    => $url,
+        'want'   => htmlspecialchars ( $expect ),
+        'got'    => htmlspecialchars ( $got    ),
+        'status' => $status,
+        'failed' => ( $status == 'FAILED' ) ? 1 : 0
+      ];
+
+    }
+
+    return [
+      'tests'   => $tests,
+      'summary' => count ( $groups ) . " groups, $total tests, $failed failed" . ( $new ? ", $new new" : '' ),
+      'failed'  => $failed,
+      'new'     => $new,
+      'when'    => time ()
+    ];
+
+  }
+
+
+  function getFrameworkTest () {
+
+    set_time_limit ( 60 );
+
+    $result = getFrameworkRun ();
+
+    padFilePut ( getPagesFile ( 'framework' ), json_encode ( $result ) );
+
+    return $result;
+
+  }
+
+
+  function getRegressionFramework () {
+
+    global $padHost;
+
+    if ( APP != getRegressionApp () )
+      padCurl ( $padHost . "regression/?framework/index&test" );
+    else
+      getFrameworkTest ();
 
   }
 

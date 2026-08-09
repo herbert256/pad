@@ -29,15 +29,17 @@
   elseif ( $padPage == 'scan/index'                     ) $suiteTest = '?scan/index&go';
   elseif ( $padPage == 'pages/index'                    ) $suiteTest = '?pages/index&test';
   elseif ( $padPage == 'common/index'                   ) $suiteTest = '?common/index&test';
+  elseif ( $padPage == 'framework/index'                ) $suiteTest = '?framework/index&test';
   elseif ( str_starts_with ( $padPage, 'sandbox/' )     ) $suiteTest = "?$padPage&test";
   else                                                    $suiteTest = '';
 
   $suites = [
-    [ 'name' => 'Index',   'link' => '?index',         'now' => ( $padPage == 'index'         ) ? 1 : 0 ],
-    [ 'name' => 'Sandbox', 'link' => '?sandbox/index', 'now' => ( $padPage == 'sandbox/index' ) ? 1 : 0 ],
-    [ 'name' => 'Pages',   'link' => '?pages/index',   'now' => ( $padPage == 'pages/index'   ) ? 1 : 0 ],
-    [ 'name' => 'Common',  'link' => '?common/index',  'now' => ( $padPage == 'common/index'  ) ? 1 : 0 ],
-    [ 'name' => 'Scan',    'link' => '?scan/index',    'now' => ( $padPage == 'scan/index'    ) ? 1 : 0 ]
+    [ 'name' => 'Index',     'link' => '?index',           'now' => ( $padPage == 'index'           ) ? 1 : 0 ],
+    [ 'name' => 'Sandbox',   'link' => '?sandbox/index',   'now' => ( $padPage == 'sandbox/index'   ) ? 1 : 0 ],
+    [ 'name' => 'Pages',     'link' => '?pages/index',     'now' => ( $padPage == 'pages/index'     ) ? 1 : 0 ],
+    [ 'name' => 'Common',    'link' => '?common/index',    'now' => ( $padPage == 'common/index'    ) ? 1 : 0 ],
+    [ 'name' => 'Framework', 'link' => '?framework/index', 'now' => ( $padPage == 'framework/index' ) ? 1 : 0 ],
+    [ 'name' => 'Scan',      'link' => '?scan/index',      'now' => ( $padPage == 'scan/index'      ) ? 1 : 0 ]
   ];
 
   if ( $suiteTest )

@@ -1,0 +1,4 @@
+{sequence '1..10', push='nums'/}
+{pull:nums randomize=4, orderly}
+  {$sequence},
+{/pull:nums | draws(1, 10, 4, 'unique', 'ascending')}
