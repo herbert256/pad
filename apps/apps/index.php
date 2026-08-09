@@ -28,6 +28,11 @@
     // Skip self
     if ($dir === 'apps') continue;
 
+    // Of the regression family only the regression application itself is listed: the pages
+    // suites and the per-backend and per-action test applications are its instruments, and
+    // the regression app is where they are driven from.
+    if (str_starts_with($dir, 'regression') && $dir !== 'regression') continue;
+
     $app = [
       'name' => $dir,
       'path' => $appPath,
