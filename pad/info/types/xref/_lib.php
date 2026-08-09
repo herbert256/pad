@@ -22,6 +22,12 @@
     if ( $dir1 == 'sequence' )
       return padInfoXrefGo ( $dir1, $dir2, $dir3 );
 
+    // A configuration value is a fact about the request, not about a spot in the template:
+    // it is never in the page source, and a page that restarts - the file output type does -
+    // still ran under it. So none of the filters below apply.
+
+    if ( str_starts_with ( $dir1, 'config' ) ) return padInfoXrefGo ( $dir1, $dir2, $dir3 );
+
     if ( padInsideOther ()         ) return;
     if ( $padPage != $padStartPage ) return;
 

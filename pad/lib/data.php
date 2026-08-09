@@ -35,9 +35,18 @@
     else                                 $data = trim ( $input );
 
     if ( ! is_array ( $data ) ) {
+
       if ( ! $type )
         $type = padContentType ( $data );
+
+      // The reference's data-types family: which pages a format is really parsed for. The
+      // recorder only exists once the xref mode has started, hence the function test.
+
+      if ( ( $GLOBALS ['padInfoXref'] ?? FALSE ) and function_exists ( 'padInfoXref' ) )
+        padInfoXref ( 'config/data', $type );
+
       $data = include PAD . "data/$type.php";
+
     }
 
     if ( isset ( $padDataSetRecord ) and $padDataSetRecord ) {

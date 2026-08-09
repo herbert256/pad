@@ -11,4 +11,11 @@
 
   $padInfoXrefSource = padInfoGet ( APP . $padStartPage . '.pad' );
 
+  // The configuration this application chose for itself, captured by inits/config.php:
+  // recorded once per page, so the reference's configuration families can point at real
+  // pages running under each value.
+
+  foreach ( $padConfigSet ?? [] as $padInfoXrefFamily => $padInfoXrefValue )
+    padInfoXref ( "config/$padInfoXrefFamily", $padInfoXrefValue );
+
 ?>

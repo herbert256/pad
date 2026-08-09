@@ -18,6 +18,15 @@
   include PAD . 'config/config.php';
   include PAD . 'config/sequence.php';
 
+  // The framework's answers for the four closed configuration sets, remembered so the end
+  // of this file can see which of them the application deliberately changed - that is what
+  // the reference's configuration families call an example of the value.
+
+  $padConfigDefault = [ 'error'      => $padErrorAction,
+                        'outputType' => $padOutputType,
+                        'info'       => $padInfo,
+                        'cache'      => $padCache      ];
+
   if ( file_exists ( APP . '_config/config.php' ) )
     include APP . '_config/config.php';
 
@@ -43,5 +52,19 @@
 
   if ( $padErrorTry )
     include PAD . 'config/try.php';
+
+  // What this application chose for itself: each value that differs from the framework's
+  // default, keyed by the reference family that lists it. The cli web-to-console turn above
+  // counts - it is what that request really ran under. The xref recorder writes these to
+  // DATA/reference/config/ when a padReference crawl asks.
+
+  $padConfigSet = [];
+
+  if ( $padErrorAction != $padConfigDefault ['error']      ) $padConfigSet ['error']      = $padErrorAction;
+  if ( $padOutputType  != $padConfigDefault ['outputType'] ) $padConfigSet ['outputType'] = $padOutputType;
+  if ( $padCache       != $padConfigDefault ['cache'] and is_string ( $padCache ) )
+                                                             $padConfigSet ['cache']      = $padCache;
+  if ( $padInfo        != $padConfigDefault ['info'] and $padInfo )
+                                                             $padConfigSet ['info']       = $padInfo;
 
 ?>

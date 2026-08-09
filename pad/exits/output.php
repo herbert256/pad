@@ -9,6 +9,14 @@
 
   $padLen = ( $padStop == 200 ) ? strlen ( $padOutput ) : 0;
 
+  // The reference's output-type family records here, while the type that actually writes
+  // this output is the active one - a file-writing page hands the request back to 'web'
+  // before the exit, so recording any later tells the wrong story.
+
+  if ( ( $padInfoXref ?? FALSE ) and function_exists ( 'padInfoXref' )
+       and $padOutputType != ( $padConfigSet ['outputType'] ?? $padConfigDefault ['outputType'] ) )
+    padInfoXref ( 'config/outputType', $padOutputType );
+
   padCheckBuffers ();
 
   if ( $padOutputType != 'web' and $padCacheStop == 200 and $padCacheServerGzip )
