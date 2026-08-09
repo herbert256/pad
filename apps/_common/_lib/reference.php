@@ -51,7 +51,15 @@
 
     if ( str_starts_with ( $xref, 'tag/pad'       ) ) return "/\{\/?$q\b/";
     if ( str_starts_with ( $xref, 'tag/common'    ) ) return "/\{\/?$q\b/";
-    if ( str_starts_with ( $xref, 'config'        ) ) return "/'$q'/";
+
+    // A configuration value counts only where it is assigned to its own setting - a bare
+    // quoted word matched every unrelated 'file' and 'db' a test happened to contain.
+
+    if ( str_starts_with ( $xref, 'config/error'      ) ) return "/padErrorAction\s*=\s*'$q'/";
+    if ( str_starts_with ( $xref, 'config/outputType' ) ) return "/padOutputType\s*=\s*'$q'/";
+    if ( str_starts_with ( $xref, 'config/info'       ) ) return "/padInfo\s*=\s*'?$q\b/";
+    if ( str_starts_with ( $xref, 'config/cache'      ) ) return "/padCache\s*=\s*'$q'/";
+    if ( str_starts_with ( $xref, 'config/data'       ) ) return "/padData[^;]{0,60}'$q'|type\s*=\s*'$q'/";
     if ( str_starts_with ( $xref, 'tag'           ) ) return "/\b$q:/";
     if ( str_starts_with ( $xref, 'properties'    ) ) return "/\b$q@|\{\/?$q\b|:$q\b/";
     if ( str_starts_with ( $xref, 'options/general' ) ) return "/\b$q\s*[=,}]/";
