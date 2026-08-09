@@ -20,6 +20,7 @@ This directory contains PAD applications and examples.
 | [reference](reference/README.md) | Standard | Cross-reference and directory utilities |
 | [regression](regression/README.md) | Standard | Automated regression testing for PAD - the sandbox cases, the crawl, and the runner for both suites |
 | [regression2](regression2/README.md) | Test | The pages suite: every test is a real page, fetched over HTTP and compared with the answer beside it |
+| [regression_cache_apcu](regression_cache_apcu/README.md) | Test | Regression test for the 'apcu' page cache - the index turns NO when the backend stops caching |
 | [regression_cache_db](regression_cache_db/README.md) | Test | Regression test for the 'db' page cache - the index turns NO when the backend stops caching |
 | [regression_cache_file](regression_cache_file/README.md) | Test | Regression test for the 'file' page cache - the index turns NO when the backend stops caching |
 | [regression_cache_memcached](regression_cache_memcached/README.md) | Test | Regression test for the 'memcached' page cache - the index turns NO when the backend stops caching |

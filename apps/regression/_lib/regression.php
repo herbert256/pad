@@ -249,7 +249,7 @@
 
     if     ( ! $good                    ) $status = getRegressionExpects ( $app, $item, $curl ['result'] ) ? 'expected' : 'error';
     elseif ( in_array ( "$app/$item", [ 'regression/scan/index', 'regression/index', 'demo/clock',
-                                        'regression_cache_file/probe', 'regression_cache_db/probe',
+                                        'regression_cache_apcu/probe', 'regression_cache_file/probe', 'regression_cache_db/probe',
                                         'regression_cache_memcached/probe', 'regression_cache_redis/probe' ] ) )
                                           $status = 'random';
     elseif ( ! file_exists ($store)     ) $status = 'new';
