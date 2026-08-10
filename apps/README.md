@@ -19,10 +19,13 @@ This directory contains PAD applications and examples.
 | [pad](pad/README.md) | Standard | PAD framework introduction and reference |
 | [react](react/README.md) | Standard | PAD + React integration examples |
 | [reference](reference/README.md) | Standard | Cross-reference and directory utilities |
-| [regression/main](regression/main/README.md) | Standard | Automated regression testing for PAD - the runner for the four suites, the crawl, and the fresh build |
+| [regression/main](regression/main/README.md) | Standard | Automated regression testing for PAD - the runner for the seven suites, the harvest, and the fresh build |
 | [regression/pages](regression/pages/README.md) | Test | The pages suite: every test is a real page, fetched over HTTP and compared with the answer beside it |
 | [regression/framework](regression/framework/README.md) | Test | The Framework suite: the engine cases as pages, one fetched per case |
 | [regression/regression](regression/regression/README.md) | Test | The Regression suite's prediction store - one answer per page of the self-testing applications and the runner |
+| [regression/sequence](regression/sequence/README.md) | Test | The Sequence suite's prediction store - one answer per page of the sequence application |
+| [regression/manual](regression/manual/README.md) | Test | The Manual suite's prediction store - one answer per page of the manual application |
+| [regression/other](regression/other/README.md) | Test | The Other suite's prediction store - one answer per page of every application without a suite of its own |
 | [regression/cache_apcu](regression/cache_apcu/README.md) | Test | Regression test for the 'apcu' page cache - the index turns NO when the backend stops caching |
 | [regression/cache_db](regression/cache_db/README.md) | Test | Regression test for the 'db' page cache - the index turns NO when the backend stops caching |
 | [regression/cache_file](regression/cache_file/README.md) | Test | Regression test for the 'file' page cache - the index turns NO when the backend stops caching |

@@ -1,23 +1,12 @@
 <?php
 
   // The fresh build, at home in this application: clear everything a build regenerates -
-  // the reference store, the crawl baselines, the error dumps, the harvested examples and
-  // the suite results - then run the four suites, harvest, crawl, accept and verify
-  // through getRegressionBuild(). The page itself only offers the link; the wipe and the
-  // minutes of fetches happen behind goBuild, so a stray click costs nothing.
-  //
-  // The bare ?build&go=1 form stays: develop's build page asks for the build there, doing
-  // its own cleaning first.
+  // the reference store, the error dumps, the harvested examples and the suite results -
+  // then run the seven suites and the one harvest crawl that remains, which gathers the
+  // reference and the examples. The page itself only offers the link; the wipe and the
+  // minutes of fetches happen behind go, so a stray click costs nothing.
 
   if ( isset ( $go ) ) {
-
-    getRegressionBuild ();
-
-    padRedirect ( $padPage );
-
-  }
-
-  if ( isset ( $goBuild ) ) {
 
     padDeleteDataDir ( DATA . 'reference'  );
     padDeleteDataDir ( DATA . 'regression' );
@@ -28,7 +17,7 @@
 
     set_time_limit ( 0 );
 
-    getRegressionBuild ();
+    getRegression ( '&padExamples&padReference' );
 
     padRedirect ( 'index' );
 

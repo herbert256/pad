@@ -1,10 +1,5 @@
 <?php
 
-  // Defaults for show/, which reads an application and an item out of the query string.
-
-  if ( ! isset ( $app  ) ) $app  = 'manual';
-  if ( ! isset ( $item ) ) $item = 'hello/hello';
-
   // Every page of this application carries the same menu above its title. Its last entry is
   // Test, and what Test runs is about the page it is on: on the index everything, on a
   // suite page that suite, and on the scan page it is the scan. Pages that have no test of
@@ -21,19 +16,22 @@
   // Common, the pages that use it, and from regression/framework for Framework, where every engine
   // case is a page of its own. Regression is the suite over the self-testing applications,
   // their predictions held in regression/regression while the pages stay in their own
-  // apps. Scan is the crawl of every application, comparing each page against its stored
-  // copy - the regression family excepted, whose pages the four suites assert. Build is
-  // the fresh build: clear every regenerated store, then suites, harvest, crawl, accept
-  // and verify - the whole cycle, at home here rather than in develop.
+  // apps. Sequence and Manual are the application suites - apps/sequence/ and apps/manual/,
+  // their predictions in regression/sequence and regression/manual the same way. Other is
+  // the suite over every application without one of its own. Build is the fresh build:
+  // clear every regenerated store, run the seven suites, and harvest the reference and
+  // the examples in the one crawl that remains.
 
   $skipTitle = TRUE;
 
   if     ( $padPage == 'index'                          ) $suiteTest = '?index&test';
-  elseif ( $padPage == 'scan/index'                     ) $suiteTest = '?scan/index&go';
   elseif ( $padPage == 'pages/index'                    ) $suiteTest = '?pages/index&test';
   elseif ( $padPage == 'common/index'                   ) $suiteTest = '?common/index&test';
   elseif ( $padPage == 'framework/index'                ) $suiteTest = '?framework/index&test';
   elseif ( $padPage == 'regression/index'               ) $suiteTest = '?regression/index&test';
+  elseif ( $padPage == 'sequence/index'                 ) $suiteTest = '?sequence/index&test';
+  elseif ( $padPage == 'manual/index'                   ) $suiteTest = '?manual/index&test';
+  elseif ( $padPage == 'other/index'                    ) $suiteTest = '?other/index&test';
   else                                                    $suiteTest = '';
 
   $suites = [
@@ -42,7 +40,9 @@
     [ 'name' => 'Common',    'link' => '?common/index',    'now' => ( $padPage == 'common/index'    ) ? 1 : 0 ],
     [ 'name' => 'Framework', 'link' => '?framework/index', 'now' => ( $padPage == 'framework/index' ) ? 1 : 0 ],
     [ 'name' => 'Regression', 'link' => '?regression/index', 'now' => ( $padPage == 'regression/index' ) ? 1 : 0 ],
-    [ 'name' => 'Scan',      'link' => '?scan/index',      'now' => ( $padPage == 'scan/index'      ) ? 1 : 0 ]
+    [ 'name' => 'Sequence', 'link' => '?sequence/index', 'now' => ( $padPage == 'sequence/index' ) ? 1 : 0 ],
+    [ 'name' => 'Manual', 'link' => '?manual/index', 'now' => ( $padPage == 'manual/index' ) ? 1 : 0 ],
+    [ 'name' => 'Other', 'link' => '?other/index', 'now' => ( $padPage == 'other/index' ) ? 1 : 0 ]
   ];
 
   if ( $suiteTest )

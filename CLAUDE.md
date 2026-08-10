@@ -890,8 +890,8 @@ curl "http://localhost/pad/pad/?hello"         # Hello World test
 # Debugging output
 curl "http://localhost/pad/app/?page&padInfo=trace"  # With trace
 
-# Run all five regression test kinds (suites + crawl; suite runs in DATA/suites/, crawl
-# baselines in DATA/regression/)
+# Run all seven suites (results in DATA/suites/; the only crawl left is the build's
+# harvest, which gathers DATA/reference and DATA/examples)
 curl -L "http://localhost/pad/regression/main/?index&test"
 
 # Or as a CI gate from the repo root - one line per suite, nonzero exit on any failure
@@ -924,10 +924,13 @@ This is particularly useful for:
 | `pad` | Standard | PAD framework introduction and reference |
 | `react` | Standard | PAD + React integration examples |
 | `reference` | Standard | Cross-reference and directory utilities |
-| `regression/main` | Standard | Automated regression testing for PAD - the runner for the four suites, the crawl, and the fresh build |
+| `regression/main` | Standard | Automated regression testing for PAD - the runner for the seven suites, the harvest, and the fresh build |
 | `regression/pages` | Test | The pages suite: every test is a real page, fetched over HTTP and compared with the answer beside it |
 | `regression/framework` | Test | The Framework suite: the engine cases as pages, one fetched per case |
 | `regression/regression` | Test | The Regression suite's prediction store - one answer per page of the self-testing applications and the runner |
+| `regression/sequence` | Test | The Sequence suite's prediction store - one answer per page of the sequence application |
+| `regression/manual` | Test | The Manual suite's prediction store - one answer per page of the manual application |
+| `regression/other` | Test | The Other suite's prediction store - one answer per page of every application without a suite of its own |
 | `regression/cache_apcu` | Test | Regression test for the 'apcu' page cache |
 | `regression/cache_db` | Test | Regression test for the 'db' page cache |
 | `regression/cache_file` | Test | Regression test for the 'file' page cache |

@@ -1,0 +1,215 @@
+<h1>Requests, Urls and Variables</h1>
+
+<p>A PAD url names the page in the query string:</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+  <tr><th>url</th><th>page</th></tr>
+  <tr><td><code>/myapp/</code></td><td><code>index.pad</code></td></tr>
+  <tr><td><code>/myapp/?about</code></td><td><code>about.pad</code></td></tr>
+  <tr><td><code>/myapp/?admin/users</code></td><td><code>admin/users.pad</code></td></tr>
+  <tr><td><code>/myapp/?about&amp;who=world</code></td><td><code>about.pad</code>, with a parameter</td></tr>
+</table>
+
+<h2>Parameters become variables</h2>
+
+<p>Everything after the page name arrives as plain variables: <code>&amp;who=world</code> is
+<code>$who</code> in the page's PHP and <code>{$who}</code> in its template. The
+<code>optional</code> pipe reads one that may not be there:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/requests_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;Hello <b>{<font color="green">$who</font> <font color="black">|</font> <font color="blue">optional</font>}</b>!&lt;/p&gt;<br>&lt;p&gt;&lt;a href="?pages/requests_and_urls&amp;who=world"&gt;say who you are&lt;/a&gt;&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>Hello !</p>
+<p><a href="?pages/requests_and_urls&who=world">say who you are</a></p>
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<h2>Building urls: the {?var} form</h2>
+
+<p>The third variable spelling writes a variable as a url fragment -
+<code>{?city}</code> renders <code>&amp;city=value</code>, encoded and ready to
+append to a link:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/requests_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>city = <font color="black">'</font>Den Haag<font color="black">'</font></font>/}</b><br>&lt;p&gt;As a url fragment: <b>{<font color="green">?city</font>}</b>&lt;/p&gt;<br>&lt;p&gt;&lt;a href="?pages/requests_and_urls<b>{<font color="green">?city</font>}</b>"&gt;a link carrying it along&lt;/a&gt;&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+<p>As a url fragment: &city=Den+Haag</p>
+<p><a href="?pages/requests_and_urls&city=Den+Haag">a link carrying it along</a></p>
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<h2>Forms</h2>
+
+<p>A form posts back to the page it is on - no action needed - and its fields arrive as
+variables like any other. A hidden field commonly says what the page should do with them,
+so the PHP half can branch on <code>$action</code>:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/requests_3.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;form method="post"&gt;<br>  &lt;input type="text" name="note" value=""&gt;<br>  &lt;input type="submit" value="send"&gt;<br>&lt;/form&gt;<br>&lt;p&gt;The note said: <b>{<font color="green">$note</font> <font color="black">|</font> <font color="blue">optional</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <form method="post">
+  <input type="text" name="note" value="">
+  <input type="submit" value="send">
+</form>
+<p>The note said: </p>
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<p>Two habits keep this safe: pass what a visitor typed through
+<code>padMakeSafe ( $input, $len )</code> before using it, and give variables set in
+<code>_inits.php</code> names a form field would never use - a form field named the same
+would be overwritten.</p>
+
+<h2>Carrying more than a url can</h2>
+
+<p><code>padFastLink ( $page, $vars )</code> builds a link that carries a whole set of
+variables to the next page in one opaque token - for when the data is too much, or too
+private, for a query string.</p>

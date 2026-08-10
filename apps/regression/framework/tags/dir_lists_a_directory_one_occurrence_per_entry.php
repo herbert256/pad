@@ -1,5 +1,5 @@
 <?php
 
-  $caseScanDir = '/Users/herbert/pad/apps/regression/main/scan';
+  $caseScanDir = '/Users/herbert/pad/apps/regression/main/other';
 
 ?>

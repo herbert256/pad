@@ -1,77 +1,5 @@
 <?php
 
-
-  // The suites run once, the crawl three times. A suite is a deterministic assert against
-  // the .txt files, so a second run answers the same as the first; the crawl is what needs
-  // the cycle - a harvest pass whose extras can leak into pages that echo their query
-  // string, a plain pass that stores the real bodies, the accept, and a verify pass.
-  // Running the suites first also settles their overview pages before the crawl stores
-  // them: a rerun would change the 'ran' stamps and put those pages on warning forever.
-
-  function getRegressionBuild ( ) {
-    getRegression        ( '&padExamples&padReference' );
-    getRegressionAll     ( );
-    getRegressionWarning ( );
-    getRegressionAll     ( );
-  }
-
-
-  // Accepts every page the crawl has marked 'warning' - it walks the stored statuses and calls
-  // ?ok on each, which is the one-page-at-a-time link the crawl list already offers.
-  //
-  // A warning means only that a page renders differently from the copy stored for it. After a
-  // deliberate change - a case added, a menu entry, a wording fixed - that is every page the
-  // change touched, and accepting them one link at a time is the tedium this replaces.
-  //
-  // It is not a way of making the list green. A page that renders differently every time it is
-  // asked - a clock, a counter, an {ajax} id, anything drawing at random - comes straight back as
-  // a warning on the next crawl, and should: the right answer for those is the 'random' marker in
-  // the page, which stops the crawl comparing it at all. So read what this returns rather than
-  // just running it; a name that keeps appearing is telling you something.
-  //
-  // Returns the items accepted, "app/item" each, in the order they were found.
-
-  function getRegressionWarning ( ) {
-
-    global $padHost;
-
-    $dir  = DATA . 'regression/';
-
-    $directory = new RecursiveDirectoryIterator ( $dir );
-    $iterator  = new RecursiveIteratorIterator  ( $directory );
-
-    foreach ( $iterator as $one ) {
-
-      $path = padCorrectPath ( $one->getPathname () );
-
-      if ( ! str_ends_with ( $path, '.txt' ) )
-        continue;
-
-      if ( trim ( padFileGet ( $path ) ) != 'warning' )
-        continue;
-
-      $base = substr ( $path, strlen ( $dir ) );
-
-      // The store nests like apps/ does, so the app part may span more than one directory -
-      // the boundary is where an index page lives, exactly as padAppsList() draws it.
-
-      $parts = explode ( '/', dirname ( $base ) );
-      $app   = array_shift ( $parts );
-
-      while ( $parts and ! padAppsListRoot ( $app ) )
-        $app .= '/' . array_shift ( $parts );
-
-      $item = substr ( $base, strlen ( $app ) + 1, -4 );
-
-      set_time_limit ( 60 );
-
-      padCurl ( $padHost . "regression/main/?ok&app=$app&item=" . urlencode ( $item ) );
-
-    }
-
-  }
-
-  
   // Where the two suites live. They belong to the regression application wherever they are driven
   // from - develop's build page calls getRegression() as well - so the directories are named
   // absolutely rather than against APP.
@@ -94,7 +22,11 @@
     getRegressionPages     ();
     getRegressionFramework ();
     getRegressionSuite     ();
-    getRegressionAll       ( $extra );
+    getRegressionAppSuites ();
+    getRegressionOther     ();
+
+    if ( $extra )
+      getRegressionAll ( $extra );
 
   }
 
@@ -115,163 +47,81 @@
   }
 
 
-  // The plain crawl goes twelve pages at a time: the fetches are independent GETs against
-  // a server with as many workers, so a window of them is fetched through padCurlMulti and
-  // the answers are compared and stored one by one, in order, as before.
-  //
-  // A run with extras stays one page at a time. With &padReference every crawled page
-  // appends what it used to the shared reference files as it renders, behind a read-check-
-  // append that is not safe against itself running twelve-wide - and the harvest is one
-  // run per build, so its pace hardly matters.
+  // The Other suite: every application without a suite of its own - whatever
+  // padAppsList() names outside the regression family and the application suites. A new
+  // application lands here as 'new' until its predictions are written under
+  // apps/regression/other/<app>/.
 
-  function getRegressionAll ( $extra='' ) {
+  function getOtherSuiteRun () {
 
-    set_time_limit ( 60 );
+    $tests = [];
 
-    // A run with extras is the build's harvest pass, and it walks everything: the reference
-    // and the examples are gathered from the suite applications' pages too, so they are
-    // fetched here even though the plain crawl below leaves them out.
+    foreach ( padAppsList () as $one ) {
 
-    if ( $extra ) {
-
-      foreach ( padAppsList () as $one ) {
-
-        extract ( $one );
-
-        getRegressionGo ( $app, $item, $extra );
-
-      }
-
-      return;
-
-    }
-
-    // The plain crawl - the store pass, the verify pass, and every standalone scan - leaves
-    // the whole regression family out. Every page of the family is fetched and checked
-    // against a handwritten answer by one of the four suites - Pages, Common and Framework
-    // for the suite applications, the Regression suite for the self-testing ones and for
-    // main itself - a stricter test than a stored baseline. They keep no baseline of their
-    // own; only the once-per-build harvest pass above visits them.
-
-    $flock = [];
-
-    foreach ( padAppsList () as $one )
-      if ( str_starts_with ( $one ['app'], 'regression/' ) )
+      if ( str_starts_with ( $one ['app'], 'regression/' ) or in_array ( $one ['app'], getAppSuites () ) )
         continue;
-      else
-        $flock [] = $one;
-
-    foreach ( array_chunk ( $flock, 48 ) as $chunk ) {
 
       set_time_limit ( 60 );
 
-      $urls = [];
+      $want = APPS . 'regression/other/' . $one ['app'] . '/' . $one ['item'] . '.txt';
 
-      foreach ( $chunk as $i => $one )
-        $urls [$i] = getRegressionUrl ( $one ['app'], $one ['item'] );
+      $test = getPagesOne ( $one ['app'], $one ['item'],
+                            getPagesUrl ( $one ['app'], $one ['item'] ), $want );
 
-      $fetched = padCurlMulti ( $urls );
+      $test ['name'] = $one ['app'] . '/' . $one ['item'];
+      $test ['what'] = '';
 
-      foreach ( $chunk as $i => $one )
-        getRegressionGo ( $one ['app'], $one ['item'], '', $fetched [$i] ?? NULL );
+      $tests [] = $test;
 
     }
 
+    return getPagesResult ( $tests );
+
   }
 
 
-  // The session and request ids a page carries are different on every request by design, so a
-  // page that writes them into its own output can never match a stored copy. {ajax} does exactly
-  // that - padAddIds() appends padSesID and padReqID to the url it builds - and that alone was
-  // enough to keep reference/pages and regression/show/index permanently on warning.
-  //
-  // They are taken out of both sides before comparing, and only for comparing: what is stored is
-  // still the page as it came, so the show page diffs the real thing.
+  function getRegressionOther () {
 
-  function getRegressionCompare ( $text, $draw = FALSE ) {
+    global $padHost;
 
-    $text = preg_replace ( '/padSesID=[A-Za-z0-9]+/', 'padSesID=', $text );
-    $text = preg_replace ( '/padReqID=[A-Za-z0-9]+/', 'padReqID=', $text );
+    if ( APP != getRegressionApp () )
+      padCurl ( $padHost . "regression/main/?other/index&test" );
+    else
+      getPagesTest ( 'other' );
 
-    // With $draw, every run of digits goes too. That is what lets a page which draws numbers be
-    // compared at all: the values it happened to pick are the part that cannot match, and the
-    // headings, rows, table structure and everything else around them are the 93% that can.
+  }
 
-    // A run of drawn values collapses to one. A page can draw a different *number* of values as
-    // well as different values - {mySeq randomly, unique} drops duplicates, so eight terms one
-    // run and six the next - and without this the row count alone reported a change that was
-    // only ever the draw. A heading, a column or a tag still shows, which is the point.
 
-    // The names of a day and a month go with the digits. A page that prints a date prints them
-    // too - "Friday, August 7, 2026" - and they are words, so masking numbers left the weekday
-    // behind: demo/clock and demo/counter came up as changed the first time the crawl ran after
-    // midnight, every night, and nothing but a fresh baseline would quiet them.
+  function getRegressionAppSuites () {
 
-    // What a {demo} produced is the draw itself, and _common marks it out for us. On a page that
-    // draws, the whole of each result goes: sequence/play/double/random draws nothing at all now
-    // and then, so one render says a value where the last said none, and no amount of masking
-    // digits makes those two agree. The sources, headings and table around them still compare,
-    // which is what these pages are worth checking for.
+    global $padHost;
 
-    if ( $draw )
-      $text = preg_replace ( '/(<!-- START DEMO RESULT -->).*?(<!-- END DEMO RESULT -->)/s', '$1#$2', $text );
+    foreach ( getAppSuites () as $suite )
 
-    if ( $draw ) {
-      $text = preg_replace ( '/\b(Mon|Tues|Wednes|Thurs|Fri|Satur|Sun)day\b/', 'DAY', $text );
-      $text = preg_replace ( '/\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/', 'MONTH', $text );
-      $text = preg_replace ( '/\d+/',      '#', $text );
-      $text = preg_replace ( '/#(\s+#)+/', '#', $text );
+      if ( APP != getRegressionApp () )
+        padCurl ( $padHost . "regression/main/?$suite/index&test" );
+      else
+        getPagesTest ( $suite );
+
+  }
+
+
+  // The harvest walk: one page at a time over every application padAppsList() names -
+  // the reference and the examples are gathered from the suite applications' pages too.
+  // This is the only crawl left; comparing pages is the suites' business. It stays one
+  // page at a time: with &padReference every page appends what it used to the shared
+  // reference files as it renders, behind a read-check-append that is not safe against
+  // itself running twelve-wide - and the harvest is one run per build.
+
+  function getRegressionAll ( $extra ) {
+
+    foreach ( padAppsList () as $one ) {
+
+      set_time_limit ( 60 );
+
+      getRegressionGo ( $one ['app'], $one ['item'], $extra );
+
     }
-
-    return $text;
-
-  }
-
-
-  // Whether a page says of itself that it draws. The three words are matched with str_contains
-  // rather than strpos, which returns 0 for a word at the very start of a file and reads as false.
-
-  function getRegressionDraws ( $source ) {
-
-    return str_contains ( $source, 'random'  )
-        or str_contains ( $source, 'shuffle' )
-        or str_contains ( $source, 'chance'  );
-
-  }
-
-
-  // What to make of a page that draws: the draw is masked and the rest compared. Where that
-  // matches, the page is 'random' - the colour says it cannot be compared exactly, and the
-  // status means "looked at and unchanged". Across the drawing pages only a small part of
-  // the output actually varies from run to run; everything around the draw still compares.
-  //
-  // Where it does not match, the page is asked for once more. If two fresh draws differ from each
-  // other even masked then the shape itself varies per run and there is nothing to compare, so it
-  // stays 'random'. Otherwise the page really has changed, and that is a warning.
-
-  function getRegressionDraw ( $url, $old, $new ) {
-
-    if ( getRegressionCompare ( $old, TRUE ) == getRegressionCompare ( $new, TRUE ) )
-      return 'random';
-
-    // Asked for once more, and the second draw is held against both the first and the stored copy.
-    //
-    // A page can have more than one shape without having changed. sequence/play/double/random
-    // draws nothing at all now and then, so one render says '#' where the last said nothing, and
-    // comparing the two fresh draws alone reported that as a change roughly five times in six.
-    // If the stored shape comes back on the second ask, the page still produces it and the odd
-    // draw was just a draw.
-    //
-    // So a warning needs two independent draws that both differ from what was stored, and agree
-    // with each other about it. Anything less is a page nothing can be concluded about, which is
-    // what 'random' says.
-
-    $again = getRegressionCompare ( padCurl ( $url ) ['data'], TRUE );
-
-    if ( $again == getRegressionCompare ( $old, TRUE ) ) return 'random';
-    if ( $again != getRegressionCompare ( $new, TRUE ) ) return 'random';
-
-    return 'warning';
 
   }
 
@@ -289,19 +139,6 @@
   }
 
 
-  // A page whose declared answer is a regular expression has said of itself that no two
-  // renderings are byte-equal - the suite holds it to its pattern, and the crawl marks it
-  // random rather than warning about every fresh draw.
-
-  function getRegressionPatterned ( $app, $item ) {
-
-    $want = trim ( padFileGet ( APPS . "$app/$item.txt" ) );
-
-    return ( strlen ( $want ) > 1 and str_starts_with ( $want, '/' ) and str_ends_with ( $want, '/' ) );
-
-  }
-
-
   function getRegressionUrl ( $app, $item, $extra='' ) {
 
     global $padHost;
@@ -313,92 +150,30 @@
   }
 
 
-  // $fetched lets the crawl hand in a response it already holds - getRegressionAll fetches
-  // a window of pages concurrently and walks the answers - and a call without one fetches
-  // for itself, exactly as before.
+  // The harvester behind getRegressionAll(): fetch the page with the harvest extras and
+  // store what the examples application shows - the sources beside the tidied render. The
+  // reference harvest rides the same fetch: &padReference makes the page itself record
+  // what it used as it renders. The source is read for the markers that say a page is no
+  // example - a body that is mostly another page's, a demo, an {ajax} shell - and a page
+  // with no template keeps its markers in its .php, so all three halves are read.
 
   function getRegressionGo ( $app, $item, $extra='', $fetched=NULL ) {
 
-    global $padHost;
+    $curl = $fetched ?? padCurl ( getRegressionUrl ( $app, $item, $extra ) );
 
-    $include = ( $item != 'index' ) ? '&padInclude' : '';
-    $store   = DATA . "regression/$app/$item.html";
-
-    $curl   = $fetched ?? padCurl ( getRegressionUrl ( $app, $item, $extra ) );
-
-    // The source is read to find the marker that says a page cannot be compared, and to see what
-    // an example harvest should skip. A page with no template keeps both of those in its .php,
-    // and looking only at the .pad missed them: sequence/sequences says random in its .php and
-    // was compared exactly the moment the crawl started walking php-only pages.
+    if ( ! str_contains ( $extra, '&padExamples' ) or ! str_starts_with ( $curl ['result'], '2' ) )
+      return;
 
     $source = padFileGet ( APPS . "$app/$item.pad"  )
             . padFileGet ( APPS . "$app/$item.html" )
             . padFileGet ( APPS . "$app/$item.php"  );
-    $old    = padFileGet ( $store );
-
-    $good = str_starts_with ( $curl ['result'], '2');
-    $new  = $curl ['data'];
-
-    // The crawl's own overview lists the status of every page, and those change as the crawl
-    // walks them - so by the time it reaches this one, what it renders no longer matches what
-    // was stored a moment before, and never will. The application's index has the same nature
-    // since it took to reporting the scan's counts, and the demo clock says a different word
-    // - AM or PM, the weekday - whenever enough time has passed, which digit masking cannot
-    // cover. Comparing any of them is noise; each is marked and left alone. The error check
-    // comes first, though: a marked page that stops answering still shouts.
-
-    // A harvest run harvests, and nothing more. padReference renders every page bare -
-    // pad/inits/info.php sets $padInclude for it - so what that run fetched is the wrong
-    // shape to store or compare for an index page, which the plain crawl asks for with its
-    // wrapper on. Storing it anyway put a bare body behind every index baseline after a
-    // wipe, and the next crawl warned about each one just so the accept could refetch it.
-    // The baselines and statuses are left to the plain crawls that follow.
-    //
-    if ( $extra )
-      $status = '';
-
-    // A page that exists to fail is not news: the pages suites declare it - an expectation
-    // starting with the same HTTP code sits beside the page - and the answer is 'expected',
-    // counted, coloured, and left off the list of what needs looking at. An error nothing
-    // declared still shouts. A page whose render is as empty as its stored copy is simply a
-    // match - 'ok', like any other - and only a page that *went* empty is called out.
-
-    elseif ( ! $good                    ) $status = getRegressionExpects ( $app, $item, $curl ['result'] ) ? 'expected' : 'error';
-    elseif ( "$app/$item" == 'demo/clock' )
-                                          $status = 'random';
-    elseif ( ! file_exists ($store)     ) $status = 'new';
-    elseif ( ! trim ($new)              ) $status = ( trim ($old) ) ? 'empty' : 'ok';
-    elseif ( getRegressionPatterned ( $app, $item ) )
-                                          $status = 'random';
-    elseif ( getRegressionDraws ( $source ) )
-                                          $status = getRegressionDraw ( "$padHost$app/?$item$include$extra", $old, $new );
-    elseif ( getRegressionCompare ( $old ) == getRegressionCompare ( $new ) ) $status = 'ok';
-    else                                  $status = 'warning';
-
-    if ( $status == 'random' ) 
-      if ( getRegressionCompare ( $old, TRUE ) == getRegressionCompare ( $new, TRUE ) )
-        $status = 'ok';
-      else 
-        $status = 'warning';
-
-    if ( $status == 'new' )
-      padFilePut ( $store, $new ) ;
-
-    if ( $status )
-      padFilePut ( str_replace ( '.html', '.txt', $store ), $status ) ;
-
-    // Examples are harvested only on the run that asked for them with the padExamples flag,
-    // and only from a page that answered.
-
-    if ( ! str_contains ( $extra, '&padExamples' ) or ! str_starts_with ( $curl ['result'], '2' ) )
-      return;
 
     if ( str_contains ( $source, '{page'    ) ) return;
     if ( str_contains ( $source, '{example' ) ) return;
     if ( str_contains ( $source, '{ajax'    ) ) return;
     if ( str_contains ( $source, '{table'   ) ) return;
     if ( str_contains ( $source, '{demo'    ) ) return;
- 
+
     if ( file_exists ( APPS . "$app/$item.php" ) )
       padFilePut ( "examples/$app/$item.php",  padFileGet ( APPS . "$app/$item.php" ) );
 
@@ -881,7 +656,6 @@
       'name'   => $name,
       'url'    => $url,
       'what'   => getPagesWhat ( $app, $name ),
-      'show'   => "?show&app=$app&item=$name",
       'want'   => htmlspecialchars ( $expect ),
       'got'    => htmlspecialchars ( $got    ),
       'status' => $status,
@@ -942,8 +716,12 @@
 
     set_time_limit ( 60 );
 
-    $result = ( $suite == 'regression' ) ? getRegressionSuiteRun ()
-                                         : getPagesRun ( getPagesSuites () [$suite] );
+    $result = match ( TRUE ) {
+      $suite == 'regression'                   => getRegressionSuiteRun (),
+      $suite == 'other'                        => getOtherSuiteRun (),
+      in_array ( $suite, getAppSuites () )     => getAppSuiteRun ( $suite ),
+      default                                  => getPagesRun ( getPagesSuites () [$suite] ),
+    };
 
     padFilePut ( getPagesFile ( $suite ), json_encode ( $result ) );
 
@@ -999,6 +777,47 @@
 
       $test ['name'] = $short . '/' . $one ['item'];
       $test ['what'] = getPagesWhatList () [ $one ['app'] . '/' . $one ['item'] ] ?? '';
+
+      $tests [] = $test;
+
+    }
+
+    return getPagesResult ( $tests );
+
+  }
+
+
+  // The application suites: the Regression-suite model over one application outside the
+  // family, a suite each - sequence and manual so far. Every page of the application is
+  // fetched as the crawl used to fetch it and compared against the prediction of the same
+  // name in apps/regression/<app>/. A page that draws answers a /pattern/ pinning its
+  // skeleton; everything else an exact body. The suite key, the covered application and
+  // the store directory all share the name.
+
+  function getAppSuites () {
+
+    return [ 'sequence', 'manual' ];
+
+  }
+
+
+  function getAppSuiteRun ( $app ) {
+
+    $tests = [];
+
+    foreach ( padAppsList () as $one ) {
+
+      if ( $one ['app'] != $app )
+        continue;
+
+      set_time_limit ( 60 );
+
+      $want = APPS . "regression/$app/" . $one ['item'] . '.txt';
+
+      $test = getPagesOne ( $one ['app'], $one ['item'],
+                            getPagesUrl ( $one ['app'], $one ['item'] ), $want );
+
+      $test ['what'] = '';
 
       $tests [] = $test;
 

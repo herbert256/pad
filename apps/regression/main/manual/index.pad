@@ -1,0 +1,23 @@
+<p>
+  <b>{$summary}</b> - {$verdict}
+</p>
+
+<p>
+  Every test here is a page of the <a href="{$padHost}manual">manual</a> application,
+  fetched over HTTP one request at a time, and compared with the prediction of the same
+  name in <code>apps/regression/manual/</code>. The pages stay in their own application;
+  the store holds nothing but what each must answer. An index is fetched full, everything
+  else bare with <code>&amp;padInclude</code>, the same rule the crawl applies - and a page
+  that draws answers a <code>/pattern/</code> pinning its skeleton, everything else an
+  exact body.
+</p>
+
+<table border="1" cellpadding="4" cellspacing="0">
+  <tr><th>page</th><th>status</th></tr>
+  {tests}
+    <tr>
+      <td><a href="{$url}">{$name}</a></td>
+      <td>{$status}</td>
+    </tr>
+  {/tests}
+</table>

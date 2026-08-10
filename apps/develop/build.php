@@ -5,12 +5,9 @@
 
   include APP . 'clean.php';
 
-  padDeleteDataDir ( DATA . 'reference'  );
-  padDeleteDataDir ( DATA . 'regression' );
-  padDeleteDataDir ( DATA . 'dumps'      );
-  padDeleteDataDir ( DATA . 'temp'       );
-  padDeleteDataDir ( DATA . 'examples'   );
-  padDeleteDataDir ( DATA . 'suites'     );
+  // The wiping of what a build regenerates moved home to the regression application -
+  // ?build&go=1 clears the stores itself before it builds, so only the source-tree
+  // trimming above is develop's own.
 
   // The inner build is thousands of fetches and runs for minutes. This request waits for
   // it, so the script limit and the fetch limit are widened to match - without that, PHP's

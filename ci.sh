@@ -4,10 +4,8 @@
 # nonzero when anything failed - which is what a git hook or a CI step can act on.
 #
 # The gate fails closed: the trigger must answer 2xx/3xx, every
-# suite result must be fresher than the moment this run started, a page with no recorded
-# answer counts against the verdict, and so does any scan status that is not ok, expected
-# or random - an undeclared error, a page gone empty, a new page. Warnings stay reported
-# but out of the verdict, since they compare against baselines another machine may not have.
+# suite result must be fresher than the moment this run started, and a page with no
+# recorded answer counts against the verdict.
 #
 # The host defaults to the local Apache mount; pass another as the first argument, e.g.
 #   ./ci.sh http://127.0.0.1:8765/
@@ -27,7 +25,7 @@ esac
 
 exit=0
 
-for suite in pages common framework regression; do
+for suite in pages common framework regression sequence manual other; do
 
   file="$padHome/DATA/suites/$suite.json"
 
@@ -49,12 +47,5 @@ for suite in pages common framework regression; do
   fi
 
 done
-
-warnings=$(grep -rlx "warning" "$padHome/DATA/regression" --include="*.txt" 2>/dev/null | wc -l | tr -d ' ')
-attention=$(grep -rlxE "error|empty|new" "$padHome/DATA/regression" --include="*.txt" 2>/dev/null | wc -l | tr -d ' ')
-
-echo "scan         $warnings warnings (not part of the verdict), $attention error/empty/new"
-
-[ "$attention" = "0" ] || { echo "CI: the scan holds $attention pages on error, empty or new" >&2; exit=1; }
 
 exit $exit
