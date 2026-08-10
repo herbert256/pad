@@ -13,6 +13,7 @@
     global $padDumpToDirDone;
 
     padDumpToDir ( "$file:$line $error" );
+    padLogError  ( "$file:$line $error", 4 );
 
     unset ( $padDumpToDirDone );
 
