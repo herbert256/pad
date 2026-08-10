@@ -93,7 +93,24 @@
 
     getRegressionPages     ();
     getRegressionFramework ();
+    getRegressionSuite     ();
     getRegressionAll       ( $extra );
+
+  }
+
+
+  // Runs the Regression suite, asked for over HTTP from anywhere but this application -
+  // the same indirection getRegressionPages() uses, and for the same reason: the walk and
+  // the predictions are APP-relative, so the suite runs where it lives.
+
+  function getRegressionSuite () {
+
+    global $padHost;
+
+    if ( APP != getRegressionApp () )
+      padCurl ( $padHost . "regression/main/?regression/index&test" );
+    else
+      getPagesTest ( 'regression' );
 
   }
 
@@ -130,29 +147,17 @@
     }
 
     // The plain crawl - the store pass, the verify pass, and every standalone scan - leaves
-    // the three suite applications out. Their pages are already fetched and checked against
-    // a handwritten answer by the Pages, Common and Framework suites, a stricter test than a
-    // stored baseline, and they are 1,100-odd of the 1,750 pages a crawl would walk. They
-    // keep no baseline of their own; only the once-per-build harvest pass above visits them.
-
-    // The self-testing applications - regression/cache_*, regression/error_*,
-    // regression/output_*, regression/info - stay out of the window. Their index pages
-    // prove their subsystem by fetching their own probe from inside the request - the
-    // error apps only behind their Test link, the others on load - and the window works
-    // against that twice over: a concurrent crawl fetch of a cache probe lands between an
-    // index's two fetches and turns a working backend into a NO, and twelve pages each
-    // spawning a nested request can momentarily starve the worker pool, failing a fetch
-    // that is the verdict. They test shared state and their own requests; they get the
-    // server to themselves, after the flock.
+    // the whole regression family out. Every page of the family is fetched and checked
+    // against a handwritten answer by one of the four suites - Pages, Common and Framework
+    // for the suite applications, the Regression suite for the self-testing ones and for
+    // main itself - a stricter test than a stored baseline. They keep no baseline of their
+    // own; only the once-per-build harvest pass above visits them.
 
     $flock = [];
-    $solo  = [];
 
     foreach ( padAppsList () as $one )
-      if ( in_array ( $one ['app'], [ 'regression/pages', 'regression/common', 'regression/framework' ] ) )
+      if ( str_starts_with ( $one ['app'], 'regression/' ) )
         continue;
-      elseif ( str_starts_with ( $one ['app'], 'regression/' ) and $one ['app'] != 'regression/main' )
-        $solo  [] = $one;
       else
         $flock [] = $one;
 
@@ -169,14 +174,6 @@
 
       foreach ( $chunk as $i => $one )
         getRegressionGo ( $one ['app'], $one ['item'], '', $fetched [$i] ?? NULL );
-
-    }
-
-    foreach ( $solo as $one ) {
-
-      set_time_limit ( 60 );
-
-      getRegressionGo ( $one ['app'], $one ['item'] );
 
     }
 
@@ -367,9 +364,7 @@
     // match - 'ok', like any other - and only a page that *went* empty is called out.
 
     elseif ( ! $good                    ) $status = getRegressionExpects ( $app, $item, $curl ['result'] ) ? 'expected' : 'error';
-    elseif ( in_array ( "$app/$item", [ 'regression/main/scan/index', 'regression/main/index', 'demo/clock',
-                                        'regression/cache_apcu/probe', 'regression/cache_file/probe', 'regression/cache_db/probe',
-                                        'regression/cache_memcached/probe', 'regression/cache_redis/probe' ] ) )
+    elseif ( "$app/$item" == 'demo/clock' )
                                           $status = 'random';
     elseif ( ! file_exists ($store)     ) $status = 'new';
     elseif ( ! trim ($new)              ) $status = ( trim ($old) ) ? 'empty' : 'ok';
@@ -810,98 +805,116 @@
 
   function getPagesRun ( $app ) {
 
-    $tests  = [];
-    $total  = 0;
-    $count  = 0;
-    $failed = 0;
-    $new    = 0;
+    $tests = [];
 
     foreach ( getPagesList ( $app ) as $name ) {
 
       set_time_limit ( 60 );
 
-      $url  = getPagesUrl      ( $app, $name );
-      $want = getPagesWantFile ( $app, $name );
-      $curl = padCurl          ( $url );
+      $tests [] = getPagesOne ( $app, $name, getPagesUrl ( $app, $name ), getPagesWantFile ( $app, $name ) );
 
-      $got  = trim ( $curl ['data'] );
-      $code = $curl ['result'];
+    }
 
-      if ( ! file_exists ( $want ) ) {
+    return getPagesResult ( $tests );
 
-        $status = 'new';
-        $expect = '';
+  }
 
-      } else {
 
-        $expect = trim ( padFileGet ( $want ) );
+  // One test: fetch the url, compare with the answer file, return the row the overviews
+  // render. The caller says where both live, which is what lets the Regression suite hold
+  // its predictions apart from its pages.
 
-        if ( str_starts_with ( $expect, 'HTTP ' ) ) {
+  function getPagesOne ( $app, $name, $url, $want ) {
 
-          $expectLines   = padExplode ( $expect, "\n" );
-          $expectCode    = trim ( substr ( $expectLines [0], 5 ) );
-          $expectPattern = $expectLines [1] ?? '';
+    $curl = padCurl ( $url );
 
-          $ok  = ( $expectCode === (string) $code );
-          $got = "HTTP $code";
+    $got  = trim ( $curl ['data'] );
+    $code = $curl ['result'];
 
-          if ( $ok and $expectPattern ) {
+    if ( ! file_exists ( $want ) ) {
 
-            $ok = (bool) preg_match ( $expectPattern, trim ( $curl ['data'] ) );
+      $status = 'new';
+      $expect = '';
 
-            $got = ( $ok ) ? "HTTP $code, matches $expectPattern"
-                           : "HTTP $code\n" . trim ( $curl ['data'] );
+    } else {
 
-          }
+      $expect = trim ( padFileGet ( $want ) );
 
-        } elseif ( strlen ( $expect ) > 1 and str_starts_with ( $expect, '/' ) and str_ends_with ( $expect, '/' ) ) {
+      if ( str_starts_with ( $expect, 'HTTP ' ) ) {
 
-          // A pattern answer still needs a healthy response: without the status check a
-          // fragment surviving inside an error dump could pass a test that meant to assert
-          // a working page. A failing status is asserted with the HTTP form instead.
+        $expectLines   = padExplode ( $expect, "\n" );
+        $expectCode    = trim ( substr ( $expectLines [0], 5 ) );
+        $expectPattern = $expectLines [1] ?? '';
 
-          $ok = (bool) preg_match ( $expect, $got ) and str_starts_with ( (string) $code, '2' );
+        $ok  = ( $expectCode === (string) $code );
+        $got = "HTTP $code";
 
-          if ( $ok )
-            $got = "matches $expect";
+        if ( $ok and $expectPattern ) {
 
-        } else
+          $ok = (bool) preg_match ( $expectPattern, trim ( $curl ['data'] ) );
 
-          $ok = ( $got === $expect and str_starts_with ( $code, '2' ) );
+          $got = ( $ok ) ? "HTTP $code, matches $expectPattern"
+                         : "HTTP $code\n" . trim ( $curl ['data'] );
 
-        $status = $ok ? 'ok' : 'FAILED';
+        }
 
-      }
+      } elseif ( strlen ( $expect ) > 1 and str_starts_with ( $expect, '/' ) and str_ends_with ( $expect, '/' ) ) {
 
-      $total++;
-      $count += getPagesCount ( $name, $expect );
+        // A pattern answer still needs a healthy response: without the status check a
+        // fragment surviving inside an error dump could pass a test that meant to assert
+        // a working page. A failing status is asserted with the HTTP form instead.
 
-      if ( $status == 'FAILED' )
-        $failed++;
+        $ok = (bool) preg_match ( $expect, $got ) and str_starts_with ( (string) $code, '2' );
 
-      // A test with no recorded answer is not passing - it is waiting for one. It has its
-      // own count rather than a place in 'failed', so the overview can say which it is, and
-      // ci.sh gates on both.
+        if ( $ok )
+          $got = "matches $expect";
 
-      if ( $status == 'new' )
+      } else
+
+        $ok = ( $got === $expect and str_starts_with ( $code, '2' ) );
+
+      $status = $ok ? 'ok' : 'FAILED';
+
+    }
+
+    return [
+      'name'   => $name,
+      'url'    => $url,
+      'what'   => getPagesWhat ( $app, $name ),
+      'show'   => "?show&app=$app&item=$name",
+      'want'   => htmlspecialchars ( $expect ),
+      'got'    => htmlspecialchars ( $got    ),
+      'status' => $status,
+      'failed' => ( $status == 'FAILED' ) ? 1 : 0,
+      'count'  => getPagesCount ( $name, $expect )
+    ];
+
+  }
+
+
+  // A test with no recorded answer is not passing - it is waiting for one. It has its own
+  // count rather than a place in 'failed', so the overview can say which it is, and ci.sh
+  // gates on both.
+
+  function getPagesResult ( $tests ) {
+
+    $count  = 0;
+    $failed = 0;
+    $new    = 0;
+
+    foreach ( $tests as $test ) {
+
+      $count  += $test ['count'];
+      $failed += $test ['failed'];
+
+      if ( $test ['status'] == 'new' )
         $new++;
-
-      $tests [] = [
-        'name'   => $name,
-        'url'    => $url,
-        'what'   => getPagesWhat ( $app, $name ),
-        'show'   => "?show&app=$app&item=$name",
-        'want'   => htmlspecialchars ( $expect ),
-        'got'    => htmlspecialchars ( $got    ),
-        'status' => $status,
-        'failed' => ( $status == 'FAILED' ) ? 1 : 0
-      ];
 
     }
 
     return [
       'tests'   => $tests,
-      'summary' => "$total pages, $count tests, $failed failed" . ( $new ? ", $new new" : '' ),
+      'summary' => count ( $tests ) . " pages, $count tests, $failed failed" . ( $new ? ", $new new" : '' ),
       'failed'  => $failed,
       'new'     => $new,
       'when'    => time ()
@@ -929,11 +942,69 @@
 
     set_time_limit ( 60 );
 
-    $result = getPagesRun ( getPagesSuites () [$suite] );
+    $result = ( $suite == 'regression' ) ? getRegressionSuiteRun ()
+                                         : getPagesRun ( getPagesSuites () [$suite] );
 
     padFilePut ( getPagesFile ( $suite ), json_encode ( $result ) );
 
     return $result;
+
+  }
+
+
+  // The Regression suite: every page of the self-testing applications - the cache, error,
+  // output, info, config and try families under regression/ - fetched exactly as the crawl
+  // fetches a page, and compared against the prediction of the same name in
+  // apps/regression/regression/: the page regression/cache_apcu/probe answers what
+  // cache_apcu/probe.txt predicts. The pages stay in their own applications; the store
+  // holds nothing but the predictions, handwritten like every suite answer.
+  //
+  // The suite runs its pages one request at a time, which is the isolation their solo
+  // crawl used to provide: these pages prove their subsystem by fetching their own probe
+  // from inside the request, and a concurrent fetch could land between an index's two
+  // probes and turn a working backend into a NO.
+
+  function getRegressionSuiteApps () {
+
+    $apps = [];
+
+    foreach ( padFiles ( APPS . 'regression/' ) as $one )
+      if ( ! str_starts_with ( $one, '_' )
+           and is_dir ( APPS . "regression/$one" )
+           and ! in_array ( $one, [ 'pages', 'common', 'framework', 'regression' ] ) )
+        $apps [] = "regression/$one";
+
+    return $apps;
+
+  }
+
+
+  function getRegressionSuiteRun () {
+
+    $covered = getRegressionSuiteApps ();
+    $tests   = [];
+
+    foreach ( padAppsList () as $one ) {
+
+      if ( ! in_array ( $one ['app'], $covered ) )
+        continue;
+
+      set_time_limit ( 60 );
+
+      $short = substr ( $one ['app'], strlen ( 'regression/' ) );
+      $want  = APPS . 'regression/regression/' . $short . '/' . $one ['item'] . '.txt';
+
+      $test = getPagesOne ( $one ['app'], $one ['item'],
+                            getPagesUrl ( $one ['app'], $one ['item'] ), $want );
+
+      $test ['name'] = $short . '/' . $one ['item'];
+      $test ['what'] = getPagesWhatList () [ $one ['app'] . '/' . $one ['item'] ] ?? '';
+
+      $tests [] = $test;
+
+    }
+
+    return getPagesResult ( $tests );
 
   }
 

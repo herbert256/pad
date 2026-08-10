@@ -23,10 +23,12 @@
       if ( str_contains ( $path, '/error' )        ) continue;
       if ( str_contains ( $path, '/support/' )     ) continue;
 
-      // The error applications exist to fail: their boom probes dump on every crawl by
-      // design, and a build that worked is not the page to shout about them.
+      // The regression family polices itself: every one of its pages is asserted by one of
+      // the four suites, so a page there that fails unexpectedly already turns a suite red
+      // - and the ones that dump on every run do it by design, the try booms first of all.
+      // Neither is news on this page, which exists for errors nothing else caught.
 
-      if ( str_contains ( $path, 'dumps/regression/error_' ) ) continue;
+      if ( str_contains ( $path, 'dumps/regression/' ) ) continue;
 
       $list [] = [ 'url' => substr ( str_replace ( DATA , '', $path ), 0, -11),
                    'txt' => padFileGet ($path) ];

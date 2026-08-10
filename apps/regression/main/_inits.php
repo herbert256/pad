@@ -19,8 +19,10 @@
   // Pages, Common and Framework are the suites, every test a page fetched over HTTP - from
   // regression/pages for Pages, which runs with _common switched off, from regression/common for
   // Common, the pages that use it, and from regression/framework for Framework, where every engine
-  // case is a page of its own. Scan is the crawl of every application, comparing each page
-  // against its stored copy - the three suite apps excepted, whose pages the suites assert.
+  // case is a page of its own. Regression is the suite over the self-testing applications,
+  // their predictions held in regression/regression while the pages stay in their own
+  // apps. Scan is the crawl of every application, comparing each page against its stored
+  // copy - the regression family excepted, whose pages the four suites assert.
 
   $skipTitle = TRUE;
 
@@ -29,6 +31,7 @@
   elseif ( $padPage == 'pages/index'                    ) $suiteTest = '?pages/index&test';
   elseif ( $padPage == 'common/index'                   ) $suiteTest = '?common/index&test';
   elseif ( $padPage == 'framework/index'                ) $suiteTest = '?framework/index&test';
+  elseif ( $padPage == 'regression/index'               ) $suiteTest = '?regression/index&test';
   else                                                    $suiteTest = '';
 
   $suites = [
@@ -36,6 +39,7 @@
     [ 'name' => 'Pages',     'link' => '?pages/index',     'now' => ( $padPage == 'pages/index'     ) ? 1 : 0 ],
     [ 'name' => 'Common',    'link' => '?common/index',    'now' => ( $padPage == 'common/index'    ) ? 1 : 0 ],
     [ 'name' => 'Framework', 'link' => '?framework/index', 'now' => ( $padPage == 'framework/index' ) ? 1 : 0 ],
+    [ 'name' => 'Regression', 'link' => '?regression/index', 'now' => ( $padPage == 'regression/index' ) ? 1 : 0 ],
     [ 'name' => 'Scan',      'link' => '?scan/index',      'now' => ( $padPage == 'scan/index'      ) ? 1 : 0 ]
   ];
 

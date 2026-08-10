@@ -1,9 +1,9 @@
 <?php
 
-  // The overview the application opens on: one line per kind of test - the three pages
-  // suites and the scan - each with the totals of its last run. A page load never runs
+  // The overview the application opens on: one line per kind of test - the four suites
+  // and the scan - each with the totals of its last run. A page load never runs
   // anything; each line links to the page where its own Test lives, and Test here runs
-  // everything: the three suites and the scan.
+  // everything: the four suites and the scan.
 
   if ( isset ( $test ) ) {
     getRegression ();
@@ -12,7 +12,7 @@
 
   $rows = [];
 
-  foreach ( [ 'Pages' => 'pages', 'Common' => 'common', 'Framework' => 'framework' ] as $suiteName => $suite ) {
+  foreach ( [ 'Pages' => 'pages', 'Common' => 'common', 'Framework' => 'framework', 'Regression' => 'regression' ] as $suiteName => $suite ) {
 
     $result = getPages ( $suite );
 
@@ -43,11 +43,13 @@
 
   $scanResult = "$scanTotal pages" . ( $scanParts ? ' - ' . implode ( ', ', $scanParts ) : ', all ok' );
 
-  // The scan keeps no run record of its own; the status of its own overview is rewritten on
-  // every crawl, so that file's age is the age of the last one.
+  // The scan keeps no run record of its own; every crawl rewrites every status, so the
+  // newest of the per-app index statuses is the age of the last one.
 
-  $scanStamp = DATA . 'regression/regression/main/scan/index.txt';
-  $scanWhen  = file_exists ( $scanStamp ) ? filemtime ( $scanStamp ) : 0;
+  $scanWhen = 0;
+
+  foreach ( glob ( DATA . 'regression/*/index.txt' ) as $scanStamp )
+    $scanWhen = max ( $scanWhen, filemtime ( $scanStamp ) );
 
   $rows [] = [
     'name'   => 'Scan',

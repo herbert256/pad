@@ -27,7 +27,7 @@ esac
 
 exit=0
 
-for suite in pages common framework; do
+for suite in pages common framework regression; do
 
   file="$padHome/DATA/suites/$suite.json"
 
