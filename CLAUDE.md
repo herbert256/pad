@@ -913,6 +913,7 @@ This is particularly useful for:
 | `cli` | CLI | Command-line interface for running PAD from terminal |
 | `demo` | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
 | `develop` | Standard | Development tools and utilities for PAD |
+| `examples` | Standard | Search the harvested examples of DATA/examples and view one with its sources beside the rendered result |
 | `hello` | Minimal | Hello World example demonstrating page pairing |
 | `manual` | Standard | Interactive documentation and examples |
 | `nono` | Plain PHP | PHP application without PAD templating |

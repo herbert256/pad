@@ -1,0 +1,34 @@
+{if $show eq ''}
+
+  <p>Pick an example from the <a href="?index{?q}">search</a>.</p>
+
+@else@
+
+  <h1>{$show}</h1>
+
+  <p><a href="?index{?q}">back to the search</a></p>
+
+  <div class="example-view">
+
+    {if $hasPhp eq 1}
+      <div class="example-panel">
+        <h4>PHP</h4>
+        <div class="example-body">{!srcPhp}</div>
+      </div>
+    {/if}
+
+    {if $hasPad eq 1}
+      <div class="example-panel">
+        <h4>PAD</h4>
+        <div class="example-body">{!srcPad}</div>
+      </div>
+    {/if}
+
+    <div class="example-panel">
+      <h4>Result</h4>
+      <div class="example-body">{!result}</div>
+    </div>
+
+  </div>
+
+{/if}

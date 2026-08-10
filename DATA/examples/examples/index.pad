@@ -1,0 +1,22 @@
+<form method="post" class="example-search">
+  <input type="text" name="q" value="{$q}" placeholder="search the examples by name or content">
+  <input type="submit" value="search">
+</form>
+
+{if $short eq 1}
+  <p>type at least two characters</p>
+{/if}
+
+{if $searched eq 1 and $total eq 0}
+  <p>nothing found for '{$q}'</p>
+{/if}
+
+{if $capped gt 0}
+  <p>showing the first {$capped} of {$total} hits</p>
+{/if}
+
+{results}
+  {first@results}<table class="example-list">{/first@results}
+  <tr><td><a href="?show{?item}{?q}">{$item}</a></td></tr>
+  {last@results}</table>{/last@results}
+{/results}

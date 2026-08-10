@@ -12,6 +12,7 @@ This directory contains PAD applications and examples.
 | [cli](cli/README.md) | CLI | Command-line interface for running PAD from terminal |
 | [demo](demo/README.md) | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
 | [develop](develop/README.md) | Standard | Development tools and utilities for PAD |
+| [examples](examples/README.md) | Standard | Search the harvested examples and view one with its sources beside the rendered result |
 | [hello](hello/README.md) | Minimal | Hello World example demonstrating page pairing |
 | [manual](manual/README.md) | Standard | Interactive documentation and examples |
 | [nono](nono/README.md) | Plain PHP | PHP application without PAD templating |
