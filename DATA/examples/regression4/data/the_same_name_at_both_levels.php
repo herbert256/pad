@@ -1,7 +1,5 @@
 <?php
 
-  // Setup carried over from the sandbox case.
-
   $short = array (
   0 => 
   array (
