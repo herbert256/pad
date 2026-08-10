@@ -23,7 +23,10 @@
     $addr  = $_SERVER ['REMOTE_ADDR']     ?? '';
     $agent = $_SERVER ['HTTP_USER_AGENT'] ?? '';
 
-    if ( $addr == '::1' and str_contains ( $agent, 'curl' ) )
+    // Both loopbacks: localhost resolves to either family, and which one a connection
+    // takes is a coin toss under load - the answer must not depend on it.
+
+    if ( in_array ( $addr, [ '::1', '127.0.0.1' ] ) and str_contains ( $agent, 'curl' ) )
       return TRUE;
 
     return FALSE;
