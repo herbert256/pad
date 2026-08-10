@@ -1,5 +1,5 @@
 <p>
-  <b>14 groups, 924 tests, 0 failed</b> - all ok
+  <b>15 groups, 965 tests, 0 failed</b> - all ok
 </p>
 
 <p>
@@ -2201,6 +2201,252 @@
     <tr>
       <td><a href="http://localhost/pad/regression4/?harness/the_root_index_is_the_one_test_fetched_full&amp;padInclude">harness/the_root_index_is_the_one_test_fetched_full</a></td>
       <td><code>index</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_bare_echo_prints_nothing&amp;padInclude">lenient/a_bare_echo_prints_nothing</a></td>
+      <td><code>[]</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_bare_switch_alternates_nothing&amp;padInclude">lenient/a_bare_switch_alternates_nothing</a></td>
+      <td><code>[..]</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_break_name_missing_falls_to_the_nearest_loop&amp;padInclude">lenient/a_break_name_missing_falls_to_the_nearest_loop</a></td>
+      <td><code>12after</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_break_outside_a_loop_does_nothing&amp;padInclude">lenient/a_break_outside_a_loop_does_nothing</a></td>
+      <td><code>ab</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_case_without_when_renders_nothing&amp;padInclude">lenient/a_case_without_when_renders_nothing</a></td>
+      <td><code>.</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_close_brace_alone_stays_as_written&amp;padInclude">lenient/a_close_brace_alone_stays_as_written</a></td>
+      <td><code>head } tail</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_duplicate_option_lets_one_win&amp;padInclude">lenient/a_duplicate_option_lets_one_win</a></td>
+      <td><code>1,2,</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_hashless_comment_reads_as_an_option&amp;padInclude">lenient/a_hashless_comment_reads_as_an_option</a></td>
+      <td><code>[a  b]</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_lone_end_still_splits&amp;padInclude">lenient/a_lone_end_still_splits</a></td>
+      <td><code>12[q]</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_lone_start_still_splits&amp;padInclude">lenient/a_lone_start_still_splits</a></td>
+      <td><code>[p]12</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_missing_comma_misnames_the_store&amp;padInclude">lenient/a_missing_comma_misnames_the_store</a></td>
+      <td><code>[{v}{$v}{/v}]</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_missing_field_resolves_to_empty&amp;padInclude">lenient/a_missing_field_resolves_to_empty</a></td>
+      <td><code>[]</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_nameless_store_stays_quiet&amp;padInclude">lenient/a_nameless_store_stays_quiet</a></td>
+      <td><code>[ok]</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_pipe_number_without_space_yields_empty&amp;padInclude">lenient/a_pipe_number_without_space_yields_empty</a></td>
+      <td><code>[]</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_prefixed_miss_stays_as_written&amp;padInclude">lenient/a_prefixed_miss_stays_as_written</a></td>
+      <td><code>{data:nosuch}x{/data:nosuch}.</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_property_over_no_level_stays_as_written&amp;padInclude">lenient/a_property_over_no_level_stays_as_written</a></td>
+      <td><code>{first@typo}[{/first@typo}1</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_property_typo_stays_as_written&amp;padInclude">lenient/a_property_typo_stays_as_written</a></td>
+      <td><code>{frist@u}.{/frist@u}1{frist@u}.{/frist@u}2</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_sequence_option_typo_is_ignored&amp;padInclude">lenient/a_sequence_option_typo_is_ignored</a></td>
+      <td><code>0,1,1,2,3,5,8,13,21,34,</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_set_pair_assigns_and_renders&amp;padInclude">lenient/a_set_pair_assigns_and_renders</a></td>
+      <td><code>[x]7</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_set_that_assigns_nothing_stays_quiet&amp;padInclude">lenient/a_set_that_assigns_nothing_stays_quiet</a></td>
+      <td><code>.</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_short_function_passes_the_value&amp;padInclude">lenient/a_short_function_passes_the_value</a></td>
+      <td><code>[abc]</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_store_may_shadow_a_tag&amp;padInclude">lenient/a_store_may_shadow_a_tag</a></td>
+      <td><code>ok</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_stray_content_marker_stays_as_written&amp;padInclude">lenient/a_stray_content_marker_stays_as_written</a></td>
+      <td><code>x  y</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_when_behind_the_else_is_swallowed&amp;padInclude">lenient/a_when_behind_the_else_is_swallowed</a></td>
+      <td><code>[]</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_while_without_condition_does_not_run&amp;padInclude">lenient/a_while_without_condition_does_not_run</a></td>
+      <td><code>.</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/a_wrong_data_type_sniffs_the_data&amp;padInclude">lenient/a_wrong_data_type_sniffs_the_data</a></td>
+      <td><code>7</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/an_action_miss_yields_empty&amp;padInclude">lenient/an_action_miss_yields_empty</a></td>
+      <td><code>[]</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/an_empty_option_value_reads_as_a_flag&amp;padInclude">lenient/an_empty_option_value_reads_as_a_flag</a></td>
+      <td><code>7</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/an_empty_pipe_segment_is_skipped&amp;padInclude">lenient/an_empty_pipe_segment_is_skipped</a></td>
+      <td><code>[]</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/an_empty_tag_stays_as_written&amp;padInclude">lenient/an_empty_tag_stays_as_written</a></td>
+      <td><code>a {} b</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/an_if_without_condition_renders_nothing&amp;padInclude">lenient/an_if_without_condition_renders_nothing</a></td>
+      <td><code>.</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/an_open_brace_alone_stays_as_written&amp;padInclude">lenient/an_open_brace_alone_stays_as_written</a></td>
+      <td><code>head {tail</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/an_open_range_counts_one&amp;padInclude">lenient/an_open_range_counts_one</a></td>
+      <td><code>[1,]</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/an_orphan_close_paren_is_ordinary_text&amp;padInclude">lenient/an_orphan_close_paren_is_ordinary_text</a></td>
+      <td><code>[x]</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/an_orphan_close_tag_stays_as_written&amp;padInclude">lenient/an_orphan_close_tag_stays_as_written</a></td>
+      <td><code>x {/orphan} y</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/an_unbalanced_expression_yields_empty&amp;padInclude">lenient/an_unbalanced_expression_yields_empty</a></td>
+      <td><code>[]</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/an_unclosed_if_falls_through_as_a_single&amp;padInclude">lenient/an_unclosed_if_falls_through_as_a_single</a></td>
+      <td><code>yes</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/an_unclosed_ignore_protects_nothing&amp;padInclude">lenient/an_unclosed_ignore_protects_nothing</a></td>
+      <td><code>ab {x} c</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/an_unknown_construct_stays_as_written&amp;padInclude">lenient/an_unknown_construct_stays_as_written</a></td>
+      <td><code>text @pgae@ text</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/an_unknown_pipe_function_yields_empty&amp;padInclude">lenient/an_unknown_pipe_function_yields_empty</a></td>
+      <td><code>[]</code></td>
+      <td>ok</td>
+    </tr>
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression4/?lenient/an_unread_option_is_ignored&amp;padInclude">lenient/an_unread_option_is_ignored</a></td>
+      <td><code>7</code></td>
       <td>ok</td>
     </tr>
   

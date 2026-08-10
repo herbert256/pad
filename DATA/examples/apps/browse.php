@@ -40,11 +40,13 @@
       return $matches[1] . $matches[2] . $matches[3] . '*REDACTED*' . $matches[3];
     }, $source);
 
-    // Apply syntax highlighting to the redacted source
+    // Apply syntax highlighting to the redacted source. A highlighted PHP source keeps
+    // its braces, and spliced into a level they read as tags - so they travel escaped,
+    // the way the .pad walk escapes its own, and the exit puts them back.
     if (substr($file, -4) == '.pad') {
       return padColorsString($source);
     } else {
-      return padColorsHighLight($source);
+      return str_replace(['{', '}'], ['&open;', '&close;'], padColorsHighLight($source));
     }
   }
 
