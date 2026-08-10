@@ -924,7 +924,7 @@ This is particularly useful for:
 | `pad` | Standard | PAD framework introduction and reference |
 | `react` | Standard | PAD + React integration examples |
 | `reference` | Standard | Cross-reference and directory utilities |
-| `regression/main` | Standard | Automated regression testing for PAD - the runner for the four suites, and the crawl |
+| `regression/main` | Standard | Automated regression testing for PAD - the runner for the four suites, the crawl, and the fresh build |
 | `regression/pages` | Test | The pages suite: every test is a real page, fetched over HTTP and compared with the answer beside it |
 | `regression/framework` | Test | The Framework suite: the engine cases as pages, one fetched per case |
 | `regression/regression` | Test | The Regression suite's prediction store - one answer per page of the self-testing applications and the runner |

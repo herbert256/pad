@@ -22,7 +22,9 @@
   // case is a page of its own. Regression is the suite over the self-testing applications,
   // their predictions held in regression/regression while the pages stay in their own
   // apps. Scan is the crawl of every application, comparing each page against its stored
-  // copy - the regression family excepted, whose pages the four suites assert.
+  // copy - the regression family excepted, whose pages the four suites assert. Build is
+  // the fresh build: clear every regenerated store, then suites, harvest, crawl, accept
+  // and verify - the whole cycle, at home here rather than in develop.
 
   $skipTitle = TRUE;
 
@@ -45,5 +47,7 @@
 
   if ( $suiteTest )
     $suites [] = [ 'name' => 'Test', 'link' => $suiteTest, 'now' => 0 ];
+
+  $suites [] = [ 'name' => 'Build', 'link' => '?build', 'now' => ( $padPage == 'build' ) ? 1 : 0 ];
 
 ?>
