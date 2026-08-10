@@ -20,6 +20,12 @@
     return TRUE;
   }
 
+  // A store with no name at all lands under the tag's own word, unreachable on purpose
+  // by nobody. Strict mode asks for the name.
+
+  if ( $padCheckSyntax and trim ( $padOpt [$pad] [1] ?? '' ) == '' and ! isset ( $padOpt [$pad] [2] ) )
+    return padError ( "the {" . $padTag [$pad] . "} has no name" );
+
   $padStoreName = 'pad' . ucwords($padTag[$pad]) . 'Store';
 
   if ( isset ( $padParm ) or isset ( $padOpt [$pad] [2] ) )
@@ -49,6 +55,20 @@
   } elseif ( $padTag [$pad] == 'bool' ) {
 
     $padStoreData = padMakeFlag ($padStoreSource);
+
+  }
+
+  // A store named like a tag is never reached by its bare name - resolution finds the
+  // tag first. The sequence stores refuse such names already; strict mode holds these
+  // three stores to the same rule.
+
+  if ( $padCheckSyntax ) {
+
+    if ( file_exists ( PAD . "tags/" . $padName [$pad] . ".php" ) )
+      return padError ( "the store name '" . $padName [$pad] . "' is already a built-in tag - {" . $padName [$pad] . "} will never reach the store" );
+
+    if ( padAppTagCheck ( $padName [$pad] ) )
+      return padError ( "the store name '" . $padName [$pad] . "' is already an application tag - {" . $padName [$pad] . "} will never reach the store" );
 
   }
 

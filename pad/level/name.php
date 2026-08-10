@@ -8,8 +8,10 @@
   if ( $padName [$pad] )
     return;
 
-  if ( isset ( $padPrm [$pad] ['name'] ) )
+  if ( isset ( $padPrm [$pad] ['name'] ) ) {
+    padDone ( 'name' );
     $padName [$pad] = $padPrm [$pad] ['name'];
+  }
   elseif ( $padForceTagName )
     $padName [$pad] = $padForceTagName;
   else

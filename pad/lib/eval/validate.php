@@ -115,8 +115,23 @@
 
     foreach ( $segments as $idx => $tokens ) {
 
+      // A pipe with nothing between it and the next - or nothing behind it - is skipped
+      // silently by the walk. Strict mode names the hole. In a pipe body the head
+      // segment counts too: {$x | | upper} arrives here as an empty head.
+
+      if ( count ( $tokens ) == 0 and ( $idx > 0 or $pipe ) )
+        return padEvalValidateError ( "an empty pipe segment", $eval );
+
       if ( $idx == 0 and ! $pipe       ) continue;   // in a general expression the head is a value
       if ( count ( $tokens ) != 1     ) continue;   // an expression judges itself in the stages after
+
+      // A signed number standing alone after a | is the missing-space form of the
+      // arithmetic pipe: {echo $x | +1} replaces the value with the literal +1 where
+      // {echo $x | + 1} adds one. It can only be that mistake, so it is named as one.
+
+      if ( preg_match ( '/^[+\-]\d/', (string) ( $tokens [0] [0] ?? '' ) ) )
+        return padEvalValidateError ( "a pipe operator needs a space before its operand - write '| + 1', not '| " . $tokens [0] [0] . "'", $eval );
+
       if ( $tokens [0] [1] != 'other' ) continue;   // a quoted string, number, $field or @ is a value
 
       $word = $tokens [0] [0];
@@ -175,7 +190,13 @@
 
   function padEvalValidateError ( $why, $text ) {
 
-    padError ( "Expression error: $why  ->  $text" );
+    global $padCheckSyntax;
+
+    // Reported under the strict syntax check; either way FALSE goes back, and the
+    // expression yields '' - the lenient contract for what cannot be evaluated.
+
+    if ( $padCheckSyntax )
+      padError ( "Expression error: $why  ->  $text" );
 
     return FALSE;
 

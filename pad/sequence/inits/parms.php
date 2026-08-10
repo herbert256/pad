@@ -37,4 +37,14 @@
   $pqPull      = $pqParms ['pull']     ?? '';
   $pqPush      = $pqParms ['push']     ?? '';
 
+  // Every named parameter the run consumes is read right here, so it is marked read right
+  // here - the strict unread-option sweep looks for the mark.
+
+  if ( $pqEntry == 'tag' )
+    foreach ( [ 'from', 'to', 'sole', 'minimal', 'maximal', 'increment', 'rows', 'try',
+                'stop', 'skip', 'randomly', 'unique', 'name', 'build', 'toData',
+                'negative', 'pull', 'push' ] as $pqParmOne )
+      if ( isset ( $pqParms [$pqParmOne] ) )
+        padDone ( $pqParmOne );
+
 ?>

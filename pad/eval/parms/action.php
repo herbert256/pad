@@ -10,8 +10,13 @@
   // {action:reverse} worked as a tag while the expression form ended the request on a missing
   // include.
 
-  if ( ! file_exists ( PA . "$name.php" ) )
-    return padError ( "Action '$name' is not a sequence action" );
+  if ( ! file_exists ( PA . "$name.php" ) ) {
+
+    global $padCheckSyntax;
+
+    return ( $padCheckSyntax ) ? padError ( "Action '$name' is not a sequence action" ) : '';
+
+  }
 
   // The first argument is what the action runs over, so with no arguments at all there is
   // nothing to act on and the piped value passes through untouched. This used to answer ''

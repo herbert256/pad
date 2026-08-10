@@ -5,6 +5,9 @@
 
   global $padPrm;
 
+  foreach ( array_keys ( $padPrm [$padIdx] ) as $padAtOptionsOne )
+    padDoneAt ( $padIdx, $padAtOptionsOne );
+
   return padAtSearch ( $padPrm [$padIdx], $names );
 
 ?>

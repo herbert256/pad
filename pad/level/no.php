@@ -23,6 +23,96 @@
 
     }
 
+  // Strict mode reports the name instead of keeping it - and a property written over a
+  // level that is not there gets told which half is wrong.
+
+  global $padCheckSyntax;
+
+  if ( $padCheckSyntax ) {
+
+    $padNoTag = $padWords [0];
+
+    // The two branch tags reach here only when they stand outside the pair that reads
+    // them - if.php and case.php consume their own.
+
+    // A brace pair starting # meant to be a comment and did not end with # - the walk
+    // would otherwise call it an unknown tag named after the note itself.
+
+    if ( str_starts_with ( $padNoTag, '#' ) )
+      return padError ( "the comment {# ... does not close with #}" );
+
+    if ( $padNoTag == 'elseif' )
+      return padError ( "an {elseif} stands inside its {if}, before any @else@" );
+
+    if ( $padNoTag == 'when' )
+      return padError ( "a {when} stands inside its {case}" );
+
+    // A type prefix does not search, it asserts - so a miss is not an unknown tag, it is
+    // a named thing of a known kind that is not there. The prefix says which kind.
+
+    if ( str_contains ( $padNoTag, ':' ) ) {
+
+      list ( $padNoPrefix, $padNoName ) = padSplitOnUnquotedColon ( $padNoTag );
+
+      $padNoKinds = [
+        'data'     => 'data store',        'bool'     => 'bool store',
+        'content'  => 'content block',     'include'  => 'include',
+        'local'    => 'file in _data',     'constant' => 'constant',
+        'app'      => 'application tag',   'common'   => 'tag in _common',
+        'pad'      => 'built-in tag',      'php'      => 'PHP function',
+        'script'   => 'script',            'select'   => 'declared select table',
+        'array'    => 'array',             'pull'     => 'stored sequence',
+        'sequence' => 'sequence type',     'action'   => 'sequence action',
+        'field'    => 'field',             'parm'     => 'parameter',
+        'property' => 'property',          'level'    => 'level array',
+        'flag'     => 'sequence type',     'keep'     => 'sequence type',
+        'make'     => 'sequence type',     'remove'   => 'sequence type',
+        'function' => 'function',
+      ];
+
+      if ( isset ( $padNoKinds [$padNoPrefix] ) ) {
+
+        if ( str_contains ( $padNoName, '(' ) )
+          $padNoName = strstr ( $padNoName, '(', TRUE );
+
+        return padError ( "there is no " . $padNoKinds [$padNoPrefix] . " named '" . trim ( $padNoName ) . "'" );
+
+      }
+
+      // The sequence forms read either way round - make:fibonacci and fibonacci:make -
+      // so a known sequence word behind the colon says the front half is the miss.
+
+      if ( in_array ( $padNoName, [ 'make', 'keep', 'flag', 'remove' ] ) )
+        return padError ( "there is no sequence type named '" . $padNoPrefix . "'" );
+
+      // A colon with a name-shaped word in front of it is a type prefix - just not one
+      // the engine has.
+
+      if ( padValidVar ( $padNoPrefix ) )
+        return padError ( "there is no type named '" . $padNoPrefix . "'" );
+
+    }
+
+    if ( str_contains ( $padNoTag, '@' ) ) {
+
+      $padNoProp   = strstr ( $padNoTag, '@', TRUE );
+      $padNoTarget = substr ( strstr ( $padNoTag, '@' ), 1 );
+
+      if ( file_exists ( PAD . "properties/$padNoProp.php" ) )
+        return padError ( "there is no enclosing level named '$padNoTarget' for the property '$padNoProp'" );
+
+      // The mirror: the level is there, the property is not.
+
+      for ( $padNoKey = $pad; $padNoKey >= 0; $padNoKey-- )
+        if ( ( $padName [$padNoKey] ?? '' ) == $padNoTarget )
+          return padError ( "there is no property named '$padNoProp'" );
+
+    }
+
+    return padError ( "there is no tag named '$padNoTag'" );
+
+  }
+
   if ( $padPairSet ) return padLevelNoPair   ();
   else               return padLevelNoSingle ();
 

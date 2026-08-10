@@ -13,6 +13,13 @@
   $pqKeep   = $padPrm [$pad] ['keep']     ?? '';
   $pqRemove = $padPrm [$pad] ['remove']   ?? '';
 
+  // The four mode words are read right here when the tag carries them as options -
+  // marked read, for the strict unread-option sweep.
+
+  foreach ( [ 'make', 'keep', 'remove', 'flag' ] as $pqCheckOne )
+    if ( isset ( $padPrm [$pad] [$pqCheckOne] ) )
+      padDone ( $pqCheckOne );
+
   if ( $pqType == 'make'   or $pqPrefix == 'make'   or $pqTag == 'make'   ) $pqMake   = TRUE;
   if ( $pqType == 'keep'   or $pqPrefix == 'keep'   or $pqTag == 'keep'   ) $pqKeep   = TRUE;
   if ( $pqType == 'remove' or $pqPrefix == 'remove' or $pqTag == 'remove' ) $pqRemove = TRUE;

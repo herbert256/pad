@@ -5,6 +5,18 @@
   // [$pad] [0], the unparsed option text, rather than a parsed parameter, so the whole
   // expression reaches padEval() as it was written.
 
+  // An {echo} with nothing in front of the first pipe - or nothing at all - prints
+  // nothing, silently. Strict mode asks what it was meant to say.
+
+  if ( $padCheckSyntax ) {
+
+    list ( $padEchoHead ) = padPipeSplit ( $padOpt [$pad] [0] );
+
+    if ( trim ( $padEchoHead ) == '' )
+      return padError ( "the {echo} has no expression" );
+
+  }
+
   return padEval ( $padOpt [$pad] [0] );
 
 ?>

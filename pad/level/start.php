@@ -47,6 +47,27 @@
   if ( isset ( $padPrm [$pad] ['callback'] ) )
     include PAD . 'level/callback.php' ;
 
+  // The two section markers walk together, @start@ first: a prelude, the body, a coda.
+  // Strict mode holds a level to that; the lenient walk splits on whatever marker is
+  // there, as it always has.
+
+  if ( $padCheckSyntax ) {
+
+    $padSectionStart = padOpenCloseOk ( $padBase [$pad], '@start@' );
+    $padSectionEnd   = padOpenCloseOk ( $padBase [$pad], '@end@'   );
+
+    if ( $padSectionStart and ! $padSectionEnd )
+      return padError ( "an @start@ needs its @end@ behind it" );
+
+    if ( $padSectionEnd and ! $padSectionStart )
+      return padError ( "an @end@ needs its @start@ before it" );
+
+    if ( $padSectionStart and $padSectionEnd
+         and strpos ( $padBase [$pad], '@end@' ) < strpos ( $padBase [$pad], '@start@' ) )
+      return padError ( "the @start@ stands before the @end@, not behind it" );
+
+  }
+
   if ( padOpenCloseOk ( $padBase[$pad], '@end@') )
     include PAD . 'level/start_end/end1.php';
 

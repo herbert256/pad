@@ -32,6 +32,8 @@
 
   }
 
-  return padError ( "Sequence '$name' is not a sequence type or an action" );
+  global $padCheckSyntax;
+
+  return ( $padCheckSyntax ) ? padError ( "Sequence '$name' is not a sequence type or an action" ) : '';
 
 ?>

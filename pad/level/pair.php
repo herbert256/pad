@@ -18,8 +18,19 @@
 
     $padEnd [$pad] = strpos ( $padOut [$pad], '}', $padEnd [$pad] + 1 );
 
-    if ( $padEnd [$pad] === FALSE )
-      padError ("Closing } not found");
+    // Running out of text is reported under the strict syntax check; the lenient walk
+    // takes everything to the end as the level's span, and stepping stops either way -
+    // searching on from FALSE was an endless loop with the error action set to continue.
+
+    if ( $padEnd [$pad] === FALSE ) {
+
+      if ( $padCheckSyntax )
+        padError ("Closing } not found");
+
+      $padEnd [$pad] = strlen ( $padOut [$pad] ) - 1;
+      break;
+
+    }
 
     $padBetweenCheck = substr ($padOut [$pad], $padPos+1, $padEnd [$pad]-$padPos-1);
 

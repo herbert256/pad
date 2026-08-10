@@ -70,9 +70,9 @@
     for ( $i=$pad; $i >= 0; $i-- )
       if ( array_key_exists ( $field, $padPrm [$i] ) ) {
         $work = $padPrm [$i] [$field];
-        if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
-        if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
-        elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
+        if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) { padDoneAt ( $i, $field ); return NULL;  }
+        if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) { padDoneAt ( $i, $field ); return $work; }
+        elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) { padDoneAt ( $i, $field ); return $work; }
       }
 
     for ( $i=$pad; $i >= 0; $i-- )

@@ -36,16 +36,28 @@
   if ( $padInfo ) {
     $padInfoList = padExplode ( $padInfo, ',' );
     foreach ( $padInfoList as $padInfoType  )
-      include PAD . "config/info/$padInfoType.php";
+      if ( file_exists ( PAD . "config/info/$padInfoType.php" ) )
+        include PAD . "config/info/$padInfoType.php";
+      else
+        throw new \ErrorException ( "PAD: there is no info mode named '$padInfoType'" );
   }
 
   if ( php_sapi_name() == 'cli' and $padOutputType == 'web' )
     $padOutputType = 'console';
 
+  // A configuration word with no file behind it died on a raw missing include. Reported
+  // always - a config typo is not a template mistake the lenient walk papers over. The
+  // error action is put right first, so the report itself has a working action to travel
+  // by; the checks run again after the second application pass, which has the last word.
+
+  include PAD . 'inits/configCheck.php';
+
   include PAD . "config/output/$padOutputType.php";
 
   if ( file_exists ( APP . '_config/config.php' ) )
     include APP . '_config/config.php';
+
+  include PAD . 'inits/configCheck.php';
 
   if ( isset ( $padSetConfig ) and count ( $padSetConfig ) )
     include_once PAD . 'inits/configSet.php';

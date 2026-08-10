@@ -564,20 +564,24 @@ $padOutputType = 'web';
 // Cache enabled
 $padCache = false;
 
-// Strict expressions: report an undefined $field inside an expression instead of
-// resolving it to empty (the {$x} tag form already does this). Off by default.
-$padEvalStrict = false;
+// The strict syntax check, on by default: orphan braces and tags, pairs that never
+// close, options nothing reads, misses behind a type prefix - and an undefined $field,
+// in an expression and in the {$x} tag form alike. Off, the lenient walk keeps what
+// nothing claims as literal text and resolves a missing field to empty.
+$padCheckSyntax = true;
 ```
 
 ### Expression errors
 
-The expression evaluator reports a malformed expression in the source's own terms, naming
-the exact fault and its position:
+Under `$padCheckSyntax` (the default), the expression evaluator reports a malformed
+expression in the source's own terms, naming the exact fault and its position:
 - unbalanced quotes, `( )` or `[ ]` — `{echo (1 + 2}` → *the ( at position ... is never closed*
 - a misspelled pipe function — `{echo $x | uppr}` → *there is no pipe function named 'uppr'*
 - a comparison operator missing an operand where no pipe value can stand in for it —
   `{if $x eq}` → *the operator 'eq' has nothing on its right*
-- with `$padEvalStrict`, an undefined field — `{if $typo eq 1}` → *there is no field named '$typo'*
+- an undefined field — `{if $typo eq 1}` → *there is no field named '$typo'*
+
+With the check off, what cannot be evaluated yields empty instead.
 
 ---
 
@@ -928,6 +932,7 @@ This is particularly useful for:
 | `regression_cache_file` | Test | Regression test for the 'file' page cache |
 | `regression_cache_memcached` | Test | Regression test for the 'memcached' page cache |
 | `regression_cache_redis` | Test | Regression test for the 'redis' page cache |
+| `regression_config_typo` | Test | Regression test for the configuration word check |
 | `regression_error_boot` | Test | Regression test for the 'boot' error action |
 | `regression_error_dump` | Test | Regression test for the 'dump' error action |
 | `regression_error_exit` | Test | Regression test for the 'exit' error action |

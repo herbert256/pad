@@ -101,14 +101,31 @@
           $next = "\r";
         elseif ($next == 't')
           $next = "\t";
-        elseif ( ! in_array ($next, ["'", '"', "\\"]))
-          padError ( "Unsupported \\ char" );
+        elseif ( ! in_array ($next, ["'", '"', "\\"])) {
+
+          // Reported under the strict syntax check; the lenient walk keeps the
+          // character the backslash stood in front of.
+
+          global $padCheckSyntax;
+
+          if ( $padCheckSyntax )
+            padError ( "Unsupported \\ char" );
+
+        }
 
         if ($is_str or $is_quote) {
           $result [$i] [0] .= $next;
           $skip=1;
-        } else
-          padError ( "Escape \\ char only allowed inside a string" );
+        } else {
+
+          global $padCheckSyntax;
+
+          if ( $padCheckSyntax )
+            padError ( "Escape \\ char only allowed inside a string" );
+
+          $skip=1;
+
+        }
 
         continue;
 

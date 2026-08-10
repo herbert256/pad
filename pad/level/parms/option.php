@@ -13,6 +13,13 @@
     $padOptionsAppStartCall [$pad] [$padPrmName] = $padOptionCheck;
   }
 
+  // A name with '=' and nothing behind it is not the bare-flag form: the author started
+  // a value and left it empty. Strict mode says so; the lenient walk keeps the TRUE the
+  // bare form gets.
+
+  if ( $padCheckSyntax and $padPrmValue === '' and str_contains ( $padPrmOne, '=' ) )
+    return padError ( "the option '" . $padPrmName . "' was given no value" );
+
   $padPrm [$pad] [$padPrmName] = ( $padPrmValue === '' ) ? TRUE : padEval ( $padPrmValue );
 
   $padParmsSetType  = 'option';

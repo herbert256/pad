@@ -20,15 +20,14 @@
   $padErrorReport    = TRUE;
 
 
-  // Strict expression evaluation, off by default. When on, a $field that does not exist is
-  // reported inside an expression rather than resolving to empty - the same discipline {$x}
-  // already applies, taken into {if}, {echo} and the rest. Left off, an expression keeps
-  // PAD's lenient contract that a missing field is empty. (A comparison operator left
-  // without an operand is reported regardless of this flag, but only where no pipe value
-  // could have stood in for the missing side.)
-
-  $padEvalStrict = FALSE;
   $padEvalTrace = FALSE;
+
+  // The strict syntax check, on by default. The walk reports orphan braces and tags,
+  // pairs that never close, options nothing reads, misses behind a type prefix, sections
+  // out of order - and the expression side reports a malformed expression or a $field,
+  // function, action or script that does not exist. Off, everything falls back to the
+  // lenient contract: what nothing claims stays as literal text, and what cannot be
+  // evaluated yields empty.
 
   $padCheckSyntax = TRUE;
 

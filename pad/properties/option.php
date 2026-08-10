@@ -9,9 +9,10 @@
 
   global $padPrm;
 
-  if ( isset ( $padPrm [$padIdx] [$parm] ) )
+  if ( isset ( $padPrm [$padIdx] [$parm] ) ) {
+    padDoneAt ( $padIdx, $parm );
     return $padPrm [$padIdx] [$parm];
-  else
+  } else
     return NULL;
 
 ?>

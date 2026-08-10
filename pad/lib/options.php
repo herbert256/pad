@@ -48,14 +48,25 @@
       if ( $one==']' and ($in_str or $in_quote) )
         continue;
 
+      // An orphan close bracket is reported under the strict syntax check; the lenient
+      // walk keeps it as the ordinary character it already appended to $now.
+
       if ( $one==')' and !$pair ) {
-        padError ("Closing ) without an opening (");
-        return [];
+        global $padCheckSyntax;
+        if ( $padCheckSyntax ) {
+          padError ("Closing ) without an opening (");
+          return [];
+        }
+        continue;
       }
 
       if ( $one==']' and !$pair ) {
-        padError ("Closing ] without an opening [");
-        return [];
+        global $padCheckSyntax;
+        if ( $padCheckSyntax ) {
+          padError ("Closing ] without an opening [");
+          return [];
+        }
+        continue;
       }
 
       if ( $one=='(') {

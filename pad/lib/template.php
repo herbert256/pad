@@ -165,6 +165,21 @@
 
   function padGetRange ( $input, $increment=1 ) {
 
+    global $padCheckSyntax;
+
+    // '1..' quietly became the single row 1, and '..5' read as 5 - neither is what the
+    // author meant by writing the dots. Strict mode asks for the missing end.
+
+    if ( $padCheckSyntax and str_contains ( (string) $input, '..' ) ) {
+
+      if ( str_ends_with ( trim ( $input ), '..' ) )
+        return padError ( "the range '" . trim ( $input ) . "' has no end" );
+
+      if ( str_starts_with ( trim ( $input ), '..' ) )
+        return padError ( "the range '" . trim ( $input ) . "' has no start" );
+
+    }
+
     $parts = padExplode ($input, '..');
 
     $p1 = $parts[0] ?? '';

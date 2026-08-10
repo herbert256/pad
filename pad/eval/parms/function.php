@@ -13,8 +13,13 @@
 
   $padFunctionKind = padTypeFunction ( $name, 0 );
 
-  if ( ! $padFunctionKind or ! file_exists ( PAD . "eval/parms/$padFunctionKind.php" ) )
-    return padError ( "Function '$name' is not a function" );
+  if ( ! $padFunctionKind or ! file_exists ( PAD . "eval/parms/$padFunctionKind.php" ) ) {
+
+    global $padCheckSyntax;
+
+    return ( $padCheckSyntax ) ? padError ( "Function '$name' is not a function" ) : '';
+
+  }
 
   return include PAD . "eval/parms/$padFunctionKind.php";
 

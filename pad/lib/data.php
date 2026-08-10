@@ -45,6 +45,21 @@
       if ( ( $GLOBALS ['padInfoXref'] ?? FALSE ) and function_exists ( 'padInfoXref' ) )
         padInfoXref ( 'config/data', $type );
 
+      // A type word with no parser behind it used to end the request on a raw missing
+      // include. Strict mode names it; the lenient walk falls back to sniffing the type
+      // from the data, the way an untyped {data} is read.
+
+      if ( ! file_exists ( PAD . "data/$type.php" ) ) {
+
+        global $padCheckSyntax;
+
+        if ( $padCheckSyntax )
+          return padError ( "there is no data type named '" . padMakeSafe ( $type, 40 ) . "'" );
+
+        $type = padContentType ( $data );
+
+      }
+
       $data = include PAD . "data/$type.php";
 
     }

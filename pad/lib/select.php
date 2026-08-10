@@ -46,6 +46,14 @@
         if ( file_exists ( PAD . "select/types/$padSelName.php" ) )
           padInfoXref ( 'options', 'select', $padSelName );
 
+    // The select options the query consumes are read right here, so they are marked read
+    // right here - the strict unread-option sweep looks for the mark.
+
+    foreach ( array_keys ( (array) $prm ) as $padSelName )
+      if ( file_exists ( PAD . "select/types/$padSelName.php" )
+           or in_array ( $padSelName, [ 'all', 'type', 'page', 'rows' ] ) )
+        padDone ( $padSelName );
+
     $db           = $prm ['db']           ?? $parms ['db']          ?? $table;
     $all          = $prm ['all']          ?? $parms ['all']         ?? 0;
     $distinct     = $prm ['distinct']     ?? $parms ['distinct']    ?? 0;

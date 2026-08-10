@@ -28,6 +28,8 @@
 
   }
 
-  return padError ( "Script '$name' was not found in a _scripts directory" );
+  global $padCheckSyntax;
+
+  return ( $padCheckSyntax ) ? padError ( "Script '$name' was not found in a _scripts directory" ) : '';
 
 ?>

@@ -9,6 +9,10 @@
   global $padPrm;
 
   $padTagParmsResult = $padPrm [$padIdx];
+
+  foreach ( array_keys ( $padTagParmsResult ) as $padTagParmsOne )
+    padDoneAt ( $padIdx, $padTagParmsOne );
+
   $padTagParmsResult = padDataForcePad ($padTagParmsResult);
 
   return $padTagParmsResult;

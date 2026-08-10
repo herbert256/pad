@@ -184,6 +184,18 @@
 
   }
 
+  // The same mark on another level's book: an option is read from anywhere below its tag -
+  // {parm:x}, option.x@tag, a field falling back to an enclosing tag - and the strict
+  // unread-option sweep must see those reads on the level that owns the option.
+
+  function padDoneAt ( $idx, $var ) {
+
+    global $padDone;
+
+    $padDone [$idx] [$var] = TRUE;
+
+  }
+
   function padIsDone ( $var ) {
 
     global $pad, $padDone;

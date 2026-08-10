@@ -16,10 +16,19 @@
   // The handler was in no phase list and nothing included it, so the form did nothing until
   // the audit - the raw option text fell through to padEval and answered TRUE for any name.
 
+  // An {if} without its {/if} used to fall through as a single tag and render nothing of
+  // what the author meant. Strict mode says what is missing.
+
+  if ( ! $padPair [$pad] and $padCheckSyntax )
+    return padError ( "the pair {" . $padOrg [$pad] . "} never closes" );
+
   if ( ( $padParms [$pad] [0] ['padPrmName'] ?? '' ) == 'bool' )
     return ( include PAD . 'options/bool.php' ) ? TRUE : FALSE;
 
   $padIf  = $padParms [$pad] [0] ['padPrmOrg'] ?? '';
+
+  if ( trim ( $padIf ) == '' and $padCheckSyntax )
+    return padError ( "the {if} has no condition" );
 
   $padChk = strpos ($padContent, '{elseif');
 
@@ -38,6 +47,10 @@
 
       $padPos     = strpos($padContent, '}', $padChk);
       $padIf      = substr($padContent, $padChk+8, $padPos-($padChk+8));
+
+      if ( trim ( $padIf ) == '' and $padCheckSyntax )
+        return padError ( "an {elseif} of this {if} has no condition" );
+
       $padContent = substr($padContent, $padPos+1);
       $padChk     = strpos($padContent, '{elseif');
 
