@@ -946,6 +946,8 @@ This is particularly useful for:
 | `regression_output_download` | Test | Regression test for the 'download' output type |
 | `regression_output_file` | Test | Regression test for the 'file' output type |
 | `regression_output_web` | Test | Regression test for the 'web' output type |
+| `regression_try_log` | Test | Regression test for the try guards under the 'log' action |
+| `regression_try_pad` | Test | Regression test for the try guards under the 'pad' action |
 | `regression3` | Test | The pages of the suite that use `_common` - `{example}`, `{demo}`, `{table}` - fetched and compared the same way |
 | `sequence` | Standard | Mathematical sequence subsystem demos |
 | `structure` | Example | Demonstrates nested `_xxx` directories and inheritance |

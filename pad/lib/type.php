@@ -89,7 +89,7 @@
     elseif ( defined            ( $item                          ) and $type == 'constant' ) return $type;
     elseif ( padDataFileName    ( $item                          ) and $type == 'local'    ) return $type;
     elseif ( padScriptCheck     ( $item                          ) and $type == 'script'   ) return $type;
-    elseif ( function_exists    ( $item                          ) and $type == 'php'      ) return $type;
+    elseif ( function_exists    ( strstr ( "$item(", '(', TRUE ) ) and $type == 'php'      ) return $type;
     elseif ( file_exists        ( PT . $item                     ) and $type == 'sequence' ) return $type;
     elseif ( file_exists        ( PA . "$item.php"               ) and $type == 'action'   ) return $type;
     elseif ( padTypeFunction    ( $item, 0                       ) and $type == 'function' ) return $type;

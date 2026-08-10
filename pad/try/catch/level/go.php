@@ -18,4 +18,12 @@
     $padTryException->getLine()
   );
 
+  $padTagResult   = NULL;
+  $padTagContent  = '';
+  $padContent     = '';
+  $padBase [$pad] = '';
+  $padParm        = '';
+
+  return NULL;
+
 ?>

@@ -41,6 +41,8 @@ This directory contains PAD applications and examples.
 | [regression_output_download](regression_output_download/README.md) | Test | Regression test for the 'download' output type - the index turns NO when the writer stops behaving |
 | [regression_output_file](regression_output_file/README.md) | Test | Regression test for the 'file' output type - the index turns NO when the writer stops behaving |
 | [regression_output_web](regression_output_web/README.md) | Test | Regression test for the 'web' output type - the index turns NO when the writer stops behaving |
+| [regression_try_log](regression_try_log/README.md) | Test | Regression test for the try guards under the 'log' action - caught, logged, and the page renders clean |
+| [regression_try_pad](regression_try_pad/README.md) | Test | Regression test for the try guards under the 'pad' action - caught and reported into the page |
 | [regression3](regression3/README.md) | Test | The pages of the suite that use _common - {example}, {demo}, {table} - fetched and compared the same way |
 | [sequence](sequence/README.md) | Standard | Mathematical sequence subsystem demos |
 | [structure](structure/README.md) | Example | Demonstrates PAD directory structure and nested `_xxx` directories |

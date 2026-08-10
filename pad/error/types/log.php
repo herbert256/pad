@@ -10,7 +10,7 @@
 
     padLogError ( "$file:$line $error", 4 );
 
-    return '';
+    return TRUE;
 
   }
 

@@ -4,13 +4,6 @@
   // reports the throwable with its file and line through padErrorGo() and returns '' so the
   // caller ends up with an empty result instead of a fatal.
 
-  padErrorGo (
-    'CATCH: ' .
-    $padTryException->getMessage(),
-    $padTryException->getFile(),
-    $padTryException->getLine()
-  );
-
-  return '';
-
+  return PAD . 'try/catch/call/_try.php';
+  
 ?>

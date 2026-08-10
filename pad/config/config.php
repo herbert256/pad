@@ -14,7 +14,7 @@
 
   $padErrorLevel     = 'all';
 
-  $padErrorTry       = FALSE;
+  $padErrorTry       = TRUE;
 
   $padErrorLog       = TRUE;
   $padErrorReport    = TRUE;

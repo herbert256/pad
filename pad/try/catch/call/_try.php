@@ -11,6 +11,9 @@
     $padTryException->getLine()
   );
 
+  $padCallPHP = '';
+  $padCallOB  = '';
+
   return '';
 
 ?>
