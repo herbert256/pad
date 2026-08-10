@@ -36,6 +36,16 @@
 
     $prm = ( $unionBuild ) ? [] : ( $padPrm [$pad] ?? [] );
 
+    // Every select option the query was given goes on the xref record - the declaration's
+    // words too, though the source filter keeps only what the page itself says.
+
+    global $padInfoXref;
+
+    if ( ( $padInfoXref ?? FALSE ) and function_exists ( 'padInfoXref' ) )
+      foreach ( array_keys ( (array) $prm + (array) $parms ) as $padSelName )
+        if ( file_exists ( PAD . "select/types/$padSelName.php" ) )
+          padInfoXref ( 'options', 'select', $padSelName );
+
     $db           = $prm ['db']           ?? $parms ['db']          ?? $table;
     $all          = $prm ['all']          ?? $parms ['all']         ?? 0;
     $distinct     = $prm ['distinct']     ?? $parms ['distinct']    ?? 0;

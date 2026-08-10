@@ -1,6 +1,6 @@
 <?php
 
-  // Implements notOk="name": hands 'notOk' to options/go/reset.php, which puts the named
+  // Implements notOk="name": hands 'notOk' to options/_go/reset.php, which puts the named
   // content in place of the level's own and turns the failure back into a hit.
   //
   // Included by level/flags.php when the tag did not hit, and by try/catch/level/go.php when
@@ -8,6 +8,6 @@
 
   $padReset = 'notOk';
 
-  return include PAD . 'options/go/reset.php';
+  return include PAD . 'options/_go/reset.php';
 
 ?>

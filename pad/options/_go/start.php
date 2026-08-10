@@ -5,6 +5,6 @@
 
   $padOptions = 'start';
 
-  include PAD . 'options/go/options.php';
+  include PAD . 'options/_go/options.php';
 
 ?>

@@ -24,9 +24,21 @@
     // nothing at all.
 
         if ( ! count ( $padData [$pad] )                        ) continue;
-    elseif ( $padTagSeq [$pad]                                  ) continue;
     elseif ( $padPrmKind != 'option'                            ) continue;
-    elseif ( in_array ( $padPrmName, [ 'negative', 'orderly', 'duplicates', 'atLeastOnce', 'left', 'right', 'both' ] ) ) continue;
+    elseif ( in_array ( $padPrmName, [ 'negative', 'orderly', 'duplicates', 'atLeastOnce', 'left', 'right', 'both' ] ) ) {
+
+      // A modifier never runs as a handler, but it was asked for, so it goes on the xref
+      // record - before the sequence skip, because sequence tags read these same names.
+
+      if ( $padInfo ) {
+        $padHandName = $padPrmName;
+        include PAD . 'events/handling.php';
+      }
+
+      continue;
+
+    }
+    elseif ( $padTagSeq [$pad]                                  ) continue;
     elseif ( ! file_exists ( PAD . "handling/types/$padPrmName.php" ) ) continue;
 
     $padHandName = $padPrmName;

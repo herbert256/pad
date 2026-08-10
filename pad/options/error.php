@@ -7,6 +7,6 @@
 
   $padReset = 'error';
 
-  return include PAD . 'options/go/reset.php';
+  return include PAD . 'options/_go/reset.php';
 
 ?>

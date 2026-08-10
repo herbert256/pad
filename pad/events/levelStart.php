@@ -3,27 +3,13 @@
   // Fires from level/start.php once a level is fully set up - parameters parsed, data, base
   // and options resolved - and immediately before its occurrences are iterated.
   //
-  // Writes the trace report's level block, and for the xref records the tag under its type
-  // (with any @property suffix stripped off) plus, for plain 'tag' types, an entry in the
-  // properties index.
+  // Writes the trace report's level block. The xref record used to be made here too, but a
+  // tag that jumps or ends the request never gets this far, so it moved to events/tag.php,
+  // which fires before the handler runs.
 
-  global $padInfoTrace, $padInfoXref;
+  global $padInfoTrace;
 
   if ( $padInfoTrace )
     include PAD . 'info/types/trace/level/info.php';
-
-  if (  $padInfoXref ) {
-
-    if ( str_contains($padTag [$pad], '@'))
-      $padInfoTmp = strstr ( $padTag [$pad] , "@", true ) ;
-    else
-      $padInfoTmp = $padTag [$pad] ;
-
-    padInfoXref ( 'tag', $padType [$pad], $padInfoTmp );
-
-    if ( $padType [$pad] == 'tag' )
-      padInfoXref ( 'properties', $padInfoTmp );
-
-  }
 
 ?>

@@ -18,7 +18,8 @@ classicModels/
 ├── offices.pad     # offices to employees, and the same the other way round
 ├── employees_1.pad # employee, manager and boss, through two virtual tables
 ├── employees_2.pad # the same relation walked a level further
-└── orders.pad      # orders, their details and the products behind them
+├── orders.pad      # orders, their details and the products behind them
+└── options.pad     # one line per select option - where, join, group, union and the rest
 ```
 
 ## The database

@@ -7,7 +7,7 @@ field:    {set $catF = 'v'/}{echo '' | field:catF . '!'}
 function: {echo 'ab' | function:exclaim}
 include:  {set $who = 'bob'/}{include:fixture}
 keep:     {keep:prime rows=4, from=10}{$sequence},{/keep:prime}
-level:    {data 'catR'}[{"sub":[1,2]}]{/data}{catR}{echo '' | level:sub . level:sub}{/catR}
+level:    {data 'catR'}[{"sub":[1,2]}]{/data}{catR}{echo '' | level:sub . level:sub}={level:sub}{$sub}{/level:sub}{/catR}
 local:    {echo '' | local:nums . local:nums}
 make:     {make:fibonacci rows=3}{$sequence},{/make:fibonacci}
 parm:     {true name='v'}{parm:name}{/true}

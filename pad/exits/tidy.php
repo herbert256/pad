@@ -14,6 +14,14 @@
   if ( $padTidyMarked )
     $padOutput = str_replace ( '@tidy@', '', $padOutput );
 
+  // This is the one place @tidy@ is ever consumed, so it is where the construct gets on
+  // the xref record - before the bare-render returns below, which a harvest request takes.
+
+  global $padInfoXref;
+
+  if ( $padTidyMarked and ( $padInfoXref ?? FALSE ) )
+    padInfoXref ( 'constructs', 'tidy' );
+
   if ( isset ( $_REQUEST ['padInclude']   ) ) return;
   if ( isset ( $_REQUEST ['padExamples']  ) ) return;
   if ( isset ( $_REQUEST ['padReference'] ) ) return;

@@ -22,6 +22,9 @@
 
   include PAD . 'level/set.php';
 
+  if ( $padInfo )
+    include PAD . 'events/tag.php';
+
   include PAD . 'try/level/go.php';
 
   if ( $padNextPadLevel )
@@ -37,9 +40,9 @@
     include PAD . 'options/dump.php';
 
   if ( count ( $padOptionsAppStart [$pad] ) )
-    include PAD . 'options/go/app.php';
+    include PAD . 'options/_go/app.php';
 
-  include PAD . 'options/go/start.php';
+  include PAD . 'options/_go/start.php';
 
   if ( isset ( $padPrm [$pad] ['callback'] ) )
     include PAD . 'level/callback.php' ;

@@ -15,6 +15,15 @@
 
   $padBase [$pad] = $padBuildLib . str_replace ( '@page@', $padBuildPage, $padBuildBase );
 
+  // Every page leaves through the frame's @page@ hole, so the construct is a fact of the
+  // assembly rather than a spot in the template - recorded straight past the source
+  // filter, the way configuration values are.
+
+  global $padInfoXref;
+
+  if ( ( $padInfoXref ?? FALSE ) and function_exists ( 'padInfoXrefGo' ) )
+    padInfoXrefGo ( 'constructs', 'page', '' );
+
   if ( $padInfo )
     include PAD . 'events/build.php';
 

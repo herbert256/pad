@@ -2,7 +2,7 @@
 
   // Claims the tag parameters the sequence subsystem has already dealt with: every parameter
   // whose name matches a sequence option (options/types/), an action (PA) or a sequence type
-  // (PT) is marked with padDone, so the generic PAD option walker in options/go/options.php
+  // (PT) is marked with padDone, so the generic PAD option walker in options/_go/options.php
   // does not run a same-named engine option over the output as well.
   //
   // Reads $padPrm[$pad], writes $padDone[$pad].

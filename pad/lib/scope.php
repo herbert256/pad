@@ -37,7 +37,11 @@
 
     global $padTag, $pad;
 
-    for ( $i=$pad; $i; $i--) {
+    // The walk starts one level up: the question is whether an *enclosing* level renders
+    // another page, and starting on the tag's own level made {example}, {get} and {page}
+    // drop their own xref record.
+
+    for ( $i = $pad - 1; $i >= 0; $i-- ) {
       if ( $padTag [$i] == 'include' ) return TRUE;
       if ( $padTag [$i] == 'get'     ) return TRUE;
       if ( $padTag [$i] == 'page'    ) return TRUE;

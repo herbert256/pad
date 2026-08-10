@@ -4,7 +4,7 @@
   // defaults to TRUE - as $padPrm [$pad] [name], evaluating the right-hand side.
   //
   // Options that have a handler in an _options/ directory are also queued in
-  // $padOptionsAppStart [$pad] for options/go/app.php to run once the level is set up.
+  // $padOptionsAppStart [$pad] for options/_go/app.php to run once the level is set up.
 
   $padOptionCheck = padOptionCheck ( $padPrmName );
 

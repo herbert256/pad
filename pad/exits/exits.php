@@ -9,7 +9,11 @@
 
   $padOutput = padUnescape ( $padResult [0] );
 
-  if ( $padTidy or $padMyTidy )
+  // The marker gets tidy.php a look even with both switches off: it is consumed (and
+  // recorded on the xref) in there, and a response that skipped the file shipped @tidy@
+  // to the browser whenever tidying was off.
+
+  if ( $padTidy or $padMyTidy or str_contains ( $padOutput, '@tidy@' ) )
     include PAD . 'exits/tidy.php';
 
   $padEtag = padMD5 ($padOutput);
