@@ -396,6 +396,8 @@
 
     if ( file_exists ( APPS . "$app/$item.pad" ) )
       padFilePut ( "examples/$app/$item.pad",  padFileGet ( APPS . "$app/$item.pad" ) );
+    elseif ( file_exists ( APPS . "$app/$item.html" ) )
+      padFilePut ( "examples/$app/$item.pad",  padFileGet ( APPS . "$app/$item.html" ) );
 
     padFilePut ( "examples/$app/$item.html", padTidySmall ( $curl ['data'], TRUE ) );
 
