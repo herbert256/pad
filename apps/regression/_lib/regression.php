@@ -373,6 +373,12 @@
     elseif ( getRegressionCompare ( $old ) == getRegressionCompare ( $new ) ) $status = 'ok';
     else                                  $status = 'warning';
 
+    if ( $status == 'random' ) 
+      if ( getRegressionCompare ( $old, TRUE ) == getRegressionCompare ( $new, TRUE ) )
+        $status = 'ok';
+      else 
+        $status = 'warning';
+
     if ( $status == 'new' )
       padFilePut ( $store, $new ) ;
 

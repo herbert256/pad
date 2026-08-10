@@ -27,6 +27,7 @@ This directory contains PAD applications and examples.
 | [regression_cache_file](regression_cache_file/README.md) | Test | Regression test for the 'file' page cache - the index turns NO when the backend stops caching |
 | [regression_cache_memcached](regression_cache_memcached/README.md) | Test | Regression test for the 'memcached' page cache - the index turns NO when the backend stops caching |
 | [regression_cache_redis](regression_cache_redis/README.md) | Test | Regression test for the 'redis' page cache - the index turns NO when the backend stops caching |
+| [regression_config_typo](regression_config_typo/README.md) | Test | Regression test for the configuration word check - a typo'd output type answers with its name |
 | [regression_error_boot](regression_error_boot/README.md) | Test | Regression test for the 'boot' error action - the index turns NO when the action stops behaving |
 | [regression_error_dump](regression_error_dump/README.md) | Test | Regression test for the 'dump' error action - the index turns NO when the action stops behaving |
 | [regression_error_exit](regression_error_exit/README.md) | Test | Regression test for the 'exit' error action - the index turns NO when the action stops behaving |
