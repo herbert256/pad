@@ -19,7 +19,6 @@
   $padErrorLog       = TRUE;
   $padErrorReport    = TRUE;
 
-  $padEvalTrace = FALSE;
 
   // Strict expression evaluation, off by default. When on, a $field that does not exist is
   // reported inside an expression rather than resolving to empty - the same discipline {$x}
@@ -29,6 +28,9 @@
   // could have stood in for the missing side.)
 
   $padEvalStrict = FALSE;
+  $padEvalTrace = FALSE;
+
+  $padCheckSyntax = TRUE;
 
   $padInfo = '';
 
