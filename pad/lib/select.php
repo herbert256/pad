@@ -199,11 +199,14 @@
       if ( isset ( $padSetLvl [$pad] [$field] ) )
         padSelectWhereAdd ( $where, "$field", $GLOBALS [$field] );
 
+    $padSelOuter = '';
+
     for ( $i=$pad-1; $i; $i-- )
       if ( $padType [$i] == 'select' ) {
 
-        $relation = $padTag [$i] ;
-        $parms    = padSelectGetDB ( $relation ) ;
+        $relation    = $padTag [$i] ;
+        $parms       = padSelectGetDB ( $relation ) ;
+        $padSelOuter = $relation;
 
         padSelectWhereRelation ( $where, $table, $relation, $padCurrent [$i] );
 
@@ -214,6 +217,15 @@
         }
 
       }
+
+    // A nested select that ends up with no constraint at all - no where of its own, no
+    // key bound, no declared relation to the select it stands in - meets every row
+    // against every row, silently. Strict mode names the missing relation.
+
+    global $padCheckSyntax;
+
+    if ( $padCheckSyntax and $padSelOuter and $where == '' )
+      padError ( "no relation declared between '$padSelOuter' and '$table' - every row meets every row" );
 
     return $where;
 

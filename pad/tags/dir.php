@@ -6,6 +6,18 @@
 
   $padDir = $padParm;
 
+  // A directory that is not there was a raw scandir failure. Strict mode names it; the
+  // lenient walk answers the empty list a scan of nothing is.
+
+  if ( ! is_dir ( $padDir ) ) {
+
+    if ( $padCheckSyntax )
+      return padError ( "there is no directory named '$padDir' for {dir}" );
+
+    return [];
+
+  }
+
   return padFiles ($padDir);
 
 ?>

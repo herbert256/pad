@@ -11,6 +11,12 @@
   $padExtPag = $padParm ;
   $padExtQry = '&padInclude';
 
+  // A page that is not there only surfaced as a failed curl, one wasted round-trip
+  // later. Strict mode names the page before the fetch.
+
+  if ( $padCheckSyntax and ! padAppPageCheck ( $padExtPag ) )
+    return padError ( "there is no page named '$padExtPag' for {get}" );
+
   foreach ( $padSetLvl [$pad] as $padK => $padV )
     $padExtQry .= "&$padK=" . urlencode($padV);
 

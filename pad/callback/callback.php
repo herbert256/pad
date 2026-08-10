@@ -10,6 +10,12 @@
 
   $padCall = padCallBackCheck ( $padPrm [$pad] ['callback'] );
 
+  // A callback file that is not there was skipped without a word, and the loop ran as if
+  // none had been asked for. Strict mode names it.
+
+  if ( $padCall === FALSE and $padCheckSyntax )
+    return padError ( "there is no callback named '" . $padPrm [$pad] ['callback'] . "'" );
+
   include PAD . 'call/any.php';
 
 ?>

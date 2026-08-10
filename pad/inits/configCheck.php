@@ -9,6 +9,10 @@
   // Included twice by inits/config.php, since the application's second pass may change
   // either word.
 
+
+  if ( !   $padCheckSyntax )
+    return;
+  
   if ( ! file_exists ( PAD . "error/types/$padErrorAction.php" ) ) {
 
     $padConfigBad   = $padErrorAction;

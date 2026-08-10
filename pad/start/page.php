@@ -13,6 +13,19 @@
   if ( padTagParm ( 'app' ) )
     return include PAD . 'start/pad/pageApp.php';
 
+  // A page that is not there took the whole response with it: the not-found error rose
+  // inside the nested pass and the request answered an empty 200. Strict mode names the
+  // page; the lenient walk gives the tag an empty value and the rest of the page lives.
+
+  if ( ! padAppPageCheck ( $padParm ) ) {
+
+    if ( $padCheckSyntax )
+      return padError ( "there is no page named '$padParm'" );
+
+    return '';
+
+  }
+
   $padStrPag [$pad] [0] = $padPage;
   $padStrPag [$pad] [1] = $padInclude;
   $padStrPag [$pad] [2] = $padDir;

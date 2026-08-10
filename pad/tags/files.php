@@ -28,6 +28,18 @@
 
   $padFilesScan = str_replace ( '//', '/', $padFilesScan);
 
+  // A directory that is not there was a raw iterator exception. Strict mode names it;
+  // the lenient walk answers the empty list a scan of nothing is.
+
+  if ( ! is_dir ( $padFilesScan ) ) {
+
+    if ( $padCheckSyntax )
+      return padError ( "there is no directory named '$padFilesDir' for {files}" );
+
+    return [];
+
+  }
+
   if ( $padFilesRecursive ) {
     $padFilesDirectory = new RecursiveDirectoryIterator ( $padFilesScan );
     $padFilesIterator  = new RecursiveIteratorIterator  ( $padFilesDirectory );

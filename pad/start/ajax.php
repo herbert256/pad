@@ -12,6 +12,29 @@
   $padExtApp = padTagParm ( 'app' );
   $padExtQry = '&padInclude';
 
+  // The stub renders happily today and the visitor's browser meets the 404 later. The
+  // page is checkable now, in this application or the named one; the lenient walk keeps
+  // the stub as it always was.
+
+  if ( $padCheckSyntax ) {
+
+    if ( $padExtApp ) {
+
+      $padExtOk = FALSE;
+
+      foreach ( [ 'pad', 'php', 'html' ] as $padExtExt )
+        if ( file_exists ( APPS . "$padExtApp/$padExtPag.$padExtExt" ) )
+          $padExtOk = TRUE;
+
+      if ( ! $padExtOk )
+        return padError ( "there is no page named '$padExtPag' in the application '$padExtApp'" );
+
+    } elseif ( ! padAppPageCheck ( $padExtPag ) )
+
+      return padError ( "there is no page named '$padExtPag' for {ajax}" );
+
+  }
+
   foreach ( $padSetLvl [$pad] as $padK => $padV )
     $padExtQry .= "&$padK=" . urlencode($padV);
 
