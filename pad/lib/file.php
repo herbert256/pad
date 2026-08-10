@@ -124,13 +124,26 @@
     if ( ! is_dir          ( $dir           ) ) return;
     if ( ! str_starts_with ( $dir, DATA      ) ) return;
 
-    foreach ( padFiles ( $dir ) as $file )
-      if ( is_dir ( "$dir/$file" ) and ! is_link ( "$dir/$file" ) )
-        padDeleteDataDir ( "$dir/$file" );
-      else
-        unlink ( "$dir/$file" );
+    // Finder drops a fresh .DS_Store into a directory it has open the moment the contents
+    // change, which lands between the scandir and the rmdir - so the sweep runs again while
+    // anything keeps appearing, and only then removes the directory.
 
-     rmdir ( $dir );
+    for ( $pass = 0; $pass < 3; $pass++ ) {
+
+      $files = padFiles ( $dir );
+
+      if ( ! $files )
+        break;
+
+      foreach ( $files as $file )
+        if ( is_dir ( "$dir/$file" ) and ! is_link ( "$dir/$file" ) )
+          padDeleteDataDir ( "$dir/$file" );
+        else
+          unlink ( "$dir/$file" );
+
+    }
+
+    rmdir ( $dir );
 
   }
 
