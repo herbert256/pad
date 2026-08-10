@@ -4,8 +4,13 @@
 
     if (substr($file, -4) == '.pad')
       return padColorsString    ( padFileGet ($file) ) ;
-    else
-      return padColorsHighLight ( padFileGet ($file) ) ;
+
+    // A highlighted PHP source keeps its braces, and spliced into a level they read as
+    // tags - a switch block was one open brace the loop never found a close for. They
+    // travel escaped, the way the .pad walk escapes its own, and the exit puts them back.
+
+    return str_replace ( [ '{', '}' ], [ '&open;', '&close;' ],
+                         padColorsHighLight ( padFileGet ($file) ) );
 
   }
 

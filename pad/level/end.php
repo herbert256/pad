@@ -10,6 +10,25 @@
   // closing pipe run, padResetLvl() restores the globals this level shadowed, $pad drops by
   // one and padLevel() splices $padResult back into the parent level's text.
 
+  // No } is left, so a { that remains can never open a tag. Strict mode reports it;
+  // the lenient walk escapes it as literal text, the mirror of what level/done.php does
+  // for a } without an open - it used to stay raw, and a strict level enclosing a
+  // lenient pass tripped over its own sandbox's answer.
+
+  $padOpenStart = strrpos ( $padOut [$pad], '{' );
+
+  if ( $padOpenStart !== FALSE ) {
+
+    if ( $padCheckSyntax and substr ( $padOut [$pad], $padOpenStart, 2 ) == '{#' )
+      return padError ( "the comment {# never closes" );
+
+    if ( $padCheckSyntax )
+      return padError ( "No close } found for open { at position " . $padOpenStart + 1);
+
+    $padOut [$pad] = str_replace ( '{', '&open;', $padOut [$pad] );
+
+  }
+
   if ( isset ( $padOccurStart [$pad] ) )
     if ( isset ( $padOccurStart [$pad] [$padOccur[$pad]] ) )
       include PAD . 'occurrence/end.php';
@@ -35,6 +54,10 @@
     include PAD . 'callback/exit.php' ;
 
   include PAD . 'options/_go/end.php';
+
+  if ( $padCheckSyntax )
+    include PAD . 'level/unread.php';
+
   include PAD . 'level/pipes/after.php';
 
   if ( $padInfo )

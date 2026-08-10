@@ -16,6 +16,13 @@
   include PAD . 'start/start/start.php';
   include PAD . 'start/start/pad.php';
 
+  // A sandboxed pass renders over hidden state, so a tag over a hidden store is not a
+  // typo - the strict syntax check stands down for the pass, and the snapshot above puts
+  // the outer setting back afterwards.
+
+  if ( $padStrBox )
+    $padCheckSyntax = FALSE;
+
   if ( $padStrBox or $padStrCln or $padStrRes ) {
     include PAD . 'start/start/app.php';
     include PAD . 'start/start/dat.php';

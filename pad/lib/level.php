@@ -54,7 +54,7 @@ function padSplitOnUnquotedColon ( $str ) {
 
   function padFindContinueBreak ( $parm ) {
 
-    global $pad, $padName, $padTag;
+    global $pad, $padName, $padTag, $padCheckSyntax;
 
     if ( $parm and is_numeric ($parm) and $parm < 0 )
       return $pad + $parm;
@@ -69,9 +69,24 @@ function padSplitOnUnquotedColon ( $str ) {
         if ( $key == $parm )
           return $key;
 
+    // A name that matches nothing used to fall through to the nearest loop, and the
+    // control tag silently worked on the wrong level. Strict mode says so instead.
+
+    if ( $parm and ! is_numeric ( $parm ) and $padCheckSyntax )
+      return padError ( "there is no enclosing level named '$parm' for {" . $padTag [$pad] . "}" );
+
     for ( $key = $pad-1; $key >=0 ; $key-- )
-      if ( $padTag [$key] != 'if' and $padTag [$key] != 'case' )
+      if ( $padTag [$key] != 'if' and $padTag [$key] != 'case' ) {
+
+        // The nearest thing left may be the page root - loop control aimed at nothing.
+        // Strict mode says so; the lenient walk keeps the old answer.
+
+        if ( $padCheckSyntax and $padTag [$key] == 'internal' )
+          return padError ( "there is no enclosing loop for {" . $padTag [$pad] . "}" );
+
         return $key;
+
+      }
 
     return $pad - 1;
 
@@ -126,14 +141,21 @@ function padSplitOnUnquotedColon ( $str ) {
 
     global $padBetween;
 
-    return ( $padBetween [0] == '/' ) ;
+    return ( $padBetween != '' and $padBetween [0] == '/' ) ;
 
   }
 
 
   function padWhiteCheck () {
 
-    global $padBetween;
+    global $padBetween, $padCheckSyntax;
+
+    // An empty {} is nothing at all: strict mode reports it, the lenient walk treats it
+    // like a whitespace brace and keeps it as literal text. Reading [0] of the empty
+    // string was a PHP error before either could speak.
+
+    if ( $padBetween == '' )
+      return ( $padCheckSyntax ) ? padError ( 'an empty tag: {}' ) : TRUE;
 
     return ( ctype_space ( $padBetween [0] ) );
 
@@ -151,9 +173,12 @@ function padSplitOnUnquotedColon ( $str ) {
 
   function padCloseHit () {
 
-    global $padBetween;
+    global $padBetween, $padCheckSyntax;
 
-    return padError ( "Closing tag found without an open tag: {" . $padBetween . "}" );
+    if ( $padCheckSyntax )
+      return padError ( "Closing tag found without an open tag: {" . $padBetween . "}" );
+    else
+      return padLevelNo ( $padBetween );
 
   }
 
@@ -175,6 +200,12 @@ function padSplitOnUnquotedColon ( $str ) {
 
 
   function padLevelNo ( $no ) {
+
+    // The kept span goes back as literal text in one piece, inner braces included. It
+    // used to keep them raw, leaving the walk an orphan brace to meet later - shipped
+    // silently for years, and an error the moment the strict syntax check watched it.
+
+    $no = str_replace ( [ '{', '}' ], [ '&open;', '&close;' ], $no );
 
     padLevel ( "&open;$no&close;" );
 
