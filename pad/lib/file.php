@@ -125,21 +125,23 @@
     if ( ! str_starts_with ( $dir, DATA      ) ) return;
 
     // Finder drops a fresh .DS_Store into a directory it has open the moment the contents
-    // change, which lands between the scandir and the rmdir - so the sweep runs again while
-    // anything keeps appearing, and only then removes the directory.
+    // change - and the write arrives a few milliseconds AFTER the deletions, asynchronously,
+    // so re-scanning straight away still finds the directory empty and the rmdir loses the
+    // race. The attempt is made quietly, what it leaves behind is swept again with a breath
+    // in between for the event to land, and only the last attempt is allowed to shout.
 
-    for ( $pass = 0; $pass < 3; $pass++ ) {
+    for ( $pass = 0; $pass < 5; $pass++ ) {
 
-      $files = padFiles ( $dir );
-
-      if ( ! $files )
-        break;
-
-      foreach ( $files as $file )
+      foreach ( padFiles ( $dir ) as $file )
         if ( is_dir ( "$dir/$file" ) and ! is_link ( "$dir/$file" ) )
           padDeleteDataDir ( "$dir/$file" );
         else
           unlink ( "$dir/$file" );
+
+      if ( @rmdir ( $dir ) )
+        return;
+
+      usleep ( 20000 );
 
     }
 
