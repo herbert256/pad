@@ -1,1 +1,4 @@
-{sequence '1..3', push='dnums'/} {pull:dnums randomize=8, duplicates} {$sequence}, {/pull:dnums | draws(1, 3, 8)}
+{sequence '1..3', push='dnums'/}
+{pull:dnums randomize=8, duplicates}
+  {$sequence},
+{/pull:dnums | draws(1, 3, 8)}

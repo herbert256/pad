@@ -1,1 +1,11 @@
-{row} {set $col = 1} {while $col LE 5} {cell $row + $col} {increment $col} {/while} {/row}<table border='1'><tr><td></td></tr></table><?php $row = [10,20,30];?>
+<table border='1'>
+  {row}
+    <tr>
+      {set $col = 1}
+      {while $col LE 5}
+        {cell $row + $col}
+        {increment $col}
+      {/while}
+    </tr>
+  {/row}
+</table>

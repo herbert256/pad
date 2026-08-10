@@ -1,0 +1,10 @@
+<p>where: {offices where="country = 'USA'", order='officeCode'}{$officeCode},{/offices}</p>
+<p>distinct: {offices distinct, fields='country', order='country'}{$country},{/offices}</p>
+<p>distinctrow: {offices distinctrow, fields='country', order='country'}{$country},{/offices}</p>
+<p>group: {payments fields='customerNumber, count(*) as cnt', group='customerNumber', having='cnt > 9', order='customerNumber'}{$customerNumber}={$cnt},{/payments}</p>
+<p>rollup: {offices key='', fields='count(*) as cnt', group='country', rollup}{last@offices}{$cnt}{/last@offices}{/offices}</p>
+<p>db: {sales db='employees', where="jobTitle = 'President'"}{$lastName}{/sales}</p>
+<p>key: {offices key='city', where="country = 'USA'"}{$city},{/offices}</p>
+<p>union: {offices where="officeCode = 1", union='offices'}{$officeCode},{/offices}</p>
+<p>join: {employees join='offices on employees.officeCode = offices.officeCode', where="offices.city = 'Boston'", order='lastName'}{$lastName},{/employees}</p>
+<p>htmlAttrJson: {select:offices htmlAttrJson='record', fields='officeCode', where="officeCode = 1"}</p>

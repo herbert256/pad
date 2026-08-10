@@ -1,1 +1,12 @@
-<p>{case $language} {when 'NL'} Hallo Wereld {when 'FR'} Bonjour le Monde {when 'DE'} Hallo Welt @else@ Hello World {/case}</p><?php // Setup carried over from the sandbox case. $language = 'FR';?>
+<p>
+  {case $language}
+    {when 'NL'}
+      Hallo Wereld
+    {when 'FR'}
+      Bonjour le Monde
+    {when 'DE'}
+      Hallo Welt
+    @else@
+      Hello World
+  {/case}
+</p>

@@ -1,1 +1,12 @@
-{earners} @else@ {/earners}<table border="1"><tr><td>{$name}</td><td>{$salary}</td></tr><tr><td>nobody earns that much</td></tr></table><?php $earners = db ( "array name, salary from staff where salary >= 2000" );?>
+<table border="1">
+  {earners}
+    <tr>
+      <td>{$name}</td>
+      <td>{$salary}</td>
+    </tr>
+  @else@
+    <tr>
+      <td>nobody earns that much</td>
+    </tr>
+  {/earners}
+</table>

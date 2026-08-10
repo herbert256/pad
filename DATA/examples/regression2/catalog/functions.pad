@@ -1,1 +1,33 @@
-after: {echo 'a/b' | after('/')} afterLast: {echo 'a/b/c' | afterLast('/')} before: {echo 'a/b' | before('/')} beforeLast: {echo 'a.b.c' | beforeLast('.')} between: {echo 17 | between(10, 66)}. bold: {echo 'important' | bold} close: {echo 'items' | close | ignore} contains: {echo 12345 | contains('34')}. cut: {echo 'banana' | cut('an')} encodeHigh: {echo 'café' | encodeHigh} exists: {echo 'hello/index.pad' | exists}. html: {echo '<b>' | html} in: {echo 'a' | in('a')}. left: {echo 'abcdef' | left(2)} like: {echo 'abc' | like('a%')}. max_len: {echo 'abcdef' | max_len(4)} mid: {echo 'abcdef' | mid(2, 3)} nbsp: {echo 'hello world' | nbsp} open: {echo 'items' | open | ignore} optional: {$catNoSuch | optional}ok range: {echo 50 | range(0, 100)}. replace: {echo 'abc' | replace('b', 'x')} right: {echo 'abcdef' | right(2)} sanitize: {echo '</b>x' | sanitize} slashes: {echo "it's" | slashes} stripLow: {echo $catLow | stripLow} stripslashes: {echo "it's" | slashes | stripslashes} tag: {echo 'items' | tag | ignore} time: {echo 1702483200 | time('Y')} timestamp: {echo 1702483200 | timestamp('Y')} trim: {echo ' a b ' | trim} ucwords: {echo 'hello world' | ucwords} white: {echo 'a b' | white}<?php // The value the stripLow line cleans: printable letters around two control characters. $catLow = "a\x01b\x02c";?>
+after:      {echo 'a/b' | after('/')}
+afterLast:  {echo 'a/b/c' | afterLast('/')}
+before:     {echo 'a/b' | before('/')}
+beforeLast: {echo 'a.b.c' | beforeLast('.')}
+between:    {echo 17 | between(10, 66)}.
+bold:       {echo 'important' | bold}
+close:      {echo 'items' | close | ignore}
+contains:   {echo 12345 | contains('34')}.
+cut:        {echo 'banana' | cut('an')}
+encodeHigh: {echo 'café' | encodeHigh}
+exists:     {echo 'hello/index.pad' | exists}.
+html:       {echo '<b>' | html}
+in:         {echo 'a' | in('a')}.
+left:       {echo 'abcdef' | left(2)}
+like:       {echo 'abc' | like('a%')}.
+max_len:    {echo 'abcdef' | max_len(4)}
+mid:        {echo 'abcdef' | mid(2, 3)}
+nbsp:       {echo 'hello world' | nbsp}
+open:       {echo 'items' | open | ignore}
+optional:   {$catNoSuch | optional}ok
+range:      {echo 50 | range(0, 100)}.
+replace:    {echo 'abc' | replace('b', 'x')}
+right:      {echo 'abcdef' | right(2)}
+sanitize:   {echo '<b>x</b>' | sanitize}
+slashes:    {echo "it's" | slashes}
+stripLow:   {echo $catLow | stripLow}
+stripslashes: {echo "it's" | slashes | stripslashes}
+tag:        {echo 'items' | tag | ignore}
+time:       {echo 1702483200 | time('Y')}
+timestamp:  {echo 1702483200 | timestamp('Y')}
+trim:       {echo '  a b  ' | trim}
+ucwords:    {echo 'hello world' | ucwords}
+white:      {echo 'a       b' | white}

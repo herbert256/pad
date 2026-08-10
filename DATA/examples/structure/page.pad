@@ -1,1 +1,24 @@
-<li>Line in page.pad / root<ul><li>Variable in page.php / {$page} {myXML}</li><li>{$value} {/myXML} {myTag}</li><li>{$function | myFunction} {pad myOption}</li><li>Line for _option/myOption.php in {/pad}</li><li>Line for _scripts/myScript.sh {myScript} {pad callback='myCallback.php'}</li><li>Line for _callbacks/myCallback in {$callBack} {/pad} {myInclude} {myContent}<?php $page = 'root'; $function = 'Line for _function/Myfunction.php in ';?></li></ul></li>
+<li> Line in page.pad / root 
+<li> Variable in page.php / {$page}
+
+{myXML}
+  <li> {$value}
+{/myXML}
+
+{myTag}
+
+<li> {$function | myFunction}
+
+{pad myOption}
+  <li> Line for _option/myOption.php in 
+{/pad}
+
+<li> Line for _scripts/myScript.sh {myScript}
+
+{pad callback='myCallback.php'}
+  <li> Line for _callbacks/myCallback in {$callBack}
+{/pad}
+
+{myInclude}
+
+{myContent}

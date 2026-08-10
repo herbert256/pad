@@ -1,1 +1,43 @@
-<h1>Application Structure</h1><p>An application is a directory under <code>apps/</code>, and a page is a pair of files in it: <code>name.php</code> gathers the data, <code>name.pad</code> renders it - the <a href="?pages/php_and_html">php and html</a> page is about that pairing. No routing and no controllers: creating the files creates the page, and subdirectories become url paths - <code>?admin/users</code> is <code>admin/users.pad</code>.</p><h2>The wrappers</h2><p>A file <code>_inits.pad</code> wraps every page of its directory: the page's own output lands where the wrapper writes <code>@page@</code>, and an <code>_exits.pad</code> closes below it. This very page is inside one - the menu below and the centering around what you are reading come from the wrapper of the <code>pages/</code> directory:</p>{source 'pages/_inits.pad'}<p>Wrappers nest: the application's own <code>_inits.pad</code> wraps the subdirectory's, which wraps the page. The page never mentions any of them.</p><h2>The PHP runs first, in order</h2><p>All PHP has run before any template renders. Down the directory chain and back up:</p>{ignore}<pre><code>/_inits.php /admin/_inits.php /admin/users.php /admin/_exits.php/_exits.php</code></pre>{/ignore}<h2>Subdirectories inherit, and may override</h2><p>The <a href="?pages/extending">extension directories</a> work at every level. <code>_lib/</code> files accumulate down the chain, so a deeper page has every level's functions; the lookup for a tag, function or snippet starts in the page's own directory and walks up, so a subdirectory may bring its own words - or redefine an inherited name, and its version wins for its pages.</p><p><b><a href="{$padHost}structure/">The structure application</a></b> is this page live: a tree three levels deep, every level carrying the full set of special directories and wrappers, with pages that show which level answered.</p>
+<h1>Application Structure</h1>
+
+<p>An application is a directory under <code>apps/</code>, and a page is a pair of files in
+it: <code>name.php</code> gathers the data, <code>name.pad</code> renders it - the
+<a href="?pages/php_and_html">php and html</a> page is about that pairing. No routing and no
+controllers: creating the files creates the page, and subdirectories become url paths -
+<code>?admin/users</code> is <code>admin/users.pad</code>.</p>
+
+<h2>The wrappers</h2>
+
+<p>A file <code>_inits.pad</code> wraps every page of its directory: the page's own output
+lands where the wrapper writes <code>@page@</code>, and an <code>_exits.pad</code> closes
+below it. This very page is inside one - the menu below and the centering around what you
+are reading come from the wrapper of the <code>pages/</code> directory:</p>
+
+{source 'pages/_inits.pad'}
+
+<p>Wrappers nest: the application's own <code>_inits.pad</code> wraps the subdirectory's,
+which wraps the page. The page never mentions any of them.</p>
+
+<h2>The PHP runs first, in order</h2>
+
+<p>All PHP has run before any template renders. Down the directory chain and back up:</p>
+
+{ignore}
+<pre><code>/_inits.php
+    /admin/_inits.php
+        /admin/users.php
+    /admin/_exits.php
+/_exits.php</code></pre>
+{/ignore}
+
+<h2>Subdirectories inherit, and may override</h2>
+
+<p>The <a href="?pages/extending">extension directories</a> work at every level.
+<code>_lib/</code> files accumulate down the chain, so a deeper page has every level's
+functions; the lookup for a tag, function or snippet starts in the page's own directory and
+walks up, so a subdirectory may bring its own words - or redefine an inherited name, and its
+version wins for its pages.</p>
+
+<p><b><a href="{$padHost}structure/">The structure application</a></b> is this page live: a
+tree three levels deep, every level carrying the full set of special directories and
+wrappers, with pages that show which level answered.</p>

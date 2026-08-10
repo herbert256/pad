@@ -1,1 +1,23 @@
-<p><b>{$summary}</b> - {$verdict}</p><p>The engine cases as fetched pages, exactly the Pages model: every case is a triple in a group directory of <code>apps/regression4/</code> - the <code>.pad</code> its template, the <code>.txt</code> the outcome beside it, an optional <code>.php</code> its variables - and each is fetched directly as the page it is. A request per case grants each one its isolation by construction; the price is nine hundred requests a run, which is why Test runs and a page load only reads.</p>{tests} {/tests}<table border="1" cellpadding="4" cellspacing="0"><tr><th>case</th><th>expected</th><th>status</th></tr><tr><td><a href="{$url}">{$name}</a></td><td><code>{echo $want | ignore}</code></td><td>{$status}{if $failed eq 1} - got <code>{echo $got | ignore}</code>{/if}</td></tr></table><?php // Overview of the Framework suite - the engine cases as fetched pages, one request per // case, each fetched directly from regression4. Test here reruns the suite; a page load // reads the last run, because running means nine hundred requests. if ( isset ( $test ) ) { getFrameworkTest (); padRedirect ( $padPage ); } $result = getPages ( 'framework' ); $tests = $result ['tests']; $summary = $result ['summary']; $failedCount = $result ['failed']; $verdict = $failedCount ? 'FAILURES' : 'all ok'; $title = "Framework regression - $summary";?>
+<p>
+  <b>{$summary}</b> - {$verdict}
+</p>
+
+<p>
+  The engine cases as fetched pages, exactly the Pages model: every case is a triple in a
+  group directory of <code>apps/regression4/</code> - the <code>.pad</code> its template,
+  the <code>.txt</code> the outcome beside it, an optional <code>.php</code> its variables -
+  and each is fetched directly as the page it is. A request per case grants each one its
+  isolation by construction; the price is nine hundred requests a run, which is why Test
+  runs and a page load only reads.
+</p>
+
+<table border="1" cellpadding="4" cellspacing="0">
+  <tr><th>case</th><th>expected</th><th>status</th></tr>
+  {tests}
+    <tr>
+      <td><a href="{$url}">{$name}</a></td>
+      <td><code>{echo $want | ignore}</code></td>
+      <td>{$status}{if $failed eq 1} - got <code>{echo $got | ignore}</code>{/if}</td>
+    </tr>
+  {/tests}
+</table>

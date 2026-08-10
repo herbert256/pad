@@ -1,1 +1,11 @@
-{data 'myYaml', $yamlUrl} {myYaml} {column} {/column} {/myYaml}<table border='1'><tr><td>{$column}</td></tr></table><?php global $padHost; $yamlUrl = "{$padHost}pad/level_demo.yaml";?>
+{data 'myYaml', $yamlUrl}
+
+<table border='1'>
+  {myYaml}
+    <tr>
+      {column}
+        <td>{$column}</td>
+      {/column}
+    </tr>
+  {/myYaml}
+</table>

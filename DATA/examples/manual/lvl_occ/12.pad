@@ -1,1 +1,11 @@
-{data 'myXml', 'level_demo.xml'} {myXml} {column} {/column} {/myXml}<table border='1'><tr><td>{$column}</td></tr></table>
+{data 'myXml', 'level_demo.xml'}
+
+<table border='1'>
+  {myXml}
+    <tr>
+      {column}
+        <td>{$column}</td>
+      {/column}
+    </tr>
+  {/myXml}
+</table>

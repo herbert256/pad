@@ -1,1 +1,29 @@
-{employees} {/employees}<table border="1"><tr><td>employee</td><td>manager</td><td>boss</td></tr><tr><td>{$lastName}, {$firstName} ({$employeeNumber})</td><td>{managers} {$lastName}, {$firstName} ({$employeeNumber}) {/managers}</td><td>{managers} {bosses} {$lastName}, {$firstName} ({$employeeNumber}) {/bosses} {/managers}</td></tr></table>
+<table border=1>
+  <tr>
+    <td> employee </td>
+    <td> manager </td>
+    <td> boss </td>
+  </tr>
+  {employees}
+    <tr>
+      <td> {$lastName},
+           {$firstName}
+           ({$employeeNumber})
+      </td>
+      <td> {managers}
+             {$lastName},
+             {$firstName}
+             ({$employeeNumber})
+           {/managers}
+      </td>
+      <td> {managers}
+             {bosses}
+               {$lastName},
+               {$firstName}
+               ({$employeeNumber})
+             {/bosses}
+           {/managers}
+      </td>
+    </tr>
+  {/employees}
+</table>

@@ -1,1 +1,34 @@
-current: {data 'cXs'}[7,8]{/data}{cXs}{current@cXs},{/cXs} done: {cXs}{done@cXs},{/cXs} key: {cXs}{key@cXs},{/cXs} remaining: {cXs}{remaining@cXs},{/cXs} count: {cXs}{count@cXs},{/cXs} nameProp: {cXs}{name@cXs},{/cXs} first: {cXs}{first@cXs}[{/first@cXs}{$cXs},{/cXs} last: {cXs}{$cXs},{last@cXs}]{/last@cXs}{/cXs} notFirst: {cXs}{notFirst@cXs}-{/notFirst@cXs}{$cXs}{/cXs} notLast: {cXs}{$cXs}{notLast@cXs},{/notLast@cXs}{/cXs} even: {cXs}{even@cXs}E{/even@cXs}{/cXs} odd: {cXs}{odd@cXs}O{/odd@cXs}{/cXs} border: {cXs}{border@cXs}|{/border@cXs}{$cXs}{/cXs} middle: {data 'cYs'}[1,2,3]{/data}{cYs}{middle@cYs}M{/middle@cYs}{/cYs} fields: {data 'cU'}[{"a":1,"b":2}]{/data}{cU}{fields@cU}{$name}={$value},{/fields@cU}{/cU} firstFieldName: {cU}{firstFieldName@cU},{/cU} firstFieldValue: {cU}{firstFieldValue@cU},{/cU} keys: {data 'cKv' ignore}{"a":1,"b":2}{/data}{cKv}{first@cKv}{keys@cKv}[{$name}]{/keys@cKv}{/first@cKv}{/cKv} parameter: {true 'p1', 'p2'}{parameter.1@true}/{echo $parameter.2@true}{/true} variable: {true $t='9'}{variable.t@true}/{echo $variable.t@true}{/true} option: {true opt='v'}{echo $option.opt@true}{/true} any: {true $cAny='9'}{echo $cAny@any}{/true} options: {true opt='w'}{echo $opt@options}{/true} parameters: {true 'q1', 'q2'}{echo $2@parameters}{/true} saved: {data 'cSv'}["x"]{/data}{cSv %catSaved='inner'}{$catSaved}/{echo $catSaved@saved}{/cSv} variables: {true $cV='n'}{echo $cV@variables}{/true} all: {echo $catAll@all} sequences: {sequence '1..5', push='cSeq'/}{echo $cSeq.3@sequences} tags: {true $cT='7'}{echo $cT@tags}{/true} level: {data 'cLv'}["x","y"]{/data}{cLv}{echo $0.cLv@level}{echo $1.cLv@level},{/cLv} function: {data 'cFn'}[1,2]{/data}{cFn callback='catsum.php', before}{last@cFn}{echo $t@function}{/last@cFn}{/cFn} dataProp: {cLv}{first@cLv}[{data@cLv}{$cLv},{/data@cLv}]{/first@cLv}{/cLv} condition: {cLv}{if first@cLv}F{/if}{$cLv}{if notLast@cLv}-{/if}{/cLv}<?php // What the at-type lines read: a global for @all, and one for the saved group to shadow. // The function line runs the catsum callback from _callbacks/, whose row phase totals the // rows into $t. $catAll = 'found'; $catSaved = 'outer';?>
+current:  {data 'cXs'}[7,8]{/data}{cXs}{current@cXs},{/cXs}
+done:     {cXs}{done@cXs},{/cXs}
+key:      {cXs}{key@cXs},{/cXs}
+remaining: {cXs}{remaining@cXs},{/cXs}
+count:    {cXs}{count@cXs},{/cXs}
+nameProp: {cXs}{name@cXs},{/cXs}
+first:    {cXs}{first@cXs}[{/first@cXs}{$cXs},{/cXs}
+last:     {cXs}{$cXs},{last@cXs}]{/last@cXs}{/cXs}
+notFirst: {cXs}{notFirst@cXs}-{/notFirst@cXs}{$cXs}{/cXs}
+notLast:  {cXs}{$cXs}{notLast@cXs},{/notLast@cXs}{/cXs}
+even:     {cXs}{even@cXs}E{/even@cXs}{/cXs}
+odd:      {cXs}{odd@cXs}O{/odd@cXs}{/cXs}
+border:   {cXs}{border@cXs}|{/border@cXs}{$cXs}{/cXs}
+middle:   {data 'cYs'}[1,2,3]{/data}{cYs}{middle@cYs}M{/middle@cYs}{/cYs}
+fields:   {data 'cU'}[{"a":1,"b":2}]{/data}{cU}{fields@cU}{$name}={$value},{/fields@cU}{/cU}
+firstFieldName:  {cU}{firstFieldName@cU},{/cU}
+firstFieldValue: {cU}{firstFieldValue@cU},{/cU}
+keys:     {data 'cKv' ignore}{"a":1,"b":2}{/data}{cKv}{first@cKv}{keys@cKv}[{$name}]{/keys@cKv}{/first@cKv}{/cKv}
+parameter: {true 'p1', 'p2'}{parameter.1@true}/{echo $parameter.2@true}{/true}
+variable:  {true $t='9'}{variable.t@true}/{echo $variable.t@true}{/true}
+option:    {true opt='v'}{echo $option.opt@true}{/true}
+any:       {true $cAny='9'}{echo $cAny@any}{/true}
+options:   {true opt='w'}{echo $opt@options}{/true}
+parameters: {true 'q1', 'q2'}{echo $2@parameters}{/true}
+saved:     {data 'cSv'}["x"]{/data}{cSv %catSaved='inner'}{$catSaved}/{echo $catSaved@saved}{/cSv}
+variables: {true $cV='n'}{echo $cV@variables}{/true}
+all:       {echo $catAll@all}
+sequences: {sequence '1..5', push='cSeq'/}{echo $cSeq.3@sequences}
+tags:      {true $cT='7'}{echo $cT@tags}{/true}
+level:     {data 'cLv'}["x","y"]{/data}{cLv}{echo $0.cLv@level}{echo $1.cLv@level},{/cLv}
+dataAt:    {data 'cAd'}{"cKey":9}{/data}{echo $cKey.cAd@data}
+function:  {data 'cFn'}[1,2]{/data}{cFn callback='catsum.php', before}{last@cFn}{echo $t@function}{/last@cFn}{/cFn}
+dataProp:  {cLv}{first@cLv}[{data@cLv}{$cLv},{/data@cLv}]{/first@cLv}{/cLv}
+condition: {cLv}{if first@cLv}F{/if}{$cLv}{if notLast@cLv}-{/if}{/cLv}

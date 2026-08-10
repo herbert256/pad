@@ -1,1 +1,9 @@
-{data 'kv' ignore} {"a":1,"b":2,"c":3} {/data} {kv} {$kv}, {if $kv eq 2} {cease 'kv'/} {/if} {/kv}
+{data 'kv' ignore}
+  {"a":1,"b":2,"c":3}
+{/data}
+{kv}
+  {$kv},
+  {if $kv eq 2}
+    {cease 'kv'/}
+  {/if}
+{/kv}
