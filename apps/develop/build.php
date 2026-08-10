@@ -20,7 +20,7 @@
 
   set_time_limit ( 0 );
 
-  padCurl ( $padHost . "regression/?build&go=1", [ 'options' => [ 'TIMEOUT' => 3600 ] ] );
+  padCurl ( $padHost . "regression/main/?build&go=1", [ 'options' => [ 'TIMEOUT' => 3600 ] ] );
 
   padRestart ( 'errors2' );
 

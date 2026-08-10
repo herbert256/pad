@@ -892,7 +892,7 @@ curl "http://localhost/pad/app/?page&padInfo=trace"  # With trace
 
 # Run all four regression test kinds (suites + crawl; suite runs in DATA/suites/, crawl
 # baselines in DATA/regression/)
-curl -L "http://localhost/pad/regression/?index&test"
+curl -L "http://localhost/pad/regression/main/?index&test"
 
 # Or as a CI gate from the repo root - one line per suite, nonzero exit on any failure
 ./ci.sh
@@ -924,31 +924,31 @@ This is particularly useful for:
 | `pad` | Standard | PAD framework introduction and reference |
 | `react` | Standard | PAD + React integration examples |
 | `reference` | Standard | Cross-reference and directory utilities |
-| `regression` | Standard | Automated regression testing for PAD - the runner for the three suites, and the crawl |
-| `regression2` | Test | The pages suite: every test is a real page, fetched over HTTP and compared with the answer beside it |
-| `regression4` | Test | The Framework suite: the engine cases as pages, one fetched per case |
-| `regression_cache_apcu` | Test | Regression test for the 'apcu' page cache |
-| `regression_cache_db` | Test | Regression test for the 'db' page cache |
-| `regression_cache_file` | Test | Regression test for the 'file' page cache |
-| `regression_cache_memcached` | Test | Regression test for the 'memcached' page cache |
-| `regression_cache_redis` | Test | Regression test for the 'redis' page cache |
-| `regression_config_typo` | Test | Regression test for the configuration word check |
-| `regression_error_boot` | Test | Regression test for the 'boot' error action |
-| `regression_error_dump` | Test | Regression test for the 'dump' error action |
-| `regression_error_exit` | Test | Regression test for the 'exit' error action |
-| `regression_error_ignore` | Test | Regression test for the 'ignore' error action |
-| `regression_error_log` | Test | Regression test for the 'log' error action |
-| `regression_error_pad` | Test | Regression test for the 'pad' error action |
-| `regression_error_php` | Test | Regression test for the 'php' error action |
-| `regression_error_stop` | Test | Regression test for the 'stop' error action |
-| `regression_info` | Test | Regression test for the five info modes, every option on |
-| `regression_output_console` | Test | Regression test for the 'console' output type |
-| `regression_output_download` | Test | Regression test for the 'download' output type |
-| `regression_output_file` | Test | Regression test for the 'file' output type |
-| `regression_output_web` | Test | Regression test for the 'web' output type |
-| `regression_try_log` | Test | Regression test for the try guards under the 'log' action |
-| `regression_try_pad` | Test | Regression test for the try guards under the 'pad' action |
-| `regression3` | Test | The pages of the suite that use `_common` - `{example}`, `{demo}`, `{table}` - fetched and compared the same way |
+| `regression/main` | Standard | Automated regression testing for PAD - the runner for the three suites, and the crawl |
+| `regression/pages` | Test | The pages suite: every test is a real page, fetched over HTTP and compared with the answer beside it |
+| `regression/framework` | Test | The Framework suite: the engine cases as pages, one fetched per case |
+| `regression/cache_apcu` | Test | Regression test for the 'apcu' page cache |
+| `regression/cache_db` | Test | Regression test for the 'db' page cache |
+| `regression/cache_file` | Test | Regression test for the 'file' page cache |
+| `regression/cache_memcached` | Test | Regression test for the 'memcached' page cache |
+| `regression/cache_redis` | Test | Regression test for the 'redis' page cache |
+| `regression/config_typo` | Test | Regression test for the configuration word check |
+| `regression/error_boot` | Test | Regression test for the 'boot' error action |
+| `regression/error_dump` | Test | Regression test for the 'dump' error action |
+| `regression/error_exit` | Test | Regression test for the 'exit' error action |
+| `regression/error_ignore` | Test | Regression test for the 'ignore' error action |
+| `regression/error_log` | Test | Regression test for the 'log' error action |
+| `regression/error_pad` | Test | Regression test for the 'pad' error action |
+| `regression/error_php` | Test | Regression test for the 'php' error action |
+| `regression/error_stop` | Test | Regression test for the 'stop' error action |
+| `regression/info` | Test | Regression test for the five info modes, every option on |
+| `regression/output_console` | Test | Regression test for the 'console' output type |
+| `regression/output_download` | Test | Regression test for the 'download' output type |
+| `regression/output_file` | Test | Regression test for the 'file' output type |
+| `regression/output_web` | Test | Regression test for the 'web' output type |
+| `regression/try_log` | Test | Regression test for the try guards under the 'log' action |
+| `regression/try_pad` | Test | Regression test for the try guards under the 'pad' action |
+| `regression/common` | Test | The pages of the suite that use `_common` - `{example}`, `{demo}`, `{table}` - fetched and compared the same way |
 | `sequence` | Standard | Mathematical sequence subsystem demos |
 | `structure` | Example | Demonstrates nested `_xxx` directories and inheritance |
 | `test` | Minimal | A scratch application for trying things out, `_common` switched off |

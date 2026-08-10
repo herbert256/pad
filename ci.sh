@@ -18,7 +18,7 @@ host="${1:-http://localhost/pad/}"
 
 started=$(date +%s)
 
-status=$(curl -s -o /dev/null -w '%{http_code}' -L --max-time 600 "${host}regression/?index&test")
+status=$(curl -s -o /dev/null -w '%{http_code}' -L --max-time 600 "${host}regression/main/?index&test")
 
 case "$status" in
   2*|3*) ;;

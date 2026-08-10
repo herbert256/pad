@@ -26,7 +26,7 @@
       // The error applications exist to fail: their boom probes dump on every crawl by
       // design, and a build that worked is not the page to shout about them.
 
-      if ( str_contains ( $path, 'dumps/regression_error_' ) ) continue;
+      if ( str_contains ( $path, 'dumps/regression/error_' ) ) continue;
 
       $list [] = [ 'url' => substr ( str_replace ( DATA , '', $path ), 0, -11),
                    'txt' => padFileGet ($path) ];

@@ -19,31 +19,31 @@ This directory contains PAD applications and examples.
 | [pad](pad/README.md) | Standard | PAD framework introduction and reference |
 | [react](react/README.md) | Standard | PAD + React integration examples |
 | [reference](reference/README.md) | Standard | Cross-reference and directory utilities |
-| [regression](regression/README.md) | Standard | Automated regression testing for PAD - the runner for the three suites, and the crawl |
-| [regression2](regression2/README.md) | Test | The pages suite: every test is a real page, fetched over HTTP and compared with the answer beside it |
-| [regression4](regression4/README.md) | Test | The Framework suite: the engine cases as pages, one fetched per case |
-| [regression_cache_apcu](regression_cache_apcu/README.md) | Test | Regression test for the 'apcu' page cache - the index turns NO when the backend stops caching |
-| [regression_cache_db](regression_cache_db/README.md) | Test | Regression test for the 'db' page cache - the index turns NO when the backend stops caching |
-| [regression_cache_file](regression_cache_file/README.md) | Test | Regression test for the 'file' page cache - the index turns NO when the backend stops caching |
-| [regression_cache_memcached](regression_cache_memcached/README.md) | Test | Regression test for the 'memcached' page cache - the index turns NO when the backend stops caching |
-| [regression_cache_redis](regression_cache_redis/README.md) | Test | Regression test for the 'redis' page cache - the index turns NO when the backend stops caching |
-| [regression_config_typo](regression_config_typo/README.md) | Test | Regression test for the configuration word check - a typo'd output type answers with its name |
-| [regression_error_boot](regression_error_boot/README.md) | Test | Regression test for the 'boot' error action - the index turns NO when the action stops behaving |
-| [regression_error_dump](regression_error_dump/README.md) | Test | Regression test for the 'dump' error action - the index turns NO when the action stops behaving |
-| [regression_error_exit](regression_error_exit/README.md) | Test | Regression test for the 'exit' error action - the index turns NO when the action stops behaving |
-| [regression_error_ignore](regression_error_ignore/README.md) | Test | Regression test for the 'ignore' error action - the index turns NO when the action stops behaving |
-| [regression_error_log](regression_error_log/README.md) | Test | Regression test for the 'log' error action - the index turns NO when the action stops behaving |
-| [regression_error_pad](regression_error_pad/README.md) | Test | Regression test for the 'pad' error action - the index turns NO when the action stops behaving |
-| [regression_error_php](regression_error_php/README.md) | Test | Regression test for the 'php' error action - the index turns NO when the action stops behaving |
-| [regression_error_stop](regression_error_stop/README.md) | Test | Regression test for the 'stop' error action - the index turns NO when the action stops behaving |
-| [regression_info](regression_info/README.md) | Test | Regression test for the five info modes with every option on - a NO line per mode that stops recording |
-| [regression_output_console](regression_output_console/README.md) | Test | Regression test for the 'console' output type - the index turns NO when the writer stops behaving |
-| [regression_output_download](regression_output_download/README.md) | Test | Regression test for the 'download' output type - the index turns NO when the writer stops behaving |
-| [regression_output_file](regression_output_file/README.md) | Test | Regression test for the 'file' output type - the index turns NO when the writer stops behaving |
-| [regression_output_web](regression_output_web/README.md) | Test | Regression test for the 'web' output type - the index turns NO when the writer stops behaving |
-| [regression_try_log](regression_try_log/README.md) | Test | Regression test for the try guards under the 'log' action - caught, logged, and the page renders clean |
-| [regression_try_pad](regression_try_pad/README.md) | Test | Regression test for the try guards under the 'pad' action - caught and reported into the page |
-| [regression3](regression3/README.md) | Test | The pages of the suite that use _common - {example}, {demo}, {table} - fetched and compared the same way |
+| [regression/main](regression/main/README.md) | Standard | Automated regression testing for PAD - the runner for the three suites, and the crawl |
+| [regression/pages](regression/pages/README.md) | Test | The pages suite: every test is a real page, fetched over HTTP and compared with the answer beside it |
+| [regression/framework](regression/framework/README.md) | Test | The Framework suite: the engine cases as pages, one fetched per case |
+| [regression/cache_apcu](regression/cache_apcu/README.md) | Test | Regression test for the 'apcu' page cache - the index turns NO when the backend stops caching |
+| [regression/cache_db](regression/cache_db/README.md) | Test | Regression test for the 'db' page cache - the index turns NO when the backend stops caching |
+| [regression/cache_file](regression/cache_file/README.md) | Test | Regression test for the 'file' page cache - the index turns NO when the backend stops caching |
+| [regression/cache_memcached](regression/cache_memcached/README.md) | Test | Regression test for the 'memcached' page cache - the index turns NO when the backend stops caching |
+| [regression/cache_redis](regression/cache_redis/README.md) | Test | Regression test for the 'redis' page cache - the index turns NO when the backend stops caching |
+| [regression/config_typo](regression/config_typo/README.md) | Test | Regression test for the configuration word check - a typo'd output type answers with its name |
+| [regression/error_boot](regression/error_boot/README.md) | Test | Regression test for the 'boot' error action - the index turns NO when the action stops behaving |
+| [regression/error_dump](regression/error_dump/README.md) | Test | Regression test for the 'dump' error action - the index turns NO when the action stops behaving |
+| [regression/error_exit](regression/error_exit/README.md) | Test | Regression test for the 'exit' error action - the index turns NO when the action stops behaving |
+| [regression/error_ignore](regression/error_ignore/README.md) | Test | Regression test for the 'ignore' error action - the index turns NO when the action stops behaving |
+| [regression/error_log](regression/error_log/README.md) | Test | Regression test for the 'log' error action - the index turns NO when the action stops behaving |
+| [regression/error_pad](regression/error_pad/README.md) | Test | Regression test for the 'pad' error action - the index turns NO when the action stops behaving |
+| [regression/error_php](regression/error_php/README.md) | Test | Regression test for the 'php' error action - the index turns NO when the action stops behaving |
+| [regression/error_stop](regression/error_stop/README.md) | Test | Regression test for the 'stop' error action - the index turns NO when the action stops behaving |
+| [regression/info](regression/info/README.md) | Test | Regression test for the five info modes with every option on - a NO line per mode that stops recording |
+| [regression/output_console](regression/output_console/README.md) | Test | Regression test for the 'console' output type - the index turns NO when the writer stops behaving |
+| [regression/output_download](regression/output_download/README.md) | Test | Regression test for the 'download' output type - the index turns NO when the writer stops behaving |
+| [regression/output_file](regression/output_file/README.md) | Test | Regression test for the 'file' output type - the index turns NO when the writer stops behaving |
+| [regression/output_web](regression/output_web/README.md) | Test | Regression test for the 'web' output type - the index turns NO when the writer stops behaving |
+| [regression/try_log](regression/try_log/README.md) | Test | Regression test for the try guards under the 'log' action - caught, logged, and the page renders clean |
+| [regression/try_pad](regression/try_pad/README.md) | Test | Regression test for the try guards under the 'pad' action - caught and reported into the page |
+| [regression/common](regression/common/README.md) | Test | The pages of the suite that use _common - {example}, {demo}, {table} - fetched and compared the same way |
 | [sequence](sequence/README.md) | Standard | Mathematical sequence subsystem demos |
 | [structure](structure/README.md) | Example | Demonstrates PAD directory structure and nested `_xxx` directories |
 | [test](test/README.md) | Minimal | A scratch application for trying things out, with `_common` switched off |

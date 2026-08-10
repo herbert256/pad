@@ -1,0 +1,23 @@
+<p>
+  <b>{$summary}</b> - {$verdict}
+</p>
+
+<p>
+  The engine cases as fetched pages, exactly the Pages model: every case is a triple in a
+  group directory of <code>apps/regression/framework/</code> - the <code>.pad</code> its template,
+  the <code>.txt</code> the outcome beside it, an optional <code>.php</code> its variables -
+  and each is fetched directly as the page it is. A request per case grants each one its
+  isolation by construction; the price is nine hundred requests a run, which is why Test
+  runs and a page load only reads.
+</p>
+
+<table border="1" cellpadding="4" cellspacing="0">
+  <tr><th>case</th><th>expected</th><th>status</th></tr>
+  {tests}
+    <tr>
+      <td><a href="{$url}">{$name}</a></td>
+      <td><code>{echo $want | ignore}</code></td>
+      <td>{$status}{if $failed eq 1} - got <code>{echo $got | ignore}</code>{/if}</td>
+    </tr>
+  {/tests}
+</table>

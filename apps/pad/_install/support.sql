@@ -1,4 +1,4 @@
-/*  PAD Support Database - the fixture behind regression2/select/support: the users, forum,
+/*  PAD Support Database - the fixture behind regression/pages/select/support: the users, forum,
     news and ticket tables its declared selects and relations read. Dumped from the data the
     recorded answers were written against, so a fresh checkout can pass those tests. */
 

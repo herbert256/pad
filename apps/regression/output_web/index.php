@@ -1,0 +1,15 @@
+<?php
+
+  // The web writer's promise: a plain 200, an html content type, the body shipped as the
+  // page - and no attachment headers, which is what separates it from download.
+
+  $r = padCurl ( $padHost . 'regression/output_web/?payload&padInclude' );
+
+  $verdict = ( $r ['result'] == '200'
+               and str_contains ( $r ['headers'] ['Content-Type'] ?? '', 'text/html' )
+               and ! isset ( $r ['headers'] ['Content-Disposition'] )
+               and str_contains ( $r ['data'], 'CARRIED ALL THE WAY' ) ) ? 'yes' : 'NO';
+
+  $output = 'web';
+
+?>
