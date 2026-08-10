@@ -35,7 +35,9 @@ This directory contains PAD applications and examples.
 | [regression_error_php](regression_error_php/README.md) | Test | Regression test for the 'php' error action - the index turns NO when the action stops behaving |
 | [regression_error_stop](regression_error_stop/README.md) | Test | Regression test for the 'stop' error action - the index turns NO when the action stops behaving |
 | [regression_info](regression_info/README.md) | Test | Regression test for the five info modes with every option on - a NO line per mode that stops recording |
+| [regression_output_console](regression_output_console/README.md) | Test | Regression test for the 'console' output type - the index turns NO when the writer stops behaving |
 | [regression_output_download](regression_output_download/README.md) | Test | Regression test for the 'download' output type - the index turns NO when the writer stops behaving |
+| [regression_output_file](regression_output_file/README.md) | Test | Regression test for the 'file' output type - the index turns NO when the writer stops behaving |
 | [regression_output_web](regression_output_web/README.md) | Test | Regression test for the 'web' output type - the index turns NO when the writer stops behaving |
 | [regression3](regression3/README.md) | Test | The pages of the suite that use _common - {example}, {demo}, {table} - fetched and compared the same way |
 | [sequence](sequence/README.md) | Standard | Mathematical sequence subsystem demos |
