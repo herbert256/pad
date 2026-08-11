@@ -42,12 +42,14 @@
 
   function getRegression ( ) {
 
-    global $padHost;
+    global $padHost, $ciRun;
+
+    $token = isset ( $ciRun ) ? '&ciRun=' . padMakeSafe ( $ciRun, 16 ) : '';
 
     foreach ( array_keys ( getSuites () ) as $suite )
 
       if ( APP != APPS . 'regression/main/' )
-        padCurl ( $padHost . "regression/main/?$suite/index&test" );
+        padCurl ( $padHost . "regression/main/?$suite/index&test$token" );
       else
         getSuiteTest ( $suite );
 
@@ -288,6 +290,24 @@
 
     }
 
+    // The same action rule the shared walker applies: a page with no template that
+    // redirects, restarts or writes is a fixture for a scenario, not a test - the request
+    // group's hop fixture is exactly that.
+
+    foreach ( array_keys ( $names ) as $name )
+      if ( ! file_exists ( "$dir$name.pad" ) and ! file_exists ( "$dir$name.html" )
+           and file_exists ( "$dir$name.php" ) ) {
+
+        $source = padFileGet ( "$dir$name.php" );
+
+        if ( str_contains ( $source, 'padRedirect'      )
+          or str_contains ( $source, 'padRestart'       )
+          or str_contains ( $source, 'padFilePut'       )
+          or str_contains ( $source, 'padDeleteDataDir' ) )
+          unset ( $names [$name] );
+
+      }
+
     if ( $prefix and isset ( $names ['index'] ) and getSuiteRenders ( $dir ) )
       $names = [ 'index' => TRUE ];
 
@@ -478,7 +498,11 @@
 
     if ( strlen ( $expect ) > 1 and str_starts_with ( $expect, '/' ) and str_ends_with ( $expect, '/' ) ) {
 
-      $ok = (bool) preg_match ( $expect, $got ) and str_starts_with ( (string) $code, '2' );
+      // The parentheses matter: 'and' binds after '=', and without them the health check
+      // was silently discarded - a pattern answer passed over any status code from the
+      // day this was written, and the harness fault-injection case is what caught it.
+
+      $ok = ( (bool) preg_match ( $expect, $got ) and str_starts_with ( (string) $code, '2' ) );
 
       if ( $ok )
         $got = "matches $expect";
@@ -550,9 +574,148 @@
             : ( isset ( $entry ['over'] ) ? getSuiteOverRun ( $suite )
             : getFrameworkRun () );
 
+    // The run token ties a result to the trigger that asked for it - ci.sh passes one and
+    // refuses results that are not its own - and the commit says what was tested.
+
+    $result ['run']    = padMakeSafe ( $GLOBALS ['ciRun'] ?? '', 16 );
+    $result ['commit'] = getSuiteCommit ();
+
     padFilePut ( getSuiteFile ( $suite ), json_encode ( $result ) );
 
     return $result;
+
+  }
+
+
+  // Every page owned by exactly one suite - the invariant the registry promises, checked
+  // independently: a walk suite owns its application's pages outright, framework owns
+  // exactly what its enumerator fetches, a covering suite owns its covered applications.
+  // What nothing owns, or two things own, is named - a page like the framework root index
+  // once was, alive with no suite behind it, cannot slip through again.
+
+  function getSuiteParity () {
+
+    $walks = [];
+    $overs = [];
+
+    foreach ( getSuites () as $suite => $entry )
+      if     ( isset ( $entry ['walk'] ) ) $walks [ $entry ['walk'] ] = $suite;
+      elseif ( isset ( $entry ['over'] ) ) $overs [ $suite ] = getSuiteOverApps ( $entry ['over'] );
+
+    $framework = [];
+
+    foreach ( getFrameworkList () as $name )
+      $framework [ "regression/framework/$name" ] = TRUE;
+
+    $wrong = [];
+
+    foreach ( padAppsList () as $one ) {
+
+      $page   = $one ['app'] . '/' . $one ['item'];
+      $owners = isset ( $walks [ $one ['app'] ] ) ? 1 : 0;
+
+      if ( $one ['app'] == 'regression/framework' and isset ( $framework [$page] ) )
+        $owners++;
+
+      foreach ( $overs as $covered )
+        if ( in_array ( $one ['app'], $covered ) )
+          $owners++;
+
+      if ( $owners != 1 )
+        $wrong [] = "$page ($owners)";
+
+    }
+
+    return $wrong ? implode ( ', ', $wrong ) : 'every page owned once';
+
+  }
+
+
+  // Every answer file holds exactly one well-formed oracle: an exact body (anything), a
+  // /pattern/ that compiles, or an HTTP form of at most two lines whose optional second
+  // line is a compiling pattern - a third line is dead weight the comparison would never
+  // read, so it is named here instead of silently ignored. Underscore-prefixed files are
+  // fixtures, not answers.
+
+  function getSuiteLint () {
+
+    $roots = [];
+
+    foreach ( getSuites () as $entry )
+      if     ( isset ( $entry ['walk']  ) ) $roots [] = APPS . $entry ['walk'];
+      elseif ( isset ( $entry ['store'] ) ) $roots [] = APPS . $entry ['store'];
+
+    $roots [] = APPS . 'regression/framework';
+
+    $bad = [];
+
+    foreach ( $roots as $root ) {
+
+      $directory = new RecursiveDirectoryIterator ( $root );
+      $iterator  = new RecursiveIteratorIterator  ( $directory );
+
+      foreach ( $iterator as $one ) {
+
+        $path = padCorrectPath ( $one->getPathname () );
+
+        if ( ! str_ends_with ( $path, '.txt' ) or str_starts_with ( basename ( $path ), '_' ) )
+          continue;
+
+        $name = str_replace ( APPS, '', $path );
+        $want = trim ( padFileGet ( $path ) );
+
+        if ( str_starts_with ( $want, 'HTTP ' ) ) {
+
+          $lines = padExplode ( $want, "\n" );
+
+          if ( count ( $lines ) > 2 )
+            $bad [] = "$name has a third line nothing reads";
+          elseif ( isset ( $lines [1] ) and @preg_match ( $lines [1], '' ) === FALSE )
+            $bad [] = "$name has a pattern line that does not compile";
+
+        }
+
+        elseif ( strlen ( $want ) > 1 and str_starts_with ( $want, '/' ) and str_ends_with ( $want, '/' ) ) {
+
+          if ( @preg_match ( $want, '' ) === FALSE )
+            $bad [] = "$name does not compile";
+
+        }
+
+      }
+
+    }
+
+    return $bad ? implode ( ', ', $bad ) : 'every answer well formed';
+
+  }
+
+
+  // The commit the tree stood on when a result was written, so a verdict says what it is
+  // a verdict about. Empty where git or shell access is absent; the gate holds the
+  // binding only when both sides know their commit.
+
+  function getSuiteCommit () {
+
+    static $commit = NULL;
+
+    return $commit ??= trim ( (string) @shell_exec (
+      'git -C ' . escapeshellarg ( dirname ( APPS ) ) . ' rev-parse --short HEAD 2>/dev/null' ) );
+
+  }
+
+
+  // One verdict for every reader, worst state first: a suite that never ran is not ok,
+  // and neither is one waiting on a new test - ci.sh gates on both, and what a person
+  // reads must say what the gate would.
+
+  function getSuiteVerdict ( $result ) {
+
+    if ( ! ( $result ['when'] ?? 0 )   ) return 'NEVER RUN';
+    if (   $result ['failed']          ) return 'FAILURES';
+    if (   $result ['new'] ?? 0        ) return 'NEW';
+
+    return 'all ok';
 
   }
 
@@ -728,7 +891,7 @@
     $tests       = $result ['tests'];
     $summary     = $result ['summary'];
     $failedCount = $result ['failed'];
-    $verdict     = $failedCount ? 'FAILURES' : 'all ok';
+    $verdict     = getSuiteVerdict ( $result );
     $title       = ucfirst ( $suite ) . " suite - $summary";
     $suiteKey    = $suite;
     $recordable  = isset ( getSuites () [$suite] ['over'] ) ? 1 : 0;
