@@ -33,6 +33,13 @@
 
   function padBootHandler ( $type, $error, $file, $line ) {
 
+    // The @ contract holds here too: a suppressed call empties error_reporting for its
+    // duration, and a handler that ignores that turns a tolerated failure - the deleter's
+    // quiet rmdir attempts first of all - into a fatal only under the boot action.
+
+    if ( ! ( error_reporting () & $type ) )
+      return TRUE;
+
     padBootStop ( $error, $file, $line );
 
   }

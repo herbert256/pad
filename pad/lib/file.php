@@ -145,7 +145,19 @@
 
     }
 
-    rmdir ( $dir );
+    // What survives five passes is Finder still re-dropping its .DS_Store: take the
+    // droppings out quietly and tolerate the empty shell - a directory left standing
+    // empty harms nothing, and a test run must not die for it. Anything else that
+    // remains is real, and the loud rmdir below says so.
+
+    foreach ( padFiles ( $dir ) as $file )
+      if ( str_starts_with ( $file, '.' ) )
+        @unlink ( "$dir/$file" );
+
+    if ( padFiles ( $dir ) )
+      rmdir ( $dir );
+    else
+      @rmdir ( $dir );
 
   }
 
