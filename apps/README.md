@@ -11,7 +11,7 @@ This directory contains PAD applications and examples.
 | [classicModels](classicModels/README.md) | Standard | PAD Select over the Classic Models sample database |
 | [cli](cli/README.md) | CLI | Command-line interface for running PAD from terminal |
 | [demo](demo/README.md) | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
-| [develop](develop/README.md) | Standard | Development tools and utilities for PAD |
+| [develop](develop/README.md) | Standard | Development tools for PAD - the source trimmer, the harvest of the reference and the examples, the error listing |
 | [examples](examples/README.md) | Standard | Search the harvested examples and view one with its sources beside the rendered result |
 | [hello](hello/README.md) | Minimal | Hello World example demonstrating page pairing |
 | [manual](manual/README.md) | Standard | Interactive documentation and examples |
@@ -19,7 +19,7 @@ This directory contains PAD applications and examples.
 | [pad](pad/README.md) | Standard | PAD framework introduction and reference |
 | [react](react/README.md) | Standard | PAD + React integration examples |
 | [reference](reference/README.md) | Standard | Cross-reference and directory utilities |
-| [regression/main](regression/main/README.md) | Standard | Automated regression testing for PAD - the runner for the seven suites, the harvest, and the fresh build |
+| [regression/main](regression/main/README.md) | Standard | Automated regression testing for PAD - the runner for the eight suites and the fresh build |
 | [regression/pages](regression/pages/README.md) | Test | The pages suite: every test is a real page, fetched over HTTP and compared with the answer beside it |
 | [regression/framework](regression/framework/README.md) | Test | The Framework suite: the engine cases as pages, one fetched per case |
 | [regression/regression](regression/regression/README.md) | Test | The Regression suite's prediction store - one answer per page of the self-testing applications and the runner |
@@ -47,6 +47,7 @@ This directory contains PAD applications and examples.
 | [regression/output_web](regression/output_web/README.md) | Test | Regression test for the 'web' output type - the index turns NO when the writer stops behaving |
 | [regression/try_log](regression/try_log/README.md) | Test | Regression test for the try guards under the 'log' action - caught, logged, and the page renders clean |
 | [regression/try_pad](regression/try_pad/README.md) | Test | Regression test for the try guards under the 'pad' action - caught and reported into the page |
+| [regression/errors](regression/errors/README.md) | Test | The Errors suite: the tests that fail on purpose, answered lean under the boot action - no dumps |
 | [regression/common](regression/common/README.md) | Test | The pages of the suite that use _common - {example}, {demo}, {table} - fetched and compared the same way |
 | [sequence](sequence/README.md) | Standard | Mathematical sequence subsystem demos |
 | [structure](structure/README.md) | Example | Demonstrates PAD directory structure and nested `_xxx` directories |

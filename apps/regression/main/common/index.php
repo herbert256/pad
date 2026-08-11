@@ -6,22 +6,6 @@
   // reads the last run, because running means one request per test. The pages that need
   // nothing from _common are the Pages suite, one menu entry back.
 
-  if ( isset ( $test ) ) {
-
-    getPagesTest ( 'common' );
-
-    padRedirect ( $padPage );
-
-  }
-
-  $result = getPages ( 'common' );
-
-  $tests       = $result ['tests'];
-  $summary     = $result ['summary'];
-  $failedCount = $result ['failed'];
-
-  $verdict = $failedCount ? 'FAILURES' : 'all ok';
-
-  $title   = "Common regression - $summary";
+  getSuitePage ( 'common' );
 
 ?>

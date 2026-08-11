@@ -6,22 +6,6 @@
   // nothing but what each must answer. Test here reruns this suite; a page load reads the
   // last run.
 
-  if ( isset ( $test ) ) {
-
-    getPagesTest ( 'other' );
-
-    padRedirect ( $padPage );
-
-  }
-
-  $result = getPages ( 'other' );
-
-  $tests       = $result ['tests'];
-  $summary     = $result ['summary'];
-  $failedCount = $result ['failed'];
-
-  $verdict = $failedCount ? 'FAILURES' : 'all ok';
-
-  $title   = "Other suite - $summary";
+  getSuitePage ( 'other' );
 
 ?>

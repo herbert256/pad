@@ -890,8 +890,8 @@ curl "http://localhost/pad/pad/?hello"         # Hello World test
 # Debugging output
 curl "http://localhost/pad/app/?page&padInfo=trace"  # With trace
 
-# Run all seven suites (results in DATA/suites/; the only crawl left is the build's
-# harvest, which gathers DATA/reference and DATA/examples)
+# Run all eight suites (results in DATA/suites/; DATA/reference and DATA/examples are
+# harvested by the develop app and stand between builds)
 curl -L "http://localhost/pad/regression/main/?index&test"
 
 # Or as a CI gate from the repo root - one line per suite, nonzero exit on any failure
@@ -916,7 +916,7 @@ This is particularly useful for:
 | `classicModels` | Standard | PAD Select over the Classic Models sample database |
 | `cli` | CLI | Command-line interface for running PAD from terminal |
 | `demo` | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
-| `develop` | Standard | Development tools and utilities for PAD |
+| `develop` | Standard | Development tools for PAD - the source trimmer, the harvest of the reference and the examples, the error listing |
 | `examples` | Standard | Search the harvested examples of DATA/examples and view one with its sources beside the rendered result |
 | `hello` | Minimal | Hello World example demonstrating page pairing |
 | `manual` | Standard | Interactive documentation and examples |
@@ -924,7 +924,7 @@ This is particularly useful for:
 | `pad` | Standard | PAD framework introduction and reference |
 | `react` | Standard | PAD + React integration examples |
 | `reference` | Standard | Cross-reference and directory utilities |
-| `regression/main` | Standard | Automated regression testing for PAD - the runner for the seven suites, the harvest, and the fresh build |
+| `regression/main` | Standard | Automated regression testing for PAD - the runner for the eight suites and the fresh build |
 | `regression/pages` | Test | The pages suite: every test is a real page, fetched over HTTP and compared with the answer beside it |
 | `regression/framework` | Test | The Framework suite: the engine cases as pages, one fetched per case |
 | `regression/regression` | Test | The Regression suite's prediction store - one answer per page of the self-testing applications and the runner |
@@ -952,6 +952,7 @@ This is particularly useful for:
 | `regression/output_web` | Test | Regression test for the 'web' output type |
 | `regression/try_log` | Test | Regression test for the try guards under the 'log' action |
 | `regression/try_pad` | Test | Regression test for the try guards under the 'pad' action |
+| `regression/errors` | Test | The Errors suite: the tests that fail on purpose, answered lean under the boot action - no dumps |
 | `regression/common` | Test | The pages of the suite that use `_common` - `{example}`, `{demo}`, `{table}` - fetched and compared the same way |
 | `sequence` | Standard | Mathematical sequence subsystem demos |
 | `structure` | Example | Demonstrates nested `_xxx` directories and inheritance |

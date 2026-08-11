@@ -1,6 +1,4 @@
-<p>
-  <b>{$summary}</b> - {$verdict}
-</p>
+{include:suiteHead}
 
 <p>
   Every test here is a page of one of the self-testing applications - the cache, error,
@@ -13,13 +11,4 @@
   <code>/pattern/</code> for a page that draws.
 </p>
 
-<table border="1" cellpadding="4" cellspacing="0">
-  <tr><th>page</th><th>what it checks</th><th>status</th></tr>
-  {tests}
-    <tr>
-      <td><a href="{$url}">{$name}</a></td>
-      <td>{echo $what | ignore}</td>
-      <td>{$status}</td>
-    </tr>
-  {/tests}
-</table>
+{include:suiteTable}

@@ -25,7 +25,7 @@ esac
 
 exit=0
 
-for suite in pages common framework regression sequence manual other; do
+for suite in pages common errors framework regression sequence manual other; do
 
   file="$padHome/DATA/suites/$suite.json"
 

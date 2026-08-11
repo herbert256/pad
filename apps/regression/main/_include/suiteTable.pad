@@ -1,0 +1,20 @@
+<table border="1" cellpadding="4" cellspacing="0">
+  <tr><th>page</th><th>status</th></tr>
+  {tests}
+    <tr>
+      <td><a href="{$url}">{$name}</a></td>
+      <td>{$status}</td>
+    </tr>
+    {if $status ne 'ok'}
+      <tr>
+        <td colspan="2">
+          <b>want</b> <pre>{!want}</pre>
+          <b>got</b> <pre>{!got}</pre>
+          {if $recordable eq 1}
+            <a href="?record&suite={$suiteKey}{?name}">record what it answers now</a>
+          {/if}
+        </td>
+      </tr>
+    {/if}
+  {/tests}
+</table>
