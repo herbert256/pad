@@ -14,7 +14,7 @@
   // none had been asked for. Strict mode names it.
 
   if ( $padCall === FALSE and $padCheckSyntax )
-    return padError ( "there is no callback named '" . $padPrm [$pad] ['callback'] . "'" );
+    padError ( "there is no callback named '" . $padPrm [$pad] ['callback'] . "'" );
 
   include PAD . 'call/any.php';
 

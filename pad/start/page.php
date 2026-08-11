@@ -20,7 +20,7 @@
   if ( ! padAppPageCheck ( $padParm ) ) {
 
     if ( $padCheckSyntax )
-      return padError ( "there is no page named '$padParm'" );
+      padError ( "there is no page named '$padParm'" );
 
     return '';
 

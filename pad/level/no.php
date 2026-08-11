@@ -28,6 +28,11 @@
 
   global $padCheckSyntax;
 
+  // Every report here is a call, not a return: under an action that continues - ignore,
+  // log - the walk falls through to the literal keeping below, which is the lenient
+  // answer. A miss may then meet the generic catch-all too and speak twice in the log;
+  // under every ending action the first report is the last.
+
   if ( $padCheckSyntax ) {
 
     $padNoTag = $padWords [0];
@@ -39,13 +44,13 @@
     // would otherwise call it an unknown tag named after the note itself.
 
     if ( str_starts_with ( $padNoTag, '#' ) )
-      return padError ( "the comment {# ... does not close with #}" );
+      padError ( "the comment {# ... does not close with #}" );
 
     if ( $padNoTag == 'elseif' )
-      return padError ( "an {elseif} stands inside its {if}, before any @else@" );
+      padError ( "an {elseif} stands inside its {if}, before any @else@" );
 
     if ( $padNoTag == 'when' )
-      return padError ( "a {when} stands inside its {case}" );
+      padError ( "a {when} stands inside its {case}" );
 
     // A type prefix does not search, it asserts - so a miss is not an unknown tag, it is
     // a named thing of a known kind that is not there. The prefix says which kind.
@@ -75,7 +80,7 @@
         if ( str_contains ( $padNoName, '(' ) )
           $padNoName = strstr ( $padNoName, '(', TRUE );
 
-        return padError ( "there is no " . $padNoKinds [$padNoPrefix] . " named '" . trim ( $padNoName ) . "'" );
+        padError ( "there is no " . $padNoKinds [$padNoPrefix] . " named '" . trim ( $padNoName ) . "'" );
 
       }
 
@@ -83,13 +88,13 @@
       // so a known sequence word behind the colon says the front half is the miss.
 
       if ( in_array ( $padNoName, [ 'make', 'keep', 'flag', 'remove' ] ) )
-        return padError ( "there is no sequence type named '" . $padNoPrefix . "'" );
+        padError ( "there is no sequence type named '" . $padNoPrefix . "'" );
 
       // A colon with a name-shaped word in front of it is a type prefix - just not one
       // the engine has.
 
       if ( padValidVar ( $padNoPrefix ) )
-        return padError ( "there is no type named '" . $padNoPrefix . "'" );
+        padError ( "there is no type named '" . $padNoPrefix . "'" );
 
     }
 
@@ -99,17 +104,17 @@
       $padNoTarget = substr ( strstr ( $padNoTag, '@' ), 1 );
 
       if ( file_exists ( PAD . "properties/$padNoProp.php" ) )
-        return padError ( "there is no enclosing level named '$padNoTarget' for the property '$padNoProp'" );
+        padError ( "there is no enclosing level named '$padNoTarget' for the property '$padNoProp'" );
 
       // The mirror: the level is there, the property is not.
 
       for ( $padNoKey = $pad; $padNoKey >= 0; $padNoKey-- )
         if ( ( $padName [$padNoKey] ?? '' ) == $padNoTarget )
-          return padError ( "there is no property named '$padNoProp'" );
+          padError ( "there is no property named '$padNoProp'" );
 
     }
 
-    return padError ( "there is no tag named '$padNoTag'" );
+    padError ( "there is no tag named '$padNoTag'" );
 
   }
 

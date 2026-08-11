@@ -17,7 +17,7 @@
        and ! file_exists ( PAD . "handling/types/" . $padPrmShape [2] . ".php" )
        and ! file_exists ( PAD . "functions/" . $padPrmShape [2] . ".php" )
        and ! padOptionCheck ( $padPrmShape [2] ) )
-    return padError ( "a comma is missing between parameters: " . trim ( $padPrmOne ) );
+    padError ( "a comma is missing between parameters: " . trim ( $padPrmOne ) );
 
   // {increment}, {decrement} and {set} address their words by name and never read them
   // as values - the handler takes the raw text. Evaluating them anyway made the strict

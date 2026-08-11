@@ -18,7 +18,7 @@
     $padAtTag = '';
 
     if ( $padCheckSyntax )
-      return padError ( "the path '$padParm' reaches nothing for the at tag" );
+      padError ( "the path '$padParm' reaches nothing for the at tag" );
 
     return '';
 

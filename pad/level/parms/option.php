@@ -18,7 +18,7 @@
   // bare form gets.
 
   if ( $padCheckSyntax and $padPrmValue === '' and str_contains ( $padPrmOne, '=' ) )
-    return padError ( "the option '" . $padPrmName . "' was given no value" );
+    padError ( "the option '" . $padPrmName . "' was given no value" );
 
   $padPrm [$pad] [$padPrmName] = ( $padPrmValue === '' ) ? TRUE : padEval ( $padPrmValue );
 

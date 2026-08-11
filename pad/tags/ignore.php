@@ -10,7 +10,7 @@
    // the cause.
 
    if ( ! $padPair [$pad] and $padCheckSyntax )
-     return padError ( "the pair {ignore} never closes" );
+     padError ( "the pair {ignore} never closes" );
 
    $padContent = padEscape ( $padContent );
 

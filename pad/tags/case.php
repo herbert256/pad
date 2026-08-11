@@ -14,19 +14,19 @@
   // what is missing.
 
   if ( ! $padPair [$pad] and $padCheckSyntax )
-    return padError ( "the pair {" . $padOrg [$pad] . "} never closes" );
+    padError ( "the pair {" . $padOrg [$pad] . "} never closes" );
 
   if ( $padCheckSyntax and trim ( $padParms [$pad] [0] ['padPrmOrg'] ?? '' ) == '' )
-    return padError ( "the {case} has no value" );
+    padError ( "the {case} has no value" );
 
   $padBasis   = padEval  ( $padParms [$pad] [0] ['padPrmOrg'] ?? '' );
   $padChk     = strpos   ( $padContent , '{when' );
 
   if ( $padCheckSyntax and $padChk === FALSE )
-    return padError ( "the {case} has no {when}" );
+    padError ( "the {case} has no {when}" );
 
   if ( $padCheckSyntax and trim ( substr ( $padContent, 0, $padChk ) ) != '' )
-    return padError ( "what stands before the first {when} of a {case} never renders" );
+    padError ( "what stands before the first {when} of a {case} never renders" );
 
   // Strict pre-scan of the branches: a {when} standing behind the {else} never answers,
   // and a {when} repeating an earlier value never answers either - the first one does.
@@ -46,13 +46,13 @@
       if ( padCheckTag ( 'case', substr ( $padContent, 0, $padCaseScan ) ) ) {
 
         if ( $padCaseElse !== FALSE and $padCaseScan > $padCaseElse )
-          return padError ( "a {when} behind the {else} never answers" );
+          padError ( "a {when} behind the {else} never answers" );
 
         $padCasePos = strpos ( $padContent, '}', $padCaseScan );
         $padCaseVal = padEval ( substr ( $padContent, $padCaseScan+6, $padCasePos-($padCaseScan+6) ) );
 
         if ( in_array ( $padCaseVal, $padCaseSeen, TRUE ) )
-          return padError ( "the {when '" . $padCaseVal . "'} is written twice - the first one answers" );
+          padError ( "the {when '" . $padCaseVal . "'} is written twice - the first one answers" );
 
         $padCaseSeen [] = $padCaseVal;
 
@@ -68,7 +68,7 @@
   $padIf      = substr   ( $padContent, $padChk+6, $padPos-($padChk+6) );
 
   if ( $padCheckSyntax and trim ( $padIf ) == '' )
-    return padError ( "a {when} of this {case} has no value" );
+    padError ( "a {when} of this {case} has no value" );
 
   $padContent = substr   ( $padContent, $padPos+1 );
   $padChk     = strpos   ( $padContent, '{when' );
@@ -91,7 +91,7 @@
       $padIf      = substr   ( $padContent, $padChk+6, $padPos-($padChk+6) );
 
       if ( $padCheckSyntax and trim ( $padIf ) == '' )
-        return padError ( "a {when} of this {case} has no value" );
+        padError ( "a {when} of this {case} has no value" );
 
       $padContent = substr   ( $padContent, $padPos+1 );
       $padChk     = strpos   ( $padContent, '{when' );

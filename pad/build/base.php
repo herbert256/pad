@@ -24,7 +24,7 @@
     // marker to a wrapper; strict mode says which wrapper broke the rule.
 
     if ( $padCheckSyntax and substr_count ( $padBuildInit . $padBuildExit, '@page@' ) > 1 )
-      return padError ( "one @page@ to a wrapper - " . str_replace ( APPS, '', $padBuildDir ) . " holds more" );
+      padError ( "one @page@ to a wrapper - " . str_replace ( APPS, '', $padBuildDir ) . " holds more" );
 
     if ( strpos($padBuildInit, '@page@') === FALSE and strpos($padBuildExit, '@page@') === FALSE  )
       $padBuildInit .= '@page@';

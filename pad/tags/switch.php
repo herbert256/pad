@@ -14,7 +14,7 @@
   // Strict mode asks for the values.
 
   if ( $padCheckSyntax and ! isset ( $padOpt [$pad] [2] ) and trim ( $padOpt [$pad] [1] ?? '' ) == '' )
-    return padError ( "the {switch} has no values" );
+    padError ( "the {switch} has no values" );
 
   $padSw = $padOpt [$pad] [0];
 

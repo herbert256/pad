@@ -26,7 +26,7 @@
     if ( preg_match_all ( '/@([a-zA-Z][a-zA-Z0-9]*)@/', $padBuildScan, $padBuildCon ) )
       foreach ( array_unique ( $padBuildCon [1] ) as $padBuildOne )
         if ( ! file_exists ( PAD . "constructs/$padBuildOne.php" ) )
-          return padError ( "there is no @" . $padBuildOne . "@ construct" );
+          padError ( "there is no @" . $padBuildOne . "@ construct" );
 
   }
 

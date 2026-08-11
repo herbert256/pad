@@ -13,7 +13,7 @@
     list ( $padEchoHead ) = padPipeSplit ( $padOpt [$pad] [0] );
 
     if ( trim ( $padEchoHead ) == '' )
-      return padError ( "the {echo} has no expression" );
+      padError ( "the {echo} has no expression" );
 
   }
 

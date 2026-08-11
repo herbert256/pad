@@ -15,7 +15,7 @@
     global $padCheckSyntax;
 
     if ( $padCheckSyntax )
-      return padError ( "the function '$name' wants " . $padFnNeeds [$name]
+      padError ( "the function '$name' wants " . $padFnNeeds [$name]
                       . " parameter" . ( $padFnNeeds [$name] > 1 ? 's' : '' ) );
 
     return $value;

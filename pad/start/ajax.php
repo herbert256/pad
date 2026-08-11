@@ -27,11 +27,11 @@
           $padExtOk = TRUE;
 
       if ( ! $padExtOk )
-        return padError ( "there is no page named '$padExtPag' in the application '$padExtApp'" );
+        padError ( "there is no page named '$padExtPag' in the application '$padExtApp'" );
 
     } elseif ( ! padAppPageCheck ( $padExtPag ) )
 
-      return padError ( "there is no page named '$padExtPag' for {ajax}" );
+      padError ( "there is no page named '$padExtPag' for {ajax}" );
 
   }
 

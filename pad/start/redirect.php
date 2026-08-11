@@ -14,7 +14,7 @@
        and ! str_starts_with ( $padParm, '?' )
        and ! str_starts_with ( $padParm, '/' )
        and ! padAppPageCheck ( $padParm ) )
-    return padError ( "there is no page named '$padParm' for {redirect}" );
+    padError ( "there is no page named '$padParm' for {redirect}" );
 
   padRedirect ( $padParm, $padSetLvl [$pad] );
 

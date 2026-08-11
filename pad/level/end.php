@@ -20,10 +20,10 @@
   if ( $padOpenStart !== FALSE ) {
 
     if ( $padCheckSyntax and substr ( $padOut [$pad], $padOpenStart, 2 ) == '{#' )
-      return padError ( "the comment {# never closes" );
+      padError ( "the comment {# never closes" );
 
     if ( $padCheckSyntax )
-      return padError ( "No close } found for open { at position " . $padOpenStart + 1);
+      padError ( "No close } found for open { at position " . $padOpenStart + 1);
 
     $padOut [$pad] = str_replace ( '{', '&open;', $padOut [$pad] );
 

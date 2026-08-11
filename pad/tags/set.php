@@ -11,13 +11,13 @@
   // and renders the content like any other pair.
 
   if ( $padPair [$pad] and $padCheckSyntax )
-    return padError ("{set ...} can not be used as a open/close tag");
+    padError ("{set ...} can not be used as a open/close tag");
 
   // A {set} whose words parsed into no assignment - a missing $, a missing value - used
   // to do nothing at all. Strict mode says so.
 
   if ( $padCheckSyntax and ! count ( $padSetLvl [$pad] ) )
-    return padError ( "the {set} assigns nothing - it speaks in \$name = value pairs" );
+    padError ( "the {set} assigns nothing - it speaks in \$name = value pairs" );
 
   foreach ( $padSetLvl [$pad] as $padSetName => $padSetValue )
     $GLOBALS [$padSetName] = $padSetValue;

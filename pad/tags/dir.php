@@ -12,7 +12,7 @@
   if ( ! is_dir ( $padDir ) ) {
 
     if ( $padCheckSyntax )
-      return padError ( "there is no directory named '$padDir' for {dir}" );
+      padError ( "there is no directory named '$padDir' for {dir}" );
 
     return [];
 

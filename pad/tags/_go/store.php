@@ -24,7 +24,7 @@
   // by nobody. Strict mode asks for the name.
 
   if ( $padCheckSyntax and trim ( $padOpt [$pad] [1] ?? '' ) == '' and ! isset ( $padOpt [$pad] [2] ) )
-    return padError ( "the {" . $padTag [$pad] . "} has no name" );
+    padError ( "the {" . $padTag [$pad] . "} has no name" );
 
   $padStoreName = 'pad' . ucwords($padTag[$pad]) . 'Store';
 
@@ -65,10 +65,10 @@
   if ( $padCheckSyntax ) {
 
     if ( file_exists ( PAD . "tags/" . $padName [$pad] . ".php" ) )
-      return padError ( "the store name '" . $padName [$pad] . "' is already a built-in tag - {" . $padName [$pad] . "} will never reach the store" );
+      padError ( "the store name '" . $padName [$pad] . "' is already a built-in tag - {" . $padName [$pad] . "} will never reach the store" );
 
     if ( padAppTagCheck ( $padName [$pad] ) )
-      return padError ( "the store name '" . $padName [$pad] . "' is already an application tag - {" . $padName [$pad] . "} will never reach the store" );
+      padError ( "the store name '" . $padName [$pad] . "' is already an application tag - {" . $padName [$pad] . "} will never reach the store" );
 
   }
 

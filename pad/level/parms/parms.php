@@ -60,7 +60,7 @@
         continue;
 
       if ( isset ( $padPrmSeen [ $padPrmChk ['padPrmName'] ] ) )
-        return padError ( "the option '" . $padPrmChk ['padPrmName'] . "' is written twice" );
+        padError ( "the option '" . $padPrmChk ['padPrmName'] . "' is written twice" );
 
       $padPrmSeen [ $padPrmChk ['padPrmName'] ] = TRUE;
 

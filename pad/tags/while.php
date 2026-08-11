@@ -15,7 +15,7 @@
   // what is missing.
 
   if ( ! $padPair [$pad] and $padCheckSyntax )
-    return padError ( "the pair {" . $padOrg [$pad] . "} never closes" );
+    padError ( "the pair {" . $padOrg [$pad] . "} never closes" );
 
   // A condition that never turns ran forever, and the request died on PHP's clock with
   // nothing said. The loop stops at the ceiling the sequences already use; strict mode
@@ -29,7 +29,7 @@
   if ( $padWhileRound [$pad] > $padSeqDefaultTries ) {
 
     if ( $padCheckSyntax )
-      return padError ( "the {" . $padTag [$pad] . "} passed $padSeqDefaultTries rounds and was stopped" );
+      padError ( "the {" . $padTag [$pad] . "} passed $padSeqDefaultTries rounds and was stopped" );
 
     $padWalk [$pad] = '';
     return NULL;
@@ -47,7 +47,7 @@
   if ( trim ( $padWhileOrg ) == '' ) {
 
     if ( $padCheckSyntax )
-      return padError ( "the {" . $padTag [$pad] . "} has no condition" );
+      padError ( "the {" . $padTag [$pad] . "} has no condition" );
 
     $padWalk [$pad] = '';
     return NULL;

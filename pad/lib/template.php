@@ -173,10 +173,10 @@
     if ( $padCheckSyntax and str_contains ( (string) $input, '..' ) ) {
 
       if ( str_ends_with ( trim ( $input ), '..' ) )
-        return padError ( "the range '" . trim ( $input ) . "' has no end" );
+        padError ( "the range '" . trim ( $input ) . "' has no end" );
 
       if ( str_starts_with ( trim ( $input ), '..' ) )
-        return padError ( "the range '" . trim ( $input ) . "' has no start" );
+        padError ( "the range '" . trim ( $input ) . "' has no start" );
 
     }
 

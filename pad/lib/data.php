@@ -54,7 +54,7 @@
         global $padCheckSyntax;
 
         if ( $padCheckSyntax )
-          return padError ( "there is no data type named '" . padMakeSafe ( $type, 40 ) . "'" );
+          padError ( "there is no data type named '" . padMakeSafe ( $type, 40 ) . "'" );
 
         $type = padContentType ( $data );
 

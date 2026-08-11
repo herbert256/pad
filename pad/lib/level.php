@@ -73,7 +73,7 @@ function padSplitOnUnquotedColon ( $str ) {
     // control tag silently worked on the wrong level. Strict mode says so instead.
 
     if ( $parm and ! is_numeric ( $parm ) and $padCheckSyntax )
-      return padError ( "there is no enclosing level named '$parm' for {" . $padTag [$pad] . "}" );
+      padError ( "there is no enclosing level named '$parm' for {" . $padTag [$pad] . "}" );
 
     for ( $key = $pad-1; $key >=0 ; $key-- )
       if ( $padTag [$key] != 'if' and $padTag [$key] != 'case' ) {
@@ -82,7 +82,7 @@ function padSplitOnUnquotedColon ( $str ) {
         // Strict mode says so; the lenient walk keeps the old answer.
 
         if ( $padCheckSyntax and $padTag [$key] == 'internal' )
-          return padError ( "there is no enclosing loop for {" . $padTag [$pad] . "}" );
+          padError ( "there is no enclosing loop for {" . $padTag [$pad] . "}" );
 
         return $key;
 
@@ -176,9 +176,9 @@ function padSplitOnUnquotedColon ( $str ) {
     global $padBetween, $padCheckSyntax;
 
     if ( $padCheckSyntax )
-      return padError ( "Closing tag found without an open tag: {" . $padBetween . "}" );
-    else
-      return padLevelNo ( $padBetween );
+      padError ( "Closing tag found without an open tag: {" . $padBetween . "}" );
+
+    return padLevelNo ( $padBetween );
 
   }
 

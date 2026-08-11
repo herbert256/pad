@@ -34,7 +34,7 @@
   if ( ! is_dir ( $padFilesScan ) ) {
 
     if ( $padCheckSyntax )
-      return padError ( "there is no directory named '$padFilesDir' for {files}" );
+      padError ( "there is no directory named '$padFilesDir' for {files}" );
 
     return [];
 
