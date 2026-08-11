@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>PAD regression test audit — 2026-08-11</title>
+  <style>
+    :root {
+      --ink: #17221d;
+      --muted: #607068;
+      --paper: #f4f1e8;
+      --card: #fffdf7;
+      --line: #d9d4c7;
+      --green: #176647;
+      --green-soft: #e6f2eb;
+      --amber: #985d08;
+      --amber-soft: #fff1d5;
+      --red: #a13b30;
+      --red-soft: #fbe9e6;
+      --blue: #315f87;
+      --blue-soft: #e8f0f7;
+      --shadow: 0 14px 36px rgba(23, 34, 29, .08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 82% 5%, rgba(49, 95, 135, .11), transparent 26rem),
+        radial-gradient(circle at 7% 18%, rgba(23, 102, 71, .09), transparent 22rem),
+        var(--paper);
+      font: 16px/1.58 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    a { color: var(--blue); text-underline-offset: .18em; }
+
+    code, pre, .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    code {
+      padding: .12em .35em;
+      border: 1px solid #e1ddd2;
+      border-radius: .32rem;
+      background: #f6f3eb;
+      font-size: .9em;
+      overflow-wrap: anywhere;
+    }
+
+    pre {
+      margin: .8rem 0 0;
+      padding: 1rem 1.1rem;
+      overflow: auto;
+      border: 1px solid #303b35;
+      border-radius: .65rem;
+      color: #edf7f1;
+      background: #1d2923;
+      font-size: .82rem;
+      line-height: 1.5;
+    }
+
+    .wrap { width: min(1160px, calc(100% - 2rem)); margin: 0 auto; }
+
+    .hero {
+      padding: 5rem 0 3.4rem;
+      border-bottom: 1px solid rgba(23, 34, 29, .12);
+    }
+
+    .eyebrow {
+      margin: 0 0 .8rem;
+      color: var(--green);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 { line-height: 1.12; letter-spacing: -.025em; }
+    h1 { max-width: 850px; margin: 0; font-size: clamp(2.35rem, 6vw, 5.15rem); }
+    h2 { margin: 0 0 1rem; font-size: clamp(1.65rem, 3vw, 2.45rem); }
+    h3 { margin: 0; font-size: 1.18rem; }
+
+    .lede {
+      max-width: 880px;
+      margin: 1.4rem 0 1.2rem;
+      color: #37483f;
+      font-size: clamp(1.08rem, 2vw, 1.33rem);
+    }
+
+    .stamp { color: var(--muted); font-size: .91rem; }
+
+    .verdict {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.15rem;
+      align-items: start;
+      max-width: 960px;
+      margin-top: 2rem;
+      padding: 1.25rem 1.35rem;
+      border: 1px solid #e8c995;
+      border-left: .42rem solid var(--amber);
+      border-radius: .85rem;
+      background: var(--amber-soft);
+      box-shadow: var(--shadow);
+    }
+
+    .verdict strong {
+      white-space: nowrap;
+      color: var(--amber);
+      font-size: .82rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .verdict p { margin: 0; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 4;
+      border-bottom: 1px solid rgba(23, 34, 29, .12);
+      background: rgba(244, 241, 232, .92);
+      backdrop-filter: blur(12px);
+    }
+
+    nav .wrap { display: flex; gap: 1.2rem; overflow-x: auto; padding: .8rem 0; }
+    nav a { color: var(--ink); font-size: .86rem; font-weight: 700; text-decoration: none; white-space: nowrap; }
+
+    main { padding: 2.7rem 0 5rem; }
+    section { scroll-margin-top: 4.5rem; margin: 0 0 3.6rem; }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: .85rem;
+    }
+
+    .metric, .card, .finding, .note {
+      border: 1px solid var(--line);
+      border-radius: .8rem;
+      background: var(--card);
+      box-shadow: 0 5px 18px rgba(23, 34, 29, .045);
+    }
+
+    .metric { padding: 1.05rem; }
+    .metric b { display: block; font-size: 1.75rem; line-height: 1; }
+    .metric span { display: block; margin-top: .45rem; color: var(--muted); font-size: .83rem; }
+
+    .card { padding: 1.25rem; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .card p:last-child, .finding p:last-child { margin-bottom: 0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: 0 5px 18px rgba(23, 34, 29, .04);
+    }
+
+    th, td { padding: .72rem .8rem; border-bottom: 1px solid var(--line); text-align: left; }
+    th { color: #415149; background: #ebe7dc; font-size: .77rem; letter-spacing: .055em; text-transform: uppercase; }
+    td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    tr:last-child td { border-bottom: 0; }
+    tfoot td { font-weight: 800; background: #f3efe5; }
+
+    .findings { display: grid; gap: 1rem; }
+
+    .finding {
+      display: grid;
+      grid-template-columns: 7rem 1fr;
+      gap: 1.15rem;
+      min-width: 0;
+      padding: 1.25rem;
+    }
+
+    .finding > div { min-width: 0; }
+
+    .priority {
+      align-self: start;
+      padding: .45rem .58rem;
+      border-radius: .45rem;
+      font-size: .75rem;
+      font-weight: 850;
+      letter-spacing: .07em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .p1 .priority { color: var(--red); background: var(--red-soft); }
+    .p2 .priority { color: var(--amber); background: var(--amber-soft); }
+    .p3 .priority { color: var(--blue); background: var(--blue-soft); }
+
+    .finding .meta { margin: .35rem 0 .7rem; color: var(--muted); font-size: .84rem; }
+    .finding ul { margin-bottom: .3rem; padding-left: 1.2rem; }
+    .finding li + li { margin-top: .32rem; }
+
+    .good { border-left: .38rem solid var(--green); }
+    .good h3 { color: var(--green); }
+
+    .note { padding: 1rem 1.1rem; color: #33433b; background: var(--blue-soft); border-color: #c9d8e5; }
+    .note strong { color: var(--blue); }
+
+    .steps { counter-reset: step; display: grid; gap: .75rem; padding: 0; list-style: none; }
+    .steps li { position: relative; min-height: 2.4rem; padding: .55rem .7rem .55rem 3.3rem; border-left: 2px solid #cfc9bb; }
+    .steps li::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: .45rem;
+      top: .33rem;
+      display: grid;
+      width: 2rem;
+      height: 2rem;
+      place-items: center;
+      border-radius: 50%;
+      color: white;
+      background: var(--green);
+      font-weight: 800;
+    }
+
+    .small { color: var(--muted); font-size: .85rem; }
+
+    footer { padding: 1.6rem 0 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .84rem; }
+
+    @media (max-width: 820px) {
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid-2 { grid-template-columns: 1fr; }
+      .finding { grid-template-columns: 1fr; gap: .65rem; }
+      .priority { justify-self: start; }
+      .table-scroll { overflow-x: auto; }
+      table { min-width: 680px; }
+    }
+
+    @media (max-width: 520px) {
+      .hero { padding-top: 3rem; }
+      .metrics { grid-template-columns: 1fr; }
+      .verdict { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: white; font-size: 11pt; }
+      nav { display: none; }
+      .hero { padding-top: 1rem; }
+      .wrap { width: 100%; }
+      .metric, .card, .finding, table, .verdict { box-shadow: none; break-inside: avoid; }
+      section { margin-bottom: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Independent test-system review</p>
+      <h1>PAD regression test audit</h1>
+      <p class="lede">A broad, fast and currently green behavioral suite with strong baseline hygiene—but not yet an exhaustive or self-proving gate.</p>
+      <p class="stamp">Audited 11 August 2026 · commit <span class="mono">582d3b6a0</span> · PHP 8.5.9 · Apache 2.4.68</p>
+      <div class="verdict" role="status">
+        <strong>Pass with reservations</strong>
+        <p>Current framework behavior is well protected for server-rendered GET paths and template semantics. Do not claim “every page exactly once” yet: one live framework page has no owner, state-changing/request-mode paths sit outside the gate, and the harness itself has false-green states that its self-tests do not exercise.</p>
+      </div>
+    </div>
+  </header>
+
+  <nav aria-label="Audit sections">
+    <div class="wrap">
+      <a href="#result">Result</a>
+      <a href="#inventory">Inventory</a>
+      <a href="#strengths">Strengths</a>
+      <a href="#findings">Findings</a>
+      <a href="#recommendations">Recommendations</a>
+      <a href="#method">Method</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="result">
+      <h2>What passed</h2>
+      <div class="metrics">
+        <div class="metric"><b>5/5</b><span>consecutive full CI gates passed</span></div>
+        <div class="metric"><b>1,792</b><span>unique fetched pages/cases per run</span></div>
+        <div class="metric"><b>1,919</b><span>reported logical assertions</span></div>
+        <div class="metric"><b>0</b><span>failed, new, missing or orphan baselines</span></div>
+      </div>
+      <p>The complete gate ran five consecutive times in roughly 7–9 seconds per run. Every run produced the same eight suite totals and exited zero. All eight JSON result files decoded cleanly; the suite and web entry-point PHP files passed syntax checks (287 files); all stored regular expressions compiled; and all HTTP expectations had valid shapes.</p>
+    </section>
+
+    <section id="inventory">
+      <h2>Suite inventory</h2>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>Suite</th><th class="num">Fetched rows</th><th class="num">Logical tests</th><th class="num">Exact</th><th class="num">Regex</th><th class="num">HTTP</th><th class="num">Failures</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Pages</td><td class="num">71</td><td class="num">198</td><td class="num">67</td><td class="num">4</td><td class="num">0</td><td class="num">0</td></tr>
+            <tr><td>Common</td><td class="num">25</td><td class="num">25</td><td class="num">25</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+            <tr><td>Errors</td><td class="num">96</td><td class="num">96</td><td class="num">2</td><td class="num">1</td><td class="num">93</td><td class="num">0</td></tr>
+            <tr><td>Framework</td><td class="num">963</td><td class="num">963</td><td class="num">950</td><td class="num">13</td><td class="num">0</td><td class="num">0</td></tr>
+            <tr><td>Regression</td><td class="num">64</td><td class="num">64</td><td class="num">40</td><td class="num">14</td><td class="num">10</td><td class="num">0</td></tr>
+            <tr><td>Sequence</td><td class="num">395</td><td class="num">395</td><td class="num">370</td><td class="num">25</td><td class="num">0</td><td class="num">0</td></tr>
+            <tr><td>Manual</td><td class="num">136</td><td class="num">136</td><td class="num">133</td><td class="num">3</td><td class="num">0</td><td class="num">0</td></tr>
+            <tr><td>Other</td><td class="num">42</td><td class="num">42</td><td class="num">38</td><td class="num">4</td><td class="num">0</td><td class="num">0</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td>Total</td><td class="num">1,792</td><td class="num">1,919</td><td class="num">1,625</td><td class="num">64</td><td class="num">103</td><td class="num">0</td></tr>
+          </tfoot>
+        </table>
+      </div>
+      <p class="small">90.7% of fetched rows use exact-body oracles. The Pages total counts 127 labelled catalogue assertions in addition to its 71 HTTP comparisons. “Failed” is counted per fetched row, not per logical catalogue assertion.</p>
+    </section>
+
+    <section id="strengths">
+      <h2>What is strong</h2>
+      <div class="grid-2">
+        <article class="card good">
+          <h3>Real HTTP isolation</h3>
+          <p>Cases are fetched as the browser-facing framework sees them rather than evaluated only as in-process helpers. Missing multi-fetch responses are converted to HTTP 999 failures instead of disappearing from totals.</p>
+        </article>
+        <article class="card good">
+          <h3>Oracle hygiene</h3>
+          <p>All 1,792 selected rows have exactly one baseline. There are no missing or orphan answer files and no duplicate fetched URLs across suites. The Errors suite pairs expected failures with status and message shape.</p>
+        </article>
+        <article class="card good">
+          <h3>Fail-closed command gate</h3>
+          <p><code>ci.sh</code> rejects missing/unreadable results, non-zero failure counts, new tests and old timestamps. Exact and regex expectations also require a healthy 2xx response.</p>
+        </article>
+        <article class="card good">
+          <h3>Useful breadth</h3>
+          <p>Template parsing, expressions, tags, variables, data, sequence behavior, strict/lenient errors, output modes, databases and five cache backends all receive live coverage in this environment.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="findings">
+      <h2>Findings</h2>
+      <div class="findings">
+        <article class="finding p1">
+          <div class="priority">P1 · High</div>
+          <div>
+            <h3>The “every page exactly once” invariant is already false</h3>
+            <p class="meta">Coverage completeness · confirmed against live HTTP and all result files</p>
+            <p><code>http://localhost/pad/regression/framework/?index</code> returns HTTP 200 but appears in no suite result. The Framework enumerator only reads <code>.pad</code> files one directory below its root (<code>regression.php:604–614</code>), while the Regression family deliberately excludes the entire framework application (<code>regression.php:69–83</code>).</p>
+            <p>The missed page is not benign noise: it still says cases live under <code>_suites/</code> and are driven through <code>?run</code>, both stale concepts. A suite ownership check would have caught that drift.</p>
+            <p><b>Remedy:</b> explicitly own the root index (add it to Framework, move it to a covered app, or delete it) and add an independent parity assertion from all public renderable endpoints to exactly one direct or declared parent test.</p>
+          </div>
+        </article>
+
+        <article class="finding p1">
+          <div class="priority">P1 · High</div>
+          <div>
+            <h3>The harness is much less tested than the framework it judges</h3>
+            <p class="meta">False-green risk · 737-line runner, six narrow harness cases</p>
+            <p>Only six Framework cases target the regression harness, and they cover URL/want-file/count helpers. There are no focused negative tests for comparison modes, dropped fetches, discovery, result aggregation, corrupt files, write failure, new/stale states or the shell gate.</p>
+            <p>The Regression suite’s overview baselines are permissive: suite pages may match <code>never run</code> or any numeric failed count. The main overview pattern does not specifically require the new Errors row. These tests prove that a page has roughly the expected shape, not that the harness verdict is right.</p>
+            <p><b>Remedy:</b> add a small pure-PHP harness suite with synthetic work lists and responses, plus black-box command tests that inject one failure, one new page, one missing response, one corrupt result and one stale run.</p>
+          </div>
+        </article>
+
+        <article class="finding p1">
+          <div class="priority">P1 · High</div>
+          <div>
+            <h3>Stateful request paths sit outside the gate</h3>
+            <p class="meta">Coverage boundary · source inventory and request-shape search</p>
+            <p>An independent page-shaped source scan found 1,922 candidates. The shared walker excludes 24: all 21 Develop endpoints plus <code>demo/todoPost</code>, <code>regression/main/record</code> and <code>structure/index</code>. Some are deliberately excluded because a GET would mutate or redirect, but they remain public behavior without explicit scenarios.</p>
+            <p>Every suite fetch issued by the runner is a GET. No regression fixture sends POST data, cookies, sessions, file uploads or raw request bodies, despite dedicated framework code for those paths. Client-side React/Ajax behavior is compared as emitted markup; it is not executed.</p>
+            <p>The action exclusion is also lexical: any PHP-only page containing <code>padRedirect</code>, <code>padRestart</code>, <code>padFilePut</code> or <code>padDeleteDataDir</code> anywhere in its source is silently skipped (<code>apps.php:33–42</code>).</p>
+            <p><b>Remedy:</b> replace source-string discovery with an explicit endpoint manifest and add isolated POST/session/cookie/upload/action scenarios with disposable data directories.</p>
+          </div>
+        </article>
+
+        <article class="finding p2">
+          <div class="priority">P2 · Medium</div>
+          <div>
+            <h3>Human-facing verdicts report false success</h3>
+            <p class="meta">Reporting · reproduced with isolated runner probes</p>
+            <p><code>getSuitePage()</code> sets the detail verdict from failures only (<code>regression.php:726–731</code>). A result of “1 new” displays <b>all ok</b>; a suite that has never run also displays <b>all ok</b>. The main overview similarly labels “never run” as <b>ok</b> because it checks only failed/new.</p>
+            <pre>1 pages, 1 tests, 0 failed, 1 new  →  all ok
+never run                           →  all ok</pre>
+            <p><b>Remedy:</b> use a single verdict function everywhere: <code>NEVER RUN</code>, <code>FAILURES</code>, <code>NEW</code>, then <code>OK</code>. Unit-test every state.</p>
+          </div>
+        </article>
+
+        <article class="finding p2">
+          <div class="priority">P2 · Medium</div>
+          <div>
+            <h3>Ordinary CI runs leak generated files</h3>
+            <p class="meta">Operational reliability · measured before and after one green run</p>
+            <p>One <code>./ci.sh</code> run added 255 files and 1,552 KiB under <code>DATA/dumps</code> (1,276 → 1,531 files; 7,776 → 9,328 KiB). Forty generated files were also standing under <code>DATA/temp</code>. The interactive Fresh build wipes dumps/temp/suites, but CI calls <code>?index&amp;test</code> and performs no cleanup.</p>
+            <p><b>Remedy:</b> give each run an isolated data root and delete it on success, or run bounded pre/post cleanup while retaining only failed-run artifacts. Add a retention cap as a backstop.</p>
+          </div>
+        </article>
+
+        <article class="finding p2">
+          <div class="priority">P2 · Medium</div>
+          <div>
+            <h3>The HTTP “record” link mutates the test oracle with a GET</h3>
+            <p class="meta">Oracle integrity · <code>record.php:11–47</code></p>
+            <p>A failure-row link can overwrite an exact baseline in the source tree. The action uses GET, has no confirmation/CSRF token, does not require that the named row is part of the current failing result, and fetches the page again—so a volatile response may differ from the one the reviewer saw.</p>
+            <p><b>Remedy:</b> make recording development-only, POST-only and CSRF-protected; show the exact pending diff; bind it to the current result/run ID; validate membership and failure state; then require explicit confirmation.</p>
+          </div>
+        </article>
+
+        <article class="finding p2">
+          <div class="priority">P2 · Medium</div>
+          <div>
+            <h3>CI results have no run identity and the checkout path is fixed</h3>
+            <p class="meta">Reproducibility and concurrency · <code>ci.sh:13–47</code>, <code>home/home.sh:3–7</code></p>
+            <p><code>ci.sh</code> accepts a host but reads results from OS-specific hard-coded paths. Freshness is a seconds-resolution timestamp and accepts equality, so concurrent runs can mix files and a same-second stale result can pass the freshness test. Result writes are not associated with a commit, host or unique run token.</p>
+            <p><b>Remedy:</b> derive the repository root from <code>ci.sh</code>, lock one run or use per-run directories, pass a random run ID to the trigger, store it in every result, and verify the ID plus commit after the request.</p>
+          </div>
+        </article>
+
+        <article class="finding p2">
+          <div class="priority">P2 · Medium</div>
+          <div>
+            <h3>Framework comparisons erase meaningful internal whitespace</h3>
+            <p class="meta">Oracle sensitivity · reproduced from <code>regression.php:658–674</code></p>
+            <p>The Framework suite removes every newline and all following whitespace from actual output before comparison. The distinct output <code>"a\n b"</code> normalizes to <code>"ab"</code> and passes an <code>ab</code> baseline. This is convenient for one-line engine assertions, but it can conceal newline/spacing regressions.</p>
+            <p><b>Remedy:</b> make normalization an explicit per-case mode, default new cases to raw exact comparison, and keep dedicated whitespace-sensitive fixtures in Pages.</p>
+          </div>
+        </article>
+
+        <article class="finding p3">
+          <div class="priority">P3 · Low</div>
+          <div>
+            <h3>Expectation grammar and documentation need maintenance guards</h3>
+            <p class="meta">Maintainability · no current malformed baselines found</p>
+            <p>For an HTTP expectation, only line two is treated as a pattern; later lines are silently ignored. The audit proved that <code>HTTP 500\n/error/\nunchecked</code> passes. The runner has no schema/lint command for this, although today’s stored expectations are valid.</p>
+            <p>Documentation has already drifted: the README and Build page still say CI runs seven suites, the overview prose describes a retired scan, and some comments omit Errors. Counts also mix logical catalogue assertions with failed pages, which can understate a catalogue failure.</p>
+            <p><b>Remedy:</b> validate each oracle as exactly one supported form; fail invalid regexes/extra lines; derive suite counts/names in UI copy where possible; label failure metrics as pages or assertions consistently.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="recommendations">
+      <h2>Recommended order of work</h2>
+      <ol class="steps">
+        <li><b>Restore the ownership invariant.</b> Cover or remove <code>regression/framework/?index</code>, then add an independent endpoint-to-suite parity test.</li>
+        <li><b>Test the test system.</b> Add deterministic harness and command-gate fault injection before expanding case count further.</li>
+        <li><b>Make verdicts impossible to misread.</b> Unify NEVER RUN / FAILURES / NEW / OK across the index, detail pages, JSON and CLI.</li>
+        <li><b>Isolate runs.</b> Add run IDs, a repository-relative data path, locking/per-run result directories and cleanup/retention.</li>
+        <li><b>Cover request lifecycle and actions.</b> Add explicit POST, cookie, session, raw-body, upload, redirect and source-writing scenarios using disposable fixtures.</li>
+        <li><b>Harden oracles.</b> Protect recording, validate expectation files, opt in to whitespace normalization, and record timing/commit metadata.</li>
+      </ol>
+      <div class="note"><strong>Release decision:</strong> suitable as a local behavioral regression gate today. For shared/concurrent CI or an “exhaustive coverage” claim, close P1 findings first and the run-isolation/artifact-leak findings next.</div>
+    </section>
+
+    <section id="method">
+      <h2>Method and evidence</h2>
+      <div class="grid-2">
+        <article class="card">
+          <h3>Dynamic checks</h3>
+          <ul>
+            <li>Five complete <code>./ci.sh</code> executions against local Apache.</li>
+            <li>Direct request to the uncovered Framework root page.</li>
+            <li>Synthetic probes for new/never-run verdicts, discovery false positives, newline normalization and extra HTTP expectation lines.</li>
+            <li>Before/after measurement of dump growth for one passing run.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Static checks</h3>
+          <ul>
+            <li>Runner, CI, registry, discovery, record and overview code review.</li>
+            <li>Independent inventory of page-shaped sources and suite ownership.</li>
+            <li>Baseline pairing, orphan, duplicate URL, mode and regex validation.</li>
+            <li>PHP syntax check of 287 regression/entry-point files; Bash syntax and ShellCheck review.</li>
+          </ul>
+        </article>
+      </div>
+      <p class="small">Scope: the repository state at commit <span class="mono">582d3b6a02058051882e9cd4be82274c84e9b9d0</span>. This was a regression-system audit, not a proof of line/branch coverage for all 1,014 core PHP files. The repository does not wire source coverage or mutation testing into its gate.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">PAD regression audit · generated from observed repository and runtime evidence · 2026-08-11</div>
+  </footer>
+</body>
+</html>
