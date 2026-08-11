@@ -19,31 +19,26 @@
   // apps. Sequence and Manual are the application suites - apps/sequence/ and apps/manual/,
   // their predictions in regression/sequence and regression/manual the same way. Other is
   // the suite over every application without one of its own. Build is the fresh build:
-  // clear every regenerated store, run the seven suites, and harvest the reference and
-  // the examples in the one crawl that remains.
+  // clear the suite results and the dumps, and run the eight suites - the reference and
+  // the examples stores are develop's, harvested there and left standing.
 
   $skipTitle = TRUE;
 
-  if     ( $padPage == 'index'                          ) $suiteTest = '?index&test';
-  elseif ( $padPage == 'pages/index'                    ) $suiteTest = '?pages/index&test';
-  elseif ( $padPage == 'common/index'                   ) $suiteTest = '?common/index&test';
-  elseif ( $padPage == 'framework/index'                ) $suiteTest = '?framework/index&test';
-  elseif ( $padPage == 'regression/index'               ) $suiteTest = '?regression/index&test';
-  elseif ( $padPage == 'sequence/index'                 ) $suiteTest = '?sequence/index&test';
-  elseif ( $padPage == 'manual/index'                   ) $suiteTest = '?manual/index&test';
-  elseif ( $padPage == 'other/index'                    ) $suiteTest = '?other/index&test';
-  else                                                    $suiteTest = '';
+  $suiteTest = '';
 
-  $suites = [
-    [ 'name' => 'Index',     'link' => '?index',           'now' => ( $padPage == 'index'           ) ? 1 : 0 ],
-    [ 'name' => 'Pages',     'link' => '?pages/index',     'now' => ( $padPage == 'pages/index'     ) ? 1 : 0 ],
-    [ 'name' => 'Common',    'link' => '?common/index',    'now' => ( $padPage == 'common/index'    ) ? 1 : 0 ],
-    [ 'name' => 'Framework', 'link' => '?framework/index', 'now' => ( $padPage == 'framework/index' ) ? 1 : 0 ],
-    [ 'name' => 'Regression', 'link' => '?regression/index', 'now' => ( $padPage == 'regression/index' ) ? 1 : 0 ],
-    [ 'name' => 'Sequence', 'link' => '?sequence/index', 'now' => ( $padPage == 'sequence/index' ) ? 1 : 0 ],
-    [ 'name' => 'Manual', 'link' => '?manual/index', 'now' => ( $padPage == 'manual/index' ) ? 1 : 0 ],
-    [ 'name' => 'Other', 'link' => '?other/index', 'now' => ( $padPage == 'other/index' ) ? 1 : 0 ]
-  ];
+  if ( $padPage == 'index' )
+    $suiteTest = '?index&test';
+
+  elseif ( str_ends_with ( $padPage, '/index' )
+           and isset ( getSuites () [ substr ( $padPage, 0, -6 ) ] ) )
+    $suiteTest = "?$padPage&test";
+
+  $suites = [ [ 'name' => 'Index', 'link' => '?index', 'now' => ( $padPage == 'index' ) ? 1 : 0 ] ];
+
+  foreach ( array_keys ( getSuites () ) as $suiteEntry )
+    $suites [] = [ 'name' => ucfirst ( $suiteEntry ),
+                   'link' => "?$suiteEntry/index",
+                   'now'  => ( $padPage == "$suiteEntry/index" ) ? 1 : 0 ];
 
   if ( $suiteTest )
     $suites [] = [ 'name' => 'Test', 'link' => $suiteTest, 'now' => 0 ];

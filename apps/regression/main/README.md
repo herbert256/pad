@@ -2,76 +2,51 @@
 
 ## Introduction
 
-Four kinds of regression test for the PAD framework, each answering a different question, with
-an overview that reports all of them on one line each.
+The regression tests of the PAD framework: eight suites, every page in the tree asserted
+by exactly one of them, with an overview that reports all eight on one line each and a
+fresh build that regenerates everything a build owns.
 
 ## Structure
 
 ```
-regression/
-├── _inits.pad/.php          # the menu every page carries: Index Pages Common Framework Scan | Test
-├── _lib/regression.php      # the runner behind all four kinds
-├── index.pad/.php           # the overview the application opens on - totals per kind
-├── pages/index.pad/.php     # the Pages suite overview     - its tests live in apps/regression/pages/
-├── common/index.pad/.php    # the Common suite overview    - its tests live in apps/regression/common/
-├── framework/index.pad/.php # the Framework suite overview - its tests live in apps/regression/framework/
-├── scan/index.pad/.php      # the crawl of every application (no baseline for the three suite apps)
-├── ok.php                   # accepts what a page renders now as its baseline
-└── show/                    # what one crawled page renders, against its stored copy
+main/
+├── _inits.pad/.php          # the menu every page carries - derived from the suite registry
+├── _lib/regression.php      # the registry and the runner behind all eight suites
+├── index.pad/.php           # the overview the application opens on - totals per suite
+├── build.pad/.php           # the fresh build: wipe the results, run the eight suites
+├── record.php               # records what a page answers now, for a covering suite's store
+├── <suite>/index.pad/.php   # one overview page per suite, prose around shared includes
+└── _include/                # the summary line and the test tables the overviews share
 ```
 
-## The four kinds
+## The suites
 
-**Pages** - `?pages/index`. A test is an ordinary page of the `regression/pages` application, fetched
-over HTTP with `&padInclude` so it renders bare, and compared with the `name.txt` beside it.
-Being a real request means a page's `.php` half is in scope for its `.pad` half, a page variable
-is a global, and `{page}`, `{restart}`, `{script}` and callbacks behave as they do in production.
-`regression/pages` runs with `$padCommon` switched off, so every test there also proves it needs
-nothing but its own application.
+Every suite fetches real pages over HTTP and compares each against a handwritten answer -
+an exact body, an `HTTP <code>` with an optional `/pattern/` over the dump, or a lone
+`/pattern/` for a page that draws. The registry in `_lib/regression.php` is the single
+place a suite exists; the menu, the overview rows and the dispatch all derive from it.
 
-**Common** - `?common/index`. The same kind of test, from the `regression/common` application, for the
-pages that use `_common`: `{example}`, `{demo}`, `{table}`, the `{block}` snippet, the menu, the
-colouring functions in `_common/_lib/`. Which application a page is in is itself the assertion.
+**Pages** and **Common** are the handwritten suites: every test is a page of
+`regression/pages` (with `_common` off) or `regression/common` (the pages that use it),
+compared with the `name.txt` beside it. Nothing ever rewrites those answers.
 
-**Framework** - `?framework/index`. The engine cases, from the `regression/framework` application: tags,
-options, expressions, functions, properties, the sequence subsystem. Every case is a page of its
-own in a group directory - the `.pad` its template, the `.txt` the outcome beside it, an optional
-`.php` its variables - so a case gets the isolation a request brings by construction. Nine
-hundred requests a run, which is why Test runs and a page load only reads.
+**Framework** fetches every engine case under `regression/framework/<group>/` - one-line
+asserts with a whitespace rule of their own.
 
-`name.txt` is written by hand and the runner never rewrites it. Three spellings: a body compares
-exactly; `HTTP <code>` asserts the response code, with an optional second line holding `/a
-pattern/` the body must match too, so a page that exists to fail asserts the right thing failing;
-a file that is one `/pattern/` is matched against the whole body, for a page that draws. A test
-with no `.txt` yet comes up `new`, and the overview shows exactly what came back.
+**Regression**, **Sequence**, **Manual** and **Other** are the covering suites: the pages
+stay in their own applications and only the predictions live in the store
+`apps/regression/<suite>/`. Regression covers the self-testing family (and this runner
+itself), one request at a time; Sequence and Manual cover those applications; Other covers
+every application without a suite of its own, so a new application lands there as `new`
+until its predictions are written. A failing row shows want and got in place, and a
+covering suite's exact answers can be re-recorded from that row - patterns and HTTP
+answers refresh only by hand.
 
-**Scan** - `?scan/index`. Crawls every page of every application, and compares each against the copy
-in `DATA/regression/`, and reports ok / expected / new / warning / error / random / empty.
-`expected` is a page that fails on purpose - a 500 its suite expectation declares - counted
-but kept off the list of what needs looking at; a page as empty as its stored copy is simply
-`ok`. The three suite applications - regression/pages, regression/common, regression/framework - are crawled
-too, so the reference and the examples harvest from them, but no baseline is stored for them:
-their pages are already checked against a handwritten answer by the Pages, Common and
-Framework suites, so the scan leaves them out of its comparison. This kind catches what none
-of the others is looking at, at the cost of saying only
-"this changed". After a deliberate change the page offers to accept every warning as the new
-baselines in one step; read the list first, a page that keeps coming back is telling you
-something.
+## The build
 
-## Running
-
-Every page carries the menu, and where there is something to run, a **Test** entry: on the index
-it runs everything, on a suite page that suite, and on the scan page the suites and then the
-crawl. A page load never runs anything - it reads what the last run left behind, and the index
-shows when that was.
-
-Suite runs are kept in `DATA/suites/`, crawl baselines in `DATA/regression/`.
-
-For a machine, `ci.sh` in the repository root runs everything, prints one line per suite, and
-exits nonzero when anything failed - the shape a git hook or a CI step can act on. The scan's
-warnings are reported but are not part of the verdict, since they compare against baselines
-another machine may not have.
-
-## Access
-
-Via web browser: `http://server/regression/`
+Build - on the menu - wipes the suite results and the dumps, then runs the eight suites.
+`DATA/reference` and `DATA/examples` are the develop application's artifacts: its harvest
+pages gather them (the one crawl left) and they stand between builds, so the suites test
+against the standing stores - the reference and manual applications render from them.
+After changing what the stores hold, harvest in develop first. `ci.sh` gates on the seven
+result files in `DATA/suites/`.
