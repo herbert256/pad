@@ -1,7 +1,10 @@
 <?php
 
+  if ( ! isset ( $go ) )
+    return;
+
   padDeleteDataDir ( DATA . 'examples' );
 
-  getRegressionAll ( '&padExamples' );
+  getHarvest ( '&padExamples' );
 
 ?>

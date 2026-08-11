@@ -1,6 +1,6 @@
 <?php
 
-  // Fixtures for _cases/tags/returns.php: a PHP function whose name is written as a tag becomes
+  // Fixtures for the framework case tags/returns: a PHP function whose name is written as a tag becomes
   // that tag, and what it returns decides what the level does. One function per kind of return
   // value, which is what the manual's "Tag return values" page demonstrates.
 

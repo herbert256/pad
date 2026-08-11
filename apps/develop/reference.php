@@ -1,7 +1,10 @@
 <?php
 
+  if ( ! isset ( $go ) )
+    return;
+
   padDeleteDataDir ( DATA . 'reference' );
 
-  getRegressionAll ( '&padReference' );
+  getHarvest ( '&padReference' );
 
 ?>

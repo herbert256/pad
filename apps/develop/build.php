@@ -5,9 +5,9 @@
 
   include APP . 'clean.php';
 
-  // The wiping of what a build regenerates moved home to the regression application -
-  // ?build&go=1 clears the stores itself before it builds, so only the source-tree
-  // trimming above is develop's own.
+  // The reference and the examples are develop's own: the harvest pages beside this one
+  // gather them, and they stand between builds. The inner build wipes only what it owns -
+  // the suite results and the dumps - and tests against the standing stores.
 
   // The inner build is thousands of fetches and runs for minutes. This request waits for
   // it, so the script limit and the fetch limit are widened to match - without that, PHP's
