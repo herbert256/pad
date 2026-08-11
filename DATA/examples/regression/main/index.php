@@ -2,11 +2,21 @@
 
   // The overview the application opens on: one line per suite, each with the totals of
   // its last run. A page load never runs anything; each line links to the page where its
-  // own Test lives, and Test here runs all seven suites.
+  // own Test lives, and Test here runs all eight suites.
 
   if ( isset ( $test ) ) {
+
+    // Like the Build: a run starts from clean dumps and temp, so what stands afterwards
+    // is what this run produced - ci calls this page, and without the wipe every green
+    // run left another round of by-design dumps standing.
+
+    padDeleteDataDir ( DATA . 'dumps' );
+    padDeleteDataDir ( DATA . 'temp'  );
+
     getRegression ();
+
     padRedirect ( $padPage );
+
   }
 
   $rows = [];
@@ -20,7 +30,7 @@
       'link'   => "?$suite/index",
       'result' => $result ['summary'],
       'ran'    => $result ['when'] ? date ( 'Y-m-d H:i', $result ['when'] ) : 'never',
-      'status' => $result ['failed'] ? 'FAILURES' : ( ( $result ['new'] ?? 0 ) ? 'NEW' : 'ok' )
+      'status' => getSuiteVerdict ( $result )
     ];
 
   }

@@ -4,6 +4,6 @@
   // suite fetches never are - so the broken wrapper is fetched here and its answer shown,
   // brace-escaped so the error text renders as the text it is.
 
-  $out = padEscape ( padCurl ( $padHost . 'regression/pages/?syntax/badwrap/index' ) ['data'] );
+  $out = padEscape ( padCurl ( $padHost . 'regression/errors/?syntax/badwrap/index' ) ['data'] );
 
 ?>

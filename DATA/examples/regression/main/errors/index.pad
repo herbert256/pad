@@ -1,0 +1,13 @@
+{include:suiteHead}
+
+<p>
+  Every test here fails on purpose: the strict syntax checks, the expression evaluator's
+  reports, the pages that end a request, and the error handler family, each answering an
+  expected <code>HTTP 500</code> asserted by a pattern over the message. The application
+  declares the <code>boot</code> error action, so an expected failure is the lean JSON
+  answer - no heavy error page, nothing under <code>DATA/dumps</code>, and the same shape
+  for every requester. These cases live in <code>apps/regression/errors/</code>, with
+  <code>_common</code> switched off.
+</p>
+
+{include:suiteTableWhat}
