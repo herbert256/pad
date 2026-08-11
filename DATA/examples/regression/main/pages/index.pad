@@ -1,6 +1,4 @@
-<p>
-  <b>{$summary}</b> - {$verdict}
-</p>
+{include:suiteHead}
 
 <p>
   Every test here is an ordinary page, fetched over HTTP with
@@ -13,13 +11,4 @@
   test - what it renders now against the copy the last crawl stored.
 </p>
 
-<table border="1" cellpadding="4" cellspacing="0">
-  <tr><th>page</th><th>what it checks</th><th>status</th></tr>
-  {tests}
-    <tr>
-      <td><a href="{$url}">{$name}</a></td>
-      <td>{echo $what | ignore}</td>
-      <td>{$status}</td>
-    </tr>
-  {/tests}
-</table>
+{include:suiteTableWhat}

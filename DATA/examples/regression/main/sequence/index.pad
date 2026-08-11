@@ -1,6 +1,4 @@
-<p>
-  <b>{$summary}</b> - {$verdict}
-</p>
+{include:suiteHead}
 
 <p>
   Every test here is a page of the <a href="{$padHost}sequence">sequence</a> application,
@@ -12,12 +10,4 @@
   exact body.
 </p>
 
-<table border="1" cellpadding="4" cellspacing="0">
-  <tr><th>page</th><th>status</th></tr>
-  {tests}
-    <tr>
-      <td><a href="{$url}">{$name}</a></td>
-      <td>{$status}</td>
-    </tr>
-  {/tests}
-</table>
+{include:suiteTable}

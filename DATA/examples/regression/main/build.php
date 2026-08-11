@@ -8,16 +8,19 @@
 
   if ( isset ( $go ) ) {
 
-    padDeleteDataDir ( DATA . 'reference'  );
-    padDeleteDataDir ( DATA . 'regression' );
-    padDeleteDataDir ( DATA . 'dumps'      );
-    padDeleteDataDir ( DATA . 'temp'       );
-    padDeleteDataDir ( DATA . 'examples'   );
-    padDeleteDataDir ( DATA . 'suites'     );
+    padDeleteDataDir ( DATA . 'dumps'  );
+    padDeleteDataDir ( DATA . 'temp'   );
+    padDeleteDataDir ( DATA . 'suites' );
 
     set_time_limit ( 0 );
 
-    getRegression ( '&padExamples&padReference' );
+    // The harvest lives in develop, which owns the reference and the examples; it runs
+    // first because the reference and manual applications render from what it gathers,
+    // and the suites must see the store a build actually leaves.
+
+    padCurl ( $padHost . 'develop/?harvest&go=1', [ 'options' => [ 'TIMEOUT' => 3600 ] ] );
+
+    getRegression ();
 
     padRedirect ( 'index' );
 

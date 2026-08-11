@@ -11,12 +11,12 @@
 
   $rows = [];
 
-  foreach ( [ 'Pages' => 'pages', 'Common' => 'common', 'Framework' => 'framework', 'Regression' => 'regression', 'Sequence' => 'sequence', 'Manual' => 'manual', 'Other' => 'other' ] as $suiteName => $suite ) {
+  foreach ( array_keys ( getSuites () ) as $suite ) {
 
-    $result = getPages ( $suite );
+    $result = getSuiteLast ( $suite );
 
     $rows [] = [
-      'name'   => $suiteName,
+      'name'   => ucfirst ( $suite ),
       'link'   => "?$suite/index",
       'result' => $result ['summary'],
       'ran'    => $result ['when'] ? date ( 'Y-m-d H:i', $result ['when'] ) : 'never',
