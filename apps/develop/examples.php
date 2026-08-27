@@ -3,8 +3,6 @@
   if ( ! isset ( $go ) )
     return;
 
-  padDeleteDataDir ( DATA . 'examples' );
-
-  getHarvest ( '&padExamples' );
+  padCurl ( $padHost . "examples/?build&go=1", [ 'options' => [ 'TIMEOUT' => 3600 ] ] );
 
 ?>

@@ -176,8 +176,8 @@
 
     if ( function_exists ( 'padExit') )
       padExit ( 500 );
-    else
-      include PAD . 'exits/exit.php';
+    
+    include PAD . 'exits/exit.php';
 
   }
 

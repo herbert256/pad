@@ -51,7 +51,10 @@
       header ( 'HTTP/1.0 500 Internal Server Error' );
       header ( 'Content-Type: application/json' );
 
-      echo json_encode ( $claude );
+      // Globals can hold binary (a dump of a .DS_Store, an image body); without these
+      // flags one bad string makes json_encode answer FALSE and the channel goes silent.
+
+      echo json_encode ( $claude, JSON_INVALID_UTF8_SUBSTITUTE | JSON_PARTIAL_OUTPUT_ON_ERROR );
 
       // The web side of this channel carries the failure in the 500 header; a shell caller
       // reads it from the process status instead.

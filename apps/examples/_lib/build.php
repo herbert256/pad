@@ -16,9 +16,7 @@
 
     global $padHost;
 
-    $include = ( $item != 'index' ) ? '&padInclude' : '';
-
-    $curl = padCurl ( "$padHost$app/?$item$include" );
+    $curl = padCurl ( "$padHost$app/?$item&padInclude" );
 
     if ( ! str_starts_with ( $curl ['result'], '2' ) )
       return;

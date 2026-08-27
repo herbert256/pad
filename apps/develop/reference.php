@@ -3,8 +3,6 @@
   if ( ! isset ( $go ) )
     return;
 
-  padDeleteDataDir ( DATA . 'reference' );
-
-  getHarvest ( '&padReference' );
+  padCurl ( $padHost . "reference/?build&go=1", [ 'options' => [ 'TIMEOUT' => 3600 ] ] );
 
 ?>
