@@ -10,7 +10,7 @@
   $padBuildLib = '';
 
   if ( $padCommon ) {
-    $padBuildDir = COMMON;
+    $padBuildDir = rtrim ( COMMON, '/' );
     include PAD . 'build/lib.php';
   }
 
