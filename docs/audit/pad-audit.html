@@ -516,13 +516,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm" id="m7">
+    <div class="finding pm fixed" id="m7">
       <div class="tag"><div class="priority">Medium</div><div class="cat">Error handling</div></div>
       <div>
-        <h3>The restart-loop guard never ends the request under the continuing error actions</h3>
+        <h3>The restart-loop guard never ends the request under the continuing error actions<span class="done">Fixed</span></h3>
         <p class="where">start/restart.php:19-22 · inits/parms.php:19-22</p>
         <p><code>if ($padRestartCnt &gt; 20) return padError(...)</code> leaves <code>$padRestart</code> set, so under <code>log</code>/<code>ignore</code>/<code>dump</code> the level loop re-enters <code>restart.php</code> endlessly — forever on the CLI, until <code>max_execution_time</code> on the web, writing a log line or a new dump directory each turn. Separately, a restart re-runs <code>session_start()</code> while the first session is still open, raising a notice that becomes a 500 in any app using sessions.</p>
         <div class="fix"><b>Fix:</b> clear <code>$padRestart</code> and end the request whatever the action; guard <code>session_start</code> with <code>session_status() !== PHP_SESSION_ACTIVE</code>.</div>
+        <div class="resolved"><b>Fixed:</b> past twenty restarts <code>start/restart.php</code> drops <code>$padRestart</code>, reports the loop and ends the request with <code>padExit(500)</code> whatever the action. Reproduced before the fix: a self-restarting page under <code>log</code> and <code>ignore</code> hung past an 8 s client timeout; after it, both answer 500 in milliseconds. New regression pages <code>error_log/restart</code> and <code>error_ignore/restart</code> hold that. <code>inits/parms.php</code> starts the session only when <code>session_status()</code> says none is active, so a restart in an application with <code>$padSessionVars</code> no longer turns into a 500 (checked with a probe app: 500 before, 200 after).</div>
       </div>
     </div>
 

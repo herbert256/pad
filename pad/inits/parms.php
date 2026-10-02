@@ -18,7 +18,7 @@
 
   if (count($padSessionVars) ) {
 
-    if ( ! ini_get('session.auto_start') )
+    if ( session_status () !== PHP_SESSION_ACTIVE )
       session_start();
 
     padGetParms ('SESSION', $_SESSION);

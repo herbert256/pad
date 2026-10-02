@@ -13,13 +13,20 @@
   // A restart that keeps restarting piled cookies a hundred layers deep and died as an
   // empty 500 once the level ceiling tripped with the buffers already gone. Twenty
   // restarts is nobody's flow, so the loop is named while the report can still travel.
+  //
+  // Naming it is not enough under the error actions that carry on - log, ignore, dump -
+  // padError returns there, and with $padRestart still set the level loop came straight
+  // back here, forever. The wish is dropped and the request ends whatever the action.
 
   global $padRestartCnt;
 
   $padRestartCnt = ( $padRestartCnt ?? 0 ) + 1;
 
-  if ( $padRestartCnt > 20 )
-    return padError ( "too many restarts - the pages restart one another in a loop" );
+  if ( $padRestartCnt > 20 ) {
+    $padRestart = '';
+    padError ( "too many restarts - the pages restart one another in a loop" );
+    padExit ( 500 );
+  }
 
   padEmptyBuffers ( $padIgnored );
 

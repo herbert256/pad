@@ -13,4 +13,5 @@ behaving turns the page from yes to NO.
 |------|-------------|
 | `index.php/pad` | Fetches the boom page and states the verdict |
 | `boom.php/pad` | A page whose .php reads an undefined variable |
+| `restart.pad` | Restarts itself forever: the restart guard must end the request with a 500 under this action too, not loop until the time limit |
 | `_config/config.php` | Chooses the 'log' action, `_common` off |
