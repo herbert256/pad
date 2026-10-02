@@ -106,7 +106,7 @@
       $type = 'yaml';
     elseif ( substr ( $content, 0, 5) == '<?xml')
       $type = 'xml';
-    elseif ( strpos ( $content, '<!DOCTYPE') !== FALSE ) {
+    elseif ( substr ( $content, 0, 1 ) == '<' and strpos ( $content, '<!DOCTYPE') !== FALSE ) {
       $open   = strpos  ($content, '<!DOCTYPE');
       $close  = strpos  ($content, '>', $open);
       $check  = stripos ($content, 'pad', $open);
