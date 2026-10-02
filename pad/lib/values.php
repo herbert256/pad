@@ -73,7 +73,7 @@
     if     ( $input === NULL  )          return FALSE;
     elseif ( $input === FALSE )          return FALSE;
     elseif ( $input === TRUE  )          return TRUE;
-    elseif ( strlen(trim($input)) == 0 ) return FALSE;
+    elseif ( is_scalar ( $input ) and strlen(trim($input)) == 0 ) return FALSE;
 
     if ( is_array ($input) or is_object ($input) or is_resource ($input) )  {
 
