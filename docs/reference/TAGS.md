@@ -113,16 +113,19 @@ loop sets does not outlive it.
 ---
 
 ### get
-Retrieve content from the content store or include files.
+Fetch another page of this application over HTTP and insert its output. It is a real second
+request, rendered bare (without the `_inits`/`_exits` wrappers); every variable `{set}` at this
+level is passed along on the query string, and the output comes back with its braces escaped
+so it is not parsed again. A stored content block is read with `{content:name}` instead.
 
 ```html
-{get 'content_name'}
+{get 'page_name'}
 ```
 
 **Parameters:**
-- First parameter: Content name to retrieve
+- First parameter: The page to fetch
 
-**Returns:** Retrieved content
+**Returns:** The page's output
 
 ---
 
