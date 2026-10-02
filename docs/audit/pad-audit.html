@@ -168,6 +168,11 @@
   .finding.fixed > div > p:not(.where), .finding.fixed .ev, .finding.fixed .fix, .finding.fixed ul { opacity: .62; }
   .resolved { margin: .7rem 0 0; padding: .6rem .8rem; border-left: 3px solid var(--green); background: var(--green-soft); font-size: .9rem; border-radius: 0 .45rem .45rem 0; }
   .resolved b { color: var(--green); }
+  .done.part { background: var(--amber); }
+  .finding.fixed.part { border-left-color: var(--amber); }
+  .finding.fixed.part > div > p:not(.where), .finding.fixed.part .ev, .finding.fixed.part .fix, .finding.fixed.part ul { opacity: 1; }
+  .resolved.part { border-left-color: var(--amber); background: var(--amber-soft); }
+  .resolved.part b { color: var(--amber); }
   li.fixed { color: var(--muted); }
   .resolved-inline { display: block; margin-top: .2rem; padding: .3rem .55rem; border-left: 3px solid var(--green); background: var(--green-soft); color: var(--ink); font-size: .88rem; border-radius: 0 .4rem .4rem 0; }
   .good { border-left: .36rem solid var(--green); }
@@ -553,13 +558,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm" id="m10">
+    <div class="finding pm fixed part" id="m10">
       <div class="tag"><div class="priority">Medium</div><div class="cat">Multibyte</div></div>
       <div>
-        <h3>String functions cut UTF-8 bytes, and the default sanitize then blanks the value<span class="live">verified live</span></h3>
+        <h3>String functions cut UTF-8 bytes, and the default sanitize then blanks the value<span class="live">verified live</span><span class="done part">Partly fixed</span></h3>
         <p class="where">functions/left.php:12 · right.php · mid.php · substr.php · max_len.php · sanitize.php:6</p>
         <p><code>left</code>/<code>right</code>/<code>mid</code>/<code>substr</code>/<code>max_len</code> use byte-based <code>substr</code>/<code>strlen</code>, and <code>filter_var(FILTER_SANITIZE_FULL_SPECIAL_CHARS)</code> returns <code>''</code> for invalid UTF-8. Verified: <code>{echo $name | left(3)}</code> on "Zoë Müller" emits <code>Zo</code> + a broken byte, and through the sanitized <code>{$name | left(3)}</code> form it renders empty. <code>upper</code>/<code>lower</code>/<code>capitalize</code>/<code>ucwords</code> are ASCII-only.</p>
         <div class="fix"><b>Fix:</b> switch to the <code>mb_*</code> functions and <code>mb_convert_case</code>; implement sanitize as <code>htmlspecialchars(…, ENT_QUOTES|ENT_SUBSTITUTE, 'UTF-8')</code>.</div>
+        <div class="resolved part"><b>Partly fixed:</b> <code>left</code>, <code>right</code>, <code>mid</code>, <code>substr</code> and <code>max_len</code> count characters with <code>mb_substr</code>/<code>mb_strlen</code>, and <code>sanitize</code> is <code>htmlentities(…, ENT_QUOTES|ENT_SUBSTITUTE, &#39;UTF-8&#39;, false)</code> — byte-identical to the filter for every valid string (checked over markup, quotes, existing entities, accents, CJK, emoji, scalars and null), but a broken byte becomes U+FFFD instead of blanking the whole value. Live: <code>{$name | left(3)}</code> on <code>Zoë Müller</code> renders <code>Zo&amp;euml;</code>, not empty. Two new framework cases pin it. <b>Left open for a decision:</b> <code>upper</code>/<code>lower</code>/<code>capitalize</code>/<code>ucwords</code> stay ASCII-only, because the framework case <code>upper_is_ASCII_only_an_accented_letter_keeps_its_case</code> declares that as the contract; switching them to <code>mb_strtoupper</code>/<code>mb_strtolower</code> is a one-line change each once that contract is retired.</div>
       </div>
     </div>
 
