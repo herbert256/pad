@@ -111,7 +111,7 @@
 
     }
 
-    if ($now)
+    if ($now !== '')
       $output [] = $now;
 
     return $output;
