@@ -544,10 +544,10 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm" id="m9">
+    <div class="finding pm fixed part" id="m9">
       <div class="tag"><div class="priority">Medium</div><div class="cat">HTTP headers</div></div>
       <div>
-        <h3>Conditional requests and encoding negotiation are wrong in several ways<span class="live">verified live</span></h3>
+        <h3>Conditional requests and encoding negotiation are wrong in several ways<span class="live">verified live</span><span class="done part">Partly fixed</span></h3>
         <p class="where">cache/inits.php:50-72 · inits/client.php:11-13 · lib/output.php:38-43,117-129,168-175 · cache/types/file.php:18-22</p>
         <ul>
           <li><b>Cross-URL 304:</b> the <code>If-None-Match</code> branch tests the client's ETag for existence and freshness in the <em>global</em> ETag store before ever looking up this URL. Reproduced: warm <code>?index</code>, send its ETag to <code>?second</code> → HTTP 304, empty body, index's ETag echoed — the client keeps the wrong page.</li>
@@ -557,6 +557,7 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
           <li><b>Unvalidated ETag as a key:</b> the client-supplied ETag is used as a backend key and, in the file backend, as a file path (<code>file_exists($padCacheFile."etag/$etag")</code>). Cookies are set before the cache lookup, so cached public responses can carry one visitor's <code>Set-Cookie</code> to others.</li>
         </ul>
         <div class="fix"><b>Fix:</b> resolve the URL/variant first and compare validators only against that representation; parse <code>If-None-Match</code> and <code>Accept-Encoding</code> quality values per RFC 9110; send <code>Vary: Accept-Encoding</code> on every path that can vary; give the gzip variant its own ETag; validate the ETag against a fixed shape; don't set cookies on public responses.</div>
+        <div class="resolved part"><b>Partly fixed:</b> validators: <code>cache/inits.php</code> compares the client&#39;s validators with this URL&#39;s own entry and nothing else. If-None-Match, when sent, decides alone (own ETag or <code>*</code>); otherwise If-Modified-Since must be at least the entry&#39;s time, not the freshness cutoff. <code>inits/client.php</code> parses If-None-Match as a list, drops <code>W/</code> and quotes, and keeps only tags of the minted 22-character shape, so a client tag can no longer become a backend key or a file name of its own making. Reproduced, then checked: another URL with the probe&#39;s ETag went from 304 to 200, and a date one second before the cached copy from 304 to 200. A new Regression page <code>cache_file/validators</code> answers <code>304 / 200 / 200</code> and gave <code>304 / 304 / 304</code> against the old code. <b>Still open:</b> no Last-Modified is sent, the gzip and identity bodies share one ETag, and cookies are set before the cache lookup.</div>
         <div class="resolved part"><b>Progress:</b> negotiation: <code>Accept-Encoding</code> is read with its quality values by a new <code>padAcceptsEncoding()</code> (an explicit <code>gzip;q=0</code> refuses, <code>*</code> covers what is not named), and every response whose body can be compressed sends <code>Vary: Accept-Encoding</code>, the uncached on-the-fly gzip path included; the misnamed <code>Vary: Content-Encoding</code> is gone. Checked live with <code>$padGzip</code> on: <code>gzip;q=0</code> now gets an identity body.</div>
       </div>
     </div>

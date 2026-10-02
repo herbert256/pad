@@ -47,29 +47,33 @@
 
   padCacheInit ($padCacheUrl, $padClientEtag);
 
-  if ( $padClientEtag ) {
-
-    $padCacheAge = padCacheEtag ($padClientEtag);
-
-    if ( $padCacheAge and $padCacheAge >= $padCacheMax ) {
-      $padStop = 304;
-      $padEtag = $padClientEtag;
-      include PAD . 'cache/hit.php';
-    }
-
-  }
+  // The validators are compared with this URL's own entry, and with nothing else. The
+  // client's ETag used to be looked up first in the store of every page's ETags, so the
+  // ETag of one page answered 304 for another and the browser kept the wrong page; and
+  // If-Modified-Since was held against the freshness cutoff instead of the time of the
+  // entry, so a copy older than the cached page was called current. If-None-Match, when
+  // sent, decides alone (RFC 9110); * matches whatever entry there is.
 
   $padCacheUrlRow = padCacheUrl ($padCacheUrl);
 
-  if ( is_array($padCacheUrlRow) ) {
+  if ( is_array($padCacheUrlRow) and count ( $padCacheUrlRow ) ) {
 
     $padCacheAge  = $padCacheUrlRow ['age']  ?? $padCacheUrlRow [0] ?? 0;
     $padCacheEtag = $padCacheUrlRow ['etag'] ?? $padCacheUrlRow [1] ?? '';
 
-    if ( $padClientDate and $padClientDate >= $padCacheMax and $padCacheAge >= $padCacheMax ) {
-      $padStop = 304;
-      $padEtag = $padCacheEtag;
-      include PAD . 'cache/hit.php';
+    if ( $padCacheAge >= $padCacheMax ) {
+
+      if ( $padClientEtags )
+        $padCacheSame = ( in_array ( '*', $padClientEtags ) or in_array ( $padCacheEtag, $padClientEtags, TRUE ) );
+      else
+        $padCacheSame = ( $padClientDate and $padClientDate >= $padCacheAge );
+
+      if ( $padCacheSame ) {
+        $padStop = 304;
+        $padEtag = $padCacheEtag;
+        include PAD . 'cache/hit.php';
+      }
+
     }
 
     if ( $padCacheAge >= $padCacheMax and ! $padCacheServerNoData ) {

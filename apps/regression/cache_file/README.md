@@ -13,4 +13,5 @@ compares the index, so a backend that stops caching turns the page from yes to N
 |------|-------------|
 | `index.php/pad` | Fetches the probe twice and states the verdict |
 | `probe.php/pad` | A page whose body differs on every build |
+| `validators.php/pad` | The cache's validators belong to one URL: the probe's ETag gets a 304 from the probe only, and a date older than the cached copy gets the page |
 | `_config/config.php` | Switches the file cache on, 60 seconds, `_common` off |
