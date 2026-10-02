@@ -67,7 +67,7 @@
     else                                     $headers = [];
 
     padFilePut ( "track/requests/$padLog-entry.json",  [
-        'headers' => getallheaders() ?? '',
+        'headers' => $headers,
         'get'     => $_GET    ?? '',
         'post'    => $_POST   ?? '',
         'files '  => $_FILES  ?? '',
