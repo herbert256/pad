@@ -6,8 +6,16 @@
   // The name is the raw option text with a leading $ stripped, and the counter is a plain
   // global, not a level variable - so it keeps its value across iterations and levels.
   // TRUE is returned, so the tag prints nothing but does not take an @else@ branch.
+  //
+  // The name must be an application variable (padValidVar): {decrement $padPage} counted
+  // on the engine's own state.
 
   $padField = padFieldName ($padOpt [$pad] [0]);
+
+  if ( ! padValidVar ( $padField ) ) {
+    padError ( "{decrement} counts an application variable, not '$padField'" );
+    return FALSE;
+  }
 
   if ( isset ($GLOBALS[$padField]) )
     $GLOBALS[$padField]--;
