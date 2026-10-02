@@ -11,6 +11,11 @@
   // be redrawn each iteration, while from, to, increment, rows, stop and skip each have their
   // 'a..b' form turned into a single draw made once for the whole run.
 
+  // A random sole='a..b' is drawn once, before it is copied - copied first, from and to were
+  // each drawn on their own below and the single value came out a range, or nothing.
+
+  pqRandomParm ( $pqSole );
+
   if ( $pqSole )
     $pqFrom = $pqTo = $pqSole;
 
