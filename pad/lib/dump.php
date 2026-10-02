@@ -520,7 +520,7 @@
     ob_start (); padDumpRequest   ();                 padDumpFile ( 'request',   ob_get_clean () );
     ob_start (); padDumpSQL       ();                 padDumpFile ( 'sql',       ob_get_clean () );
     ob_start (); padDumpHeaders   ();                 padDumpFile ( 'headers',   ob_get_clean () );
-    ob_start (); padDumpPhpInfo   ();                 padDumpFile ( 'info',      ob_get_clean () );
+    ob_start (); padDumpPhpInfo   ();                 padDumpFile ( 'phpinfo',   ob_get_clean () );
     ob_start (); padDumpLevel     ();                 padDumpFile ( 'tree',      ob_get_clean () );
     ob_start (); padDumpFiles     ();                 padDumpFile ( 'files',     ob_get_clean () );
     ob_start (); padDumpFunctions ();                 padDumpFile ( 'functions', ob_get_clean () );
