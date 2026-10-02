@@ -7,7 +7,8 @@
   // (padPrmKind 'option') that has a matching handling/types/<name>.php file runs that
   // file; levels without data, and sequence tags, which do their own handling, are
   // skipped. Each handler is handed $padHandName, $padHandParm (the raw option value) and
-  // $padHandCnt (that value as a count, 1 when it is not a plain number). With the
+  // $padHandCnt (that value as a count, 1 when it is not a plain number - an evaluated
+  // first=$n hands over an integer, so the test casts it to a string first). With the
   // negative option the handler runs between handling/negative/inits.php and exits.php,
   // which turns its selection inside out.
 
@@ -43,7 +44,7 @@
 
     $padHandName = $padPrmName;
     $padHandParm = $padPrmValue;
-    $padHandCnt  = ( $padHandParm === TRUE or ! ctype_digit ( $padHandParm ) ) ? 1 : $padHandParm;
+    $padHandCnt  = ( $padHandParm === TRUE or ! ctype_digit ( (string) $padHandParm ) ) ? 1 : $padHandParm;
 
     if ( $padInfo )
       include PAD . 'events/handling.php';

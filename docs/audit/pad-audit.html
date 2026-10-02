@@ -631,13 +631,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm" id="m17">
+    <div class="finding pm fixed" id="m17">
       <div class="tag"><div class="priority">Medium</div><div class="cat">Handling</div></div>
       <div>
-        <h3>The sort, dedup and row-limit handlers crash on ordinary input; <code>@start@</code> miscounts rows</h3>
+        <h3>The sort, dedup and row-limit handlers crash on ordinary input; <code>@start@</code> miscounts rows<span class="done">Fixed</span></h3>
         <p class="where">handling/handling.php:46 · handling/types/sort.php:42-57 · handling/types/dedup.php:13 · level/start_end/start1.php:20</p>
         <p><code>constant("SORT_".strtoupper($word))</code> throws for an unknown flag like "descending"; <code>array_column</code> on rows missing the field makes <code>array_multisort</code> throw "Array sizes are inconsistent"; dedup uses values as array keys, truncating floats and throwing on arrays; and <code>ctype_digit</code> receives an integer from an evaluated <code>first=$n</code>, raising a deprecation that becomes a 500. Handling runs outside the try guard, so these are hard errors rather than PAD messages. With an <code>@start@</code> prelude, the first body row is occurrence 2 (so <code>first</code>, <code>even</code>/<code>odd</code>, <code>current</code> are wrong) and an empty data set reads a NULL key.</p>
         <div class="fix"><b>Fix:</b> allow-list the sort flags, fill missing values, key dedup on <code>serialize</code>/string, cast to <code>(string)</code> before <code>ctype_digit</code>, reset <code>$padOccur</code> after the prelude and guard on <code>count($padData)</code>.</div>
+        <div class="resolved"><b>Fixed:</b> all six reproduced first in a probe application, then: <code>sort</code> accepts only the SORT_* flag words (<code>regular numeric string locale_string natural flag_case</code>), anything else is a strict-mode PAD error instead of a thrown <code>constant()</code>; a row without the sort field sorts as empty instead of shortening the column; <code>dedup</code> keys on the string or serialized value, so 1.5 and 1.7 stay apart and an array value no longer throws; the handling count casts to string before <code>ctype_digit</code>, so <code>first=$n</code> with an integer works; after an <code>@start@</code> prelude the occurrence count starts over (rows read 1F 2 3, not 2 3 4), and a set left without rows goes straight to its coda instead of reading a NULL key. Five framework cases and one Errors case pin it. Handling still runs outside the try guard; none of these paths needs it any more.</div>
       </div>
     </div>
 
