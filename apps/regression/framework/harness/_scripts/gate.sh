@@ -61,6 +61,9 @@ fill "1000"
 fill "$(date +%s)"
 [ "$(run)" != "0" ]                      || broken="$broken same-second"
 
+fill '"later"'
+[ "$(run)" != "0" ]                      || broken="$broken garbled-when"
+
 fill "$(future)"
 printf '{"summary":"1 pages, 1 tests, 0 failed","failed":0,"new":0,"when":%s,"run":"someoneelse","commit":"%s"}' \
   "$(future)" "$commit" > "$tmp/common.json"

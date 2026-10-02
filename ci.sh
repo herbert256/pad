@@ -63,8 +63,9 @@ for suite in pages common errors framework regression sequence manual other; do
   [ "$newcnt" = "0" ] || { echo "CI: $suite has $newcnt tests with no recorded answer" >&2; exit=1; }
 
   # Strictly newer: a result stamped the very second the run started could as easily be
-  # a leftover, and a real run takes seconds.
-  if [ "$when" -le "$started" ]; then
+  # a leftover, and a real run takes seconds. Asked as "is it newer", so a stamp that is no
+  # number at all - where test errors out and answers false - is refused too.
+  if ! [ "$when" -gt "$started" ] 2>/dev/null; then
     echo "CI: $suite result is from before this run started" >&2
     exit=1
   fi
