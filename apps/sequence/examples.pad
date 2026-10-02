@@ -45,12 +45,12 @@
   {if $example eq 'sequences' }
     <h3>{$item}</h3>
       {exists APP . 'basic/{$item}.pad'}
-        <h5>{echo 'basic/{$item}.pad}</h5>
+        <h5>{echo 'basic/{$item}.pad'}</h5>
         {example 'basic/{$item}', onlyResult}
       {/exists}
     {list}
       {exists APP . '{$list}/{$item}.pad'}
-        <h5>{echo '{$list}/{$item}.pad}</h5>
+        <h5>{echo '{$list}/{$item}.pad'}</h5>
         {example '{$list}/{$item}', onlyResult}
       {/exists}
     {/list}
