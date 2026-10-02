@@ -31,8 +31,11 @@
   if ( isset ( $padParm ) or isset ( $padOpt [$pad] [2] ) )
     $padName [$pad] = $padParm;
 
-  if ( ! $padContent )
-    $padStoreSource = $padOpt [$pad] [2];
+  // No content means an empty string - a content of 0 is a value - and then the source is
+  // the second parameter when there is one, else nothing.
+
+  if ( (string) $padContent === '' )
+    $padStoreSource = $padOpt [$pad] [2] ?? '';
   elseif ($padTag [$pad] == 'content' and $padWalk [$pad] == 'start')
     $padStoreSource = $padBase [$pad];
   else
