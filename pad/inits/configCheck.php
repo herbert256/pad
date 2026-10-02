@@ -7,12 +7,9 @@
   // the boot handlers instead - they stand from the first line of the request - after the
   // word is put back to a working default, so whatever reports has ground to stand on.
   // Included twice by inits/config.php, since the application's second pass may change
-  // either word.
+  // either word. Not gated on $padCheckSyntax: a config typo is reported always, as
+  // inits/config.php says - the lenient answer to a missing word was a raw include failure.
 
-
-  if ( !   $padCheckSyntax )
-    return;
-  
   if ( ! file_exists ( PAD . "error/types/$padErrorAction.php" ) ) {
 
     $padConfigBad   = $padErrorAction;
