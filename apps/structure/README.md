@@ -27,7 +27,7 @@ structure/
 ├── _inits.pad           # Wraps all pages (top)
 ├── _exits.php           # Runs after all pages
 ├── _exits.pad           # Wraps all pages (bottom)
-├── index.php            # Home page (redirects to ?page)
+├── index.php            # Home page (redirects to ?abc/klm/xyz/page, the deepest level)
 ├── page.pad             # Demo page template
 ├── page.php             # Demo page data
 │
