@@ -6,7 +6,8 @@
   // padData() as data/<type>.php; padContentType picks 'list' when the text both opens
   // with ( and closes with ).
 
-  $work = padExplode(substr($data, 1, -1), ',');
+  $result = [];
+  $work   = padExplode(substr($data, 1, -1), ',');
 
   foreach ($work as $key => $value)
     $result [$key] = padEval($value);
