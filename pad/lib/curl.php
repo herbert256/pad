@@ -38,10 +38,15 @@
 
     try {
 
-      $result = padFileGet ( $output ['url'] );
+      // A URL is read as one - padFileGet roots its path under the engine and refuses the
+      // // of a scheme, so every fetch used to come back as an empty 200.
+
+      $result = str_contains ( $output ['url'], '://' )
+              ? file_get_contents ( $output ['url'] )
+              : padFileGet ( $output ['url'], FALSE );
 
       if ( $result === FALSE )
-        return padCurlError ( $output, 'padFileGet = FALSE' );
+        return padCurlError ( $output, 'padNoCurl: nothing read' );
 
     } catch (Throwable $e) {
 
