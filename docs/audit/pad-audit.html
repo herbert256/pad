@@ -270,7 +270,7 @@
       <li><b>Partly fixed (9):</b> <a href="#c2">C2</a> (key values escaped; the SQL-fragment options remain), <a href="#m8">M8</a>, <a href="#m9">M9</a>, <a href="#m10">M10</a>, <a href="#m15">M15</a>, <a href="#m23">M23</a>, <a href="#m24">M24</a>, <a href="#m25">M25</a>, <a href="#m26">M26</a>. <a href="#h3">H3</a> has one item of its fix line done.</li>
       <li><b>Low:</b> tag targets fixed, direct <code>/pad.php</code> fixed; evaluator detail (date, like), path helpers and HTTP status (log forging) partly.</li>
       <li><b>Left for a decision:</b> <a href="#c1">C1</a>, <a href="#h2">H2</a>, <a href="#h4">H4</a>, <a href="#h5">H5</a>, <a href="#h7">H7</a>, <a href="#h8">H8</a>, <a href="#h9">H9</a>, <a href="#h10">H10</a> and the rest of <a href="#h3">H3</a>: architecture, API or policy. <a href="#m1">M1</a>, <a href="#m3">M3</a>: a host or containment policy. <a href="#m6">M6</a>: the scanner. <a href="#m13">M13</a>, <a href="#m14">M14</a>: sequence membership and stored answers; M14 was tried and reverted, see its note. <a href="#m16">M16</a>: performance.</li>
-      <li><b>Found after the audit:</b> 77 further defects fixed, one commit each; <a href="#after">eight left open</a> (A1–A8), each for a decision.</li>
+      <li><b>Found after the audit:</b> 77 further defects fixed in the engine, one commit each, <a href="#after">eight left open</a> (A1–A8), each for a decision; and 56 in the applications, with <a href="#after-apps">their open items</a> listed beside them.</li>
     </ul>
     <p class="small">One baseline that encoded a bug has been retired: <code>regression/info</code> no longer asserts that the XML report grew (M12). The sequence baselines named under the test-suite notes still encode M13 and M14.</p>
   </div>
@@ -909,6 +909,20 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       <li><code>info/types/trace/start.php:30</code>: <code>$Result</code> for <code>$padResult</code>. No effect: <code>$pad</code> is -1 there.</li>
     </ul>
     <p class="small">Seen while testing and not investigated: <code>{sequence 4..10, skip=2}</code> answers <code>3 4 5 6 7</code>, and <code>{sequence multiple 3, rows=4}</code> answers <code>1 2 3 4</code> where <code>{keep:multiple 3, rows=4}</code> gives <code>3 6 9 12</code>.</p>
+  </div>
+  <div class="card" id="after-apps" style="margin-top:1rem; scroll-margin-top:4.2rem">
+    <h3>From the applications sweep</h3>
+    <p>A third pass read the applications under <code>apps/</code> and the <code>www/</code> entry points, crawling every page. It fixed 56 defects, one commit each (<code>454ba5e0a</code> … <code>2de90dbad</code>), re-recording the stored answers that had captured them. Among them: a plain GET of <code>develop/?sequence/build</code> deleted files git tracks, the record page's preview had never rendered, the gate passed a suite that ran no tests or a garbled stamp, and demo and react rendered as a second document inside <code>_common</code>'s. Left open, each for a decision:</p>
+    <ul>
+      <li><b>Regression coverage:</b> the eight <code>error_*</code> indexes test their action only when asked with <code>&amp;test</code> - deliberately, so a crawl raises nothing - so no suite checks the boot action's JSON shape, the stop action's empty body, the pad action's message or that the dump action dumps. The <code>config_typo</code> and <code>try_pad/*</code> answers are a bare <code>HTTP 500</code>, which any other 500 also satisfies, and <code>error_php/boom.txt</code> embeds an absolute path.</li>
+      <li><b>The gate's fault injection</b> (<code>harness/_scripts/gate.sh</code>) points its trigger at <code>http://localhost/pad/hello/</code>, so it fails where <code>www/</code> is the docroot; run through <code>{script:gate}</code> it has no way to learn the host.</li>
+      <li><b><code>develop/benchmark</code></b> can never show data: it reads the retired <code>DATA/regression/</code> store, its <code>bm</code> pipe went with <code>apps/check</code>, and its rows are keyed by page name, so every application's <code>index</code> overwrites the last. Rewrite or retire.</li>
+      <li><b><code>hello</code></b> is a whole HTML document rendered inside <code>_common</code>'s; Tidy repairs it, but the page's own <code>&lt;title&gt;</code> is lost. Switching <code>_common</code> off, as demo and react now do, would also drop the site menu.</li>
+      <li><b><code>structure</code></b> does not show the inheritance its README describes: every level defines every name in every special directory, so each lookup is answered locally.</li>
+      <li><b>react's topic page</b> labels the topic author's posts "YOU" (<code>display.js:312</code> compares with the <code>user_from_topic</code> provider); the page has no notion of a viewer.</li>
+      <li><b>Engine, seen from the applications:</b> <code>tags/reactData.php</code> turns every numeric-looking string into a number (<code>"007"</code> → 7, a username <code>"2024"</code> → an int, which breaks <code>.charAt</code> in the topic component); <code>padMakeSafe</code> blanks every byte above 0x7F, so the examples search mangles <code>Zoë Müller</code>; a page whose PHP returns NULL skips the <code>_exits.php</code> chain while the wrappers still render (the cause of the manual's z33 500, now covered by a <code>$showTitle</code> default); <code>{tag 'p' option}</code> - an option after a parameter without a comma - evaluates the word into the parameter instead of setting the option, the form CLAUDE.md's Ignore section shows for <code>{data 'rawJson' ignore}</code>; and <code>DATA/reference/properties/&lt;x&gt;/.txt</code> files with an empty item name come from the xref writer (cause not verified).</li>
+      <li><b>Design, noted only:</b> the guestbook and contact forms do not redirect after a POST, so a refresh posts again.</li>
+    </ul>
   </div>
 </section>
 
