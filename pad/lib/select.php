@@ -174,12 +174,17 @@
 
     $limit = '';
 
+    // Numbers, whatever the options held: they are spliced into the statement as written.
+
+    $rows = (int) $rows;
+    $page = (int) $page;
+
     if ( ( $padDone [$pad] ['page'] ?? '' ) !== 'limit' )
 
       if ($page or $rows) {
 
-        if (!$rows) $rows = 10;
-        if (!$page) $page = 1;
+        if ($rows < 1) $rows = 10;
+        if ($page < 1) $page = 1;
 
         $offset = ($page-1) * $rows;
         $limit = "limit $offset, $rows";
@@ -261,6 +266,13 @@
 
   }
 
+  // The value - a key bound on the tag, often straight from the request, or a field of the
+  // outer row - goes into the SQL string literal escaped for SQL, by the application's own
+  // connection. It went through padEscape, which turns PAD's delimiters into entities and
+  // leaves quotes alone: an apostrophe ended the literal and the rest of the value became
+  // part of the condition, while an honest value holding a comma, = or @ was rewritten and
+  // never matched.
+
   function padSelectWhereAdd  (&$where, $field, $value) {
 
     $add = padSelectField ($field) . ' = ' . "'";
@@ -271,7 +283,18 @@
     if ($where) $where .= ' and ';
     else        $where  = 'where ';
 
-    $where .= $add . padEscape ($value) . "'";
+    $where .= $add . padSelectEscape ($value) . "'";
+
+  }
+
+  function padSelectEscape ( $value ) {
+
+    global $padSqlConnect, $padSqlHost, $padSqlUser, $padSqlPassword, $padSqlDatabase;
+
+    if ( ! isset ( $padSqlConnect ) )
+      $padSqlConnect = padDbConnect ( $padSqlHost, $padSqlUser, $padSqlPassword, $padSqlDatabase );
+
+    return mysqli_real_escape_string ( $padSqlConnect, (string) ( $value ?? '' ) );
 
   }
 
