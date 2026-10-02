@@ -13,7 +13,7 @@
       'password', 'passwd', 'pwd', 'pass',
       'secret',
       'token',
-      'apikey', 'api_key', 'key',
+      'apikey', 'api_key',
       'credential', 'cred',
       'auth',
       'private',
