@@ -26,11 +26,11 @@ A play is a sequence, but not used to build a list, it is used to exucute on a s
   </tr>
 
 
+</table>
+
 <table width="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
   <tr>
-    <td></td>
-  </tr>
-</table>
+    <td>
 
 <p> 
   <table border="1" cellpadding="10" cellspacing="0">
@@ -45,6 +45,18 @@ A play is a sequence, but not used to build a list, it is used to exucute on a s
 
 <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">range=<font color="black">'</font>20..30<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>mySequence<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
 
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pull </font><font color="red">mySequence<font color="black">,</font> make<font color="black">,</font>   prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->71  73  79  83  89  97  101  103  107  109  113<!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pull </font><font color="red">mySequence<font color="black">,</font> keep<font color="black">,</font>   prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->23  29<!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pull </font><font color="red">mySequence<font color="black">,</font> remove<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->20  21  22  24  25  26  27  28  30<!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pull </font><font color="red">mySequence<font color="black">,</font> flag<font color="black">,</font>   prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->0  0  0  1  0  0  0  0  0  1  0<!-- END DEMO RESULT --></span></code></td></tr>
+
 
   </table>
 </p>
+
+</td>
+  </tr>
+</table>
