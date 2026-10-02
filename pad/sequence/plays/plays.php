@@ -11,13 +11,22 @@
   // the returned value, keep drops the term unless it matches, remove drops it when it
   // does, flag replaces it with 1 or 0. A FALSE outcome rejects the term and ends the
   // chain. Every play's own answer is kept in $pqPlaysSet, which build/one.php stores so
-  // it can be published as an extra field per row. $pqSeq/$pqBuild/$pqParm belong to the
-  // main sequence and are saved and restored around the loop.
+  // it can be published as an extra field per row. $pqSeq/$pqBuild/$pqParm/$pqInc/$pqDone
+  // belong to the main sequence and are saved and restored around the loop.
 
   $pqPlaysSet  = [];
   $pqSeqSave   = $pqSeq;
   $pqBuildSave = $pqBuild;
   $pqParmSave  = $pqParm;
+  $pqIncSave   = $pqInc;
+  $pqDoneSave  = $pqDone;
+
+  // A play is asked for its term at a position, which has no step of its own: running on
+  // the main sequence's increment - even's 2 - range stepped by 2 inside a play, so
+  // {sequence even, range=4} answered 3 for 2 4, and its 'increment done' mark landed on
+  // the main run.
+
+  $pqInc = 1;
 
   foreach ( $pqPlays as $pqTmp ) {
 
@@ -51,5 +60,7 @@
   $pqSeq   = $pqSeqSave;
   $pqBuild = $pqBuildSave;
   $pqParm  = $pqParmSave;
+  $pqInc   = $pqIncSave;
+  $pqDone  = $pqDoneSave;
 
 ?>
