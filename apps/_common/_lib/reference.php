@@ -19,8 +19,9 @@
 
     foreach ( scandir ( $root . $dir ) as $file ) {
 
-      if ( $file == '.'                     ) continue;
-      if ( $file == '..'                    ) continue;
+      // Every dotfile, not just . and .. - a Finder .DS_Store became an empty item.
+
+      if ( str_starts_with ( $file, '.'   ) ) continue;
       if ( str_starts_with ( $file, '_'   ) ) continue;
       if ( str_ends_with   ( $file, '.md' ) ) continue;
 
