@@ -66,9 +66,11 @@
 
   function padDumpConsole ( $info ) {
 
+    global $padDumpToDirDone;
+
     echo padMakeSafe ("Error: $info", 100);
 
-    echo "\nDir  : " . padDumpToDir ( $info );
+    echo "\nDir  : " . ( $padDumpToDirDone ?? padDumpToDir ( $info ) );
     echo "\n";
 
   }
