@@ -4,7 +4,8 @@
   //
   // Execution order is _common/_inits.php, then _inits.php down the $padBuildDirs chain,
   // then the page's own <page>.php, then _exits.php back up the chain and
-  // _common/_exits.php. Whatever those files echo is kept as content; the page's return
+  // _common/_exits.php - the two _common files only when $padCommon is on, as for its
+  // _lib and _inits.pad. Whatever those files echo is kept as content; the page's return
   // value decides the rest - an array becomes the page data ($padBuild), a scalar is
   // appended as content, NULL drops the page entirely, FALSE selects the @else@ half.
   //
@@ -15,8 +16,10 @@
   $padBuildTrue  = '';
   $padBuildFalse = '';
 
-  $padCall = COMMON . '/_inits.php';
-  $padBuildTrue .= include PAD . 'call/noOne.php';
+  if ( $padCommon ) {
+    $padCall = COMMON . '/_inits.php';
+    $padBuildTrue .= include PAD . 'call/noOne.php';
+  }
 
   foreach ( $padBuildDirs as $padCall ) {
     $padCall .= '/_inits.php';
@@ -43,8 +46,10 @@
     $padBuildTrue .= include PAD . 'call/noOne.php';
   }
 
-  $padCall = COMMON . '/_exits.php';
-  $padBuildTrue .= include PAD . 'call/noOne.php';
+  if ( $padCommon ) {
+    $padCall = COMMON . '/_exits.php';
+    $padBuildTrue .= include PAD . 'call/noOne.php';
+  }
 
   include PAD . 'build/split.php';
 
