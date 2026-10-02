@@ -7,11 +7,12 @@
   // to still sit inside the reference directory before it is opened. Interpolating them
   // unchecked let a ../ in either one read any .txt file the server could reach, and an
   // unknown value ended the request with a 500 rather than a page. Anything not resolving
-  // inside the tree falls back to the default item.
+  // inside the tree falls back to the default item, as does a value that arrives as an
+  // array (dir[]=).
 
-  if ( ! isset ( $type ) ) $type = 'Sequences';
-  if ( ! isset ( $dir  ) ) $dir  = 'sequences';
-  if ( ! isset ( $item ) ) $item = 'happy';
+  if ( ! isset ( $type ) or ! is_string ( $type ) ) $type = 'Sequences';
+  if ( ! isset ( $dir  ) or ! is_string ( $dir  ) ) $dir  = 'sequences';
+  if ( ! isset ( $item ) or ! is_string ( $item ) ) $item = 'happy';
 
   $refRoot = realpath ( DATA . 'reference/sequence' );
   $refFile = realpath ( DATA . "reference/sequence/$dir/$item.txt" );

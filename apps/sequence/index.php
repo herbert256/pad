@@ -4,7 +4,8 @@
   // concept= parameter asks for.
   //
   // concept arrives from the query string, so it is only used when it names one of them -
-  // reading $concepts with an unknown key ended the request with a 500 instead of a page.
+  // reading $concepts with an unknown key ended the request with a 500 instead of a page,
+  // and so did concept[]=, which arrives as an array.
 
   $concepts ['sequences']  = 'Something that defines a Sequence list';
   $concepts ['stores']     = 'A stored sequence list';
@@ -12,7 +13,7 @@
   $concepts ['plays']      = 'Execute a Sequence on a Sequence';
   $concepts ['resume']     = 'Resume on a stored Sequence';
 
-  if ( ! isset ( $concept ) or ! isset ( $concepts [$concept] ) )
+  if ( ! isset ( $concept ) or ! is_string ( $concept ) or ! isset ( $concepts [$concept] ) )
     $concept = 'sequences';
 
   $title = 'Sequences';
