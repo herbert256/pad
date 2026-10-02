@@ -34,7 +34,7 @@
       }
 
       if ( ! file_exists ( PT . 'oeis/oeis.sqlite' ) ) {
-        padError ( 'The oeis table is missing - regenerate it with oeis/build.php' );
+        padError ( 'The oeis table is missing - regenerate it with oeis/regenerate.php' );
         return [];
       }
 

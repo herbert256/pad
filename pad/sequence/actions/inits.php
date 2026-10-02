@@ -4,7 +4,9 @@
   // parameter string as the value. It starts from the $pqAction/$pqActionParm pair that
   // inits/find/ recognised in the tag name itself, then adds every tag option whose name
   // is a known action (a file in PA); the explicit action='name|parm' form takes its name
-  // from the first '|' segment. Valueless options arrive as TRUE and become ''.
+  // from the first '|' segment. Valueless options arrive as TRUE and become ''. The name
+  // goes into an include path, so it must be a plain name before it is looked up - with
+  // ../ in it, action= reached any .php on disk.
 
   if ( $pqAction )  {
     if ( $pqActionParm === TRUE )
@@ -25,7 +27,7 @@
 
       $pqAction = ( $padV ['padPrmName'] == 'action' ) ? array_shift ( $pqActionList ) : $padV ['padPrmName'];
 
-      if ( pqAction ( $pqAction ) )
+      if ( padValidName ( $pqAction ) and pqAction ( $pqAction ) )
         $pqActions [$pqAction] = implode ( '|', $pqActionList );
 
     }

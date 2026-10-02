@@ -30,7 +30,7 @@ This document describes the sequence types available in PAD and how to generate 
 The A-number is written without its leading zeroes. The terms come from
 `pad/sequence/types/oeis/oeis.sqlite`, one row per A-number, read a sequence at a time - so
 a request that asks for one costs a lookup rather than the whole table. An A-number the
-table does not hold produces no terms. `oeis/build.php` regenerates the table from the
+table does not hold produces no terms. `oeis/regenerate.php` regenerates the table from the
 `stripped` bulk download published by oeis.org.
 
 ## Loop with from/to Parameters

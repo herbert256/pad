@@ -16,9 +16,9 @@
   //
   // The download is expected beside the repository, at dirname($padHome)/host/Downloads.
   //
-  // Sharing its name with the build strategy is a trap: pqBuild() would report 'build' for
-  // this type and build/types/build.php would run this file expecting a term list back. It
-  // does not happen only because make.php outranks build.php in pqBuild().
+  // It was called build.php, the name of a build strategy: build='build' on an oeis
+  // sequence ran it from build/types/build.php in the middle of a request, expecting a term
+  // list back. Under its own name no strategy reaches it.
 
   global $padHome;
 

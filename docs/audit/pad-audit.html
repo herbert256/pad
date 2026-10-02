@@ -654,13 +654,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm" id="m19">
+    <div class="finding pm fixed" id="m19">
       <div class="tag"><div class="priority">Medium</div><div class="cat">Path / side effect</div></div>
       <div>
-        <h3>Sequence <code>build=</code> and <code>action=</code> reach include paths unvalidated</h3>
+        <h3>Sequence <code>build=</code> and <code>action=</code> reach include paths unvalidated<span class="done">Fixed</span></h3>
         <p class="where">sequence/build/given.php:21 · sequence/build/build.php:16 · sequence/plays/plays.php:28</p>
         <p><code>include PQ . "build/types/$pqBuild.php"</code> and the action include run after only a <code>file_exists</code>, so <code>../</code> in the value includes any <code>.php</code> on disk. Worse, <code>{sequence oeis=45, build='build'}</code> runs the maintenance script <code>types/oeis/build.php</code>, which deletes and rebuilds a 78 MB sqlite file in the source tree.</p>
         <div class="fix"><b>Fix:</b> allow-list the build and action names; rename the maintenance script so it can't be reached as a build type.</div>
+        <div class="resolved"><b>Fixed:</b> reproduced first: <code>action=&#39;../../../../apps/x/evil&#39;</code> and <code>build=&#39;../../../../apps/x/evil&#39;</code> both included a planted file. Now <code>build/given.php</code> accepts a name only when it is a plain name (<code>padValidName</code>) with a strategy file behind it, in <code>build/types/</code> for the main sequence or <code>plays/play/</code> for a play; anything else is a PAD error and the inferred strategy stays. <code>actions/inits.php</code> checks the action name the same way before <code>pqAction()</code> looks for a file. The OEIS maintenance script is renamed <code>types/oeis/regenerate.php</code> (its references in <code>read.php</code> and <code>docs/sequences/SEQUENCES.md</code> follow), so no strategy name reaches it any more. A new Errors case <code>syntax/a_build_strategy_must_be_one_there_is</code> holds the refusal.</div>
       </div>
     </div>
 

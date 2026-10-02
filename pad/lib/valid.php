@@ -36,6 +36,7 @@
 
   function padValidName ( $name ) {
 
+    if ( ! is_scalar ( $name ) )               return FALSE;
     if ( trim ( $name ) == '' )                return FALSE;
     if ( strpbrk ( $name, "/\\*?[\0" ) !== FALSE ) return FALSE;
     if ( str_contains ( $name, '..' ) )        return FALSE;
