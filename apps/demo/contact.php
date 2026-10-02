@@ -14,7 +14,7 @@
   $formSubject = $subject ?? '';
   $formMessage = $message ?? '';
 
-  if ( $_SERVER['REQUEST_METHOD'] == 'POST' && $action == 'send' ) {
+  if ( $_SERVER['REQUEST_METHOD'] == 'POST' && ( $action ?? '' ) == 'send' ) {
 
     $formName    = trim ( $formName );
     $formEmail   = trim ( $formEmail );

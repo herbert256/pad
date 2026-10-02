@@ -14,7 +14,7 @@
     $entries = json_decode ( $json, TRUE ) ?: [];
   }
 
-  if ( $_SERVER['REQUEST_METHOD'] == 'POST' && $action == 'add' ) {
+  if ( $_SERVER['REQUEST_METHOD'] == 'POST' && ( $action ?? '' ) == 'add' ) {
     $name    = trim ( $name    ?? '' );
     $comment = trim ( $comment ?? '' );
 
