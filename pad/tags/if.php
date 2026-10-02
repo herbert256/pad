@@ -22,10 +22,14 @@
   if ( ! $padPair [$pad] and $padCheckSyntax )
     padError ( "the pair {" . $padOrg [$pad] . "} never closes" );
 
-  if ( ( $padParms [$pad] [0] ['padPrmName'] ?? '' ) == 'bool' )
-    return ( include PAD . 'options/bool.php' ) ? TRUE : FALSE;
+  // The flag is settled here and stands in as a literal 1 or 0, so its {elseif} and {else}
+  // are handled like those of any other condition - returning straight away left an
+  // {else} in the content as a name nothing claims.
 
-  $padIf  = $padParms [$pad] [0] ['padPrmOrg'] ?? '';
+  if ( ( $padParms [$pad] [0] ['padPrmName'] ?? '' ) == 'bool' )
+    $padIf = ( include PAD . 'options/bool.php' ) ? '1' : '0';
+  else
+    $padIf = $padParms [$pad] [0] ['padPrmOrg'] ?? '';
 
   if ( trim ( $padIf ) == '' and $padCheckSyntax )
     padError ( "the {if} has no condition" );
