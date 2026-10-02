@@ -66,17 +66,20 @@
 
   }
 
+  // At page level the start can be below 0: the walk stops at 0 rather than counting on
+  // through the negatives, and the fallback is the root level - it was -1, an undefined key.
+
   function padFieldFirstParmTag ($flag=0) {
 
     global $pad, $padType, $padTag;
 
     $start = ($flag) ? $pad-1 : $pad;
 
-    for ($i=$start; $i; $i--)
+    for ($i=$start; $i > 0; $i--)
       if ( $padTag [$i] != 'if' and $padTag [$i] != 'case' and $padType[$i] != 'tag' )
         return $i;
 
-    return $pad - 1;
+    return max ( 0, $pad - 1 );
 
   }
 
@@ -86,11 +89,11 @@
 
     $start = $pad-$lvl;
 
-    for ($i=$start; $i; $i--)
+    for ($i=$start; $i > 0; $i--)
       if ( $padType[$i] != 'tag' )
         return $i;
 
-    return $pad - 1;
+    return max ( 0, $pad - 1 );
 
   }
 
