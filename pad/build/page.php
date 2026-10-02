@@ -12,7 +12,8 @@
   // the page produced no data of its own the result is wrapped in {padBuild for="..."} so
   // the level engine iterates $padBuild, one occurrence per row.
 
-  $padBuildTrue = '';
+  $padBuildTrue  = '';
+  $padBuildFalse = '';
 
   $padCall = COMMON . '/_inits.php';
   $padBuildTrue .= include PAD . 'call/noOne.php';
