@@ -27,7 +27,8 @@
       if ( $padCheckSyntax )
         padError ("Closing } not found");
 
-      $padEnd [$pad] = strlen ( $padOut [$pad] ) - 1;
+      $padEnd [$pad]   = strlen ( $padOut [$pad] ) - 1;
+      $padBetweenCheck = substr ( $padOut [$pad], $padPos+1 );
       break;
 
     }
