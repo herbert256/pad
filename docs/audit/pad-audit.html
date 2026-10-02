@@ -338,13 +338,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
   <h2>High <span class="count">— 10</span></h2>
   <div class="findings">
 
-    <div class="finding ph" id="h1">
+    <div class="finding ph fixed" id="h1">
       <div class="tag"><div class="priority">High</div><div class="cat">SQL injection</div></div>
       <div>
-        <h3>The <code>track</code> recorder interpolates the unvalidated session id into SQL</h3>
+        <h3>The <code>track</code> recorder interpolates the unvalidated session id into SQL<span class="done">Fixed</span></h3>
         <p class="where">info/types/track/_lib.php:21-27 · source inits/ids.php:13</p>
         <p><code>$padSesID</code> comes straight from <code>?padSesID=</code> or the cookie with no validation, then: <code>padDb("insert into track_session values('$session', NOW(), NOW(), 1)")</code> — three queries built by interpolation, while the sibling <code>track_request</code> queries correctly use <code>{1}</code> placeholders. Reachable whenever the DB-track mode is on (<code>info=all</code>).</p>
         <div class="fix"><b>Fix:</b> bind through <code>{1}</code> like the neighbouring queries, and validate the session id against <code>^[A-Za-z0-9]{8}$</code> in <code>inits/ids.php</code>.</div>
+        <div class="resolved"><b>Fixed:</b> the three <code>track_session</code> queries bind the id through <code>{1}</code> like their <code>track_request</code> neighbour, and <code>inits/ids.php</code> takes a <code>padSesID</code>/<code>padReqID</code> from cookie or request only when it has the minted shape — eight letters and digits, checked by the new <code>padValidID()</code>; anything else (a quote, a newline, an array) gets a fresh id. This also ends the Low-section case where a newline in the id made <code>header()</code> fail the request; the cookie flags in that item are still open.</div>
       </div>
     </div>
 

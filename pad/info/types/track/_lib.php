@@ -21,10 +21,10 @@
     $session = $padSesID;
     $request = $padReqID;
 
-    if ( padDb ( "check track_session where session='$session'" ) )
-      padDb ( "update track_session set requests=requests+1 where session='$session'");
+    if ( padDb ( "check track_session where session='{1}'", [ 1 => $session ] ) )
+      padDb ( "update track_session set requests=requests+1 where session='{1}'", [ 1 => $session ] );
     else
-      padDb ( "insert into track_session values('$session', NOW(), NOW(), 1)" );
+      padDb ( "insert into track_session values('{1}', NOW(), NOW(), 1)", [ 1 => $session ] );
 
     if ( ! $padInfoTrackDbRequest )
       return;

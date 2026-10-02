@@ -16,6 +16,8 @@
   //               name, a script, callback or option: no directory separator, no .., no
   //               glob character and no NUL, so it can only ever name something inside the
   //               directory it is looked up in
+  // padValidID    a session or request id as padRandomString() mints it, eight letters
+  //               and digits
 
   function padValid ( $name ) {
 
@@ -39,6 +41,12 @@
     if ( str_contains ( $name, '..' ) )        return FALSE;
 
     return TRUE;
+
+  }
+
+  function padValidID ( $id ) {
+
+    return is_string ( $id ) and preg_match ( '/^[A-Za-z0-9]{8}$/', $id );
 
   }
 
