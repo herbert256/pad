@@ -222,7 +222,7 @@ Following PAD's philosophy of separating data from presentation, the navigation 
     "icon": "🏠"
   },
   {
-    "page": "examples",
+    "page": "examples/index",
     "label": "Examples",
     "icon": "📚"
   },
@@ -230,11 +230,6 @@ Following PAD's philosophy of separating data from presentation, the navigation 
     "page": "components",
     "label": "Components",
     "icon": "🧩"
-  },
-  {
-    "page": "counter",
-    "label": "Counter Demo",
-    "icon": "🔢"
   }
 ]
 ```
