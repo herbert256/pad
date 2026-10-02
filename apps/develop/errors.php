@@ -20,6 +20,12 @@
       if ( ! $one->isFile() or $one->getFilename() [0] == '.' )
         continue;
 
+      // One line per dump, read from its _ERROR.html - the -11 below cuts that name off to
+      // link the dump's directory. Without the test every file of every dump was listed.
+
+      if ( ! str_ends_with ( $one->getFilename(), '_ERROR.html' ) )
+        continue;
+
       $path = padCorrectPath ( $one->getPathname() );
 
       $list [] = [ 'url' => substr ( str_replace ( DATA , '', $path ), 0, -11),
