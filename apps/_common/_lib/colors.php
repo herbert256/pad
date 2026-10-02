@@ -85,7 +85,12 @@
 
 go: $end = strpos($source, '}');
 
+    // No } left: a { still standing has no pair and is text, so it is written as &open;,
+    // as an unpaired } is written &close; below - left raw it reached the page as a tag
+    // that never closes, and the page died on 'No close } found'.
+
     if ( $end === FALSE ) {
+      $source = str_replace ( '{', '&open;', $source );
       padColorsAt ( $source );
       return $source;
     }
