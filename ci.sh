@@ -28,6 +28,11 @@ suitesDir="${CI_SUITES:-$padHome/DATA/suites}"
 run="${CI_RUN:-$(php -r 'echo bin2hex(random_bytes(6));')}"
 commit=$(git -C "$padHome" rev-parse --short HEAD 2>/dev/null)
 
+# Results are stamped in whole seconds, and a fast first suite can finish inside the very
+# second the run started - which the strictly-newer test below reads as a leftover. The
+# trigger fires once that second is over, so everything this run writes is newer.
+while [ "$(date +%s)" -eq "$started" ]; do sleep 0.05; done
+
 status=$(curl -s -o /dev/null -w '%{http_code}' -L --max-time 600 "$trigger&ciRun=$run")
 
 case "$status" in
