@@ -48,6 +48,12 @@
       $claude ['sequence'] = $seq;
       $claude ['php']      = $php;
 
+      // Whatever the page had buffered so far would land in front of the JSON and make the
+      // body unreadable - padBootStop calls this before its own buffer cleanup.
+
+      while ( ob_get_level () )
+        ob_end_clean ();
+
       header ( 'HTTP/1.0 500 Internal Server Error' );
       header ( 'Content-Type: application/json' );
 
