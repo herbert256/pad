@@ -26,6 +26,14 @@ suitesDir="${CI_SUITES:-$padHome/DATA/suites}"
 # result, and a result that carries another token - a concurrent run, a stray browser
 # Test - is not this run's verdict. The commit binds the results to what was tested.
 run="${CI_RUN:-$(php -r 'echo bin2hex(random_bytes(6));')}"
+
+# The runner keeps at most 16 letters and digits of the token, and it rides the trigger's
+# query string as it is - a longer one, or one with + & # or a space, could never come back
+# matching, and every suite failed as another run's.
+case "$run" in
+  ''|*[!A-Za-z0-9]*) echo "CI: the run token must be letters and digits only" >&2; exit 2 ;;
+esac
+[ "${#run}" -le 16 ] || { echo "CI: the run token is longer than 16 characters" >&2; exit 2; }
 commit=$(git -C "$padHome" rev-parse --short HEAD 2>/dev/null)
 
 # Results are stamped in whole seconds, and a fast first suite can finish inside the very
