@@ -740,13 +740,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm" id="m28">
+    <div class="finding pm fixed" id="m28">
       <div class="tag"><div class="priority">Medium</div><div class="cat">Sequence API</div></div>
       <div>
-        <h3><code>pqArray()</code> returns an extra empty element<span class="live">verified live</span></h3>
+        <h3><code>pqArray()</code> returns an extra empty element<span class="live">verified live</span><span class="done">Fixed</span></h3>
         <p class="where">lib/sequence.php:110-121</p>
         <p>The helper renders every term followed by a comma — <code>padCode("{sequence …}{\$sequence},{/sequence}")</code> — then <code>explode</code>s the whole string without removing the final separator. Verified live: <code>pqArray('even', '', 'rows=3')</code> → <code>["2","4","6",""]</code>. Counts, numeric processing and membership are off by one element; an empty sequence becomes <code>[""]</code> rather than <code>[]</code>; and values arrive as strings reconstructed through text. The engine's own membership check (<code>build/check.php:69</code>, <a href="#m13">M13</a>) consumes this result.</p>
         <div class="fix"><b>Fix:</b> return the underlying sequence values directly, or strip only the delimiter the renderer introduced and handle the empty sequence explicitly. Decide whether values are strings or numbers.</div>
+        <div class="resolved"><b>Fixed:</b> <code>pqArray()</code> cuts the one comma its own render puts behind the last term before splitting, and answers <code>[]</code> for an empty sequence. Live: <code>pqArray(&#39;even&#39;, &#39;&#39;, &#39;rows=3&#39;)</code> went from <code>["2","4","6",""]</code> to <code>["2","4","6"]</code>, and <code>pqArray(&#39;prime&#39;, &#39;&#39;, &#39;to=1&#39;)</code> from <code>[""]</code> to <code>[]</code>. That second case also stops the <code>order</code> play from taking <code>&#39;&#39;</code> for a term. A framework case <code>sequence/pqArray_hands_back_the_terms_and_nothing_more</code> pins it. Values are still strings, rebuilt from the rendered text.</div>
       </div>
     </div>
 

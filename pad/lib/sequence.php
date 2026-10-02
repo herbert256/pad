@@ -118,7 +118,16 @@
     if ( $options )
       $options = ", $options";
 
-    return explode ( ',', padCode ( "{sequence $sequence$parm$options}{\$sequence},{/sequence}" ) );
+    // Every term is rendered with a comma behind it, the last one too, so that one comma is
+    // cut before the split - it used to stay and leave an empty last element, and an empty
+    // sequence came back as [''] rather than [].
+
+    $list = padCode ( "{sequence $sequence$parm$options}{\$sequence},{/sequence}" );
+
+    if ( str_ends_with ( $list, ',' ) )
+      $list = substr ( $list, 0, -1 );
+
+    return ( $list === '' ) ? [] : explode ( ',', $list );
 
   }
 
