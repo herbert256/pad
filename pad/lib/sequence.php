@@ -109,11 +109,13 @@
 
   function pqArray ( $sequence, $parm='', $options='') {
 
-    if ( $parm)
-      if ( $parm === TRUE )
-        $parm = '';
-      else
-        $parm = ( $parm ) ? "=$parm" : '';
+    // Only TRUE or nothing at all means no parameter - a 0 is a value like any other, and
+    // the truthiness test glued it onto the name (add=0 asked for a sequence named add0).
+
+    if ( $parm === TRUE or $parm === FALSE or $parm === NULL or $parm === '' )
+      $parm = '';
+    else
+      $parm = "=$parm";
 
     if ( $options )
       $options = ", $options";
