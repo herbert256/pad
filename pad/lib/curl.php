@@ -204,11 +204,14 @@
         $value  = trim ( $work [1] ?? '' );
         $name   = strtolower ( $header );
 
-        if ( $header and ! $value )
+        // The status line is the one without a colon - a value of 0 or nothing, as in
+        // Content-Length: 0, made an ordinary header pass for it and vanish.
+
+        if ( $header and count ( $work ) == 1 )
 
           $output ['headers'] ['http'] = $header;
 
-        elseif ( $header and $value ) {
+        elseif ( $header ) {
 
           if ( $name == 'content-disposition' and !$file)
             padBetween ($value, '"', '"', $before, $file, $after);
