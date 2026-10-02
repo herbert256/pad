@@ -5,7 +5,8 @@
   //
   // The balance group answers "may I cut here without breaking a tag pair". padOpenCloseList
   // collects every tag that has a closing {/tag} in the string, padOpenCloseCountOne checks
-  // that one tag opens as often as it closes, padOpenCloseCount does that for a whole list,
+  // that one tag opens as often as it closes (padOpenCount counts the openers, leaving out a
+  // self-closing {tag .../}), padOpenCloseCount does that for a whole list,
   // padOpenCloseOk combines them for the text following a marker, and padCheckTag is a
   // single-tag shorthand. lib/content.php uses these to place @content@ and @else@ at the
   // right nesting depth.
@@ -74,12 +75,53 @@
 
   function padOpenCloseCountOne ( $string, $tag ) {
 
-    if ( ( substr_count($string, '{'.$tag.' ' ) + substr_count($string, '{'.$tag.'}' ) )
+    if ( padOpenCount ( $string, $tag )
            !=
          ( substr_count($string, '{/'.$tag.' ') + substr_count($string, '{/'.$tag.'}') ) )
       return FALSE;
 
     return TRUE;
+
+  }
+
+  // The openers of one tag in a string: {tag} and {tag ...}, but not a self-closing
+  // {tag .../}, which opens nothing - counting it threw the balance of an enclosing pair of
+  // the same name off by one, and that pair's {/tag} was left an orphan. The end of an
+  // opener is found by brace depth, so a parameter holding a tag of its own, {tag x={$y}/},
+  // is read to its real end; like level/tag.php, the slash must stand right before the }.
+
+  function padOpenCount ( $string, $tag ) {
+
+    $open   = '{' . $tag;
+    $count  = 0;
+    $offset = 0;
+
+    while ( ( $pos = strpos ( $string, $open, $offset ) ) !== FALSE ) {
+
+      $offset = $pos + strlen ( $open );
+      $next   = $string [$offset] ?? '';
+
+      if ( $next == '}' or ( $next == ' ' and ! padOpenSelfClosing ( $string, $offset ) ) )
+        $count++;
+
+    }
+
+    return $count;
+
+  }
+
+  function padOpenSelfClosing ( $string, $offset ) {
+
+    $depth = 1;
+    $end   = strlen ( $string );
+
+    for ( $i = $offset; $i < $end; $i++ )
+      if ( $string [$i] == '{' )
+        $depth++;
+      elseif ( $string [$i] == '}' and ! --$depth )
+        return ( $string [$i-1] == '/' );
+
+    return FALSE;
 
   }
 

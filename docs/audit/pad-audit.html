@@ -642,13 +642,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm" id="m18">
+    <div class="finding pm fixed" id="m18">
       <div class="tag"><div class="priority">Medium</div><div class="cat">Parsing (latent)</div></div>
       <div>
-        <h3>A self-closing <code>{tag p/}</code> is counted as an opening tag when matching pairs</h3>
+        <h3>A self-closing <code>{tag p/}</code> is counted as an opening tag when matching pairs<span class="done">Fixed</span></h3>
         <p class="where">lib/template.php:75-84</p>
         <p><code>substr_count($string, '{'.$tag.' ')</code> also counts <code>{tag params/}</code>, so a self-closing tag with parameters throws off pair matching for an enclosing tag of the same name — its <code>{/tag}</code> becomes an orphan (an error in strict mode). 184 template files use the <code>{tag p/}</code> form; none nest the same name yet, so this is latent.</p>
         <div class="fix"><b>Fix:</b> exclude openers whose text ends in <code>/</code> when counting.</div>
+        <div class="resolved"><b>Fixed:</b> the opener count in <code>padOpenCloseCountOne()</code> goes through a new <code>padOpenCount()</code> that leaves out a self-closing <code>{tag …/}</code>, finding the end of each opener by brace depth so a parameter holding its own tag is read to its real end; like <code>level/tag.php</code>, the slash must stand right before the <code>}</code>. Reproduced first: <code>{sequence …}&lt;{sequence …, name=&#39;b&#39; /}&gt;{/sequence}</code> failed with <em>Closing tag found without an open tag</em>; it now renders. A framework case <code>tags/a_self_closing_tag_does_not_open_a_pair_of_its_name</code> pins it. <code>padCheckTag()</code>, used by <code>{if}</code>/<code>{case}</code> for their <code>{else}</code>, still counts openers the old way.</div>
       </div>
     </div>
 
