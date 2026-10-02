@@ -42,8 +42,12 @@
 
   // The u modifier makes _ and the quantifiers count characters rather than UTF-8 bytes,
   // so like('_') matches 'é'. A value that is not valid UTF-8 simply does not match.
+  //
+  // s lets % and _ stand for a newline too, as they do in SQL - without it like('first%')
+  // missed 'first line' followed by a second line - and D holds $ to the very end, so a
+  // trailing newline is a character to be matched like any other.
 
-  $expr .= '$/iu';
+  $expr .= '$/iusD';
 
   return preg_match($expr, $value) ? '1' : '';
 
