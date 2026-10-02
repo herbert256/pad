@@ -9,7 +9,7 @@
 
   function padTimeStamp () {
 
-    $now = DateTime::createFromFormat('U.u', sprintf('%.6f', microtime(TRUE)));
+    $now = DateTime::createFromFormat('U.u', sprintf('%.6F', microtime(TRUE)));
 
     return $now->format('YmdHisu');
 
