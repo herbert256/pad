@@ -331,9 +331,15 @@
   // rely on holds here too - same option defaults, same output shape, same 999-with-ERROR
   // on a failed transfer - except $padCurlLast, which is only meaningful for one fetch and
   // is left alone. Without ext-curl the inputs are simply fetched one by one.
+  //
+  // The loop must always end. A window below one admitted nothing, so nothing ever flew and
+  // the queue never shrank - it is clamped to at least one. And a curl_multi call that
+  // answers with an error rather than progress throws, so the catch below turns whatever
+  // is left into failures instead of the loop waiting on handles that will never finish.
 
   function padCurlMulti ( $inputs, $window = 12 ) {
 
+    $window  = max ( 1, (int) $window );
     $results = [];
 
     if ( ! function_exists ( 'curl_multi_init' ) ) {
@@ -382,7 +388,11 @@
           foreach ( $outputs [$key] ['options'] as $name => $val )
             curl_setopt ( $curl, constant ( 'CURLOPT_' . $name ), $val );
 
-          curl_multi_add_handle ( $multi, $curl );
+          $state = curl_multi_add_handle ( $multi, $curl );
+
+          if ( $state !== CURLM_OK )
+            throw new \RuntimeException ( 'curl_multi_add_handle: ' . curl_multi_strerror ( $state ) );
+
           $flying [ spl_object_id ( $curl ) ] = [ $curl, $key ];
 
         }
@@ -390,6 +400,9 @@
         do {
           $state = curl_multi_exec ( $multi, $running );
         } while ( $state == CURLM_CALL_MULTI_PERFORM );
+
+        if ( $state !== CURLM_OK )
+          throw new \RuntimeException ( 'curl_multi_exec: ' . curl_multi_strerror ( $state ) );
 
         if ( $running )
           curl_multi_select ( $multi, 0.1 );

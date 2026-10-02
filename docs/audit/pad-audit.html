@@ -726,13 +726,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm" id="m27">
+    <div class="finding pm fixed" id="m27">
       <div class="tag"><div class="priority">Medium</div><div class="cat">Bounded execution</div></div>
       <div>
-        <h3>A zero concurrency window makes <code>padCurlMulti</code> spin forever</h3>
+        <h3>A zero concurrency window makes <code>padCurlMulti</code> spin forever<span class="done">Fixed</span></h3>
         <p class="where">lib/curl.php:326,363-386</p>
         <p>The admission loop is <code>while ( $queue and count($flying) &lt; $window )</code> inside <code>while ( $queue or $flying )</code>. With <code>$window &lt;= 0</code> — for example from a computed configuration value — nothing is ever dequeued, <code>$flying</code> stays empty, <code>$queue</code> never changes, and the outer loop cannot exit. There is no input validation and no non-progress escape. Run in a subprocess under a watchdog, <code>padCurlMulti(['http://127.0.0.1:1/'], 0)</code> did not return and had to be killed. The default window of 12 is unaffected.</p>
         <div class="fix"><b>Fix:</b> require a positive bounded integer window (validation error or documented clamp); handle multi-interface errors; guarantee progress or termination when no handles are active.</div>
+        <div class="resolved"><b>Fixed:</b> the window is clamped to at least one (<code>max(1, (int) $window)</code>), and a <code>curl_multi_add_handle</code> or <code>curl_multi_exec</code> that answers an error instead of progress throws, so the existing catch turns every input still pending into a 999 failure instead of the loop waiting on handles that will never finish. The audit&#39;s probe, <code>padCurlMulti([&#39;http://127.0.0.1:1/&#39;], 0)</code>, ran into a 5 s time limit before; it now answers 999 at once.</div>
       </div>
     </div>
 
