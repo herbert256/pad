@@ -14,8 +14,10 @@
   // padWebPadHeaders     the full set: PAD id, stats, encoding, content type and length,
   //                      plus caching
   // padWebStats          adds the PAD-Stats header when info stats are on
-  // padWebCacheHeaders   Cache-Control, Vary, Date, Expires and Etag, with the ages
-  //                      counted down by how long this request has already taken
+  // padWebCacheHeaders   Cache-Control, Date, Expires and Etag, with the ages counted
+  //                      down by how long this request has already taken
+  // padAcceptsEncoding   whether an Accept-Encoding header allows a content coding, read
+  //                      with its quality values
 
   function padWebSend ( $stop ) {
 
@@ -117,6 +119,13 @@
     if ( $stop == 200 and $padClientGzip and ( $padGzip or ( $padCacheStop == 200 and $padCacheServerGzip ) ) )
       padHeader ( 'Content-Encoding: gzip' );
 
+    // Whenever the body can come compressed, the response depends on Accept-Encoding and
+    // says so - for a cache along the way. It used to say Vary: Content-Encoding, the name
+    // of a response header, and only on the cached path; the on-the-fly gzip sent nothing.
+
+    if ( $padGzip or $padCacheServerGzip )
+      padHeader ( 'Vary: Accept-Encoding' );
+
     if ( $stop != 302 and $stop != 304 )
       padHeader ( 'Content-Type: ' . $padContentType );
 
@@ -145,6 +154,35 @@
 
   }
 
+  // gzip;q=0 refuses gzip, and * stands for every coding the header does not name. The
+  // test used to be a substring search, which sent gzip to the client that refused it.
+
+  function padAcceptsEncoding ( $header, $coding ) {
+
+    $any = FALSE;
+
+    foreach ( explode ( ',', $header ) as $one ) {
+
+      $parts = explode ( ';', $one );
+      $name  = strtolower ( trim ( $parts [0] ) );
+      $q     = 1.0;
+
+      foreach ( array_slice ( $parts, 1 ) as $parm )
+        if ( preg_match ( '/^\s*q\s*=\s*([0-9.]+)\s*$/i', $parm, $match ) )
+          $q = (float) $match [1];
+
+      if ( $name == $coding )
+        return $q > 0;
+
+      if ( $name == '*' )
+        $any = $q > 0;
+
+    }
+
+    return $any;
+
+  }
+
   function padWebCacheHeaders () {
 
     global $padCacheClientAge, $padCacheProxyAge, $padEtag, $padTime;
@@ -168,7 +206,6 @@
     $extra = 'no-transform, must-revalidate, proxy-revalidate';
 
     padHeader ('Cache-Control: ' . "$type, max-age=$age, s-maxage=$sage, $extra");
-    padHeader ('Vary: '          . 'Content-Encoding');
     padHeader ('Date: '          . gmdate('D, d M Y H:i:s', $_SERVER['REQUEST_TIME']        ) . ' GMT');;
     padHeader ('Expires: '       . gmdate('D, d M Y H:i:s', $_SERVER['REQUEST_TIME'] + $age ) . ' GMT');
     padHeader ('Etag: '          . '"' . $padEtag . '"');

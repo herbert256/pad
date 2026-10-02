@@ -557,6 +557,7 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
           <li><b>Unvalidated ETag as a key:</b> the client-supplied ETag is used as a backend key and, in the file backend, as a file path (<code>file_exists($padCacheFile."etag/$etag")</code>). Cookies are set before the cache lookup, so cached public responses can carry one visitor's <code>Set-Cookie</code> to others.</li>
         </ul>
         <div class="fix"><b>Fix:</b> resolve the URL/variant first and compare validators only against that representation; parse <code>If-None-Match</code> and <code>Accept-Encoding</code> quality values per RFC 9110; send <code>Vary: Accept-Encoding</code> on every path that can vary; give the gzip variant its own ETag; validate the ETag against a fixed shape; don't set cookies on public responses.</div>
+        <div class="resolved part"><b>Progress:</b> negotiation: <code>Accept-Encoding</code> is read with its quality values by a new <code>padAcceptsEncoding()</code> (an explicit <code>gzip;q=0</code> refuses, <code>*</code> covers what is not named), and every response whose body can be compressed sends <code>Vary: Accept-Encoding</code>, the uncached on-the-fly gzip path included; the misnamed <code>Vary: Content-Encoding</code> is gone. Checked live with <code>$padGzip</code> on: <code>gzip;q=0</code> now gets an identity body.</div>
       </div>
     </div>
 
