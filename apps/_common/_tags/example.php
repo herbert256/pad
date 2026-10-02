@@ -7,10 +7,12 @@
 
   // The title is the last part of the name. strrpos answers FALSE when the name has no / at
   // all, and FALSE + 1 is 1, so an example named without a directory - {example 'offices'} -
-  // used to lose its first letter and come out as "ffices".
+  // used to lose its first letter and come out as "ffices". A title= given on the tag wins:
+  // an example of a file rather than a page has no name to take it from.
 
   $exampleSlash      = strrpos ( $examplePage, '/' );
   $exampleTitle      = ( $exampleSlash === FALSE ) ? $examplePage : substr ( $examplePage, $exampleSlash + 1 );
+  $exampleTitle      = padTagParm ( 'title', $exampleTitle );
   $exampleFile       = $exampleDir . $examplePage;
   $exampleLayout     = padTagParm ( 'layout' , layout ("$exampleFile.pad") );
   $exampleOnlyResult = onlyResult ( "$exampleFile.pad" );
