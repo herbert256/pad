@@ -63,13 +63,16 @@
       if ( is_object ($current) or is_resource ($current) )
         $current = (array) $current;
 
-      $found = padAtKey ( $current, $name );
-
       if ( ! is_array ($current) or ! count ($current) )
 
         return INF;
 
-      elseif ( $found ) {
+      // Only now that $current is known to be an array - a numeric step into a scalar,
+      // {$user.name.1}, handed padAtKey a string and died on a TypeError.
+
+      $found = padAtKey ( $current, $name );
+
+      if ( $found ) {
 
         $current = &$current [$found];
 
