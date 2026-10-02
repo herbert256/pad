@@ -115,7 +115,7 @@
       else
         $type = 'xml';
     }
-    elseif ( substr ($content, 9, 5) == '<html' )
+    elseif ( substr ($content, 0, 5) == '<html' )
       $type = 'html';
     elseif ( substr($content, 0, 1) == '<')
       $type = 'xml';
