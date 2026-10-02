@@ -391,7 +391,10 @@
     if ( ! str_starts_with ( $name, 'catalog/' ) )
       return 1;
 
-    return max ( 1, preg_match_all ( '/^\S+: /m', $expect ) );
+    // A label may stand at the very end with nothing after it: the answer is trimmed, so the
+    // last line's 'marker: ' lost its space and went uncounted.
+
+    return max ( 1, preg_match_all ( '/^\S+:(?: |$)/m', $expect ) );
 
   }
 
