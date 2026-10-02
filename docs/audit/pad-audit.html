@@ -569,13 +569,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm" id="m11">
+    <div class="finding pm fixed" id="m11">
       <div class="tag"><div class="priority">Medium</div><div class="cat">Data correctness</div></div>
       <div>
-        <h3>The CSV reader silently corrupts cells<span class="live">verified live</span></h3>
+        <h3>The CSV reader silently corrupts cells<span class="live">verified live</span><span class="done">Fixed</span></h3>
         <p class="where">data/csv.php:13-30</p>
         <p>The parser emulates CSV quoting with URL encoding: every cell is passed through <code>urldecode()</code> (so <code>A+B</code> → <code>A B</code>, <code>%41</code> → <code>A</code>, <code>+31 6</code> loses its <code>+</code>), <code>mb_convert_encoding(ISO-8859-1 → UTF-8)</code> is applied to quoted fields only (so a quoted <code>café</code> becomes <code>cafÃ©</code> while unquoted text stays correct), and the internal <code>!!Q!!</code> sentinel collides with ordinary input (a literal <code>!!Q!!</code> → <code>"</code>; an empty quoted field <code>""</code> → <code>"</code>). Rows wider than the header produce undefined keys.</p>
         <div class="fix"><b>Fix:</b> use <code>str_getcsv</code>/<code>fgetcsv</code> on a memory stream with explicit delimiter, enclosure and escape, and no implicit decoding or re-encoding unless the caller declares an encoding.</div>
+        <div class="resolved"><b>Fixed:</b> <code>data/csv.php</code> reads with <code>fgetcsv</code> over a memory stream (RFC 4180 quoting, no backslash escape) and decodes nothing: <code>A+B</code>, <code>%41</code>, <code>+31 6</code> and a quoted <code>café</code> come through as written, <code>""</code> is an empty cell, <code>"say ""hi"""</code> is <code>say "hi"</code>, a literal <code>!!Q!!</code> stays itself, and a cell beyond the header is left out instead of reading an undefined key. Trimming, blank-line skipping and rows numbered from 1 are kept. A new framework case <code>data/csv_cells_are_taken_as_written</code> pins it.</div>
       </div>
     </div>
 
