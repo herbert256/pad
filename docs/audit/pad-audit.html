@@ -228,6 +228,7 @@
   <a href="#high">High</a>
   <a href="#medium">Medium</a>
   <a href="#low">Low &amp; info</a>
+  <a href="#after">After the audit</a>
   <a href="#suite">Test-suite notes</a>
   <a href="#strengths">Strengths</a>
   <a href="#remediation">Remediation</a>
@@ -269,6 +270,7 @@
       <li><b>Partly fixed (9):</b> <a href="#c2">C2</a> (key values escaped; the SQL-fragment options remain), <a href="#m8">M8</a>, <a href="#m9">M9</a>, <a href="#m10">M10</a>, <a href="#m15">M15</a>, <a href="#m23">M23</a>, <a href="#m24">M24</a>, <a href="#m25">M25</a>, <a href="#m26">M26</a>. <a href="#h3">H3</a> has one item of its fix line done.</li>
       <li><b>Low:</b> tag targets fixed, direct <code>/pad.php</code> fixed; evaluator detail (date, like), path helpers and HTTP status (log forging) partly.</li>
       <li><b>Left for a decision:</b> <a href="#c1">C1</a>, <a href="#h2">H2</a>, <a href="#h4">H4</a>, <a href="#h5">H5</a>, <a href="#h7">H7</a>, <a href="#h8">H8</a>, <a href="#h9">H9</a>, <a href="#h10">H10</a> and the rest of <a href="#h3">H3</a>: architecture, API or policy. <a href="#m1">M1</a>, <a href="#m3">M3</a>: a host or containment policy. <a href="#m6">M6</a>: the scanner. <a href="#m13">M13</a>, <a href="#m14">M14</a>: sequence membership and stored answers; M14 was tried and reverted, see its note. <a href="#m16">M16</a>: performance.</li>
+      <li><b>Found after the audit:</b> 77 further defects fixed, one commit each; <a href="#after">eight left open</a> (A1–A8), each for a decision.</li>
     </ul>
     <p class="small">One baseline that encoded a bug has been retired: <code>regression/info</code> no longer asserts that the XML report grew (M12). The sequence baselines named under the test-suite notes still encode M13 and M14.</p>
   </div>
@@ -806,6 +808,107 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
     <h3>Informational — dead code &amp; systemic shape</h3>
     <p><b>Dead or dormant:</b> <code>padValidFile</code>, <code>padValidatePath</code>, <code>padValidType</code> and <code>padPath()</code>'s result are never used; <code>padFastLink()</code> is documented and still inserts DB rows, but its resolver (<code>inits/fast.php</code>) returns unconditionally, so the <code>unserialize</code> behind it is dormant, not live; <code>inits/database.php</code> and <code>start/sandbox.php</code> are never included; most of <code>events/</code> never fires and <code>events/stats.php</code> reads keys the stats writer never stores; <code>tags/foo.php</code> and <code>tags/_go/data.php</code> are stubs; in sequences, 186 <code>playSingle</code>/<code>playDouble</code>/<code>readme</code> markers and 211 of 212 <code>flags/</code> files are never read.</p>
     <p><b>Systemic:</b> control flow is <code>include</code> statements over ~70 parallel per-level global arrays, plus ~360 include-as-function files in sequences — so cleanup, variable lifetime and execution order are part of each fragment's effective API. Correctness depends on hand-maintained lists of global names and prefix filters spread across several files (<code>inits/const.php</code>, <code>lib/checks.php</code>, <code>lib/valid.php</code>), and the list is already out of date (it omits <code>padWhileRound</code>, <code>padOptionsAppStartCall</code>). A restart is a nested <code>include</code>, so abandoned runs stay on the stack; the app's <code>_config/config.php</code> is included two or three times per request (so it can't define functions); and the sequence pipeline exists in four hand-listed copies that have drifted apart — the direct source of three of the H9 bugs. Because several regression baselines were captured from buggy output, the suite now actively protects those bugs.</p>
+  </div>
+</section>
+
+<section id="after">
+  <h2>Found after the audit <span class="count">— 8 open</span></h2>
+  <div class="card" style="margin-bottom:1rem">
+    <p>A second sweep looked for defects the audit does not name. It fixed 77 small bugs, one commit each (<code>361d6e391</code> … <code>ab87645a1</code>), every one reproduced against the old code before it was changed, with the gate run after each. Among them was the cause of the gate run that did not complete (<a href="#suite">Test-suite notes</a>): the gate's own fault-injection case ran <code>ci.sh</code> nine times inside one request, at six <code>php</code> starts per suite, and outran PHP's 30 s limit, so the Framework chunk around it hit its 60 s one (<code>361d6e391</code>).</p>
+    <p>The eight below were left open: each needs a decision rather than a small patch.</p>
+  </div>
+  <div class="findings">
+
+    <div class="finding pl" id="a1">
+      <div class="tag"><div class="priority">Open</div><div class="cat">A1 · Error handling</div></div>
+      <div>
+        <h3><code>db()</code> cannot report its own SQL errors</h3>
+        <p class="where">lib/db.php:51-54, 117-120</p>
+        <p>Since PHP 8.1 mysqli defaults to <code>MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT</code>, and nothing calls <code>mysqli_report</code>, so <code>mysqli_connect</code> and <code>mysqli_query</code> throw <code>mysqli_sql_exception</code> instead of returning false. The <code>if ( ! $connect )</code> and <code>if ( ! $query )</code> branches, with their <code>padError ( 'SQL: … / ' . $sql )</code>, never run: the message the try guard reports lacks the statement, and under <code>log</code> or <code>ignore</code> the exception abandons the calling PHP file instead of <code>db()</code> answering empty.</p>
+        <div class="fix"><b>Decision:</b> <code>mysqli_report ( MYSQLI_REPORT_OFF )</code> in <code>padDbConnect</code> brings the branches back, but under the continuing actions <code>db()</code> then hands its callers FALSE where they expect rows. Decide what <code>db()</code> answers after a failed statement, in line with the call-not-return rule of <code>cd3d66627</code>.</div>
+      </div>
+    </div>
+
+    <div class="finding pl" id="a2">
+      <div class="tag"><div class="priority">Open</div><div class="cat">A2 · Session</div></div>
+      <div>
+        <h3>A session variable set to NULL or unset is never cleared</h3>
+        <p class="where">lib/session.php:78-80</p>
+        <p><code>padCloseSessionTry</code> writes a declared name back only <code>if ( isset ( $GLOBALS [$var] ) )</code>, so <code>$user = NULL</code> or <code>unset ( $user )</code> leaves the stored value in place: a logout done that way keeps the user on the next request. Only <code>$user = ''</code> clears it.</p>
+        <div class="fix"><b>Decision, with <a href="#h5">H5</a>:</b> this is the write-back H5 redesigns ("write back only values the app assigned"). <code>unset ( $_SESSION [$var] )</code> when the application set the name to NULL or unset it is the small form of that.</div>
+      </div>
+    </div>
+
+    <div class="finding pl" id="a3">
+      <div class="tag"><div class="priority">Open</div><div class="cat">A3 · Data</div></div>
+      <div>
+        <h3>Compact JSON in <code>_data</code> fails under the strict check</h3>
+        <p class="where">types/_go/local.php:28-31</p>
+        <p>Every <code>_data</code> file except <code>.php</code> is run through <code>padCode</code> before <code>padData</code> parses it, so tags inside it expand. JSON as <code>json_encode</code> writes it, <code>[{"a":"1"}]</code>, then reads as a tag named <code>"a":"1"</code>: <code>{menu}</code>, <code>{local:menu.json}</code> and <code>{data 'm', 'menu.json'}</code> fail with "there is no tag named …" under <code>$padCheckSyntax</code>, while the lenient walk keeps the text and works. Every shipped <code>.json</code> file is pretty-printed, which is why nothing fails today.</p>
+        <div class="fix"><b>Decision:</b> skip <code>padCode</code> for <code>.json</code> (losing tags inside JSON data files), or have the scanner keep <code>{"</code> as literal text, the way it keeps a <code>{</code> followed by whitespace.</div>
+      </div>
+    </div>
+
+    <div class="finding pl" id="a4">
+      <div class="tag"><div class="priority">Open</div><div class="cat">A4 · Type resolution</div></div>
+      <div>
+        <h3>A pipe function used as a tag can resolve to PHP's function of the same name</h3>
+        <p class="where">lib/type.php:42 · types/php.php</p>
+        <p><code>{substr 0, 2}abcdef{/substr}</code> never reaches <code>padFunctionAsTag</code>: the bare word resolves to PHP's <code>substr()</code> first, so the content comes back whole (verified: <code>abcdef</code>), and <code>{substr 2}…{/substr}</code> ends in "substr() expects at least 2 arguments". <code>{mid 2, 1}</code>, <code>{left 2}</code> and <code>{replace 'a','x'}</code>, names PHP does not have, work.</p>
+        <div class="fix"><b>Part of <a href="#c1">C1</a>:</b> once the <code>function_exists</code> fallback is dropped, or comes after the PAD function lookup, this resolves to the PAD function.</div>
+      </div>
+    </div>
+
+    <div class="finding pl" id="a5">
+      <div class="tag"><div class="priority">Open</div><div class="cat">A5 · Expression</div></div>
+      <div>
+        <h3>A nested call in an argument list swallows the argument before it</h3>
+        <p class="where">eval/type/parms.php:26-30</p>
+        <p>A type that takes parameters treats the value token right in front of it as its piped value. Inside another call's argument list the tokenizer has dropped the commas, so the preceding argument looks piped: <code>{echo "a5c" | replace(5, sequence:fibonacci(6))}</code> fails with "replace wants 2 parameters" (the control <code>replace(5, 8)</code> gives <code>a8c</code>), and <code>{echo php:str_pad('7', 3, '0', php:constant('STR_PAD_LEFT'))}</code> gives <code>700</code> instead of <code>007</code>.</p>
+        <div class="fix"><b>With <a href="#h8">H8</a>:</b> keep the argument separator as a token, or mark the argument ranges in <code>padEvalOpnCls</code>, so a call inside an argument list never consumes its neighbour.</div>
+      </div>
+    </div>
+
+    <div class="finding pl" id="a6">
+      <div class="tag"><div class="priority">Open</div><div class="cat">A6 · Sequence</div></div>
+      <div>
+        <h3>A count of 0 runs ten rows</h3>
+        <p class="where">sequence/inits/find/parm/quick.php:14,29 · sequence/inits/limits.php:15-18</p>
+        <p><code>{sequence $n}</code> with <code>$n = 0</code>, <code>{loop 0}</code> and <code>rows=0</code> all give 1 … 10: <code>quick.php</code> takes 0 as no count, and <code>limits.php</code> takes rows 0 as unset and fills in the default of 10. But rows 0 is also the engine's own word for "no limit": the <code>randomly</code> fallback sets it on purpose before its first pass, so 0 cannot simply be made to mean "none".</p>
+        <div class="fix"><b>Decision:</b> what a count or <code>rows</code> of 0 means to the author. If it is "no rows", the internal "no limit" needs a value of its own first (<code>PHP_INT_MAX</code> or NULL).</div>
+      </div>
+    </div>
+
+    <div class="finding pl" id="a7">
+      <div class="tag"><div class="priority">Open</div><div class="cat">A7 · Custom tags</div></div>
+      <div>
+        <h3>Variables set by a <code>_tags</code> PHP file never reach the function group</h3>
+        <p class="where">types/_go/tag.php:13-20</p>
+        <p>The publish step copies the tag file's variables into <code>$padLvlFunVar</code>, filtered by <code>! array_key_exists ( $padK, $GLOBALS )</code>. In a page run the level loop runs at global scope, so every variable the tag's PHP sets is already a global and the filter drops it: a <code>_tags/mytag.php</code> that sets <code>$myLocal</code> leaves <code>{echo $myLocal@function}</code> with "no field named". The same lookup works for callbacks.</p>
+        <div class="fix"><b>Decision:</b> snapshot the global names before <code>call/ob.php</code> and publish what the call added or changed. That touches how tag variables are scoped, so it is worth deciding first whether they should stay globals at all.</div>
+      </div>
+    </div>
+
+    <div class="finding pl" id="a8">
+      <div class="tag"><div class="priority">Open</div><div class="cat">A8 · Info</div></div>
+      <div>
+        <h3>The trace status cannot report <code>-else</code></h3>
+        <p class="where">info/types/trace/_lib.php:351-353</p>
+        <p><code>padInfoTraceStatusGo</code> compares <code>$padBase [$pad] == $padBase [$pad]</code>, which always holds, so a level with both a result and a base is always <code>-true</code> and <code>-else</code> is unreachable. The next line compares the base with <code>$padFalse</code>; what the first was meant to compare, most likely the result with the base, cannot be read from the code. Trace output only.</p>
+        <div class="fix"><b>Decision:</b> what <code>-true</code> and <code>-else</code> are meant to say; then compare <code>$padResult</code> with <code>$padBase</code> and with <code>$padFalse</code> to match.</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="card" style="margin-top:1rem">
+    <h3>Looked at and left as they are</h3>
+    <ul>
+      <li><code>lib/checks.php</code>: text that ends in <code>)</code> is sniffed as JSON. Deliberate: it is how JSONP-wrapped data, <code>cb({…})</code>, reaches <code>data/json.php</code>, which trims to the outer braces. A CSV block whose last cell ends in <code>(home)</code> collides with it.</li>
+      <li><code>sequence/exits/store/set.php</code>: <code>push=</code> after a <code>shift</code> or <code>pop</code> stores what is left of the pulled store, not the terms taken. The file's header says so.</li>
+      <li><code>lib/data.php:195</code>: a dead branch compares with <code>'data '</code> (trailing space) and reads an undeclared <code>$padParm</code>. Making it live would change how unnamed data is named, and nothing reaches it today.</li>
+      <li><code>info/types/trace/start.php:30</code>: <code>$Result</code> for <code>$padResult</code>. No effect: <code>$pad</code> is -1 there.</li>
+    </ul>
+    <p class="small">Seen while testing and not investigated: <code>{sequence 4..10, skip=2}</code> answers <code>3 4 5 6 7</code>, and <code>{sequence multiple 3, rows=4}</code> answers <code>1 2 3 4</code> where <code>{keep:multiple 3, rows=4}</code> gives <code>3 6 9 12</code>.</p>
   </div>
 </section>
 
