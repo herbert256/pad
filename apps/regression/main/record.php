@@ -59,13 +59,18 @@
     // The preview: what stands, what the page answers now, and the one link that records
     // it - carrying the hash of exactly this body.
 
+    // padEscape as the overview tables have it: a body full of braces is PAD markup to the
+    // walk this page goes through. And the page ends on TRUE - a bare return is NULL, which
+    // drops the page entirely, so the preview never showed: a browser got an empty frame,
+    // and curl only found the link inside the error dump that took its place.
+
     echo '<h2>record ' . htmlspecialchars ( "$recSuite / $recName" ) . '</h2>';
-    echo '<p>The store holds:</p><pre>'   . htmlspecialchars ( $recOld ) . '</pre>';
-    echo '<p>The page answers:</p><pre>'  . htmlspecialchars ( $recNew ) . '</pre>';
+    echo '<p>The store holds:</p><pre>'   . padEscape ( htmlspecialchars ( $recOld ) ) . '</pre>';
+    echo '<p>The page answers:</p><pre>'  . padEscape ( htmlspecialchars ( $recNew ) ) . '</pre>';
     echo '<p><a href="?record&suite=' . urlencode ( $recSuite ) . '&name=' . urlencode ( $recName )
        . '&go=' . $recHash . '">record this answer</a></p>';
 
-    return;
+    return TRUE;
 
   }
 
