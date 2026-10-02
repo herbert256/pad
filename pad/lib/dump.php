@@ -133,7 +133,7 @@
 
       padDumpLines ( "Last Curl",  $padCurlLast );
 
-      unset ( $pad ['padLastCurl'] );
+      unset ( $pad ['padCurlLast'] );
 
     }
 
