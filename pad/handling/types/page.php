@@ -5,6 +5,12 @@
   // Pages are counted from 1 and rows defaults to 10, so page="3" rows="12" keeps rows
   // 25 to 36; padHandGo() drops everything outside that window. Also reached from
   // handling/types/rows.php when rows is used without a page.
+  //
+  // A {select} level has had its page cut by the SQL limit already - padSelectLimit marks
+  // the two options 'limit' - and paging those rows again would keep nothing past page 1.
+
+  if ( ( $padDone [$pad] ['page'] ?? '' ) === 'limit' )
+    return;
 
   $padHandPage  = (int) ($padPrm [$pad] ['page'] ??  1);
   $padHandRows  = (int) ($padPrm [$pad] ['rows'] ?? 10);

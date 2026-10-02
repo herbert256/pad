@@ -70,7 +70,7 @@
     $order        = $prm ['order']        ?? $parms ['order']       ?? '';
     $page         = $prm ['page']         ?? $parms ['page']        ?? 0;
     $rows         = $prm ['rows']         ?? $parms ['rows']        ?? 0;
-    $htmlAttrJson = $prm ['htmlAttrJson'] ?? $parms ['rows']        ?? 0;
+    $htmlAttrJson = $prm ['htmlAttrJson'] ?? $parms ['htmlAttrJson'] ?? 0;
 
     if ( ! $padHtmlAttrJson and $htmlAttrJson ) {
       $padHtmlAttrJson = $htmlAttrJson;
@@ -163,13 +163,18 @@
 
   }
 
+  // The page is taken by the SQL limit, and the two options are marked 'limit' on this
+  // level's book: handling/types/page.php sees the mark and leaves the rows alone. The
+  // guard read $padDone ['page'], a key the per-level book never has, so the pager ran
+  // again on the rows the limit had already cut - page 2 and on came out empty.
+
   function padSelectLimit ( $rows, $page ) {
 
-    global $padDone;
+    global $pad, $padDone;
 
     $limit = '';
 
-    if ( ! isset($padDone['page']) or ! isset($padDone['rows']))
+    if ( ( $padDone [$pad] ['page'] ?? '' ) !== 'limit' )
 
       if ($page or $rows) {
 
@@ -179,8 +184,8 @@
         $offset = ($page-1) * $rows;
         $limit = "limit $offset, $rows";
 
-        padDone ('page', TRUE);
-        padDone ('rows', TRUE);
+        padDone ('page', 'limit');
+        padDone ('rows', 'limit');
 
       }
 
@@ -300,7 +305,10 @@
           break;
 
         $joinTable = padSelectGetDB ( $table ) ;
-        padSelectAddFields ($fields, $joinTable ['db'] , $joinTable ['fields'] );
+
+        if ( isset ( $joinTable ['fields'] ) )
+          padSelectAddFields ($fields, $joinTable ['db'] , $joinTable ['fields'] );
+
         $joinSQL .= ' ' . $xtype .  ' join ' . $joinTable ['db'] . ' ';
 
         if ( isset($value ['key']) ) {
