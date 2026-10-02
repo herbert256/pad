@@ -9,7 +9,7 @@
 
   include_once PAD . 'info/types/xref/_lib.php';
 
-  $padInfoXrefSource = padInfoGet ( APP . $padStartPage . '.pad' );
+  $padInfoXrefSource = padPageTemplate ( APP . $padStartPage );
 
   // The configuration this application chose for itself, captured by inits/config.php:
   // recorded once per page, so the reference's configuration families can point at real
