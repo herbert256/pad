@@ -140,8 +140,15 @@
     if ( count($parts) < 2 )
       return padAtSearchIdx ( $current, $name );
 
+    // One bare word is the value itself, as level/ternary.php reads it: run through padEval
+    // a word that names a property, a function or a tag was resolved instead of compared,
+    // so n=name or n=upper found nothing. A number, a $field or a quoted string still goes
+    // through the evaluator.
+
     $before = $parts [0];
-    $after  = padEval ( $parts [1] );
+    $after  = ( preg_match ( '/^[A-Za-z_][A-Za-z0-9_-]*$/', trim ( $parts [1] ) ) )
+            ? trim ( $parts [1] )
+            : padEval ( $parts [1] );
 
     foreach ( $current as $key => $value ) {
 
