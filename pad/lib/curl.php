@@ -100,7 +100,7 @@
 
         $output ['url']    = "file://$check";
         $output ['data']   = padDataFileData ( $check );
-        $output ['type']   = padContentType  ( $output ['data'] );
+        $output ['type']   = is_array ( $output ['data'] ) ? 'array' : padContentType ( $output ['data'] );
         $output ['result'] = '200';
         $output ['done']   = TRUE;
 
