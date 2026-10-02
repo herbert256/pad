@@ -19,7 +19,7 @@
   $sources = array_merge ($sources, getExtra      ( $basePage )            );
   $sources = array_merge ($sources, getExtraFiles ( "$baseDir/_lib" )      );
   $sources = array_merge ($sources, getExtraFiles ( "$baseDir/_data" )     );
-  $sources = array_merge ($sources, getExtraFiles ( "$baseDir/_includes" ) );
+  $sources = array_merge ($sources, getExtraFiles ( "$baseDir/_include" )  );
 
   foreach ( $sources as $source ) {
     if     ( substr ($source, -4) == '.php')  $extraFiles [$source] ['php']   = $source;
