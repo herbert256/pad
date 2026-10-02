@@ -4,8 +4,9 @@
   //
   // padDataFilterGo  keeps occurrences $start..$end and drops the rest (currently unused)
   // padHandGo        the same for the handling tags (handling/types/row|start|page.php),
-  //                  additionally cutting off after $count kept rows; it leaves its
-  //                  counters behind in the globals $now and $hit
+  //                  additionally cutting off after $count kept rows. Its counters are
+  //                  its own: they were the globals $now and $hit, and a paged tag
+  //                  overwrote an application's $now with a row number
 
   function padDataFilterGo (&$vars, $start, $end) {
 
@@ -19,8 +20,6 @@
   }
 
   function padHandGo ( &$vars, $start, $end, $count=0 ) {
-
-    global $hit, $now;
 
     $now = $hit = 0;
 
