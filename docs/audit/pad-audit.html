@@ -580,13 +580,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm" id="m12">
+    <div class="finding pm fixed" id="m12">
       <div class="tag"><div class="priority">Medium</div><div class="cat">Resource leak</div></div>
       <div>
-        <h3>The XML info report grows forever because the reset deletes the wrong path</h3>
+        <h3>The XML info report grows forever because the reset deletes the wrong path<span class="done">Fixed</span></h3>
         <p class="where">info/types/xml/start.php:23-31 vs _lib.php:197</p>
         <p>The report is written with <code>padFilePut</code> (which prepends <code>DATA</code>) but the start-of-request reset checks the <em>relative</em> path, which resolves against the app directory (the process <code>chdir</code>s to <code>APP</code>). The delete is a permanent no-op, so every request appends another copy — one report on disk already holds 708 repeated blocks. The <code>regression/info</code> test even asserts the file <em>grew</em>, so it passes because of the bug.</p>
         <div class="fix"><b>Fix:</b> delete <code>DATA . $padInfoXmlFile</code>, or truncate on first write.</div>
+        <div class="resolved"><b>Fixed:</b> <code>info/types/xml/start.php</code> deletes <code>DATA . $padInfoXmlFile</code>, the file <code>padFilePut</code> actually writes, so each request leaves one tree (the compact probe report held 744 stacked copies before). The <code>regression/info</code> check no longer asserts that the file grew: it plants a stale tree in the report&#39;s place before the fetch and requires one well-formed tree without it afterwards — verified to answer NO against the old <code>start.php</code> and yes against the fix.</div>
       </div>
     </div>
 

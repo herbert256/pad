@@ -3,12 +3,20 @@
   // Fetches the probe - a loop, a pipe and a sequence, rendered with all five info modes on
   // and every option of each - and asserts that every mode recorded something for that very
   // request: not that artifacts exist, but that this fetch grew them.
+  //
+  // The xml report is the exception: each request writes it afresh. A stale tree is left
+  // in its place before the fetch, so afterwards the file has to be one well-formed tree
+  // without it - an engine that stops clearing the report appends to the stale tree and
+  // the two roots no longer parse.
 
   $traceBefore = count ( glob ( DATA . 'trace/probe/*' ) ?: [] );
   $trackBefore = count ( glob ( DATA . 'track/requests/*' ) ?: [] );
-  $xmlBefore   = file_exists ( DATA . '_xml/compact/include/probe.xml' )
-               ? filesize ( DATA . '_xml/compact/include/probe.xml' ) : 0;
+  $xmlFile     = DATA . '_xml/compact/include/probe.xml';
   $dbBefore    = (int) padDb ( "field count(*) from track_request" );
+
+  padFilePut ( $xmlFile, "<stale />" );
+
+  libxml_use_internal_errors ( TRUE );
 
   $r = padCurl ( $padHost . 'regression/info/?probe&padInclude' );
 
@@ -23,12 +31,13 @@
 
     $traceAfter = count ( glob ( DATA . 'trace/probe/*' ) ?: [] );
     $trackAfter = count ( glob ( DATA . 'track/requests/*' ) ?: [] );
-    $xmlAfter   = file_exists ( DATA . '_xml/compact/include/probe.xml' )
-                ? filesize ( DATA . '_xml/compact/include/probe.xml' ) : 0;
+    $xmlText    = file_exists ( $xmlFile ) ? file_get_contents ( $xmlFile ) : '';
+    $xmlOne     = ! str_contains ( $xmlText, '<stale' )
+                  and simplexml_load_string ( $xmlText ) !== FALSE;
     $dbAfter    = (int) padDb ( "field count(*) from track_request" );
 
     if ( $traceAfter > $traceBefore and $trackAfter > $trackBefore
-         and $xmlAfter > $xmlBefore and $dbAfter > $dbBefore )
+         and $xmlOne and $dbAfter > $dbBefore )
       break;
 
     usleep ( 100000 );
@@ -40,7 +49,7 @@
   $vStats = ( is_array ( $stats ) and isset ( $stats ['total'] ) )      ? 'yes' : 'NO';
   $vTrace = ( $traceAfter > $traceBefore )                              ? 'yes' : 'NO';
   $vTrack = ( $trackAfter > $trackBefore and $dbAfter > $dbBefore )     ? 'yes' : 'NO';
-  $vXml   = ( $xmlAfter > $xmlBefore )                                  ? 'yes' : 'NO';
+  $vXml   = ( $xmlOne )                                                 ? 'yes' : 'NO';
   $vXref  = ( str_contains ( $xref, 'regression/info;probe' ) )         ? 'yes' : 'NO';
 
 ?>
