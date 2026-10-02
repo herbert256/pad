@@ -4,6 +4,12 @@
   // is the $padFileNextPage page delivered as normal web, with the payload's body nowhere
   // in it, and the written file holding that body under the configured name.
 
+  // The directory starts empty, so the file found below is this fetch's: the suite fetches
+  // the payload page on its own as well, and the file that left behind satisfied the check
+  // on the next run whether or not the writer still worked.
+
+  padDeleteDataDir ( DATA . 'regression_output_file' );
+
   $r = padCurl ( $padHost . 'regression/output_file/?payload&padInclude' );
 
   $landed = FALSE;
