@@ -125,9 +125,14 @@
 
   }
 
+  // A closer may carry a pipe, {/if | upper}, so {/tag followed by a space closes too -
+  // counting only {/tag} left such a nested pair looking open, and the enclosing tag's
+  // {else} or {when} was skipped as if it belonged to the inner one.
+
   function padCheckTag ($tag, $string) {
 
-    return ( substr_count($string, "{".$tag.' ') == substr_count($string, "{/" . $tag.'}') ) ;
+    return ( substr_count($string, "{".$tag.' ') == substr_count($string, "{/" . $tag.'}')
+                                                  + substr_count($string, "{/" . $tag.' ') ) ;
 
   }
 
