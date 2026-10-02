@@ -143,7 +143,7 @@
       $j = ob_get_level ();
 
       for ( $i = 1; $i <= $j; $i++ )
-        $output .= ob_get_clean ();
+        $output = ob_get_clean () . $output;
 
     } catch (Throwable $ignored) {
 
