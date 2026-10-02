@@ -228,6 +228,8 @@
           if ( $name == 'set-cookie') {
             $first = strpos ($value, '=');
             $last  = strpos ($value, ';');
+            if ( $last === FALSE )
+              $last = strlen ($value);
             if ( $first !== FALSE and $last !== FALSE and $first > 0 and $last > $first )
              $output ['cookies'] [substr($value, 0, $first)] = substr($value, $first+1, $last-$first-1);
           }
