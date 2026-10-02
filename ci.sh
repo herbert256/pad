@@ -43,10 +43,14 @@ for suite in pages common errors framework regression sequence manual other; do
 
   [ -f "$file" ] || { echo "CI: no result for $suite" >&2; exit=1; continue; }
 
-  summary=$(php -r 'echo json_decode(file_get_contents($argv[1]), true)["summary"] ?? "unreadable";' "$file")
-  failed=$(php  -r 'echo json_decode(file_get_contents($argv[1]), true)["failed"]  ?? 1;'            "$file")
-  newcnt=$(php  -r 'echo json_decode(file_get_contents($argv[1]), true)["new"]     ?? 0;'            "$file")
-  when=$(php    -r 'echo json_decode(file_get_contents($argv[1]), true)["when"]    ?? 0;'            "$file")
+  # One php reads every field the verdict needs. A php per field made a run slow enough
+  # that the gate's own fault-injection case - nine runs inside one request - outran PHP's
+  # time limit, and the killed request took the Framework suite down with it.
+  { IFS= read -r summary; IFS= read -r failed; IFS= read -r newcnt
+    IFS= read -r when;    IFS= read -r resRun; IFS= read -r resCommit; } < <(
+    php -r '$r = json_decode(file_get_contents($argv[1]), true);
+            echo $r["summary"] ?? "unreadable", "\n", $r["failed"] ?? 1,  "\n", $r["new"]    ?? 0,  "\n",
+                 $r["when"]    ?? 0,            "\n", $r["run"]    ?? "", "\n", $r["commit"] ?? "", "\n";' "$file")
 
   printf '%-12s %s\n' "$suite" "$summary"
 
@@ -60,8 +64,6 @@ for suite in pages common errors framework regression sequence manual other; do
     exit=1
   fi
 
-  resRun=$(php -r 'echo json_decode(file_get_contents($argv[1]), true)["run"] ?? "";' "$file")
-
   if [ "$resRun" != "$run" ]; then
     echo "CI: $suite result belongs to another run" >&2
     exit=1
@@ -69,8 +71,6 @@ for suite in pages common errors framework regression sequence manual other; do
 
   # Held only when both sides know their commit - a runner without shell access stamps
   # nothing, and that is not a mismatch.
-  resCommit=$(php -r 'echo json_decode(file_get_contents($argv[1]), true)["commit"] ?? "";' "$file")
-
   if [ -n "$commit" ] && [ -n "$resCommit" ] && [ "$resCommit" != "$commit" ]; then
     echo "CI: $suite result was written on commit $resCommit, the tree stands on $commit" >&2
     exit=1
