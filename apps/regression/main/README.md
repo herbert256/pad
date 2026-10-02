@@ -48,5 +48,5 @@ Build - on the menu - wipes the suite results and the dumps, then runs the eight
 `DATA/reference` and `DATA/examples` are the develop application's artifacts: its harvest
 pages gather them (the one crawl left) and they stand between builds, so the suites test
 against the standing stores - the reference and manual applications render from them.
-After changing what the stores hold, harvest in develop first. `ci.sh` gates on the seven
+After changing what the stores hold, harvest in develop first. `ci.sh` gates on the eight
 result files in `DATA/suites/`.
