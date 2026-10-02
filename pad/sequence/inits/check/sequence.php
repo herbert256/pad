@@ -10,4 +10,15 @@
   $pqBuild     = pqBuild ( $pqSeq, $pqCheck );
   $pqCheckPlay = $pqCheck;
 
+  // A membership check tests every candidate the tag asked for, so the window the type's
+  // init.php reshaped - even doubles from and to and steps by 2, multiple and step take the
+  // step from their parameter - goes back to what was given. Offered only its own members,
+  // flag:even flagged every term and remove:odd removed them all.
+
+  if ( $pqBuild == 'check' ) {
+    $pqFrom = $pqInitFrom;
+    $pqTo   = $pqInitTo;
+    $pqInc  = $pqInitInc;
+  }
+
 ?>
