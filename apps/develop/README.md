@@ -16,12 +16,11 @@ develop/
 ├── index.pad/.php   # Development dashboard
 ├── build.php        # Build utilities
 ├── clean.php        # Cleanup utilities
-├── errors.php       # Error analysis
-├── errors2.pad/.php # Extended error handling
+├── errors.pad/.php  # The error dumps a crawl left behind, one line per dump
 ├── examples.php     # Example generator
 ├── nuts.pad/.php    # Miscellaneous utilities
 ├── reference.php    # Reference builder
-└── regression.php   # Regression test runner
+└── regression.php   # Starts a fresh build of the regression suites (with go=)
 ```
 
 ## Features
