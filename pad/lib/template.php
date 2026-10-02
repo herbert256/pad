@@ -185,9 +185,12 @@
     $p1 = $parts[0] ?? '';
     $p2 = $parts[1] ?? '';
 
-    if     ( $p2 ) { }
-    elseif ( $p1 ) { $p2 = $p1; $p1 = 1;  }
-    else           { $p1 = 1;   $p2 = 10; }
+    // An end of 0 is an end: tested for truth, '5..0' lost it and became 1..5, and '0..0'
+    // the default 1..10.
+
+    if     ( $p2 !== '' ) { }
+    elseif ( $p1 )        { $p2 = $p1; $p1 = 1;  }
+    else                  { $p1 = 1;   $p2 = 10; }
 
     // range() counts in steps, so a step of zero or no step at all never arrives anywhere and
     // is an error rather than an empty answer; a step given the wrong way round is the same

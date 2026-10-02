@@ -662,13 +662,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm" id="m20">
+    <div class="finding pm fixed" id="m20">
       <div class="tag"><div class="priority">Medium</div><div class="cat">Correctness</div></div>
       <div>
-        <h3>Ranges that end at zero are misread<span class="live">verified live</span></h3>
+        <h3>Ranges that end at zero are misread<span class="live">verified live</span><span class="done">Fixed</span></h3>
         <p class="where">lib/template.php:188-190 (padGetRange)</p>
         <p><code>if ($p2) {} elseif ($p1) { $p2 = $p1; $p1 = 1; }</code> treats an end of <code>"0"</code> as missing. Verified: <code>{sequence "5..0"}</code> yields <code>1 2 3 4 5</code>, not a descent to 0.</p>
         <div class="fix"><b>Fix:</b> test <code>$p2 !== ''</code> rather than truthiness.</div>
+        <div class="resolved"><b>Fixed:</b> <code>padGetRange()</code> tests the end against <code>&#39;&#39;</code> instead of for truth, so <code>{sequence "5..0"}</code> yields 5 4 3 2 1 0 and <code>0..0</code> yields 0 (it was the default 1..10). A single number and the other range forms are unchanged. A framework case <code>sequence/a_range_may_end_at_zero</code> pins it.</div>
       </div>
     </div>
 
