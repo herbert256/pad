@@ -10,6 +10,8 @@
     if ( ! is_dir ( $path ) )
       return [];
 
+    $files = [];
+
     foreach ( padFiles ( $path ) as $item ) {
       $item = str_replace ( '.txt', '', $item );
       $files [$item] ['item']  = $item;
