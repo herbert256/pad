@@ -531,7 +531,7 @@
 
     ob_start (); padDumpLines     ( "ID's", $ids );   padDumpFile ( 'ids',       ob_get_clean () );
     ob_start (); padDumpCurl      ( $pad );           padDumpFile ( 'curl',      ob_get_clean () );
-    ob_start (); padDumpXXX       ( $pad, 'pq' );     padDumpFile ( 'sequence',  ob_get_clean () );
+    ob_start (); padDumpXXX       ( $pq, 'pq' );      padDumpFile ( 'sequence',  ob_get_clean () );
     ob_start (); padDumpLines     ( "Info", $inf );   padDumpFile ( 'info',      ob_get_clean () );
     ob_start (); padDumpLines     ( "Level", $lvl );  padDumpFile ( 'level',     ob_get_clean () );
     ob_start (); padDumpLines     ( 'Config', $cfg ); padDumpFile ( 'config',    ob_get_clean () );
