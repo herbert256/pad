@@ -63,6 +63,12 @@
         $result [$k] [1] = 'VAL';
       }
 
+    // [3] is where the parameters end; left at 0 the type took only the next token, so
+    // {substr 0, 2} and {replace 'a','x'} lost every parameter after the first.
+
+    if ( $k > 100 )
+      $result [100] [3] = $k + 1;
+
     padEvalType ( $result, $myself );
 
     $start = array_key_first ( $result );
