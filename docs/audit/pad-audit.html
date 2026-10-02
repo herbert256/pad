@@ -163,6 +163,13 @@
   .live { display: inline-block; margin-left: .4rem; padding: .05rem .4rem; border-radius: .3rem; background: var(--green-soft); color: var(--green); font-size: .68rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; vertical-align: middle; }
   .ev { margin: .6rem 0 0; padding: .6rem .8rem; border-left: 3px solid color-mix(in srgb, var(--blue) 55%, var(--line)); background: var(--blue-soft); font-size: .88rem; border-radius: 0 .45rem .45rem 0; }
   .ev b { color: var(--blue); }
+  .done { display: inline-block; margin-left: .4rem; padding: .05rem .4rem; border-radius: .3rem; background: var(--green); color: var(--card); font-size: .68rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; vertical-align: middle; }
+  .finding.fixed { border-left: .36rem solid var(--green); }
+  .finding.fixed > div > p:not(.where), .finding.fixed .ev, .finding.fixed .fix, .finding.fixed ul { opacity: .62; }
+  .resolved { margin: .7rem 0 0; padding: .6rem .8rem; border-left: 3px solid var(--green); background: var(--green-soft); font-size: .9rem; border-radius: 0 .45rem .45rem 0; }
+  .resolved b { color: var(--green); }
+  li.fixed { color: var(--muted); }
+  .resolved-inline { display: block; margin-top: .2rem; padding: .3rem .55rem; border-left: 3px solid var(--green); background: var(--green-soft); color: var(--ink); font-size: .88rem; border-radius: 0 .4rem .4rem 0; }
   .good { border-left: .36rem solid var(--green); }
   .good h3 { color: var(--green); }
   .note { padding: 1rem 1.1rem; background: var(--blue-soft); border-color: color-mix(in srgb, var(--blue) 40%, var(--line)); }
@@ -383,13 +390,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding ph" id="h6">
+    <div class="finding ph fixed" id="h6">
       <div class="tag"><div class="priority">High</div><div class="cat">Path validation</div></div>
       <div>
-        <h3><code>padValid()</code> never rejects anything, so names flow into include and exec paths</h3>
+        <h3><code>padValid()</code> never rejects anything, so names flow into include and exec paths<span class="done">Fixed</span></h3>
         <p class="where">lib/valid.php:16-28 · lib/type.php:71-140 · types/script.php:11-21</p>
         <p>The gatekeeper opens with <code>if ( padAtCheck($name) !== INF ) return TRUE;</code> — but <code>padAtCheck</code> returns a boolean, never <code>INF</code>, so this always returns true and the name regex below it is dead code. Verified: <code>padValid('../../etc/x') === true</code>. Prefixed names (<code>prefix:name</code>) are not validated at all. Unvalidated names then become file paths in <code>types/app.php</code>, <code>types/pad.php</code>, <code>types/common.php</code>, <code>get/include.php</code>, <code>get/page.php</code>, <code>types/_go/local.php</code> (a <code>.php</code> hit is executed) and <code>types/script.php</code> (a glob of <code>NAME*</code>, then <code>exec("$padExec $padExecArgs")</code> with the path <em>not</em> run through <code>escapeshellarg</code>). The <code>.pad</code> half is saved by <code>padFileGet</code>'s <code>..</code> rejection; the <code>.php</code>/exec half is not. The <code>callback=</code> value is likewise unvalidated. (This is distinct from the <em>page</em>-name allow-list, which was checked and found sound.)</p>
         <div class="fix"><b>Fix:</b> correct the <code>=== TRUE</code> test; validate <code>item</code> and <code>type</code> with <code>padValidTag</code>; reject <code>/</code> and <code>.</code> anywhere a name becomes a path; wrap <code>$padExec</code> in <code>escapeshellarg</code>.</div>
+        <div class="resolved"><b>Fixed:</b> <code>padValid()</code> tests <code>padAtCheck()</code> as the boolean it is, so the name regex runs and <code>padValid(&#39;../../etc/x&#39;)</code> is <code>false</code>. A new <code>padValidName()</code> refuses <code>/</code>, <code>\</code>, <code>..</code>, glob characters and NUL in every name the engine joins into a path or glob: both halves of a prefixed tag (<code>padTypeTagCheck</code>, <code>padTypeSeq</code>), scripts, <code>callback=</code> and options. The script path itself now goes through <code>escapeshellarg</code> in <code>types/script.php</code> and <code>eval/parms/script.php</code>. Dotted names such as <code>local:nums.json</code> and <code>callback=&#39;x.php&#39;</code> still resolve.</div>
       </div>
     </div>
 

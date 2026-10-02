@@ -19,7 +19,7 @@
 
     $padExecArgs = implode ( ' ', $padExecArgs );
 
-    exec ( "$padExec $padExecArgs", $padExecOut, $padExecReturn );
+    exec ( escapeshellarg ( $padExec ) . " $padExecArgs", $padExecOut, $padExecReturn );
 
     if ( $padExecReturn )
       return padError ( "Script $padExec has returned error $padExecReturn" );

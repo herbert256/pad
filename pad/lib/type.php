@@ -72,6 +72,9 @@
 
     global $padBoolStore, $padContentStore, $padDataStore, $padSelect, $pqStore;
 
+    if ( ! padValidName ( $type ) or ! padValidName ( $item ) )
+      return FALSE;
+
     if     ( padAppTagCheck     ( $item                          ) and $type == 'app'      ) return $type;
     elseif ( padCommonCheck     ( $item                          ) and $type == 'common'   ) return $type;
     elseif ( padCheck           ( PAD . "tags/$item"             ) and $type == 'pad'      ) return $type;
@@ -120,6 +123,9 @@
     global $padTypeSeq, $pqStore;
 
     $padTypeSeq = $type;
+
+    if ( ! padValidName ( $type ) or ! padValidName ( $item ) )
+      return FALSE;
 
     if ( $type == 'action' and file_exists ( PA . "$item.php" )                           ) return 'action';
     if ( $item == 'action' and file_exists ( PA . "$type.php" )                           ) return 'action';

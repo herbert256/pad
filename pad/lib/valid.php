@@ -12,17 +12,31 @@
   // padAtValid    one part either side of an @ in a property reference
   // padValidFile  a file path: safe characters only, no .. or dot segments, and it must
   //               live under APP, DATA or PAD
+  // padValidName  a name the engine joins into a file path or a glob - a prefixed type
+  //               name, a script, callback or option: no directory separator, no .., no
+  //               glob character and no NUL, so it can only ever name something inside the
+  //               directory it is looked up in
 
   function padValid ( $name ) {
 
     if ( trim ( $name ) == '' )
       return FALSE;
 
-    if ( padAtCheck ( $name ) !== INF )
+    if ( padAtCheck ( $name ) )
       return TRUE;
 
     if ( ! preg_match ( '/^[a-zA-Z][:#a-zA-Z0-9_]*$/',$name ) )
       return FALSE;
+
+    return TRUE;
+
+  }
+
+  function padValidName ( $name ) {
+
+    if ( trim ( $name ) == '' )                return FALSE;
+    if ( strpbrk ( $name, "/\\*?[\0" ) !== FALSE ) return FALSE;
+    if ( str_contains ( $name, '..' ) )        return FALSE;
 
     return TRUE;
 

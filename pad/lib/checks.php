@@ -54,6 +54,9 @@
 
   function padScriptCheck ( $check ) {
 
+    if ( ! padValidName ( $check ) )
+      return FALSE;
+
     foreach ( padDirs () as $value )
       if ( count ( glob ( APP2 . $value . "_scripts/$check*" ) ) )
         return APP2 . $value . "_scripts/$check*";
@@ -61,6 +64,9 @@
   }
 
   function padCallBackCheck ( $check ) {
+
+    if ( ! padValidName ( $check ) )
+      return FALSE;
 
     if ( ! str_ends_with ( $check, '.php' ) )
       $check .= '.php';
@@ -74,6 +80,9 @@
   }
 
   function padOptionCheck ( $check ) {
+
+    if ( ! padValidName ( $check ) )
+      return FALSE;
 
     foreach ( padDirs () as $value )
       if ( file_exists ( APP2 . $value . "_options/$check.php" ) )
