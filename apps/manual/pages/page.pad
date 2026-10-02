@@ -32,9 +32,10 @@ request keeps. They differ on both sides of the boundary:</p>
 <h2>Another page as a pass</h2>
 
 <p><code>{open}page 'name'{close}</code> runs that page - its .php and its .pad - as a pass,
-with the same isolation options. A <code>function</code> option gives the pass a real PHP
-variable scope of its own, which is what a page whose .php half must not touch the caller's
-variables wants:</p>
+with the same isolation options. A <code>function</code> option runs the pass inside a PHP
+function body, but it still starts from the caller's variables and what it sets comes back
+out - a page whose .php half must not touch the caller's variables wants <code>clean</code>
+or <code>sandbox</code>:</p>
 
 {example 'fragments/page_3'}
 
