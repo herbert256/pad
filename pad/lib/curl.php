@@ -142,7 +142,7 @@
     padCurlOpt ($options, 'REFERER',        $padGoExt . $padPage);
 
     if ( isset($input['user']) )
-      padCurlOpt ($options, 'USERPWD', $input['user'] . ":" . $input['password']);
+      padCurlOpt ($options, 'USERPWD', $input['user'] . ":" . ( $input['password'] ?? '' ));
 
     if ( isset($input['post']) ) {
       padCurlOpt ($options, 'POST', true);
