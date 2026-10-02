@@ -2,7 +2,7 @@
 
   include APP . 'todo.php';
 
-  switch ( $go ) {
+  switch ( $go ?? '' ) {
 
     case 'add':
 
