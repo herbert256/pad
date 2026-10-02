@@ -1,6 +1,6 @@
 <?php
 
-  // The parameter:n@tag property: the value of one positional parameter of level $padIdx,
+  // The parameter.n@tag property: the value of one positional parameter of level $padIdx,
   // or NULL when the tag has no such parameter.
   //
   // Positional parameters - the values after the tag name, as in {switch 'odd', 'even'} -

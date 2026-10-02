@@ -969,7 +969,7 @@ Access iteration state and metadata using `property@tag` syntax.
 | `parameters@tag` | All parameters |
 | `option.name@tag` | The named option's value |
 | `options@tag` | All options |
-| `variable:x@tag` | Level variable |
+| `variable.x@tag` | Level variable |
 | `variables@tag` | All variables |
 
 ### Properties Example

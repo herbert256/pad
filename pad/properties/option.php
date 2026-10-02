@@ -1,6 +1,6 @@
 <?php
 
-  // The option:name@tag property: the value of one named option of level $padIdx, or NULL
+  // The option.name@tag property: the value of one named option of level $padIdx, or NULL
   // when the tag was not given it.
   //
   // Named options - {items sort="name" reverse} - are kept in $padPrm, a bare one holding
