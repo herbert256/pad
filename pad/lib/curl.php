@@ -170,6 +170,11 @@
   // Everything after the wire: the raw response split on the reported header size, the
   // headers, cookies and content type picked out, the body cleaned. The caller has already
   // put curl_getinfo's answer in ['info'].
+  //
+  // Header names are matched without regard to case, as HTTP has them - an HTTP/2 server
+  // sends them all in lower case, and the exact-case test lost the content type, every
+  // cookie and the PAD-Stats header. Headers are kept under the name as sent, except
+  // PAD-Stats, which is filed under that spelling so its readers find it whatever came.
 
   function padCurlParse ( $output, $result ) {
 
@@ -192,6 +197,7 @@
 
         $header = trim ( $work [0] ?? '' );
         $value  = trim ( $work [1] ?? '' );
+        $name   = strtolower ( $header );
 
         if ( $header and ! $value )
 
@@ -199,10 +205,10 @@
 
         elseif ( $header and $value ) {
 
-          if ( $header == 'Content-Disposition' and !$file)
+          if ( $name == 'content-disposition' and !$file)
             padBetween ($value, '"', '"', $before, $file, $after);
 
-          if ( $header == 'Content-Type' )
+          if ( $name == 'content-type' )
             if     (strpos ($value, 'html')       !== FALSE) $output ['type'] = 'html';
             elseif (strpos ($value, 'xml')        !== FALSE) $output ['type'] = 'xml';
             elseif (strpos ($value, 'json')       !== FALSE) $output ['type'] = 'json';
@@ -211,12 +217,14 @@
             elseif (strpos ($value, 'yaml')       !== FALSE) $output ['type'] = 'yaml';
             elseif (strpos ($value, 'yml')        !== FALSE) $output ['type'] = 'yaml';
 
-          if ( $header == 'Set-Cookie') {
+          if ( $name == 'set-cookie') {
             $first = strpos ($value, '=');
             $last  = strpos ($value, ';');
             if ( $first !== FALSE and $last !== FALSE and $first > 0 and $last > $first )
              $output ['cookies'] [substr($value, 0, $first)] = substr($value, $first+1, $last-$first-1);
           }
+          elseif ( $name == 'pad-stats' )
+            $output ['headers'] ['PAD-Stats'] = $value;
           else
             $output ['headers'] [$header] = $value;
 

@@ -716,13 +716,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm" id="m26">
+    <div class="finding pm fixed part" id="m26">
       <div class="tag"><div class="priority">Medium</div><div class="cat">HTTP decoding</div></div>
       <div>
-        <h3>cURL response parsing treats header names as case-sensitive</h3>
+        <h3>cURL response parsing treats header names as case-sensitive<span class="done part">Partly fixed</span></h3>
         <p class="where">lib/curl.php:184-214,222-225</p>
         <p><code>padCurlParse()</code> compares header names exactly against <code>Content-Type</code>, <code>Set-Cookie</code>, <code>Content-Disposition</code> and <code>PAD-Stats</code>. HTTP field names are case-insensitive, and HTTP/2 origins send them lowercase. Probe: identical responses differing only in <code>Set-Cookie</code> vs <code>set-cookie</code> → cookies <code>{"audit":"ok"}</code> vs <code>[]</code>. For h2 servers the type always falls back to body sniffing (which feeds the <code>list</code>-type evaluation path noted in C1), cookies vanish, and stats are lost.</p>
         <div class="fix"><b>Fix:</b> normalise lookup names to lowercase (keeping original spelling for diagnostics); handle repeated headers explicitly; parse <code>Set-Cookie</code> independently of generic comma-joined headers.</div>
+        <div class="resolved part"><b>Partly fixed:</b> <code>padCurlParse()</code> compares header names lower-cased, so <code>content-type</code>, <code>set-cookie</code> and <code>content-disposition</code> are recognised however they are spelled, and a <code>pad-stats</code> header is filed under <code>PAD-Stats</code>, the name its readers use. Other headers keep the spelling they arrived with. Checked by parsing two responses that differ only in name case: before, cookies <code>{"audit":"ok"}</code> vs <code>[]</code>, type <code>csv</code> vs sniffed, stats 5 vs none; now identical. Still open from the fix line: repeated headers (the last one wins) and <code>Set-Cookie</code> parsing beyond the name.</div>
       </div>
     </div>
 
