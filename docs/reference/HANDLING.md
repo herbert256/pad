@@ -7,7 +7,7 @@ This document provides a complete reference for all PAD data handling functions.
 Data handling functions transform data arrays before they are rendered in templates. They are applied as options on PAD tags:
 
 ```
-{tagName sort="field" first="5" reverse}
+{tagName sort="field", first="5", reverse}
 ```
 
 Multiple handlers can be combined and are applied in sequence.
@@ -67,7 +67,7 @@ Reverses the order of data array.
 
 **Example:**
 ```html
-{users sort="date" reverse}
+{users sort="date", reverse}
 {-- Sort by date then reverse for newest first --}
 ```
 
@@ -87,7 +87,7 @@ Randomly shuffles all elements.
 
 **Example:**
 ```html
-{quotes shuffle first="1"}
+{quotes shuffle, first="1"}
 {-- Get one random quote --}
 ```
 
@@ -102,7 +102,7 @@ Selects random elements with advanced options.
 ```
 {data random}
 {data random="5"}
-{data random="3" orderly duplicates}
+{data random="3", orderly, duplicates}
 ```
 
 **Parameters:**
@@ -115,10 +115,10 @@ Selects random elements with advanced options.
 {products random="4"}
 {-- Select 4 random products --}
 
-{users random="3" orderly}
+{users random="3", orderly}
 {-- Select 3 random users, maintain their original order --}
 
-{colors random="10" duplicates}
+{colors random="10", duplicates}
 {-- Select 10 colors, allowing repeats --}
 ```
 
@@ -146,7 +146,7 @@ Gets the first N elements.
 {news first="3"}
 {-- Show first 3 news items --}
 
-{users sort="score DESC" first="10"}
+{users sort="score DESC", first="10"}
 {-- Top 10 users by score --}
 ```
 
@@ -172,7 +172,7 @@ Gets the last N elements.
 {logs last="20"}
 {-- Show last 20 log entries --}
 
-{orders sort="date" last="5"}
+{orders sort="date", last="5"}
 {-- Last 5 orders --}
 ```
 
@@ -208,8 +208,8 @@ Gets a specific row by number.
 Paginates data into pages.
 
 ```
-{data page="1" rows="10"}
-{data page="2" rows="25"}
+{data page="1", rows="10"}
+{data page="2", rows="25"}
 ```
 
 **Parameters:**
@@ -222,10 +222,10 @@ Paginates data into pages.
 
 **Examples:**
 ```html
-{users page="1" rows="20"}
+{users page="1", rows="20"}
 {-- First 20 users --}
 
-{products page="3" rows="12"}
+{products page="3", rows="12"}
 {-- Products 25-36 (page 3 with 12 per page) --}
 ```
 
@@ -252,8 +252,8 @@ Gets a specific number of rows (shorthand for pagination).
 {users rows="5"}
 {-- First 5 users --}
 
-{logs end="-1" rows="10"}
-{-- Last 10 log entries --}
+{logs end="-1", rows="10"}
+{-- The 10 log entries before the last one --}
 ```
 
 ---
@@ -273,7 +273,7 @@ Sets the starting position for data selection.
 
 **Examples:**
 ```html
-{users start="11" rows="10"}
+{users start="11", rows="10"}
 {-- Users 11-20 --}
 
 {items start="-5"}
@@ -293,15 +293,15 @@ Sets the ending position for data selection.
 
 **Parameters:**
 - Positive number - End at this position
-- Negative number - End relative to array end
+- Negative number - Leave that many rows off the end (-1 = all but the last)
 
 **Examples:**
 ```html
-{users start="1" end="10"}
+{users start="1", end="10"}
 {-- Users 1-10 --}
 
-{items end="-2"}
-{-- All items except last one --}
+{items end="-1"}
+{-- All items except the last one --}
 ```
 
 ---
@@ -398,9 +398,9 @@ Trims elements from the beginning and/or end of the array.
 ```
 {data trim}
 {data trim="2"}
-{data trim="3" left}
-{data trim="3" right}
-{data trim="2" both}
+{data trim="3", left}
+{data trim="3", right}
+{data trim="2", both}
 ```
 
 **Parameters:**
@@ -414,10 +414,10 @@ Trims elements from the beginning and/or end of the array.
 {items trim="1"}
 {-- Remove first and last item --}
 
-{items trim="2" left}
+{items trim="2", left}
 {-- Remove first 2 items --}
 
-{items trim="3" right}
+{items trim="3", right}
 {-- Remove last 3 items --}
 ```
 
@@ -430,7 +430,7 @@ Trims elements from the beginning and/or end of the array.
 The `negative` option inverts the selection - keeping items that would normally be removed.
 
 ```
-{data first="3" negative}
+{data first="3", negative}
 {-- Gets all items EXCEPT the first 3 --}
 ```
 
@@ -442,10 +442,10 @@ The `negative` option inverts the selection - keeping items that would normally 
 
 **Examples:**
 ```html
-{users first="5" negative}
+{users first="5", negative}
 {-- All users except first 5 --}
 
-{items random="3" negative}
+{items random="3", negative}
 {-- All items except 3 random ones --}
 ```
 
@@ -478,16 +478,16 @@ The `negative` option inverts the selection - keeping items that would normally 
 Functions can be combined and are applied in sequence:
 
 ```html
-{users sort="name" first="10"}
+{users sort="name", first="10"}
 {-- Sort by name, then get first 10 --}
 
-{products sort="price DESC" page="1" rows="20"}
+{products sort="price DESC", page="1", rows="20"}
 {-- Sort by price descending, paginate --}
 
-{items shuffle first="5"}
+{items shuffle, first="5"}
 {-- Shuffle then get first 5 (5 random items) --}
 
-{logs sort="date DESC" dedup first="100"}
+{logs sort="date DESC", dedup, first="100"}
 {-- Sort, deduplicate, limit to 100 --}
 ```
 
@@ -499,8 +499,8 @@ Handlers are processed in the order they appear in the tag parameters. Consider 
 
 ```html
 {-- Different results: --}
-{items first="10" shuffle}    {-- First 10, then shuffled --}
-{items shuffle first="10"}    {-- Shuffled, then first 10 --}
+{items first="10", shuffle}    {-- First 10, then shuffled --}
+{items shuffle, first="10"}    {-- Shuffled, then first 10 --}
 ```
 
 **Recommended order:**
