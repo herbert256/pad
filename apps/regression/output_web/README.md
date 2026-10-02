@@ -12,5 +12,6 @@ yes to NO.
 | File | Description |
 |------|-------------|
 | `index.php/pad` | Fetches the payload and states the verdict |
+| `json.php/pad` | A page that declares itself JSON, fetched whole so tidy gets its chance to wrap it |
 | `payload.php/pad` | A page with a recognisable body |
 | `_config/config.php` | Chooses the 'web' output type, `_common` off |

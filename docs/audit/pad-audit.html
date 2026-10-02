@@ -534,13 +534,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm" id="m8">
+    <div class="finding pm fixed part" id="m8">
       <div class="tag"><div class="priority">Medium</div><div class="cat">Output</div></div>
       <div>
-        <h3>The default Tidy pass puts every page in quirks mode and wraps non-HTML in HTML<span class="live">verified live</span></h3>
+        <h3>The default Tidy pass puts every page in quirks mode and wraps non-HTML in HTML<span class="live">verified live</span><span class="done part">Partly fixed</span></h3>
         <p class="where">config/config.php:62 · config/tidy.php:11-27 · exits/tidy.php</p>
         <p><code>$padTidy = TRUE</code> with <code>doctype: loose</code> rewrites <code>&lt;!DOCTYPE html&gt;</code> to HTML 4.01 Transitional with no system identifier — quirks mode in every browser (verified: <code>/pad/hello/</code> is served with the Transitional doctype). Tidy runs regardless of content type, so a JSON, CSV, text or download response comes back wrapped in <code>&lt;html&gt;&lt;head&gt;…&lt;/head&gt;&lt;body&gt;</code>; only the <code>console</code> type opts out.</p>
         <div class="fix"><b>Fix:</b> default Tidy off, or use <code>doctype: html5</code>, and run it only for <code>text/html</code> on the <code>web</code> output type.</div>
+        <div class="resolved part"><b>Partly fixed:</b> <code>exits/tidy.php</code> runs neither HTML Tidy nor the lightweight pass unless the response&#39;s <code>$padContentType</code> is <code>text/html</code>, so a page that declares JSON, CSV or text is sent as built. Reproduced first: an <code>application/json</code> page came back wrapped in an HTML 4.01 document. The <code>output_web</code> regression application now fetches a JSON page whole and checks the body; that check said NO against the old code. <b>Left for a decision:</b> the default <code>$padTidy = TRUE</code> with <code>doctype: loose</code> still turns <code>&lt;!DOCTYPE html&gt;</code> into HTML 4.01 Transitional (quirks mode). Changing the default or the doctype rewrites nearly every stored answer.</div>
       </div>
     </div>
 

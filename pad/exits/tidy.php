@@ -26,6 +26,13 @@
   if ( isset ( $_REQUEST ['padExamples']  ) ) return;
   if ( isset ( $_REQUEST ['padReference'] ) ) return;
 
+  // Both passes know HTML and nothing else. Run over a page that declared another content
+  // type - JSON, CSV, plain text - tidy wrapped it in <html><head><body> and the client got
+  // a broken document of the type it was promised.
+
+  if ( ! str_starts_with ( strtolower ( trim ( $padContentType ?? '' ) ), 'text/html' ) )
+    return;
+
   include PAD . 'config/tidy.php';
 
   if ( $padTidy or $padTidyMarked )
