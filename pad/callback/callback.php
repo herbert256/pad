@@ -11,7 +11,10 @@
   $padCall = padCallBackCheck ( $padPrm [$pad] ['callback'] );
 
   // A callback file that is not there was skipped without a word, and the loop ran as if
-  // none had been asked for. Strict mode names it.
+  // none had been asked for. Strict mode names it. The before form runs this inside a
+  // function, so the switch is fetched from the global scope.
+
+  global $padCheckSyntax;
 
   if ( $padCall === FALSE and $padCheckSyntax )
     padError ( "there is no callback named '" . $padPrm [$pad] ['callback'] . "'" );
