@@ -4,6 +4,9 @@
   $dataFile = DATA . 'demo/todos.json';
   $message  = $message ?? '';   // todoPost sets it, then restarts this page
 
+  if ( ! is_dir ( DATA . 'demo' ) )
+    @mkdir ( DATA . 'demo', 0755, TRUE );
+
   $todos = [];
 
   if ( file_exists ( $dataFile ) ) {
