@@ -87,7 +87,7 @@
 
       else {
 
-        if ( $val )
+        if ( $val !== '' )
           $arr [$idx] [$cnt] [$idx] = $val;
 
         foreach ( $xml->current()-> attributes() as $key => $val)
