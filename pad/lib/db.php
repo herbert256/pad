@@ -67,6 +67,10 @@
 
     foreach ( $vars as $i => $replace ) {
 
+      // A NULL column value is an empty string here, as padEscape has it - PHP 8 deprecates
+      // NULL into the string functions below, and the default error level makes that a 500.
+      $replace = $replace ?? '';
+
       $pad1 = strpos($sql, '{'.$i.'}' );
 
       if ( $pad1 !== FALSE )
