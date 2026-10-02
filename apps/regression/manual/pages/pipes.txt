@@ -334,7 +334,7 @@
 <h2>Important Rules</h2>
 
 <ul>
-  <li><strong>Use <b>{echo}</b> with variables</strong> - <code>{echo $var | function}</code> NOT <code>{$var | function}</code></li>
+  <li><strong>A literal needs <b>{echo}</b></strong> - <code>{echo 'text' | upper}</code>; a field pipes as it stands, <code>{$var | upper}</code>, as well as through <code>{echo $var | upper}</code></li>
   <li><strong>Arithmetic needs spaces</strong> - <code>{echo $x | + 1}</code> NOT <code>{echo $x | +1}</code></li>
   <li><strong>Quote string parameters</strong> - <code>{echo $x | replace('a','b')}</code></li>
   <li><strong>Functions apply left to right</strong> - <code>{echo $x | trim | upper}</code> trims first, then uppercases</li>
