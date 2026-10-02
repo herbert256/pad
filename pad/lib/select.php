@@ -26,7 +26,7 @@
 
     global $_SELECT, $_UNION, $pad, $padPrm, $padHtmlAttrJson;
 
-    global     $start,$group,$limit,$where,$join,$order,$union;
+    global     $padSelStart, $padSelGroup, $padSelLimit, $padSelWhere, $padSelJoin, $padSelOrder, $padSelUnion;
 
     $parms = padSelectGetDB ($table);
 
@@ -61,13 +61,13 @@
     $keys         = $prm ['key']          ?? $parms ['key']         ?? '';
     $fields       = $prm ['fields']       ?? $parms ['fields']      ?? '*';
     $type         = $prm ['type']         ?? $parms ['type']        ?? 'array';
-    $where        = $prm ['where']        ?? $parms ['where']       ?? '';
-    $group        = $prm ['group']        ?? $parms ['group']       ?? '';
+    $padSelWhere  = $prm ['where']        ?? $parms ['where']       ?? '';
+    $padSelGroup  = $prm ['group']        ?? $parms ['group']       ?? '';
     $rollup       = $prm ['rollup']       ?? $parms ['rollup']      ?? 0;
     $having       = $prm ['having']       ?? $parms ['having']      ?? '';
-    $join         = $prm ['join']         ?? $parms ['join']        ?? [];
-    $union        = $prm ['union']        ?? $parms ['union']       ?? '';
-    $order        = $prm ['order']        ?? $parms ['order']       ?? '';
+    $padSelJoin   = $prm ['join']         ?? $parms ['join']        ?? [];
+    $padSelUnion  = $prm ['union']        ?? $parms ['union']       ?? '';
+    $padSelOrder  = $prm ['order']        ?? $parms ['order']       ?? '';
     $page         = $prm ['page']         ?? $parms ['page']        ?? 0;
     $rows         = $prm ['rows']         ?? $parms ['rows']        ?? 0;
     $htmlAttrJson = $prm ['htmlAttrJson'] ?? $parms ['htmlAttrJson'] ?? 0;
@@ -77,36 +77,37 @@
       $type            = $htmlAttrJson;
     }
 
-    $start  = padSelectStart  ( $all, $distinct, $distinctrow);
-    $group  = padSelectGroup  ( $group, $rollup );
-    $having = padSelectHaving ( $having );
-    $limit  = padSelectLimit  ( $rows, $page );
-    $where  = padSelectWhere  ( $where, $table, $keys );
-    $fields = padSelectFields ( $fields, $db );
-    $join   = padSelectJoin   ( $join, $fields );
-    $keys   = padSelectKeys   ( $keys );
-    $order  = padSelectOrder  ( $order, $join, $keys );
+    $padSelStart = padSelectStart  ( $all, $distinct, $distinctrow);
+    $padSelGroup = padSelectGroup  ( $padSelGroup, $rollup );
+    $having      = padSelectHaving ( $having );
+    $padSelLimit = padSelectLimit  ( $rows, $page );
+    $padSelWhere = padSelectWhere  ( $padSelWhere, $table, $keys );
+    $fields      = padSelectFields ( $fields, $db );
+    $padSelJoin  = padSelectJoin   ( $padSelJoin, $fields );
+    $keys        = padSelectKeys   ( $keys );
+    $padSelOrder = padSelectOrder  ( $padSelOrder, $padSelJoin, $keys );
 
     // The outer query's parts are folded into text before the union members are built:
-    // the composition variables are globals - the app dump reads them - and a member's
+    // the composition variables are globals - the dump reads them, under pad-prefixed names
+    // so a $where or $order of the application is not overwritten - and a member's
     // build writes its own parts into the same names, so a union query composed after it
     // carried the member's where instead of its own.
 
-    $head = "$start $fields from $db $join $where $group $having";
-    $tail = "$order $limit";
+    $head = "$padSelStart $fields from $db $padSelJoin $padSelWhere $padSelGroup $having";
+    $tail = "$padSelOrder $padSelLimit";
 
-    $union  = padSelectUnion  ( $union );
+    $padSelUnion = padSelectUnion  ( $padSelUnion );
 
-    $_UNION [] = $union;
+    $_UNION [] = $padSelUnion;
 
-    $base  = "$head $union";
+    $base  = "$head $padSelUnion";
     $sql   = "$type $base $tail";
-    $union = "union select $base";
+    $padSelUnion = "union select $base";
 
     $_SELECT [] = $sql;
 
     if ($unionBuild)
-      return $union;
+      return $padSelUnion;
     else
       return db ( $sql );
 
