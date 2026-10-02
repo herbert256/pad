@@ -16,6 +16,16 @@
 
   padFilePut ( $xmlFile, "<stale />" );
 
+  // The xref recorder adds a page to an item's list once and skips it ever after, and the
+  // list is a standing store builds never wipe - so finding the entry proved nothing about
+  // this fetch. It is taken out first, has to come back, and the store is then put back
+  // byte for byte, since git tracks it.
+
+  $xrefFile = DATA . 'reference/tag/pad/sequence.txt';
+  $xrefKeep = file_get_contents ( $xrefFile );
+
+  file_put_contents ( $xrefFile, str_replace ( "regression/info;probe\n", '', $xrefKeep ) );
+
   libxml_use_internal_errors ( TRUE );
 
   $r = padCurl ( $padHost . 'regression/info/?probe&padInclude' );
@@ -35,16 +45,17 @@
     $xmlOne     = ! str_contains ( $xmlText, '<stale' )
                   and simplexml_load_string ( $xmlText ) !== FALSE;
     $dbAfter    = (int) padDb ( "field count(*) from track_request" );
+    $xref       = file_get_contents ( $xrefFile );
 
     if ( $traceAfter > $traceBefore and $trackAfter > $trackBefore
-         and $xmlOne and $dbAfter > $dbBefore )
+         and $xmlOne and $dbAfter > $dbBefore and str_contains ( $xref, 'regression/info;probe' ) )
       break;
 
     usleep ( 100000 );
 
   }
 
-  $xref = padFileGet ( DATA . 'reference/tag/pad/sequence.txt' );
+  file_put_contents ( $xrefFile, $xrefKeep );
 
   $vStats = ( is_array ( $stats ) and isset ( $stats ['total'] ) )      ? 'yes' : 'NO';
   $vTrace = ( $traceAfter > $traceBefore )                              ? 'yes' : 'NO';
