@@ -45,6 +45,7 @@
     if ( $one == '<' and in_array($next, ['.','@'] ) )             return TRUE;
     if ( $one == '>' and in_array($next, ['.','@'] ) )             return TRUE;
     if ( $one == '@' and ctype_alpha($next) )                      return TRUE;
+    if ( $one == '@' and $next == '-' and ctype_digit($next2) )    return TRUE;
     if ( $one == '<' and ctype_digit($next) )                      return TRUE;
     if ( $one == '>' and ctype_digit($next) )                      return TRUE;
     if ( $one == '-' and in_array($prev, ['.','@'] ) )             return TRUE;
@@ -83,7 +84,7 @@
 
       $next  = (isset($input[$key+1])) ? $input[$key+1] : '';
       $next2 = (isset($input[$key+2])) ? $input[$key+2] : '';
-      $prev  = (isset($result [$i] [0]) and $result [$i] [0]) ? substr($result [$i] [0],0,1) : '';
+      $prev  = (isset($result [$i] [0]) and $result [$i] [0]) ? substr($result [$i] [0],-1) : '';
 
       if ( $is_var )
         if ( padEvalParseValid ( $one, $next, $next2, $prev )  ) {
