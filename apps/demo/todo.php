@@ -2,7 +2,7 @@
 
   $title    = 'Todo List';
   $dataFile = DATA . 'demo/todos.json';
-  $message  = '';
+  $message  = $message ?? '';   // todoPost sets it, then restarts this page
 
   $todos = [];
 
