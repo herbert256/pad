@@ -86,7 +86,7 @@
 
     global $padReqID;
 
-    return $padReqID ?? uniqid (TRUE);
+    return $padReqID ?? uniqid ( '', TRUE );
 
   }
 
