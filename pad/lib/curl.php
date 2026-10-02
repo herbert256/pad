@@ -25,6 +25,11 @@
   // padNoCurl is the fallback when ext-curl is missing: it just reads the URL as a file.
   // padCurlOpt sets a default that the caller's own options can override, and padCurlError
   // records the failure in the same array with result 999 instead of throwing.
+  //
+  // padCurl and padNoCurl silence errors while they fetch and put the handler and the
+  // reporting level back in a finally block: the failure paths return from inside the try,
+  // and the restore used to stand after it - a failed fetch left error_reporting at 0 and
+  // padErrorThrow installed for the rest of the request.
 
   function padNoCurl ( $output ) {
 
@@ -42,10 +47,12 @@
 
       return padCurlError ( $output,  $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage() );
 
-    }
+    } finally {
 
-    restore_error_handler ();
-    error_reporting ( $errorReporting );
+      restore_error_handler ();
+      error_reporting ( $errorReporting );
+
+    }
 
     $output ['data']   = $result;
     $output ['result'] = '200';
@@ -298,10 +305,12 @@
 
       return padCurlError ( $output,  $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage() );
 
-    }
+    } finally {
 
-    restore_error_handler ();
-    error_reporting ( $errorReporting );
+      restore_error_handler ();
+      error_reporting ( $errorReporting );
+
+    }
 
     if ( $stats )
       $output ['curlTime'] = $end - $start;

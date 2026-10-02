@@ -674,13 +674,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm" id="m22">
+    <div class="finding pm fixed part" id="m22">
       <div class="tag"><div class="priority">Medium</div><div class="cat">Error handling</div></div>
       <div>
-        <h3>A failed curl fetch silences error reporting for the rest of the request<span class="live">verified live</span></h3>
+        <h3>A failed curl fetch silences error reporting for the rest of the request<span class="live">verified live</span><span class="done part">Partly fixed</span></h3>
         <p class="where">lib/curl.php:275-304 · lib/curl.php:29-48 (padNoCurl)</p>
         <p>The fetch installs <code>padErrorThrow</code> and sets <code>error_reporting(0)</code>, then <code>return</code>s from inside <code>try</code>/<code>catch</code> on <code>curl_init</code> failure, <code>curl_exec</code> failure or a thrown error — before the <code>restore_error_handler()</code>/<code>error_reporting($errorReporting)</code> that sit after the block. Measured: <code>padCurl('http://127.0.0.1:1/unavailable')</code> → result 999; <code>error_reporting</code> 30719 before, <b>0</b> after; active handler still <code>padErrorThrow</code>. Every later warning in the request is suppressed, and a remote outage changes unrelated application error behaviour. The no-curl fallback has the same shape. (Smaller siblings: <code>combine</code>/<code>merge</code> with an unknown store throws a TypeError; <code>distinct</code> throws on float-valued sequences.)</p>
         <div class="fix"><b>Fix:</b> restore in a <code>finally</code> block in both functions; add the missing <code>isset</code> guards.</div>
+        <div class="resolved part"><b>Partly fixed:</b> <code>padCurl()</code> and <code>padNoCurl()</code> restore the error handler and <code>error_reporting</code> in a <code>finally</code> block, so every return from inside the <code>try</code> or <code>catch</code> passes through it. Measured with the audit&#39;s own probe, <code>padCurl(&#39;http://127.0.0.1:1/unavailable&#39;)</code>: before, result 999 with <code>error_reporting</code> 0 and <code>padErrorThrow</code> still installed afterwards; now result 999 with 30719 and no handler left. (<code>padCurlMulti</code> already restored after its <code>try</code>. The two smaller siblings named in passing — <code>combine</code>/<code>merge</code> with an unknown store, <code>distinct</code> on floats — are sequence actions and not touched here.)</div>
       </div>
     </div>
 
