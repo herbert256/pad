@@ -11,7 +11,7 @@
 
   $padStoreName = $padPrm [$pad] ['toData'];
 
-  if ( !$padPair and !$padContent and !padIsDefaultData($padData [$pad]) ) {
+  if ( ! $padPair [$pad] and !$padContent and !padIsDefaultData($padData [$pad]) ) {
     $padDataStore [$padStoreName] = $padData [$pad];
     return;
   }
