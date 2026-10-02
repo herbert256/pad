@@ -221,6 +221,7 @@
 
 <nav><div class="wrap">
   <a href="#summary">Summary</a>
+  <a href="#status">Status</a>
   <a href="#method">Method</a>
   <a href="#chain">The RCE chain</a>
   <a href="#critical">Critical</a>
@@ -259,6 +260,17 @@
       <p>Severity is an engineering priority, not a CVSS score. Preconditions are stated in each finding: the page cache is High only when <code>$padCache</code> is on (off by default), the <code>track</code> SQL interpolation only under the DB-track info mode, the local-dump disclosure only where the Host header or a loopback proxy satisfies the classifier.</p>
       <p class="small">Claims marked <span class="live">verified live</span> were reproduced against the running server on this machine; the rest are certain from reading the code or were checked with isolated PHP snippets. No framework file was modified during the audit.</p>
     </div>
+  </div>
+  <div class="card" id="status" style="margin-top:1rem; scroll-margin-top:4.2rem; border-left:.36rem solid var(--green)">
+    <h3>Remediation status · 2 October 2026</h3>
+    <p>The isolated, local defects were fixed one commit each, every one reproduced first and, where a stored answer could hold it, pinned by a new regression case that was checked to fail against the old code. Each finding below carries its own note. <span class="done">Fixed</span> means the whole finding; <span class="done part">Partly fixed</span> names what is still open.</p>
+    <ul>
+      <li><b>Fixed (14):</b> <a href="#h1">H1</a>, <a href="#h6">H6</a>, <a href="#m2">M2</a>, <a href="#m5">M5</a>, <a href="#m7">M7</a>, <a href="#m11">M11</a>, <a href="#m12">M12</a>, <a href="#m17">M17</a>, <a href="#m18">M18</a>, <a href="#m19">M19</a>, <a href="#m20">M20</a>, <a href="#m22">M22</a>, <a href="#m27">M27</a>, <a href="#m28">M28</a>.</li>
+      <li><b>Partly fixed (9):</b> <a href="#c2">C2</a> (key values escaped; the SQL-fragment options remain), <a href="#m8">M8</a>, <a href="#m9">M9</a>, <a href="#m10">M10</a>, <a href="#m15">M15</a>, <a href="#m23">M23</a>, <a href="#m24">M24</a>, <a href="#m25">M25</a>, <a href="#m26">M26</a>. <a href="#h3">H3</a> has one item of its fix line done.</li>
+      <li><b>Low:</b> tag targets fixed, direct <code>/pad.php</code> fixed; evaluator detail (date, like), path helpers and HTTP status (log forging) partly.</li>
+      <li><b>Left for a decision:</b> <a href="#c1">C1</a>, <a href="#h2">H2</a>, <a href="#h4">H4</a>, <a href="#h5">H5</a>, <a href="#h7">H7</a>, <a href="#h8">H8</a>, <a href="#h9">H9</a>, <a href="#h10">H10</a> and the rest of <a href="#h3">H3</a>: architecture, API or policy. <a href="#m1">M1</a>, <a href="#m3">M3</a>: a host or containment policy. <a href="#m6">M6</a>: the scanner. <a href="#m13">M13</a>, <a href="#m14">M14</a>: sequence membership and stored answers; M14 was tried and reverted, see its note. <a href="#m16">M16</a>: performance.</li>
+    </ul>
+    <p class="small">One baseline that encoded a bug has been retired: <code>regression/info</code> no longer asserts that the XML report grew (M12). The sequence baselines named under the test-suite notes still encode M13 and M14.</p>
   </div>
 </section>
 
@@ -613,6 +625,7 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
         <p class="where">sequence/plays/init.php:14-29 · sequence/types/loop/init.php:7-8</p>
         <p>A play's init saves and restores only <code>parm</code>/<code>inc</code>/<code>from</code>/<code>to</code>, while <code>loop/init.php</code> sets <code>$pqRows</code> from its parameter. So <code>{pull …, flag, loop=4}</code> over 25 values returns only four, and an explicit <code>rows=</code> is overridden. Again, the stored answers bless the wrong output.</p>
         <div class="fix"><b>Fix:</b> snapshot every limit around a play's init.</div>
+        <div class="resolved part"><b>Held back:</b> reproduced (<code>flag</code> over 10 terms with <code>loop=4</code> returned 4; an explicit <code>rows=6</code> came out as 4), and restoring <code>$pqRows</code> around a play&#39;s init does fix the row count. But the loop play&#39;s membership check then reads the <code>PADloop</code> table and ignores its <code>4</code>, so <code>keep</code>/<code>remove</code>/<code>flag</code> with <code>loop=4</code> become wrong in a new way (every term kept or flagged). The stored answer&#39;s <code>1 2 3 4</code> was right only because of the leak. This needs the membership work of M13 and regenerated sequence answers, so it was reverted.</div>
       </div>
     </div>
 
