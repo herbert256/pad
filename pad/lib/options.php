@@ -15,9 +15,16 @@
     $in_quote = FALSE;
     $pair     = 0;
 
-    $now = '';
+    $now  = '';
+    $skip = FALSE;
 
     foreach ( $input as $key => $one ) {
+
+      if ( $skip ) {
+        $now .= $one;
+        $skip = FALSE;
+        continue;
+      }
 
       if ( $one==',' and !$in_str and !$in_quote and !$pair ) {
         $output [] = $now;
@@ -26,6 +33,14 @@
       }
 
       $now .= $one;
+
+      // A backslash before a quote escapes it, as padPipeSplit and the evaluator read it:
+      // 'it\'s' is one string, not one that ends at the t and opens another at the s.
+
+      if ( $one == '\\' and in_array ( $input [$key+1] ?? '', [ "'", '"' ] ) ) {
+        $skip = TRUE;
+        continue;
+      }
 
       if ( $one=="'" and $in_quote )
         continue;
