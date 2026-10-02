@@ -27,8 +27,10 @@
 
     }
 
+    // A numeric prefix past either end of the level stack is a miss like any other.
+
     if ( $idx )
-      return padFieldSearch ( $GLOBALS ['padCurrent'] [$idx], $field, $type );
+      return padFieldSearch ( $GLOBALS ['padCurrent'] [$idx] ?? [], $field, $type );
     else
       return padFieldSearch ( $GLOBALS, $field, $type );
 
@@ -39,7 +41,9 @@
     if ( is_object ($current) or is_resource ($current) )
       $current = (array) $current;
 
-    if ( ! array_key_exists($field, $current ) )
+    // A prefix that names a scalar global holds no fields - not found, not a TypeError.
+
+    if ( ! is_array ($current) or ! array_key_exists($field, $current ) )
       return INF;
 
     if ( ($type == 1 or $type == 2) and is_array($current[$field]) )
