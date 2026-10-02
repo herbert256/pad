@@ -25,7 +25,7 @@ demo/
 ├── contact.php / .pad        # Contact form example
 ├── counter.php / .pad        # Page counter example
 ├── clock.pad                 # Clock display
-├── else.php                  # PHP-only page (no template)
+├── _config/config.php        # Switches _common off - _inits.pad writes the whole page
 ├── _inits.php / .pad         # Global layout wrapper
 ├── _include/todo.pad         # Todo list snippet
 ├── _tags/clock.php           # Custom clock tag
