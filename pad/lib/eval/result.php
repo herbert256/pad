@@ -35,6 +35,11 @@
       elseif ( count($result) > 1        ) padError ("More than one result back: $eval");
       elseif ( $result[$key][1] != 'VAL' ) padError ("Result is not a value: $eval");
 
+      // Under an action that continues - log, ignore - the walk gets the lenient answer
+      // too, not whatever token happened to come first, or a null key when none did.
+
+      return '';
+
     }
 
     return $result [$key] [0];
