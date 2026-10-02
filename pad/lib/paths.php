@@ -54,7 +54,7 @@
     global $padDir;
 
     if ( ! $padDir )
-      return substr ( APP, -1 );
+      return substr ( APP, 0, -1 );
     else
       return APP . $padDir;
 
