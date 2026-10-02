@@ -36,10 +36,10 @@ Functions that extract parts of a string based on a delimiter.
 ### Examples
 
 ```
-{'hello/world/test' | after('/')}       → 'world/test'
-{'hello/world/test' | afterLast('/')}   → 'test'
-{'hello/world/test' | before('/')}      → 'hello'
-{'hello/world/test' | beforeLast('/')}  → 'hello/world'
+{echo 'hello/world/test' | after('/')}  → 'world/test'
+{echo 'hello/world/test' | afterLast('/')} → 'test'
+{echo 'hello/world/test' | before('/')} → 'hello'
+{echo 'hello/world/test' | beforeLast('/')} → 'hello/world'
 ```
 
 All four skip the whole delimiter, multi-character or not, and give the value back unchanged
@@ -63,11 +63,11 @@ Functions that extract substrings by position.
 ### Examples
 
 ```
-{'Hello World' | left(5)}        → 'Hello'
-{'Hello World' | right(5)}       → 'World'
-{'Hello World' | mid(7, 5)}      → 'World'
-{'Hello World' | substr(6)}      → 'World'
-{'Hello World' | substr(0, 5)}   → 'Hello'
+{echo 'Hello World' | left(5)}   → 'Hello'
+{echo 'Hello World' | right(5)}  → 'World'
+{echo 'Hello World' | mid(7, 5)} → 'World'
+{echo 'Hello World' | substr(6)} → 'World'
+{echo 'Hello World' | substr(0, 5)} → 'Hello'
 ```
 
 A count of zero or less names no characters: `left(0)`, `right(0)` and the negative counts
@@ -92,9 +92,9 @@ Functions that change the case of text.
 ### Examples
 
 ```
-{'hello world' | upper}       → 'HELLO WORLD'
-{'HELLO WORLD' | lower}       → 'hello world'
-{'hello world' | capitalize}  → 'Hello World'
+{echo 'hello world' | upper}  → 'HELLO WORLD'
+{echo 'HELLO WORLD' | lower}  → 'hello world'
+{echo 'hello world' | capitalize} → 'Hello World'
 ```
 
 ---
@@ -113,10 +113,10 @@ Functions that modify string content.
 ### Examples
 
 ```
-{'  hello  ' | trim}                   → 'hello'
-{'hello world' | replace('world', 'there')}  → 'hello there'
-{'hello world' | cut('o')}             → 'hell wrld'
-{'hello   world' | white}              → 'hello world'
+{echo '  hello  ' | trim}              → 'hello'
+{echo 'hello world' | replace('world', 'there')} → 'hello there'
+{echo 'hello world' | cut('o')}        → 'hell wrld'
+{echo 'hello   world' | white}         → 'hello world'
 ```
 
 ---
@@ -139,8 +139,8 @@ Functions for encoding and escaping text for various contexts.
 ### Examples
 
 ```
-{'<script>' | html}         → '&lt;script&gt;'
-{'hello world' | url}       → 'hello+world'
+{echo '<script>' | html}    → '&lt;script&gt;'
+{echo 'hello world' | url}  → 'hello+world'
 {"it's here" | slashes}     → "it\'s here"
 {json 'products' | ignore}  → JSON safe to embed in an HTML attribute
 ```
@@ -159,8 +159,8 @@ Functions that add HTML formatting to text.
 ### Examples
 
 ```
-{'important' | bold}      → '<b>important</b>'
-{'hello world' | nbsp}    → 'hello&nbsp;world'
+{echo 'important' | bold} → '<b>important</b>'
+{echo 'hello world' | nbsp} → 'hello&nbsp;world'
 ```
 
 ---
@@ -176,8 +176,8 @@ Functions that limit or control string length.
 ### Examples
 
 ```
-{'Hello World' | max_len(5)}  → 'Hello'
-{'Hi' | max_len(5)}           → 'Hi'
+{echo 'Hello World' | max_len(5)} → 'Hello'
+{echo 'Hi' | max_len(5)}      → 'Hi'
 ```
 
 ---
@@ -200,12 +200,12 @@ file.
 ### Examples
 
 ```
-{'hello world' | contains('world')}  → TRUE
+{echo 'hello world' | contains('world')} → TRUE
 {$status | in('active', 'pending')}  → '1' or ''
-{'test.txt' | like('%.txt')}         → '1'
+{echo 'test.txt' | like('%.txt')}    → '1'
 {$age | between(17, 66)}             → TRUE if 17 < age < 66
 {$score | range(0, 100)}             → TRUE if 0 <= score <= 100
-{'templates/page.php' | exists}      → '1' or '0'
+{echo 'templates/page.php' | exists} → '1' or '0'
 ```
 
 ### Like Pattern Syntax
@@ -220,10 +220,14 @@ The `like` function supports SQL-style wildcards:
 | `\_` | Literal underscore |
 | `\\` | Literal backslash |
 
+Inside a quoted pattern in a template the backslash is itself escaped, so a literal percent
+sign is written `\\%` there - `like('%\\%')` - while a pattern that comes from the page's
+PHP, `like($pattern)`, is written as is.
+
 ```
-{'filename.txt' | like('%.txt')}      → '1'
-{'test123' | like('test___')}         → '1'
-{'100%' | like('%\%')}                → '1'
+{echo 'filename.txt' | like('%.txt')} → '1'
+{echo 'test123' | like('test___')}    → '1'
+{echo '100%' | like('%\\%')}          → '1'
 ```
 
 ---
@@ -345,8 +349,8 @@ Functions for working with PAD template syntax.
 ### Examples
 
 ```
-{'myTag' | open}      → '{myTag}'
-{'myTag' | close}     → '{/myTag}'
+{echo 'myTag' | open} → '{myTag}'
+{echo 'myTag' | close} → '{/myTag}'
 {$maybeNull | optional}  → value or ''
 ```
 
