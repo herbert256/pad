@@ -260,14 +260,16 @@ go: $end = strpos($source, '}');
 
     }
 
+    // The @ of this field only: replaced over the whole source, every field wrapped every @
+    // still to come once more, and an @start@ or @else@ further on lost its colouring.
+
+    $piece = str_replace ('@', '<font color="black"><b>@</b></font>', $field . $rest);
+
     $source = substr($source, 0, $start)
         . '<b>&open;'
-        . $field
-        . $rest
+        . $piece
         . '&close;</b>'
         . substr($source, $end+1);
-
-    $source = str_replace ('@', '<font color="black"><b>@</b></font>', $source);
 
   }
 
