@@ -18,13 +18,20 @@
 
     padSplit ( '=', $padPrmOne, $padPrmName, $padPrmValue );
 
-    if ( in_array    ( $padPrmName [0], ['$','%'] ) and
+    // A value that itself starts with '=' means the split landed inside == or ===: the
+    // item is a comparison, {if $x == 1}, and goes whole to the parameter path to be
+    // evaluated - not an assignment of '= 1' to $x, nor an option x.
+
+    $padPrmCompare = str_starts_with ( $padPrmValue, '=' );
+
+    if ( in_array    ( $padPrmName [0] ?? '', ['$','%'] ) and
          padValidVar ( substr ( $padPrmName, 1 ) )  and
-         strlen      ( $padPrmValue ) )
+         strlen      ( $padPrmValue ) and
+         ! $padPrmCompare )
 
       include PAD . 'level/parms/variable.php';
 
-    elseif ( padValidVar ( $padPrmName ) )
+    elseif ( padValidVar ( $padPrmName ) and ! $padPrmCompare )
 
       include PAD . 'level/parms/option.php';
 

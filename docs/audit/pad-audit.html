@@ -495,13 +495,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm" id="m5">
+    <div class="finding pm fixed" id="m5">
       <div class="tag"><div class="priority">Medium</div><div class="cat">Parsing</div></div>
       <div>
-        <h3><code>{if $x == 1}</code> is parsed as a variable assignment<span class="live">verified live</span></h3>
+        <h3><code>{if $x == 1}</code> is parsed as a variable assignment<span class="live">verified live</span><span class="done">Fixed</span></h3>
         <p class="where">level/parms/parms.php:19-25</p>
         <p>The option parser splits on <code>=</code>, so <code>$x == 1</code> becomes name <code>$x</code>, value <code>= 1</code>, which passes the assignment test and publishes <code>$x</code> as a global. Verified: <code>{if $x == 5}</code> returns <b>HTTP 500</b> ("the operator '=' has nothing on its left"); with the strict check off it overwrites <code>$x</code> with empty and the condition is wrong. <code>==</code> is documented in CLAUDE.md as a comparison; the repo's uses survive only because they compare <code>pad</code>-prefixed names that <code>padValidVar</code> rejects.</p>
         <div class="fix"><b>Fix:</b> don't treat it as an assignment when the value begins with <code>=</code>, and skip assignment parsing for the condition and expression tags.</div>
+        <div class="resolved"><b>Fixed:</b> when the split on <code>=</code> leaves a value that itself starts with <code>=</code>, the item is a comparison (<code>==</code>, <code>===</code>) and goes whole to the parameter path, so it is evaluated instead of assigned or taken as an option. Checked live: <code>{if $x == 5}</code> with <code>$x = 5</code> renders the true branch, <code>{if $x == 6}</code> the false one, and <code>$x</code> is still 5 afterwards.</div>
       </div>
     </div>
 
