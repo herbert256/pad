@@ -1,7 +1,9 @@
 // Simplified Topic Display - Testing braces
 function TopicDisplay() {
   const topicElem = document.getElementById('topic');
-  const topic = JSON.parse(topicElem.dataset.data);
+  // getAttribute('data'), not dataset.data - a plain data attribute is no data-* one, so
+  // dataset.data is undefined and JSON.parse throws (docs/REACT.md)
+  const topic = JSON.parse(topicElem.getAttribute('data'));
 
   return (
     <div style={{ padding: '20px', background: '#f0f8ff', borderRadius: '8px' }}>
