@@ -38,8 +38,10 @@ commit=$(git -C "$padHome" rev-parse --short HEAD 2>/dev/null)
 
 # Results are stamped in whole seconds, and a fast first suite can finish inside the very
 # second the run started - which the strictly-newer test below reads as a leftover. The
-# trigger fires once that second is over, so everything this run writes is newer.
-while [ "$(date +%s)" -eq "$started" ]; do sleep 0.05; done
+# trigger fires once that second is over, so everything this run writes is newer. A
+# doctored trigger runs no suite and writes nothing, so the test rig skips the wait - it
+# runs this gate eleven times inside one request, under PHP's time limit.
+[ -n "$CI_TRIGGER" ] || while [ "$(date +%s)" -eq "$started" ]; do sleep 0.05; done
 
 status=$(curl -s -o /dev/null -w '%{http_code}' -L --max-time 600 "$trigger&ciRun=$run")
 
