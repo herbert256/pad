@@ -61,6 +61,8 @@
       if ( count ( glob ( APP2 . $value . "_scripts/$check*" ) ) )
         return APP2 . $value . "_scripts/$check*";
 
+    return FALSE;
+
   }
 
   function padCallBackCheck ( $check ) {
