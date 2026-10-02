@@ -18,8 +18,11 @@
 
     $input = str_replace ( '&nbsp;', ' ', trim($data) );
 
-    if ( str_starts_with($input, '<!') ) $input = substr ( $input, strpos($input, '>') + 1 );
-    if ( str_starts_with($input, '<?') ) $input = substr ( $input, strpos($input, '>') + 1 );
+    // The prolog comes before the doctype in a document, so it goes first - the other way
+    // round a standard xml declaration followed by a doctype left the doctype inside <x>.
+
+    if ( str_starts_with($input, '<?') ) $input = trim ( substr ( $input, strpos($input, '>') + 1 ) );
+    if ( str_starts_with($input, '<!') ) $input = trim ( substr ( $input, strpos($input, '>') + 1 ) );
 
     $input = "<x>$input</x>";
 
