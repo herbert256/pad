@@ -2,7 +2,10 @@
 
 # Fault injection for ci.sh, the last link: each scenario builds a synthetic results
 # directory, points the gate's trigger at a page that runs nothing, and asserts the exit
-# code. One line speaks at the end; a broken scenario names itself.
+# code. One line speaks at the end; a broken scenario names itself. Each planted result
+# carries this run's token and commit, so a scenario fails for the one reason it names -
+# without them the failed and new cases were refused as another run's, whatever the
+# failed and new checks did.
 
 . "$(dirname "$0")/../../../../../home/home.sh"
 
@@ -35,11 +38,13 @@ fill "$(future)"
 [ "$(run)" = "0" ]                       || broken="$broken clean"
 
 fill "$(future)"
-printf '{"summary":"1 pages, 1 tests, 1 failed","failed":1,"new":0,"when":%s}' "$(future)" > "$tmp/manual.json"
+printf '{"summary":"1 pages, 1 tests, 1 failed","failed":1,"new":0,"when":%s,"run":"%s","commit":"%s"}' \
+  "$(future)" "$CI_RUN" "$commit" > "$tmp/manual.json"
 [ "$(run)" != "0" ]                      || broken="$broken failed"
 
 fill "$(future)"
-printf '{"summary":"1 pages, 1 tests, 0 failed, 1 new","failed":0,"new":1,"when":%s}' "$(future)" > "$tmp/manual.json"
+printf '{"summary":"1 pages, 1 tests, 0 failed, 1 new","failed":0,"new":1,"when":%s,"run":"%s","commit":"%s"}' \
+  "$(future)" "$CI_RUN" "$commit" > "$tmp/manual.json"
 [ "$(run)" != "0" ]                      || broken="$broken new"
 
 fill "$(future)"
