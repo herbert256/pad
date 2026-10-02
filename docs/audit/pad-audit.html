@@ -474,13 +474,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm" id="m2">
+    <div class="finding pm fixed" id="m2">
       <div class="tag"><div class="priority">Medium</div><div class="cat">LFI</div></div>
       <div>
-        <h3><code>{output}</code> performs an unvalidated dynamic include</h3>
+        <h3><code>{output}</code> performs an unvalidated dynamic include<span class="done">Fixed</span></h3>
         <p class="where">tags/output.php:9-11</p>
         <p><code>$padOutputType = $padParm; include PAD . "config/output/$padOutputType.php";</code> — the evaluated parameter is concatenated into an include path with no <code>padValidType</code> check, so <code>../</code> escapes the directory and any <code>.php</code> it lands on runs.</p>
         <div class="fix"><b>Fix:</b> validate against the known set (<code>web</code>, <code>console</code>, <code>file</code>, <code>download</code>) before including.</div>
+        <div class="resolved"><b>Fixed:</b> <code>tags/output.php</code> checks the parameter against <code>web</code>, <code>console</code>, <code>file</code> and <code>download</code> before it reaches the include; anything else is a PAD error (<em>there is no output type named …</em>) and the response mode stays as it was.</div>
       </div>
     </div>
 
