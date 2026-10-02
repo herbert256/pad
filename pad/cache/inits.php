@@ -59,12 +59,12 @@
 
   }
 
-  $url = padCacheUrl ($padCacheUrl);
+  $padCacheUrlRow = padCacheUrl ($padCacheUrl);
 
-  if ( is_array($url) ) {
+  if ( is_array($padCacheUrlRow) ) {
 
-    $padCacheAge  = $url ['age']  ?? $url [0] ?? 0;
-    $padCacheEtag = $url ['etag'] ?? $url [1] ?? '';
+    $padCacheAge  = $padCacheUrlRow ['age']  ?? $padCacheUrlRow [0] ?? 0;
+    $padCacheEtag = $padCacheUrlRow ['etag'] ?? $padCacheUrlRow [1] ?? '';
 
     if ( $padClientDate and $padClientDate >= $padCacheMax and $padCacheAge >= $padCacheMax ) {
       $padStop = 304;
