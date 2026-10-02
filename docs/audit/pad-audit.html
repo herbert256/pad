@@ -692,14 +692,15 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm" id="m23">
+    <div class="finding pm fixed part" id="m23">
       <div class="tag"><div class="priority">Medium</div><div class="cat">Cache metadata</div></div>
       <div>
-        <h3>Cache hits lose the response content type<span class="live">verified live</span></h3>
+        <h3>Cache hits lose the response content type<span class="live">verified live</span><span class="done part">Partly fixed</span></h3>
         <p class="where">cache/exits.php:19-22 · cache/hit.php:9-12 · lib/output.php:117-129</p>
         <p>The backends store body, ETag and age — not response metadata. A hit skips page PHP and calls <code>exits/output.php</code>, which sends the default/configured <code>$padContentType</code>. So a page that sets <code>$padContentType = 'application/json'</code> in its PHP is served as JSON on the first request and as <code>text/html; charset=UTF-8</code> on the next, for exactly the same bytes and the same ETag. Any other page-generated response metadata is outside the cached representation too.</p>
         <div class="ev"><b>Reproduction:</b> page PHP <code>$padContentType = 'application/json'</code>, template <code>{ignore}{"audit":true}{/ignore}</code>. First GET: <code>Content-Type: application/json</code>. Second identical GET: <code>text/html; charset=UTF-8</code>. Both bodies <code>{"audit":true}</code>, same ETag.</div>
         <div class="fix"><b>Fix:</b> cache an explicit response envelope — status plus the safe response headers — alongside the body, and restore <code>Content-Type</code> on hits. Decide deliberately which headers may be cached; never replay per-user <code>Set-Cookie</code>.</div>
+        <div class="resolved part"><b>Partly fixed:</b> rather than widen every backend to an envelope, a page is cached only when a hit can reproduce it. <code>cache/inits.php</code> records the configured content type (what a hit sends), and <code>cache/exits.php</code> does not store a page that chose another type and drops an older copy of it. Reproduced first: a JSON page went out as <code>application/json</code>, then as <code>text/html</code> from the cache. Now it is JSON every time, and HTML pages cache as before. New Regression pages <code>cache_file/json</code> and <code>cache_file/typed</code> hold it; <code>typed</code> answered <code>second: text/html</code> against the old code. <b>Not done:</b> a status or other header set by page PHP is still outside the cached representation, and such pages are still cached.</div>
       </div>
     </div>
 

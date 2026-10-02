@@ -30,6 +30,12 @@
   if ( ! $padCache )
     return;
 
+  // What a hit will send as Content-Type: the configured type, since the page's PHP - the
+  // place a page chooses another - does not run on a hit. cache/exits.php holds the
+  // finished page against it.
+
+  $padCacheContentType = $padContentType;
+
   $padCacheUrl = padMD5($_SERVER['REQUEST_URI']);
   $padCacheMax = $_SERVER['REQUEST_TIME'] - $padCacheServerAge;
 
