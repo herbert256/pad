@@ -8,7 +8,8 @@
   // padValidTag   the tag form of the same test
   // padValidType  a bare type name, letters only
   // padValidVar   an application variable: identifier, and never a pad-prefixed name, so
-  //               request input and templates cannot overwrite engine state
+  //               request input and templates cannot overwrite engine state - nor $this,
+  //               which PHP refuses to assign: ?this=1 ended the request with a 500
   // padAtValid    one part either side of an @ in a property reference
   // padValidFile  a file path: safe characters only, no .. or dot segments, and it must
   //               live under APP, DATA or PAD
@@ -70,6 +71,7 @@
 
     if ( trim($name) == '' )                                 return FALSE;
     if ( substr($name, 0, 3) == 'pad' )                      return FALSE;
+    if ( $name == 'this' )                                   return FALSE;
     if ( ! preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/',$name) )  return FALSE;
 
     return TRUE;
