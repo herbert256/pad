@@ -52,14 +52,19 @@ for suite in pages common errors framework regression sequence manual other; do
   # that the gate's own fault-injection case - nine runs inside one request - outran PHP's
   # time limit, and the killed request took the Framework suite down with it.
   { IFS= read -r summary; IFS= read -r failed; IFS= read -r newcnt
-    IFS= read -r when;    IFS= read -r resRun; IFS= read -r resCommit; } < <(
+    IFS= read -r when;    IFS= read -r resRun; IFS= read -r resCommit; IFS= read -r tests; } < <(
     php -r '$r = json_decode(file_get_contents($argv[1]), true);
             echo $r["summary"] ?? "unreadable", "\n", $r["failed"] ?? 1,  "\n", $r["new"]    ?? 0,  "\n",
-                 $r["when"]    ?? 0,            "\n", $r["run"]    ?? "", "\n", $r["commit"] ?? "", "\n";' "$file")
+                 $r["when"]    ?? 0,            "\n", $r["run"]    ?? "", "\n", $r["commit"] ?? "", "\n",
+                 count ( (array) ( $r["tests"] ?? [] ) ), "\n";' "$file")
 
   printf '%-12s %s\n' "$suite" "$summary"
 
   [ "$failed" = "0" ] || exit=1
+
+  # A suite that ran nothing proves nothing: a walk directory gone or an application
+  # renamed came back as "0 pages, 0 tests, 0 failed", which read as all well.
+  [ "$tests" -gt 0 ] 2>/dev/null || { echo "CI: $suite ran no tests" >&2; exit=1; }
   [ "$newcnt" = "0" ] || { echo "CI: $suite has $newcnt tests with no recorded answer" >&2; exit=1; }
 
   # Strictly newer: a result stamped the very second the run started could as easily be

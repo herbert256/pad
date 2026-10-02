@@ -23,7 +23,7 @@ suites="pages common errors framework regression sequence manual other"
 fill () {
   when=$1
   for s in $suites; do
-    printf '{"summary":"1 pages, 1 tests, 0 failed","failed":0,"new":0,"when":%s,"run":"%s","commit":"%s"}' \
+    printf '{"summary":"1 pages, 1 tests, 0 failed","failed":0,"new":0,"when":%s,"run":"%s","commit":"%s","tests":[{"status":"ok"}]}' \
       "$when" "$CI_RUN" "$commit" > "$tmp/$s.json"
   done
 }
@@ -38,12 +38,12 @@ fill "$(future)"
 [ "$(run)" = "0" ]                       || broken="$broken clean"
 
 fill "$(future)"
-printf '{"summary":"1 pages, 1 tests, 1 failed","failed":1,"new":0,"when":%s,"run":"%s","commit":"%s"}' \
+printf '{"summary":"1 pages, 1 tests, 1 failed","failed":1,"new":0,"when":%s,"run":"%s","commit":"%s","tests":[{"status":"ok"}]}' \
   "$(future)" "$CI_RUN" "$commit" > "$tmp/manual.json"
 [ "$(run)" != "0" ]                      || broken="$broken failed"
 
 fill "$(future)"
-printf '{"summary":"1 pages, 1 tests, 0 failed, 1 new","failed":0,"new":1,"when":%s,"run":"%s","commit":"%s"}' \
+printf '{"summary":"1 pages, 1 tests, 0 failed, 1 new","failed":0,"new":1,"when":%s,"run":"%s","commit":"%s","tests":[{"status":"ok"}]}' \
   "$(future)" "$CI_RUN" "$commit" > "$tmp/manual.json"
 [ "$(run)" != "0" ]                      || broken="$broken new"
 
@@ -65,12 +65,17 @@ fill '"later"'
 [ "$(run)" != "0" ]                      || broken="$broken garbled-when"
 
 fill "$(future)"
-printf '{"summary":"1 pages, 1 tests, 0 failed","failed":0,"new":0,"when":%s,"run":"someoneelse","commit":"%s"}' \
+printf '{"summary":"0 pages, 0 tests, 0 failed","failed":0,"new":0,"when":%s,"run":"%s","commit":"%s","tests":[]}' \
+  "$(future)" "$CI_RUN" "$commit" > "$tmp/other.json"
+[ "$(run)" != "0" ]                      || broken="$broken no-tests"
+
+fill "$(future)"
+printf '{"summary":"1 pages, 1 tests, 0 failed","failed":0,"new":0,"when":%s,"run":"someoneelse","commit":"%s","tests":[{"status":"ok"}]}' \
   "$(future)" "$commit" > "$tmp/common.json"
 [ "$(run)" != "0" ]                      || broken="$broken foreign-run"
 
 fill "$(future)"
-printf '{"summary":"1 pages, 1 tests, 0 failed","failed":0,"new":0,"when":%s,"run":"%s","commit":"badbad0"}' \
+printf '{"summary":"1 pages, 1 tests, 0 failed","failed":0,"new":0,"when":%s,"run":"%s","commit":"badbad0","tests":[{"status":"ok"}]}' \
   "$(future)" "$CI_RUN" > "$tmp/pages.json"
 [ "$(run)" != "0" ]                      || broken="$broken foreign-commit"
 
