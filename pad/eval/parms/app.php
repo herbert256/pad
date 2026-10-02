@@ -8,6 +8,12 @@
 
   $padCall = APP2 . padAppFunctionCheck ( $name ) . '.php';
 
+  // The piped value goes in as $padContent too - the name FUNCTIONS.md and CLAUDE.md give
+  // it - next to the $value the existing function files read. This runs inside padEval,
+  // so the engine's own $padContent is not touched.
+
+  $padContent = $value;
+
   return include PAD . 'call/any.php';
 
 ?>
