@@ -84,15 +84,19 @@
     if ( is_array($data) or is_object($data) )
       $data = padJson ($data);
 
-    if ( $data !== null and $data !== '' ) {
+    // NULL writes nothing: the file is made when it is missing and otherwise left as it is.
+    // An empty string is content like any other - overwriting with it empties the file,
+    // where it used to leave the old contents in place and still answer TRUE - except when
+    // appending, where it adds nothing.
 
-      if ($append) $check = file_put_contents ( $file, "$data\n", LOCK_EX | FILE_APPEND );
-      else         $check = file_put_contents ( $file, $data,     LOCK_EX               );
+    if ( $data === null or ( $append and $data === '' ) )
+      return TRUE;
 
-      if ( $check === FALSE )
-        return padError ( "Writing to file failed: $file" );
+    if ($append) $check = file_put_contents ( $file, "$data\n", LOCK_EX | FILE_APPEND );
+    else         $check = file_put_contents ( $file, $data,     LOCK_EX               );
 
-    }
+    if ( $check === FALSE )
+      return padError ( "Writing to file failed: $file" );
 
     return TRUE;
 
