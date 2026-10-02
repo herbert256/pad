@@ -7,8 +7,15 @@
 
   include PAD . 'call/_call.php';
 
-  if ( trim ( $padCallOB ) )
-    $padCallPHP .= $padCallOB;
+  // A file with no return statement hands back PHP's bare 1, which is not a result to put
+  // in front of what it echoed; a data array has nothing to append to; and an echoed 0 is
+  // output like any other.
+
+  if ( trim ( $padCallOB ) !== '' )
+    if ( $padCallPHP === 1 )
+      $padCallPHP = $padCallOB;
+    elseif ( ! is_array ( $padCallPHP ) and ! is_object ( $padCallPHP ) )
+      $padCallPHP .= $padCallOB;
 
   return $padCallPHP;
 
