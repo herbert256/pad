@@ -245,7 +245,7 @@
 
 <p>Add the ignore option to a tag to prevent PAD from parsing curly braces in its content.</p>
 
-<h4>Example 4: Data Tag with JSON</h4>
+<h4>Example 4: A Tag with JSON in it</h4>
 
 <p>Use the <b>{ignore}</b> option on a tag to prevent PAD from parsing curly braces in its content:</p>
 
@@ -286,13 +286,11 @@
           <td style="vertical-align:top"> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>rawJson<font color="black">'</font> ignore</font>}</b><br>{<br>  "theme": "dark",<br>  "settings": {<br>    "notifications": true<br>  }<br>}<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br>&lt;p&gt;The JSON curly braces were not parsed as PAD tags thanks to &lt;code&gt;ignore&lt;/code&gt;.&lt;/p&gt;</code></pre></td>
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">ignore</font>}</b>{"theme": "dark", "settings": {"notifications": true}}<b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre></td>
         
         
           <td style="vertical-align:top">
-  <pre></pre>
-
-<p>The JSON curly braces were not parsed as PAD tags thanks to <code>ignore</code>.</p>
+  <pre>{"theme": "dark", "settings": {"notifications": true}}</pre>
 </td>
         
       </tr>
@@ -361,9 +359,9 @@
     <td><code>data-json="{$jsonVar | ignore}"</code></td>
   </tr>
   <tr>
-    <td>JSON in Data Block</td>
+    <td>JSON in a tag's content</td>
     <td>Option</td>
-    <td><code>{data 'name' ignore}</code></td>
+    <td><code>{pad ignore}</code></td>
   </tr>
 </table>
 
