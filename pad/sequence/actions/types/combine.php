@@ -5,8 +5,14 @@
   // so two ascending sequences come out ascending. combine keeps duplicates; merge (any
   // $pqAction other than 'combine') skips a value that is already in the result. The
   // result is renumbered.
+  //
+  // A name that is not a store is skipped, as actions/merge.php does for the merge family:
+  // read as one, it was an undefined key that ended the request.
 
   foreach ( $pqActionList as $pqMergeKey ) {
+
+    if ( ! isset ( $pqStore [$pqMergeKey] ) )
+      continue;
 
     $pqMerge1 = $pqResult;
     $pqMerge2 = $pqStore [$pqMergeKey];
