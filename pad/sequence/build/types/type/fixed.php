@@ -8,7 +8,9 @@
   // than a value range, and the try limit is lifted since nothing is being searched for.
   // An increment greater than 1 is honoured by skipping that many entries after each
   // candidate, unless the increment was already consumed by the sequence type itself; a
-  // random increment (increment=a...b) is re-rolled every step.
+  // random increment (increment=a...b) is re-rolled every step. The try counter counts the
+  // candidates offered, as in the loop iterator - set to the list position, skip= counted
+  // from the start of the list whatever from= or increment= had left out.
 
   include PQ . 'build/randomly/init.php';
 
@@ -28,8 +30,6 @@
 
     if ( $pqKey < $pqFrom - 1 ) continue;
     if ( $pqKey > $pqTo - 1   ) break;
-
-    $pqTries = $pqKey;
 
     if ( ! include PQ . 'build/one.php')
       break;
