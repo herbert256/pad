@@ -154,8 +154,14 @@ function padSplitOnUnquotedColon ( $str ) {
     // like a whitespace brace and keeps it as literal text. Reading [0] of the empty
     // string was a PHP error before either could speak.
 
-    if ( $padBetween == '' )
-      return ( $padCheckSyntax ) ? padError ( 'an empty tag: {}' ) : TRUE;
+    if ( $padBetween == '' ) {
+
+      if ( $padCheckSyntax )
+        padError ( 'an empty tag: {}' );
+
+      return TRUE;
+
+    }
 
     return ( ctype_space ( $padBetween [0] ) );
 
