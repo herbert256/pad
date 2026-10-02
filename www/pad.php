@@ -1,5 +1,15 @@
 <?php
 
+  // The bootstrap every entry point includes, never a page of its own. Requested directly,
+  // there is no application to derive: with www/ as the docroot the application came out
+  // empty and the whole apps/ tree was served as one (under a mount prefix the directory
+  // name happened to pick an application). That request is answered 404.
+
+  if ( realpath ( $_SERVER ['SCRIPT_FILENAME'] ?? '' ) === __FILE__ ) {
+    http_response_code ( 404 );
+    return;
+  }
+
   include __DIR__ . '/../home/home.php';
 
   $padApps = "$padHome/apps/";
