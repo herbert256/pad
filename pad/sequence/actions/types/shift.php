@@ -6,6 +6,9 @@
   // here and works from the other end. If the store holds no more than N it is emptied
   // while the whole result is still returned; with nothing pulled only the result is cut.
 
+  // Lengths and offsets are counted from the front, as for last: a pop of 0 multiplied out
+  // to -0, which took every term and emptied the store.
+
   if ( $pqPull )
     $pqStoreUpdated = TRUE;
 
@@ -14,7 +17,7 @@
       if ( $pqAction == 'shift')
         $pqStore [$pqPull] = array_slice($pqStore [$pqPull], $pqActionCnt);
       else
-        $pqStore [$pqPull] = array_slice($pqStore [$pqPull], 0, $pqActionCnt * -1);
+        $pqStore [$pqPull] = array_slice($pqStore [$pqPull], 0, count ( $pqStore [$pqPull] ) - $pqActionCnt);
     else
       $pqStore [$pqPull] = [];
 
@@ -22,6 +25,6 @@
     if ( $pqAction == 'shift')
       $pqResult = array_slice ( $pqResult, 0, $pqActionCnt );
     else
-      $pqResult = array_slice ( $pqResult, $pqActionCnt * -1 );
+      $pqResult = array_slice ( $pqResult, count ( $pqResult ) - $pqActionCnt );
 
 ?>
