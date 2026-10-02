@@ -16,6 +16,9 @@
   if ( $padInfo )
     include PAD . 'events/functionsFast.php';
 
-  return include PAD . "functions/$eval.php";
+  // Through the same door as the slow path, so a function that needs parameters is held
+  // to them here too - {$x | replace} read a missing $parm [0] before anything could speak.
+
+  return include PAD . 'eval/parms/pad.php';
 
 ?>

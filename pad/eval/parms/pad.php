@@ -8,7 +8,11 @@
   // value through untouched - the one thing a pipe must never do is swallow it. Reading
   // a missing parameter was a PHP error before either could speak.
 
-  $padFnNeeds = [ 'replace' => 2, 'between' => 2, 'range' => 2, 'mid' => 1, 'substr' => 1 ];
+  $padFnNeeds = [ 'replace' => 2, 'between'    => 2, 'range'    => 2,
+                  'mid'     => 1, 'substr'     => 1, 'left'     => 1,
+                  'right'   => 1, 'max_len'    => 1, 'like'     => 1,
+                  'after'   => 1, 'afterLast'  => 1, 'contains' => 1,
+                  'before'  => 1, 'beforeLast' => 1, 'cut'      => 1 ];
 
   if ( isset ( $padFnNeeds [$name] ) and $count < $padFnNeeds [$name] ) {
 
