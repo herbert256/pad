@@ -133,6 +133,12 @@
 
       $id = $padReqID ?? bin2hex(random_bytes(8));
 
+      // One line per error, whatever it quotes: the message can carry request text - a
+      // page name is the query key as sent - and a newline in it wrote a second, forged
+      // [PAD] line. Control characters become spaces here, before lib's padMakeSafe exists.
+
+      $error = preg_replace ( '/[\x00-\x1F\x7F]+/', ' ', (string) $error );
+
       error_log ( "[PAD] $id $file:$line $error", 4 );
 
       echo "Error: $id";
