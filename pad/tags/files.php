@@ -66,8 +66,15 @@
 
     $padFiles ['item']  = str_replace ( $padFilesScan, '', $padFiles ['path'] );
 
-    if ( $padFilesFile->isFile() )
-      $padFiles ['item']  = substr ( $padFiles ['item'], 0+1, strrpos($padFiles ['item'], '.')-1 );
+    // The extension comes off by its own length: cut at the last dot, a file without one
+    // lost its last letter (README became READM) and a dot in a directory name cut the
+    // path there (v1.2/README became v1).
+
+    if ( $padFilesFile->isFile() ) {
+      $padFiles ['item'] = substr ( $padFiles ['item'], 1 );
+      if ( $padFiles ['ext'] !== '' )
+        $padFiles ['item'] = substr ( $padFiles ['item'], 0, - strlen ( $padFiles ['ext'] ) - 1 );
+    }
 
     $padFiles ['dir']   = substr ( $padFiles ['item'], 0, strrpos($padFiles ['item'], '/')   );
 
