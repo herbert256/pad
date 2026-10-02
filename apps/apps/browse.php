@@ -67,8 +67,10 @@
   $currentFile = '';
   $parentDir = '';
 
-  // Validate app name (security: prevent directory traversal)
-  if ($app && preg_match('/^[a-zA-Z0-9_-]+$/', $app)) {
+  // Validate app name (security: prevent directory traversal). A nested application -
+  // regression/main, which the index links - is name segments joined by /, still with no
+  // dot and no empty segment, so it can not climb out.
+  if ($app && preg_match('/^[a-zA-Z0-9_-]+(\/[a-zA-Z0-9_-]+)*$/', $app)) {
 
     $appPath = $appsDir . $app . '/';
 
