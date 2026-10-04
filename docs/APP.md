@@ -980,6 +980,9 @@ Override framework settings:
   // Values are text: a field holding {php:getcwd} prints that text. FALSE re-reads
   // every value as template source; {echo $snippet | code} runs one value on purpose.
   $padProtectValues = TRUE;
+
+  // The PHP functions a template may call: TRUE all, a list only those, [] none
+  $padPhpFunctions = [ 'ucfirst', 'number_format' ];
 ?>
 ```
 

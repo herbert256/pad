@@ -6,6 +6,9 @@
   // $padOpt [$pad] [0] holds the raw parameter text, the entries after it the parsed arguments;
   // with no parameters written the function is called with no arguments at all.
 
+  if ( ! padPhpAllowed ( $padTag [$pad] ) )
+    return padError ( "the PHP function '" . $padTag [$pad] . "' is not allowed by \$padPhpFunctions" );
+
   if ( ! strlen ( $padOpt [$pad] [0] ) )
     return call_user_func_array ( $padTag [$pad], [] );
 

@@ -592,6 +592,10 @@ $padCheckSyntax = true;
 // Values are text, never template code (see Values Are Text). Off, every value is
 // re-read as template source.
 $padProtectValues = true;
+
+// The PHP functions a template may call - php:, and a bare name like {$x | ucfirst}.
+// TRUE allows all; a list allows those names only; [] none.
+$padPhpFunctions = true;
 ```
 
 ### Expression errors

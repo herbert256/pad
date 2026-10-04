@@ -6,6 +6,9 @@
   // so {echo $s | php:strtoupper} works; otherwise $parm is passed through as the argument
   // list and $value is ignored unless the template placed it there with @.
 
+  if ( ! padPhpAllowed ( $name ) )
+    return padError ( "the PHP function '$name' is not allowed by \$padPhpFunctions" );
+
   if ( ! count ($parm) and $value !== '' )
     $parm [0] = $value;
 

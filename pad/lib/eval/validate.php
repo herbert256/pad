@@ -144,6 +144,9 @@
       if ( padTypeFunction ( $word )            ) continue;   // a real function, or a tag applied as one
       if ( defined ( $word )                    ) continue;   // a defined constant
 
+      if ( function_exists ( $word ) )
+        return padEvalValidateError ( "the PHP function '$word' is not allowed by \$padPhpFunctions", $eval );
+
       return padEvalValidateError ( "there is no pipe function named '$word'", $eval );
 
     }

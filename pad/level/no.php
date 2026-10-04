@@ -114,6 +114,11 @@
 
     }
 
+    // A bare name that is a PHP function lands here when $padPhpFunctions leaves it out.
+
+    if ( function_exists ( $padNoTag ) )
+      padError ( "the PHP function '$padNoTag' is not allowed by \$padPhpFunctions" );
+
     padError ( "there is no tag named '$padNoTag'" );
 
   }

@@ -42,6 +42,15 @@
 
   $padProtectValues = TRUE;
 
+  // The PHP functions a template may call: {php:strlen 'abc'}, {echo $x | php:strrev}, and
+  // a bare name that resolves to nothing else, {$title | ucfirst}. TRUE allows them all; a
+  // list - [ 'ucfirst', 'number_format' ] - allows those names and no other; FALSE or []
+  // allows none. A template author can write PHP in the page's .php file anyway, so the
+  // list matters where a template runs text it did not write: an application that turns
+  // $padProtectValues off, or pipes data into {code}.
+
+  $padPhpFunctions = TRUE;
+
   $padInfo = '';
 
   $padCommon = TRUE;

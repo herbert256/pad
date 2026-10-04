@@ -20,6 +20,35 @@
   //                  disambiguates and asserts
   // padTypeSeq       resolves prefixed sequence forms, where prefix and name may appear
   //                  either way round (make:fibonacci as well as fibonacci:make)
+  // padPhpAllowed    whether a template may call the PHP function of that name, by
+  //                  $padPhpFunctions. A bare name resolves to PHP only when it may - one
+  //                  left out falls through to a sequence of the same name, as range or
+  //                  sort - while an explicit php: still resolves, and is refused with
+  //                  the reason where it is called
+
+  function padPhpAllowed ( $name ) {
+
+    global $padPhpFunctions;
+
+    // An explicit php: tag can carry its call along - {php:hypot(1)} - and resolves on the
+    // name in front of the (, as padTypeTagCheck does.
+
+    $name = strstr ( "$name(", '(', TRUE );
+
+    if ( ! function_exists ( $name ) )
+      return FALSE;
+
+    if ( $padPhpFunctions === TRUE )
+      return TRUE;
+
+    if ( ! is_array ( $padPhpFunctions ) )
+      return FALSE;
+
+    // PHP's own function names do not care about case, so neither does the list.
+
+    return in_array ( strtolower ( $name ), array_map ( 'strtolower', $padPhpFunctions ), TRUE );
+
+  }
 
   function padTypeCommon ( $item ) {
 
@@ -39,7 +68,7 @@
     elseif ( defined            ( $item                          ) ) return 'constant';
     elseif ( padDataFileName    ( $item                          ) ) return 'local';
     elseif ( padScriptCheck     ( $item                          ) ) return 'script';
-    elseif ( function_exists    ( $item                          ) ) return 'php';
+    elseif ( padPhpAllowed      ( $item                          ) ) return 'php';
     elseif ( file_exists        ( PT . $item                     ) ) return 'sequence';
     elseif ( file_exists        ( PA . "$item.php" ) ) return 'action';
 
