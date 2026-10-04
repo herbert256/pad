@@ -983,6 +983,9 @@ Override framework settings:
 
   // The PHP functions a template may call: TRUE all, a list only those, [] none
   $padPhpFunctions = [ 'ucfirst', 'number_format' ];
+
+  // The request values promoted to variables: TRUE all, a list only those, [] none
+  $padRequestVars = [ 'name', 'email', 'message' ];
 ?>
 ```
 

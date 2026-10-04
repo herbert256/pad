@@ -11,6 +11,7 @@
   //      live in $GLOBALS)
   //   4  $GLOBALS itself - the variables a page's .php file left behind
   //   5  any global array that happens to carry the key, skipping pad* and pq* engine state
+  //      - and PHP's request arrays when $padRequestVars is a list
   //   6  down the level stack again for tag parameters, then options, then function-level
   //      variables
   //
@@ -58,9 +59,17 @@
       elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
     }
 
+    // PHP's request arrays are global arrays too, and searching them hands a template any
+    // request value by name - around a $padRequestVars list, which decides the names that
+    // reach it. Under the default TRUE the search stays as it always was.
+
+    $skip = ( $GLOBALS ['padRequestVars'] ?? TRUE ) === TRUE
+          ? [] : [ '_GET', '_POST', '_COOKIE', '_REQUEST', '_FILES' ];
+
     foreach ( $GLOBALS as $key => $value )
       if ( is_array ($value) and array_key_exists ( $field, $value)
-           and substr($key, 0, 3) != 'pad' and substr($key, 0, 2) != 'pq' )  {
+           and substr($key, 0, 3) != 'pad' and substr($key, 0, 2) != 'pq'
+           and ! in_array ( $key, $skip ) )  {
         $work = $value [$field];
         if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
         if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;

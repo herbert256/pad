@@ -76,6 +76,14 @@
 
   $padSessionVars = [];
 
+  // Which request values become variables of their own - a form field arriving in the
+  // template as {$name}. TRUE promotes every POST, GET and cookie value, as PAD always has;
+  // a list - [ 'name', 'email' ] - promotes those names and no other; FALSE or [] none, and
+  // the page's PHP reads $_POST and $_GET itself. Whatever the setting, a name declared in
+  // $padSessionVars is never filled from the request: the session holds it.
+
+  $padRequestVars = TRUE;
+
   $padDataDefaultStart = [];
   $padDataDefaultEnd   = ['sanitize'];
 

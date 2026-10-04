@@ -596,6 +596,10 @@ $padProtectValues = true;
 // The PHP functions a template may call - php:, and a bare name like {$x | ucfirst}.
 // TRUE allows all; a list allows those names only; [] none.
 $padPhpFunctions = true;
+
+// Which request values become variables ({$name} for a form field). TRUE all; a list
+// those names only; [] none. A $padSessionVars name is never filled from the request.
+$padRequestVars = true;
 ```
 
 ### Expression errors
