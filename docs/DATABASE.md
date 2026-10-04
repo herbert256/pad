@@ -28,10 +28,15 @@ $id = db("INSERT INTO users (name) VALUES ('{0}')", [$name]);
 db("UPDATE users SET name='{0}' WHERE id={1}", [$name, $id]);
 ```
 
-**Important:** PAD does NOT add quotes - you must quote string placeholders:
+**Placeholders:** a placeholder written inside quotes gets the value escaped. One written
+bare gets a number as a number and anything else as a quoted, escaped literal, so a bare
+`id={0}` cannot take `5 or 1=1` as SQL. An array written bare becomes a list. Placeholders are
+filled in one pass, so a value holding `{1}` stays as written. Keys starting with `x` are
+inserted raw - a deliberate escape hatch for SQL the code builds itself, never for input.
 ```php
-db("SELECT * FROM users WHERE name='{0}'", [$name]);  // Correct
-db("SELECT * FROM users WHERE name={0}", [$name]);    // WRONG for strings
+db("SELECT * FROM users WHERE name='{0}'", [$name]);      // escaped inside the quotes
+db("SELECT * FROM users WHERE name={0}", [$name]);        // quoted for you
+db("SELECT * FROM users WHERE id IN ({0})", [[1, 2, 3]]);  // a list
 ```
 
 ---
@@ -221,6 +226,6 @@ $padSqlPassword = 'pass';
 ## Critical Syntax Notes
 
 1. **CHECK syntax** - Use `db("CHECK table WHERE...")` NOT `db("CHECK * FROM table...")`
-2. **Quote strings** - Always quote string placeholders: `WHERE name='{0}'`
+2. **Placeholders quote themselves** - `WHERE name={0}` and `WHERE name='{0}'` are both safe; only `{x…}` keys are raw
 3. **Use placeholders** - Use `{0}`, `{1}`, etc. for parameter substitution
 4. **RECORD vs ARRAY** - RECORD returns one row, ARRAY returns all rows

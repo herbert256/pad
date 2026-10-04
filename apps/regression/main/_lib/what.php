@@ -55,6 +55,7 @@
       'db/field2'                 => 'The same through the {field} tag',
       'db/record'                 => 'The db() record command, which returns one row',
       'db/record2'                => 'The same through the {record} tag',
+      'db/placeholders'           => 'db() placeholders - a bare one quotes a value that is not a number, a quoted one escapes, an array becomes a list, and nothing is filled twice',
       'deep/index'                => 'A page rendering a page rendering a page, each level with its own _lib and _include',
       'handlers/index'            => 'The menu of the handler family; each of those is a test of its own',
       'handlers/error_1'          => 'An engine-raised PHP warning from a tag - an undefined variable - which $padErrorLevel promotes to an ended request',

@@ -370,13 +370,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding ph" id="h2">
+    <div class="finding ph fixed" id="h2">
       <div class="tag"><div class="priority">High</div><div class="cat">SQL injection / API</div></div>
       <div>
-        <h3><code>db()</code> placeholders are escaped but never quoted; the documented numeric form is injectable</h3>
+        <h3><code>db()</code> placeholders are escaped but never quoted; the documented numeric form is injectable<span class="done">Fixed</span></h3>
         <p class="where">lib/db.php:68-76 · docs/DATABASE.md:13,28,182-184</p>
         <p><code>str_replace('{'.$i.'}', mysqli_real_escape_string($c,$replace), $sql)</code> escapes the value but does not quote it, and the docs tell authors to write <code>WHERE id={0}</code> unquoted for numbers. Escaping only protects text <em>inside</em> quotes, so a numeric, identifier, <code>LIMIT</code> or <code>IN</code> position takes request input directly. A value containing <code>{1}</code> is re-substituted by the next placeholder. Keys beginning <code>x</code> are inserted raw — a deliberate escape hatch rather than a reachable path in itself; the High rating rests on the unquoted numeric form that the documentation recommends.</p>
         <div class="fix"><b>Fix:</b> use prepared statements, or always quote every placeholder (MySQL coerces <code>'5'</code> in numeric comparisons) and add typed placeholders for int / identifier / list. Correct the docs.</div>
+        <div class="resolved"><b>Fixed:</b> reproduced in a Pages probe first: <code>salary &gt; {0}</code> with <code>'99999 or 1=1'</code> counted every row, and an array value ended the request on a <code>TypeError</code>. A new <code>padDbPlaceholders()</code> fills all placeholders in one pass over the statement, tracking quoted literals: inside <code>'…'</code> or <code>"…"</code> a value is escaped as before; written bare, a number goes in as a number and anything else as a quoted, escaped literal, <code>NULL</code> as <code>NULL</code>, an array as a comma list for <code>IN ({0})</code>; inside backticks the backtick is doubled. A value holding <code>{1}</code> is no longer filled again, and <code>{0:20}</code> cuts by characters. Keys starting <code>x</code> stay raw, the documented escape hatch. DATABASE.md now says bare placeholders quote themselves. A Pages case <code>db/placeholders</code> holds all five behaviours; it ended in a 500 against the old code. Prepared statements were not adopted: every placeholder is now either escaped inside quotes or a typed literal, which closes the injection without changing <code>db()</code>'s string API.</div>
       </div>
     </div>
 
