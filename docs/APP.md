@@ -976,6 +976,10 @@ Override framework settings:
 
   // Debug mode: trace, stats, track, xml, xref
   // $padInfo = 'trace';
+
+  // Values are text: a field holding {php:getcwd} prints that text. FALSE re-reads
+  // every value as template source; {echo $snippet | code} runs one value on purpose.
+  $padProtectValues = TRUE;
 ?>
 ```
 

@@ -24,7 +24,11 @@
 
   if ( ! str_starts_with ( $padPageCurl ['result'], '2' ) )
     return FALSE;
-  
+
+  // The other application's finished page, as it was written out: any brace in it is a
+  // real one again. Re-scanned here it would run, so level/go.php protects it under
+  // $padProtectValues like any tag's answer; this returns the body as it came.
+
   return $padPageCurl ['data'] ?? '';
 
 ?>

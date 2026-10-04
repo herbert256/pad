@@ -15,6 +15,19 @@
   if ( isset ( $pqStore [$padCheck] ) )
     return $pqStore [$padCheck];
 
+  // A list - ( 'a', $b, 2 * 3 ) - evaluates every element as an expression. A {data} block
+  // reads one from the template; through data= the text is a value, often a field's, so
+  // under $padProtectValues a value that reads as a list is refused rather than run.
+
+  if ( $padProtectValues and is_string ( $padCheck ) ) {
+
+    $padDataList = $padCheck;
+
+    if ( padContentType ( $padDataList ) == 'list' )
+      return padError ( "the data= value reads as a PAD list, whose elements would run as expressions" );
+
+  }
+
   return padData ( $padCheck );
 
 ?>

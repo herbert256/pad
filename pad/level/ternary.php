@@ -16,8 +16,17 @@
 
   $padTernaryGo = trim ( ( $padTagResult ) ? $padTernaryTrue : $padTernaryFalse );
 
-  if ( ! preg_match ( '/^[A-Za-z_][A-Za-z0-9_-]*$/', $padTernaryGo ) )
+  // An evaluated side is a value, and it joins the content the level goes on to scan - under
+  // $padProtectValues as text. A bare word is the template's own and holds no syntax.
+
+  if ( ! preg_match ( '/^[A-Za-z_][A-Za-z0-9_-]*$/', $padTernaryGo ) ) {
+
     $padTernaryGo = padEval ( $padTernaryGo );
+
+    if ( $padProtectValues )
+      $padTernaryGo = padProtect ( $padTernaryGo );
+
+  }
 
   if ( $padTagResult )
     $padContent .= $padTernaryGo;

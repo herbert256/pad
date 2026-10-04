@@ -21,9 +21,34 @@
   if ( $padNextPadLevel )
     return;
 
+  // What a tag answers is a value - {echo $x}, a field, a PHP function's result, a fetched
+  // body - and under $padProtectValues it joins the level as text, since the level goes on
+  // to scan it. Template text a tag produces travels as $padTagContent, which is untouched.
+  // Three kinds answer with source by design: an _include/ snippet, a stored {content}
+  // block, and a _common include.
+  //
+  // When the answer will be the level's whole base - no content between the tags, nothing
+  // printed, no content= - the protecting waits for level/pipes/before.php, so the tag's
+  // own pipe works on the real value: {echo '"q"' | html} has quotes to encode. The value
+  // then becomes the content as it is, not through padContentMerge, which would obey an
+  // @else@ or @content@ inside it. Otherwise it is protected here, and the pipe transforms
+  // the template text around it as it always did.
+
   if ( padSingleValue ( $padTagResult ) ) {
-    $padTagContent .= $padTagResult;
+
+    $padTagIsValue = $padProtectValues && ! padTagAnswersSource ();
+
+    if ( $padTagIsValue and $padContent === '' and $padTagContent === '' and ! padTagParm ( 'content' ) ) {
+
+      $padContent          .= $padTagResult;
+      $padBaseValue [$pad]  = TRUE;
+
+    } else
+
+      $padTagContent .= $padTagIsValue ? padProtect ( $padTagResult ) : $padTagResult;
+
     $padTagResult = TRUE;
+
   }
 
   include PAD . 'level/flags.php';

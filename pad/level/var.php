@@ -9,7 +9,8 @@
   // exist is reported under the strict syntax check - resolved to empty with it off -
   // unless the pipe starts with 'optional'. Plain fields additionally run
   // through the $padDataDefaultStart and $padDataDefaultEnd chains from config (sanitize by
-  // default), and padLevel() splices the value straight back into the surrounding text.
+  // default), and padLevel() splices the value back into the surrounding text - protected
+  // first under $padProtectValues, so the scan it lands in reads it as text.
 
   $padPipe = strpos ( $padBetween, '|' );
 
@@ -66,6 +67,13 @@
   if ( $padFirst == '$' )
     foreach ( $padDataDefaultEnd as $padOptOne )
       $padVal = padEval ( $padOptOne, $padVal );
+
+  // Last of all, so the pipes and the sanitize chain work on the value as it really is.
+  // Every sigil form: the raw, option and property values are the ones no sanitize ever
+  // touched.
+
+  if ( $padProtectValues )
+    $padVal = padProtect ( $padVal );
 
   padLevel ( $padVal );
 

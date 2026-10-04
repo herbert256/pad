@@ -121,7 +121,14 @@
 
   }
 
+  // Escaping only the } left a { in the value to open a tag that never closed. Under
+  // $padProtectValues level/var.php protects the whole value after its pipes, so the raw
+  // value reaches them as it is - {!snippet | code} gets the snippet whole.
+
   function padRawValue ( $parm ) {
+
+    if ( $GLOBALS ['padProtectValues'] )
+      return padFieldValue ($parm);
 
     return str_replace ( '}', '&close;', padFieldValue ($parm) );
 

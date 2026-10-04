@@ -460,6 +460,25 @@ The `ignore` feature tells PAD not to parse curly braces `{}` as PAD tags. Essen
 - React/JSX components
 - Any content with literal curly braces
 
+### Values Are Text
+
+A value never becomes template code - a field, what a tag answers, a fetched page. With
+`$v = '{php:getcwd}'`, both `{$v}` and `{echo $v}` print the text `{php:getcwd}`. The
+syntax characters of a value travel as inert stand-ins and are restored only when the page
+is written out, so a value inside another tag's quoted parameter - `{echo '{$v}'}` - stays
+text too. To run a value as PAD, say so where it is used - a snippet kept in a database:
+
+```
+{echo $snippet | code}       # runs the value as PAD
+{echo $snippet | sandbox}    # the same, in an isolated pass
+```
+
+A field written unquoted into a tag's parameters - `{echo {$v}}` - becomes part of the
+expression itself, and a value of `php:getcwd` calls the function. Use `{echo $v}`.
+
+`$padProtectValues = FALSE` brings back the old behaviour: every value re-read as template
+source.
+
 ---
 
 ## Critical Syntax Rules (Common Mistakes)
@@ -569,6 +588,10 @@ $padCache = false;
 // in an expression and in the {$x} tag form alike. Off, the lenient walk keeps what
 // nothing claims as literal text and resolves a missing field to empty.
 $padCheckSyntax = true;
+
+// Values are text, never template code (see Values Are Text). Off, every value is
+// re-read as template source.
+$padProtectValues = true;
 ```
 
 ### Expression errors

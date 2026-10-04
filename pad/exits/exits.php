@@ -14,7 +14,12 @@
   if ( $padCheckSyntax and str_contains ( $padResult [0], '@content@' ) )
     padError ( 'an @content@ stands where nothing merges content into it' );
 
-  $padOutput = padUnescape ( $padResult [0] );
+  // The values' stand-ins come back too - before tidy, which must see the quotes and = of
+  // the markup a tag answered. Always, not only under $padProtectValues: a stand-in that
+  // arrived in the input is a character, and a page written with the switch on in one
+  // place and off in another restores alike.
+
+  $padOutput = padUnprotect ( padUnescape ( $padResult [0] ) );
 
   // The marker gets tidy.php a look even with both switches off: it is consumed (and
   // recorded on the xref) in there, and a response that skipped the file shipped @tidy@

@@ -265,30 +265,29 @@ Include and execute a PAD page.
 ---
 
 ### code
-Execute PHP code.
+Runs its content as PAD source in a separate engine pass and outputs what that pass
+produced.
 
 ```html
-{code 'phpfile'}
+{code}{echo 2 * 3}{/code}        → 6
+{echo $snippet | code}           → $snippet run as PAD
 ```
 
-**Parameters:**
-- First parameter: PHP file to execute
-
-**Note:** Content is cleared before execution
+**Piped into:** a value is text under `$padProtectValues` - a field holding a tag prints
+the tag. Piping the value into `code` is the explicit way to run it as PAD, for a snippet
+kept in a database.
 
 ---
 
 ### sandbox
-Execute code in isolated sandbox.
+The same as `code`, with the pass sandboxed: the fragment cannot see or leave behind
+variables, and the data, content, bool and sequence stores are emptied going in and
+restored coming out.
 
 ```html
-{sandbox 'phpfile'}
+{sandbox}{echo 3 * 3}{/sandbox}  → 9
+{echo $snippet | sandbox}        → $snippet run as PAD, isolated
 ```
-
-**Parameters:**
-- First parameter: PHP file to execute
-
-**Behavior:** Same as code but in sandbox mode
 
 ---
 
@@ -796,8 +795,8 @@ Resume a previously ceased sequence iteration.
 | `increment` | Counters | Increment variable |
 | `decrement` | Counters | Decrement variable |
 | `page` | Execution | Include PAD page |
-| `code` | Execution | Execute PHP |
-| `sandbox` | Execution | Sandboxed PHP |
+| `code` | Execution | Run content as PAD |
+| `sandbox` | Execution | Run content as PAD, isolated |
 | `action` | Execution | Execute action |
 | `ajax` | Execution | AJAX handler |
 | `pad` | Execution | PAD include |

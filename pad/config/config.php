@@ -31,6 +31,17 @@
 
   $padCheckSyntax = TRUE;
 
+  // Values are text, never template code. Every value that comes out of the data - a {$x}
+  // field in any of its sigil forms, what a tag answers, the evaluated side of a ternary,
+  // a page fetched from another application - has PAD's syntax characters swapped for
+  // inert stand-ins on the way into the page, and they are put back only when the finished
+  // page is written out. A field holding {php:getcwd} prints that text instead of running
+  // it. Running a value as PAD stays possible, as an explicit choice where it is written:
+  // {echo $snippet | code}. Off, the engine re-reads every value as template source, the
+  // way it always did.
+
+  $padProtectValues = TRUE;
+
   $padInfo = '';
 
   $padCommon = TRUE;
