@@ -54,7 +54,7 @@
   $padVarFallback = preg_match ( '/^(optional|default\b|\?\?)/', $padVarOpts );
 
   if ( ! $padFldChk and ! $padVarFallback and $padCheckSyntax )
-    padError ( "Field '$padFirst$padFld' not found $padVarOpts" );
+    padError ( "Field '$padFirst$padFld' not found" );
 
   if     ( $padFirst == '$' ) $padVal = padFieldValue ($padFld);
   elseif ( $padFirst == '?' ) $padVal = padUrlValue   ($padFld);
