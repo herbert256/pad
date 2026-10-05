@@ -738,14 +738,15 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm fixed part" id="m24">
+    <div class="finding pm fixed" id="m24">
       <div class="tag"><div class="priority">Medium</div><div class="cat">Select config</div></div>
       <div>
-        <h3>A configured SELECT row limit becomes the SQL command name<span class="done part">Partly fixed</span></h3>
+        <h3>A configured SELECT row limit becomes the SQL command name<span class="done">Fixed</span></h3>
         <p class="where">lib/select.php:71-78,95-106 · handling/types/page.php:9-15</p>
         <p><code>$htmlAttrJson = $prm['htmlAttrJson'] ?? $parms['rows'] ?? 0;</code> reads the wrong key: a <code>$padSelect</code> entry with <code>'rows' =&gt; 2</code> and no tag-level override assigns <code>2</code> to both <code>$padHtmlAttrJson</code> and the query's <code>$type</code> prefix. The built statement comes out as <code>2  * from people  limit 0, 2</code> — malformed SQL, and the global output mode flipped as a side effect. Also, <code>page=</code>/<code>rows=</code> pagination is then applied <em>twice</em> — once as SQL <code>LIMIT</code> and again by <code>handling/types/page.php</code> on the already-limited rows, because the guard checks <code>isset($padDone['page'])</code> at the wrong index — so <code>page=2</code> and above render empty; and a joined table declared without <code>fields</code> hits an undefined index.</p>
         <div class="fix"><b>Fix:</b> read <code>$parms['htmlAttrJson']</code>; validate allowed output modes; skip handling for options the select already consumed (<code>padIsDone</code>); default <code>fields</code> to empty.</div>
         <div class="resolved part"><b>Partly fixed:</b> reproduced all three in a probe application over the classicModels declarations, then: <code>$htmlAttrJson</code> reads <code>$parms[&#39;htmlAttrJson&#39;]</code>, so a declared <code>&#39;rows&#39; =&gt; 2</code> stays a row count (the statement was <code>2 * from offices … limit 0, 2</code>); <code>padSelectLimit()</code> marks <code>page</code>/<code>rows</code> <code>&#39;limit&#39;</code> on this level&#39;s <code>$padDone</code> book and checks that book for its guard, and <code>handling/types/page.php</code> leaves rows alone that the limit already cut, so <code>page=2</code> shows rows 3–4 instead of nothing; a joined table declared without <code>fields</code> adds none instead of reading an undefined index. A new Pages case <code>select/demo/paging</code> covers all three. The output-mode validation in the fix line is not done: <code>htmlAttrJson</code> is still taken as given.</div>
+        <div class="resolved"><b>Fixed:</b> the output-mode validation. <code>htmlAttrJson=</code> becomes the statement's command word, so <code>padSelect</code> now accepts only the row shapes <code>db()</code> knows, <code>array</code>, <code>record</code> and <code>field</code>, with a bare <code>htmlAttrJson</code> meaning <code>array</code>. Anything else is a PAD error, where it went into the SQL as written. An Errors case gives it <code>'drop table staff;'</code>. The applications' <code>htmlAttrJson='record'</code> uses are unchanged.</div>
       </div>
     </div>
 

@@ -75,9 +75,19 @@
     $rows         = $prm ['rows']         ?? $parms ['rows']        ?? 0;
     $htmlAttrJson = $prm ['htmlAttrJson'] ?? $parms ['htmlAttrJson'] ?? 0;
 
+    // The mode becomes the statement's command word, so it is one of the shapes db() knows
+    // for rows - array, record or field - and a bare htmlAttrJson means array. Any other
+    // value went into the SQL as written.
+
+    if ( $htmlAttrJson === TRUE or $htmlAttrJson === 1 or $htmlAttrJson === '1' )
+      $htmlAttrJson = 'array';
+
+    if ( $htmlAttrJson and ! in_array ( strtolower ( (string) $htmlAttrJson ), [ 'array', 'record', 'field' ], TRUE ) )
+      return padError ( "htmlAttrJson= takes array, record or field, not '" . padMakeSafe ( (string) $htmlAttrJson, 40 ) . "'" );
+
     if ( ! $padHtmlAttrJson and $htmlAttrJson ) {
-      $padHtmlAttrJson = $htmlAttrJson;
-      $type            = $htmlAttrJson;
+      $padHtmlAttrJson = strtolower ( $htmlAttrJson );
+      $type            = $padHtmlAttrJson;
     }
 
     $padSelStart = padSelectStart  ( $all, $distinct, $distinctrow);
