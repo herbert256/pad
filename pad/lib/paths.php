@@ -156,9 +156,15 @@
 
   }
 
+  // Only when PAD's cookies are off: with them on, the browser and padCurl carry both ids
+  // already, and an id in a URL leaks through every Referer header and server log.
+
   function padAddIds ( $url ) {
 
-    global $padReqID, $padSesID;
+    global $padReqID, $padSesID, $padCookies;
+
+    if ( $padCookies )
+      return $url;
 
     $url = padAddGet ( $url, 'padSesID', $padSesID );
     $url = padAddGet ( $url, 'padReqID', $padReqID );

@@ -7,7 +7,8 @@
   //              and returns $padGoExt plus that key, so a large state set travels as a
   //              short URL (inits/fast.php is the matching unpacker, currently disabled)
   // padRedirect  builds an absolute cross-app URL from $padHost, appends the session and
-  //              request ids plus $vars, sends Location and ends the request with 302
+  //              request ids when cookies are off (padAddIds) plus $vars, sends Location
+  //              and ends the request with 302
   // padRestart   abandons the current page and reruns the request for $go by setting
   //              $padRestart / $padRestartVars, which start/restart.php acts on
 
@@ -32,15 +33,14 @@
 
   function padRedirect ( $go='', $vars=[], $app='' ) {
 
-    global $padHost, $padReqID, $padSesID, $padApp, $padPage;
+    global $padHost, $padApp, $padPage;
 
     if ( ! $app ) $app = $padApp;
     if ( ! $go  ) $go  = $padPage;
 
     $go = ( $go ) ? "$padHost$app/?$go" : "$padHost$app/";
 
-    $go = padAddGet ( $go, 'padSesID', $padSesID );
-    $go = padAddGet ( $go, 'padReqID', $padReqID );
+    $go = padAddIds ( $go );
 
     foreach ( $vars as $padK => $padV )
       $go = padAddGet ( $go, $padK, $padV );

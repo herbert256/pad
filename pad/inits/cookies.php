@@ -12,10 +12,18 @@
 
     if ( ! headers_sent () ) {
 
-      if ( ! isset($_COOKIE['padSesID']) or $_COOKIE['padSesID'] != $padSesID )
-        setCookie ('padSesID', $padSesID, time() + (60 * 60 * 24 * 366 * 10) );
+      // Kept from scripts and from cross-site requests, and over https only when the page
+      // came over https: they were plain cookies any script on the page could read.
 
-      setCookie ('padReqID', $padReqID, time() + (60 * 60 * 24 * 366 * 10) );
+      $padCookieFlags = [ 'expires'  => time() + (60 * 60 * 24 * 366 * 10),
+                          'httponly' => TRUE,
+                          'samesite' => 'Lax',
+                          'secure'   => ( $_SERVER ['HTTPS'] ?? '' ) !== '' and ( $_SERVER ['HTTPS'] ?? '' ) !== 'off' ];
+
+      if ( ! isset($_COOKIE['padSesID']) or $_COOKIE['padSesID'] != $padSesID )
+        setCookie ('padSesID', $padSesID, $padCookieFlags );
+
+      setCookie ('padReqID', $padReqID, $padCookieFlags );
 
     }
 
