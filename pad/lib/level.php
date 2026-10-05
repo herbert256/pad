@@ -176,7 +176,10 @@ function padSplitOnUnquotedColon ( $str ) {
 
     $inside = substr ( $before, $open + 1 );
 
-    if ( ctype_space ( $inside [0] ) or str_contains ( $inside, '}' ) or ! preg_match ( '/\s/', $inside ) )
+    // A { followed by whitespace or a double quote opens no tag (padWhiteCheck), so the
+    // value stands in text: literal JSON, {"id": {$id}}, had quotes put round it.
+
+    if ( ctype_space ( $inside [0] ) or $inside [0] == '"' or str_contains ( $inside, '}' ) or ! preg_match ( '/\s/', $inside ) )
       return $value;
 
     $quote = '';
