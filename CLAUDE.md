@@ -400,6 +400,17 @@ Supports JSON, XML, YAML, and CSV formats:
 {/data}
 ```
 
+### Fragment Cache
+```
+{cache 'top-products', ttl=300}            # a named section, kept five minutes
+  {topProducts}<li>{$name}</li>{/topProducts}
+{/cache}
+
+{expensive cache=3600, vary=$country}...{/expensive}   # any tag; its handler skips on a hit
+```
+`$padFragmentCache` = `'file'` (default), `'apcu'` or `FALSE`; `padFragmentForget('name')`
+drops a section when what it shows has changed.
+
 ### Variable Assignment
 ```
 {set $name = 'Alice'}              # Assign string

@@ -72,6 +72,12 @@
 
   $padCache = FALSE;
 
+  // The fragment cache - {cache 'name'} ... {/cache} and the cache= option on any tag, see
+  // lib/fragment.php: 'file' keeps the sections under DATA/cache/fragments/, 'apcu' in shared
+  // memory, FALSE renders them every time.
+
+  $padFragmentCache = 'file';
+
   $padSqlPadHost           = '127.0.0.1';
   $padSqlPadDatabase       = 'pad';
   $padSqlPadUser           = 'pad';

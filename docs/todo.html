@@ -309,7 +309,7 @@
 {/cache}</code></pre>
           <p>PAD has <a href="https://github.com/herbert256/pad/blob/master/pad/cache/inits.php#L3">whole-response caching</a>. The inspection found no implemented template-fragment cache, despite the reference mentioning a <code>cache</code> option.</p>
           <p>This would cache an expensive section while the surrounding page remains dynamic. A cache hit should skip the enclosed template work. PHP already executed before rendering would still run, so query savings depend on where data retrieval happens. Keys must include inputs that change the rendered result.</p>
-          <p class="references"><strong>Precedent:</strong> <a href="https://twig.symfony.com/doc/3.x/tags/cache.html">Twig’s optional CacheExtension</a></p>
+          <p class="done"><strong>Done.</strong> <code>{cache 'name', ttl=300, vary=…}</code> and the <code>cache=</code> option on any tag (lib/fragment.php, level/cached.php). A hit skips the tag handler and everything inside; the stored rendering takes the level result before end options and closing pipes. Stores: <code>$padFragmentCache</code> = <code>'file'</code> (default, with an hourly purge), <code>'apcu'</code> or FALSE; <code>padFragmentForget()</code>. Regression: five framework <code>tags/</code> cases (miss then hit, cache off, vary, closing pipe on a hit, option form skipping the handler), two errors cases; manual page <em>Fragment cache</em>; TAGS.md, OPTIONS.md, PAD.md, CLAUDE.md.</p><p class="references"><strong>Precedent:</strong> <a href="https://twig.symfony.com/doc/3.x/tags/cache.html">Twig’s optional CacheExtension</a></p>
         </li>
 
         <li class="feature" id="response-fragments">
@@ -411,7 +411,7 @@
             <tr>
               <th scope="row"><code>cache</code> option</th>
               <td>PAD.md (Advanced features → Caching) and the options table in TAGS.md describe <code>cache="3600"</code>, but there is no <code>pad/options/cache.php</code>. <a href="https://github.com/herbert256/pad/blob/master/pad/events/cache.php">events/cache.php</a> says of itself that nothing includes it.</td>
-              <td>Implement it as the fragment cache (<a href="#fragment-cache">#06</a>), or remove it from the docs until then.</td>
+              <td>Implement it as the fragment cache (<a href="#fragment-cache">#06</a>), or remove it from the docs until then.<span class="done"><strong>Done.</strong> Implemented as the fragment cache (#06): <code>cache=&lt;seconds&gt;</code> works on any tag, and <code>pad/options/cache.php</code> exists for the reference.</span></td>
             </tr>
             <tr>
               <th scope="row"><code>.sql</code> data files</th>

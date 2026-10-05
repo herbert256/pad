@@ -1,0 +1,24 @@
+<h1>Fragment cache</h1>
+
+<p>The page cache answers a whole request from a store. The fragment cache keeps a <em>section</em> of a page rendered, while the page around it stays dynamic: on a hit nothing inside the section runs - no tag, no query - and the stored rendering takes its place.</p>
+
+{example 'fragments/cache_1'}
+
+<h2>Two forms</h2>
+
+<ul>
+  <li><code>{open}cache 'name', ttl=300{close} ... {open}/cache{close}</code> - a named section; the name is its key within the application, so the same name is the same section on every page.</li>
+  <li><code>{open}anyTag cache=3600{close}</code> - the option form on any tag; on a hit the tag's own handler is skipped as well. It is keyed on the page, the tag as written and its evaluated parameters.</li>
+</ul>
+
+<h2>What the key depends on</h2>
+
+<p>Everything that changes the rendering must be in the key. Add it with <code>vary</code>: <code>{open}cache 'basket', vary=$userId{close}</code> keeps one copy per user. PHP that runs before the template - the page's own <code>.php</code> - runs on a hit too; the saving is the work done inside the section.</p>
+
+<h2>Settings and housekeeping</h2>
+
+<ul>
+  <li><code>$padFragmentCache</code> - <code>'file'</code> (default, under <code>DATA/cache/fragments/</code>), <code>'apcu'</code>, or <code>FALSE</code> to render every time.</li>
+  <li><code>padFragmentForget ( 'name' )</code> drops a named section when what it shows has changed; <code>padFragmentForget ()</code> drops them all.</li>
+  <li>Closing pipes and end options - <code>{open}/cache | upper{close}</code>, <code>toContent</code> - run on a hit as on a fresh rendering.</li>
+</ul>

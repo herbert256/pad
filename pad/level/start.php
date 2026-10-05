@@ -28,7 +28,12 @@
   if ( $padInfo )
     include PAD . 'events/tag.php';
 
-  include PAD . 'try/level/go.php';
+  // A fragment-cache hit stands in for the tag: its handler does not run - see lib/fragment.php.
+
+  if ( ( isset ( $padPrm [$pad] ['cache'] ) or padFragmentNamed () ) and padFragmentHit () )
+    include PAD . 'level/cached.php';
+  else
+    include PAD . 'try/level/go.php';
 
   if ( $padNextPadLevel )
     return include PAD . 'level/nextLevel.php';

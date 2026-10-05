@@ -475,6 +475,24 @@ Enables preprocessing.
 
 ---
 
+## Cache Option
+
+### cache
+
+Keeps the tag's rendering in the fragment cache for so many seconds; on a hit the tag's
+handler does not run and the stored rendering stands in. See `{cache}` in
+[TAGS.md](TAGS.md#cache).
+
+```
+{expensive_query cache=3600, vary=$country}
+  ...
+{/expensive_query}
+```
+
+`ttl=` may say the seconds instead; `vary=` adds what else the rendering depends on.
+
+---
+
 ## Debug Options
 
 ### dump

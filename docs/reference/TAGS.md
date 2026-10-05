@@ -530,6 +530,30 @@ Escape PAD syntax in content.
 
 ---
 
+### cache
+Keep a section of the page rendered - the fragment cache.
+
+```html
+{cache 'top-products', ttl=300}
+  {topProducts}<li>{$name}</li>{/topProducts}
+{/cache}
+```
+
+**Parameters:**
+- First parameter: the section's name, its key within the application
+- `ttl` - seconds the rendering is kept (default 300)
+- `vary` - whatever else the rendering depends on: `vary=$userId` keeps one copy per user
+
+**Behavior:** On a hit nothing inside the section runs - no tag, no query - and the stored
+rendering takes its place; closing pipes and end options run on it as on a fresh one. The
+`cache=<seconds>` option does the same for any tag, keyed on the page, the tag as written and
+its evaluated parameters, and skips the tag's own handler on a hit. `$padFragmentCache`
+selects the store (`'file'`, `'apcu'`, or `FALSE` to render every time);
+`padFragmentForget('top-products')` drops a section, `padFragmentForget()` all of them.
+PHP that runs before the template - the page's `.php` - runs on a hit too.
+
+---
+
 ### Comments
 Not a tag: text the engine drops before it scans the template, tags inside included.
 
@@ -829,6 +853,7 @@ Resume a previously ceased sequence iteration.
 | `tidy` | Output | Format HTML |
 | `ignore` | Output | Escape content |
 | `reactData` | Output | React mount point with provider data |
+| `cache` | Output | Keep a section rendered (fragment cache) |
 | `dump` | Debug | Dump info |
 | `trace` | Debug | Enable tracing |
 | `error` | Errors | Trigger error |
@@ -928,7 +953,8 @@ other word after a value is a pipe, `{echo 'abc' upper}` gives `ABC`.
 | `first` | First N items |
 | `last` | Last N items |
 | `page` | Pagination |
-| `cache` | Cache output |
+| `cache` | Keep the rendering for so many seconds (fragment cache) |
+| `where` | Keep the rows an expression holds for |
 | `callback` | Run callback |
 | `ignore` | Skip PAD processing |
 | `noError` | Suppress errors |

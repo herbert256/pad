@@ -544,13 +544,23 @@ apps/myapp/
 
 ### Caching
 
-Built-in caching system for performance:
+Two levels. The page cache (`$padCache`) answers a whole anonymous GET from a store -
+apcu, db, file, memcached or redis. The fragment cache keeps one section of a page
+rendered while the rest stays dynamic:
 
 ```
-{expensive_query cache="3600"}   {# Cache for 1 hour #}
+{cache 'top-products', ttl=300}  {# a named section, five minutes #}
+  {topProducts}<li>{$name}</li>{/topProducts}
+{/cache}
+
+{expensive_query cache=3600}      {# any tag: its handler is skipped on a hit #}
   ...
 {/expensive_query}
 ```
+
+`vary=` adds what else the rendering depends on (`vary=$userId`); `$padFragmentCache`
+picks the store - `'file'` (default), `'apcu'` or `FALSE`; `padFragmentForget('top-products')`
+drops a named section when what it shows has changed.
 
 ### AJAX Support
 

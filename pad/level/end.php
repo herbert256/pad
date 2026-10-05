@@ -53,6 +53,9 @@
   if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']) )
     include PAD . 'callback/exit.php' ;
 
+  if ( $padFragment [$pad] ?? FALSE )
+    padFragmentEnd ();
+
   include PAD . 'options/_go/end.php';
 
   if ( $padCheckSyntax )
