@@ -76,6 +76,8 @@
       'sitemap/site/sub/b'        => 'An .html page in a subdirectory the sitemap test lists',
       'flush/early'               => 'Two {flush} tags in one page: every part is sent once, in order, and the page arrives whole',
       'flush/slow'                => 'The page flush/timing measures: a flush, then a part that takes 0.4 seconds to render',
+      'mail/file'                 => 'padMail through the file transport: the _mail/ template beside the page with its PHP, its text part in its layout, a text part made from HTML, the headers - read back from the .eml',
+      'mail/tags'                 => 'The {mail} tag with an application transport: a template from the application-s _mail/ in its layout, and the pair form in a loop with the fields of the row',
       'flush/embedded'            => 'A page with {flush} rendered inside another through {page}: it flushes nothing, and renders whole',
       'flush/timing'              => '{flush} sends the page above it at once: the first part of the body arrives before the slow part is rendered, with no Content-Length - where a bare {flush} called PHP-s flush(), which sent only the headers early',
       'callback'                  => 'The row phase of a streaming callback, which reads the occurrence fields as plain variables',

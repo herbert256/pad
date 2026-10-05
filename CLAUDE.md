@@ -99,6 +99,16 @@ file or directory name binds a segment as a variable before the page's PHP runs:
   written `{$padGo}page&x=1` works in both forms. Apache needs
   `FallbackResource /myapp/index.php`; `php -S` needs no router.
 
+## Template emails
+
+`{mail to=$email, template='order', subject='Order confirmation'}` renders `_mail/order.pad`
+(HTML) and `_mail/order.txt` (text - made from the HTML when absent), after `_mail/order.php`,
+inside the `_inits.pad`/`_exits.pad` layout of that `_mail/`; as a pair without `template` the
+content is the HTML part. `from`, `cc`, `bcc`, `replyTo` too. From PHP:
+`padMail ( $to, 'order', $subject, [ 'order' => $order ] )`. `$padMailTransport`: `'file'`
+(default, `.eml` under `DATA/mail/<app>/` - no mail server needed), `'mail'` (PHP `mail()`),
+or the name of an app function that gets the message (SMTP through a library).
+
 ## Early flush
 
 `{flush}` - after the wrapper's `</head>` - sends the page rendered so far at once, so the
@@ -191,6 +201,7 @@ apps/myapp/
 | `_config/` | App config | `config.php` overrides |
 | `_data/` | Static data, named queries | XML, JSON, YAML, CSV; `name.sql` runs as `{name}` |
 | `_scripts/` | Shell scripts | On demand |
+| `_mail/` | Email templates | `{mail template='order'}` → `order.pad` + `order.txt` |
 | `_lang/` | Translation catalogs | `nl.json` holds the keys `{trans 'key'}` looks up in locale `nl` |
 | `_content/` | Markdown collections | `_content/blog/*.md` with front matter are the rows of `{collection 'blog'}` |
 
@@ -930,6 +941,11 @@ $padCleanUrls = false;
 $padSitemap     = false;
 $padSitemapSkip = [];        // e.g. [ 'admin', 'login' ] - a page, or a directory and below
 
+// Template emails: 'file' (DATA/mail/<app>/*.eml), 'mail' (PHP mail()) or a function name
+$padMailTransport = 'file';
+$padMailFrom      = '';      // empty: noreply@ the host
+$padMailKeep      = 100;     // messages the file transport keeps
+
 // Cache enabled
 $padCache = false;
 
@@ -1235,6 +1251,12 @@ Output: `Alice, Bob, Charlie`
 | `padFileGet($file, $default)` | Read file contents - a relative path is under `DATA/` |
 | `padFilePut($file, $data, $append)` | Write file contents - under `DATA/` only, a relative path there too |
 | `padFileCheck($file)` | Validate file path |
+
+### Mail
+
+| Function | Description |
+|----------|-------------|
+| `padMail($to, $template, $subject, $vars, $options)` | Render `_mail/<template>` and send it - `$options`: `from`, `cc`, `bcc`, `replyTo`, `html`, `text` |
 
 ### Evaluation
 

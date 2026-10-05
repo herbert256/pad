@@ -230,6 +230,17 @@
   $padSitemap     = FALSE;
   $padSitemapSkip = [];
 
+  // Template emails ({mail}, padMail - lib/mail.php): 'file' writes every message as an .eml
+  // under DATA/mail/<app>/ instead of sending it - development needs no mail server; 'mail'
+  // sends through PHP's mail(); any other value names a function of the application that
+  // gets the message, for SMTP through a library. $padMailFrom is the sender - empty,
+  // noreply@ the host. $padMailKeep is how many messages the file transport keeps per
+  // application, the newest.
+
+  $padMailTransport = 'file';
+  $padMailFrom      = '';
+  $padMailKeep      = 100;
+
   $padGzip      = FALSE;
   $padCookies   = TRUE;
   $padNoNo      = FALSE;

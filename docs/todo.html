@@ -769,7 +769,7 @@ $padExpose = [ 'orders', 'total' ];</code></pre>
           <pre><code>{mail to=$email, template='order',
       subject='Order confirmation'}</code></pre>
           <p>Mail templates would live in <code>_mail/</code>, with their own <code>_inits.pad</code> for the email layout and both HTML and text parts. The transport is configurable (<code>mail()</code> or SMTP). In development, messages are written to <code>DATA/mail/</code> instead of being sent, and shown in the toolbar (<a href="#toolbar">#20</a>). <code>{file}</code> already writes rendered output to disk, so the rendering side is mostly there.</p>
-        </li>
+        <p class="done"><strong>Done.</strong> <code>{mail to=, template=, subject=}</code> (or a pair whose content is the HTML body) and <code>padMail()</code> render <code>_mail/x.pad</code> and <code>x.txt</code> (text made from the HTML when there is none) after <code>x.php</code>, inside that <code>_mail/</code>’s own wrappers, into a UTF-8 multipart/alternative message; from/cc/bcc/replyTo are checked against header injection. <code>$padMailTransport</code> is <code>'file'</code> by default (an .eml outbox under DATA/mail/), <code>'mail'</code> (PHP <code>mail()</code>) or an application function (for SMTP). Regression: pages and errors cases; manual page <em>Mail</em>; TAGS.md, APP.md, CLAUDE.md.</p></li>
 
         <li class="idea" id="uploads">
           <div class="idea-top"><span class="number" aria-hidden="true">35</span><h3>Safe file uploads</h3><span class="effort">Medium</span></div>

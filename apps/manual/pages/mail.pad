@@ -1,0 +1,30 @@
+<h1>Template emails</h1>
+
+<p>A mail is a PAD template, rendered to an HTML part and a text part and handed to a
+transport. Templates live in <code>_mail/</code>, looked up like <code>_include/</code>:
+<code>_mail/welcome.pad</code> is the HTML part, <code>_mail/welcome.txt</code> the text part
+- without one, the text is made from the HTML - and <code>_mail/welcome.php</code> runs first.
+<code>_inits.pad</code> and <code>_exits.pad</code> in the same <code>_mail/</code> are the
+email's layout, with <code>@page@</code> where the mail goes:</p>
+
+{example 'fragments/mail_1'}
+
+<p>From a template, {open}mail{close} sends the same way. With a template it is
+<code>{open}mail to=$email, template='welcome', subject='Welcome'{close}</code>; as a pair,
+the content is the HTML part, rendered where it stands - in a loop with the fields of the
+row:</p>
+
+{example 'fragments/mail_2'}
+
+<ul>
+  <li><code>from</code>, <code>cc</code>, <code>bcc</code> and <code>replyTo</code> set the other
+      headers; an address is <code>ann@example.com</code> or <code>Ann &lt;ann@example.com&gt;</code>,
+      several separated by commas. A line break in any of them is refused.</li>
+  <li><code>$padMailTransport</code> says where it goes. <code>'file'</code>, the default, writes
+      every message as an <code>.eml</code> under <code>DATA/mail/</code> instead of sending it,
+      keeping the newest <code>$padMailKeep</code>; <code>'mail'</code> sends through PHP's
+      <code>mail()</code>; the name of a function of the application gets the message - the
+      place for SMTP through a library.</li>
+  <li><code>$padMailFrom</code> is the sender; <code>$padMailLast</code> the last message of
+      the request.</li>
+</ul>

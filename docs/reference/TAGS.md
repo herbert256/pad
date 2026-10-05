@@ -824,6 +824,38 @@ failing `data=` is. The parsed sets are also returned, under the same names.
 
 ---
 
+### mail
+Render a PAD template to an email - an HTML part and a text part - and send it.
+
+```html
+{mail to=$email, template='order', subject='Order confirmation'}
+
+{mail to=$email, subject='Welcome'}
+  <p>Hello {$name}</p>
+{/mail}
+```
+
+**Parameters:**
+- `to`: the address(es) - `ann@example.com`, `Ann <ann@example.com>`, several separated by commas
+- `subject`: the subject
+- `template`: a template in `_mail/`, looked up like `_include/` from the page's directory up to
+  the application and `_common`: `order.pad` (or `.html`) the HTML part, `order.txt` the text
+  part, `order.php` run first; `_inits.pad`/`_exits.pad` (and `.txt`) there are the layout,
+  with `@page@`. Without a `.txt`, the text part is made from the HTML.
+- `from`, `cc`, `bcc`, `replyTo`: the other headers (`from` defaults to `$padMailFrom`)
+
+**Behavior:** As a pair without `template`, the content is the HTML part, rendered where it
+stands - in a loop with the fields of the row. The tag shows nothing. The mail sees the page's
+variables and leaves them as they were. `$padMailTransport` decides where it goes: `'file'`
+(default) writes an `.eml` under `DATA/mail/<app>/`, keeping the newest `$padMailKeep`; `'mail'`
+sends through PHP's `mail()`; a function name of the application gets the message array (`to`,
+`cc`, `bcc`, `from`, `replyTo`, `subject`, `html`, `text`, `headers`, `raw`) and answers
+whether it went. A line break in a header value, an address that is none, a missing subject or
+template are errors. From PHP: `padMail ( $to, $template, $subject, $vars, $options )`;
+`$padMailLast` holds the last message of the request.
+
+---
+
 ## Output Tags
 
 ### echo
@@ -1596,6 +1628,7 @@ Resume a previously ceased sequence iteration.
 | `open` | Files | Opening brace |
 | `close` | Files | Closing brace |
 | `curl` | Network | HTTP request |
+| `mail` | Network | Send a template email, HTML and text |
 | `echo` | Output | Evaluate/output |
 | `flush` | Output | Send the page rendered so far now |
 | `output` | Output | Set output type |

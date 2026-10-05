@@ -111,6 +111,7 @@ apps/myapp/
 | `_config/` | App config | `config.php` overrides |
 | `_data/` | Static data | XML, JSON files |
 | `_content/` | Markdown collections | `_content/blog/*.md` are the rows of `{collection 'blog'}` |
+| `_mail/` | Email templates | `{mail template='order'}` → `order.pad` + `order.txt` |
 
 ### _lib/ - PHP Functions
 
@@ -1277,8 +1278,41 @@ is declared twice, and anything it does it does twice. Functions belong in `_lib
   // ?sitemap.xml generated from the file tree, ?robots.txt pointing to it
   $padSitemap     = TRUE;
   $padSitemapSkip = [ 'admin', 'login' ];
+
+  // Template emails: 'file' (DATA/mail/), 'mail' (PHP mail()) or a function in _lib/
+  $padMailTransport = 'mail';
+  $padMailFrom      = 'Shop <shop@example.com>';
 ?>
 ```
+
+---
+
+## Template emails
+
+A mail is a PAD template rendered to an HTML and a text part. Templates live in `_mail/`,
+looked up like `_include/`: `_mail/order.pad` (HTML), `_mail/order.txt` (text - made from the
+HTML when there is none), `_mail/order.php` (runs first), and `_inits.pad`/`_exits.pad` (and
+`.txt`) in the same directory as the email's layout around `@page@`.
+
+```html
+{mail to=$email, template='order', subject='Order confirmation'}
+
+{orders}
+  {mail to=$email, subject='Your order ' . $number}<p>Thank you, {$customer}</p>{/mail}
+{/orders}
+```
+
+```php
+padMail ( $email, 'order', 'Order confirmation', [ 'order' => $order ],
+          [ 'cc' => 'sales@example.com', 'replyTo' => 'help@example.com' ] );
+```
+
+`$padMailTransport = 'file'` (the default) writes each message as an `.eml` under
+`DATA/mail/<app>/` instead of sending it - development needs no mail server - and keeps the
+newest `$padMailKeep`; `'mail'` sends through PHP's `mail()`; the name of a function in `_lib/`
+gets the message array (`to`, `cc`, `bcc`, `from`, `replyTo`, `subject`, `html`, `text`,
+`headers`, `raw`) and returns whether it went - the place for SMTP through a library.
+`$padMailFrom` is the sender.
 
 ---
 
