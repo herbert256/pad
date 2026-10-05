@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The `pad` command - new, serve, render, lint, export - and the command-line application it runs when it is given no command.
+The `pad` command - new, serve, render, lint, export, test - and the command-line application it runs when it is given no command.
 
 ## Install
 
@@ -24,6 +24,9 @@ pad render shop search q=shoes     # with request values, as ?search&q=shoes wou
 pad lint shop                      # every page rendered under the strict check
 pad lint shop orders               # only the pages of one directory
 pad export demo out/               # a static copy for any static host
+pad test shop                      # the application's own tests, in apps/shop/_tests/
+pad test shop --record             # ... writing the answers that are missing
+pad test --all                     # every application that has tests
 pad help                           # the list
 ```
 
@@ -56,6 +59,24 @@ pad help                           # the list
   it. Query values after the page name cannot be static: such a link lands on the page as it
   renders without them. A page that fails or answers nothing is reported and left out.
 
+- **test** runs the application's own tests. A test is a page in `_tests/` - `cart.pad`, and
+  `cart.php` when it needs data - next to its answer `cart.txt`: the exact output, a
+  `/regex/` over it, or `HTTP 500` with an optional `/regex/` on the next line, the forms
+  the framework's suites use. Each test page renders bare, in a process of its own, with
+  every `{assert}` checked; no URL reaches `_tests/`. A test without an answer counts against
+  the run until `--record` writes it from what the page renders now (an existing answer is
+  never overwritten). `./ci.sh` runs `pad test --all --brief` as its `apptests` line.
+
+  ```
+  shop
+    ok    cart
+    FAIL  checkout
+          want: <p>Total 42</p>
+          got:  HTTP 500 - assert failed: $total eq 42
+                apps/shop/_tests/checkout.pad:2:1  {assert $total eq 42}
+    2 tests, 1 failed
+  ```
+
 Without a command word, `pad` runs this application: `pad` renders `index.pad` ("Hello
 world"), `pad mypage` the page named.
 
@@ -68,7 +89,7 @@ names another - a second checkout runs its own engine, and the children of `serv
 | File | Description |
 |------|-------------|
 | `pad` | The command: dispatches a command word to `_commands/`, else runs this application |
-| `_commands/` | One file per command - `new`, `serve`, `render`, `lint`, `export`, `help` - and `lib.php` they share |
+| `_commands/` | One file per command - `new`, `serve`, `render`, `lint`, `export`, `test`, `help` - and `lib.php` they share |
 | `index.pad` | Default template (outputs "Hello world") |
 | `_config/config.php` | CLI-specific configuration |
 

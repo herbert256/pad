@@ -1369,6 +1369,25 @@ Enable detailed tracing.
 
 ## Error Handling Tags
 
+### assert
+A condition a test run holds the page to; silent everywhere else.
+
+```html
+{assert $total eq 42}
+{assert $lines gt 0, 'the cart has lines'}
+```
+
+**Parameters:**
+- First parameter: the condition, an expression like `{if}`'s
+- Second parameter (optional): a message for the report
+
+**Behavior:** With `$padAssert` on - `pad test` turns it on for its run - a false condition
+is an error, `assert failed: <condition> - <message>`, and the test fails. With it off, the
+default, the tag renders nothing and the condition is not even evaluated, so an `{assert}`
+can stay in a page that goes to production. See `pad test` in `apps/cli/README.md`.
+
+---
+
 ### error
 Trigger a PAD error.
 
@@ -1645,6 +1664,7 @@ Resume a previously ceased sequence iteration.
 | `classes` | Output | Class list from conditional names |
 | `dump` | Debug | Dump info |
 | `debug` | Debug | Show a value inline, local requests only |
+| `assert` | Error | Fail a test run when a condition is false, silent otherwise |
 | `trace` | Debug | Enable tracing |
 | `error` | Errors | Trigger error |
 | `exception` | Errors | Throw exception |

@@ -10,7 +10,9 @@ linked to the real ones), refuses to overwrite, and the new page renders; `lint`
 pages of `lintme/`, the broken one with its template position and a near name; `serve`
 answers a page from the server it starts on a free port; `export` writes the
 `regression/site` fixture as static files, its links rewritten - from a subdirectory too -
-its assets copied. The crawl compares the verdict,
+its assets copied; `test` runs the scratch application's `_tests` - a pass, a failing
+`{assert}`, a test without an answer that `--record` then writes - and those of
+`regression/site`, whose test pages no URL reaches. The crawl compares the verdict,
 so a command that stops behaving turns its yes into a NO.
 
 ## Files

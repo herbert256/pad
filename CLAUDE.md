@@ -202,6 +202,7 @@ apps/myapp/
 | `_data/` | Static data, named queries | XML, JSON, YAML, CSV; `name.sql` runs as `{name}` |
 | `_scripts/` | Shell scripts | On demand |
 | `_mail/` | Email templates | `{mail template='order'}` → `order.pad` + `order.txt` |
+| `_tests/` | Application tests | `pad test <app>` - `name.pad` + `name.txt` answer |
 | `_lang/` | Translation catalogs | `nl.json` holds the keys `{trans 'key'}` looks up in locale `nl` |
 | `_content/` | Markdown collections | `_content/blog/*.md` with front matter are the rows of `{collection 'blog'}` |
 
@@ -949,6 +950,10 @@ $padMailKeep      = 100;     // messages the file transport keeps
 // Cache enabled
 $padCache = false;
 
+// {assert} conditions are checked - and a false one is an error - only when this is on;
+// pad test turns it on for its run. Off, every {assert} is silent.
+$padAssert = false;
+
 // The debug toolbar: a collapsible bar at the foot of a local web page - time, memory,
 // the tag tree, the SQL, page and fragment cache, the template files, the variables and
 // the session. 'local' (or TRUE) shows it to this machine's own requests only, never to
@@ -1072,11 +1077,22 @@ pad serve [port] [host]       # php -S over www/ at http://127.0.0.1:8000/<app>/
 pad render demo clock         # a page to stdout; name=value pairs become request values
 pad lint shop [dir]           # every page rendered under the strict check, errors with file:line:col
 pad export demo out/          # a static copy: page.html files with rewritten links, www/demo/ assets
+pad test shop [name]          # the app's own tests in apps/shop/_tests/ (--record, --all)
 pad help
 ```
 
 The repository is the one the script stands in unless `PAD_HOME` says otherwise. A failed
 render answers the JSON error report and exit status 1; `pad lint` exits 1 when any page failed.
+
+### Application tests
+
+An application keeps its own tests in `_tests/`: `cart.pad` (with `cart.php` when it needs
+data) is the test page, `cart.txt` its answer - an exact body, a `/regex/`, or `HTTP 500`
+with an optional `/regex/` on the next line, as in the framework's suites. A test page renders
+bare, no URL reaches it, and it can bring in a real page with `{page 'cart'}`. `{assert
+$total eq 42, 'the total'}` fails a test run when false and is silent in production
+(`$padAssert`, off by default, on under `pad test`). `pad test shop --record` writes the
+missing answers; `./ci.sh` runs `pad test --all` and fails on a failing test.
 
 ---
 
@@ -1480,7 +1496,7 @@ strict syntax check - `pad_check` with only an app checks every page), `pad_trac
 | `_common` | Shared | Shared resources and utilities for all applications |
 | `apps` | Standard | Lists all PAD applications with descriptions from README files |
 | `classicModels` | Standard | PAD Select over the Classic Models sample database |
-| `cli` | CLI | The `pad` command (`apps/cli/pad`): new, serve, render, lint, export - and the cli application |
+| `cli` | CLI | The `pad` command (`apps/cli/pad`): new, serve, render, lint, export, test - and the cli application |
 | `demo` | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
 | `develop` | Standard | Development tools for PAD - the source trimmer, the harvest of the reference and the examples, the error listing |
 | `examples` | Standard | Search the harvested examples of DATA/examples and view one with its sources beside the rendered result |

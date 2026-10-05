@@ -8,7 +8,8 @@
   // (with its template position) and exit status 1. PAD_HOST, when set, is the server the
   // page's own cross-application links and fetches point at ($padHostBase). PAD_LINT, set
   // by pad lint, puts the strict check on whatever the application chose; PAD_EXPORT, set by
-  // pad export, asks for the page exactly as the web gets it.
+  // pad export, asks for the page exactly as the web gets it; PAD_TEST, set by pad test,
+  // runs a test page.
 
   $padRenderApp  = $argv [2] ?? '';
   $padRenderPage = $argv [3] ?? 'index';
@@ -53,6 +54,23 @@
 
   if ( getenv ( 'PAD_EXPORT' ) )
     $padSetConfig = [ 'OutputType' => 'web', 'Toolbar' => FALSE ];
+
+  // pad test renders the application's _tests/ pages, bare like the suites' pages, with
+  // every {assert} checked, and reads the status the request ended with from stderr - the
+  // process status says only whether it went well.
+
+  if ( getenv ( 'PAD_TEST' ) ) {
+
+    $padTestRun           = TRUE;
+    $padSetConfig         = [ 'Assert' => TRUE, 'Toolbar' => FALSE ];
+    $_GET ['padInclude']  = '';
+    $_REQUEST             = $_GET;
+
+    register_shutdown_function ( function () {
+      fwrite ( STDERR, "\nPAD-STATUS " . ( $GLOBALS ['padExitStop'] ?? 500 ) . "\n" );
+    } );
+
+  }
 
   $padApp  = $padRenderApp;
   $padPage = $padRenderPage;

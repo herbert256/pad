@@ -9,7 +9,7 @@ This directory contains PAD applications and examples.
 | [_common](_common/README.md) | Shared | Shared resources and utilities for all applications |
 | [apps](apps/README.md) | Standard | Lists all PAD applications with descriptions from README files |
 | [classicModels](classicModels/README.md) | Standard | PAD Select over the Classic Models sample database |
-| [cli](cli/README.md) | CLI | The `pad` command - new, serve, render, lint, export - and the command-line application |
+| [cli](cli/README.md) | CLI | The `pad` command - new, serve, render, lint, export, test - and the command-line application |
 | [demo](demo/README.md) | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
 | [develop](develop/README.md) | Standard | Development tools for PAD - the source trimmer, the harvest of the reference and the examples, the error listing |
 | [examples](examples/README.md) | Standard | Search the harvested examples and view one with its sources beside the rendered result |

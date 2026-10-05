@@ -1,0 +1,52 @@
+<h1>Application tests</h1>
+
+<p>An application keeps its own tests in <code>_tests/</code>. A test is a page there -
+<code>cart.pad</code>, with <code>cart.php</code> when it needs data - next to its answer,
+<code>cart.txt</code>. <code>pad test shop</code> renders every test page and compares:</p>
+
+{ignore}
+<pre><code>$ pad test shop
+shop
+  ok    cart
+  FAIL  checkout
+        want: &lt;p&gt;Total 42&lt;/p&gt;
+        got:  HTTP 500 - assert failed: $total eq 42
+              apps/shop/_tests/checkout.pad:1:1  {assert $total eq 42}
+  2 tests, 1 failed</code></pre>
+{/ignore}
+
+<h2>The answer</h2>
+
+<ul>
+  <li>the exact output of the page, trimmed;</li>
+  <li><code>/a pattern/</code> matched over it - for output that changes, a date or a count;</li>
+  <li><code>HTTP 500</code>, with an optional <code>/pattern/</code> on the next line, for a test that is meant to fail.</li>
+</ul>
+
+<p>A test without an answer counts against the run; <code>pad test shop --record</code> writes
+the missing answers from what the pages render now, and never overwrites one.
+<code>pad test --all</code> runs every application that has tests, and <code>./ci.sh</code>
+does that as its <code>apptests</code> line.</p>
+
+<h2>Asserts</h2>
+
+<p>{tag 'assert'} holds a page to a condition during a test run: false, and the test fails
+with the condition and the message as its report. Anywhere else it is silent - the
+condition is not even evaluated - so it can stay in the application's own pages. The switch
+is <code>$padAssert</code>, which <code>pad test</code> turns on; this example turns it on in
+its PHP:</p>
+
+{example 'fragments/app_tests_1'}
+
+<h2>A test page</h2>
+
+<p>It is a page like any other, rendered bare - without the application's wrappers - and no
+URL reaches it. It can bring in a real page with <code>{open}page 'cart'{close}</code>, or
+include the page's own PHP and check the data it sets:</p>
+
+{ignore}
+<pre><code>_tests/cart.php    &lt;?php include APP . 'cart.php'; ?&gt;
+_tests/cart.pad    {assert $total eq 42, 'the cart total'}
+                   &lt;p&gt;Total {$total}&lt;/p&gt;
+_tests/cart.txt    &lt;p&gt;Total 42&lt;/p&gt;</code></pre>
+{/ignore}

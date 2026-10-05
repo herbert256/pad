@@ -9,6 +9,9 @@
   //   serve   a page fetched from the server it starts, on a free port
   //   export  the regression/site fixture as static files: page links turned into relative
   //           .html files, from a subdirectory too, the assets copied, the outside link kept
+  //   test    the _tests of the scratch application - a pass, a failing {assert}, a test
+  //           without an answer and --record writing it - and of regression/site, whose
+  //           test pages no URL reaches
   //
   // A plain load only offers the link; verdict.php runs it on every load.
 
@@ -48,6 +51,35 @@
              and file_exists ( "$home/apps/shop/index.pad" ) and file_exists ( "$home/www/shop/index.php" )
              and file_exists ( "$home/apps/shop/orders/list.php" )
              and $code7 === 0 and str_contains ( $out7, '<h1>List</h1>' ) ) ? 'yes' : 'NO';
+
+    // test - the scratch application gets its _tests
+
+    $tests = "$home/apps/shop/_tests";
+
+    mkdir ( $tests, 0755, TRUE );
+
+    file_put_contents ( "$tests/good.pad",  '<p>{echo 1 + 1}</p>' );
+    file_put_contents ( "$tests/good.txt",  '<p>2</p>' );
+    file_put_contents ( "$tests/bad.php",   '<?php $total = 41; ?>' );
+    file_put_contents ( "$tests/bad.pad",   '{assert $total eq 42}' );
+    file_put_contents ( "$tests/bad.txt",   '' );
+    file_put_contents ( "$tests/fresh.pad", 'fresh' );
+
+    list ( $codeT1, $outT1 ) = cliCheckRun ( [ 'test', 'shop' ],              $env );
+    list ( $codeT2, $outT2 ) = cliCheckRun ( [ 'test', 'shop', '--record' ],  $env );
+    list ( $codeT3, $outT3 ) = cliCheckRun ( [ 'test', 'regression/site' ] );
+
+    $hidden = padCurl ( $padHost . 'regression/site/?_tests/about&padInclude' ) ['result'] ?? '';
+
+    $test = ( $codeT1 === 1
+              and str_contains ( $outT1, 'ok    good' )
+              and str_contains ( $outT1, 'FAIL  bad' )
+              and str_contains ( $outT1, 'assert failed: $total eq 42' )
+              and str_contains ( $outT1, 'NEW   fresh' )
+              and $codeT2 === 1 and str_contains ( $outT2, 'made  fresh' )
+              and trim ( (string) @file_get_contents ( "$tests/fresh.txt" ) ) == 'fresh'
+              and $codeT3 === 0 and str_contains ( $outT3, '4 tests, 0 failed' )
+              and $hidden == '404' ) ? 'yes' : 'NO';
 
     padDeleteDataDir ( $home );
 

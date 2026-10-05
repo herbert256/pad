@@ -106,15 +106,18 @@
 
   }
 
+  // The script running now - not the one under PAD_HOME, which a scratch home has none of.
+
   function cliScript () {
 
-    return cliHome () . '/apps/cli/pad';
+    return dirname ( __DIR__ ) . '/pad';
 
   }
 
   // pad render for every page of $pages, each in a child process of its own with the
   // environment plus $env, four at a time - an error ends the process it happens in, and
-  // a page is not to stop the others. Returns [ page => [ exit code, stdout ] ], by page.
+  // a page is not to stop the others. Returns [ page => [ exit code, stdout, stderr ] ],
+  // by page.
 
   function cliRunPages ( $app, $pages, $env ) {
 
@@ -135,14 +138,14 @@
         stream_set_blocking ( $pipes [1], FALSE );
         stream_set_blocking ( $pipes [2], FALSE );
 
-        $running [$page] = [ $proc, $pipes, '' ];
+        $running [$page] = [ $proc, $pipes, '', '' ];
 
       }
 
       foreach ( $running as $page => $one ) {
 
         $running [$page] [2] .= stream_get_contents ( $one [1] [1] );
-        stream_get_contents ( $one [1] [2] );
+        $running [$page] [3] .= stream_get_contents ( $one [1] [2] );
 
         $status = proc_get_status ( $one [0] );
 
@@ -150,12 +153,13 @@
           continue;
 
         $running [$page] [2] .= stream_get_contents ( $one [1] [1] );
+        $running [$page] [3] .= stream_get_contents ( $one [1] [2] );
 
         fclose ( $one [1] [1] );
         fclose ( $one [1] [2] );
         proc_close ( $one [0] );
 
-        $result [$page] = [ $status ['exitcode'], $running [$page] [2] ];
+        $result [$page] = [ $status ['exitcode'], $running [$page] [2], $running [$page] [3] ];
 
         unset ( $running [$page] );
 

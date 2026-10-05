@@ -18,6 +18,11 @@
   $padBootShutdown = TRUE;
   $padSkipShutdown = TRUE;
 
+  // The status the request ended with, for a caller that reads it after the exit - pad
+  // test checks an HTTP answer against it.
+
+  $GLOBALS ['padExitStop'] = $stop ?? 500;
+
   if ( PHP_SAPI == 'cli' )
     exit ( in_array ( substr ( (string) ( $stop ?? 500 ), 0, 1 ), [ '2', '3' ] ) ? 0 : 1 );
 

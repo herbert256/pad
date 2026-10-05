@@ -15,4 +15,5 @@ asset links working from the subdirectory, copy the assets and leave the outside
 | `index.pad` | Links in every form, and the stylesheet |
 | `about.pad` | A link to the site's root |
 | `docs/intro.pad` | A page one directory down: a link home and the image |
+| `_tests/` | Its own tests, for `pad test` - a page, an `{assert}`, a pattern and an `HTTP 500` answer |
 | `_config/config.php` | `_common` off |

@@ -14,6 +14,9 @@
   // it; build/ walks those to collect the _lib, _inits.pad and _exits.pad of every level.
   // $padStartPage remembers the page the request began with, so a restart can still tell
   // where it came from.
+  //
+  // A page under _tests/ is private like every _ directory, except to pad test on the
+  // command line (padTestPageCheck in lib/page.php).
 
   if     ( isset($padPage) )                 $padPage = $padPage;
   elseif ( $padRoutePath !== ''
@@ -47,6 +50,9 @@
                       and padPageVirtual ( $padPage ) );
 
   if ( $padPageVirtual )
+    $padRouteFound = [ 'page' => $padPage, 'vars' => [] ];
+
+  if ( ! $padRouteFound and padTestPageCheck ( $padPage ) )
     $padRouteFound = [ 'page' => $padPage, 'vars' => [] ];
 
   // sitemap.xml and robots.txt - ?sitemap.xml reaches PHP as sitemap_xml - are the engine's

@@ -52,6 +52,22 @@
 
   }
 
+  // The test pages of an application live in its _tests/ directory, which no URL reaches.
+  // pad test renders them on the command line, and says so with $padTestRun before the
+  // engine starts (apps/cli/_commands/render.php); nothing a request sends can set it.
+
+  function padTestPageCheck ( $page ) {
+
+    if ( PHP_SAPI !== 'cli' or ! ( $GLOBALS ['padTestRun'] ?? FALSE ) )
+      return FALSE;
+
+    if ( ! preg_match ( '#^_tests/[a-zA-Z0-9][a-zA-Z0-9_/-]*$#D', $page ) or str_contains ( $page, '/_' ) )
+      return FALSE;
+
+    return padPageExists ( APP . $page );
+
+  }
+
   function padPageExists ( $base ) {
 
     return (    file_exists ( "$base.php"  )

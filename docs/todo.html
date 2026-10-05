@@ -655,7 +655,7 @@ _tests/cart.txt   the expected answer
 
 {assert $total eq 42}</code></pre>
           <p>The framework’s suites already work this way: a page next to an answer that holds an exact body, <code>HTTP 404</code> or a <code>/regex/</code> (<code>regression/pages</code>, and the Other suite). An app author has nowhere to put their own tests. A <code>_tests/</code> directory in the app, picked up by <code>pad test</code> and <code>ci.sh</code>, would give every app snapshot tests. An <code>{assert}</code> tag would fail a test run and stay silent in production.</p>
-        </li>
+        <p class="done"><strong>Done.</strong> An application keeps tests in <code>_tests/</code> (a page plus a <code>.txt</code> answer in the suites’ three forms); <code>pad test &lt;app&gt;</code> runs them (<code>--record</code> writes missing answers, <code>--all</code> every application) and ci.sh runs them as its <em>apptests</em> line. <code>{assert $total eq 42, 'msg'}</code> fails a test run and is silent and unevaluated in production (<code>$padAssert</code>). Regression: framework and errors cases, example tests in <code>hello</code>; manual page <em>Application tests</em>; TAGS.md, APP.md, CLAUDE.md.</p></li>
 
         <li class="idea" id="reload">
           <div class="idea-top"><span class="number" aria-hidden="true">24</span><h3>Live reload</h3><span class="effort">Small–medium</span></div>

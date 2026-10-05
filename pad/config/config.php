@@ -135,6 +135,12 @@
 
   $padToolbar = FALSE;
 
+  // {assert $total eq 42} checks its condition only when this is TRUE, and a false one is
+  // an error - the test fails. pad test turns it on for its run; FALSE, the default, leaves
+  // every {assert} silent: nothing evaluated, nothing shown.
+
+  $padAssert = FALSE;
+
   $padSqlPadHost           = '127.0.0.1';
   $padSqlPadDatabase       = 'pad';
   $padSqlPadUser           = 'pad';

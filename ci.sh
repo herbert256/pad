@@ -131,4 +131,17 @@ if [ -z "$CI_SUITES" ]; then
   done
 fi
 
+# The applications' own tests - the _tests/ directory of every application, run by pad test
+# on the command line (apps/cli/_commands/test.php): a failing test, or one without an
+# answer, fails the gate like a failing suite. Skipped by the rig, like the editors line.
+
+if [ -z "$CI_SUITES" ]; then
+  if apptests=$(PAD_HOME="$padHome" php "$padHome/apps/cli/pad" test --all --brief); then
+    printf '%-12s %s\n' apptests "$(printf '%s\n' "$apptests" | tail -1)"
+  else
+    printf '%s\n' "$apptests" >&2
+    exit=1
+  fi
+fi
+
 exit $exit

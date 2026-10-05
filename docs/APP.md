@@ -91,6 +91,7 @@ apps/myapp/
 ├── _data/                 # Static data files (XML, JSON)
 ├── _content/              # Markdown collections ({collection 'blog'})
 ├── _layouts/              # Layouts a page picks with {extends '_layouts/name'} (a convention)
+├── _tests/                # The application's own tests, for pad test
 │
 └── subdir/                # Subdirectories can have own wrappers
     ├── _inits.pad
@@ -112,6 +113,7 @@ apps/myapp/
 | `_data/` | Static data | XML, JSON files |
 | `_content/` | Markdown collections | `_content/blog/*.md` are the rows of `{collection 'blog'}` |
 | `_mail/` | Email templates | `{mail template='order'}` → `order.pad` + `order.txt` |
+| `_tests/` | Application tests | `pad test <app>` - `name.pad` (+ `name.php`) and its answer `name.txt` |
 
 ### _lib/ - PHP Functions
 
@@ -305,6 +307,32 @@ error hook is logged and set aside, so the error it was told about is still the 
   $output = str_replace ( '</body>', '<!-- served by PAD --></body>', $output );
 ?>
 ```
+
+### _tests/ - Application Tests
+
+A test is a page in `_tests/` next to its answer, in the forms the framework's own suites
+use: the exact output, a `/regex/` over it, or `HTTP 500` with an optional `/regex/` on the
+next line. No URL reaches `_tests/`; `pad test` renders each test page bare, on the command
+line, with every `{assert}` checked.
+
+**_tests/cart.php** and **_tests/cart.pad**:
+```php
+<?php
+  include APP . 'cart.php';     // the page's own data
+?>
+```
+```
+{assert $total eq 42, 'the cart total'}
+<p>Total {$total}</p>
+```
+
+**_tests/cart.txt** - what `pad test shop --record` writes from the first run:
+```
+<p>Total 42</p>
+```
+
+`{assert}` is silent outside a test run - nothing evaluated, nothing shown - so it can stay
+in the application's own pages too. `./ci.sh` runs the tests of every application.
 
 ## Running PAD
 
