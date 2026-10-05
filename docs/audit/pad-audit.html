@@ -750,14 +750,15 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm fixed part" id="m25">
+    <div class="finding pm fixed" id="m25">
       <div class="tag"><div class="priority">Medium</div><div class="cat">Filesystem</div></div>
       <div>
-        <h3>Writing an empty file reports success but preserves the old contents<span class="live">verified live</span><span class="done part">Partly fixed</span></h3>
+        <h3>Writing an empty file reports success but preserves the old contents<span class="live">verified live</span><span class="done">Fixed</span></h3>
         <p class="where">lib/file.php:79-97</p>
         <p>The actual <code>file_put_contents()</code> sits inside <code>if ( $data !== null and $data !== '' )</code>, and an existing file is never truncated before that guard, so overwriting with an empty string is a silent no-op that returns TRUE. Verified live: write <code>before</code>, write <code>''</code> → second call returns <code>true</code>, file still 6 bytes, still <code>before</code>. Empty exports, cleared generated files and persisted empty state stay stale. Writes are also non-atomic (<code>touch</code> then <code>file_put_contents</code> with <code>LOCK_EX</code>, while readers take no lock), so the file page cache can serve a partly written body (likely, not demonstrated).</p>
         <div class="fix"><b>Fix:</b> define the null/no-data contract explicitly, but let an empty-string overwrite truncate; keep append semantics separate; for atomic publication write a temp file in the same directory and <code>rename()</code>.</div>
         <div class="resolved part"><b>Partly fixed:</b> <code>padFilePut()</code> now has an explicit contract: <code>NULL</code> writes nothing (the file is made when missing, otherwise left alone); an empty string overwrites like any other content and empties the file; an empty append adds nothing. No caller used the old silent no-op as a touch. Checked live: write <code>before</code>, write <code>&#39;&#39;</code> → TRUE and 0 bytes. A framework case <code>tags/a_file_written_empty_is_empty</code> pins all three. Not done: writes are still non-atomic (no temp file and <code>rename()</code>).</div>
+        <div class="resolved"><b>Fixed:</b> the atomic write. <code>padFilePut()</code> writes a whole file to a temporary file beside the target (<code>.name.&lt;random&gt;.tmp</code>) and renames it over the target. Within a directory a rename is atomic, so a reader, the file page cache above all, sees the old contents or the new and never half a write; the readers take no lock, so the old <code>LOCK_EX</code> alone did not keep them out. The target keeps its mode (a new file gets <code>$padFileMode</code>), a failed rename removes the temporary file and reports the write as failed, and appends still go through <code>FILE_APPEND</code> with <code>LOCK_EX</code>. The framework case <code>tags/a_file_written_empty_is_empty</code> and every suite that writes stores pass, and no temporary file is left in <code>DATA</code>.</div>
       </div>
     </div>
 

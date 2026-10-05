@@ -92,8 +92,30 @@
     if ( $data === null or ( $append and $data === '' ) )
       return TRUE;
 
-    if ($append) $check = file_put_contents ( $file, "$data\n", LOCK_EX | FILE_APPEND );
-    else         $check = file_put_contents ( $file, $data,     LOCK_EX               );
+    // A whole write goes to a file of its own beside the target and is renamed over it.
+    // Within a directory rename is atomic, so a reader - the file page cache serving a body
+    // above all - sees the old contents or the new, never half a write; the readers take no
+    // lock, so the LOCK_EX alone did not keep them out. The target keeps its mode.
+
+    if ( $append )
+
+      $check = file_put_contents ( $file, "$data\n", LOCK_EX | FILE_APPEND );
+
+    else {
+
+      $mode  = file_exists ( $file ) ? ( fileperms ( $file ) & 0777 ) : $padFileMode;
+      $temp  = $dir . '/.' . basename ( $file ) . '.' . padRandomString ( 8 ) . '.tmp';
+      $check = file_put_contents ( $temp, $data );
+
+      if ( $check !== FALSE ) {
+        @chmod ( $temp, $mode );
+        if ( ! @rename ( $temp, $file ) ) {
+          @unlink ( $temp );
+          $check = FALSE;
+        }
+      }
+
+    }
 
     if ( $check === FALSE )
       return padError ( "Writing to file failed: $file" );
