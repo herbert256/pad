@@ -17,10 +17,21 @@
     return FALSE;
   }
 
-  if ( isset ( $GLOBALS [$padField] ) )
-    $GLOBALS [$padField]++;
-  else
+  // An empty value counts as one not there yet - a request value ?n= or a {set $n = ''}
+  // - and a number counts on. PHP's own ++ raised a deprecation on an empty or worded
+  // string, and threw on an array, and either ended the request with a 500; a value that
+  // is no number is now named.
+
+  $padCounter = $GLOBALS [$padField] ?? NULL;
+
+  if ( $padCounter === NULL or $padCounter === '' )
     $GLOBALS [$padField] = 1;
+  elseif ( is_numeric ( $padCounter ) )
+    $GLOBALS [$padField] = $padCounter + 1;
+  else {
+    padError ( "{increment} counts a number, and \$$padField is not one" );
+    return FALSE;
+  }
 
   return TRUE;
 
