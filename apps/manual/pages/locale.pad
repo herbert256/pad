@@ -1,0 +1,32 @@
+<h1>Locale and translations</h1>
+
+<p>One setting, <code>$padLocale</code>, says which language and conventions a request is
+written in. The {tag 'trans'} tag and the <code>trans</code>, <code>currency</code> and
+<code>localDate</code> functions all read it.</p>
+
+{example 'fragments/locale_1'}
+
+<h2>Catalogs</h2>
+
+<p>The texts live in <code>_lang/&lt;locale&gt;.json</code>, one flat object of keys:</p>
+
+<pre>{open}
+  "cart.title": "Je winkelwagen",
+  "cart.items": "%d artikel|%d artikelen",
+  "cart.owner": "Bewaard voor :name"
+{close}</pre>
+
+<ul>
+  <li><code>count=</code> picks the plural form and replaces <code>%d</code>: two forms are one and other, three are zero, one and other.</li>
+  <li>Every other <code>name=</code> replaces <code>:name</code>.</li>
+  <li>A catalog is looked up like a <code>_data</code> file: from the page's directory up to the application root, then <code>_common</code>, the most specific winning. For <code>nl_NL</code> the files <code>nl_NL.json</code>, <code>nl-NL.json</code> and <code>nl.json</code> all count.</li>
+  <li>A key no catalog knows is written as itself.</li>
+</ul>
+
+<h2>Choosing the locale</h2>
+
+<ul>
+  <li><code>$padLocale</code> - the locale, <code>'en'</code> unless the configuration or the page says otherwise.</li>
+  <li><code>$padLocales</code> - the locales the application speaks. When it lists any, a <code>?lang=nl</code> link chooses one and the <code>padLang</code> cookie keeps it; without a choice the visitor's <code>Accept-Language</code> picks the best match.</li>
+  <li><code>$padTimezone</code> - the timezone dates are shown in.</li>
+</ul>

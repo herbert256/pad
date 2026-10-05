@@ -135,8 +135,18 @@
     // says so - for a cache along the way. It used to say Vary: Content-Encoding, the name
     // of a response header, and only on the cached path; the on-the-fly gzip sent nothing.
 
+    // A locale picked from Accept-Language makes the response depend on that header too.
+
+    $padWebVary = [];
+
     if ( $padGzip or $padCacheServerGzip )
-      padHeader ( 'Vary: Accept-Encoding' );
+      $padWebVary [] = 'Accept-Encoding';
+
+    if ( count ( $GLOBALS ['padLocales'] ?? [] ) )
+      $padWebVary [] = 'Accept-Language';
+
+    if ( $padWebVary )
+      padHeader ( 'Vary: ' . implode ( ', ', $padWebVary ) );
 
     if ( $stop != 302 and $stop != 304 )
       padHeader ( 'Content-Type: ' . $padContentType );

@@ -582,6 +582,26 @@ and escaped.
 
 ---
 
+### trans
+A key of the `_lang/` catalogs, in the request's locale.
+
+```html
+{trans 'cart.title'}
+{trans 'cart.items', count=$n}
+{trans 'greeting', name=$user, place='Utrecht'}
+```
+
+**Parameters:** the key; `count=` picks the plural form and replaces `%d`; every other
+`name=` replaces `:name`. The items are read raw, so any name may be a substitution.
+
+**Catalogs:** `_lang/<locale>.json`, a flat object of keys - looked up from the page's
+directory up to the application root and then `_common`, the most specific winning; for
+`nl_NL` the files `nl_NL.json`, `nl-NL.json` and `nl.json` all count. Plural forms are
+separated by `|`: two forms are one and other, three are zero, one and other. A key no
+catalog knows is answered as itself.
+
+---
+
 ### cache
 Keep a section of the page rendered - the fragment cache.
 
@@ -908,6 +928,7 @@ Resume a previously ceased sequence iteration.
 | `reactData` | Output | React mount point with provider data |
 | `cache` | Output | Keep a section rendered (fragment cache) |
 | `attrs` | Output | HTML attributes, the false ones left out |
+| `trans` | Output | Translated text from the `_lang/` catalogs |
 | `classes` | Output | Class list from conditional names |
 | `dump` | Debug | Dump info |
 | `trace` | Debug | Enable tracing |

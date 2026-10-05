@@ -9,13 +9,14 @@
   // padAttrsItems splits the raw items into [ name, expression ] pairs at the first = (a
   // name is an HTML attribute name; an item without one is [ '', expression ]).
 
-  // Whether the tag on this level takes its items raw - the built-in {attrs} and {classes}.
+  // Whether the tag on this level takes its items raw - the built-in {attrs}, {classes} and
+  // {trans}.
 
   function padParmsRaw () {
 
     global $pad, $padTag, $padType;
 
-    return in_array ( $padTag [$pad] ?? '', [ 'attrs', 'classes' ] ) and ( $padType [$pad] ?? '' ) == 'pad';
+    return in_array ( $padTag [$pad] ?? '', [ 'attrs', 'classes', 'trans' ] ) and ( $padType [$pad] ?? '' ) == 'pad';
 
   }
 

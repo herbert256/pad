@@ -282,6 +282,30 @@ PHP, `like($pattern)`, is written as is.
 
 ---
 
+## Locale
+
+The request's locale is `$padLocale`; `$padLocales` lists the ones the application speaks,
+and with any listed, `?lang=` (kept in the `padLang` cookie) or `Accept-Language` picks among
+them. `$padTimezone` sets the timezone. Formatting uses PHP's intl extension when it is there.
+
+| Function | Parameters | Description |
+|----------|------------|-------------|
+| `trans` | count | The value as a key of the `_lang/` catalogs, translated; the count picks the plural form |
+| `currency` | code, locale | An amount as money the locale's way - code defaults to EUR |
+| `localDate` | date, time, locale | A date the locale's way: styles `none`, `short`, `medium` (default), `long`, `full`, or an ICU pattern as the first argument |
+
+### Examples
+
+```
+{echo 'cart.title' | trans}                  → 'Je winkelwagen' in nl
+{echo 'cart.items' | trans($n)}              → '3 artikelen'
+{$price | currency('USD', 'en_US')}          → '$1,234.50'
+{$created | localDate('long')}               → 'October 5, 2026'
+{$created | localDate('d MMMM y', 'none', 'nl')} → '5 oktober 2026'
+```
+
+---
+
 ## Date & Time
 
 Functions for working with dates and timestamps.
@@ -434,6 +458,9 @@ Functions for working with PAD template syntax.
 
 ### Values
 `default`
+
+### Locale
+`trans`, `currency`, `localDate`
 
 ### Date/Time
 `now`, `date`, `time`, `timestamp`

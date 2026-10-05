@@ -362,17 +362,17 @@
             </tr>
             <tr>
               <th scope="row"><code>currency('EUR', 'de_DE')</code></th>
-              <td>Locale-aware currency placement, separators, and precision.</td>
+              <td>Locale-aware currency placement, separators, and precision.<span class="done"><strong>Done.</strong> <code>currency(code, locale)</code> (intl, with a plain fallback).</span></td>
               <td><a href="https://twig.symfony.com/doc/3.x/filters/format_currency.html">Twig IntlExtension</a></td>
             </tr>
             <tr>
               <th scope="row"><code>localDate(...)</code></th>
-              <td>Locale- and timezone-aware date presentation beyond PAD’s <a href="https://github.com/herbert256/pad/blob/master/pad/functions/date.php#L3">PHP <code>date()</code> wrapper</a>.</td>
+              <td>Locale- and timezone-aware date presentation beyond PAD’s <a href="https://github.com/herbert256/pad/blob/master/pad/functions/date.php#L3">PHP <code>date()</code> wrapper</a>.<span class="done"><strong>Done.</strong> <code>localDate(date, time, locale)</code>: styles or an ICU pattern, in <code>$padTimezone</code>.</span></td>
               <td><a href="https://twig.symfony.com/doc/3.x/filters/format_datetime.html">Twig format_datetime</a></td>
             </tr>
             <tr>
               <th scope="row"><code>trans(...)</code></th>
-              <td>Translation lookup, substitution, and plural handling through a configured translator.</td>
+              <td>Translation lookup, substitution, and plural handling through a configured translator.<span class="done"><strong>Done.</strong> <code>trans(count)</code> and the <code>{trans}</code> tag (#38).</span></td>
               <td><a href="https://latte.nette.org/en/tags#toc-translation">Latte translation integration</a></td>
             </tr>
             <tr>
@@ -810,7 +810,7 @@ $padExpose = [ 'orders', 'total' ];</code></pre>
 
 {t 'cart.items', count=$n}</code></pre>
           <p>Only <code>$padFmtDate</code> exists today. A <code>$padLocale</code> and <code>$padTimezone</code> would give the proposed <code>trans</code>, <code>currency</code> and <code>localDate</code> functions one source of truth. They would be chosen from the app config, from <code>Accept-Language</code>, or by a <code>?lang=</code> choice kept in the session. A <code>_lang/</code> directory fits the existing auto-loaded directories, with the usual lookup from the page’s directory up to <code>_common</code>.</p>
-        </li>
+        <p class="done"><strong>Done.</strong> <code>$padLocale</code>, <code>$padLocales</code>, <code>$padTimezone</code> (lib/locale.php, inits/locale.php): <code>?lang=</code> kept in a <code>padLang</code> cookie, else Accept-Language, else the default; the page cache keys on the locale, and a negotiating application answers <code>Vary: Accept-Language</code>. <code>_lang/&lt;locale&gt;.json</code> catalogs looked up like <code>_data</code>; the tag is <code>{trans}</code> rather than <code>{t}</code>, so no field named <code>t</code> is shadowed. Regression: seven framework <code>functions/</code> cases, errors <code>syntax/a_trans_needs_a_key</code>; manual page <em>Locale and translations</em>; TAGS.md, FUNCTIONS.md, CLAUDE.md.</p></li>
       </ol>
     </section>
 

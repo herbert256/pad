@@ -4,7 +4,7 @@
   // from it, and which finished pages may go into it. cache/inits.php and cache/exits.php
   // ask; the backends under cache/types/ only store and fetch.
 
-  // A visitor with an identity: a cookie beyond PAD's own two ids - a PHP session, an
+  // A visitor with an identity: a cookie beyond PAD's own ids - the two ids and the locale - a PHP session, an
   // application's login - or an Authorization header. Their page may be theirs alone, and
   // the access checks a hit skips are what decides it; they are answered fresh and their
   // page is never stored. Served by URI alone, the first visitor's page went to everyone.
@@ -12,7 +12,7 @@
   function padCacheIdentity () {
 
     foreach ( array_keys ( $_COOKIE ) as $cookie )
-      if ( ! in_array ( $cookie, [ 'padSesID', 'padReqID' ], TRUE ) )
+      if ( ! in_array ( $cookie, [ 'padSesID', 'padReqID', 'padLang' ], TRUE ) )
         return TRUE;
 
     foreach ( [ 'HTTP_AUTHORIZATION', 'REDIRECT_HTTP_AUTHORIZATION', 'PHP_AUTH_USER' ] as $auth )

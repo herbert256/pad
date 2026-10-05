@@ -93,6 +93,15 @@
 
   $padFmtDate = 'Y-m-d';
 
+  // The locale - {trans}, and the trans, currency and localDate functions; see lib/locale.php.
+  // $padLocales lists the locales the application speaks: when it holds any, the visitor's
+  // ?lang= choice (kept in the padLang cookie), or else Accept-Language, picks among them.
+  // $padTimezone, when set, is the timezone the request runs in.
+
+  $padLocale   = 'en';
+  $padLocales  = [];
+  $padTimezone = '';
+
   $padSessionVars = [];
 
   // Which request values become variables of their own - a form field arriving in the

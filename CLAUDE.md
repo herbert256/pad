@@ -104,6 +104,7 @@ apps/myapp/
 ├── _config/               # Application configuration
 │   └── config.php
 ├── _data/                 # Data files (XML, JSON, YAML, CSV) and named .sql queries
+├── _lang/                 # Translation catalogs: en.json, nl.json ... ({trans 'key'})
 │
 └── subdir/                # Subdirectories can have own wrappers
     ├── _callbacks/        # Subdirectory callbacks
@@ -130,6 +131,7 @@ apps/myapp/
 | `_config/` | App config | `config.php` overrides |
 | `_data/` | Static data, named queries | XML, JSON, YAML, CSV; `name.sql` runs as `{name}` |
 | `_scripts/` | Shell scripts | On demand |
+| `_lang/` | Translation catalogs | `nl.json` holds the keys `{trans 'key'}` looks up in locale `nl` |
 
 ### Wrapper Files (_inits.pad / _exits.pad)
 
@@ -428,6 +430,16 @@ are attribute names (dashes allowed), never engine options.
 `$padFragmentCache` = `'file'` (default), `'apcu'` or `FALSE`; `padFragmentForget('name')`
 drops a section when what it shows has changed.
 
+### Translations and locale formatting
+```
+{trans 'cart.title'}                          # _lang/<locale>.json: "cart.title": "Your cart"
+{trans 'cart.items', count=$n}                # "%d item|%d items" - count picks the form
+{trans 'greeting', name=$user}                # "Hello :name"
+{echo 'cart.title' | trans}                   # the pipe form
+{$price | currency('EUR')}                    # € 1.234,50 in nl, €1,234.50 in en
+{$created | localDate('long', 'short')}       # date and time styles, or an ICU pattern
+```
+
 ### Variable Assignment
 ```
 {set $name = 'Alice'}              # Assign string
@@ -648,6 +660,12 @@ $padCheckSyntax = true;
 // Values are text, never template code (see Values Are Text). Off, every value is
 // re-read as template source.
 $padProtectValues = true;
+
+// The locale and timezone - {trans}, currency, localDate. With $padLocales listing several,
+// ?lang=, the padLang cookie or Accept-Language picks among them.
+$padLocale   = 'en';
+$padLocales  = [];          // e.g. [ 'en', 'nl', 'de' ]
+$padTimezone = '';          // e.g. 'Europe/Amsterdam'
 
 // The PHP functions a template may call - php:, and a bare name like {$x | ucfirst}.
 // TRUE allows all; a list allows those names only; [] none.

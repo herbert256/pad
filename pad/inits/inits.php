@@ -27,6 +27,7 @@
   include PAD . 'inits/cookies.php';
   include PAD . 'inits/client.php';
   include PAD . 'inits/host.php';
+  include PAD . 'inits/locale.php';
   include PAD . 'inits/info.php';
   include PAD . 'inits/cache.php';
   include PAD . 'inits/level.php';

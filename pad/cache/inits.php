@@ -40,10 +40,11 @@
 
   $padCacheContentType = $padContentType;
 
-  // The key is the application, the host and the URI: the URI alone made two virtual
-  // hosts, or two applications under different mounts, share each other's pages.
+  // The key is the application, the host, the locale and the URI: the URI alone made two
+  // virtual hosts, or two applications under different mounts, share each other's pages,
+  // and a page is written in the request's locale.
 
-  $padCacheUrl = padMD5 ( "$padApp $padHost " . $_SERVER['REQUEST_URI'] );
+  $padCacheUrl = padMD5 ( "$padApp $padHost $padLocale " . $_SERVER['REQUEST_URI'] );
   $padCacheMax = $_SERVER['REQUEST_TIME'] - $padCacheServerAge;
 
   // A miss leaves both empty - cache/exits.php reads them when it stores the page, and on
