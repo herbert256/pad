@@ -303,7 +303,7 @@ them. `$padTimezone` sets the timezone. Formatting uses PHP's intl extension whe
 |----------|------------|-------------|
 | `trans` | count | The value as a key of the `_lang/` catalogs, translated; the count picks the plural form |
 | `currency` | code, locale | An amount as money the locale's way - code defaults to EUR |
-| `localDate` | date, time, locale | A date the locale's way: styles `none`, `short`, `medium` (default), `long`, `full`, or an ICU pattern as the first argument |
+| `localDate` | date, time, locale | A date the locale's way: styles `none`, `short`, `medium` (default), `long`, `full`, or an ICU pattern as the first argument; an empty style is the default (`medium` date, `none` time) |
 
 ### Examples
 
