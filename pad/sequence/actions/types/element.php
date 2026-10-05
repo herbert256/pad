@@ -10,6 +10,15 @@
   if ( ! $pqActionParm )
     return;
 
+  // A position is a number: element='abc' ended the request on string - int. Strict mode
+  // names it, and the sequence is left as it was.
+
+  if ( ! is_numeric ( $pqActionParm ) ) {
+    if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
+      padError ( "element= takes a position, not '$pqActionParm'" );
+    return;
+  }
+
   $pqElements = array_values ( $pqResult );
 
   if ( isset ( $pqElements [$pqActionParm-1] ) )

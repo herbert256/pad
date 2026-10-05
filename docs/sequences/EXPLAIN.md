@@ -497,17 +497,21 @@ sequence/
 → [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
 ```
 
-### Fibonacci up to 100
+### Fibonacci until 100 is reached
 ```
 {sequence fibonacci, stop=100}
-→ [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+→ [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144]
 ```
+`stop` ends the run at the first term that reaches it - that term included.
 
 ### Even Numbers with Sum
 ```
-{sequence even, from=2, to=20, sum}
+{sequence even, stop=20, sum}
 → [110]
 ```
+For a type such as `even`, `from` and `to` count terms rather than name values:
+`{sequence even, from=2, to=20, sum}` sums the 2nd to 20th even numbers, 4 to 40, and gives
+[418]. `stop` always names a value.
 
 ### Primes Filtered by Palindrome
 ```

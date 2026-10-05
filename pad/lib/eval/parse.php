@@ -435,6 +435,16 @@
           continue;
         }
 
+        // Two dots between numbers are a range, kept whole as the text '4..10' - the form a
+        // sequence reads. Unquoted, the tokeniser read it as the number 4.10, so
+        // {sequence 4..10} ran 4.1 rows.
+
+        if ( $one == '.' and $next == '.' and ctype_digit($next2) and ! str_contains ( $result[$i][0], '.' ) ) {
+          $result[$i][0] .= '..';
+          $skip = 1;
+          continue;
+        }
+
         if ( $one == '.' and ctype_digit($next) ) {
           $result[$i][0] .= $one;
           continue;

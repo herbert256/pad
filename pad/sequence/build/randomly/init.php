@@ -27,6 +27,13 @@
 
   }
 
+  // Without a to= the window was every integer up to PHP_INT_MAX: {sequence prime,
+  // randomly} drew 19-digit candidates. It is the first $padSeqDefaultTries steps from
+  // from= instead, the same reach an ordered run has by default.
+
+  if ( ! pqStore ( $pqBuild ) and $pqRandomlyEnd == PHP_INT_MAX )
+    $pqRandomlyEnd = $pqRandomlyStart + ( ( $GLOBALS ['padSeqDefaultTries'] ?? 10000 ) - 1 ) * $pqInc;
+
   $pqRandomlySteps = intval ( ( $pqRandomlyEnd - $pqRandomlyStart ) / $pqInc );
 
 ?>

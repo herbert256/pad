@@ -10,6 +10,15 @@
   // regardless passed nothing as both the length and the replacement, which quietly took
   // out every entry from pos onwards - a mistyped store name cost the data.
 
+  // The offset is a number: splice='abc' ended the request on array_splice's TypeError.
+  // Strict mode names it, and the sequence is left as it was.
+
+  if ( ! is_numeric ( $pqActionList [0] ?? '' ) ) {
+    if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
+      padError ( "splice= takes an offset, not '" . ( $pqActionList [0] ?? '' ) . "'" );
+    return;
+  }
+
   if ( count ( $pqActionList ) == 1 )
 
     array_splice (
