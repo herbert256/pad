@@ -7,7 +7,8 @@
   // A failed page answers what every command-line request answers: the JSON error report
   // (with its template position) and exit status 1. PAD_HOST, when set, is the server the
   // page's own cross-application links and fetches point at ($padHostBase). PAD_LINT, set
-  // by pad lint, puts the strict check on whatever the application chose.
+  // by pad lint, puts the strict check on whatever the application chose; PAD_EXPORT, set by
+  // pad export, asks for the page exactly as the web gets it.
 
   $padRenderApp  = $argv [2] ?? '';
   $padRenderPage = $argv [3] ?? 'index';
@@ -45,6 +46,13 @@
 
   if ( getenv ( 'PAD_LINT' ) )
     $padSetConfig = [ 'CheckSyntax' => TRUE ];
+
+  // pad export wants the page as the web gets it - the web output type, tidy and all, where
+  // the command line otherwise writes it as console text - and nothing a developer's own
+  // machine adds to a page: no toolbar, no live reload.
+
+  if ( getenv ( 'PAD_EXPORT' ) )
+    $padSetConfig = [ 'OutputType' => 'web', 'Toolbar' => FALSE ];
 
   $padApp  = $padRenderApp;
   $padPage = $padRenderPage;

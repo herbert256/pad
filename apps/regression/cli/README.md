@@ -8,7 +8,9 @@ values given as `name=value` - and refuses an unknown application; `new` makes a
 application and a page in a scratch `PAD_HOME` under `DATA/` (its engine and `_common`
 linked to the real ones), refuses to overwrite, and the new page renders; `lint` lists the
 pages of `lintme/`, the broken one with its template position and a near name; `serve`
-answers a page from the server it starts on a free port. The crawl compares the verdict,
+answers a page from the server it starts on a free port; `export` writes the
+`regression/site` fixture as static files, its links rewritten - from a subdirectory too -
+its assets copied. The crawl compares the verdict,
 so a command that stops behaving turns its yes into a NO.
 
 ## Files

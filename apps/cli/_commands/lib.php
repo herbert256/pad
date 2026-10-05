@@ -9,8 +9,10 @@
   //              nested with / like regression/pages
   // cliPages     every page of an application (or of one directory of it), the way the
   //              suites walk them: .pad, .html and .php files outside the _ directories,
-  //              less the action-only fixtures that redirect, restart or write
+  //              less the action-only fixtures that redirect, restart or write, and less
+  //              the directories that are applications of their own
   // cliRun       this script with other arguments, in a child process: [ exit code, output ]
+  // cliRunPages  pad render over a list of pages, four child processes at a time
   // cliPhp       the php binary to run it with - the one running now, when that is php
 
   function cliHome () {
@@ -49,11 +51,14 @@
 
     $dir = cliHome () . "/apps/$app/" . ( $sub === '' ? '' : rtrim ( $sub, '/' ) . '/' );
 
-    return cliPagesWalk ( $dir, $sub === '' ? '' : rtrim ( $sub, '/' ) . '/' );
+    return cliPagesWalk ( $dir, $sub === '' ? '' : rtrim ( $sub, '/' ) . '/', $app );
 
   }
 
-  function cliPagesWalk ( $dir, $prefix ) {
+  // A directory with an entry point of its own in www/ is another application - the
+  // regression/ tree is one directory of many - and its pages are not this one's.
+
+  function cliPagesWalk ( $dir, $prefix, $app ) {
 
     $names = $dirs = [];
 
@@ -83,7 +88,8 @@
       $list [] = $prefix . $name;
 
     foreach ( $dirs as $one )
-      $list = array_merge ( $list, cliPagesWalk ( "$dir$one/", "$prefix$one/" ) );
+      if ( ! file_exists ( cliHome () . "/www/$app/$prefix$one/index.php" ) )
+        $list = array_merge ( $list, cliPagesWalk ( "$dir$one/", "$prefix$one/", $app ) );
 
     sort ( $list );
 
@@ -103,6 +109,66 @@
   function cliScript () {
 
     return cliHome () . '/apps/cli/pad';
+
+  }
+
+  // pad render for every page of $pages, each in a child process of its own with the
+  // environment plus $env, four at a time - an error ends the process it happens in, and
+  // a page is not to stop the others. Returns [ page => [ exit code, stdout ] ], by page.
+
+  function cliRunPages ( $app, $pages, $env ) {
+
+    $queue   = $pages;
+    $running = [];
+    $result  = [];
+
+    while ( $queue or $running ) {
+
+      while ( $queue and count ( $running ) < 4 ) {
+
+        $page = array_shift ( $queue );
+
+        $proc = proc_open ( [ cliPhp (), cliScript (), 'render', $app, $page ],
+                            [ 0 => [ 'file', '/dev/null', 'r' ], 1 => [ 'pipe', 'w' ], 2 => [ 'pipe', 'w' ] ],
+                            $pipes, NULL, array_merge ( getenv (), $env ) );
+
+        stream_set_blocking ( $pipes [1], FALSE );
+        stream_set_blocking ( $pipes [2], FALSE );
+
+        $running [$page] = [ $proc, $pipes, '' ];
+
+      }
+
+      foreach ( $running as $page => $one ) {
+
+        $running [$page] [2] .= stream_get_contents ( $one [1] [1] );
+        stream_get_contents ( $one [1] [2] );
+
+        $status = proc_get_status ( $one [0] );
+
+        if ( $status ['running'] )
+          continue;
+
+        $running [$page] [2] .= stream_get_contents ( $one [1] [1] );
+
+        fclose ( $one [1] [1] );
+        fclose ( $one [1] [2] );
+        proc_close ( $one [0] );
+
+        $result [$page] = [ $status ['exitcode'], $running [$page] [2] ];
+
+        unset ( $running [$page] );
+
+      }
+
+      if ( $running )
+        usleep ( 5000 );
+
+    }
+
+    ksort ( $result );
+
+    return $result;
 
   }
 

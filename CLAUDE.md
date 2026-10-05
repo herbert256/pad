@@ -1055,6 +1055,7 @@ pad new shop/orders/list      # apps/shop/orders/list.php + list.pad - never ove
 pad serve [port] [host]       # php -S over www/ at http://127.0.0.1:8000/<app>/ (--mount=pad: /pad/<app>/)
 pad render demo clock         # a page to stdout; name=value pairs become request values
 pad lint shop [dir]           # every page rendered under the strict check, errors with file:line:col
+pad export demo out/          # a static copy: page.html files with rewritten links, www/demo/ assets
 pad help
 ```
 
@@ -1438,7 +1439,7 @@ assigns it. `node editors/lsp/test.js` tests it; `./ci.sh` runs that as its `lsp
 | `_common` | Shared | Shared resources and utilities for all applications |
 | `apps` | Standard | Lists all PAD applications with descriptions from README files |
 | `classicModels` | Standard | PAD Select over the Classic Models sample database |
-| `cli` | CLI | The `pad` command (`apps/cli/pad`): new, serve, render, lint - and the cli application |
+| `cli` | CLI | The `pad` command (`apps/cli/pad`): new, serve, render, lint, export - and the cli application |
 | `demo` | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
 | `develop` | Standard | Development tools for PAD - the source trimmer, the harvest of the reference and the examples, the error listing |
 | `examples` | Standard | Search the harvested examples of DATA/examples and view one with its sources beside the rendered result |
@@ -1482,7 +1483,8 @@ assigns it. `node editors/lsp/test.js` tests it; `./ci.sh` runs that as its `lsp
 | `regression/try_log` | Test | Regression test for the try guards under the 'log' action |
 | `regression/try_pad` | Test | Regression test for the try guards under the 'pad' action |
 | `regression/toolbar` | Test | Regression test for the debug toolbar - local page yes, fragment and forwarded request no |
-| `regression/cli` | Test | Regression test for the pad command - render, new, lint and serve |
+| `regression/cli` | Test | Regression test for the pad command - render, new, lint, serve and export |
+| `regression/site` | Test | The fixture pad export is tested on - links in every form, a subdirectory, assets |
 | `regression/errors` | Test | The Errors suite: the tests that fail on purpose, answered lean under the boot action - no dumps |
 | `regression/common` | Test | The pages of the suite that use `_common` - `{example}`, `{demo}`, `{table}` - fetched and compared the same way |
 | `sequence` | Standard | Mathematical sequence subsystem demos - with a gallery of every type beside its OEIS entry, a sequence played as notes, and a guess-the-next-term game |

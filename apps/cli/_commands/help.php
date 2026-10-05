@@ -10,6 +10,7 @@ pad - the PAD command
   pad serve [port] [host] [--mount=x]   PHP's built-in server over www/, no Apache needed
   pad render <app> [page] [name=value]  a page of any application to stdout
   pad lint <app> [dir]                  every page rendered under the strict check, errors listed
+  pad export <app> <dir>                a static copy: <page>.html files and the assets of www/<app>/
   pad help                              this list
 
 Without a command word, pad runs the cli application: pad [page].

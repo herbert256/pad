@@ -1,0 +1,27 @@
+<h1>Static export</h1>
+
+<p><code>pad export</code> renders every page of an application and writes the result as
+plain files - a copy for any static host, no PHP needed to serve it:</p>
+
+{ignore}
+<pre><code>$ pad export demo out/
+6 pages and 1 assets exported to out/
+
+$ ls out/
+clock.html  contact.html  counter.html  guestbook.html  index.html  style.css  todo.html</code></pre>
+{/ignore}
+
+<h2>What it does</h2>
+
+<ul>
+  <li><b>Pages</b> - every page the suites walk, rendered as the web gets it: <code>index.html</code>, <code>clock.html</code>, and <code>orders/list.html</code> for a page in a subdirectory.</li>
+  <li><b>Links</b> - <code>?clock</code>, <code>/demo/?clock</code> and the absolute form become <code>clock.html</code>, relative to the page they stand in; a link to a file of the application, <code>style.css</code>, becomes the path to its copy, so a page one directory down still finds it. Links that leave the application are kept as they are.</li>
+  <li><b>Assets</b> - what <code>www/&lt;app&gt;/</code> holds beside the entry point - stylesheets, scripts, images, data files - less the <code>.php</code> files and the <code>_</code> names.</li>
+</ul>
+
+<h2>What a static copy cannot do</h2>
+
+<p>A page renders once, as a plain GET: a form posts to nowhere, a link with values after the
+page name lands on the page as it renders without them, and a page that fails or only
+redirects is reported and left out. The debug toolbar and live reload, which only a
+developer's own requests get, never end up in the copy.</p>

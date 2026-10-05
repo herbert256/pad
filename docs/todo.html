@@ -848,7 +848,7 @@ $padExpose = [ 'orders', 'total' ];</code></pre>
           <div class="idea-top"><span class="number" aria-hidden="true">41</span><h3>Static site export</h3><span class="effort">Medium</span></div>
           <p><code>docs/apps/</code> already holds a crawled copy of the apps, with file names such as <code>index﹖clock.html</code> and separate <code>&amp;padInclude</code> variants. A built-in <code>pad export</code> would improve on it:</p>
           <ul>
-            <li>crawl the pages the way the Other suite does;</li>
+            <li>crawl the pages the way the Other suite does;<p class="done"><strong>Done.</strong> <code>pad export &lt;app&gt; &lt;dir&gt;</code> writes a static copy: every page rendered as the web gets it into <code>&lt;page&gt;.html</code>, <code>?page</code> and absolute links rewritten to relative .html files, application file links kept working from any depth, the assets of www/&lt;app&gt;/ copied without .php files and <code>_</code> names, no toolbar or live reload. Regression: a regression application; manual page; cli README, CLAUDE.md.</p></li>
             <li>rewrite <code>?page</code> links to <code>page.html</code>;</li>
             <li>copy assets and skip <code>_</code> directories.</li>
           </ul>

@@ -21,55 +21,7 @@
     return cliFail ( "there is no directory '$lintSub' in $lintApp" );
 
   $lintPages   = cliPages ( $lintApp, $lintSub );
-  $lintQueue   = $lintPages;
-  $lintRunning = [];
-  $lintResult  = [];
-
-  while ( $lintQueue or $lintRunning ) {
-
-    while ( $lintQueue and count ( $lintRunning ) < 4 ) {
-
-      $lintPage = array_shift ( $lintQueue );
-
-      $lintProc = proc_open ( [ cliPhp (), cliScript (), 'render', $lintApp, $lintPage ],
-                              [ 0 => [ 'file', '/dev/null', 'r' ], 1 => [ 'pipe', 'w' ], 2 => [ 'pipe', 'w' ] ],
-                              $lintPipes, NULL, array_merge ( getenv (), [ 'PAD_LINT' => '1' ] ) );
-
-      stream_set_blocking ( $lintPipes [1], FALSE );
-      stream_set_blocking ( $lintPipes [2], FALSE );
-
-      $lintRunning [$lintPage] = [ $lintProc, $lintPipes, '' ];
-
-    }
-
-    foreach ( $lintRunning as $lintPage => $lintOne ) {
-
-      $lintRunning [$lintPage] [2] .= stream_get_contents ( $lintOne [1] [1] );
-      stream_get_contents ( $lintOne [1] [2] );
-
-      if ( proc_get_status ( $lintOne [0] ) ['running'] )
-        continue;
-
-      $lintRunning [$lintPage] [2] .= stream_get_contents ( $lintOne [1] [1] );
-
-      fclose ( $lintOne [1] [1] );
-      fclose ( $lintOne [1] [2] );
-
-      $lintStatus = proc_get_status ( $lintOne [0] ) ['exitcode'];
-      proc_close ( $lintOne [0] );
-
-      $lintResult [$lintPage] = [ $lintStatus, $lintRunning [$lintPage] [2] ];
-
-      unset ( $lintRunning [$lintPage] );
-
-    }
-
-    if ( $lintRunning )
-      usleep ( 5000 );
-
-  }
-
-  ksort ( $lintResult );
+  $lintResult  = cliRunPages ( $lintApp, $lintPages, [ 'PAD_LINT' => '1' ] );
 
   $lintFailed = 0;
 

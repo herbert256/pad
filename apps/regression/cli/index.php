@@ -7,6 +7,8 @@
   //           overwrite, and the new page rendering through the real engine
   //   lint    the pages of lintme/, the broken one named with its template position
   //   serve   a page fetched from the server it starts, on a free port
+  //   export  the regression/site fixture as static files: page links turned into relative
+  //           .html files, from a subdirectory too, the assets copied, the outside link kept
   //
   // A plain load only offers the link; verdict.php runs it on every load.
 
@@ -62,6 +64,29 @@
     // serve
 
     $serve = ( cliCheckServe () == '<p>Hello Bob</p>' ) ? 'yes' : 'NO';
+
+    // export
+
+    $dir = DATA . 'cli-export-' . padRandomString ( 8 );
+
+    list ( $code9, $out9 ) = cliCheckRun ( [ 'export', 'regression/site', $dir ] );
+
+    $index = (string) @file_get_contents ( "$dir/index.html" );
+    $intro = (string) @file_get_contents ( "$dir/docs/intro.html" );
+    $about = (string) @file_get_contents ( "$dir/about.html" );
+
+    $export = ( $code9 === 0 and str_contains ( $out9, '3 pages and 2 assets exported' )
+                and substr_count ( $index, 'href="about.html"' ) == 2
+                and str_contains ( $index, 'href="docs/intro.html#start"' )
+                and str_contains ( $index, 'href="style.css"' )
+                and str_contains ( $index, 'href="https://example.com/"' )
+                and str_contains ( $intro, 'href="../index.html"' )
+                and str_contains ( $intro, 'src="../img/logo.svg"' )
+                and str_contains ( $about, 'href="index.html"' )
+                and file_exists ( "$dir/style.css" ) and file_exists ( "$dir/img/logo.svg" )
+                and ! file_exists ( "$dir/index.php" ) ) ? 'yes' : 'NO';
+
+    padDeleteDataDir ( $dir );
 
   }
 

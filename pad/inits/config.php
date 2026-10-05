@@ -42,7 +42,10 @@
         throw new \ErrorException ( "PAD: there is no info mode named '$padInfoType'" );
   }
 
-  if ( php_sapi_name() == 'cli' and $padOutputType == 'web' )
+  // Unless the caller queued the output type itself: pad export renders on the command line
+  // what the web would get (apps/cli/_commands/render.php).
+
+  if ( php_sapi_name() == 'cli' and $padOutputType == 'web' and ! isset ( $padSetConfig ['OutputType'] ) )
     $padOutputType = 'console';
 
   // A configuration word with no file behind it died on a raw missing include. Reported

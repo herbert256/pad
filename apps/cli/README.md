@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The `pad` command - new, serve, render, lint - and the command-line application it runs when it is given no command.
+The `pad` command - new, serve, render, lint, export - and the command-line application it runs when it is given no command.
 
 ## Install
 
@@ -23,6 +23,7 @@ pad render demo clock              # any application's page to stdout
 pad render shop search q=shoes     # with request values, as ?search&q=shoes would set them
 pad lint shop                      # every page rendered under the strict check
 pad lint shop orders               # only the pages of one directory
+pad export demo out/               # a static copy for any static host
 pad help                           # the list
 ```
 
@@ -46,6 +47,15 @@ pad help                           # the list
   2 pages, 1 failed
   ```
 
+- **export** renders every page as the web gets it - the web output type, tidy as the
+  application sets it, no toolbar - into `<dir>/<page>.html` (`orders/list.html` for a page
+  in a subdirectory), and copies what `www/<app>/` holds beside the entry point (less `.php`
+  files and `_` names). Links are rewritten: `?page`, `/app/?page` and the absolute form
+  become the relative `page.html` when that page was exported, and a link to an application
+  file (`style.css`) the relative path to its copy, so a page one directory down still finds
+  it. Query values after the page name cannot be static: such a link lands on the page as it
+  renders without them. A page that fails or answers nothing is reported and left out.
+
 Without a command word, `pad` runs this application: `pad` renders `index.pad` ("Hello
 world"), `pad mypage` the page named.
 
@@ -58,7 +68,7 @@ names another - a second checkout runs its own engine, and the children of `serv
 | File | Description |
 |------|-------------|
 | `pad` | The command: dispatches a command word to `_commands/`, else runs this application |
-| `_commands/` | One file per command - `new`, `serve`, `render`, `lint`, `help` - and `lib.php` they share |
+| `_commands/` | One file per command - `new`, `serve`, `render`, `lint`, `export`, `help` - and `lib.php` they share |
 | `index.pad` | Default template (outputs "Hello world") |
 | `_config/config.php` | CLI-specific configuration |
 
