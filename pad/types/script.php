@@ -3,10 +3,10 @@
   // Type handler for a shell script ({script:backup}): runs the script found in the nearest
   // _scripts/ directory and returns its stdout as the tag's value.
   //
-  // padScriptCheck() turns the tag name into a glob, so the extension may be left off; the
+  // padScriptCheck() finds the script by its whole name, the extension may be left off; the
   // script path and every tag parameter go to the shell through escapeshellarg(). A non-zero exit status
-  // raises a PAD error and returns FALSE. Only the first match of the glob is ever run - the
-  // loop body returns.
+  // raises a PAD error and returns FALSE. Only the first match is ever run - the loop body
+  // returns.
 
   foreach ( glob ( padScriptCheck ( $padTag [$pad] ) ) as $padExec ) {
 

@@ -53,14 +53,29 @@
 
   }
 
+  // A script is named whole, with or without its extension - backup for backup.sh. The
+  // name was a prefix of a glob, so any name a script's started with was that script: an
+  // unknown {b} ran _scripts/backup.sh instead of being no tag at all. The answer is the
+  // file itself, which the callers' glob hands back as it is.
+
   function padScriptCheck ( $check ) {
 
     if ( ! padValidName ( $check ) )
       return FALSE;
 
-    foreach ( padDirs () as $value )
-      if ( count ( glob ( APP2 . $value . "_scripts/$check*" ) ) )
-        return APP2 . $value . "_scripts/$check*";
+    foreach ( padDirs () as $value ) {
+
+      $script = APP2 . $value . "_scripts/$check";
+
+      if ( is_file ( $script ) )
+        return $script;
+
+      $found = glob ( "$script.*" );
+
+      if ( $found )
+        return $found [0];
+
+    }
 
     return FALSE;
 
