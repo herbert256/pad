@@ -266,9 +266,34 @@
     global $padRelations;
 
     if  ( isset ( $padRelations [$relation] [$table] ) )
-      padSelectWhereKeys ( $where, $padRelations [$relation] [$table], $data, 0 );
+      padSelectWhereKeys ( $where, padSelectRelationKeys ( $padRelations [$relation] [$table], $relation, $table ), $data, 0 );
     elseif ( isset ( $padRelations [$table] [$relation] ) )
-      padSelectWhereKeys ( $where, $padRelations [$table] [$relation], $data, 1);
+      padSelectWhereKeys ( $where, padSelectRelationKeys ( $padRelations [$table] [$relation], $table, $relation ), $data, 1);
+
+  }
+
+  // A relation $padRelations [first] [second] is written in one of three forms: a field
+  // name both tables share, [ field of first => field of second, ... ], or - the form
+  // DATABASE.md gives - [ 'key' => 'user_id' ]: the field(s) of the first table that hold
+  // the declared key of the second. That last form is made the second here. It was taken
+  // for the second form, a field named key, since the relations were rewritten to it: the
+  // documented forum_topics/users example ended the request on an undefined array key.
+
+  function padSelectRelationKeys ( $keys, $first, $second ) {
+
+    if ( ! is_array ( $keys ) or array_keys ( $keys ) !== [ 'key' ] )
+      return $keys;
+
+    $fields = padExplode ( (string) $keys ['key'], ',' );
+    $refers = padExplode ( (string) ( padSelectGetDB ( $second ) ['key'] ?? '' ), ',' );
+
+    if ( ! $refers or count ( $fields ) != count ( $refers ) ) {
+      padError ( "the relation of '$first' to '$second' is written [ 'key' => '" . $keys ['key'] . "' ], "
+               . "which needs the key of '$second' declared with as many fields" );
+      return $keys ['key'];
+    }
+
+    return array_combine ( $fields, $refers );
 
   }
 
