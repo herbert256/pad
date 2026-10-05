@@ -61,6 +61,23 @@
              and file_exists ( "$home/apps/shop/orders/list.php" )
              and $code7 === 0 and str_contains ( $out7, '<h1>List</h1>' ) ) ? 'yes' : 'NO';
 
+    // render, once more: an application whose config names the web type, as react and
+    // structure do, renders on the command line as any other - plain, and with a queued
+    // setting (pad lint) - where the second config pass put 'web' back on the console
+    // selector's settings and the page died on an undefined $padWebEtag304.
+
+    mkdir ( "$home/apps/shop/_config", 0755, TRUE );
+    file_put_contents ( "$home/apps/shop/_config/config.php", "<?php \$padOutputType = 'web'; ?>" );
+
+    list ( $codeW1, $outW1 ) = cliCheckRun ( [ 'render', 'shop' ], $env );
+    list ( $codeW2, $outW2 ) = cliCheckRun ( [ 'render', 'shop' ], $env + [ 'PAD_LINT' => '1' ] );
+
+    unlink ( "$home/apps/shop/_config/config.php" );
+
+    $render = ( $render == 'yes'
+                and $codeW1 === 0 and str_contains ( $outW1, '<h1>Hello from Shop!</h1>' )
+                and $codeW2 === 0 and str_contains ( $outW2, '<h1>Hello from Shop!</h1>' ) ) ? 'yes' : 'NO';
+
     // test - the scratch application gets its _tests
 
     $tests = "$home/apps/shop/_tests";

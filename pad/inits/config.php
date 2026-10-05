@@ -9,7 +9,8 @@
   // $padCommon and the debug and output settings; the output selector
   // config/output/$padOutputType.php is then applied, and the second pass gives the
   // application the last word over whatever _common or that selector changed. On the
-  // command line a 'web' output type is silently turned into 'console' in between.
+  // command line a 'web' output type is silently turned into 'console' in between, and
+  // again after the second pass.
   //
   // Finally any settings queued in $padSetConfig (used by exits/output/file.php to hand the
   // next page a different output type) are folded in through inits/configSet.php, and the
@@ -59,6 +60,13 @@
 
   if ( file_exists ( APP . '_config/config.php' ) )
     include APP . '_config/config.php';
+
+  // The second pass says 'web' again when the application names it - react and structure
+  // do - and on the command line that left the web type with the console selector's
+  // settings: web.php read an $padWebEtag304 nothing had set, and pad render died on it.
+
+  if ( php_sapi_name() == 'cli' and $padOutputType == 'web' and ! isset ( $padSetConfig ['OutputType'] ) )
+    $padOutputType = 'console';
 
   include PAD . 'inits/configCheck.php';
 

@@ -24,6 +24,12 @@
   if ( file_exists ( APP . '_config/config.php' ) )
     include APP . '_config/config.php';
 
+  // The command line's turn from 'web' to 'console', as inits/config.php makes it after
+  // its own application passes - unless the queue names the type, which it applies next.
+
+  if ( php_sapi_name() == 'cli' and $padOutputType == 'web' and ! isset ( $padSetConfig ['OutputType'] ) )
+    $padOutputType = 'console';
+
   foreach ( $padSetConfig as $padK => $padV )
     $GLOBALS ["pad$padK"] = $padV;
 
