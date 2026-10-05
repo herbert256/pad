@@ -268,7 +268,7 @@
 {stack 'scripts'}</code></pre>
           <p>Repeated components could request their scripts or styles, with each dependency emitted once. PAD’s content stores currently <a href="https://github.com/herbert256/pad/blob/master/pad/tags/_go/store.php#L82">assign a named value</a>; a stack would add ordered accumulation, deduplication, and deferred insertion.</p>
           <p>Deferred insertion matters when the layout’s <code>&lt;head&gt;</code> appears before the components that contribute styles.</p>
-          <p class="references"><strong>Precedents:</strong> <a href="https://laravel.com/framework/docs/13.x/blade#stacks">Blade stacks</a> · <a href="https://laravel.com/framework/docs/13.x/blade#the-once-directive"><code>@once</code></a></p>
+          <p class="done"><strong>Done.</strong> <code>{push 'scripts', once='chart'}…{/push}</code> and <code>{stack 'scripts'}</code>: stacks are filled in after the whole page has rendered, so a stack in the <code>&lt;head&gt;</code> gets the pushes of components below it; <code>once=</code> keeps one push per key, <code>padStackPush()</code> for PHP, pushes inside a <code>{cache}</code> section are replayed on a hit. Regression: framework, pages and errors cases; manual page; TAGS.md, PAD.md, CLAUDE.md.</p><p class="references"><strong>Precedents:</strong> <a href="https://laravel.com/framework/docs/13.x/blade#stacks">Blade stacks</a> · <a href="https://laravel.com/framework/docs/13.x/blade#the-once-directive"><code>@once</code></a></p>
         </li>
 
         <li class="feature" id="blocks">
