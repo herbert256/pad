@@ -8,8 +8,10 @@
   // the $padCacheDb* settings - the cache never shares the application connection - and
   // padCacheDb runs every statement over it in PAD's own short SQL dialect.
   //
-  // With $padCacheServerNoData only the etag table is maintained, so the cache answers
-  // 304 from a client ETag but has no url or data rows to serve a body from.
+  // With $padCacheServerNoData no data row is written, so the cache answers 304 from a
+  // client ETag but has no body to serve. The url row is written all the same:
+  // cache/inits.php finds the ETag it holds the client's against through the URL alone,
+  // and without it no request was ever answered 304 in that mode.
 
   function padCacheInit ($url, $etag) {
 
@@ -42,22 +44,17 @@
     global $padCacheServerNoData;
 
     padCacheDb ( "replace etag values ('{0}', {1})", [$etag,$_SERVER['REQUEST_TIME']] );
+    padCacheDb ( "replace url  values ('{0}', {1}, '{2}')", [$url,$_SERVER['REQUEST_TIME'],$etag] );
 
-    if ( ! $padCacheServerNoData ) {
-      padCacheDb ( "replace url  values ('{0}', {1}, '{2}')", [$url,$_SERVER['REQUEST_TIME'],$etag] );
+    if ( ! $padCacheServerNoData )
       padCacheDb ( "replace data values ('{0}', '{1}'     )", [$etag,$data] );
-    }
 
   }
 
   function padCacheUpdate ($url, $etag) {
 
-    global $padCacheServerNoData;
-
     padCacheDb ( "update etag set age={0} where etag='{1}'", [$_SERVER['REQUEST_TIME'],$etag] );
-
-    if ( ! $padCacheServerNoData )
-      padCacheDb ( "update url set age={0} where url='{1}'", [$_SERVER['REQUEST_TIME'],$url] );
+    padCacheDb ( "update url set age={0} where url='{1}'", [$_SERVER['REQUEST_TIME'],$url] );
 
   }
 

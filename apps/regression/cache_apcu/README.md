@@ -14,4 +14,5 @@ turns the page from yes to NO.
 |------|-------------|
 | `index.php/pad` | Fetches the probe twice and states the verdict |
 | `probe.php/pad` | A page whose body differs on every build |
+| `nodata.php/pad` | Asks the backend directly that, with `$padCacheServerNoData`, the URL still names its ETag - what a 304 is answered from - and no body is kept |
 | `_config/config.php` | Switches the apcu cache on, 60 seconds, `_common` off |

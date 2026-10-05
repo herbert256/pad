@@ -6,8 +6,10 @@
   //
   // Implements the padCacheInit/Etag/Url/Get/Store/Update/Delete interface that
   // cache/inits.php and cache/exits.php call; padCacheInit opens the connection from the
-  // $padCacheMemcached* settings. With $padCacheServerNoData only the age key is written,
-  // so the cache answers 304 from a client ETag but never serves a body.
+  // $padCacheMemcached* settings. With $padCacheServerNoData the body is not written, so
+  // the cache answers 304 from a client ETag but never serves a body. The URL key is
+  // written all the same: cache/inits.php finds the ETag it holds the client's against
+  // through the URL alone, and without it no request was ever answered 304 in that mode.
 
   function padCacheInit ($url, $etag) {
 
@@ -47,11 +49,10 @@
     global $padCacheMemcached, $padCacheServerAge, $padCacheServerNoData;
 
     $padCacheMemcached->set($etag, $_SERVER['REQUEST_TIME'], $padCacheServerAge);
+    $padCacheMemcached->set($url,  [$_SERVER['REQUEST_TIME'], $etag], $padCacheServerAge);
 
-    if ( ! $padCacheServerNoData ) {
-      $padCacheMemcached->set($url,  [$_SERVER['REQUEST_TIME'], $etag], $padCacheServerAge);
-      $padCacheMemcached->set("x$etag", $data,                          $padCacheServerAge+10);
-     }
+    if ( ! $padCacheServerNoData )
+      $padCacheMemcached->set("x$etag", $data, $padCacheServerAge+10);
 
   }
 
@@ -60,11 +61,10 @@
     global $padCacheMemcached, $padCacheServerAge, $padCacheServerNoData;
 
     $padCacheMemcached->set($etag, $_SERVER['REQUEST_TIME'], $padCacheServerAge);
+    $padCacheMemcached->set($url,  [$_SERVER['REQUEST_TIME'], $etag], $padCacheServerAge);
 
-    if ( ! $padCacheServerNoData ) {
-      $padCacheMemcached->set($url,  [$_SERVER['REQUEST_TIME'], $etag], $padCacheServerAge);
+    if ( ! $padCacheServerNoData )
       $padCacheMemcached->touch("x$etag", $padCacheServerAge+10);
-    }
 
   }
 

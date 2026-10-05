@@ -6,8 +6,10 @@
   //
   // Implements the padCacheInit/Etag/Url/Get/Store/Update/Delete interface that
   // cache/inits.php and cache/exits.php call; padCacheInit has nothing to open, APCu is
-  // simply there. With $padCacheServerNoData only the age key is written, so the cache
-  // answers 304 from a client ETag but never serves a body.
+  // simply there. With $padCacheServerNoData the body is not written, so the cache answers
+  // 304 from a client ETag but never serves a body. The URL key is written all the same:
+  // cache/inits.php finds the ETag it holds the client's against through the URL alone,
+  // and without it no request was ever answered 304 in that mode.
 
   function padCacheInit ($url, $etag) {}
 
@@ -34,11 +36,10 @@
     global $padCacheServerAge, $padCacheServerNoData;
 
     apcu_store($etag, $_SERVER['REQUEST_TIME'], $padCacheServerAge);
+    apcu_store($url,  [$_SERVER['REQUEST_TIME'], $etag], $padCacheServerAge);
 
-    if ( ! $padCacheServerNoData ) {
-      apcu_store($url,  [$_SERVER['REQUEST_TIME'], $etag], $padCacheServerAge);
-      apcu_store("x$etag", $data,                          $padCacheServerAge+10);
-    }
+    if ( ! $padCacheServerNoData )
+      apcu_store("x$etag", $data, $padCacheServerAge+10);
 
   }
 
@@ -47,9 +48,9 @@
     global $padCacheServerAge, $padCacheServerNoData;
 
     apcu_store($etag, $_SERVER['REQUEST_TIME'], $padCacheServerAge);
+    apcu_store($url,  [$_SERVER['REQUEST_TIME'], $etag], $padCacheServerAge);
 
     if ( ! $padCacheServerNoData ) {
-      apcu_store($url,  [$_SERVER['REQUEST_TIME'], $etag], $padCacheServerAge);
       $data = apcu_fetch("x$etag");
       if ( $data !== FALSE )
         apcu_store("x$etag", $data, $padCacheServerAge+10);

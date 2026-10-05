@@ -7,8 +7,10 @@
   // Implements the padCacheInit/Etag/Url/Get/Store/Update/Delete interface that
   // cache/inits.php and cache/exits.php call. padCacheInit opens the connection and turns
   // on the PHP serializer, which is what lets padCacheUrl store an array. With
-  // $padCacheServerNoData only the age key is written, so the cache answers 304 from a
-  // client ETag but never serves a body.
+  // $padCacheServerNoData the body is not written, so the cache answers 304 from a client
+  // ETag but never serves a body. The URL key is written all the same: cache/inits.php
+  // finds the ETag it holds the client's against through the URL alone, and without it no
+  // request was ever answered 304 in that mode.
 
   function padCacheInit ($url, $etag) {
 
@@ -49,11 +51,10 @@
     global $padCacheRedis, $padCacheServerAge, $padCacheServerNoData;
 
     $padCacheRedis->set($etag, $_SERVER['REQUEST_TIME'], $padCacheServerAge);
+    $padCacheRedis->set($url,  [$_SERVER['REQUEST_TIME'], $etag], $padCacheServerAge);
 
-    if ( ! $padCacheServerNoData ) {
-      $padCacheRedis->set($url,  [$_SERVER['REQUEST_TIME'], $etag], $padCacheServerAge);
-      $padCacheRedis->set("x$etag", $data,                          $padCacheServerAge+10);
-    }
+    if ( ! $padCacheServerNoData )
+      $padCacheRedis->set("x$etag", $data, $padCacheServerAge+10);
 
   }
 
@@ -62,11 +63,10 @@
     global $padCacheRedis, $padCacheServerAge, $padCacheServerNoData;
 
     $padCacheRedis->set($etag, $_SERVER['REQUEST_TIME'], $padCacheServerAge);
+    $padCacheRedis->set($url,  [$_SERVER['REQUEST_TIME'], $etag], $padCacheServerAge);
 
-    if ( ! $padCacheServerNoData ) {
-      $padCacheRedis->set($url,  [$_SERVER['REQUEST_TIME'], $etag], $padCacheServerAge);
+    if ( ! $padCacheServerNoData )
       $padCacheRedis->expire("x$etag", $padCacheServerAge+10);
-    }
 
   }
 
