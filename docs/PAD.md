@@ -758,6 +758,16 @@ APP/
 3. **Sort server-side** - Let database handle sorting when possible
 4. **Minimize nesting** - Deep nesting impacts performance
 
+What the engine itself keeps for the length of a request: which global names are its own -
+every tag's PHP half snapshots the application's variables before and after it runs, and
+sifting the symbol table name by name was a third of the time of a page full of tags - the
+tokens of every clean expression, so a loop parses its expressions once, and the @else@ pair
+scan, now made only when a level holds an `@else@`. Measured over ten pages of the manual,
+reference, demo and sequence applications, a request takes about a third less time. The
+template text is still rescanned each pass - there is no compiled form - and the page build
+and the name lookups were each about 1% of a request, too little to be worth a cache that
+outlives it.
+
 ## Quick Reference
 
 ### Comparison Operators

@@ -21,6 +21,32 @@
   // quote styles with \n \r \t \\ \' \" escapes. Whitespace and commas end the current
   // token and are otherwise ignored, so parameter lists need no special handling.
 
+  // The tokens of an expression, kept for the request: a loop evaluates the same text once
+  // per row, and the text alone decides what the validation and the tokeniser make of it.
+  // Only what came through clean is kept - an expression the validation refused answers
+  // FALSE and is checked again next time, so it is reported as often as it is written; and
+  // the tokeniser's own complaints are about a backslash, so an expression holding one is
+  // never kept. The later stages work on a copy and may change it as they like.
+
+  function padEvalParsed ( $eval ) {
+
+    static $memo = [];
+
+    if ( isset ( $memo [$eval] ) )
+      return $memo [$eval];
+
+    if ( ! padEvalValidate ( $eval ) )
+      return FALSE;
+
+    padEvalParse ( $result, $eval );
+
+    if ( ! str_contains ( $eval, '\\' ) and count ( $memo ) < 4000 )
+      $memo [$eval] = $result;
+
+    return $result;
+
+  }
+
   function padEvalParseStart ( $next, $next2 ) {
 
     if ( $next == '-' and ctype_xdigit($next2) )         return TRUE;

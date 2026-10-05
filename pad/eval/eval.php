@@ -17,9 +17,12 @@
 
   // A malformed expression is reported here, in the source's own terms, before the
   // tokeniser can turn it into something obscure downstream. A reported fault ends the
-  // evaluation with an empty value.
+  // evaluation with an empty value. padEvalParsed (lib/eval/parse.php) validates and
+  // tokenises, and keeps the tokens of a clean expression for the rest of the request.
 
-  if ( ! padEvalValidate ( $eval ) )
+  $result = padEvalParsed ( $eval );
+
+  if ( $result === FALSE )
     return '';
 
   // The trace snapshots live in globals, which padEvalTrace fills; this file runs inside
@@ -28,7 +31,7 @@
   $GLOBALS ['_eval']      = [];
   $GLOBALS ['_eval_last'] = [];
 
-  padEvalParse ( $result, $eval );  padEvalTrace ( 'parse', $result ); $_eval_parse [] = $result;
+  padEvalTrace ( 'parse', $result ); $_eval_parse [] = $result;
 
   // A word standing alone after a | must be a pipe function, not a silently-swallowed
   // constant. In a pipe body - the expression a tag or variable pipe applies - the head

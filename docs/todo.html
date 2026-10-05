@@ -893,7 +893,7 @@ $padExpose = [ 'orders', 'total' ];</code></pre>
           <div class="idea-top"><span class="number" aria-hidden="true">45</span><h3>Cache the parse, not only the page</h3><span class="effort">Large</span></div>
           <p>Each request repeats the same work:</p>
           <ul>
-            <li>it rebuilds the page source from <code>_inits</code>, the page and <code>_exits</code>;</li>
+            <li>it rebuilds the page source from <code>_inits</code>, the page and <code>_exits</code>;<p class="done"><strong>Done (the measurable part).</strong> A request takes about a third less time - 323 ms to 208 ms over ten manual, reference, demo and sequence pages, interleaved A/B - because the engine now keeps, per request, which global names are its own (the snapshot each tag’s PHP takes was half of a page’s time), the tokens of each clean expression so a loop parses once, and scans for the <code>@else@</code> pair only when a level holds one. The page build and name lookups measured about 1% each and stay uncached; the template is still rescanned each pass - a real AST would be a rewrite. Regression: the full suites (behaviour unchanged).</p></li>
             <li>it walks the directories to resolve <code>_lib</code>, tags, functions and includes;</li>
             <li>it rescans the string: find the first <code>}</code>, then the nearest <code>{</code> before it (<a href="https://github.com/herbert256/pad/blob/master/pad/level/level.php">level/level.php</a>), until none remain.</li>
           </ul>

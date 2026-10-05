@@ -7,6 +7,12 @@
   // is only this level's if every open/close tag pair before it - the pairs found in the
   // text plus this tag itself - is balanced, so @else@ inside a nested pair is skipped.
 
+  // Most levels have no @else@ at all, and the pair list is a scan of the whole text: it
+  // is only made when there is a marker to place.
+
+  if ( ! str_contains ( $padBase [$pad], '@else@' ) )
+    return;
+
   $padOpenClose = padOpenCloseList ( $padBase [$pad] ) ;
 
   if ( $padGiven [$pad] )

@@ -46,8 +46,8 @@
 
   function padContentElse ( $input, &$before, &$after ) {
 
-    $list = padOpenCloseList ( $input ) ;
     $pos  = strpos ( $input, '@else@' );
+    $list = ( $pos === FALSE ) ? [] : padOpenCloseList ( $input ) ;
 
     while ( $pos !== FALSE) {
 

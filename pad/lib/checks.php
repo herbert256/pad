@@ -183,22 +183,54 @@
 
   }
 
+  // The answer per name is kept for the request: the same few hundred globals are asked
+  // about again and again - every tag's PHP half snapshots the application's variables
+  // before and after it runs (types/_go/tag.php), and the callbacks do the same per row.
+
   function padValidStore ($fld) {
 
-    return ! padEngineName ( (string) $fld );
+    static $memo = [];
+
+    return $memo [$fld] ??= ! padEngineName ( (string) $fld );
 
   }
 
+  // The engine's names among $vars, as a set to test with isset - for the loops that sift
+  // the whole symbol table, where even a memoised call per name was most of the work of a
+  // page. Only names not seen before are classified; the set grows with them.
+
+  function padEngineNames ( $vars ) {
+
+    static $seen = [], $engine = [];
+
+    foreach ( array_diff_key ( $vars, $seen ) as $name => $unused ) {
+      $seen [$name] = TRUE;
+      if ( padEngineName ( (string) $name ) )
+        $engine [$name] = TRUE;
+    }
+
+    return $engine;
+
+  }
+
+  // Kept per name for the request, like padValidStore: every nested pass sifts the whole
+  // symbol table through it twice.
+
   function padStrPad ( $field ) {
+
+    static $memo = [];
+
+    if ( isset ( $memo [$field] ) )
+      return $memo [$field];
 
     if ( str_starts_with ( $field, 'pad' ) or str_starts_with ( $field, 'pq' ) )
       if ( ! str_starts_with ( $field, 'padStr' ) )
         if ( ! in_array ( $field, padStrSto) )
           if ( ! in_array ( $field, padLevelVars) )
             if ( $field != 'padInfoCnt' and $field != 'padInfoTraceId' )
-              return TRUE;
+              return $memo [$field] = TRUE;
 
-    return FALSE;
+    return $memo [$field] = FALSE;
 
   }
 

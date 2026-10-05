@@ -15,12 +15,17 @@
   // file in the same scope - {echo $v | code} does - and a single variable was the inner
   // tag's to clear before the outer one had read it.
 
+  // The sifting asks padEngineNames once for the set of engine names and tests each name
+  // with isset: a call per global, twice per tag, was half the time of a page full of
+  // tags (todo #45, measured with the develop app's Benchmark and a profiler).
+
   $padTagDepth = ( $padTagDepth ?? 0 ) + 1;
 
   $padTagBefore [$padTagDepth] = [];
+  $padTagEngine                = padEngineNames ( $GLOBALS );
 
   foreach ( $GLOBALS as $padK => $padV )
-    if ( padValidStore ( $padK ) )
+    if ( ! isset ( $padTagEngine [$padK] ) )
       $padTagBefore [$padTagDepth] [$padK] = $padV;
 
   $padCall = "$padTagGo.php";
@@ -31,11 +36,16 @@
   // fills for a template driven by a PHP function, and the callbacks fill per phase. The
   // storable-name filter keeps the engine's own pad-prefixed names out.
 
-  foreach ( get_defined_vars () as $padK => $padV )
-    if ( padValidStore ( $padK )
+  $padTagAfter  = get_defined_vars ();
+  $padTagEngine = padEngineNames ( $padTagAfter );
+
+  foreach ( $padTagAfter as $padK => $padV )
+    if ( ! isset ( $padTagEngine [$padK] )
          and ( ! array_key_exists ( $padK, $padTagBefore [$padTagDepth] )
                or $padTagBefore [$padTagDepth] [$padK] !== $padV ) )
       $GLOBALS ['padLvlFunVar'] [ $GLOBALS ['pad'] ] [$padK] = $padV;
+
+  unset ( $padTagAfter );
 
   unset ( $padTagBefore [$padTagDepth] );
 

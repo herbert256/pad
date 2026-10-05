@@ -7,6 +7,9 @@
   // belongs to a nested tag is skipped and the search moves on; when none qualifies both
   // variables are left as they were.
 
+  if ( ! str_contains ( $padBuildTrue, '@else@' ) )
+    return;
+
   $padOpenClose = padOpenCloseList ( $padBuildTrue) ;
 
   $padPos = strpos ( $padBuildTrue, '@else@');

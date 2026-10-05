@@ -1314,6 +1314,10 @@ Each `{tag}` creates a new level scope. PAD maintains global variables per level
 - **File-Based Dispatch**: `include` statements as control flow
 - **Array-Indexed Levels**: Nesting tracked via `$padVariable[$pad]` pattern
 - **15+ Years Production**: Stable, battle-tested codebase
+- **Request-level memos**: which global names are the engine's (`padEngineNames`,
+  `padValidStore`, `padStrPad`) and the tokens of each clean expression (`padEvalParsed`) are
+  kept for the request; the @else@ pair scan runs only when an `@else@` is there. Nothing is
+  kept between requests - the template is still rescanned each pass (no AST)
 
 ---
 
