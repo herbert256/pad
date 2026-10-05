@@ -4,13 +4,22 @@
   // defaults to TRUE - as $padPrm [$pad] [name], evaluating the right-hand side.
   //
   // Options that have a handler in an _options/ directory are also queued in
-  // $padOptionsAppStart [$pad] for options/_go/app.php to run once the level is set up.
+  // $padOptionsAppStart [$pad] for options/_go/app.php to run once the level is set up, and
+  // those with one in _options/end/ in $padOptionsAppEnd [$pad] for options/_go/appEnd.php
+  // to run on the rendered result as the level closes.
 
   $padOptionCheck = padOptionCheck ( $padPrmName );
 
   if ( $padOptionCheck ) {
     $padOptionsAppStart     [$pad] []            = $padPrmName;
     $padOptionsAppStartCall [$pad] [$padPrmName] = $padOptionCheck;
+  }
+
+  $padOptionCheck = padOptionEndCheck ( $padPrmName );
+
+  if ( $padOptionCheck ) {
+    $padOptionsAppEnd     [$pad] []            = $padPrmName;
+    $padOptionsAppEndCall [$pad] [$padPrmName] = $padOptionCheck;
   }
 
   // A name with '=' and nothing behind it is not the bare-flag form: the author started

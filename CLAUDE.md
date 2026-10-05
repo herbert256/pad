@@ -150,7 +150,7 @@ apps/myapp/
 | `_tags/` | Custom tags | `{mytag}` → `mytag.php` |
 | `_functions/` | Pipe functions | `{echo $x \| myfunc}` → `myfunc.php` |
 | `_callbacks/` | Iteration hooks | `callback='name'` → `name.php` |
-| `_options/` | Tag options | Custom option handlers |
+| `_options/` | Tag options | `{tag name}` → `name.php` on the template; `end/name.php` on the rendered result |
 | `_events/` | Event hooks | `error.php`, `sql.php`, `curl.php`, `output.php` - run on every request |
 | `_config/` | App config | `config.php` overrides |
 | `_data/` | Static data, named queries | XML, JSON, YAML, CSV; `name.sql` runs as `{name}` |

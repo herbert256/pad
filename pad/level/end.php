@@ -6,7 +6,8 @@
   // The occurrence is banked into $padResult [$pad] (occurrence/end.php) and, while rows
   // remain in $padData [$pad] - or a {walk} asks for another pass, or a deferred @start@ /
   // @end@ section is still pending - control goes back to occurrence/occurrence.php.
-  // Otherwise the walk end pass, the exit callback, the end-of-level options and the
+  // Otherwise the walk end pass, the exit callback, the end-of-level options (the
+  // application's _options/end/ ones first) and the
   // closing pipe run, padResetLvl() restores the globals this level shadowed, $pad drops by
   // one and padLevel() splices $padResult back into the parent level's text.
 
@@ -55,6 +56,12 @@
 
   if ( $padFragment [$pad] ?? FALSE )
     padFragmentEnd ();
+
+  // The application's end-phase options first, so that what they make of the result is what
+  // toContent, toData and tidy store or tidy.
+
+  if ( count ( $padOptionsAppEnd [$pad] ) )
+    include PAD . 'options/_go/appEnd.php';
 
   include PAD . 'options/_go/end.php';
 

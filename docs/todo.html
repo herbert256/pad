@@ -916,7 +916,7 @@ _events/output.php   post-process the final HTML</code></pre>
         <li class="idea" id="end-options">
           <div class="idea-top"><span class="number" aria-hidden="true">47</span><h3>App options that act on the result</h3><span class="effort">Small</span></div>
           <p>An app’s <code>_options/name.php</code> runs once, before content is generated, and works on the template source (<a href="https://github.com/herbert256/pad/blob/master/pad/options/_go/app.php">options/_go/app.php</a>). The built-in <code>toContent</code>, <code>toData</code>, <code>tidy</code> and <code>dump</code> run at the end, on the result, but app options cannot. Letting an option declare its phase would allow options like <code>{report minify}</code> or <code>{price highlight}</code> that work on rendered output.</p>
-        </li>
+        <p class="done"><strong>Done.</strong> <code>_options/end/name.php</code> runs as the level closes, with the tag’s output in <code>$padContent</code> and the option’s value in <code>$padGetName</code> - before toContent, toData, tidy and the closing pipe, beside an <code>_options/name.php</code> of the same name - so <code>{report minify}</code> can act on the result. Regression: framework cases; manual page; docs.</p></li>
 
         <li class="idea" id="prefetch">
           <div class="idea-top"><span class="number" aria-hidden="true">48</span><h3>Parallel fetching</h3><span class="effort">Medium</span></div>

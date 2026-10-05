@@ -7,7 +7,7 @@
   // (current page directory up to the application root) and returns the first match as a
   // path relative to APP2, so a subdirectory can override a parent. On top of it sit
   // padAppPageCheck, padAppIncludeCheck, padAppTagCheck, padAppFunctionCheck, and the
-  // same idea for padScriptCheck, padCallBackCheck and padOptionCheck. padCommonCheck and
+  // same idea for padScriptCheck, padCallBackCheck, padOptionCheck and padOptionEndCheck. padCommonCheck and
   // its two helpers look in the _common application instead; padCheck is the primitive
   // that accepts either a .pad or a .php file.
   //
@@ -89,6 +89,23 @@
     foreach ( padDirs () as $value )
       if ( file_exists ( APP2 . $value . "_options/$check.php" ) )
         return APP2 . $value . "_options/$check.php";
+
+    return FALSE;
+
+  }
+
+  // The end phase of an application option: _options/end/name.php runs on the rendered
+  // result of the tag, where _options/name.php runs on its template before anything is
+  // rendered. An option may have either, or both.
+
+  function padOptionEndCheck ( $check ) {
+
+    if ( ! padValidName ( $check ) )
+      return FALSE;
+
+    foreach ( padDirs () as $value )
+      if ( file_exists ( APP2 . $value . "_options/end/$check.php" ) )
+        return APP2 . $value . "_options/end/$check.php";
 
     return FALSE;
 

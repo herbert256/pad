@@ -63,7 +63,7 @@ apps/myapp/
 | `_tags/` | Custom tags | `{mytag}` → `mytag.php` |
 | `_functions/` | Pipe functions | `{echo $x \| myfunc}` → `myfunc.php` |
 | `_callbacks/` | Iteration hooks | `callback='name'` → `name.php` |
-| `_options/` | Tag options | Custom option handlers |
+| `_options/` | Tag options | `{tag name}` → `name.php` on the template; `end/name.php` on the rendered result |
 | `_events/` | Event hooks | `error.php`, `sql.php`, `curl.php`, `output.php` - run on every request |
 | `_config/` | App config | `config.php` overrides |
 | `_data/` | Static data | XML, JSON files |
@@ -168,6 +168,23 @@ Use in templates:
 {/items}
 Total: {$total}
 ```
+
+### _options/ - Tag Options
+
+A file `_options/name.php` makes `name` an option of every tag. It runs before the tag
+renders and works on its template; a file `_options/end/name.php` runs after it rendered and
+works on the result - the fields filled in, every occurrence joined. Both change
+`$padContent` and read the option's value from `$padGetName` (TRUE for the bare form).
+
+**_options/end/words.php**:
+```php
+<?php
+  $padContent .= '(' . str_word_count ( strip_tags ( $padContent ) ) . ' words)';
+?>
+```
+
+`{staff words}{$name} {/staff}` → `joe jim john jack jerry (5 words)`. The end options run
+before the built-in `toContent`, `toData` and `tidy`, and before the closing tag's pipe.
 
 ### _events/ - Event Hooks
 

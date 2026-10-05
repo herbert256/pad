@@ -608,13 +608,33 @@ Enables direct output printing with formatting options.
 Applications can define custom options by placing PHP files in:
 
 ```
-APP/_options/optionName.php
+APP/_options/optionName.php        start phase - works on the template
+APP/_options/end/optionName.php    end phase   - works on the rendered result
 ```
 
-These are processed during the `app` phase and have access to:
-- `$padContent` - Current content
-- `$padGetName` - Option parameter value
+`_options/optionName.php` is processed during the `app` phase, before the tag renders:
+`$padContent` is the template between the tags. `_options/end/optionName.php` is processed
+as the level closes, after every occurrence has rendered: `$padContent` is the result, with
+the fields filled in - the place for options such as `{report minify}` or `{price highlight}`.
+An option may have both files; each runs in its own phase.
+
+Both have access to:
+- `$padContent` - the template (start) or the rendered result (end); change it to change it
+- `$padGetName` - Option parameter value (TRUE for the bare form)
 - All global PAD variables
+
+The end-phase handlers run before the built-in end options (`toContent`, `toData`, `tidy`,
+`dump`), so those store or tidy what the application option made, and before the closing
+tag's pipe. Both are looked up from the page's directory up to the application root, and
+count as readers for the strict unread-option check.
+
+```php
+<?php                                   // _options/end/words.php
+  $padContent .= '(' . str_word_count ( strip_tags ( $padContent ) ) . ' words)';
+?>
+```
+
+`{staff words}{$name} {/staff}` → `joe jim john jack jerry (5 words)`
 
 ---
 
@@ -623,8 +643,9 @@ These are processed during the `app` phase and have access to:
 1. **Data retrieval**: `data`, `content`
 2. **Conditional setup**: `else`
 3. **Start options**: `track`, `before`, `dedup`, `page`, `sort`, `ignore`, `print`, `parent`, `trace`, `pre`
-4. **App options**: Custom application options
+4. **App options**: Custom application options (`_options/`)
 5. **Content generation**: Tag processing
 6. **Flag handling**: `null` (if NULL result)
 7. **Callback**: `callback`
-8. **End options**: `toBool`, `toContent`, `toData`, `tidy`, `dump`
+8. **App end options**: Custom application options (`_options/end/`)
+9. **End options**: `toBool`, `toContent`, `toData`, `tidy`, `dump`

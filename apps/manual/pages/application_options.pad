@@ -1,0 +1,47 @@
+<h1>Options of your own</h1>
+
+<p>A file in the application's <code>_options/</code> directory makes its name an option
+of every tag - written bare, <code>{open}staff words{close}</code>, or with a value,
+<code>{open}staff wrap='em'{close}</code>. Where the file stands decides when it runs:</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+  <tr><th>file</th><th>runs</th><th><code>$padContent</code> is</th></tr>
+  <tr><td><code>_options/name.php</code></td><td>before the tag renders</td><td>the template between the tags</td></tr>
+  <tr><td><code>_options/end/name.php</code></td><td>after the tag rendered</td><td>the result - every occurrence, joined</td></tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p>The handler changes <code>$padContent</code>, and the option's value is in
+<code>$padGetName</code> - TRUE when the option is written bare. An end option sees the
+fields filled in, so it can count, mark or tidy what the tag produced. Here
+<code>fragments/options/_options/end/words.php</code> appends a word count:</p>
+
+{ignore}
+<pre><code>&lt;?php                                   // _options/end/words.php
+
+  $padContent .= '(' . str_word_count ( strip_tags ( $padContent ) ) . ' words)';
+
+?&gt;</code></pre>
+{/ignore}
+
+{example 'fragments/options/options_1'}
+
+<p>With a value - <code>_options/end/wrap.php</code> puts the result in the element it is
+given:</p>
+
+{ignore}
+<pre><code>&lt;?php                                   // _options/end/wrap.php
+
+  $padContent = "&lt;$padGetName&gt;" . trim ( $padContent ) . "&lt;/$padGetName&gt;";
+
+?&gt;</code></pre>
+{/ignore}
+
+{example 'fragments/options/options_2'}
+
+<p>An option may have both files: the first works on the template, the second on what it
+became. The end options run before the built-in <code>toContent</code>, <code>toData</code>
+and <code>tidy</code> - those store or tidy what the end option made - and before the closing
+tag's pipe. Like tags and callbacks they are looked up from the page's directory up to the
+application root.</p>

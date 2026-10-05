@@ -83,6 +83,8 @@
 
   $padOptionsAppStart     [$pad] = [];
   $padOptionsAppStartCall [$pad] = [];
+  $padOptionsAppEnd       [$pad] = [];
+  $padOptionsAppEndCall   [$pad] = [];
 
   $padBaseValue  [$pad] = FALSE;
   $padAtTag      [$pad] = FALSE;

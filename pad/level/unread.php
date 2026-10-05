@@ -38,6 +38,9 @@
       if ( isset ( $padOptionsAppStartCall [$pad] [$padUnreadName] ) )
         continue;
 
+      if ( isset ( $padOptionsAppEndCall [$pad] [$padUnreadName] ) )
+        continue;
+
       // A sequence tag's words may also be its actions, its types, its stores, the
       // min/max option pair, or the subsystem's own mode words - readers of their own.
 
