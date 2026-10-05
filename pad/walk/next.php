@@ -8,6 +8,11 @@
   // for more the fresh $padTagResult array becomes $padData [$pad] for another round of
   // occurrences. The flags are level/go's to set - included a second time here, every
   // option they fire fired twice.
+  //
+  // The fresh array is made data by padData(), as level/data.php makes the first pass's:
+  // taken as it was, a list of values - ['c', 'd'] - reached occurrence/set.php as rows that
+  // are no arrays, and the second pass ended the request on "foreach() argument must be of
+  // type array".
 
   if ( $padInfo )
     include PAD . 'events/walk.php';
@@ -19,7 +24,7 @@
   if ( $padWalk [$pad] ) {
 
     if ( $padArray [$pad] )
-      $padData [$pad] = $padTagResult;
+      $padData [$pad] = padData ( $padTagResult );
 
     reset ( $padData [$pad] );
 
