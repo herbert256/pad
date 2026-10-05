@@ -128,6 +128,13 @@
   $padCurlCache = 'file';
   $padCurlStale = 86400;
 
+  // The debug toolbar - a collapsible bar at the foot of the page with the time, the tag
+  // tree, the SQL, the caches, the template files, the variables and the session; see
+  // lib/toolbar.php. 'local' (or TRUE) adds it to the web pages of a local request only -
+  // never to one from elsewhere, whatever the setting; FALSE never.
+
+  $padToolbar = FALSE;
+
   $padSqlPadHost           = '127.0.0.1';
   $padSqlPadDatabase       = 'pad';
   $padSqlPadUser           = 'pad';

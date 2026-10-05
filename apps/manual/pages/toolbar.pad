@@ -1,0 +1,29 @@
+<h1>Debug toolbar</h1>
+
+<p>With <code>$padToolbar = 'local'</code> every web page of a local request carries a
+collapsible bar at its foot: what the engine collected while it rendered the page. This page
+switches it on for itself, so opened on your own machine the bar stands below.</p>
+
+{example 'fragments/toolbar_1'}
+
+<p>The fragment shows the setting in a page's PHP; an application sets it once in
+<code>_config/config.php</code>.</p>
+
+<h2>What it shows</h2>
+
+<ul>
+  <li><b>The summary</b> - application and page, the time and peak memory, how many levels the engine opened, how many SQL statements ran, and whether the page cache was off, hit or missed; fragment cache hits and misses when there were any.</li>
+  <li><b>Request</b> - the same figures with the size of the output.</li>
+  <li><b>Tags</b> - the tag tree: every tag that opened a level, indented by its depth, with its type.</li>
+  <li><b>SQL</b> - every statement, in the order it ran.</li>
+  <li><b>Templates</b> - the template files read: wrappers, the page, snippets, the <code>.pad</code> halves of tags.</li>
+  <li><b>Variables</b> and <b>Session</b> - the application's own variables and the session, credentials redacted.</li>
+</ul>
+
+<h2>Who sees it</h2>
+
+<p>Only a local request: the command line, or this machine asking itself with nothing
+forwarded - the same test the full error report uses, and <code>$padDiagnostics = FALSE</code>
+closes it the same way. A visitor never gets it, whatever the setting. It is left out of a
+bare fragment (<code>&amp;padInclude</code>), of anything that is not an HTML page answering
+200, and of the page cache: it is added on the way out, after the cache stored the page.</p>

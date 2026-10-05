@@ -17,7 +17,8 @@
   // padValidStore and padStrPad split the globals: the first says a name is application
   // data (not pad*/pq*, not a superglobal) and so may be handed to callbacks and code
   // blocks, the second says a name is engine state that a sandbox must reset, sparing the
-  // padStr* machinery, the padStrSto stores, padLevelVars and the info counters.
+  // padStr* machinery, the padStrSto stores, padLevelVars, the info counters and what the
+  // debug toolbar collects across the passes of the request.
   // padValidFirstChar is the plain "starts with a letter" test.
 
   function padCommonCheck  ( $check ) { 
@@ -227,7 +228,7 @@
       if ( ! str_starts_with ( $field, 'padStr' ) )
         if ( ! in_array ( $field, padStrSto) )
           if ( ! in_array ( $field, padLevelVars) )
-            if ( $field != 'padInfoCnt' and $field != 'padInfoTraceId' )
+            if ( $field != 'padInfoCnt' and $field != 'padInfoTraceId' and $field != 'padToolbarData' )
               return $memo [$field] = TRUE;
 
     return $memo [$field] = FALSE;

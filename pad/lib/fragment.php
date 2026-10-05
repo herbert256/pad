@@ -27,7 +27,7 @@
 
   function padFragmentHit () {
 
-    global $pad, $padFragment, $padFragmentCache;
+    global $pad, $padFragment, $padFragmentCache, $padToolbarData;
 
     $padFragment [$pad] = [
       'key'    => padFragmentKey (),
@@ -41,6 +41,11 @@
       return FALSE;
 
     $entry = padFragmentGet ( $padFragment [$pad] ['key'] );
+
+    // Counted for the debug toolbar (lib/toolbar.php).
+
+    $padToolbarData [ ( $entry === FALSE ) ? 'fragmentMiss' : 'fragmentHit' ] =
+      ( $padToolbarData [ ( $entry === FALSE ) ? 'fragmentMiss' : 'fragmentHit' ] ?? 0 ) + 1;
 
     if ( $entry === FALSE )
       return FALSE;

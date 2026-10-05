@@ -52,6 +52,7 @@ This directory contains PAD applications and examples.
 | [regression/output_json](regression/output_json/README.md) | Test | Regression test for the 'json' output type - every page answers the variables it exposes, the index its verdicts |
 | [regression/try_log](regression/try_log/README.md) | Test | Regression test for the try guards under the 'log' action - caught, logged, and the page renders clean |
 | [regression/try_pad](regression/try_pad/README.md) | Test | Regression test for the try guards under the 'pad' action - caught and reported into the page |
+| [regression/toolbar](regression/toolbar/README.md) | Test | Regression test for the debug toolbar - a local page carries it, a fragment and a forwarded request do not |
 | [regression/errors](regression/errors/README.md) | Test | The Errors suite: the tests that fail on purpose, answered lean under the boot action - no dumps |
 | [regression/common](regression/common/README.md) | Test | The pages of the suite that use _common - {example}, {demo}, {table} - fetched and compared the same way |
 | [sequence](sequence/README.md) | Standard | Mathematical sequence subsystem demos - gallery, listen and guess pages |

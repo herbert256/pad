@@ -609,7 +609,7 @@ wrapped by apps/shop/_inits.pad › apps/shop/orders/_inits.pad</code></pre>
           <div class="idea-top"><span class="number" aria-hidden="true">20</span><h3>A debug toolbar</h3><span class="effort">Medium</span></div>
           <p>A collapsible bar added to local <code>text/html</code> responses, showing what PAD already collects:</p>
           <ul>
-            <li>timings, which today go out only in the <code>PAD-Stats</code> header;</li>
+            <li>timings, which today go out only in the <code>PAD-Stats</code> header;<p class="done"><strong>Done.</strong> <code>$padToolbar = 'local'</code> adds a collapsible toolbar to the foot of every local web page - time and memory, levels and the tag tree, SQL statements, page and fragment cache hits, template files read, the application’s variables and the session - never for a visitor, a <code>&amp;padInclude</code> fragment or the page cache (lib/toolbar.php). Regression: a regression application; manual page; docs.</p></li>
             <li>the SQL statements in <code>$_SQL</code>;</li>
             <li>the tag tree that the xml info mode writes to <code>DATA/</code>;</li>
             <li>level variables and session values;</li>

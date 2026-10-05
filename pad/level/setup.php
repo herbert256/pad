@@ -103,4 +103,7 @@
   if ( $padInfo )
     include PAD . 'events/setup.php';
 
+  if ( $padToolbar )
+    padToolbarLevel ();
+
 ?>

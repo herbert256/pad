@@ -700,6 +700,7 @@ $padCache         // Enable caching
 $padCheckOutput   // Check the finished HTML of local requests (ids, alt, labels, links)
 $padCoverage      // Record template coverage of local requests (TRUE or a run name)
 $padRecord        // Record GET requests with their answers for replay (TRUE or a store name)
+$padToolbar       // 'local': the debug toolbar on this machine's own web pages
 
 // Database
 $padSqlHost
@@ -716,6 +717,10 @@ $padSqlPassword
   the log line; the build's source map (`pad/lib/source.php`) traces the spot back through the
   joined `_inits`/page/`_exits` text
 - Set `$padInfo = 'trace'` for execution tracing
+- Set `$padToolbar = 'local'` for a collapsible debug toolbar at the foot of every local web
+  page: time and memory, the levels and the tag tree, the SQL statements, page and fragment
+  cache, the template files read, the application's variables and the session
+  (`pad/lib/toolbar.php`); never shown to a visitor, a `&padInclude` fragment or the page cache
 - Use `{dump}` tag for variable inspection
 - Use `{trace}` tag for execution trace
 - Set `$padCheckOutput = TRUE` to have every local HTML response checked once it has rendered: duplicate ids, images without alt, form fields without a label and `?page` links to pages that do not exist are named in a panel at the end of the page and counted in a `PAD-Output-Check` header (one request: `?page&padCheckOutput`; every application's templates at once: `develop/?links`)

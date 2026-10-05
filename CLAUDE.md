@@ -933,6 +933,12 @@ $padSitemapSkip = [];        // e.g. [ 'admin', 'login' ] - a page, or a directo
 // Cache enabled
 $padCache = false;
 
+// The debug toolbar: a collapsible bar at the foot of a local web page - time, memory,
+// the tag tree, the SQL, page and fragment cache, the template files, the variables and
+// the session. 'local' (or TRUE) shows it to this machine's own requests only, never to
+// a visitor; not on a &padInclude fragment, and never in the page cache.
+$padToolbar = false;
+
 // The strict syntax check, on by default: orphan braces and tags, pairs that never
 // close, options nothing reads, misses behind a type prefix - and an undefined $field,
 // in an expression and in the {$x} tag form alike. Off, the lenient walk keeps what
@@ -1324,6 +1330,7 @@ Each `{tag}` creates a new level scope. PAD maintains global variables per level
 ## Debugging
 
 - Set `$padInfo = 'trace'` for execution tracing
+- Set `$padToolbar = 'local'` for the debug toolbar at the foot of every local page
 - Use `{debug $order}` for a collapsible view of a value inside the page (local requests only; `{debug}` alone shows every field visible there)
 - Use `{dump}` tag for variable inspection
 - Use `{trace}` tag for execution trace
@@ -1455,6 +1462,7 @@ assigns it. `node editors/lsp/test.js` tests it; `./ci.sh` runs that as its `lsp
 | `regression/output_json` | Test | Regression test for the 'json' output type - every page answers what it exposes |
 | `regression/try_log` | Test | Regression test for the try guards under the 'log' action |
 | `regression/try_pad` | Test | Regression test for the try guards under the 'pad' action |
+| `regression/toolbar` | Test | Regression test for the debug toolbar - local page yes, fragment and forwarded request no |
 | `regression/errors` | Test | The Errors suite: the tests that fail on purpose, answered lean under the boot action - no dumps |
 | `regression/common` | Test | The pages of the suite that use `_common` - `{example}`, `{demo}`, `{table}` - fetched and compared the same way |
 | `sequence` | Standard | Mathematical sequence subsystem demos - with a gallery of every type beside its OEIS entry, a sequence played as notes, and a guess-the-next-term game |

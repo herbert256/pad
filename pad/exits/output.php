@@ -36,6 +36,12 @@
   if ( $padOutputType != 'web' and $padCacheStop == 200 and $padCacheServerGzip )
     $padOutput = padUnzip ( $padOutput );
 
+  // The debug toolbar of a local page goes in on the way out - after the page cache has
+  // stored the page, so a cached copy never carries one (lib/toolbar.php).
+
+  if ( $padToolbar )
+    padToolbarAdd ();
+
   include PAD . "exits/output/$padOutputType.php";
 
   padExit ( $padStop );

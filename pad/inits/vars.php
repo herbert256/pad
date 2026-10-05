@@ -40,6 +40,7 @@
   $padInfoCnt   = 0;
 
   $padCoverageRun = '';
+  $padToolbarData = [];
 
   $padData      = [];
   $padProviders = [];
