@@ -202,6 +202,7 @@
 
     if ( isset($output ['info']['header_size']) and $output ['info']['header_size'] > 0 ) {
 
+      $seen    = [];
       $headers = explode( "\r\n", substr ( $result, 0, $output ['info'] ['header_size'] ) );
 
       foreach ($headers as $key => $val) {
@@ -215,11 +216,16 @@
         // The status line is the one without a colon - a value of 0 or nothing, as in
         // Content-Length: 0, made an ordinary header pass for it and vanish.
 
-        if ( $header and count ( $work ) == 1 )
+        // A followed redirect hands over the headers of every response on the way, each
+        // block opening with its status line: the headers start afresh there, so they are
+        // the final response's own. The cookies set on the way are kept.
 
-          $output ['headers'] ['http'] = $header;
+        if ( $header and count ( $work ) == 1 ) {
 
-        elseif ( $header ) {
+          $output ['headers'] = [ 'http' => $header ];
+          $seen               = [];
+
+        } elseif ( $header ) {
 
           if ( $name == 'content-disposition' and !$file)
             padBetween ($value, '"', '"', $before, $file, $after);
@@ -234,17 +240,42 @@
             elseif (strpos ($value, 'yml')        !== FALSE) $output ['type'] = 'yaml';
 
           if ( $name == 'set-cookie') {
-            $first = strpos ($value, '=');
-            $last  = strpos ($value, ';');
-            if ( $last === FALSE )
-              $last = strlen ($value);
-            if ( $first !== FALSE and $last !== FALSE and $first > 0 and $last > $first )
-             $output ['cookies'] [substr($value, 0, $first)] = substr($value, $first+1, $last-$first-1);
+
+            // name=value first, then the attributes - Path, Domain, Expires, Max-Age,
+            // Secure, HttpOnly, SameSite - kept by name, lower-cased, under
+            // ['cookieAttributes'], where only the name and value used to come through.
+
+            $parts = array_map ( 'trim', explode ( ';', $value ) );
+            $pair  = explode ( '=', array_shift ( $parts ), 2 );
+
+            if ( count ( $pair ) == 2 and trim ( $pair [0] ) !== '' ) {
+
+              $cookie = trim ( $pair [0] );
+
+              $output ['cookies'] [$cookie]          = $pair [1];
+              $output ['cookieAttributes'] [$cookie] = [];
+
+              foreach ( $parts as $part )
+                if ( $part !== '' ) {
+                  $attr = explode ( '=', $part, 2 );
+                  $output ['cookieAttributes'] [$cookie] [ strtolower ( trim ( $attr [0] ) ) ] = isset ( $attr [1] ) ? trim ( $attr [1] ) : TRUE;
+                }
+
+            }
+
           }
           elseif ( $name == 'pad-stats' )
             $output ['headers'] ['PAD-Stats'] = $value;
-          else
+
+          // A header sent twice is one header with both values, comma-joined as HTTP has it,
+          // under the spelling it first came with - the last one used to win.
+
+          elseif ( isset ( $seen [$name] ) )
+            $output ['headers'] [ $seen [$name] ] .= ", $value";
+          else {
             $output ['headers'] [$header] = $value;
+            $seen [$name] = $header;
+          }
 
         }
 
