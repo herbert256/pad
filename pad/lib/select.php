@@ -139,10 +139,7 @@
     if ( ! $keys )
       return '';
 
-    foreach ( padExplode ( $keys, ',' ) as $field )
-      $set [] = "`$field`";
-
-    return implode( ',' , $set );
+    return implode ( ',', array_map ( 'padSelectField', padExplode ( $keys, ',' ) ) );
 
   }
 
@@ -541,7 +538,7 @@
       if ($where)
         $where .= ' and ';
 
-      $where .= padSelectField($v) . ' = `' . $db . '`.' . padSelectField( $values2 [$k] ?? substr ( strrchr ( ".$v", '.' ), 1 ) );
+      $where .= padSelectField($v) . ' = ' . padSelectField($db) . '.' . padSelectField( $values2 [$k] ?? substr ( strrchr ( ".$v", '.' ), 1 ) );
 
     }
 
@@ -568,14 +565,22 @@
 
   }
 
+  // A column name, or table.column, quoted as an identifier: a backtick in the name is
+  // doubled, as MySQL and SQLite read it. It was wrapped in backticks as it stood, so a
+  // key= value holding one - "salary` desc #" - ended the identifier and wrote SQL of its
+  // own into the statement. padSelectKeys quotes each key the same way now; it wrapped a
+  // table.column as one name.
+
   function padSelectField ($field) {
+
+    $quote = fn ( $name ) => '`' . str_replace ( '`', '``', $name ) . '`';
 
     $parts = padExplode($field, '.');
 
     if ( count($parts) == 2 )
-      return  '`' . $parts[0] . '`.`' . $parts[1] . '`';
+      return  $quote ( $parts[0] ) . '.' . $quote ( $parts[1] );
     else
-      return  '`' . $parts[0] . '`';
+      return  $quote ( $parts[0] ?? '' );
 
   }
 
