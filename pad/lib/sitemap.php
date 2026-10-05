@@ -11,8 +11,8 @@
   // The walk leaves out what is no page a visitor should be sent to: _ and dot entries (the
   // _lib, _include, _inits files and their kind), a directory with a _guard.php in it (its
   // pages are guarded), a bracketed route like products/[id] (it has no one address), a page
-  // with no template whose PHP only redirects, restarts or writes (an action, like
-  // todoPost), a page whose template says {meta sitemap=false}, and every name
+  // with no template whose PHP only redirects - padBack included - restarts or writes (an
+  // action, like todoPost), a page whose template says {meta sitemap=false}, and every name
   // $padSitemapSkip lists - a page, or a directory and all below it. lastmod is the newest
   // time among the page's files.
   //
@@ -117,7 +117,7 @@
 
       $source = padFileGet ( "$base.php" );
 
-      foreach ( [ 'padRedirect', 'padRestart', 'padFilePut', 'padExit' ] as $action )
+      foreach ( [ 'padRedirect', 'padBack', 'padRestart', 'padFilePut', 'padExit' ] as $action )
         if ( str_contains ( $source, $action ) )
           return FALSE;
 

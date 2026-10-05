@@ -6,8 +6,8 @@
 
   // Every page of every application, walked once per request. Either half names a page,
   // so the .pad-only and .php-only forms both count and a pair counts once; a page with
-  // no template that redirects, restarts or writes is an action, not a page, and a crawl
-  // has to be able to run without changing anything.
+  // no template that redirects (padRedirect, padBack), restarts or writes is an action,
+  // not a page, and a crawl has to be able to run without changing anything.
 
   function padAppsList () {
 
@@ -36,6 +36,7 @@
         $source = padFileGet ( $path );
 
         if ( str_contains ( $source, 'padRedirect'      )
+          or str_contains ( $source, 'padBack'          )
           or str_contains ( $source, 'padRestart'       )
           or str_contains ( $source, 'padFilePut'       )
           or str_contains ( $source, 'padDeleteDataDir' ) )

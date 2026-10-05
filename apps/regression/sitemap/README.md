@@ -5,8 +5,8 @@
 Regression test for `$padSitemap`: the application answers `?sitemap.xml` from its own file
 tree and `?robots.txt` pointing to it. The index fetches both and shows them, the dates as
 their shape. The tree holds one of every kind the sitemap leaves out - a name in
-`$padSitemapSkip`, a directory with a `_guard.php`, an action page, a bracketed route - beside
-the pages it lists.
+`$padSitemapSkip`, a directory with a `_guard.php`, an action page (one that redirects, one
+that goes back with `padBack`), a bracketed route - beside the pages it lists.
 
 ## Files
 
@@ -17,5 +17,6 @@ the pages it lists.
 | `thanks.pad` | Left out by `$padSitemapSkip` |
 | `admin/_guard.php`, `admin/panel.pad` | A guarded directory, left out |
 | `send.php` | An action that only redirects, left out |
+| `back.php` | An action that only goes back (`padBack`), left out |
 | `products/[id].pad` | A route with no one address, left out |
 | `_config/config.php` | Switches `$padSitemap` on, `_common` off |

@@ -362,7 +362,120 @@ string (`'3'`) or a float without a fraction (`3.0`).
 
 ## Requests and sessions
 
-<!-- helpers: requests and sessions -->
+`pad/lib/request.php` - what a page's PHP asks of the request it answers, of the session
+that outlives it, and of the address the visitor goes to next. The engine already turns
+request values into variables (`$padRequestVars`) and keeps the `$padSessionVars` names in
+the session; these do the same by name, whatever those settings let through. Manual page:
+*Requests and sessions*.
+
+| Function | Answers |
+|----------|---------|
+| `padRequest ( $key = NULL, $default = NULL )` | One value of this request's input by name or dot path, or the default (a Closure is called); `NULL` key: all the input as an array |
+| `padRequestHas ( $keys )` | `TRUE` when every name is in the input - an empty value counts |
+| `padRequestFilled ( $key )` | `TRUE` when every name is in the input and not blank |
+| `padRequestOnly ( $keys )` | The input with these names only, in the order given, each where its dot path puts it; a name not sent is left out |
+| `padRequestExcept ( $keys )` | The input without these names (dot paths remove a nested value) |
+| `padRequestMethod ()` | The method upper-cased - `GET`, `POST`, `PUT` ...; `GET` when there is none (the command line) |
+| `padRequestIs ( $method )` | `TRUE` when the method is this one, or one of a list / comma-separated text, in any case |
+| `padSession ( $key = NULL, $default = NULL )` | One value of the session by name or dot path, or the default; `NULL` key: all of it (`[]` without a session). Never starts a session |
+| `padSessionPut ( $key, $value )` | Keeps a value at a dot path, starting the session when there is none; an array of names and values puts them all. `TRUE`, or `FALSE` when no session can start (headers sent) |
+| `padSessionHas ( $keys )` | `TRUE` when every name is in the session - a `NULL` value counts |
+| `padSessionPull ( $key, $default = NULL )` | The value, taken out of the session; the default when it is not there |
+| `padSessionForget ( $keys )` | Removes one or several names or dot paths from the session |
+| `padSessionRegenerate ()` | Moves the session to a new id, its data kept - after a login, against session fixation. `TRUE` / `FALSE` |
+| `padFlashInput ( $except = [ 'password', 'password_confirmation', 'padCsrfToken' ] )` | Keeps this request's input, without those names, for the next request only. `TRUE` / `FALSE` |
+| `padOld ( $key = NULL, $default = '' )` | A value of the input the request before flashed (or this one, when it flashed); `NULL` key: all of it |
+| `padUrl ( $page = '', $vars = [], $absolute = FALSE )` | A link to a page of this application: `/myapp/?orders&sort=date`, or `/myapp/orders?sort=date` with `$padCleanUrls`; `''` is the page the visitor asked for; absolute on `$padHost` |
+| `padBack ( $fallback = '' )` | Redirects (302) to the referring page when it is a page of this application on this host, else to `$fallback` (a page name; `''` the index) |
+| `padAbort ( $status, $message = '' )` | Ends the request with the status (400-599) and the message - or the status's own phrase - as plain text |
+
+```php
+<?php                                          // signup.php - the page the form posts to
+
+  $errors = padValidate ( [ 'email' => 'required|email' ] );
+
+  if ( $errors ) {
+    padFlash ( 'Please check the form.', 'error' );
+    padFlashInput ();                          // password and CSRF token left out
+    padBack ( 'signup/form' );                 // to the Referer, if it is ours
+  }
+
+  padSessionPut ( 'user.email', padRequest ( 'email' ) );
+  padSessionRegenerate ();
+
+?>
+```
+
+```php
+<?php                                          // signup/form.php - filled again once
+
+  $email = padOld ( 'email' );                 // {input 'email', value=$email}
+
+?>
+```
+
+```php
+  $sort   = padRequest ( 'sort', 'date' );                         // ?orders&sort=total
+  $name   = padRequest ( 'customer.name' );                        // customer[name], or JSON
+  $ids    = padRequest ( 'items.*.id' );                           // [ 3, 7 ]
+  $save   = padRequestOnly ( 'customer.email, note' );
+  $cart   = padSession ( 'cart.items', [] );
+  $coupon = padSessionPull ( 'cart.coupon' );
+  $next   = padUrl ( 'orders', [ 'page' => 2 ] );                  // /myapp/?orders&page=2
+
+  if ( ! $order )
+    padAbort ( 404 );                                              // 404 Not Found
+```
+
+The input is POST over GET, and the decoded body of a request sent as `application/json`
+(or a `+json` type) over both, as Laravel merges them; every text is trimmed as
+`inits/parms.php` trims a request value; the bare query key that names the page
+(`$padPageKey`) is no input, and route segments (`products/[id]`) are variables, not input.
+A dot path finds a key of its own first (`'a.b'` as one key), then walks the levels; a
+segment may be a number, and a `*` maps the rest of the path over every item of a list,
+answering the items that have it. Objects are read by their public properties, ArrayAccess
+objects like arrays. The names of `Has`, `Filled`, `Only`, `Except` and `Forget` are an
+array or one text with commas.
+
+Edge rules:
+
+- A missing name answers the default; `padRequest` and `padSession` with a `NULL` key answer
+  the whole array. Blank (for `padRequestFilled`) is `NULL`, an empty or whitespace-only
+  text, an empty array or Countable; `'0'`, `0` and `FALSE` are filled. `padRequestHas ( '' )`
+  is `FALSE`.
+- Reading the session (`padSession`, `padSessionHas`, `padSessionPull`, `padSessionForget`)
+  resumes the session the visitor's cookie names and never starts one: without the cookie
+  the answer is the default and no cookie is sent. `padSessionPut`, `padSessionRegenerate`
+  and `padFlashInput` start one on demand (`padSessionStart`).
+- A `$padSessionVars` name is a variable too, and the end of the request writes the variable
+  back over the session: the helpers keep the two in step - a put sets the variable, a
+  forget makes it `NULL` - and reading answers the variable's current value.
+- Flashed input lives exactly one request after the one that flashed it, like a flash
+  message: the `padOld` cookie tells the next request to take it out of the session, and it
+  is gone after that whether `padOld` read it or not. A request without input that calls
+  `padFlashInput` flashes nothing.
+- `padUrl`: a page written as a link writes it - `?about`, `about&x=1` - is that page with
+  those values; a `#fragment` stays at the end; the page's segments are URL-encoded; the
+  values go through `http_build_query` (arrays as `tags[0]=...`, `NULL` left out); a string
+  of values is appended as it is. The form follows `$padCleanUrls` at the moment of the call.
+- `padBack` follows the Referer only to this host and port and a path under this
+  application's own directory (`/pad/shop/`, not `/pad/shop2/`), http or https, with no
+  user@ part and no control character; the address is rebuilt on `$padHost`. Anything else,
+  or no Referer, goes to the fallback - through `padRedirect`, the same exit.
+- `padAbort` empties what the page made so far, sends `Content-Type: text/plain`, `no-store`
+  and the security headers, writes the session back and ends through the engine's exit (as
+  a refused request does, `padRefuse`). A status without a phrase of its own gets *Client
+  Error* or *Server Error*. Such a status - 499, 599 - goes to the web server as it is, and
+  the server has the last word: `php -S` sends it, Apache answers 500.
+- Author mistakes are reported with `padError` and the function then answers its empty
+  value: a name that is no text or number, `padSessionPull` or `padSessionPut` without a
+  name, `padSessionPut` under a top-level name that is a number (PHP's session drops those
+  silently when it writes) or with a value PHP cannot serialize (a Closure - the whole
+  session would not be written), `padRequestIs` without a method, `padUrl` with values that are
+  no array or text, a `padBack` fallback that is no page name, `padAbort` with a status
+  outside 400-599 (no abort then) or a message that is no text.
+- A page that only calls `padBack` is an action, like one that only calls `padRedirect`: the
+  sitemap and the application walkers leave it out.
 
 
 ---
