@@ -10,9 +10,14 @@
   // match - as the cache's own path has it. Only the first was compared, so a browser
   // holding two versions, or asking with *, was sent the whole page again.
 
-  $padWebTags = $padClientEtags ?? [];
+  // A 304 answers a GET or a HEAD only (RFC 9110): a POST that matched - any POST with
+  // If-None-Match: * - was done, and then answered with no body at all.
+
+  $padWebTags   = $padClientEtags ?? [];
+  $padWebMethod = strtoupper ( $_SERVER ['REQUEST_METHOD'] ?? 'GET' );
 
   if ( $padStop == '200' and $padWebEtag304 and $padEtag !== ''
+       and in_array ( $padWebMethod, [ 'GET', 'HEAD' ], TRUE )
        and ( in_array ( '*', $padWebTags, TRUE ) or in_array ( $padEtag, $padWebTags, TRUE ) ) )
     $padStop = 304;
 

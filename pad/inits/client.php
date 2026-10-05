@@ -3,9 +3,9 @@
   // Reads what the browser already has and what it can accept, into the globals the exits
   // consult when deciding on a response.
   //
-  // $padClientEtag is the If-None-Match value with its quotes stripped, compared against the
-  // freshly computed $padEtag by exits/output/web.php to answer 304 instead of resending the
-  // page; $padClientDate is If-Modified-Since as a timestamp; $padClientGzip records whether
+  // $padClientEtags are the tags of If-None-Match with their quotes stripped, compared against
+  // the freshly computed $padEtag by exits/output/web.php to answer 304 instead of resending
+  // the page ($padClientEtag is the first of them); $padClientDate is If-Modified-Since as a timestamp; $padClientGzip records whether
   // the response may be compressed - Accept-Encoding read with its quality values by
   // padAcceptsEncoding (lib/output.php), so gzip;q=0 is the refusal it is.
 
