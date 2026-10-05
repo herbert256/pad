@@ -961,7 +961,10 @@ Run PHP code before all pages:
 
 ## Configuration (_config/config.php)
 
-Override framework settings:
+Override framework settings. The file is read more than once per request - once to choose
+`$padCommon`, the output type and the info modes, and again after those selectors ran, so
+the application has the last word - so it only assigns settings: a function declared in it
+is declared twice, and anything it does it does twice. Functions belong in `_lib/`.
 
 ```php
 <?php
