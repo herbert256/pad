@@ -9,15 +9,17 @@
   // answered 2 3 4 5 6.
   //
   // A position the sequence does not reach - and any position at all when it is empty -
-  // leaves nothing rather than reading past the end of the list.
+  // leaves nothing rather than reading past the end of the list. 0 is such a position: it
+  // was taken for no parameter at all, so element=0 answered the whole sequence.
 
-  if ( ! $pqActionParm )
+  if ( (string) $pqActionParm === '' )
     return;
 
-  // A position is a number: element='abc' ended the request on string - int. Strict mode
-  // names it, and the sequence is left as it was.
+  // A position is a whole number: element='abc' ended the request on string - int, and
+  // element=2.5 on PHP's deprecation of a fractional array key. Strict mode names it, and
+  // the sequence is left as it was.
 
-  if ( ! is_numeric ( $pqActionParm ) ) {
+  if ( ! is_numeric ( $pqActionParm ) or floor ( $pqActionParm ) != $pqActionParm ) {
     if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
       padError ( "element= takes a position, not '$pqActionParm'" );
     return;
@@ -25,8 +27,10 @@
 
   $pqElementKeys = array_keys ( $pqResult );
 
-  if ( isset ( $pqElementKeys [$pqActionParm-1] ) ) {
-    $pqElementKey = $pqElementKeys [$pqActionParm-1];
+  $pqElementAt   = (int) $pqActionParm - 1;
+
+  if ( isset ( $pqElementKeys [$pqElementAt] ) ) {
+    $pqElementKey = $pqElementKeys [$pqElementAt];
     $pqResult     = [ $pqElementKey => $pqResult [$pqElementKey] ];
   } else
     $pqResult = [];
