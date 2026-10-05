@@ -227,18 +227,25 @@
   // that one. The page is the first name of the query, as inits/page.php takes it from $_GET,
   // and index when there is none. Anything else - another site, a file, a #fragment, a
   // mailto: - is no page link and is not judged.
+  //
+  // A rendered page reached by a clean URL - /shop/products/42 - is the exception for its
+  // ?query links: the browser keeps the path, and a query that does not start with a bare
+  // name, ?sort=price, is a value of the page the path names (padRouteQuery), not a page
+  // called sort. It was judged as one and every such link was reported broken.
 
   function padOutputCheckTarget ( $url, $app = '' ) {
 
     global $padHost, $padRoot;
 
-    $url = trim ( (string) $url );
-    $url = explode ( '#', $url, 2 ) [0];
+    $url   = trim ( (string) $url );
+    $url   = explode ( '#', $url, 2 ) [0];
+    $clean = '';
 
     if ( $url === '' )
       return NULL;
 
     if ( $url [0] == '?' ) {
+      $clean = ( $app === '' ) ? (string) ( $GLOBALS ['padRoutePath'] ?? '' ) : '';
       $app   = ( $app !== '' ) ? $app : $GLOBALS ['padApp'];
       $query = substr ( $url, 1 );
     } else {
@@ -258,11 +265,13 @@
 
     }
 
-    $page = 'index';
+    $page = ( $clean !== '' ) ? $clean : 'index';
 
     foreach ( explode ( '&', $query ) as $part )
       if ( $part !== '' ) {
-        $page = urldecode ( explode ( '=', $part, 2 ) [0] );
+        [ $name, $value ] = array_pad ( explode ( '=', $part, 2 ), 2, '' );
+        if ( $clean === '' or urldecode ( $value ) === '' )
+          $page = urldecode ( $name );
         break;
       }
 
