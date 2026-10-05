@@ -4,13 +4,9 @@
   // before('/') on 'a/b/c' yields 'a'. A value that does not contain the delimiter comes
   // back unchanged - strpos answered FALSE and substr read that as length zero, so the
   // absent case used to yield the empty string by coercion rather than decision, and made
-  // before(x) disagree with afterLast(x) over the same value.
+  // before(x) disagree with afterLast(x) over the same value. The work is padStrBefore in
+  // lib/str.php, which a page's PHP calls too.
 
-  $padBefore = strpos ( $value, $parm [0] );
-
-  if ( $padBefore === FALSE )
-    return $value;
-
-  return substr ( $value, 0, $padBefore );
+  return padStrBefore ( $value, $parm [0] );
 
 ?>

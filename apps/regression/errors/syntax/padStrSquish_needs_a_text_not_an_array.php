@@ -1,0 +1,5 @@
+<?php
+
+  padStrSquish ( [ 'a', 'b' ] );
+
+?>

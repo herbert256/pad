@@ -1,0 +1,5 @@
+<?php
+
+  padStrRandom ( -8 );
+
+?>

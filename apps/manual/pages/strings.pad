@@ -1,0 +1,94 @@
+{meta title='String helpers'}
+
+<p>The text a page shows is often made in its PHP first: a title cut to fit a card, a column
+name turned into a label, a slug for a database column, a token for a mail. PHP's own
+<code>substr</code> and <code>ucwords</code> count bytes and know only ASCII; the
+<code>padStr</code> functions count characters, so an accented letter or an emoji is never
+cut in half. They are plain functions, loaded on every request like the rest of
+<code>pad/lib/</code>.</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+  <tr><th>function</th><th>what it answers</th></tr>
+  <tr><td><code>padStrLimit ( $text, $limit = 100, $end = '...' )</code></td><td>at most <code>$limit</code> characters, <code>$end</code> added when something was cut</td></tr>
+  <tr><td><code>padStrWords ( $text, $words = 100, $end = '...' )</code></td><td>at most <code>$words</code> words</td></tr>
+  <tr><td><code>padStrExcerpt ( $text, $phrase, $radius = 100, $omission = '...' )</code></td><td>the phrase with <code>$radius</code> characters on either side, found case-insensitively</td></tr>
+  <tr><td><code>padStrSquish ( $text )</code></td><td>trimmed, every run of whitespace one space</td></tr>
+  <tr><td><code>padStrCamel</code>, <code>padStrStudly</code>, <code>padStrSnake ( $text, $delimiter = '_' )</code>, <code>padStrKebab</code>, <code>padStrHeadline</code></td><td>userName, UserName, user_name, user-name, User Name - from a name in any of those cases</td></tr>
+  <tr><td><code>padStrTitle ( $text )</code></td><td>every word with a capital</td></tr>
+  <tr><td><code>padStrSlug ( $text, $separator = '-' )</code></td><td>a readable URL part - what the <code>slug</code> pipe gives</td></tr>
+  <tr><td><code>padStrAfter</code>, <code>padStrAfterLast</code>, <code>padStrBefore</code>, <code>padStrBeforeLast ( $text, $search )</code></td><td>the text after or before the first or last occurrence - what the pipes of those names give</td></tr>
+  <tr><td><code>padStrBetween ( $text, $from, $to )</code></td><td>what stands between the first <code>$from</code> and the last <code>$to</code></td></tr>
+  <tr><td><code>padStrIs ( $pattern, $value )</code></td><td>whether the value matches a pattern with <code>*</code> wildcards, or one of a list</td></tr>
+  <tr><td><code>padStrMask ( $text, $character, $index, $length = NULL )</code></td><td>a stretch of the text replaced by one character</td></tr>
+  <tr><td><code>padStrPlural ( $word, $count = 2 )</code>, <code>padStrSingular ( $word )</code></td><td>the English plural or singular of a word</td></tr>
+  <tr><td><code>padStrRandom ( $length = 16 )</code></td><td>random letters and digits</td></tr>
+  <tr><td><code>padStrUuid ( $version = 4 )</code></td><td>a version 4 (random) or version 7 (time-ordered) UUID</td></tr>
+</table>
+
+<h2>Shortening text</h2>
+
+<p><code>padStrLimit</code> cuts at a number of characters and <code>padStrWords</code> at a
+number of words; both trim the space the cut leaves, add <code>$end</code> only when something
+was cut, and give a text that fits back as it is. <code>padStrExcerpt</code> is the snippet of
+a search result: the place the phrase stands, with the text around it.
+<code>padStrSquish</code> makes text pasted into a form field compare and store the same way,
+tabs, newlines and no-break spaces included.</p>
+
+{example 'fragments/strings_1'}
+
+<h2>Names in every case</h2>
+
+<p>The case functions read the words of a name whatever case it is in - an underscore, a
+dash, a space or a change of case separates them - and write them in the case asked for, so
+<code>created_at</code>, <code>createdAt</code> and <code>CreatedAt</code> all turn into each
+other. <code>padStrHeadline</code> makes a label of a column name; <code>padStrTitle</code>
+recases a sentence and leaves the rest of it as it is.</p>
+
+{example 'fragments/strings_2'}
+
+<h2>Slugs and cutting at a marker</h2>
+
+<p><code>padStrSlug</code> is the <code>slug</code> pipe - the pipe calls it - so a slug
+stored when a post is saved is the slug a template makes for its link. The same holds for
+<code>after</code>, <code>afterLast</code>, <code>before</code> and <code>beforeLast</code>: a
+text without the search string comes back unchanged. <code>padStrBetween</code> takes what
+follows the first <code>$from</code> up to the last <code>$to</code>.</p>
+
+{example 'fragments/strings_3'}
+
+<h2>Patterns and masks</h2>
+
+<p><code>padStrIs</code> matches a value against a pattern in which <code>*</code> stands
+for any run of characters - a list of patterns matches when one of them does - without
+writing a regular expression. <code>padStrMask</code> hides part of a text: a negative index
+counts from the end, a negative length stops that many characters before it.</p>
+
+{example 'fragments/strings_4'}
+
+<h2>Plural and singular</h2>
+
+<p><code>padStrPlural</code> gives the English plural of the last word of a text: the
+irregular words (person, child, mouse, knife ...), the uncountable ones (sheep, information,
+equipment ...) and the rules for -y, -s, -x, -ch and the rest. A count of one keeps the word,
+so <code>"$n " . padStrPlural ( 'file', $n )</code> reads right for every number; an array
+or a Countable counts as its size. The case of the word is kept: Person, People;
+PERSON, PEOPLE. <code>padStrSingular</code> goes the other way.</p>
+
+{example 'fragments/strings_5'}
+
+<h2>Random strings and UUIDs</h2>
+
+<p><code>padStrRandom</code> draws letters and digits with <code>random_int</code>, PHP's
+secure generator - good for a token or a code to mail. <code>padStrUuid</code> makes a UUID
+as RFC 9562 writes it: version 4 is random; version 7 starts with the time, so ids made later
+sort later and a database index on them stays in order. The example shows their shape, as
+their value differs on every request.</p>
+
+{example 'fragments/strings_6'}
+
+<h2>Wrong input</h2>
+
+<p><code>NULL</code> and <code>FALSE</code> are read as an empty text and a number as its
+digits, so the functions take a database value as it comes. An array, a negative limit, an
+unknown UUID version or an empty mask character is a mistake of the author: it is reported as
+a PAD error naming the function, and the function answers an empty value.</p>

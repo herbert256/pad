@@ -1,0 +1,5 @@
+<?php
+
+  padStrPlural ( 'file', 'many' );
+
+?>

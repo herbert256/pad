@@ -5,13 +5,9 @@
   // back unchanged, and the whole delimiter is skipped, multi-character or not - the same
   // repair afterLast() got: this used to skip exactly one character, so a longer delimiter
   // left its tail behind, and an absent one (strpos FALSE, plus one, is 1) silently ate the
-  // value's first character.
+  // value's first character. The work is padStrAfter in lib/str.php, which a page's PHP
+  // calls too, so both cut a text the same way.
 
-  $padAfter = strpos ( $value, $parm [0] );
-
-  if ( $padAfter === FALSE )
-    return $value;
-
-  return substr ( $value, $padAfter + strlen ( $parm [0] ) );
+  return padStrAfter ( $value, $parm [0] );
 
 ?>

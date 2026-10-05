@@ -140,7 +140,114 @@ a plain value is neither equal, smaller nor larger (no PHP warning).
 
 ## Strings
 
-<!-- helpers: strings -->
+`pad/lib/str.php` - text counted in characters (`mb_*`, UTF-8), never in bytes, so an accented
+letter or an emoji is never cut in half. Manual page: *String helpers* (`strings`).
+
+| Function | Answers |
+|----------|---------|
+| `padStrLimit ( $text, $limit = 100, $end = '...' )` | At most `$limit` characters; when something was cut, the trailing space trimmed and `$end` added (`$end` is not counted) |
+| `padStrWords ( $text, $words = 100, $end = '...' )` | The first `$words` words (runs of non-whitespace), `$end` added when words were left out |
+| `padStrExcerpt ( $text, $phrase, $radius = 100, $omission = '...' )` | The first place the phrase stands - found case-insensitively, shown as the text has it - with up to `$radius` characters on either side, `$omission` on a side that was cut; `''` when the phrase is not there |
+| `padStrSquish ( $text )` | Trimmed, every run of whitespace (tabs, newlines, no-break and other unicode spaces) one space |
+| `padStrCamel ( $text )` | `userName` |
+| `padStrStudly ( $text )` | `UserName` |
+| `padStrSnake ( $text, $delimiter = '_' )` | `user_name` |
+| `padStrKebab ( $text )` | `user-name` |
+| `padStrHeadline ( $text )` | `User Name` |
+| `padStrTitle ( $text )` | `Hello World` - PHP's unicode title case of the whole text |
+| `padStrSlug ( $text, $separator = '-' )` | A readable URL part, `'Crème Brûlée & Co.'` -> `creme-brulee-co` - the `slug` pipe calls it |
+| `padStrAfter ( $text, $search )` | What follows the first occurrence - the `after` pipe calls it |
+| `padStrAfterLast ( $text, $search )` | What follows the last occurrence - the `afterLast` pipe |
+| `padStrBefore ( $text, $search )` | What precedes the first occurrence - the `before` pipe |
+| `padStrBeforeLast ( $text, $search )` | What precedes the last occurrence - the `beforeLast` pipe |
+| `padStrBetween ( $text, $from, $to )` | What stands between the first `$from` and the last `$to` |
+| `padStrIs ( $pattern, $value )` | TRUE when the value matches the pattern, `*` standing for any run of characters; `$pattern` may be a list (any one matching) |
+| `padStrMask ( $text, $character, $index, $length = NULL )` | The characters from `$index` on (`$length` of them, or to the end) replaced by `$character` |
+| `padStrRandom ( $length = 16 )` | `$length` characters from `A-Z a-z 0-9`, drawn with `random_int` |
+| `padStrUuid ( $version = 4 )` | An RFC 9562 UUID, lower case 8-4-4-4-12: version 4 (random) or 7 (time-ordered) |
+| `padStrPlural ( $word, $count = 2 )` | The English plural of the last word; the word as it is for a count of 1 or -1 |
+| `padStrSingular ( $word )` | The English singular of the last word |
+
+```php
+<?php                                         // posts.php
+
+  $posts = db ( "ARRAY id, title, body, created_at FROM posts" );
+
+  foreach ( $posts as $i => $post ) {
+    $posts [$i] ['teaser'] = padStrWords   ( $post ['body'], 30 );
+    $posts [$i] ['slug']   = padStrSlug    ( $post ['title'] );
+    $posts [$i] ['hit']    = padStrExcerpt ( $post ['body'], $search ?? '', 60 );
+  }
+
+  $heading = count ( $posts ) . ' ' . padStrPlural ( 'post', $posts );    // 1 post, 2 posts
+
+  $label   = padStrHeadline ( 'created_at' );                             // Created At
+  $class   = padStrKebab    ( 'OrderTotal' );                             // order-total
+  $card    = padStrMask     ( '4111111111111111', '*', 4, -4 );           // 4111********1111
+  $token   = padStrRandom   ( 40 );
+  $id      = padStrUuid     ( 7 );                                        // 01920b6e-...-7...
+
+  if ( padStrIs ( [ 'admin/*', 'reports/*.pdf' ], $padPage ) )
+    $restricted = TRUE;
+
+?>
+```
+
+**The case functions** read the words of a name whatever case it is in: a run of letters and
+digits is a word, and anything else separates - an underscore, a dash, a space, a dot - as does
+a change of case (`userName` is user + Name, `HTMLParser` is HTML + Parser, `address2Line` is
+address2 + Line). Each word is then written in the case asked for, so the functions turn into
+each other in every direction, and an acronym reads as a word: `XMLHttpRequest` ->
+`xml_http_request`, `XmlHttpRequest`, `Xml Http Request`. An apostrophe inside a word keeps it
+whole (`it's done` -> `It's Done`).
+
+**After, before, between** are the pipes `after`, `afterLast`, `before` and `beforeLast` - the
+pipes call these functions. A text without the search string comes back unchanged; an empty
+search string is found at the start by `After`/`Before` and at the end by
+`AfterLast`/`BeforeLast` (as `strpos`/`strrpos` find it): `padStrAfter ( 'abc', '' )` is
+`abc`, `padStrBefore ( 'abc', '' )` is `''`. `padStrBetween` is `padStrBeforeLast (
+padStrAfter ( $text, $from ), $to )`, as Laravel's `Str::between` - `'[a] and [b]'` between
+`[` and `]` is `a] and [b`; the first `$to` is `padStrBefore ( padStrAfter ( $text, $from ),
+$to )`. (The `between` pipe is something else: a test whether a number lies between two.)
+
+**Mask**: a negative `$index` counts from the end; a negative `$length` stops that many
+characters before the end, as `mb_substr` reads it. `$character` longer than one character
+gives its first. An index past the end masks nothing.
+
+**UUID version 7** starts with the Unix time in milliseconds, so ids made later sort later and
+a database index on them stays in order; within one millisecond a 12-bit counter (RFC 9562,
+6.2 method 1) keeps the ids of one request in the order they were made.
+
+**Plural and singular** handle the irregular words (person/people, child/children,
+man/men, woman/women, mouse/mice, goose/geese, foot/feet, tooth/teeth, ox/oxen, criterion,
+cactus, analysis, index, hero/heroes, knife/knives ...), also as the end of a compound
+(salesperson, grandchild, bookshelf); the uncountable ones (sheep, fish, series, species,
+information, equipment, news, money, rice, data, software ...); and the rules: consonant + y
+-> ies, s x z ch sh -> es, -sis -> -ses, -us -> -uses. The last word of the text is the one
+changed (`blog post` -> `blog posts`, `salesPerson` -> `salesPeople`), and its case is kept:
+`Person` -> `People`, `PERSON` -> `PEOPLE`. A word already plural stays plural, a word already
+singular stays singular. The count may be an int, a float, a numeric string, or an array or
+Countable (its size); only 1 and -1 keep the word, so 0 items reads right.
+
+**Edge values.** A text argument may be anything PHP turns into a string: `NULL` and `FALSE`
+are `''`, a number is its digits, an object with `__toString` its string - so a database
+`NULL` needs no check first. Bytes that are not valid UTF-8 become `?` (except in the
+functions the pipes share, which answer what the pipes always did). Wrong input is reported
+as a PAD error (`padError`) naming the function and the fault, after which the function
+answers its empty value - `''`, or for `padStrPlural` the word as it is:
+
+| Fault | Example |
+|-------|---------|
+| An array or a non-string object as a text | `padStrSquish ( [ 'a' ] )` - *padStrSquish needs a text, not array* |
+| A limit, number of words, radius or length that is negative or not a whole number | `padStrLimit ( $t, -1 )`, `padStrWords ( $t, 2.5 )`, `padStrRandom ( -8 )` |
+| A mask index or length that is not a whole number | `padStrMask ( $t, '*', 'first' )` |
+| An empty mask character | `padStrMask ( $t, '', 4 )` - never the text unmasked |
+| A UUID version other than 4 or 7 | `padStrUuid ( 5 )` |
+| A count that is not a number, an array or a Countable | `padStrPlural ( 'file', 'many' )` |
+
+A limit of 0 keeps nothing: `padStrLimit ( 'abc', 0 )` is `...`, `padStrWords ( 'a b', 0 )`
+is `...`; a text that fits is never given the ending. A whole number may be written as a
+string (`'3'`) or a float without a fraction (`3.0`).
 
 
 ---

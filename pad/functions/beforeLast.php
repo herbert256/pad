@@ -4,12 +4,8 @@
   // beforeLast('/') on 'a/b/c' yields 'a/b'. A value that does not contain the delimiter
   // comes back unchanged, the same convention as afterLast() and, since the same repair,
   // before(): strrpos answering FALSE used to read as length zero and yield '' by accident.
+  // The work is padStrBeforeLast in lib/str.php, which a page's PHP calls too.
 
-  $padBeforeLast = strrpos ( $value, $parm [0] );
-
-  if ( $padBeforeLast === FALSE )
-    return $value;
-
-  return substr ( $value, 0, $padBeforeLast );
+  return padStrBeforeLast ( $value, $parm [0] );
 
 ?>

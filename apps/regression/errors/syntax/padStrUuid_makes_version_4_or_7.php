@@ -1,0 +1,5 @@
+<?php
+
+  padStrUuid ( 5 );
+
+?>
