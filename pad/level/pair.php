@@ -41,9 +41,13 @@
 
   $padWordsCheck = preg_split ( "/[\s]+/", $padBetweenCheck, 2, PREG_SPLIT_NO_EMPTY );
 
+  // The options are re-parsed under the opening tag's name. Parsed as the closing tag's own
+  // text, the name became /tag, and a name nothing claims was reported as '/tag' and kept an
+  // optional or noError on its closing tag from dropping it.
+
   if ( count($padWordsCheck) > 1 ) {
     $padPrmTypeSet = 'close';
-    $padBetween    = $padBetweenCheck;
+    $padBetween    = $padTagCheck . ' ' . $padWordsCheck [1];
     include PAD . 'level/between.php';
   }
 
