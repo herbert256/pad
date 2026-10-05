@@ -225,8 +225,13 @@
     if ( count ( $vars ) and $padSqlConnect )
       $sql = padDbPlaceholders ( $padSqlConnect, $sql, $vars );
 
-    $split   = explode(' ', trim($sql), 2);
-    $command = trim(strtolower($split[0]));
+    // The verb ends at any white space, as SQL has it: split on a space alone, a statement
+    // with a newline or a tab after its verb - a named query's select on a line of its own -
+    // was no verb db() knew, so its rows were answered as '' and a record, field or check
+    // went to the database as written and failed there.
+
+    $split   = preg_split ( '/\s+/', trim ( $sql ), 2 );
+    $command = strtolower ( $split [0] );
 
     if ($command == 'select')
       $command = 'array';
