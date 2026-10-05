@@ -430,6 +430,12 @@
   // id = {0} took '0 or 1=1' as SQL. An array there becomes a list, for IN ({0}). Keys
   // starting x are inserted raw, a deliberate escape hatch; {0:20} cuts the value to that
   // many characters first.
+  //
+  // A comment - -- or # to the end of the line, /* to */ - is copied as it stands, its
+  // placeholders unfilled: it is no quoted literal, and an apostrophe in it - "-- the
+  // staff's count" - opened one, so every placeholder after it counted as quoted and got its
+  // value escaped but not quoted, and a bare id = {0} took '0 or 1=1' as SQL again. MySQL
+  // wants white space after -- and knows #; SQLite takes -- as it is and has no #.
 
   function padDbPlaceholders ( $connect, $sql, $vars ) {
 
@@ -441,6 +447,12 @@
     for ( $i = 0; $i < $len; $i++ ) {
 
       $char = $sql [$i];
+
+      if ( ! $quote and ( $end = padDbComment ( $sql, $i, $slash ) ) ) {
+        $out .= substr ( $sql, $i, $end - $i );
+        $i    = $end - 1;
+        continue;
+      }
 
       if ( $quote ) {
 
@@ -485,6 +497,30 @@
     }
 
     return $out;
+
+  }
+
+  // Where the comment that starts at $i ends - the offset after it - or 0 when no comment
+  // starts there. $mysql: -- needs white space after it, and # is a comment too.
+
+  function padDbComment ( $sql, $i, $mysql ) {
+
+    $two = substr ( $sql, $i, 2 );
+
+    if ( $two == '/*' ) {
+      $close = strpos ( $sql, '*/', $i + 2 );
+      return ( $close === FALSE ) ? strlen ( $sql ) : $close + 2;
+    }
+
+    $after = $sql [$i+2] ?? ' ';
+
+    if ( ( $two == '--' and ( ! $mysql or ctype_space ( $after ) or ctype_cntrl ( $after ) ) )
+         or ( $mysql and $sql [$i] == '#' ) ) {
+      $line = strpos ( $sql, "\n", $i );
+      return ( $line === FALSE ) ? strlen ( $sql ) : $line;
+    }
+
+    return 0;
 
   }
 
