@@ -17,8 +17,15 @@
 
     include PAD . 'eval/go/doubleVarVar.php';
 
-  } else
+  } else {
+
+    // An action that carries on - log, ignore - comes back here; the operator then answers
+    // empty, where go.php went on to read a $now nothing had set.
 
     padError ( "$opr on a value and an array of " . count ( $right ) . ": only an array of numbers, against a number, sums to one value" );
+
+    $now = '';
+
+  }
 
 ?>
