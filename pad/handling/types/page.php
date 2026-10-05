@@ -20,7 +20,11 @@
   if ( ( $padDone [$pad] ['page'] ?? '' ) === 'limit' )
     return;
 
-  $padHandPage  = (int) ($padPrm [$pad] ['page'] ??  1);
+  // A page below one - ?pg=0, a page value that is no number - is the first page, as the
+  // SQL limit of a select (padSelectLimit) and the {pager} take it; it kept no rows at all,
+  // under a pager that marked page 1 as the one shown.
+
+  $padHandPage  = max ( 1, (int) ($padPrm [$pad] ['page'] ??  1) );
   $padHandRows  = (int) ($padPrm [$pad] ['rows'] ?? 10);
 
   $padHandStart = ( ( $padHandPage - 1 ) * $padHandRows ) + 1;

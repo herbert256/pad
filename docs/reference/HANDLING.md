@@ -241,7 +241,7 @@ Paginates data into pages.
 ```
 
 **Parameters:**
-- `page` - Page number (1-based, default: 1)
+- `page` - Page number (1-based, default: 1; a page below 1, or one that is no number, is page 1)
 - `rows` - Items per page (default: 10)
 
 **Calculation:**
