@@ -2,17 +2,19 @@
 
   include APP . 'todo.php';
 
-  switch ( $go ?? '' ) {
+  $id = padRequest ( 'id', '' );
+
+  switch ( padRequest ( 'go', '' ) ) {
 
     case 'add':
 
-      $task = trim ( $task ?? '' );
-      if ( $task ) {
+      $task = padRequest ( 'task', '' );
+      if ( padFilled ( $task ) ) {
         $todos [] = [
           'id'   => uniqid (),
           'task' => htmlspecialchars ( $task ),
           'done' => FALSE,
-          'date' => date ( 'Y-m-d H:i:s' )
+          'date' => padNow ( 'Y-m-d H:i:s' )
         ];
         $message = 'Task added!';
       }
@@ -28,8 +30,7 @@
 
     case 'delete':
     
-      $todos = array_filter ( $todos, fn($t) => $t ['id'] != $id );
-      $todos = array_values ( $todos );
+      $todos = array_values ( padArrWhere ( $todos, 'id', '!=', $id ) );
       $message = 'Task deleted!';
       break;
 
@@ -42,7 +43,7 @@
   
   }
 
-  file_put_contents ( $dataFile, json_encode ( $todos, JSON_PRETTY_PRINT ) );
+  padFilePut ( $dataFile, json_encode ( $todos, JSON_PRETTY_PRINT ) );
 
   padRestart ( 'todo' );
 
