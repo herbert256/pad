@@ -99,6 +99,14 @@ file or directory name binds a segment as a variable before the page's PHP runs:
   written `{$padGo}page&x=1` works in both forms. Apache needs
   `FallbackResource /myapp/index.php`; `php -S` needs no router.
 
+## Sitemap from the file tree
+
+`{sitemap}...{/sitemap}` lists every page of the application - `{$page}`, `{$url}`,
+`{$lastmod}` - walked from the files; `{sitemap 'docs'}` one directory. With
+`$padSitemap = TRUE`, `?sitemap.xml` answers the sitemap XML and `?robots.txt` points to it.
+Left out: `_` entries, directories with a `_guard.php`, bracketed routes, action pages (no
+template, PHP that only redirects), `{meta sitemap=false}` and `$padSitemapSkip` names.
+
 ## JSON and CSV from the same page
 
 A page answers its data instead of its template when asked - `?orders&padFormat=json` (or
@@ -895,6 +903,10 @@ $padExpose = [];
 // Links in the clean form - /myapp/products/42 - for a server that routes paths
 $padCleanUrls = false;
 
+// ?sitemap.xml from the file tree, and ?robots.txt pointing to it; the names left out
+$padSitemap     = false;
+$padSitemapSkip = [];        // e.g. [ 'admin', 'login' ] - a page, or a directory and below
+
 // Cache enabled
 $padCache = false;
 
@@ -1397,6 +1409,7 @@ assigns it. `node editors/lsp/test.js` tests it; `./ci.sh` runs that as its `lsp
 | `regression/output_download` | Test | Regression test for the 'download' output type |
 | `regression/output_file` | Test | Regression test for the 'file' output type |
 | `regression/output_web` | Test | Regression test for the 'web' output type |
+| `regression/sitemap` | Test | Regression test for `$padSitemap` - sitemap.xml and robots.txt from the file tree |
 | `regression/clean_urls` | Test | Regression test for `$padCleanUrls` and the bracketed routes |
 | `regression/output_json` | Test | Regression test for the 'json' output type - every page answers what it exposes |
 | `regression/try_log` | Test | Regression test for the try guards under the 'log' action |

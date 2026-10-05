@@ -653,6 +653,35 @@ List files in a directory with filtering options.
 
 ---
 
+### sitemap
+The pages of the application, generated from the file tree - in PAD every page is a file, so
+no route list is needed. One row per page, the index of a directory first, then its other
+pages, then its subdirectories.
+
+```html
+<ul>
+  {sitemap}<li><a href="{$url}">{$page}</a> {$lastmod}</li>{/sitemap}
+</ul>
+
+{sitemap 'docs'} ... {/sitemap}      {# the pages below one directory #}
+```
+
+**Parameters:**
+- First parameter (optional): a directory of the application; the pages below it only
+
+**Returns:** Rows with `page` (`docs/intro`), `url` (absolute, `?docs/intro` or the clean form
+under `$padCleanUrls`; a directory's index is the directory) and `lastmod` (`Y-m-d`, the newest
+of the page's files).
+
+Left out: `_` and dot entries, a directory holding a `_guard.php`, a bracketed route
+(`products/[id]`), a page with no template whose PHP only redirects, restarts or writes, a page
+whose template says `{meta sitemap=false}`, and every page or directory `$padSitemapSkip`
+names. With `$padSitemap = TRUE` the same list answers `?sitemap.xml` (or `/app/sitemap.xml`)
+as the sitemap protocol's XML, and `?robots.txt` points to it - when the application has no
+page of that name.
+
+---
+
 ### dir
 Simple directory listing.
 
@@ -1509,6 +1538,7 @@ Resume a previously ceased sequence iteration.
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
+| `sitemap` | Files | The application's pages from the file tree |
 | `file` | Files | Write file |
 | `exists` | Files | Check file exists |
 | `open` | Files | Opening brace |

@@ -1,0 +1,76 @@
+<h1>Sitemap</h1>
+
+<p>Every page is a file, so the list of pages needs no route table: the application
+directory is the list. {sitemap} walks it and gives one row per page -
+<code>page</code>, <code>url</code> and <code>lastmod</code>, the newest time among the
+page's files. A directory names a part of the application; here the shop the
+<em>Clean URLs</em> page routes through:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/sitemap_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue">sitemap </font><font color="red"><font color="black">'</font>fragments/shop<font color="black">'</font></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>page</font>}</b>&lt;/li&gt;<b>{/<font color="blue">sitemap</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <ul>
+  <li>fragments/shop/index</li><li>fragments/shop/about</li>
+</ul>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<p>The routes <code>products/[id]</code> and <code>blog/[year]/[slug]</code> are not in the
+list: a bracketed page has no one address. Also left out are <code>_</code> entries,
+directories that hold a <code>_guard.php</code>, pages with no template whose PHP only
+redirects or writes, pages whose template says <code>{meta sitemap=false}</code>,
+and every page or directory listed in <code>$padSitemapSkip</code>.</p>
+
+<p>With <code>$padSitemap = TRUE</code> in <code>_config/config.php</code> the application
+answers <code>?sitemap.xml</code> with the same list as the XML search engines read, and
+<code>?robots.txt</code> with a line that points to it.</p>

@@ -789,7 +789,7 @@ $padExpose = [ 'orders', 'total' ];</code></pre>
           <div class="idea-top"><span class="number" aria-hidden="true">36</span><h3>Sitemap from the file tree</h3><span class="effort">Small</span></div>
           <p>In PAD every page is a file, so the sitemap can be generated:</p>
           <ul>
-            <li>walk the app;</li>
+            <li>walk the app;<p class="done"><strong>Done.</strong> <code>{sitemap}…{/sitemap}</code> lists every page of the application (or of one directory) with its url and lastmod from the file tree; with <code>$padSitemap</code> on, <code>?sitemap.xml</code> answers the sitemap protocol’s XML and <code>?robots.txt</code> points to it - leaving out <code>_</code> entries, directories with a <code>_guard.php</code>, bracketed routes, action pages, <code>{meta sitemap=false}</code> pages and <code>$padSitemapSkip</code>. Regression: a regression application and framework cases; manual page; docs.</p></li>
             <li>skip <code>_</code> directories, guarded directories (<a href="#guards">#30</a>), and pages that opt out with <code>{meta sitemap=false}</code>;</li>
             <li>use file times as <code>lastmod</code>.</li>
           </ul>

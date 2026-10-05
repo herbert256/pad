@@ -35,6 +35,18 @@
 
   $padRouteFound = padPageRoute ( $padPage );
 
+  // sitemap.xml and robots.txt - ?sitemap.xml reaches PHP as sitemap_xml - are the engine's
+  // to answer when the application has no page of that name (lib/sitemap.php). Whether it
+  // answers them is a setting, and the configuration is read after this file, so the
+  // question waits in $padSitemapAsk for inits/sitemap.php, on a stand-in page.
+
+  $padSitemapAsk = '';
+
+  if ( ! $padRouteFound and in_array ( $padPage, [ 'sitemap.xml', 'sitemap_xml', 'robots.txt', 'robots_txt' ], TRUE ) ) {
+    $padSitemapAsk = str_replace ( '_', '.', $padPage );
+    $padRouteFound = [ 'page' => $padSitemapAsk, 'vars' => [] ];
+  }
+
   if ( ! $padRouteFound ) {
 
     while ( ob_get_level () )

@@ -1243,8 +1243,25 @@ is declared twice, and anything it does it does twice. Functions belong in `_lib
 
   // Links in the clean form, /myapp/products/42, for a server that routes paths
   $padCleanUrls = FALSE;
+
+  // ?sitemap.xml generated from the file tree, ?robots.txt pointing to it
+  $padSitemap     = TRUE;
+  $padSitemapSkip = [ 'admin', 'login' ];
 ?>
 ```
+
+---
+
+## Sitemap
+
+Every page is a file, so the sitemap is generated: with `$padSitemap = TRUE` the application
+answers `?sitemap.xml` (`/myapp/sitemap.xml` with clean URLs) with every page and the newest
+time of its files as `lastmod`, and `?robots.txt` with a `Sitemap:` line pointing to it - unless
+the application has a page of that name itself. `{sitemap}...{/sitemap}` gives the same rows
+(`page`, `url`, `lastmod`) to a template, for an HTML sitemap. Left out are `_` entries,
+directories holding a `_guard.php`, bracketed routes, action pages (no template, PHP that only
+redirects, restarts or writes), pages whose template says `{meta sitemap=false}`, and what
+`$padSitemapSkip` names.
 
 ---
 
