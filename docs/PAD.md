@@ -669,6 +669,12 @@ Execute code in isolation:
 {/sandbox}
 ```
 
+`{sandbox}` isolates PAD's state, not PHP. To try templates someone else typed, use the
+playground (`apps/playground`, `http://localhost/pad/playground/`): it answers local
+requests only, renders with `$padPhpFunctions = []` and `$padRequestVars = []`, limits run
+time and source and output size, and shows the result in a sandboxed frame. The URL hash
+carries the template and its data, so a link shares an example.
+
 ### Event System
 
 An application hooks into four moments of every request through its `_events/` directory -

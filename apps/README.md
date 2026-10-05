@@ -17,6 +17,7 @@ This directory contains PAD applications and examples.
 | [manual](manual/README.md) | Standard | Interactive documentation and examples |
 | [nono](nono/README.md) | Plain PHP | PHP application without PAD templating |
 | [pad](pad/README.md) | Standard | PAD framework introduction and reference |
+| [playground](playground/README.md) | Standard | Type a template and its JSON data and see the result - local requests only, shareable through the URL |
 | [react](react/README.md) | Standard | PAD + React integration examples |
 | [reference](reference/README.md) | Standard | Cross-reference and directory utilities |
 | [regression/main](regression/main/README.md) | Standard | Automated regression testing for PAD - the runner for the eight suites and the fresh build |

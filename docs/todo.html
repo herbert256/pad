@@ -666,7 +666,7 @@ _tests/cart.txt   the expected answer
           <div class="idea-top"><span class="number" aria-hidden="true">25</span><h3>A PAD playground</h3><span class="effort">Medium</span></div>
           <p>A new app with two panes: PAD source and JSON sample data on the left; output, tag tree and errors on the right. It would be shareable through the URL hash, which also suits the manual and bug reports.</p>
           <p>It must be local-only or hardened. <code>{sandbox}</code> isolates PAD state, not PHP, and <code>php:</code> calls are allowed by default. The playground needs <code>$padPhpFunctions = []</code>, <code>$padRequestVars = []</code>, and limits on time and output size.</p>
-        </li>
+        <p class="done"><strong>Done.</strong> A new <code>playground</code> application: a template and JSON data on the left, rendered through <code>padCode</code> into a sandboxed iframe (or shown as HTML source), both kept in the URL hash. Local requests only (403 otherwise), with <code>$padPhpFunctions = []</code>, <code>$padRequestVars = []</code>, no <code>_common</code>, no database, 5 s, 64 KB source and 256 KB output. Regression: framework cases (renders, refuses PHP calls, turns away a remote request) and the Other suite’s answers for its pages; manual page <em>Playground</em>; README, CLAUDE.md.</p></li>
 
         <li class="idea" id="samples">
           <div class="idea-top"><span class="number" aria-hidden="true">26</span><h3>Designer preview with sample data</h3><span class="effort">Medium</span></div>

@@ -1,0 +1,15 @@
+<h1>The playground</h1>
+
+<p>The <a href="{$padHost}playground/">playground</a> is an application for trying templates:
+type a template and its data - a JSON object whose keys become variables - and the result
+shows beside it. The address bar always holds both, so a link shares the example.</p>
+
+<p>It renders the way a page's PHP can render any PAD source, with <code>padCode()</code>:</p>
+
+{example 'fragments/playground_1'}
+
+<p>Because it runs what it is given, the playground answers this machine only, and a template
+there may not call PHP functions, sees no request values and no database, and gets five
+seconds, 64 KB of source and 256 KB of output. The output shows in a sandboxed frame, where
+the rendered page's scripts do not run. Tags that read files or fetch URLs still work - on
+this machine, for its own user.</p>

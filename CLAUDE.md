@@ -1510,6 +1510,7 @@ strict syntax check - `pad_check` with only an app checks every page), `pad_trac
 | `manual` | Standard | Interactive documentation and examples |
 | `nono` | Plain PHP | PHP application without PAD templating |
 | `pad` | Standard | PAD framework introduction and reference |
+| `playground` | Standard | Type a template and its JSON data and see the result - local requests only, no PHP functions, shareable through the URL hash |
 | `react` | Standard | PAD + React integration examples |
 | `reference` | Standard | Cross-reference and directory utilities |
 | `regression/main` | Standard | Automated regression testing for PAD - the runner for the eight suites and the fresh build |

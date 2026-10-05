@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PAD playground</title>
+  <link rel="stylesheet" href="playground.css">
+</head>
+<body>
+
+  <h1>PAD playground</h1>
+
+  <form method="post" action="?render" target="playOut" id="playForm">
+    <div class="panes">
+      <div class="pane">
+        <label for="source">Template</label>
+        <textarea id="source" name="source" spellcheck="false" rows="14">{$sampleSource}</textarea>
+        <label for="data">Data - a JSON object, each key a variable</label>
+        <textarea id="data" name="data" spellcheck="false" rows="10">{$sampleData}</textarea>
+        <p>
+          <button type="submit">Render</button>
+          <button type="submit" formaction="?render&amp;view=source">Show the HTML</button>
+          <span class="hint">Ctrl+Enter renders; the address bar always links to what is typed here.</span>
+        </p>
+      </div>
+      <div class="pane">
+        <span class="caption">Output</span>
+        <iframe id="playOut" name="playOut" title="Output" sandbox></iframe>
+      </div>
+    </div>
+  </form>
+
+  <p class="limits">This machine only. A template here may not call PHP functions, sees no
+  request values and no database, and gets five seconds, 64 KB of source and 256 KB of output.
+  The output frame is sandboxed: its scripts do not run. Errors show as PAD reports them.</p>
+
+  <script src="playground.js"></script>
+
+</body>
+</html>
