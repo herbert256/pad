@@ -122,8 +122,10 @@
     // A page cut by the limit: the statement that counts every row is kept for a {pager},
     // which runs it only when it is asked - lib/pager.php.
 
-    if ( $padSelLimit and ! $unionBuild )
+    if ( $padSelLimit and ! $unionBuild ) {
       $GLOBALS ['padPagerCount'] [$pad] = "field count(*) from ( select $base ) as padPagerCount";
+      $GLOBALS ['padPagerRows']  [$pad] = $rows;
+    }
 
     if ($unionBuild)
       return $padSelUnion;
@@ -187,8 +189,13 @@
   // level's book: handling/types/page.php sees the mark and leaves the rows alone. The
   // guard read $padDone ['page'], a key the per-level book never has, so the pager ran
   // again on the rows the limit had already cut - page 2 and on came out empty.
+  //
+  // $rows and $page come back as the numbers the limit was made of: the {pager} counts its
+  // pages by those rows (lib/pager.php), which may be the table's declared rows= - it took
+  // the tag's rows= or 10, and a table declared with 'rows' => 5 had its pager count pages
+  // of 10.
 
-  function padSelectLimit ( $rows, $page ) {
+  function padSelectLimit ( &$rows, &$page ) {
 
     global $pad, $padDone;
 

@@ -29,7 +29,7 @@
 
   function padPagerKeep ( $total ) {
 
-    global $pad, $padPrm, $padParms, $padName, $padDone, $padPagerCount, $padFragment;
+    global $pad, $padPrm, $padParms, $padName, $padDone, $padPagerCount, $padPagerRows, $padFragment;
 
     $query = 'page';
 
@@ -48,7 +48,7 @@
 
     padPagerBook ( $padName [$pad], [
       'page'  => max ( 1, (int) ( $padPrm [$pad] ['page'] ?? 1 ) ),
-      'rows'  => (int) ( $padPrm [$pad] ['rows'] ?? 10 ),
+      'rows'  => $limit ? (int) ( $padPagerRows [$pad] ?? 10 ) : (int) ( $padPrm [$pad] ['rows'] ?? 10 ),
       'total' => $limit ? NULL : $total,
       'count' => $limit ? ( $padPagerCount [$pad] ?? '' ) : '',
       'query' => $query
