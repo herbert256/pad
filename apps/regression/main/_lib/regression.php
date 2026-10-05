@@ -469,6 +469,32 @@
   }
 
 
+  // The answers were recorded on http://localhost/pad/, and a page that writes an absolute
+  // URL writes the host it was fetched on: run as http://127.0.0.1/pad/, eighteen answers
+  // across five suites failed on the host alone. The run's own host - with its port, if it
+  // has one - is read as localhost in what came back before it is compared, and a failing
+  // row shows it so. A different mount prefix is not covered: the answers carry /pad/.
+
+  function getSuiteHostless ( $text ) {
+
+    global $padHost;
+
+    $host = parse_url ( $padHost, PHP_URL_HOST ) ?? '';
+    $port = parse_url ( $padHost, PHP_URL_PORT );
+
+    if ( $port )
+      $host .= ":$port";
+
+    if ( $host === '' or $host === 'localhost' )
+      return $text;
+
+    // After // or a JSON-escaped \/\/, and not followed by more of a host name.
+
+    return preg_replace ( '#(//|\\\\/\\\\/)' . preg_quote ( $host, '#' ) . '(?![\w.-])#', '$1localhost', $text );
+
+  }
+
+
   // The three answer forms, judged in one place for every suite: an HTTP code with an
   // optional pattern over the raw body, a /pattern/ over the trimmed body, or an exact
   // body - the last two insisting on a healthy response, because a fragment surviving
@@ -476,6 +502,9 @@
   // Returns the verdict and what got should say about it.
 
   function getSuiteCompare ( $expect, $got, $code, $body ) {
+
+    $got  = getSuiteHostless ( $got  );
+    $body = getSuiteHostless ( $body );
 
     if ( str_starts_with ( $expect, 'HTTP ' ) ) {
 

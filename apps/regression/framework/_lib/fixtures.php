@@ -77,6 +77,24 @@
 
   }
 
+  // What the comparator makes of a body fetched on another host: the run's own host, port
+  // included, read as localhost - plainly and JSON-escaped - and a bare address left be.
+
+  function harnessHostless () {
+
+    global $padHost;
+
+    $keep    = $padHost;
+    $padHost = 'http://127.0.0.1:8080/pad/';
+
+    $out = getSuiteHostless ( 'http://127.0.0.1:8080/pad/x http:\\/\\/127.0.0.1:8080\\/pad 127.0.0.1:8080' );
+
+    $padHost = $keep;
+
+    return $out;
+
+  }
+
   // The fixtures several case groups read. $seqFixture is the list sequence/library.php
   // iterates to reach pqTruncate(), which no sequence tag goes near, and $objFixture is
   // what the object: case in the expressions group looks up. $savedFixture is what the
