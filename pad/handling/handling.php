@@ -16,7 +16,13 @@
   $padHandBefore   = count ( $padData [$pad] );
   $padHandPaged    = FALSE;
 
-  foreach ( $padParms [$pad] as $padHand ) {
+  // A level whose tag answered nothing has no rows to handle: its one occurrence is the
+  // stand-in level/data.php gives it to render the @else@ branch once. Handled, a where read
+  // fields no row has - strict mode failed {orders where='$status eq 1'}...@else@ on an empty
+  // list with "there is no field named '$status'" - and a group folded the stand-in into a
+  // group of one, so the @else@ branch read a count of 1.
+
+  foreach ( ( $padElse [$pad] ? [] : $padParms [$pad] ) as $padHand ) {
 
     extract ( $padHand );
 
