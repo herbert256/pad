@@ -29,7 +29,7 @@
 
     global $pad, $padFragment, $padFragmentCache, $padFragmentOnly, $padToolbarData;
 
-    $padFragment [$pad] = [
+    $fragment = [
       'key'    => padFragmentKey (),
       'ttl'    => padFragmentTtl (),
       'hit'    => FALSE,
@@ -37,14 +37,18 @@
       'stacks' => []
     ];
 
-    if ( ! $padFragmentCache )
-      return FALSE;
-
     // A request for one response fragment alone (lib/respond.php) renders the section: a
     // {fragment} inside it must close to be the response, and a stored rendering has no
-    // levels that close - the request ended in "there is no fragment named ...".
+    // levels that close - the request ended in "there is no fragment named ...". So does
+    // the post of a live region (lib/live.php), whose {live} must render to be answered;
+    // what such a post renders follows its event, so it is not stored either.
 
-    if ( (string) $padFragmentOnly !== '' )
+    if ( (string) $padFragmentOnly !== '' or padLive () !== '' )
+      return FALSE;
+
+    $padFragment [$pad] = $fragment;
+
+    if ( ! $padFragmentCache )
       return FALSE;
 
     $entry = padFragmentGet ( $padFragment [$pad] ['key'] );
