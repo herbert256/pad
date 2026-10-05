@@ -6,6 +6,11 @@
 # carries this run's token and commit, so a scenario fails for the one reason it names -
 # without them the failed and new cases were refused as another run's, whatever the
 # failed and new checks did.
+#
+# The first argument is the base the applications are served under, the $padHost of the
+# page that runs this - {script:gate $gateHost} passes it. The trigger was fixed at
+# http://localhost/pad/, so the script failed wherever www/ is the docroot or the host
+# has another name.
 
 . "$(dirname "$0")/../../../../../home/home.sh"
 
@@ -13,7 +18,9 @@ ci="$padHome/ci.sh"
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 
-export CI_TRIGGER="http://localhost/pad/hello/?index"
+host="${1:-http://localhost/pad/}"
+
+export CI_TRIGGER="${host}hello/?index"
 export CI_RUN="gatetoken1234"
 
 commit=$(git -C "$padHome" rev-parse --short HEAD 2>/dev/null)
