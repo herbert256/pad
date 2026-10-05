@@ -42,6 +42,12 @@
   if ( $padCsrf and $padOutputType == 'web' )
     $padOutput = padCsrfForms ( $padOutput );
 
+  // A live request - a {live} region posting an event - is answered with that region's
+  // content alone, without tidy, which would make a page of it (lib/live.php).
+
+  if ( padLive () !== '' )
+    $padOutput = padLiveAnswer ();
+
   // The development check of the finished HTML - duplicate ids, images without alt, fields
   // without a label, broken ?page links - for a local request that asks for it, on what the
   // templates wrote, before tidy rearranges it (lib/outputCheck.php).

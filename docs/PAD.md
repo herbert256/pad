@@ -659,6 +659,21 @@ update refreshes - `?orders&padFragment=order-list` answers with that fragment a
 {ajax 'orders', fragment='order-list'}           {# or hx-get="?orders&padFragment=order-list" #}
 ```
 
+### Live Regions
+
+A `{live}` region re-renders on the server when something in it is clicked, submitted or
+changed, and swaps itself in - no JavaScript of the application's own:
+
+```
+{live 'counter'}
+  <p>{$count}</p>
+  <button pad-click="add" pad-value="{$count}">+1</button>
+{/live}
+```
+
+The page's PHP reads the event with `padLiveEvent()` and `padLiveValue()`; the response to
+the event is that region's content alone.
+
 ### Sandbox Execution
 
 Execute code in isolation:

@@ -1,0 +1,19 @@
+<h1>Live regions</h1>
+
+<p>{tag 'live'} makes part of a page interactive without JavaScript of your own. A click on
+an element with <code>pad-click</code> inside the region posts the event to the page; the page
+runs again on the server, and only the region comes back and is swapped in.</p>
+
+{example 'fragments/live_1'}
+
+<ul>
+  <li><code>pad-click="add"</code> on any element, <code>pad-submit="save"</code> on a form (its
+      fields come along as ordinary request values), <code>pad-change="pick"</code> on a field
+      (its name and value come along); <code>pad-value</code> adds a value to the event.</li>
+  <li>The page's PHP reads the event with <code>padLiveEvent()</code> and its value with
+      <code>padLiveValue()</code>; both are empty on an ordinary request.</li>
+  <li>State lives where a page keeps it: in the value the event carries, as here, in the
+      session (<code>$padSessionVars</code>), or in a database.</li>
+  <li>The region is a <code>&lt;div data-pad-live="name"&gt;</code>; the first region of a page
+      brings the small script that does the posting and swapping.</li>
+</ul>

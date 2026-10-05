@@ -1,0 +1,123 @@
+<h1>Live regions</h1>
+
+<p><b>{live}</b> makes part of a page interactive without JavaScript of your own. A click on
+an element with <code>pad-click</code> inside the region posts the event to the page; the page
+runs again on the server, and only the region comes back and is swapped in.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/live_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/live_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $count </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padLiveValue </span><span style="color: #007700">();<br><br>  if ( </span><span style="color: #0000BB">padLiveEvent </span><span style="color: #007700">() == </span><span style="color: #DD0000">'add'   </span><span style="color: #007700">) </span><span style="color: #0000BB">$count</span><span style="color: #007700">++;<br>  if ( </span><span style="color: #0000BB">padLiveEvent </span><span style="color: #007700">() == </span><span style="color: #DD0000">'reset' </span><span style="color: #007700">) </span><span style="color: #0000BB">$count </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>counter<font color="black">'</font></font>}</b><br>  &lt;p&gt;Clicked <b>{<font color="green"><font color="red">$</font>count</font>}</b> times&lt;/p&gt;<br>  &lt;button pad-click="add" pad-value="<b>{<font color="green"><font color="red">$</font>count</font>}</b>"&gt;Add one&lt;/button&gt;<br>  &lt;button pad-click="reset"&gt;Reset&lt;/button&gt;<br><b>{/<font color="blue">live</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <div data-pad-live="counter">
+  <p>Clicked 0 times</p>
+  <button pad-click="add" pad-value="0">Add one</button>
+  <button pad-click="reset">Reset</button>
+</div><script>(function () {
+  if (window.padLiveReady) return;
+  window.padLiveReady = true;
+  function send(region, fields) {
+    var body = new URLSearchParams();
+    fields.forEach(function (field) { body.append(field[0], field[1]); });
+    body.set('padLive', region.getAttribute('data-pad-live'));
+    region.setAttribute('aria-busy', 'true');
+    fetch(location.href, { method: 'POST', body: body, credentials: 'same-origin' })
+      .then(function (response) {
+        return response.text().then(function (text) {
+          if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
+          return text;
+        });
+      })
+      .then(function (html) { region.innerHTML = html; region.removeAttribute('data-pad-live-error'); })
+      .catch(function (error) { region.setAttribute('data-pad-live-error', error.message); })
+      .then(function () { region.removeAttribute('aria-busy'); });
+  }
+  function event(element, attribute, value) {
+    return [['padEvent', element.getAttribute(attribute)], ['padValue', element.hasAttribute('pad-value') ? element.getAttribute('pad-value') : value]];
+  }
+  document.addEventListener('click', function (e) {
+    var element = e.target.closest('[pad-click]');
+    var region = element && element.closest('[data-pad-live]');
+    if (!region) return;
+    e.preventDefault();
+    send(region, event(element, 'pad-click', ''));
+  });
+  document.addEventListener('submit', function (e) {
+    var form = e.target;
+    var region = form.hasAttribute('pad-submit') && form.closest('[data-pad-live]');
+    if (!region) return;
+    e.preventDefault();
+    var fields = [];
+    new FormData(form).forEach(function (value, key) { if (typeof value === 'string') fields.push([key, value]); });
+    send(region, fields.concat(event(form, 'pad-submit', '')));
+  });
+  document.addEventListener('change', function (e) {
+    var element = e.target.closest('[pad-change]');
+    var region = element && element.closest('[data-pad-live]');
+    if (!region) return;
+    var value = element.type === 'checkbox' ? (element.checked ? element.value : '') : element.value;
+    send(region, (element.name ? [[element.name, value]] : []).concat(event(element, 'pad-change', value)));
+  });
+})();</script>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<ul>
+  <li><code>pad-click="add"</code> on any element, <code>pad-submit="save"</code> on a form (its
+      fields come along as ordinary request values), <code>pad-change="pick"</code> on a field
+      (its name and value come along); <code>pad-value</code> adds a value to the event.</li>
+  <li>The page's PHP reads the event with <code>padLiveEvent()</code> and its value with
+      <code>padLiveValue()</code>; both are empty on an ordinary request.</li>
+  <li>State lives where a page keeps it: in the value the event carries, as here, in the
+      session (<code>$padSessionVars</code>), or in a database.</li>
+  <li>The region is a <code>&lt;div data-pad-live="name"&gt;</code>; the first region of a page
+      brings the small script that does the posting and swapping.</li>
+</ul>

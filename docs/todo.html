@@ -993,7 +993,7 @@ _events/output.php   post-process the final HTML</code></pre>
   &lt;button pad-click="add" pad-value="42"&gt;Add&lt;/button&gt;
 {/live}</code></pre>
           <p>This builds on named fragments (<a href="#response-fragments">#07</a>). A small script sends the event to the page, the server re-renders only that region, and the browser swaps it in. Pages become interactive without app-written JavaScript or a client framework, with state kept in the session.</p>
-          <p class="references"><strong>Precedents:</strong> <a href="https://livewire.laravel.com">Laravel Livewire</a> · <a href="https://htmx.org">htmx</a></p>
+          <p class="done"><strong>Done.</strong> <code>{live 'cart'}…{/live}</code> wraps its content in a <code>data-pad-live</code> region; a <code>pad-click</code>, <code>pad-submit</code> or <code>pad-change</code> inside posts the event to the page’s own URL, the page’s PHP reads <code>padLiveEvent()</code>/<code>padLiveValue()</code>, and only that region comes back, swapped in by a small inline script the first region brings - no JavaScript written by the author. Regression: framework and errors cases; manual page <em>Live</em>; TAGS.md, CLAUDE.md, PAD.md.</p><p class="references"><strong>Precedents:</strong> <a href="https://livewire.laravel.com">Laravel Livewire</a> · <a href="https://htmx.org">htmx</a></p>
         </li>
       </ol>
     </section>

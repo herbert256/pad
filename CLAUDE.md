@@ -1577,6 +1577,18 @@ PAD parses `{ }` as tags. Prefer external files, or use `{ignore}` for inline co
 <style>body { color: red; }</style>        <!-- WRONG - will parse {} -->
 ```
 
+### Live Regions (interactivity without app JavaScript)
+```
+{live 'cart'}
+  {cart}<li>{$item}</li>{/cart}
+  <button pad-click="add" pad-value="42">Add</button>
+{/live}
+```
+`pad-click` / `pad-submit` (form) / `pad-change` (field) inside a `{live}` region post the event
+to the page's own URL; the page's PHP reads `padLiveEvent()` / `padLiveValue()` and keeps state
+in the session (`$padSessionVars`) or the event's value; only that region's content comes back
+and is swapped in. The first region brings a small inline script.
+
 ### PAD + React Integration
 
 See [REACT.md](docs/REACT.md) for complete React integration documentation including:

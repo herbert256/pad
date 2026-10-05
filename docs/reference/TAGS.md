@@ -423,6 +423,42 @@ Handle AJAX request.
 
 ---
 
+### live
+A region of the page that answers clicks, forms and changes by re-rendering on the server
+and swapping itself in - without JavaScript of the application's own.
+
+```html
+{live 'cart'}
+  {cart}<li>{$item} x {$qty}</li>{/cart}
+  <button pad-click="add" pad-value="42">Add</button>
+{/live}
+```
+
+```php
+// cart.php - runs for the first render and for every event
+if ( padLiveEvent () == 'add' )
+  $cart [] = [ 'item' => padLiveValue (), 'qty' => 1 ];   // with $padSessionVars = ['cart']
+```
+
+**Parameters:**
+- First parameter: the region's name - letters, digits, `_` and `-`
+
+**In the content:**
+- `pad-click="event"` on any element, `pad-submit="event"` on a form (its fields come along as
+  request values), `pad-change="event"` on a field (its name and value come along);
+  `pad-value="..."` gives the event a value.
+
+**How it works:** the content is wrapped in `<div data-pad-live="cart">`, and the page's first
+region brings a small inline script. An event posts `padLive`, `padEvent` and `padValue` to
+the page's own URL; the page runs as always - its PHP reads `padLiveEvent()` and
+`padLiveValue()` - and the response is the inner content of that region alone, which the
+script swaps in. State lives where a page keeps it: the session (`$padSessionVars`), a
+database, or the value the event carries. A post for a region the page does not render is
+an error. Under the strict check a `{live}` without a name, or without its `{/live}`, is an
+error too.
+
+---
+
 ### pad
 Generic PAD include tag.
 
@@ -1620,6 +1656,7 @@ Resume a previously ceased sequence iteration.
 | `sandbox` | Execution | Run content as PAD, isolated |
 | `action` | Execution | Execute action |
 | `ajax` | Execution | AJAX handler |
+| `live` | Execution | A region that re-renders on the server when clicked, submitted or changed |
 | `pad` | Execution | PAD include |
 | `redirect` | Navigation | HTTP redirect |
 | `restart` | Navigation | Restart processing |
