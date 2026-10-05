@@ -1,7 +1,7 @@
 <?php
 
-  // {case $value}{when 'a'}...{when 'b'}...{/case} keeps only the branch whose {when}
-  // matches.
+  // {case $value}{when 'a'}...{when 'b', 'c'}...{/case} keeps only the branch whose {when}
+  // matches - any of the values a when lists, padCaseWhen in lib/case.php.
   //
   // The branches are not levels of their own: the tag chops its content up itself. The
   // first parameter is evaluated from its unparsed text to give the basis, then each
@@ -49,12 +49,15 @@
           padError ( "a {when} behind the {else} never answers" );
 
         $padCasePos = strpos ( $padContent, '}', $padCaseScan );
-        $padCaseVal = padEval ( substr ( $padContent, $padCaseScan+6, $padCasePos-($padCaseScan+6) ) );
 
-        if ( in_array ( $padCaseVal, $padCaseSeen, TRUE ) )
-          padError ( "the {when '" . $padCaseVal . "'} is written twice - the first one answers" );
+        foreach ( padCaseWhenValues ( substr ( $padContent, $padCaseScan+6, $padCasePos-($padCaseScan+6) ) ) as $padCaseVal ) {
 
-        $padCaseSeen [] = $padCaseVal;
+          if ( in_array ( $padCaseVal, $padCaseSeen, TRUE ) )
+            padError ( "the {when '" . $padCaseVal . "'} is written twice - the first one answers" );
+
+          $padCaseSeen [] = $padCaseVal;
+
+        }
 
       }
 
@@ -79,7 +82,7 @@
 
       $padChk = strpos ( $padContent , '{when', $padChk+5 );
 
-    elseif ( $padBasis == padEval ( $padIf ) ) {
+    elseif ( padCaseWhen ( $padBasis, $padIf ) ) {
 
       $padContent = substr ( $padContent, 0, $padChk );
 
@@ -111,7 +114,7 @@
 
   if ( $padChk !== FALSE ) {
 
-    if ( $padBasis == padEval ( $padIf ) )
+    if ( padCaseWhen ( $padBasis, $padIf ) )
       $padContent = substr ( $padContent, 0, $padChk );
     else
       $padContent = substr ( $padContent, $padChk+6 );
@@ -120,6 +123,6 @@
 
   }
 
-  return $padBasis == padEval ( $padIf );
+  return padCaseWhen ( $padBasis, $padIf );
 
 ?>

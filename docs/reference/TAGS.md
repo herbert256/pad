@@ -32,7 +32,7 @@ Switch-case style conditional based on value matching.
 ```html
 {case $value}
   {when 'option1'}Content for option1
-  {when 'option2'}Content for option2
+  {when 'option2', 'option3'}Content for option2 or option3
   {else}Default content
 {/case}
 ```
@@ -40,7 +40,8 @@ Switch-case style conditional based on value matching.
 **Parameters:**
 - First parameter: Value to match against
 
-**Supports:** Multiple `{when}` clauses; the first one that matches answers. The default
+**Supports:** Multiple `{when}` clauses, each listing one value or several separated by
+commas; the first one that matches answers. The default
 branch is `{else}` - `{when 'default'}` is an ordinary branch that matches the text
 `default`.
 

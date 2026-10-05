@@ -535,7 +535,7 @@
   {else}               Unknown
 {/case}</code></pre>
           <p><code>{when}</code> evaluates its text as one expression and compares it with <code>==</code>, so values that share an outcome need branches with duplicated content. Accept a list and compare each value in turn. Fix the <code>{when 'default'}</code> documentation at the same time (see <a href="#loose-ends">loose ends</a>).</p>
-          <p class="references"><strong>Precedent:</strong> <a href="https://www.php.net/manual/en/control-structures.match.php">PHP match with several conditions per arm</a></p>
+          <p class="done"><strong>Done.</strong> <code>{when 'red', 'orange'}</code> answers when any listed value equals the case value (<code>padCaseWhen</code> in lib/case.php); the strict scan reports a value listed in two whens. Regression: framework <code>tags/case_when_lists_several_values</code> (fails on the old engine), errors <code>syntax/a_value_listed_in_two_whens_is_reported</code>; manual <em>Conditions</em>; TAGS.md, CLAUDE.md.</p><p class="references"><strong>Precedent:</strong> <a href="https://www.php.net/manual/en/control-structures.match.php">PHP match with several conditions per arm</a></p>
         </li>
 
         <li class="idea" id="markdown">

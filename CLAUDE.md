@@ -363,7 +363,7 @@ field.
 ```
 {case $color}
   {when 'red'} Stop
-  {when 'yellow'} Caution
+  {when 'yellow', 'amber'} Caution
   {when 'green'} Go
   {else} Unknown
 {/case}

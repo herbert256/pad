@@ -220,6 +220,73 @@ Go
 
 
 
+<p>A <code>{when}</code> may list several values, separated by commas; it answers
+when any of them matches:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/conditions_7.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>days<font color="black">'</font></font>}</b>["Saturday","Monday","Sunday"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">days</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>days</font>}</b>: <b>{<font color="blue">case </font><font color="red"><font color="red">$</font>days</font>}</b><b>{<font color="blue">when </font><font color="red"><font color="black">'</font>Saturday<font color="black">'</font><font color="black">,</font> <font color="black">'</font>Sunday<font color="black">'</font></font>}</b>weekend<b>{<font color="blue">else</font><font color="red"></font>}</b>a working day<b>{/<font color="blue">case</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">days</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+
+  <p>Saturday: weekend</p>
+
+  <p>Monday: a working day</p>
+
+  <p>Sunday: weekend</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
 <h2>The ternary</h2>
 
 <p>Inside an expression tag, <code>?</code> and <code>:</code> pick one of two values - the
