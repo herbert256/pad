@@ -39,8 +39,16 @@
     $merge = padTagParm ( 'merge', 'top' );
 
     if     ( $merge == 'bottom'  ) return $base . $new;
-    elseif ( $merge == 'top'     ) return $new . $base;
     elseif ( $merge == 'replace' ) return $new;
+
+    // Any other word answered nothing at all, and the NULL ended the request in a PHP
+    // deprecation far from the cause - merge='after'. Strict mode names it; the lenient walk
+    // merges on top, the default.
+
+    if ( $merge != 'top' and $GLOBALS ['padCheckSyntax'] )
+      padError ( "there is no merge named '$merge' - it is top, bottom or replace" );
+
+    return $new . $base;
 
   }
 
