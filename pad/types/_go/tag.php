@@ -11,11 +11,17 @@
   // level loop is at global scope, so the tag's variables are globals too, and the filter
   // below - anything not already a global - dropped every one of them.
 
-  $padTagBefore = [];
+  // One snapshot per nesting depth: a tag's PHP can run another tag through this same
+  // file in the same scope - {echo $v | code} does - and a single variable was the inner
+  // tag's to clear before the outer one had read it.
+
+  $padTagDepth = ( $padTagDepth ?? 0 ) + 1;
+
+  $padTagBefore [$padTagDepth] = [];
 
   foreach ( $GLOBALS as $padK => $padV )
     if ( padValidStore ( $padK ) )
-      $padTagBefore [$padK] = $padV;
+      $padTagBefore [$padTagDepth] [$padK] = $padV;
 
   $padCall = "$padTagGo.php";
   include PAD . 'call/ob.php';
@@ -27,10 +33,13 @@
 
   foreach ( get_defined_vars () as $padK => $padV )
     if ( padValidStore ( $padK )
-         and ( ! array_key_exists ( $padK, $padTagBefore ) or $padTagBefore [$padK] !== $padV ) )
+         and ( ! array_key_exists ( $padK, $padTagBefore [$padTagDepth] )
+               or $padTagBefore [$padTagDepth] [$padK] !== $padV ) )
       $GLOBALS ['padLvlFunVar'] [ $GLOBALS ['pad'] ] [$padK] = $padV;
 
-  unset ( $padTagBefore );
+  unset ( $padTagBefore [$padTagDepth] );
+
+  $padTagDepth--;
 
   $padTagContent = $padCallOB . padFileGet ("$padTagGo.pad");
 
