@@ -15,6 +15,7 @@ their own could leave the local server no worker to answer them.
 | `slow.php` | A JSON source that takes 200 ms and says when it started and ended |
 | `curl_ttl.pad` | `{curl ..., ttl=60}` twice answers alike |
 | `curl_data_ttl.php/pad` | A `_data/*.curl` file with a `<ttl>`, and `data=` with the ttl option |
+| `curl_data_self.pad` | `data='SELF://...'` is fetched from this server, as `{curl}` has it |
 | `prefetch.php/pad` | `padPrefetch`: two slow sources served together, each read as named data |
 | `prefetch_ttl.php/pad` | `padPrefetch` with a ttl: the second prefetch is answered from the copy |
 | `_data/stampKept.curl` | A `<curl>` document with a url and a ttl |

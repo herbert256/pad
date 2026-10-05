@@ -188,8 +188,13 @@
     if ( count ($parts) == 2 and ctype_alnum($parts[0]) and ctype_alnum($parts[1]) )
       return 'range';
 
+    // SELF:// is this server, which data/curl.php turns into $padHost as {curl} does - but
+    // only once the text has been taken for a URL, and the prefix was not one: data=
+    // 'SELF://...' was read as CSV, a header line with no rows, and gave nothing.
+
     if ( str_starts_with ( strtolower ( $content ), 'http:' )
-      or str_starts_with ( strtolower ( $content ), 'https:' )  )
+      or str_starts_with ( strtolower ( $content ), 'https:' )
+      or str_starts_with ( $content, 'SELF://' ) )
       return 'curl';
 
     if ( padDataFileName ( $content ) )
