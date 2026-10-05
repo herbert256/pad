@@ -81,6 +81,27 @@ Pages are accessed via query string (NOT path-based):
 - `/myapp/?about` → `about.pad`
 - `/myapp/?admin/users` → `admin/users.pad`
 
+## JSON and CSV from the same page
+
+A page answers its data instead of its template when asked - `?orders&padFormat=json` (or
+`csv`), or an `Accept: application/json` / `text/csv` header. What may leave the server is an
+explicit list in the page's `.php`; a page that names nothing answers HTML only:
+
+```php
+// orders.php
+$orders    = db ( "ARRAY * FROM orders" );
+$total     = 123.45;
+$padExpose = [ 'orders', 'total' ];    // never an engine name (pad*, pq*, _*)
+```
+
+- JSON is one object keyed by the exposed names; CSV is the first exposed list - a header
+  row of every key, then a line per row. The templates do not run for such a request.
+- `padFormat=` asked outright on a page that exposes nothing, a format that does not
+  exist, or CSV without a list answers 406; asked only through `Accept`, the page renders
+  as HTML. An exposing page sends `Vary: Accept`.
+- `$padOutputType = 'json'` (or `'csv'`) in `_config/config.php` makes every page of an
+  application answer data; `{output 'json'}` does it from a template.
+
 ---
 
 ## Application Structure
@@ -723,8 +744,11 @@ $padErrorAction = 'pad';
 // Debug mode: trace, stats, track, xml, xref
 // $padInfo = 'trace';
 
-// Output type: web, file, download, console
+// Output type: web, file, download, console, json, csv (json and csv answer $padExpose)
 $padOutputType = 'web';
+
+// The page variables a page answers as JSON or CSV - set in the page's .php
+$padExpose = [];
 
 // Cache enabled
 $padCache = false;
@@ -1148,6 +1172,7 @@ This is particularly useful for:
 | `regression/output_download` | Test | Regression test for the 'download' output type |
 | `regression/output_file` | Test | Regression test for the 'file' output type |
 | `regression/output_web` | Test | Regression test for the 'web' output type |
+| `regression/output_json` | Test | Regression test for the 'json' output type - every page answers what it exposes |
 | `regression/try_log` | Test | Regression test for the try guards under the 'log' action |
 | `regression/try_pad` | Test | Regression test for the try guards under the 'pad' action |
 | `regression/errors` | Test | The Errors suite: the tests that fail on purpose, answered lean under the boot action - no dumps |

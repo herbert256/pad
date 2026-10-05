@@ -1,6 +1,6 @@
 <?php
 
-  // Reads what the browser already has and what it can accept, into three globals the exits
+  // Reads what the browser already has and what it can accept, into the globals the exits
   // consult when deciding on a response.
   //
   // $padClientEtag is the If-None-Match value with its quotes stripped, compared against the
@@ -34,5 +34,14 @@
   $padClientEtag = $padClientEtags [0] ?? '';
   $padClientDate = isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])  ? strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) : 0;
   $padClientGzip = padAcceptsEncoding ( $_SERVER['HTTP_ACCEPT_ENCODING'] ?? '', 'gzip' );
+
+  // The format the request asks for (lib/expose.php): $padClientFormat is 'json' or 'csv'
+  // from ?padFormat= or an Accept header that prefers one, and $padClientFormatAsked says it
+  // was asked for outright - a page that cannot answer that way says 406, where a page asked
+  // only through Accept renders its HTML. build/expose.php decides, once the page's PHP has
+  // said what it exposes.
+
+  $padClientFormatAsked = isset ( $_REQUEST ['padFormat'] );
+  $padClientFormat      = padClientFormat ();
 
 ?>

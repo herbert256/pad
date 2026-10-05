@@ -70,6 +70,15 @@
 
   $padOutputType = 'web';
 
+  // The page variables a page answers as data - for ?page&padFormat=json or csv, for an
+  // Accept header that prefers application/json or text/csv, and under the json and csv
+  // output types: the response is these variables instead of the rendered template (see
+  // lib/expose.php). Set in the page's .php, or in an _inits.php for a directory. Empty,
+  // the page answers HTML only; only what is named here ever leaves the server, and an
+  // engine name never does.
+
+  $padExpose = [];
+
   $padCache = FALSE;
 
   // The fragment cache - {cache 'name'} ... {/cache} and the cache= option on any tag, see

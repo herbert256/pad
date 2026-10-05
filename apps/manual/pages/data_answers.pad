@@ -1,0 +1,25 @@
+<h1>JSON and CSV from the same page</h1>
+
+<p>A page's PHP already produces its data, so the same page can answer with that data instead
+of rendering its template. The PHP names what may leave the server in
+<code>$padExpose</code> - nothing else ever does, and an engine variable never does:</p>
+
+{example 'fragments/data_answers_1'}
+
+<p>Asked with <code>&amp;padFormat=json</code> - or by a client sending
+<code>Accept: application/json</code> - that page answers the named variables as one JSON
+object. <code>&amp;padFormat=csv</code>, or <code>Accept: text/csv</code>, answers the first
+list among them as a table with a header row. The template does not run for either:</p>
+
+{example 'fragments/data_answers_2'}
+
+<ul>
+  <li>A page that exposes nothing renders its HTML as always. Asked outright with
+      <code>padFormat=</code>, it answers 406 Not Acceptable - as does a format that does not
+      exist, or CSV from a page with no list.</li>
+  <li><code>$padOutputType = 'json'</code> (or <code>'csv'</code>) in
+      <code>_config/config.php</code> makes every page of an application answer its data;
+      <code>{open}output 'json'{close}</code> does it from a template.</li>
+  <li>A script or a React component fetches from the ordinary page:
+      <code>fetch('?orders&amp;padFormat=json')</code>.</li>
+</ul>

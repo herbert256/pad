@@ -11,6 +11,11 @@
   if ( ! defined ( 'APP2' ) )
     define ( 'APP2', substr ( APP, 0, -1) );
 
+  // The request's own page is the one build that may answer with its data instead
+  // (build/expose.php); a {page} built in a nested pass later in the request may not.
+
+  $padExposeCheck = TRUE;
+
   include PAD . 'build/build.php';
 
 ?>

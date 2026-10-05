@@ -563,6 +563,24 @@ rendered while the rest stays dynamic:
 picks the store - `'file'` (default), `'apcu'` or `FALSE`; `padFragmentForget('top-products')`
 drops a named section when what it shows has changed.
 
+### JSON and CSV from the same page
+
+The page's `.php` already produces the data, so the same page can answer it instead of its
+template - for `?orders&padFormat=json` (or `csv`) and for an `Accept: application/json` (or
+`text/csv`) header. Only what the page names leaves the server:
+
+```php
+// orders.php
+$orders    = db ( "ARRAY * FROM orders" );
+$total     = 123.45;
+$padExpose = [ 'orders', 'total' ];
+```
+
+JSON is one object keyed by those names, CSV the first of them that is a list, with a header
+row. A page that exposes nothing renders HTML as always - asked outright with `padFormat=`,
+it answers 406. `$padOutputType = 'json'` turns a whole application into one that answers
+data.
+
 ### AJAX Support
 
 Handle AJAX requests seamlessly:
@@ -609,7 +627,8 @@ In `_config/config.php` or `pad/config/config.php`:
 ```php
 $padErrorAction   // 'pad', 'boot', 'php', 'stop', 'exit', 'ignore', 'log', 'dump'
 $padInfo          // Debug: 'trace', 'stats', 'track', 'xml', 'xref'
-$padOutputType    // 'web', 'file', 'download', 'console'
+$padOutputType    // 'web', 'file', 'download', 'console', 'json', 'csv'
+$padExpose        // The page variables answered as JSON or CSV (set in the page's .php)
 $padCache         // Enable caching
 
 // Database

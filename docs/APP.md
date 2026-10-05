@@ -909,6 +909,8 @@ Sets output type, does NOT capture content:
 {output 'web'}        # Normal web output (default)
 {output 'console'}    # Console output
 {output 'download'}   # File download
+{output 'json'}       # The variables the page names in $padExpose, as JSON
+{output 'csv'}        # The first list the page names in $padExpose, as CSV
 ```
 
 ### The `true` and `false` Tags

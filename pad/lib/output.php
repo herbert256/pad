@@ -145,6 +145,12 @@
     if ( count ( $GLOBALS ['padLocales'] ?? [] ) )
       $padWebVary [] = 'Accept-Language';
 
+    // A page that exposes its data answers JSON or CSV to an Accept header that asks for
+    // them (lib/expose.php), so its response depends on that header as well.
+
+    if ( count ( (array) ( $GLOBALS ['padExpose'] ?? [] ) ) )
+      $padWebVary [] = 'Accept';
+
     if ( $padWebVary )
       padHeader ( 'Vary: ' . implode ( ', ', $padWebVary ) );
 

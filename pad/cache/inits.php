@@ -22,7 +22,10 @@
   if ( padSelfSwitch ( 'padReference' ) or padSelfSwitch ( 'padExamples' ) )
     $padCache = FALSE;
 
-  if ( $padOutputType != 'web' )
+  // A request for the page's data (lib/expose.php) is answered by the page's PHP every
+  // time: the stored body is the HTML one, and the key does not know the Accept header.
+
+  if ( $padOutputType != 'web' or $padClientFormat !== '' )
     $padCache = FALSE;
   elseif ( isset ( $_SERVER['REQUEST_METHOD'] ) and $_SERVER['REQUEST_METHOD'] != 'GET' )
     $padCache = FALSE;

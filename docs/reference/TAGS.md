@@ -621,7 +621,12 @@ Set output type.
 ```
 
 **Parameters:**
-- First parameter: Output type (`web`, `console`, `file`, `download`)
+- First parameter: Output type (`web`, `console`, `file`, `download`, `json`, `csv`)
+
+`json` and `csv` replace what the template rendered with the page's data: the variables its
+`.php` names in `$padExpose`, as one JSON object, or the first of them that is a list as CSV
+with a header row. The same answer comes without the tag for `?page&padFormat=json` (or `csv`)
+and for an `Accept: application/json` (or `text/csv`) header - and then no template runs at all.
 
 ---
 

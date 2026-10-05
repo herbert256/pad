@@ -741,7 +741,7 @@ Accept: application/json
 $padExpose = [ 'orders', 'total' ];</code></pre>
           <p>A paired <code>orders.php</code> already produces the data, so the same page could answer with JSON, or CSV for a single list, instead of rendering <code>orders.pad</code>. This would be a fifth output type next to web, console, file and download.</p>
           <p>Exposure must be an explicit list, never “all variables”. The React pages could then fetch from ordinary pages instead of separate <code>_providers</code>.</p>
-        </li>
+        <p class="done"><strong>Done.</strong> A page whose <code>.php</code> names what may leave the server in <code>$padExpose</code> answers its data as JSON or CSV - <code>?orders&amp;padFormat=json</code>/<code>csv</code>, or an Accept header preferring them - with <code>json</code> and <code>csv</code> as two more output types; a page exposing nothing answers 406 when asked outright. Regression: pages cases; manual page <em>Data answers</em>; docs.</p></li>
 
         <li class="idea" id="clean-urls">
           <div class="idea-top"><span class="number" aria-hidden="true">32</span><h3>Clean URLs with dynamic segments</h3><span class="effort">Large</span></div>

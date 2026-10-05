@@ -235,6 +235,24 @@ root.render(<TopicDisplay />);
 
 ---
 
+## Fetching from ordinary pages
+
+A component that fetches its data after the page loaded does not need a provider: any page
+answers its data as JSON when it names what may leave the server in `$padExpose`.
+
+```php
+// orders.php - the same page renders orders.pad for a browser
+$orders    = db ( "ARRAY * FROM orders" );
+$padExpose = [ 'orders' ];
+```
+
+```javascript
+fetch('?orders&padFormat=json').then(r => r.json()).then(data => setOrders(data.orders));
+// or: fetch('?orders', { headers: { Accept: 'application/json' } })
+```
+
+---
+
 ## Key Principles
 
 | Principle | Description |

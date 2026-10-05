@@ -1,0 +1,155 @@
+<h1>JSON and CSV from the same page</h1>
+
+<p>A page's PHP already produces its data, so the same page can answer with that data instead
+of rendering its template. The PHP names what may leave the server in
+<code>$padExpose</code> - nothing else ever does, and an engine variable never does:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/data_answers_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/data_answers_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $orders    </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">12.5 </span><span style="color: #007700">],<br>                 [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">7    </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$total     </span><span style="color: #007700">= </span><span style="color: #0000BB">19.5</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padExpose </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'orders'</span><span style="color: #007700">, </span><span style="color: #DD0000">'total' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue">orders</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>customer</font>}</b>: <b>{<font color="green"><font color="red">$</font>amount</font>}</b>&lt;/li&gt;<b>{/<font color="blue">orders</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br>&lt;p&gt;Total: <b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <ul>
+  <li>Ann: 12.5</li><li>Bob: 7</li>
+</ul>
+<p>Total: 19.5</p>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<p>Asked with <code>&amp;padFormat=json</code> - or by a client sending
+<code>Accept: application/json</code> - that page answers the named variables as one JSON
+object. <code>&amp;padFormat=csv</code>, or <code>Accept: text/csv</code>, answers the first
+list among them as a table with a header row. The template does not run for either:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/data_answers_2.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/data_answers_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $json </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$padGoExt </span><span style="color: #007700">. </span><span style="color: #DD0000">'fragments/data_answers_1&amp;padFormat=json' </span><span style="color: #007700">) [</span><span style="color: #DD0000">'data'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$csv  </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$padGoExt </span><span style="color: #007700">. </span><span style="color: #DD0000">'fragments/data_answers_1&amp;padFormat=csv'  </span><span style="color: #007700">) [</span><span style="color: #DD0000">'data'</span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>json</font>}</b><br><b>{<font color="green"><font color="red">$</font>csv</font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <pre>{
+    &quot;orders&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;customer&quot;: &quot;Ann&quot;,
+            &quot;amount&quot;: 12.5
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;customer&quot;: &quot;Bob&quot;,
+            &quot;amount&quot;: 7
+        }
+    ],
+    &quot;total&quot;: 19.5
+}</pre>
+<pre>id,customer,amount
+1,Ann,12.5
+2,Bob,7</pre>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<ul>
+  <li>A page that exposes nothing renders its HTML as always. Asked outright with
+      <code>padFormat=</code>, it answers 406 Not Acceptable - as does a format that does not
+      exist, or CSV from a page with no list.</li>
+  <li><code>$padOutputType = 'json'</code> (or <code>'csv'</code>) in
+      <code>_config/config.php</code> makes every page of an application answer its data;
+      <code>{output 'json'}</code> does it from a template.</li>
+  <li>A script or a React component fetches from the ordinary page:
+      <code>fetch('?orders&amp;padFormat=json')</code>.</li>
+</ul>
