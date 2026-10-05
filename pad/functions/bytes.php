@@ -12,7 +12,11 @@
   $units     = [ 'B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB' ];
   $unit      = 0;
 
-  while ( abs ( $size ) >= 1024 and $unit < count ( $units ) - 1 ) {
+  // The unit is chosen on the size as it will be written: 1048575 bytes rounded to no
+  // decimals is 1024 KB, which is 1 MB - rounding after the choice wrote '1024 KB'.
+
+  while ( $unit < count ( $units ) - 1
+          and ( abs ( $size ) >= 1024 or abs ( round ( $size, $precision ) ) >= 1024 ) ) {
     $size /= 1024;
     $unit++;
   }
