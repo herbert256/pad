@@ -5,6 +5,11 @@
   // otherwise. The tag name is used as the db() command word, which is why CHECK takes a
   // bare table and WHERE clause instead of a SELECT.
 
+  // The designer preview answers a named check from the sample, as tags/record.php does.
+
+  if ( padSampleFound ( padTagParm ( 'name' ), $padSampleValue ) )
+    return $padSampleValue ? TRUE : FALSE;
+
   return db ( $padTag [$pad] . ' ' . $padParm ) ? TRUE : FALSE;
 
 ?>

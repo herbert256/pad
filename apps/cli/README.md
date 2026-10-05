@@ -41,6 +41,21 @@ For CLI applications, set the output type in `_config/config.php`:
 $padOutputType = 'console';
 ```
 
+## Capturing sample data
+
+`pad sample <app> <page>` renders a page of another application once, for real, and writes
+the variables its PHP made - with the answers of its named database tags - to that
+application's `_samples/<page>.json`, the file the designer preview reads
+(`?<page>&padSample`, see `pad/lib/sample.php`). The rendered page goes to standard output,
+the name of the file to standard error:
+
+```bash
+./pad sample shop orders > /dev/null
+# pad sample: wrote apps/shop/_samples/orders.json
+```
+
+Review the file before committing it: it holds whatever the page read, real data included.
+
 ## Exit Status
 
 The process status reports how the request ended, so scripts can test it: 0 when the

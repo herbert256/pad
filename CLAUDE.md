@@ -973,6 +973,19 @@ $padRecord = false;
 $padSecurityHeaders = ['X-Content-Type-Options' => 'nosniff',
                        'Referrer-Policy' => 'strict-origin-when-cross-origin'];
 $padCsp = "frame-ancestors 'self'";
+
+// Designer preview: ?page&padSample renders the template with _samples/page.json instead
+// of running the PHP. 'local' for a local request only, TRUE everyone (a design server
+// without real data - the preview skips the PHP's login checks), FALSE never.
+$padSample = 'local';
+```
+
+### Designer preview with sample data
+```
+?orders&padSample             # orders.pad with _samples/orders.json - no _inits.php, no orders.php
+?orders&padSample=capture     # runs the page for real, writes DATA/samples/<app>/orders.json
+apps/cli/pad sample shop orders   # the same capture, into apps/shop/_samples/orders.json
+{array "* from orders", name='orders'}   # a named database tag answers from the sample too
 ```
 
 ### Expression errors

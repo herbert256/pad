@@ -257,6 +257,10 @@ Database access tags. The tag name becomes the `db()` command word, so do NOT wr
 
 **Returns:** Query results (`check` returns TRUE/FALSE)
 
+**Designer preview:** with `?page&padSample`, a tag with a `name=` the page's sample holds
+answers from the sample instead of the database - `{array "* from orders", name='orders'}` -
+and `&padSample=capture` records the database's answer under that name (see APP.md).
+
 ---
 
 ### collection

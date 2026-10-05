@@ -26,19 +26,47 @@
   $padSrcSize    = 0;
   $padSrcFile    = '';
 
-  if ( $padCommon ) {
-    $padCall = COMMON . '/_inits.php';
-    $padBuildTrue .= include PAD . 'call/noOne.php';
-  }
+  // The designer preview (lib/sample.php): with a sample for this page, its entries are the
+  // variables and no PHP runs - not the page's, nor an _inits.php or _exits.php around it,
+  // whose login check or database would be the reason for the preview. A page a {page} tag
+  // builds in a nested pass ($padStrCnt >= 0) uses its own sample when it has one and runs
+  // as usual when it has not; the requested page must have one. A capture runs everything
+  // as usual and keeps what the PHP of the requested page made.
 
-  foreach ( $padBuildDirs as $padCall ) {
-    $padCall .= '/_inits.php';
-    $padBuildTrue .= include PAD . 'call/noOne.php';
-  }
+  $padBuildSample  = ( $padSampleMode == 'use' ) ? padSampleLoad ( $padPage ) : NULL;
+  $padBuildCapture = ( $padSampleMode == 'capture' and $padStrCnt < 0 );
 
-  $padCall = APP . "$padPage.php";
-  $padBuildTrue .= include PAD . 'call/obNoOne.php';
-  $padBuildCall = $padCallPHP;
+  if ( $padSampleMode == 'use' and $padBuildSample === NULL and $padStrCnt < 0 and $padCheckSyntax )
+    padError ( "there is no sample for this page - " . str_replace ( APPS, '', padSampleName ( $padPage ) [0] ) );
+
+  if ( $padBuildCapture )
+    $padBuildBefore = padSampleBefore ();
+
+  if ( $padBuildSample !== NULL ) {
+
+    $padSampleData = $padBuildSample;
+    padSampleUse ( $padSampleData );
+
+    $padCallPHP   = TRUE;
+    $padBuildCall = TRUE;
+
+  } else {
+
+    if ( $padCommon ) {
+      $padCall = COMMON . '/_inits.php';
+      $padBuildTrue .= include PAD . 'call/noOne.php';
+    }
+
+    foreach ( $padBuildDirs as $padCall ) {
+      $padCall .= '/_inits.php';
+      $padBuildTrue .= include PAD . 'call/noOne.php';
+    }
+
+    $padCall = APP . "$padPage.php";
+    $padBuildTrue .= include PAD . 'call/obNoOne.php';
+    $padBuildCall = $padCallPHP;
+
+  }
 
   if ( $padBuildCall !== NULL ) {
 
@@ -81,15 +109,22 @@
   // while the _inits.pad and _exits.pad wrappers still rendered round the empty page - and
   // read whatever the skipped _exits.php files would have set: the manual's 500 on z33.
 
-  foreach ( array_reverse ($padBuildDirs) as $padCall ) {
-    $padCall .= '/_exits.php';
-    $padBuildTrue .= include PAD . 'call/noOne.php';
+  if ( $padBuildSample === NULL ) {
+
+    foreach ( array_reverse ($padBuildDirs) as $padCall ) {
+      $padCall .= '/_exits.php';
+      $padBuildTrue .= include PAD . 'call/noOne.php';
+    }
+
+    if ( $padCommon ) {
+      $padCall = COMMON . '/_exits.php';
+      $padBuildTrue .= include PAD . 'call/noOne.php';
+    }
+
   }
 
-  if ( $padCommon ) {
-    $padCall = COMMON . '/_exits.php';
-    $padBuildTrue .= include PAD . 'call/noOne.php';
-  }
+  if ( $padBuildCapture )
+    padSampleAfter ( $padBuildBefore );
 
   $padSrcPage = [];
 

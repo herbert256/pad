@@ -3,7 +3,26 @@
 
   include __DIR__ . '/../../home/home.php';
 
-  $padApp  = 'cli';
+  // pad sample <app> <page> - captures the sample data of a page for the designer preview
+  // (pad/lib/sample.php): the page is rendered once, for real, and the variables its PHP
+  // made - with the answers of its named database tags - are written to the application's
+  // own _samples/<page>.json, where ?<page>&padSample finds them. The rendered page goes to
+  // standard output, the name of the file written to standard error.
+  //
+  // Anything else runs this cli application, as it always did.
+
+  if ( ( $argv [1] ?? '' ) === 'sample' ) {
+
+    $padApp       = $argv [2] ?? '';
+    $padPage      = $argv [3] ?? 'index';
+    $padSampleCli = TRUE;
+
+    $_REQUEST ['padSample'] = 'capture';
+
+  } else
+
+    $padApp = 'cli';
+
   $padApps = "$padHome/apps/";
   $padData = "$padHome/DATA/";
   

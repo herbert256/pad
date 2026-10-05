@@ -673,7 +673,7 @@ _tests/cart.txt   the expected answer
           <pre><code>?orders&amp;padSample
 <em>→ _samples/orders.json replaces orders.php</em></code></pre>
           <p>A designer could work on <code>orders.pad</code> without a database or a login. A <code>pad sample shop orders</code> command could capture the variables of a real render into that file. PAD already keeps data and template in separate paired files, so this fits it better than engines where a controller builds the template context. Database tags inside the template still need the database; the sample file could override them by name.</p>
-        </li>
+        <p class="done"><strong>Done.</strong> <code>?orders&amp;padSample</code> renders orders.pad with the variables of <code>_samples/orders.json</code> and runs no PHP at all (no page PHP, no <code>_inits.php</code>/<code>_exits.php</code>); a database tag with a <code>name=</code> the sample holds answers from it. <code>&amp;padSample=capture</code> writes a real render’s variables to <code>DATA/samples/</code>, and <code>apps/cli/pad sample &lt;app&gt; &lt;page&gt;</code> into the app’s <code>_samples/</code>; local requests only by default (<code>$padSample = 'local'</code>). Regression: pages cases; manual page; APP.md, TAGS.md, CLAUDE.md.</p></li>
 
         <li class="idea wide" id="treesitter">
           <div class="idea-top"><span class="number" aria-hidden="true">27</span><h3>A Tree-sitter grammar</h3><span class="effort">Medium–large</span></div>

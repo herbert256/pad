@@ -736,6 +736,33 @@ for flat `key: value` lines, `[a, b]` lists and `- item` lists.
 
 ---
 
+## Designer Preview with Sample Data
+
+A designer can work on `orders.pad` without the database or a login: `?orders&padSample`
+renders the template with the variables of `_samples/orders.json` (in the page's own
+directory) instead of running any PHP - not `orders.php`, nor the `_inits.php` and
+`_exits.php` around it.
+
+```json
+{
+  "title": "Orders",
+  "orders": [ { "number": 10100, "customer": "Atelier graphique" } ]
+}
+```
+
+- **Capture** the variables of a real render: `?orders&padSample=capture` writes them to
+  `DATA/samples/<app>/orders.json` (read by the preview as well), and
+  `apps/cli/pad sample <app> orders` writes them into the application's `_samples/`.
+- **Database tags** in the template still ask the database, unless they have a name the
+  sample holds: `{array "* from orders", name='orders'}` reads the sample's `orders`, and a
+  capture records the database's answer under that name.
+- **Who may ask** is `$padSample`: `'local'` (the default) a request this machine makes to
+  itself, `TRUE` everyone - only on a design server without real data, since the preview
+  skips the PHP's access checks - `FALSE` no one. A capture is always local-only.
+- An engine name (`pad*`, `pq*`, `_*`) in a sample is ignored; a page asked for with
+  `padSample` that has no sample is an error under the strict check. The page cache stays
+  out of both modes.
+
 ## Form Handling
 
 ### Automatic Form Variables

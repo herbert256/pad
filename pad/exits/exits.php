@@ -64,6 +64,12 @@
   if ( $padCache and $padCacheServerAge )
     include PAD . 'cache/exits.php';
 
+  // A capture of sample data (lib/sample.php) is written once the page has rendered, so the
+  // answers of the named database tags in its template are in it as well.
+
+  if ( $padSampleMode == 'capture' )
+    padSampleWrite ();
+
   include PAD . 'exits/output.php';
 
 ?>

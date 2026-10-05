@@ -1,0 +1,37 @@
+<h1>Designer preview with sample data</h1>
+
+<p>A page is two files: the PHP that gets the data and the template that shows it. A
+designer working on the template needs the data, but not the database, the login or the
+rest of the server behind it. Ask for the page with <code>&amp;padSample</code> and PAD runs
+no PHP at all - not the page's, nor an <code>_inits.php</code> or <code>_exits.php</code>
+around it - and takes the variables from <code>_samples/&lt;page&gt;.json</code> in the
+page's directory instead.</p>
+
+{example 'fragments/samples_1'}
+
+<p>Beside that page lies <code>fragments/_samples/samples_1.json</code>:</p>
+
+<pre>{open} "who": "a designer", "orders": [ {open} "number": 1, "total": 9.5 {close} ] {close}</pre>
+
+<p>so <a href="?fragments/samples_1&amp;padSample">?fragments/samples_1&amp;padSample</a>
+shows that order instead - from this machine only, see below.</p>
+
+<h2>Capturing a sample</h2>
+
+<ul>
+  <li><code>?orders&amp;padSample=capture</code> renders the page for real and writes the variables its PHP made to <code>DATA/samples/&lt;app&gt;/orders.json</code>, where the preview finds them too.</li>
+  <li><code>apps/cli/pad sample shop orders</code> does the same from the shell, into the application's own <code>_samples/orders.json</code>, to commit with the template. Read it first: it holds whatever the page read.</li>
+</ul>
+
+<h2>Database tags in the template</h2>
+
+<p>A database tag in the template still asks the database, unless it has a name the sample
+holds: <code>{open}array "* from orders", name='orders'{close}</code> reads the sample's
+<code>orders</code>, and a capture records the database's answer under that name.</p>
+
+<h2>Who may ask</h2>
+
+<p>Skipping the PHP skips the checks it makes, so <code>$padSample</code> decides:
+<code>'local'</code>, the default, honours <code>padSample</code> for a request this machine
+makes to itself; <code>TRUE</code> for everyone - only on a design server without real data
+behind it; <code>FALSE</code> never. A capture is always local only.</p>

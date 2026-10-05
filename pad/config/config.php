@@ -32,6 +32,14 @@
 
   $padErrorKeep      = 100;
 
+  // Designer preview: ?orders&padSample renders orders.pad with the variables of
+  // _samples/orders.json instead of running the PHP - no database, no login (lib/sample.php).
+  // 'local' honours it for a request this machine makes to itself, TRUE for every request -
+  // a design server with no real data behind it - and FALSE never. Skipping the PHP skips
+  // the access checks it makes, so it is never TRUE on a server with real data.
+
+  $padSample         = 'local';
+
 
   $padEvalTrace = FALSE;
 
