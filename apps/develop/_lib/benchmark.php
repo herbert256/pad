@@ -26,7 +26,7 @@
 
   function benchWindow () {
 
-    return max ( 1, min ( 24, (int) ( $_GET ['window'] ?? 4 ) ) );
+    return padNumberClamp ( (int) padRequest ( 'window', 4 ), 1, 24 );
 
   }
 

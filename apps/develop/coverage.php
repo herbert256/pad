@@ -16,14 +16,16 @@
 
   $coverDir = DATA . 'coverage/';
 
-  if ( isset ( $_GET ['start'] ) )
-    padFilePut ( 'coverage/recording', padCoverageName ( $_GET ['start'] ) );
+  if ( padRequestHas ( 'start' ) )
+    padFilePut ( 'coverage/recording', padCoverageName ( padRequest ( 'start' ) ) );
 
-  if ( isset ( $_GET ['stop'] ) and file_exists ( $coverDir . 'recording' ) )
+  if ( padRequestHas ( 'stop' ) and file_exists ( $coverDir . 'recording' ) )
     unlink ( $coverDir . 'recording' );
 
-  if ( isset ( $_GET ['clear'] ) and file_exists ( $coverDir . padCoverageName ( $_GET ['clear'] ) . '.jsonl' ) )
-    unlink ( $coverDir . padCoverageName ( $_GET ['clear'] ) . '.jsonl' );
+  $coverClear = padRequestHas ( 'clear' ) ? $coverDir . padCoverageName ( padRequest ( 'clear' ) ) . '.jsonl' : '';
+
+  if ( $coverClear !== '' and file_exists ( $coverClear ) )
+    unlink ( $coverClear );
 
   $coverRecording = file_exists ( $coverDir . 'recording' ) ? padCoverageName ( file_get_contents ( $coverDir . 'recording' ) ) : '';
 
@@ -32,8 +34,8 @@
   foreach ( padCoverageRuns () as $coverOne )
     $coverRuns [] = [ 'run' => $coverOne ];
 
-  $coverRun    = isset ( $_GET ['run'] ) ? padCoverageName ( $_GET ['run'] ) : '';
-  $coverFile   = (string) ( $_GET ['file'] ?? '' );
+  $coverRun    = padRequestHas ( 'run' ) ? padCoverageName ( padRequest ( 'run' ) ) : '';
+  $coverFile   = (string) padRequest ( 'file', '' );
   $coverFiles  = [];
   $coverUnread = [];
   $coverSource = '';

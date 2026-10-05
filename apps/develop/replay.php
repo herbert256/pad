@@ -12,12 +12,12 @@
   // Record with $padRecord = TRUE (or a store name) in an application's _config/config.php,
   // or one request with ?page&padRecord=name.
 
-  $replayStore = isset ( $_GET ['store'] ) ? padCoverageName ( $_GET ['store'] ) : '';
+  $replayStore = padRequestHas ( 'store' ) ? padCoverageName ( padRequest ( 'store' ) ) : '';
 
-  if ( $replayStore and isset ( $_GET ['delete'] ) )
-    padReplayDelete ( $replayStore, (string) $_GET ['delete'] );
+  if ( $replayStore and padRequestHas ( 'delete' ) )
+    padReplayDelete ( $replayStore, (string) padRequest ( 'delete' ) );
 
-  if ( $replayStore and isset ( $_GET ['clear'] ) )
+  if ( $replayStore and padRequestHas ( 'clear' ) )
     padReplayDelete ( $replayStore );
 
   $replayStores = [];
@@ -29,7 +29,7 @@
   $replayCount   = 0;
   $replaySame    = 0;
 
-  if ( $replayStore and ! isset ( $_GET ['clear'] ) ) {
+  if ( $replayStore and ! padRequestHas ( 'clear' ) ) {
 
     $replayCases = padReplayCases ( $replayStore );
 
@@ -37,7 +37,7 @@
 
       $replayCount++;
 
-      $replayAccept = ( isset ( $_GET ['acceptAll'] ) || ( $_GET ['accept'] ?? '' ) === $replayOne ['id'] );
+      $replayAccept = ( padRequestHas ( 'acceptAll' ) or padRequest ( 'accept', '' ) === $replayOne ['id'] );
 
       if ( $replayOne ['same'] ) {
         $replaySame++;

@@ -36,7 +36,7 @@
 
   unset ( $iterator, $linksOne, $linksPath, $linksFile, $linksApp, $linksBroken );
 
-  usort ( $brokenLinks, fn ( $a, $b ) => strcmp ( $a ['file'], $b ['file'] ) );
+  $brokenLinks = padArrSortBy ( $brokenLinks, 'file' );
 
   $title = 'Broken links';
 

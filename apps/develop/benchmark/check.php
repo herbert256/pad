@@ -8,8 +8,8 @@
 
   set_time_limit ( 300 );
 
-  $benchThreshold = max ( 1, (int) ( $_GET ['threshold'] ?? 25 ) );
-  $benchFloor     = max ( 0, (float) ( $_GET ['floor']     ?? 5  ) );
+  $benchThreshold = max ( 1, (int)   padRequest ( 'threshold', 25 ) );
+  $benchFloor     = max ( 0, (float) padRequest ( 'floor',     5  ) );
 
   $benchUrls    = benchUrls ();
   $benchHistory = padBenchHistory ();

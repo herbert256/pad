@@ -5,7 +5,7 @@ protected, with no list of routes to keep in step.</p>
 
 <p>The guard of this manual's <code>guarded/</code> directory:</p>
 
-<pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The pages in this directory open only to a request that says ?pass=yes.<br><br>  </span><span style="color: #007700">return ( </span><span style="color: #0000BB">$_GET </span><span style="color: #007700">[</span><span style="color: #DD0000">'pass'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'' </span><span style="color: #007700">) === </span><span style="color: #DD0000">'yes'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+<pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The pages in this directory open only to a request that says ?pass=yes.<br><br>  </span><span style="color: #007700">return </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'pass' </span><span style="color: #007700">) === </span><span style="color: #DD0000">'yes'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
 
 <ul>
   <li>Returning <code>FALSE</code> - or anything that is not true: <code>NULL</code>,
