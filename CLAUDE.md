@@ -771,8 +771,8 @@ Output: `Alice, Bob, Charlie`
 
 | Function | Description |
 |----------|-------------|
-| `padFileGet($file, $default)` | Read file contents |
-| `padFilePut($file, $data, $append)` | Write file contents |
+| `padFileGet($file, $default)` | Read file contents - a relative path is under `DATA/` |
+| `padFilePut($file, $data, $append)` | Write file contents - under `DATA/` only, a relative path there too |
 | `padFileCheck($file)` | Validate file path |
 
 ### Evaluation

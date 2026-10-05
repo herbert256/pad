@@ -429,7 +429,7 @@
 
     $chk3 = [ 'padPage','padSesID','padReqID','padRefID','PHPSESSID' ];
 
-    $settings = padFileGet ( 'config/config.php' );
+    $settings = padFileGet ( PAD . 'config/config.php' );
 
     foreach ($GLOBALS as $key => $value)
 

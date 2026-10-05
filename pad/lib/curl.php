@@ -38,7 +38,7 @@
 
     try {
 
-      // A URL is read as one - padFileGet roots its path under the engine and refuses the
+      // A URL is read as one - padFileGet roots a relative path under DATA and refuses the
       // // of a scheme, so every fetch used to come back as an empty 200.
 
       $result = str_contains ( $output ['url'], '://' )

@@ -4,9 +4,9 @@
   // writes stay inside the tree and get logged.
   //
   // padFileGet   reads a file, returning $default rather than failing. A relative path is
-  //              taken as relative to PAD, and only PAD, APPS and DATA are reachable;
+  //              taken as relative to DATA, and only PAD, APPS and DATA are reachable;
   //              php://input is the one special case, for a raw request body
-  // padFilePut   writes (or appends) under DATA only - a relative path is forced there -
+  // padFilePut   writes (or appends) under DATA only - a relative path is taken there -
   //              creating the directory with $padDirMode and the file with $padFileMode if
   //              needed, encoding arrays and objects as JSON, and locking the write
   // padFileCheck the shared path guard: absolute, no .., no //, no control characters. It
@@ -25,10 +25,13 @@
     if ( $file == 'php://input' )
       return file_get_contents ( 'php://input' );
 
+    // A relative path is a DATA path, as it is to padFilePut: it was the engine's own
+    // directory here, so a put and then a get of the same name met two different files.
+
     if ( ! str_starts_with($file, PAD) and 
          ! str_starts_with($file, APPS) and 
          ! str_starts_with($file, DATA) )
-      $file = PAD . $file;
+      $file = DATA . $file;
 
     $check = padFileCheck ( $file );
     if ( $check )
