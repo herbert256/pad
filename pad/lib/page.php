@@ -9,6 +9,8 @@
   //               page of its own, to the bracketed routes (padPageRoute, lib/route.php)
   // padPage       walks the name segment by segment from APP down, and returns the page,
   //               or "$page/index" when the name turned out to be a directory, or FALSE
+  // padPageVirtual   a page an entry point supplies the template of: a valid name in an
+  //                  existing directory, its own files optional
   // padPageExists    does any of the three page files exist for this base - .php, .pad
   //                  or .html, which is a template like .pad in every way
   // padPageTemplate  the template text for a page base: the .pad, or failing that the
@@ -32,6 +34,21 @@
   function padPageCheck ( $page, $app=APP ) {
 
     return padPageRoute ( $page, $app ) ['page'] ?? FALSE;
+
+  }
+
+  // A page whose template an entry point hands over as text ($padPageSource, see
+  // inits/page.php): a name padPageCheck would accept the form of, in a directory of the
+  // application that exists - the page's own files need not.
+
+  function padPageVirtual ( $page ) {
+
+    if ( ! preg_match ( '/^[a-zA-Z0-9][a-zA-Z0-9_\/-]*$/D', $page ) ) return FALSE;
+    if ( strpos ( $page, '//' ) !== FALSE )                         return FALSE;
+    if ( substr ( $page, -1 ) == '/' )                              return FALSE;
+    if ( strpos ( $page, '/_' ) !== FALSE )                         return FALSE;
+
+    return is_dir ( dirname ( APP . $page ) );
 
   }
 

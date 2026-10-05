@@ -29,3 +29,12 @@ select it, or select just what is inside it. Whether a tag is a pair is decided 
 decides it: <code>{open}orders{close}</code> opens a block only when a <code>{open}/orders{close}</code>
 closes it further on, so <code>{open}else{close}</code> and <code>{open}echo $x{close}</code> stay
 single tags.</p>
+
+<h2>AI assistants</h2>
+
+<p><code>editors/mcp/pad-mcp.js</code> is an MCP server: an assistant such as Claude Code asks
+the engine itself instead of relying on what it remembers. It renders a page, or a template
+that exists in no file yet, and runs the strict syntax check on it; it traces a request, lists
+the applications, their pages and the built-ins, looks a tag or function up in the reference,
+and runs the regression suites. Register it with
+<code>claude mcp add pad -- node editors/mcp/pad-mcp.js</code>.</p>

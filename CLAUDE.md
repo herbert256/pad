@@ -1417,7 +1417,12 @@ strict syntax check of a page with its real data:
 ```bash
 php editors/render.php demo clock
 php editors/render.php regression/errors syntax/a_case_never_closes   # 1 + {"error":"PAD: the pair ..."}
+echo '{$total | money}' | php editors/render.php shop orders --source=-  # a template text, with orders.php's data
+php editors/render.php demo clock --trace --host=http://localhost/pad/   # trace in DATA/trace/clock/
 ```
+
+`--source` hands the text to the engine in `$padPageSource`, which only an entry point can
+set: the page then needs no file of its own.
 
 ---
 
@@ -1433,6 +1438,16 @@ assigns it. `node editors/lsp/test.js` tests it; `./ci.sh` runs that as its `lsp
 folding of tag pairs, text objects - whose scanner pairs `{x}` with `{/x}` the way the
 engine does; the built-in names in its highlight queries are written by
 `php editors/generate.php`, and `./ci.sh` checks it as its `treesitter` line.
+
+### MCP server
+
+`editors/mcp/pad-mcp.js` lets an assistant ask the engine instead of this file - register it
+with `claude mcp add pad -- node /Users/herbert/pad/editors/mcp/pad-mcp.js`. Its tools:
+`pad_render` and `pad_check` (a page, or a template string not saved anywhere, through the
+strict syntax check - `pad_check` with only an app checks every page), `pad_trace`,
+`pad_apps`, `pad_pages`, `pad_builtins`, `pad_reference` (a tag or function in
+`docs/reference`) and `pad_test` (`./ci.sh` with the failing tests). Tested by
+`node editors/mcp/test.js`, the `mcp` line of `./ci.sh`.
 
 ---
 

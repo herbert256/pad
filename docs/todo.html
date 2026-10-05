@@ -944,7 +944,7 @@ _events/output.php   post-process the final HTML</code></pre>
           <div class="idea-top"><span class="number" aria-hidden="true">50</span><h3>An MCP server for AI assistants</h3><span class="effort">Medium</span></div>
           <p><a href="https://github.com/herbert256/pad/blob/master/pad/error/claude.php"><code>pad/error/claude.php</code></a> already returns machine-readable JSON errors to local tools. A small MCP server could let assistants:</p>
           <ul>
-            <li>render a page and read the trace of a request;</li>
+            <li>render a page and read the trace of a request;<p class="done"><strong>Done.</strong> <code>editors/mcp/pad-mcp.js</code> (stdio, no dependencies) answers from the checkout’s own engine with eight tools - <code>pad_render</code>, <code>pad_check</code> (a template string, a page or every page of an app, under the strict check), <code>pad_trace</code>, <code>pad_apps</code>, <code>pad_pages</code>, <code>pad_builtins</code>, <code>pad_reference</code>, <code>pad_test</code> (runs ci.sh); register it with <code>claude mcp add pad -- node editors/mcp/pad-mcp.js</code>. An entry point can hand the engine a template as text (<code>$padPageSource</code>), merged beside clean-URL routing. Regression: <code>node editors/mcp/test.js</code> (43 checks), the <em>mcp</em> line of ci.sh; manual page <em>Editor support</em>; README, CLAUDE.md.</p></li>
             <li>list apps, pages and tags;</li>
             <li>look up a tag or function in the reference;</li>
             <li>run <code>pad lint</code> and a suite.</li>

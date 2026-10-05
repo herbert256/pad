@@ -336,82 +336,11 @@ function contextAt(text, offset) {
 
 // ---------------- the reference documentation ----------------
 
-const DOCS = {
-    tag: ['TAGS.md', 'CONSTRUCTS.md'],
-    function: ['FUNCTIONS.md'],
-    option: ['OPTIONS.md', 'HANDLING.md'],
-    property: ['PROPERTIES.md'],
-    prefix: ['TYPES.md', 'TAGS.md'],
-    construct: ['CONSTRUCTS.md'],
-};
-
-const docCache = new Map();
-
-// One reference file as two indexes: the ### sections by the name(s) of their heading, and
-// the table rows by the `name` in their first cell, each row with its table's header.
-function parseDoc(file) {
-    if (docCache.has(file)) return docCache.get(file);
-    const lines = readText(file).split('\n');
-    const sections = new Map();
-    const rows = new Map();
-    const add = (map, key, val) => { if (!map.has(key)) map.set(key, []); map.get(key).push(val); };
-    const keyOf = (t) => t.replace(/`/g, '').trim().replace(/^\{|\}$/g, '').replace(/[:@]$/, '');
-
-    let fence = false, section = null, chapter = '', header = null;
-    for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
-        if (/^\s*```/.test(line)) fence = !fence;
-        const heading = !fence && line.match(/^(#{1,3})\s+(.*)$/);
-        if (heading || (!fence && /^---\s*$/.test(line))) {
-            if (section) section.end = i;
-            section = null;
-            if (heading && heading[1].length === 2) chapter = heading[2].trim();
-            if (heading && heading[1].length === 3) {
-                section = { heading: heading[2].trim(), start: i + 1, end: lines.length, chapter };
-                for (const part of heading[2].split(/\s+\/\s+|,\s*/)) {
-                    const key = part.replace(/`/g, '').trim();
-                    if (/^@?[A-Za-z_][A-Za-z0-9_]*@?$/.test(key)) add(sections, key, section);
-                }
-            }
-        }
-        if (!fence && line.startsWith('|')) {
-            if (!(lines[i - 1] || '').startsWith('|')) { header = line; continue; }
-            if (/^\|[\s:|-]+\|?\s*$/.test(line)) continue;
-            const first = line.split('|')[1] || '';
-            for (const m of first.matchAll(/`([^`]+)`/g)) {
-                const key = keyOf(m[1]);
-                if (/^[A-Za-z_][A-Za-z0-9_]*$/.test(key)) add(rows, key, { header, row: line, chapter });
-            }
-        }
-    }
-    const doc = { lines, sections, rows };
-    docCache.set(file, doc);
-    return doc;
-}
+// The sections and table rows of docs/reference/*.md, shared with the MCP server.
+const reference = require(path.join(__dirname, '..', 'reference.js'));
 
 function docText(home, role, word) {
-    const parts = [];
-    const key = role === 'construct' ? '@' + word + '@' : word;
-    for (const name of DOCS[role] || []) {
-        const file = path.join(home, 'docs', 'reference', name);
-        if (!isFile(file)) continue;
-        const doc = parseDoc(file);
-        const sec = (doc.sections.get(key) || [])[0];
-        if (sec) {
-            let body = doc.lines.slice(sec.start, sec.end).join('\n').trim().split('\n');
-            if (body.length > 40) body = body.slice(0, 40).concat(['...']);
-            parts.push('### ' + sec.heading + '\n\n' + body.join('\n') + '\n\n*docs/reference/' + name + '*');
-            continue;
-        }
-        const row = (doc.rows.get(key) || [])[0];
-        if (row) {
-            const cols = row.header.split('|').length - 2;
-            parts.push(row.header + '\n|' + ' --- |'.repeat(Math.max(cols, 1)) + '\n' + row.row
-                + '\n\n*docs/reference/' + name + (row.chapter ? ' - ' + row.chapter : '') + '*');
-        }
-        if (parts.length >= 2) break;
-    }
-    return parts.join('\n\n---\n\n');
+    return reference.lookup(home, role, word, 2).map((e) => e.text).join('\n\n---\n\n');
 }
 
 // The opening comment of an application's own tag or function file, or the first lines of

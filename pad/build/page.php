@@ -10,11 +10,11 @@
   // appended as content, NULL drops the page's content and template (the _exits.php chain
   // still runs), FALSE selects the @else@ half.
   //
-  // The .pad template is appended - its {meta} tags applied by lib/meta.php and its layout
-  // blocks resolved against the frame by lib/layout.php - build/split.php cuts the text at
-  // an @else@, and unless
-  // the page produced no data of its own the result is wrapped in {padBuild for="..."} so
-  // the level engine iterates $padBuild, one occurrence per row.
+  // The .pad template is appended - or the text an entry point handed over in
+  // $padPageSource - its {meta} tags applied by lib/meta.php and its layout blocks resolved
+  // against the frame by lib/layout.php - build/split.php cuts the text at an @else@, and
+  // unless the page produced no data of its own the result is wrapped in
+  // {padBuild for="..."} so the level engine iterates $padBuild, one occurrence per row.
   //
   // Where the template sits in that text - $padSrcAt, $padSrcSize, $padSrcFile - is kept
   // for the source map: what this returns becomes $padSrcPage, the template as its own
@@ -76,8 +76,19 @@
     if ( ! is_array ($padCallPHP) and $padCallPHP !== TRUE and $padCallPHP !== FALSE )
       $padBuildTrue .= $padCallPHP;
 
-    $padSrcFile       = file_exists ( APP . "$padPage.pad" ) ? APP . "$padPage.pad" : APP . "$padPage.html";
-    $padBuildOwn      = padPageTemplate ( APP . $padPage );
+    // A template the entry point handed over as text stands in for the page's file - once:
+    // a restart, or a page built inside this one, reads its own file again. It is no file,
+    // so the source map leaves it out.
+
+    if ( isset ( $GLOBALS ['padPageSource'] ) ) {
+      $padSrcFile  = '';
+      $padBuildOwn = $GLOBALS ['padPageSource'];
+      unset ( $GLOBALS ['padPageSource'] );
+    } else {
+      $padSrcFile  = file_exists ( APP . "$padPage.pad" ) ? APP . "$padPage.pad" : APP . "$padPage.html";
+      $padBuildOwn = padPageTemplate ( APP . $padPage );
+    }
+
     $padBuildTemplate = padMetaBuild ( $padBuildOwn );
 
   } else

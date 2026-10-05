@@ -35,6 +35,20 @@
 
   $padRouteFound = padPageRoute ( $padPage );
 
+  // An entry point may hand over the page's template as text, in $padPageSource - only
+  // editors/render.php does, for the tooling that checks a template not saved yet or kept
+  // in no file at all. Its page needs no file of its own then, only a well-formed name in
+  // a directory of the application: the page's .php runs when there is one, and the
+  // directory's _inits and _tags apply. The web entry never sets it, and no request value
+  // fills a pad* name.
+
+  $padPageVirtual = ( isset ( $GLOBALS ['padPageSource'] )
+                      and ! $padRouteFound
+                      and padPageVirtual ( $padPage ) );
+
+  if ( $padPageVirtual )
+    $padRouteFound = [ 'page' => $padPage, 'vars' => [] ];
+
   // sitemap.xml and robots.txt - ?sitemap.xml reaches PHP as sitemap_xml - are the engine's
   // to answer when the application has no page of that name (lib/sitemap.php). Whether it
   // answers them is a setting, and the configuration is read after this file, so the

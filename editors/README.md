@@ -12,8 +12,10 @@
 | `kate/` | Kate / KWrite / Qt Creator | XML syntax definition with HTML include | copy `pad.xml` to `~/.local/share/org.kde.syntax-highlighting/syntax/` |
 | `emacs/` | Emacs | `pad-mode` derived from `mhtml-mode` with PAD font-lock and `{-- --}` comments | `(add-to-list 'load-path ".../editors/emacs") (require 'pad-mode)` |
 | `padrun.sh` | shared | Renders a `.pad` file through `http://localhost/pad/` (used by the Sublime build and the VS Code task) | - |
-| `render.php` | shared | Renders a page of any application on the command line, no server needed: `php editors/render.php <app> [<page>]` - status 1 and the JSON error of `pad/error/claude.php` when PAD reports one (used by the language server's diagnostics) | - |
-| `fixture/` | tests | The application `shop` the tooling tests run against (`editors/lsp/test.js`) | - |
+| `mcp/` | AI assistants (Claude Code, any MCP client) | An MCP server: render a page or a template string, the strict syntax check of a template, a page or a whole application, the trace of a request, the applications, pages and built-ins, the reference, the regression suites | `claude mcp add pad -- node .../editors/mcp/pad-mcp.js` - see `mcp/README.md` |
+| `render.php` | shared | Renders a page of any application on the command line, no server needed: `php editors/render.php <app> [<page>]`, with `--source=<file>\|-` a template text in place of the page's own, `--query=a=1`, `--trace`, `--host=<base>` - status 1 and the JSON error of `pad/error/claude.php` when PAD reports one (used by the language server and the MCP server) | - |
+| `reference.js` | shared | The `docs/reference` sections and the built-in names, read for the language server's hover and the MCP server's lookups | - |
+| `fixture/` | tests | The application `shop` the tooling tests run against (`editors/lsp/test.js`, `editors/mcp/test.js`) | - |
 
 JetBrains IDEs (PhpStorm): install the bundled "TextMate Bundles" plugin,
 then Settings > Editor > TextMate Bundles > `+` and select `editors/vscode/pad`
