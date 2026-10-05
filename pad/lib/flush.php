@@ -35,7 +35,7 @@
   function padFlush () {
 
     global $padOut, $padStart, $padFlushRaw, $padTidy, $padMyTidy, $padGzip, $padCache,
-           $padWebEtag304, $padLen;
+           $padWebEtag304, $padLen, $padCsrf;
 
     $raw = substr ( $padOut [0], 0, $padStart [0] );
 
@@ -55,6 +55,14 @@
 
       $padFlushRaw = '';
 
+      // With $padCsrf on, the session that holds the forms' token starts now, while its
+      // cookie can still go out with the headers: a form below the flush asked for it after
+      // they had gone, could start no session, and carried an empty token that every post
+      // of it failed (lib/csrf.php).
+
+      if ( $padCsrf )
+        padCsrfToken ();
+
       padWebHeaders ( 200 );
 
     }
@@ -62,9 +70,16 @@
     $padFlushRaw .= $chunk;
 
     // A {stack} in the part that goes now gets the pushes made so far: what is pushed after
-    // the flush cannot reach text the browser already has.
+    // the flush cannot reach text the browser already has. Its posting forms get the CSRF
+    // token as exits/exits.php gives it to the rest of the page - the part sent early went
+    // out without it.
 
-    padFlushSend ( padUnprotect ( padUnescape ( padStackFill ( $chunk ) ) ) );
+    $chunk = padUnprotect ( padUnescape ( padStackFill ( $chunk ) ) );
+
+    if ( $padCsrf )
+      $chunk = padCsrfForms ( $chunk );
+
+    padFlushSend ( $chunk );
 
   }
 
