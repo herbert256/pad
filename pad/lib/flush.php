@@ -58,9 +58,11 @@
       // With $padCsrf on, the session that holds the forms' token starts now, while its
       // cookie can still go out with the headers: a form below the flush asked for it after
       // they had gone, could start no session, and carried an empty token that every post
-      // of it failed (lib/csrf.php).
+      // of it failed (lib/csrf.php). Only when the page holds a form, or the visitor has a
+      // session already: on every flushed page it gave each visitor - each bot - a session
+      // and a cookie, which also kept that visitor out of the page cache from then on.
 
-      if ( $padCsrf )
+      if ( $padCsrf and ( isset ( $_COOKIE [ session_name () ] ) or preg_match ( '/<form\b|\{form\b/i', $padOut [0] ) ) )
         padCsrfToken ();
 
       padWebHeaders ( 200 );
