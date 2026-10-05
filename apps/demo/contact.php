@@ -2,7 +2,7 @@
 
   $title = 'Contact Form';
   $dataFile = DATA . 'demo/messages.json';
-  $successMsg = '';
+  $successMsg = isset ( $sent ) ? 'Thank you for your message! We will get back to you soon.' : '';
   $error = '';
   $errors = [];
 
@@ -53,9 +53,11 @@
 
       file_put_contents ( $dataFile, json_encode ( $messages, JSON_PRETTY_PRINT ) );
 
-      $successMsg = 'Thank you for your message! We will get back to you soon.';
+      // Post, redirect, get: the browser is sent on to a plain GET of this page, so a
+      // refresh shows the empty form instead of sending the message a second time. A
+      // form with errors is answered in place, keeping what was typed.
 
-      $formName = $formEmail = $formSubject = $formMessage = '';
+      padRedirect ( 'contact', [ 'sent' => 1 ] );
     }
     else
       $error = 'Please correct the errors below.';

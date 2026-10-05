@@ -2,7 +2,7 @@
 
   $title = 'Guestbook';
   $dataFile = DATA . 'demo/guestbook.json';
-  $message = '';
+  $message = isset ( $signed ) ? 'Thank you for signing the guestbook!' : '';
   $error = '';
 
   if ( ! is_dir ( DATA . 'demo' ) )
@@ -26,7 +26,11 @@
       ];
       array_unshift ( $entries, $entry );
       file_put_contents ( $dataFile, json_encode ( $entries, JSON_PRETTY_PRINT ) );
-      $message = 'Thank you for signing the guestbook!';
+
+      // Post, redirect, get: the browser is sent on to a plain GET of this page, so a
+      // refresh shows the guestbook again instead of signing it a second time.
+
+      padRedirect ( 'guestbook', [ 'signed' => 1 ] );
     }
     else
       $error = 'Please fill in both name and message.';
