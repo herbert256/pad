@@ -10,6 +10,7 @@ The simplest possible PAD application demonstrating the basic page pairing conce
 |------|-------------|
 | `index.php` | Data file - sets `$message` variable |
 | `index.pad` | Template file - renders the message |
+| `_config/config.php` | Switches `_common` off: the page is a whole HTML document of its own |
 
 ## Code
 

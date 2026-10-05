@@ -10,7 +10,7 @@
   $padTidyCcsid  = 'utf8';
   $padTidyConfig = [
     'output-html'         => TRUE,
-    'doctype'             => 'loose',
+    'doctype'             => 'html5',
     'wrap'                => 0,
     'indent'              => TRUE,
     'tab-size'            => 2,
