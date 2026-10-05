@@ -272,6 +272,24 @@ function padSplitOnUnquotedColon ( $str ) {
   }
 
 
+  // Whitespace control: a ~ just inside a brace takes the whitespace on that side of it,
+  // newlines included - {~items} what stands before the tag, {/items~} what follows it,
+  // {items~} the start of the content. Only a brace that opens a tag counts, so a ~ in
+  // text, in CSS or in a quoted parameter is left alone.
+
+  function padTildeStrip ( $text ) {
+
+    if ( ! is_string ( $text ) or ! str_contains ( $text, '~' ) )
+      return $text;
+
+    $text = preg_replace ( '/\s*\{~(?=[\/A-Za-z_$!#&?^@])/', '{', $text );
+    $text = preg_replace ( '/(\{[\/A-Za-z_$!#&?^@][^{}]*?)~\}\s*/', '$1}', $text );
+
+    return $text;
+
+  }
+
+
   // The second comment form, {-- ... --}, the one the reference and every editor kit
   // write. The {-- must be followed by whitespace, so a CSS custom property inside an
   // {ignore} block - :root{--gap:4px} - is never read as a comment; the comment closes at

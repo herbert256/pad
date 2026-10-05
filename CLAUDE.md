@@ -483,6 +483,18 @@ Two forms, both dropped before the template is scanned, so a tag inside one neve
 `{--` must be followed by whitespace - `:root{--gap:4px}` inside `{ignore}` is CSS, not a
 comment - and both forms close at the first `#}` / `--}` after them.
 
+### Whitespace control
+A `~` just inside a brace takes the whitespace on that side, newlines included:
+```
+<ul>
+  {~items~}                  # nothing before the tag, nothing at the start of the content
+    <li>{$name}</li>
+  {~/items~}                 # nothing before or after the closing tag
+</ul>
+{spaceless}...{/spaceless}   # the whitespace between HTML tags goes
+```
+Only a brace that opens a tag counts; a `~` in text or a quoted parameter stays.
+
 ### Ignore - Preventing PAD from Parsing Curly Braces
 
 The `ignore` feature tells PAD not to parse curly braces `{}` as PAD tags. Essential for JavaScript, JSON, CSS, or any content with curly braces.

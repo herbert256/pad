@@ -538,6 +538,24 @@ Format/beautify HTML content.
 
 ---
 
+### spaceless
+Take out the whitespace between HTML tags, and at both ends.
+
+```html
+{spaceless}
+  <ul>
+    <li>a b</li>
+  </ul>
+{/spaceless}
+```
+
+**Result:** `<ul><li>a b</li></ul>` - text inside a tag keeps its spaces.
+
+**Related:** a `~` just inside any tag's brace trims the whitespace on that side of it:
+`{~tag}` what stands before, `{tag~}` and `{/tag~}` what follows - newlines included.
+
+---
+
 ### ignore
 Escape PAD syntax in content.
 
@@ -924,6 +942,7 @@ Resume a previously ceased sequence iteration.
 | `echo` | Output | Evaluate/output |
 | `output` | Output | Set output type |
 | `tidy` | Output | Format HTML |
+| `spaceless` | Output | Remove whitespace between HTML tags |
 | `ignore` | Output | Escape content |
 | `reactData` | Output | React mount point with provider data |
 | `cache` | Output | Keep a section rendered (fragment cache) |

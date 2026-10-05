@@ -516,7 +516,7 @@
   {/items~}
 &lt;/ul&gt;</code></pre>
           <p>Only <code>{tidy}</code>, <code>@tidy@</code> and the <code>trim</code> pipe handle whitespace today. A <code>~</code> just inside a brace would remove the whitespace on that side, newline included. It matters most where tidy cannot help: plain-text emails, CSV, JSON, console output and <code>inline-block</code> layouts. A <code>{spaceless}</code> pair could cover whole blocks.</p>
-          <p class="references"><strong>Precedents:</strong> <a href="https://twig.symfony.com/doc/3.x/templates.html#whitespace-control">Twig whitespace control</a> · <a href="https://smarty-php.github.io/smarty/stable/designers/language-builtin-functions/language-function-strip/">Smarty strip</a></p>
+          <p class="done"><strong>Done.</strong> <code>{~tag}</code>, <code>{tag~}</code>, <code>{~/tag~}</code> trim the whitespace on that side, newlines included (<code>padTildeStrip</code> in lib/level.php, at occurrence init; only a brace that opens a tag counts), and a <code>{spaceless}</code> pair. Regression: pages <code>tags/tilde</code> (exact body; fails on the old engine), framework <code>tags/a_tilde_in_text_or_a_parameter_is_kept</code> and <code>tags/spaceless_*</code>; manual page <em>Whitespace control</em>; TAGS.md, CLAUDE.md.</p><p class="references"><strong>Precedents:</strong> <a href="https://twig.symfony.com/doc/3.x/templates.html#whitespace-control">Twig whitespace control</a> · <a href="https://smarty-php.github.io/smarty/stable/designers/language-builtin-functions/language-function-strip/">Smarty strip</a></p>
         </li>
 
         <li class="idea" id="debug">
