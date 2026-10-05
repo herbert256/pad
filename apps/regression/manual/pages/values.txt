@@ -1,0 +1,313 @@
+<p>A page's PHP spends much of its time asking whether a value is there, picking a default
+when it is not, and guarding the parts that may fail. These helpers say each of those in one
+call - the functions Laravel knows as <code>blank()</code>, <code>filled()</code>,
+<code>value()</code>, <code>transform()</code>, <code>tap()</code>, <code>retry()</code>,
+<code>rescue()</code> and <code>once()</code>. They are loaded on every request, like the
+rest of <code>pad/lib/</code>.</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+  <tr><th>function</th><th>what it does</th></tr>
+  <tr><td><code>padBlank ( $value )</code></td><td>TRUE for NULL, <code>''</code> or only whitespace, an empty array, an empty Countable - FALSE for <code>0</code>, <code>'0'</code>, FALSE and every other value</td></tr>
+  <tr><td><code>padFilled ( $value )</code></td><td>the opposite of padBlank</td></tr>
+  <tr><td><code>padValue ( $value, ...$args )</code></td><td>a Closure called with the arguments, anything else answered as it is</td></tr>
+  <tr><td><code>padTransform ( $value, $callback, $default )</code></td><td>the callback's answer for a filled value, the default for a blank one</td></tr>
+  <tr><td><code>padTap ( $value, $callback )</code></td><td>hands the value to the callback and answers the value itself</td></tr>
+  <tr><td><code>padRetry ( $times, $callback, $sleepMilliseconds, $when )</code></td><td>calls the callback until it stops throwing, at most <code>$times</code> times</td></tr>
+  <tr><td><code>padRescue ( $callback, $rescue, $report )</code></td><td>the callback's answer, or the rescue value when it throws</td></tr>
+  <tr><td><code>padOnce ( $callback )</code></td><td>runs the callback once per request for the line that calls it</td></tr>
+</table>
+
+<h2>Blank and filled</h2>
+
+<p>PHP's <code>empty()</code> calls a quantity of <code>'0'</code> empty and a remark of a
+few spaces filled. <code>padBlank</code> is the test a page means: nothing there is NULL,
+text of nothing but whitespace (a non-breaking space too), an empty array and an empty
+Countable. A number and a boolean are always values.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/values_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/values_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A form came back: which fields did the visitor fill in? PHP's empty() calls the zero<br>  // quantity empty and the spaces filled - padBlank calls them the other way round.<br><br>  </span><span style="color: #0000BB">$posted </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">, </span><span style="color: #DD0000">'quantity' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'0'</span><span style="color: #007700">, </span><span style="color: #DD0000">'remarks' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'   '</span><span style="color: #007700">, </span><span style="color: #DD0000">'coupon' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">NULL</span><span style="color: #007700">, </span><span style="color: #DD0000">'tags' </span><span style="color: #007700">=&gt; [] ];<br><br>  </span><span style="color: #0000BB">$answers </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$posted </span><span style="color: #007700">as </span><span style="color: #0000BB">$name </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$value </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$answers </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'name'  </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$name</span><span style="color: #007700">,<br>                    </span><span style="color: #DD0000">'value' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">json_encode </span><span style="color: #007700">( </span><span style="color: #0000BB">$value </span><span style="color: #007700">),<br>                    </span><span style="color: #DD0000">'blank' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padBlank </span><span style="color: #007700">( </span><span style="color: #0000BB">$value </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'blank' </span><span style="color: #007700">: </span><span style="color: #DD0000">'filled'</span><span style="color: #007700">,<br>                    </span><span style="color: #DD0000">'empty' </span><span style="color: #007700">=&gt; empty ( </span><span style="color: #0000BB">$value </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'empty' </span><span style="color: #007700">: </span><span style="color: #DD0000">'not empty' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table border="1" cellpadding="4" cellspacing="0"&gt;<br>  &lt;tr&gt;&lt;th&gt;field&lt;/th&gt;&lt;th&gt;value&lt;/th&gt;&lt;th&gt;padBlank&lt;/th&gt;&lt;th&gt;empty()&lt;/th&gt;&lt;/tr&gt;<br><b>{<font color="blue">answers</font><font color="red"></font>}</b><br>  &lt;tr&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>blank</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>empty</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br><b>{/<font color="blue">answers</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <table border="1" cellpadding="4" cellspacing="0">
+  <tr><th>field</th><th>value</th><th>padBlank</th><th>empty()</th></tr>
+
+  <tr><td>name</td><td><code>&quot;Ann&quot;</code></td><td>filled</td><td>not empty</td></tr>
+
+  <tr><td>quantity</td><td><code>&quot;0&quot;</code></td><td>filled</td><td>empty</td></tr>
+
+  <tr><td>remarks</td><td><code>&quot;   &quot;</code></td><td>blank</td><td>not empty</td></tr>
+
+  <tr><td>coupon</td><td><code>null</code></td><td>blank</td><td>empty</td></tr>
+
+  <tr><td>tags</td><td><code>[]</code></td><td>blank</td><td>empty</td></tr>
+
+</table>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<h2>Defaults and callbacks</h2>
+
+<ul>
+  <li><code>padTransform</code> runs the callback for a filled value only, so the callback
+  never has to test for nothing; a blank value gets the default.</li>
+  <li><code>padValue</code> answers a value, or calls a Closure for it: a default that is
+  costly to make is written as a Closure and made only when it is needed. A string such as
+  <code>'date'</code> is a value, never the name of a function to call.</li>
+  <li><code>padTap</code> hands a value to a callback - to note it, to check it - and goes on
+  with the value itself, whatever the callback answers.</li>
+</ul>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/values_2.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/values_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $user </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'ann smith'</span><span style="color: #007700">, </span><span style="color: #DD0000">'nickname' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">NULL </span><span style="color: #007700">];<br><br>  </span><span style="color: #FF8000">// The callback runs for a filled value only; a blank one gets the default.<br><br>  </span><span style="color: #0000BB">$name     </span><span style="color: #007700">= </span><span style="color: #0000BB">padTransform </span><span style="color: #007700">( </span><span style="color: #0000BB">$user </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">],     fn ( </span><span style="color: #0000BB">$n </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">ucwords </span><span style="color: #007700">( </span><span style="color: #0000BB">$n </span><span style="color: #007700">), </span><span style="color: #DD0000">'Guest' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$nickname </span><span style="color: #007700">= </span><span style="color: #0000BB">padTransform </span><span style="color: #007700">( </span><span style="color: #0000BB">$user </span><span style="color: #007700">[</span><span style="color: #DD0000">'nickname'</span><span style="color: #007700">], fn ( </span><span style="color: #0000BB">$n </span><span style="color: #007700">) =&gt; </span><span style="color: #DD0000">"\"</span><span style="color: #0000BB">$n</span><span style="color: #DD0000">\""</span><span style="color: #007700">,       </span><span style="color: #DD0000">'no nickname' </span><span style="color: #007700">);<br><br>  </span><span style="color: #FF8000">// A default given as a Closure is made only when it is needed.<br><br>  </span><span style="color: #0000BB">$unknown </span><span style="color: #007700">= fn () =&gt; </span><span style="color: #DD0000">'somewhere'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$city    </span><span style="color: #007700">= </span><span style="color: #0000BB">padValue </span><span style="color: #007700">( </span><span style="color: #0000BB">$user </span><span style="color: #007700">[</span><span style="color: #DD0000">'city'</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">$unknown </span><span style="color: #007700">);<br><br>  </span><span style="color: #FF8000">// padTap looks at a value in passing and hands it on unchanged.<br><br>  </span><span style="color: #0000BB">$noted </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">padTap </span><span style="color: #007700">( </span><span style="color: #0000BB">array_sum </span><span style="color: #007700">( [ </span><span style="color: #0000BB">12.5</span><span style="color: #007700">, </span><span style="color: #0000BB">30</span><span style="color: #007700">, </span><span style="color: #0000BB">7.5 </span><span style="color: #007700">] ), function ( </span><span style="color: #0000BB">$sum </span><span style="color: #007700">) use ( &amp;</span><span style="color: #0000BB">$noted </span><span style="color: #007700">) { </span><span style="color: #0000BB">$noted </span><span style="color: #007700">= </span><span style="color: #DD0000">"noted </span><span style="color: #0000BB">$sum</span><span style="color: #DD0000">"</span><span style="color: #007700">; } );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b> - <b>{<font color="green"><font color="red">$</font>nickname</font>}</b> - <b>{<font color="green"><font color="red">$</font>city</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Total <b>{<font color="green"><font color="red">$</font>total</font>}</b> (<b>{<font color="green"><font color="red">$</font>noted</font>}</b>)&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>Ann Smith - no nickname - somewhere</p>
+<p>Total 50 (noted 50)</p>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<h2>Retry and rescue</h2>
+
+<p><code>padRetry</code> calls the callback with the number of the attempt until it answers
+without throwing. Between two attempts it waits <code>$sleepMilliseconds</code> - one number,
+or a list with a wait per attempt whose last one repeats. <code>$when</code>, a callable given
+the exception, decides whether another attempt is worth it; when it says no, or after the
+last attempt, the exception is thrown on.</p>
+
+<p><code>padRescue</code> lets a part of a page fail alone: when the callback throws - an
+Exception or an Error - the answer is the rescue value, a Closure given the exception.
+With <code>$report</code> (on unless it is FALSE) the failure is written to PHP's error log,
+so a rescued fault is not lost.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/values_3.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/values_3.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A service that fails twice before it answers, as a busy remote one might: three<br>  // attempts, 10 milliseconds apart.<br><br>  </span><span style="color: #0000BB">$attempts </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$rate </span><span style="color: #007700">= </span><span style="color: #0000BB">padRetry </span><span style="color: #007700">( </span><span style="color: #0000BB">3</span><span style="color: #007700">, function ( </span><span style="color: #0000BB">$attempt </span><span style="color: #007700">) use ( &amp;</span><span style="color: #0000BB">$attempts </span><span style="color: #007700">) {<br>    </span><span style="color: #0000BB">$attempts </span><span style="color: #007700">= </span><span style="color: #0000BB">$attempt</span><span style="color: #007700">;<br>    if ( </span><span style="color: #0000BB">$attempt </span><span style="color: #007700">&lt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">)<br>      throw new </span><span style="color: #0000BB">RuntimeException </span><span style="color: #007700">( </span><span style="color: #DD0000">'timeout' </span><span style="color: #007700">);<br>    return </span><span style="color: #DD0000">'EUR 1 = USD 1.17'</span><span style="color: #007700">;<br>  }, </span><span style="color: #0000BB">10 </span><span style="color: #007700">);<br><br>  </span><span style="color: #FF8000">// A part of the page that may fail fails alone: the page shows a fallback instead.<br><br>  </span><span style="color: #0000BB">$forecast </span><span style="color: #007700">= </span><span style="color: #0000BB">padRescue </span><span style="color: #007700">( function () { throw new </span><span style="color: #0000BB">RuntimeException </span><span style="color: #007700">( </span><span style="color: #DD0000">'the weather service is down' </span><span style="color: #007700">); },<br>                          fn ( </span><span style="color: #0000BB">$e </span><span style="color: #007700">) =&gt; </span><span style="color: #DD0000">'No forecast today - ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage </span><span style="color: #007700">(),<br>                          </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>rate</font>}</b>, on attempt <b>{<font color="green"><font color="red">$</font>attempts</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>forecast</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>EUR 1 = USD 1.17, on attempt 3</p>
+<p>No forecast today - the weather service is down</p>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<h2>Once per request</h2>
+
+<p><code>padOnce</code> runs its callback the first time its line is reached in a request,
+and answers that first result each later time - in a loop, or in a function several parts of
+the page call. A callback that throws gave no result, so the next call runs it again. The
+place is the file and line of the call: two padOnce calls on one line share their
+result.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/values_4.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/values_4.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A function the page calls for every row reads its settings once: padOnce answers the<br>  // first result each later time its line is reached.<br><br>  </span><span style="color: #0000BB">$reads </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$currency </span><span style="color: #007700">= function () use ( &amp;</span><span style="color: #0000BB">$reads </span><span style="color: #007700">) {<br>    return </span><span style="color: #0000BB">padOnce </span><span style="color: #007700">( function () use ( &amp;</span><span style="color: #0000BB">$reads </span><span style="color: #007700">) { </span><span style="color: #0000BB">$reads</span><span style="color: #007700">++; return </span><span style="color: #DD0000">'EUR'</span><span style="color: #007700">; } );<br>  };<br><br>  </span><span style="color: #0000BB">$orders </span><span style="color: #007700">= [];<br><br>  foreach ( [ </span><span style="color: #0000BB">120</span><span style="color: #007700">, </span><span style="color: #0000BB">75</span><span style="color: #007700">, </span><span style="color: #0000BB">310 </span><span style="color: #007700">] as </span><span style="color: #0000BB">$amount </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$orders </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$amount</span><span style="color: #007700">, </span><span style="color: #DD0000">'currency' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$currency </span><span style="color: #007700">() ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">orders</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>currency</font>}</b> <b>{<font color="green"><font color="red">$</font>amount</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">orders</font><font color="red"></font>}</b><br>&lt;p&gt;The settings were read <b>{<font color="green"><font color="red">$</font>reads</font>}</b> time.&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+  <p>EUR 120</p>
+
+  <p>EUR 75</p>
+
+  <p>EUR 310</p>
+
+<p>The settings were read 1 time.</p>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<h2>Mistakes</h2>
+
+<p>A callback that is no function - a misspelled name - and a number of attempts below 1 are
+reported as errors that name the function; the function then answers NULL.</p>

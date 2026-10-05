@@ -1,0 +1,73 @@
+{meta title='Value helpers'}
+
+<p>A page's PHP spends much of its time asking whether a value is there, picking a default
+when it is not, and guarding the parts that may fail. These helpers say each of those in one
+call - the functions Laravel knows as <code>blank()</code>, <code>filled()</code>,
+<code>value()</code>, <code>transform()</code>, <code>tap()</code>, <code>retry()</code>,
+<code>rescue()</code> and <code>once()</code>. They are loaded on every request, like the
+rest of <code>pad/lib/</code>.</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+  <tr><th>function</th><th>what it does</th></tr>
+  <tr><td><code>padBlank ( $value )</code></td><td>TRUE for NULL, <code>''</code> or only whitespace, an empty array, an empty Countable - FALSE for <code>0</code>, <code>'0'</code>, FALSE and every other value</td></tr>
+  <tr><td><code>padFilled ( $value )</code></td><td>the opposite of padBlank</td></tr>
+  <tr><td><code>padValue ( $value, ...$args )</code></td><td>a Closure called with the arguments, anything else answered as it is</td></tr>
+  <tr><td><code>padTransform ( $value, $callback, $default )</code></td><td>the callback's answer for a filled value, the default for a blank one</td></tr>
+  <tr><td><code>padTap ( $value, $callback )</code></td><td>hands the value to the callback and answers the value itself</td></tr>
+  <tr><td><code>padRetry ( $times, $callback, $sleepMilliseconds, $when )</code></td><td>calls the callback until it stops throwing, at most <code>$times</code> times</td></tr>
+  <tr><td><code>padRescue ( $callback, $rescue, $report )</code></td><td>the callback's answer, or the rescue value when it throws</td></tr>
+  <tr><td><code>padOnce ( $callback )</code></td><td>runs the callback once per request for the line that calls it</td></tr>
+</table>
+
+<h2>Blank and filled</h2>
+
+<p>PHP's <code>empty()</code> calls a quantity of <code>'0'</code> empty and a remark of a
+few spaces filled. <code>padBlank</code> is the test a page means: nothing there is NULL,
+text of nothing but whitespace (a non-breaking space too), an empty array and an empty
+Countable. A number and a boolean are always values.</p>
+
+{example 'fragments/values_1'}
+
+<h2>Defaults and callbacks</h2>
+
+<ul>
+  <li><code>padTransform</code> runs the callback for a filled value only, so the callback
+  never has to test for nothing; a blank value gets the default.</li>
+  <li><code>padValue</code> answers a value, or calls a Closure for it: a default that is
+  costly to make is written as a Closure and made only when it is needed. A string such as
+  <code>'date'</code> is a value, never the name of a function to call.</li>
+  <li><code>padTap</code> hands a value to a callback - to note it, to check it - and goes on
+  with the value itself, whatever the callback answers.</li>
+</ul>
+
+{example 'fragments/values_2'}
+
+<h2>Retry and rescue</h2>
+
+<p><code>padRetry</code> calls the callback with the number of the attempt until it answers
+without throwing. Between two attempts it waits <code>$sleepMilliseconds</code> - one number,
+or a list with a wait per attempt whose last one repeats. <code>$when</code>, a callable given
+the exception, decides whether another attempt is worth it; when it says no, or after the
+last attempt, the exception is thrown on.</p>
+
+<p><code>padRescue</code> lets a part of a page fail alone: when the callback throws - an
+Exception or an Error - the answer is the rescue value, a Closure given the exception.
+With <code>$report</code> (on unless it is FALSE) the failure is written to PHP's error log,
+so a rescued fault is not lost.</p>
+
+{example 'fragments/values_3'}
+
+<h2>Once per request</h2>
+
+<p><code>padOnce</code> runs its callback the first time its line is reached in a request,
+and answers that first result each later time - in a loop, or in a function several parts of
+the page call. A callback that throws gave no result, so the next call runs it again. The
+place is the file and line of the call: two padOnce calls on one line share their
+result.</p>
+
+{example 'fragments/values_4'}
+
+<h2>Mistakes</h2>
+
+<p>A callback that is no function - a misspelled name - and a number of attempts below 1 are
+reported as errors that name the function; the function then answers NULL.</p>

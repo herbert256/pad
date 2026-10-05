@@ -46,7 +46,56 @@ no Composer. They are loaded on every request, like every file in `pad/lib/`.
 
 ## Values
 
-<!-- helpers: values -->
+`pad/lib/helpers.php` - weighing, defaulting and guarding values; manual page *Value helpers*.
+
+| Function | Answers |
+|----------|---------|
+| `padBlank ( $value )` | TRUE for NULL, `''` and whitespace-only text (unicode spaces too), an empty array, an empty Countable or Stringable; FALSE for `0`, `'0'`, `0.0`, FALSE, TRUE and every other value |
+| `padFilled ( $value )` | `! padBlank ( $value )` |
+| `padValue ( $value, ...$args )` | a Closure called with the arguments; anything else as it is |
+| `padTransform ( $value, $callback, $default = NULL )` | `$callback ( $value )` when the value is filled, else the default - a Closure default called with the blank value |
+| `padTap ( $value, $callback )` | calls `$callback ( $value )`, answers the value |
+| `padRetry ( $times, $callback, $sleepMilliseconds = 0, $when = NULL )` | the callback's answer, called with the attempt number (1, 2 ...) until it does not throw, at most `$times` times |
+| `padRescue ( $callback, $rescue = NULL, $report = TRUE )` | the callback's answer, or `padValue ( $rescue, $e )` when it throws |
+| `padOnce ( $callback )` | the callback's answer, run once per request for the file and line that call padOnce |
+
+```php
+<?php                                           // checkout.php
+
+  if ( padBlank ( $coupon ) )                   // '0' is a coupon, '  ' is none
+    $coupon = 'NONE';
+
+  $title = padTransform ( $customer ['name'], fn ( $n ) => ucwords ( $n ), 'Guest' );
+
+  $rates = padRetry ( 3, fn ( $attempt ) => fetchRates (), [ 100, 500 ] );   // throws when down
+
+  $news  = padRescue ( fn () => newsFeed (), [], FALSE );   // the page goes on without it
+
+  function settings () {
+    return padOnce ( fn () => db ( "RECORD * FROM settings" ) );   // one query per request
+  }
+
+?>
+```
+
+- `padRetry` waits `$sleepMilliseconds` between attempts: one number for every wait, or a list
+  with a wait per attempt whose last one repeats when there are more attempts. `$when`, given
+  the Throwable, decides whether another attempt is worth it; when it answers falsy, or after
+  the last attempt, the Throwable is thrown on.
+- `padRescue` catches every Throwable - an Exception and an Error (`intdiv ( 1, 0 )`) alike.
+  With `$report` the failure is written to PHP's error log: `padRescue: RuntimeException:
+  message in file:line`. A PAD error inside the callback is not an exception (it ends the
+  request as always) - except under `$padErrorAction = 'php'`, which throws.
+- `padOnce` keeps its results for the request only. A callback that throws gave no result, so
+  the next call from that line runs it again; two padOnce calls on one line share their result.
+- Only a Closure is called by `padValue`, `padTransform`'s default and `padRescue`'s rescue
+  value: a string such as `'date'` is a value there. The callbacks of `padTransform`, `padTap`,
+  `padRetry`, `padRescue` and `padOnce` may be any callable - a Closure, `'ucfirst'`, `[ $object,
+  'method' ]`.
+- Wrong input is reported with `padError`, naming the function: a callback that is not callable
+  (`padTransform: the callback 'ucfirts' is not a function or a Closure`), a number of attempts
+  below 1, a wait that is not a number of 0 or more. The function then answers NULL (`padTap`
+  the value).
 
 
 ---
