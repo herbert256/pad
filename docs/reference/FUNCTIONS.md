@@ -84,8 +84,8 @@ Functions that change the case of text.
 
 | Function | Parameters | Description |
 |----------|------------|-------------|
-| `upper` | - | Converts to uppercase (PHP `strtoupper`, so ASCII only - accented letters keep their case) |
-| `lower` | - | Converts to lowercase (PHP `strtolower`, so ASCII only - accented letters keep their case) |
+| `upper` | - | Converts to uppercase, letter by letter in UTF-8 (`café` → `CAFÉ`) |
+| `lower` | - | Converts to lowercase, letter by letter in UTF-8 (`ÉCOLE` → `école`) |
 | `capitalize` | - | Capitalizes first letter of each word (PHP `ucwords`) |
 | `ucwords` | - | Alias for `capitalize` |
 

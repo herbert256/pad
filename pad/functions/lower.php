@@ -1,8 +1,8 @@
 <?php
 
-  // Pipe function lower: lower-cases the value with strtolower, so ASCII only - accented
-  // and other multibyte letters are left as they are.
+  // Pipe function lower: lower-cases the value letter by letter in UTF-8, so ÉCOLE becomes
+  // école. It used strtolower, which knows ASCII only.
 
-  return strtolower ($value);
+  return mb_strtolower ( (string) $value, 'UTF-8' );
 
 ?>
