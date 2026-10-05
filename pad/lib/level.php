@@ -216,6 +216,43 @@ function padSplitOnUnquotedColon ( $str ) {
   }
 
 
+  // Takes the {# ... #} comments out of a template before it is scanned. The scanner
+  // handles the first } and the { before it, so a tag inside a comment ran before the
+  // comment was ever seen: {# {set $x = 99} #}{$x} printed 99. A comment opens with {#
+  // and closes at the first #} after it. Not a comment: the option sigil {#name} or
+  // {#name | pipe}, and a {# whose span reaches another {# before any #} - the strict
+  // check names an unclosed one, and the lenient walk reads {# x } as it always did.
+
+  function padCommentStrip ( $text ) {
+
+    if ( ! is_string ( $text ) or ! str_contains ( $text, '{#' ) )
+      return $text;
+
+    $pos = 0;
+
+    while ( ( $pos = strpos ( $text, '{#', $pos ) ) !== FALSE ) {
+
+      if ( preg_match ( '/\G\{#[A-Za-z_][A-Za-z0-9_]*\s*[}|]/', $text, $match, 0, $pos ) ) {
+        $pos += 2;
+        continue;
+      }
+
+      $close = strpos ( $text, '#}', $pos + 2 );
+      $next  = strpos ( $text, '{#', $pos + 2 );
+
+      if ( $close === FALSE or ( $next !== FALSE and $next < $close ) ) {
+        $pos += 2;
+        continue;
+      }
+
+      $text = substr ( $text, 0, $pos ) . substr ( $text, $close + 2 );
+
+    }
+
+    return $text;
+
+  }
+
   function padCommentCheck () {
 
     global $padBetween;

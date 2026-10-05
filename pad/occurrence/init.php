@@ -1,8 +1,8 @@
 <?php
 
   // Opens a new occurrence: bumps the row counter, gives the level a fresh working copy
-  // of its template ($padOut = $padBase) and points $padKey/$padCurrent at the row the
-  // data pointer currently sits on.
+  // of its template ($padOut = $padBase, its {# ... #} comments taken out) and points
+  // $padKey/$padCurrent at the row the data pointer currently sits on.
   //
   // Rows reached after the first walk pass are also collected in $padWalkData, which is
   // what the toData= option ends up storing.
@@ -13,7 +13,7 @@
 
   $padOccurStart [$pad] [$padOccur[$pad]] = TRUE;
 
-  $padOut     [$pad] = $padBase [$pad];
+  $padOut     [$pad] = padCommentStrip ( $padBase [$pad] );
   $padKey     [$pad] = key($padData [$pad]);
   $padCurrent [$pad] = $padData [$pad] [$padKey [$pad]];
 

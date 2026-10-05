@@ -539,13 +539,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm" id="m6">
+    <div class="finding pm fixed" id="m6">
       <div class="tag"><div class="priority">Medium</div><div class="cat">Parsing</div></div>
       <div>
-        <h3>Tags inside <code>{# … #}</code> comments still execute<span class="live">verified live</span></h3>
+        <h3>Tags inside <code>{# … #}</code> comments still execute<span class="live">verified live</span><span class="done">Fixed</span></h3>
         <p class="where">lib/level.php:165-170,248-266</p>
         <p>The scanner always handles the innermost <code>}</code> and the nearest preceding <code>{</code>, so a tag inside a comment runs before the comment is recognised; the <code>padCommentGo</code> pre-pass named in the file header does not exist. Verified: <code>{# {set $x = 99} #}{$x}</code> renders <b>99</b> — the "commented-out" assignment ran.</p>
         <div class="fix"><b>Fix:</b> strip balanced <code>{#…#}</code> spans before scanning a level.</div>
+        <div class="resolved"><b>Fixed:</b> a new <code>padCommentStrip()</code> takes the comments out of a level's template as each occurrence's working copy is made (<code>occurrence/init.php</code>), before the scanner reaches a tag inside one. A comment opens with <code>{#</code> and closes at the first <code>#}</code>. The option sigil <code>{#name}</code> / <code>{#name | pipe}</code> is not a comment, and neither is a <code>{#</code> that meets another <code>{#</code> before any <code>#}</code>, so the strict check's "never closes" and "does not close with #" reports and the lenient reading of <code>{# x }</code> are unchanged. A framework case <code>tags/a_tag_inside_a_comment_does_not_run</code> answered <code>[99]</code> against the old code and <code>[1]</code> now. The scanner's own <code>padCommentCheck</code> stays for a comment that only comes into being during the walk.</div>
       </div>
     </div>
 
