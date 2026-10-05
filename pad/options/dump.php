@@ -8,10 +8,11 @@
   // in padOptionsEnd as well, but padTagParm('dump') has marked the option done by then, so
   // the end-of-level walk skips it.
 
-  global $padDumpToDirDone;
+  // Through $GLOBALS, which clears the guard from whatever scope this is included in - an
+  // unset() of a name made global would clear only a function's own reference to it.
 
   padDumpToDir ( );
 
-  unset ( $padDumpToDirDone );
+  unset ( $GLOBALS ['padDumpToDirDone'] );
 
 ?>
