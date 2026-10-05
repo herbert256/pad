@@ -13,9 +13,16 @@
   // far term was the whole cost: n = 4000 built 181 MB to answer a float the run then threw
   // away. A term past the 25th answers such a float at once, which build/one.php reads as
   // the end of the run.
+  //
+  // Below the first there is no term - the triangle has no row -1 - so a negative position
+  // answers FALSE, which drops the candidate: from=-1, or bell as a make play over a range
+  // that runs below 0, read an undefined row and ended the request.
 
  function pqBell ($n)
 {
+
+    if ( $n < 0 )
+      return FALSE;
 
     if ( $n > 25 )
       return (float) PHP_INT_MAX * 2;

@@ -6,10 +6,17 @@
   //
   // The doubly self-referential recursion is hopeless without help, so terms are memoised
   // in $pqCache - a $pq* global, and so wiped between runs by sequence/inits/clear.php.
+  //
+  // The sequence starts at a(1): a position below it has no term and answers FALSE, which
+  // drops the candidate. Without that a(0) asked for a(a(-1)), which asked for a(a(-2)),
+  // down to the end of the stack - from=0 ended the request on infinite recursion.
 
 function pqNewmanConway ($n) {
 
   global $pqCache;
+
+  if ( $n < 1 )
+    return FALSE;
 
   if ($n == 1 || $n == 2)
     return 1;

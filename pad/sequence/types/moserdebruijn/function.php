@@ -7,9 +7,15 @@
   //
   // Both branches halve the index with intdiv, which is (i-1)/2 for an odd i - the half the
   // recurrence asks for. The whole table is rebuilt from scratch for every term.
+  //
+  // The table starts at S(0), so a negative position has no term and answers FALSE, which
+  // drops the candidate - it read an undefined key and ended the request.
 
 function pqMoserdebruijn($n)
 {
+
+    if ( $n < 0 )
+      return FALSE;
 
    $S = array();
 
