@@ -4,7 +4,17 @@
   if ( ! isset ( $xref ) ) $xref = 'tag/pad';
   if ( ! isset ( $item ) ) $item = 'switch';
 
+  // As in dir.php: a reference that is not there is a page not found, not a PHP error.
+
+  if ( ! referenceName ( $xref ) or ! referenceName ( $item ) or ! is_file ( DATA . "reference/$xref/$item.txt" ) )
+    return padRefuse ( 404, 'There is no such reference' );
+
+  $go = [];
+
   foreach ( file ( DATA . "reference/$xref/$item.txt", FILE_IGNORE_NEW_LINES ) as $file ) {
+
+    if ( ! str_contains ( $file, ';' ) )
+      continue;
 
     list ( $app, $page ) = explode ( ';', $file );
 
