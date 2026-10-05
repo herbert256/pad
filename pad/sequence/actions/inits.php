@@ -14,7 +14,10 @@
     $pqActions [$pqAction] = $pqActionParm;
   }
 
-  foreach ( $padParms [$pad] as $padV )
+  // A tag's options only - see plays/inits.php: an expression's run took the surrounding
+  // tag's actions as its own.
+
+  foreach ( ( $pqEntry == 'tag' ) ? $padParms [$pad] : [] as $padV )
 
     if ( $padV ['padPrmKind'] == 'option' ) {
 

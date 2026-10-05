@@ -9,7 +9,12 @@
   // sets $pqPlay, the kind that the sequence-named options after it inherit. Any other
   // option naming a real sequence type is registered as a play of the current kind.
 
-  foreach ( $padParms [$pad] as $padStartOption ) {
+  // Only a tag's run has options to read. A run started from an expression has its call's
+  // arguments and nothing else, and reading the level here gave it the plays of the tag it
+  // was evaluated inside: {sequence 5, make, eval='sequence:square(@)'} re-ran its own eval
+  // in every inner run, until the stack gave out.
+
+  foreach ( ( $pqEntry == 'tag' ) ? $padParms [$pad] : [] as $padStartOption ) {
 
     extract ( $padStartOption );
 

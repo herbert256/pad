@@ -26,6 +26,20 @@
   include PQ . 'inits/limits.php';
   include PQ . 'actions/inits.php';
   include PQ . 'build/build.php';
+
+  // The term asked for, or nothing: answering the last term found gave sequence:prime(1230)
+  // as 9973, the 1229th prime, and sequence:fibonacci(100) as the 93rd term, the last that
+  // fits an integer. Strict mode says which.
+
+  if ( count ( $pqResult ) < $pqRows ) {
+
+    if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
+      padError ( "sequence:$pqSeq($pqRows) cannot be reached: the sequence gives "
+               . count ( $pqResult ) . " terms within " . ( $pqTriesOut ? "$pqTry candidates" : "its range" ) );
+
+    return '';
+
+  }
   include PQ . 'exits/exit.php';
   include PQ . 'exits/actions.php';
   include PQ . 'exits/done.php';

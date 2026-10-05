@@ -17,4 +17,12 @@
   if ( $pqRows < 1 )
     $pqRows = 1;
 
+  // The term asked for may lie beyond the default candidate limit - the 1230th prime is past
+  // the 10,000th integer - so a position lookup may test up to the hard ceiling, and
+  // sequence/sequence.php reports a term it could not reach instead of answering the last
+  // one it found.
+
+  $pqTry      = $padSeqMaxTries ?? 1000000;
+  $pqPosition = TRUE;
+
 ?>

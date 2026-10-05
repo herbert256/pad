@@ -16,8 +16,10 @@
 
   $pqTries++;
 
-  if ( $pqTries > $pqTry )
+  if ( $pqTries > $pqTry ) {
+    $pqTriesOut = TRUE;
     return FALSE;
+  }
 
   if ( $pqRandomParm ) $pqParm = include PQ . 'build/parm.php';
   if ( $pqParmStore  ) $pqParm = include PQ . 'build/store.php';

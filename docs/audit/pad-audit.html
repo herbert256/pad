@@ -460,10 +460,10 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding ph" id="h9">
+    <div class="finding ph fixed" id="h9">
       <div class="tag"><div class="priority">High</div><div class="cat">Correctness / DoS</div></div>
       <div>
-        <h3>The sequence runner corrupts recurrences, miscounts positions, and can be made to loop forever<span class="live">verified live</span></h3>
+        <h3>The sequence runner corrupts recurrences, miscounts positions, and can be made to loop forever<span class="live">verified live</span><span class="done">Fixed</span></h3>
         <p class="where">sequence/build/one.php:39-64 · sequence/inits/limits.php:11-18 · sequence/sequence/sequence.php:34-36 · sequence/inits/clear.php:8-11</p>
         <p>The generators themselves are almost all correct — 76 of 77 checked against references are right, and 1,395 independent term and predicate checks all pass. The damage is in the code that drives them:</p>
         <ul>
@@ -474,6 +474,7 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
           <li><b>No isolation</b> — a sequence called from an expression runs <code>clear.php</code>, which unsets every <code>pq*</code> global, wiping the tag-driven run that invoked it; <code>{sequence 5, make, eval='sequence:square(@)'}</code> recurses into a fatal error.</li>
         </ul>
         <div class="fix"><b>Fix:</b> append each term to history before filtering; keep a hard candidate ceiling even with <code>stop</code>/<code>to</code>; report (or fail) when a position build can't reach <code>n</code>; isolate the expression entry's state instead of clearing the globals.</div>
+        <div class="resolved"><b>Fixed:</b> all five, in two commits. <b>Recurrences:</b> an order build records every generated term in its history before a play or filter can turn it down, so <code>{sequence fibonacci, keep, even}</code> gives <code>0 2 8 34 144 610</code> where it ended on an undefined key. A play now restores the candidate's position, which it left at the term's value, so <code>{sequence fibonacci, square}</code> keeps its 0. <b>Positions:</b> a lookup such as <code>sequence:prime(1230)</code> may test up to a new hard ceiling, <code>$padSeqMaxTries</code> (1,000,000), and must reach the term it was asked for: <code>prime(1230)</code> is 10007, not the 1229th prime, and <code>fibonacci(100)</code>, past the 93 terms an integer holds, is a strict-mode error ("cannot be reached") and empty in the lenient walk. <b>Literal arrays:</b> a <code>given</code> array (the values an action is handed) is all of its rows, so <code>sequence:sum</code> of 1 to 12 is 78, not 55. A fixed type's own list keeps the default count of 10: lifting that too changed every fixed-list demo. <b>DoS:</b> <code>stop=</code>/<code>to=</code> runs and an explicit <code>try=</code> are capped at <code>$padSeqMaxTries</code> candidates instead of unbounded; a <code>stop</code> never reached under <code>maximal=10</code> ends in under a second. Pulled stores and fixed arrays stay bounded by their data. <b>Isolation:</b> a run started from an expression no longer clears the globals, which are the tag run it was evaluated in, still under way; nor does it read that tag's options as its own plays and actions. That reading was the recursion: <code>{sequence 5, make, eval='sequence:square(@)'}</code> re-ran its eval in every inner run. It now gives <code>1 4 9 16 25</code>, and a <code>sequence:square(2)</code> inside a row leaves the row's <code>$sequence</code> alone. A dead <code>array_search</code> over <code>$padDone</code> in <code>plays/add.php</code>, which never matched and ended an expression run on an undefined variable, is gone. Six framework cases and one Errors case pin these. Decided: a tag run cut short by its try limit stays silent. A strict-mode notice was tried and fired on runs that are short by design, a <code>maximal=</code> or <code>unique</code> filter and the framework's own test of the limit.</div>
       </div>
     </div>
 

@@ -11,6 +11,6 @@
 
   global $pqStore;
   global $pad, $padPrm, $padType, $padTag, $padPrefix, $padLastPush;
-  global $padData, $padParms, $padInfo, $padDataStore, $padSeqDefaultRows, $padSeqDefaultTries;
+  global $padData, $padParms, $padInfo, $padDataStore, $padSeqDefaultRows, $padSeqDefaultTries, $padSeqMaxTries;
 
 ?>

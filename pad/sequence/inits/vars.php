@@ -17,6 +17,8 @@
   $pqStored       = FALSE;
 
   $pqTries      = 0;
+  $pqTriesOut   = FALSE;
+  $pqPosition   = FALSE;
   $pqLoop       = 0;
 
   $pqSeq        = '';

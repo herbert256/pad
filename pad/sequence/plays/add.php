@@ -25,9 +25,6 @@
     'pqPlay'  => $pqPlay
   ];
 
-  if ( ( $padK = array_search ( $pqSeq, $padDone ) ) !== false )
-    unset ( $padDone [$padK] );
-
   $pqSeq   = $pqSave1;
   $pqBuild = $pqSave2;
 
