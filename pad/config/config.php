@@ -27,6 +27,11 @@
 
   $padDiagnostics    = TRUE;
 
+  // How many error reports $padErrorReport keeps on disk per application, under
+  // DATA/dumps/<app>/: the newest ones, older ones are deleted as new ones arrive.
+
+  $padErrorKeep      = 100;
+
 
   $padEvalTrace = FALSE;
 

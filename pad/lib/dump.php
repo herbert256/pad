@@ -314,9 +314,16 @@
 
   }
 
-  function padDumpPhpInfo () {
+  // Only the general and configuration parts when $all is FALSE: the environment, the
+  // request variables and the server module's own section print the cookies, the
+  // authorization header and whatever secrets the server environment holds, in clear.
 
-     phpinfo();
+  function padDumpPhpInfo ( $all = TRUE ) {
+
+     if ( $all )
+       phpinfo ();
+     else
+       phpinfo ( INFO_GENERAL | INFO_CONFIGURATION );
 
   }
 
@@ -496,6 +503,7 @@
     try {
 
       padDumpToDirGo ( $info );
+      padDumpPrune ();
 
     } catch (Throwable $e) {
 
@@ -525,7 +533,16 @@
 
   }
 
+  // A report on disk outlives the request and is read by whoever can read DATA: on top of
+  // the redaction every report has, it blanks the session values ($padDumpDeep), keeps a
+  // request body only as redacted form or JSON fields, and leaves the environment and the
+  // request variables out of phpinfo.
+
   function padDumpToDirGo ( $info ) {
+
+    global $padDumpDeep;
+
+    $padDumpDeep = TRUE;
 
     if ( $info ) {
       ob_start ();
@@ -538,7 +555,7 @@
     ob_start (); padDumpRequest   ();                 padDumpFile ( 'request',   ob_get_clean () );
     ob_start (); padDumpSQL       ();                 padDumpFile ( 'sql',       ob_get_clean () );
     ob_start (); padDumpHeaders   ();                 padDumpFile ( 'headers',   ob_get_clean () );
-    ob_start (); padDumpPhpInfo   ();                 padDumpFile ( 'phpinfo',   ob_get_clean () );
+    ob_start (); padDumpPhpInfo   ( FALSE );          padDumpFile ( 'phpinfo',   ob_get_clean () );
     ob_start (); padDumpLevel     ();                 padDumpFile ( 'tree',      ob_get_clean () );
     ob_start (); padDumpFiles     ();                 padDumpFile ( 'files',     ob_get_clean () );
     ob_start (); padDumpFunctions ();                 padDumpFile ( 'functions', ob_get_clean () );
@@ -614,25 +631,90 @@
 
   }
 
+  // The raw body of a failed login is its password. A form or JSON body is kept with its
+  // secret-named fields redacted; any other body only by its size and type.
+
   function padDumpInputToFile () {
 
     global $padDumpToDirDone;
 
-    $txt  = file_get_contents ('php://input') ?? '';
-    $type = padContentType ( $txt );
+    $txt = file_get_contents ('php://input') ?: '';
 
-    if ( $type == 'csv' )
+    if ( $txt === '' )
+      return;
+
+    $ctype = $_SERVER ['CONTENT_TYPE'] ?? '';
+    $json  = json_decode ( $txt, TRUE );
+
+    if ( str_contains ( $ctype, 'application/x-www-form-urlencoded' ) ) {
+
+      parse_str ( $txt, $form );
+      $txt  = http_build_query ( padRedact ( $form, '', TRUE ) );
       $type = 'txt';
+
+    } elseif ( is_array ( $json ) ) {
+
+      $txt  = padJson ( padRedact ( $json, '', TRUE ) );
+      $type = 'json';
+
+    } else {
+
+      $txt  = strlen ( $txt ) . ' bytes of ' . ( $ctype ?: 'an unnamed type' ) . ' - not kept';
+      $type = 'txt';
+
+    }
 
     padDumpFilePut ( $padDumpToDirDone . "/input.$type", $txt );
 
   }
+
+  // Owner only: the file 0600 and its report directory 0700, whatever $padFileMode and
+  // $padDirMode give the rest of DATA.
 
   function padDumpFilePut ( $file, $data ) {
 
     global $padApp;
 
     padFilePut ( "dumps/$padApp/$file", $data );
+
+    $path = DATA . "dumps/$padApp/$file";
+
+    @chmod ( $path,            0600 );
+    @chmod ( dirname ( $path ), 0700 );
+
+  }
+
+  // Repeatable errors filled the disk: every one a new report directory, kept forever. The
+  // newest $padErrorKeep reports of this application stay, older ones are deleted.
+
+  function padDumpPrune () {
+
+    global $padApp, $padErrorKeep;
+
+    $keep = (int) ( $padErrorKeep ?? 100 );
+    $root = DATA . "dumps/$padApp/";
+
+    if ( $keep < 1 or ! is_dir ( $root ) )
+      return;
+
+    // A report is a directory holding a stack.html. Found by that file, not by depth: a
+    // page in a subdirectory nests its reports one level deeper per path segment.
+
+    $reports = [];
+
+    $files = new RecursiveIteratorIterator ( new RecursiveDirectoryIterator ( $root, FilesystemIterator::SKIP_DOTS ) );
+
+    foreach ( $files as $file )
+      if ( $file->getFilename () == 'stack.html' )
+        $reports [] = $file->getPath ();
+
+    if ( count ( $reports ) <= $keep )
+      return;
+
+    usort ( $reports, fn ( $a, $b ) => filemtime ( $b ) <=> filemtime ( $a ) );
+
+    foreach ( array_slice ( $reports, $keep ) as $old )
+      padDeleteDataDir ( $old );
 
   }
 
