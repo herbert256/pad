@@ -778,7 +778,7 @@ $padExpose = [ 'orders', 'total' ];</code></pre>
   max:   '2M' );</code></pre>
           <p>Nothing handles <code>$_FILES</code> today. A helper that:</p>
           <ul>
-            <li>checks the real type with <code>finfo</code>, not the type the browser claims;</li>
+            <li>checks the real type with <code>finfo</code>, not the type the browser claims;<p class="done"><strong>Done.</strong> <code>padUpload('avatar', types: [...], max: '2M')</code> reads the real type with finfo, enforces the size and stores the file under a random name in <code>DATA/uploads/</code>; it returns the record, NULL when no file was sent, or FALSE with <code>padUploadError()</code>; a <code>{form}</code> with a file field posts multipart by itself and the field shows the error. Several files in one field are reported, not handled. Regression: pages (real multipart posts), framework and errors cases; manual page; APP.md, TAGS.md, CLAUDE.md.</p></li>
             <li>enforces a maximum size;</li>
             <li>stores the file under a random name in <code>DATA/uploads/</code> and returns a record.</li>
           </ul>

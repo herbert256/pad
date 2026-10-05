@@ -1100,6 +1100,8 @@ Output: `Alice, Bob, Charlie`
 | `padCsrfToken()` | The session's CSRF token (`{csrf}` writes it as a hidden field) |
 | `padCsrfValid()` | Whether this request brought the session's token back |
 | `padPosted($form)` | Whether this request posted (the `{form}` of that name) |
+| `padUpload($field, types: [...], max: '2M')` | Store an uploaded file safely: real type (finfo), size limit, random name in `DATA/uploads/` - the record, NULL (none sent) or FALSE (refused) |
+| `padUploadError($field)` | Why `padUpload` refused the field's file (also shown by `{input type='file'}`) |
 | `padNonce()` | This request's CSP nonce (`{nonce}`), named by `'nonce'` in `$padCsp` |
 | `padFlash($message, $type)` | A message for the next request - `padFlash('Saved.'); padRedirect('list');` then `{flash}<p class="{$type}">{$message}</p>{/flash}` |
 | `padValidate($rules, $data, $messages)` | `['email' => 'required\|email']` - one message per failing field, shown by `{input}` |

@@ -752,6 +752,23 @@ the rules are `required`, `email`, `url`, `numeric`, `integer`, `min:n`, `max:n`
 `required` only. The field shows the message in the words of its own label, with
 `aria-invalid` and `aria-describedby`.
 
+### File Uploads
+`padUpload` takes the file of one field and stores it safely - its real type read from its
+content with `finfo` and held against the allowed types (`image/*` for any image), the size
+limit enforced, and the file stored under a random name in `DATA/uploads/`:
+
+```php
+$avatar = padUpload ( 'avatar', types: [ 'image/png', 'image/jpeg' ], max: '2M' );
+
+if ( $avatar )                       // [ name, file, path, size, type, extension ]
+  db ( "UPDATE users SET avatar='{0}' WHERE id={1}", [ $avatar ['file'], $id ] );
+elseif ( $avatar === FALSE )         // refused - NULL means no file was sent
+  $problem = padUploadError ( 'avatar' );
+```
+
+The refusal also shows beside `{input 'avatar', type='file', label='Picture'}`, and a
+`{form}` holding a file field posts as `multipart/form-data` by itself.
+
 ### Flash Messages
 After a valid post, say what happened on the page the redirect leads to:
 

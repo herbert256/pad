@@ -1,0 +1,84 @@
+/^\<h1\>File uploads\<\/h1\>
+
+\<p\>\<code\>padUpload\<\/code\> takes the file of one form field and stores it safely\:\<\/p\>
+
+\<ul\>
+  \<li\>its real type comes from its content \- not from the type the browser claims, and not
+  from its name \- and is held against the types you allow, \<code\>image\/\*\<\/code\> for any image;\<\/li\>
+  \<li\>a file over the size you allow, \<code\>'2M'\<\/code\>, \<code\>'500K'\<\/code\> or bytes, is refused;\<\/li\>
+  \<li\>it is stored under a random name in \<code\>DATA\/uploads\/\<\/code\>, with the extension of
+  what it really is, never under the name the visitor's file had\.\<\/li\>
+\<\/ul\>
+
+
+
+ 
+
+
+
+   
+    \<table border\="1" cellpadding\="10" cellspacing\="0"\>
+  
+
+  
+
+      
+          \<tr\>
+          
+            \<th bgcolor\="\#dddddd"\>
+              PHP \<br\>\<font size\="\-2"\>fragments\/file_uploads_1\.php\<\/font\>
+            \<\/th\>
+          
+          
+            \<th bgcolor\="\#dddddd"\>
+              HTML \<br\>\<font size\="\-2"\>fragments\/file_uploads_1\.pad\<\/font\>
+            \<\/th\>
+          
+          
+            \<th bgcolor\="\#dddddd"\>
+              Result
+            \<\/th\>
+          
+        \<\/tr\>
+      
+
+      \<tr\>
+        
+          \<td style\="vertical\-align\:top"\>\<pre\>\<code style\="color\: \#000000"\>\<span style\="color\: \#0000BB"\>&lt;\?php\<br\>\<br\>  \$avatar \<\/span\>\<span style\="color\: \#007700"\>\= \<\/span\>\<span style\="color\: \#0000BB"\>padUpload \<\/span\>\<span style\="color\: \#007700"\>\( \<\/span\>\<span style\="color\: \#DD0000"\>'avatar'\<\/span\>\<span style\="color\: \#007700"\>, \<\/span\>\<span style\="color\: \#0000BB"\>types\<\/span\>\<span style\="color\: \#007700"\>\: \[ \<\/span\>\<span style\="color\: \#DD0000"\>'image\/png'\<\/span\>\<span style\="color\: \#007700"\>, \<\/span\>\<span style\="color\: \#DD0000"\>'image\/jpeg' \<\/span\>\<span style\="color\: \#007700"\>\], \<\/span\>\<span style\="color\: \#0000BB"\>max\<\/span\>\<span style\="color\: \#007700"\>\: \<\/span\>\<span style\="color\: \#DD0000"\>'2M' \<\/span\>\<span style\="color\: \#007700"\>\);\<br\>\<br\>  \<\/span\>\<span style\="color\: \#0000BB"\>\$said \<\/span\>\<span style\="color\: \#007700"\>\= \<\/span\>\<span style\="color\: \#0000BB"\>\$avatar \<\/span\>\<span style\="color\: \#007700"\>\? \<\/span\>\<span style\="color\: \#DD0000"\>'Stored as ' \<\/span\>\<span style\="color\: \#007700"\>\. \<\/span\>\<span style\="color\: \#0000BB"\>\$avatar \<\/span\>\<span style\="color\: \#007700"\>\[\<\/span\>\<span style\="color\: \#DD0000"\>'file'\<\/span\>\<span style\="color\: \#007700"\>\] \: \<\/span\>\<span style\="color\: \#DD0000"\>'No picture was sent yet\.'\<\/span\>\<span style\="color\: \#007700"\>;\<br\>\<br\>\<\/span\>\<span style\="color\: \#0000BB"\>\?&gt;\<br\>\<\/span\>\<\/code\>\<\/pre\> \<\/td\>
+        
+        
+          \<td style\="vertical\-align\:top"\>\<pre\>\<code style\="color\: \#000000"\>&lt;p&gt;\<b\>\{\<font color\="green"\>\<font color\="red"\>\$\<\/font\>said\<\/font\>\}\<\/b\>&lt;\/p&gt;\<br\>\<br\>\<b\>\{\<font color\="blue"\>form \<\/font\>\<font color\="red"\>\<font color\="black"\>'\<\/font\>picture\<font color\="black"\>'\<\/font\>\<\/font\>\}\<\/b\>\<br\>  \<b\>\{\<font color\="blue"\>input \<\/font\>\<font color\="red"\>\<font color\="black"\>'\<\/font\>avatar\<font color\="black"\>'\<\/font\>\<font color\="black"\>,\<\/font\> type\=\<font color\="black"\>'\<\/font\>file\<font color\="black"\>'\<\/font\>\<font color\="black"\>,\<\/font\> label\=\<font color\="black"\>'\<\/font\>Your picture\<font color\="black"\>'\<\/font\>\<\/font\>\}\<\/b\>\<br\>  &lt;button&gt;Upload&lt;\/button&gt;\<br\>\<b\>\{\/\<font color\="blue"\>form\<\/font\>\<font color\="red"\>\<\/font\>\}\<\/b\>\<\/code\>\<\/pre\>\<\/td\>
+        
+        
+          \<td style\="vertical\-align\:top"\>
+  \<p\>No picture was sent yet\.\<\/p\>
+
+\<form method\="post" enctype\="multipart\/form\-data"\>\<input type\="hidden" name\="padCsrfToken" value\="[0-9a-f]{64}"\>\<input type\="hidden" name\="padForm" value\="picture"\>
+  \<label for\="avatar"\>Your picture\<\/label\>\<input type\="file" name\="avatar" id\="avatar"\>
+  \<button\>Upload\<\/button\>
+\<\/form\>
+
+\<\/td\>
+        
+      \<\/tr\>
+
+    
+
+  
+    \<\/table\>
+  
+
+
+
+
+
+\<p\>The answer is the record of the stored file \- \<code\>name\<\/code\> \(the visitor's own file
+name, for showing only\), \<code\>file\<\/code\> \(the path under \<code\>DATA\<\/code\>, for
+\<code\>padFileGet\<\/code\>\), \<code\>path\<\/code\>, \<code\>size\<\/code\>, \<code\>type\<\/code\> and
+\<code\>extension\<\/code\> \- or \<code\>NULL\<\/code\> when the field brought no file, or
+\<code\>FALSE\<\/code\> when the file was refused\. \<code\>padUploadError \( 'avatar' \)\<\/code\> says
+why, and the \<b\>\{input\}\<\/b\> file field of the form shows it beside itself, in the words of its
+label\.\<\/p\>
+
+\<p\>A \<b\>\{form\}\<\/b\> holding a file field posts as \<code\>multipart\/form\-data\<\/code\> by itself;
+without that the browser sends only the file's name\.\<\/p\>$/

@@ -1,0 +1,24 @@
+<h1>File uploads</h1>
+
+<p><code>padUpload</code> takes the file of one form field and stores it safely:</p>
+
+<ul>
+  <li>its real type comes from its content - not from the type the browser claims, and not
+  from its name - and is held against the types you allow, <code>image/*</code> for any image;</li>
+  <li>a file over the size you allow, <code>'2M'</code>, <code>'500K'</code> or bytes, is refused;</li>
+  <li>it is stored under a random name in <code>DATA/uploads/</code>, with the extension of
+  what it really is, never under the name the visitor's file had.</li>
+</ul>
+
+{example 'fragments/file_uploads_1'}
+
+<p>The answer is the record of the stored file - <code>name</code> (the visitor's own file
+name, for showing only), <code>file</code> (the path under <code>DATA</code>, for
+<code>padFileGet</code>), <code>path</code>, <code>size</code>, <code>type</code> and
+<code>extension</code> - or <code>NULL</code> when the field brought no file, or
+<code>FALSE</code> when the file was refused. <code>padUploadError ( 'avatar' )</code> says
+why, and the {tag 'input'} file field of the form shows it beside itself, in the words of its
+label.</p>
+
+<p>A {tag 'form'} holding a file field posts as <code>multipart/form-data</code> by itself;
+without that the browser sends only the file's name.</p>

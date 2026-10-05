@@ -233,19 +233,23 @@
   }
 
   // The error shows where its form came back - beside the fields of the form that posted,
-  // and not beside a field of the same name in another form of the page.
+  // and not beside a field of the same name in another form of the page. A file field's
+  // error is padUpload's, when it refused the file.
 
   function padFormError ( $name, $label = '' ) {
 
-    global $padFormErrors, $padFormErrorParts;
+    global $padFormErrors, $padFormErrorParts, $padUploadErrors, $padUploadErrorParts;
 
-    if ( ! isset ( $padFormErrors [$name] ) or padFormSource () === NULL )
+    $text  = $padFormErrors     [$name] ?? $padUploadErrors     [$name] ?? NULL;
+    $parts = $padFormErrorParts [$name] ?? $padUploadErrorParts [$name] ?? NULL;
+
+    if ( $text === NULL or padFormSource () === NULL )
       return '';
 
-    if ( $label !== '' and isset ( $padFormErrorParts [$name] ) )
-      return padValidateText ( $padFormErrorParts [$name], padValidateLabel ( $label ) );
+    if ( $label !== '' and $parts )
+      return padValidateText ( $parts, padValidateLabel ( $label ) );
 
-    return (string) $padFormErrors [$name];
+    return (string) $text;
 
   }
 
@@ -425,13 +429,21 @@
 
   }
 
+  // A posting form that holds a file field and names no enctype of its own gets the
+  // multipart one - without it the browser sends the file's name and not the file.
+
   function padFormClose ( $content ) {
 
     global $padFormStack;
 
     $form = array_pop ( $padFormStack );
+    $open = $form ['open'] ?? '<form>';
 
-    return padProtect ( $form ['open'] ?? '<form>' ) . $content . padProtect ( '</form>' );
+    if ( ( $form ['method'] ?? '' ) == 'post' and ! preg_match ( '/^<form[^>]*\senctype=/i', $open )
+         and str_contains ( padUnprotect ( $content ), 'type="file"' ) )
+      $open = preg_replace ( '/^<form method="post"/', '<form method="post" enctype="multipart/form-data"', $open );
+
+    return padProtect ( $open ) . $content . padProtect ( '</form>' );
 
   }
 

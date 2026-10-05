@@ -549,7 +549,8 @@ item is an attribute of the `<form>` tag (`action=`, `class=`, `enctype=`), writ
 **Behavior:** A posting form gets the hidden `padCsrfToken` field and a hidden `padForm`
 field holding its name - `padPosted('contact')` is TRUE when this form came back. The fields
 inside refill only when their own form came back; a `{form method='get'}` refills from the
-query string.
+query string. A posting form holding a file field gets `enctype="multipart/form-data"`
+unless it names an enctype itself.
 
 ---
 
@@ -570,7 +571,8 @@ an attribute of the field.
 or radio is checked when the posted value is its own; a password or file field is never
 refilled. When `padValidate` reported the field, its message follows in
 `<span class="error" id="<id>-error">`, worded with the field's label, and the field gets
-`aria-invalid="true"` and `aria-describedby`.
+`aria-invalid="true"` and `aria-describedby`. A file field shows the reason `padUpload`
+refused its file the same way.
 
 ---
 

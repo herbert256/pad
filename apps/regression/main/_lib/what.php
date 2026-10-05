@@ -52,6 +52,8 @@
       'request/guardpage'         => 'A {page} of the guarded fixture page, crawled without the key: renders as nothing',
       'request/headers'           => 'The security headers on every response, the request-s nonce in a strict policy and in the script tag alike, and a page-s own header standing',
       'request/nonced'            => 'The nonce fixture bare: a script tag with some nonce, pinned by shape',
+      'request/uploads'           => 'padUpload on real multipart posts: a PNG stored under a random name, a text file posing as a PNG and a file over the limit refused, beside the field too',
+      'request/upload_take'       => 'The safe-upload fixture bare: nothing sent, the file field without an error',
       'request/csrf'              => 'CSRF on the demo: a post without the session-s token, or with a wrong one, is 403; the form-s token - field or header - lets it through',
       'request/ses'               => 'The session fixture bare: some id, pinned by shape',
       'request/up'                => 'The upload fixture bare: no file',
