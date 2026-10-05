@@ -247,19 +247,27 @@
   }
 
   // The SVG of one chart. $kind is bar, line or sparkline; $title names it, and the
-  // points become its <desc>. Ids are numbered per request, so two charts on a page do
-  // not share a title.
+  // points become its <desc>. The ids are made from the chart itself, so two charts on a
+  // page do not share a title: a count per request gave a chart served from the fragment
+  // cache and a chart rendered next to it the same pad-chart-1, and so did the charts of
+  // two nested passes - two {example}s - each counting from one again. The same chart
+  // drawn twice in a request is told apart by a number behind the second, kept in a
+  // static for the nested passes.
 
   function padChart ( $kind, $points, $title, $width, $height ) {
 
-    global $padChartCount;
+    static $drawn = [];
 
     if ( ! $points )
       return '';
 
-    $padChartCount = ( $padChartCount ?? 0 ) + 1;
+    $id = 'pad-chart-' . substr ( md5 ( serialize ( [ $kind, $points, $title, $width, $height ] ) ), 0, 8 );
 
-    $id   = "pad-chart-$padChartCount";
+    $drawn [$id] = ( $drawn [$id] ?? 0 ) + 1;
+
+    if ( $drawn [$id] > 1 )
+      $id .= '-' . $drawn [$id];
+
     $n    = count ( $points );
     $vals = array_column ( $points, 1 );
     $desc = [];
