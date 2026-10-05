@@ -1,0 +1,8 @@
+{if $tested eq 1}
+  <p>a local page carries the script and its stamp: <b>{$local}</b></p>
+  <p>a changed file moves the stamp: <b>{$changed}</b></p>
+  <p>a fragment and a forwarded request carry none: <b>{$elsewhere}</b></p>
+  <p>an export carries none: <b>{$export}</b></p>
+{else}
+  <p><a href="?index&test">Test</a> the sample page</p>
+{/if}

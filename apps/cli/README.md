@@ -33,7 +33,8 @@ pad help                           # the list
 - **new** never overwrites: an application or page that exists is refused. The application
   of `pad new a/b/c` is the shortest part of the name with an entry point in `www/`, so a
   nested one (`regression/pages`) works too.
-- **serve** runs `php -S` over `www/`. `www/pad.php` derives the mount prefix from
+- **serve** runs `php -S` over `www/` - with `$padReload = 'local'` in an application's
+  config, a saved file shows in the browser at once. `www/pad.php` derives the mount prefix from
   `SCRIPT_NAME`, so every application is at `http://127.0.0.1:8000/<app>/`. Four workers by
   default (`--workers=n`), so a page may fetch another page of the same server.
 - **render** runs the page in this process, as a GET. `PAD_HOST` sets the server the page's

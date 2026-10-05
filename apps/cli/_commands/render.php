@@ -53,7 +53,7 @@
   // machine adds to a page: no toolbar, no live reload.
 
   if ( getenv ( 'PAD_EXPORT' ) )
-    $padSetConfig = [ 'OutputType' => 'web', 'Toolbar' => FALSE ];
+    $padSetConfig = [ 'OutputType' => 'web', 'Toolbar' => FALSE, 'Reload' => FALSE ];
 
   // pad test renders the application's _tests/ pages, bare like the suites' pages, with
   // every {assert} checked, and reads the status the request ended with from stderr - the
@@ -62,7 +62,7 @@
   if ( getenv ( 'PAD_TEST' ) ) {
 
     $padTestRun           = TRUE;
-    $padSetConfig         = [ 'Assert' => TRUE, 'Toolbar' => FALSE ];
+    $padSetConfig         = [ 'Assert' => TRUE, 'Toolbar' => FALSE, 'Reload' => FALSE ];
     $_GET ['padInclude']  = '';
     $_REQUEST             = $_GET;
 

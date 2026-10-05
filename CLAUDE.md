@@ -960,6 +960,11 @@ $padAssert = false;
 // a visitor; not on a &padInclude fragment, and never in the page cache.
 $padToolbar = false;
 
+// Live reload: a local page polls for the newest file time behind it and reloads when a
+// file changes - 'local' (or TRUE) watches the app, its www/ dir and _common, 'engine' also
+// pad/. Local requests only; never in a fragment, the page cache or a pad export.
+$padReload = false;
+
 // The strict syntax check, on by default: orphan braces and tags, pairs that never
 // close, options nothing reads, misses behind a type prefix - and an undefined $field,
 // in an expression and in the {$x} tag form alike. Off, the lenient walk keeps what
@@ -1389,6 +1394,7 @@ Each `{tag}` creates a new level scope. PAD maintains global variables per level
 
 - Set `$padInfo = 'trace'` for execution tracing
 - Set `$padToolbar = 'local'` for the debug toolbar at the foot of every local page
+- Set `$padReload = 'local'` in `_config/config.php` and a local page reloads itself when a file behind it is saved
 - Use `{debug $order}` for a collapsible view of a value inside the page (local requests only; `{debug}` alone shows every field visible there)
 - Use `{dump}` tag for variable inspection
 - Use `{trace}` tag for execution trace
@@ -1542,6 +1548,7 @@ strict syntax check - `pad_check` with only an app checks every page), `pad_trac
 | `regression/toolbar` | Test | Regression test for the debug toolbar - local page yes, fragment and forwarded request no |
 | `regression/cli` | Test | Regression test for the pad command - render, new, lint, serve and export |
 | `regression/site` | Test | The fixture pad export is tested on - links in every form, a subdirectory, assets |
+| `regression/reload` | Test | Regression test for live reload - script and stamp locally, none elsewhere or in an export |
 | `regression/errors` | Test | The Errors suite: the tests that fail on purpose, answered lean under the boot action - no dumps |
 | `regression/common` | Test | The pages of the suite that use `_common` - `{example}`, `{demo}`, `{table}` - fetched and compared the same way |
 | `sequence` | Standard | Mathematical sequence subsystem demos - with a gallery of every type beside its OEIS entry, a sequence played as notes, and a guess-the-next-term game |

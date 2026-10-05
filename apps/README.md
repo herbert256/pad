@@ -55,6 +55,7 @@ This directory contains PAD applications and examples.
 | [regression/toolbar](regression/toolbar/README.md) | Test | Regression test for the debug toolbar - a local page carries it, a fragment and a forwarded request do not |
 | [regression/cli](regression/cli/README.md) | Test | Regression test for the pad command - render, new, lint, serve and export, each a NO when it stops behaving |
 | [regression/site](regression/site/README.md) | Test | The fixture pad export is tested on - links in every form, a page in a subdirectory, assets |
+| [regression/reload](regression/reload/README.md) | Test | Regression test for live reload - a local page carries the script and its stamp, a fragment, a forwarded request and an export do not |
 | [regression/errors](regression/errors/README.md) | Test | The Errors suite: the tests that fail on purpose, answered lean under the boot action - no dumps |
 | [regression/common](regression/common/README.md) | Test | The pages of the suite that use _common - {example}, {demo}, {table} - fetched and compared the same way |
 | [sequence](sequence/README.md) | Standard | Mathematical sequence subsystem demos - gallery, listen and guess pages |

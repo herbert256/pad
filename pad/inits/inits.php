@@ -31,6 +31,7 @@
   include PAD . 'inits/client.php';
   include PAD . 'inits/host.php';
   include PAD . 'inits/sitemap.php';
+  include PAD . 'inits/reload.php';
   include PAD . 'inits/locale.php';
   include PAD . 'inits/sample.php';
   include PAD . 'inits/info.php';

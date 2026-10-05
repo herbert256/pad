@@ -701,6 +701,7 @@ $padCheckOutput   // Check the finished HTML of local requests (ids, alt, labels
 $padCoverage      // Record template coverage of local requests (TRUE or a run name)
 $padRecord        // Record GET requests with their answers for replay (TRUE or a store name)
 $padToolbar       // 'local': the debug toolbar on this machine's own web pages
+$padReload        // 'local' / 'engine': live reload of this machine's own web pages
 
 // Database
 $padSqlHost
@@ -721,6 +722,10 @@ $padSqlPassword
   page: time and memory, the levels and the tag tree, the SQL statements, page and fragment
   cache, the template files read, the application's variables and the session
   (`pad/lib/toolbar.php`); never shown to a visitor, a `&padInclude` fragment or the page cache
+- Set `$padReload = 'local'` in `_config/config.php` for live reload: a local page polls
+  `?page&padReload` for the newest file time under the application, its `www/` directory and
+  `_common` (`'engine'`: `pad/` too) and reloads itself when a file is saved
+  (`pad/lib/reload.php`); never for a visitor, a fragment, the page cache or `pad export`
 - Use `{dump}` tag for variable inspection
 - Use `{trace}` tag for execution trace
 - Set `$padCheckOutput = TRUE` to have every local HTML response checked once it has rendered: duplicate ids, images without alt, form fields without a label and `?page` links to pages that do not exist are named in a panel at the end of the page and counted in a `PAD-Output-Check` header (one request: `?page&padCheckOutput`; every application's templates at once: `develop/?links`)

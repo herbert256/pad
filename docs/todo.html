@@ -660,7 +660,7 @@ _tests/cart.txt   the expected answer
         <li class="idea" id="reload">
           <div class="idea-top"><span class="number" aria-hidden="true">24</span><h3>Live reload</h3><span class="effort">Small–medium</span></div>
           <p>Add a tiny script to local responses. It asks an endpoint for the newest file time under the app (plus <code>_common</code>, and <code>pad/</code> when working on the engine) and reloads the browser when a file changes. With <code>pad serve</code>, a save shows up in the browser at once. Keep it out of anything cached or exported.</p>
-        </li>
+        <p class="done"><strong>Done.</strong> <code>$padReload = 'local'</code> in an application’s config makes local pages poll <code>?page&amp;padReload</code>, which the engine answers before any page runs with the newest file time under the application, its www/ directory and <code>_common</code> (<code>'engine'</code>: pad/ too); the page reloads on a change. Never for a visitor, a fragment, the page cache or an export. Regression: a regression application; manual page <em>Live reload</em>.</p></li>
 
         <li class="idea" id="playground">
           <div class="idea-top"><span class="number" aria-hidden="true">25</span><h3>A PAD playground</h3><span class="effort">Medium</span></div>

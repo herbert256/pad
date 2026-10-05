@@ -15,7 +15,7 @@
   // padToolbarOn     whether this request gets the bar
   // padToolbarLevel  called by level/setup.php for every level opened: one row of the tree
   // padToolbarAdd    exits/output.php hands the finished page over; the bar goes in before
-  //                  its last </body>, or at the end
+  //                  its last </body>, or at the end (padOutputAdd, shared with live reload)
   //
   // The state lives in $padToolbarData, which a nested pass ({page}, {code}) does not put
   // back to what it was before - lib/checks.php keeps it out of that snapshot - so the
@@ -57,23 +57,31 @@
 
   function padToolbarAdd () {
 
+    if ( padToolbarOn () )
+      padOutputAdd ( padToolbarHtml () );
+
+  }
+
+  // What a development helper adds to a page on its way out - the toolbar, the live reload
+  // script: only to a web page answering 200 as text/html, before its last </body> or at
+  // the end. A page from the page cache may still be gzipped; the addition goes into the
+  // page itself, and the writer then sees a plain body.
+
+  function padOutputAdd ( $html ) {
+
     global $padOutput, $padStop, $padContentType, $padCacheStop, $padCacheServerGzip;
 
-    if ( $padStop != 200 or ! padToolbarOn () or ! str_starts_with ( (string) $padContentType, 'text/html' ) )
+    if ( $padStop != 200 or ! str_starts_with ( (string) $padContentType, 'text/html' ) )
       return;
-
-    // A page from the page cache may still be gzipped; the bar goes into the page itself,
-    // and the writer then sees a plain body.
 
     if ( $padCacheStop == 200 and $padCacheServerGzip ) {
       $padOutput          = padUnzip ( $padOutput );
       $padCacheServerGzip = FALSE;
     }
 
-    $bar = padToolbarHtml ();
-    $at  = strripos ( $padOutput, '</body>' );
+    $at = strripos ( $padOutput, '</body>' );
 
-    $padOutput = ( $at === FALSE ) ? $padOutput . $bar : substr_replace ( $padOutput, $bar, $at, 0 );
+    $padOutput = ( $at === FALSE ) ? $padOutput . $html : substr_replace ( $padOutput, $html, $at, 0 );
 
   }
 

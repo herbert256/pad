@@ -135,6 +135,12 @@
 
   $padToolbar = FALSE;
 
+  // Live reload - a local page reloads itself when a file behind it changes; see
+  // lib/reload.php. 'local' (or TRUE) watches the application, its www/ directory and
+  // _common; 'engine' pad/ as well. Local requests only, whatever the setting; FALSE never.
+
+  $padReload = FALSE;
+
   // {assert $total eq 42} checks its condition only when this is TRUE, and a false one is
   // an error - the test fails. pad test turns it on for its run; FALSE, the default, leaves
   // every {assert} silent: nothing evaluated, nothing shown.
