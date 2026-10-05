@@ -40,8 +40,13 @@
   if ( (string) padTagParm ( 'fragment', '' ) !== '' )
     $padExtQry .= '&padFragment=' . urlencode ( padTagParm ( 'fragment' ) );
 
+  // Each value as the query writes it: a list as name[]=..., TRUE as 1, NULL left out -
+  // http_build_query's rules. urlencode took only text, and a list ended the request on a
+  // TypeError.
+
   foreach ( $padSetLvl [$pad] as $padK => $padV )
-    $padExtQry .= "&$padK=" . urlencode($padV);
+    if ( ( $padExtPart = http_build_query ( [ $padK => $padV ] ) ) !== '' )
+      $padExtQry .= "&$padExtPart";
 
   return padPageAjax ( $padExtPag, $padExtQry, $padExtApp ) ;
 
