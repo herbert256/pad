@@ -198,11 +198,16 @@
     if ( is_array($input) or is_object($input) )
       $input = padJson ($input);
 
-    $input = preg_replace('/[\x00-\x1F\x7F-\xFF]/', ' ', $input);
-    $input = preg_replace('/\s+/', ' ', $input);
+    // Text stays the UTF-8 it is: control characters - C0, DEL and the C1 range - become
+    // spaces, and a byte that is no UTF-8 at all becomes a ?. Every byte above 0x7F was
+    // blanked, so "Zoë Müller" came out "Zo M ller". The cut keeps whole characters.
+
+    $input = mb_scrub ( (string) $input, 'UTF-8' );
+    $input = preg_replace('/[\x{00}-\x{1F}\x{7F}-\x{9F}]/u', ' ', $input);
+    $input = preg_replace('/\s+/u', ' ', $input);
 
     if ( strlen($input) > $len )
-      $input = substr ( $input, 0, $len );
+      $input = mb_strcut ( $input, 0, $len, 'UTF-8' );
 
     $input = trim($input);
 
