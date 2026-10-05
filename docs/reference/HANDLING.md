@@ -549,6 +549,11 @@ sorted.
 3. Items that remain are removed from original
 4. Original items NOT selected are kept
 
+The handlers that select nothing are left alone: `sort`, `reverse` and `shuffle` only put the
+rows in another order, `group` folds them, and `rows` beside `page`, `start` or `end` (and
+`end` beside `start`) is read by that partner - `{staff where='$salary gt 2500', sort='name',
+negative}` is every row that does not pass, sorted by name.
+
 **Examples:**
 ```html
 {users first="5", negative}
