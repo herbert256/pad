@@ -1,0 +1,181 @@
+<h1>Components: slots and declared parameters</h1>
+
+<p>A tag of your own with a <code>.pad</code> template is a component: the caller's content goes where the template writes <b>@</b><b>content</b><b>@</b>. Named slots give it more than one place for content, and <code>{parms}</code> says which parameters it takes. The card below is <code>_tags/card.pad</code>:</p>
+
+<pre><code style="color: #000000"><b>{<font color="blue">parms </font><font color="red">title<font color="black">,</font> tone=<font color="black">'</font>plain<font color="black">'</font></font>}</b><br>&lt;div class="card <b>{<font color="green"><font color="red">#</font>tone</font>}</b>" style="border: 1px solid #999; padding: 6px; margin: 4px"&gt;<br>  &lt;b&gt;<b>{<font color="green"><font color="red">#</font>title</font>}</b>&lt;/b&gt;<br>  <b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>header<font color="black">'</font></font>}</b>&lt;i&gt;no header given&lt;/i&gt;<b>{/<font color="blue">slot</font><font color="red"></font>}</b><br>  &lt;div&gt;<b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b>&lt;/div&gt;<br>  <b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>footer<font color="black">'</font></font>}</b>&lt;small&gt;<b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b>&lt;/small&gt;<b>{/<font color="blue">slot</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/components_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">card </font><font color="red">title=<font color="black">'</font>Monthly revenue<font color="black">'</font></font>}</b><br>  &lt;strong&gt;12.500&lt;/strong&gt;<br>  <b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>footer<font color="black">'</font></font>}</b>&lt;a href="?reports"&gt;View report&lt;/a&gt;<b>{/<font color="blue">slot</font><font color="red"></font>}</b><br><b>{/<font color="blue">card</font><font color="red"></font>}</b><br><br><b>{<font color="blue">card </font><font color="red">title=<font color="black">'</font>Visitors<font color="black">'</font><font color="black">,</font> tone=<font color="black">'</font>warn<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>header<font color="black">'</font></font>}</b>&lt;i&gt;last 30 days&lt;/i&gt;<b>{/<font color="blue">slot</font><font color="red"></font>}</b><br>  &lt;strong&gt;1.204&lt;/strong&gt;<br><b>{/<font color="blue">card</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+<div class="card plain" style="border: 1px solid #999; padding: 6px; margin: 4px">
+  <b>Monthly revenue</b>
+  <i>no header given</i>
+  <div>
+  <strong>12.500</strong>
+  
+</div>
+  <small><a href="?reports">View report</a></small>
+</div>
+
+
+
+<div class="card warn" style="border: 1px solid #999; padding: 6px; margin: 4px">
+  <b>Visitors</b>
+  <i>last 30 days</i>
+  <div>
+  
+  <strong>1.204</strong>
+</div>
+  
+</div>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<h2>Slots</h2>
+
+<ul>
+  <li>A <code>{slot 'footer'}...{/slot}</code> pair standing directly in the content of the tag is a fill: it is taken out of the content and goes where the template has its <code>{slot 'footer'}</code>. The rest of the content goes to <b>@</b><b>content</b><b>@</b>.</li>
+  <li>In the template, the content of a <code>{slot}</code> is its default, rendered when the caller gave no fill. <code>{slot 'header'/}</code> in the caller's content is an empty fill.</li>
+  <li>A default holding <b>@</b><b>content</b><b>@</b> is a frame: <code>{slot 'footer'}&lt;small&gt;&#64;content&#64;&lt;/small&gt;{/slot}</code> renders the frame round the fill, and nothing - or its <b>@</b><b>else</b><b>@</b> part - when there is no fill.</li>
+  <li>A fill is the caller's text: it renders with the caller's variables, and a <code>{#name}</code> or a <code>{slot}</code> inside it belongs to the caller's tag - which is how a template passes a slot of its own on to a tag it uses.</li>
+</ul>
+
+<h2>Every use has its own</h2>
+
+<p>The fills belong to one use of the tag, so a card inside a card keeps its own footer:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/components_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">card </font><font color="red">title=<font color="black">'</font>Outer<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>footer<font color="black">'</font></font>}</b>outer footer<b>{/<font color="blue">slot</font><font color="red"></font>}</b><br>  <b>{<font color="blue">card </font><font color="red">title=<font color="black">'</font>Inner<font color="black">'</font></font>}</b><br>    inner body<br>    <b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>footer<font color="black">'</font></font>}</b>inner footer<b>{/<font color="blue">slot</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">card</font><font color="red"></font>}</b><br><b>{/<font color="blue">card</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+<div class="card plain" style="border: 1px solid #999; padding: 6px; margin: 4px">
+  <b>Outer</b>
+  <i>no header given</i>
+  <div>
+  
+  
+<div class="card plain" style="border: 1px solid #999; padding: 6px; margin: 4px">
+  <b>Inner</b>
+  <i>no header given</i>
+  <div>
+    inner body
+    
+  </div>
+  <small>inner footer</small>
+</div>
+
+</div>
+  <small>outer footer</small>
+</div>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<h2>Declared parameters</h2>
+
+<ul>
+  <li><code>{parms title, tone='plain'}</code> at the top of the template declares the parameters: a name alone is required, <code>name=default</code> fills in what the caller left out. Both read as <code>{#title}</code>.</li>
+  <li>A required parameter left out is an error, and so - under the strict check - is a parameter the tag does not declare: <code>{card titel='x'}</code> is reported by name.</li>
+</ul>

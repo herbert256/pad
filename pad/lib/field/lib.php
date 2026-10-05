@@ -68,16 +68,31 @@
 
   // At page level the start can be below 0: the walk stops at 0 rather than counting on
   // through the negatives, and the fallback is the root level - it was -1, an undefined key.
+  //
+  // A {slot} level is looked past like an if: a {#title} in a slot's default belongs to the
+  // tag whose template it is in. A slot level rendering a fill hands the search on to below
+  // the tag the fill was given to - the fill is the caller's text (lib/slot.php).
 
   function padFieldFirstParmTag ($flag=0) {
 
-    global $pad, $padAtTag, $padTag;
+    global $pad, $padAtTag, $padTag, $padType, $padSlotFrom;
 
     $start = ($flag) ? $pad-1 : $pad;
 
-    for ($i=$start; $i > 0; $i--)
+    for ($i=$start; $i > 0; $i--) {
+
+      if ( isset ( $padSlotFrom [$i] ) ) {
+        $i = $padSlotFrom [$i];
+        continue;
+      }
+
+      if ( $padTag [$i] == 'slot' and ( $padType [$i] ?? '' ) == 'pad' )
+        continue;
+
       if ( $padTag [$i] != 'if' and $padTag [$i] != 'case' and ! ( $padAtTag [$i] ?? FALSE ) )
         return $i;
+
+    }
 
     return max ( 0, $pad - 1 );
 

@@ -1,0 +1,3 @@
+{# Fixture for the slot and parms cases: a card with a header slot that has a default, the
+   caller's content in main, and a footer slot framed by a footer tag only when filled. #}
+{parms title, tone='info'}<div class="{#tone}"><h2>{#title}</h2>[{slot 'header'}no header{/slot}]<main>@content@</main>{slot 'footer'}<footer>@content@</footer>@else@<footer>-</footer>{/slot}</div>

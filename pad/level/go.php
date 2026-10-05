@@ -13,6 +13,12 @@
   $padContent    = $padBase [$pad];
   $padTagContent = '';
 
+  // A custom tag - one whose template takes the content in at @content@ - first has the
+  // slot fills taken out of its content, kept for this use of the tag: lib/slot.php.
+
+  if ( ! isset ( $padSlot [$pad] ) and padSlotType ( $padType [$pad] ) )
+    $padSlot [$pad] = [ 'fills' => padSlotTake ( $padContent ), 'declared' => NULL ];
+
   ob_start();
   $padGetName     = $padTag [$pad];
   $padTagResult   = include PAD . "types/" . $padType [$pad] . ".php";

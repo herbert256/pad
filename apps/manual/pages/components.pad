@@ -1,0 +1,29 @@
+<h1>Components: slots and declared parameters</h1>
+
+<p>A tag of your own with a <code>.pad</code> template is a component: the caller's content goes where the template writes {construct 'content'}. Named slots give it more than one place for content, and <code>{open}parms{close}</code> says which parameters it takes. The card below is <code>_tags/card.pad</code>:</p>
+
+{source '_tags/card.pad'}
+
+{example 'fragments/components_1'}
+
+<h2>Slots</h2>
+
+<ul>
+  <li>A <code>{open}slot 'footer'{close}...{open}/slot{close}</code> pair standing directly in the content of the tag is a fill: it is taken out of the content and goes where the template has its <code>{open}slot 'footer'{close}</code>. The rest of the content goes to {construct 'content'}.</li>
+  <li>In the template, the content of a <code>{open}slot{close}</code> is its default, rendered when the caller gave no fill. <code>{open}slot 'header'/{close}</code> in the caller's content is an empty fill.</li>
+  <li>A default holding {construct 'content'} is a frame: <code>{open}slot 'footer'{close}&lt;small&gt;&#64;content&#64;&lt;/small&gt;{open}/slot{close}</code> renders the frame round the fill, and nothing - or its {construct 'else'} part - when there is no fill.</li>
+  <li>A fill is the caller's text: it renders with the caller's variables, and a <code>{open}#name{close}</code> or a <code>{open}slot{close}</code> inside it belongs to the caller's tag - which is how a template passes a slot of its own on to a tag it uses.</li>
+</ul>
+
+<h2>Every use has its own</h2>
+
+<p>The fills belong to one use of the tag, so a card inside a card keeps its own footer:</p>
+
+{example 'fragments/components_2'}
+
+<h2>Declared parameters</h2>
+
+<ul>
+  <li><code>{open}parms title, tone='plain'{close}</code> at the top of the template declares the parameters: a name alone is required, <code>name=default</code> fills in what the caller left out. Both read as <code>{open}#title{close}</code>.</li>
+  <li>A required parameter left out is an error, and so - under the strict check - is a parameter the tag does not declare: <code>{open}card titel='x'{close}</code> is reported by name.</li>
+</ul>

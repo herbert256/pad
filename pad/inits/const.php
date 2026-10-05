@@ -32,7 +32,8 @@
     'padParmParse', 'padLvlFunVar', 'padLvlFun', 'padSource', 'padOrg', 'padPrefix',
     'padParms', 'padTagSeq', 'padPipeBefore', 'padPipeAfter', 'padSelect', 'padBaseValue',
     'padAtTag', 'padScan', 'padInfoXmlLevel', 'padWhileRound', 'padOptionsAppStartCall',
-    'padFragment', 'padLevelId', 'padOptionsAppEnd', 'padOptionsAppEndCall', 'padSrcMap'
+    'padFragment', 'padLevelId', 'padOptionsAppEnd', 'padOptionsAppEndCall', 'padSrcMap',
+    'padSlot', 'padSlotFrom'
   ] );
 
   define ( 'padStrSto', ['padDataStore','padContentStore','padBoolStore','pqStore','padStackStore'] );

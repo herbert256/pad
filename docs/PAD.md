@@ -244,6 +244,11 @@ return "Output: $format";
 
 Use as `{mytag 'value'}` or `{mytag format='value'}`.
 
+A tag with a `.pad` template is a component: the caller's content goes to `@content@`,
+`{slot 'footer'}...{/slot}` pairs in the content fill the template's named slots - each use
+of the tag has its own - and `{parms title, tone='info'}` declares the parameters, a bare name
+required and `name=default` filled in.
+
 ### Database Operations
 
 ```php

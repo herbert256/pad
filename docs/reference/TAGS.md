@@ -1014,6 +1014,47 @@ Render a mount point `<div>` for a React component, filled with data from a prov
 
 ## Layout Tags
 
+### slot
+A named place for content in a custom tag's template, and the fill a caller gives it.
+
+```html
+{card title='Revenue'}                         _tags/card.pad:
+  <strong>{$revenue}</strong>                  <div class="card">
+  {slot 'footer'}                                <h2>{#title}</h2>
+    <a href="?reports">Report</a>                @content@
+  {/slot}                                        {slot 'footer'}<footer>@content@</footer>{/slot}
+{/card}                                        </div>
+```
+
+**Rules:**
+- A `{slot}` pair standing directly in the content of a custom tag - an `_tags` or `_common`
+  tag, or an `_include` snippet used as a pair - is a fill: it is taken out of the content
+  when the tag opens and kept for that use of the tag, so nested tags keep their own. The
+  rest of the content goes to `@content@`. `{slot 'name'/}` there is an empty fill.
+- Every other `{slot}` is a place in the template: the fill renders there, or the slot's own
+  content as the default. A default holding `@content@` is a frame round the fill, rendered
+  only when there is one - otherwise its `@else@` part, or nothing.
+- A fill is the caller's text: it renders with the caller's variables, and a `{#name}` or a
+  `{slot}` inside it belongs to the caller's tag, which is how a template passes a slot of
+  its own on to a tag it uses. From a tag's PHP: `padSlotFill ( 'footer' )`.
+
+---
+
+### parms
+Declares the parameters of a custom tag, at the top of its template.
+
+```html
+{parms title, subtitle='', tone='info'}
+<h2 class="{#tone}">{#title}</h2>
+```
+
+**Behavior:** A name alone is required - leaving it out is an error. `name=default` fills
+in what the caller left out, readable as `{#name}` like a given one. Under the strict check
+a parameter the tag does not declare is reported: `the tag {card} has no parameter 'titel'`.
+The items are read raw, as `{attrs}` reads them.
+
+---
+
 ### push
 Add rendered text to a named stack, for a `{stack}` elsewhere in the page to print.
 
@@ -1333,6 +1374,8 @@ Resume a previously ceased sequence iteration.
 | `restart` | Navigation | Restart processing |
 | `pager` | Navigation | Page links for a tag with the page option |
 | `csrf` | Web | Hidden CSRF token field of the session |
+| `slot` | Layout | A named place for content in a custom tag, and its fill |
+| `parms` | Layout | Declare a custom tag's parameters, required or with defaults |
 | `push` | Layout | Add rendered text to a named stack |
 | `stack` | Layout | Print a stack, filled in after the page has rendered |
 | `form` | Web | Form with CSRF token and name, its fields refill |

@@ -511,6 +511,18 @@ Supports JSON, XML, YAML, and CSV formats:
 {/data}
 ```
 
+### Components (slots / parms)
+```
+{card title='Revenue'}                       # _tags/card.pad:
+  <strong>{$revenue}</strong>                #   {parms title, tone='info'}
+  {slot 'footer'}<a>Report</a>{/slot}        #   <h2>{#title}</h2> @content@
+{/card}                                      #   {slot 'footer'}<footer>@content@</footer>{/slot}
+```
+A `{slot}` pair directly in a custom tag's content is a fill for that use of the tag; any
+other `{slot}` is where a fill goes, its content the default (`@content@` in it frames the
+fill). `{parms}`: a bare name is required, `name=default` fills in; an undeclared parameter
+is an error under the strict check.
+
 ### Stacks (push / stack)
 ```
 <head>{stack 'scripts'}</head>                # filled in after the whole page rendered

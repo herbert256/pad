@@ -206,7 +206,7 @@
   {/slot}
 {/card}</code></pre>
           <p>A card could have independent header, body, and footer slots; nested cards would not overwrite each other’s content. Extend PAD’s existing <code>_tags</code> mechanism rather than introduce a separate component directory.</p>
-          <p class="references"><strong>Precedents:</strong> <a href="https://laravel.com/framework/docs/13.x/blade#slots">Blade slots</a> · <a href="https://twig.symfony.com/doc/3.x/tags/embed.html">Twig embed</a></p>
+          <p class="done"><strong>Done.</strong> A custom tag (an <code>_tags</code>/<code>_common</code> tag or an <code>_include</code> snippet used as a pair) takes named slots: a <code>{slot 'footer'}…{/slot}</code> directly in its content is a fill for that one use (nested cards keep their own), the template’s <code>{slot 'footer'}default{/slot}</code> is where it goes, a default holding <code>@content@</code> frames the fill; <code>{parms title, tone='info'}</code> declares parameters - bare names required, <code>name=default</code> filled in, undeclared ones reported under the strict check. Regression: framework and errors cases; manual page; TAGS.md, CLAUDE.md.</p><p class="references"><strong>Precedents:</strong> <a href="https://laravel.com/framework/docs/13.x/blade#slots">Blade slots</a> · <a href="https://twig.symfony.com/doc/3.x/tags/embed.html">Twig embed</a></p>
         </li>
 
         <li class="feature" id="attributes">

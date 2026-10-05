@@ -124,6 +124,25 @@ Use in templates:
 {button label="Submit" href="?submit"}
 ```
 
+A tag can be a template instead - `_tags/card.pad` - with named slots for the caller to fill
+and declared parameters:
+
+```html
+{parms title, tone='info'}
+<div class="card {#tone}">
+  <h2>{#title}</h2>
+  @content@
+  {slot 'footer'}<footer>@content@</footer>{/slot}
+</div>
+```
+
+```
+{card title="Revenue"}
+  <strong>{$revenue}</strong>
+  {slot 'footer'}<a href="?reports">Report</a>{/slot}
+{/card}
+```
+
 ### _functions/ - Pipe Functions
 
 Create custom pipe functions.

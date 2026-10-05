@@ -11,7 +11,12 @@
   // leave one unread - the {example} tag's onlyResult form reads none of its panel
   // switches.
 
-  if ( $padTagSeq [$pad] or in_array ( $padType [$pad], [ 'pad', 'select' ] ) )
+  // A custom tag that declares its parameters with {parms} is swept too: a parameter it was
+  // given and does not declare is reported by name (lib/slot.php).
+
+  $padUnreadDeclared = $padSlot [$pad] ['declared'] ?? NULL;
+
+  if ( $padTagSeq [$pad] or in_array ( $padType [$pad], [ 'pad', 'select' ] ) or $padUnreadDeclared !== NULL )
 
     foreach ( $padParms [$pad] as $padUnread ) {
 
@@ -51,6 +56,10 @@
         if ( file_exists ( PAD . "sequence/options/types/$padUnreadName.php" )    ) continue;
         if ( in_array ( $padUnreadName, [ 'sequence', 'pull', 'action' ] )        ) continue;
       }
+
+      if ( $padUnreadDeclared !== NULL )
+        return padError ( "the tag {" . $padTag [$pad] . "} has no parameter '" . $padUnreadName . "' - it declares "
+                          . ( $padUnreadDeclared ? implode ( ', ', $padUnreadDeclared ) : 'none' ) );
 
       return padError ( "the tag {" . $padTag [$pad] . "} was given an option '" . $padUnreadName . "' that nothing reads" );
 

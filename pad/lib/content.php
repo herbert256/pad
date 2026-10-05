@@ -11,7 +11,9 @@
   // padContentBeforeAfter the same search for @content@, returning the text either side
   //
   // Both searches use padOpenCloseCount from lib/template.php to skip markers that belong
-  // to an inner tag, so nesting cannot be broken by a marker in a child.
+  // to an inner tag, so nesting cannot be broken by a marker in a child. An @content@
+  // inside a {slot} pair is that slot's frame for its fill (tags/slot.php), not the place
+  // the tag's own content goes.
 
   function padContentMerge ( &$true, &$false, $new, $condition ) {
 
@@ -70,7 +72,8 @@
 
     while ( $pos !== FALSE) {
 
-      if  ( padOpenCloseCountOne ( substr ( $input, 0, $pos ), 'content' ) ) {
+      if  ( padOpenCloseCountOne ( substr ( $input, 0, $pos ), 'content' )
+            and padOpenCloseCountOne ( substr ( $input, 0, $pos ), 'slot' ) ) {
         $before = substr ( $input, 0, $pos );
         $after  = substr ( $input, $pos+9  );
         return TRUE;

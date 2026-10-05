@@ -91,6 +91,8 @@
   $padScan       [$pad] = 0;
   $padFragment   [$pad] = NULL;
   $padSrcMap     [$pad] = NULL;
+  $padSlot       [$pad] = NULL;
+  $padSlotFrom   [$pad] = NULL;
 
   $padForceTagName  = '';
   $padForceDataName = '';
