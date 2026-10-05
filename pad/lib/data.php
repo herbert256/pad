@@ -20,8 +20,6 @@
 
   function padData ( $input, $type='', $name='' ) {
 
-    global $padDataSetRecord;
-
     if     ( $input === NULL           ) $data = [];
     elseif ( $input === FALSE          ) $data = [];
     elseif ( is_float($input) && is_nan($input) ) $data = [];
@@ -76,13 +74,15 @@
     }
 
     // A RECORD answer of db() is one row, which the fixers below would otherwise take for
-    // a list of fields, one occurrence each. db() keeps every row it answered for RECORD,
-    // and the row is known again by its value wherever it arrives. It was one flag that the
-    // next padData() of the request took, whatever it was given: a second RECORD read in
-    // the same PHP file, or the same record iterated twice, came out one occurrence per
-    // field, and a plain list after a RECORD came out as one occurrence holding the list.
+    // a list of fields, one occurrence each. db() keeps the columns of every row it answered
+    // for RECORD, and a row with those columns is known again wherever it arrives. It was one
+    // flag that the next padData() of the request took, whatever it was given: a second
+    // RECORD read in the same PHP file, or the same record iterated twice, came out one
+    // occurrence per field, and a plain list after a RECORD came out as one occurrence
+    // holding the list. Matched by its whole value for a while, a record the page's PHP had
+    // added a field to, or cast a value of, was no record any more.
 
-    if ( is_array ( $input ) and $input and in_array ( $input, $padDataSetRecord ?? [], TRUE ) )
+    if ( padDataIsRecord ( $input ) )
       $data = padDataChkCheckRecord ($data,$name);
 
     $data = padDataChkSimpleArray ($data,$name);
@@ -92,6 +92,24 @@
     $data = padDataChkCheckArray  ($data,$name);
 
     return $data;
+
+  }
+
+  // Whether a value is a row db() answered for RECORD: named fields holding at least the
+  // columns of one of them.
+
+  function padDataIsRecord ( $input ) {
+
+    global $padDataSetRecord;
+
+    if ( ! is_array ( $input ) or ! $input or array_is_list ( $input ) )
+      return FALSE;
+
+    foreach ( $padDataSetRecord ?? [] as $columns )
+      if ( ! array_diff_key ( array_flip ( $columns ), $input ) )
+        return TRUE;
+
+    return FALSE;
 
   }
 

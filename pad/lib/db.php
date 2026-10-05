@@ -304,7 +304,7 @@
         $return = array();
       else {
         $return = $fields;
-        $padDataSetRecord [] = $fields;
+        $padDataSetRecord [ implode ( "\x1F", array_keys ( $fields ) ) ] = array_keys ( $fields );
       }
     elseif ( $command == 'array'  ) {
       $return = array();
