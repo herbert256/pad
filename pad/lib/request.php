@@ -162,13 +162,16 @@
 
   }
 
-  // A command-line run has no method at all; it renders the way a GET does.
+  // A command-line run has no method at all; it renders the way a GET does. Any method
+  // HTTP allows - a token, M-SEARCH as much as POST - is answered as it came, upper-cased:
+  // the engine asks here too, and its CSRF check must see an unusual method as the
+  // unsafe one it is, not as a GET.
 
   function padRequestMethod () {
 
     $method = strtoupper ( (string) ( $_SERVER ['REQUEST_METHOD'] ?? '' ) );
 
-    return preg_match ( '/^[A-Z]+$/', $method ) ? $method : 'GET';
+    return preg_match ( "/^[A-Z0-9!#$%&'*+.^_`|~-]+$/D", $method ) ? $method : 'GET';
 
   }
 

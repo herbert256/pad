@@ -69,9 +69,7 @@
 
   function padCsrfUnsafe () {
 
-    $method = strtoupper ( $_SERVER ['REQUEST_METHOD'] ?? 'GET' );
-
-    return ! in_array ( $method, [ 'GET', 'HEAD', 'OPTIONS' ], TRUE );
+    return ! padRequestIs ( [ 'GET', 'HEAD', 'OPTIONS' ] );
 
   }
 

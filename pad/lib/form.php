@@ -26,7 +26,7 @@
 
   function padPosted ( $form = '' ) {
 
-    if ( strtoupper ( $_SERVER ['REQUEST_METHOD'] ?? '' ) != 'POST' )
+    if ( ! padRequestIs ( 'POST' ) )
       return FALSE;
 
     if ( $form === '' or $form === NULL )

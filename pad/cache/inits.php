@@ -28,7 +28,7 @@
 
   if ( $padOutputType != 'web' or $padClientFormat !== '' )
     $padCache = FALSE;
-  elseif ( isset ( $_SERVER['REQUEST_METHOD'] ) and $_SERVER['REQUEST_METHOD'] != 'GET' )
+  elseif ( padRequestMethod () != 'GET' )
     $padCache = FALSE;
   elseif ( ! $padCacheServerAge )
     $padCache = FALSE;

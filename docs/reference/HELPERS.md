@@ -375,7 +375,7 @@ the session; these do the same by name, whatever those settings let through. Man
 | `padRequestFilled ( $key )` | `TRUE` when every name is in the input and not blank |
 | `padRequestOnly ( $keys )` | The input with these names only, in the order given, each where its dot path puts it; a name not sent is left out |
 | `padRequestExcept ( $keys )` | The input without these names (dot paths remove a nested value) |
-| `padRequestMethod ()` | The method upper-cased - `GET`, `POST`, `PUT` ...; `GET` when there is none (the command line) |
+| `padRequestMethod ()` | The method upper-cased - `GET`, `POST`, `PUT`, `M-SEARCH` ... any method HTTP allows; `GET` when there is none (the command line). The engine asks it too - the CSRF check, `padPosted`, the page cache and the 304 |
 | `padRequestIs ( $method )` | `TRUE` when the method is this one, or one of a list / comma-separated text, in any case |
 | `padSession ( $key = NULL, $default = NULL )` | One value of the session by name or dot path, or the default; `NULL` key: all of it (`[]` without a session). Never starts a session |
 | `padSessionPut ( $key, $value )` | Keeps a value at a dot path, starting the session when there is none; an array of names and values puts them all. `TRUE`, or `FALSE` when no session can start (headers sent) |
