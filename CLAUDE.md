@@ -597,8 +597,9 @@ $padProtectValues = true;
 // TRUE allows all; a list allows those names only; [] none.
 $padPhpFunctions = true;
 
-// Which request values become variables ({$name} for a form field). TRUE all; a list
-// those names only; [] none. A $padSessionVars name is never filled from the request.
+// Which request values become variables ({$name} for a form field). TRUE every POST
+// and GET value; a list those names only (a cookie only when listed); [] none. A
+// $padSessionVars name, and an engine name (pad*, pq*, _*), is never filled from it.
 $padRequestVars = true;
 ```
 

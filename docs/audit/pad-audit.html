@@ -429,13 +429,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding ph" id="h7">
+    <div class="finding ph fixed" id="h7">
       <div class="tag"><div class="priority">High</div><div class="cat">Request → globals</div></div>
       <div>
-        <h3>Request parameters become globals register-globals-style; only <code>pad*</code> is protected</h3>
+        <h3>Request parameters become globals register-globals-style; only <code>pad*</code> is protected<span class="done">Fixed</span></h3>
         <p class="where">inits/parms.php:15-17 · lib/valid.php:46-54</p>
         <p>POST, GET and cookie (including arrays) are promoted for any name passing <code>padValidVar</code>, which rejects only names starting <code>pad</code>. So any variable an app sets only <em>conditionally</em> in <code>_inits.php</code> or page PHP — <code>$isAdmin</code>, <code>$user</code>, a feature flag — can be preset from the URL, a cookie dropped by a sibling subdomain, or a cross-site POST. <code>pq*</code> sequence state is unprotected (only saved today by an unrelated clear step), and the name filter accepts <code>_SESSION</code>, which other code treats as reserved.</p>
         <div class="fix"><b>Fix:</b> promote only an app-declared allow-list, or at minimum drop cookies and names starting with <code>_</code>, and share one name classifier across <code>padValidVar</code>, <code>padValidStore</code> and the store guards.</div>
+        <div class="resolved"><b>Fixed:</b> cookies are no longer promoted unless a <code>$padRequestVars</code> list names them, so a cookie from a sibling subdomain or another application on the host cannot preset <code>$isAdmin</code>; POST and GET still are under the default <code>TRUE</code>, and a list narrows them to declared names (C1 commit). One classifier, a new <code>padEngineName()</code> (pad*, pq*, PHP's superglobals, GLOBALS, this), now backs both <code>padValidVar</code> and <code>padValidStore</code>, and <code>padValidVar</code> also refuses a name starting with <code>_</code>, the shape of PHP's own arrays. So <code>?pqRows=…</code> no longer presets sequence state, and <code>?_SESSION=…</code> no longer plants a fake session array when no session runs. A new Pages case <code>request/crumbs</code> sends a cookie, a <code>pq</code> name and an <code>_</code> name to a fixture: the old code answered <code>crumb:variable pq:variable _:variable</code>, now <code>none</code> three times. Decided: the default stays "every POST and GET name", since every form in the applications reads its fields as <code>{$field}</code>; a declared list is the stricter setting.</div>
       </div>
     </div>
 

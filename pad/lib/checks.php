@@ -168,16 +168,7 @@
 
   function padValidStore ($fld) {
 
-    if ( substr($fld, 0,3) == 'pad' )
-      return FALSE;
-
-    if ( substr($fld, 0,2) == 'pq' )
-      return FALSE;
-
-    if ( in_array ( $fld, ['GLOBALS','_POST','_GET','_COOKIE','_SESSION','_FILES','_SERVER','_REQUEST','_ENV'] ) )
-      return FALSE;
-
-    return TRUE;
+    return ! padEngineName ( (string) $fld );
 
   }
 

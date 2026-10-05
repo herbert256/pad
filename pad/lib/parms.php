@@ -9,19 +9,24 @@
   // padGetParms2  trims each request value, recursing into nested arrays; session values
   //               pass as they are
   // padRequestVar  whether a request value of that name may become a global: one the
-  //               $padRequestVars setting lets through, and never a $padSessionVars name
+  //               $padRequestVars setting lets through - a cookie only when listed by name
+  //               - and never a $padSessionVars name
 
   function padGetParms ( $type, $parms ) {
 
     foreach ( $parms as $field => $value )
       if ( (!isset($GLOBALS[$field])) )
         if ( padValidVar ($field) )
-          if ( $type == 'SESSION' or padRequestVar ($field) )
+          if ( $type == 'SESSION' or padRequestVar ($field, $type) )
             $GLOBALS [$field] = padGetParms2 ( $type, $value );
 
   }
 
-  function padRequestVar ( $field ) {
+  // A cookie becomes a variable only when a $padRequestVars list names it: a cookie set by
+  // a sibling subdomain, or left by another application on the host, preset any name the
+  // application only sets now and then - $isAdmin - on every request that carried it.
+
+  function padRequestVar ( $field, $type = 'GET' ) {
 
     global $padRequestVars, $padSessionVars;
 
@@ -29,7 +34,7 @@
       return FALSE;
 
     if ( $padRequestVars === TRUE )
-      return TRUE;
+      return $type != 'COOKIE';
 
     return is_array ( $padRequestVars ) and in_array ( $field, $padRequestVars, TRUE );
 
