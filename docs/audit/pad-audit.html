@@ -515,13 +515,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm" id="m3">
+    <div class="finding pm fixed" id="m3">
       <div class="tag"><div class="priority">Medium</div><div class="cat">Disclosure</div></div>
       <div>
-        <h3><code>{files}</code> and <code>{dir}</code> read arbitrary directories with no containment</h3>
+        <h3><code>{files}</code> and <code>{dir}</code> read arbitrary directories with no containment<span class="done">Fixed</span></h3>
         <p class="where">tags/files.php:24-30 · tags/dir.php:7,21</p>
         <p><code>{files}</code> falls back to <code>"/$padFilesDir"</code> (the filesystem root) when <code>base</code> is unset and recurses it; <code>{dir}</code> runs <code>scandir($padParm)</code> on the path as given. Neither passes <code>padFileCheck</code>, so <code>{dir '/etc'}</code> lists whatever the PHP user can read.</p>
         <div class="fix"><b>Fix:</b> route both through <code>padFileCheck</code> and constrain to the app/data/pad roots unless an absolute base is explicitly intended.</div>
+        <div class="resolved"><b>Fixed:</b> a new <code>padDirContained()</code> resolves the directory with <code>realpath</code> and accepts it only inside the applications (<code>APPS</code>), the engine (<code>PAD</code>) or <code>DATA</code>, so a symlink or <code>..</code> cannot step outside. <code>{dir}</code> and <code>{files}</code>, whatever its <code>base=</code>, refuse anything else with a PAD error. Two Errors cases hold it: <code>{dir '/etc'}</code> listed the system directory before and now ends in "the directory '/etc' lies outside the applications, the engine and DATA", and so does <code>{files 'etc'}</code> on its filesystem-root base. Every directory the applications list lies inside; the one framework case that wrote an absolute <code>/Users/herbert/…</code> path now builds it from <code>APPS</code>.</div>
       </div>
     </div>
 

@@ -7,7 +7,8 @@
   // before the last /.
   //
   // base= says what the directory is relative to: app for APP, data for DATA, pad for the
-  // path as given, and anything else for the filesystem root. recursive picks the
+  // path as given, and anything else for the filesystem root - and whatever the base, the
+  // directory must lie inside the applications, the engine or DATA. recursive picks the
   // recursive iterator; mask, exclude, onlyFiles, onlyDirs and includeHidden drop entries
   // as they come by; group makes item the array key instead of a running number.
 
@@ -38,6 +39,11 @@
 
     return [];
 
+  }
+
+  if ( ! padDirContained ( $padFilesScan ) ) {
+    padError ( "the directory '$padFilesDir' lies outside the applications, the engine and DATA" );
+    return [];
   }
 
   if ( $padFilesRecursive ) {

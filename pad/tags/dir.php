@@ -1,8 +1,9 @@
 <?php
 
   // {dir '/path'} lists a directory as this level's data, one occurrence per entry, with
-  // . and .. left out by padFiles(). The path is used as given; {files} is the version
-  // with a base, masks, recursion and a field per entry.
+  // . and .. left out by padFiles(). The path must lie inside the applications, the engine
+  // or DATA (padDirContained); {files} is the version with a base, masks, recursion and a
+  // field per entry.
 
   $padDir = $padParm;
 
@@ -16,6 +17,11 @@
 
     return [];
 
+  }
+
+  if ( ! padDirContained ( $padDir ) ) {
+    padError ( "the directory '$padDir' lies outside the applications, the engine and DATA" );
+    return [];
   }
 
   return padFiles ($padDir);

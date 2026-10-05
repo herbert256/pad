@@ -114,6 +114,32 @@
   } 
 
 
+  // A directory a template may list - {dir} and {files} - lies inside the applications,
+  // the engine or DATA once every symlink and .. is resolved. They used the path as given,
+  // and {dir '/etc'} listed whatever the PHP user could read.
+
+  function padDirContained ( $dir ) {
+
+    $real = padGetPath ( $dir );
+
+    if ( $real === FALSE or ! is_dir ( $real ) )
+      return FALSE;
+
+    $real = rtrim ( $real, '/' ) . '/';
+
+    foreach ( [ APPS, PAD, DATA ] as $root ) {
+
+      $root = padGetPath ( $root );
+
+      if ( $root !== FALSE and str_starts_with ( $real, rtrim ( $root, '/' ) . '/' ) )
+        return TRUE;
+
+    }
+
+    return FALSE;
+
+  }
+
   function padDeleteDataDir ( $dir ) {
 
     $dir = padGetPath ( $dir );
