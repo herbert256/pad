@@ -1,0 +1,1 @@
+{orders sort='total', group='customer'}[{$customer}:{rows}{$number}{/rows}]{/orders}|{orders group='customer', sum='total', sort='total DESC', first=2}[{$customer} {$total}]{/orders}|{orders group='customer', where='$count gt 1', negative}{$customer}{/orders}

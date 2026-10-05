@@ -1,0 +1,30 @@
+<h1>Grouping with subtotals</h1>
+
+<p>The <code>group</code> option folds the rows of any data tag into one occurrence per
+distinct value of a field. Each group holds that value, <code>$count</code> - the number of
+rows in the group - and <code>rows</code>, the group's own rows as nested data. Inside
+<code>{open}rows{close}</code> a field is the row's own value again.</p>
+
+{example 'fragments/grouping_1'}
+
+<h2>Aggregates</h2>
+
+<p><code>sum</code>, <code>avg</code>, <code>min</code> and <code>max</code> name the fields to
+aggregate over each group's rows. The aggregate is stored under the field's own name -
+<code>{open}$total{close}</code> above is the sum - and under the aggregate joined to it -
+<code>{open}$sum_total{close}</code>, <code>{open}$avg_total{close}</code> - so one field can be
+summed and averaged at once. A field list such as <code>sum='total, quantity'</code>
+aggregates each of them.</p>
+
+{example 'fragments/grouping_2'}
+
+<h2>In order with the other options</h2>
+
+<p>Handling options run in the order they are written. Groups come in the order their first
+row appears: a <code>sort</code> written before the group orders the groups and the rows
+inside them, a <code>sort</code> written after it orders the groups - also on an aggregate,
+as above. <code>first</code>, <code>page</code> and <code>where</code> written after the group
+count groups: <code>{open}orders group='customer', where='$count gt 1'{close}</code> keeps the
+customers with more than one order. Several fields - <code>group='year, month'</code> - group
+on the combination, and <code>{open}rows group='month'{close}</code> groups again inside a
+group.</p>

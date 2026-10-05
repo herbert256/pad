@@ -171,6 +171,9 @@ in `where=`/`having=` as a quoted, escaped literal of that application variable 
 number), in `order=`/`group=` as column names, each with an optional `asc`/`desc`, and nothing
 else. `{$name}` there splices text into your SQL instead - use `$name`. Keys bound on the tag
 (`{users $id=5}`) are always escaped. Declarations in `$padSelect` are PHP and taken as written.
+On every other data - a `{array}` query, JSON, page PHP - `where=` and `group=` are the handling
+options instead: a PAD expression per row, and grouping with subtotals in the template (see
+[HANDLING.md](reference/HANDLING.md#group)).
 
 ### Nested Relations (Automatic Joins)
 

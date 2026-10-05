@@ -335,6 +335,18 @@ Arithmetic pipes require a space between the operator and operand:
 The options run in the order written. `where` takes a quoted expression, evaluated per row
 with the row's fields first. When the options leave no row, the `@else@` branch shows.
 
+### Grouping with subtotals (group option)
+```
+{orders group='customer', sum='total'}
+  <h2>{$customer}: {$count} orders, {$total}</h2>
+  {rows}<p>{$number}: {$total}</p>{/rows}
+{/orders}
+```
+Each group is an occurrence with the grouping field, `$count` and its own rows as `rows`
+(inside `{rows}` a field is the row's own value). `sum`, `avg`, `min`, `max` name fields to
+aggregate: under the field's own name and as `$sum_total`, `$avg_total`, ... Groups keep the
+order of first appearance - a `sort` written after the group sorts the groups.
+
 ### Loop Control
 ```
 {continue 'tagname'}    # Skip to next iteration (like PHP's continue)

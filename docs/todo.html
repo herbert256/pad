@@ -481,7 +481,7 @@
 {/orders}</code></pre>
           <p><a href="#ifchanged"><code>ifchanged</code></a> prints a heading when a value changes. Grouping goes further: each group is an occurrence with its key, a count, aggregated fields and its rows as nested data. Inside <code>{rows}</code>, <code>$total</code> is the row’s own value again.</p>
           <p>Sum, average, minimum and maximum exist today only as <a href="https://github.com/herbert256/pad/tree/master/pad/sequence/actions">sequence actions</a> and through Select’s SQL grouping.</p>
-          <p class="references"><strong>Precedent:</strong> <a href="https://jinja.palletsprojects.com/en/stable/templates/#jinja-filters.groupby">Jinja groupby</a></p>
+          <p class="done"><strong>Done.</strong> <code>group='field'</code> with <code>sum</code>, <code>avg</code>, <code>min</code>, <code>max</code> handling options (pad/handling/types/group.php, lib/group.php): one occurrence per value with <code>$count</code>, the aggregates (also as <code>$sum_total</code> …) and its rows as nested data for <code>{rows}</code>, in written order with sort/first/where. Regression: four framework <code>options/group_*</code> cases, two errors cases; manual page <em>Grouping</em>; HANDLING.md, OPTIONS.md, DATABASE.md, CLAUDE.md.</p><p class="references"><strong>Precedent:</strong> <a href="https://jinja.palletsprojects.com/en/stable/templates/#jinja-filters.groupby">Jinja groupby</a></p>
         </li>
 
         <li class="idea" id="pager">

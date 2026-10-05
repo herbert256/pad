@@ -1,0 +1,15 @@
+{data 'orders'}
+  [ {"customer":"Ann","number":101,"total":40}, {"customer":"Bob","number":102,"total":15},
+    {"customer":"Ann","number":103,"total":25}, {"customer":"Cleo","number":104,"total":60},
+    {"customer":"Bob","number":105,"total":35} ]
+{/data}
+
+<table>
+  <tr><th>Customer</th><th>Orders</th><th>Total</th><th>Average</th><th>Smallest</th><th>Largest</th></tr>
+  {orders group='customer', sum='total', avg='total', min='total', max='total', sort='total DESC'}
+    <tr>
+      <td>{$customer}</td><td>{$count}</td><td>{$total}</td>
+      <td>{$avg_total}</td><td>{$min_total}</td><td>{$max_total}</td>
+    </tr>
+  {/orders}
+</table>

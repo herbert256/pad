@@ -1,6 +1,6 @@
 <?php
 
-  // Applies a tag's data handling options - sort, first, page, dedup, slice, ... - to
+  // Applies a tag's data handling options - sort, first, page, dedup, group, ... - to
   // $padData [$pad], in the order in which they were written on the tag.
   //
   // Included by level/start.php once the level's data is known. Every parsed option
@@ -40,6 +40,19 @@
       continue;
 
     }
+    elseif ( in_array ( $padPrmName, [ 'sum', 'avg', 'min', 'max' ] ) ) {
+
+      // The aggregates of the group option are read by its handler. They go on the xref
+      // record only beside a group: a sequence tag reads a min and a max of its own.
+
+      if ( $padInfo and isset ( $padPrm [$pad] ['group'] ) and ! $padTagSeq [$pad] ) {
+        $padHandName = $padPrmName;
+        include PAD . 'events/handling.php';
+      }
+
+      continue;
+
+    }
     elseif ( $padTagSeq [$pad]                                  ) continue;
     elseif ( ! file_exists ( PAD . "handling/types/$padPrmName.php" ) ) continue;
 
@@ -50,12 +63,18 @@
     if ( $padInfo )
       include PAD . 'events/handling.php';
 
-    if ( $padHandNegative )
+    // negative turns a selection inside out. group selects nothing - it folds the rows into
+    // groups - and inverted it gave back the rows ungrouped, so a where=..., negative beside
+    // it read fields the groups were to have; negative leaves it alone.
+
+    $padHandInvert = ( $padHandNegative and $padHandName != 'group' );
+
+    if ( $padHandInvert )
       include PAD . "handling/negative/inits.php";
 
     include PAD . "handling/types/$padHandName.php";
 
-    if ( $padHandNegative )
+    if ( $padHandInvert )
       include PAD . "handling/negative/exits.php";
 
   }

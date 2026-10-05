@@ -24,7 +24,7 @@ Options are processed at different phases during tag execution:
 
 | Phase | When | Options |
 |-------|------|---------|
-| **Start** | Before content generation | `track`, `before`, `where`, `dedup`, `page`, `sort`, `ignore`, `print`, `parent`, `trace`, `pre` |
+| **Start** | Before content generation | `track`, `before`, `where`, `group`, `dedup`, `page`, `sort`, `ignore`, `print`, `parent`, `trace`, `pre` |
 | **End** | After content generation | `toBool`, `toContent`, `toData`, `tidy`, `dump` |
 | **Callback** | During callback execution | `callback` |
 | **Special** | Handled at specific points | `data`, `content`, `else`, `null`, `bool`, `optional`, `noError` |
@@ -433,6 +433,19 @@ fields first. See [HANDLING.md](HANDLING.md#where).
 {staff where='$salary gt 2500'}
 ```
 
+### group
+
+Folds the rows into one occurrence per distinct value of a field, each with the value,
+`count`, the aggregates `sum`, `avg`, `min` and `max` ask for, and its own rows as `rows`.
+See [HANDLING.md](HANDLING.md#group).
+
+```
+{orders group='customer', sum='total'}
+  {$customer}: {$count} orders, {$total}
+  {rows}{$number}: {$total}{/rows}
+{/orders}
+```
+
 ### page
 
 Enables pagination.
@@ -576,6 +589,8 @@ Enables direct output printing with formatting options.
 |--------|-------------|
 | `track` | Enable tracking |
 | `where` | Keep the rows an expression holds for |
+| `group` | One occurrence per value of a field, with count, rows and aggregates |
+| `sum`, `avg`, `min`, `max` | The aggregates of `group` |
 | `dedup` | Deduplicate data |
 | `page` | Enable pagination |
 | `sort` | Enable sorting |

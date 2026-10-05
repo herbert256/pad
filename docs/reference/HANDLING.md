@@ -453,6 +453,67 @@ Trims elements from the beginning and/or end of the array.
 
 ---
 
+## Grouping
+
+### group
+
+Folds the rows into one occurrence per distinct value of a field, with a count, aggregated
+fields and the group's own rows as nested data.
+
+```
+{orders group='customer', sum='total'}
+  <h2>{$customer}: {$count} orders, {$total}</h2>
+  {rows}
+    <p>{$number}: {$total}</p>
+  {/rows}
+{/orders}
+```
+
+**Each group occurrence holds:**
+- the grouping field(s), with the group's value
+- `count` - the number of rows in the group
+- the aggregates asked for (below)
+- `rows` - the group's rows; `{rows}` iterates them, and inside it a field is the row's own
+  value again
+
+**Parameters:**
+- The field to group on, quoted. Several fields - `group='year, month'` - group on the
+  combination.
+
+**Aggregates** - options read by `group`, each naming one or more fields:
+
+| Option | Gives |
+|--------|-------|
+| `sum` | The numeric values added - other values are left out; rounded to the most decimals among them, so 10.10 + 20.20 is 30.3 |
+| `avg` | That sum divided by the number of numeric values, `''` when there were none |
+| `min` | The lowest value - numbers compared as numbers, other text as text; missing and empty values left out |
+| `max` | The highest value, the same way |
+
+The aggregate is stored under the field's own name - `{$total}` - and under the aggregate
+joined to it - `{$sum_total}`, `{$avg_total}`, `{$min_total}`, `{$max_total}` - so one field
+can be summed and averaged at once; the own name holds the aggregate written first.
+
+**Examples:**
+```html
+{orders sort='customer', group='customer'}
+{-- Groups in customer order, the rows inside them too --}
+
+{orders group='customer', sum='total', sort='total DESC', first=3}
+{-- The three customers with the highest total --}
+
+{orders group='customer', where='$count gt 1'}
+{-- The customers with more than one order --}
+
+{orders group='year'}{$year}{rows group='month', sum='total'}{$month}: {$total}{/rows}{/orders}
+{-- Grouped again inside a group --}
+```
+
+Groups come in the order their first row appears; `negative` leaves a group alone. A Select
+table (`{select:users}`, or a declared table by its name) has a `group` of its own - SQL's
+group by, applied by the query - and is left alone by this handler.
+
+---
+
 ## Emptied by Handling
 
 When the tag found rows and the handling options left none - a `where` nothing passes, a
@@ -500,6 +561,7 @@ The `negative` option inverts the selection - keeping items that would normally 
 | `shuffle` | Random order | (none) |
 | `random` | Random selection | count, orderly, duplicates |
 | `where` | Rows an expression holds for | quoted expression |
+| `group` | One occurrence per value, with count and rows | field(s); sum, avg, min, max |
 | `first` | First N items | count |
 | `last` | Last N items | count |
 | `row` | Specific row | row number |
