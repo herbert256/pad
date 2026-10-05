@@ -143,7 +143,7 @@
       <div class="meta">
         <span>Analysis · <time datetime="2026-10-05">5 October 2026</time></span>
         <span>Compared with Twig, Blade, Latte &amp; Smarty</span>
-        <span>Proposals · Not implemented</span>
+        <span>Implemented the same day · every item carries a <em>Done</em> note</span>
         <span>Ideas 08–55 and the loose ends added the same day after a second pass over the engine</span>
       </div>
     </div>
@@ -1000,6 +1000,10 @@ _events/output.php   post-process the final HTML</code></pre>
 
     <section id="priorities" aria-labelledby="priorities-title">
       <h2 id="priorities-title">Where to begin</h2>
+      <div class="recommendation">
+        <p><strong>Status, 5 October 2026: everything on this page is implemented.</strong> The eight loose ends, the seven tag additions, the function table and ideas 08–55 each landed as their own commit on master, with regression cases that fail on the engine before the change, documentation, and a manual page or section; <code>./ci.sh</code> was green before every commit. The note under each item says what was built and how it is tested. The ordering below is kept as it was written, as the reasoning behind the plan.</p>
+        <p><strong>Limits worth knowing:</strong> PAD in the browser (#53) is experimental and outside the suites; the Tree-sitter corpus runs only where the CLI is installed; the parse cache (#45) caches what measured, not an AST; CSRF protection (#28) and the sitemap (#36) are opt-in; a template whose text changes at build time (<code>{meta}</code>, layout blocks) reports errors without a line; and the new built-in tags (<code>{form}</code>, <code>{input}</code>, <code>{tree}</code>, <code>{mail}</code>, <code>{flush}</code> …) take precedence over data of the same name in an application outside this repository.</p>
+      </div>
       <div class="priority-grid">
         <div class="priority-card">
           <p class="eyebrow">Before anything else</p>
