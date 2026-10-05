@@ -116,7 +116,58 @@ no Composer. They are loaded on every request, like every file in `pad/lib/`.
 
 ## Environment and cache
 
-<!-- helpers: environment and cache -->
+| Function | What it answers |
+|----------|-----------------|
+| `padEnv ( $key, $default = NULL )` | The value of an environment key: the real environment (`getenv`, `$_ENV`, `$_SERVER`) first, then the application's `_config/.env`, then `.env` in the PAD home, else the default - a Closure default is called |
+
+`pad/lib/env.php`. Machine-specific values and secrets - a database password, an API key, a
+debug switch - stay out of the code and out of git. The engine loads `pad/lib/` before it
+reads any configuration, so a configuration file can use it:
+
+```php
+<?php                                         // _config/config.php
+
+  $padSqlPassword = padEnv ( 'DB_PASSWORD' );
+  $padSqlUser     = padEnv ( 'DB_USER', 'shop' );
+  $padToolbar     = padEnv ( 'APP_DEBUG', FALSE ) ? 'local' : FALSE;
+
+?>
+```
+
+The `.env` format - the one other tools read too:
+
+```
+# a comment
+APP_NAME=Shop                   a bare value, trimmed; a # at its start or after a space starts a comment
+export DB_HOST=localhost        export in front, as a shell script writes it
+GREETING="Hello\nWorld"         double quotes: \n \r \t \" \\ \$ and ${OTHER}
+PATTERN='${not} \n expanded'    single quotes: the text exactly as written
+DEBUG=false                     true, false, null, empty - also (true) ..., any case - are TRUE, FALSE, NULL, ''
+NOTE="two
+lines"                          a quoted value may run over several lines
+```
+
+Edge rules:
+
+- The key must be a non-empty string; anything else is a `padError` naming `padEnv`, and the
+  default is answered.
+- A missing key answers the default. A key whose value is `null` answers NULL, not the
+  default - the key is there and says so. `empty` and an empty value answer `''`.
+- A quoted value is always text: `"false"` is the word, not FALSE. The words apply to bare
+  values and to values from the real environment.
+- `${OTHER}` is OTHER from the real environment, else as set earlier in the same file, else
+  `''`; in double quotes and in bare values, never in single quotes. `\$` writes a dollar.
+- A key written twice: the later line wins. A line that is not `KEY=VALUE`, a quoted value
+  that never closes, or text after a closing quote is an error naming the file and the line
+  number - never the line, which may hold the secret. While a configuration file is being
+  read, before PAD's error handling stands, the fault is thrown to the boot handlers.
+- A key starting with `HTTP_` is never read from the real environment: those are the request's
+  headers, sent by the client (a `Proxy:` header must not become `HTTP_PROXY`).
+- Each file is read once per request, kept in a static rather than a global, so its secrets
+  are not among the variables a dump lists.
+- No URL reaches `apps/` - the web server serves `www/` only - so an application's
+  `_config/.env` is never served. The repository's `.gitignore` keeps `/.env`, the PAD home's
+  file, out of git.
 
 
 ---

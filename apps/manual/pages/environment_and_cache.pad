@@ -1,0 +1,61 @@
+{meta title='Environment, cache and rate limits'}
+
+<p>Some values differ per machine and must not stand in the code: the database password, an
+API key, a debug switch. <code>padEnv</code> reads them from the server's environment or from
+a <code>.env</code> file beside the code, so the same application runs unchanged on a laptop
+and on the production server, and the secrets never reach git.</p>
+
+<h2>Environment values</h2>
+
+<p><code>padEnv ( 'KEY', $default )</code> looks in three places and answers the first that
+has the key: the real environment of the server (<code>getenv</code>, <code>$_ENV</code>,
+<code>$_SERVER</code> - what Apache's <code>SetEnv</code> or PHP-FPM's <code>env[...]</code>
+sets), then the application's <code>_config/.env</code>, then <code>.env</code> in the PAD
+home. Without the key it answers the default - a closure as the default is called. This
+manual has a <code>_config/.env</code> of its own:</p>
+
+<pre><code>MANUAL_SITE_NAME="PAD manual"
+MANUAL_PAGE_SIZE=20
+MANUAL_DEBUG=false</code></pre>
+
+{example 'fragments/environment_and_cache_1'}
+
+<p>The engine loads its library before it reads any configuration, so the place a secret is
+needed first can ask for it - <code>_config/config.php</code>:</p>
+
+<pre><code>$padSqlPassword = padEnv ( 'DB_PASSWORD' );
+$padSqlUser     = padEnv ( 'DB_USER', 'shop' );</code></pre>
+
+<h2>The .env file</h2>
+
+{ignore}
+<pre><code># a comment
+APP_NAME=Shop                     a bare value, trimmed - # after a space starts a comment
+export DB_HOST=localhost          export in front, as a shell script writes it
+GREETING="Hello\nWorld"           double quotes: \n \r \t \" \\ \$ and ${OTHER}
+PATTERN='${not} \n expanded'      single quotes: the text exactly as written
+DEBUG=false                       true, false, null and empty are TRUE, FALSE, NULL and ''
+NOTE="two
+lines"                            a quoted value may run over several lines</code></pre>
+{/ignore}
+
+<ul>
+  <li>A quoted value is always text: <code>"false"</code> is the word, not FALSE.</li>
+  <li><code>${open}OTHER{close}</code> is OTHER from the real environment, else as set
+  earlier in the same file, else empty; it works in bare values too.</li>
+  <li>A key written twice: the later line wins, as in a shell.</li>
+  <li>A line that is none of these is an error naming the file and the line number - never
+  the line itself, which may hold the secret.</li>
+  <li>A key that starts with <code>HTTP_</code> is never read from the real environment:
+  those are the headers of the request, which the client sends.</li>
+  <li>No URL reaches <code>apps/</code> - the web server serves <code>www/</code> only - so an
+  application's <code>_config/.env</code> is not served. The repository's
+  <code>.gitignore</code> keeps the <code>.env</code> of the PAD home out of git; keep an
+  application's out the same way when it holds a real secret.</li>
+  <li>Each file is read once per request, the first time a key is asked for.</li>
+</ul>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+  <tr><th>function</th><th>what it does</th></tr>
+  <tr><td><code>padEnv ( $key, $default = NULL )</code></td><td>the value of an environment key - the real environment, then <code>_config/.env</code>, then the PAD home's <code>.env</code>, else the default</td></tr>
+</table>
