@@ -12,28 +12,12 @@
   // padMakeContent     the output form; NULL and FALSE print as nothing, TRUE as 1
   // padToArray         casts an object or resource to an array with errors silenced
   // padJson            json_encode with the engine's flags, never throwing
-  // padArrayNumericValues  turns numeric strings into real numbers throughout an array
   // padConstant        a defined constant's value, else the name unchanged
   // padFieldName       drops a leading $ from a field name
   // padDataForcePad    rewrites a name => value map into occurrences with name and value
   //                    fields, the shape {fields@record} iterates
   // padDefaultData / padIsDefaultData  the single empty occurrence a tag stands in with
   //                    when it has no data of its own, and the test for it
-
-  function padArrayNumericValues ( &$parm ) {
-
-    if ( ! is_array ( $parm ) )
-      return;
-
-    array_walk_recursive ( $parm, 
-      function ( &$value ) {
-        if ( is_numeric ( $value ) ) {
-          $value = $value + 0; // Converts to int or float
-        }
-      });
-
-  }
-
 
   function padConstant ( $parm ) {
 

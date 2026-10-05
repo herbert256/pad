@@ -63,6 +63,13 @@
 
     mysqli_query($connect, "SET SESSION sql_mode = 'TRADITIONAL'");
 
+    // Integer and floating point columns come back as PHP numbers, everything else - text,
+    // dates, the exact DECIMAL - as the string it is. Every column came back a string, and
+    // {reactData} and {select htmlAttrJson} guessed the numbers back from the values, which
+    // made a username "2024" an int and an id "007" a 7.
+
+    mysqli_options ( $connect, MYSQLI_OPT_INT_AND_FLOAT_NATIVE, TRUE );
+
     return $connect;
 
   }

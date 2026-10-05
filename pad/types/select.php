@@ -10,9 +10,10 @@
   if ( ! padTagParm ( 'htmlAttrJson' ) )
     return padSelect ( $padTag [$pad] );
 
-  $padSelectData = padSelect ( $padTag [$pad] );
+  // The values keep the types db() gives them - integer and float columns as numbers -
+  // where every numeric-looking string was made one, "007" a 7.
 
-  padArrayNumericValues ( $padSelectData );
+  $padSelectData = padSelect ( $padTag [$pad] );
 
   return padJsonForHtmlAttr ( $padSelectData ) ;
 
