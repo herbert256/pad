@@ -775,8 +775,11 @@
       if ( ! is_dir ( getFrameworkDir () . $group ) )
         continue;
 
+      // An underscore hides a file, as it does everywhere else in PAD: a group's own
+      // _inits.pad or _exits.pad is its wrapper, not a case.
+
       foreach ( padFiles ( getFrameworkDir () . $group ) as $file )
-        if ( str_ends_with ( $file, '.pad' ) )
+        if ( str_ends_with ( $file, '.pad' ) and ! str_starts_with ( $file, '_' ) )
           $list [] = "$group/" . substr ( $file, 0, -4 );
 
     }
