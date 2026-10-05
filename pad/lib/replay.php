@@ -153,12 +153,30 @@
 
   }
 
+  // The verb is the first word after any comments in front of it - /* ... */, and -- or #
+  // to the end of the line - and a WITH in front of a statement is looked through to the
+  // write it leads up to. The first word as written was the verb: a /* note */ update, or
+  // a WITH ... DELETE, went to the database during a replay.
+
   function padReplayWrites ( $sql ) {
 
-    $verb = strtolower ( strtok ( ltrim ( (string) $sql, " \t\n\r(" ), " \t\n\r(" ) );
+    $writes = [ 'insert', 'update', 'delete', 'replace', 'truncate', 'load', 'create',
+                'drop', 'alter', 'rename', 'grant', 'revoke', 'call', 'lock' ];
 
-    return in_array ( $verb, [ 'insert', 'update', 'delete', 'replace', 'truncate', 'load', 'create',
-                               'drop', 'alter', 'rename', 'grant', 'revoke', 'call', 'lock' ] );
+    $sql = (string) $sql;
+
+    do {
+      $before = $sql;
+      $sql    = ltrim ( $sql, " \t\n\r(" );
+      $sql    = preg_replace ( '/^(\/\*.*?\*\/|(--(?=\s|$)|#)[^\n]*)/s', '', $sql );
+    } while ( $sql !== $before );
+
+    $verb = strtolower ( (string) strtok ( $sql, " \t\n\r(" ) );
+
+    if ( $verb == 'with' )
+      return (bool) preg_match ( '/\b(' . implode ( '|', $writes ) . ')\b/i', $sql );
+
+    return in_array ( $verb, $writes );
 
   }
 
