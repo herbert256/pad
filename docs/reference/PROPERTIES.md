@@ -37,6 +37,18 @@ A property that is a data set - `fields`, `keys`, `parameters`, `options`, `vari
 iterated as a pair, which is closed by its full name: `{fields@user}...{/fields@user}`.
 Without a target, `{fields}...{/fields}` reads the enclosing level.
 
+### Inside {if} and {case}
+
+An `{if}` or a `{case}` is no loop of its own: a property written inside one - `{&current}`,
+`{current@}`, `{property:first}`, `{first@}...{/first@}` - belongs to the loop around it, as
+an option `{#name}` inside one belongs to the tag around it:
+
+```
+{items}
+  {if $price gt 100}<b>{&current}</b>{/if}      the row number of items, not of the if
+{/items}
+```
+
 ### In Conditionals
 
 A property reads as a value inside an expression, so it stands in a condition - alone for the

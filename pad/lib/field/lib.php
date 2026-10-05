@@ -10,9 +10,10 @@
   //   padTagFieldSearch    the same question asked as a yes/no - does such a level exist
   //   padFieldFirstParmTag nearest enclosing level that can carry options, skipping {if}
   //                        and {case} and levels that are themselves tags
-  //   padFieldFirstNonTag  nearest enclosing level that is not a tag, optionally starting
-  //                        $lvl levels further out - used for property lookups so that a
-  //                        property reads from the data tag, not the tag calling it
+  //   padFieldFirstNonTag  nearest enclosing level that is not a tag, nor an {if} or a
+  //                        {case}, optionally starting $lvl levels further out - used for
+  //                        property lookups so that a property reads from the data tag, not
+  //                        the tag calling it
   //
   // Both searches stop above level 0 and fall back to $pad-1 rather than failing.
 
@@ -98,14 +99,20 @@
 
   }
 
+  // An {if} or a {case} is no loop: a property asked for inside one - {&current},
+  // {current@}, {property:first} - belongs to the loop around it, as an option inside one
+  // belongs to the tag around it (padFieldFirstParmTag). It was read from the {if} or the
+  // {case} level itself, which has one occurrence: current was 1 on every row, first was
+  // always true.
+
   function padFieldFirstNonTag ($lvl=0) {
 
-    global $pad, $padAtTag;
+    global $pad, $padAtTag, $padTag;
 
     $start = $pad-$lvl;
 
     for ($i=$start; $i > 0; $i--)
-      if ( ! ( $padAtTag [$i] ?? FALSE ) )
+      if ( ! ( $padAtTag [$i] ?? FALSE ) and ! in_array ( $padTag [$i] ?? '', [ 'if', 'case' ] ) )
         return $i;
 
     return max ( 0, $pad - 1 );
