@@ -69,8 +69,11 @@ exit=0
 # is no JSON at all reads as the empty result, which fails below.
 
 suites="pages common errors framework regression sequence manual other"
+judged=" "
 
 while IFS=$'\x1f' read -r suite present summary failed newcnt when resRun resCommit tests; do
+
+  judged="$judged$suite "
 
   [ "$present" = "1" ] || { echo "CI: no result for $suite" >&2; exit=1; continue; }
 
@@ -115,6 +118,16 @@ done < <(
             echo implode ( "\x1f", array_map ( fn ( $v ) => str_replace ( [ "\x1f", "\n" ], " ", (string) $v ), $f ) ), "\n";
           }' "$suitesDir" $suites
 )
+
+# Every suite has to have been judged: a php that died before it wrote a line - or wrote
+# only some - left the loop with nothing to refuse, and the gate stood at its exit=0.
+
+for suite in $suites; do
+  case "$judged" in
+    *" $suite "*) ;;
+    *) echo "CI: no verdict was read for $suite" >&2; exit=1 ;;
+  esac
+done
 
 # The editor kits' completion lists are generated from pad/ by editors/generate.php: a tag,
 # function, option or property added without regenerating them fails the gate like a
