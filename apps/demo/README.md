@@ -39,6 +39,8 @@ demo/
 - **Custom tags**: `_tags/clock.php` shows how to create application-specific tags
 - **Data files**: `_data/navigate.json` demonstrates JSON data integration
 - **Form handling**: Contact form shows POST processing
+- **Flash messages**: the guestbook and contact thanks travel as `padFlash()` messages over
+  the redirect and show through `{flash}`
 - **CSRF protection**: `$padCsrf = TRUE` in `_config/config.php` adds the session's token to
   every POST form and turns away a post without it (403)
 - **Data iteration**: Examples of iterating over arrays

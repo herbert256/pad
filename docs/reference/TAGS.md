@@ -581,6 +581,29 @@ refilled. When `padValidate` reported the field, its message follows in
 
 ---
 
+### flash
+The flash messages for this request, one occurrence each.
+
+```html
+{flash}
+  <p class="notice {$type}">{$message}</p>
+{/flash}
+
+{flash 'error'}<p class="error">{$message}</p>{/flash}
+```
+
+**Parameters:** optional type - only the messages of that type.
+
+**Fields:** `message`, `type`. No message renders the `@else@` half.
+
+**Behavior:** `padFlash($message, $type = 'info')` in the page's PHP keeps a message in the
+session for the next request - typically before `padRedirect()`. A message lives exactly
+one request after the one that flashed it, shown or not; one flashed during this very request
+shows here too. Each is shown once. A `padFlash` cookie signals the next request, so pages
+that never flash do not open the session.
+
+---
+
 ## File Operation Tags
 
 ### files
@@ -1381,6 +1404,7 @@ Resume a previously ceased sequence iteration.
 | `form` | Web | Form with CSRF token and name, its fields refill |
 | `input` | Web | Form field with refill, label and validation error |
 | `textarea` | Web | Text area with refill, label and validation error |
+| `flash` | Web | Flash messages that survive one redirect |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
 | `file` | Files | Write file |

@@ -1048,6 +1048,7 @@ Output: `Alice, Bob, Charlie`
 | `padCsrfToken()` | The session's CSRF token (`{csrf}` writes it as a hidden field) |
 | `padCsrfValid()` | Whether this request brought the session's token back |
 | `padPosted($form)` | Whether this request posted (the `{form}` of that name) |
+| `padFlash($message, $type)` | A message for the next request - `padFlash('Saved.'); padRedirect('list');` then `{flash}<p class="{$type}">{$message}</p>{/flash}` |
 | `padValidate($rules, $data, $messages)` | `['email' => 'required\|email']` - one message per failing field, shown by `{input}` |
 
 ### Field Access

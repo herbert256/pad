@@ -1,8 +1,8 @@
 <p>Have a question or feedback? Send us a message!</p>
 
-{if $successMsg}
-  <div class="message">{$successMsg}</div>
-{/if}
+{flash}
+  <div class="message">{$message}</div>
+{/flash}
 
 {if $hasErrors}
   <div class="message error">Please correct the errors below.</div>

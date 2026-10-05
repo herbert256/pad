@@ -1,9 +1,8 @@
 <?php
 
-  $title      = 'Contact Form';
-  $dataFile   = DATA . 'demo/messages.json';
-  $successMsg = isset ( $sent ) ? 'Thank you for your message! We will get back to you soon.' : '';
-  $errors     = [];
+  $title    = 'Contact Form';
+  $dataFile = DATA . 'demo/messages.json';
+  $errors   = [];
 
   if ( ! is_dir ( DATA . 'demo' ) )
     @mkdir ( DATA . 'demo', 0755, TRUE );
@@ -40,10 +39,13 @@
       file_put_contents ( $dataFile, json_encode ( $messages, JSON_PRETTY_PRINT ) );
 
       // Post, redirect, get: the browser is sent on to a plain GET of this page, so a
-      // refresh shows the empty form instead of sending the message a second time. A
-      // form with errors is answered in place, keeping what was typed.
+      // refresh shows the empty form instead of sending the message a second time - the
+      // thanks go along as a flash message. A form with errors is answered in place,
+      // keeping what was typed.
 
-      padRedirect ( 'contact', [ 'sent' => 1 ] );
+      padFlash ( 'Thank you for your message! We will get back to you soon.' );
+
+      padRedirect ( 'contact' );
     }
 
   }

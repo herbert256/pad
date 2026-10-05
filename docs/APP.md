@@ -731,6 +731,21 @@ the rules are `required`, `email`, `url`, `numeric`, `integer`, `min:n`, `max:n`
 `required` only. The field shows the message in the words of its own label, with
 `aria-invalid` and `aria-describedby`.
 
+### Flash Messages
+After a valid post, say what happened on the page the redirect leads to:
+
+```php
+padFlash ( 'Thanks, your message was sent.' );      // type 'info'; padFlash ( $text, 'error' )
+padRedirect ( 'contact' );
+```
+
+```html
+{flash}<p class="notice {$type}">{$message}</p>{/flash}
+```
+
+A message lives exactly one request after the one that flashed it - the redirect's
+destination - and each is shown once.
+
 ### CSRF Protection
 With `$padCsrf = TRUE` in `_config/config.php`, every `<form method="post">` that posts back
 to the site gets a hidden `padCsrfToken` field holding the token of the visitor's session,

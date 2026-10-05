@@ -1,0 +1,22 @@
+<h1>Flash messages</h1>
+
+<p>A page that takes a post redirects the browser to a plain page, so a refresh cannot post
+twice - and then the page the browser lands on has to say what happened. A flash message
+carries that: <code>padFlash ( 'Thanks, your message was sent.' )</code> before the
+<code>padRedirect ()</code>, and {tag 'flash'} on the page it leads to.</p>
+
+{example 'fragments/flash_messages_1'}
+
+<ul>
+  <li>{tag 'flash'} renders its content once per message, with <code>{open}$message{close}</code>
+  and <code>{open}$type{close}</code>; without a message the <code>@else@</code> half renders.
+  <code>{open}flash 'error'{close}</code> shows the messages of that type only.</li>
+  <li>The type is the second argument of <code>padFlash</code>, <code>info</code> when it is
+  left out.</li>
+  <li>A message lives exactly one request after the one that flashed it - the redirect's
+  destination - and is gone after that, shown or not. A page that flashes and renders itself
+  shows it at once, as here.</li>
+  <li>The message is kept in the session, which starts on demand. A small
+  <code>padFlash</code> cookie tells the next request that there is something to take, so the
+  pages that never flash do not open the session at all.</li>
+</ul>

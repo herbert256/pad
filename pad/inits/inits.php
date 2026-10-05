@@ -34,6 +34,7 @@
   include PAD . 'inits/cache.php';
   include PAD . 'inits/level.php';
   include PAD . 'inits/csrf.php';
+  include PAD . 'inits/flash.php';
   include PAD . 'inits/parms.php';
   include PAD . 'inits/app.php';
 

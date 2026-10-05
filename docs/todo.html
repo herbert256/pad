@@ -720,7 +720,7 @@ padRedirect ( 'contact' );
   &lt;p class="notice {$type}"&gt;{$message}&lt;/p&gt;
 {/flash}</code></pre>
           <p>After the post-redirect-get change, the demos pass a query flag such as <code>?contact&amp;sent=1</code> to show the thank-you. A flash message survives exactly one redirect through the session. The session would have to start on demand: today it starts only when <code>$padSessionVars</code> lists names.</p>
-        </li>
+        <p class="done"><strong>Done.</strong> <code>padFlash('Thanks…', 'success')</code> keeps a message in the session for the next request and <code>{flash}&lt;p class="{$type}"&gt;{$message}&lt;/p&gt;{/flash}</code> shows it there once; a <code>padFlash</code> cookie tells the next request to take it, so pages that never flash never open the session. The demo guestbook and contact thanks use it instead of <code>?sent=1</code>. Regression: framework and pages cases; manual page; docs.</p></li>
 
         <li class="idea" id="guards">
           <div class="idea-top"><span class="number" aria-hidden="true">30</span><h3>Directory guards: <code>_guard.php</code></h3><span class="effort">Small–medium</span></div>
