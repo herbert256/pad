@@ -10,6 +10,11 @@
   if ( $padInfo )
     include PAD . 'events/end.php';
 
-  list ( $padBase [$pad], $padEndBase [$pad] ) = explode ( '@end@', $padBase[$pad], 2 );
+  // Cut at the level's own marker, not at the first one - that may be a nested level's.
+
+  $padSectionPos = padOpenClosePos ( $padBase [$pad], '@end@' );
+
+  $padEndBase [$pad] = substr ( $padBase [$pad], $padSectionPos + 5 );
+  $padBase    [$pad] = substr ( $padBase [$pad], 0, $padSectionPos );
 
 ?>

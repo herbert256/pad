@@ -1,0 +1,10 @@
+{data 'items'}
+  [{"n":"a","subs":[{"s":1},{"s":2}]},{"n":"b","subs":[{"s":3}]}]
+{/data}
+{items}
+  <ul>
+  @start@
+    <li>{$n}{subs}(@start@{$s}@end@){/subs}</li>
+  @end@
+  </ul>
+{/items}

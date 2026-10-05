@@ -64,17 +64,17 @@
 
   if ( $padCheckSyntax ) {
 
-    $padSectionStart = padOpenCloseOk ( $padBase [$pad], '@start@' );
-    $padSectionEnd   = padOpenCloseOk ( $padBase [$pad], '@end@'   );
+    $padSectionStart = padOpenClosePos ( $padBase [$pad], '@start@' );
+    $padSectionEnd   = padOpenClosePos ( $padBase [$pad], '@end@'   );
 
-    if ( $padSectionStart and ! $padSectionEnd )
+    if ( $padSectionStart !== FALSE and $padSectionEnd === FALSE )
       return padError ( "an @start@ needs its @end@ behind it" );
 
-    if ( $padSectionEnd and ! $padSectionStart )
+    if ( $padSectionEnd !== FALSE and $padSectionStart === FALSE )
       return padError ( "an @end@ needs its @start@ before it" );
 
-    if ( $padSectionStart and $padSectionEnd
-         and strpos ( $padBase [$pad], '@end@' ) < strpos ( $padBase [$pad], '@start@' ) )
+    if ( $padSectionStart !== FALSE and $padSectionEnd !== FALSE
+         and $padSectionEnd < $padSectionStart )
       return padError ( "the @start@ stands before the @end@, not behind it" );
 
   }

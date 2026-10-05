@@ -7,7 +7,8 @@
   // collects every tag that has a closing {/tag} in the string, padOpenCloseCountOne checks
   // that one tag opens as often as it closes (padOpenCount counts the openers, leaving out a
   // self-closing {tag .../}), padOpenCloseCount does that for a whole list,
-  // padOpenCloseOk combines them for the text following a marker, and padCheckTag is a
+  // padOpenCloseOk combines them for the text following a marker (padOpenClosePos says where
+  // the level's own marker stands), and padCheckTag is a
   // single-tag shorthand. lib/content.php uses these to place @content@ and @else@ at the
   // right nesting depth.
   //
@@ -22,14 +23,33 @@
 
   function padOpenCloseOk ( $string, $check) {
 
-    if ( strpos ( $string, $check ) === FALSE )
-      return FALSE;
+    return padOpenClosePos ( $string, $check ) !== FALSE;
 
-    list ( $dummy, $string ) = explode ( $check, '.' . $string . '.', 2 );
+  }
 
-    $tags = padOpenCloseList ( $string );
+  // Where the marker of the level the string is the content of stands: the first one with
+  // every tag pair after it balanced - a marker of a nested pair has that pair's closing
+  // tag after it. Only the first marker was looked at, so a nested level's @end@ in front
+  // of the level's own hid it - {items}@start@{subs}(@start@{$s}@end@){/subs}@end@{/items}
+  // failed the strict check as an @start@ without its @end@ - and the split took place at
+  // the nested marker.
 
-    return padOpenCloseCount ( $string, $tags);
+  function padOpenClosePos ( $string, $check ) {
+
+    $pos = strpos ( $string, $check );
+
+    while ( $pos !== FALSE ) {
+
+      $after = substr ( $string, $pos + strlen ( $check ) );
+
+      if ( padOpenCloseCount ( $after, padOpenCloseList ( $after ) ) )
+        return $pos;
+
+      $pos = strpos ( $string, $check, $pos + 1 );
+
+    }
+
+    return FALSE;
 
   }
 
