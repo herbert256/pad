@@ -111,4 +111,19 @@ if [ -z "$CI_SUITES" ]; then
   fi
 fi
 
+# The editor tooling's own tests speak to it as an editor or an assistant would, against the
+# fixture application in editors/fixture/apps: the language server over LSP. They need node
+# - a machine without it cannot run the tooling either, and says so instead of failing.
+
+if [ -z "$CI_SUITES" ]; then
+  if ! command -v node > /dev/null 2>&1; then
+    printf '%-12s %s\n' lsp "skipped - node is not installed"
+  elif out=$(node "$padHome/editors/lsp/test.js" 2>&1); then
+    printf '%-12s %s\n' lsp "$out"
+  else
+    printf '%s\n' "$out" >&2
+    exit=1
+  fi
+fi
+
 exit $exit

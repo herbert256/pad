@@ -51,3 +51,9 @@ JSON error body, but the status alone is enough for a shell gate:
 ```bash
 ./pad mypage || echo "render failed"
 ```
+
+## Other Applications
+
+`apps/cli/pad` renders the cli application. `php editors/render.php <app> [<page>]` renders
+a page of any application the same way, with the same exit status - the editor tooling's
+diagnostics use it.

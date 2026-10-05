@@ -42,6 +42,7 @@ pad/
 ├── pad/      # PAD framework core (template engine, tag processors, expression evaluator)
 ├── apps/     # PAD applications (each subdirectory is a self-contained app)
 ├── www/      # Web server entry points (PHP entry points for each app)
+├── editors/  # Editor kits, the language server, the command-line renderer
 ├── docs/     # Documentation
 └── DATA/     # Runtime data (logs, cache, dumps) - writable, excluded from git
 ```
@@ -1153,6 +1154,29 @@ This is particularly useful for:
 - **Performance testing** - Measure response times
 - **Regression testing** - Compare output against expected results
 - **CI/CD integration** - Test PAD applications in pipelines
+
+### Rendering on the Command Line
+
+`php editors/render.php <app> [<page>]` renders a page of any application without a
+server. The status is 0 when it rendered; 1 and the JSON error body of
+`pad/error/claude.php` (`error`, `file`, `line`, the globals) when PAD reported one - a
+strict syntax check of a page with its real data:
+
+```bash
+php editors/render.php demo clock
+php editors/render.php regression/errors syntax/a_case_never_closes   # 1 + {"error":"PAD: the pair ..."}
+```
+
+---
+
+## Editor Tooling
+
+`editors/` holds the editor kits (see `editors/README.md`). The language server
+`editors/lsp/pad-lsp.js` (Node, no dependencies) gives any LSP editor completion,
+diagnostics on open and save from a real render, hover from `docs/reference/*.md`, and
+go-to-definition along PAD's lookup order - `{mytag}` to the nearest `_tags/mytag.*`,
+`| money` to `_functions/money.php`, `{$total}` to the line of the paired `.php` that
+assigns it. `node editors/lsp/test.js` tests it; `./ci.sh` runs that as its `lsp` line.
 
 ---
 

@@ -1,0 +1,10 @@
+<h1>Orders for {$customer | upper}</h1>
+{badge}
+<ul>
+{orders callback='double'}
+  {first@orders}<li class="first">{/first@orders}
+  <li>{$id}: {$amount}</li>
+{/orders}
+</ul>
+{if $total gt 0}<p>Total: {echo $total | money}</p>{/if}
+{include:footer}

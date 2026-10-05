@@ -1,0 +1,71 @@
+<h1>Editor support</h1>
+
+<p>The kits in <code>editors/</code> give PAD templates highlighting, completion and snippets
+in Sublime Text, VS Code, Vim, Emacs, Kate, BBEdit and Notepad++. An editor that speaks the
+Language Server Protocol - Neovim, Helix, Zed, Emacs with eglot, Sublime Text with LSP - runs
+<code>editors/lsp/pad-lsp.js</code>, a Node server without dependencies.</p>
+
+<h2>The language server</h2>
+
+<ul>
+  <li><strong>Completion</strong> - the built-in tags, functions, options, properties and type prefixes, and after <code>{/</code> the tags still open.</li>
+  <li><strong>Diagnostics</strong> - when a page is opened or saved, PAD itself renders it on the command line under the strict syntax check (<code>editors/render.php</code>), and the error lands on the tag it names. A <code>_inits.pad</code> is checked through the index page of its directory; a snippet in <code>_include</code> or <code>_tags</code> has no page of its own and is not rendered.</li>
+  <li><strong>Hover</strong> - the text of <code>docs/reference</code> for the tag, function, option, property or type prefix under the cursor; on an application's own tag or function, the comment at the top of its file; on a field, the line that assigns it.</li>
+  <li><strong>Go to definition</strong> - PAD's own lookup order: <code>{badge}</code> to the nearest <code>_tags/badge.*</code> up the directories, then <code>_common</code>, then the engine; <code>{include:footer}</code> to <code>_include/footer.pad</code>; <code>| money</code> to <code>_functions/money.php</code>; <code>callback='x'</code> to <code>_callbacks/x.php</code>.</li>
+</ul>
+
+<p>Page pairing makes one more jump possible: from a field in the template to the line of
+the paired <code>.php</code> that assigns it. Here, go to definition on <code>{$total}</code>
+lands on <code>$total = 42;</code>.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/editor_support_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/editor_support_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $total </span><span style="color: #007700">= </span><span style="color: #0000BB">42</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;Total: <b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>Total: 42</p>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>

@@ -623,7 +623,7 @@ wrapped by apps/shop/_inits.pad › apps/shop/orders/_inits.pad</code></pre>
           <div class="idea-top"><span class="number" aria-hidden="true">21</span><h3>LSP: diagnostics, hover, go-to-definition</h3><span class="effort">Medium</span></div>
           <p>The <a href="https://github.com/herbert256/pad/blob/master/editors/lsp/pad-lsp.js">language server</a> offers completion and close-tag suggestions only. The next steps:</p>
           <ul>
-            <li>diagnostics from <code>pad lint</code> (<a href="#cli">#22</a>) on save;</li>
+            <li>diagnostics from <code>pad lint</code> (<a href="#cli">#22</a>) on save;<p class="done"><strong>Done.</strong> editors/lsp/pad-lsp.js answers hover from docs/reference, go-to-definition along PAD’s lookup order (<code>{mytag}</code> to the nearest <code>_tags/</code>, <code>{include:x}</code>, <code>| money</code>, <code>callback=</code>, and <code>{$total}</code> to the line of the paired .php that assigns it) and diagnostics from a real strict render through the new <code>editors/render.php</code>. <code>node editors/lsp/test.js</code> speaks LSP to it against a fixture application, and ci.sh runs it as its <em>lsp</em> line. Manual page and README.</p></li>
             <li>hover text from <code>docs/reference</code>;</li>
             <li>go-to-definition that follows PAD’s own lookup order: <code>{mytag}</code> to the nearest <code>_tags/mytag.*</code> up the directories, <code>{include:x}</code> to <code>_include/x.pad</code>, <code>| money</code> to <code>_functions/money.php</code>.</li>
           </ul>
