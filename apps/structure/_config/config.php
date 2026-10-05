@@ -44,6 +44,5 @@
   $padGzip      = FALSE;
   $padCookies   = TRUE;
   $padNoNo      = FALSE;
-  $padFastLink  = 32;
 
 ?>

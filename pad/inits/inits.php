@@ -23,7 +23,6 @@
   include PAD . 'inits/ids.php';
   include PAD . 'inits/config.php';
   include PAD . 'inits/nono.php';
-  include PAD . 'inits/fast.php';
   include PAD . 'inits/error.php';
   include PAD . 'inits/cookies.php';
   include PAD . 'inits/client.php';

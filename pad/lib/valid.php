@@ -6,7 +6,6 @@
   // padValid      a general tag/type name, letters then letters, digits, _ : # - or any
   //               name carrying an @ property (padAtCheck), as in first@items
   // padValidTag   the tag form of the same test
-  // padValidType  a bare type name, letters only
   // padValidVar   an application variable: an identifier starting with a letter, and never
   //               an engine name (padEngineName), so request input and templates cannot
   //               overwrite engine state - nor $this, which PHP refuses to assign: ?this=1
@@ -14,8 +13,6 @@
   // padEngineName pad*, pq*, PHP's superglobals, GLOBALS and this - the names that belong
   //               to the engine or to PHP
   // padAtValid    one part either side of an @ in a property reference
-  // padValidFile  a file path: safe characters only, no .. or dot segments, and it must
-  //               live under APP, DATA or PAD
   // padValidName  a name the engine joins into a file path or a glob - a prefixed type
   //               name, a script, callback or option: no directory separator, no .., no
   //               glob character and no NUL, so it can only ever name something inside the
@@ -55,21 +52,6 @@
 
   }
 
-  function padValidFile ( $file ) {
-
-    if ( ! preg_match ('/^[A-Za-z0-9\.\/_-]+$/', $file) ) return FALSE;
-    if ( strpos($file, '..') !== FALSE )                  return FALSE;
-    if ( strpos($file, '/.') !== FALSE )                  return FALSE;
-    if ( strpos($file, './') !== FALSE )                  return FALSE;
-
-    if ( str_starts_with($file, APP)  ) return TRUE;
-    if ( str_starts_with($file, DATA)  ) return TRUE;
-    if ( str_starts_with($file, PAD)  ) return TRUE;
-
-    return FALSE;
-
-  }
-
   // A name starting with _ is refused too: it is the shape of PHP's own superglobals, and
   // ?_SESSION[x]=1 was promoted like any other name.
 
@@ -99,18 +81,6 @@
 
     if ( trim($part) == '' )                                       return FALSE;
     if ( ! preg_match ( '/^[a-zA-Z0-9_-][a-zA-Z0-9_:]*$/', $part ) ) return FALSE;
-
-    return TRUE;
-
-  }
-
-  function padValidType ($name) {
-
-    if ( trim($name) == '' )
-      return FALSE;
-
-    if ( ! preg_match('/^[a-zA-Z][a-zA-Z]*$/',$name) )
-      return FALSE;
 
     return TRUE;
 

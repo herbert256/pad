@@ -39,12 +39,5 @@ CREATE TABLE `track_data` (
 
 ALTER TABLE `track_data` ADD PRIMARY KEY (`etag`);
 
-CREATE TABLE `links` (
-  `link` varchar(64) NOT NULL,
-  `vars` text NOT NULL
-) ENGINE=MyISAM;
-
-ALTER TABLE `links` ADD PRIMARY KEY (`link`);
-
 GRANT ALL PRIVILEGES ON `pad`.* TO 'pad'@'localhost';
 FLUSH PRIVILEGES;

@@ -210,6 +210,6 @@ would be overwritten.</p>
 
 <h2>Carrying more than a url can</h2>
 
-<p><code>padFastLink ( $page, $vars )</code> builds a link that carries a whole set of
-variables to the next page in one opaque token - for when the data is too much, or too
-private, for a query string.</p>
+<p>What is too much, or too private, for a query string stays on the server: a name listed
+in <code>$padSessionVars</code> in <code>_config/config.php</code> is kept in the session
+and is there again on the visitor's next page, and the request never fills it.</p>

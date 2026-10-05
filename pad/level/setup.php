@@ -79,7 +79,8 @@
 
   $padOccurStart [$pad] = [];
 
-  $padOptionsAppStart [$pad] = [];
+  $padOptionsAppStart     [$pad] = [];
+  $padOptionsAppStartCall [$pad] = [];
 
   $padBaseValue  [$pad] = FALSE;
   $padAtTag      [$pad] = FALSE;

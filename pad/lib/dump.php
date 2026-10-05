@@ -261,7 +261,7 @@
 
   function padDumpGetLevel ($pad)  {
 
-    global $padArray, $padBase, $padElse, $padHit, $padName, $padNull, $padOpt, $padOrg, $padPad, $padPair, $padPrm, $padResult, $padTag, $padType;
+    global $padArray, $padBase, $padElse, $padHit, $padName, $padNull, $padOpt, $padOrg, $padOut, $padPair, $padPrm, $padResult, $padTag, $padType;
 
     if ( ! isset($pad) or $pad === NULL or $pad < 0 )
       return [];
@@ -275,7 +275,7 @@
       'opt'     => $padOpt [$pad] ?? '',
       'prm'     => $padPrm [$pad] ?? '',
       'base'    => padDumpShort ($padBase[$pad]??''),
-      'pad'     => padDumpShort ($padPad[$pad]??''),
+      'out'     => padDumpShort ($padOut[$pad]??''),
       'result'  => padDumpShort ($padResult[$pad]??''),
       'flags'  => [ 'null' => $padNull [$pad] ?? '',
                     'else' => $padElse [$pad] ?? '',

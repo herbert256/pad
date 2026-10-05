@@ -16,8 +16,8 @@
   // The rest are small utilities: padJsonForHtmlAttr (JSON safe inside an HTML attribute,
   // for {select} and {reactData}), padMD5 with its helpers padPack, padUnpack, padBase64
   // and padUnbase64 (a 22-character URL-safe digest used for etags and cache keys, with
-  // padMD5Unpack giving the hex form back), padRandomString / padRandomChar (keys for
-  // fast links and ajax element ids), and padZip / padUnzip (gzip for cached output).
+  // padMD5Unpack giving the hex form back), padRandomString / padRandomChar (session and
+  // request ids, temporary file names), and padZip / padUnzip (gzip for cached output).
 
   function padJsonForHtmlAttr ( $input ) {
   

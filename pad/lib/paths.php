@@ -7,7 +7,6 @@
   //                  Every _tags/, _include/, _data/ ... lookup walks this list
   // padDir           the directory part of $padPage; padPath is APP plus $padDir
   // padCorrectPath   normalises Windows backslashes
-  // padValidatePath  rejects empty paths, .. and control characters
   // padFileName      assembles an output file name from the {file} tag globals - name,
   //                  optional directory, optional date, timestamp and random suffix,
   //                  then the extension
@@ -63,18 +62,6 @@
   function padCorrectPath ( $in ) {
 
     return str_replace ('\\',  '/', $in );
-
-  }
-
-  function padValidatePath ( $path ) {
-
-    if ( $path === '' ) return FALSE;
-
-    if ( strpos($path, '..') !== FALSE ) return FALSE;
-
-    if ( preg_match('/[\x00-\x1F\x7F]/', $path) ) return FALSE;
-
-    return TRUE;
 
   }
 

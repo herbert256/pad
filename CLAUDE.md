@@ -739,7 +739,6 @@ Output: `Alice, Bob, Charlie`
 |----------|-------------|
 | `padRedirect($url, $vars)` | Redirect to URL with optional variables |
 | `padRestart($page)` | Restart processing with new page |
-| `padFastLink($page, $vars)` | Create fast link with serialized variables |
 
 ### Field Access
 
@@ -795,7 +794,6 @@ Output: `Alice, Bob, Charlie`
 | Function | Description |
 |----------|-------------|
 | `padValid($name)` | Validate tag/type name |
-| `padValidFile($file)` | Validate file path |
 | `padValidVar($name)` | Validate variable name |
 
 ### Utilities
