@@ -11,6 +11,13 @@
     return TRUE;
   }
 
+  // The globals are the file writer's as well - the name a page with the file or download
+  // output type is written or sent under - so they are put back once this file is named.
+  // They were left as the tag set them, and such a page was then written over the tag's
+  // file, under the tag's name.
+
+  $padFileKeep = [ $padFileDir, $padFileName, $padFileExtension, $padFileDate, $padFileTimeStamp, $padFileUniqId ];
+
   $padFileDir        = padTagParm ( 'dir',   ''     );
   $padFileName       = padTagParm ( 'name',  'file' );
   $padFileExtension  = padTagParm ( 'ext',   'ext'  );
@@ -18,7 +25,11 @@
   $padFileTimeStamp  = padTagParm ( 'stamp', ''     );
   $padFileUniqId     = padTagParm ( 'id',    ''     );
 
-  padFilePut ( padFileName (),  $padContent );
+  $padFileNamed = padFileName ();
+
+  [ $padFileDir, $padFileName, $padFileExtension, $padFileDate, $padFileTimeStamp, $padFileUniqId ] = $padFileKeep;
+
+  padFilePut ( $padFileNamed, $padContent );
 
   $padContent = '';
 

@@ -18,6 +18,12 @@
     if ( str_contains ( padFileGet ( $file ), 'CARRIED ALL THE WAY' ) )
       $landed = TRUE;
 
+  // A {file} tag inside the page writes its own file and leaves the page's name alone: it
+  // set the six name settings of the file writer, and the page was then written over the
+  // tag's file - side.txt held the page, and no payload_*.html was there.
+
+  $side = ( padFileGet ( DATA . 'regression_output_file/side.txt' ) === 'SIDE BY SIDE' ) ? 'yes' : 'NO';
+
   $verdict = ( $r ['result'] == '200'
                and ! isset ( $r ['headers'] ['Content-Disposition'] )
                and str_contains ( $r ['data'], 'wrote the page to disk' )
