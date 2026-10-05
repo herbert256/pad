@@ -108,8 +108,11 @@
       $now   += $ms;
       $usual += $median;
 
+      // A median of 0 ms - a page faster than the clock's 0.1 ms - is counted as 0.1 ms for
+      // the percentage: divided by itself it ended the check on a DivisionByZeroError.
+
       if ( $ms - $median >= $floor and $ms > $median * $factor )
-        $pages [$page] = [ $ms, $median, round ( ( $ms - $median ) * 100 / $median ) ];
+        $pages [$page] = [ $ms, $median, round ( ( $ms - $median ) * 100 / max ( $median, 0.1 ) ) ];
 
     }
 

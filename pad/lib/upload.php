@@ -158,8 +158,16 @@
     if ( $size === '' )
       return 0;
 
-    if ( ! preg_match ( '/^(\d+(?:\.\d+)?)\s*([KMG]?)B?$/i', $size, $match ) )
+    // A size it cannot read is named; when the error action lets the request go on, the
+    // limit is the server's own upload_max_filesize - 0 would mean no limit at all, and the
+    // unread size used to go on to an undefined index and a deprecation.
+
+    if ( ! preg_match ( '/^(\d+(?:\.\d+)?)\s*([KMG]?)B?$/i', $size, $match ) ) {
       padError ( "padUpload reads a size like 2M, 500K or 1048576 - not '$size'" );
+      return preg_match ( '/^(\d+)\s*([KMG]?)/i', (string) ini_get ( 'upload_max_filesize' ), $server )
+           ? (int) $server [1] * ( 1024 ** [ '' => 0, 'K' => 1, 'M' => 2, 'G' => 3 ] [ strtoupper ( $server [2] ) ] )
+           : 2097152;
+    }
 
     $power = [ '' => 0, 'K' => 1, 'M' => 2, 'G' => 3 ] [ strtoupper ( $match [2] ) ];
 
