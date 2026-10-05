@@ -1315,6 +1315,39 @@ Output: `Alice, Bob, Charlie`
 
 ---
 
+## PHP Helpers
+
+Helper functions for a page's `.php` - what modern PHP frameworks ship (Laravel's `Arr`, `Str`,
+`blank()`, `session()`, `Cache::remember()`, `now()`, `encrypt()` ...) written the PAD way:
+plain functions with a `pad` prefix, loaded on every request from `pad/lib/`. Full reference:
+[HELPERS.md](docs/reference/HELPERS.md); a manual page per group under "PHP helpers".
+
+```php
+$orders  = db ( "ARRAY * FROM orders" );
+$byState = padArrGroupBy ( $orders, 'status' );          // [ 'paid' => [ ... ], ... ]
+$city    = padArrGet ( $order, 'customer.address.city', 'unknown' );
+$title   = padStrHeadline ( padRequest ( 'view', 'all_orders' ) );   // All Orders
+$rates   = padRemember ( 'rates', 600, fn () => padCurl ( $ratesUrl ) ['data'] );
+if ( ! padRateLimit ( 'login:' . $_SERVER ['REMOTE_ADDR'], 5, 60 ) ) padAbort ( 429 );
+```
+
+| Group | File | Functions |
+|-------|------|-----------|
+| Arrays | `lib/arr.php` | `padArrGet`, `padArrSet`, `padArrHas`, `padArrForget` (dot paths, `*`), `padArrOnly`, `padArrExcept`, `padArrPluck`, `padArrWhere`, `padArrFirst`, `padArrLast`, `padArrGroupBy`, `padArrKeyBy`, `padArrSortBy`, `padArrFlatten`, `padArrDot`, `padArrUndot`, `padArrWrap`, `padArrSum`, `padArrAvg`, `padArrMin`, `padArrMax` |
+| Strings | `lib/str.php` | `padStrSlug`, `padStrLimit`, `padStrWords`, `padStrExcerpt`, `padStrSquish`, `padStrCamel`, `padStrStudly`, `padStrSnake`, `padStrKebab`, `padStrHeadline`, `padStrTitle`, `padStrAfter`, `padStrAfterLast`, `padStrBefore`, `padStrBeforeLast`, `padStrBetween`, `padStrIs`, `padStrMask`, `padStrRandom`, `padStrUuid` (v4, v7), `padStrPlural`, `padStrSingular` |
+| Values | `lib/helpers.php` | `padBlank`, `padFilled`, `padValue`, `padTransform`, `padTap`, `padRetry`, `padRescue`, `padOnce` |
+| Numbers | `lib/number.php` | `padNumberFormat`, `padNumberPercentage`, `padNumberAbbreviate`, `padNumberForHumans`, `padNumberOrdinal`, `padNumberClamp`, `padNumberFileSize`; pipes `abbreviate`, `ordinal` |
+| Requests and sessions | `lib/request.php` | `padRequest`, `padRequestHas`, `padRequestFilled`, `padRequestOnly`, `padRequestExcept`, `padRequestMethod`, `padRequestIs`, `padSession`, `padSessionPut`, `padSessionHas`, `padSessionPull`, `padSessionForget`, `padSessionRegenerate`, `padFlashInput`, `padOld`, `padUrl`, `padBack`, `padAbort` |
+| Environment | `lib/env.php` | `padEnv` - real environment, then the app's `_config/.env`, then `.env` in the PAD home; usable in `_config/config.php` |
+| Cache and rate limits | `lib/remember.php` | `padCacheGet`, `padCachePut`, `padCacheHas`, `padCacheForget`, `padCacheFlush`, `padRemember` (files under `DATA/cache/app/<app>/`), `padRateLimit`, `padRateLimitRemaining`, `padRateLimitAvailableIn`, `padRateLimitClear` |
+| Dates and logging | `lib/date.php`, `lib/log.php` | `padNow`, `padToday`, `padNowFreeze`, `padDateParse`, `padAgo` (pipe `ago`), `padLog` (PSR-3 levels, `DATA/logs/<app>/<date>.log`) |
+| Hashing and encryption | `lib/crypt.php` | `padHash`, `padHashCheck`, `padHashNeedsRehash`, `padEncrypt`, `padDecrypt` (sodium, key `$padAppKey` or `DATA/keys/<app>.key`), `padSignedUrl`, `padSignatureValid` |
+
+A wrong argument (an unknown operator, a negative length) is reported with `padError` naming
+the function; the function then answers an empty value of its kind.
+
+---
+
 ## Framework Architecture
 
 ### Execution Flow
@@ -1541,6 +1574,7 @@ strict syntax check - `pad_check` with only an app checks every page), `pad_trac
 | `regression/events` | Test | Regression test for the `_events/` hooks - error, sql, curl, output |
 | `regression/remote` | Test | Regression test for remote data with a ttl cache and parallel fetching - pages that fetch their own |
 | `regression/sqlite` | Test | Regression test for SQLite as the application database - built from a .sql file, no server |
+| `regression/env` | Test | Regression test for `padEnv` in a configuration file, the application cache's flush and parallel rate-limit hits |
 | `regression/error_pad` | Test | Regression test for the 'pad' error action |
 | `regression/error_php` | Test | Regression test for the 'php' error action |
 | `regression/error_stop` | Test | Regression test for the 'stop' error action |

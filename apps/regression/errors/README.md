@@ -14,5 +14,6 @@ shape for every requester. `_common` is off, like the Pages suite these cases gr
 | `syntax/` | The strict syntax check - one case per authoring mistake it names |
 | `eval/` | The expression evaluator's reports - brackets, operators, unknown names |
 | `error/` | The pages that end a request - {error}, {dump}, {exit}, a throw, on demand |
+| `helpers/` | The PHP helpers (`pad/lib/request.php`, `env.php`, `remember.php`, `date.php`, `log.php`, `crypt.php`) - one case per wrong argument an author can pass; the array, string, value and number helpers' cases stand in `syntax/` |
 | `handlers/` | The handler family - a warning, an error, an exception, a shutdown, each from a tag and from a page |
 | `source/` | The template position of an error - file, line, column, the near name, the snippet or page that included it, the wrappers around it; `frame/`, `framed/`, `nested/` and `_include/` are its fixtures, and two pages fetch a framed page in full, once as a tool (JSON) and once as a browser (text) |

@@ -41,6 +41,7 @@ This directory contains PAD applications and examples.
 | [regression/events](regression/events/README.md) | Test | Regression test for the `_events/` hooks - each page shows what its hook heard |
 | [regression/remote](regression/remote/README.md) | Test | Regression test for remote data with a ttl cache and parallel fetching - pages that fetch their own |
 | [regression/sqlite](regression/sqlite/README.md) | Test | Regression test for SQLite as the application database - built from a .sql file, no server |
+| [regression/env](regression/env/README.md) | Test | Regression test for `padEnv` in a configuration file, the application cache's flush and parallel rate-limit hits |
 | [regression/error_pad](regression/error_pad/README.md) | Test | Regression test for the 'pad' error action - the index turns NO when the action stops behaving |
 | [regression/error_php](regression/error_php/README.md) | Test | Regression test for the 'php' error action - the index turns NO when the action stops behaving |
 | [regression/error_stop](regression/error_stop/README.md) | Test | Regression test for the 'stop' error action - the index turns NO when the action stops behaving |
