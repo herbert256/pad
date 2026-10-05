@@ -23,4 +23,6 @@ compares the index, so a backend that stops caching turns the page from yes to N
 | `meta.php/pad` | Fetches `metaoff` twice: a page with `{meta cache=0}` is built every time though the application caches |
 | `metaoff.php/pad` | A page that keeps itself out of the cache with `{meta cache=0}`, its body its build moment |
 | `validators.php/pad` | The cache's validators belong to one URL: the probe's ETag gets a 304 from the probe only, and a date older than the cached copy gets the page |
+| `etaglist.php/pad` | On a cache miss the 304 reads the whole If-None-Match list: its tag second in a list, and `*`, get a 304, another tag the page |
+| `stable.pad` | A page that never changes, fetched by etaglist at a fresh address each time |
 | `_config/config.php` | Switches the file cache on, 60 seconds, `_common` off |
