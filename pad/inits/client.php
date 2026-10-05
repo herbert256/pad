@@ -21,8 +21,13 @@
 
     $padClientTag = trim ( preg_replace ( '/^\s*W\//', '', $padClientTag ), " \t\"" );
 
-    if ( $padClientTag == '*' or preg_match ( '/^[A-Za-z0-9_-]{22}$/', $padClientTag ) )
+    // A gzip body carries its own tag, the same one with -gzip behind it (lib/output.php);
+    // the representation underneath is one, so the suffix comes off for the comparison.
+
+    if ( $padClientTag == '*' )
       $padClientEtags [] = $padClientTag;
+    elseif ( preg_match ( '/^([A-Za-z0-9_-]{22})(-gzip)?$/', $padClientTag, $padClientMatch ) )
+      $padClientEtags [] = $padClientMatch [1];
 
   }
 

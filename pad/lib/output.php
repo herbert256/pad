@@ -116,7 +116,9 @@
     // for a client that accepts it, and saying so only when the on-the-fly $padGzip was
     // configured shipped compressed bytes with no Content-Encoding at all.
 
-    if ( $stop == 200 and $padClientGzip and ( $padGzip or ( $padCacheStop == 200 and $padCacheServerGzip ) ) )
+    $padWebGzip = ( $stop == 200 and $padClientGzip and ( $padGzip or ( $padCacheStop == 200 and $padCacheServerGzip ) ) );
+
+    if ( $padWebGzip )
       padHeader ( 'Content-Encoding: gzip' );
 
     // Whenever the body can come compressed, the response depends on Accept-Encoding and
@@ -135,7 +137,7 @@
     if ( ! isset ( $padCacheClientAge ) or ( $stop != 200 and $stop != 304 ) )
       padHeader ( 'Cache-Control: no-cache, no-store' );
     else
-      padWebCacheHeaders ();
+      padWebCacheHeaders ( $padWebGzip );
 
   }
 
@@ -183,16 +185,27 @@
 
   }
 
-  function padWebCacheHeaders () {
+  // A response that sets a cookie is private whatever the proxy age: a shared cache along
+  // the way would hand that visitor's Set-Cookie to the next one. The gzip body has an ETag
+  // of its own, the identity one with -gzip behind it - the two bodies shared one, which a
+  // cache may not mix - and Last-Modified says when the page was made, where nothing did.
+
+  function padWebCacheHeaders ( $gzip = FALSE ) {
 
     global $padCacheClientAge, $padCacheProxyAge, $padEtag, $padTime;
+
+    $cookie = FALSE;
+
+    foreach ( headers_list () as $header )
+      if ( stripos ( $header, 'Set-Cookie:' ) === 0 )
+        $cookie = TRUE;
 
     if ( $padCacheClientAge )
       $age = $padCacheClientAge - ($_SERVER['REQUEST_TIME'] - $padTime);
     else
       $age = 0;
 
-    if ( $padCacheProxyAge ) {
+    if ( $padCacheProxyAge and ! $cookie ) {
       $type = 'public';
       $sage = $padCacheProxyAge - ($_SERVER['REQUEST_TIME'] - $padTime);
     } else {
@@ -208,7 +221,8 @@
     padHeader ('Cache-Control: ' . "$type, max-age=$age, s-maxage=$sage, $extra");
     padHeader ('Date: '          . gmdate('D, d M Y H:i:s', $_SERVER['REQUEST_TIME']        ) . ' GMT');;
     padHeader ('Expires: '       . gmdate('D, d M Y H:i:s', $_SERVER['REQUEST_TIME'] + $age ) . ' GMT');
-    padHeader ('Etag: '          . '"' . $padEtag . '"');
+    padHeader ('Last-Modified: ' . gmdate('D, d M Y H:i:s', $padTime                       ) . ' GMT');
+    padHeader ('Etag: '          . '"' . $padEtag . ( $gzip ? '-gzip' : '' ) . '"');
 
   }
 
