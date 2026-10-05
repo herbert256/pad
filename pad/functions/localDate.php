@@ -11,8 +11,11 @@
 
   $padLdStyles = [ 'none' => -1, 'full' => 0, 'long' => 1, 'medium' => 2, 'short' => 3 ];
 
-  $padLdDate   = strtolower ( trim ( (string) ( $parm [0] ?? 'medium' ) ) );
-  $padLdTime   = strtolower ( trim ( (string) ( $parm [1] ?? 'none' ) ) );
+  // An empty style is the default one, as an absent one is: localDate('') read the style
+  // table at '' - neither a style nor a pattern - and ended on an undefined array key.
+
+  $padLdDate   = strtolower ( trim ( (string) ( $parm [0] ?? '' ) ) ) ?: 'medium';
+  $padLdTime   = strtolower ( trim ( (string) ( $parm [1] ?? '' ) ) ) ?: 'none';
   $padLdLocale = padLocaleOf ( $parm [2] ?? '' );
   $padLdStamp  = padLocaleTime ( $value );
 
