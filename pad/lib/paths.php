@@ -69,8 +69,11 @@
 
     global $padFileDir, $padFileName, $padFileDate, $padFileTimeStamp, $padFileUniqId, $padFileExtension;
 
-    if ( $withDir and $padFileDir )
-      $name = "$padFileDir/$padFileName";
+    // The directory joins the name with one /, whichever way it is written: dir='out/' and
+    // dir='/out' made out//name and DATA//out/name, which padFilePut refuses for the //.
+
+    if ( $withDir and trim ( (string) $padFileDir, '/' ) !== '' )
+      $name = trim ( $padFileDir, '/' ) . "/$padFileName";
     else
       $name = $padFileName;
 
