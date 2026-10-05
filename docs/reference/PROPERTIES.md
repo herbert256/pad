@@ -43,6 +43,7 @@ boolean ones, with an operator for the counting ones, and combined freely:
 {if notFirst@items}, {/if}
 {if current@rows eq 2}the second row{/if}
 {if first@items or last@items}an end{/if}
+{if option.sort@items eq 'name'}sorted by name{/if}
 ```
 
 The property name is what makes this read as one reference: only the names on this page do

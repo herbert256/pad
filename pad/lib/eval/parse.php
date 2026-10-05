@@ -145,6 +145,18 @@
         continue;
       }
 
+      // The properties that name what they read - option.sort@items, parameter.1@items,
+      // variable.total@items - keep their dot: read as the . operator it tore the reference
+      // apart, so {if option.sort@items eq 'name'} compared a concatenation with a word, and
+      // parameter.1 went on as the number .1. Only where the whole name@target follows.
+
+      if ( $is_other and $one == '.' and in_array ( $result[$i][0], [ 'option', 'parameter', 'variable' ] )
+           and preg_match ( '/^\.([a-zA-Z0-9_]+)@([a-zA-Z_]|-\d)/', implode ( '', array_slice ( $input, $key ) ), $padEvalDotted ) ) {
+        $result[$i][0] .= '.' . $padEvalDotted [1];
+        $skip = strlen ( $padEvalDotted [1] );
+        continue;
+      }
+
       $next  = (isset($input[$key+1])) ? $input[$key+1] : '';
       $next2 = (isset($input[$key+2])) ? $input[$key+2] : '';
       $prev  = (isset($result [$i] [0]) and $result [$i] [0]) ? substr($result [$i] [0],-1) : '';
@@ -307,7 +319,7 @@
         // padEvalAfter resolves through padPropertyValue.
 
         if ( $is_other and ! empty ( $result[$i][0] )
-             and file_exists ( PAD . 'properties/' . $result[$i][0] . '.php' ) ) {
+             and file_exists ( PAD . 'properties/' . strtok ( $result[$i][0], '.' ) . '.php' ) ) {
 
           $padEvalRest = implode ( '', array_slice ( $input, $key + 1 ) );
 
