@@ -317,6 +317,33 @@ them. `$padTimezone` sets the timezone. Formatting uses PHP's intl extension whe
 
 ---
 
+## Lookup
+
+| Function | Parameters | Description |
+|----------|------------|-------------|
+| `lookup` | set, key, field | The field of the row in another data set whose key equals the value - a join between lists from different sources |
+
+The set is named as a data tag names its rows: a `{data}` block, a stored sequence, an array
+of the page or of an enclosing row, or a `_data/` file. `key` defaults to `id`; without a
+`field` the answer is the row's first field other than the key. The first matching row
+counts; no match answers `''`, so `| ?? 'fallback'` supplies one. The set is indexed on the
+key once per request - not once per row - and indexed again only when the set itself
+changed. Strict mode names a lookup without a set, or with a name nothing holds.
+
+### Examples
+
+```
+{orders}
+  {$number}: {echo $customer_id | lookup('customers', 'id', 'name')}
+{/orders}
+
+{$customer_id | lookup('customers')}                          → the first field after id
+{$code | lookup('countries', 'code', 'label') | ?? 'unknown'} → a miss with a fallback
+{$id | lookup('customers', 'id', 'country') | lookup('countries', 'code', 'label')}
+```
+
+---
+
 ## Date & Time
 
 Functions for working with dates and timestamps.
@@ -469,6 +496,9 @@ Functions for working with PAD template syntax.
 
 ### Values
 `default`
+
+### Lookup
+`lookup`
 
 ### Locale
 `trans`, `currency`, `localDate`

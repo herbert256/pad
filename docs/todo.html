@@ -868,7 +868,7 @@ $padExpose = [ 'orders', 'total' ];</code></pre>
         | lookup('customers', 'id', 'name')}
 {/orders}</code></pre>
           <p>Joins exist for database tables through Select relations, and <code>{at "id=5@customers"}</code> finds the first matching row. A <code>lookup</code> pipe would fit that into templates where two lists come from different sources, such as JSON plus CSV, or an API plus page PHP. Index the second set once per request, not once per row.</p>
-        </li>
+        <p class="done"><strong>Done.</strong> The <code>lookup(set, key, field)</code> pipe returns a field of the matching row in a {data} block, page array or _data/ file, or '' on a miss (so <code>| ?? 'fallback'</code> gives a default); each set is indexed once per request. Regression: three framework <code>functions/lookup_*</code> cases and two errors cases; manual page <em>Lookups between data sets</em>; FUNCTIONS.md, CLAUDE.md. Known limit (all pipes): a pipe inside an <code>{if}</code> condition or a <code>{set}</code> value is not applied.</p></li>
 
         <li class="idea" id="sequence-fun">
           <div class="idea-top"><span class="number" aria-hidden="true">44</span><h3>Sequences you can see and hear</h3><span class="effort">Small–medium</span></div>

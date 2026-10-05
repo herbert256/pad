@@ -6,7 +6,8 @@
   // rows and one more per {recurse}. See lib/tree.php.
   //
   // The rows are named by the first parameter or by data= - a {data} block, a stored
-  // sequence, an array of the page or an enclosing row, a _data/ file; children names the
+  // sequence, an array of the page or an enclosing row, a _data/ file (padNamedRows in
+  // lib/lookup.php); children names the
   // field that holds a row's children, 'children' when not given. The body is the content
   // as written - without the @else@ part, which shows when there are no rows at all.
 
@@ -25,7 +26,7 @@
 
   }
 
-  $padTreeRows = padTreeRows ( $padTreeName );
+  $padTreeRows = padNamedRows ( $padTreeName );
 
   if ( $padTreeRows === NULL ) {
 

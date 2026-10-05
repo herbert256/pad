@@ -296,6 +296,16 @@ up to the root). The event's values are the hook's local variables; page variabl
 {echo $value | +1}                # WRONG - needs space before 1
 ```
 
+### Lookups Between Data Sets
+```
+{orders}
+  {$number}: {echo $customer_id | lookup('customers', 'id', 'name') | ?? 'unknown'}
+{/orders}
+```
+`lookup(set, key, field)` finds the row of another set - a `{data}` block, a page array, a
+`_data/` file - whose key equals the value; the set is indexed once per request. A miss is
+`''`; without a field the answer is the row's first field other than the key.
+
 ### Pipe Timing: Opening vs Closing Tags
 
 Pipes can be applied to a tag at two points, and they do not act on the same text.

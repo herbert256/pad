@@ -1,0 +1,3 @@
+{orders}
+  <p>Order {$number}: {echo $customer_id | lookup('customers', 'id', 'name') | ?? 'unknown customer'}</p>
+{/orders}

@@ -1,0 +1,7 @@
+{data 'countries'}
+  [ {"code": "NL", "label": "Netherlands"}, {"code": "BE", "label": "Belgium"} ]
+{/data}
+
+{customers}
+  <p>{$name} lives in {$country | lookup('countries', 'code', 'label')}</p>
+{/customers}

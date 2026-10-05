@@ -1,0 +1,22 @@
+<h1>Lookups between data sets</h1>
+
+<p>Two lists often come from different places - orders from a database, customers from an
+API, countries from a JSON file. The <code>lookup</code> pipe function joins them in the
+template: <code>lookup('customers', 'id', 'name')</code> finds the row of
+<code>customers</code> whose <code>id</code> equals the value, and answers its
+<code>name</code>.</p>
+
+{example 'fragments/lookup_1'}
+
+<p>A value no row has answers nothing, so <code>?? 'fallback'</code> after it supplies one.
+<code>key</code> defaults to <code>id</code>, and without a field the answer is the row's first
+field other than the key.</p>
+
+<h2>Where the set comes from</h2>
+
+<p>The set is named as a data tag names its rows: a <code>{open}data{close}</code> block, an
+array of the page, or a file in <code>_data/</code>. It is indexed on the key once per request,
+not once per row, so a long list stays cheap to look in; when the set itself changes, the next
+lookup indexes it again.</p>
+
+{example 'fragments/lookup_2'}

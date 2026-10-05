@@ -13,9 +13,6 @@
   //
   // padTreeLevel  the nearest enclosing level that is a tree or a recurse, FALSE outside one
   //               - so a {branch} or {recurse} inside an {if} still finds its rows
-  // padTreeRows   the rows a {tree} names: a {data} block, a stored sequence, an array of the
-  //               page or of an enclosing row, or a _data/ file - in that order; NULL when
-  //               there is nothing by that name
   // padTreeKids   the children of the current row of a tree level, [] when it has none
 
   function padTreeLevel ( $from ) {
@@ -27,28 +24,6 @@
         return $i;
 
     return FALSE;
-
-  }
-
-  function padTreeRows ( $name ) {
-
-    global $padDataStore, $pqStore;
-
-    if ( ! is_string ( $name ) or $name === '' )
-      return NULL;
-
-    if ( isset ( $padDataStore [$name] ) ) return $padDataStore [$name];
-    if ( isset ( $pqStore      [$name] ) ) return $pqStore      [$name];
-
-    if ( padValidName ( $name ) and padArrayCheck ( $name ) )
-      return padArrayValue ( $name );
-
-    $file = padValidName ( $name ) ? padDataFileName ( $name ) : FALSE;
-
-    if ( $file )
-      return padDataFileData ( $file );
-
-    return NULL;
 
   }
 
