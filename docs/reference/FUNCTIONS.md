@@ -472,7 +472,34 @@ Functions for working with PAD template syntax.
 
 The template side of some of the PHP helpers ([HELPERS.md](HELPERS.md)).
 
-<!-- pipes: numbers -->
+### abbreviate
+
+`abbreviate(precision)` writes a large number short for people - `padNumberAbbreviate` in a
+template. K, M, B, T and Q stand for thousand up to quadrillion; the precision (0 unless
+given) is the most decimals written, the trailing zeros dropped, and the unit is chosen on the
+number as it will be written, so 999999 is `1M`. Below 1000 the number has no letter, a
+negative one keeps its sign, and a value that is not a number goes through unchanged. A
+negative precision is reported.
+
+```
+{$visits | abbreviate}        → '2M'     ($visits = 1534200)
+{$visits | abbreviate(1)}     → '1.5M'
+{$visits | abbreviate(2)}     → '1.53M'
+{echo 950 | abbreviate}       → '950'
+{echo -2500 | abbreviate(1)}  → '-2.5K'
+```
+
+### ordinal
+
+`ordinal` writes a whole number as its English place - `padNumberOrdinal` in a template: st,
+nd and rd after 1, 2 and 3, th after the rest and after 11, 12 and 13, in 111 to 113 too. A
+number with a fraction is reported; a value that is not a number goes through unchanged.
+
+```
+{runners}{$place | ordinal}: {$name} {/runners}   → '1st: Ann 2nd: Bob 3rd: Cee '
+{echo 22 | ordinal}           → '22nd'
+{echo 112 | ordinal}          → '112th'
+```
 
 
 <!-- pipes: dates -->

@@ -203,7 +203,52 @@ a plain value is neither equal, smaller nor larger (no PHP warning).
 
 ## Numbers
 
-<!-- helpers: numbers -->
+`pad/lib/number.php` - numbers written for people, and kept between bounds; manual page
+*Number helpers*. The pipes `abbreviate` and `ordinal` are the template side
+([FUNCTIONS.md](FUNCTIONS.md#helper-pipes)), and the `bytes` pipe answers what
+`padNumberFileSize` answers.
+
+| Function | Answers |
+|----------|---------|
+| `padNumberFormat ( $number, $decimals = 0, $locale = NULL )` | the number with exactly `$decimals` decimals, grouped, the locale's way - `$padLocale` unless one is given: `1,234,567.89` in en, `1.234.567,89` in nl |
+| `padNumberPercentage ( $number, $precision = 0 )` | a share counted in hundreds with exactly `$precision` decimals, the request's locale's way: `25` → `25%`, `25.55` with 1 → `25.6%` (`25,6%` in nl) |
+| `padNumberAbbreviate ( $number, $precision = 0 )` | `1000` → `1K`, `1500` → `2K`, with precision 1 `1.5K`; then `M`, `B`, `T`, `Q`; below 1000 no letter |
+| `padNumberForHumans ( $number, $precision = 0 )` | `1 thousand`, `1.5 million`, `2 billion`, `trillion`, `quadrillion` |
+| `padNumberFileSize ( $bytes, $precision = 0 )` | units of 1024: `1536` → `2 KB`, with precision 1 `1.5 KB`; `B` to `EB` |
+| `padNumberOrdinal ( $number )` | `1st 2nd 3rd 4th 11th 12th 13th 21st 101st 111th` - English |
+| `padNumberClamp ( $number, $min, $max )` | the number, or the bound it went past - a number |
+
+```php
+<?php                                           // stats.php
+
+  $revenue   = padNumberFormat ( $sum, 2 );                 // 1,234,567.89
+  $growth    = padNumberPercentage ( $rise * 100, 1 );      // 12.5%
+  $followers = padNumberAbbreviate ( $count, 1 );           // 48.2K
+  $headline  = 'Over ' . padNumberForHumans ( $visits ) . ' visits';   // Over 2 million visits
+  $backup    = padNumberFileSize ( filesize ( $file ), 1 ); // 5.1 MB
+  $place     = padNumberOrdinal ( $rank );                  // 22nd
+  $page      = padNumberClamp ( $page, 1, $pages );         // never past the last page
+
+?>
+```
+
+- `padNumberFormat` and `padNumberPercentage` write exactly the decimals asked for, rounding
+  half up (`2.5` → `3`), and a value that rounds to zero is never `-0`. PHP's intl extension
+  (`NumberFormatter`) writes them when it is there; without it they are written the plain
+  `number_format` way (`1,234.50`, `25.6%`).
+- `padNumberAbbreviate`, `padNumberForHumans` and `padNumberFileSize` write at most
+  `$precision` decimals and drop the trailing zeros (`1000` with 1 is `1K`). The unit is chosen
+  on the number as it will be written - `999999` is `1M`, `1048575` bytes `1 MB` - the sign is
+  kept (`-1500` → `-2K`), and past the last unit the number grows (`5000Q`). They are English,
+  with a point before the decimals, whatever the locale. `padNumberFileSize ( $n, 2 )` is
+  exactly `{$n | bytes}`.
+- Numeric text counts as the number it holds (`'1234'`, `' 12 '`). NULL, FALSE and empty text
+  are nothing to write: the answer is `''` (`padNumberClamp`: NULL) and nothing is reported.
+- Reported with `padError`, naming the function, and answered `''` (`padNumberClamp`: NULL):
+  a value that is no number (`'twelve'`, an array, TRUE, INF), a precision or number of
+  decimals that is negative or has a fraction (NULL is the default 0), a fraction handed to
+  `padNumberOrdinal`, a locale intl does not know, and for `padNumberClamp` a missing bound or
+  a minimum above the maximum.
 
 
 ---

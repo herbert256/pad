@@ -219,7 +219,8 @@
 
   }
 
-  // A value as an error message names it: text quoted and cut short, the rest by its kind.
+  // A value as an error message names it: a number as it is written - numeric text too, a
+  // pipe's parameters are text - other text quoted and cut short, the rest by its kind.
 
   function padValueShow ( $value ) {
 
@@ -229,6 +230,9 @@
     if ( $value === NULL      ) return 'NULL';
     if ( is_float  ( $value ) ) return var_export ( $value, TRUE );
     if ( is_int    ( $value ) ) return (string) $value;
+
+    if ( is_string ( $value ) and is_numeric ( $value ) )
+      return padMakeSafe ( $value, 60 );
 
     return "'" . padMakeSafe ( (string) $value, 60 ) . "'";
 
