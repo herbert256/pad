@@ -12,7 +12,8 @@
   // A page with nothing to report is left exactly as it was. Only a local request is checked
   // (padLocal: the command line, or loopback with nothing forwarded): a remote visitor never
   // pays for the parse and never sees the panel. The page cache is left alone as well - a
-  // stored page with a panel in it would go to the next visitor.
+  // stored page with a panel in it would go to the next visitor - and so is the answer to
+  // a live event, the inside of one region, which the panel would land in.
   //
   // The link check is exact because PAD's routing is: a ?page link is broken when padPageCheck
   // finds no page for it, in this application or, for /<mount>/<app>/?page, in the one it
@@ -35,6 +36,7 @@
     if ( ! padLocal ()                                                          ) return FALSE;
     if ( ( $padOutputType ?? 'web' ) != 'web'                                    ) return FALSE;
     if ( $padCache                                                               ) return FALSE;
+    if ( padLive () !== ''                                                       ) return FALSE;
 
     return str_starts_with ( strtolower ( trim ( $padContentType ?? '' ) ), 'text/html' );
 
