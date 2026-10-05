@@ -4,7 +4,7 @@
   // pipeline.
   //
   // In order: level/setup.php claims a new $pad slot, level/parms/ parses the parameters,
-  // level/split.php cuts off an @else@ branch, the else= and data= options are applied and
+  // level/split.php cuts off an @else@ branch, the data= option is applied and
   // $name= assignments are published as globals; then the tag handler runs guarded by
   // try/try.php ($padTry = 'level/go'). Afterwards the level's content and iteration data
   // are settled (base, before-pipe, data, name and handling/), the dump and app option
@@ -17,7 +17,10 @@
   include PAD . 'level/parms/parms.php';
   include PAD . 'level/split.php';
 
-  if ( padTagParm ('else') ) $padFalse       = include PAD . "options/else.php";
+  // else= is applied by level/flags.php when the tag comes back empty. Applied here as well,
+  // on every use, it replaced the @else@ branch with TRUE, dropped a content= option and ran
+  // the else content's PHP for a tag that went on to hit.
+
   if ( padTagParm ('data') ) $padData [$pad] = include PAD . "options/data.php";
 
   include PAD . 'level/set.php';
