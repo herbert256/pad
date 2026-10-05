@@ -348,6 +348,8 @@
     if ( $count < 1 )
       return $array;
 
+    $count = (int) $count;
+
     if ( $side == 'left' )
       return array_slice ( $array, $count );
     else

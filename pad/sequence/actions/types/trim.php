@@ -10,6 +10,28 @@
   $pqTrimLeft  = $padPrm [$pad] ['left']  ?? 0;
   $pqTrimRight = $padPrm [$pad] ['right'] ?? 0;
 
+  // A count is a whole number: trim=1.5 and both=2.5 ended the request on PHP's deprecation
+  // of a fractional offset, and right='x' on string * int, inside pqTruncate(). Strict mode
+  // names it, and that count takes nothing off.
+
+  foreach ( [ 'trim'  => 'pqActionParm', 'both'  => 'pqTrimBoth',
+              'left'  => 'pqTrimLeft',   'right' => 'pqTrimRight' ] as $pqTrimName => $pqTrimVar ) {
+
+    $pqTrimOne = $$pqTrimVar;
+
+    if ( is_bool ( $pqTrimOne ) or ( is_scalar ( $pqTrimOne ) and (string) $pqTrimOne === '' ) )
+      continue;
+
+    if ( is_numeric ( $pqTrimOne ) and floor ( $pqTrimOne ) == $pqTrimOne )
+      continue;
+
+    if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
+      padError ( "$pqTrimName= takes a count, not '" . ( is_scalar ( $pqTrimOne ) ? $pqTrimOne : gettype ( $pqTrimOne ) ) . "'" );
+
+    $$pqTrimVar = 0;
+
+  }
+
   if ( $pqActionParm and is_numeric ($pqActionParm) ) {
     if ( $pqTrimBoth  === TRUE ) $pqTrimBoth  = $pqActionParm;
     if ( $pqTrimLeft  === TRUE ) $pqTrimLeft  = $pqActionParm;
