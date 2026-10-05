@@ -7,9 +7,10 @@
   $padSqlUser      = 'demo';
   $padSqlPassword  = 'demo';
 
-  // The live region test needs a page that checks CSRF tokens (live/csrf).
+  // The live region tests need pages that check CSRF tokens - the check runs before the
+  // page's PHP, so only the configuration can switch it on for a post.
 
-  if ( $padPage == 'live/counter' )
+  if ( in_array ( $padPage, [ 'live/counter', 'request/livecsrf' ] ) )
     $padCsrf = TRUE;
 
 ?>
