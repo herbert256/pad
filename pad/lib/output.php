@@ -97,10 +97,20 @@
 
   }
 
+  // A status the page's own PHP set with http_response_code() stands when the engine would
+  // only have said 200: a page could not answer its own 404 or 410 before.
+
   function padWebNoHeaders ( $stop ) {
 
-    if ( ! headers_sent () )
-      http_response_code ($stop);
+    if ( headers_sent () )
+      return;
+
+    $current = http_response_code ();
+
+    if ( $stop == 200 and $current and $current != 200 )
+      return;
+
+    http_response_code ($stop);
 
   }
 

@@ -19,8 +19,25 @@
 
   $padPage = padCorrectPath ( $padPage );
 
-  if ( ! padPageCheck ($padPage) )
-    padBootError ("Page '$padPage' not found");
+  // A page that is not there is a 404, the visitor's request rather than a server fault -
+  // it was a 500 boot error. The name is shown to this machine's own requests only.
+
+  if ( ! padPageCheck ($padPage) ) {
+
+    while ( ob_get_level () )
+      ob_end_clean ();
+
+    if ( ! headers_sent () ) {
+      http_response_code ( 404 );
+      header ( 'Content-Type: text/plain; charset=UTF-8' );
+    }
+
+    echo padLocal () ? "Page '" . padMakeSafe ( $padPage, 100 ) . "' not found" : 'Page not found';
+
+    $stop = 404;
+    include PAD . 'exits/exit.php';
+
+  }
 
   $padPage = padPage ($padPage);
   $padDir  = padDir  ();

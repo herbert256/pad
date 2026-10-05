@@ -34,6 +34,8 @@
       'request/cookie'            => 'A cookie sent with the request, read from $_COOKIE by the fixture',
       'request/crumbs'            => 'A cookie, a pq-named and an _-named request value sent to the fixture, none of which becomes a variable',
       'request/crumb'             => 'The fixture for request/crumbs, fetched bare: no cookie, nothing promoted',
+      'request/statuses'          => 'A missing page answers 404, and a status the page sets with http_response_code() stands',
+      'request/gone'              => 'The fixture for request/statuses: a page that answers 410 itself',
       'request/redirect'          => 'A redirecting page, seen unfollowed - status and destination - and followed to where it lands',
       'request/vars'              => 'The intake fixture bare: no request vars, so the defaults show',
       'request/body'              => 'The raw-body fixture bare: an empty php://input',
