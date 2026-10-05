@@ -865,13 +865,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pl" id="a3">
-      <div class="tag"><div class="priority">Open</div><div class="cat">A3 · Data</div></div>
+    <div class="finding pl fixed" id="a3">
+      <div class="tag"><div class="priority">Fixed</div><div class="cat">A3 · Data</div></div>
       <div>
-        <h3>Compact JSON in <code>_data</code> fails under the strict check</h3>
+        <h3>Compact JSON in <code>_data</code> fails under the strict check<span class="done">Fixed</span></h3>
         <p class="where">types/_go/local.php:28-31</p>
         <p>Every <code>_data</code> file except <code>.php</code> is run through <code>padCode</code> before <code>padData</code> parses it, so tags inside it expand. JSON as <code>json_encode</code> writes it, <code>[{"a":"1"}]</code>, then reads as a tag named <code>"a":"1"</code>: <code>{menu}</code>, <code>{local:menu.json}</code> and <code>{data 'm', 'menu.json'}</code> fail with "there is no tag named …" under <code>$padCheckSyntax</code>, while the lenient walk keeps the text and works. Every shipped <code>.json</code> file is pretty-printed, which is why nothing fails today.</p>
         <div class="fix"><b>Decision:</b> skip <code>padCode</code> for <code>.json</code> (losing tags inside JSON data files), or have the scanner keep <code>{"</code> as literal text, the way it keeps a <code>{</code> followed by whitespace.</div>
+        <div class="resolved"><b>Fixed:</b> decided for the second option: the scanner keeps <code>{"</code> as literal text, the way it keeps a <code>{</code> followed by whitespace (<code>padWhiteCheck</code>). No tag, field or sigil starts with a double quote, and JSON objects do. A <code>_data</code> file still runs through <code>padCode</code>, so tags inside data files keep working, and <code>data/json.php</code> already turns the kept braces back. A framework case reads a compact <code>[{"a":"1","n":{"x":1}},…]</code> through <code>{local:compact.json}</code> and gets <code>1,2,</code>; the old scanner ended on "there is no tag named '"x":1'".</div>
       </div>
     </div>
 

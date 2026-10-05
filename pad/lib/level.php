@@ -211,7 +211,11 @@ function padSplitOnUnquotedColon ( $str ) {
 
     }
 
-    return ( ctype_space ( $padBetween [0] ) );
+    // A { followed by a double quote cannot open a tag either - no tag, field or sigil
+    // starts with one - and it is how JSON opens an object: compact JSON in a _data file,
+    // [{"a":"1"}], read as a tag named "a":"1" and failed under the strict check.
+
+    return ( ctype_space ( $padBetween [0] ) or $padBetween [0] == '"' );
 
   }
 
