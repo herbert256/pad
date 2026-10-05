@@ -72,6 +72,14 @@
 
   $padCheckOutput = FALSE;
 
+  // Template coverage: TRUE records, for every local request, which templates it read, which
+  // of their tags ran and which branch each {if} and {case} took, as one JSON line in
+  // DATA/coverage/default.jsonl; a name instead of TRUE records into DATA/coverage/<name>.jsonl.
+  // develop/?coverage shows the report and starts and stops a recording of every application
+  // around a suite run. See lib/coverage.php.
+
+  $padCoverage = FALSE;
+
   $padInfo = '';
 
   $padCommon = TRUE;

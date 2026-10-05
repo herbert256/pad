@@ -19,6 +19,14 @@
 
   padCheckBuffers ();
 
+  // A coverage record is written before the body goes out, not at the exit after it: the
+  // client has the whole page once it is sent, and a test that reads the record right after
+  // its fetch found it not written yet (lib/coverage.php). padExit writes it for a request
+  // that ends any other way.
+
+  if ( $padCoverageRun and ! padSecondTime ( 'exitCoverage' ) )
+    padCoverageWrite ( $padStop );
+
   if ( $padOutputType != 'web' and $padCacheStop == 200 and $padCacheServerGzip )
     $padOutput = padUnzip ( $padOutput );
 

@@ -1,0 +1,55 @@
+<h2>Template coverage</h2>
+
+<p>
+  {if $coverRecording ne ''}
+    Recording into <b>{$coverRecording}</b> - <a href="?coverage&amp;stop">stop</a>
+  {else}
+    Not recording - start a run: <a href="?coverage&amp;start=suites">suites</a>,
+    <a href="?coverage&amp;start=default">default</a>
+  {/if}
+</p>
+
+<p>
+  Runs:
+  {coverRuns}
+    <a href="?coverage&amp;run={$run}">{$run}</a> (<a href="?coverage&amp;clear={$run}">clear</a>)
+  @else@
+    none yet
+  {/coverRuns}
+</p>
+
+{if $coverSource ne ''}
+
+  <h3>{$coverFile} - read by {$coverCount} requests of {$coverRun}</h3>
+
+  <p><span class="pad-cover-hit">ran</span> / <mark class="pad-cover-miss">never ran</mark> - hover for the count</p>
+
+  {ignore}<style>.pad-cover-hit { background: #dfd; } .pad-cover-miss { background: #fcc; }</style>{/ignore}
+
+  <pre>{!coverSource}</pre>
+
+{/if}
+
+{if $coverRun ne '' and $coverFile eq ''}
+
+  <h3>{$coverRun}: {$coverCount} requests</h3>
+
+  <table border="1" cellpadding="4">
+    <tr><th>Template</th><th>Requests</th><th>Ran</th><th>%</th></tr>
+    {coverFiles}
+      <tr>
+        <td><a href="?coverage&amp;run={$coverRun}&amp;file={$file | url}">{$file}</a></td>
+        <td>{$requests}</td>
+        <td>{$covered} of {$items}</td>
+        <td>{$percent}</td>
+      </tr>
+    {/coverFiles}
+  </table>
+
+  <h3>Never read by this run</h3>
+
+  <ul>
+    {coverUnread}<li>{$unread}</li>{/coverUnread}
+  </ul>
+
+{/if}

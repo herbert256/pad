@@ -33,6 +33,8 @@
   $padInfo      = '';
   $padInfoCnt   = 0;
 
+  $padCoverageRun = '';
+
   $padData      = [];
   $padProviders = [];
 

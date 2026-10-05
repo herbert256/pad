@@ -55,6 +55,9 @@
     if ( isset ( $padInfoStarted ) and ! padSecondTime ( 'exitInfo' ) )
       include PAD . 'info/end/config.php';
 
+    if ( ( $GLOBALS ['padCoverageRun'] ?? '' ) and ! padSecondTime ( 'exitCoverage' ) )
+      padCoverageWrite ( $stop );
+
   }
 
   function padExitCatch ( $e ) {

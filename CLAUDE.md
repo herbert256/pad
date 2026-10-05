@@ -811,6 +811,12 @@ $padCsrf = false;
 // panel in the page plus a PAD-Output-Check header. ?page&padCheckOutput asks for one
 // request; develop/?links checks the literal links of every application's templates.
 $padCheckOutput = false;
+
+// Template coverage of local requests: which templates were read, which tags ran, which
+// {if}/{case} branch was taken - one JSON line per request in DATA/coverage/<run>.jsonl.
+// TRUE is the run 'default', a string names the run; ?page&padCoverage=name for one
+// request; develop/?coverage starts/stops recording every app and shows the report.
+$padCoverage = false;
 ```
 
 ### Expression errors
@@ -1105,6 +1111,7 @@ Each `{tag}` creates a new level scope. PAD maintains global variables per level
 - Use `{dump}` tag for variable inspection
 - Use `{trace}` tag for execution trace
 - Set `$padCheckOutput = true` (or add `&padCheckOutput` to a local request) to have the finished HTML checked for duplicate ids, images without alt, unlabelled fields and broken `?page` links; `develop/?links` checks every application's templates at once
+- Template coverage: `develop/?coverage&start=suites`, run `./ci.sh`, `develop/?coverage&stop`, then `develop/?coverage&run=suites` shows every template with the tags and `{if}`/`{case}` branches that never ran marked, and the files no request read (`$padCoverage` records one app's local requests)
 - Check `DATA/` directory for error dumps and logs
 
 ### Testing PAD Pages from Command Line

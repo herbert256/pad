@@ -43,6 +43,9 @@
     if ( $padInfo )
       include PAD . 'events/get.php';
 
+    if ( $GLOBALS ['padCoverageRun'] ?? '' )
+      padCoverageFile ( $file );
+
     if ( is_dir ($file) or ! is_readable ( $file ) )
       return $default;
     else

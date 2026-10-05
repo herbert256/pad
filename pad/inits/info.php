@@ -9,6 +9,10 @@
   // (no wrappers) and tidy is switched off so the recorded output stays as the engine
   // produced it.
 
+  // The coverage recording this request belongs to, '' for none - lib/coverage.php.
+
+  $padCoverageRun = padCoverageRun ();
+
   if ( padSelfSwitch ( 'padReference' ) ) {
 
     $padInfo      = 'xref';

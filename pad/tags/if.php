@@ -34,6 +34,11 @@
   if ( trim ( $padIf ) == '' and $padCheckSyntax )
     padError ( "the {if} has no condition" );
 
+  // Under a coverage recording the branch that is taken is noted (lib/coverage.php): 'if',
+  // 'elseif <condition>', 'else', or 'none' when nothing held and there is no {else}.
+
+  $padIfArm = 'if';
+
   $padChk = strpos ($padContent, '{elseif');
 
   while ($padChk !== FALSE) {
@@ -46,11 +51,14 @@
 
       if ( padEval ($padIf ) )  {
         $padContent = substr ($padContent, 0, $padChk);
+        if ( $padCoverageRun )
+          padCoverageArm ( $padIfArm );
         return TRUE;
       }
 
       $padPos     = strpos($padContent, '}', $padChk);
       $padIf      = substr($padContent, $padChk+8, $padPos-($padChk+8));
+      $padIfArm   = "elseif $padIf";
 
       if ( trim ( $padIf ) == '' and $padCheckSyntax )
         padError ( "an {elseif} of this {if} has no condition" );
@@ -78,13 +86,23 @@
 
     if ( padEvalBool ( $padIf ) )
       $padContent = substr ( $padContent, 0, $padChk );
-    else
+    else {
       $padContent = substr ( $padContent, $padChk+6 );
+      $padIfArm   = 'else';
+    }
+
+    if ( $padCoverageRun )
+      padCoverageArm ( $padIfArm );
 
     return TRUE;
 
   }
 
-  return padEvalBool ( $padIf );
+  $padIfHeld = padEvalBool ( $padIf );
+
+  if ( $padCoverageRun )
+    padCoverageArm ( $padIfHeld ? $padIfArm : 'none' );
+
+  return $padIfHeld;
 
 ?>

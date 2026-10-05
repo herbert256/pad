@@ -76,6 +76,11 @@
   $padContent = substr   ( $padContent, $padPos+1 );
   $padChk     = strpos   ( $padContent, '{when' );
 
+  // Under a coverage recording the branch that answers is noted (lib/coverage.php):
+  // 'when <values>', 'else', or 'none' when nothing matched and there is no {else}.
+
+  $padCaseArm = "when $padIf";
+
   while ($padChk !== FALSE) {
 
     if ( ! padCheckTag  ('case', substr ( $padContent, 0, $padChk ) ) )
@@ -86,12 +91,16 @@
 
       $padContent = substr ( $padContent, 0, $padChk );
 
+      if ( $padCoverageRun )
+        padCoverageArm ( $padCaseArm );
+
       return TRUE;
 
     } else {
 
       $padPos     = strpos   ( $padContent, '}', $padChk );
       $padIf      = substr   ( $padContent, $padChk+6, $padPos-($padChk+6) );
+      $padCaseArm = "when $padIf";
 
       if ( $padCheckSyntax and trim ( $padIf ) == '' )
         padError ( "a {when} of this {case} has no value" );
@@ -116,13 +125,23 @@
 
     if ( padCaseWhen ( $padBasis, $padIf ) )
       $padContent = substr ( $padContent, 0, $padChk );
-    else
+    else {
       $padContent = substr ( $padContent, $padChk+6 );
+      $padCaseArm = 'else';
+    }
+
+    if ( $padCoverageRun )
+      padCoverageArm ( $padCaseArm );
 
     return TRUE;
 
   }
 
-  return padCaseWhen ( $padBasis, $padIf );
+  $padCaseHeld = padCaseWhen ( $padBasis, $padIf );
+
+  if ( $padCoverageRun )
+    padCoverageArm ( $padCaseHeld ? $padCaseArm : 'none' );
+
+  return $padCaseHeld;
 
 ?>

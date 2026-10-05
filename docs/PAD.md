@@ -649,6 +649,7 @@ $padOutputType    // 'web', 'file', 'download', 'console', 'json', 'csv'
 $padExpose        // The page variables answered as JSON or CSV (set in the page's .php)
 $padCache         // Enable caching
 $padCheckOutput   // Check the finished HTML of local requests (ids, alt, labels, links)
+$padCoverage      // Record template coverage of local requests (TRUE or a run name)
 
 // Database
 $padSqlHost
@@ -663,6 +664,7 @@ $padSqlPassword
 - Use `{dump}` tag for variable inspection
 - Use `{trace}` tag for execution trace
 - Set `$padCheckOutput = TRUE` to have every local HTML response checked once it has rendered: duplicate ids, images without alt, form fields without a label and `?page` links to pages that do not exist are named in a panel at the end of the page and counted in a `PAD-Output-Check` header (one request: `?page&padCheckOutput`; every application's templates at once: `develop/?links`)
+- Set `$padCoverage = TRUE` (or a run name) to record template coverage of local requests - which templates were read, which tags ran, which `{if}`/`{case}` branch was taken - in `DATA/coverage/<run>.jsonl`; `develop/?coverage` starts and stops a recording of every application around a suite run and shows each template with what never ran marked
 - Check `DATA/` directory for error dumps and logs
 
 ## Best Practices
@@ -738,6 +740,8 @@ APP/
 ## Testing
 
 Run regression tests by visiting `/regression` in browser. Tests compare current output against stored HTML snapshots.
+
+To see what the suites reach, record template coverage around a run: `develop/?coverage&start=suites`, `./ci.sh`, `develop/?coverage&stop`, then read `develop/?coverage&run=suites`.
 
 ## License
 

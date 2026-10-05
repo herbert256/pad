@@ -39,6 +39,9 @@
     return include PAD . 'level/nextLevel.php';
 
   include PAD . 'level/base.php';
+
+  if ( $padCoverageRun )
+    padCoverageTag ();
   include PAD . 'level/pipes/before.php';
   include PAD . 'level/data.php';
   include PAD . 'level/name.php';

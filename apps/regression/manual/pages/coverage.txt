@@ -1,0 +1,77 @@
+<h1>Template coverage</h1>
+
+<p>A test suite says what it checks; coverage says what it reaches. With coverage on, every
+local request notes which templates it read, which of their tags ran, and which branch each
+<b>{if}</b> and <b>{case}</b> took. The report then shows each template with the parts that
+never ran marked.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/coverage_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/coverage_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $template </span><span style="color: #007700">= </span><span style="color: #DD0000">"{if \$stock gt 0}In stock{else}Sold out{/if}"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$items    </span><span style="color: #007700">= </span><span style="color: #0000BB">padCoverageMark </span><span style="color: #007700">( </span><span style="color: #0000BB">padCoverageItems </span><span style="color: #007700">( </span><span style="color: #0000BB">$template </span><span style="color: #007700">), [], [ </span><span style="color: #DD0000">'if $stock gt 0' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'if' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">12 </span><span style="color: #007700">] ] );<br>  </span><span style="color: #0000BB">$marked   </span><span style="color: #007700">= </span><span style="color: #0000BB">padCoverageHtml </span><span style="color: #007700">( </span><span style="color: #0000BB">$template</span><span style="color: #007700">, </span><span style="color: #0000BB">$items </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="green"><font color="red"><font color="red">!</font></font>marked</font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <pre><span class="pad-cover-hit" title="ran 12 times">{if $stock gt 0}</span>In stock<mark class="pad-cover-miss" title="ran 0 times">{else}</mark>Sold out{/if}</pre>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<ul>
+  <li><code>$padCoverage = TRUE</code> in <code>_config/config.php</code> records into the run
+      <code>default</code>; a name instead of TRUE records into a run of that name, and
+      <code>?page&amp;padCoverage=name</code> records one request.</li>
+  <li><code>develop/?coverage&amp;start=suites</code> records every local request of every
+      application until <code>develop/?coverage&amp;stop</code> - start it, run the suites,
+      stop it, and <code>develop/?coverage&amp;run=suites</code> lists every template with the
+      share of its tags and branches that ran, and the files no request read at all.</li>
+  <li>A run is a file of JSON lines, <code>DATA/coverage/&lt;run&gt;.jsonl</code>, one line per
+      request. Only local requests are recorded.</li>
+  <li>An {if} without an {else} has one branch more: the run in which
+      its condition was false. It is marked on the {/if}.</li>
+</ul>

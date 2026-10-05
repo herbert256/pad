@@ -961,7 +961,7 @@ _events/output.php   post-process the final HTML</code></pre>
         <li class="idea" id="coverage">
           <div class="idea-top"><span class="number" aria-hidden="true">52</span><h3>Template coverage</h3><span class="effort">Medium</span></div>
           <p>During a suite run, record which tags, <code>{if}</code>/<code>{else}</code> branches, <code>{case}</code> arms, includes and <code>_functions</code> actually ran. The xref mode already records which page uses which tag. With the source map from <a href="#errors">#19</a>, the report could show each template with the parts that never ran highlighted, and point to manual fragments that no test exercises.</p>
-        </li>
+        <p class="done"><strong>Done.</strong> <code>$padCoverage</code> (or <code>?page&amp;padCoverage=run</code>, or <code>develop/?coverage&amp;start=suites</code> around a suite run) records per local request which templates were read, which tags ran and which <code>{if}</code>/<code>{case}</code> branch was taken, as JSON lines in <code>DATA/coverage/</code>; <code>develop/?coverage&amp;run=</code> reports each template’s share, marks what never ran in its source and lists files no request read. Regression: framework cases; manual page; docs.</p></li>
 
         <li class="idea" id="wasm">
           <div class="idea-top"><span class="number" aria-hidden="true">53</span><h3>PAD in the browser</h3><span class="effort">Large · experimental</span></div>
