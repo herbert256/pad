@@ -309,6 +309,9 @@ function TopicDisplay() {
                         }}>
                           {post.username}
                         </span>
+                        {/* user is the topic's author (the user_from_topic provider), not
+                            whoever is looking - the page has no notion of a viewer - so the
+                            badge marks the author's posts. It said YOU. */}
                         {post.user_id === user.id && (
                           <span style={{
                             background: '#3498db',
@@ -318,7 +321,7 @@ function TopicDisplay() {
                             fontSize: '12px',
                             fontWeight: '500'
                           }}>
-                            YOU
+                            AUTHOR
                           </span>
                         )}
                       </div>
