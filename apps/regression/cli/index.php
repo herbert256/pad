@@ -5,7 +5,8 @@
   //   render  a page to stdout, request values as name=value, an unknown application refused
   //   new     an application and a page in it, in a scratch PAD_HOME under DATA, refusing to
   //           overwrite, and the new page rendering through the real engine
-  //   lint    the pages of lintme/, the broken one named with its template position
+  //   lint    the pages of lintme/, the broken one named with its template position, the
+  //           bracketed route [id] left out - no URL names it
   //   serve   a page fetched from the server it starts, on a free port
   //   export  the regression/site fixture as static files: page links turned into relative
   //           .html files, from a subdirectory too, the assets copied, the outside link kept

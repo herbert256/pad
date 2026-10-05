@@ -9,8 +9,8 @@
   //              nested with / like regression/pages
   // cliPages     every page of an application (or of one directory of it), the way the
   //              suites walk them: .pad, .html and .php files outside the _ directories,
-  //              less the action-only fixtures that redirect, restart or write, and less
-  //              the directories that are applications of their own
+  //              less the action-only fixtures that redirect, restart or write, the
+  //              bracketed routes, and the directories that are applications of their own
   // cliRun       this script with other arguments, in a child process: [ exit code, output ]
   // cliRunPages  pad render over a list of pages, four child processes at a time
   // cliPhp       the php binary to run it with - the one running now, when that is php
@@ -68,6 +68,14 @@
     foreach ( scandir ( $dir ) as $file ) {
 
       if ( str_starts_with ( $file, '_' ) or str_starts_with ( $file, '.' ) )
+        continue;
+
+      // A bracketed route - products/[id].pad, blog/[year]/ - is reached through a path
+      // that fills in its value (lib/route.php), never by its own name: rendered by name it
+      // is a page not found, which pad lint counted as a failure and pad export as a page
+      // it had to skip.
+
+      if ( str_contains ( $file, '[' ) )
         continue;
 
       if ( is_dir ( "$dir$file" ) )
