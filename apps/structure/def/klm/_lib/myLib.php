@@ -1,5 +1,5 @@
 <?php
 
-  $lib = 'klm';
+  $lib = 'def/klm';
 
 ?>

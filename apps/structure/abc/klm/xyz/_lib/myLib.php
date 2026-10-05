@@ -1,5 +1,5 @@
 <?php
 
-  $lib = 'xyz';
+  $lib = 'abc/klm/xyz';
 
 ?>

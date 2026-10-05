@@ -10,19 +10,20 @@ PAD applications can use special directories (prefixed with `_`) to organize fun
 
 ## Directory Structure
 
-Every level - the root, both first-level branches (`abc/`, `def/`), their `klm/` subdirectories, and the third-level `abc/klm/xyz/` - carries the complete set of `_xxx` directories, wrappers, and a demo page:
+The root carries the complete set of `_xxx` directories. Each subdirectory overrides only one
+or two names and inherits the rest, so every demo page shows which level answered each part:
 
 ```
 structure/
-├── _callbacks/          # Iteration callbacks
+├── _callbacks/          # Iteration callbacks          - myCallback
 ├── _config/             # Application configuration (root only)
-├── _data/               # Static data files (XML, JSON)
-├── _functions/          # Custom pipe functions
-├── _include/            # Template snippets
+├── _data/               # Static data files (XML, JSON) - myXML
+├── _functions/          # Custom pipe functions         - myFunction
+├── _include/            # Template snippets             - myInclude
 ├── _lib/                # Auto-included PHP functions
-├── _options/            # Custom tag options
-├── _scripts/            # Shell scripts
-├── _tags/               # Custom template tags
+├── _options/            # Custom tag options            - myOption
+├── _scripts/            # Shell scripts                 - myScript
+├── _tags/               # Custom template tags          - myTag
 ├── _inits.php           # Runs before all pages
 ├── _inits.pad           # Wraps all pages (top)
 ├── _exits.php           # Runs after all pages
@@ -31,19 +32,18 @@ structure/
 ├── page.pad             # Demo page template
 ├── page.php             # Demo page data
 │
-├── abc/                 # First-level subdirectory
-│   ├── _callbacks/ _data/ _functions/ _include/ _lib/ _options/ _scripts/ _tags/
-│   ├── _inits.php / _inits.pad / _exits.php / _exits.pad
-│   ├── page.php / page.pad
-│   │
-│   └── klm/             # Second-level subdirectory (same full set)
-│       │
-│       └── xyz/         # Third-level subdirectory (same full set)
+├── abc/                 # overrides _tags/myTag
+│   └── klm/             # overrides _functions/myFunction
+│       └── xyz/         # overrides _include/myInclude
 │
-└── def/                 # Sibling first-level branch (same full set)
-    │
-    └── klm/             # Its own second level (same full set)
+└── def/                 # overrides _data/myXML and _scripts/myScript
+    └── klm/             # overrides _callbacks/myCallback and _options/myOption
 ```
+
+Every level also has its own `_lib/`, its wrappers (`_inits.php`, `_inits.pad`, `_exits.php`,
+`_exits.pad`) and a `page.pad`/`page.php`: `_lib/` is cumulative and the wrappers nest, so
+those show every level at once. Each line of a demo page names the directory that answered it.
+The root is labelled `root` and every other level by its path, e.g. `abc/klm`.
 
 ## Special Directories
 
@@ -109,7 +109,7 @@ Example: Accessing `?abc/klm/page` will:
 - `?def/page` - Sibling branch demo (shows branch isolation)
 - `?def/klm/page` - Sibling branch, second level
 
-Each page demonstrates tags, functions, includes, callbacks, and options from its directory level. The `def/` branch shows that sibling branches inherit from the root but not from each other.
+Each page shows its tag, function, include, data, script, callback and option, and which level answered each. `?abc/klm/xyz/page` takes `myTag` from `abc/`, `myFunction` from `abc/klm/`, `myInclude` from itself and the rest from the root. The `def/` branch shows that sibling branches inherit from the root but not from each other: `abc/`'s `myTag` never reaches `?def/page`.
 
 ## Key Concepts Demonstrated
 

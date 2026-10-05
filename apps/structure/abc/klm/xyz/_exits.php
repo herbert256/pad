@@ -1,5 +1,5 @@
 <?php
 
-  $exits = 'xyz';
+  $exits = 'abc/klm/xyz';
 
 ?>
