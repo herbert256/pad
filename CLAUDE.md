@@ -440,7 +440,7 @@ The `ignore` feature tells PAD not to parse curly braces `{}` as PAD tags. Essen
 2. **Pipe Function** - Apply to expression output:
 ```html
 <div data-json="{json 'products' | ignore}"></div>
-<div data-users="{echo $usersJson | ignore}"></div>
+<div data-users="{echo $usersJson | html | ignore}"></div>
 ```
 
 3. **Option** - Add to any tag:

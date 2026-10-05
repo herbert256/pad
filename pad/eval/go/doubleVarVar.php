@@ -12,6 +12,14 @@
   // ranked it, but no line here computed it, so 2 ** 3 left $now unset and rendered the operator
   // itself rather than 8.
 
+  // A boolean compares as PAD writes it, TRUE as 1 and FALSE as empty, and NULL as empty:
+  // the bare word true is PHP's TRUE, and 'no' eq true was true because 'no' == TRUE is.
+
+  if ( in_array ( $opr, [ 'LT', 'LE', 'EQ', 'GE', 'GT', 'NE' ] ) ) {
+    if ( is_bool ( $left  ) or $left  === NULL ) $left  = $left  ? '1' : '';
+    if ( is_bool ( $right ) or $right === NULL ) $right = $right ? '1' : '';
+  }
+
   if     ( $opr == 'LT'  ) $now = ($left <   $right) ? 1 : '';
   elseif ( $opr == 'LE'  ) $now = ($left <=  $right) ? 1 : '';
   elseif ( $opr == 'EQ'  ) $now = ($left ==  $right) ? 1 : '';
@@ -24,18 +32,30 @@
   elseif ( $opr == '.'   ) $now =  $left .   $right;
   else {
 
-    if ( strpos($left, '.' ) === FALSE ) $left  = (int)   $left;
-    else                                 $left  = (float) $left;
+    // An operand is read as the number it spells - 1e-3 is a thousandth, where the int cast
+    // made it 0 - with empty and NULL as 0 (padEvalNumber). Text that is no number is a
+    // strict-mode error, 'abc' + 1 was quietly 1, and 0 in the lenient walk; a division or
+    // modulo by zero likewise, where it was an uncaught DivisionByZeroError.
 
-    if ( strpos($right, '.') === FALSE ) $right = (int)   $right;
-    else                                 $right = (float) $right;
+    $left  = padEvalNumber ( $left,  $opr );
+    $right = padEvalNumber ( $right, $opr );
 
-    if     ( $opr == '**') $now = $left ** $right;
+    if ( in_array ( $opr, [ '/', '%' ] ) and $right == 0 ) {
+
+      global $padCheckSyntax;
+
+      if ( $padCheckSyntax )
+        padError ( "a division by zero in $opr" );
+
+      $now = '';
+
+    }
+    elseif ( $opr == '**') $now = $left ** $right;
     elseif ( $opr == '+' ) $now = $left + $right;
     elseif ( $opr == '-' ) $now = $left - $right;
     elseif ( $opr == '*' ) $now = $left * $right;
     elseif ( $opr == '/' ) $now = $left / $right;
-    elseif ( $opr == '%' ) $now = $left % $right;
+    elseif ( $opr == '%' ) $now = (int) $left % (int) $right;
 
   }
 

@@ -9,7 +9,10 @@
   // taking the previous one's result as its input. The $_eval* globals collect snapshots for
   // the trace. Returns the final value.
 
-  if ( file_exists ( PAD . "functions/$eval.php" ) )
+  // Only a plain name takes the fast path: the expression text went into the include path
+  // as it was, so ../ reached any .php file under the engine.
+
+  if ( preg_match ( '/^[A-Za-z][A-Za-z0-9_]*$/', $eval ) and file_exists ( PAD . "functions/$eval.php" ) )
     return include PAD . 'eval/fast.php';
 
   // A malformed expression is reported here, in the source's own terms, before the
@@ -19,8 +22,11 @@
   if ( ! padEvalValidate ( $eval ) )
     return '';
 
-  $_eval      = [];
-  $_eval_last = [];
+  // The trace snapshots live in globals, which padEvalTrace fills; this file runs inside
+  // padEval, where the bare names were locals and the reset never reached them.
+
+  $GLOBALS ['_eval']      = [];
+  $GLOBALS ['_eval_last'] = [];
 
   padEvalParse ( $result, $eval );  padEvalTrace ( 'parse', $result ); $_eval_parse [] = $result;
 

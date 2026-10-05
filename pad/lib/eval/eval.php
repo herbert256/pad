@@ -30,6 +30,30 @@
 
   }
 
+  // An arithmetic operand as a number: an int or float as it is, a boolean as 0 or 1, empty
+  // or NULL as 0, a numeric string by what it spells (exponents included). Anything else
+  // is no number: a strict-mode error naming it, and 0 in the lenient walk.
+
+  function padEvalNumber ( $value, $opr ) {
+
+    if ( is_int ( $value ) or is_float ( $value ) )
+      return $value;
+
+    if ( is_bool ( $value ) or $value === NULL or ( is_string ( $value ) and trim ( $value ) === '' ) )
+      return (int) $value;
+
+    if ( is_scalar ( $value ) and is_numeric ( trim ( (string) $value ) ) )
+      return trim ( (string) $value ) + 0;
+
+    global $padCheckSyntax;
+
+    if ( $padCheckSyntax )
+      padError ( "'" . padMakeSafe ( is_scalar ( $value ) ? (string) $value : gettype ( $value ), 40 ) . "' is not a number for $opr" );
+
+    return 0;
+
+  }
+
   function padEvalBool ( $eval, $value='' ) {
 
     $eval = padEval ( $eval, $value );

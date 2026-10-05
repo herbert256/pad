@@ -83,7 +83,10 @@
 
     $input = trim ($eval);
 
-    if ( str_starts_with ( $input, '%' ) ) {
+    // A whole expression starting with % is a printf format - except % followed by a space
+    // and a number, the modulo the arithmetic pipes write: {$x | % 3} was sprintf('% 3').
+
+    if ( str_starts_with ( $input, '%' ) and ! preg_match ( '/^%\s+-?[0-9.]+$/', $input ) ) {
       $result [100] [0] = $input;
       $result [100] [1] = '%';
       return;

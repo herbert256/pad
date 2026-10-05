@@ -130,11 +130,11 @@ Functions for encoding and escaping text for various contexts.
 | `html` | - | Escapes HTML special characters (PHP `htmlspecialchars`) |
 | `sanitize` | - | Full special character sanitization (FILTER_SANITIZE_FULL_SPECIAL_CHARS) |
 | `url` | - | URL-encodes the value (PHP `urlencode`) - a space becomes `+` |
-| `slashes` | - | Adds backslashes before quotes (PHP `addslashes`) |
+| `slashes` | - | Adds backslashes before quotes (PHP `addslashes`) - not SQL escaping: give values to `db()` as placeholders |
 | `stripslashes` | - | Removes backslashes (PHP `stripslashes`) |
 | `encodeHigh` | - | Encodes high ASCII characters (>127) |
 | `stripLow` | - | Strips low ASCII control characters |
-| `ignore` | - | Escapes PAD syntax characters (`{ } \| = , @`) so the output is not parsed as PAD tags |
+| `ignore` | - | Escapes PAD syntax characters (`{ } \| = , @`) so the output is not parsed as PAD tags - not HTML escaping: in an attribute use `html` first |
 
 ### Examples
 
@@ -142,7 +142,8 @@ Functions for encoding and escaping text for various contexts.
 {echo '<script>' | html}    → '&lt;script&gt;'
 {echo 'hello world' | url}  → 'hello+world'
 {"it's here" | slashes}     → "it\'s here"
-{json 'products' | ignore}  → JSON safe to embed in an HTML attribute
+{json 'products' | ignore}  → the tag's JSON, which it HTML-escaped itself, kept from the PAD parser
+{echo $json | html | ignore} → any value: html makes it safe inside an attribute, ignore keeps PAD off it
 ```
 
 ---
