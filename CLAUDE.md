@@ -1610,6 +1610,8 @@ See [REACT.md](docs/REACT.md) for complete React integration documentation inclu
 When creating documentation with examples:
 
 **Manual page** (`manual/topic.pad`) - Contains all explanatory text:
+- The title as `{meta title='...'}` on the first line - the `_common` wrapper prints it as
+  the page's one `<h1>` (from the file name when there is no meta); never an `<h1>` of its own
 - Introduction and description
 - Section headings (`<h2>`, `<h3>`)
 - Explanatory paragraphs
@@ -1625,7 +1627,7 @@ When creating documentation with examples:
 **Example:**
 ```html
 <!-- manual/pipes.pad -->
-<h1>Pipes - Transform Output</h1>
+{meta title='Pipes - Transform Output'}
 <h3>Variable Pipes</h3>
 <p>Apply functions to variables:</p>
 {example 'fragments/pipes_1'}
