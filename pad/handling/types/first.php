@@ -6,10 +6,15 @@
   // handling/types/last.php simply includes this file, so the two share one handler and
   // are told apart on $padHandName.
 
+  // last=0 keeps no row, as first=0 does: a slice from -0 is a slice from the front, and
+  // last=0 kept every row - and last=0, negative none of them.
+
   if ( count($padData [$pad]) > $padHandCnt )
     if ( $padHandName == 'first')
       $padData [$pad] = array_slice ( $padData [$pad], 0, $padHandCnt );
-    else
+    elseif ( $padHandCnt )
       $padData [$pad] = array_slice ( $padData [$pad], $padHandCnt * -1 );
+    else
+      $padData [$pad] = [];
 
 ?>
