@@ -289,7 +289,14 @@
 
     echo ( "\n<b>GLOBALS</b>\n");
 
-    echo htmlentities ( print_r ( $GLOBALS, TRUE ) );
+    global $padDumpDeep;
+
+    $globals = [];
+
+    foreach ( $GLOBALS as $key => $value )
+      $globals [$key] = padRedact ( $value, $key, $padDumpDeep ?? FALSE );
+
+    echo htmlentities ( print_r ( $globals, TRUE ) );
 
   }
 
@@ -366,6 +373,15 @@
   }
 
   function padDumpLines ( $info, $source ) {
+
+    // Whatever block this is - configuration, request, headers, a level's parameters - a
+    // value whose name says it is a secret is shown redacted, and cookies never in clear.
+    // A report written to disk also blanks the session (padDumpToDirGo sets the flag).
+
+    global $padDumpDeep;
+
+    if ( is_array ( $source ) )
+      $source = padRedact ( $source, '', $padDumpDeep ?? FALSE );
 
     if ( padSingleValue ( $source ) )
       $source = trim ( $source );

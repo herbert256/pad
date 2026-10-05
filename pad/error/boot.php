@@ -14,7 +14,7 @@
   // is loaded, else through exits/exit.php. $padBootShutdown marks the net as spent, so the
   // shutdown hook stays quiet once padErrorRestoreBoot or a normal exit has run.
   //
-  // padLocal, defined here, is the engine-wide "CLI or localhost request" test.
+  // padLocal, defined here, is the engine-wide "CLI or this machine's own request" test.
 
   $padDisplayErrors  = ini_set ('display_errors', 0);
   $padErrorReporting = error_reporting (E_ALL);
@@ -172,7 +172,8 @@
   function padBootProblems ( $error1, $error2 ) {
 
     if ( padLocal () )
-      echo "<pre><br>$error2<br>$error1</pre>";
+      echo '<pre><br>' . htmlspecialchars ( "$error2", ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' )
+         . '<br>'     . htmlspecialchars ( "$error1", ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' ) . '</pre>';
 
     padBootExit ();
 
@@ -187,19 +188,21 @@
 
   }
 
+  // Local is the command line, or a request this machine made to itself (padLoopback in
+  // error/claude.php). It read SERVER_NAME too, which Apache fills from the client's Host
+  // header, so any visitor sending Host: localhost got the full report with the database
+  // passwords; and it trusted a developer host name written into the list. Behind
+  // $padDiagnostics, read before config exists as the default TRUE.
+
   function padLocal () {
 
     if ( PHP_SAPI === 'cli' )
-      return true;
+      return TRUE;
 
-    $local  = [ 'localhost', 'penguin.linux.test', '127.0.0.1', '::1' ];
-    $server = [ $_SERVER ['REMOTE_ADDR'] ?? '',  $_SERVER ['SERVER_NAME'] ?? '' ];
+    if ( ( $GLOBALS ['padDiagnostics'] ?? TRUE ) === FALSE )
+      return FALSE;
 
-    foreach ( $local as $check )
-      if ( in_array( $check, $server) )
-        return TRUE;
-
-    return FALSE;
+    return padLoopback ();
 
   }
 

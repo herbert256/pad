@@ -19,6 +19,14 @@
   $padErrorLog       = TRUE;
   $padErrorReport    = TRUE;
 
+  // The full error report - message, stack, levels, configuration - shown in the page, and
+  // the JSON channel for local tooling, are for a request this machine made to itself: the
+  // loopback address with no forwarding header. Everyone else gets the request id. FALSE
+  // shows the id to every request; set it on a server that sits behind a proxy on the same
+  // machine which does not send X-Forwarded-For. Credentials are redacted either way.
+
+  $padDiagnostics    = TRUE;
+
 
   $padEvalTrace = FALSE;
 

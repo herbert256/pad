@@ -250,7 +250,7 @@
     try {
 
       if ( padLocal () )
-        echo "<pre>\nError: $info</pre>";
+        echo "<pre>\nError: " . htmlspecialchars ( "$info", ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' ) . "</pre>";
       else
         echo '<pre>Unknow error occurred.</pre>';
 
@@ -271,7 +271,7 @@
       padEmptyBuffers ( $buffer );
 
       if ( padLocal () )
-        echo "\n<pre>$error\n\n$buffer</pre>";
+        echo "\n<pre>" . htmlspecialchars ( "$error", ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' ) . "\n\n$buffer</pre>";
       else
         echo 'Error: ' . padID ();
 

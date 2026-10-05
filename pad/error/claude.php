@@ -3,7 +3,8 @@
   // Machine-readable error output for local tooling: when the request comes from the CLI or
   // from curl on ::1 (padClaudeCheck), padClaudeError answers with a 500 and a JSON body
   // holding the message, file, line, backtrace and every global - bucketed by padClaudeFields
-  // into pad (pad*), sequence (pq*), php (_*) and application variables - then exits.
+  // into pad (pad*), sequence (pq*), php (_*) and application variables, credentials
+  // redacted by padRedact - then exits. $padDiagnostics = FALSE closes the channel.
   //
   // Included first of all by start/pad.php, so it is available to the boot net. padBootStop
   // calls padClaudeError ahead of any human-facing output, and inits/error.php uses
@@ -20,16 +21,59 @@
     if ( PHP_SAPI === 'cli' )
       return TRUE;
 
-    $addr  = $_SERVER ['REMOTE_ADDR']     ?? '';
+    if ( ( $GLOBALS ['padDiagnostics'] ?? TRUE ) === FALSE )
+      return FALSE;
+
     $agent = $_SERVER ['HTTP_USER_AGENT'] ?? '';
 
-    // Both loopbacks: localhost resolves to either family, and which one a connection
-    // takes is a coin toss under load - the answer must not depend on it.
+    return padLoopback () and str_contains ( $agent, 'curl' );
 
-    if ( in_array ( $addr, [ '::1', '127.0.0.1' ] ) and str_contains ( $agent, 'curl' ) )
-      return TRUE;
+  }
 
-    return FALSE;
+  // A request this machine made to itself: the loopback address - both families, since
+  // localhost resolves to either and which one a connection takes is a coin toss under
+  // load - and no forwarding header. A proxy on the same box connects from loopback for
+  // every visitor, so a request that says it was forwarded stands for somebody else. The
+  // Host header is the client's to write and decides nothing. Shared by padLocal().
+
+  function padLoopback () {
+
+    $addr = $_SERVER ['REMOTE_ADDR'] ?? '';
+
+    if ( ! in_array ( $addr, [ '127.0.0.1', '::1', '::ffff:127.0.0.1' ], TRUE ) )
+      return FALSE;
+
+    foreach ( [ 'HTTP_X_FORWARDED_FOR', 'HTTP_FORWARDED', 'HTTP_X_REAL_IP',
+                'HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_HOST' ] as $header )
+      if ( isset ( $_SERVER [$header] ) )
+        return FALSE;
+
+    return TRUE;
+
+  }
+
+  // What a diagnostic shows of a value: credentials, authorization, cookies and the like
+  // never leave the process in clear, whoever the report is for. Walks arrays by key; a
+  // key that names a secret has its value replaced. $deep also blanks every value under
+  // _SESSION and _COOKIE - the reports that go to disk.
+
+  function padRedact ( $value, $key = '', $deep = FALSE ) {
+
+    $key = (string) $key;
+
+    if ( preg_match ( '/pass(word|wd)?$|passwd|secret|token|authorization|auth_pw|api_?key|private_?key|^(http_)?cookie$|^phpsessid$|^padsesid$/i', $key ) )
+      return '*** redacted ***';
+
+    if ( ! is_array ( $value ) )
+      return $value;
+
+    foreach ( $value as $k => $v )
+      if ( ( $key == '_COOKIE' ) or ( $deep and $key == '_SESSION' ) )
+        $value [$k] = is_array ( $v ) ? '*** redacted ***' : ( $v === '' ? '' : '*** redacted ***' );
+      else
+        $value [$k] = padRedact ( $v, $k, $deep );
+
+    return $value;
 
   }
 
@@ -75,7 +119,9 @@
 
     $seq = $php = $pad = $app = [];
 
-    foreach ($GLOBALS as $key => $value)
+    foreach ($GLOBALS as $key => $value) {
+
+      $value = padRedact ( $value, $key );
 
       if ( substr($key, 0, 3)  == 'pad' )
         $pad [$key] = $value;
@@ -85,6 +131,8 @@
         $php [$key] = $value;
       else
         $app [$key] = $value;
+
+    }
 
   }
 
