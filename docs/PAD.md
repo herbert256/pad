@@ -569,6 +569,12 @@ rendered while the rest stays dynamic:
 picks the store - `'file'` (default), `'apcu'` or `FALSE`; `padFragmentForget('top-products')`
 drops a named section when what it shows has changed.
 
+### Early flush
+
+`{flush}` in the wrapper, after `</head>`, sends the page rendered so far at once, so the
+browser fetches stylesheets and fonts while a slow part of the page renders. Tidy, whole-body
+gzip, the ETag and `Content-Length` are off for such a request - they need the whole body.
+
 ### Clean URLs
 
 A path names a page too - `/shop/products/42` - mapped onto the file tree, a bracketed name

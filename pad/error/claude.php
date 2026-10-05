@@ -117,8 +117,13 @@
       while ( ob_get_level () )
         ob_end_clean ();
 
-      header ( 'HTTP/1.0 500 Internal Server Error' );
-      header ( 'Content-Type: application/json' );
+      // After an early {flush} (lib/flush.php) the status and the type have gone out with
+      // the first part of the page; the report follows it as it can.
+
+      if ( ! headers_sent () ) {
+        header ( 'HTTP/1.0 500 Internal Server Error' );
+        header ( 'Content-Type: application/json' );
+      }
 
       // Globals can hold binary (a dump of a .DS_Store, an image body); without these
       // flags one bad string makes json_encode answer FALSE and the channel goes silent.

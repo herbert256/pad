@@ -858,6 +858,31 @@ and for an `Accept: application/json` (or `text/csv`) header - and then no templ
 
 ---
 
+### flush
+Send the page rendered so far to the browser now, instead of with the rest when the whole
+page is done - so the browser fetches the stylesheets and fonts the `<head>` names while a slow
+part of the page (a big `{table}`, a `{curl}`) is still rendering.
+
+```html
+<!-- _inits.pad -->
+<html>
+  <head><link rel="stylesheet" href="/css/site.css"></head>
+  {flush}
+  <body>@page@</body>
+</html>
+```
+
+**Behavior:** The first flush switches off, for the request, everything that needs the whole
+body: tidy, gzip of the whole body, the ETag and its 304, `Content-Length` and the page cache;
+the headers go out with the first part, so a header or cookie set after it is lost. It stands at
+the top level of the page or its wrapper - inside another tag, or in a page whose PHP returns
+data, strict mode reports it. In a page rendered inside another (`{page}`) and for an output
+type other than web it does nothing. The page's PHP runs before any of the template, so what
+a flush wins is the rendering below it. A `{stack}` in the part that goes out early gets the
+pushes made before the flush only - a push below it cannot reach text the browser already has.
+
+---
+
 ### tidy
 Format/beautify HTML content.
 
@@ -1572,6 +1597,7 @@ Resume a previously ceased sequence iteration.
 | `close` | Files | Closing brace |
 | `curl` | Network | HTTP request |
 | `echo` | Output | Evaluate/output |
+| `flush` | Output | Send the page rendered so far now |
 | `output` | Output | Set output type |
 | `tidy` | Output | Format HTML |
 | `spaceless` | Output | Remove whitespace between HTML tags |

@@ -1,0 +1,78 @@
+<h1>Early flush</h1>
+
+<p>A page is sent in one piece, once all of it is rendered. {flush} sends what is
+rendered so far straight away: put after the wrapper's <code>&lt;/head&gt;</code>, it lets
+the browser fetch the stylesheets and fonts while a slow part of the page is still being
+rendered.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/flush_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;The top of the page, sent at once.&lt;/p&gt;<br><b>{<font color="blue">flush</font><font color="red"></font>}</b><br>&lt;p&gt;The rest, sent when it is rendered.&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>The top of the page, sent at once.</p>
+
+<p>The rest, sent when it is rendered.</p>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<p>Shown here inside another page, the fragment flushes nothing - only the page that is the
+response does. Asked for on its own, it sends its first line before the second is rendered;
+either way the page arrives whole.</p>
+
+<ul>
+  <li>Everything that needs the whole page is off for a request that flushes: tidy, gzip of
+      the whole body, the ETag and its 304, <code>Content-Length</code>, the page cache. The
+      headers go out with the first part.</li>
+  <li>It stands at the top level of the page or its wrapper - not inside another tag. The
+      page's PHP runs before any of the template, so what a flush wins is the rendering
+      below it: a big table, a {curl}, a select.</li>
+</ul>

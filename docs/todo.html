@@ -801,7 +801,7 @@ $padExpose = [ 'orders', 'total' ];</code></pre>
           <pre><code>{flush}</code></pre>
           <p>The response is buffered and sent once, after the whole page is rendered (<code>padWebSend</code> in <a href="https://github.com/herbert256/pad/blob/master/pad/lib/output.php">lib/output.php</a>). A <code>{flush}</code> right after the wrapper’s <code>&lt;head&gt;</code> would let the browser fetch CSS and fonts while a slow query runs.</p>
           <p>Flushing conflicts with tidy, whole-body gzip, <code>ETag</code> and <code>Content-Length</code>, so it should be explicit and switch those off for the request. A lighter alternative: <code>{preload 'style.css'}</code> sends <code>Link: rel=preload</code> headers.</p>
-        </li>
+        <p class="done"><strong>Done.</strong> <code>{flush}</code> at the top level of a page or its wrapper sends the page rendered so far at once (lib/flush.php) - the browser fetches the head’s stylesheets while a slow part renders - switching off, for that request, tidy, whole-body gzip, the ETag/304, Content-Length and the page cache; it does nothing in a <code>{page}</code> pass. Merged beside <code>{push}</code>/<code>{stack}</code>: a stack in the flushed part gets the pushes made before the flush (checked on a live request). Regression: pages and errors cases; manual page; TAGS.md, CLAUDE.md.</p></li>
 
         <li class="idea" id="locale">
           <div class="idea-top"><span class="number" aria-hidden="true">38</span><h3>Locale as a first-class setting</h3><span class="effort">Medium</span></div>

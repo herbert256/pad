@@ -26,10 +26,14 @@
 
   // The {stack} markers are filled in now that every {push} of the page has been made -
   // lib/stack.php - still in the engine's own encoding, as the pushes were rendered in it.
+  // After a {flush} only the part of the page that has not gone out yet is left to send
+  // (lib/flush.php); that part is cut from the raw result, which the flushed text is a
+  // prefix of, before the stacks are filled.
 
+  $padFlushLeft  = padFlushRest ( $padResult [0] );
   $padResult [0] = padStackFill ( $padResult [0] );
 
-  $padOutput = padUnprotect ( padUnescape ( $padResult [0] ) );
+  $padOutput = padUnprotect ( padUnescape ( padStackFill ( $padFlushLeft ) ) );
 
   // With $padCsrf on, each form of the page that posts back here carries the session's
   // token without the template having to ask (lib/csrf.php) - the forms an application

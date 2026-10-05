@@ -99,6 +99,14 @@ file or directory name binds a segment as a variable before the page's PHP runs:
   written `{$padGo}page&x=1` works in both forms. Apache needs
   `FallbackResource /myapp/index.php`; `php -S` needs no router.
 
+## Early flush
+
+`{flush}` - after the wrapper's `</head>` - sends the page rendered so far at once, so the
+browser loads the stylesheets while a slow part below renders. It switches off tidy, whole-body
+gzip, the ETag/304, `Content-Length` and the page cache for the request; it stands at the top
+level of the page or wrapper (strict mode says so elsewhere) and does nothing in a page
+rendered by `{page}` or for a non-web output type.
+
 ## Sitemap from the file tree
 
 `{sitemap}...{/sitemap}` lists every page of the application - `{$page}`, `{$url}`,
