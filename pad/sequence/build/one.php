@@ -28,6 +28,12 @@
 
   if ( $pqRandomParm ) $pqParm = include PQ . 'build/parm.php';
   if ( $pqParmStore  ) $pqParm = include PQ . 'build/store.php';
+
+  // A parameter store that has run out ends the run - see build/store.php, and plays.php
+  // for the same in a play.
+
+  if ( $pqParmStore and $pqParm === NULL )
+    return FALSE;
   if ( $pqRandomly   ) $pqLoop = include PQ . 'build/randomly/randomly.php';
 
       if ( pqStore ( $pqBuild ) )  $pq = $pqLoop;
@@ -54,7 +60,7 @@
   if ( count ( $pqPlays ) ) {
     include PQ . 'plays/plays.php';
     if ( $pq === FALSE )
-      return TRUE;
+      return ! $pqPlaysOut;
   }
 
   if ( is_float ($pq)   and $pq < PHP_INT_MIN  ) return FALSE;

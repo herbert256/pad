@@ -15,6 +15,7 @@
   // and $pqLoop belong to the main sequence and are saved and restored around the loop.
 
   $pqPlaysSet  = [];
+  $pqPlaysOut  = FALSE;
   $pqSeqSave   = $pqSeq;
   $pqBuildSave = $pqBuild;
   $pqParmSave  = $pqParm;
@@ -35,6 +36,16 @@
 
     $pqLoop = $pq;
     $pqParm = include PQ . 'plays/parm.php';
+
+    // A parameter store that has run out - plays/parm.php - turns the candidate down and
+    // raises $pqPlaysOut, which build/one.php reads as the end of the run.
+
+    if ( $pqParm === NULL ) {
+      $pq         = FALSE;
+      $pqPlaysOut = TRUE;
+      break;
+    }
+
     $pq     = include PQ . "plays/play/$pqBuild.php";
 
     if     ( $pqPlay == 'make'   and $pq === TRUE   ) $pq = $pqLoop;
