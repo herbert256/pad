@@ -45,6 +45,14 @@
 
     global $padApp, $padStartPage;
 
+    // A property is filed under its name, which has the shape of a tag name. The August
+    // harvest filed properties/.txt, properties/box/.txt (from {box/}), ?.txt, <=.txt and
+    // >.txt; the current engine passes none of them - a fresh harvest made none - and
+    // this keeps it so.
+
+    if ( $dir1 == 'properties' and ! preg_match ( '/^[A-Za-z][A-Za-z0-9_:#-]*$/D', (string) $dir2 ) )
+      return;
+
     if ( $dir1 == 'properties' and ! file_exists ( PAD . "properties/$dir2.php" ) )
       $dir2 = strtolower($dir2);
 
