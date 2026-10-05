@@ -70,6 +70,18 @@
 
     $padHandInvert = ( $padHandNegative and $padHandName != 'group' );
 
+    // rows beside page, start or end, and end beside start, only size the window that other
+    // handler cuts - their own files leave the rows alone then. Inverted, that unchanged
+    // selection became no row at all: {xs page=2, rows=2, negative} and {xs start=2, end=4,
+    // negative} rendered nothing, where the rows outside the window were asked for.
+
+    if ( $padHandName == 'rows' and ( isset ( $padPrm [$pad] ['page'] ) or isset ( $padPrm [$pad] ['start'] )
+                                      or isset ( $padPrm [$pad] ['end'] ) ) )
+      $padHandInvert = FALSE;
+
+    if ( $padHandName == 'end' and isset ( $padPrm [$pad] ['start'] ) )
+      $padHandInvert = FALSE;
+
     if ( $padHandInvert )
       include PAD . "handling/negative/inits.php";
 
