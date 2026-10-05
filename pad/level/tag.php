@@ -14,7 +14,12 @@
   $padBaseSet    = '';
   $padPrmTypeSet = ( count($padWords) > 1 ) ? 'open' : 'none';
 
-  if ( substr($padBetween, -1) == '/') {
+  // The slash may stand at the very end, behind a pipe - {echo $x | upper /} - or in front
+  // of the pipe - {echo $x /| upper}. Only the second was looked for, and it lost its pipe:
+  // splitting the pipe off the cut text again blanked the one already split off. The first
+  // left the slash in the pipe, where it was evaluated as a division.
+
+  if ( substr ( $padBetweenOrg, -1 ) == '/' or substr ( $padBetween, -1 ) == '/' ) {
 
     // What was written, slash and all. level/pipes/start.php takes $padBetweenOrg from
     // $padBetween, which by then has had the slash cut off, so the text level/no.php puts
@@ -23,8 +28,12 @@
 
     $padTagSlashOrg = $padBetweenOrg;
 
-    $padBetween = substr($padBetween, 0, -1);
-    include PAD . 'level/pipes/start.php';
+    if ( substr ( $padBetweenOrg, -1 ) == '/' ) {
+      $padBetween = substr ( $padBetweenOrg, 0, -1 );
+      include PAD . 'level/pipes/start.php';
+    } else
+      $padBetween = substr ( $padBetween, 0, -1 );
+
     include PAD . 'level/between.php';
 
     // The name is resolved again, because level/level.php resolved it before the slash came
