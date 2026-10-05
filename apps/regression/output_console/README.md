@@ -14,5 +14,5 @@ yes to NO.
 | `index.php/pad` | Fetches the payload and states the verdict |
 | `payload.php/pad` | A page with a recognisable body |
 | `broken.pad` | A page that fails with a long message |
-| `error.php/pad` | Fetches the broken page as a browser would: the console error report carries the message whole |
+| `error.php/pad` | Fetches the broken page as a browser would: the console error report carries the message whole, and a forwarded visitor gets the request id alone |
 | `_config/config.php` | Chooses the 'console' output type, `_common` off |

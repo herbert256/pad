@@ -11,4 +11,15 @@
   $whole = ( $r ['result'] == '500'
              and str_contains ( $r ['data'], "there is no page named 'no/such/page/with/a/name/long/enough/to/pass/the/cut' in the application 'regression/output_console'" ) ) ? 'yes' : 'NO';
 
+  // A visitor from elsewhere - a forwarded request is somebody else's (error/claude.php) -
+  // gets the request id and nothing more, as under every other output type: the console
+  // report went to anyone, the server's paths and the template's source with it.
+
+  $far = padCurl ( [ 'url'     => $padHost . 'regression/output_console/?broken&padInclude',
+                     'headers' => [ 'X-Forwarded-For' => '203.0.113.9' ],
+                     'options' => [ 'USERAGENT' => 'Mozilla/5.0 pad' ] ] );
+
+  $hidden = ( $far ['result'] == '500'
+              and preg_match ( '/^Error: [A-Za-z0-9]{8}$/', trim ( $far ['data'] ) ) ) ? 'yes' : 'NO';
+
 ?>

@@ -4,9 +4,10 @@
   // error action, and the snapshots under DATA/dumps/<app>/.
   //
   // padDump is the entry point (padDumpTry inside an error handler, ending in padExit 500).
-  // It closes any open HTML, then picks an audience: padDumpConsole for CLI, padDumpLocal
-  // for a local request - the full report inline - and padDumpRemote for anyone else, who
-  // sees only the request id while the report goes to disk.
+  // It closes any open HTML, then picks an audience: padDumpRemote for anyone but this
+  // machine, who sees only the request id while the report goes to disk, and for a local
+  // request padDumpConsole under the console output type and padDumpLocal - the full report
+  // inline - otherwise.
   //
   // The report is assembled from single-topic collectors, each printing one block:
   // padDumpInfo (the error), padDumpStack / padDumpStackGo (backtraces, engine frames
@@ -55,9 +56,12 @@
       for ($i = 1; $i <= 25; $i++)
           echo "</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>\r\n";
 
-    if     ( $padOutputType == 'console' )  padDumpConsole ( $info );
-    elseif ( padLocal () )                  padDumpLocal   ( $info );
-    else                                    padDumpRemote  ( $info );
+    // Whoever is not this machine gets the request id alone, whatever the output type: the
+    // console report - paths, the template's source - went to a visitor of a console page.
+
+    if     ( ! padLocal () )                padDumpRemote  ( $info );
+    elseif ( $padOutputType == 'console' )  padDumpConsole ( $info );
+    else                                    padDumpLocal   ( $info );
 
     $padSent   = TRUE;
     $padOutput = '';
