@@ -1,0 +1,24 @@
+<h1>Field sigils</h1>
+
+<p>The character in front of a name says which value is meant and how it is written into the page. None of these opens a level - the value is spliced in where the tag stood.</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+  <tr style="background: #f0f0f0;"><th>Form</th><th>Writes</th></tr>
+  <tr><td><code>{open}$name{close}</code></td><td>The field, through the sanitize chain</td></tr>
+  <tr><td><code>{open}!name{close}</code></td><td>The same field raw - the sanitize chain is skipped</td></tr>
+  <tr><td><code>{open}?name{close}</code></td><td>The field as a query fragment: <code>&amp;name=url+encoded</code></td></tr>
+  <tr><td><code>{open}^name{close}</code></td><td>The field as JSON, escaped for a double-quoted HTML attribute; an array is encoded whole</td></tr>
+  <tr><td><code>{open}&#35;name{close}</code></td><td>An option or parameter of the tag</td></tr>
+  <tr><td><code>{open}&amp;name{close}</code></td><td>A property of the tag</td></tr>
+</table>
+
+{example 'fragments/sigils_1'}
+
+<p>The JSON form is made for mount points of client-side components: <code>JSON.parse(elem.getAttribute('data-props'))</code> reads it back, with no custom tag and no {tag 'ignore'} pipe.</p>
+
+<h2>See Also</h2>
+
+<ul>
+  <li>{manual 'php_and_html'}</li>
+  <li>{manual 'escaping_special_PAD_chars'}</li>
+</ul>

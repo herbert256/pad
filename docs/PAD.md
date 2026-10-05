@@ -353,6 +353,9 @@ When a tag is encountered, PAD determines its type:
 | `$` | Variable | `{$name}` |
 | `#` | Option | `{#param}` |
 | `&` | Tag reference | `{&tagname}` |
+| `!` | Raw field (no sanitize chain) | `{!snippet}` |
+| `?` | Field as a query fragment | `{?id}` → `&id=7` |
+| `^` | Field as JSON for an attribute | `data-props="{^product}"` |
 | `@` | Property | `{first@tag}` |
 | (none) | Tag/Field | `{users}`, `{if}` |
 

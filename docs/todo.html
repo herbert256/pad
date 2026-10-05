@@ -406,7 +406,7 @@
             <tr>
               <th scope="row"><code>{^x}</code> JSON sigil</th>
               <td><a href="https://github.com/herbert256/pad/blob/master/pad/level/var.php">level/var.php</a> has <code>^</code> branches, but <a href="https://github.com/herbert256/pad/blob/master/pad/level/level.php#L31">level.php line 31</a> sends only <code>$ ! # &amp; ?</code> there. So <code>{^product}</code> fails with “there is no tag named '^product'”. Also, <a href="https://github.com/herbert256/pad/blob/master/pad/lib/field/field.php#L143"><code>padJsonEscape()</code></a> would encode the field’s <em>name</em>, not its value.</td>
-              <td>Add <code>^</code> to the dispatch, encode <code>padFieldValue($parm)</code>, and add a regression case. Then <code>data-props="{^product}"</code> can replace <code>{json … | ignore}</code> for React mount points.</td>
+              <td>Add <code>^</code> to the dispatch, encode <code>padFieldValue($parm)</code>, and add a regression case. Then <code>data-props="{^product}"</code> can replace <code>{json … | ignore}</code> for React mount points.<span class="done"><strong>Done.</strong> <code>^</code> is dispatched with the other sigils, and <code>padJsonEscape()</code> encodes the field’s value - an array field whole - escaped for a double-quoted attribute (braces escaped too when <code>$padProtectValues</code> is off). Regression: framework <code>variables/the_json_sigil_*</code> (both fail on the old engine with “there is no tag named ^…”); manual page <em>Field sigils</em>; CLAUDE.md, PAD.md and REACT.md (Pattern 1b).</span></td>
             </tr>
             <tr>
               <th scope="row"><code>cache</code> option</th>

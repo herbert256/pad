@@ -238,6 +238,7 @@ Use in templates: `{echo $price | money}`
 {?text}                        # The field as a url query fragment: &text=url+encoded
 {#name}                        # A parameter or option of the tag
 {&name}                        # A property of the tag
+{^name}                        # The field as JSON, escaped for an HTML attribute
 ```
 
 ### Pipe Functions

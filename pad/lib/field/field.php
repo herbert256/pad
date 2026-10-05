@@ -140,9 +140,28 @@
 
   }
 
+  // {^name}: the field's value as JSON, escaped for a double-quoted HTML attribute - a
+  // React mount point's data-props="{^product}". An array field is encoded whole. It used
+  // to encode the name it was handed, and the tag never reached it anyway: level.php did
+  // not dispatch the ^ sigil. With $padProtectValues off the braces of the JSON are
+  // escaped here, or the walk would read an object as a tag.
+
+  function padJsonCheck ( $parm ) {
+
+    return padFieldCheck ( $parm ) or padArrayCheck ( $parm );
+
+  }
+
   function padJsonEscape ( $parm )  {
 
-    return htmlspecialchars ( json_encode ( $parm ), ENT_QUOTES, 'UTF-8' );
+    $value = padArrayCheck ( $parm ) ? padArrayValue ( $parm ) : padFieldValue ( $parm );
+    $json  = json_encode ( $value, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PARTIAL_OUTPUT_ON_ERROR );
+    $json  = htmlspecialchars ( $json, ENT_QUOTES, 'UTF-8' );
+
+    if ( ! $GLOBALS ['padProtectValues'] )
+      $json = str_replace ( [ '{', '}' ], [ '&open;', '&close;' ], $json );
+
+    return $json;
 
   }
 

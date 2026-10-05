@@ -65,6 +65,29 @@ Use this pattern for data stored in JSON files in `_data/`.
 
 ---
 
+## Pattern 1b: A Field as JSON with {^name}
+
+When the data is already a field of the page - set in the page's `.php`, or a field of the
+row a loop is on - the `^` sigil writes it as JSON, escaped for a double-quoted attribute,
+with no tag of your own and no `| ignore`:
+
+**product.php:**
+```php
+<?php
+  $product = [ 'name' => 'Chair', 'price' => 49.5, 'tags' => [ 'wood', 'brown' ] ];
+?>
+```
+
+**product.pad:**
+```html
+<div id="product" data-props="{^product}"></div>
+```
+
+An array field is encoded whole; a scalar becomes a JSON string or number. Read it in the
+component with `JSON.parse(elem.getAttribute('data-props'))`.
+
+---
+
 ## Pattern 2: Dynamic Data with {reactData} Tag and Providers
 
 Use this pattern for database-driven or dynamic data.

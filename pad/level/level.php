@@ -7,7 +7,7 @@
   // innermost tag is always handled first; $padStart/$padEnd [$pad] delimit it and
   // $padBetween holds its text. No '}' left means the level has been fully rendered
   // (level/end.php); no '{' before it means a stray brace. Comments {# .. #}, orphan
-  // closing tags, blank tags and the $ ! # & ? variable forms are settled here; the rest
+  // closing tags, blank tags and the $ ! # & ? ^ variable forms are settled here; the rest
   // goes on to level/type.php, level/tag.php and level/start.php, which opens a new level.
 
   if ( $padRestart )
@@ -28,7 +28,7 @@
   if ( $pad and $padLvlFun [$pad-1] )
     include PAD . 'level/function.php';
 
-  if ( in_array ( $padFirst, [ '$','!','#','&','?' ] ) ) 
+  if ( in_array ( $padFirst, [ '$','!','#','&','?','^' ] ) ) 
     return include PAD . 'try/level/var.php';
 
   include PAD . 'level/type.php';

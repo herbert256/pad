@@ -1,11 +1,12 @@
 <?php
 
-  // Renders the variable tag forms - {$x}, {!x}, {#x}, {&x}, {?x} - without a new level.
+  // Renders the variable tag forms - {$x}, {!x}, {#x}, {&x}, {?x}, {^x} - without a new level.
   //
   // Reached from level/level.php through try/try.php ($padTry = 'level/var'). The name runs
   // up to the first '|', anything after it is the pipe expression; a second '$' ({$$x})
   // means one round of indirection. The leading character picks the source: field, raw
-  // (unescaped) field, tag option, tag property, or url parameter. A name that does not
+  // (unescaped) field, tag option, tag property, url parameter, or the field as JSON for
+  // an HTML attribute. A name that does not
   // exist is reported under the strict syntax check - resolved to empty with it off -
   // unless the pipe starts with 'optional'. Plain fields additionally run
   // through the $padDataDefaultStart and $padDataDefaultEnd chains from config (sanitize by
@@ -42,7 +43,7 @@
   elseif ( $padFirst == '!' ) $padFldChk = padFieldCheck ( $padFld );
   elseif ( $padFirst == '#' ) $padFldChk = padOptCheck   ( $padFld );
   elseif ( $padFirst == '&' ) $padFldChk = padTagCheck   ( $padFld );
-  elseif ( $padFirst == '^' ) $padFldChk = padFieldCheck ( $padFld );
+  elseif ( $padFirst == '^' ) $padFldChk = padJsonCheck  ( $padFld );
 
   // A name that is not there is reported under the strict syntax check; with the check
   // off it resolves to empty, the same lenient contract expressions keep.
