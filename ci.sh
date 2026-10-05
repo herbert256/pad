@@ -62,21 +62,17 @@ esac
 
 exit=0
 
-for suite in pages common errors framework regression sequence manual other; do
+# One php reads every result the verdict needs, all eight suites in one go - a line each,
+# its fields split by the unit separator. A php per suite made the gate's own fault-injection
+# case, eleven runs inside one request, start 88 php processes, and on a busy machine the
+# request outran the fetch that waited for it. A file that is not there says so; one that
+# is no JSON at all reads as the empty result, which fails below.
 
-  file="$suitesDir/$suite.json"
+suites="pages common errors framework regression sequence manual other"
 
-  [ -f "$file" ] || { echo "CI: no result for $suite" >&2; exit=1; continue; }
+while IFS=$'\x1f' read -r suite present summary failed newcnt when resRun resCommit tests; do
 
-  # One php reads every field the verdict needs. A php per field made a run slow enough
-  # that the gate's own fault-injection case - nine runs inside one request - outran PHP's
-  # time limit, and the killed request took the Framework suite down with it.
-  { IFS= read -r summary; IFS= read -r failed; IFS= read -r newcnt
-    IFS= read -r when;    IFS= read -r resRun; IFS= read -r resCommit; IFS= read -r tests; } < <(
-    php -r '$r = json_decode(file_get_contents($argv[1]), true);
-            echo $r["summary"] ?? "unreadable", "\n", $r["failed"] ?? 1,  "\n", $r["new"]    ?? 0,  "\n",
-                 $r["when"]    ?? 0,            "\n", $r["run"]    ?? "", "\n", $r["commit"] ?? "", "\n",
-                 count ( (array) ( $r["tests"] ?? [] ) ), "\n";' "$file")
+  [ "$present" = "1" ] || { echo "CI: no result for $suite" >&2; exit=1; continue; }
 
   printf '%-12s %s\n' "$suite" "$summary"
 
@@ -107,7 +103,18 @@ for suite in pages common errors framework regression sequence manual other; do
     exit=1
   fi
 
-done
+done < <(
+  php -r '$dir = $argv [1];
+          foreach ( array_slice ( $argv, 2 ) as $suite ) {
+            $file = "$dir/$suite.json";
+            if ( ! is_file ( $file ) ) { echo $suite, "\x1f0\n"; continue; }
+            $r = json_decode ( (string) file_get_contents ( $file ), true );
+            if ( ! is_array ( $r ) ) $r = [];
+            $f = [ $suite, 1, $r["summary"] ?? "unreadable", $r["failed"] ?? 1, $r["new"] ?? 0,
+                   $r["when"] ?? 0, $r["run"] ?? "", $r["commit"] ?? "", count ( (array) ( $r["tests"] ?? [] ) ) ];
+            echo implode ( "\x1f", array_map ( fn ( $v ) => str_replace ( [ "\x1f", "\n" ], " ", (string) $v ), $f ) ), "\n";
+          }' "$suitesDir" $suites
+)
 
 # The editor kits' completion lists are generated from pad/ by editors/generate.php: a tag,
 # function, option or property added without regenerating them fails the gate like a
