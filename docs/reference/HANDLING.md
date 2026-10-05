@@ -534,6 +534,9 @@ empty:
 ## Negative Mode
 
 The `negative` option inverts the selection - keeping items that would normally be removed.
+An option that selects nothing - `sort`, `reverse`, `shuffle`, `group` - is left alone by it,
+so `{staff where='$salary gt 2500', sort='name', negative}` is every row that does not pass,
+sorted.
 
 ```
 {data first="3", negative}

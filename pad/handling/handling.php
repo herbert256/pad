@@ -66,9 +66,12 @@
 
     // negative turns a selection inside out. group selects nothing - it folds the rows into
     // groups - and inverted it gave back the rows ungrouped, so a where=..., negative beside
-    // it read fields the groups were to have; negative leaves it alone.
+    // it read fields the groups were to have; negative leaves it alone. sort, reverse and
+    // shuffle select nothing either - they put the same rows in another order - and inverted,
+    // every row they kept was dropped: {xs where='$n gt 2', sort='n', negative} rendered no
+    // row at all, and a shuffle came back in its old order.
 
-    $padHandInvert = ( $padHandNegative and $padHandName != 'group' );
+    $padHandInvert = ( $padHandNegative and ! in_array ( $padHandName, [ 'group', 'sort', 'reverse', 'shuffle' ] ) );
 
     // rows beside page, start or end, and end beside start, only size the window that other
     // handler cuts - their own files leave the rows alone then. Inverted, that unchanged
