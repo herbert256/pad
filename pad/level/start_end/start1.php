@@ -20,6 +20,11 @@
   $padStartData [$pad] = $padData [$pad];
   $padData [$pad]      = padDefaultData ();
 
+  // The prelude renders on that one default row, and count@ would count it: the level's
+  // own rows are kept for it while the section renders (properties/count.php).
+
+  $padSectionRows [$pad] = count ( $padStartData [$pad] );
+
   reset ( $padData [$pad] );
 
   include PAD . 'occurrence/occurrence.php';

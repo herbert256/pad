@@ -16,6 +16,8 @@
   $padStartBase [$pad] = '';
   $padStartData [$pad] = [];
 
+  $padSectionRows [$pad] = NULL;
+
   $padOccur [$pad] = 0;
 
   if ( ! count ( $padData [$pad] ) ) {

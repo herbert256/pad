@@ -75,6 +75,7 @@
   $padEndBase    [$pad] = '';
   $padStartBase  [$pad] = [];
   $padStartData  [$pad] = [];
+  $padSectionRows [$pad] = NULL;
 
   $padLvlFun     [$pad] = FALSE;
   $padLvlFunVar  [$pad] = [];
