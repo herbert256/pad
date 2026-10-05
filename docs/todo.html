@@ -750,7 +750,7 @@ $padExpose = [ 'orders', 'total' ];</code></pre>
 /blog/2026/hello-pad
   → blog/[year]/[slug].pad</code></pre>
           <p>Pages are reached through the query string only (<a href="https://github.com/herbert256/pad/blob/master/pad/inits/page.php">inits/page.php</a>). An optional mode, enabled with one Apache <code>FallbackResource</code> line or the <code>pad serve</code> router, could map the path onto the file tree and bind bracketed names as variables. That keeps “no routing, just create files”, and <code>$padGo</code> would generate matching links.</p>
-          <p class="references"><strong>Precedent:</strong> <a href="https://svelte.dev/docs/kit/routing">SvelteKit file-based routing</a></p>
+          <p class="done"><strong>Done.</strong> A path behind the application names a page: <code>/shop/products/42</code> reaches <code>products/[id].pad</code> with <code>$id</code> bound before the page’s PHP runs (<code>blog/[year]/[slug].pad</code>, <code>docs/[path+].pad</code> for the rest, a literal name winning over a bracket), resolved the same way for <code>?products/42</code>, <code>{page}</code>, <code>{redirect}</code> and <code>padRedirect()</code>; <code>$padCleanUrls</code> makes <code>$padGo</code> write the clean form. php -S routes it as is, Apache needs one <code>FallbackResource</code> line, <code>index.php/…</code> works everywhere, and every <code>?page</code> URL keeps working. Regression: new regression applications and framework cases; manual page; APP.md, CLAUDE.md.</p><p class="references"><strong>Precedent:</strong> <a href="https://svelte.dev/docs/kit/routing">SvelteKit file-based routing</a></p>
         </li>
 
         <li class="idea" id="csp">

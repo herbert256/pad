@@ -1,0 +1,31 @@
+<h1>Clean URLs</h1>
+
+<p>A page is named in the query string - <code>/shop/?products/42</code> - or by the path
+behind the application: <code>/shop/products/42</code>. The path is mapped onto the files,
+and a file or directory whose name is a bracketed variable name stands for any one segment.
+The segment becomes that variable before the page's PHP runs:</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+  <tr><th>url</th><th>file</th><th>variables</th></tr>
+  <tr><td><code>/shop/products/42</code></td><td><code>products/[id].pad</code></td><td><code>$id</code> is 42</td></tr>
+  <tr><td><code>/shop/products/new</code></td><td><code>products/new.pad</code></td><td>a name of its own wins over a bracket</td></tr>
+  <tr><td><code>/shop/blog/2026/hello-pad</code></td><td><code>blog/[year]/[slug].pad</code></td><td><code>$year</code> and <code>$slug</code></td></tr>
+  <tr><td><code>/shop/docs/a/b</code></td><td><code>docs/[path+].pad</code></td><td><code>$path</code> is the rest, a/b</td></tr>
+</table>
+
+<p>The same names resolve wherever a page is named - here through
+<code>{open}page{close}</code>, with <code>shop/products/[id].pad</code> and
+<code>shop/blog/[year]/[slug].pad</code> beside the fragment:</p>
+
+{example 'fragments/clean_urls_1'}
+
+<ul>
+  <li><code>?products/42</code> resolves the same way, so the application runs on a server
+      that routes no paths, and <code>/shop/index.php/products/42</code> works everywhere.
+      A bracketed file is never reached by its own name.</li>
+  <li>Every <code>?page</code> link keeps working: on a clean URL, a query string that starts
+      with a bare page name - the relative <code>href="?about"</code> - names that page.</li>
+  <li><code>$padCleanUrls = TRUE</code> in <code>_config/config.php</code> makes
+      <code>$padGo</code> write <code>/shop/products/42</code>. Apache needs one line,
+      <code>FallbackResource /shop/index.php</code>; <code>php -S</code> needs nothing.</li>
+</ul>

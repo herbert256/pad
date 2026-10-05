@@ -3,26 +3,39 @@
   // Works out which page this request runs, and fails the request early if there is none.
   //
   // The name comes from whatever source applies: an already-set $padPage (a restart, or an
-  // entry point that hard-codes it), otherwise the first query string key - PAD's URLs are
-  // ?page/subpage, not path based - otherwise the first command line argument, otherwise
-  // 'index'.
+  // entry point that hard-codes it), otherwise the path of a clean URL (/shop/products/42,
+  // inits/route.php) unless the query string starts with a page name of its own, otherwise
+  // the first query string key - ?page/subpage - otherwise the first command line argument,
+  // otherwise 'index'.
   //
-  // The name is then verified against the application directory and resolved, and $padDir
-  // (the page's subdirectory) and $padPath are derived from it; build/ walks those to collect
-  // the _lib, _inits.pad and _exits.pad of every level. $padStartPage remembers the page the
-  // request began with, so a restart can still tell where it came from.
+  // The name is then verified against the application directory and resolved - a page of
+  // its own, or a bracketed route like products/[id] whose segments become variables
+  // (lib/route.php) - and $padDir (the page's subdirectory) and $padPath are derived from
+  // it; build/ walks those to collect the _lib, _inits.pad and _exits.pad of every level.
+  // $padStartPage remembers the page the request began with, so a restart can still tell
+  // where it came from.
 
-  if     ( isset($padPage) )                $padPage = $padPage;
-  elseif ( count($_GET) )                   $padPage = array_key_first ($_GET);
-  elseif ( isset ( $_SERVER['argv'] [1] ) ) $padPage = $_SERVER['argv'] [1];
-  else                                      $padPage = 'index';
+  if     ( isset($padPage) )                 $padPage = $padPage;
+  elseif ( $padRoutePath !== ''
+           and ! padRouteQuery () )          $padPage = $padRoutePath;
+  elseif ( count($_GET) )                    $padPage = array_key_first ($_GET);
+  elseif ( isset ( $_SERVER['argv'] [1] ) )  $padPage = $_SERVER['argv'] [1];
+  else                                       $padPage = 'index';
 
   $padPage = padCorrectPath ( $padPage );
+
+  // The name as it was asked for - products/42 - before it resolves to the file that
+  // answers it, products/[id]: a redirect to this page, and the name of a download, are
+  // the asked one.
+
+  $padPageAsked = $padPage;
 
   // A page that is not there is a 404, the visitor's request rather than a server fault -
   // it was a 500 boot error. The name is shown to this machine's own requests only.
 
-  if ( ! padPageCheck ($padPage) ) {
+  $padRouteFound = padPageRoute ( $padPage );
+
+  if ( ! $padRouteFound ) {
 
     while ( ob_get_level () )
       ob_end_clean ();
@@ -39,7 +52,15 @@
 
   }
 
-  $padPage = padPage ($padPage);
+  // A clean URL route binds its bracketed segments as variables of the request: they are
+  // set before the request values are promoted (inits/parms.php), so ?id=7 cannot replace
+  // the $id the path products/42 gave.
+
+  $padPage      = $padRouteFound ['page'];
+  $padRouteVars = $padRouteFound ['vars'];
+
+  padRouteBind ( $padRouteVars );
+
   $padDir  = padDir  ();
   $padPath = padPath ();
 

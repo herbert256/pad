@@ -11,12 +11,19 @@
 
   function padRedirect ( $go='', $vars=[], $app='' ) {
 
-    global $padHost, $padApp, $padPage;
+    global $padHost, $padApp, $padPage, $padPageAsked, $padCleanUrls;
+
+    // Back to this page is back to the name it was asked by - products/42, not the
+    // products/[id] that answers it - and within the application, in the clean form when
+    // $padCleanUrls says the links take it.
+
+    if ( ! $go  ) $go  = ( $padPageAsked ?? '' ) !== '' ? $padPageAsked : $padPage;
+
+    $clean = ( $padCleanUrls and ( ! $app or $app == $padApp ) );
 
     if ( ! $app ) $app = $padApp;
-    if ( ! $go  ) $go  = $padPage;
 
-    $go = ( $go ) ? "$padHost$app/?$go" : "$padHost$app/";
+    $go = ( $go ) ? "$padHost$app/" . ( $clean ? '' : '?' ) . $go : "$padHost$app/";
 
     $go = padAddIds ( $go );
 

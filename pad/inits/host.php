@@ -4,7 +4,7 @@
   //
   //   $padRoot   host-less mount prefix        /pad/
   //   $padHost   absolute cross-app base       http://localhost/pad/
-  //   $padGo     this app, relative            /pad/demo/?
+  //   $padGo     this app, relative            /pad/demo/?   (/pad/demo/ with $padCleanUrls)
   //   $padGoExt  this app, absolute            http://localhost/pad/demo/?
   //
   // $padRoot may be preset by the entry point (www/pad.php); it defaults to /.
@@ -46,8 +46,12 @@
   if ( ( $padHostBase ?? '' ) !== '' )
     $padHost = rtrim ( $padHostBase, '/' ) . '/';
 
-  $padGo    = $padRoot . "$padApp/?";
-  $padGoExt = $padHost . "$padApp/?";
+  // With $padCleanUrls the two write the clean form, /pad/demo/about (lib/route.php): the
+  // path names the page, and a link written {$padGo}about&x=1 keeps its values, which the
+  // path carries as they are.
+
+  $padGo    = $padRoot . "$padApp/" . ( $padCleanUrls ? '' : '?' );
+  $padGoExt = $padHost . "$padApp/" . ( $padCleanUrls ? '' : '?' );
 
   unset ( $padRequestScheme, $padHttpHost, $padServerPort );
 

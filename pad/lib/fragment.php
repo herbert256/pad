@@ -95,6 +95,13 @@
       $what = "page $padPage " . $padOrg [$pad] . ' ' . serialize ( $padOpt [$pad] ) . ' '
             . serialize ( array_diff_key ( $padPrm [$pad], [ 'cache' => 1, 'ttl' => 1, 'vary' => 1 ] ) );
 
+    // A clean URL route is one page for every value its brackets bind (lib/route.php):
+    // products/[id] for 42 and for 43 are two pages, and a section of one is not the other's.
+
+    if ( ! padFragmentNamed () and preg_match_all ( '/\[([a-zA-Z][a-zA-Z0-9_]*)\+?\]/', $padPage, $route ) )
+      foreach ( $route [1] as $name )
+        $what .= " $name=" . serialize ( $GLOBALS [$name] ?? '' );
+
     return md5 ( "$padApp $what " . serialize ( $vary ) );
 
   }

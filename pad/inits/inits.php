@@ -19,6 +19,7 @@
   include_once PAD . 'inits/const.php';
   include_once PAD . 'inits/lib.php';
 
+  include PAD . 'inits/route.php';
   include PAD . 'inits/vars.php';
   include PAD . 'inits/clean.php';
   include PAD . 'inits/page.php';

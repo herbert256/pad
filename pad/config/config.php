@@ -192,6 +192,13 @@
   $padHosts     = [];
   $padHostBase  = '';
 
+  // Clean URLs (lib/route.php): TRUE makes $padGo and $padGoExt write /shop/products/42
+  // instead of /shop/?products/42, for a server that hands such paths to the entry point -
+  // php -S does by itself, Apache with FallbackResource. A path is resolved either way; this
+  // only says which form the links take.
+
+  $padCleanUrls = FALSE;
+
   $padGzip      = FALSE;
   $padCookies   = TRUE;
   $padNoNo      = FALSE;

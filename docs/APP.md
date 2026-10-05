@@ -23,7 +23,49 @@ Pages are accessed via query string:
 - `/myapp/?about` → `about.pad`
 - `/myapp/?admin/users` → `admin/users.pad`
 
-**Important:** Internal links use `?page` format, not `/page`.
+**Important:** Internal links use `?page` format, not `/page` - or `{$padGo}page`, which
+follows `$padCleanUrls` (below).
+
+### Clean URLs and dynamic segments
+
+A path below the entry point names a page too, mapped onto the file tree. A file or
+directory whose name is a bracketed variable name stands for any one segment and binds it,
+before the page's PHP runs; `[name+]` takes the rest of the path:
+
+| URL | File | Variables |
+|-----|------|-----------|
+| `/shop/products/42` | `products/[id].pad` | `$id = '42'` |
+| `/shop/products/new` | `products/new.pad` | a literal name wins over a bracket |
+| `/shop/blog/2026/hello-pad` | `blog/[year]/[slug].pad` | `$year`, `$slug` |
+| `/shop/docs/a/b/c` | `docs/[path+].pad` | `$path = 'a/b/c'` |
+| `/shop/?products/42` | `products/[id].pad` | the same, through the query string |
+
+- Everything that worked keeps working: `?page` URLs, and on a clean URL a query string that
+  starts with a bare page name (`/shop/products/42?about`, the relative `href="?about"`)
+  names that page instead. `?sort=price` is a value of the page the path names.
+- A bracketed file is reached through its route only; `?products/[id]` by its own name is
+  not found. `{page 'products/42'}`, `{redirect 'products/42'}` and `padRedirect()` resolve
+  the same way.
+- `$padCleanUrls = TRUE` makes `$padGo` and `$padGoExt` write `/shop/products/42` instead
+  of `/shop/?products/42`; a link written `{$padGo}page&x=1` keeps working in both forms.
+  On a clean URL a relative asset link resolves below the path - write it from the root,
+  or put `<base href="{$padGo}">` in the wrapper.
+
+The web server has to hand such a path to the application's entry point:
+
+```apache
+# Apache: in the application's <Directory> block, or www/shop/.htaccess
+# (AllowOverride FileInfo or Indexes) - the URL path of the entry point
+FallbackResource /shop/index.php
+```
+
+```bash
+# PHP's built-in server needs no router: a path that is no file runs the nearest index.php
+php -S 127.0.0.1:8000 -t www
+```
+
+Without either, `/shop/index.php/products/42` - the path behind the entry point - works on
+every server, and `$padCleanUrls` stays off so the links keep the `?page` form.
 
 ## Application Structure
 
@@ -1198,6 +1240,9 @@ is declared twice, and anything it does it does twice. Functions belong in `_lib
   $padSecurityHeaders = [ 'X-Content-Type-Options' => 'nosniff',
                           'Referrer-Policy'        => 'strict-origin-when-cross-origin' ];
   $padCsp = "default-src 'self'; script-src 'self' 'nonce'; frame-ancestors 'self'";
+
+  // Links in the clean form, /myapp/products/42, for a server that routes paths
+  $padCleanUrls = FALSE;
 ?>
 ```
 
@@ -1273,7 +1318,7 @@ see it, before any `_inits.php` or page PHP runs:
 2. **Add wrapper later** - Create `_inits.pad` when you need common layout
 3. **Use DATA for storage** - Never write to APP directory
 4. **Check existing apps** - Look at `apps/pad/` for examples
-5. **URL format** - Always use `?page` format for internal links
+5. **URL format** - Use `?page` or `{$padGo}page` for internal links (see Clean URLs)
 
 ---
 

@@ -46,6 +46,7 @@ This directory contains PAD applications and examples.
 | [regression/output_download](regression/output_download/README.md) | Test | Regression test for the 'download' output type - the index turns NO when the writer stops behaving |
 | [regression/output_file](regression/output_file/README.md) | Test | Regression test for the 'file' output type - the index turns NO when the writer stops behaving |
 | [regression/output_web](regression/output_web/README.md) | Test | Regression test for the 'web' output type - the index turns NO when the writer stops behaving |
+| [regression/clean_urls](regression/clean_urls/README.md) | Test | Regression test for clean URLs - the links `$padGo` writes, a routed page reached by its path, `padRedirect()` back to it |
 | [regression/output_json](regression/output_json/README.md) | Test | Regression test for the 'json' output type - every page answers the variables it exposes, the index its verdicts |
 | [regression/try_log](regression/try_log/README.md) | Test | Regression test for the try guards under the 'log' action - caught, logged, and the page renders clean |
 | [regression/try_pad](regression/try_pad/README.md) | Test | Regression test for the try guards under the 'pad' action - caught and reported into the page |

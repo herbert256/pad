@@ -569,6 +569,15 @@ rendered while the rest stays dynamic:
 picks the store - `'file'` (default), `'apcu'` or `FALSE`; `padFragmentForget('top-products')`
 drops a named section when what it shows has changed.
 
+### Clean URLs
+
+A path names a page too - `/shop/products/42` - mapped onto the file tree, a bracketed name
+binding the segment it stands for: `products/[id].pad` gets `$id = '42'`, `blog/[year]/[slug].pad`
+two variables, `docs/[path+].pad` the rest of the path. `?products/42` resolves the same way,
+and every `?page` URL keeps working. `$padCleanUrls = TRUE` makes `$padGo` write the clean
+form; the server hands the paths to the entry point - `FallbackResource /shop/index.php` in
+Apache, nothing at all under `php -S`.
+
 ### JSON and CSV from the same page
 
 The page's `.php` already produces the data, so the same page can answer it instead of its
@@ -674,6 +683,7 @@ $padErrorAction   // 'pad', 'boot', 'php', 'stop', 'exit', 'ignore', 'log', 'dum
 $padInfo          // Debug: 'trace', 'stats', 'track', 'xml', 'xref'
 $padOutputType    // 'web', 'file', 'download', 'console', 'json', 'csv'
 $padExpose        // The page variables answered as JSON or CSV (set in the page's .php)
+$padCleanUrls     // Links in the clean form, /shop/products/42
 $padCache         // Enable caching
 $padCheckOutput   // Check the finished HTML of local requests (ids, alt, labels, links)
 $padCoverage      // Record template coverage of local requests (TRUE or a run name)

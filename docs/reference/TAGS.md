@@ -359,7 +359,9 @@ Include and execute a PAD page.
 **Parameters:**
 - First parameter: Page path to include
 
-**Behavior:** Executes the page's PHP and PAD files
+**Behavior:** Executes the page's PHP and PAD files. A name that is no page of its own resolves
+through the clean URL routes: `{page 'products/42'}` renders `products/[id].pad` with `$id` set
+to 42 (see Clean URLs in docs/APP.md).
 
 ---
 

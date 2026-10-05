@@ -77,10 +77,27 @@ $items = ['Apple', 'Banana', 'Cherry'];
 
 ## URL Structure
 
-Pages are accessed via query string (NOT path-based):
+Pages are accessed via query string:
 - `/myapp/` → `index.pad`
 - `/myapp/?about` → `about.pad`
 - `/myapp/?admin/users` → `admin/users.pad`
+
+### Clean URLs and dynamic segments
+
+A path below the entry point names a page as well (`pad/lib/route.php`), and a bracketed
+file or directory name binds a segment as a variable before the page's PHP runs:
+
+- `/myapp/products/42` → `products/[id].pad` with `$id = '42'` (a literal `products/new.pad`
+  wins over the bracket); `blog/[year]/[slug].pad`; `docs/[path+].pad` takes the rest.
+- `?products/42` resolves the same way, so it works on a server that routes no paths, and
+  `/myapp/index.php/products/42` works on every server. A bracketed file is never reached
+  by its own name. `{page}` and `{redirect}` resolve routes too; `padRedirect()` with no
+  page goes back to the name the page was asked by.
+- On a clean URL a query string starting with a bare page name (`?about`) names that page;
+  `?sort=x` is a value of the path's page.
+- `$padCleanUrls = TRUE` makes `$padGo`/`$padGoExt` write `/myapp/products/42`; a link
+  written `{$padGo}page&x=1` works in both forms. Apache needs
+  `FallbackResource /myapp/index.php`; `php -S` needs no router.
 
 ## JSON and CSV from the same page
 
@@ -875,6 +892,9 @@ $padOutputType = 'web';
 // The page variables a page answers as JSON or CSV - set in the page's .php
 $padExpose = [];
 
+// Links in the clean form - /myapp/products/42 - for a server that routes paths
+$padCleanUrls = false;
+
 // Cache enabled
 $padCache = false;
 
@@ -1377,6 +1397,7 @@ assigns it. `node editors/lsp/test.js` tests it; `./ci.sh` runs that as its `lsp
 | `regression/output_download` | Test | Regression test for the 'download' output type |
 | `regression/output_file` | Test | Regression test for the 'file' output type |
 | `regression/output_web` | Test | Regression test for the 'web' output type |
+| `regression/clean_urls` | Test | Regression test for `$padCleanUrls` and the bracketed routes |
 | `regression/output_json` | Test | Regression test for the 'json' output type - every page answers what it exposes |
 | `regression/try_log` | Test | Regression test for the try guards under the 'log' action |
 | `regression/try_pad` | Test | Regression test for the try guards under the 'pad' action |

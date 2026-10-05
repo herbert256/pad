@@ -5,7 +5,8 @@
   //
   // padPageCheck  the guarded entry: rejects anything that is not a safe relative page
   //               name (no //, no trailing /, and no /_ so the _xxx directories stay
-  //               private) before handing over to padPage
+  //               private) before handing over to padPage - or, for a name that is no
+  //               page of its own, to the bracketed routes (padPageRoute, lib/route.php)
   // padPage       walks the name segment by segment from APP down, and returns the page,
   //               or "$page/index" when the name turned out to be a directory, or FALSE
   // padPageExists    does any of the three page files exist for this base - .php, .pad
@@ -24,15 +25,13 @@
   // served sub/index - and found a page beside the current one that the nested build then
   // looked for at the root.
 
+  // A name that is no page of its own may still be one through a bracketed name - the
+  // clean URL routes of lib/route.php - and then the answer is that page: products/42 is
+  // products/[id]. padPageRoute has the bound values too.
+
   function padPageCheck ( $page, $app=APP ) {
 
-    if ( ! preg_match ( '/^[a-zA-Z0-9][a-zA-Z0-9_\/-]*$/D', $page ) ) return FALSE;
-    if ( trim($page) == '' )                                      return FALSE;
-    if ( strpos($page, '//') !== FALSE)                           return FALSE;
-    if ( substr($page, -1) == '/')                                return FALSE;
-    if ( strpos($page, '/_') !== FALSE)                           return FALSE;
-
-    return padPage ( $page, $app );
+    return padPageRoute ( $page, $app ) ['page'] ?? FALSE;
 
   }
 

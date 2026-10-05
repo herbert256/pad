@@ -20,7 +20,8 @@
   // The page is named from the application root and resolved as the router resolves a
   // URL (lib/page.php): a .html page counts, and a directory is its index.
 
-  $padStrPagName = padPageCheck ( $padParm );
+  $padStrPagRoute = padPageRoute ( $padParm );
+  $padStrPagName  = $padStrPagRoute ['page'] ?? FALSE;
 
   if ( ! $padStrPagName ) {
 
@@ -30,6 +31,11 @@
     return '';
 
   }
+
+  // A clean URL route, {page 'products/42'}, binds its segments as the request does - as
+  // variables the embedded page reads (lib/route.php).
+
+  padRouteBind ( $padStrPagRoute ['vars'] );
 
   $padStrPag [$pad] [0] = $padPage;
   $padStrPag [$pad] [1] = $padInclude;
