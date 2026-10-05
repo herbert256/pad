@@ -12,5 +12,6 @@ behaving turns the page from yes to NO.
 | File | Description |
 |------|-------------|
 | `index.php/pad` | Fetches the boom page and states the verdict |
+| `verdict.php/pad` | The same check run on every load, so the crawl holds the action to it |
 | `boom.php/pad` | A page whose .php reads an undefined variable |
 | `_config/config.php` | Chooses the 'php' action, `_common` off |
