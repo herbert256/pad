@@ -8,9 +8,12 @@
 
   $padContent .= '{&firstFieldValue}';
 
-  if ( padTagParm ('quote') ) include PAD . 'options/quote.php';
-  if ( padTagParm ('open')  ) include PAD . 'options/open.php';
-  if ( padTagParm ('glue')  ) include PAD . 'options/glue.php';
-  if ( padTagParm ('close') ) include PAD . 'options/close.php';
+  // Present is not the same as true: tested for truth, a glue, quote, open or close of 0 -
+  // {list print, glue=0} - was dropped as if it had not been written.
+
+  if ( padTagParm ('quote') !== '' ) include PAD . 'options/quote.php';
+  if ( padTagParm ('open')  !== '' ) include PAD . 'options/open.php';
+  if ( padTagParm ('glue')  !== '' ) include PAD . 'options/glue.php';
+  if ( padTagParm ('close') !== '' ) include PAD . 'options/close.php';
 
 ?>
