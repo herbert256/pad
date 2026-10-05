@@ -9,7 +9,11 @@
   if ( ! padPhpAllowed ( $name ) )
     return padError ( "the PHP function '$name' is not allowed by \$padPhpFunctions" );
 
-  if ( ! count ($parm) and $value !== '' )
+  // An empty piped value is still the argument of a function that needs one: {$title |
+  // ucfirst} with an empty $title called ucfirst() with nothing and ended the request. A
+  // function that takes none - {echo php:time()} - is still called bare.
+
+  if ( ! count ($parm) and ( $value !== '' or ( new ReflectionFunction ( $name ) ) -> getNumberOfRequiredParameters () ) )
     $parm [0] = $value;
 
   return call_user_func_array ($name, $parm);
