@@ -6,7 +6,8 @@
   // happens, the request ends through padExit(500) rather than dying mid-page.
   //
   // padError        what applications and the engine call. It records the caller's file
-  //                 and line and hands over to padErrorGo, whose definition comes from
+  //                 and line and hands over to padErrorGo (padErrorAt: the same, for a
+  //                 spot in the template other than the current tag), whose definition comes from
   //                 error/types/<$padErrorAction>.php (pad, boot, php, stop, exit, ignore,
   //                 log, dump) - that is how the configured error action is selected. It
   //                 always returns FALSE, so `return padError(...)` reads naturally
@@ -34,6 +35,32 @@
     extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
 
     padErrorGo ( 'PAD: ' . $error, $file, $line );
+
+    return FALSE;
+
+  }
+
+  // padError for a spot that is not the tag being worked on - an unclosed { further on, an
+  // @word@ in the built page, a second @page@ in a wrapper. $where says where, for the
+  // template position of the report (lib/source.php): [ 'level', 'out' ] a position in a
+  // level's working text, [ 'level', 'base' ] one in its base, [ 'file', 'pos' ] one in a
+  // template file, [ 'search' ] a text that stands in one template only; 'length' how much
+  // of it to mark. It holds for this error only - the
+  // dump and log actions carry on to the next.
+
+  function padErrorAt ( $error, $where ) {
+
+    global $padErrorAt;
+
+    extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
+
+    $padErrorAt = $where;
+
+    try {
+      padErrorGo ( 'PAD: ' . $error, $file, $line );
+    } finally {
+      $padErrorAt = NULL;
+    }
 
     return FALSE;
 

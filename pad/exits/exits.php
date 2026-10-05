@@ -13,7 +13,7 @@
   // still wearing its &at; entities and stays out of the verdict.
 
   if ( $padCheckSyntax and str_contains ( $padResult [0], '@content@' ) )
-    padError ( 'an @content@ stands where nothing merges content into it' );
+    padErrorAt ( 'an @content@ stands where nothing merges content into it', [ 'search' => '@content@' ] );
 
   // The values' stand-ins come back too - before tidy, which must see the quotes and = of
   // the markup a tag answered. Always, not only under $padProtectValues: a stand-in that

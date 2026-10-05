@@ -48,8 +48,14 @@
 
     if ( is_dir ($file) or ! is_readable ( $file ) )
       return $default;
-    else
-      return file_get_contents ($file);
+
+    // A template file is noted for the source map, which matches a level's text against
+    // the templates read when an error has to say where it stands (lib/source.php).
+
+    if ( str_ends_with ( $file, '.pad' ) or str_ends_with ( $file, '.html' ) )
+      padSrcRead ( $file );
+
+    return file_get_contents ($file);
 
   }
 

@@ -15,3 +15,4 @@ shape for every requester. `_common` is off, like the Pages suite these cases gr
 | `eval/` | The expression evaluator's reports - brackets, operators, unknown names |
 | `error/` | The pages that end a request - {error}, {dump}, {exit}, a throw, on demand |
 | `handlers/` | The handler family - a warning, an error, an exception, a shutdown, each from a tag and from a page |
+| `source/` | The template position of an error - file, line, column, the near name, the snippet or page that included it, the wrappers around it; `frame/`, `framed/`, `nested/` and `_include/` are its fixtures, and two pages fetch a framed page in full, once as a tool (JSON) and once as a browser (text) |

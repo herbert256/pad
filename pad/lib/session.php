@@ -150,9 +150,14 @@
 
   }
 
+  // The template position, when there is one, rides the same line: file:line:column.
+
   function padLogError ( $error ) {
 
-    error_log ( '[PAD] ' . padID () . ' ' . padMakeSafe ( $error ), 4 );
+    $where = function_exists ( 'padErrorTemplate' ) ? padErrorTemplate ( (string) $error ) : NULL;
+    $where = isset ( $where ['file'] ) ? ' - ' . $where ['file'] . ':' . $where ['line'] . ':' . $where ['column'] : '';
+
+    error_log ( '[PAD] ' . padID () . ' ' . padMakeSafe ( $error ) . $where, 4 );
 
   }
 

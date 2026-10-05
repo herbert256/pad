@@ -883,6 +883,27 @@ expression in the source's own terms, naming the exact fault and its position:
 
 With the check off, what cannot be evaluated yields empty instead.
 
+### Errors point into the template
+
+Every error report - the error page, the JSON body a local tool gets, the console, the log
+line - names where in the template it stands, next to the engine's own PHP file and line:
+
+```
+apps/shop/orders/list.pad  line 14, column 11
+
+  13 │   <tr>
+  14 │     <td>{$totl | money}</td>
+     │          ^^^^^ did you mean $total?
+  15 │   </tr>
+
+wrapped by apps/shop/_inits.pad
+```
+
+The JSON body carries it as `template`: `file`, `line`, `column`, `tag`, `excerpt`, `suggest`,
+`included` (the snippet's or `{page}`'s includer), `wrapped` and a `vscode://file/...` `link`.
+The build keeps a source map of the joined `_lib`/`_inits`/page/`_exits` text
+(`pad/lib/source.php`); a position it cannot place surely is left out rather than guessed.
+
 ---
 
 ## Entry Point Pattern

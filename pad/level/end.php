@@ -20,11 +20,13 @@
 
   if ( $padOpenStart !== FALSE ) {
 
+    $padOpenWhere = [ 'level' => $pad, 'out' => $padOpenStart, 'length' => 1 ];
+
     if ( $padCheckSyntax and substr ( $padOut [$pad], $padOpenStart, 2 ) == '{#' )
-      padError ( "the comment {# never closes" );
+      padErrorAt ( "the comment {# never closes", $padOpenWhere );
 
     if ( $padCheckSyntax )
-      padError ( "No close } found for open { at position " . $padOpenStart + 1);
+      padErrorAt ( "No close } found for open { at position " . $padOpenStart + 1, $padOpenWhere );
 
     $padOut [$pad] = str_replace ( '{', '&open;', $padOut [$pad] );
 

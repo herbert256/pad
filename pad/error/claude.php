@@ -2,7 +2,8 @@
 
   // Machine-readable error output for local tooling: when the request comes from the CLI or
   // from curl on ::1 (padClaudeCheck), padClaudeError answers with a 500 and a JSON body
-  // holding the message, file, line, backtrace and every global - bucketed by padClaudeFields
+  // holding the message, file, line, the template position (template: file, line, column,
+  // tag, excerpt, suggest, wrapped, link), backtrace and every global - bucketed by padClaudeFields
   // into pad (pad*), sequence (pq*), php (_*) and application variables, credentials
   // redacted by padRedact - then exits. $padDiagnostics = FALSE closes the channel.
   //
@@ -97,6 +98,13 @@
       $claude ['error']    = $error;
       $claude ['file']     = $file;
       $claude ['line']     = $line;
+
+      // Where in the template the error stands - file, line, column, the tag, the lines
+      // around it, a near name - next to the engine's PHP file and line (lib/source.php).
+
+      if ( function_exists ( 'padErrorTemplate' ) and ( $template = padErrorTemplate ( (string) $error ) ) )
+        $claude ['template'] = $template;
+
       $claude ['stack']    = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS);
       $claude ['app']      = $app;
       $claude ['pad']      = $pad;

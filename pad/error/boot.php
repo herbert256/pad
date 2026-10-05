@@ -117,15 +117,21 @@
 
   }
 
+  // The template position goes under the message once lib is there to find it - the
+  // error lies in a template more often than in the engine line that noticed it.
+
   function padShowErrorLocal ( $error, $file, $line ) {
+
+    $where = function_exists ( 'padErrorTemplate' ) ? padSrcReport ( padErrorTemplate ( (string) $error ) ) : '';
+    $where = $where ? "\n\n$where" : '';
 
     if ( PHP_SAPI === 'cli' ) {
 
-      echo "$file:$line $error\n";
+      echo "$file:$line $error$where\n";
 
     } else {
 
-      $msg = htmlspecialchars("$file:$line $error", ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+      $msg = htmlspecialchars("$file:$line $error$where", ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 
       echo "\n<pre>{$msg}</pre>";
 

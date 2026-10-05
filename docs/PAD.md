@@ -658,6 +658,11 @@ $padSqlPassword
 
 ## Debugging
 
+- An error names its place in the template - file, line, column, the lines around it with a
+  marker, a "did you mean" for a near field, function or tag name, what included it and the
+  wrappers around it - on the error page, in the JSON body for local tools (`template`) and in
+  the log line; the build's source map (`pad/lib/source.php`) traces the spot back through the
+  joined `_inits`/page/`_exits` text
 - Set `$padInfo = 'trace'` for execution tracing
 - Use `{dump}` tag for variable inspection
 - Use `{trace}` tag for execution trace

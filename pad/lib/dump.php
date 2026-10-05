@@ -70,6 +70,9 @@
 
     echo padMakeSafe ("Error: $info", 100);
 
+    if ( $where = padSrcReport ( padErrorTemplate ( $info ) ) )
+      echo "\n\n$where";
+
     echo "\nDir  : " . ( $padDumpToDirDone ?? padDumpToDir ( $info ) );
     echo "\n";
 
@@ -124,6 +127,28 @@
 
     if ( trim($info) )
       echo ( "<hr><b>" . htmlentities($info) . "</b><hr><br>" );
+
+    padDumpTemplate ( $info ?: ( $padExceptionText ?? '' ) );
+
+  }
+
+  // Where in the template the error stands, under the message: file, line and column, the
+  // lines around the spot, a near name, the wrappers, and a link that opens the editor
+  // there (lib/source.php).
+
+  function padDumpTemplate ( $info ) {
+
+    $where = padErrorTemplate ( (string) $info );
+
+    if ( ! $where )
+      return;
+
+    echo htmlspecialchars ( padSrcReport ( $where ), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' );
+
+    if ( isset ( $where ['link'] ) )
+      echo '<a href="' . htmlspecialchars ( $where ['link'], ENT_QUOTES, 'UTF-8' ) . '">open in the editor</a>' . "\n";
+
+    echo "<hr><br>";
 
   }
 

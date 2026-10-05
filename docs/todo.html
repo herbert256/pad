@@ -597,7 +597,7 @@ wrapped by apps/shop/_inits.pad › apps/shop/orders/_inits.pad</code></pre>
           <p>Today the file and line in an error report are the PHP engine’s (<code>padError</code> reads <code>debug_backtrace</code>), and some brace errors give a character position. The template author has to find the spot by hand.</p>
           <p>The build step joins <code>_inits</code>, the page and <code>_exits</code> into one source, so this needs a small offset map from that joined source back to each file. With it, errors can show:</p>
           <ul>
-            <li>the template file, line, column and an excerpt;</li>
+            <li>the template file, line, column and an excerpt;<p class="done"><strong>Done.</strong> An error names its place in the template - file, line and column, the lines around it with a marker, a “did you mean” for a near field, function or tag, the snippet or <code>{page}</code> that included it and the <code>_inits.pad</code> wrappers around it, plus a <code>vscode://</code> link - on the error page, in the JSON channel, on the console and in the log, through a source map the build keeps of the joined text (pad/lib/source.php). Regression: twelve errors cases; manual page; docs.</p></li>
             <li>a “did you mean” that compares a missing name with the fields, tags and functions in scope;</li>
             <li>a <code>vscode://file/…:14:11</code> link that opens the editor at the spot.</li>
           </ul>

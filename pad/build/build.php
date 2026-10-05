@@ -18,6 +18,15 @@
 
   $padBase [$pad] = $padBuildLib . str_replace ( '@page@', $padBuildPage, $padBuildBase );
 
+  // The same text as source-map pieces, kept as this level's map when they join up to it
+  // exactly - what lets an error name the template file, line and column (lib/source.php).
+
+  $padSrcMap [$pad] = padSrcMake (
+    array_merge ( $padSrcLib, padSrcReplace ( $padSrcBase, '@page@', $padSrcPage ) ),
+    $padBase [$pad],
+    $padSrcWrap
+  );
+
   // Strict mode reads the assembled source for construct typos: an @word@ that names no
   // file in pad/constructs/ renders as nothing anywhere, silently. What sits between
   // {ignore} tags is the author saying hands off, so it stays out of the scan.
@@ -29,7 +38,10 @@
     if ( preg_match_all ( '/@([a-zA-Z][a-zA-Z0-9]*)@/', $padBuildScan, $padBuildCon ) )
       foreach ( array_unique ( $padBuildCon [1] ) as $padBuildOne )
         if ( ! file_exists ( PAD . "constructs/$padBuildOne.php" ) )
-          padError ( "there is no @" . $padBuildOne . "@ construct" );
+          padErrorAt ( "there is no @" . $padBuildOne . "@ construct",
+                       [ 'level'  => $pad,
+                         'base'   => strpos ( $padBase [$pad], "@$padBuildOne@" ),
+                         'length' => strlen ( $padBuildOne ) + 2 ] );
 
   }
 
