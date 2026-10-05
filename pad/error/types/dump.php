@@ -14,6 +14,8 @@
 
   function padErrorGo ( $error, $file, $line ) {
 
+    padEventError ( $error, $file, $line );
+
     padDumpToDir ( "$file:$line $error" );
     padLogError  ( "$file:$line $error", 4 );
 

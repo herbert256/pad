@@ -17,7 +17,8 @@
   //     or SELECT (rows, keyed by an id column when the query returns one), INSERT (the
   //     new id, else the row count), UPDATE/DELETE/REPLACE/SET/TRUNCATE/LOAD (row count)
   //   - every statement is appended to $_SQL; failures go through padError, and
-  //     events/sql.php logs the query when info is on
+  //     events/sql.php logs the query when info is on; a statement of db() that ran is
+  //     also told to the application's _events/sql.php (lib/events.php)
 
   function db ( $sql, $vars = [] ) {
 
@@ -29,7 +30,7 @@
     if ( ! isset ( $padSqlConnect ) )
       $padSqlConnect = padDbConnect ( $padSqlHost, $padSqlUser, $padSqlPassword, $padSqlDatabase );
 
-    return padDbPart2 ( $padSqlConnect, $sql, $vars );
+    return padDbPart2 ( $padSqlConnect, $sql, $vars, TRUE );
 
   }
 
@@ -74,7 +75,10 @@
 
   }
 
-  function padDbPart2 ( $padSqlConnect, $sql, $vars ) {
+  // $event: the statement is the application's own - db(), not padDb() on PAD's sessions
+  // and caches - so the application's _events/sql.php hears it, with how long it took.
+
+  function padDbPart2 ( $padSqlConnect, $sql, $vars, $event = FALSE ) {
 
     global $_SQL, $pad, $padDataSetRecord, $padInfo, $padPrm;
 
@@ -103,7 +107,9 @@
     // statement, and db() answers the empty shape of its command, as for no rows: '' for a
     // field, [] for a record or an array, FALSE for anything else.
 
+    $start = hrtime ( TRUE );
     $query = $padSqlConnect ? mysqli_query ( $padSqlConnect , $sql ) : FALSE;
+    $ms    = ( hrtime ( TRUE ) - $start ) / 1e6;
 
     if ( ! $query ) {
 
@@ -158,6 +164,10 @@
 
     if ( $padInfo )
       include PAD . 'events/sql.php';
+
+    if ( $event )
+      padEvent ( 'sql', [ 'sql' => $sql, 'input' => $input, 'vars' => $vars, 'result' => $return,
+                          'rows' => $rows, 'ms' => $ms ] );
 
     return $return;
 

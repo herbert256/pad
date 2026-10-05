@@ -11,6 +11,8 @@
 
   function padErrorGo ( $error, $file, $line ) {
 
+    padEventError ( $error, $file, $line );
+
     while ( ob_get_level () )
       ob_end_clean ();
 

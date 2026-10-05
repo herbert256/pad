@@ -1,0 +1,107 @@
+<h1>Event hooks</h1>
+
+<p>A file in the application's <code>_events/</code> directory runs whenever the request
+reaches that moment - on every request, without touching the engine. The place to report an
+error to a tracker, log a slow query or an API that is down, or post-process the finished
+page.</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+  <tr><th>file</th><th>runs when</th><th>its variables</th></tr>
+  <tr><td><code>_events/error.php</code></td><td>an error is raised, whatever the error action does with it next</td><td><code>$error</code>, <code>$file</code>, <code>$line</code></td></tr>
+  <tr><td><code>_events/sql.php</code></td><td><code>db()</code> ran a statement</td><td><code>$sql</code> as sent, <code>$input</code>, <code>$vars</code>, <code>$result</code>, <code>$rows</code>, <code>$ms</code></td></tr>
+  <tr><td><code>_events/curl.php</code></td><td>a remote fetch finished, well or not</td><td><code>$url</code>, <code>$result</code> (the HTTP code, 999 on a failure), <code>$error</code>, <code>$ms</code></td></tr>
+  <tr><td><code>_events/output.php</code></td><td>the page is about to be sent</td><td><code>$output</code> - change it to change the page</td></tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p>They are found the way <a href="?pages/callback">callbacks</a> are: the page's own
+directory first, then up to the application root, so a subdirectory can hear an event its
+own way. Here <code>fragments/events/_events/sql.php</code> keeps every statement in a list
+the page shows:</p>
+
+
+<pre><code>&lt;?php                                   // fragments/events/_events/sql.php
+
+  $GLOBALS ['heard'] [] = $sql;
+
+?&gt;</code></pre>
+
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/events/events_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/events/events_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $phone </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"field phone from staff where name = 'jim'" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$heard </span><span style="color: #007700">= </span><span style="color: #0000BB">$GLOBALS </span><span style="color: #007700">[</span><span style="color: #DD0000">'heard'</span><span style="color: #007700">] ?? [];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;Jim's phone number is <b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/p&gt;<br><br>&lt;p&gt;The sql hook heard:&lt;/p&gt;<br>&lt;ul&gt;<br>  <b>{<font color="blue">heard</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>heard</font>}</b>&lt;/li&gt;<b>{/<font color="blue">heard</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>Jim's phone number is 555-4364</p>
+
+<p>The sql hook heard:</p>
+<ul>
+  <li>select phone from staff where name = &#039;jim&#039; limit 0,1</li>
+</ul>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<p>A hook runs in a scope of its own: the event's values are its variables, and the page's
+are reached through <code>$GLOBALS</code>. What it echoes is dropped. An error inside the
+error hook is logged and the original error goes its way; a query inside the sql hook does
+not call the hook again.</p>
+
+
+<pre><code>&lt;?php                                   // _events/output.php
+
+  $output = str_replace ( '&lt;/body&gt;', '&lt;!-- served by PAD --&gt;&lt;/body&gt;', $output );
+
+?&gt;</code></pre>
+
+
+<p>The output hook runs after tidying and before the page
+cache stores the page, so a cached page is served as the hook left it.</p>

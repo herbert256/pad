@@ -43,6 +43,7 @@ apps/myapp/
 ├── _functions/            # Custom pipe functions
 ├── _callbacks/            # Data iteration callbacks
 ├── _options/              # Custom tag options
+├── _events/               # Event hooks: error, sql, curl, output
 ├── _config/               # Application configuration
 │   └── config.php
 ├── _data/                 # Static data files (XML, JSON)
@@ -62,6 +63,7 @@ apps/myapp/
 | `_functions/` | Pipe functions | `{echo $x \| myfunc}` → `myfunc.php` |
 | `_callbacks/` | Iteration hooks | `callback='name'` → `name.php` |
 | `_options/` | Tag options | Custom option handlers |
+| `_events/` | Event hooks | `error.php`, `sql.php`, `curl.php`, `output.php` - run on every request |
 | `_config/` | App config | `config.php` overrides |
 | `_data/` | Static data | XML, JSON files |
 
@@ -163,6 +165,40 @@ Use in templates:
   {$name}: {$amount}
 {/items}
 Total: {$total}
+```
+
+### _events/ - Event Hooks
+
+A file in `_events/` runs whenever a request reaches that moment, on every request - the
+engine's own hooks in `pad/events/` serve the info modes and run only under `$padInfo`. The
+lookup is the one `_callbacks/` uses: the page's directory first, then up to the root, the
+first file found wins.
+
+| File | Runs when | Variables |
+|------|-----------|-----------|
+| `error.php` | an error is raised, before the error action deals with it | `$error`, `$file`, `$line` |
+| `sql.php` | `db()` ran a statement (not `padDb()` on PAD's own database) | `$sql` as sent, `$input`, `$vars`, `$result`, `$rows`, `$ms` |
+| `curl.php` | a remote fetch finished, a failed one too (not a `_data/` file) | `$url`, `$result` (999 on a failure), `$error`, `$ms` |
+| `output.php` | the page is about to be sent - after tidy, before the ETag and the page cache | `$output` - change it to change the page |
+
+A hook runs in a function scope of its own: the event's values are its local variables, and
+the page's are reached with `global` or `$GLOBALS`. What it echoes is discarded. A hook is not
+re-entered (a query inside the sql hook does not call it again), and a PHP error inside the
+error hook is logged and set aside, so the error it was told about is still the one reported.
+
+**_events/sql.php** - log the slow queries:
+```php
+<?php
+  if ( $ms > 100 )
+    error_log ( sprintf ( 'slow query %.1f ms: %s', $ms, $sql ) );
+?>
+```
+
+**_events/output.php** - post-process the final HTML:
+```php
+<?php
+  $output = str_replace ( '</body>', '<!-- served by PAD --></body>', $output );
+?>
 ```
 
 ## Running PAD

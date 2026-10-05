@@ -15,6 +15,8 @@
 
   function padErrorGo ( $error, $file, $line ) {
 
+    padEventError ( $error, $file, $line );
+
     throw new Exception ( "$file:$line $error" );
 
   }

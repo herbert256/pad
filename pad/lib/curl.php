@@ -22,6 +22,9 @@
   // options, padCurlParse turns a response into the output shape - so one fetch answers
   // the same whichever road it took. The regression crawl is the caller this exists for.
   //
+  // Every remote fetch that finished - not a _data/ file answered on the spot - is told to
+  // the application's _events/curl.php through padCurlEvent.
+  //
   // padNoCurl is the fallback when ext-curl is missing: it just reads the URL as a file.
   // padCurlOpt sets a default that the caller's own options can override, and padCurlError
   // records the failure in the same array with result 999 instead of throwing.
@@ -321,7 +324,7 @@
 
   function padCurl ($input) {
 
-    global $padCurlLast, $padCurlStats;
+    global $padCurlLast;
 
     $output = padCurlBuild ( $input );
 
@@ -330,6 +333,21 @@
       $padCurlLast = $output;
       return $output;
     }
+
+    $start  = hrtime ( TRUE );
+    $output = padCurlWire ( $output );
+
+    padCurlEvent ( $output, ( hrtime ( TRUE ) - $start ) / 1e6 );
+
+    return $output;
+
+  }
+
+  // The fetch itself, for a url padCurlBuild did not answer on the spot.
+
+  function padCurlWire ( $output ) {
+
+    global $padCurlLast, $padCurlStats;
 
     if ( ! function_exists ( 'curl_init') )
       return padNoCurl ( $output );
@@ -477,6 +495,8 @@
           else
             $results [$key] = padCurlParse ( $outputs [$key], $result );
 
+          padCurlEvent ( $results [$key], ( $outputs [$key] ['info'] ['total_time'] ?? 0 ) * 1000 );
+
           unset ( $flying [ spl_object_id ( $curl ) ] );
           curl_multi_remove_handle ( $multi, $curl );
 
@@ -502,6 +522,18 @@
     error_reporting ( $errorReporting );
 
     return $results;
+
+  }
+
+  // A remote fetch that finished, well or not, told to the application's _events/curl.php
+  // (lib/events.php) - the place to log an API that is slow or down.
+
+  function padCurlEvent ( $output, $ms ) {
+
+    padEvent ( 'curl', [ 'url'    => $output ['url'],
+                         'result' => $output ['result'],
+                         'error'  => $output ['ERROR'] ?? '',
+                         'ms'     => $ms ] );
 
   }
 

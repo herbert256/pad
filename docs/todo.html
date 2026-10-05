@@ -911,7 +911,7 @@ $padExpose = [ 'orders', 'total' ];</code></pre>
 _events/sql.php      log slow queries
 _events/output.php   post-process the final HTML</code></pre>
           <p><a href="https://github.com/herbert256/pad/tree/master/pad/events"><code>pad/events/</code></a> holds about 58 hook points, but each runs only under <code>$padInfo</code> and serves trace and stats. Opening a small, stable subset to apps through an <code>_events/</code> directory, with the same lookup rules as <code>_callbacks</code>, would allow integrations without editing the engine. The dormant cache hook suggests a tidy-up first.</p>
-        </li>
+        <p class="done"><strong>Done.</strong> An application <code>_events/</code> directory (looked up like <code>_callbacks</code>) with <code>error.php</code> (every error, every action), <code>sql.php</code> (each statement with its time), <code>curl.php</code> (each fetch) and <code>output.php</code> (the final page, before the ETag and the page cache), running on every request; the dormant <code>events/cache.php</code> is gone. Regression: a new <code>regression/events</code> application in the Regression suite; manual page <em>Events</em>; APP.md, PAD.md, CLAUDE.md.</p></li>
 
         <li class="idea" id="end-options">
           <div class="idea-top"><span class="number" aria-hidden="true">47</span><h3>App options that act on the result</h3><span class="effort">Small</span></div>

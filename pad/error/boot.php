@@ -66,6 +66,12 @@
 
   function padBootStop ( $error, $file, $line ) {
 
+    // The application's _events/error.php hears it first - once the application is
+    // resolved; a failure before that is the engine's alone (lib/events.php).
+
+    if ( function_exists ( 'padEventError' ) )
+      padEventError ( $error, $file, $line );
+
     padClaudeError ( $error, $file, $line );
 
     global $padBootShutdown;

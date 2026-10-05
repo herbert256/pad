@@ -57,7 +57,7 @@ For complete framework documentation, see [docs/PAD.md](../docs/PAD.md).
 | database/ | SQL schema definitions for PAD internal database |
 | error/ | Boot-time and runtime error handling |
 | eval/ | Expression parser and evaluator |
-| events/ | Event hooks and lifecycle management |
+| events/ | Event hooks of the info modes (trace, stats, xref) - an application's own hooks are its `_events/`, run by lib/events.php |
 | exits/ | Shutdown, output formatting, and HTTP responses |
 | functions/ | Pipe functions (trim, upper, date, html, etc.) |
 | get/ | Variable getter system for content retrieval |

@@ -2,10 +2,11 @@
 
   // Turns the finished root-level result into the response.
   //
-  // Unescapes it into $padOutput, tidies it when asked, derives the ETag the response
-  // will carry, stores the page in the server cache when caching is on, and hands over to
-  // exits/output.php, which emits it and ends the request. Reached from start/pad/go.php
-  // as the last step of a normal request.
+  // Unescapes it into $padOutput, tidies it when asked, hands it to the application's
+  // output hook when it has one, derives the ETag the response will carry, stores the page
+  // in the server cache when caching is on, and hands over to exits/output.php, which
+  // emits it and ends the request. Reached from start/pad/go.php as the last step of a
+  // normal request.
 
   // An @content@ still standing when the page is done was merged into by nothing. Checked
   // before the unescape, so a marker {ignore} protected - documentation showing it - is
@@ -27,6 +28,12 @@
 
   if ( $padTidy or $padMyTidy or str_contains ( $padOutput, '@tidy@' ) )
     include PAD . 'exits/tidy.php';
+
+  // The application's _events/output.php sees the page as it will go out and may change
+  // it - before the ETag and the page cache, so both describe what is actually sent.
+
+  if ( padEventCheck ( 'output' ) )
+    $padOutput = (string) padEvent ( 'output', [ 'output' => $padOutput ] ) ['output'];
 
   $padEtag = padMD5 ($padOutput);
   $padStop = 200;

@@ -8,6 +8,8 @@
 
   function padErrorGo ( $error, $file, $line ) {
 
+    padEventError ( $error, $file, $line );
+
     padLogError ( "$file:$line $error", 4 );
 
     return TRUE;

@@ -537,6 +537,7 @@ apps/myapp/
 ├── _include/                 # Template snippets
 ├── _callbacks/               # Iteration callbacks
 ├── _options/                 # Custom tag options
+├── _events/                  # Event hooks: error, sql, curl, output - every request
 └── _config/config.php        # App configuration
 ```
 

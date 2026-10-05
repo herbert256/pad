@@ -16,6 +16,8 @@
 
   function padErrorGo ( $error, $file, $line ) {
 
+    padEventError ( $error, $file, $line );
+
     set_error_handler ( 'padErrorThrow' );
 
     try {

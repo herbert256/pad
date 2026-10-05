@@ -101,6 +101,7 @@ apps/myapp/
 ├── _functions/            # Custom pipe functions
 ├── _callbacks/            # Data iteration callbacks
 ├── _options/              # Custom tag options
+├── _events/               # Event hooks: error, sql, curl, output
 ├── _config/               # Application configuration
 │   └── config.php
 ├── _data/                 # Data files (XML, JSON, YAML, CSV) and named .sql queries
@@ -128,6 +129,7 @@ apps/myapp/
 | `_functions/` | Pipe functions | `{echo $x \| myfunc}` → `myfunc.php` |
 | `_callbacks/` | Iteration hooks | `callback='name'` → `name.php` |
 | `_options/` | Tag options | Custom option handlers |
+| `_events/` | Event hooks | `error.php`, `sql.php`, `curl.php`, `output.php` - run on every request |
 | `_config/` | App config | `config.php` overrides |
 | `_data/` | Static data, named queries | XML, JSON, YAML, CSV; `name.sql` runs as `{name}` |
 | `_scripts/` | Shell scripts | On demand |
@@ -225,6 +227,22 @@ Use in templates: `{json 'products' | ignore}` - Outputs JSON from `_data/produc
 ```
 
 Use in templates: `{echo $price | money}`
+
+---
+
+### _events/ - Event Hooks
+
+A file in `_events/` runs whenever a request reaches that moment - always, not only under
+`$padInfo` like the engine's own `pad/events/`. Looked up like `_callbacks/` (page directory
+up to the root). The event's values are the hook's local variables; page variables through
+`$GLOBALS`; echo is discarded.
+
+| File | Runs when | Variables |
+|------|-----------|-----------|
+| `error.php` | an error is raised, under every error action | `$error`, `$file`, `$line` |
+| `sql.php` | `db()` ran a statement | `$sql`, `$input`, `$vars`, `$result`, `$rows`, `$ms` |
+| `curl.php` | a remote fetch finished (also a failed one) | `$url`, `$result`, `$error`, `$ms` |
+| `output.php` | the page is about to be sent - before the ETag and page cache | `$output` (writable) |
 
 ---
 
@@ -1084,6 +1102,7 @@ This is particularly useful for:
 | `regression/error_exit` | Test | Regression test for the 'exit' error action |
 | `regression/error_ignore` | Test | Regression test for the 'ignore' error action |
 | `regression/error_log` | Test | Regression test for the 'log' error action |
+| `regression/events` | Test | Regression test for the `_events/` hooks - error, sql, curl, output |
 | `regression/error_pad` | Test | Regression test for the 'pad' error action |
 | `regression/error_php` | Test | Regression test for the 'php' error action |
 | `regression/error_stop` | Test | Regression test for the 'stop' error action |
