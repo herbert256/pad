@@ -43,6 +43,7 @@
       'request/session'           => 'A page fetching another shares its session - the fixture answers with this very request-s id',
       'request/upload'            => 'A multipart upload: the payload arrives with its name, size and PHP-s word that it was uploaded',
       'request/todo'              => 'A whole action round-trip: post a marker through todoPost, see it land, restore the store',
+      'request/contact'           => 'The demo contact form posted with mistakes: every field refilled, escaped, and each broken rule-s message beside its field, with aria',
       'request/csrf'              => 'CSRF on the demo: a post without the session-s token, or with a wrong one, is 403; the form-s token - field or header - lets it through',
       'request/ses'               => 'The session fixture bare: some id, pinned by shape',
       'request/up'                => 'The upload fixture bare: no file',

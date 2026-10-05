@@ -475,6 +475,20 @@ Renders when the value differs from the previous row of the loop; the first row 
 {/items}
 ```
 
+### Forms
+```
+{form 'contact'}                                      # posts back, CSRF token + name
+  {input 'email', type='email', label='E-mail', required}
+  {textarea 'message', label='Message', rows=6}
+  <button>Send</button>
+{/form}
+```
+The fields refill from the post when their form came back and show the message
+`padValidate` found - in the page's PHP:
+`if ( padPosted ( 'contact' ) ) $errors = padValidate ( [ 'email' => 'required|email' ] );`
+Rules: required, email, url, numeric, integer, min:n, max:n, in:a,b, regex:/x/, same:field,
+accepted, date.
+
 ### Data Definition
 ```
 {data 'colors'}
@@ -993,6 +1007,8 @@ Output: `Alice, Bob, Charlie`
 | `padSessionStart()` | Start the PHP session on demand, strict mode and safe cookie flags |
 | `padCsrfToken()` | The session's CSRF token (`{csrf}` writes it as a hidden field) |
 | `padCsrfValid()` | Whether this request brought the session's token back |
+| `padPosted($form)` | Whether this request posted (the `{form}` of that name) |
+| `padValidate($rules, $data, $messages)` | `['email' => 'required\|email']` - one message per failing field, shown by `{input}` |
 
 ### Field Access
 

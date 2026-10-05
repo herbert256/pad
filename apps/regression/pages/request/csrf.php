@@ -13,7 +13,7 @@
 
   $csrfPost = fn ( $fields, $cookies = [], $headers = [] ) =>
     padCurl ( [ 'url'     => $padHost . 'demo/?contact&padInclude',
-                'post'    => $fields + [ 'action' => 'send' ],
+                'post'    => $fields + [ 'padForm' => 'contact' ],
                 'cookies' => $cookies,
                 'headers' => $headers ] );
 

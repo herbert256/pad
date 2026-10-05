@@ -1,0 +1,47 @@
+<h1>Forms</h1>
+
+<p>{tag 'form'}, {tag 'input'} and {tag 'textarea'} write the fields of a form. When the
+form comes back with mistakes in it, each field shows again what was typed - escaped - and
+the message for its mistake beside it. <code>padValidate</code> in the page's PHP finds the
+mistakes.</p>
+
+{example 'fragments/forms_1'}
+
+<ul>
+  <li>{tag 'form'} posts back to the page and carries the session's CSRF token (see
+  {manual 'csrf_protection'}) and its name: <code>padPosted ( 'contact' )</code> is true when
+  this form came back, so a page with two forms knows which one did.</li>
+  <li>{tag 'input'} and {tag 'textarea'} take the field name first; <code>label=</code> writes a
+  label tied to the field, <code>value=</code> the value before anything was posted, and every
+  other item is an attribute of the field, as {tag 'attrs'} writes it - <code>required</code>,
+  <code>rows=6</code>, <code>placeholder='...'</code>.</li>
+  <li>A checkbox or radio is checked when the posted value is its own value; a password or
+  file field is never refilled.</li>
+</ul>
+
+<h2>Validation</h2>
+
+<p><code>padValidate ( $rules )</code> checks the posted values and answers one message per
+field that breaks a rule, keyed by the field - empty when all is well. A second argument
+checks other data; a third replaces messages, per field (<code>'email'</code>) or per field
+and rule (<code>'email.required'</code>):</p>
+
+{example 'fragments/forms_2'}
+
+<p>The rules: <code>required</code>, <code>email</code>, <code>url</code>, <code>numeric</code>,
+<code>integer</code>, <code>min:n</code> and <code>max:n</code> (a length, or a value with
+<code>numeric</code> or <code>integer</code>), <code>in:a,b,c</code>, <code>regex:/.../</code>,
+<code>same:other_field</code>, <code>accepted</code> and <code>date</code>. An empty field is
+checked for <code>required</code> only. A rule name nothing knows is an error.</p>
+
+<h2>After a failed post</h2>
+
+<p>The fields of the form that came back show the message beside them, in the words of their
+own label, tied to the field with <code>aria-invalid</code> and
+<code>aria-describedby</code> so a screen reader reads them together. Here the post is
+pretended in the PHP, the way a visitor's would arrive:</p>
+
+{example 'fragments/forms_3'}
+
+<p>After a post that passes, store it and send the visitor on with <code>padRedirect ()</code>:
+a refresh of the page they land on does not post a second time.</p>

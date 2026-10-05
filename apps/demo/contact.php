@@ -1,41 +1,27 @@
 <?php
 
-  $title = 'Contact Form';
-  $dataFile = DATA . 'demo/messages.json';
+  $title      = 'Contact Form';
+  $dataFile   = DATA . 'demo/messages.json';
   $successMsg = isset ( $sent ) ? 'Thank you for your message! We will get back to you soon.' : '';
-  $error = '';
-  $errors = [];
+  $errors     = [];
 
   if ( ! is_dir ( DATA . 'demo' ) )
     @mkdir ( DATA . 'demo', 0755, TRUE );
 
-  $formName    = $name    ?? '';
-  $formEmail   = $email   ?? '';
-  $formSubject = $subject ?? '';
-  $formMessage = $message ?? '';
+  // The rules say what a valid message is; padValidate answers one message per field that
+  // breaks them, and the {input} and {textarea} of contact.pad show each beside its field,
+  // refilled with what was typed.
 
-  if ( $_SERVER['REQUEST_METHOD'] == 'POST' && ( $action ?? '' ) == 'send' ) {
+  if ( padPosted ( 'contact' ) ) {
 
-    $formName    = trim ( $formName );
-    $formEmail   = trim ( $formEmail );
-    $formSubject = trim ( $formSubject );
-    $formMessage = trim ( $formMessage );
+    $errors = padValidate ( [
+      'name'    => 'required|max:100',
+      'email'   => 'required|email',
+      'subject' => 'required|max:200',
+      'message' => 'required|max:2000',
+    ] );
 
-    if ( ! $formName )
-      $errors [] = [ 'field' => 'Name is required' ];
-
-    if ( ! $formEmail )
-      $errors [] = [ 'field' => 'Email is required' ];
-    elseif ( ! filter_var ( $formEmail, FILTER_VALIDATE_EMAIL ) )
-      $errors [] = [ 'field' => 'Please enter a valid email address' ];
-
-    if ( ! $formSubject )
-      $errors [] = [ 'field' => 'Subject is required' ];
-
-    if ( ! $formMessage )
-      $errors [] = [ 'field' => 'Message is required' ];
-
-    if ( empty ( $errors ) ) {
+    if ( ! $errors ) {
 
       $messages = [];
       if ( file_exists ( $dataFile ) ) {
@@ -44,10 +30,10 @@
       }
 
       $messages [] = [
-        'name'    => htmlspecialchars ( $formName ),
-        'email'   => htmlspecialchars ( $formEmail ),
-        'subject' => htmlspecialchars ( $formSubject ),
-        'message' => htmlspecialchars ( $formMessage ),
+        'name'    => htmlspecialchars ( trim ( $_POST ['name']    ) ),
+        'email'   => htmlspecialchars ( trim ( $_POST ['email']   ) ),
+        'subject' => htmlspecialchars ( trim ( $_POST ['subject'] ) ),
+        'message' => htmlspecialchars ( trim ( $_POST ['message'] ) ),
         'date'    => date ( 'Y-m-d H:i:s' )
       ];
 
@@ -59,8 +45,7 @@
 
       padRedirect ( 'contact', [ 'sent' => 1 ] );
     }
-    else
-      $error = 'Please correct the errors below.';
+
   }
 
   $hasErrors = count ( $errors ) > 0;

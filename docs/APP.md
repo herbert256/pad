@@ -681,6 +681,37 @@ PAD automatically makes POST form fields available as PHP variables matching the
 ?>
 ```
 
+### Form Fields and Validation
+`{form}`, `{input}` and `{textarea}` write fields that refill from the post and show the
+message `padValidate` found for them:
+
+```html
+{form 'contact'}
+  {input 'email', type='email', label='E-mail', required}
+  {textarea 'message', label='Message', rows=6}
+  <button>Send</button>
+{/form}
+```
+
+```php
+<?php
+  if ( padPosted ( 'contact' ) ) {
+    $errors = padValidate ( [ 'email'   => 'required|email',
+                              'message' => 'required|max:2000' ] );
+    if ( ! $errors ) {
+      // store it ...
+      padRedirect ( 'contact', [ 'sent' => 1 ] );
+    }
+  }
+?>
+```
+
+`padValidate($rules, $data = posted, $messages = [])` answers one message per failing field;
+the rules are `required`, `email`, `url`, `numeric`, `integer`, `min:n`, `max:n`,
+`in:a,b,c`, `regex:/.../`, `same:field`, `accepted`, `date`. An empty field is checked for
+`required` only. The field shows the message in the words of its own label, with
+`aria-invalid` and `aria-describedby`.
+
 ### CSRF Protection
 With `$padCsrf = TRUE` in `_config/config.php`, every `<form method="post">` that posts back
 to the site gets a hidden `padCsrfToken` field holding the token of the visitor's session,

@@ -1,0 +1,219 @@
+/^\<h1\>Forms\<\/h1\>
+
+\<p\>\<b\>\{form\}\<\/b\>, \<b\>\{input\}\<\/b\> and \<b\>\{textarea\}\<\/b\> write the fields of a form\. When the
+form comes back with mistakes in it, each field shows again what was typed \- escaped \- and
+the message for its mistake beside it\. \<code\>padValidate\<\/code\> in the page's PHP finds the
+mistakes\.\<\/p\>
+
+
+
+ 
+
+
+
+   
+    \<table border\="1" cellpadding\="10" cellspacing\="0"\>
+  
+
+  
+
+      
+          \<tr\>
+          
+            \<th bgcolor\="\#dddddd"\>
+              PHP \<br\>\<font size\="\-2"\>\<\/font\>
+            \<\/th\>
+          
+          
+            \<th bgcolor\="\#dddddd"\>
+              HTML \<br\>\<font size\="\-2"\>fragments\/forms_1\.pad\<\/font\>
+            \<\/th\>
+          
+          
+            \<th bgcolor\="\#dddddd"\>
+              Result
+            \<\/th\>
+          
+        \<\/tr\>
+      
+
+      \<tr\>
+        
+          \<td style\="vertical\-align\:top"\> \<\/td\>
+        
+        
+          \<td style\="vertical\-align\:top"\>\<pre\>\<code style\="color\: \#000000"\>\<b\>\{\<font color\="blue"\>form \<\/font\>\<font color\="red"\>\<font color\="black"\>'\<\/font\>contact\<font color\="black"\>'\<\/font\>\<\/font\>\}\<\/b\>\<br\>  \<b\>\{\<font color\="blue"\>input \<\/font\>\<font color\="red"\>\<font color\="black"\>'\<\/font\>email\<font color\="black"\>'\<\/font\>\<font color\="black"\>,\<\/font\> type\=\<font color\="black"\>'\<\/font\>email\<font color\="black"\>'\<\/font\>\<font color\="black"\>,\<\/font\> label\=\<font color\="black"\>'\<\/font\>E\-mail\<font color\="black"\>'\<\/font\>\<font color\="black"\>,\<\/font\> required\<\/font\>\}\<\/b\>\<br\>  \<b\>\{\<font color\="blue"\>textarea \<\/font\>\<font color\="red"\>\<font color\="black"\>'\<\/font\>message\<font color\="black"\>'\<\/font\>\<font color\="black"\>,\<\/font\> label\=\<font color\="black"\>'\<\/font\>Message\<font color\="black"\>'\<\/font\>\<font color\="black"\>,\<\/font\> rows\=3\<\/font\>\}\<\/b\>\<br\>  &lt;button&gt;Send&lt;\/button&gt;\<br\>\<b\>\{\/\<font color\="blue"\>form\<\/font\>\<font color\="red"\>\<\/font\>\}\<\/b\>\<\/code\>\<\/pre\>\<\/td\>
+        
+        
+          \<td style\="vertical\-align\:top"\>
+  \<form method\="post"\>\<input type\="hidden" name\="padCsrfToken" value\="[0-9a-f]{64}"\>\<input type\="hidden" name\="padForm" value\="contact"\>
+  \<label for\="email"\>E\-mail\<\/label\>\<input type\="email" name\="email" id\="email" value\="" required\>
+  \<label for\="message"\>Message\<\/label\>\<textarea name\="message" id\="message" rows\="3"\>\<\/textarea\>
+  \<button\>Send\<\/button\>
+\<\/form\>
+
+\<\/td\>
+        
+      \<\/tr\>
+
+    
+
+  
+    \<\/table\>
+  
+
+
+
+
+
+\<ul\>
+  \<li\>\<b\>\{form\}\<\/b\> posts back to the page and carries the session's CSRF token \(see
+  \<a href\="\/pad\/manual\/\?pages\/csrf_protection"\>Csrf protection\<\/a\>\) and its name\: \<code\>padPosted \( 'contact' \)\<\/code\> is true when
+  this form came back, so a page with two forms knows which one did\.\<\/li\>
+  \<li\>\<b\>\{input\}\<\/b\> and \<b\>\{textarea\}\<\/b\> take the field name first; \<code\>label\=\<\/code\> writes a
+  label tied to the field, \<code\>value\=\<\/code\> the value before anything was posted, and every
+  other item is an attribute of the field, as \<b\>\{attrs\}\<\/b\> writes it \- \<code\>required\<\/code\>,
+  \<code\>rows\=6\<\/code\>, \<code\>placeholder\='\.\.\.'\<\/code\>\.\<\/li\>
+  \<li\>A checkbox or radio is checked when the posted value is its own value; a password or
+  file field is never refilled\.\<\/li\>
+\<\/ul\>
+
+\<h2\>Validation\<\/h2\>
+
+\<p\>\<code\>padValidate \( \$rules \)\<\/code\> checks the posted values and answers one message per
+field that breaks a rule, keyed by the field \- empty when all is well\. A second argument
+checks other data; a third replaces messages, per field \(\<code\>'email'\<\/code\>\) or per field
+and rule \(\<code\>'email\.required'\<\/code\>\)\:\<\/p\>
+
+
+
+ 
+
+
+
+   
+    \<table border\="1" cellpadding\="10" cellspacing\="0"\>
+  
+
+  
+
+      
+          \<tr\>
+          
+            \<th bgcolor\="\#dddddd"\>
+              PHP \<br\>\<font size\="\-2"\>fragments\/forms_2\.php\<\/font\>
+            \<\/th\>
+          
+          
+            \<th bgcolor\="\#dddddd"\>
+              HTML \<br\>\<font size\="\-2"\>fragments\/forms_2\.pad\<\/font\>
+            \<\/th\>
+          
+          
+            \<th bgcolor\="\#dddddd"\>
+              Result
+            \<\/th\>
+          
+        \<\/tr\>
+      
+
+      \<tr\>
+        
+          \<td style\="vertical\-align\:top"\>\<pre\>\<code style\="color\: \#000000"\>\<span style\="color\: \#0000BB"\>&lt;\?php\<br\>\<br\>  \$errors \<\/span\>\<span style\="color\: \#007700"\>\= \<\/span\>\<span style\="color\: \#0000BB"\>padValidate \<\/span\>\<span style\="color\: \#007700"\>\(\<br\>    \[ \<\/span\>\<span style\="color\: \#DD0000"\>'email'   \<\/span\>\<span style\="color\: \#007700"\>\=&gt; \<\/span\>\<span style\="color\: \#DD0000"\>'required\|email'\<\/span\>\<span style\="color\: \#007700"\>,\<br\>      \<\/span\>\<span style\="color\: \#DD0000"\>'message' \<\/span\>\<span style\="color\: \#007700"\>\=&gt; \<\/span\>\<span style\="color\: \#DD0000"\>'required\|max\:20' \<\/span\>\<span style\="color\: \#007700"\>\],\<br\>    \[ \<\/span\>\<span style\="color\: \#DD0000"\>'email'   \<\/span\>\<span style\="color\: \#007700"\>\=&gt; \<\/span\>\<span style\="color\: \#DD0000"\>'ann@'\<\/span\>\<span style\="color\: \#007700"\>,\<br\>      \<\/span\>\<span style\="color\: \#DD0000"\>'message' \<\/span\>\<span style\="color\: \#007700"\>\=&gt; \<\/span\>\<span style\="color\: \#DD0000"\>'' \<\/span\>\<span style\="color\: \#007700"\>\] \);\<br\>\<br\>\<\/span\>\<span style\="color\: \#0000BB"\>\?&gt;\<br\>\<\/span\>\<\/code\>\<\/pre\> \<\/td\>
+        
+        
+          \<td style\="vertical\-align\:top"\>\<pre\>\<code style\="color\: \#000000"\>&lt;ul&gt;\<br\>  \<b\>\{\<font color\="blue"\>errors\<\/font\>\<font color\="red"\>\<\/font\>\}\<\/b\>&lt;li&gt;\<b\>\{\<font color\="green"\>\<font color\="red"\>\$\<\/font\>errors\<\/font\>\}\<\/b\>&lt;\/li&gt;\<b\>\{\/\<font color\="blue"\>errors\<\/font\>\<font color\="red"\>\<\/font\>\}\<\/b\>\<br\>&lt;\/ul&gt;\<\/code\>\<\/pre\>\<\/td\>
+        
+        
+          \<td style\="vertical\-align\:top"\>
+  \<ul\>
+  \<li\>Email must be a valid e\-mail address\<\/li\>\<li\>Message is required\<\/li\>
+\<\/ul\>
+
+\<\/td\>
+        
+      \<\/tr\>
+
+    
+
+  
+    \<\/table\>
+  
+
+
+
+
+
+\<p\>The rules\: \<code\>required\<\/code\>, \<code\>email\<\/code\>, \<code\>url\<\/code\>, \<code\>numeric\<\/code\>,
+\<code\>integer\<\/code\>, \<code\>min\:n\<\/code\> and \<code\>max\:n\<\/code\> \(a length, or a value with
+\<code\>numeric\<\/code\> or \<code\>integer\<\/code\>\), \<code\>in\:a,b,c\<\/code\>, \<code\>regex\:\/\.\.\.\/\<\/code\>,
+\<code\>same\:other_field\<\/code\>, \<code\>accepted\<\/code\> and \<code\>date\<\/code\>\. An empty field is
+checked for \<code\>required\<\/code\> only\. A rule name nothing knows is an error\.\<\/p\>
+
+\<h2\>After a failed post\<\/h2\>
+
+\<p\>The fields of the form that came back show the message beside them, in the words of their
+own label, tied to the field with \<code\>aria\-invalid\<\/code\> and
+\<code\>aria\-describedby\<\/code\> so a screen reader reads them together\. Here the post is
+pretended in the PHP, the way a visitor's would arrive\:\<\/p\>
+
+
+
+ 
+
+
+
+   
+    \<table border\="1" cellpadding\="10" cellspacing\="0"\>
+  
+
+  
+
+      
+          \<tr\>
+          
+            \<th bgcolor\="\#dddddd"\>
+              PHP \<br\>\<font size\="\-2"\>fragments\/forms_3\.php\<\/font\>
+            \<\/th\>
+          
+          
+            \<th bgcolor\="\#dddddd"\>
+              HTML \<br\>\<font size\="\-2"\>fragments\/forms_3\.pad\<\/font\>
+            \<\/th\>
+          
+          
+            \<th bgcolor\="\#dddddd"\>
+              Result
+            \<\/th\>
+          
+        \<\/tr\>
+      
+
+      \<tr\>
+        
+          \<td style\="vertical\-align\:top"\>\<pre\>\<code style\="color\: \#000000"\>\<span style\="color\: \#0000BB"\>&lt;\?php\<br\>\<br\>  \<\/span\>\<span style\="color\: \#FF8000"\>\/\/ As if the form had been posted with these values\.\<br\>\<br\>  \<\/span\>\<span style\="color\: \#0000BB"\>\$_SERVER \<\/span\>\<span style\="color\: \#007700"\>\[\<\/span\>\<span style\="color\: \#DD0000"\>'REQUEST_METHOD'\<\/span\>\<span style\="color\: \#007700"\>\] \= \<\/span\>\<span style\="color\: \#DD0000"\>'POST'\<\/span\>\<span style\="color\: \#007700"\>;\<br\>  \<\/span\>\<span style\="color\: \#0000BB"\>\$_POST \<\/span\>\<span style\="color\: \#007700"\>\= \[ \<\/span\>\<span style\="color\: \#DD0000"\>'email' \<\/span\>\<span style\="color\: \#007700"\>\=&gt; \<\/span\>\<span style\="color\: \#DD0000"\>'ann@'\<\/span\>\<span style\="color\: \#007700"\>, \<\/span\>\<span style\="color\: \#DD0000"\>'message' \<\/span\>\<span style\="color\: \#007700"\>\=&gt; \<\/span\>\<span style\="color\: \#DD0000"\>'Hello' \<\/span\>\<span style\="color\: \#007700"\>\];\<br\>\<br\>  \<\/span\>\<span style\="color\: \#0000BB"\>\$errors \<\/span\>\<span style\="color\: \#007700"\>\= \<\/span\>\<span style\="color\: \#0000BB"\>padValidate \<\/span\>\<span style\="color\: \#007700"\>\( \[ \<\/span\>\<span style\="color\: \#DD0000"\>'email' \<\/span\>\<span style\="color\: \#007700"\>\=&gt; \<\/span\>\<span style\="color\: \#DD0000"\>'required\|email'\<\/span\>\<span style\="color\: \#007700"\>, \<\/span\>\<span style\="color\: \#DD0000"\>'message' \<\/span\>\<span style\="color\: \#007700"\>\=&gt; \<\/span\>\<span style\="color\: \#DD0000"\>'required' \<\/span\>\<span style\="color\: \#007700"\>\] \);\<br\>\<br\>\<\/span\>\<span style\="color\: \#0000BB"\>\?&gt;\<br\>\<\/span\>\<\/code\>\<\/pre\> \<\/td\>
+        
+        
+          \<td style\="vertical\-align\:top"\>\<pre\>\<code style\="color\: \#000000"\>\<b\>\{\<font color\="blue"\>input \<\/font\>\<font color\="red"\>\<font color\="black"\>'\<\/font\>email\<font color\="black"\>'\<\/font\>\<font color\="black"\>,\<\/font\> type\=\<font color\="black"\>'\<\/font\>email\<font color\="black"\>'\<\/font\>\<font color\="black"\>,\<\/font\> label\=\<font color\="black"\>'\<\/font\>E\-mail\<font color\="black"\>'\<\/font\>\<\/font\>\}\<\/b\>\<br\>\<b\>\{\<font color\="blue"\>textarea \<\/font\>\<font color\="red"\>\<font color\="black"\>'\<\/font\>message\<font color\="black"\>'\<\/font\>\<font color\="black"\>,\<\/font\> label\=\<font color\="black"\>'\<\/font\>Message\<font color\="black"\>'\<\/font\>\<font color\="black"\>,\<\/font\> rows\=3\<\/font\>\}\<\/b\>\<\/code\>\<\/pre\>\<\/td\>
+        
+        
+          \<td style\="vertical\-align\:top"\>
+  \<label for\="email"\>E\-mail\<\/label\>\<input type\="email" name\="email" id\="email" value\="ann@" aria\-invalid\="true" aria\-describedby\="email\-error"\>\<span class\="error" id\="email\-error"\>E\-mail must be a valid e\-mail address\<\/span\>
+\<label for\="message"\>Message\<\/label\>\<textarea name\="message" id\="message" rows\="3"\>Hello\<\/textarea\>
+
+\<\/td\>
+        
+      \<\/tr\>
+
+    
+
+  
+    \<\/table\>
+  
+
+
+
+
+
+\<p\>After a post that passes, store it and send the visitor on with \<code\>padRedirect \(\)\<\/code\>\:
+a refresh of the page they land on does not post a second time\.\<\/p\>$/

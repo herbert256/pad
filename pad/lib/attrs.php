@@ -10,13 +10,13 @@
   // name is an HTML attribute name; an item without one is [ '', expression ]).
 
   // Whether the tag on this level takes its items raw - the built-in {attrs}, {classes},
-  // {trans} and {debug}.
+  // {trans}, {debug}, and the form tags {form}, {input} and {textarea}.
 
   function padParmsRaw () {
 
     global $pad, $padTag, $padType;
 
-    return in_array ( $padTag [$pad] ?? '', [ 'attrs', 'classes', 'trans', 'debug' ] ) and ( $padType [$pad] ?? '' ) == 'pad';
+    return in_array ( $padTag [$pad] ?? '', [ 'attrs', 'classes', 'trans', 'debug', 'form', 'input', 'textarea' ] ) and ( $padType [$pad] ?? '' ) == 'pad';
 
   }
 

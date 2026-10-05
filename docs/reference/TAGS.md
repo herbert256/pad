@@ -529,6 +529,58 @@ checks a post by hand. A page carrying a token is not stored in the page cache.
 
 ---
 
+### form
+A form that posts back to the page, carrying the session's CSRF token and its own name.
+
+```html
+{form 'contact', class='wide'}
+  {input 'email', type='email', label='E-mail', required}
+  {textarea 'message', label='Message', rows=6}
+  <button>Send</button>
+{/form}
+```
+
+**Items:** the form's name first; `method='get'` for a form that does not post; every other
+item is an attribute of the `<form>` tag (`action=`, `class=`, `enctype=`), written as
+`{attrs}` writes them.
+
+**Behavior:** A posting form gets the hidden `padCsrfToken` field and a hidden `padForm`
+field holding its name - `padPosted('contact')` is TRUE when this form came back. The fields
+inside refill only when their own form came back; a `{form method='get'}` refills from the
+query string.
+
+---
+
+### input
+A form field that refills from what was posted and shows the error `padValidate` found for it.
+
+```html
+{input 'email', type='email', label='E-mail', required, placeholder='you@example.org'}
+{input 'terms', type='checkbox', label='I agree', value='yes'}
+```
+
+**Items:** the field name first; `type=` (default `text`), `label=` (a `<label for>` before
+the field, after a checkbox or radio), `value=` (the value before anything was posted),
+`id=` (default: the name), `checked` (a checkbox's state before a post); every other item is
+an attribute of the field.
+
+**Behavior:** After a post of its form the field shows the posted value, escaped; a checkbox
+or radio is checked when the posted value is its own; a password or file field is never
+refilled. When `padValidate` reported the field, its message follows in
+`<span class="error" id="<id>-error">`, worded with the field's label, and the field gets
+`aria-invalid="true"` and `aria-describedby`.
+
+---
+
+### textarea
+`{input}`'s refill, label and error for a text area.
+
+```html
+{textarea 'message', label='Message', rows=6, required}
+```
+
+---
+
 ## File Operation Tags
 
 ### files
@@ -1264,6 +1316,9 @@ Resume a previously ceased sequence iteration.
 | `csrf` | Web | Hidden CSRF token field of the session |
 | `push` | Layout | Add rendered text to a named stack |
 | `stack` | Layout | Print a stack, filled in after the page has rendered |
+| `form` | Web | Form with CSRF token and name, its fields refill |
+| `input` | Web | Form field with refill, label and validation error |
+| `textarea` | Web | Text area with refill, label and validation error |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
 | `file` | Files | Write file |
