@@ -504,6 +504,27 @@ number with a fraction is reported; a value that is not a number goes through un
 
 <!-- pipes: dates -->
 
+### ago
+
+`ago(from)` says how long ago a moment was, in words - the `padAgo` helper
+([HELPERS.md](HELPERS.md#dates-and-logging)) in a template:
+
+| Function | Parameters | Description |
+|----------|------------|-------------|
+| `ago` | [from] | The age of a timestamp or date in words, counted from now - or from `from` |
+
+```
+{$created | ago}                 → 'just now', '5 minutes ago', 'yesterday', '3 weeks ago'
+{$deadline | ago}                → 'in 2 hours', 'tomorrow', 'in 3 days'
+{$start | ago($end)}             → counted from $end instead of now
+{echo '2026-10-04' | ago}        → 'yesterday' on 5 October 2026
+```
+
+The value is a Unix timestamp or a date in text; now is the one `padNowFreeze` fixed, when a
+page froze the clock. Under ten seconds is `just now`, then seconds, minutes and hours; from a
+day on the calendar counts - `yesterday`, days, weeks, months, years. An empty value answers
+empty; a value that is no date answers empty too, and the strict check names it.
+
 
 ## Function Summary by Category
 

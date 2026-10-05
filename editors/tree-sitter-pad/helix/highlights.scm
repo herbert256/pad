@@ -94,23 +94,23 @@
 
 ((function_name) @function.builtin
   (#any-of? @function.builtin
-    "abbreviate" "after" "afterLast" "before" "beforeLast" "between" "bold" "bytes"
-    "capitalize" "close" "contains" "currency" "cut" "date" "default" "encodeHigh"
-    "escape" "exists" "html" "ignore" "in" "left" "like" "localDate"
-    "lookup" "lower" "markdown" "matches" "max_len" "mid" "nbsp" "now"
-    "open" "optional" "ordinal" "range" "replace" "right" "sanitize" "slashes"
-    "slug" "stripLow" "stripslashes" "substr" "tag" "time" "timestamp" "trans"
-    "trim" "truncate" "ucwords" "upper" "url" "white"))
+    "abbreviate" "after" "afterLast" "ago" "before" "beforeLast" "between" "bold"
+    "bytes" "capitalize" "close" "contains" "currency" "cut" "date" "default"
+    "encodeHigh" "escape" "exists" "html" "ignore" "in" "left" "like"
+    "localDate" "lookup" "lower" "markdown" "matches" "max_len" "mid" "nbsp"
+    "now" "open" "optional" "ordinal" "range" "replace" "right" "sanitize"
+    "slashes" "slug" "stripLow" "stripslashes" "substr" "tag" "time" "timestamp"
+    "trans" "trim" "truncate" "ucwords" "upper" "url" "white"))
 
 ((function_name) @function
   (#not-any-of? @function
-    "abbreviate" "after" "afterLast" "before" "beforeLast" "between" "bold" "bytes"
-    "capitalize" "close" "contains" "currency" "cut" "date" "default" "encodeHigh"
-    "escape" "exists" "html" "ignore" "in" "left" "like" "localDate"
-    "lookup" "lower" "markdown" "matches" "max_len" "mid" "nbsp" "now"
-    "open" "optional" "ordinal" "range" "replace" "right" "sanitize" "slashes"
-    "slug" "stripLow" "stripslashes" "substr" "tag" "time" "timestamp" "trans"
-    "trim" "truncate" "ucwords" "upper" "url" "white"))
+    "abbreviate" "after" "afterLast" "ago" "before" "beforeLast" "between" "bold"
+    "bytes" "capitalize" "close" "contains" "currency" "cut" "date" "default"
+    "encodeHigh" "escape" "exists" "html" "ignore" "in" "left" "like"
+    "localDate" "lookup" "lower" "markdown" "matches" "max_len" "mid" "nbsp"
+    "now" "open" "optional" "ordinal" "range" "replace" "right" "sanitize"
+    "slashes" "slug" "stripLow" "stripslashes" "substr" "tag" "time" "timestamp"
+    "trans" "trim" "truncate" "ucwords" "upper" "url" "white"))
 
 (arguments
   (identifier) @attribute

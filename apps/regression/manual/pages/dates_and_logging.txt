@@ -1,0 +1,262 @@
+<p>A page's PHP asks for the date all the time: to stamp a record, to say how old a comment
+is, to write down what happened. These helpers give "now" in the application's timezone, read
+a date whatever form it arrives in, put an age into words and keep a log of the
+application's own - plain functions, loaded on every request.</p>
+
+<table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
+  <tr><th>function</th><th>what it answers</th></tr>
+  <tr><td><code>padNow ( $format = NULL )</code></td><td>now, as a <code>DateTimeImmutable</code> in <code>$padTimezone</code> (else PHP's zone) - or, with a format, the formatted text</td></tr>
+  <tr><td><code>padToday ( $format = NULL )</code></td><td>today at midnight</td></tr>
+  <tr><td><code>padNowFreeze ( $time = NULL )</code></td><td>fixes now for the rest of the request; <code>NULL</code> lets the clock run again</td></tr>
+  <tr><td><code>padDateParse ( $value )</code></td><td>a <code>DateTimeImmutable</code> from a timestamp, a date in text or a date object - <code>NULL</code> for what is none of those</td></tr>
+  <tr><td><code>padAgo ( $date, $now = NULL )</code></td><td>the age in words: just now, 5 minutes ago, yesterday, in 3 days</td></tr>
+  <tr><td><code>padLog ( $message, $level = 'info', $context = [] )</code></td><td>appends one line to the application's log of the day</td></tr>
+</table>
+
+<h2>Now and today</h2>
+
+<p>The example freezes the clock first, so it shows the same on every day it is read - what a
+test does too. Without the freeze, now is the real moment.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/dates_and_logging_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/dates_and_logging_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  padNowFreeze </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-10-05 14:30:00' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$now       </span><span style="color: #007700">= </span><span style="color: #0000BB">padNow </span><span style="color: #007700">( </span><span style="color: #DD0000">'l j F Y, H:i' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$today     </span><span style="color: #007700">= </span><span style="color: #0000BB">padToday </span><span style="color: #007700">( </span><span style="color: #DD0000">'Y-m-d H:i:s' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$christmas </span><span style="color: #007700">= </span><span style="color: #0000BB">padDateParse </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-12-25' </span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">format </span><span style="color: #007700">( </span><span style="color: #DD0000">'l j F' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$nextWeek  </span><span style="color: #007700">= </span><span style="color: #0000BB">padDateParse </span><span style="color: #007700">( </span><span style="color: #DD0000">'+1 week' </span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">format </span><span style="color: #007700">( </span><span style="color: #DD0000">'Y-m-d' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$nothing   </span><span style="color: #007700">= ( </span><span style="color: #0000BB">padDateParse </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-02-30' </span><span style="color: #007700">) === </span><span style="color: #0000BB">NULL </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'NULL' </span><span style="color: #007700">: </span><span style="color: #DD0000">'a date'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;Now: <b>{<font color="green"><font color="red">$</font>now</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Today: <b>{<font color="green"><font color="red">$</font>today</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Christmas: <b>{<font color="green"><font color="red">$</font>christmas</font>}</b>&lt;/p&gt;<br>&lt;p&gt;A week from now: <b>{<font color="green"><font color="red">$</font>nextWeek</font>}</b>&lt;/p&gt;<br>&lt;p&gt;30 February: <b>{<font color="green"><font color="red">$</font>nothing</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>Now: Monday 5 October 2026, 14:30</p>
+<p>Today: 2026-10-05 00:00:00</p>
+<p>Christmas: Friday 25 December</p>
+<p>A week from now: 2026-10-12</p>
+<p>30 February: NULL</p>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<ul>
+  <li>A number is a Unix timestamp, as the <code>date</code> pipe reads it; text is read the
+  way PHP's <code>DateTime</code> reads it. A timestamp and text without a zone are in the
+  application's zone; a zone that was given is kept.</li>
+  <li>A date that does not exist - <code>2026-02-30</code>, which PHP itself would make
+  2 March - is no date, nor are <code>NULL</code>, <code>''</code> and booleans:
+  <code>padDateParse</code> answers <code>NULL</code> for them, never an error.</li>
+  <li><code>$padTimezone</code> is read when a function is called, so a page can set it for
+  itself.</li>
+</ul>
+
+<h2>Freezing the clock</h2>
+
+<p><code>padNowFreeze ( '2026-10-05 14:30:00' )</code> fixes now for the rest of the request:
+<code>padNow</code>, <code>padToday</code>, <code>padAgo</code>, the time stamp of
+<code>padLog</code>, and text like <code>tomorrow</code> or <code>+1 week</code> given to
+<code>padDateParse</code> all count from that moment. A test gets the same answer on every
+run, and a page can be looked at as it will be on another day.
+<code>padNowFreeze ()</code> lets the clock run again.</p>
+
+<h2>How long ago</h2>
+
+<p><code>padAgo</code> says the age of a moment in words, and the <code>ago</code> pipe does
+the same in a template: <code>{$posted | ago}</code>.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/dates_and_logging_2.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/dates_and_logging_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  padNowFreeze </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-10-05 14:30:00' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$comments </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'author' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-05 14:29:55' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'author' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-05 14:12:00' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'author' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Cleo'</span><span style="color: #007700">, </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-04 09:00:00' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'author' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Dirk'</span><span style="color: #007700">, </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-09-20 18:00:00' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'author' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Eve'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2025-06-01' </span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #0000BB">$deadline </span><span style="color: #007700">= </span><span style="color: #0000BB">padAgo </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-10-08 12:00' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;ul&gt;<br><b>{<font color="blue">comments</font><font color="red"></font>}</b><br>  &lt;li&gt;<b>{<font color="green"><font color="red">$</font>author</font>}</b> - <b>{<font color="green">$posted</font> <font color="black">|</font> <font color="blue">ago</font>}</b>&lt;/li&gt;<br><b>{/<font color="blue">comments</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br>&lt;p&gt;The deadline is <b>{<font color="green"><font color="red">$</font>deadline</font>}</b>.&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <ul>
+
+  <li>Ann - just now</li>
+
+  <li>Bob - 18 minutes ago</li>
+
+  <li>Cleo - yesterday</li>
+
+  <li>Dirk - 2 weeks ago</li>
+
+  <li>Eve - 1 year ago</li>
+
+</ul>
+<p>The deadline is in 3 days.</p>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<ul>
+  <li>Under ten seconds is <em>just now</em>, then seconds, minutes and hours. From a day on
+  the calendar counts: the day before today is <em>yesterday</em> whatever the hour, then
+  days, weeks, months and years.</li>
+  <li>A moment still to come is said the other way round: <em>in 3 days</em>,
+  <em>tomorrow</em>.</li>
+  <li>A second argument - <code>padAgo ( $start, $end )</code>, or
+  <code>{$start | ago($end)}</code> - counts from that moment instead of now. An
+  empty value answers nothing.</li>
+</ul>
+
+<h2>Logging</h2>
+
+<p><code>padLog</code> appends one line to
+<code>DATA/logs/&lt;application&gt;/&lt;Y-m-d&gt;.log</code>: the time, the level, the
+message and the context as JSON. The levels are those of PSR-3 - debug, info, notice,
+warning, error, critical, alert and emergency - and <code>{name}</code> in the
+message is filled from the context.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/dates_and_logging_3.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/dates_and_logging_3.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  padNowFreeze </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-10-05 14:30:00' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">padLog </span><span style="color: #007700">( </span><span style="color: #DD0000">'Order {order} paid by {customer}'</span><span style="color: #007700">, </span><span style="color: #DD0000">'info'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1042</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann' </span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">$lines </span><span style="color: #007700">= </span><span style="color: #0000BB">file </span><span style="color: #007700">( </span><span style="color: #0000BB">DATA </span><span style="color: #007700">. </span><span style="color: #DD0000">"logs/</span><span style="color: #0000BB">$padApp</span><span style="color: #DD0000">/2026-10-05.log"</span><span style="color: #007700">, </span><span style="color: #0000BB">FILE_IGNORE_NEW_LINES </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$line  </span><span style="color: #007700">= </span><span style="color: #0000BB">end </span><span style="color: #007700">( </span><span style="color: #0000BB">$lines </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>line</font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <pre>2026-10-05 14:30:00 INFO Order 1042 paid by Ann {&quot;order&quot;:1042,&quot;customer&quot;:&quot;Ann&quot;}</pre>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<ul>
+  <li>One call is always one line: a newline in the message is written <code>\n</code>.</li>
+  <li>A message that is no text is written as JSON; a <code>Throwable</code> in the context
+  as its class, message, file and line.</li>
+  <li>A log line never stops the page: a disk that refuses the write is answered
+  <code>FALSE</code>, not an exception. An unknown level is an error, the author's
+  mistake.</li>
+  <li>The engine's own errors go to PHP's error log; this log is for what the application
+  wants to remember - a payment, a login, a failed import.</li>
+</ul>

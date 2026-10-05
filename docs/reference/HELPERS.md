@@ -322,6 +322,92 @@ Edge rules:
 
 <!-- helpers: dates and logging -->
 
+`pad/lib/date.php` and `pad/lib/log.php` - manual page *Dates and logging*.
+
+| Function | Answers |
+|----------|---------|
+| `padNow ( $format = NULL )` | Now as a `DateTimeImmutable` in the application's timezone (`$padTimezone`, else PHP's); with a format the formatted string |
+| `padToday ( $format = NULL )` | Today at midnight, the same way |
+| `padNowFreeze ( $time = NULL )` | Fixes now for the rest of the request - a test, a replay - and answers the frozen moment; `NULL` lets the clock run again and answers `NULL` |
+| `padDateParse ( $value )` | A `DateTimeImmutable` from a Unix timestamp, a date in text or a `DateTimeInterface`; `NULL` for what is none of those |
+| `padAgo ( $date, $now = NULL )` | The age in words, English: `just now`, `30 seconds ago`, `1 minute ago`, `5 hours ago`, `yesterday`, `3 days ago`, `2 weeks ago`, `1 month ago`, `4 years ago` - and `in 2 minutes`, `tomorrow`, ... for a moment to come; counted from `$now` when given |
+| `padLog ( $message, $level = 'info', $context = [] )` | Appends one line to `DATA/logs/<application>/<Y-m-d>.log`; `TRUE` when it was written |
+
+The pipe `ago` is `padAgo` in a template: `{$created | ago}`, `{$start | ago($end)}`
+([FUNCTIONS.md](FUNCTIONS.md#ago)).
+
+```php
+<?php                                         // comments.php
+
+  $comments = db ( "ARRAY * FROM comments ORDER BY posted DESC" );
+  $edited   = padAgo ( $page ['changed'] );                  // '3 hours ago'
+  $deadline = padDateParse ( $order ['due'] ) ?->format ( 'l j F' );
+  $year     = padNow ( 'Y' );
+
+  if ( ! $comments )
+    padLog ( 'No comments for page {page}', 'notice', [ 'page' => $padPage ] );
+
+?>
+```
+
+```php
+<?php                                         // a test, or a look at another day
+
+  padNowFreeze ( '2026-12-24 18:00:00' );
+
+  $now      = padNow ();                      // 2026-12-24 18:00:00, every time
+  $tomorrow = padDateParse ( 'tomorrow' );    // 2026-12-25 00:00:00 - from the frozen now
+  $age      = padAgo ( '2026-12-20' );        // '4 days ago'
+
+  padNowFreeze ();                            // the clock runs again
+
+?>
+```
+
+A log line - `2026-10-05 14:30:00 INFO Order 1042 paid by Ann {"order":1042,"customer":"Ann"}`:
+
+```php
+padLog ( 'Order {order} paid by {customer}', 'info', [ 'order' => 1042, 'customer' => 'Ann' ] );
+padLog ( 'Import failed', 'error', [ 'exception' => $e, 'file' => $name ] );
+```
+
+Edge rules:
+
+- **Timezone.** `$padTimezone` is read when a function is called, so a page's PHP may set it
+  for itself; empty is PHP's own zone, and a name that is no timezone is reported.
+- **What is a date.** A number - `1759660800`, `'1759660800'`, `1759660800.25` - is a Unix
+  timestamp, as the `date` pipe reads it, fraction kept; `0` is 1970-01-01. Text is read the
+  way PHP's `DateTime` reads it, trimmed. A timestamp and text without a zone are in the
+  application's zone; a zone given in the text, or carried by a `DateTimeInterface`, is kept.
+  A `DateTime` becomes a `DateTimeImmutable`; a `DateTimeImmutable` is answered as it is.
+- **What is no date.** `NULL`, `''`, blank text, booleans, arrays, `INF`/`NAN`, text that is
+  no date and a date that does not exist (`2026-02-30`, which PHP would make 2 March) answer
+  `NULL` from `padDateParse` - never an error, since they are what a database or a form hands
+  over. `padAgo ( NULL )` and `padAgo ( '' )` answer `''`; any other value that is no date is
+  reported, and so is a `$now` that is none. `padNowFreeze` reports what it cannot read and
+  leaves the clock as it was.
+- **The frozen clock.** `padNow`, `padToday`, `padAgo`, the `ago` pipe, `padLog`'s time stamp
+  and relative text in `padDateParse` (`tomorrow`, `+1 week`, `10:30` - text that names no
+  date of its own) all follow it; the frozen moment is shown in the application's zone. The
+  `date` and `now` pipes and PHP's own `time ()` do not.
+- **Ago.** Under 10 seconds is `just now`, under a minute seconds, under an hour minutes,
+  under a day hours (whole units, rounded down). From 24 hours on the calendar counts, in the
+  zone of now: the day before is `yesterday` whatever the hour, then days below a week,
+  whole years, whole months, and weeks for the rest. A format given to `padNow`/`padToday`
+  that is no text is reported and answers `''`.
+- **Log levels.** PSR-3's eight - `debug`, `info`, `notice`, `warning`, `error`, `critical`,
+  `alert`, `emergency` - in any case, spaces around them ignored. Another is reported and
+  nothing is written (`FALSE`); so is a context that is no array (`NULL` is no context).
+- **Log message.** Text as it is; `NULL` nothing, a boolean `true`/`false`, a `Throwable`
+  its class and message, anything else JSON. `{name}` (letters, digits, `_`, `.`) is filled
+  from the context the same way when the context has that name, and left as written when it
+  has not. The whole context follows as JSON - a `Throwable` in it as class, message, file
+  and line, a date as `Y-m-d H:i:s`; an empty context writes nothing after the message. CR
+  and LF in the message are written `\r` and `\n`: one call is one line.
+- **Log file.** Made on first use with `$padFileMode`, its directory with `$padDirMode`;
+  appended under a lock. A disk that refuses the write answers `FALSE` - a log line never
+  ends a page. A replayed request (`develop/?replay`) writes nothing and answers `TRUE`.
+
 
 ---
 
