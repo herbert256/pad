@@ -134,4 +134,29 @@
 
   }
 
+  // Nothing here expires by itself, so once per age window - the purged file's mtime says
+  // when the last sweep ran - the stale entries are deleted: a body older than the window,
+  // and a url entry whose body is stale or gone.
+
+  function padCachePurge ( $before ) {
+
+    global $padCacheFile;
+
+    if ( padCacheTime ( 'purged' ) >= $before )
+      return;
+
+    padCacheTouch ( 'purged', $_SERVER['REQUEST_TIME'] );
+
+    foreach ( glob ( $padCacheFile . 'url/*' ) ?: [] as $file ) {
+      $etag = (string) @file_get_contents ( $file );
+      if ( ! padValidName ( $etag ) or padCacheTime ( "etag/$etag" ) < $before )
+        @unlink ( $file );
+    }
+
+    foreach ( glob ( $padCacheFile . 'etag/*' ) ?: [] as $file )
+      if ( is_file ( $file ) and filemtime ( $file ) < $before )
+        @unlink ( $file );
+
+  }
+
 ?>

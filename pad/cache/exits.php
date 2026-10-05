@@ -8,11 +8,12 @@
   // backend that cache/inits.php loaded.
   //
   // The store holds the body and nothing about it, and a hit sends the configured content
-  // type. A page that chose its own type is therefore not stored, and an older copy of it
-  // is dropped: it was stored, and a JSON page went out as application/json the first time
-  // and as text/html from the first hit on - the same bytes, the same ETag.
+  // type and status. A page a hit could not reproduce is therefore not stored, and an
+  // older copy of it is dropped (padCacheStorable): it was stored, and a JSON page went
+  // out as application/json the first time and as text/html from the first hit on - the
+  // same bytes, the same ETag.
 
-  if ( $padContentType !== ( $padCacheContentType ?? $padContentType ) ) {
+  if ( ! padCacheStorable () ) {
 
     if ( $padCacheEtag )
       padCacheDelete ( $padCacheUrl, $padCacheEtag );
@@ -36,5 +37,11 @@
       padCacheStore ($padCacheUrl, $padEtag, $padOutput);
 
   }
+
+  // The file and database backends keep what they store until it is deleted; memcached,
+  // redis and APCu expire it themselves. Once per age window the stale entries go.
+
+  if ( function_exists ( 'padCachePurge' ) )
+    padCachePurge ( $padCacheMax );
 
 ?>

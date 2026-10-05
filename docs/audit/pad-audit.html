@@ -474,14 +474,15 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding ph" id="h10">
+    <div class="finding ph fixed" id="h10">
       <div class="tag"><div class="priority">High</div><div class="cat">Cache / authorization</div></div>
       <div>
-        <h3>The page cache is keyed on the URI alone and answers before the application initialises<span class="live">verified live</span></h3>
+        <h3>The page cache is keyed on the URI alone and answers before the application initialises<span class="live">verified live</span><span class="done">Fixed</span></h3>
         <p class="where">cache/inits.php:20-48,75-82 · cache/hit.php:9-12 · cache/exits.php:10-24 · inits/inits.php:32-35</p>
         <p>When <code>$padCache</code> is on (off by default), the key is <code>padMD5($_SERVER['REQUEST_URI'])</code> — no host, scheme, cookie, session or application component. The lookup runs at <code>inits/inits.php:32</code>, <em>before</em> request promotion (<code>:34</code>) and the application build (<code>:35</code>), and a hit includes <code>exits/output.php</code> and ends the request. So a page that shows session or cookie data to the first visitor — including that visitor's <code>padSesID</code>, which <code>{ajax}</code> URLs embed — is served to everyone, and any authorization check in <code>_inits.php</code> or page PHP never runs on a hit. <code>Cache-Control: private</code> does not isolate this server-side cache. Two vhosts with matching paths collide in the shared backends; a request with a forged <code>Host</code> can store a page whose <code>{ajax}</code>/<code>{get}</code> content is attacker-chosen (stored XSS); and the file and db backends never expire anything.</p>
         <div class="ev"><b>Reproduction:</b> file cache, 60 s, gzip off; page PHP <code>$value = $_COOKIE['viewer'] ?? 'anonymous'</code>. <code>GET ?index</code> with <code>Cookie: viewer=Alice</code> → <code>Alice</code>; the same URL with <code>Cookie: viewer=Bob</code> → <b>Alice</b>. Both HTTP 200, same ETag, <code>Cache-Control: private</code>.</div>
         <div class="fix"><b>Fix:</b> restrict shared full-page caching to explicitly public, identity-independent responses; run access checks before cache delivery; partition keys by app, host and intentional variants; bypass requests carrying cookies, a session or <code>Authorization</code> unless an explicit identity-aware policy is configured; add expiry to the file/db backends.</div>
+        <div class="resolved"><b>Fixed:</b> reproduced first: with the file cache, a request carrying <code>Cookie: viewer=Alice</code> got the anonymous visitor's cached page. The cache now holds what an anonymous visitor gets and serves it only to one. A new <code>padCacheIdentity()</code> (in a new <code>lib/cache.php</code>) sends any request carrying a cookie beyond PAD's own <code>padSesID</code>/<code>padReqID</code>, or an Authorization header, past the cache in both directions: answered fresh, never stored. The access checks a hit skips therefore only ever stand between one anonymous visitor and another. The key is <code>padMD5("$padApp $padHost URI")</code>, so two virtual hosts or two applications no longer share pages, and a forged Host stores only for itself. A new <code>padCacheStorable()</code> stores a page only when a hit could reproduce it for anyone: the configured type, status 200, no header beyond <code>X-Powered-By</code> and PAD's two id cookies, and neither of the visitor's ids in the body (an <code>{ajax}</code> page carries the <code>padSesID</code>). The file and db backends gain <code>padCachePurge()</code>, run at most once per age window, which deletes stale bodies and the url entries that point at them; memcached, redis and APCu already expire their own. A new Regression page <code>cache_file/identity</code> fetches the probe anonymously, with a cookie, and anonymously again: <code>cookie fresh: NO</code> against the old code, <code>yes</code> now.</div>
       </div>
     </div>
 
@@ -714,15 +715,16 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm fixed part" id="m23">
+    <div class="finding pm fixed" id="m23">
       <div class="tag"><div class="priority">Medium</div><div class="cat">Cache metadata</div></div>
       <div>
-        <h3>Cache hits lose the response content type<span class="live">verified live</span><span class="done part">Partly fixed</span></h3>
+        <h3>Cache hits lose the response content type<span class="live">verified live</span><span class="done">Fixed</span></h3>
         <p class="where">cache/exits.php:19-22 · cache/hit.php:9-12 · lib/output.php:117-129</p>
         <p>The backends store body, ETag and age — not response metadata. A hit skips page PHP and calls <code>exits/output.php</code>, which sends the default/configured <code>$padContentType</code>. So a page that sets <code>$padContentType = 'application/json'</code> in its PHP is served as JSON on the first request and as <code>text/html; charset=UTF-8</code> on the next, for exactly the same bytes and the same ETag. Any other page-generated response metadata is outside the cached representation too.</p>
         <div class="ev"><b>Reproduction:</b> page PHP <code>$padContentType = 'application/json'</code>, template <code>{ignore}{"audit":true}{/ignore}</code>. First GET: <code>Content-Type: application/json</code>. Second identical GET: <code>text/html; charset=UTF-8</code>. Both bodies <code>{"audit":true}</code>, same ETag.</div>
         <div class="fix"><b>Fix:</b> cache an explicit response envelope — status plus the safe response headers — alongside the body, and restore <code>Content-Type</code> on hits. Decide deliberately which headers may be cached; never replay per-user <code>Set-Cookie</code>.</div>
         <div class="resolved part"><b>Partly fixed:</b> rather than widen every backend to an envelope, a page is cached only when a hit can reproduce it. <code>cache/inits.php</code> records the configured content type (what a hit sends), and <code>cache/exits.php</code> does not store a page that chose another type and drops an older copy of it. Reproduced first: a JSON page went out as <code>application/json</code>, then as <code>text/html</code> from the cache. Now it is JSON every time, and HTML pages cache as before. New Regression pages <code>cache_file/json</code> and <code>cache_file/typed</code> hold it; <code>typed</code> answered <code>second: text/html</code> against the old code. <b>Not done:</b> a status or other header set by page PHP is still outside the cached representation, and such pages are still cached.</div>
+        <div class="resolved"><b>Fixed:</b> the rest, with H10: <code>padCacheStorable()</code> refuses a page whose status is not 200, or that carries a header the page's PHP added (anything beyond <code>X-Powered-By</code> and PAD's two id cookies), since a hit sends neither. Such a page is answered fresh every time, and an older copy of it is dropped.</div>
       </div>
     </div>
 

@@ -2,8 +2,10 @@
 
   // Server-side page cache lookup, run at the start of a request from inits/cache.php.
   //
-  // Caching applies only to plain GET web requests with a non-zero $padCacheServerAge;
-  // anything else clears $padCache and returns. The request URI hashes to $padCacheUrl,
+  // Caching applies only to plain GET web requests with a non-zero $padCacheServerAge,
+  // from a visitor without an identity (padCacheIdentity); anything else clears $padCache
+  // and returns. A hit is answered before the application's _inits.php and page PHP run,
+  // so the cache holds only what an anonymous visitor gets, and serves it only to one. The request URI hashes to $padCacheUrl,
   // the backend named by $padCacheServerType is loaded from cache/types/, and its
   // padCache* functions are asked for the stored ETag and its age. A fresh entry ends the
   // request there and then through cache/hit.php - 304 when the client's own ETag or
@@ -26,6 +28,8 @@
     $padCache = FALSE;
   elseif ( ! $padCacheServerAge )
     $padCache = FALSE;
+  elseif ( padCacheIdentity () )
+    $padCache = FALSE;
 
   if ( ! $padCache )
     return;
@@ -36,7 +40,10 @@
 
   $padCacheContentType = $padContentType;
 
-  $padCacheUrl = padMD5($_SERVER['REQUEST_URI']);
+  // The key is the application, the host and the URI: the URI alone made two virtual
+  // hosts, or two applications under different mounts, share each other's pages.
+
+  $padCacheUrl = padMD5 ( "$padApp $padHost " . $_SERVER['REQUEST_URI'] );
   $padCacheMax = $_SERVER['REQUEST_TIME'] - $padCacheServerAge;
 
   // A miss leaves both empty - cache/exits.php reads them when it stores the page, and on

@@ -80,4 +80,24 @@
 
   }
 
+  // The tables keep what they are given, so once per age window - a marker file under
+  // DATA/cache/ says when the last sweep ran - the stale rows are deleted, and the bodies
+  // no ETag row points at any more.
+
+  function padCachePurge ( $before ) {
+
+    $marker = DATA . 'cache/db-purged';
+
+    if ( file_exists ( $marker ) and filemtime ( $marker ) >= $before )
+      return;
+
+    padFilePut ( $marker, '' );
+    @touch ( $marker, $_SERVER['REQUEST_TIME'] );
+
+    padCacheDb ( "delete from url  where age < {0}", [ $before ] );
+    padCacheDb ( "delete from etag where age < {0}", [ $before ] );
+    padCacheDb ( "delete from data where etag not in ( select etag from etag )" );
+
+  }
+
 ?>
