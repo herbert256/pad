@@ -21,6 +21,11 @@
     return FALSE;
   }
 
+  // Full before a candidate is even made - a count of 0 asks for no rows at all.
+
+  if ( count ( $pqResult ) >= $pqRows )
+    return FALSE;
+
   if ( $pqRandomParm ) $pqParm = include PQ . 'build/parm.php';
   if ( $pqParmStore  ) $pqParm = include PQ . 'build/store.php';
   if ( $pqRandomly   ) $pqLoop = include PQ . 'build/randomly/randomly.php';
@@ -69,7 +74,7 @@
     $pqPlaysHit [] = $pqPlaysSet;
 
   if ( is_numeric ($pq) and $pq >= $pqStop     ) return FALSE;
-  if ( $pqRows and count($pqResult) >= $pqRows ) return FALSE;
+  if ( count($pqResult) >= $pqRows )              return FALSE;
 
   return TRUE;
 

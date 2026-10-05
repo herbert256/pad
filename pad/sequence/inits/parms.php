@@ -22,7 +22,7 @@
   $pqMax  = $pqParms ['maximal']   ?? PHP_INT_MAX ;
 
   $pqInc  = $pqParms ['increment'] ?? 1           ;
-  $pqRows = $pqParms ['rows']      ?? 0           ;
+  $pqRows = $pqParms ['rows']      ?? NULL        ;
   $pqTry  = $pqParms ['try']       ?? 0           ;
 
   $pqStop = $pqParms ['stop']      ?? PHP_INT_MAX ;

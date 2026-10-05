@@ -7,7 +7,7 @@
   // or repeat - claims it first; then an action from actions/double/ or actions/parm/, which
   // are the actions that need one; otherwise whichever of the two is set gets it.
 
-  if ( ! $pqFindParm )
+  if ( (string) $pqFindParm === '' )
     return;
 
       if ( $pqSeq    and file_exists ( PT . "$pqSeq/flags/parm")  ) $pqParm       = $pqFindParm;

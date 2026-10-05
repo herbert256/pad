@@ -26,9 +26,17 @@
     if ( ! $pqTry  ) $pqTry  = $pqMaxTries ;
 
   if ( $pqPull or $pqStop != PHP_INT_MAX or $pqTo != PHP_INT_MAX or in_array ( $pqBuild, [ 'build', 'given' ] ) )
-    if ( ! $pqRows ) $pqRows = PHP_INT_MAX ;
+    if ( $pqRows === NULL or $pqRows === '' ) $pqRows = PHP_INT_MAX ;
 
   if ( ! $pqTry  ) $pqTry  = $padSeqDefaultTries;
-  if ( ! $pqRows ) $pqRows = $padSeqDefaultRows;
+
+  // A count of 0 is a count: no rows. Unset - NULL - takes the default. They used to be one
+  // and the same, so {sequence $n} with $n 0, {loop 0} and rows=0 all ran ten rows; the
+  // engine's own 'no limit' is PHP_INT_MAX now, where it was 0 too.
+
+  if ( $pqRows === NULL or $pqRows === '' )
+    $pqRows = $padSeqDefaultRows;
+
+  $pqRows = (int) $pqRows;
 
 ?>

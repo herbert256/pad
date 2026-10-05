@@ -25,7 +25,7 @@
   $pqPlays         = [];
 
   if ( $pqTo !== PHP_INT_MAX )
-    $pqRows = 0;
+    $pqRows = PHP_INT_MAX;
 
   $pqRandomly      = FALSE;
   $pqRandomlyBuild = TRUE;

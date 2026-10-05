@@ -11,7 +11,10 @@
   // the tag's first positional parameter, and never when the type declares flags/parm or the
   // action is one of actions/double/ or actions/parm/, since then the parameter is theirs.
 
-  if ( $pqSeq or ! $pqFindParm )
+  // A 0 is a count like any other - {sequence $n} with $n 0 asks for no values - so the
+  // tests below are for 'nothing given', not for falsy.
+
+  if ( $pqSeq or (string) $pqFindParm === '' )
     return;
 
   if ( strpos( $pqFindParm, '..' ) ) {
@@ -26,7 +29,7 @@
     $pqFindParm = '';
   }
 
-      if ( ! $pqFindParm                                                  ) return;
+      if ( (string) $pqFindParm === ''                                    ) return;
   elseif ( ! is_numeric ( $pqFindParm )                                   ) return;
   elseif ( ! isset ( $padParms [$pad] [0] ['padPrmKind'] )                ) return;
   elseif ( $padParms [$pad] [0] ['padPrmKind'] != 'parm'                  ) return;

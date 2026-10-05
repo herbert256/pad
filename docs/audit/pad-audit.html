@@ -889,13 +889,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pl" id="a6">
-      <div class="tag"><div class="priority">Open</div><div class="cat">A6 · Sequence</div></div>
+    <div class="finding pl fixed" id="a6">
+      <div class="tag"><div class="priority">Fixed</div><div class="cat">A6 · Sequence</div></div>
       <div>
-        <h3>A count of 0 runs ten rows</h3>
+        <h3>A count of 0 runs ten rows<span class="done">Fixed</span></h3>
         <p class="where">sequence/inits/find/parm/quick.php:14,29 · sequence/inits/limits.php:15-18</p>
         <p><code>{sequence $n}</code> with <code>$n = 0</code>, <code>{loop 0}</code> and <code>rows=0</code> all give 1 … 10: <code>quick.php</code> takes 0 as no count, and <code>limits.php</code> takes rows 0 as unset and fills in the default of 10. But rows 0 is also the engine's own word for "no limit": the <code>randomly</code> fallback sets it on purpose before its first pass, so 0 cannot simply be made to mean "none".</p>
         <div class="fix"><b>Decision:</b> what a count or <code>rows</code> of 0 means to the author. If it is "no rows", the internal "no limit" needs a value of its own first (<code>PHP_INT_MAX</code> or NULL).</div>
+        <div class="resolved"><b>Fixed:</b> decided that a count of 0 means no rows, and gave the engine's own "no limit" a value of its own first, as the card asked. <code>rows</code> is NULL when not given (<code>inits/parms.php</code>) and takes the default only then (<code>inits/limits.php</code>). The randomly fallback's "no limit" is <code>PHP_INT_MAX</code> instead of 0, and the build stops before making a candidate once its rows are full. The find step reads a first parameter of <code>0</code> as given (<code>(string) … !== ''</code> where it tested truth), and so does the quick count. <code>{sequence $n}</code> with <code>$n</code> 0, <code>{sequence prime, rows=0}</code> and <code>{loop 0}</code> all render nothing, where each ran ten rows, while <code>{sequence 3}</code> and an unset count are as before. <code>pqRandomParm()</code> skips a parameter that is not a string, now that NULL can reach it. A framework case pins the four forms.</div>
       </div>
     </div>
 

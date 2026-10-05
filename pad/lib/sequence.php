@@ -50,6 +50,9 @@
 
   function pqRandomParm ( &$parm ) {
 
+    if ( ! is_string ( $parm ) )
+      return;
+
     if     ( str_contains ( $parm, '...' ) ) $split = '...';
     elseif ( str_contains ( $parm, '..'  ) ) $split = '..';
     else                                     return;

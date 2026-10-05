@@ -6,12 +6,14 @@
   // Clears $pqFindParm once placed, leaving the case where both are known - or neither - to
   // find/parm/parm.php at the end of find/.
 
-  if ( $pqFindParm and $pqSeq and ! $pqAction ) {
+  // A 0 is a parameter like any other - {loop 0} - so the test is for nothing given.
+
+  if ( (string) $pqFindParm !== '' and $pqSeq and ! $pqAction ) {
     $pqParm     = $pqFindParm;
     $pqFindParm = '';
   }
 
-  if ( $pqFindParm and ! $pqSeq and $pqAction ) {
+  if ( (string) $pqFindParm !== '' and ! $pqSeq and $pqAction ) {
     $pqActionParm = $pqFindParm;
     $pqFindParm   = '';
   }
