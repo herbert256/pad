@@ -1,24 +1,41 @@
-<p>{$benchShown} of {$benchCount} pages answered with their timings, in ms.</p>
+<p>{$benchShown} of {$benchCount} pages answered with their timings, in ms - {$benchTotal} ms in all,
+on commit {$benchCommit}: {$benchBefore}. This run is kept with {$benchRuns} before it -
+see the <a href="?benchmark/history">history</a>.</p>
+
+<h3>More than 25% slower than usual</h3>
+
+<table border=1>
+  <tr>
+    <td>page</td>
+    <td align="right">now</td>
+    <td align="right">usual</td>
+    <td align="right">slower</td>
+  </tr>
+  {slower}
+    <tr>
+      <td>{$page}</td>
+      <td align="right">{$ms}</td>
+      <td align="right">{$usual}</td>
+      <td align="right">{$pct}%</td>
+    </tr>
+  @else@
+    <tr><td colspan="4">none</td></tr>
+  {/slower}
+</table>
+
+<h3>Every page</h3>
 
 <table border=1>
 
   <tr>
     <td>page</td>
-    <td align="right">curl</td>
-    <td align="right">total</td>
-    <td align="right">boot</td>
-    <td align="right">engine</td>
-    <td align="right">app</td>
+    <td align="right">ms</td>
   </tr>
 
   {list}
     <tr>
       <td>{$page}</td>
-      <td align="right">{$curl}</td>
-      <td align="right">{$total}</td>
-      <td align="right">{$boot}</td>
-      <td align="right">{$engine}</td>
-      <td align="right">{$app}</td>
+      <td align="right">{$ms}</td>
     </tr>
   {/list}
 

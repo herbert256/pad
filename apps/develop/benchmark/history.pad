@@ -1,0 +1,27 @@
+<p>The kept runs of the <a href="?benchmark">benchmark</a> - each total is the sum of every page's
+time, in ms.</p>
+
+<p>{!benchChart}</p>
+
+<table border=1>
+  <tr>
+    <td>when</td>
+    <td>commit</td>
+    <td align="right">pages</td>
+    <td align="right">total</td>
+    <td align="right">pages slower</td>
+    <td align="right">total slower</td>
+  </tr>
+  {runs}
+    <tr>
+      <td>{$when}</td>
+      <td>{$commit}</td>
+      <td align="right">{$pages}</td>
+      <td align="right">{$total}</td>
+      <td align="right">{$slower}</td>
+      <td align="right">{$trend}</td>
+    </tr>
+  @else@
+    <tr><td colspan="6">no run kept yet</td></tr>
+  {/runs}
+</table>

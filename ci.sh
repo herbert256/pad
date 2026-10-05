@@ -9,6 +9,8 @@
 #
 # The host defaults to the local Apache mount; pass another as the first argument, e.g.
 #   ./ci.sh http://127.0.0.1:8765/
+#
+# CI_BENCH=25 ./ci.sh also fails when the pages got more than 25% slower (see the end).
 
 . "$(dirname "$0")/home/home.sh"
 
@@ -35,6 +37,14 @@ case "$run" in
 esac
 [ "${#run}" -le 16 ] || { echo "CI: the run token is longer than 16 characters" >&2; exit 2; }
 commit=$(git -C "$padHome" rev-parse --short HEAD 2>/dev/null)
+
+# Checked before anything runs: a threshold that is no number would only fail at the end.
+case "${CI_BENCH:-0}" in
+  *[!0-9]*) echo "CI: CI_BENCH must be a whole percentage" >&2; exit 2 ;;
+esac
+case "${CI_BENCH_FLOOR:-5}" in
+  ''|*[!0-9.]*) echo "CI: CI_BENCH_FLOOR must be a number of milliseconds" >&2; exit 2 ;;
+esac
 
 # Results are stamped in whole seconds, and a fast first suite can finish inside the very
 # second the run started - which the strictly-newer test below reads as a leftover. The
@@ -142,6 +152,23 @@ if [ -z "$CI_SUITES" ]; then
     printf '%s\n' "$apptests" >&2
     exit=1
   fi
+fi
+
+# The benchmark as a gate, when CI_BENCH names a threshold in percent: the develop app times
+# every application page, keeps the run with this commit, and answers "benchmark slower"
+# when the total or a page is that much slower than its median over the last runs - a page
+# it names is timed again on its own first, and must have lost CI_BENCH_FLOOR ms (5) too.
+# Off by default: times measured on a busy machine are a judgement call, not a fact.
+
+if [ -n "$CI_BENCH" ] && [ -z "$CI_SUITES" ]; then
+  bench=$(curl -s --max-time 600 "${host}develop/?benchmark/check&padInclude&threshold=$CI_BENCH&floor=${CI_BENCH_FLOOR:-5}")
+  verdict=$(printf '%s\n' "$bench" | head -1)
+  printf '%-12s %s\n' benchmark "$(printf '%s\n' "$bench" | sed -n 2p)"
+  case "$verdict" in
+    "benchmark ok") ;;
+    "benchmark slower") printf '%s\n' "$bench" | tail -n +3 | sed 's/^/  /' >&2; exit=1 ;;
+    *) echo "CI: the benchmark did not answer" >&2; exit=1 ;;
+  esac
 fi
 
 exit $exit

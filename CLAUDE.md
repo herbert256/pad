@@ -1443,6 +1443,10 @@ curl -L "http://localhost/pad/regression/main/?index&test"
 
 # Or as a CI gate from the repo root - one line per suite, nonzero exit on any failure
 ./ci.sh
+
+# The same, also failing when the pages got more than 25% slower than their median over
+# the last kept benchmark runs (develop/?benchmark/history charts them)
+CI_BENCH=25 ./ci.sh
 ```
 
 This is particularly useful for:
@@ -1533,6 +1537,7 @@ strict syntax check - `pad_check` with only an app checks every page), `pad_trac
 | `regression/error_ignore` | Test | Regression test for the 'ignore' error action |
 | `regression/error_log` | Test | Regression test for the 'log' error action |
 | `regression/events` | Test | Regression test for the `_events/` hooks - error, sql, curl, output |
+| `regression/remote` | Test | Regression test for remote data with a ttl cache and parallel fetching - pages that fetch their own |
 | `regression/sqlite` | Test | Regression test for SQLite as the application database - built from a .sql file, no server |
 | `regression/error_pad` | Test | Regression test for the 'pad' error action |
 | `regression/error_php` | Test | Regression test for the 'php' error action |

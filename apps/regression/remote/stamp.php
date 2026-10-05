@@ -5,6 +5,6 @@
 
   $padContentType = 'application/json';
 
-  echo json_encode ( [ [ 'stamp' => hrtime ( TRUE ), 'source' => 'misc/stamp' ] ], JSON_UNESCAPED_SLASHES );
+  echo json_encode ( [ [ 'stamp' => hrtime ( TRUE ), 'source' => 'stamp' ] ], JSON_UNESCAPED_SLASHES );
 
 ?>

@@ -1,11 +1,14 @@
 <?php
 
-  // Times every page of every application, as the regression crawl walks them: each page
-  // is fetched bare with &padStats, which turns the stats info mode on for that one request
-  // when it comes from this machine (inits/info.php), and its PAD-Stats header splits the
-  // time into boot, the engine's own work and the application's PHP. The fetches run a
-  // dozen at a time, so the times are under load and comparable with each other, not
-  // absolute.
+  // Times every page of every application outside the regression family (benchUrls): each
+  // page is fetched bare with &padStats, which turns the stats info mode on for that one
+  // request when it comes from this machine (inits/info.php), and its PAD-Stats header says
+  // how long the request took. The fetches run a few at a time (window=, 4), so the times
+  // are under that load and comparable with each other and with earlier runs, not absolute.
+  //
+  // Every run is kept with its commit (padBenchSave, pad/lib/bench.php) and held against the
+  // runs before it: the pages more than 25% slower than their usual time are listed first.
+  // ?benchmark/history charts the kept runs.
   //
   // It read the retired DATA/regression/ store, piped through a bm function that went with
   // apps/check, and keyed its rows by page name, so every application's index overwrote
@@ -15,38 +18,31 @@
 
   $title = 'Benchmark';
 
-  $padCurlStats = TRUE;
+  $benchUrls    = benchUrls ();
+  $benchHistory = padBenchHistory ();
+  $benchTimes   = padBenchTimes ( $benchUrls, benchWindow () );
 
-  $benchInputs = [];
+  list ( $benchTimes, $benchSlower ) = padBenchConfirm ( $benchUrls, $benchTimes, $benchHistory );
 
-  foreach ( padAppsList () as $benchPage => $one )
-    $benchInputs [$benchPage] = $padHost . $one ['app'] . '/?' . $one ['item'] . '&padInclude&padStats';
+  $benchRun     = padBenchSave ( $benchTimes );
+
+  $slower = [];
+
+  foreach ( $benchSlower ['pages'] as $benchPage => $benchOne )
+    $slower [] = [ 'page' => $benchPage, 'ms' => $benchOne [0], 'usual' => $benchOne [1], 'pct' => $benchOne [2] ];
 
   $list = [];
 
-  foreach ( padCurlMulti ( $benchInputs ) as $benchPage => $benchCurl ) {
-
-    if ( ! str_starts_with ( $benchCurl ['result'], '2' ) ) continue;
-    if ( ! isset ( $benchCurl ['stats'] ) )                 continue;
-
-    // The stats are nanoseconds, curl's total_time seconds; all of them shown as ms.
-
-    $benchStats = $benchCurl ['stats'];
-
-    $list [$benchPage] = [
-      'page'   => $benchPage,
-      'curl'   => number_format ( ( $benchCurl ['info'] ['total_time'] ?? 0 ) * 1000, 1 ),
-      'total'  => number_format ( ( $benchStats ['total'] ?? 0 ) / 1000000, 1 ),
-      'boot'   => number_format ( ( $benchStats ['boot']  ?? 0 ) / 1000000, 1 ),
-      'engine' => number_format ( ( $benchStats ['usr']   ?? 0 ) / 1000000, 1 ),
-      'app'    => number_format ( ( $benchStats ['call']  ?? 0 ) / 1000000, 1 )
-    ];
-
-  }
+  foreach ( $benchTimes as $benchPage => $benchMs )
+    $list [$benchPage] = [ 'page' => $benchPage, 'ms' => number_format ( $benchMs, 1 ) ];
 
   ksort ( $list );
 
-  $benchCount = count ( $benchInputs );
-  $benchShown = count ( $list );
+  $benchCount  = count ( $benchUrls );
+  $benchShown  = count ( $benchTimes );
+  $benchTotal  = $benchRun ['total'];
+  $benchCommit = $benchRun ['commit'];
+  $benchRuns   = count ( $benchHistory );
+  $benchBefore = $benchSlower ['total'] ? $benchSlower ['total'] [2] . '% slower than usual' : 'not slower than usual';
 
 ?>

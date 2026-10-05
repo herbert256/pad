@@ -851,6 +851,11 @@ Real traffic can be a suite too: with `$padRecord = TRUE` every GET request is k
 
 To see what the suites reach, record template coverage around a run: `develop/?coverage&start=suites`, `./ci.sh`, `develop/?coverage&stop`, then read `develop/?coverage&run=suites`.
 
+Speed is tracked the same way: the develop application's Benchmark times every page, keeps
+each run with its commit in `DATA/benchmark/`, and names the pages that got slower than
+their median over the last runs; its history page charts the runs. `CI_BENCH=25 ./ci.sh`
+makes a 25% slowdown fail the gate like a failing suite.
+
 ## License
 
 See LICENSE file for details.

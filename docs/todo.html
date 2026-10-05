@@ -930,7 +930,7 @@ _events/output.php   post-process the final HTML</code></pre>
         <li class="idea" id="bench-history">
           <div class="idea-top"><span class="number" aria-hidden="true">49</span><h3>Benchmark history</h3><span class="effort">Small–medium</span></div>
           <p>The develop app’s Benchmark already times every page through the <code>PAD-Stats</code> header. Storing each run with its commit hash, and charting the trend with <a href="#charts">#17</a>, would catch slowdowns the way the suites catch output changes. <code>ci.sh</code> could fail when a page slows past a set threshold.</p>
-        </li>
+        <p class="done"><strong>Done.</strong> Every <code>develop/?benchmark</code> run is kept with its commit in <code>DATA/benchmark/</code> and held against the median of the runs before it: a page counts as slower at more than 25% and 5 ms, after it is timed again on its own; <code>?benchmark/history</code> charts the totals as SVG, and <code>CI_BENCH=25 ./ci.sh</code> fails the gate on a slowdown (off by default - timings on a busy machine are noisy). The remote cache and prefetch tests moved to the one-page-at-a-time <code>regression/remote</code> application, where the prefetch overlap is asserted again. Regression: pages <code>misc/bench</code>; develop README, PAD.md, CLAUDE.md.</p></li>
       </ol>
     </section>
 
