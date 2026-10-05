@@ -8,6 +8,11 @@
   // rows from the front, a negative one that many rows counted off the end. slice keeps
   // the original keys, splice renumbers them. Reached for slice through
   // handling/types/slice.php, which includes this file.
+  //
+  // A negative offset larger than the set reaches its front and no further: slice='-9' of
+  // five rows keeps all five and splice='-7' removes all five. The rows left over were
+  // count + offset, and a negative result of that went on to array_slice as a position
+  // counted from the back - slice='-9' dropped the first row, splice='-7' kept three.
 
   $padHandCount = (int) count ( $padData [$pad] );
 
@@ -22,7 +27,7 @@
       if ( $padHandP1 > 0 )
         array_splice ( $padData [$pad], 0, $padHandP1 );
       else
-        $padData [$pad] = array_slice ( $padData [$pad], 0, $padHandCount + $padHandP1 );
+        $padData [$pad] = array_slice ( $padData [$pad], 0, max ( 0, $padHandCount + $padHandP1 ) );
   else
     if ( $padHandP2 )
       $padData [$pad] = array_slice ( $padData [$pad], $padHandP1, $padHandP2, TRUE );
@@ -30,6 +35,6 @@
       if ( $padHandP1 > 0 )
         $padData [$pad] = array_slice ( $padData [$pad], 0, $padHandP1, TRUE );
       else
-        $padData [$pad] = array_slice ( $padData [$pad], $padHandCount + $padHandP1, NULL, TRUE );
+        $padData [$pad] = array_slice ( $padData [$pad], max ( 0, $padHandCount + $padHandP1 ), NULL, TRUE );
 
 ?>
