@@ -151,12 +151,18 @@ function padSplitOnUnquotedColon ( $str ) {
     if ( preg_match ( '/^-?[0-9]+(\.[0-9]+)?$/', $value ) or $start < 1 )
       return $value;
 
-    $open = strrpos ( $padOut [$pad], '{', $start - strlen ( $padOut [$pad] ) - 1 );
+    // Looked for within the 4 KB before the splice: no tag writes that much before a field
+    // in its parameters, and searching the whole resolved text before it made a page of
+    // many fields quadratic.
 
-    if ( $open === FALSE or $open >= $start - 1 )
+    $window = min ( $start, 4096 );
+    $before = substr ( $padOut [$pad], $start - $window, $window );
+    $open   = strrpos ( $before, '{' );
+
+    if ( $open === FALSE or $open >= $window - 1 )
       return $value;
 
-    $inside = substr ( $padOut [$pad], $open + 1, $start - $open - 1 );
+    $inside = substr ( $before, $open + 1 );
 
     if ( ctype_space ( $inside [0] ) or str_contains ( $inside, '}' ) or ! preg_match ( '/\s/', $inside ) )
       return $value;
@@ -176,11 +182,13 @@ function padSplitOnUnquotedColon ( $str ) {
 
   function padLevel ( $value ) {
 
-    global $padOut, $padStart, $padEnd, $pad;
+    global $padOut, $padStart, $padEnd, $pad, $padScan;
 
     $padOut [$pad] = substr ( $padOut [$pad], 0, $padStart [$pad] )
                    . $value
                    . substr ( $padOut [$pad], $padEnd [$pad]+1 );
+
+    $padScan [$pad] = $padStart [$pad];
 
   }
 
@@ -350,11 +358,18 @@ function padSplitOnUnquotedColon ( $str ) {
 
   }
 
+  // The search for the next } starts where the last splice began, not at 0: everything
+  // before that point is resolved and holds no }, since the tag that was spliced there had
+  // the first one. Searching from 0 on every tag made one large occurrence quadratic -
+  // 160,000 fields took six seconds. $padScan is reset when an occurrence gets its copy.
+
   function padLevelEnd () {
 
-    global $padOut, $padStart, $padEnd, $pad;
+    global $padOut, $padStart, $padEnd, $pad, $padScan;
 
-    $padEnd [$pad] = strpos ( $padOut [$pad], '}' );
+    $from = min ( $padScan [$pad] ?? 0, strlen ( $padOut [$pad] ) );
+
+    $padEnd [$pad] = strpos ( $padOut [$pad], '}', $from );
 
     return $padEnd [$pad];
 

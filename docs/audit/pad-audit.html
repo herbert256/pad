@@ -663,13 +663,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm" id="m16">
+    <div class="finding pm fixed" id="m16">
       <div class="tag"><div class="priority">Medium</div><div class="cat">Performance</div></div>
       <div>
-        <h3>Quadratic hot paths with no size guard</h3>
+        <h3>Quadratic hot paths with no size guard<span class="done">Fixed</span></h3>
         <p class="where">lib/level.php:133,262 · lib/scope.php:103-140 · sequence/types/{prime,bell,recaman}</p>
         <p>Each tag runs <code>strpos</code> from offset 0 and rebuilds the whole output buffer, so one large occurrence costs quadratic time. The per-row save/restore lists (<code>padSaveOcc</code>/<code>padDeleteOcc</code>) are appended every row and only cleared at level setup, so a 10k-row loop does hundreds of millions of <code>isset</code>/<code>unset</code> calls. In sequences, <code>keep</code>/<code>remove</code> re-render the list per candidate, <code>pqPrime</code> trial-divides by every earlier prime (~24 s at <code>from=20000</code>), <code>pqBell</code> builds an O(n²) triangle (181 MB at n=4000) and <code>range</code> materialises the whole span up front.</p>
         <div class="fix"><b>Fix:</b> advance the scan offset instead of rebuilding; clear the occurrence lists in <code>padResetOcc</code>; cache the generated list once per run; bound <code>pqPrime</code> at √n and generate ranges lazily.</div>
+        <div class="resolved"><b>Fixed:</b> measured first, then fixed where it paid. <b>Per-row books:</b> <code>padResetOcc</code> empties <code>$padSaveOcc</code>/<code>$padDeleteOcc</code> once it has undone a row, where the delete list grew by every name each row and every reset walked all earlier rows: 100,000 rows took 30.3 s, now 1.2 s. <b>Sequences:</b> <code>pqPrime</code> answers from the 10,000-term table and goes on from its end with the √n-bounded <code>pqBoolPrime</code>, keeping its list between calls (<code>from=20000</code>: 6.8 s, now 0.07 s, the same terms). <code>pqBell</code> answers the overflow float at once past the 25th term, the last that fits an integer, instead of building a 4000-row triangle. The membership fallback generates a sequence once per sequence and parameter, extended by doubling, and checks the same first-n terms (<code>keep, gould</code> over 1–3000: 30 s, the time limit, now 0.24 s; outputs identical on every fallback type over 1–200). A range of more values than <code>$padSeqMaxTries</code> is refused in strict mode and capped in the lenient walk, where <code>'1..100000000'</code> built a hundred-million-element array. <b>Scan:</b> the search for the next <code>}</code> resumes where the last splice began. The C1 look-back for an enclosing tag searches the last 4 KB only: on the whole prefix it doubled the time of a 160,000-field page (5.8 s, now 3.2 s, the same as with protection off). Decided: each splice still rebuilds the occurrence's working copy, so one huge occurrence stays quadratic in copying. Ending that means an incremental scanner, a rewrite of the core loop, which every part of the engine reads as <code>$padOut</code>/<code>$padStart</code>/<code>$padEnd</code>.</div>
       </div>
     </div>
 

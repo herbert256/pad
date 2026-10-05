@@ -263,6 +263,22 @@
     if ( $span and $increment > $span )
       $increment = $span;
 
+    // A range is built whole, so one of more values than $padSeqMaxTries is refused: '1..
+    // 100000000' asked PHP for a hundred-million-element array. Strict mode says so; the
+    // lenient walk keeps the first $padSeqMaxTries values.
+
+    $max   = $GLOBALS ['padSeqMaxTries'] ?? 1000000;
+    $count = $increment ? floor ( $span / $increment ) + 1 : 1;
+
+    if ( is_numeric ( $p1 ) and $count > $max ) {
+
+      if ( $padCheckSyntax )
+        padError ( "the range '" . trim ( $input ) . "' has $count values, more than the $max a range may have" );
+
+      $p2 = $p1 + ( ( $p2 >= $p1 ) ? 1 : -1 ) * ( $max - 1 ) * $increment;
+
+    }
+
     return range ( $p1, $p2, $increment );
 
   }

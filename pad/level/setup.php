@@ -83,6 +83,7 @@
 
   $padBaseValue  [$pad] = FALSE;
   $padAtTag      [$pad] = FALSE;
+  $padScan       [$pad] = 0;
 
   $padForceTagName  = '';
   $padForceDataName = '';

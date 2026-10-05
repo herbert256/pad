@@ -66,6 +66,19 @@
 
   }
 
-  return in_array ( $pqLoop, pqArray ( $pqSeq, $pqParm, "to=$pqLoop" ) );
+  // The terms up to the candidate's position, generated once per sequence and parameter and
+  // extended by doubling: keep and remove asked for a fresh nested run for every candidate,
+  // quadratic over a long list. Kept under a pad* name for the reason above. The question is
+  // the same as before - is the value among the first $pqLoop terms.
+
+  $pqCheckKey = $pqSeq . '|' . ( is_scalar ( $pqParm ) ? $pqParm : serialize ( $pqParm ) );
+  $pqCheckTo  = max ( 1, (int) $pqLoop );
+
+  if ( ! isset ( $padSeqCheckList [$pqCheckKey] ) or $padSeqCheckList [$pqCheckKey] [0] < $pqCheckTo ) {
+    $pqCheckTo = max ( $pqCheckTo, 2 * ( $padSeqCheckList [$pqCheckKey] [0] ?? 0 ) );
+    $padSeqCheckList [$pqCheckKey] = [ $pqCheckTo, pqArray ( $pqSeq, $pqParm, "to=$pqCheckTo" ) ];
+  }
+
+  return in_array ( $pqLoop, array_slice ( $padSeqCheckList [$pqCheckKey] [1], 0, max ( 1, (int) $pqLoop ) ) );
 
 ?>

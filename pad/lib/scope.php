@@ -139,6 +139,13 @@
       if ( isset ( $GLOBALS [$key] ) )
         unset ( $GLOBALS [$key] );
 
+    // Undone, the books start empty for the next row. They were kept for the whole level,
+    // and the delete list grew by every name every row set, so each row's reset walked all
+    // the rows before it: 100,000 rows took half a minute.
+
+    $padSaveOcc   [$pad] = [];
+    $padDeleteOcc [$pad] = [];
+
   }
 
   function padChkLevel ($tag) {

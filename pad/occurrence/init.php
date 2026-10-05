@@ -14,6 +14,7 @@
   $padOccurStart [$pad] [$padOccur[$pad]] = TRUE;
 
   $padOut     [$pad] = padCommentStrip ( $padBase [$pad] );
+  $padScan    [$pad] = 0;
   $padKey     [$pad] = key($padData [$pad]);
   $padCurrent [$pad] = $padData [$pad] [$padKey [$pad]];
 
