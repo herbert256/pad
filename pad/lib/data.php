@@ -64,10 +64,15 @@
 
     }
 
-    if ( isset ( $padDataSetRecord ) and $padDataSetRecord ) {
+    // A RECORD answer of db() is one row, which the fixers below would otherwise take for
+    // a list of fields, one occurrence each. db() keeps every row it answered for RECORD,
+    // and the row is known again by its value wherever it arrives. It was one flag that the
+    // next padData() of the request took, whatever it was given: a second RECORD read in
+    // the same PHP file, or the same record iterated twice, came out one occurrence per
+    // field, and a plain list after a RECORD came out as one occurrence holding the list.
+
+    if ( is_array ( $input ) and $input and in_array ( $input, $padDataSetRecord ?? [], TRUE ) )
       $data = padDataChkCheckRecord ($data,$name);
-      $padDataSetRecord = FALSE;
-    }
 
     $data = padDataChkSimpleArray ($data,$name);
     $data = padDataChkChkOne      ($data,$name);
