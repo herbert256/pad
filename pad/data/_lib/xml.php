@@ -14,7 +14,23 @@
   //
   // Every element name is kept as a list so repeated tags iterate naturally in templates.
 
+  // libxml's error mode is the request's, not this reader's: it is put back as it was on
+  // every way out - it stayed switched to internal errors, which silenced the warnings of
+  // the application's own XML code for the rest of the request.
+
   function padXmlToArray ( $data ) {
+
+    $errors = libxml_use_internal_errors ( TRUE );
+
+    try {
+      return padXmlToArrayGo ( $data );
+    } finally {
+      libxml_use_internal_errors ( $errors );
+    }
+
+  }
+
+  function padXmlToArrayGo ( $data ) {
 
     $input = str_replace ( '&nbsp;', ' ', trim($data) );
 
@@ -26,7 +42,6 @@
 
     $input = "<x>$input</x>";
 
-    libxml_use_internal_errors ( true );
     $xml = simplexml_load_string ( $input, "SimpleXMLElement", LIBXML_NOERROR | LIBXML_NOWARNING );
 
     if ( $xml === FALSE ) {
