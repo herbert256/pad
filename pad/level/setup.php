@@ -17,6 +17,8 @@
 
   $padLvlId++;
 
+  $padLevelId    [$pad] = $padLvlId;
+
   $padParmParse  [$pad] = [];
 
   $padOpt        [$pad] = [];

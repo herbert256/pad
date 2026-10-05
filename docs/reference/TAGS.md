@@ -47,6 +47,26 @@ branch is `{else}` - `{when 'default'}` is an ordinary branch that matches the t
 
 ---
 
+### ifchanged
+Render a block when a value differs from the previous row of the enclosing loop - a
+heading per group in a sorted list.
+
+```html
+{orders sort='customer'}
+  {ifchanged $customer}<h2>{$customer}</h2>{/ifchanged}
+  <p>{$number}: {$total}</p>
+{/orders}
+```
+
+**Parameters:** one or more values; the block renders when any of them changed. The first
+row always renders; an unchanged value renders the `@else@` branch, if there is one.
+
+**Behavior:** The memory belongs to one run of the enclosing loop - the nearest level that
+is not an `if`, `case` or `ifchanged` - so a loop that runs again starts afresh, and to the
+tag's place in it: the n-th `ifchanged` of a row is compared with the n-th of the row before.
+
+---
+
 ### switch
 Rotating switch that cycles through options on each call.
 
@@ -850,6 +870,7 @@ Resume a previously ceased sequence iteration.
 | `if` | Control Flow | Conditional execution |
 | `case` | Control Flow | Switch-case matching |
 | `switch` | Control Flow | Rotating value switch |
+| `ifchanged` | Control Flow | Render when a value changed since the previous row |
 | `while` | Control Flow | Loop while true |
 | `until` | Control Flow | Loop until true |
 | `set` | Variables | Set global variables |

@@ -1,0 +1,10 @@
+{data 'orders'}
+  [ {"customer":"Ann","number":101}, {"customer":"Ann","number":102},
+    {"customer":"Bob","number":103}, {"customer":"Cleo","number":104},
+    {"customer":"Cleo","number":105} ]
+{/data}
+
+{orders sort='customer'}
+  {ifchanged $customer}<h4>{$customer}</h4>{/ifchanged}
+  <p>Order {$number}</p>
+{/orders}

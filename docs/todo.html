@@ -249,7 +249,7 @@
 {/orders}</code></pre>
           <p>PAD already exposes first/last/current iteration properties, but those do not express “this customer differs from the previous customer.” This would simplify grouped reports, timelines, alphabetical directories, and invoices.</p>
           <p>Track state separately for each tag location and enclosing loop invocation. The first occurrence should render.</p>
-          <p class="references"><strong>Precedent:</strong> <a href="https://latte.nette.org/en/tags#toc-ifchanged">Latte <code>ifchanged</code></a></p>
+          <p class="done"><strong>Done.</strong> <code>{ifchanged $a, $b}…@else@…{/ifchanged}</code> (tags/ifchanged.php): memory per run of the enclosing loop (the nearest level that is not if/case/ifchanged, via a new per-level <code>$padLevelId</code>) and per position, so two ifchanged tags in one row keep their own state. Regression: five framework <code>tags/</code> cases, errors <code>syntax/an_ifchanged_needs_a_value</code>; manual <em>Loops</em> section; TAGS.md, CLAUDE.md.</p><p class="references"><strong>Precedent:</strong> <a href="https://latte.nette.org/en/tags#toc-ifchanged">Latte <code>ifchanged</code></a></p>
         </li>
 
         <li class="feature" id="stacks">

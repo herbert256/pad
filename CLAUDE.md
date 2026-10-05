@@ -369,6 +369,15 @@ field.
 {/case}
 ```
 
+### Group Headings (ifchanged)
+```
+{orders sort='customer'}
+  {ifchanged $customer}<h2>{$customer}</h2>{/ifchanged}
+  <p>{$number}</p>
+{/orders}
+```
+Renders when the value differs from the previous row of the loop; the first row always does.
+
 ### Switch Tag (Alternating Values)
 ```
 {items}

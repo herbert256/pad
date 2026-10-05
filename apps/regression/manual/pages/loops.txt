@@ -220,3 +220,78 @@ stop, ending the occurrence mid-way:</p>
 
 <p>The same value stopped both: <code>cease</code> still shows the 4 its occurrence had
 started, <code>break</code> does not.</p>
+
+<h2>A heading per group</h2>
+
+<p>In a sorted list, <code>{ifchanged $field}</code> renders its block only when
+the value differs from the row before - the first row always - so each group gets one
+heading:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/loops_4.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>orders<font color="black">'</font></font>}</b><br>  [ {"customer":"Ann","number":101}, {"customer":"Ann","number":102},<br>    {"customer":"Bob","number":103}, {"customer":"Cleo","number":104},<br>    {"customer":"Cleo","number":105} ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">orders </font><font color="red">sort=<font color="black">'</font>customer<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">ifchanged </font><font color="red"><font color="red">$</font>customer</font>}</b>&lt;h4&gt;<b>{<font color="green"><font color="red">$</font>customer</font>}</b>&lt;/h4&gt;<b>{/<font color="blue">ifchanged</font><font color="red"></font>}</b><br>  &lt;p&gt;Order <b>{<font color="green"><font color="red">$</font>number</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">orders</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+
+
+  <h4>Ann</h4>
+  <p>Order 101</p>
+
+  
+  <p>Order 102</p>
+
+  <h4>Bob</h4>
+  <p>Order 103</p>
+
+  <h4>Cleo</h4>
+  <p>Order 104</p>
+
+  
+  <p>Order 105</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
