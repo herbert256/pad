@@ -23,8 +23,8 @@
     padInfoXref ( 'constructs', 'tidy' );
 
   if ( isset ( $_REQUEST ['padInclude']   ) ) return;
-  if ( isset ( $_REQUEST ['padExamples']  ) ) return;
-  if ( isset ( $_REQUEST ['padReference'] ) ) return;
+  if ( padSelfSwitch ( 'padExamples'  ) ) return;
+  if ( padSelfSwitch ( 'padReference' ) ) return;
 
   // Both passes know HTML and nothing else. Run over a page that declared another content
   // type - JSON, CSV, plain text - tidy wrapped it in <html><head><body> and the client got

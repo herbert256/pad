@@ -52,6 +52,17 @@
 
   }
 
+  // A request switch that only this machine's own crawls send - padReference (the reference
+  // build writes xref files under DATA) and padExamples (the examples harvest; both bypass
+  // the page cache and tidy) - counts only on the command line or from loopback: any
+  // visitor could flip them before.
+
+  function padSelfSwitch ( $name ) {
+
+    return isset ( $_REQUEST [$name] ) and ( PHP_SAPI === 'cli' or padLoopback () );
+
+  }
+
   // What a diagnostic shows of a value: credentials, authorization, cookies and the like
   // never leave the process in clear, whoever the report is for. Walks arrays by key; a
   // key that names a secret has its value replaced. $deep also blanks every value under

@@ -24,7 +24,7 @@
 
   }
 
-  if ( $tablePAD and $tableHTML and isset ( $_REQUEST ['padExamples'] ) ) {
+  if ( $tablePAD and $tableHTML and padSelfSwitch ( 'padExamples' ) ) {
 
     $tablePADcount [$padPage] = $tablePADcount [$padPage] ?? 0;
     $tablePADcount [$padPage]++;

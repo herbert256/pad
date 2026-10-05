@@ -19,7 +19,7 @@
   // A reference or examples crawl exists to watch the page being built - a cache hit would
   // skip the build and record nothing - so those requests always render.
 
-  if ( isset ( $_REQUEST ['padReference'] ) or isset ( $_REQUEST ['padExamples'] ) )
+  if ( padSelfSwitch ( 'padReference' ) or padSelfSwitch ( 'padExamples' ) )
     $padCache = FALSE;
 
   if ( $padOutputType != 'web' )

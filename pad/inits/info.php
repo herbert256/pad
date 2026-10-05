@@ -9,7 +9,7 @@
   // (no wrappers) and tidy is switched off so the recorded output stays as the engine
   // produced it.
 
-  if ( isset ( $_REQUEST ['padReference'] ) ) {
+  if ( padSelfSwitch ( 'padReference' ) ) {
 
     $padInfo      = 'xref';
     $padInfoTrack = FALSE;
