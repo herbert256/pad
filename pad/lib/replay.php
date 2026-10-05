@@ -13,7 +13,8 @@
   // state cannot be replayed faithfully - the replay comes without cookies - so it is not
   // recorded at all. One URL is one case: a later answer to the same app and query string
   // replaces the earlier one. A case is DATA/replay/<store>/<md5>.json, holding the app, the
-  // query, the host it was recorded under, the status, the content type and the body.
+  // query, the host it was recorded under, the status, the content type and the body - and
+  // for a clean URL, /shop/products/42, the path below the entry point that named the page.
   //
   // A replay fetches each case again with padReplay added - a switch only this machine can
   // throw, which also keeps the replay itself from being recorded - and compares status and
@@ -24,6 +25,8 @@
   //
   // padReplayStore     the store this request is recorded in, '' for none
   // padReplayRecord    records the finished request (exits/output.php)
+  // padReplayPath      the path of a clean URL as the request wrote it, '' for a ?page one
+  // padReplayUrl       the address a case is fetched again at
   // padReplaying       whether this request is a replay
   // padReplayWrites    whether an SQL statement would change the database
   // padReplayCases     the cases of a store
@@ -69,6 +72,7 @@
 
     padReplaySave ( $store, [
       'app'    => $padApp,
+      'path'   => padReplayPath (),
       'query'  => $query,
       'host'   => $padHost,
       'status' => 200,
@@ -81,6 +85,53 @@
 
   // The query string a case is replayed with: the padRecord switch that asked for the
   // recording is taken out, everything else stays as the visitor sent it.
+
+  // A page the path named (lib/route.php) is lost to the query string alone: every clean
+  // URL of an application was one case, replayed as its index. The path is kept as the
+  // request wrote it - still encoded, index.php/ in front when that is how it came - so the
+  // replay asks the very same address; an &name=value tail in it is query, and loses its
+  // padRecord the same way.
+
+  function padReplayPath () {
+
+    global $padRoutePath;
+
+    if ( ( $padRoutePath ?? '' ) === '' or padRouteQuery () )
+      return '';
+
+    $uri  = explode ( '?', (string) ( $_SERVER ['REQUEST_URI'] ?? '' ), 2 ) [0];
+    $base = rtrim ( str_replace ( '\\', '/', dirname ( (string) ( $_SERVER ['SCRIPT_NAME'] ?? '' ) ) ), '/' ) . '/';
+
+    if ( ! str_starts_with ( $uri, $base ) )
+      return '';
+
+    return padReplayQuery ( substr ( $uri, strlen ( $base ) ) );
+
+  }
+
+  function padReplayUrl ( $case ) {
+
+    global $padHost;
+
+    $path  = (string) ( $case ['path'] ?? '' );
+    $query = (string) ( $case ['query'] ?? '' );
+
+    if ( $path !== '' )
+      return $padHost . $case ['app'] . "/$path?" . ( $query === '' ? '' : "$query&" ) . 'padReplay';
+
+    return $padHost . $case ['app'] . '/?' . ( $query === '' ? 'index' : $query ) . '&padReplay';
+
+  }
+
+  // The name a case is known by: the application, the path when there is one, the query.
+
+  function padReplayName ( $case ) {
+
+    $path = (string) ( $case ['path'] ?? '' );
+
+    return $case ['app'] . ( $path !== '' ? "/$path" : '' ) . '?' . $case ['query'];
+
+  }
 
   function padReplayQuery ( $query ) {
 
@@ -156,7 +207,7 @@
 
     }
 
-    uasort ( $cases, fn ( $a, $b ) => strcmp ( $a ['app'] . '?' . $a ['query'], $b ['app'] . '?' . $b ['query'] ) );
+    uasort ( $cases, fn ( $a, $b ) => strcmp ( padReplayName ( $a ), padReplayName ( $b ) ) );
 
     return $cases;
 
@@ -166,7 +217,7 @@
 
     unset ( $case ['id'] );
 
-    padFilePut ( 'replay/' . padCoverageName ( $store ) . '/' . md5 ( $case ['app'] . '?' . $case ['query'] ) . '.json', $case );
+    padFilePut ( 'replay/' . padCoverageName ( $store ) . '/' . md5 ( padReplayName ( $case ) ) . '.json', $case );
 
   }
 
@@ -201,7 +252,7 @@
     $results = [];
 
     foreach ( $cases as $id => $case )
-      $urls [$id] = $padHost . $case ['app'] . '/?' . ( $case ['query'] === '' ? 'index' : $case ['query'] ) . '&padReplay';
+      $urls [$id] = padReplayUrl ( $case );
 
     $fetched = padCurlMulti ( $urls );
 
@@ -212,7 +263,7 @@
       $want   = trim ( padReplayHostless ( (string) $case ['body'], $case ['host'] ?? $padHost ) );
       $got    = trim ( padReplayHostless ( (string) $curl ['data'], $padHost ) );
 
-      $result = [ 'id' => $id, 'app' => $case ['app'], 'query' => $case ['query'], 'when' => $case ['when'] ?? '',
+      $result = [ 'id' => $id, 'app' => $case ['app'], 'path' => $case ['path'] ?? '', 'query' => $case ['query'], 'when' => $case ['when'] ?? '',
                   'same' => ( $status == $case ['status'] and $want === $got ),
                   'status' => $status, 'line' => 0, 'want' => '', 'got' => '', 'answer' => (string) $curl ['data'] ];
 

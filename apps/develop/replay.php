@@ -56,7 +56,7 @@
 
       $replayChanged [] = [
         'id'     => $replayOne ['id'],
-        'url'    => $replayOne ['app'] . '/?' . $replayOne ['query'],
+        'url'    => $replayOne ['app'] . '/' . $replayOne ['path'] . '?' . $replayOne ['query'],
         'status' => $replayOne ['status'],
         'line'   => $replayOne ['line'],
         'want'   => $replayOne ['want'],
