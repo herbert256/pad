@@ -626,6 +626,12 @@ page is assembled:
 Without `{extends}`, a page's `{block 'title'}` overrides the region of that name in its
 directories' wrappers.
 
+A page without PHP says what a `.php` would with `{meta}`, read while the page is assembled:
+
+```
+{meta title='Monthly report', layout='_layouts/print', cache=600}
+```
+
 ### AJAX Support
 
 Handle AJAX requests seamlessly:

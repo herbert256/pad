@@ -590,6 +590,14 @@ is an error under the strict check.
 `once` without a key drops a push whose text the stack holds; `padStackPush('scripts', $html)`
 from PHP. A push inside a `{cache}` section is made again on every hit.
 
+### Page Metadata
+```
+{meta title='Monthly report', layout='_layouts/print', cache=600}
+```
+Read while the page is assembled, after the PHP: `title=` (any non-engine name) becomes
+`$title` for the wrapper, `layout=` is `{extends}`, `cache=` the page's own cache time (0 keeps
+it out) when the app caches; `access=`/`sitemap=` are kept for `padMeta('access')`.
+
 ### Response Fragments
 ```
 {fragment 'order-list'}<ul>{orders}<li>{$number}</li>{/orders}</ul>{/fragment}

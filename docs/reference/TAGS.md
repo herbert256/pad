@@ -1185,6 +1185,28 @@ The items are read raw, as `{attrs}` reads them.
 
 ---
 
+### meta
+The page's metadata, for a page without PHP as much as one with.
+
+```html
+{meta title='Monthly report', layout='_layouts/print', cache=600, access='admin', sitemap=false}
+```
+
+**Items:**
+- `layout` - frame the page with that layout, as `{extends}` does
+- `cache` - the page's own server-cache time in seconds, in an application with the page
+  cache on; `0` or `false` keeps the page out of the cache
+- `access`, `sitemap` - kept for access rules and a sitemap to read: `padMeta('access')` for
+  the page being built, `padMeta('sitemap', 'reports/monthly')` from another page's file
+- any other name becomes a variable of that name: `title=` is `$title`, which the wrapper shows
+
+**Behavior:** Read while the page is assembled - after the PHP of `_inits.php` and the page,
+before anything renders - and taken out of the text; the values may use the PHP's variables.
+It must stand directly in the page's own template. The cache time is read from the file
+before the cache is consulted, so only a plain value counts there.
+
+---
+
 ### fragment
 A named part of the page that a request can ask for alone.
 
@@ -1528,6 +1550,7 @@ Resume a previously ceased sequence iteration.
 | `parent` | Layout | The overridden content, inside an overriding block |
 | `slot` | Layout | A named place for content in a custom tag, and its fill |
 | `parms` | Layout | Declare a custom tag's parameters, required or with defaults |
+| `meta` | Layout | Page metadata: title and other variables, layout, cache time |
 | `fragment` | Layout | A named part of the page a request can ask for alone |
 | `push` | Layout | Add rendered text to a named stack |
 | `stack` | Layout | Print a stack, filled in after the page has rendered |

@@ -566,7 +566,7 @@
       cache=600, access='admin', sitemap=false}</code></pre>
           <p>A page with PHP can set <code>$title</code> for the wrapper, because all PHP runs before rendering. A page without PHP, a plain <code>.pad</code> or a dropped-in <code>.html</code>, cannot. A <code>{meta}</code> tag read at build time, where <code>@page@</code> is replaced (<a href="https://github.com/herbert256/pad/tree/master/pad/build">pad/build</a>), could set:</p>
           <ul>
-            <li>the title;</li>
+            <li>the title;<p class="done"><strong>Done.</strong> <code>{meta title=…, layout=…, cache=…, access=…, sitemap=…}</code> in a page’s template is read while the page is assembled and taken out of the text: names that are not engine words become variables (<code>title=</code> is the wrapper’s <code>$title</code>), <code>layout=</code> works like <code>{extends}</code>, <code>cache=</code> is the page’s own cache time (0 keeps it out), <code>access</code> and <code>sitemap</code> are kept for <code>padMeta()</code> - and the sitemap (#36) honours <code>sitemap=false</code>. Merged beside the source map: a page whose <code>{meta}</code> was taken out is left unmapped rather than mis-mapped. Regression: framework, pages, cache and errors cases; manual page; TAGS.md, APP.md, PAD.md, CLAUDE.md.</p></li>
             <li>an alternative wrapper;</li>
             <li>a per-page cache TTL (caching is per app today);</li>
             <li>an access rule (<a href="#guards">#30</a>);</li>

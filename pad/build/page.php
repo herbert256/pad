@@ -10,8 +10,9 @@
   // appended as content, NULL drops the page's content and template (the _exits.php chain
   // still runs), FALSE selects the @else@ half.
   //
-  // The .pad template is appended - its layout blocks resolved against the frame by
-  // lib/layout.php - build/split.php cuts the text at an @else@, and unless
+  // The .pad template is appended - its {meta} tags applied by lib/meta.php and its layout
+  // blocks resolved against the frame by lib/layout.php - build/split.php cuts the text at
+  // an @else@, and unless
   // the page produced no data of its own the result is wrapped in {padBuild for="..."} so
   // the level engine iterates $padBuild, one occurrence per row.
   //
@@ -48,24 +49,24 @@
       $padBuildTrue .= $padCallPHP;
 
     $padSrcFile       = file_exists ( APP . "$padPage.pad" ) ? APP . "$padPage.pad" : APP . "$padPage.html";
-    $padBuildTemplate = padPageTemplate ( APP . $padPage );
+    $padBuildOwn      = padPageTemplate ( APP . $padPage );
+    $padBuildTemplate = padMetaBuild ( $padBuildOwn );
 
   } else
 
-    $padBuildTemplate = '';
+    $padBuildTemplate = $padBuildOwn = '';
 
   // The layout blocks are resolved now, in the text: a page that extends a layout trades
   // the frame build/base.php made for that layout, and the page's blocks override the
   // frame's - lib/layout.php.
 
-  $padBuildOwn = $padBuildTemplate;
-
   padLayout ( $padBuildTemplate, $padBuildBase );
 
   // The source map (lib/source.php) places the page's template where it lands in the joined
-  // text, by its offsets in the file. A page whose {block}s went to a layout is no longer the
-  // file's text from start to end, and an offset into it would name a wrong line, so that page
-  // is left out of the map - an error there names no line rather than a wrong one.
+  // text, by its offsets in the file. A page whose {meta} was taken out, or whose {block}s
+  // went to a layout, is no longer the file's text from start to end, and an offset into it
+  // would name a wrong line, so that page is left out of the map - an error there names no
+  // line rather than a wrong one.
 
   if ( $padBuildTemplate !== $padBuildOwn )
     $padSrcFile = '';

@@ -222,6 +222,9 @@ A page can pick its frame instead of taking its directories' `_inits.pad`/`_exit
 `{parent}` inside a block is the content it overrides. Without `{extends}`, a page's
 `{block 'title'}...{/block}` overrides the region of that name in the directory wrappers.
 
+A page without PHP sets its wrapper's `$title` - and its layout and cache time - with
+`{meta title='Sales', layout='_layouts/report', cache=600}`.
+
 ### _callbacks/ - Iteration Callbacks
 
 Process data during iteration.
