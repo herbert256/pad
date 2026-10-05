@@ -1,4 +1,4 @@
 <p>{$count} {echo $count eq 1 ? 'item' : 'items'}</p>
-<p>Title: {$title | ?? 'Untitled'} - subtitle: {echo $subtitle ?? 'none'}</p>
+<p>Title: {$heading | ?? 'Untitled'} - subtitle: {echo $subtitle ?? 'none'}</p>
 <p>Code {$code} {if $code matches '/^[A-Z][A-Z][0-9]+$/'}is{else}is not{/if} well formed</p>
 <p>State {$state} {if $state in ('active', 'pending')}is open{else}is closed{/if}</p>
