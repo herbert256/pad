@@ -232,14 +232,21 @@
 
     $split   = preg_split ( '/\s+/', trim ( $sql ), 2 );
     $command = strtolower ( $split [0] );
+    $rest    = $split [1] ?? '';
 
     if ($command == 'select')
       $command = 'array';
 
-    if     ( $command == 'check'  )  $sql = 'select 1 from ' . $split[1] . ' limit 0,1';
-    elseif ( $command == 'record' )  $sql = 'select '        . $split[1] . ' limit 0,1';
-    elseif ( $command == 'field'  )  $sql = 'select '        . $split[1] . ' limit 0,1';
-    elseif ( $command == 'array'  )  $sql = 'select '        . $split[1];
+    // A statement with nothing to run - db(''), or a verb alone: {field ''} is db('field ') -
+    // is not sent. The verb alone ended the request on a PHP undefined array key, and an
+    // empty statement on the ValueError mysqli_query and PDO::query throw for one.
+
+    $empty = ( $command === '' or ( $rest === '' and in_array ( $command, [ 'check', 'record', 'field', 'array' ] ) ) );
+
+    if     ( $command == 'check'  )  $sql = 'select 1 from ' . $rest . ' limit 0,1';
+    elseif ( $command == 'record' )  $sql = 'select '        . $rest . ' limit 0,1';
+    elseif ( $command == 'field'  )  $sql = 'select '        . $rest . ' limit 0,1';
+    elseif ( $command == 'array'  )  $sql = 'select '        . $rest;
 
     $_SQL [] = $sql;
 
@@ -248,12 +255,14 @@
     // field, [] for a record or an array, FALSE for anything else.
 
     $start = hrtime ( TRUE );
-    $run   = $padSqlConnect ? padDbRun ( $padSqlConnect, $sql, $command ) : FALSE;
+    $run   = ( $padSqlConnect and ! $empty ) ? padDbRun ( $padSqlConnect, $sql, $command ) : FALSE;
     $ms    = ( hrtime ( TRUE ) - $start ) / 1e6;
 
     if ( ! $run ) {
 
-      if ( $padSqlConnect )
+      if ( $empty )
+        padError ( "SQL: the statement '" . padMakeSafe ( trim ( $input ), 40 ) . "' has nothing to run" );
+      elseif ( $padSqlConnect )
         padError ( 'SQL: ' . padDbError ( $padSqlConnect ) . ' / '. $sql );
 
       if ( $command == 'field' )                       return '';
