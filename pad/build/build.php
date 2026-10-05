@@ -3,29 +3,50 @@
   // Assembles the complete page source, then hands it to the tag engine.
   //
   // Runs the build steps in order: dirs (the directory chain), libs (the _lib content),
-  // base (the nested _inits.pad/@page@/_exits.pad frame) and page (the page's own PHP
-  // plus its .pad), then expose (a request for the page's data, which renders none of
-  // them). The page is dropped into the frame's @page@ hole, the whole thing
-  // becomes $padBase [$pad], and occurrence/occurrence.php starts the first pass over it.
+  // guards (the _guard.php of each directory), base (the nested _inits.pad/@page@/_exits.pad
+  // frame) and page (the page's own PHP plus its .pad), then expose (a request for the
+  // page's data, which renders none of them). The page is dropped into the frame's @page@
+  // hole, the whole thing becomes $padBase [$pad], and occurrence/occurrence.php starts the
+  // first pass over it.
 
   include PAD . 'build/dirs.php';
 
   $padBuildLib  = include PAD . 'build/libs.php';
-  $padBuildBase = include PAD . 'build/base.php';
-  $padBuildPage = include PAD . 'build/page.php';
 
-  include PAD . 'build/expose.php';
+  // The directory guards decide before any _inits.php runs. A refused request is answered
+  // 403; a page a {page} tag includes renders as nothing when its guard refuses - an
+  // allowed page must not show a guarded one's content, nor be refused for holding it.
 
-  $padBase [$pad] = $padBuildLib . str_replace ( '@page@', $padBuildPage, $padBuildBase );
+  include PAD . 'build/guards.php';
 
-  // The same text as source-map pieces, kept as this level's map when they join up to it
-  // exactly - what lets an error name the template file, line and column (lib/source.php).
+  if ( $padBuildRefused and empty ( $padGuardNested ) )
+    padRefuse ( 403, padLocal ()
+      ? 'Forbidden: ' . str_replace ( APPS, '', $padBuildRefused ) . " refused the page '$padPage'"
+      : 'Forbidden' );
 
-  $padSrcMap [$pad] = padSrcMake (
-    array_merge ( $padSrcLib, padSrcReplace ( $padSrcBase, '@page@', $padSrcPage ) ),
-    $padBase [$pad],
-    $padSrcWrap
-  );
+  if ( $padBuildRefused )
+
+    $padBase [$pad] = '';
+
+  else {
+
+    $padBuildBase = include PAD . 'build/base.php';
+    $padBuildPage = include PAD . 'build/page.php';
+
+    include PAD . 'build/expose.php';
+
+    $padBase [$pad] = $padBuildLib . str_replace ( '@page@', $padBuildPage, $padBuildBase );
+
+    // The same text as source-map pieces, kept as this level's map when they join up to it
+    // exactly - what lets an error name the template file, line and column (lib/source.php).
+
+    $padSrcMap [$pad] = padSrcMake (
+      array_merge ( $padSrcLib, padSrcReplace ( $padSrcBase, '@page@', $padSrcPage ) ),
+      $padBase [$pad],
+      $padSrcWrap
+    );
+
+  }
 
   // Strict mode reads the assembled source for construct typos: an @word@ that names no
   // file in pad/constructs/ renders as nothing anywhere, silently. What sits between

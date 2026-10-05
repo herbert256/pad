@@ -112,6 +112,7 @@ apps/myapp/
 ├── index.php              # Home page data
 ├── index.pad              # Home page template
 │
+├── _guard.php             # Decides access to every page below - FALSE is 403 (optional)
 ├── _inits.php             # Runs BEFORE all pages (optional)
 ├── _inits.pad             # Wraps ALL pages - use @page@ placeholder (optional)
 ├── _exits.php             # Runs AFTER all pages (optional)
@@ -137,6 +138,7 @@ apps/myapp/
     ├── _lib/              # Subdirectory lib
     ├── _options/          # Subdirectory options
     ├── _tags/             # Subdirectory tags
+    ├── _guard.php         # Subdirectory guard (runs after the parent's)
     ├── _inits.pad         # Subdirectory wrapper (top)
     ├── _exits.pad         # Subdirectory wrapper (bottom)
     └── page.pad
@@ -171,9 +173,27 @@ These files wrap page content at each directory level, creating nested wrappers:
 /_exits.pad        ← Root wrapper (bottom)
 ```
 
+### Directory Guards (_guard.php)
+
+A `_guard.php` decides for every page below its directory, before any `_inits.php` runs:
+access control follows the file tree. Returning `FALSE` (or anything not true) answers
+`403 Forbidden`; `TRUE` or no return lets the request through. Guards run root first, after
+`_lib`, in the request's scope (session and request variables, `$padPage`); one can
+`padRedirect('login')`. A `{page}` including a refused page renders it as nothing, and a
+guarded page never comes from or goes into the page cache.
+
+```php
+// apps/shop/admin/_guard.php
+if ( ! $session_user )
+  padRedirect ( 'login' );
+
+return $session_role == 'admin';
+```
+
 ### PHP Execution Order (_inits.php / _exits.php)
 
-PHP files execute in a specific order - all PHP runs before template rendering:
+PHP files execute in a specific order - all PHP runs before template rendering (each
+directory's `_guard.php`, root first, runs before all of them):
 
 1. `/_inits.php`
 2. `/abc/_inits.php`

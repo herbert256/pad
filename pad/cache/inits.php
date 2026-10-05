@@ -3,7 +3,8 @@
   // Server-side page cache lookup, run at the start of a request from inits/cache.php.
   //
   // Caching applies only to plain GET web requests with a non-zero $padCacheServerAge,
-  // from a visitor without an identity (padCacheIdentity); anything else clears $padCache
+  // from a visitor without an identity (padCacheIdentity), for a page no directory guard
+  // stands over (padCacheGuarded); anything else clears $padCache
   // and returns. A hit is answered before the application's _inits.php and page PHP run,
   // so the cache holds only what an anonymous visitor gets, and serves it only to one. The request URI hashes to $padCacheUrl,
   // the backend named by $padCacheServerType is loaded from cache/types/, and its
@@ -32,6 +33,8 @@
   elseif ( ! $padCacheServerAge )
     $padCache = FALSE;
   elseif ( padCacheIdentity () )
+    $padCache = FALSE;
+  elseif ( padCacheGuarded () )
     $padCache = FALSE;
 
   if ( ! $padCache )

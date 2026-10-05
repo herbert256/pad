@@ -730,7 +730,7 @@ if ( ! $session_user )
 
 return $session_role == 'admin';   // FALSE → 403</code></pre>
           <p>PAD already runs <code>_inits.php</code> for every page below a directory. A <code>_guard.php</code> in the same place, run before anything else, would make access control follow the file tree: put one in <code>admin/</code> and every page there is protected, with no route list to keep in sync. <a href="#meta"><code>{meta access=…}</code></a> could add per-page rules. Guarded pages already stay out of the page cache, which skips visitors with a session.</p>
-        </li>
+        <p class="done"><strong>Done.</strong> A <code>_guard.php</code> in a directory decides for every page below it, root first and before any <code>_inits.php</code>: FALSE or anything not true answers 403 (the refusing guard named to a local request), TRUE or no return lets it through, <code>padRedirect</code> sends the visitor elsewhere; a <code>{page}</code> of a refused page renders as nothing, and a guarded page is neither served from nor stored in the page cache. Regression: a <code>regression/guard*</code> application in the Regression suite; manual page; APP.md, CLAUDE.md.</p></li>
 
         <li class="idea" id="json-pages">
           <div class="idea-top"><span class="number" aria-hidden="true">31</span><h3>JSON and CSV from the same page</h3><span class="effort">Medium</span></div>

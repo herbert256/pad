@@ -51,4 +51,28 @@
 
   }
 
+  // Whether a directory guard (build/guards.php) stands over the request's page. A hit is
+  // answered before any guard runs, and a guard may decide on more than the cookies the
+  // cache already steps aside for - an address, a header, the time of day - so a guarded
+  // page is neither served from the cache nor stored in it.
+
+  function padCacheGuarded () {
+
+    global $padDir;
+
+    $dir = substr ( APP, 0, -1 );
+
+    if ( file_exists ( "$dir/_guard.php" ) )
+      return TRUE;
+
+    foreach ( padExplode ( $padDir ?? '', '/' ) as $part ) {
+      $dir .= "/$part";
+      if ( file_exists ( "$dir/_guard.php" ) )
+        return TRUE;
+    }
+
+    return FALSE;
+
+  }
+
 ?>

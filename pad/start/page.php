@@ -35,6 +35,12 @@
   $padStrPag [$pad] [1] = $padInclude;
   $padStrPag [$pad] [2] = $padDir;
   $padStrPag [$pad] [3] = $padPath;
+  $padStrPag [$pad] [4] = $padGuardNested ?? FALSE;
+
+  // The included page's directory guards still decide (build/guards.php), but a refusal
+  // makes this page render as nothing instead of refusing the whole request.
+
+  $padGuardNested = TRUE;
 
   $padPage    = $padStrPagName;
   $padInclude = padTagParm ( 'include', TRUE );
@@ -45,10 +51,11 @@
   $padStrCod = '';
   $padStrRet = include PAD . 'start/pad/parms.php';
 
-  $padPage    = $padStrPag [$pad] [0];
-  $padInclude = $padStrPag [$pad] [1];
-  $padDir     = $padStrPag [$pad] [2];
-  $padPath    = $padStrPag [$pad] [3];
+  $padPage        = $padStrPag [$pad] [0];
+  $padInclude     = $padStrPag [$pad] [1];
+  $padDir         = $padStrPag [$pad] [2];
+  $padPath        = $padStrPag [$pad] [3];
+  $padGuardNested = $padStrPag [$pad] [4];
 
   return $padStrRet;
 

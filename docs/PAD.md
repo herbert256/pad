@@ -45,6 +45,7 @@ PAD uses a hierarchical directory structure for inheritance:
 
 ```
 APP/
+├── _guard.php          # Access check for every page below (FALSE answers 403)
 ├── _inits.pad          # Initialization template (wraps all pages)
 ├── _inits.php          # Initialization code (runs before pages)
 ├── _exits.pad          # Exit template (wraps all pages)

@@ -1,0 +1,77 @@
+<h1>Directory guards</h1>
+
+<p>A <code>_guard.php</code> in a directory decides, for every page below it, whether the
+request may see the page - before any <code>_inits.php</code> or page PHP runs. Access
+control follows the file tree: put one in <code>admin/</code> and every page there is
+protected, with no list of routes to keep in step.</p>
+
+<p>The guard of this manual's <code>guarded/</code> directory:</p>
+
+<pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The pages in this directory open only to a request that says ?pass=yes.<br><br>  </span><span style="color: #007700">return ( </span><span style="color: #0000BB">$_GET </span><span style="color: #007700">[</span><span style="color: #DD0000">'pass'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'' </span><span style="color: #007700">) === </span><span style="color: #DD0000">'yes'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+
+<ul>
+  <li>Returning <code>FALSE</code> - or anything that is not true: <code>NULL</code>,
+  <code>0</code>, <code>''</code> - refuses the page with <code>403 Forbidden</code>. Returning
+  <code>TRUE</code>, or no return at all, lets the request through to the next guard down.</li>
+  <li>The guards run from the application root down, each directory's in turn, after the
+  <code>_lib</code> files, so a guard can call the application's functions and read the session
+  and request variables - and <code>$padPage</code>, to decide per page.</li>
+  <li>A guard can send the visitor elsewhere itself: <code>padRedirect ( 'login' )</code>.</li>
+  <li>A page a <b>{page}</b> tag includes is guarded too: when its guard says no, it renders as
+  nothing, and the page that includes it carries on.</li>
+  <li>A guarded page is never served from the page cache, nor stored in it.</li>
+</ul>
+
+<p>This request did not say <code>?pass=yes</code>, so the included page stays empty:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/directory_guards_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;Included: [<b>{<font color="blue">page </font><font color="red"><font color="black">'</font>guarded/secret<font color="black">'</font></font>}</b>]&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>Included: []</p>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>

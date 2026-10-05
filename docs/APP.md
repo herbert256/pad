@@ -1209,8 +1209,8 @@ Create sections with their own wrappers:
 ```
 apps/myapp/
 └── admin/
+    ├── _guard.php      # Admin access check - FALSE answers 403
     ├── _inits.pad      # Admin section wrapper
-    ├── _inits.php      # Admin authentication check
     ├── index.pad
     ├── users.pad
     └── settings.pad
@@ -1219,6 +1219,28 @@ apps/myapp/
 Access via `?admin/users`, `?admin/settings`, etc.
 
 Each `_inits.pad` wraps content from its directory and below.
+
+### Directory Guards
+
+A `_guard.php` decides for every page in its directory and below whether the request may
+see it, before any `_inits.php` or page PHP runs:
+
+```php
+<?php
+  // apps/shop/admin/_guard.php
+  if ( ! $session_user )
+    padRedirect ( 'login' );
+
+  return $session_role == 'admin';   // FALSE → 403
+?>
+```
+
+- `FALSE`, or any value that is not true (`NULL`, `0`, `''`), refuses the page with
+  `403 Forbidden`; `TRUE` or no return at all lets the request through.
+- The guards run root first, one per directory level, after the `_lib` files and in the
+  request's own scope: the session and request variables and `$padPage` are there.
+- A page included with `{page}` is guarded too; a refusal renders it as nothing.
+- A guarded page is never answered from the page cache, nor stored in it.
 
 ---
 
