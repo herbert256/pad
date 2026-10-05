@@ -547,7 +547,7 @@
 
 {echo $post.body | markdown}</code></pre>
           <p>For help texts, release notes, content kept in a database, and the README files the <code>apps</code> app already reads. Use a CommonMark library when it is installed, with a small built-in subset as a fallback. Pass user content through an HTML sanitizer after conversion, and use the <code>ignore</code> option when the text contains braces.</p>
-          <p class="references"><strong>Precedent:</strong> <a href="https://twig.symfony.com/doc/3.x/filters/markdown_to_html.html">Twig markdown_to_html</a></p>
+          <p class="done"><strong>Done.</strong> <code>{markdown}…{/markdown}</code>, <code>{markdown $text}</code> and the <code>markdown</code> pipe: a built-in CommonMark subset (headings, emphasis, code, nested lists, links, images, quotes, rules) that escapes raw HTML unless the <code>html</code> option lets the author’s own through, and drops <code>javascript:</code> URLs; the HTML of a value stays a value. Regression: framework and errors cases; manual page <em>Markdown</em>; TAGS.md, FUNCTIONS.md, CLAUDE.md.</p><p class="references"><strong>Precedent:</strong> <a href="https://twig.symfony.com/doc/3.x/filters/markdown_to_html.html">Twig markdown_to_html</a></p>
         </li>
 
         <li class="idea" id="charts">

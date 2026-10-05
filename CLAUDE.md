@@ -452,6 +452,19 @@ drops a section when what it shows has changed.
 {$created | localDate('long', 'short')}       # date and time styles, or an ICU pattern
 ```
 
+### Markdown
+```
+{markdown}                                    # the content renders, then reads as Markdown
+  ## Notes for {$version}
+  - **Faster** first render
+{/markdown}
+{$post.body | markdown}                       # a value - raw HTML escaped, no sanitize on top
+{markdown html}...{/markdown}                 # the author's own raw HTML let through
+{markdown ignore}...{/markdown}               # braces in code samples
+```
+A built-in CommonMark subset (lib/markdown.php): headings, emphasis, code, lists, links,
+images, quotes, rules. `javascript:` links lose their URL; the HTML of a value stays a value.
+
 ### Variable Assignment
 ```
 {set $name = 'Alice'}              # Assign string

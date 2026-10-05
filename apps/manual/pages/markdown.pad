@@ -1,0 +1,30 @@
+<h1>Markdown</h1>
+
+<p>Help texts, release notes and content kept in a database are easier to write as Markdown.
+{tag 'markdown'} writes what it wraps as HTML: the content renders first, so fields and tags
+in it resolve, and the result is then read as Markdown. The text is dedented first, so the
+block can be indented along with the template around it.</p>
+
+{example 'fragments/markdown_1'}
+
+<h2>The markdown pipe</h2>
+
+<p>A value - a post body from the database - goes through the <code>markdown</code> pipe, or
+is given to the tag as its parameter: <code>{open}markdown $post.body{close}</code>. The HTML it
+makes is safe by construction, so a field whose last pipe is <code>markdown</code> skips the
+sanitize chain that would escape the markup again.</p>
+
+{example 'fragments/markdown_2'}
+
+<h2>What is safe</h2>
+
+<ul>
+  <li>Raw HTML in the text is escaped, not passed on. The <code>html</code> option of the tag lets the template author's own markup through; the pipe has no such form.</li>
+  <li>A link or image whose URL names a scheme other than http, https, mailto, ftp or tel - <code>javascript:</code>, <code>data:</code> - keeps only its text.</li>
+  <li>The HTML made from a value stays a value: PAD tags written in a post are shown, never run.</li>
+  <li>Braces in the template's own Markdown - code samples - need the <code>ignore</code> option: <code>{open}markdown ignore{close}</code>.</li>
+</ul>
+
+<p>The built-in renderer is a CommonMark subset: headings, paragraphs, emphasis, code spans
+and code blocks, lists, links, images, block quotes and rules. Reference-style links, tables
+and footnotes are not supported.</p>

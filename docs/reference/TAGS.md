@@ -556,6 +556,46 @@ Take out the whitespace between HTML tags, and at both ends.
 
 ---
 
+### markdown
+Write Markdown as HTML.
+
+```html
+{markdown}
+  ## Release notes for {$version}
+  - **Faster** first render
+  - see [the manual](?manual)
+{/markdown}
+
+{markdown $post.body}
+{markdown html} ... {/markdown}
+{markdown ignore} ... code with braces ... {/markdown}
+```
+
+**Behavior:** The content renders first - its fields and tags resolve - and the result is read
+as Markdown. With a parameter instead of a pair the value of the parameter is read, as the
+`markdown` pipe does. The text is dedented first, so a block indented along with the template
+is not a code block.
+
+**Supported:** ATX and setext headings, paragraphs, `*em*` / `_em_`, `**strong**`, code spans,
+fenced (with a language class) and indented code blocks, bullet and ordered lists (nested,
+tight or loose, a start number), links, images, `<https://...>` autolinks, block quotes,
+thematic breaks, hard line breaks and backslash escapes. Not supported: reference-style links,
+tables, footnotes.
+
+**Safety:** raw HTML in the text is escaped, and a link or image whose URL names a scheme other
+than http, https, mailto, ftp or tel (`javascript:`, `data:` ...) keeps only its text. An
+existing entity is left alone, the way the sanitize chain does.
+
+| Option | Description |
+|--------|-------------|
+| `html` | Let the author's own raw HTML through: inline tags, and a block-level element or comment at the start of a line up to the next blank line |
+| `ignore` | Braces in the content are text, not tags - for code samples |
+
+**Values are text:** the HTML made from a value stays a value - `{php:getcwd}` in a post is
+shown, not run. See also the `markdown` pipe in FUNCTIONS.md.
+
+---
+
 ### ignore
 Escape PAD syntax in content.
 
@@ -960,6 +1000,7 @@ Resume a previously ceased sequence iteration.
 | `output` | Output | Set output type |
 | `tidy` | Output | Format HTML |
 | `spaceless` | Output | Remove whitespace between HTML tags |
+| `markdown` | Output | Markdown written as HTML, raw HTML escaped |
 | `ignore` | Output | Escape content |
 | `reactData` | Output | React mount point with provider data |
 | `cache` | Output | Keep a section rendered (fragment cache) |

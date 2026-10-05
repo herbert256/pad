@@ -179,13 +179,24 @@ Functions that add HTML formatting to text.
 |----------|------------|-------------|
 | `bold` | - | Wraps value in `<b>` tags |
 | `nbsp` | - | Replaces spaces with `&nbsp;` |
+| `markdown` | - | Reads the value as Markdown and writes it as HTML - raw HTML escaped, `javascript:` links dropped |
 
 ### Examples
 
 ```
 {echo 'important' | bold} → '<b>important</b>'
 {echo 'hello world' | nbsp} → 'hello&nbsp;world'
+{echo '**Hi** <b>' | markdown} → '<p><strong>Hi</strong> &lt;b&gt;</p>'
 ```
+
+### markdown
+
+`{$post.body | markdown}` shows a post kept in a database. The HTML is safe by construction - the
+raw HTML of the value is escaped, a link whose URL names a scheme other than http, https,
+mailto, ftp or tel keeps only its text - so a field whose **last** pipe is `markdown` skips the
+sanitize chain, which would otherwise escape the markup just made. The same subset as the
+`{markdown}` tag (TAGS.md); the tag's `html` option, which lets raw HTML through, is for the
+template's own text and has no pipe form. A value stays text: `{php:getcwd}` in a post is shown.
 
 ---
 

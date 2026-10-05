@@ -70,7 +70,11 @@
   if ( $padVarOpts )
     $padVal = padEval ( $padVarOpts, $padVal, TRUE );
 
-  if ( $padFirst == '$' )
+  // The markdown pipe answers HTML that is safe by construction - it escaped the raw HTML
+  // of the value - so a field whose last pipe it is skips the end chain, whose sanitize
+  // would escape the markup just made: {$post.body | markdown} shows the post.
+
+  if ( $padFirst == '$' and ! preg_match ( '/(^|\|)\s*markdown\s*(\(\s*\))?\s*$/', $padVarOpts ) )
     foreach ( $padDataDefaultEnd as $padOptOne )
       $padVal = padEval ( $padOptOne, $padVal );
 
