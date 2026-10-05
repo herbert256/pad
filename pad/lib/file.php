@@ -191,9 +191,17 @@
     if ( ! str_ends_with ( $dir, '/' ) )
       $dir .= '/';
 
+    // The directory is resolved, so DATA is too before the two are compared: under a root
+    // reached through a symlink - /tmp on macOS - the resolved directory never started with
+    // the DATA as written, and nothing was deleted, silently. DATA itself is no directory
+    // to empty: only what lies below it.
+
+    $data = padGetPath ( DATA );
+
     if ( ! file_exists     ( $dir           ) ) return;
     if ( ! is_dir          ( $dir           ) ) return;
-    if ( ! str_starts_with ( $dir, DATA      ) ) return;
+    if ( $data === FALSE                        ) return;
+    if ( ! str_starts_with ( $dir, rtrim ( $data, '/' ) . '/' ) or $dir == rtrim ( $data, '/' ) . '/' ) return;
 
     // Finder drops a fresh .DS_Store into a directory it has open the moment the contents
     // change - and the write arrives a few milliseconds AFTER the deletions, asynchronously,
