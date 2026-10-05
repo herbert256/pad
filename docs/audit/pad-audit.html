@@ -625,13 +625,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pm" id="m13">
+    <div class="finding pm fixed" id="m13">
       <div class="tag"><div class="priority">Medium</div><div class="cat">Correctness</div></div>
       <div>
-        <h3>Sequence membership generates only up to the candidate's position</h3>
+        <h3>Sequence membership generates only up to the candidate's position<span class="done">Fixed</span></h3>
         <p class="where">sequence/build/check.php:69</p>
         <p><code>in_array($pqLoop, pqArray($pqSeq, $pqParm, "to=$pqLoop"))</code> — for <code>subtract</code>, <code>divide</code>, negative <code>add</code> and <code>multiply</code> below 1, a value first appears <em>after</em> its own position, so <code>keep</code>/<code>remove</code>/<code>flag</code> give wrong results. The stored regression answers encode the wrong output, so the suite now protects the bug. (The same call inherits <code>pqArray</code>'s trailing empty element, <a href="#m28">M28</a>.)</p>
         <div class="fix"><b>Fix:</b> add <code>bool.php</code> predicates for these types or bound by value, then regenerate the stored answers.</div>
+        <div class="resolved"><b>Fixed:</b> the four arithmetic types the audit names get <code>bool.php</code> predicates, which <code>build/check.php</code> already asks first. A value is a term of <code>add</code>, <code>subtract</code>, <code>multiply</code> or <code>divide</code> with parameter p when the position it implies (v − p, v + p, v / p, v × p) is a whole number from 1 up (a new <code>pqBoolPosition()</code>). That covers a negative add and a factor below 1 as well, with no generating at all. Over 1–25, <code>keep</code> with <code>divide=4</code> and with <code>subtract=4</code> now keeps all 25, <code>remove</code> none, and <code>flag</code> gives 1s. That is right: n/4 reaches every whole k at n = 4k, and n − 4 every integer from −3 up. The two stored answers that recorded the misses, <code>keepRemoveFlag/divide</code> and <code>keepRemoveFlag/substract</code>, are re-recorded, and only those lines changed. A framework case over quoted ranges answered <code>[][]</code> for subtract and divide without the predicates and <code>[1 2 3 4 ]</code> with them. The generate-to-position fallback stays for types without a predicate, where it is right for any sequence that only grows.</div>
       </div>
     </div>
 

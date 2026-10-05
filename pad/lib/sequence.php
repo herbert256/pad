@@ -282,6 +282,21 @@
 
   }
 
+  // Whether $x is a position an arithmetic sequence has: a whole number from 1 up. The
+  // membership predicates of add, subtract, multiply and divide reduce to it - a value is a
+  // term when the position it would stand at is one.
+
+  function pqBoolPosition ( $x ) {
+
+    if ( ! is_numeric ( $x ) )
+      return FALSE;
+
+    $x = $x + 0;
+
+    return $x >= 1 and abs ( $x - round ( $x ) ) < 1e-9;
+
+  }
+
   function pqBuild ( $check, $for='' ) {
 
     if ( $check == 'pull' )
