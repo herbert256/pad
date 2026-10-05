@@ -14,9 +14,14 @@
   elseif ( function_exists ( 'iconv' ) )
     $text = @iconv ( 'UTF-8', 'ASCII//TRANSLIT//IGNORE', $text ) ?: $text;
 
-  $text = strtolower ( $text );
-  $text = preg_replace ( '/[^a-z0-9]+/', $separator, $text );
+  // The runs are cut to one space and trimmed before the separator goes in, so it is used
+  // as it is written: handed to preg_replace as the replacement, slug('$0') put each run
+  // back where it was, and handed to trim as a list of characters, slug('..') ended the
+  // request on an invalid range and slug('x') ate an x at either end of the text itself.
 
-  return trim ( $text, $separator );
+  $text = strtolower ( $text );
+  $text = trim ( preg_replace ( '/[^a-z0-9]+/', ' ', $text ) );
+
+  return str_replace ( ' ', $separator, $text );
 
 ?>
