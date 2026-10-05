@@ -88,17 +88,19 @@
   }
 
   // The front matter is the block between a first line of --- and the next line of --- or
-  // ...; a file without it is all body.
+  // ...; a file without it is all body. The closing line is a line of its own: a value
+  // that ended in the same characters - title: Wait... - closed the block there, the title
+  // became Wait and the keys after it went into the body.
 
   function padFrontMatter ( $text, $file = '' ) {
 
     $text = str_replace ( [ "\r\n", "\r" ], "\n", $text );
     $text = preg_replace ( '/^\xEF\xBB\xBF/', '', $text );
 
-    if ( ! preg_match ( '/^---[ \t]*\n(.*?)\n?(?:---|\.\.\.)[ \t]*(?:\n|$)/s', $text, $m ) )
+    if ( ! preg_match ( '/^---[ \t]*\n(?:(.*?)\n)?(?:---|\.\.\.)[ \t]*(?:\n|$)/s', $text, $m ) )
       return [ [], $text ];
 
-    return [ padFrontMatterRead ( $m [1], $file ), substr ( $text, strlen ( $m [0] ) ) ];
+    return [ padFrontMatterRead ( $m [1] ?? '', $file ), substr ( $text, strlen ( $m [0] ) ) ];
 
   }
 
