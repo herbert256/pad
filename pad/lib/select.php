@@ -409,14 +409,17 @@
 
   }
 
+  // Escaped for a single-quoted literal, the way the application's database driver wants
+  // it - backslashes for MySQL, a doubled quote for SQLite (lib/db.php).
+
   function padSelectEscape ( $value ) {
 
-    global $padSqlConnect, $padSqlHost, $padSqlUser, $padSqlPassword, $padSqlDatabase;
+    $connect = padDbApp ();
 
-    if ( ! isset ( $padSqlConnect ) )
-      $padSqlConnect = padDbConnect ( $padSqlHost, $padSqlUser, $padSqlPassword, $padSqlDatabase );
+    if ( ! $connect )
+      return str_replace ( "'", "''", (string) ( $value ?? '' ) );
 
-    return mysqli_real_escape_string ( $padSqlConnect, (string) ( $value ?? '' ) );
+    return padDbEscape ( $connect, $value, "'" );
 
   }
 

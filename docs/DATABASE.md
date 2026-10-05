@@ -260,6 +260,29 @@ $padSqlUser     = 'user';
 $padSqlPassword = 'pass';
 ```
 
+### SQLite - no database server
+
+`$padSqlDriver` chooses the application database's driver: `'mysql'` (the default, mysqli on
+the settings above) or `'sqlite'` (PDO). For SQLite `$padSqlDatabase` is the database file -
+a relative name lives under `DATA/` - and `$padSqlSetup` an optional `.sql` file, relative to
+the application, that builds the database the first time, when the file does not exist yet:
+
+```php
+$padSqlDriver   = 'sqlite';
+$padSqlDatabase = 'myapp/myapp.sqlite';     // DATA/myapp/myapp.sqlite
+$padSqlSetup    = '_install/schema.sql';    // CREATE TABLE ... INSERT ... - run once
+```
+
+Everything above works alike on both: the `db()` verbs and their result shapes (`field`,
+`record`, `array`, `check`, `insert` answering the new id, `update`/`delete` the rows
+touched), the `{0}` placeholders, the database tags, named `_data/*.sql` queries and the
+Select subsystem. The placeholders escape the way the driver needs - SQLite doubles a quote
+and has no backslash escape, so a value can never end its literal early. The build runs
+under a lock into a file of its own that is renamed into place, so a second request never
+sees a half-built database. The SQL itself is the database's own dialect: `||` instead of
+`concat()`, `AUTOINCREMENT`, no `TRUNCATE`. PAD's own database (`padDb()`, sessions, the `db`
+page cache) stays MySQL. The `regression/sqlite` application runs on it.
+
 ---
 
 ## Database Library Functions
@@ -268,7 +291,8 @@ $padSqlPassword = 'pass';
 |----------|-------------|
 | `db($sql, $vars)` | Execute SQL on application database |
 | `padDb($sql, $vars)` | Execute SQL on PAD database |
-| `padDbConnect($host, $user, $pass, $db)` | Create database connection |
+| `padDbConnect($host, $user, $pass, $db)` | Create a MySQL connection |
+| `padDbSqlite($file, $setup)` | Open (and on first use build) an SQLite database through PDO |
 
 ---
 

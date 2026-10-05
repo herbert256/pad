@@ -38,6 +38,7 @@ This directory contains PAD applications and examples.
 | [regression/error_ignore](regression/error_ignore/README.md) | Test | Regression test for the 'ignore' error action - the index turns NO when the action stops behaving |
 | [regression/error_log](regression/error_log/README.md) | Test | Regression test for the 'log' error action - the index turns NO when the action stops behaving |
 | [regression/events](regression/events/README.md) | Test | Regression test for the `_events/` hooks - each page shows what its hook heard |
+| [regression/sqlite](regression/sqlite/README.md) | Test | Regression test for SQLite as the application database - built from a .sql file, no server |
 | [regression/error_pad](regression/error_pad/README.md) | Test | Regression test for the 'pad' error action - the index turns NO when the action stops behaving |
 | [regression/error_php](regression/error_php/README.md) | Test | Regression test for the 'php' error action - the index turns NO when the action stops behaving |
 | [regression/error_stop](regression/error_stop/README.md) | Test | Regression test for the 'stop' error action - the index turns NO when the action stops behaving |

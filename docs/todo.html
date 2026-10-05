@@ -858,7 +858,7 @@ $padExpose = [ 'orders', 'total' ];</code></pre>
         <li class="idea" id="sqlite">
           <div class="idea-top"><span class="number" aria-hidden="true">42</span><h3>SQLite for zero-setup apps</h3><span class="effort">Medium–large</span></div>
           <p>The database layer is MySQL through mysqli, with two fixed connections (<a href="https://github.com/herbert256/pad/blob/master/pad/lib/db.php">lib/db.php</a>). After the PDO move that <a href="ANALYSE.md">ANALYSE.md</a> recommends (section 4), SQLite costs little extra. Then <code>classicModels</code>, the database cases in the suites, and new apps from <code>pad new</code> could run without a database server. Named connections such as <code>db('reports', …)</code> would come from the same change.</p>
-        </li>
+        <p class="done"><strong>Done.</strong> <code>$padSqlDriver = 'sqlite'</code> opens the file <code>$padSqlDatabase</code> names through PDO and builds it on first use from the .sql file <code>$padSqlSetup</code> names; the <code>db()</code> verbs and result shapes, the placeholders (SQLite escaping), the database tags, named queries and the Select subsystem work as on MySQL. Merged beside replay: a replayed request still never writes. Regression: a new SQLite regression application; manual page; DATABASE.md, CLAUDE.md.</p></li>
 
         <li class="idea" id="lookup">
           <div class="idea-top"><span class="number" aria-hidden="true">43</span><h3>Lookups between data sets</h3><span class="effort">Small</span></div>

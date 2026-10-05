@@ -904,6 +904,13 @@ $padSqlDatabase = 'myapp';
 $padSqlUser     = 'user';
 $padSqlPassword = 'pass';
 
+// Or SQLite through PDO - no server: the file (relative = under DATA/) and a .sql file
+// (relative = in the app) that builds it on first use. db() verbs, placeholders, the
+// database tags, named queries and Select work alike on both drivers.
+// $padSqlDriver   = 'sqlite';
+// $padSqlDatabase = 'myapp/myapp.sqlite';
+// $padSqlSetup    = '_install/schema.sql';
+
 // Error handling: pad, boot, php, stop, exit, ignore, log, dump
 $padErrorAction = 'pad';
 
@@ -1430,6 +1437,7 @@ assigns it. `node editors/lsp/test.js` tests it; `./ci.sh` runs that as its `lsp
 | `regression/error_ignore` | Test | Regression test for the 'ignore' error action |
 | `regression/error_log` | Test | Regression test for the 'log' error action |
 | `regression/events` | Test | Regression test for the `_events/` hooks - error, sql, curl, output |
+| `regression/sqlite` | Test | Regression test for SQLite as the application database - built from a .sql file, no server |
 | `regression/error_pad` | Test | Regression test for the 'pad' error action |
 | `regression/error_php` | Test | Regression test for the 'php' error action |
 | `regression/error_stop` | Test | Regression test for the 'stop' error action |

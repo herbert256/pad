@@ -138,6 +138,14 @@
   $padSqlUser               = 'app';
   $padSqlPassword           = 'app';
 
+  // The application database's driver, see lib/db.php: 'mysql' on the four settings above,
+  // or 'sqlite', where $padSqlDatabase is the database file - a relative name lives under
+  // DATA/ - and $padSqlSetup a .sql file that builds it the first time, when the file does
+  // not exist yet. db(), the database tags and the select subsystem work alike on both.
+
+  $padSqlDriver             = 'mysql';
+  $padSqlSetup              = '';
+
   $padDirMode  = 0755;
   $padFileMode = 0644;
 

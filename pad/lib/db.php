@@ -1,9 +1,18 @@
 <?php
 
-  // The whole MySQL layer. db() runs against the application database configured in
+  // The whole database layer. db() runs against the application database configured in
   // _config/config.php; padDb() against PAD's own database ($padSqlPad* - sessions,
-  // links, logs). Both connect lazily and cache the connection in a global; both return
-  // FALSE outright when mysqli is not installed, which is how PAD runs without a database.
+  // links, logs). Both connect lazily and cache the connection in a global.
+  //
+  // The application database speaks one of two drivers, $padSqlDriver:
+  //   'mysql'   mysqli on $padSqlHost/User/Password/Database - db() answers FALSE outright
+  //             when mysqli is not installed, which is how PAD runs without a database
+  //   'sqlite'  PDO on the file $padSqlDatabase names - a relative name lives under DATA/ -
+  //             and $padSqlSetup, when given, is a .sql file that builds the database the
+  //             first time, when the file does not exist yet: an application with no
+  //             database server at all
+  // PAD's own database is MySQL. The verbs, the placeholders and the shapes below are the
+  // same whatever the driver: padDbRun is the one place that talks to either.
   //
   // padDbConnect connects and puts MySQL in TRADITIONAL sql_mode, so bad data errors
   // instead of being silently truncated.
@@ -28,15 +37,39 @@
     if ( padReplaying () and padReplayWrites ( $sql ) )
       return 0;
 
-    if ( ! function_exists ( 'mysqli_connect' ) )
+    $connect = padDbApp ();
+
+    if ( $connect === NULL )
       return FALSE;
 
-    global $padSqlConnect, $padSqlHost, $padSqlUser, $padSqlPassword, $padSqlDatabase;
+    return padDbPart2 ( $connect, $sql, $vars, TRUE );
 
-    if ( ! isset ( $padSqlConnect ) )
-      $padSqlConnect = padDbConnect ( $padSqlHost, $padSqlUser, $padSqlPassword, $padSqlDatabase );
+  }
 
-    return padDbPart2 ( $padSqlConnect, $sql, $vars, TRUE );
+  // The application's connection, made on first use: a mysqli link or a PDO handle, FALSE
+  // when connecting failed - the connect reported why - and NULL when the driver is MySQL
+  // and mysqli is not installed.
+
+  function padDbApp () {
+
+    global $padSqlConnect, $padSqlDriver, $padSqlHost, $padSqlUser, $padSqlPassword,
+           $padSqlDatabase, $padSqlSetup;
+
+    if ( isset ( $padSqlConnect ) )
+      return $padSqlConnect;
+
+    $driver = $padSqlDriver ?? 'mysql';
+
+    if ( $driver == 'sqlite' )
+      return $padSqlConnect = padDbSqlite ( $padSqlDatabase, $padSqlSetup ?? '' );
+
+    if ( $driver != 'mysql' )
+      return $padSqlConnect = padError ( "there is no database driver named '" . padMakeSafe ( $driver, 20 ) . "' - 'mysql' or 'sqlite'" );
+
+    if ( ! function_exists ( 'mysqli_connect' ) )
+      return NULL;
+
+    return $padSqlConnect = padDbConnect ( $padSqlHost, $padSqlUser, $padSqlPassword, $padSqlDatabase );
 
   }
 
@@ -81,6 +114,105 @@
 
   }
 
+  // The SQLite connection, through PDO, reporting by return value as the mysqli one does.
+  // The file is created by the first connection when it does not exist; with a setup file -
+  // a relative name is in the application's directory - it is built from that first - under a lock, into a file of its own that is renamed into
+  // place, so a second request arriving meanwhile never finds a half-built database.
+  // Integers and floats come back as PHP numbers, as MySQL's do here.
+
+  function padDbSqlite ( $file, $setup = '' ) {
+
+    global $padDirMode;
+
+    if ( ! class_exists ( 'PDO' ) or ! in_array ( 'sqlite', PDO::getAvailableDrivers () ) )
+      return padError ( 'SQLite: the pdo_sqlite extension is not installed' );
+
+    $file = (string) $file;
+
+    if ( $file == '' )
+      return padError ( 'SQLite: $padSqlDatabase names no database file' );
+
+    if ( $file != ':memory:' and ! str_starts_with ( $file, '/' ) and ! preg_match ( '#^[A-Za-z]:[\\\\/]#', $file ) )
+      $file = DATA . $file;
+
+    if ( $setup and ! str_starts_with ( $setup, '/' ) and ! preg_match ( '#^[A-Za-z]:[\\\\/]#', $setup ) )
+      $setup = APP . $setup;
+
+    if ( $file != ':memory:' and ! is_dir ( dirname ( $file ) ) )
+      @mkdir ( dirname ( $file ), $padDirMode ?? 0755, TRUE );
+
+    if ( $setup and $file != ':memory:' and ! file_exists ( $file ) )
+      if ( ! padDbSqliteSetup ( $file, $setup ) )
+        return FALSE;
+
+    try {
+      $connect = new PDO ( "sqlite:$file" );
+    } catch ( Throwable $e ) {
+      return padError ( 'SQLite: ' . $e->getMessage () . " / $file" );
+    }
+
+    $connect->setAttribute ( PDO::ATTR_ERRMODE,           PDO::ERRMODE_SILENT );
+    $connect->setAttribute ( PDO::ATTR_TIMEOUT,           10 );
+    $connect->setAttribute ( PDO::ATTR_STRINGIFY_FETCHES, FALSE );
+
+    if ( $setup and $file == ':memory:' )
+      if ( $connect->exec ( (string) padFileGet ( $setup ) ) === FALSE )
+        return padError ( 'SQLite setup ' . basename ( $setup ) . ': ' . $connect->errorInfo () [2] );
+
+    $connect->exec ( 'PRAGMA foreign_keys = ON' );
+
+    return $connect;
+
+  }
+
+  function padDbSqliteSetup ( $file, $setup ) {
+
+    if ( ! is_file ( $setup ) )
+      return padError ( "SQLite: the setup file $setup does not exist" );
+
+    $lock = fopen ( "$file.lock", 'c' );
+
+    if ( $lock )
+      flock ( $lock, LOCK_EX );
+
+    try {
+
+      if ( file_exists ( $file ) )
+        return TRUE;
+
+      $work = "$file." . getmypid () . '.new';
+
+      @unlink ( $work );
+
+      $build = new PDO ( "sqlite:$work" );
+      $build->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
+
+      if ( $build->exec ( (string) file_get_contents ( $setup ) ) === FALSE ) {
+        $error = $build->errorInfo () [2];
+        $build = NULL;
+        @unlink ( $work );
+        return padError ( 'SQLite setup ' . basename ( $setup ) . ": $error" );
+      }
+
+      $build = NULL;
+
+      return rename ( $work, $file );
+
+    } catch ( Throwable $e ) {
+
+      return padError ( 'SQLite setup ' . basename ( $setup ) . ': ' . $e->getMessage () );
+
+    } finally {
+
+      if ( $lock ) {
+        flock ( $lock, LOCK_UN );
+        fclose ( $lock );
+      }
+
+    }
+
+  }
+
   // $event: the statement is the application's own - db(), not padDb() on PAD's sessions
   // and caches - so the application's _events/sql.php hears it, with how long it took.
 
@@ -114,13 +246,13 @@
     // field, [] for a record or an array, FALSE for anything else.
 
     $start = hrtime ( TRUE );
-    $query = $padSqlConnect ? mysqli_query ( $padSqlConnect , $sql ) : FALSE;
+    $run   = $padSqlConnect ? padDbRun ( $padSqlConnect, $sql, $command ) : FALSE;
     $ms    = ( hrtime ( TRUE ) - $start ) / 1e6;
 
-    if ( ! $query ) {
+    if ( ! $run ) {
 
       if ( $padSqlConnect )
-        padError ( 'SQL: ' . mysqli_errno ( $padSqlConnect ) . ': ' . mysqli_error ( $padSqlConnect ) . ' / '. $sql );
+        padError ( 'SQL: ' . padDbError ( $padSqlConnect ) . ' / '. $sql );
 
       if ( $command == 'field' )                       return '';
       if ( $command == 'record' or $command == 'array' ) return [];
@@ -128,13 +260,11 @@
 
     }
 
-    $rows = mysqli_affected_rows($padSqlConnect);
-
-    if ( $rows > 0 and ($command == 'field' or $command == 'record') )
-      $fields = mysqli_fetch_assoc ( $query );
+    $rows   = $run ['rows'];
+    $fields = $run ['first'];
 
     if     ( $command == 'insert'  ) {
-      $return = mysqli_insert_id ( $padSqlConnect );
+      $return = $run ['id'];
       if ( !$return )
         $return = $rows;
     }
@@ -146,24 +276,23 @@
     elseif ( $command == 'delete'  )  $return = $rows;
     elseif ( $command == 'check'   )  $return = $rows;
     elseif ( $command == 'field'   )
-      if ( $rows < 1 )
+      if ( $rows < 1 or ! $fields )
         $return = '';
       else
         foreach ($fields as $key => $return)
           break;
     elseif ( $command == 'record'  )
-      if ( $rows < 1 )
+      if ( $rows < 1 or ! $fields )
         $return = array();
       else
         $return = $fields;
     elseif ( $command == 'array'  ) {
       $return = array();
-      if ( $rows > 0 )
-        for ( $i = 1; $record = mysqli_fetch_assoc ($query); $i ++ )
-          if ( isset($record['id']) and !isset($return [$record['id']]) )
-            $return [$record['id']] = $record;
-          else
-            $return [] = $record;
+      foreach ( $run ['all'] as $record )
+        if ( isset($record['id']) and !isset($return [$record['id']]) )
+          $return [$record['id']] = $record;
+        else
+          $return [] = $record;
     }
     else
       $return = '';
@@ -179,10 +308,73 @@
 
   }
 
+  // Runs one statement on either driver and answers what padDbPart2 shapes the result
+  // from - the row count (affected rows for a write, rows returned for a read), the first
+  // row for field and record, every row for array, the new id for insert - or FALSE when
+  // the statement failed.
+
+  function padDbRun ( $connect, $sql, $command ) {
+
+    $run = [ 'rows' => 0, 'first' => NULL, 'all' => [], 'id' => 0 ];
+
+    if ( $connect instanceof PDO ) {
+
+      $query = $connect->query ( $sql );
+
+      if ( $query === FALSE )
+        return FALSE;
+
+      if ( $query->columnCount () ) {
+        $run ['all']  = $query->fetchAll ( PDO::FETCH_ASSOC );
+        $run ['rows'] = count ( $run ['all'] );
+      } else
+        $run ['rows'] = $query->rowCount ();
+
+      $run ['first'] = $run ['all'] [0] ?? NULL;
+
+      if ( $command == 'insert' )
+        $run ['id'] = (int) $connect->lastInsertId ();
+
+      return $run;
+
+    }
+
+    $query = mysqli_query ( $connect , $sql );
+
+    if ( ! $query )
+      return FALSE;
+
+    $run ['rows'] = mysqli_affected_rows ( $connect );
+
+    if ( $run ['rows'] > 0 and ( $command == 'field' or $command == 'record' ) )
+      $run ['first'] = mysqli_fetch_assoc ( $query );
+
+    if ( $run ['rows'] > 0 and $command == 'array' )
+      while ( $record = mysqli_fetch_assoc ( $query ) )
+        $run ['all'] [] = $record;
+
+    if ( $command == 'insert' )
+      $run ['id'] = mysqli_insert_id ( $connect );
+
+    return $run;
+
+  }
+
+  function padDbError ( $connect ) {
+
+    if ( $connect instanceof PDO ) {
+      $info = $connect->errorInfo ();
+      return ( $info [1] ?? $info [0] ?? '' ) . ': ' . ( $info [2] ?? 'unknown error' );
+    }
+
+    return mysqli_errno ( $connect ) . ': ' . mysqli_error ( $connect );
+
+  }
+
   // A named query: the text of a _data/name.sql file, which {name} then iterates. Every
   // {$field} in it is resolved where the tag stands - an option of the tag itself first
   // ({topCustomers country='USA'}), then a field or a variable of the page - and bound as a placeholder,
-  // so it reaches MySQL as an escaped literal, a number, or for an array a list. The file
+  // so it reaches the database as an escaped literal, a number, or for an array a list. The file
   // reads: its statement must be a SELECT or one of db()'s reading verbs.
 
   function padDbNamed ( $sql, $file ) {
@@ -240,6 +432,7 @@
     $out   = '';
     $len   = strlen ( $sql );
     $quote = '';
+    $slash = ! ( $connect instanceof PDO );
 
     for ( $i = 0; $i < $len; $i++ ) {
 
@@ -247,7 +440,7 @@
 
       if ( $quote ) {
 
-        if ( $char == '\\' and $i + 1 < $len ) {
+        if ( $slash and $char == '\\' and $i + 1 < $len ) {
           $out .= $char . $sql [++$i];
           continue;
         }
@@ -275,7 +468,7 @@
 
         if     ( $key [0] == 'x'    ) $out .= is_array ( $value ) ? implode ( ',', $value ) : $value;
         elseif ( $quote == '`'      ) $out .= str_replace ( '`', '``', (string) $value );
-        elseif ( $quote             ) $out .= padDbEscape ( $connect, $value );
+        elseif ( $quote             ) $out .= padDbEscape ( $connect, $value, $quote );
         else                          $out .= padDbLiteral ( $connect, $value );
 
         $i += strlen ( $match [0] ) - 1;
@@ -292,14 +485,21 @@
   }
 
   // A NULL is an empty string here, as padEscape has it; an array inside quotes is its
-  // values joined with commas.
+  // values joined with commas. MySQL escapes with backslashes; SQLite knows no backslash
+  // escape - a quote is doubled, the one the literal is written in - so the MySQL form
+  // there would end the literal early. A NUL ends an SQLite statement and is dropped.
 
-  function padDbEscape ( $connect, $value ) {
+  function padDbEscape ( $connect, $value, $quote = "'" ) {
 
     if ( is_array ( $value ) )
       $value = implode ( ',', $value );
 
-    return mysqli_real_escape_string ( $connect, (string) ( $value ?? '' ) );
+    $value = (string) ( $value ?? '' );
+
+    if ( $connect instanceof PDO )
+      return str_replace ( [ "\0", $quote ], [ '', $quote . $quote ], $value );
+
+    return mysqli_real_escape_string ( $connect, $value );
 
   }
 
@@ -319,7 +519,7 @@
     if ( is_int ( $value ) or is_float ( $value ) or preg_match ( '/^-?\d+(\.\d+)?$/', (string) $value ) )
       return (string) $value;
 
-    return "'" . mysqli_real_escape_string ( $connect, (string) $value ) . "'";
+    return "'" . padDbEscape ( $connect, $value, "'" ) . "'";
 
   }
 
