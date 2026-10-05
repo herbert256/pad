@@ -48,6 +48,7 @@ apps/myapp/
 │   └── config.php
 ├── _data/                 # Static data files (XML, JSON)
 ├── _content/              # Markdown collections ({collection 'blog'})
+├── _layouts/              # Layouts a page picks with {extends '_layouts/name'} (a convention)
 │
 └── subdir/                # Subdirectories can have own wrappers
     ├── _inits.pad
@@ -158,6 +159,26 @@ Use in templates:
 ```
 {echo $price | money}
 ```
+
+### Layouts - {extends} and {block}
+
+A page can pick its frame instead of taking its directories' `_inits.pad`/`_exits.pad`:
+
+**_layouts/report.pad**:
+```html
+<h1>{block 'title'}Report{/block}</h1>
+@page@
+```
+
+**sales.pad**:
+```
+{extends '_layouts/report'}
+{block 'title'}Sales{/block}
+<p>Revenue ...</p>
+```
+
+`{parent}` inside a block is the content it overrides. Without `{extends}`, a page's
+`{block 'title'}...{/block}` overrides the region of that name in the directory wrappers.
 
 ### _callbacks/ - Iteration Callbacks
 

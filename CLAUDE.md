@@ -511,6 +511,17 @@ Supports JSON, XML, YAML, and CSV formats:
 {/data}
 ```
 
+### Layouts (extends / block / parent)
+```
+{extends '_layouts/report'}                  # replaces the _inits/_exits frame
+{block 'title'}Sales{/block}                 # overrides the layout's {block 'title'}...{/block}
+{block 'sidebar'}{parent} <a>Export</a>{/block}
+<p>the rest goes to the layout's @page@</p>
+```
+Resolved in the text while the page is assembled. Without `{extends}` a page's blocks
+override the regions of its directories' `_inits.pad` - `{block 'title'}` sets the wrapper's
+title without PHP. The block name is always quoted (`{block}` alone is the `_common` snippet).
+
 ### Components (slots / parms)
 ```
 {card title='Revenue'}                       # _tags/card.pad:

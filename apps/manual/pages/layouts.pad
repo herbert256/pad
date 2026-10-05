@@ -1,0 +1,27 @@
+<h1>Layouts: extends, block and parent</h1>
+
+<p>The directories give a page its frame - every <code>_inits.pad</code> and <code>_exits.pad</code> on the way to it. A layout is a frame the page picks itself, wherever it lives, and whose regions it can override one by one. This is <code>_layouts/report.pad</code>:</p>
+
+{source '_layouts/report.pad'}
+
+<p>A page that extends it fills in the title, adds to the sidebar and leaves the footer as it is:</p>
+
+{example 'fragments/layouts_1'}
+
+<h2>The three tags</h2>
+
+<ul>
+  <li><code>{open}extends '_layouts/report'{close}</code> - the page is framed by that layout instead of by its directories' wrappers. The layout is named from the application root, like a <code>{open}page{close}</code>; an underscore directory keeps it from being a page of its own. A layout may extend another layout.</li>
+  <li><code>{open}block 'name'{close}...{open}/block{close}</code> in the layout is a region: its content renders unless the page overrides it. The same pair standing directly in the page is an override. The name is always quoted.</li>
+  <li><code>{open}parent{close}</code> inside an override is the content it overrides - to add to a region instead of replacing it.</li>
+</ul>
+
+<p>What the page holds outside its blocks goes where the layout writes {construct 'page'}, or in front of the layout when it has none.</p>
+
+<h2>Blocks in the directory wrappers</h2>
+
+<p>The blocks of an ordinary <code>_inits.pad</code> are regions too, so a page that extends nothing still overrides them: with <code>&lt;title&gt;{open}block 'title'{close}My site{open}/block{close}&lt;/title&gt;</code> in the wrapper, a page sets its own title with <code>{open}block 'title'{close}Sales{open}/block{close}</code> - no PHP needed. A block of such a page that overrides nothing renders where it stands.</p>
+
+<h2>Resolved before rendering</h2>
+
+<p>Blocks are put together in the text while the page is assembled, before anything renders, so they cost nothing at run time. Under the strict check a block of an extending page that overrides nothing is reported - usually a misspelt name - and so is an <code>{open}extends{close}</code> inside another tag, where the assembly does not look.</p>

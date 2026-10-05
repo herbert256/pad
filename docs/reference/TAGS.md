@@ -1037,6 +1037,61 @@ Render a mount point `<div>` for a React component, filled with data from a prov
 
 ## Layout Tags
 
+### extends
+Frame the page with a layout instead of its directories' wrappers.
+
+```html
+{extends '_layouts/report'}
+
+{block 'title'}Sales report{/block}
+
+{block 'sidebar'}
+  {parent}
+  <a href="?export">Export</a>
+{/block}
+
+<p>The rest of the page goes where the layout writes @page@.</p>
+```
+
+**Behavior:** Resolved while the page is assembled, before anything renders. The layout is
+named from the application root, like `{page}` (`.pad`, else `.html`); an underscore
+directory keeps it from being a page of its own. It replaces the `_inits.pad`/`_exits.pad`
+frame and the `_common` wrapper; a layout may extend a layout. The page's text outside its
+blocks goes where the layout writes `@page@`, or in front of it when it has none. The tag
+must stand directly in the page's own template; the name may be an expression the page's PHP
+set (`{extends $layout}`).
+
+---
+
+### block
+A named region of a layout or wrapper, and a page's override of it.
+
+```html
+<title>{block 'title'}My site{/block}</title>      {# in the layout or _inits.pad #}
+{block 'title'}Sales{/block}                       {# in the page #}
+```
+
+**Rules:** A `{block 'name'}` pair standing directly in the page overrides the block of that
+name in its frame - the layout it extends, or its directories' wrappers, so a page without
+PHP sets the wrapper's title. Any other named block is a region: its content renders unless
+something overrides it. The name is always quoted - a `{block}` without one (the `_common`
+snippet) is not a layout block. Under the strict check a block of an extending page that
+overrides nothing is reported. Text between `{ignore}` tags is left alone.
+
+---
+
+### parent
+Inside an overriding `{block}`: the content it overrides.
+
+```html
+{block 'sidebar'}{parent}<a href="?export">Export</a>{/block}
+```
+
+Through a chain of layouts each `{parent}` is the next block down. Outside an overriding block
+it is reported under the strict check.
+
+---
+
 ### slot
 A named place for content in a custom tag's template, and the fill a caller gives it.
 
@@ -1397,6 +1452,9 @@ Resume a previously ceased sequence iteration.
 | `restart` | Navigation | Restart processing |
 | `pager` | Navigation | Page links for a tag with the page option |
 | `csrf` | Web | Hidden CSRF token field of the session |
+| `extends` | Layout | Frame the page with a layout |
+| `block` | Layout | A named region of a layout or wrapper, and its override |
+| `parent` | Layout | The overridden content, inside an overriding block |
 | `slot` | Layout | A named place for content in a custom tag, and its fill |
 | `parms` | Layout | Declare a custom tag's parameters, required or with defaults |
 | `push` | Layout | Add rendered text to a named stack |

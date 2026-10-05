@@ -604,6 +604,18 @@ with a `ttl=` and a `_data/*.curl` file with a `<ttl>` keep the answer that long
 the last good copy - logging the failure - when the source is down. `$padCurlCache` picks
 the store: `'file'` (default), `'apcu'`, `'redis'`, `'memcached'` or `FALSE`.
 
+A page picks a layout of its own and overrides its regions, resolved in the text while the
+page is assembled:
+
+```
+{extends '_layouts/report'}                {# instead of the _inits.pad/_exits.pad frame #}
+{block 'title'}Sales report{/block}
+{block 'sidebar'}{parent}<a href="?export">Export</a>{/block}
+```
+
+Without `{extends}`, a page's `{block 'title'}` overrides the region of that name in its
+directories' wrappers.
+
 ### AJAX Support
 
 Handle AJAX requests seamlessly:

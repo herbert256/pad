@@ -290,7 +290,7 @@
 {/block}</code></pre>
           <p>PAD already has <a href="https://github.com/herbert256/pad/blob/master/pad/build/base.php#L3">directory-based wrapper inheritance</a>. The additional capability is selecting a layout independently of directory placement and overriding individual regions, optionally retaining their parent content.</p>
           <p>Develop this alongside slots because both need well-defined ownership and override rules.</p>
-          <p class="references"><strong>Precedent:</strong> <a href="https://smarty-php.github.io/smarty/stable/designers/language-builtin-functions/language-function-block/">Smarty blocks and parent content</a></p>
+          <p class="done"><strong>Done.</strong> <code>{extends '_layouts/report'}</code> frames a page with a layout of its choice in place of its directory wrappers; <code>{block 'title'}…{/block}</code> overrides the layout’s region of that name, <code>{parent}</code> inside it is the overridden content, the rest of the page goes to <code>@page@</code>, layouts may extend layouts, and without <code>{extends}</code> a page’s blocks override its directory wrappers’ regions (a page without PHP sets its own title). Resolved in the text at build time (lib/layout.php). Merged beside the template source map: a page whose blocks moved to a layout is left out of the map, so an error there names no line rather than a wrong one. Regression: framework and errors cases; manual page; TAGS.md, APP.md, CLAUDE.md.</p><p class="references"><strong>Precedent:</strong> <a href="https://smarty-php.github.io/smarty/stable/designers/language-builtin-functions/language-function-block/">Smarty blocks and parent content</a></p>
         </li>
 
         <li class="feature" id="fragment-cache">
