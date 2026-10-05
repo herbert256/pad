@@ -4,7 +4,7 @@ import sublime
 import sublime_plugin
 
 # {tag or {/tag, with optional type prefix ({data:items})
-TAG_RE = re.compile(r'\{(/?)([A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)?)')
+TAG_RE = re.compile(r'\{(/?)([A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)?)([^{}]*)')
 
 # built-in tags that never take a closing tag - kept off the open-tag stack
 SINGLE_TAGS = {
@@ -13,19 +13,28 @@ SINGLE_TAGS = {
     'open', 'close', 'null', 'true', 'false', 'flag', 'page', 'curl',
     'exists', 'at', 'resume', 'switch', 'ajax', 'reactData', 'file',
     'make', 'keep', 'remove', 'action',
+    'debug', 'attrs', 'classes', 'trans', 'nonce', 'csrf', 'stack', 'recurse', 'parent',
+    'extends', 'meta', 'parms', 'assert', 'flush', 'sparkline', 'chart', 'input', 'textarea',
 }
+
+# the branch words of {if} and {case} divide a pair; they never open one of their own
+BRANCH_TAGS = {'else', 'elseif', 'when'}
+
+# the comments the engine drops before it scans - {# ... #}, not the option sigil {#name},
+# and {-- ... --} - with any tag written inside them
+COMMENT_RE = re.compile(r'\{#(?![A-Za-z_][A-Za-z0-9_]*\s*[}|])[\s\S]*?#\}|\{--\s[\s\S]*?--\}')
 
 
 def open_tags(view, point):
     """Stack of PAD tags opened but not closed before point, innermost last."""
-    text = view.substr(sublime.Region(0, point))
+    text = COMMENT_RE.sub('', view.substr(sublime.Region(0, point)))
     stack = []
     for m in TAG_RE.finditer(text):
         closing, name = m.group(1), m.group(2)
         if closing:
             if name in stack:
                 del stack[len(stack) - 1 - stack[::-1].index(name):]
-        elif name not in SINGLE_TAGS:
+        elif name not in SINGLE_TAGS and name not in BRANCH_TAGS and not m.group(3).rstrip().endswith('/'):
             stack.append(name)
     return stack
 

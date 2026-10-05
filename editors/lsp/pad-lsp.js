@@ -32,14 +32,27 @@ const KIND = {
     Module: 9, Operator: 24, Class: 7, Snippet: 15,
 };
 
-const TAG_RE = /\{(\/?)([A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)?)/g;
+const TAG_RE = /\{(\/?)([A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)?)([^{}]*)/g;
 const SINGLE_TAGS = new Set([
     'set', 'get', 'echo', 'increment', 'decrement', 'redirect', 'restart',
     'exit', 'break', 'continue', 'cease', 'dump', 'error', 'exception',
     'open', 'close', 'null', 'true', 'false', 'flag', 'page', 'curl',
     'exists', 'at', 'resume', 'switch', 'ajax', 'reactData', 'file',
     'make', 'keep', 'remove', 'action',
+    'debug', 'attrs', 'classes', 'trans', 'nonce', 'csrf', 'stack', 'recurse', 'parent',
+    'extends', 'meta', 'parms', 'assert', 'flush', 'sparkline', 'chart', 'input', 'textarea',
 ]);
+
+// The branch words of {if} and {case} divide a pair; they never open one of their own.
+const BRANCH_TAGS = new Set(['else', 'elseif', 'when']);
+
+// The comments the engine drops before it scans - {# ... #}, not the option sigil {#name},
+// and {-- ... --} - with any tag written inside them.
+function stripComments(text) {
+    return text
+        .replace(/\{#(?![A-Za-z_][A-Za-z0-9_]*\s*[}|])[\s\S]*?#\}/g, '')
+        .replace(/\{--\s[\s\S]*?--\}/g, '');
+}
 
 const NAME = '[A-Za-z_][A-Za-z0-9_]*';
 
@@ -66,12 +79,13 @@ function textBefore(uri, position) {
 function openTags(before) {
     const stack = [];
     let m;
+    before = stripComments(before);
     TAG_RE.lastIndex = 0;
     while ((m = TAG_RE.exec(before)) !== null) {
         if (m[1]) {
             const i = stack.lastIndexOf(m[2]);
             if (i >= 0) stack.length = i;
-        } else if (!SINGLE_TAGS.has(m[2])) {
+        } else if (!SINGLE_TAGS.has(m[2]) && !BRANCH_TAGS.has(m[2]) && !m[3].trimEnd().endsWith('/')) {
             stack.push(m[2]);
         }
     }

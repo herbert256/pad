@@ -111,6 +111,15 @@ async function main() {
     r = await request('textDocument/completion', { textDocument: { uri: uri('orders.pad') }, position: at('orders.pad', '{/orders}', 2) });
     expect('completion closes the open tag', r.result.length && r.result[0].label === 'orders', r.result);
 
+    // what is not an open pair stays off the close-tag list: a branch word, a self-closed
+    // tag, a tag inside a comment
+    const branchUri = uri('orders.pad').replace('orders.pad', 'branches.pad');
+    const branchText = "{orders}\n{if $x}a{else}b{# {foo} #}{-- {baz} --}{bar /}\n{/";
+    notify('textDocument/didOpen', { textDocument: { uri: branchUri, languageId: 'pad', version: 1, text: branchText } });
+    r = await request('textDocument/completion', { textDocument: { uri: branchUri }, position: { line: 2, character: 2 } });
+    const closers = (r.result || []).map((c) => c.label);
+    expect('close-tag completion skips else, self-closed and commented tags', closers.join(',') === 'if,orders', closers);
+
     // hover from docs/reference, and from the application's own files
     let h = await hover('orders.pad', '{echo', 2);
     expect('hover on a tag shows its TAGS.md section', h.includes('### echo') && h.includes('TAGS.md'), h);

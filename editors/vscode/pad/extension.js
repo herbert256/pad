@@ -2,7 +2,7 @@ const vscode = require('vscode');
 const COMPLETIONS = require('./completions.json');
 
 // {tag or {/tag, with optional type prefix ({data:items})
-const TAG_RE = /\{(\/?)([A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)?)/g;
+const TAG_RE = /\{(\/?)([A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)?)([^{}]*)/g;
 
 // built-in tags that never take a closing tag
 const SINGLE_TAGS = new Set([
@@ -11,10 +11,23 @@ const SINGLE_TAGS = new Set([
     'open', 'close', 'null', 'true', 'false', 'flag', 'page', 'curl',
     'exists', 'at', 'resume', 'switch', 'ajax', 'reactData', 'file',
     'make', 'keep', 'remove', 'action',
+    'debug', 'attrs', 'classes', 'trans', 'nonce', 'csrf', 'stack', 'recurse', 'parent',
+    'extends', 'meta', 'parms', 'assert', 'flush', 'sparkline', 'chart', 'input', 'textarea',
 ]);
 
+// The branch words of {if} and {case} divide a pair; they never open one of their own.
+const BRANCH_TAGS = new Set(['else', 'elseif', 'when']);
+
+// The comments the engine drops before it scans - {# ... #}, not the option sigil {#name},
+// and {-- ... --} - with any tag written inside them.
+function stripComments(text) {
+    return text
+        .replace(/\{#(?![A-Za-z_][A-Za-z0-9_]*\s*[}|])[\s\S]*?#\}/g, '')
+        .replace(/\{--\s[\s\S]*?--\}/g, '');
+}
+
 function openTags(document, position) {
-    const text = document.getText(new vscode.Range(new vscode.Position(0, 0), position));
+    const text = stripComments(document.getText(new vscode.Range(new vscode.Position(0, 0), position)));
     const stack = [];
     let m;
     TAG_RE.lastIndex = 0;
@@ -23,7 +36,7 @@ function openTags(document, position) {
         if (closing) {
             const i = stack.lastIndexOf(name);
             if (i >= 0) stack.length = i;
-        } else if (!SINGLE_TAGS.has(name)) {
+        } else if (!SINGLE_TAGS.has(name) && !BRANCH_TAGS.has(name) && !m[3].trimEnd().endsWith('/')) {
             stack.push(name);
         }
     }
