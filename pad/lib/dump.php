@@ -68,7 +68,10 @@
 
     global $padDumpToDirDone;
 
-    echo padMakeSafe ("Error: $info", 100);
+    // The message whole, on one line: a cut at 100 characters left the engine's file and
+    // line and hardly anything of what went wrong.
+
+    echo padMakeSafe ( "Error: $info" );
 
     if ( $where = padSrcReport ( padErrorTemplate ( $info ) ) )
       echo "\n\n$where";
