@@ -289,6 +289,73 @@ usual way to give alternating rows their class, together with the
 
 
 
+<h2>Inside an expression</h2>
+
+<p>An expression has a ternary of its own, <code>cond ? then : else</code>, the weakest
+binding there is. <code>a ?? b</code> answers <code>a</code> unless it is empty or a field
+that is not there - so it gives a field its default - and the tests <code>in</code>,
+<code>like</code>, <code>matches</code> and <code>range</code> read infix:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/conditions_6.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/conditions_6.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $count </span><span style="color: #007700">= </span><span style="color: #0000BB">3</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$title </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$code  </span><span style="color: #007700">= </span><span style="color: #DD0000">'NL1234'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$state </span><span style="color: #007700">= </span><span style="color: #DD0000">'pending'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>count eq 1 ? <font color="black">'</font>item<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>items<font color="black">'</font></font>}</b>&lt;/p&gt;<br>&lt;p&gt;Title: <b>{<font color="green">$title</font> <font color="black">|</font> <font color="blue">?? 'Untitled'</font>}</b> - subtitle: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>subtitle ?? <font color="black">'</font>none<font color="black">'</font></font>}</b>&lt;/p&gt;<br>&lt;p&gt;Code <b>{<font color="green"><font color="red">$</font>code</font>}</b> <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>code matches <font color="black">'</font>/^[A-Z][A-Z][0-9]+<font color="red">$</font>/<font color="black">'</font></font>}</b>is<b>{<font color="blue">else</font><font color="red"></font>}</b>is not<b>{/<font color="blue">if</font><font color="red"></font>}</b> well formed&lt;/p&gt;<br>&lt;p&gt;State <b>{<font color="green"><font color="red">$</font>state</font>}</b> <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>state in (<font color="black">'</font>active<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pending<font color="black">'</font>)</font>}</b>is open<b>{<font color="blue">else</font><font color="red"></font>}</b>is closed<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>3 items</p>
+<p>Title: Untitled - subtitle: none</p>
+<p>Code NL1234 is well formed</p>
+<p>State pending is open</p>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
 <h2>Properties in conditions</h2>
 
 <p>The <a href="?pages/properties">iteration properties</a> read as values inside an

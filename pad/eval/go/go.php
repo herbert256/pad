@@ -10,7 +10,13 @@
 
   $opr = $result [$b] [0];
 
-  if ( in_array ( $opr, padEval_one ) ) {
+  // The empty-coalescing operator: the left value unless it is empty - '', NULL, an empty
+  // list or a field that is not there - and then the right one. 0 is a value.
+
+  if ( $opr == '??' )
+    $now = ( $left === NULL or $left === '' or $left === [] ) ? $right : $left;
+
+  elseif ( in_array ( $opr, padEval_one ) ) {
     if     ( ! is_array ( $right ) ) include PAD . 'eval/go/singleVar.php';
     elseif (   is_array ( $right ) ) include PAD . 'eval/go/singleArr.php';
   } else {

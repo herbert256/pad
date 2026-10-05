@@ -463,6 +463,33 @@
 
       }
 
+      // ?? is the empty-coalescing operator and ? : the inline ternary. A : glued to a word
+      // never gets here - the word took it, as in php:strlen - so only a : standing apart is
+      // the ternary's.
+
+      if ( $one == '?' ) {
+
+        $i += 100;
+        $result [$i] [0] = ( $next == '?' ) ? '??' : '?';
+        $result [$i] [1] = 'OPR';
+
+        $is_other = FALSE;
+        $skip     = ( $next == '?' ) ? 1 : 0;
+
+        continue;
+
+      }
+
+      if ( $one == ':' and ! $is_other ) {
+
+        $i += 100;
+        $result [$i] [0] = ':';
+        $result [$i] [1] = 'OPR';
+
+        continue;
+
+      }
+
       // < > and = are operators wherever they stand. Written without spaces they ran into
       // the word beside them: $x<=3 became the text 5<=3, always true, and $x<3 a field
       // named x<3. Spelled as padEval_alt has them, the two-character forms first.

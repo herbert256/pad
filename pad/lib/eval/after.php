@@ -42,6 +42,14 @@
 
       }
 
+    // A field standing before ?? may be missing - that is what the operator is for.
+
+    $keys = array_keys ( $result );
+    $next = [];
+
+    foreach ( $keys as $n => $k )
+      $next [$k] = $result [ $keys [$n+1] ?? -1 ] ?? NULL;
+
     foreach ($result as $k => $one)
 
       if ( $one[1] == 'other' ) {
@@ -69,7 +77,9 @@
         // than read as empty - the discipline {$x} already keeps at level/var.php, here
         // inside an expression. padFieldCheck is the same existence test that form uses.
 
-        if ( $padCheckSyntax and ! padFieldCheck ( $one[0] ) )
+        $coalesce = ( ( $next [$k] [1] ?? '' ) == 'OPR' and ( $next [$k] [0] ?? '' ) == '??' );
+
+        if ( $padCheckSyntax and ! $coalesce and ! padFieldCheck ( $one[0] ) )
           padError ( "Expression error: there is no field named '\${$one[0]}'" );
 
         $result[$k][1] = 'VAL';

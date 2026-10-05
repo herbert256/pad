@@ -194,6 +194,7 @@ file.
 |----------|------------|-------------|
 | `contains` | needle | Returns TRUE if value contains the needle string |
 | `in` | values... | Returns `'1'` if value is in the list of parameters |
+| `matches` | regex | Regular expression test, `'1'` or `''`; a backslash in a PAD string is written doubled - `'/x\\.y/'` - and a `{n}` quantifier would open a tag, so repeat the class or pass the pattern from PHP |
 | `like` | pattern | SQL LIKE pattern matching (`%` = any chars, `_` = single character, counted as UTF-8 characters rather than bytes) |
 | `between` | min, max | Returns TRUE if value is exclusively between min and max |
 | `range` | min, max | Returns TRUE if value is inclusively in range (min <= value <= max) |
@@ -208,7 +209,28 @@ file.
 {$age | between(17, 66)}             → TRUE if 17 < age < 66
 {$score | range(0, 100)}             → TRUE if 0 <= score <= 100
 {echo 'templates/page.php' | exists} → '1' or '0'
+{$code | matches('/^[A-Z][A-Z][0-9]+$/')} → '1' or ''
 ```
+
+The tests read infix in a condition as well - the value on the left is their input:
+
+```
+{if $status in ('active', 'pending')} ... {/if}
+{if $email matches '/@example\\.com$/'} ... {/if}
+{if $name like 'A%'} ... {/if}
+{if $age range (18, 65)} ... {/if}
+```
+
+### default
+
+`default(fallback)` answers the value, or the fallback when it is empty - `''`, NULL or an
+empty list (0 is a value). A field piped into it may be missing under the strict check:
+
+```
+{$title | default('Untitled')}
+```
+
+It is the function form of the `??` operator: `{$title | ?? 'Untitled'}`.
 
 ### Like Pattern Syntax
 

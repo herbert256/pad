@@ -14,6 +14,9 @@
   //   padEval_one         the unary operators - the ones eval/go/go.php runs with a right
   //                       operand only
   //
+  // ?? binds weakest of the binary operators - $a ?? $b . 'x' is $a ?? ($b . 'x') - and the
+  // inline ternary cond ? a : b weaker still: padEvalTernary takes it before any group.
+  //
   // padEval_s lists the arithmetic and concatenation operators but currently has no reader.
 
   const padEval_precedence = [
@@ -23,6 +26,7 @@
     'LT', 'LE', 'GT', 'GE', 'EQ', 'NE',
     'NOT',
     'AND', 'XOR', 'OR',
+    '??',
   ];
 
   // The binding strength padEvalOpr applies, strongest first. The operators of one group
@@ -44,6 +48,7 @@
     [ 'AND' ],
     [ 'XOR' ],
     [ 'OR' ],
+    [ '??' ],
   ];
 
   const padEval_1   = [ '!', '+', '-', '*', '/', '%', '.' ];

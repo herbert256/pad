@@ -583,6 +583,11 @@ See the following files for complete reference documentation:
 | `and` | Logical AND |
 | `or` | Logical OR |
 | `range (a, b)` | Value in range |
+| `in ('a', 'b')` | Value in a list |
+| `like 'A%'` | SQL LIKE match |
+| `matches '/re/'` | Regular expression match (a backslash written `\\`) |
+| `a ?? b` | `a`, or `b` when `a` is empty or a missing field |
+| `c ? a : b` | Inline ternary - `{echo $n gt 1 ? 'items' : 'item'}` |
 
 ---
 

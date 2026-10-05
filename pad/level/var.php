@@ -8,7 +8,7 @@
   // (unescaped) field, tag option, tag property, url parameter, or the field as JSON for
   // an HTML attribute. A name that does not
   // exist is reported under the strict syntax check - resolved to empty with it off -
-  // unless the pipe starts with 'optional'. Plain fields additionally run
+  // unless the pipe starts with optional, default or ??. Plain fields additionally run
   // through the $padDataDefaultStart and $padDataDefaultEnd chains from config (sanitize by
   // default), and padLevel() splices the value back into the surrounding text - protected
   // first under $padProtectValues, so the scan it lands in reads it as text.
@@ -48,7 +48,12 @@
   // A name that is not there is reported under the strict syntax check; with the check
   // off it resolves to empty, the same lenient contract expressions keep.
 
-  if ( ! $padFldChk and ! str_starts_with ( $padVarOpts, 'optional') and $padCheckSyntax )
+  // A pipe that supplies the value for an empty field - optional, default(...), ?? - is
+  // the author saying the field may be missing.
+
+  $padVarFallback = preg_match ( '/^(optional|default\b|\?\?)/', $padVarOpts );
+
+  if ( ! $padFldChk and ! $padVarFallback and $padCheckSyntax )
     padError ( "Field '$padFirst$padFld' not found $padVarOpts" );
 
   if     ( $padFirst == '$' ) $padVal = padFieldValue ($padFld);

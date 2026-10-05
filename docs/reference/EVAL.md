@@ -122,8 +122,18 @@ const padEval_precedence = [
   'LT', 'LE', 'GT', 'GE', 'EQ', 'NE', // Comparison
   'AND', 'XOR', 'OR',               // Logical
   'NOT',                            // NOT (word form)
+  '??',                             // empty-coalescing
 ];
 ```
+
+Weaker than all of them is the inline ternary `cond ? then : else`, resolved by
+`padEvalTernary()` (`lib/eval/ternary.php`) before any operator group: the first `?` of a
+range splits it at its own `:` (a nested `?` takes the next one), the condition is reduced
+alone, and only the chosen branch is reduced after it. Nothing before the `?` means the
+piped value is the condition: `{$n | ? 'some' : 'none'}`.
+
+`a ?? b` answers `a` unless it is empty - `''`, NULL, an empty list, a missing field - and
+then `b`; a `$field` standing before `??` may be missing under the strict check.
 
 ### Operator Processing (`lib/eval/operations.php`)
 

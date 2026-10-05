@@ -23,7 +23,12 @@
   // as values - the handler takes the raw text. Evaluating them anyway made the strict
   // evaluator report a counter that is allowed not to exist yet.
 
-  if ( in_array ( $padTag [$pad], [ 'increment', 'decrement', 'set' ] ) )
+  //
+  // The {tag ? true : false} option form is level/ternary.php's to read: its sides are not
+  // an expression of their own, and evaluated as one they now made an inline ternary.
+
+  if ( in_array ( $padTag [$pad], [ 'increment', 'decrement', 'set' ] )
+       or str_starts_with ( ltrim ( $padOpt [$pad] [0] ?? '' ), '?' ) )
     $padPrmEval     = $padPrmOne;
   else
     $padPrmEval     = padEval ( $padPrmOne );

@@ -42,6 +42,15 @@ usual way to give alternating rows their class, together with the
 
 {example 'fragments/conditions_4'}
 
+<h2>Inside an expression</h2>
+
+<p>An expression has a ternary of its own, <code>cond ? then : else</code>, the weakest
+binding there is. <code>a ?? b</code> answers <code>a</code> unless it is empty or a field
+that is not there - so it gives a field its default - and the tests <code>in</code>,
+<code>like</code>, <code>matches</code> and <code>range</code> read infix:</p>
+
+{example 'fragments/conditions_6'}
+
 <h2>Properties in conditions</h2>
 
 <p>The <a href="?pages/properties">iteration properties</a> read as values inside an
