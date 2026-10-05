@@ -13,6 +13,12 @@ This directory contains reference documentation for PAD template syntax elements
 | [TYPES.md](TYPES.md) | Tag type handlers (app, pad, data, field, etc.) |
 | [CONSTRUCTS.md](CONSTRUCTS.md) | Template constructs and syntax structures |
 
+## PHP Code
+
+| File | Description |
+|------|-------------|
+| [HELPERS.md](HELPERS.md) | Helper functions for a page's PHP - arrays, strings, values, requests, sessions, cache, dates, hashing |
+
 ## Processing
 
 | File | Description |

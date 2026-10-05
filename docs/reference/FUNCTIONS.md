@@ -468,6 +468,16 @@ Functions for working with PAD template syntax.
 
 ---
 
+## Helper Pipes
+
+The template side of some of the PHP helpers ([HELPERS.md](HELPERS.md)).
+
+<!-- pipes: numbers -->
+
+
+<!-- pipes: dates -->
+
+
 ## Function Summary by Category
 
 ### String Extraction
