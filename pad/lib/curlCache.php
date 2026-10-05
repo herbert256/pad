@@ -40,7 +40,54 @@
     if ( $entry and $entry ['time'] + $ttl > time () )
       return $padCurlLast = $entry ['output'] + [ 'cache' => 'hit' ];
 
-    $output = padCurl ( $input );
+    return $padCurlLast = padCurlCacheAfter ( $key, padCurl ( $input ), $entry, $ttl );
+
+  }
+
+  // The concurrent form, for padPrefetch: the inputs with a fresh copy are answered from
+  // it, the others fetched together through padCurlMulti, each kept or replaced by its
+  // last good copy as padCurlCached does. The outputs come back under the inputs' keys.
+
+  function padCurlCachedMulti ( $inputs, $ttl ) {
+
+    global $padCurlCache;
+
+    $ttl     = max ( 0, (int) $ttl );
+    $results = [];
+
+    if ( ! $padCurlCache or ! $ttl ) {
+      foreach ( padCurlMulti ( $inputs ) as $name => $output )
+        $results [$name] = $output + [ 'cache' => 'miss' ];
+      return $results;
+    }
+
+    $keys    = [];
+    $entries = [];
+    $fetch   = [];
+
+    foreach ( $inputs as $name => $input ) {
+
+      $keys    [$name] = padCurlCacheKey ( $input );
+      $entries [$name] = padCurlCacheGet ( $keys [$name] );
+
+      if ( $entries [$name] and $entries [$name] ['time'] + $ttl > time () )
+        $results [$name] = $entries [$name] ['output'] + [ 'cache' => 'hit' ];
+      else
+        $fetch [$name] = $input;
+
+    }
+
+    foreach ( padCurlMulti ( $fetch ) as $name => $output )
+      $results [$name] = padCurlCacheAfter ( $keys [$name], $output, $entries [$name], $ttl );
+
+    return array_replace ( array_intersect_key ( $inputs, $results ), $results );
+
+  }
+
+  // A fetch has come back: a good answer is kept, a failure is answered with the copy
+  // there is, if there is one, and logged.
+
+  function padCurlCacheAfter ( $key, $output, $entry, $ttl ) {
 
     if ( str_starts_with ( (string) $output ['result'], '2' ) ) {
       padCurlCachePut ( $key, $output, $ttl );
@@ -54,7 +101,7 @@
                 . ( isset ( $output ['ERROR'] ) ? ' (' . $output ['ERROR'] . ')' : '' )
                 . ' - serving the copy of ' . ( time () - $entry ['time'] ) . ' seconds ago' );
 
-    return $padCurlLast = $entry ['output'] + [ 'cache' => 'stale' ];
+    return $entry ['output'] + [ 'cache' => 'stale' ];
 
   }
 

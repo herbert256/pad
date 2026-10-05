@@ -724,6 +724,25 @@ many seconds beyond its ttl a copy is kept for a failing source. From PHP:
 `padCurlCached ( $input, $ttl )` answers like `padCurl()` plus `['cache']` - `hit`, `miss`
 or `stale` - and `padCurlForget ( $input )` drops one copy.
 
+**Parallel fetching:** several sources of one page are fetched one after another by `data=`
+and `{curl}`. `padPrefetch` in the page's PHP puts them on the wire together (curl_multi),
+so the wait is the slowest answer rather than the sum, and keeps each answer as named data:
+
+```php
+padPrefetch ( [
+  'rates'   => 'https://example.com/rates.json',
+  'weather' => 'https://example.com/weather.json',
+], 600 );
+```
+
+```html
+{rates}{$code}: {$rate}{/rates}
+```
+
+A source is a URL (`SELF://` for this host) or an input array as `padCurl()` takes it; the
+optional ttl works as `ttl=` above; a source that fails without a copy is an error, as a
+failing `data=` is. The parsed sets are also returned, under the same names.
+
 ---
 
 ## Output Tags

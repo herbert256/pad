@@ -1,0 +1,74 @@
+<h1>Parallel fetching</h1>
+
+<p>Each remote source of a page - a <code>data=</code> URL, a <code>.curl</code> file, the
+<b>{curl}</b> tag - is fetched when the template reaches it, one after another, so the page
+waits for the sum of them all. <code>padPrefetch</code> in the page's PHP puts them on the
+wire together, and the wait is the slowest answer.</p>
+
+<p>Each answer is kept as data under its name, so the template reads it like any data
+set:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/prefetch_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/prefetch_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  padPrefetch </span><span style="color: #007700">( [<br>    </span><span style="color: #DD0000">'rates'   </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'SELF://manual/?fragments/rates&amp;padInclude'</span><span style="color: #007700">,<br>    </span><span style="color: #DD0000">'weather' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'SELF://manual/?fragments/weather&amp;padInclude'</span><span style="color: #007700">,<br>  ] );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">rates</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>code</font>}</b> <b>{<font color="green"><font color="red">$</font>rate</font>}</b> <b>{/<font color="blue">rates</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">weather</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>city</font>}</b>: <b>{<font color="green"><font color="red">$</font>sky</font>}</b> <b>{/<font color="blue">weather</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>EUR 1 USD 1.08 GBP 0.86 </p>
+<p>Amsterdam: clouds Lisbon: sun </p>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<p>A source is a URL - <code>SELF://</code> for this server - or an array as
+<code>padCurl()</code> takes it, with headers or a post. A second argument is a ttl, as
+<a href="?pages/remote_data">remote data</a> takes it: a source with a fresh copy is not
+fetched at all, and one that fails is answered with its last good copy. A source that fails
+without one is an error, like a failing <code>data=</code>. The parsed sets are returned
+too, under the same names.</p>

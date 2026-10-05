@@ -621,12 +621,10 @@ Execute code in isolation:
 
 ### Event System
 
-Hook into framework events for debugging and customization:
-
-- Build events
-- Walk events (next, end)
-- Occurrence events (start, end)
-- Error events
+An application hooks into four moments of every request through its `_events/` directory -
+`error.php`, `sql.php` (each `db()` statement, with its time), `curl.php` (each remote
+fetch) and `output.php` (the final page, which the hook may change). The engine's own hooks
+in `pad/events/` serve the info modes - trace, stats, xref - and run only under `$padInfo`.
 
 ### Callbacks
 
@@ -695,7 +693,9 @@ APP/
 
 ### Performance Tips
 
-1. **Use caching** - Cache expensive operations
+1. **Use caching** - Cache expensive operations; remote data takes a `ttl=`
+1. **Fetch remote sources together** - `padPrefetch ( [ 'rates' => $url1, 'weather' => $url2 ] )`
+   in the page PHP fetches them in parallel and keeps each as named data for `{rates}`
 2. **Limit data** - Use `first`, `page`, `rows` options
 3. **Sort server-side** - Let database handle sorting when possible
 4. **Minimize nesting** - Deep nesting impacts performance

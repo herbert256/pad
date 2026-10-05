@@ -551,6 +551,13 @@ The answer is kept `ttl` seconds; a source that fails afterwards gets the last g
 served and the failure logged. `$padCurlCache`: `'file'` (default), `'apcu'`, `'redis'`,
 `'memcached'`, `FALSE`. From PHP: `padCurlCached ( $input, $ttl )`.
 
+Several sources on one page are fetched in parallel from the page PHP - the wait is the
+slowest answer, not the sum - and read as named data:
+```php
+padPrefetch ( [ 'rates' => 'https://example.com/rates.json', 'weather' => 'SELF://api/?weather' ], 600 );
+```
+`{rates}{$code}: {$rate}{/rates}` - the ttl is optional and works as above.
+
 ### Translations and locale formatting
 ```
 {trans 'cart.title'}                          # _lang/<locale>.json: "cart.title": "Your cart"
@@ -1035,6 +1042,8 @@ Output: `Alice, Bob, Charlie`
 | `padDataForcePad($data)` | Force data into PAD format |
 | `padToArray($obj)` | Convert object/resource to array |
 | `padJson($data)` | Convert to JSON |
+| `padPrefetch($sources, $ttl)` | Fetch remote sources in parallel, each kept as named data (`{rates}`) |
+| `padCurlCached($input, $ttl)` | `padCurl()` with a ttl cache and the last good copy on a failure |
 
 ### File Operations
 

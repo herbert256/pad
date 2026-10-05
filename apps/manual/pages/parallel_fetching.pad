@@ -1,0 +1,18 @@
+<h1>Parallel fetching</h1>
+
+<p>Each remote source of a page - a <code>data=</code> URL, a <code>.curl</code> file, the
+{tag 'curl'} tag - is fetched when the template reaches it, one after another, so the page
+waits for the sum of them all. <code>padPrefetch</code> in the page's PHP puts them on the
+wire together, and the wait is the slowest answer.</p>
+
+<p>Each answer is kept as data under its name, so the template reads it like any data
+set:</p>
+
+{example 'fragments/prefetch_1'}
+
+<p>A source is a URL - <code>SELF://</code> for this server - or an array as
+<code>padCurl()</code> takes it, with headers or a post. A second argument is a ttl, as
+<a href="?pages/remote_data">remote data</a> takes it: a source with a fresh copy is not
+fetched at all, and one that fails is answered with its last good copy. A source that fails
+without one is an error, like a failing <code>data=</code>. The parsed sets are returned
+too, under the same names.</p>

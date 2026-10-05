@@ -19,9 +19,10 @@
   // padCurlCached (lib/curlCache.php), which also serves the last good copy when the
   // source fails. SELF:// stands for $padHost, as in {curl}.
   //
-  // A fetched body is data. PAD's own list syntax - ( 'a', $b, 2 * 3 ) - evaluates every
-  // element as an expression, so under $padProtectValues a body that reads as one is
-  // refused rather than run.
+  // padCurlData (lib/prefetch.php) turns the answer into data - padPrefetch's answers go
+  // the same way. A fetched body is data: PAD's own list syntax - ( 'a', $b, 2 * 3 ) -
+  // evaluates every element as an expression, so under $padProtectValues a body that reads
+  // as one is refused rather than run.
 
   $curlUrl = trim ( $data );
   $curlTtl = 0;
@@ -43,18 +44,6 @@
 
   $curl = ( $curlTtl ) ? padCurlCached ( $curlUrl, $curlTtl ) : padCurl ( $curlUrl );
 
-  if ( ! str_starts_with ( $curl ['result'],  '2' ) )
-    return padError ( "Curl failed: " . $curl ['result'] );
-
-  if ( $GLOBALS ['padProtectValues'] and is_string ( $curl ['data'] ) ) {
-
-    $curlBody = $curl ['data'];
-
-    if ( ( $curl ['type'] ?: padContentType ( $curlBody ) ) == 'list' )
-      return padError ( "the document fetched from $curlUrl reads as a PAD list, whose elements would run as expressions" );
-
-  }
-
-  return padData ( $curl ['data'], $curl ['type'], $name );
+  return padCurlData ( $curl, $name );
 
 ?>

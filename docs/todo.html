@@ -925,7 +925,7 @@ _events/output.php   post-process the final HTML</code></pre>
   'weather' =&gt; 'https://example.com/weather.json',
 ] );</code></pre>
           <p>Several <code>{curl}</code> sources on one page are fetched one after another. Fetching them together with <code>curl_multi</code> in the page PHP, then reading them as named data, would make the wait as long as the slowest response, not the sum of all of them.</p>
-        </li>
+        <p class="done"><strong>Done.</strong> <code>padPrefetch ( [ 'rates' =&gt; $url, … ], $ttl )</code> in a page’s PHP fetches its remote sources together through <code>curl_multi</code> and keeps each answer as named data for <code>{rates}</code>, with the remote cache’s ttl and last-good-copy fallback - four 300 ms sources take 0.30 s instead of 1.22 s. Regression: pages cases; manual page; docs.</p></li>
 
         <li class="idea" id="bench-history">
           <div class="idea-top"><span class="number" aria-hidden="true">49</span><h3>Benchmark history</h3><span class="effort">Small–medium</span></div>
