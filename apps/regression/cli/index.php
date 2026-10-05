@@ -74,9 +74,19 @@
 
     unlink ( "$home/apps/shop/_config/config.php" );
 
+    // PAD_HOST is the server a rendered page's own links and SELF:// fetches point at - it
+    // was set before the config files ran, and config/config.php put $padHostBase back.
+
+    file_put_contents ( "$home/apps/shop/host.pad", '<p>{$padHost}</p>' );
+
+    list ( $codeH, $outH ) = cliCheckRun ( [ 'render', 'shop', 'host' ], $env + [ 'PAD_HOST' => 'http://example.org/sub/' ] );
+
+    unlink ( "$home/apps/shop/host.pad" );
+
     $render = ( $render == 'yes'
                 and $codeW1 === 0 and str_contains ( $outW1, '<h1>Hello from Shop!</h1>' )
-                and $codeW2 === 0 and str_contains ( $outW2, '<h1>Hello from Shop!</h1>' ) ) ? 'yes' : 'NO';
+                and $codeW2 === 0 and str_contains ( $outW2, '<h1>Hello from Shop!</h1>' )
+                and $codeH  === 0 and str_contains ( $outH,  '<p>http://example.org/sub/</p>' ) ) ? 'yes' : 'NO';
 
     // test - the scratch application gets its _tests
 

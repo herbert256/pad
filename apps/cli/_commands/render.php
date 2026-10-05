@@ -42,18 +42,25 @@
   $_SERVER ['argv'] = [ $_SERVER ['argv'] [0] ?? 'pad' ];
   $_SERVER ['argc'] = 1;
 
+  // The settings below go through the queue inits/configSet.php applies after the config
+  // files, each added to it: a plain global set here is overwritten by config/config.php,
+  // which is how PAD_HOST was ignored - its $padHostBase came back '' and every SELF://
+  // fetch went to http://localhost/.
+
+  $padSetConfig = [];
+
   if ( getenv ( 'PAD_HOST' ) )
-    $padHostBase = getenv ( 'PAD_HOST' );
+    $padSetConfig ['HostBase'] = getenv ( 'PAD_HOST' );
 
   if ( getenv ( 'PAD_LINT' ) )
-    $padSetConfig = [ 'CheckSyntax' => TRUE ];
+    $padSetConfig ['CheckSyntax'] = TRUE;
 
   // pad export wants the page as the web gets it - the web output type, tidy and all, where
   // the command line otherwise writes it as console text - and nothing a developer's own
   // machine adds to a page: no toolbar, no live reload.
 
   if ( getenv ( 'PAD_EXPORT' ) )
-    $padSetConfig = [ 'OutputType' => 'web', 'Toolbar' => FALSE, 'Reload' => FALSE ];
+    $padSetConfig = array_merge ( $padSetConfig, [ 'OutputType' => 'web', 'Toolbar' => FALSE, 'Reload' => FALSE ] );
 
   // pad test renders the application's _tests/ pages, bare like the suites' pages, with
   // every {assert} checked, and reads the status the request ended with from stderr - the
@@ -62,7 +69,7 @@
   if ( getenv ( 'PAD_TEST' ) ) {
 
     $padTestRun           = TRUE;
-    $padSetConfig         = [ 'Assert' => TRUE, 'Toolbar' => FALSE, 'Reload' => FALSE ];
+    $padSetConfig         = array_merge ( $padSetConfig, [ 'Assert' => TRUE, 'Toolbar' => FALSE, 'Reload' => FALSE ] );
     $_GET ['padInclude']  = '';
     $_REQUEST             = $_GET;
 
