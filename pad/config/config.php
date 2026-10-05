@@ -113,6 +113,13 @@
 
   $padRequestVars = TRUE;
 
+  // CSRF protection, see lib/csrf.php. TRUE: every POST (and PUT, PATCH, DELETE) must carry
+  // the token of the visitor's session - in the padCsrfToken field, which is added to each
+  // <form method="post"> of the page that posts back to this site, and which {csrf} writes,
+  // or in an X-CSRF-Token header - or it is answered 403 before the application runs.
+
+  $padCsrf = FALSE;
+
   $padDataDefaultStart = [];
   $padDataDefaultEnd   = ['sanitize'];
 

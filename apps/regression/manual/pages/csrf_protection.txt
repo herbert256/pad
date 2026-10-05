@@ -1,0 +1,93 @@
+/^\<h1\>CSRF protection\<\/h1\>
+
+\<p\>Another site can make a visitor's browser post to your application \- a hidden form that
+submits itself \- and the browser sends your session cookie along\. A CSRF token tells those
+posts apart from the ones your own forms send\: a random value kept in the visitor's session
+and written into your form, which another site can make the browser send but cannot read\.\<\/p\>
+
+\<h2\>One setting\<\/h2\>
+
+\<p\>With \<code\>\$padCsrf \= TRUE\<\/code\> in \<code\>_config\/config\.php\<\/code\> every
+\<code\>&lt;form method\="post"&gt;\<\/code\> of a page gets a hidden \<code\>padCsrfToken\<\/code\> field
+holding the token, and every POST \- and PUT, PATCH and DELETE \- that does not bring the token
+back is answered \<code\>403\<\/code\> before any of the application runs\. The forms an
+application already has are protected without a change to them\. A form that posts to another
+site gets no token, and neither does a GET form, whose fields end up in the url\.\<\/p\>
+
+\<h2\>The \{csrf\} tag\<\/h2\>
+
+\<p\>\<b\>\{csrf\}\<\/b\> writes the field itself, for a form the page builds some other way, or for
+an application that leaves \<code\>\$padCsrf\<\/code\> off and checks a post by hand with
+\<code\>padCsrfValid \(\)\<\/code\>\. \<code\>\{csrf token\}\<\/code\> is the bare token, for a
+script that sends it in an \<code\>X\-CSRF\-Token\<\/code\> header\:\<\/p\>
+
+
+
+ 
+
+
+
+   
+    \<table border\="1" cellpadding\="10" cellspacing\="0"\>
+  
+
+  
+
+      
+          \<tr\>
+          
+            \<th bgcolor\="\#dddddd"\>
+              PHP \<br\>\<font size\="\-2"\>\<\/font\>
+            \<\/th\>
+          
+          
+            \<th bgcolor\="\#dddddd"\>
+              HTML \<br\>\<font size\="\-2"\>fragments\/csrf_protection_1\.pad\<\/font\>
+            \<\/th\>
+          
+          
+            \<th bgcolor\="\#dddddd"\>
+              Result
+            \<\/th\>
+          
+        \<\/tr\>
+      
+
+      \<tr\>
+        
+          \<td style\="vertical\-align\:top"\> \<\/td\>
+        
+        
+          \<td style\="vertical\-align\:top"\>\<pre\>\<code style\="color\: \#000000"\>&lt;form method\="post"&gt;\<br\>  \<b\>\{\<font color\="blue"\>csrf\<\/font\>\<font color\="red"\>\<\/font\>\}\<\/b\>\<br\>  &lt;input type\="text" name\="note"&gt;\<br\>  &lt;button&gt;Send&lt;\/button&gt;\<br\>&lt;\/form&gt;\<\/code\>\<\/pre\>\<\/td\>
+        
+        
+          \<td style\="vertical\-align\:top"\>
+  \<form method\="post"\>
+  \<input type\="hidden" name\="padCsrfToken" value\="[0-9a-f]{64}"\>
+  \<input type\="text" name\="note"\>
+  \<button\>Send\<\/button\>
+\<\/form\>
+
+\<\/td\>
+        
+      \<\/tr\>
+
+    
+
+  
+    \<\/table\>
+  
+
+
+
+
+
+\<ul\>
+  \<li\>The token is one per session, so two open tabs and the back button keep working\. The
+  session starts the first time a token is needed\.\<\/li\>
+  \<li\>A page carrying a token is never stored in the page cache \- it would hand one visitor's
+  token to the next\.\<\/li\>
+  \<li\>An application that accepts posts from elsewhere on some pages \- a webhook \- switches
+  \<code\>\$padCsrf\<\/code\> off for those pages in its \<code\>_config\/config\.php\<\/code\>, which
+  knows \<code\>\$padPage\<\/code\>\.\<\/li\>
+\<\/ul\>$/

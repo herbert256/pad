@@ -10,6 +10,8 @@
   // before config is read (the application's _config/config.php may depend on it), config
   // before anything that reads a setting, error handling before the first thing that can
   // fail, and the level arrays before parms and the hand-over to the application in app.php.
+  // The CSRF check stands just before parms, so a post it turns away never becomes
+  // variables.
 
   if ( ! isset ( $padMicro ) ) $padMicro = microtime ( TRUE );
   if ( ! isset ( $padHR    ) ) $padHR    = hrtime    ( TRUE );
@@ -31,6 +33,7 @@
   include PAD . 'inits/info.php';
   include PAD . 'inits/cache.php';
   include PAD . 'inits/level.php';
+  include PAD . 'inits/csrf.php';
   include PAD . 'inits/parms.php';
   include PAD . 'inits/app.php';
 

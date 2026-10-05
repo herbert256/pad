@@ -664,6 +664,14 @@ PAD automatically makes POST form fields available as PHP variables matching the
 ?>
 ```
 
+### CSRF Protection
+With `$padCsrf = TRUE` in `_config/config.php`, every `<form method="post">` that posts back
+to the site gets a hidden `padCsrfToken` field holding the token of the visitor's session,
+and every POST (PUT, PATCH, DELETE) that does not bring it back - in that field or an
+`X-CSRF-Token` header - is answered `403` before the application runs. `{csrf}` writes the
+field by hand, `{csrf token}` the bare token; `padCsrfValid()` checks a post in PHP. The
+session starts on demand the first time a token is needed.
+
 ---
 
 ## Database Operations
@@ -1059,6 +1067,9 @@ is declared twice, and anything it does it does twice. Functions belong in `_lib
 
   // The request values promoted to variables: TRUE all, a list only those, [] none
   $padRequestVars = [ 'name', 'email', 'message' ];
+
+  // Every POST must carry the session's CSRF token, added to each POST form
+  $padCsrf = TRUE;
 ?>
 ```
 

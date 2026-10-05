@@ -18,25 +18,9 @@
 
   if (count($padSessionVars) ) {
 
-    // Strict mode: a session id the server never issued is refused and a fresh one made,
-    // so a visitor cannot plant an id of their choosing. The cookie is kept from scripts
-    // and cross-site requests, and travels only over https when the page did.
+    padSessionStart ();
 
-    if ( session_status () !== PHP_SESSION_ACTIVE ) {
-
-      ini_set ( 'session.use_strict_mode', '1' );
-
-      session_set_cookie_params ( [
-        'httponly' => TRUE,
-        'samesite' => 'Lax',
-        'secure'   => ( $_SERVER ['HTTPS'] ?? '' ) !== '' and ( $_SERVER ['HTTPS'] ?? '' ) !== 'off'
-      ] );
-
-      session_start();
-
-    }
-
-    padGetParms ('SESSION', $_SESSION);
+    padGetParms ('SESSION', $_SESSION ?? []);
 
     foreach ($padSessionVars as $padVar)
       if ( ! isset ($GLOBALS [$padVar]) )

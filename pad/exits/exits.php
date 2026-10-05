@@ -22,6 +22,13 @@
 
   $padOutput = padUnprotect ( padUnescape ( $padResult [0] ) );
 
+  // With $padCsrf on, each form of the page that posts back here carries the session's
+  // token without the template having to ask (lib/csrf.php) - the forms an application
+  // already had are protected by the one setting.
+
+  if ( $padCsrf and $padOutputType == 'web' )
+    $padOutput = padCsrfForms ( $padOutput );
+
   // The marker gets tidy.php a look even with both switches off: it is consumed (and
   // recorded on the xref) in there, and a response that skipped the file shipped @tidy@
   // to the browser whenever tidying was off.

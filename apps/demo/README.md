@@ -25,7 +25,7 @@ demo/
 ├── contact.php / .pad        # Contact form example
 ├── counter.php / .pad        # Page counter example
 ├── clock.pad                 # Clock display
-├── _config/config.php        # Switches _common off - _inits.pad writes the whole page
+├── _config/config.php        # Switches _common off, CSRF protection on
 ├── _inits.php / .pad         # Global layout wrapper
 ├── _include/todo.pad         # Todo list snippet
 ├── _tags/clock.php           # Custom clock tag
@@ -39,6 +39,8 @@ demo/
 - **Custom tags**: `_tags/clock.php` shows how to create application-specific tags
 - **Data files**: `_data/navigate.json` demonstrates JSON data integration
 - **Form handling**: Contact form shows POST processing
+- **CSRF protection**: `$padCsrf = TRUE` in `_config/config.php` adds the session's token to
+  every POST form and turns away a post without it (403)
 - **Data iteration**: Examples of iterating over arrays
 
 ## Access

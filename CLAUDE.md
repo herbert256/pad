@@ -753,6 +753,12 @@ $padPhpFunctions = true;
 // and GET value; a list those names only (a cookie only when listed); [] none. A
 // $padSessionVars name, and an engine name (pad*, pq*, _*), is never filled from it.
 $padRequestVars = true;
+
+// CSRF protection, off by default. On: every <form method="post"> posting back to the
+// site gets a hidden padCsrfToken field, and a POST (PUT, PATCH, DELETE) without the
+// session's token - field or X-CSRF-Token header - is answered 403 before the app runs.
+// {csrf} writes the field by hand, {csrf token} the bare token, padCsrfValid() checks.
+$padCsrf = false;
 ```
 
 ### Expression errors
@@ -890,6 +896,14 @@ Output: `Alice, Bob, Charlie`
 |----------|-------------|
 | `padRedirect($url, $vars)` | Redirect to URL with optional variables |
 | `padRestart($page)` | Restart processing with new page |
+
+### Forms and Security
+
+| Function | Description |
+|----------|-------------|
+| `padSessionStart()` | Start the PHP session on demand, strict mode and safe cookie flags |
+| `padCsrfToken()` | The session's CSRF token (`{csrf}` writes it as a hidden field) |
+| `padCsrfValid()` | Whether this request brought the session's token back |
 
 ### Field Access
 

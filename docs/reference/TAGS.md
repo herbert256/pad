@@ -456,6 +456,31 @@ runs a count of the same query, only when it is there.
 
 ---
 
+## Web Application Tags
+
+### csrf
+The hidden form field holding the CSRF token of the visitor's session.
+
+```html
+<form method="post">
+  {csrf}
+  ...
+</form>
+
+<meta name="csrf-token" content="{csrf token}">
+```
+
+**Options:** `token` - the bare token instead of the field, for a script that sends it in an
+`X-CSRF-Token` header.
+
+**Behavior:** The token is 64 hex characters, one per session, made on first use - the
+session starts on demand. With `$padCsrf = TRUE` every `<form method="post">` of the page
+that posts back to the site gets the field without `{csrf}`, and every POST, PUT, PATCH or
+DELETE without the token is answered 403 before the application runs; `padCsrfValid()`
+checks a post by hand. A page carrying a token is not stored in the page cache.
+
+---
+
 ## File Operation Tags
 
 ### files
@@ -1066,6 +1091,7 @@ Resume a previously ceased sequence iteration.
 | `redirect` | Navigation | HTTP redirect |
 | `restart` | Navigation | Restart processing |
 | `pager` | Navigation | Page links for a tag with the page option |
+| `csrf` | Web | Hidden CSRF token field of the session |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
 | `file` | Files | Write file |

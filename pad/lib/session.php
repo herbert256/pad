@@ -13,6 +13,7 @@
   //                   other requests; wrapped so a failure here cannot break the exit
   // padID             the request id, or a fresh uniqid if the request never got one
   // padLogError       sends a message to the SAPI error log, tagged with that id
+  // padSessionStart   starts the PHP session on demand, with the strict cookie flags
 
   function padInfo () {
 
@@ -86,6 +87,58 @@
         unset ( $_SESSION [$var] );
 
     session_write_close ();
+
+  }
+
+  // The one place a PHP session is started - for the names of $padSessionVars at the start
+  // of the request, and on demand by whatever needs one later: a CSRF token, a flash
+  // message. A session used to start only when $padSessionVars listed names, so a helper
+  // that needed one had nowhere to keep its state.
+  //
+  // Strict mode: a session id the server never issued is refused and a fresh one made, so a
+  // visitor cannot plant an id of their choosing. The cookie is kept from scripts and
+  // cross-site requests, and travels only over https when the page did. Once headers have
+  // gone out no cookie can be sent, so a session cannot start then and FALSE says so.
+  //
+  // $padSessionStarted tells padCloseSession that there is a session to write back and
+  // close at the end of the request.
+
+  function padSessionStart () {
+
+    global $padSessionStarted;
+
+    if ( session_status () === PHP_SESSION_ACTIVE ) {
+      $padSessionStarted = TRUE;
+      return TRUE;
+    }
+
+    if ( headers_sent () or session_status () === PHP_SESSION_DISABLED )
+      return FALSE;
+
+    ini_set ( 'session.use_strict_mode', '1' );
+
+    session_set_cookie_params ( [
+      'httponly' => TRUE,
+      'samesite' => 'Lax',
+      'secure'   => ( $_SERVER ['HTTPS'] ?? '' ) !== '' and ( $_SERVER ['HTTPS'] ?? '' ) !== 'off'
+    ] );
+
+    if ( ! session_start () )
+      return FALSE;
+
+    $padSessionStarted = TRUE;
+
+    return TRUE;
+
+  }
+
+  // Whether the visitor brought a session along - the session cookie is there - without
+  // starting one: a check that only reads the session has nothing to read without it, and
+  // starting one would send a cookie for nothing.
+
+  function padSessionExists () {
+
+    return session_status () === PHP_SESSION_ACTIVE or isset ( $_COOKIE [ session_name () ] );
 
   }
 
