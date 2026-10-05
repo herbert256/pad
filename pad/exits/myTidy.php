@@ -7,12 +7,19 @@
   // sanitizing, tabs to spaces, trim, whitespace between tags, leading indentation, empty
   // lines, and finally all newlines. Pure text munging - it never parses the markup.
 
+  // The flags are looked up as the constants they name: a cast of the name to int was 0
+  // for every one of them, so the step did nothing at all. A name that is no such flag is
+  // an error rather than another silent 0.
+
   if ( count ($padMyTidySanitize) ) {
 
     $padSanitizeFlags = 0;
 
     foreach ( $padMyTidySanitize as $padK )
-      $padSanitizeFlags = $padSanitizeFlags | (int) "FILTER_FLAG_$padK";
+      if ( defined ( "FILTER_FLAG_$padK" ) )
+        $padSanitizeFlags = $padSanitizeFlags | constant ( "FILTER_FLAG_$padK" );
+      else
+        padError ( "\$padMyTidySanitize: there is no flag FILTER_FLAG_$padK" );
 
     $padOutput = filter_var ( $padOutput, FILTER_UNSAFE_RAW, $padSanitizeFlags );
 
