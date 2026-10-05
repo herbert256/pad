@@ -129,7 +129,25 @@
     if ($now !== '')
       $output [] = $now;
 
-    return $output;
+    // An option written after a parameter without its comma - {data 'rawJson' ignore}, the
+    // form CLAUDE.md and the manual's ignore page show - is the option it names: a single
+    // value, a space, and the name of an engine or application option. The evaluator read
+    // the two as a value piped into the function of that name, so ignore('rawJson') named
+    // the store and the option never applied. A word that names no option stays that pipe:
+    // {echo 'abc' upper} is ABC. The data handlers (handling/types) are left out on purpose:
+    // trim, left, right and reverse are pipe functions as well, and {echo $x trim} pipes.
+
+    $split = [];
+
+    foreach ( $output as $item )
+      if ( preg_match ( '/^\s*(\'[^\']*\'|"[^"]*"|\$[A-Za-z][\w.]*|-?\d+(?:\.\d+)?)\s+([A-Za-z][A-Za-z0-9_]*)\s*$/D', $item, $match )
+           and ( file_exists ( PAD . "options/{$match [2]}.php" ) or padOptionCheck ( $match [2] ) ) ) {
+        $split [] = $match [1];
+        $split [] = $match [2];
+      } else
+        $split [] = $item;
+
+    return $split;
 
   }
 
