@@ -909,13 +909,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pl" id="a7">
-      <div class="tag"><div class="priority">Open</div><div class="cat">A7 · Custom tags</div></div>
+    <div class="finding pl fixed" id="a7">
+      <div class="tag"><div class="priority">Fixed</div><div class="cat">A7 · Custom tags</div></div>
       <div>
-        <h3>Variables set by a <code>_tags</code> PHP file never reach the function group</h3>
+        <h3>Variables set by a <code>_tags</code> PHP file never reach the function group<span class="done">Fixed</span></h3>
         <p class="where">types/_go/tag.php:13-20</p>
         <p>The publish step copies the tag file's variables into <code>$padLvlFunVar</code>, filtered by <code>! array_key_exists ( $padK, $GLOBALS )</code>. In a page run the level loop runs at global scope, so every variable the tag's PHP sets is already a global and the filter drops it: a <code>_tags/mytag.php</code> that sets <code>$myLocal</code> leaves <code>{echo $myLocal@function}</code> with "no field named". The same lookup works for callbacks.</p>
         <div class="fix"><b>Decision:</b> snapshot the global names before <code>call/ob.php</code> and publish what the call added or changed. That touches how tag variables are scoped, so it is worth deciding first whether they should stay globals at all.</div>
+        <div class="resolved"><b>Fixed:</b> decided as the card proposed: <code>types/_go/tag.php</code> snapshots the application's variables before the tag's PHP runs and publishes what the call added or changed, so the scope a tag runs in no longer decides whether its variables reach the function group. Tag variables stay globals, as they have always been. A framework fixture <code>_tags/leaveslocal.php</code> sets <code>$tagLocal</code>, and <code>{echo $tagLocal@function}</code> inside the tag gives <code>set by the tag</code>, where it was "there is no field named '$tagLocal@function'".</div>
       </div>
     </div>
 
