@@ -33,6 +33,10 @@ A boolean property written as a tag pair renders its content only when the prope
 {last@users}</ul>{/last@users}
 ```
 
+A property that is a data set - `fields`, `keys`, `parameters`, `options`, `variables` - is
+iterated as a pair, which is closed by its full name: `{fields@user}...{/fields@user}`.
+Without a target, `{fields}...{/fields}` reads the enclosing level.
+
 ### In Conditionals
 
 A property reads as a value inside an expression, so it stands in a condition - alone for the
@@ -383,11 +387,11 @@ Returns an array of all keys with their values as iterable data.
 
 **Example:**
 ```html
-{data myArray}
-  {keys@myArray}
-    Key: {$name}, Value: {$value}
-  {/keys}
-{/data}
+{myArray}
+  {first@myArray}
+    {keys@myArray}Key: {$name} {/keys@myArray}
+  {/first@myArray}
+{/myArray}
 ```
 
 ---
@@ -408,7 +412,7 @@ Returns an array of field name/value pairs from the current record.
   <table>
   {fields@user}
     <tr><td>{$name}</td><td>{$value}</td></tr>
-  {/fields}
+  {/fields@user}
   </table>
 {/user}
 ```
@@ -514,19 +518,19 @@ Properties for accessing tag parameters and options.
 
 ### parameter
 
-Returns a specific named parameter value.
+Returns one positional parameter - the values after the tag name - numbered from 1.
 
 ```
-{parameter:paramName@tagname}
+{parameter.1@tagname}
 ```
 
-**Returns:** `$padPrm[$padIdx][$parm]` or `NULL`
+**Returns:** `$padOpt[$padIdx][$parm]` or `NULL`
 
 **Example:**
 ```html
-{myTag sort="name" limit="10"}
-  Sort by: {parameter.1@myTag}
-  Limit: {parameter:limit@myTag}
+{myTag 'first', 'second'}
+  First: {parameter.1@myTag}
+  Second: {parameter.2@myTag}
 {/myTag}
 ```
 
@@ -534,20 +538,20 @@ Returns a specific named parameter value.
 
 ### parameters
 
-Returns all parameters as an iterable array.
+Returns all positional parameters as an iterable array.
 
 ```
 {parameters@tagname}
 ```
 
-**Returns:** All parameters from `$padPrm[$padIdx]`
+**Returns:** All parameters from `$padOpt[$padIdx]` (excluding index 0, the raw tag text)
 
 **Example:**
 ```html
-{myTag foo="1" bar="2"}
+{myTag 'first', 'second'}
   {parameters@myTag}
-    {$name} = {$value}
-  {/parameters}
+    Parameter: {$value}
+  {/parameters@myTag}
 {/myTag}
 ```
 
@@ -555,20 +559,19 @@ Returns all parameters as an iterable array.
 
 ### option
 
-Returns a specific positional option value.
+Returns one named option.
 
 ```
-{option:1@tagname}
-{option:2@tagname}
+{option.sort@tagname}
 ```
 
-**Returns:** `$padOpt[$padIdx][$parm]` or `NULL`
+**Returns:** `$padPrm[$padIdx][$parm]` or `NULL`
 
 **Example:**
 ```html
-{myTag arg1 arg2 arg3}
-  First: {option.sort@myTag}
-  Second: {option:2@myTag}
+{myTag sort='name', limit=10}
+  Sort by: {option.sort@myTag}
+  Limit: {option.limit@myTag}
 {/myTag}
 ```
 
@@ -576,20 +579,20 @@ Returns a specific positional option value.
 
 ### options
 
-Returns all positional options as an iterable array.
+Returns all named options as an iterable array.
 
 ```
 {options@tagname}
 ```
 
-**Returns:** All options from `$padOpt[$padIdx]` (excluding index 0)
+**Returns:** All options from `$padPrm[$padIdx]`
 
 **Example:**
 ```html
-{myTag opt1 opt2 opt3}
+{myTag foo=1, bar=2}
   {options@myTag}
-    Option: {$value}
-  {/options}
+    {$name} = {$value}
+  {/options@myTag}
 {/myTag}
 ```
 
@@ -601,18 +604,18 @@ Properties for accessing level-scoped variables.
 
 ### variable
 
-Returns a specific level-scoped variable.
+Returns one level variable - a `$name = value` written on the tag.
 
 ```
-{variable:varName@tagname}
+{variable.varName@tagname}
 ```
 
 **Returns:** `$padSetLvl[$padIdx][$parm]` or `NULL`
 
 **Example:**
 ```html
-{users myVar="test"}
-  Variable: {variable:myVar@users}
+{users $myVar = 'test'}
+  Variable: {variable.myVar@users}
 {/users}
 ```
 
@@ -620,7 +623,7 @@ Returns a specific level-scoped variable.
 
 ### variables
 
-Returns all level-scoped variables as an iterable array.
+Returns all level variables as an iterable array.
 
 ```
 {variables@tagname}
@@ -630,10 +633,10 @@ Returns all level-scoped variables as an iterable array.
 
 **Example:**
 ```html
-{users a="1" b="2"}
+{users $a = 1, $b = 2}
   {variables@users}
     {$name}: {$value}
-  {/variables}
+  {/variables@users}
 {/users}
 ```
 
@@ -667,7 +670,7 @@ Returns all level-scoped variables as an iterable array.
 | `parameters@tag` | Array | All parameters |
 | `option.name@tag` | Mixed | The named option's value |
 | `options@tag` | Array | All options |
-| `variable:x@tag` | Mixed | Level variable |
+| `variable.x@tag` | Mixed | Level variable |
 | `variables@tag` | Array | All variables |
 
 ---
@@ -719,7 +722,7 @@ Returns all level-scoped variables as an iterable array.
   {fields@record}
     <dt>{$name}</dt>
     <dd>{$value}</dd>
-  {/fields}
+  {/fields@record}
   </dl>
 {/record}
 ```
@@ -727,8 +730,8 @@ Returns all level-scoped variables as an iterable array.
 ### Accessing Parameters
 
 ```html
-{customTag mode="advanced" debug="true"}
-  Mode: {parameter:mode@customTag}
-  Debug: {parameter:debug@customTag}
+{customTag 'fast', mode='advanced'}
+  Speed: {parameter.1@customTag}
+  Mode: {option.mode@customTag}
 {/customTag}
 ```

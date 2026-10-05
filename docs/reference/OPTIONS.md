@@ -150,7 +150,7 @@ Retrieves or creates a boolean flag value.
 
 **Behavior:**
 - If flag exists in `$padBoolStore`, returns its value
-- If not exists, creates a new flag via `padMakeFlag()`
+- If not, the flag is `FALSE`, as an unset flag reads everywhere
 
 **Example:**
 ```

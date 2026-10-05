@@ -1193,7 +1193,7 @@ Output: `Alice, Bob, Charlie`
 {record}
   {fields@record}
     {$name}: {$value}
-  {/fields}
+  {/fields@record}
 {/record}
 ```
 
