@@ -50,6 +50,17 @@
 
     $export = ( str_contains ( $copy, 'sample' ) and ! str_contains ( $copy, 'padReload' ) ) ? 'yes' : 'NO';
 
+    // A page a route reached - item/7, the file item/[id].pad - polls the address it was
+    // asked at, and the poll answers the stamp: it named the file, which no request reaches,
+    // and the poll was answered 404 for as long as the page stayed open.
+
+    $item   = padCurl ( $padHost . 'regression/reload/?item/7' ) ['data'] ?? '';
+    $itemAt = preg_match ( '/var url = ("[^"]*")/', $item, $itemMatch ) ? (string) json_decode ( $itemMatch [1] ) : '';
+    $itemP  = $itemAt !== '' ? padCurl ( substr ( $padHost, 0, -strlen ( $padRoot ) ) . $itemAt ) : [];
+
+    $routed = ( str_contains ( $item, 'item 7' ) and ( $itemP ['result'] ?? '' ) == 200
+                and ctype_digit ( trim ( $itemP ['data'] ?? '' ) ) ) ? 'yes' : 'NO';
+
   }
 
 ?>

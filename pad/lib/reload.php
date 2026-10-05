@@ -31,14 +31,19 @@
 
   }
 
+  // The poll asks the page by the name it was asked for: a page a route reached, products/42,
+  // is the file products/[id], whose name no request reaches (lib/route.php) - polled by it,
+  // it answered 404 and the page never reloaded.
+
   function padReloadAdd () {
 
-    global $padGo, $padPage;
+    global $padGo, $padPage, $padPageAsked;
 
     if ( ! padReloadOn () )
       return;
 
-    $url   = json_encode ( $padGo . $padPage . '&padReload', JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP );
+    $page  = ( ( $padPageAsked ?? '' ) !== '' ) ? $padPageAsked : $padPage;
+    $url   = json_encode ( $padGo . $page . '&padReload', JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP );
     $stamp = json_encode ( (string) padReloadStamp (), JSON_HEX_TAG );
 
     padOutputAdd ( "\n<script id=\"padReload\">(function () {\n"
