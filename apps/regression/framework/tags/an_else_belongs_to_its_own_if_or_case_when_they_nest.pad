@@ -1,0 +1,5 @@
+{set $x = 2}{set $y = 1}H[{case $x}{when 1}{if $y eq 1}a{else}b{/if}{when 2}two{/case}]
+I[{case $x}{when 2}{if $y eq 2}a{else}b{/if}{/case}]
+J[{if $x eq 2}{case $y}{when 2}one{else}notone{/case}{else}nottwo{/if}]
+K[{if $x eq 3}{case $y}{when 1}one{else}notone{/case}{else}nottwo{/if}]
+L[{case $x}{when 1}{if $y eq 1}a{else}b{/if}{else}other{/case}]
