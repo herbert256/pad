@@ -19,7 +19,7 @@
 
   function padEvalValidate ( $eval ) {
 
-    if ( str_starts_with ( trim ( $eval ), '%' ) and ! preg_match ( '/^%\s+-?[0-9.]+$/', trim ( $eval ) ) )
+    if ( padEvalFormat ( $eval ) )
       return TRUE;
 
     $text = padUnescape ( $eval );

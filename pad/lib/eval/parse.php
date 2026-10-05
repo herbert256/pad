@@ -103,16 +103,27 @@
 
   }
 
+  // Whether an expression is a printf format: a % that opens a conversion sprintf knows -
+  // %d, %05.1f, %'*10s, %1$s, %% - whatever text follows it. Any other % is the modulo
+  // operator, the pipe value on its left: {$x | % 3}, and {$x | % $n}, which went to sprintf
+  // whole as the format '% $n' and ended the request on an unknown format specifier, where
+  // {$x | * $n} multiplied. A % followed by a space and a word stays a format, as % s is.
+
+  function padEvalFormat ( $eval ) {
+
+    return (bool) preg_match ( "/^%(?:\\d+\\$)?(?:[-+ 0]|'.)*\\d*(?:\\.\\d+)?[bcdeEfFgGhHosuxX%]/", trim ( $eval ) );
+
+  }
+
   function padEvalParse (&$result, $eval ) {
 
     $result = [];
 
     $input = trim ($eval);
 
-    // A whole expression starting with % is a printf format - except % followed by a space
-    // and a number, the modulo the arithmetic pipes write: {$x | % 3} was sprintf('% 3').
+    // A whole expression that opens with a printf conversion is a format (padEvalFormat).
 
-    if ( str_starts_with ( $input, '%' ) and ! preg_match ( '/^%\s+-?[0-9.]+$/', $input ) ) {
+    if ( padEvalFormat ( $input ) ) {
       $result [100] [0] = $input;
       $result [100] [1] = '%';
       return;
