@@ -83,9 +83,6 @@
 
   }
 
-  // The query string a case is replayed with: the padRecord switch that asked for the
-  // recording is taken out, everything else stays as the visitor sent it.
-
   // A page the path named (lib/route.php) is lost to the query string alone: every clean
   // URL of an application was one case, replayed as its index. The path is kept as the
   // request wrote it - still encoded, index.php/ in front when that is how it came - so the
@@ -132,6 +129,9 @@
     return $case ['app'] . ( $path !== '' ? "/$path" : '' ) . '?' . $case ['query'];
 
   }
+
+  // The query string a case is replayed with: the padRecord switch that asked for the
+  // recording is taken out, everything else stays as the visitor sent it.
 
   function padReplayQuery ( $query ) {
 
