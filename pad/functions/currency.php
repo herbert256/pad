@@ -12,11 +12,25 @@
   if ( ! is_numeric ( $value ) and $GLOBALS ['padCheckSyntax'] )
     padError ( "currency: '" . padMakeSafe ( (string) $value, 40 ) . "' is not an amount" );
 
+  // A locale intl does not know is a ValueError out of the constructor, which ended the
+  // request as an uncaught PHP error in the lenient walk too. Strict mode names it; the
+  // lenient walk writes the amount as it does without intl.
+
   if ( class_exists ( 'NumberFormatter' ) ) {
-    $padCurFormat = new NumberFormatter ( $padCurLocale, NumberFormatter::CURRENCY );
-    $padCurText   = $padCurFormat->formatCurrency ( $padCurAmount, $padCurCode );
+
+    try {
+      $padCurFormat = new NumberFormatter ( $padCurLocale, NumberFormatter::CURRENCY );
+    } catch ( ValueError $padCurError ) {
+      $padCurFormat = NULL;
+      if ( $GLOBALS ['padCheckSyntax'] )
+        padError ( "currency: '" . padMakeSafe ( $padCurLocale, 40 ) . "' is not a locale" );
+    }
+
+    $padCurText = $padCurFormat ? $padCurFormat->formatCurrency ( $padCurAmount, $padCurCode ) : FALSE;
+
     if ( $padCurText !== FALSE )
       return $padCurText;
+
   }
 
   return number_format ( $padCurAmount, 2 ) . " $padCurCode";

@@ -30,18 +30,28 @@
     $padLdTime = 'none';
   }
 
+  // A locale intl does not know is a ValueError out of the constructor, which ended the
+  // request as an uncaught PHP error in the lenient walk too. Strict mode names it; the
+  // lenient walk writes the date as it does without intl.
+
   if ( class_exists ( 'IntlDateFormatter' ) ) {
 
-    $padLdFormat = new IntlDateFormatter (
-      $padLdLocale,
-      $padLdPattern ? IntlDateFormatter::NONE : $padLdStyles [$padLdDate],
-      $padLdPattern ? IntlDateFormatter::NONE : $padLdStyles [$padLdTime],
-      date_default_timezone_get (),
-      IntlDateFormatter::GREGORIAN,
-      $padLdPattern ?: NULL
-    );
+    try {
+      $padLdFormat = new IntlDateFormatter (
+        $padLdLocale,
+        $padLdPattern ? IntlDateFormatter::NONE : $padLdStyles [$padLdDate],
+        $padLdPattern ? IntlDateFormatter::NONE : $padLdStyles [$padLdTime],
+        date_default_timezone_get (),
+        IntlDateFormatter::GREGORIAN,
+        $padLdPattern ?: NULL
+      );
+    } catch ( ValueError $padLdError ) {
+      $padLdFormat = NULL;
+      if ( $GLOBALS ['padCheckSyntax'] )
+        padError ( "localDate: '" . padMakeSafe ( $padLdLocale, 40 ) . "' is not a locale" );
+    }
 
-    $padLdText = $padLdFormat->format ( $padLdStamp );
+    $padLdText = $padLdFormat ? $padLdFormat->format ( $padLdStamp ) : FALSE;
 
     if ( $padLdText !== FALSE )
       return $padLdText;
