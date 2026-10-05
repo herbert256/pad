@@ -6,6 +6,7 @@
   $today     = padToday ( 'Y-m-d H:i:s' );
   $christmas = padDateParse ( '2026-12-25' )->format ( 'l j F' );
   $nextWeek  = padDateParse ( '+1 week' )->format ( 'Y-m-d' );
-  $nothing   = ( padDateParse ( '2026-02-30' ) === NULL ) ? 'NULL' : 'a date';
+  $nothing   = ( padDateParse ( '2026-02-30' ) === NULL )
+             ? 'NULL' : 'a date';
 
 ?>

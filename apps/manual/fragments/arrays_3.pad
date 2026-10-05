@@ -1,5 +1,7 @@
 <p>{$names}</p>
 <select name="customer">
-  {choices}<option value="{key@choices}">{$choices}</option>{/choices}
+  {choices~}
+    <option value="{key@choices}">{$choices}</option>
+  {~/choices}
 </select>
 <p>Customer 2 is {$two}</p>

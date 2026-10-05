@@ -1,7 +1,7 @@
 <?php
 
-  // An order total written for the visitor - in the request's locale, then in two others -
-  // and a share of the sales.
+  // An order total written for the visitor - in the request's
+  // locale, then in two others - and a share of the sales.
 
   $total = 1234567.891;
 

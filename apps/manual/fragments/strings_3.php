@@ -8,6 +8,7 @@
   $folder = padStrBeforeLast ( $file, '/' );
   $base   = padStrAfterLast  ( $file, '/' );
 
-  $heading = padStrBetween ( '<title>Orders</title>', '<title>', '</title>' );
+  $html    = '<title>Orders</title>';
+  $heading = padStrBetween ( $html, '<title>', '</title>' );
 
 ?>

@@ -1,10 +1,12 @@
 <?php
 
-  // As if a form had been posted to ?orders&sort=date with these values.
+  // As if a form had been posted to ?orders&sort=date with these
+  // values.
 
   $_SERVER ['REQUEST_METHOD'] = 'POST';
   $_GET  ['sort'] = 'date';
-  $_POST = [ 'customer' => [ 'name' => ' Ann ', 'email' => 'ann@example.com' ],
+  $_POST = [ 'customer' => [ 'name'  => ' Ann ',
+                             'email' => 'ann@example.com' ],
              'note'     => '',
              'password' => 'secret' ];
 
@@ -13,7 +15,8 @@
   $pageNo = padRequest ( 'page', 1 );
   $note   = padRequestHas    ( 'note' ) ? 'sent'   : 'not sent';
   $filled = padRequestFilled ( 'note' ) ? 'filled' : 'blank';
-  $saved  = json_encode ( padRequestOnly ( 'customer.email, note' ) );
+  $only   = padRequestOnly   ( 'customer.email, note' );
+  $saved  = json_encode ( $only );
   $method = padRequestMethod ();
   $posted = padRequestIs ( 'post' ) ? 'yes' : 'no';
 

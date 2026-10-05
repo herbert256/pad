@@ -8,18 +8,19 @@
     [ 'region' => 'South', 'amount' => '40'  ]
   ];
 
+  $groups  = padArrGroupBy ( $sales, 'region' );
   $regions = [];
 
-  foreach ( padArrGroupBy ( $sales, 'region' ) as $region => $rows )
+  foreach ( $groups as $region => $rows )
     $regions [] = [
       'region' => $region,
       'sales'  => count ( $rows ),
-      'sum'    => padArrSum ( $rows, 'amount' ),
+      'total'  => padArrSum ( $rows, 'amount' ),
       'best'   => padArrMax ( $rows, 'amount' ) ?? '-'
     ];
 
-  $grandTotal = padArrSum ( $sales, 'amount' );
-  $average    = padArrAvg ( $sales, 'amount' );
-  $smallest   = padArrMin ( $sales, 'amount' );
+  $sum = padArrSum ( $sales, 'amount' );
+  $avg = padArrAvg ( $sales, 'amount' );
+  $min = padArrMin ( $sales, 'amount' );
 
 ?>

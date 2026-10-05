@@ -1,8 +1,11 @@
 <?php
 
+  $names = [ 'created_at', 'orderTotal',
+             'customer-name', 'HTMLParser' ];
+
   $columns = [];
 
-  foreach ( [ 'created_at', 'orderTotal', 'customer-name', 'HTMLParser' ] as $column )
+  foreach ( $names as $column )
     $columns [] = [
       'column'   => $column,
       'camel'    => padStrCamel    ( $column ),

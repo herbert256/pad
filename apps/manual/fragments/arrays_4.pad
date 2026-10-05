@@ -1,5 +1,11 @@
 <p>50 or more, largest first:
-  {large}{$number} ({$total}){notLast@large}, {/notLast@large}{/large}</p>
-<p>A customer starting with C: {withC}{$customer}{notLast@withC}, {/notLast@withC}{/withC}</p>
-<p>Not paid yet: {unpaid}{$number}{notLast@unpaid}, {/notLast@unpaid}{/unpaid}</p>
-<p>First open order: {$firstOpenNumber}, last paid order: {$lastPaidNumber}</p>
+  {large~}
+    {$number} ({$total}){notLast@large}, {/notLast@large}
+  {~/large}</p>
+<p>A customer starting with C: {withC~}
+  {$customer}{notLast@withC}, {/notLast@withC}
+{~/withC}</p>
+<p>Not paid yet: {unpaid~}
+  {$number}{notLast@unpaid}, {/notLast@unpaid}
+{~/unpaid}</p>
+<p>First open order: {$first}, last paid order: {$last}</p>

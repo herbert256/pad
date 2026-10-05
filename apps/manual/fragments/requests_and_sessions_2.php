@@ -4,9 +4,15 @@
   padSessionPut ( 'cart.coupon', 'SPRING' );
 
   $items  = implode ( ', ', padSession ( 'cart.items' ) );
-  $coupon = padSessionPull ( 'cart.coupon' );               // read, and forget
+
+  // Read, and forget.
+
+  $coupon = padSessionPull ( 'cart.coupon' );
   $again  = padSessionHas  ( 'cart.coupon' ) ? 'yes' : 'no';
-  $theme  = padSession     ( 'theme', 'light' );            // not there: the default
+
+  // Not there: the default.
+
+  $theme  = padSession ( 'theme', 'light' );
 
   padSessionForget ( 'cart' );
 

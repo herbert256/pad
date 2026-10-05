@@ -1,10 +1,12 @@
 <?php
 
-  $hash = padHash ( 'correct horse battery staple' );
+  $phrase = 'correct horse battery staple';
+  $hash   = padHash ( $phrase );
 
-  $right  = padHashCheck ( 'correct horse battery staple', $hash ) ? 'yes' : 'no';
+  $right  = padHashCheck ( $phrase, $hash ) ? 'yes' : 'no';
   $wrong  = padHashCheck ( 'Tr0ub4dor&3', $hash ) ? 'yes' : 'no';
   $rehash = padHashNeedsRehash ( $hash ) ? 'yes' : 'no';
-  $shape  = substr ( $hash, 0, 4 ) . '... ' . strlen ( $hash ) . ' characters';
+  $shape  = substr ( $hash, 0, 4 ) . '... '
+          . strlen ( $hash ) . ' characters';
 
 ?>

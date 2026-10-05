@@ -1,11 +1,18 @@
 <?php
 
-  $user = [ 'name' => 'ann smith', 'nickname' => '', 'city' => NULL ];
+  $user = [ 'name'     => 'ann smith',
+            'nickname' => '',
+            'city'     => NULL ];
 
-  // The callback runs for a filled value only; a blank one gets the default.
+  // The callback runs for a filled value only; a blank one gets
+  // the default.
 
-  $name     = padTransform ( $user ['name'],     fn ( $n ) => ucwords ( $n ), 'Guest' );
-  $nickname = padTransform ( $user ['nickname'], fn ( $n ) => "\"$n\"",       'no nickname' );
+  $name     = padTransform ( $user ['name'],
+                             fn ( $n ) => ucwords ( $n ),
+                             'Guest' );
+  $nickname = padTransform ( $user ['nickname'],
+                             fn ( $n ) => "\"$n\"",
+                             'no nickname' );
 
   // A default given as a Closure is made only when it is needed.
 
@@ -15,6 +22,10 @@
   // padTap looks at a value in passing and hands it on unchanged.
 
   $noted = '';
-  $total = padTap ( array_sum ( [ 12.5, 30, 7.5 ] ), function ( $sum ) use ( &$noted ) { $noted = "noted $sum"; } );
+  $note  = function ( $sum ) use ( &$noted ) {
+    $noted = "noted $sum";
+  };
+
+  $total = padTap ( array_sum ( [ 12.5, 30, 7.5 ] ), $note );
 
 ?>

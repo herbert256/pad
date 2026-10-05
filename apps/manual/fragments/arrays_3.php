@@ -7,7 +7,9 @@
   ];
 
   $names   = implode ( ', ', padArrPluck ( $customers, 'name' ) );
-  $choices = padArrPluck ( padArrSortBy ( $customers, 'name' ), 'name', 'id' );
+
+  $sorted  = padArrSortBy ( $customers, 'name' );
+  $choices = padArrPluck  ( $sorted, 'name', 'id' );
 
   $byId    = padArrKeyBy ( $customers, 'id' );
   $two     = $byId [2] ['name'];
