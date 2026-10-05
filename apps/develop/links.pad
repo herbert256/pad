@@ -1,0 +1,13 @@
+<h2>Broken links in every application</h2>
+
+<p>Each literal link in each template, checked the way <code>$padCheckOutput</code> checks a rendered page.</p>
+
+<table border="1" cellpadding="4">
+
+  {brokenLinks}
+    <tr><td>{$file}</td><td>{$broken}</td></tr>
+  @else@
+    <tr><td>No broken links.</td></tr>
+  {/brokenLinks}
+
+</table>

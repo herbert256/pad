@@ -1,0 +1,78 @@
+<h1>Output checks</h1>
+
+<p>Some mistakes only show in the finished HTML: two elements with the same id, an image
+without alt text, a form field nothing labels, a link to a page that does not exist. With
+<code>$padCheckOutput = TRUE</code> in <code>_config/config.php</code>, PAD reads every local
+HTML response back once it has rendered and names them.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/output_checks_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/output_checks_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $findings </span><span style="color: #007700">= </span><span style="color: #0000BB">padOutputCheck </span><span style="color: #007700">( </span><span style="color: #DD0000">'&lt;img src="logo.png"&gt;&lt;input name="email"&gt;&lt;a href="?no_such_page"&gt;More&lt;/a&gt;' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue">findings</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>findings</font>}</b>&lt;/li&gt;<b>{/<font color="blue">findings</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <ul>
+  <li>&lt;img src=&quot;logo.png&quot;&gt; has no alt text</li><li>&lt;input name=&quot;email&quot;&gt; has no label</li><li>&lt;a href=&quot;?no_such_page&quot;&gt; is a broken link: there is no page &#039;no_such_page&#039;</li>
+</ul>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<ul>
+  <li>The findings appear in a panel at the end of the page, before <code>&lt;/body&gt;</code>,
+      and their number in a <code>PAD-Output-Check</code> header. A page with nothing to report
+      is left exactly as it was.</li>
+  <li>The link check is exact: a <code>?page</code> link is broken when the router finds no
+      page for it - in this application, or in the one a <code>/&lt;app&gt;/?page</code> link names.</li>
+  <li>Only a local request is checked: the command line, or this machine asking itself. A
+      remote visitor never sees the panel. One request can ask for it with
+      <code>?page&amp;padCheckOutput</code>.</li>
+  <li><code>develop/?links</code> runs the link check over the templates of every
+      application at once, for every link written literally in them.</li>
+</ul>

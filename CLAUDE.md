@@ -783,6 +783,12 @@ $padRequestVars = true;
 // session's token - field or X-CSRF-Token header - is answered 403 before the app runs.
 // {csrf} writes the field by hand, {csrf token} the bare token, padCsrfValid() checks.
 $padCsrf = false;
+
+// The output check in development: every local HTML response is read back and duplicate
+// ids, images without alt, unlabelled form fields and broken ?page links are named in a
+// panel in the page plus a PAD-Output-Check header. ?page&padCheckOutput asks for one
+// request; develop/?links checks the literal links of every application's templates.
+$padCheckOutput = false;
 ```
 
 ### Expression errors
@@ -1076,6 +1082,7 @@ Each `{tag}` creates a new level scope. PAD maintains global variables per level
 - Use `{debug $order}` for a collapsible view of a value inside the page (local requests only; `{debug}` alone shows every field visible there)
 - Use `{dump}` tag for variable inspection
 - Use `{trace}` tag for execution trace
+- Set `$padCheckOutput = true` (or add `&padCheckOutput` to a local request) to have the finished HTML checked for duplicate ids, images without alt, unlabelled fields and broken `?page` links; `develop/?links` checks every application's templates at once
 - Check `DATA/` directory for error dumps and logs
 
 ### Testing PAD Pages from Command Line

@@ -29,6 +29,13 @@
   if ( $padCsrf and $padOutputType == 'web' )
     $padOutput = padCsrfForms ( $padOutput );
 
+  // The development check of the finished HTML - duplicate ids, images without alt, fields
+  // without a label, broken ?page links - for a local request that asks for it, on what the
+  // templates wrote, before tidy rearranges it (lib/outputCheck.php).
+
+  if ( padOutputCheckOn () )
+    $padOutput = padOutputCheckPage ( $padOutput );
+
   // The marker gets tidy.php a look even with both switches off: it is consumed (and
   // recorded on the xref) in there, and a response that skipped the file shipped @tidy@
   // to the browser whenever tidying was off.

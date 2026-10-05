@@ -630,6 +630,7 @@ $padInfo          // Debug: 'trace', 'stats', 'track', 'xml', 'xref'
 $padOutputType    // 'web', 'file', 'download', 'console', 'json', 'csv'
 $padExpose        // The page variables answered as JSON or CSV (set in the page's .php)
 $padCache         // Enable caching
+$padCheckOutput   // Check the finished HTML of local requests (ids, alt, labels, links)
 
 // Database
 $padSqlHost
@@ -643,6 +644,7 @@ $padSqlPassword
 - Set `$padInfo = 'trace'` for execution tracing
 - Use `{dump}` tag for variable inspection
 - Use `{trace}` tag for execution trace
+- Set `$padCheckOutput = TRUE` to have every local HTML response checked once it has rendered: duplicate ids, images without alt, form fields without a label and `?page` links to pages that do not exist are named in a panel at the end of the page and counted in a `PAD-Output-Check` header (one request: `?page&padCheckOutput`; every application's templates at once: `develop/?links`)
 - Check `DATA/` directory for error dumps and logs
 
 ## Best Practices

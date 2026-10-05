@@ -17,6 +17,7 @@ develop/
 ├── build.php        # Build utilities
 ├── clean.php        # Cleanup utilities
 ├── errors.pad/.php  # The error dumps a crawl left behind, one line per dump
+├── links.pad/.php   # Every literal link in every application's templates, checked like $padCheckOutput does
 ├── examples.php     # Example generator
 ├── nuts.pad/.php    # Miscellaneous utilities
 ├── reference.php    # Reference builder

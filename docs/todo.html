@@ -978,7 +978,7 @@ _events/output.php   post-process the final HTML</code></pre>
           <div class="idea-top"><span class="number" aria-hidden="true">54</span><h3>Output checks in development</h3><span class="effort">Medium</span></div>
           <p>After rendering a local request, check the HTML for:</p>
           <ul>
-            <li>duplicate <code>id</code>s;</li>
+            <li>duplicate <code>id</code>s;<p class="done"><strong>Done.</strong> <code>$padCheckOutput</code> (or <code>?page&amp;padCheckOutput</code> on a local request) reads the finished HTML back and names duplicate ids, images without alt, unlabelled form fields and <code>?page</code> links the router cannot find, in a panel before <code>&lt;/body&gt;</code> and a <code>PAD-Output-Check</code> header, local requests only; <code>develop/?links</code> checks the literal links of every application’s templates. Regression: framework cases; manual page; docs.</p></li>
             <li>images without <code>alt</code>;</li>
             <li>form fields without labels;</li>
             <li>broken internal links.</li>

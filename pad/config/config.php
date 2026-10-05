@@ -64,6 +64,14 @@
 
   $padPhpFunctions = TRUE;
 
+  // The output check in development: TRUE reads every local HTML response back once it has
+  // rendered and names duplicate ids, images without alt, form fields without a label and
+  // ?page links to pages that do not exist - in a panel in the page and a PAD-Output-Check
+  // header. A remote visitor is never checked. One request can ask for it with
+  // ?page&padCheckOutput. See lib/outputCheck.php.
+
+  $padCheckOutput = FALSE;
+
   $padInfo = '';
 
   $padCommon = TRUE;
