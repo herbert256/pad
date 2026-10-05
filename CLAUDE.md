@@ -565,6 +565,14 @@ is an error under the strict check.
 `once` without a key drops a push whose text the stack holds; `padStackPush('scripts', $html)`
 from PHP. A push inside a `{cache}` section is made again on every hit.
 
+### Response Fragments
+```
+{fragment 'order-list'}<ul>{orders}<li>{$number}</li>{/orders}</ul>{/fragment}
+```
+`?orders&padFragment=order-list` (or `$padFragmentOnly` set in PHP) answers with that
+fragment alone - for HTMX swaps and `{ajax 'orders', fragment='order-list'}`; a normal
+request renders the whole page.
+
 ### HTML attribute helpers
 ```
 <button {attrs disabled=$busy, title=$help, aria-expanded=$open}>Save</button>

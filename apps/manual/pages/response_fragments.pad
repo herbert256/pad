@@ -1,0 +1,25 @@
+<h1>Response fragments</h1>
+
+<p>A search result, a page of a list, a counter: a part of a page that the browser wants to refresh on its own. <code>{open}fragment 'name'{close}...{open}/fragment{close}</code> names such a part. A normal request renders the whole page, the fragment in its place:</p>
+
+{example 'fragments/response_fragments_1'}
+
+<p>A request that adds <code>&amp;padFragment=order-list</code> to the URL gets that fragment and nothing else - the same template serves the full page and the update:</p>
+
+{example 'fragments/response_fragments_2'}
+
+<h2>How it works</h2>
+
+<ul>
+  <li>The page renders up to the end of the fragment, and the fragment's rendering - closing pipe included - is the whole response. What comes after it is not rendered at all.</li>
+  <li>The response is bare, like a <code>padInclude</code> request: no wrapper, no tidy.</li>
+  <li>The first fragment of that name to finish rendering is the one sent. Keep a fragment unconditional and put conditions inside it: a request for a fragment that never rendered is an error under the strict check, and an empty 404 otherwise.</li>
+  <li>The page's PHP may decide too: <code>$padFragmentOnly = 'order-list';</code> - for instance when the request carries an <code>HX-Request</code> header.</li>
+</ul>
+
+<h2>With ajax and HTMX</h2>
+
+<ul>
+  <li><code>{open}ajax 'orders', fragment='order-list'{close}</code> fetches only that fragment of the page into its div.</li>
+  <li>HTMX: <code>&lt;div hx-get="?orders&amp;padFragment=order-list" hx-trigger="every 5s"&gt;</code> swaps in the fresh list.</li>
+</ul>

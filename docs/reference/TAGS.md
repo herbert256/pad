@@ -408,10 +408,12 @@ Handle AJAX request.
 
 ```html
 {ajax 'handler'}
+{ajax 'orders', fragment='order-list'}
 ```
 
 **Parameters:**
 - First parameter: AJAX handler name
+- `fragment` - fetch only that response fragment of the page (see `fragment`)
 
 ---
 
@@ -1133,6 +1135,25 @@ The items are read raw, as `{attrs}` reads them.
 
 ---
 
+### fragment
+A named part of the page that a request can ask for alone.
+
+```html
+{fragment 'order-list'}
+  <ul>{orders}<li>{$number}</li>{/orders}</ul>
+{/fragment}
+```
+
+**Behavior:** A normal request renders it in place. A request with `&padFragment=order-list`,
+or a page whose PHP sets `$padFragmentOnly = 'order-list'`, gets that fragment's rendering
+and nothing else: the page renders up to the end of the fragment, which is then the whole
+response, bare and untidied like a `padInclude` request; the rest of the page does not render.
+The first fragment of the name to finish is sent. A fragment that never rendered is an error
+under the strict check, an empty 404 otherwise - keep conditions inside the fragment. For
+HTMX (`hx-get="?orders&padFragment=order-list"`) and `{ajax 'orders', fragment='order-list'}`.
+
+---
+
 ### push
 Add rendered text to a named stack, for a `{stack}` elsewhere in the page to print.
 
@@ -1457,6 +1478,7 @@ Resume a previously ceased sequence iteration.
 | `parent` | Layout | The overridden content, inside an overriding block |
 | `slot` | Layout | A named place for content in a custom tag, and its fill |
 | `parms` | Layout | Declare a custom tag's parameters, required or with defaults |
+| `fragment` | Layout | A named part of the page a request can ask for alone |
 | `push` | Layout | Add rendered text to a named stack |
 | `stack` | Layout | Print a stack, filled in after the page has rendered |
 | `form` | Web | Form with CSRF token and name, its fields refill |

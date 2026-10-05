@@ -3,10 +3,11 @@
   // Body of the {ajax} tag: instead of rendering another page inline, emit a <div> plus the
   // XMLHttpRequest that fills it once the browser has the response.
   //
-  // $padParm names the page, the app= parameter picks a different application, and every
-  // variable {set} at this level ($padSetLvl[$pad]) is appended to the query string along
-  // with padInclude, so the fetched page renders bare, without its _inits/_exits wrappers.
-  // Returns the markup built by padPageAjax as the tag's value.
+  // $padParm names the page, the app= parameter picks a different application, fragment=
+  // asks for one of the page's response fragments alone, and every variable {set} at this
+  // level ($padSetLvl[$pad]) is appended to the query string along with padInclude, so the
+  // fetched page renders bare, without its _inits/_exits wrappers. Returns the markup built
+  // by padPageAjax as the tag's value.
 
   $padExtPag = $padParm ;
   $padExtApp = padTagParm ( 'app' );
@@ -33,6 +34,11 @@
       padError ( "there is no page named '$padExtPag' for {ajax}" );
 
   }
+
+  // fragment= asks the page for one of its response fragments alone - lib/respond.php.
+
+  if ( (string) padTagParm ( 'fragment', '' ) !== '' )
+    $padExtQry .= '&padFragment=' . urlencode ( padTagParm ( 'fragment' ) );
 
   foreach ( $padSetLvl [$pad] as $padK => $padV )
     $padExtQry .= "&$padK=" . urlencode($padV);

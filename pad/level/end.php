@@ -72,6 +72,15 @@
 
   include PAD . 'level/pipes/after.php';
 
+  // The response fragment this request asked for alone has rendered: it is the response,
+  // and the rest of the page is not rendered at all - lib/respond.php.
+
+  if ( $padFragmentOnly !== '' and padFragmentWanted () ) {
+    $padResult [0]   = $padResult [$pad];
+    $padFragmentSent = TRUE;
+    include PAD . 'exits/exits.php';
+  }
+
   if ( $padInfo )
     include PAD . 'events/levelEnd.php';
 

@@ -328,7 +328,7 @@
 {/fragment}</code></pre>
           <p>A normal request would render the complete page; a fragment request would return only <code>order-list</code>.</p>
           <p>PAD’s existing <a href="https://github.com/herbert256/pad/blob/master/pad/start/ajax.php#L3"><code>ajax</code></a> fetches another page without wrappers. Named fragments would allow one template to serve both the full page and a selected update region, useful for search results, pagination, and HTMX-style interfaces.</p>
-          <p class="references"><strong>Precedent:</strong> <a href="https://laravel.com/framework/docs/13.x/blade#rendering-blade-fragments">Blade fragments</a></p>
+          <p class="done"><strong>Done.</strong> <code>{fragment 'order-list'}…{/fragment}</code> renders in place on a normal request; with <code>&amp;padFragment=order-list</code> (or <code>$padFragmentOnly</code>) the response is that fragment alone - closing pipe included, bare, the rest of the page not rendered - and <code>{ajax 'orders', fragment='order-list'}</code> fetches just that region; a fragment that never rendered is named under the strict check, else an empty 404. The manual’s own <code>{fragment}</code> tag became <code>{usesFragment}</code>. Regression: framework, pages and errors cases; manual page; TAGS.md, CLAUDE.md.</p><p class="references"><strong>Precedent:</strong> <a href="https://laravel.com/framework/docs/13.x/blade#rendering-blade-fragments">Blade fragments</a></p>
         </li>
       </ol>
     </section>

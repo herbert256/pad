@@ -8,6 +8,10 @@
   // emits it and ends the request. Reached from start/pad/go.php as the last step of a
   // normal request.
 
+  // A request for one response fragment that the page never rendered - lib/respond.php.
+
+  padFragmentMissing ();
+
   // An @content@ still standing when the page is done was merged into by nothing. Checked
   // before the unescape, so a marker {ignore} protected - documentation showing it - is
   // still wearing its &at; entities and stays out of the verdict.

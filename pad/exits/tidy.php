@@ -4,8 +4,8 @@
   // the page carries a @tidy@ marker, otherwise PAD's own lightweight pass in
   // exits/myTidy.php.
   //
-  // Skipped for padInclude, padExamples and padReference requests, whose output is a
-  // fragment that has to stay exactly as it was built. The @tidy@ marker is consumed
+  // Skipped for padInclude, padExamples and padReference requests and for a response
+  // fragment, whose output is a part of a page that has to stay exactly as it was built. The @tidy@ marker is consumed
   // either way - CONSTRUCTS.md says it is removed, and until it was, every response that
   // carried it shipped the marker to the browser.
 
@@ -23,6 +23,7 @@
     padInfoXref ( 'constructs', 'tidy' );
 
   if ( isset ( $_REQUEST ['padInclude']   ) ) return;
+  if ( $padFragmentSent ?? FALSE            ) return;
   if ( padSelfSwitch ( 'padExamples'  ) ) return;
   if ( padSelfSwitch ( 'padReference' ) ) return;
 

@@ -28,6 +28,12 @@
   $padTime      = $_SERVER ['REQUEST_TIME'];
   $padCacheStop = 0;
   $padInclude   = isset ( $_REQUEST ['padInclude'] ) ? TRUE : FALSE;
+
+  // The response fragment a request asks for alone - lib/respond.php. The page's PHP may
+  // set it too.
+
+  $padFragmentOnly = is_string ( $_REQUEST ['padFragment'] ?? NULL ) ? $_REQUEST ['padFragment'] : '';
+  $padFragmentSent = FALSE;
   $padStrCnt    = -1;
   $padStrFunCnt = 0;
   $padInfo      = '';

@@ -627,6 +627,17 @@ Handle AJAX requests seamlessly:
 {/ajax}
 ```
 
+A named response fragment lets one template serve both the full page and the region an
+update refreshes - `?orders&padFragment=order-list` answers with that fragment alone:
+
+```
+{fragment 'order-list'}
+  {orders}<li>{$number}</li>{/orders}
+{/fragment}
+
+{ajax 'orders', fragment='order-list'}           {# or hx-get="?orders&padFragment=order-list" #}
+```
+
 ### Sandbox Execution
 
 Execute code in isolation:
