@@ -335,6 +335,21 @@
 
           }
 
+          // With no target - {if current@ eq 2} - it is the property of the loop the
+          // expression stands in (padPropertyValue). The @ was the placeholder then, and
+          // current@ eq 2 answered the row number, current@ + 0 the number with a 0 after it.
+
+          if ( ! preg_match ( '/^[a-zA-Z0-9_$@.\'"]/', $padEvalRest ) ) {
+
+            $result[$i][0] .= '@';
+            $result[$i][1]  = 'prop';
+
+            $is_other = FALSE;
+
+            continue;
+
+          }
+
         }
 
         $i += 100;

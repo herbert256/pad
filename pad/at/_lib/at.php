@@ -293,9 +293,19 @@
   // shadows only the former. INF shapes to empty, so a missing target answers '' here the
   // same as everywhere.
 
+  // A property written without a target - current@ in an expression - is the loop's the
+  // expression stands in: the level itself when it is iterating (a field's pipe), the level
+  // below it when it is a tag whose parameters are being read - its occurrence has not
+  // started - and past an {if} or a {case} (padFieldFirstNonTag).
+
   function padPropertyValue ( $field ) {
 
+    global $pad, $padOccur;
+
     padSplit ( '@', $field, $before, $after );
+
+    if ( $after === '' )
+      $after = (string) padFieldFirstNonTag ( ( $padOccur [$pad] ?? 0 ) ? 0 : 1 );
 
     $names = padExplode ( $before, '.' );
     $name  = reset ( $names );
