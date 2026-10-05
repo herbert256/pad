@@ -6,7 +6,7 @@
   //
   // A failed page answers what every command-line request answers: the JSON error report
   // (with its template position) and exit status 1. PAD_HOST, when set, is the server the
-  // page's own cross-application links and fetches point at ($padHostBase). PAD_LINT, set
+  // page's own links and fetches point at ($padHostBase, and $padRoot its mount). PAD_LINT, set
   // by pad lint, puts the strict check on whatever the application chose; PAD_EXPORT, set by
   // pad export, asks for the page exactly as the web gets it; PAD_TEST, set by pad test,
   // runs a test page.
@@ -49,8 +49,14 @@
 
   $padSetConfig = [];
 
-  if ( getenv ( 'PAD_HOST' ) )
+  // Its path is the mount, $padRoot - what $padGo, a page's own ?page links, are built on,
+  // the way editors/render.php reads its --host. Without it a page rendered for a server
+  // mounted under /pad/ linked to /<app>/?page, and pad export left those links unrewritten.
+
+  if ( getenv ( 'PAD_HOST' ) ) {
     $padSetConfig ['HostBase'] = getenv ( 'PAD_HOST' );
+    $padRoot = rtrim ( '/' . trim ( (string) parse_url ( getenv ( 'PAD_HOST' ), PHP_URL_PATH ), '/' ), '/' ) . '/';
+  }
 
   if ( getenv ( 'PAD_LINT' ) )
     $padSetConfig ['CheckSyntax'] = TRUE;

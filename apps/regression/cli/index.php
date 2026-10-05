@@ -78,7 +78,7 @@
     // PAD_HOST is the server a rendered page's own links and SELF:// fetches point at - it
     // was set before the config files ran, and config/config.php put $padHostBase back.
 
-    file_put_contents ( "$home/apps/shop/host.pad", '<p>{$padHost}</p>' );
+    file_put_contents ( "$home/apps/shop/host.pad", '<p>{$padHost} {$padGo}</p>' );
 
     list ( $codeH, $outH ) = cliCheckRun ( [ 'render', 'shop', 'host' ], $env + [ 'PAD_HOST' => 'http://example.org/sub/' ] );
 
@@ -87,7 +87,7 @@
     $render = ( $render == 'yes'
                 and $codeW1 === 0 and str_contains ( $outW1, '<h1>Hello from Shop!</h1>' )
                 and $codeW2 === 0 and str_contains ( $outW2, '<h1>Hello from Shop!</h1>' )
-                and $codeH  === 0 and str_contains ( $outH,  '<p>http://example.org/sub/</p>' ) ) ? 'yes' : 'NO';
+                and $codeH  === 0 and str_contains ( $outH,  '<p>http://example.org/sub/ /sub/shop/?</p>' ) ) ? 'yes' : 'NO';
 
     // test - the scratch application gets its _tests
 
@@ -156,6 +156,22 @@
                 and ! file_exists ( "$dir/index.php" ) ) ? 'yes' : 'NO';
 
     padDeleteDataDir ( $dir );
+
+    // The same copy made against a server mounted under /sub/: the page's own links -
+    // {$pad}about is $padGo - carry that mount, and are rewritten like the rest. $padGo
+    // kept the root mount PAD_HOST did not reach, and /regression/site/?about stayed in
+    // the copy, a link to nowhere.
+
+    $dirHost = DATA . 'cli-export-' . padRandomString ( 8 );
+
+    list ( $codeE2 ) = cliCheckRun ( [ 'export', 'regression/site', $dirHost ], [ 'PAD_HOST' => 'http://example.org/sub/' ] );
+
+    $indexHost = (string) @file_get_contents ( "$dirHost/index.html" );
+
+    $export = ( $export == 'yes' and $codeE2 === 0
+                and substr_count ( $indexHost, 'href="about.html"' ) == 2 ) ? 'yes' : 'NO';
+
+    padDeleteDataDir ( $dirHost );
 
   }
 
