@@ -22,14 +22,20 @@
   // request: $padPageKey keeps it, and neither inits/parms.php nor the field search
   // (lib/field/level.php) takes it for a variable. It was one, an empty string, and on the
   // page links a scalar $links was found before the array the page's .php set, so the tag
-  // {links} resolved as that empty field and never iterated. A restart keeps the key.
+  // {links} resolved as that empty field and never iterated. A restart keeps the key. Only
+  // a bare key is the page's name and nothing else: ?zzkey=42 names the page zzkey and
+  // hands it $zzkey = 42, a value that was dropped while every first key was set aside.
 
   $padPageKey ??= '';
 
   if     ( isset($padPage) )                 $padPage = $padPage;
   elseif ( $padRoutePath !== ''
            and ! padRouteQuery () )          $padPage = $padRoutePath;
-  elseif ( count($_GET) )                    $padPage = $padPageKey = (string) array_key_first ($_GET);
+  elseif ( count($_GET) ) {
+                                             $padPage = (string) array_key_first ($_GET);
+    if ( $_GET [ array_key_first ($_GET) ] === '' )
+                                             $padPageKey = $padPage;
+  }
   elseif ( isset ( $_SERVER['argv'] [1] ) )  $padPage = $_SERVER['argv'] [1];
   else                                       $padPage = 'index';
 
