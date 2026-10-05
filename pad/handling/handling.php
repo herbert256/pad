@@ -10,9 +10,10 @@
   // $padHandCnt (that value as a count, 1 when it is not a plain number - an evaluated
   // first=$n hands over an integer, so the test casts it to a string first). With the
   // negative option the handler runs between handling/negative/inits.php and exits.php,
-  // which turns its selection inside out.
+  // which turns its selection inside out. A level the handling emptied shows its @else@.
 
   $padHandNegative = $padPrm [$pad] ['negative'] ?? 0 ;
+  $padHandBefore   = count ( $padData [$pad] );
 
   foreach ( $padParms [$pad] as $padHand ) {
 
@@ -56,6 +57,19 @@
 
     if ( $padHandNegative )
       include PAD . "handling/negative/exits.php";
+
+  }
+
+  // Rows the tag found, and the handling left none of them - a where nothing passed, a
+  // first=0: the level has nothing to show, so it shows its @else@ branch, as it does when
+  // the tag itself comes back empty. Without an @else@ the level renders nothing, as before.
+
+  if ( $padHandBefore and ! count ( $padData [$pad] ) and ! $padTagSeq [$pad] and $padFalse !== '' ) {
+
+    $padElse [$pad] = TRUE;
+    $padHit  [$pad] = FALSE;
+    $padBase [$pad] = $padFalse;
+    $padData [$pad] = padDefaultData ();
 
   }
 

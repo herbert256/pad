@@ -322,6 +322,17 @@ Arithmetic pipes require a space between the operator and operand:
 {/until}
 ```
 
+### Filtering, sorting and limiting (handling options)
+```
+{staff where='$salary gt 2500', sort='name', first=3}
+  {$name}
+@else@
+  Nobody earns that much
+{/staff}
+```
+The options run in the order written. `where` takes a quoted expression, evaluated per row
+with the row's fields first. When the options leave no row, the `@else@` branch shows.
+
 ### Loop Control
 ```
 {continue 'tagname'}    # Skip to next iteration (like PHP's continue)

@@ -421,7 +421,7 @@
             <tr>
               <th scope="row"><code>where=</code> examples</th>
               <td>OPTIONS.md shows <code>{users where="active=1" …}</code> three times. A <code>where</code> exists only for Select tables (<code>{select:users}</code>), not for other data.</td>
-              <td>Correct the examples, or implement the general <code>where</code> option (<a href="#where">#09</a>).</td>
+              <td>Correct the examples, or implement the general <code>where</code> option (<a href="#where">#09</a>).<span class="done"><strong>Done.</strong> The general <code>where</code> option exists (#09), and the three OPTIONS.md examples use it as <code>where='$active eq 1'</code>.</span></td>
             </tr>
             <tr>
               <th scope="row"><code>{when 'default'}</code></th>
@@ -468,7 +468,7 @@
 {/orders}</code></pre>
           <p>The <a href="https://github.com/herbert256/pad/tree/master/pad/handling/types">handling options</a> sort, slice, page, dedup and shuffle, but none of them filters rows. Filtering exists only for database tables through Select, so JSON, XML, CSV, curl or page-PHP data cannot be narrowed in the template.</p>
           <p>Evaluate the condition per row with PAD’s own evaluator, with the row’s fields in scope. Run it before <code>first</code>, <code>page</code> and <code>rows</code>, so they count the filtered rows.</p>
-          <p class="references"><strong>Precedent:</strong> <a href="https://twig.symfony.com/doc/3.x/filters/filter.html">Twig filter</a></p>
+          <p class="done"><strong>Done.</strong> <code>handling/types/where.php</code>: a quoted expression evaluated per row with the row as the current occurrence, in written order with the other handling options and with <code>negative</code>; Select tables keep their SQL where. A level the handling empties now shows its <code>@else@</code> branch (also for <code>first=0</code>). Regression: six framework <code>options/</code> cases (where_* and first_zero_*; they fail on the old engine); manual <em>Data handling</em> demos; HANDLING.md, OPTIONS.md, CLAUDE.md.</p><p class="references"><strong>Precedent:</strong> <a href="https://twig.symfony.com/doc/3.x/filters/filter.html">Twig filter</a></p>
         </li>
 
         <li class="idea" id="group">

@@ -24,7 +24,7 @@ Options are processed at different phases during tag execution:
 
 | Phase | When | Options |
 |-------|------|---------|
-| **Start** | Before content generation | `track`, `before`, `dedup`, `page`, `sort`, `ignore`, `print`, `parent`, `trace`, `pre` |
+| **Start** | Before content generation | `track`, `before`, `where`, `dedup`, `page`, `sort`, `ignore`, `print`, `parent`, `trace`, `pre` |
 | **End** | After content generation | `toBool`, `toContent`, `toData`, `tidy`, `dump` |
 | **Callback** | During callback execution | `callback` |
 | **Special** | Handled at specific points | `data`, `content`, `else`, `null`, `bool`, `optional`, `noError` |
@@ -92,7 +92,7 @@ Stores the processed data array to a named variable.
 
 **Example:**
 ```
-{users where="active=1" toData="activeUsers"}
+{users where='$active eq 1' toData="activeUsers"}
 {list data="activeUsers"}...{/list}
 ```
 
@@ -132,7 +132,7 @@ Stores a boolean result based on the output state.
 
 **Example:**
 ```
-{users where="admin=1" toBool="hasAdmins"}
+{users where='$admin eq 1' toBool="hasAdmins"}
 {if bool="hasAdmins"}...{/if}
 ```
 
@@ -231,7 +231,7 @@ Provides alternative content when result is empty/false.
 
 **Example:**
 ```
-{users where="premium=1" else="noPremiumUsers"}
+{users where='$premium eq 1' else="noPremiumUsers"}
 ```
 
 ### notOk
@@ -424,6 +424,15 @@ Enables deduplication of data.
 {tagName dedup}
 ```
 
+### where
+
+Keeps the rows for which a quoted PAD expression holds, evaluated per row with the row's
+fields first. See [HANDLING.md](HANDLING.md#where).
+
+```
+{staff where='$salary gt 2500'}
+```
+
 ### page
 
 Enables pagination.
@@ -548,6 +557,7 @@ Enables direct output printing with formatting options.
 | Option | Description |
 |--------|-------------|
 | `track` | Enable tracking |
+| `where` | Keep the rows an expression holds for |
 | `dedup` | Deduplicate data |
 | `page` | Enable pagination |
 | `sort` | Enable sorting |

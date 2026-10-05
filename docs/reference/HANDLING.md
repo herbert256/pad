@@ -128,6 +128,34 @@ Selects random elements with advanced options.
 
 ## Selection Functions
 
+### where
+
+Keeps the rows for which an expression holds - on any data, not only on Select tables.
+
+```
+{staff where='$salary gt 2500'}
+{orders where='$status eq "open" and $total gt $minimum'}
+```
+
+**Parameters:**
+- A PAD expression, written quoted so it reaches the handler as text and is evaluated once
+  per row. The row's fields come before every other name; the page's variables are there
+  as usual.
+
+**Examples:**
+```html
+{staff where='$salary gt 1500', first=2}
+{-- The first two of the rows that pass --}
+
+{staff where='$salary gt 2500', negative}
+{-- Every row that does not pass --}
+```
+
+A Select table (`{select:users}`, or a declared table by its name) has a `where` of its own -
+SQL, applied by the query - and is left alone by this handler.
+
+---
+
 ### first
 
 Gets the first N elements.
@@ -425,6 +453,18 @@ Trims elements from the beginning and/or end of the array.
 
 ---
 
+## Emptied by Handling
+
+When the tag found rows and the handling options left none - a `where` nothing passes, a
+`first=0` - the level shows its `@else@` branch, as it does when the tag itself comes back
+empty:
+
+```
+{staff where='$salary gt 9999'}{$name}@else@Nobody earns that much{/staff}
+```
+
+---
+
 ## Negative Mode
 
 The `negative` option inverts the selection - keeping items that would normally be removed.
@@ -459,6 +499,7 @@ The `negative` option inverts the selection - keeping items that would normally 
 | `reverse` | Reverse order | (none) |
 | `shuffle` | Random order | (none) |
 | `random` | Random selection | count, orderly, duplicates |
+| `where` | Rows an expression holds for | quoted expression |
 | `first` | First N items | count |
 | `last` | Last N items | count |
 | `row` | Specific row | row number |

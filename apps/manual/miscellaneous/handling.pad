@@ -134,4 +134,11 @@
 {demo} {myArray splice = '-20|-5'           } {$myArray} {/myArray} {/demo}
 {demo} {myArray splice = '-20|-5', negative } {$myArray} {/myArray} {/demo}
 
+{/table}{table}
+
+{demo} {myArray where = '$myArray gt 35'                    } {$myArray} {/myArray} {/demo}
+{demo} {myArray where = '$myArray gt 20 and $myArray lt 24' } {$myArray} {/myArray} {/demo}
+{demo} {myArray where = '$myArray gt 20', rows = 3          } {$myArray} {/myArray} {/demo}
+{demo} {myArray where = '$myArray gt 20', negative          } {$myArray} {/myArray} {/demo}
+
 {/table}

@@ -1,6 +1,7 @@
 <p>It is possible to process the data from a {tag 'tag'} before it is used by PAD to construct the output.
 <p>This is done by using one of the below options.
-<p>dedup, end, first, last, page, random, reverse, row, rows, shuffle, slice, sort, splice, start, trim
+<p>dedup, end, first, last, page, random, reverse, row, rows, shuffle, slice, sort, splice, start, trim, where
+<p>The options run in the order they are written. <code>where</code> keeps the rows a quoted expression holds for, evaluated per row with the row's fields; when the options leave no row at all, the tag shows its <code>@else@</code> branch.
 
   {example 'miscellaneous/handling', onlyPHP, skipHeader}
 
