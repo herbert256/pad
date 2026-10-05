@@ -2,36 +2,65 @@
 
 ## Introduction
 
-Command-line interface for running PAD applications from the terminal.
+The `pad` command - new, serve, render, lint - and the command-line application it runs when it is given no command.
 
-## Usage
+## Install
 
-Run PAD from the command line:
-
-```bash
-./pad
-```
-
-Or from another directory:
+Link it into your PATH once:
 
 ```bash
-/path/to/apps/cli/pad
+ln -s /path/to/pad/apps/cli/pad /usr/local/bin/pad
 ```
+
+## Commands
+
+```bash
+pad new shop                       # a new application: apps/shop/ and www/shop/index.php
+pad new shop/orders/list           # a new page in it: list.php + list.pad
+pad serve [port] [host]            # PHP's built-in server over www/, no Apache needed
+pad serve 8000 --mount=pad         # the same under /pad/, the way Apache mounts it here
+pad render demo clock              # any application's page to stdout
+pad render shop search q=shoes     # with request values, as ?search&q=shoes would set them
+pad lint shop                      # every page rendered under the strict check
+pad lint shop orders               # only the pages of one directory
+pad help                           # the list
+```
+
+- **new** never overwrites: an application or page that exists is refused. The application
+  of `pad new a/b/c` is the shortest part of the name with an entry point in `www/`, so a
+  nested one (`regression/pages`) works too.
+- **serve** runs `php -S` over `www/`. `www/pad.php` derives the mount prefix from
+  `SCRIPT_NAME`, so every application is at `http://127.0.0.1:8000/<app>/`. Four workers by
+  default (`--workers=n`), so a page may fetch another page of the same server.
+- **render** runs the page in this process, as a GET. `PAD_HOST` sets the server the page's
+  own cross-application links point at.
+- **lint** renders each page in a child process of its own, four at a time, with the strict
+  syntax check on whatever the application chose, and lists every failure with its place in
+  the template:
+
+  ```
+  ok    index
+  FAIL  orders/list  Field '$totl' not found
+        apps/shop/orders/list.pad:14:11  {$totl | money}  - did you mean $total?
+
+  2 pages, 1 failed
+  ```
+
+Without a command word, `pad` runs this application: `pad` renders `index.pad` ("Hello
+world"), `pad mypage` the page named.
+
+The repository is the one the script stands in, unless the `PAD_HOME` environment variable
+names another - a second checkout runs its own engine, and the children of `serve` and
+`lint` inherit the same answer.
 
 ## Files
 
 | File | Description |
 |------|-------------|
-| `pad` | Executable script that bootstraps PAD for CLI use |
+| `pad` | The command: dispatches a command word to `_commands/`, else runs this application |
+| `_commands/` | One file per command - `new`, `serve`, `render`, `lint`, `help` - and `lib.php` they share |
 | `index.pad` | Default template (outputs "Hello world") |
 | `_config/config.php` | CLI-specific configuration |
-
-## How It Works
-
-The `pad` script:
-1. Includes `home/home.php` to get `$padHome`, then sets `$padApps` and `$padData`
-2. Sets `$padApp = 'cli'` and includes `pad/pad.php` directly
-3. PAD processes `index.pad` and outputs to the console
 
 ## Output Type
 
@@ -55,6 +84,7 @@ the name of the file to standard error:
 ```
 
 Review the file before committing it: it holds whatever the page read, real data included.
+A page rendered on the command line with the `web` output type is written as `console`.
 
 ## Exit Status
 
@@ -64,7 +94,8 @@ page, a request the boot net had to end. A failed request also prints a machine-
 JSON error body, but the status alone is enough for a shell gate:
 
 ```bash
-./pad mypage || echo "render failed"
+pad render shop checkout || echo "render failed"
+pad lint shop            || echo "a page failed"
 ```
 
 ## Other Applications

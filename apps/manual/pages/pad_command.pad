@@ -1,0 +1,51 @@
+<h1>The pad command</h1>
+
+<p><code>apps/cli/pad</code> is the command-line tool: a new application or page, a server
+without Apache, a page rendered to the terminal, and a strict check of every page. Link it
+into your PATH once as <code>pad</code>.</p>
+
+{ignore}
+<pre><code>pad new shop                   # apps/shop/ and www/shop/index.php
+pad new shop/orders/list       # list.php + list.pad in apps/shop/orders/
+pad serve                      # http://127.0.0.1:8000/&lt;app&gt;/
+pad render demo clock          # a page to stdout
+pad render shop search q=shoes # with request values
+pad lint shop                  # every page under the strict check
+pad help</code></pre>
+{/ignore}
+
+<h2>A first application</h2>
+
+{ignore}
+<pre><code>$ pad new shop
+made apps/shop/index.php
+made apps/shop/index.pad
+made apps/shop/README.md
+made www/shop/index.php
+
+$ pad render shop
+&lt;h1&gt;Hello from Shop!&lt;/h1&gt;</code></pre>
+{/ignore}
+
+<p><code>pad new</code> never overwrites: an application or a page that exists is refused.
+<code>pad serve</code> runs PHP's built-in server over <code>www/</code>, so every
+application is at <code>http://127.0.0.1:8000/&lt;app&gt;/</code>; <code>--mount=pad</code>
+serves them under <code>/pad/</code> instead, the way an Apache setup may mount them.</p>
+
+<h2>Checking every page</h2>
+
+<p><code>pad lint</code> renders each page of an application in a process of its own, with
+the strict syntax check on, and lists what failed with its place in the template - the same
+position an error page shows (see {manual 'template_errors'}):</p>
+
+{ignore}
+<pre><code>$ pad lint shop
+ok    index
+FAIL  orders/list  Field '$totl' not found
+      apps/shop/orders/list.pad:3:10  {$totl}  - did you mean $total?
+
+2 pages, 1 failed</code></pre>
+{/ignore}
+
+<p>Every command answers with its exit status - 0 when all is well, 1 when not - so a
+script or a git hook can use it: <code>pad lint shop || exit 1</code>.</p>

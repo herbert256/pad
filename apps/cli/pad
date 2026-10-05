@@ -1,23 +1,40 @@
 #!/usr/bin/env php
 <?php
 
+  // The pad command. With a command word it is the tool - new, serve, render, lint, test,
+  // export, help - each one a file in _commands/; pad help lists them. Without one it is the
+  // cli application, as it always was: the page the first argument names, or index.
+  //
+  // The repository is the one this script stands in, unless PAD_HOME says otherwise - so a
+  // second checkout runs its own engine, and php -S, the renders and the lint's child
+  // processes inherit the same answer through the environment.
+
+  if ( ! getenv ( 'PAD_HOME' ) )
+    putenv ( 'PAD_HOME=' . dirname ( __DIR__, 2 ) );
+
   include __DIR__ . '/../../home/home.php';
+
+  $padCommand = $argv [1] ?? '';
 
   // pad sample <app> <page> - captures the sample data of a page for the designer preview
   // (pad/lib/sample.php): the page is rendered once, for real, and the variables its PHP
   // made - with the answers of its named database tags - are written to the application's
   // own _samples/<page>.json, where ?<page>&padSample finds them. The rendered page goes to
   // standard output, the name of the file written to standard error.
-  //
-  // Anything else runs this cli application, as it always did.
 
-  if ( ( $argv [1] ?? '' ) === 'sample' ) {
+  if ( $padCommand === 'sample' ) {
 
     $padApp       = $argv [2] ?? '';
     $padPage      = $argv [3] ?? 'index';
     $padSampleCli = TRUE;
 
     $_REQUEST ['padSample'] = 'capture';
+
+  } elseif ( preg_match ( '/^[a-z]+$/', $padCommand ) and file_exists ( __DIR__ . "/_commands/$padCommand.php" ) ) {
+
+    include __DIR__ . '/_commands/lib.php';
+
+    exit ( (int) include __DIR__ . "/_commands/$padCommand.php" );
 
   } else
 

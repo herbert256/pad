@@ -9,7 +9,7 @@ This directory contains PAD applications and examples.
 | [_common](_common/README.md) | Shared | Shared resources and utilities for all applications |
 | [apps](apps/README.md) | Standard | Lists all PAD applications with descriptions from README files |
 | [classicModels](classicModels/README.md) | Standard | PAD Select over the Classic Models sample database |
-| [cli](cli/README.md) | CLI | Command-line interface for running PAD from terminal |
+| [cli](cli/README.md) | CLI | The `pad` command - new, serve, render, lint - and the command-line application |
 | [demo](demo/README.md) | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
 | [develop](develop/README.md) | Standard | Development tools for PAD - the source trimmer, the harvest of the reference and the examples, the error listing |
 | [examples](examples/README.md) | Standard | Search the harvested examples and view one with its sources beside the rendered result |
@@ -53,6 +53,7 @@ This directory contains PAD applications and examples.
 | [regression/try_log](regression/try_log/README.md) | Test | Regression test for the try guards under the 'log' action - caught, logged, and the page renders clean |
 | [regression/try_pad](regression/try_pad/README.md) | Test | Regression test for the try guards under the 'pad' action - caught and reported into the page |
 | [regression/toolbar](regression/toolbar/README.md) | Test | Regression test for the debug toolbar - a local page carries it, a fragment and a forwarded request do not |
+| [regression/cli](regression/cli/README.md) | Test | Regression test for the pad command - render, new, lint and serve, each a NO when it stops behaving |
 | [regression/errors](regression/errors/README.md) | Test | The Errors suite: the tests that fail on purpose, answered lean under the boot action - no dumps |
 | [regression/common](regression/common/README.md) | Test | The pages of the suite that use _common - {example}, {demo}, {table} - fetched and compared the same way |
 | [sequence](sequence/README.md) | Standard | Mathematical sequence subsystem demos - gallery, listen and guess pages |
