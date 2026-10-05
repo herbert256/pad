@@ -347,17 +347,17 @@
           <tbody>
             <tr>
               <th scope="row"><code>truncate(80, '…')</code></th>
-              <td>Whole-word shortening with an ellipsis. PAD’s <a href="https://github.com/herbert256/pad/blob/master/pad/functions/max_len.php#L3"><code>max_len</code></a> already handles multibyte characters, but simply cuts at the limit.</td>
+              <td>Whole-word shortening with an ellipsis. PAD’s <a href="https://github.com/herbert256/pad/blob/master/pad/functions/max_len.php#L3"><code>max_len</code></a> already handles multibyte characters, but simply cuts at the limit.<span class="done"><strong>Done.</strong> <code>truncate(length, ellipsis)</code> - framework <code>functions/truncate_ends_on_a_whole_word_with_an_ellipsis</code>.</span></td>
               <td><a href="https://latte.nette.org/en/filters#toc-truncate">Latte truncate</a></td>
             </tr>
             <tr>
               <th scope="row"><code>slug</code></th>
-              <td>Transliteration and readable URL slugs, beyond URL encoding.</td>
+              <td>Transliteration and readable URL slugs, beyond URL encoding.<span class="done"><strong>Done.</strong> <code>slug(separator)</code> - intl transliteration with an iconv fallback.</span></td>
               <td><a href="https://latte.nette.org/en/filters#toc-webalize">Latte webalize</a></td>
             </tr>
             <tr>
               <th scope="row"><code>bytes(1)</code></th>
-              <td>Human-readable file sizes for file listings and downloads.</td>
+              <td>Human-readable file sizes for file listings and downloads.<span class="done"><strong>Done.</strong> <code>bytes(precision)</code>.</span></td>
               <td><a href="https://latte.nette.org/en/filters#toc-bytes">Latte bytes</a></td>
             </tr>
             <tr>
@@ -377,7 +377,7 @@
             </tr>
             <tr>
               <th scope="row"><code>escape('js')</code><br><code>escape('css')</code></th>
-              <td>Explicit output-context escaping beyond PAD’s existing HTML and URL helpers. Must integrate with the default sanitization chain to avoid double encoding.</td>
+              <td>Explicit output-context escaping beyond PAD’s existing HTML and URL helpers. Must integrate with the default sanitization chain to avoid double encoding.<span class="done"><strong>Done.</strong> <code>escape(strategy)</code> with <code>html</code>, <code>attr</code>, <code>js</code>, <code>css</code>, <code>url</code>; the sanitize chain encodes without double-encoding and the js/css/url forms leave nothing for it to change. Regression for all four: framework <code>functions/</code> cases; manual <em>Pipes</em> section; FUNCTIONS.md.</span></td>
               <td><a href="https://twig.symfony.com/doc/3.x/filters/escape.html">Twig escape strategies</a></td>
             </tr>
           </tbody>

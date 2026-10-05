@@ -135,6 +135,8 @@ Functions for encoding and escaping text for various contexts.
 | `stripslashes` | - | Removes backslashes (PHP `stripslashes`) |
 | `encodeHigh` | - | Encodes high ASCII characters (>127) |
 | `stripLow` | - | Strips low ASCII control characters |
+| `escape` | strategy | Escapes for a context: `html` (default), `attr`, `js`, `css`, `url` - see below |
+| `slug` | separator | A readable URL part: `'Crème Brûlée & Co.'` → `'creme-brulee-co'` |
 | `ignore` | - | Escapes PAD syntax characters (`{ } \| = , @`) so the output is not parsed as PAD tags - not HTML escaping: in an attribute use `html` first |
 
 ### Examples
@@ -145,7 +147,27 @@ Functions for encoding and escaping text for various contexts.
 {"it's here" | slashes}     → "it\'s here"
 {json 'products' | ignore}  → the tag's JSON, which it HTML-escaped itself, kept from the PAD parser
 {echo $json | html | ignore} → any value: html makes it safe inside an attribute, ignore keeps PAD off it
+{echo 'Crème Brûlée & Co.' | slug} → 'creme-brulee-co'
 ```
+
+### escape
+
+`escape(strategy)` writes the value for the context it lands in:
+
+| Strategy | For | Example output for `it's </b>` |
+|----------|-----|-----|
+| `html` (default) | text and quoted attributes | `it&#039;s &lt;/b&gt;` |
+| `attr` | any attribute, even unquoted | `it&#x27;s&#x20;&#x3C;&#x2F;b&#x3E;` |
+| `js` | inside a JavaScript string | `it\x27s\x20\x3C\x2Fb\x3E` |
+| `css` | a CSS value | `it\27 s\20 \3C \2F b\3E ` |
+| `url` | one path or query part (`rawurlencode`) | `it%27s%20%3C%2Fb%3E` |
+
+```
+<script>var name = "{$name | escape('js')}";</script>
+```
+
+The sanitize chain a `{$field}` ends with never encodes an entity twice, and the `js`, `css`
+and `url` forms leave nothing for it to change, so the two do not stack.
 
 ---
 
@@ -174,12 +196,16 @@ Functions that limit or control string length.
 | Function | Parameters | Description |
 |----------|------------|-------------|
 | `max_len` | length | Truncates string to maximum length |
+| `truncate` | length, ellipsis | Shortens to at most length characters, ellipsis (default `…`) included, ending on a whole word |
+| `bytes` | precision | A byte count for people: `1536` → `1.5 KB` (units of 1024, default 2 decimals) |
 
 ### Examples
 
 ```
 {echo 'Hello World' | max_len(5)} → 'Hello'
 {echo 'Hi' | max_len(5)}      → 'Hi'
+{echo 'The quick brown fox jumps over the lazy dog' | truncate(20)} → 'The quick brown fox…'
+{echo 3221225472 | bytes}     → '3 GB'
 ```
 
 ---
@@ -395,16 +421,19 @@ Functions for working with PAD template syntax.
 `trim`, `replace`, `cut`, `white`
 
 ### Encoding
-`html`, `sanitize`, `url`, `slashes`, `stripslashes`, `encodeHigh`, `stripLow`, `ignore`
+`html`, `sanitize`, `url`, `escape`, `slug`, `slashes`, `stripslashes`, `encodeHigh`, `stripLow`, `ignore`
 
 ### HTML
 `bold`, `nbsp`
 
 ### Length
-`max_len`
+`max_len`, `truncate`, `bytes`
 
 ### Testing
-`contains`, `in`, `like`, `between`, `range`, `exists`
+`contains`, `in`, `like`, `matches`, `between`, `range`, `exists`
+
+### Values
+`default`
 
 ### Date/Time
 `now`, `date`, `time`, `timestamp`

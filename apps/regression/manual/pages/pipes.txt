@@ -281,6 +281,73 @@
 
 
 
+<h2>Presentation helpers</h2>
+
+<p><code>truncate</code> shortens on a whole word, <code>slug</code> makes a readable URL part,
+<code>bytes</code> writes a size for people, and <code>escape</code> writes a value for the
+context it lands in - <code>html</code>, <code>attr</code>, <code>js</code>, <code>css</code> or
+<code>url</code>:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/pipes_5.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/pipes_5.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $intro </span><span style="color: #007700">= </span><span style="color: #DD0000">'The quick brown fox jumps over the lazy dog, twice before breakfast'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Crème Brûlée &amp; Co.'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$size  </span><span style="color: #007700">= </span><span style="color: #0000BB">3221225472</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$quote </span><span style="color: #007700">= </span><span style="color: #DD0000">'it\'s &lt;/script&gt;'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green">$intro</font> <font color="black">|</font> <font color="blue">truncate(30)</font>}</b>&lt;/p&gt;<br>&lt;p&gt;?page=<b>{<font color="green">$title</font> <font color="black">|</font> <font color="blue">slug</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$size</font> <font color="black">|</font> <font color="blue">bytes</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$quote</font> <font color="black">|</font> <font color="blue">escape('js')</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>The quick brown fox jumps&hellip;</p>
+<p>?page=creme-brulee-co</p>
+<p>3 GB</p>
+<p>it\x27s\x20\x3C\x2Fscript\x3E</p>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
 <h2>Common Pipe Functions</h2>
 
 <table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;">
