@@ -1,0 +1,5 @@
+<?php
+
+  padEncrypt ( [ 'ratio' => NAN ] );
+
+?>

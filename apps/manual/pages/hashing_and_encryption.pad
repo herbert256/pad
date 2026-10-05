@@ -1,0 +1,90 @@
+{meta title='Hashing and encryption'}
+
+<p>Three jobs every application with users meets: keeping passwords so that nobody - the
+database's reader included - can read them back; handing a value to the browser that it
+cannot read or change; and sending a link that works for the one who got it, until it
+expires. PHP has the building blocks - <code>password_hash</code>, sodium,
+<code>hash_hmac</code> - and these helpers put them together the safe way.</p>
+
+<table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
+  <tr><th>function</th><th>what it answers</th></tr>
+  <tr><td><code>padHash ( $password )</code></td><td>the password hashed with <code>password_hash</code> and PHP's default algorithm - the text to store</td></tr>
+  <tr><td><code>padHashCheck ( $password, $hash )</code></td><td>whether the password matches the hash</td></tr>
+  <tr><td><code>padHashNeedsRehash ( $hash )</code></td><td>whether the hash was made with weaker settings than PHP's default now</td></tr>
+  <tr><td><code>padEncrypt ( $value )</code></td><td>the value sealed: JSON-encoded, encrypted and signed, as one URL-safe string</td></tr>
+  <tr><td><code>padDecrypt ( $payload, $default = NULL )</code></td><td>the value back - or the default for a payload that was changed, cut short or sealed with another key</td></tr>
+  <tr><td><code>padSignedUrl ( $page, $vars = [], $expires = NULL )</code></td><td>a link to a page of this application with an expiry time and a signature</td></tr>
+  <tr><td><code>padSignatureValid ()</code></td><td>whether this request came by such a link, unchanged and not expired</td></tr>
+</table>
+
+<h2>Passwords</h2>
+
+<p>A password is never stored, only its hash. <code>padHash</code> makes one with a new
+random salt each time, so two users with the same password get different hashes;
+<code>padHashCheck</code> tells whether a password typed at login matches the stored hash.</p>
+
+{example 'fragments/hashing_and_encryption_1'}
+
+<ul>
+  <li>After a successful login, <code>padHashNeedsRehash</code> says whether the stored hash
+  was made with older settings - a lower cost, an older algorithm. The password is at hand
+  right then, so the hash can be made again and stored.</li>
+  <li>A password that is no text, or a hash that is none - the <code>NULL</code> of a user
+  that does not exist - simply does not match: <code>padHashCheck</code> answers
+  <code>FALSE</code>, never an error.</li>
+</ul>
+
+<h2>Sealed values</h2>
+
+<p><code>padEncrypt</code> seals a value - text, a number, an array: whatever JSON holds -
+so it can travel through the browser in a cookie, a hidden field or a link, and come back
+unread and unchanged. Anyone can carry the payload; only the application can open it.</p>
+
+{example 'fragments/hashing_and_encryption_2'}
+
+<ul>
+  <li>The value is JSON-encoded and sealed with sodium's <code>secretbox</code> and a random
+  nonce, so the same value sealed twice gives two different payloads.</li>
+  <li>A payload that was changed in a single character, cut short, or sealed with another
+  key opens to the default - <code>NULL</code> unless one is given. An object comes back as
+  an array.</li>
+</ul>
+
+<h2>Signed links</h2>
+
+<p>A link in a mail - <em>confirm your address</em>, <em>download your invoice</em> - has to
+work without a login, for the one who got it, and stop working after a while.
+<code>padSignedUrl</code> adds the time it expires and a signature over the application, the
+page and every value; <code>padSignatureValid ()</code>, in the page the link leads to, says
+whether the request came by such a link.</p>
+
+{example 'fragments/hashing_and_encryption_3'}
+
+<p>The page the link leads to checks it before anything else:</p>
+
+<pre>// invoice.php
+if ( ! padSignatureValid () )
+  padRedirect ( 'link_expired' );
+
+$invoice = db ( "RECORD * FROM invoices WHERE id = {open}0{close}", [ $id ] );</pre>
+
+<ul>
+  <li>The expiry is a number of seconds, a <code>DateInterval</code> or a moment such as
+  <code>'+2 days'</code>; without one the link never expires.</li>
+  <li>A value changed, added or removed, another page, an expiry moved or passed - each makes
+  the signature invalid. The order of the values does not count, and the link holds in the
+  clean form too.</li>
+  <li>The link is absolute, since it is mostly mailed; the values are visible in it - sign
+  what must not change, seal what must not be read.</li>
+</ul>
+
+<h2>The key</h2>
+
+<p>Sealing and signing use the application key. Without a setting it is the file
+<code>DATA/keys/&lt;application&gt;.key</code>, made the first time it is needed - 32 random
+bytes, readable by its owner only, under <code>DATA/</code> where no URL reaches. Set
+<code>$padAppKey</code> in <code>_config/config.php</code> - 32 bytes, or
+<code>'base64:'</code> and 32 bytes in base64, the form the key file holds - when several
+servers must read each other's values, and keep it out of version control. A new key makes
+every value sealed and every link signed before it unreadable. The error reports never show
+it.</p>

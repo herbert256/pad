@@ -67,13 +67,14 @@
   // What a diagnostic shows of a value: credentials, authorization, cookies and the like
   // never leave the process in clear, whoever the report is for. Walks arrays by key; a
   // key that names a secret has its value replaced. $deep also blanks every value under
-  // _SESSION and _COOKIE - the reports that go to disk.
+  // _SESSION and _COOKIE - the reports that go to disk. The application key, $padAppKey,
+  // is one: whoever reads it can forge every signed link and open every sealed value.
 
   function padRedact ( $value, $key = '', $deep = FALSE ) {
 
     $key = (string) $key;
 
-    if ( preg_match ( '/pass(word|wd)?$|passwd|secret|token|authorization|auth_pw|api_?key|private_?key|^(http_)?cookie$|^phpsessid$|^padsesid$/i', $key ) )
+    if ( preg_match ( '/pass(word|wd)?$|passwd|secret|token|authorization|auth_pw|api_?key|app_?key|private_?key|^(http_)?cookie$|^phpsessid$|^padsesid$/i', $key ) )
       return '*** redacted ***';
 
     if ( ! is_array ( $value ) )

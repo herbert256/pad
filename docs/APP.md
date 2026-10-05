@@ -1294,6 +1294,10 @@ is declared twice, and anything it does it does twice. Functions belong in `_lib
   // Every POST must carry the session's CSRF token, added to each POST form
   $padCsrf = TRUE;
 
+  // The key padEncrypt and padSignedUrl seal and sign with: 32 bytes or 'base64:...';
+  // empty is the key file DATA/keys/<application>.key, made on first use
+  $padAppKey = 'base64:...';
+
   // Security headers (these two are the default) and the Content-Security-Policy;
   // 'nonce' is this request's nonce, which {nonce} writes: <script nonce="{nonce}">
   $padSecurityHeaders = [ 'X-Content-Type-Options' => 'nosniff',

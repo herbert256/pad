@@ -197,6 +197,15 @@
 
   $padCsrf = FALSE;
 
+  // The application key that padEncrypt, padDecrypt and padSignedUrl seal and sign with,
+  // see lib/crypt.php: 32 bytes, or 'base64:' followed by 32 bytes in base64. Empty, the
+  // key is the file DATA/keys/<application>.key, made on first use; set it - the same on
+  // every server - when several servers must read each other's values, and keep it out of
+  // version control. A new key makes every value sealed and every link signed before it
+  // unreadable.
+
+  $padAppKey = '';
+
   // Security headers on every web response, see lib/security.php: name => value, a value
   // of '' or FALSE leaves that one out, [] sends none. A header the page's own PHP sent
   // stands. $padCsp is the Content-Security-Policy, '' none; 'nonce', quotes included, in

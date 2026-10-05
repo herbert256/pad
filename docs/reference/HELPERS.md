@@ -612,3 +612,103 @@ Edge rules:
 ## Hashing and encryption
 
 <!-- helpers: hashing and encryption -->
+
+`pad/lib/crypt.php` - manual page *Hashing and encryption*.
+
+| Function | Answers |
+|----------|---------|
+| `padHash ( $password )` | The password hashed with `password_hash` and `PASSWORD_DEFAULT` - a new salt each time - the text to store |
+| `padHashCheck ( $password, $hash )` | Whether the password matches the hash (`password_verify`) |
+| `padHashNeedsRehash ( $hash )` | Whether the hash was made with weaker settings than PHP's default now - make it again at the next login |
+| `padEncrypt ( $value )` | The value JSON-encoded and sealed with `sodium_crypto_secretbox` and a random nonce, as one URL-safe string |
+| `padDecrypt ( $payload, $default = NULL )` | The value back; the default for a payload that was changed, cut short, is not ours or was sealed with another key |
+| `padSignedUrl ( $page, $vars = [], $expires = NULL )` | An absolute link to a page of this application with `padExpires` (when it expires) and an HMAC-SHA256 `padSignature` |
+| `padSignatureValid ()` | Whether this request carries a valid, unexpired signature |
+
+```php
+<?php                                         // login.php
+
+  $user = db ( "RECORD * FROM users WHERE email = {0}", [ $email ] );
+
+  if ( ! padHashCheck ( $password, $user ['hash'] ?? NULL ) )
+    $error = 'Unknown e-mail address or wrong password';
+  elseif ( padHashNeedsRehash ( $user ['hash'] ) )
+    db ( "UPDATE users SET hash = {0} WHERE id = {1}", [ padHash ( $password ), $user ['id'] ] );
+
+?>
+```
+
+```php
+<?php                                         // a value the browser carries but cannot read
+
+  setcookie ( 'cart', padEncrypt ( [ 'items' => [ 12, 40 ], 'coupon' => 'WELCOME' ] ) );
+
+  $cart = padDecrypt ( $_COOKIE ['cart'] ?? '', [ 'items' => [] ] );
+
+?>
+```
+
+```php
+<?php                                         // mail a link that works for two days
+
+  $link = padSignedUrl ( 'invoice', [ 'id' => $invoice ['id'] ], '+2 days' );
+  // https://example.com/shop/?invoice&id=1042&padExpires=1791311400&padSignature=4ade22...
+
+?>
+```
+
+```php
+<?php                                         // invoice.php - the page the link leads to
+
+  if ( ! padSignatureValid () )
+    padRedirect ( 'link_expired' );
+
+?>
+```
+
+**The key.** Sealing and signing use the application key, each through a key of its own
+derived from it. `$padAppKey` (in `_config/config.php`, see `pad/config/config.php`) is the
+key when set: 32 bytes, or `'base64:'` followed by 32 bytes in base64. Empty - the default -
+it is the file `DATA/keys/<application>.key`, made on first use from `random_bytes` with mode
+0600 (its directory 0700) and holding the key in the `'base64:...'` form, ready to copy into
+`$padAppKey` - the setting for several servers that must read each other's values. `DATA/` is
+outside the web root, so no URL reaches the file. A new key makes every value sealed and every
+link signed before it unreadable. The error reports and dumps redact `$padAppKey`, and the
+key itself is never kept in a global.
+
+Edge rules:
+
+- **Passwords.** `padHash` takes text, a number or a `Stringable`; `NULL`, a boolean, an array
+  or another object is reported and answers `''`, and so is what the algorithm refuses
+  (bcrypt: a NUL byte). bcrypt reads the first 72 bytes of a password. `padHashCheck` answers
+  `FALSE` - never an error - for a password that is no text, and for a hash that is `NULL`,
+  `''` or not a hash: what a visitor sends is not the author's mistake.
+  `padHashNeedsRehash` answers `TRUE` for no hash or something that is not one.
+- **Sealing.** Anything JSON holds: text, numbers (`1.0` stays a float), booleans, `NULL`,
+  arrays; an object is sealed as JSON writes it and comes back as an array. Text that is no
+  UTF-8, `INF` and `NAN` are no JSON: reported, and `''` answered. The same value sealed twice
+  gives two payloads.
+- **Opening.** A payload that is no text, empty, outside the URL-safe base64 alphabet, not
+  written the one way base64 writes those bytes, too short, changed, or sealed with another
+  key answers `$default` (`NULL` unless given), never an error. `padEncrypt ( NULL )` opens to
+  `NULL` - give a default that tells the two apart when it matters.
+- **A wrong key.** A `$padAppKey` that is not 32 bytes (or `base64:` and 32 bytes) is reported
+  when a key is first needed: `padEncrypt` answers `''`, `padDecrypt` the default,
+  `padSignedUrl` `''`, `padSignatureValid` `FALSE`. A missing sodium extension is reported by
+  `padEncrypt` and `padDecrypt`.
+- **Signed links.** `$page` is a page name, `?invoice` and `invoice&id=42` included - values
+  written in the name are added, those of `$vars` win; `''` is the page this request runs. The
+  link is absolute (`$padHost`), in the clean form when `$padCleanUrls` is on. `$expires`:
+  `NULL` never expires; a number is seconds from now (`padNow`, so a frozen clock counts) and
+  must be above 0; a `DateInterval` is added to now; anything else is read by `padDateParse`
+  (`'+2 days'`, `'2026-12-31 23:59'`) and must lie in the future. Values that are no array,
+  `padExpires` or `padSignature` among them, a lifetime of 0 or less, a moment passed or no
+  moment at all are reported and answer `''`.
+- **What is signed.** The application, the page as asked (`$padPageAsked` - `products/42`, not
+  `products/[id]`) and every query value but `padSignature`, sorted by name at every depth -
+  the host and the form of the address are not, so a link holds behind a proxy and in the
+  `?page`, the clean and the `index.php/page` form alike, and the order of the values does
+  not count. A value added, removed or changed - `padInclude` too - another page or
+  application, an expiry moved or passed, a signature missing or not 64 hex characters:
+  `FALSE`. The signature is compared with `hash_equals`. The values are visible in the link:
+  sign what must not change, seal (`padEncrypt`) what must not be read.
