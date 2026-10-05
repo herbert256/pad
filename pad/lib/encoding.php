@@ -16,8 +16,8 @@
   // The rest are small utilities: padJsonForHtmlAttr (JSON safe inside an HTML attribute,
   // for {select} and {reactData}), padMD5 with its helpers padPack, padUnpack, padBase64
   // and padUnbase64 (a 22-character URL-safe digest used for etags and cache keys, with
-  // padMD5Unpack giving the hex form back), padRandomString / padRandomChar (session and
-  // request ids, temporary file names), and padZip / padUnzip (gzip for cached output).
+  // padMD5Unpack giving the hex form back), padRandomString (session and request ids,
+  // temporary file names), and padZip / padUnzip (gzip for cached output).
 
   function padJsonForHtmlAttr ( $input ) {
   
@@ -49,19 +49,15 @@
     return base64_decode(strtr($string,'_-','+/'));
   }
 
-  function padRandomString ($len=8) {
-    $random = ceil(($len/4)*3);
-    $random = random_bytes($random);
-    $random = base64_encode($random);
-    $random = substr($random,0,$len);
-    $random = str_replace ( '+', padRandomChar(), $random );
-    $random = str_replace ( '/', padRandomChar(), $random );
-    return $random;
-  }
+  // The engine's own random names - the session and request ids, a temporary file - are
+  // letters and digits, each drawn on its own by padStrRandom from random_int. They were cut
+  // from base64 with every + and every / turned into one same character picked by mt_rand,
+  // which made some ids easier to guess than their length says.
 
-  function padRandomChar () {
-    $random = mt_rand(0,61);
-    return ($random < 10) ? chr($random+48) : ($random < 36 ? chr($random+55) : chr($random+61));
+  function padRandomString ( $len = 8 ) {
+
+    return padStrRandom ( $len );
+
   }
 
   // Both take NULL for an empty string. A value read out of a database row is NULL where the

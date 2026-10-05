@@ -387,7 +387,8 @@
 
   // padStrRandom: $length characters drawn from A-Z, a-z and 0-9 with random_int, PHP's
   // cryptographically secure generator - good for a token, a code to mail, a file name
-  // nobody can guess. Not padRandomString, which serves the engine's own names.
+  // nobody can guess. The engine's own names - session and request ids - come from here
+  // too, through padRandomString.
 
   function padStrRandom ( $length = 16 ) {
 
