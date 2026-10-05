@@ -27,7 +27,7 @@
 
   function padFragmentHit () {
 
-    global $pad, $padFragment, $padFragmentCache, $padToolbarData;
+    global $pad, $padFragment, $padFragmentCache, $padFragmentOnly, $padToolbarData;
 
     $padFragment [$pad] = [
       'key'    => padFragmentKey (),
@@ -38,6 +38,13 @@
     ];
 
     if ( ! $padFragmentCache )
+      return FALSE;
+
+    // A request for one response fragment alone (lib/respond.php) renders the section: a
+    // {fragment} inside it must close to be the response, and a stored rendering has no
+    // levels that close - the request ended in "there is no fragment named ...".
+
+    if ( (string) $padFragmentOnly !== '' )
       return FALSE;
 
     $entry = padFragmentGet ( $padFragment [$pad] ['key'] );
