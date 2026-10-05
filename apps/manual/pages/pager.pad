@@ -1,0 +1,35 @@
+<h1>Page links</h1>
+
+<p>The <code>page</code> and <code>rows</code> options cut one page out of a tag's rows. The
+<code>{open}pager{close}</code> tag writes the links to the other pages: the first and the last
+page, a window of pages on each side of the current one, a gap where pages are left out, and
+previous and next. The current page is marked <code>aria-current="page"</code>.</p>
+
+{example 'fragments/pager_1'}
+
+<p>The pager reads what the paged tag left, so it comes after it, and names it - without a
+name it follows the last paged tag of the page. It counts the rows that the options written
+before <code>page</code> left, so a <code>where</code> in front of the page pages the rows that
+pass. <code>window</code> is the number of pages on each side of the current one, 2 when not
+given.</p>
+
+<h2>The links</h2>
+
+<p>Each link is built from the application's own address, so a mount prefix keeps working, and
+keeps the other values of the request - a search field stays on every page. The value it
+sets is the variable <code>page=</code> was written with: <code>page=$pg</code> links with
+<code>pg=</code>, and <code>query='p'</code> on the pager names another. On a first visit the
+value is not there yet, hence <code>$pg ?? 1</code>.</p>
+
+<h2>Markup of your own</h2>
+
+<p>Written as a pair, the pager hands the links over as rows instead: <code>$kind</code> is
+<code>prev</code>, <code>next</code>, <code>page</code>, <code>current</code> or
+<code>gap</code>, with <code>$page</code>, <code>$label</code> and <code>$href</code> - empty for
+a gap, and for a previous or next that does not exist. With a single page there are no rows,
+and the pair shows its {construct 'else'}.</p>
+
+{example 'fragments/pager_2'}
+
+<p>A Select table is paged by its SQL limit, so the rows do not hold the total: the pager then
+counts with one more query, and only when it is there.</p>

@@ -257,6 +257,11 @@ Paginates data into pages.
 {-- Products 25-36 (page 3 with 12 per page) --}
 ```
 
+**Page links:** a tag written with `page` books its page, rows and total - the rows the
+options written before `page` left - under its name, and `{pager 'products'}` after it
+writes the links to the other pages (see [TAGS.md](TAGS.md#pager)). Write the page as a
+request variable, `page=$pg ?? 1`, and the links set `pg`.
+
 ---
 
 ### rows

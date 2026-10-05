@@ -1,0 +1,11 @@
+{products page=$p ?? 1, rows=10}{/products}
+
+{pager 'products'}
+  {if $href eq ''}
+    <span>{$label}</span>
+  {elseif $kind eq 'current'}
+    <strong>{$label}</strong>
+  {else}
+    <a href="{$href}">{$label}</a>
+  {/if}
+{/pager}

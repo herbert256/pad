@@ -448,10 +448,13 @@ See [HANDLING.md](HANDLING.md#group).
 
 ### page
 
-Enables pagination.
+Keeps one page of the rows - `page` counted from 1, `rows` per page (default 10). A
+`{pager}` after the tag writes the links to the other pages. See
+[HANDLING.md](HANDLING.md#page).
 
 ```
-{tagName page}
+{products page=$pg ?? 1, rows=12}...{/products}
+{pager 'products'}
 ```
 
 ### sort

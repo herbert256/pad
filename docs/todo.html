@@ -493,7 +493,7 @@
 {pager 'products', window=2}
 <em>→ ‹ 1 … 4 5 [6] 7 8 … 20 ›</em></code></pre>
           <p>The <a href="https://github.com/herbert256/pad/blob/master/pad/handling/types/page.php"><code>page</code> handling</a> already slices the data, but every app writes its own previous and next links. A pager would use the total and current page that the handling step knows, build links through <code>$padGo</code> so mount prefixes keep working, keep the other query values, and mark the current page with <code>aria-current="page"</code>.</p>
-          <p class="references"><strong>Precedent:</strong> <a href="https://laravel.com/docs/pagination#displaying-pagination-results">Laravel pagination links</a></p>
+          <p class="done"><strong>Done.</strong> <code>{pager 'products', window=2}</code> writes ‹ 1 … 4 5 [6] 7 8 … 20 › from the page, rows and total the handling walk now books per tag name, built on <code>$padGo</code> with the other query values kept and <code>aria-current="page"</code>; as a pair it yields the links as rows. Regression: framework, pages and errors cases; manual page <em>Pager</em>; HANDLING.md, TAGS.md, CLAUDE.md. Also fixed: the manual data-handling page was cut short by a literal <code>@else@</code> in its text.</p><p class="references"><strong>Precedent:</strong> <a href="https://laravel.com/docs/pagination#displaying-pagination-results">Laravel pagination links</a></p>
         </li>
 
         <li class="idea" id="tree">

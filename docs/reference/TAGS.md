@@ -381,6 +381,53 @@ Restart PAD processing with new page.
 
 ---
 
+### pager
+Page links for a tag written with the `page` handling option: the first and the last page, a
+window around the current one, gaps, previous and next.
+
+```html
+{products page=$pg ?? 1, rows=12}
+  <article>{$name}</article>
+{/products}
+
+{pager 'products', window=2}
+{-- → ‹ 1 … 4 5 [6] 7 8 … 20 › --}
+```
+
+**Parameters:**
+- First parameter: the name of the paged tag (its `name=`, or the tag's own name); without
+  it the pager follows the last paged tag of the page
+- `window` - pages shown on each side of the current one (default 2)
+- `query` - the request value the links set; by default the variable `page=` was written
+  with (`page=$pg` → `pg`), else `page`
+
+**Behavior:** The handling walk books, per paged tag, its page, its rows per page and the
+number of rows the options written before `page` left; the pager reads that, so it comes
+after the tag (strict mode names a pager without its paged tag). Links are `$padGo` plus the
+requested page plus the request's other query values with the page value set - the
+engine's `pad*` switches left out. As a single tag it answers
+`<nav class="pager" aria-label="Pagination">` with `<a>` links, the current page marked
+`aria-current="page"`, a missing previous/next as a disabled `<span>`; the labels
+`pager.label`, `pager.previous` and `pager.next` come from the `_lang/` catalog when it has
+them. With a single page it answers nothing.
+
+As a pair it hands the links over as rows for markup of your own - `kind` (`prev`, `next`,
+`page`, `current`, `gap`), `page`, `label` and `href` (empty for a gap and a missing
+previous/next); a single page has no rows, so the pair shows its `@else@`:
+
+```html
+{pager 'products'}
+  {if $href eq ''}<span>{$label}</span>{else}<a href="{$href}">{$label}</a>{/if}
+@else@
+  All on one page
+{/pager}
+```
+
+A Select table is paged by its SQL limit, so its rows do not hold the total; the pager then
+runs a count of the same query, only when it is there.
+
+---
+
 ## File Operation Tags
 
 ### files
@@ -989,6 +1036,7 @@ Resume a previously ceased sequence iteration.
 | `pad` | Execution | PAD include |
 | `redirect` | Navigation | HTTP redirect |
 | `restart` | Navigation | Restart processing |
+| `pager` | Navigation | Page links for a tag with the page option |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
 | `file` | Files | Write file |

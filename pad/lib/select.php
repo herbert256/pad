@@ -119,6 +119,12 @@
 
     $_SELECT [] = $sql;
 
+    // A page cut by the limit: the statement that counts every row is kept for a {pager},
+    // which runs it only when it is asked - lib/pager.php.
+
+    if ( $padSelLimit and ! $unionBuild )
+      $GLOBALS ['padPagerCount'] [$pad] = "field count(*) from ( select $base ) as padPagerCount";
+
     if ($unionBuild)
       return $padSelUnion;
     else

@@ -8,6 +8,14 @@
   //
   // A {select} level has had its page cut by the SQL limit already - padSelectLimit marks
   // the two options 'limit' - and paging those rows again would keep nothing past page 1.
+  //
+  // A level written with page= books its page, rows and total for a {pager} first -
+  // padPagerKeep in lib/pager.php - counted after the handling options written before it.
+
+  if ( isset ( $padPrm [$pad] ['page'] ) ) {
+    padPagerKeep ( count ( $padData [$pad] ) );
+    $padHandPaged = TRUE;
+  }
 
   if ( ( $padDone [$pad] ['page'] ?? '' ) === 'limit' )
     return;

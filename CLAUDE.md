@@ -365,6 +365,16 @@ Each group is an occurrence with the grouping field, `$count` and its own rows a
 aggregate: under the field's own name and as `$sum_total`, `$avg_total`, ... Groups keep the
 order of first appearance - a `sort` written after the group sorts the groups.
 
+### Page links (pager tag)
+```
+{products page=$pg ?? 1, rows=12}<article>{$name}</article>{/products}
+{pager 'products', window=2}        # ‹ 1 … 4 5 [6] 7 8 … 20 ›
+```
+The pager follows the paged tag (it reads the total the page handling booked), links through
+`$padGo` keeping the other query values, sets the variable `page=` was written with (`pg`),
+and marks the current page `aria-current="page"`. As a pair it iterates the links as rows -
+`$kind`, `$page`, `$label`, `$href` - for markup of your own.
+
 ### Loop Control
 ```
 {continue 'tagname'}    # Skip to next iteration (like PHP's continue)

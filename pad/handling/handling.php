@@ -14,6 +14,7 @@
 
   $padHandNegative = $padPrm [$pad] ['negative'] ?? 0 ;
   $padHandBefore   = count ( $padData [$pad] );
+  $padHandPaged    = FALSE;
 
   foreach ( $padParms [$pad] as $padHand ) {
 
@@ -78,6 +79,13 @@
       include PAD . "handling/negative/exits.php";
 
   }
+
+  // A paged level whose page handler never ran - it had no rows, or none were left when the
+  // page option came to its turn - still books its pager: there is nothing to page through,
+  // or, for a Select table cut by its SQL limit, a count to ask for.
+
+  if ( isset ( $padPrm [$pad] ['page'] ) and ! $padHandPaged and ! $padTagSeq [$pad] )
+    padPagerKeep ( 0 );
 
   // Rows the tag found, and the handling left none of them - a where nothing passed, a
   // first=0: the level has nothing to show, so it shows its @else@ branch, as it does when
