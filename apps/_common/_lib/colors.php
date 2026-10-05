@@ -179,10 +179,12 @@ go: $end = strpos($source, '}');
     if ( count ( $options ) > 1  )
       return padColorsFieldOptions ( $source, $start, $end, $between, $options );
 
+    // Each sigil once: the ! was wrapped twice, a font tag inside a font tag. The @ is not
+    // coloured here - the split below cuts at it and writes its own red @, and coloured
+    // first, the cut fell inside the font tag and the halves came out as broken markup.
+
     $between = str_replace ('!', '<font color="red">!</font>', $between);
-    $between = str_replace ('@', '<font color="red">@</font>', $between);
     $between = str_replace ('$', '<font color="red">$</font>', $between);
-    $between = str_replace ('!', '<font color="red">!</font>', $between);
     $between = str_replace ('#', '<font color="red">#</font>', $between);
     $between = str_replace ('&amp;', '<font color="red">&</font>', $between);
     $between = str_replace (':', '<font color="black">:</font>', $between);
