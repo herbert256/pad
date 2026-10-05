@@ -56,8 +56,20 @@ function padSplitOnUnquotedColon ( $str ) {
 
     global $pad, $padName, $padTag, $padCheckSyntax;
 
-    if ( $parm and is_numeric ($parm) and $parm < 0 )
-      return $pad + $parm;
+    // A negative offset counts levels up from the control tag. One that reaches past the
+    // page root indexed a level that is not there - {cease -9} ended in a raw 'Undefined
+    // array key -7'. Strict mode names it; the lenient walk falls to the nearest loop, as a
+    // name that matches nothing does.
+
+    if ( $parm and is_numeric ($parm) and $parm < 0 ) {
+
+      if ( $pad + (int) $parm >= 0 )
+        return $pad + (int) $parm;
+
+      if ( $padCheckSyntax )
+        padError ( "the offset $parm of {" . $padTag [$pad] . "} reaches past the page" );
+
+    }
 
     if ( $parm )
       for ( $key = $pad-1; $key >=0 ; $key-- )
