@@ -503,7 +503,7 @@
 
         if ( isset($value ['key']) ) {
           $joinSQL .= ' on ';
-          $joinSQL .= padSelectJoinAdd ($value ['key'], $joinTable ['db'], $joinTable ['key']) . ' ';
+          $joinSQL .= padSelectJoinAdd ($value ['key'], $joinTable ['db'], $joinTable ['key'] ?? '') . ' ';
         }
 
       }
@@ -514,6 +514,11 @@
 
   }
 
+  // The join meets the fields of key= with the declared key of the joined table, one by
+  // one. A joined table that declares no key - or a key of other length - left a field
+  // without its partner, and the request ended on a PHP undefined array key from inside
+  // the engine; it is named now, and the field is met by the column of its own name.
+
   function padSelectJoinAdd ($keys1, $db, $keys2) {
 
     $where = '';
@@ -521,12 +526,15 @@
     $values1 = padExplode ($keys1, ',');
     $values2 = padExplode ($keys2, ',');
 
+    if ( count ( $values1 ) != count ( $values2 ) )
+      padError ( "the join to '$db' on '$keys1' needs the key of '$db' declared with as many fields" );
+
     foreach ($values1 as $k => $v) {
 
       if ($where)
         $where .= ' and ';
 
-      $where .= padSelectField($v) . ' = `' . $db . '`.' . padSelectField($values2[$k]);
+      $where .= padSelectField($v) . ' = `' . $db . '`.' . padSelectField( $values2 [$k] ?? substr ( strrchr ( ".$v", '.' ), 1 ) );
 
     }
 
