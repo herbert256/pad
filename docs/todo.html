@@ -967,7 +967,7 @@ _events/output.php   post-process the final HTML</code></pre>
           <div class="idea-top"><span class="number" aria-hidden="true">53</span><h3>PAD in the browser</h3><span class="effort">Large · experimental</span></div>
           <p>PHP compiled to WebAssembly, as WordPress Playground does, could run PAD in the browser. That would make three things possible:</p>
           <ul>
-            <li>the manual’s examples become editable and live on a static docs site;</li>
+            <li>the manual’s examples become editable and live on a static docs site;<p class="done"><strong>Done (experimental).</strong> <code>php wasm/build.php</code> bundles the engine (without the sequence subsystem’s large tables) into <code>www/wasm/pad-bundle.json</code> (git-ignored); the static page <code>www/wasm/</code> loads PHP 8.4 compiled to WebAssembly from the <code>@php-wasm</code> packages on jsDelivr and renders a template with JSON data in the tab, with no PAD server. Verified with <code>wasm/verify.mjs</code> on the PHP 8.3-8.5 builds in Node and the page in Chrome; not verified on other browsers or a static docs host (wasm/README.md). No suite case - it needs Node, network and a browser. Manual page <em>PAD in the browser</em>.</p></li>
             <li>the playground (<a href="#playground">#25</a>) needs no server;</li>
             <li>sandboxing becomes the browser’s job.</li>
           </ul>

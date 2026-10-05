@@ -1,0 +1,19 @@
+<h1>PAD in the browser</h1>
+
+<p>PAD also runs on PHP compiled to WebAssembly, inside a browser tab, with no PAD server at
+all. <code>php wasm/build.php</code> bundles the engine into one file, and the page
+<a href="{$padHost}wasm/">wasm/</a> loads PHP into the tab, writes the engine into its memory
+and renders the template you type with the JSON data beside it - the example below, on this
+server, is the page's sample:</p>
+
+{example 'fragments/pad_in_the_browser_1'}
+
+<ul>
+  <li>PHP comes from the <code>@php-wasm</code> packages of WordPress Playground, loaded from
+      jsDelivr: about 20 MB, once.</li>
+  <li>The template can only reach the browser tab it runs in, so there is no PHP function list
+      to keep; there is no database either, and the sequence subsystem's large tables are left
+      out of the bundle.</li>
+  <li>It is experimental: <code>wasm/README.md</code> says what was verified - the engine on the
+      PHP 8.3, 8.4 and 8.5 WebAssembly builds, the page in Chrome - and what was not.</li>
+</ul>

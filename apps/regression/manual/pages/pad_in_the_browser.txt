@@ -1,0 +1,81 @@
+<h1>PAD in the browser</h1>
+
+<p>PAD also runs on PHP compiled to WebAssembly, inside a browser tab, with no PAD server at
+all. <code>php wasm/build.php</code> bundles the engine into one file, and the page
+<a href="http://localhost/pad/wasm/">wasm/</a> loads PHP into the tab, writes the engine into its memory
+and renders the template you type with the JSON data beside it - the example below, on this
+server, is the page's sample:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/pad_in_the_browser_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/pad_in_the_browser_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Fruit'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$items </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Apple'</span><span style="color: #007700">, </span><span style="color: #DD0000">'stock' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Pear'</span><span style="color: #007700">, </span><span style="color: #DD0000">'stock' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;h2&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br>&lt;ul&gt;<br>  <b>{<font color="blue">items</font><font color="red"></font>}</b><br>    &lt;li&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>stock eq 0</font>}</b> - sold out<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue">items</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <h2>Fruit</h2>
+<ul>
+  
+    <li>Apple</li>
+  
+    <li>Pear - sold out</li>
+  
+</ul>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<ul>
+  <li>PHP comes from the <code>@php-wasm</code> packages of WordPress Playground, loaded from
+      jsDelivr: about 20 MB, once.</li>
+  <li>The template can only reach the browser tab it runs in, so there is no PHP function list
+      to keep; there is no database either, and the sequence subsystem's large tables are left
+      out of the bundle.</li>
+  <li>It is experimental: <code>wasm/README.md</code> says what was verified - the engine on the
+      PHP 8.3, 8.4 and 8.5 WebAssembly builds, the page in Chrome - and what was not.</li>
+</ul>

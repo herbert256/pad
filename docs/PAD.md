@@ -659,6 +659,13 @@ update refreshes - `?orders&padFragment=order-list` answers with that fragment a
 {ajax 'orders', fragment='order-list'}           {# or hx-get="?orders&padFragment=order-list" #}
 ```
 
+### PAD in the Browser
+
+PAD runs on PHP compiled to WebAssembly: `php wasm/build.php` bundles the engine into
+`www/wasm/pad-bundle.json`, and `www/wasm/index.html` loads PHP 8.4 from the `@php-wasm`
+packages on jsDelivr, writes the engine into its memory and renders templates in the browser
+tab, with no PAD server. Experimental - see `wasm/README.md` for what was verified.
+
 ### Live Regions
 
 A `{live}` region re-renders on the server when something in it is clicked, submitted or

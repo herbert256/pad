@@ -44,6 +44,7 @@ pad/
 ├── www/      # Web server entry points (PHP entry points for each app)
 ├── editors/  # Editor kits, the language server, the command-line renderer
 ├── docs/     # Documentation
+├── wasm/     # PAD in the browser: wasm/build.php bundles the engine for www/wasm/ (PHP compiled to WebAssembly)
 └── DATA/     # Runtime data (logs, cache, dumps) - writable, excluded from git
 ```
 

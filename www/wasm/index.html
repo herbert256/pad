@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PAD in the browser</title>
+  <link rel="stylesheet" href="../playground/playground.css">
+  <!--
+    PAD running on PHP compiled to WebAssembly, entirely in this browser tab - no PAD server.
+    PHP comes from the @php-wasm packages of the WordPress Playground project on jsDelivr; the
+    engine from pad-bundle.json beside this page, built with: php wasm/build.php
+
+    The PHP loader imports its .wasm binary as a module, which a bundler would turn into a
+    URL; the import map below does that job here, so no build step is needed.
+  -->
+  <script type="importmap">
+  {
+    "imports": {
+      "https://cdn.jsdelivr.net/npm/@php-wasm/web-8-4@3.1.56/asyncify/8_4_25/php_8_4.wasm":
+        "data:text/javascript,export default 'https://cdn.jsdelivr.net/npm/@php-wasm/web-8-4@3.1.56/asyncify/8_4_25/php_8_4.wasm';"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <h1>PAD in the browser</h1>
+
+  <p id="status" class="hint">Loading PHP (about 20 MB, once) and the PAD engine...</p>
+
+  <form id="playForm">
+    <div class="panes">
+      <div class="pane">
+        <label for="source">Template</label>
+        <textarea id="source" spellcheck="false" rows="14">&lt;h2&gt;{$title}&lt;/h2&gt;
+&lt;ul&gt;
+  {items}
+    &lt;li&gt;{$name}{if $stock eq 0} - sold out{/if}&lt;/li&gt;
+  {/items}
+&lt;/ul&gt;
+</textarea>
+        <label for="data">Data - a JSON object, each key a variable</label>
+        <textarea id="data" spellcheck="false" rows="10">{
+  "title": "Fruit",
+  "items": [
+    { "name": "Apple", "stock": 3 },
+    { "name": "Pear",  "stock": 0 }
+  ]
+}
+</textarea>
+        <p>
+          <button type="submit" id="render" disabled>Render</button>
+          <label class="hint"><input type="checkbox" id="asSource"> show the HTML</label>
+        </p>
+      </div>
+      <div class="pane">
+        <span class="caption">Output</span>
+        <iframe id="output" title="Output" sandbox></iframe>
+      </div>
+    </div>
+  </form>
+
+  <p class="limits">Everything runs in this tab: PHP 8.4 compiled to WebAssembly, the PAD engine
+  in its memory. There is no database and no network from PHP; the sequence subsystem's large
+  tables are left out of the bundle. The address bar keeps the template and data in its hash.</p>
+
+  <script type="module">
+    import { PHP, loadPHPRuntime } from 'https://cdn.jsdelivr.net/npm/@php-wasm/universal@3.1.56/+esm';
+    import { padInstall, padRender } from './pad-wasm.js';
+
+    const status = document.getElementById('status');
+    const source = document.getElementById('source');
+    const data   = document.getElementById('data');
+    const output = document.getElementById('output');
+    const button = document.getElementById('render');
+    const asText = document.getElementById('asSource');
+
+    const encode = value => btoa(unescape(encodeURIComponent(JSON.stringify(value))));
+    const decode = text => { try { return JSON.parse(decodeURIComponent(escape(atob(text)))); } catch (e) { return null; } };
+    const escape = text => text.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+
+    const shared = location.hash.startsWith('#s=') ? decode(location.hash.slice(3)) : null;
+    if (shared) { source.value = shared.source || ''; data.value = shared.data || ''; }
+
+    let php;
+
+    async function render(event) {
+      if (event) event.preventDefault();
+      history.replaceState(null, '', '#s=' + encode({ source: source.value, data: data.value }));
+      let values;
+      try { values = data.value.trim() ? JSON.parse(data.value) : {}; }
+      catch (e) { output.srcdoc = '<pre>The data is not JSON: ' + escape(e.message) + '</pre>'; return; }
+      const started = performance.now();
+      const result = await padRender(php, source.value, values);
+      output.srcdoc = asText.checked ? '<pre>' + escape(result.html) + '</pre>' : result.html;
+      status.textContent = 'HTTP ' + result.status + ' in ' + Math.round(performance.now() - started) + ' ms';
+    }
+
+    try {
+      const started = performance.now();
+      const [loader, bundle] = await Promise.all([
+        import('https://cdn.jsdelivr.net/npm/@php-wasm/web-8-4@3.1.56/asyncify/php_8_4.js'),
+        fetch('pad-bundle.json').then(response => {
+          if (!response.ok) throw new Error('pad-bundle.json is missing - build it with: php wasm/build.php');
+          return response.json();
+        })
+      ]);
+      php = new PHP(await loadPHPRuntime(loader, { phpWasmAsyncMode: 'asyncify', processId: 1 }));
+      await padInstall(php, bundle);
+      status.textContent = 'PHP ' + (await php.run({ code: '<?php echo PHP_VERSION;' })).text
+        + ' and the PAD engine of ' + bundle.built + (bundle.commit ? ' (' + bundle.commit + ')' : '')
+        + ' loaded in ' + Math.round(performance.now() - started) + ' ms';
+      button.disabled = false;
+      document.getElementById('playForm').addEventListener('submit', render);
+      document.addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) render(e); });
+      render();
+    } catch (error) {
+      status.textContent = 'PAD could not start here: ' + error.message;
+      console.error(error);
+    }
+  </script>
+
+</body>
+</html>
