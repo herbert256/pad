@@ -70,9 +70,12 @@
       // Only now that $current is known to be an array - a numeric step into a scalar,
       // {$user.name.1}, handed padAtKey a string and died on a TypeError.
 
+      // padAtKey answers '' for no ordinal; a key it does answer may be 0, which is a key -
+      // tested for truth, [0 => 'zero', 'k' => 'kay'] had no first element at all.
+
       $found = padAtKey ( $current, $name );
 
-      if ( $found ) {
+      if ( $found !== '' ) {
 
         $current = &$current [$found];
 
