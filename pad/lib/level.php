@@ -126,6 +126,54 @@ function padSplitOnUnquotedColon ( $str ) {
 
   }
 
+  // A field spliced into the parameters of the tag around it, outside any quotes - the
+  // {$v} of {echo {$v}} - becomes part of that tag's expression, and a value of php:getcwd
+  // there was a call. Under $padProtectValues level/var.php splices it as a quoted string
+  // instead, unless it is a plain number; its own quotes are protected, so it cannot close
+  // the quote. A value inside quotes, in text no tag encloses, or glued to the tag's own
+  // word - the name built by {${$hi}} - is left as it is. A tag's rendered answer is not
+  // passed through here: written inside another tag it is template text by design, the
+  // way the manual builds an option list from {notFirst},skipOpen{/notFirst}.
+  //
+  // The enclosing tag is the last { before the splice: the scanner resolves the innermost
+  // tag first and left to right, so every complete tag before this point is gone already.
+
+  function padSpliceQuote ( $value ) {
+
+    global $pad, $padOut, $padStart;
+
+    if ( ! is_scalar ( $value ) or is_bool ( $value ) )
+      return $value;
+
+    $value = (string) $value;
+    $start = $padStart [$pad];
+
+    if ( preg_match ( '/^-?[0-9]+(\.[0-9]+)?$/', $value ) or $start < 1 )
+      return $value;
+
+    $open = strrpos ( $padOut [$pad], '{', $start - strlen ( $padOut [$pad] ) - 1 );
+
+    if ( $open === FALSE or $open >= $start - 1 )
+      return $value;
+
+    $inside = substr ( $padOut [$pad], $open + 1, $start - $open - 1 );
+
+    if ( ctype_space ( $inside [0] ) or str_contains ( $inside, '}' ) or ! preg_match ( '/\s/', $inside ) )
+      return $value;
+
+    $quote = '';
+
+    for ( $i = 0, $len = strlen ( $inside ); $i < $len; $i++ )
+      if ( $quote ) {
+        if     ( $inside [$i] == '\\'   ) $i++;
+        elseif ( $inside [$i] == $quote ) $quote = '';
+      } elseif ( $inside [$i] == "'" or $inside [$i] == '"' )
+        $quote = $inside [$i];
+
+    return $quote ? $value : "'$value'";
+
+  }
+
   function padLevel ( $value ) {
 
     global $padOut, $padStart, $padEnd, $pad;

@@ -473,8 +473,9 @@ text too. To run a value as PAD, say so where it is used - a snippet kept in a d
 {echo $snippet | sandbox}    # the same, in an isolated pass
 ```
 
-A field written unquoted into a tag's parameters - `{echo {$v}}` - becomes part of the
-expression itself, and a value of `php:getcwd` calls the function. Use `{echo $v}`.
+A field written bare into a tag's parameters - `{echo {$v}}` - is spliced as a quoted
+string, unless it is a plain number, so a value of `php:getcwd` stays text; `{echo $v}`
+says the same more simply. A tag's rendered output written there is template text, by design.
 
 `$padProtectValues = FALSE` brings back the old behaviour: every value re-read as template
 source.

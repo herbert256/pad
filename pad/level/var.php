@@ -73,7 +73,7 @@
   // touched.
 
   if ( $padProtectValues )
-    $padVal = padProtect ( $padVal );
+    $padVal = padSpliceQuote ( padProtect ( $padVal ) );
 
   padLevel ( $padVal );
 

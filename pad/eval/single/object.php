@@ -8,6 +8,14 @@
   // locals instead - object:myself handed back the evaluator's piped value, and no name a page
   // could define resolved at all.
 
+  // An application's variable, never the engine's: object:padSqlPassword handed the
+  // database password to whatever template asked.
+
+  if ( padEngineName ( $name ) ) {
+    padError ( "object: reads application variables - '$name' belongs to the engine" );
+    return '';
+  }
+
   return padToArray ( $GLOBALS [$name] ?? '' );
 
 ?>
