@@ -98,7 +98,13 @@
       $script = padProtect ( '<script>' . padLiveScript () . '</script>' );
     }
 
-    return '<div data-pad-live="' . htmlspecialchars ( $name ) . '">' . $content . '</div>' . $script;
+    // With $padCsrf on every post must bring the session's token back (lib/csrf.php), and
+    // the post of a click has no form to carry it: the region holds the token, and the
+    // script sends it along. A region without it was answered 403 on every event.
+
+    $csrf = ( $GLOBALS ['padCsrf'] ?? FALSE ) ? ' data-pad-csrf="' . padCsrfToken () . '"' : '';
+
+    return '<div data-pad-live="' . htmlspecialchars ( $name ) . '"' . $csrf . '>' . $content . '</div>' . $script;
 
   }
 
@@ -128,6 +134,8 @@
     var body = new URLSearchParams();
     fields.forEach(function (field) { body.append(field[0], field[1]); });
     body.set('padLive', region.getAttribute('data-pad-live'));
+    var token = region.getAttribute('data-pad-csrf');
+    if (token && !body.has('padCsrfToken')) body.set('padCsrfToken', token);
     region.setAttribute('aria-busy', 'true');
     fetch(location.href, { method: 'POST', body: body, credentials: 'same-origin' })
       .then(function (response) {

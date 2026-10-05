@@ -453,8 +453,9 @@ region brings a small inline script. An event posts `padLive`, `padEvent` and `p
 the page's own URL; the page runs as always - its PHP reads `padLiveEvent()` and
 `padLiveValue()` - and the response is the inner content of that region alone, which the
 script swaps in. State lives where a page keeps it: the session (`$padSessionVars`), a
-database, or the value the event carries. A post for a region the page does not render is
-an error. Under the strict check a `{live}` without a name, or without its `{/live}`, is an
+database, or the value the event carries. With `$padCsrf` on, the region carries the
+session's token (`data-pad-csrf`) and the script sends it with every event. A post for a
+region the page does not render is an error. Under the strict check a `{live}` without a name, or without its `{/live}`, is an
 error too.
 
 ---

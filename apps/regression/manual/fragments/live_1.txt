@@ -9,6 +9,8 @@
     var body = new URLSearchParams();
     fields.forEach(function (field) { body.append(field[0], field[1]); });
     body.set('padLive', region.getAttribute('data-pad-live'));
+    var token = region.getAttribute('data-pad-csrf');
+    if (token && !body.has('padCsrfToken')) body.set('padCsrfToken', token);
     region.setAttribute('aria-busy', 'true');
     fetch(location.href, { method: 'POST', body: body, credentials: 'same-origin' })
       .then(function (response) {
