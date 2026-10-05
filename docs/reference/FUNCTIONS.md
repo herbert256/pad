@@ -4,14 +4,15 @@ This document provides a complete reference for all PAD pipe functions.
 
 ## Usage
 
-Pipe functions transform values using the `|` operator. They **always require `{echo}`**:
+Pipe functions transform values using the `|` operator. A field tag pipes as it stands;
+a literal or an expression goes through `{echo}`:
 
 ```
-{echo $name | upper}              # Correct - uppercase
+{$name | upper}                   # a field tag pipes
+{echo $name | upper}              # the same through {echo}
 {echo $text | trim | lower}       # Chained functions
 {echo $date | date('Y-m-d')}      # With parameters
-
-{$name | upper}   # a field tag pipes too; {echo} is for literals and expressions
+{echo 'hello' | upper}            # a literal needs {echo}
 ```
 
 Multiple functions can be chained:
@@ -399,25 +400,34 @@ Functions for working with PAD template syntax.
 
 ## Pipe Timing: Opening vs Closing Tags
 
-Pipes can be applied at two different points:
+Pipes can be applied to a tag at two points, and they do not act on the same text.
 
 ### Opening Tag Pipe
 
-Processes data BEFORE the tag content is rendered:
+Transforms the *content template*, once, before any occurrence is rendered. What the
+function is handed is the source between the tags, not the tag's data:
 ```
-{items | sort}
+{items | trim}
+  <li>x</li>
+{/items}
+```
+It is not a way to reorder or filter what a tag iterates - a field written inside would be
+transformed with everything else and then not resolve. Sorting is an option:
+```
+{items sort}
   <li>{$name}</li>
 {/items}
 ```
 
 ### Closing Tag Pipe
 
-Processes output AFTER the tag finishes:
+Transforms the output, after every occurrence has been rendered and joined:
 ```
 {message}
   Content: {$message}
 {/message | upper}
 ```
+Closing pipes chain left to right, each over what the one before returned.
 
 ---
 

@@ -239,20 +239,20 @@ Visit `http://yourserver/myapp/` in your browser.
 
 **Output escaping options:**
 ```
-{$text}                        # Raw output (no escaping)
-{!text}                        # HTML escaped output
+{$text}                        # Escaped by the sanitize chain (the default)
+{!text}                        # Raw output - the sanitize chain is skipped
 {$text | html}                 # HTML escaped via pipe
 {$text | url}                  # URL encoded
 ```
 
 ### Pipe Functions
-**IMPORTANT:** Pipe functions require a tag like `{echo}` - you cannot use bare expressions.
+A field tag pipes as it stands; a literal or an expression goes through `{echo}`.
 ```
-{echo $name | upper}                # Correct - uppercase
-{echo $text | trim | lower}         # Correct - chain multiple
-{echo $date | date('Y-m-d')}        # Correct - with parameters
-
-{$name | upper}                     # WRONG - bare expression won't work
+{$name | upper}                     # a field tag pipes
+{echo $name | upper}                # the same through {echo}
+{echo $text | trim | lower}         # chain multiple
+{echo $date | date('Y-m-d')}        # with parameters
+{echo 'hello' | upper}              # a literal needs {echo}
 ```
 
 **Common String Functions:**
@@ -309,12 +309,12 @@ Visit `http://yourserver/myapp/` in your browser.
 ```
 
 ### Pipe Arithmetic
-Arithmetic pipes require a space between the operator and operand, and must use `{echo}`:
+Arithmetic pipes require a space between the operator and operand:
 ```
 {echo $value | + 1}          # Correct - adds 1
 {echo $value | +1}           # Wrong - no space
 {echo $value | * 2}          # Correct - multiplies by 2
-{$value | + 1}               # Wrong - bare expression
+{$value | + 1}               # Correct - a field tag pipes too
 ```
 
 ### Loops
@@ -716,14 +716,13 @@ PAD pipe functions come from two sources:
 1. Custom functions in `pad/functions/` (trim, upper, date, html, etc.)
 2. Standard PHP functions called directly (strlen, count, etc.)
 
-**IMPORTANT:** Always use `{echo}` or another tag - bare expressions don't work:
+Both pipe from a field tag or through `{echo}`:
 ```
-{echo $text | trim}              # Correct - PAD function
-{echo $text | strlen}            # Correct - PHP function
-{echo $items | count}            # Correct - PHP function
-{echo $name | ucfirst}           # Correct - PHP function
-
-{$text | trim}                   # WRONG - bare expression
+{echo $text | trim}              # PAD function
+{echo $text | strlen}            # PHP function
+{echo $items | count}            # PHP function
+{echo $name | ucfirst}           # PHP function
+{$text | trim}                   # a field tag pipes as it stands
 ```
 
 ---

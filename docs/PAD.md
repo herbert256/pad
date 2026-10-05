@@ -116,7 +116,7 @@ $items = ['Apple', 'Banana', 'Cherry'];
 {$simple}                      {# Simple variable #}
 {$user.name}                   {# Object/array property #}
 {$items[0]}                    {# Array index #}
-{!text}                        {# HTML-escaped output #}
+{!text}                        {# Raw - skips the sanitize chain #}
 {$value | default('N/A')}      {# Default value #}
 ```
 
@@ -134,7 +134,7 @@ Transform values with pipe functions:
 {echo $name | contains('admin')} {# String contains #}
 ```
 
-**Important:** Pipes require `{echo}` - bare `{$var | func}` won't work.
+A field tag pipes as it stands - `{$var | upper}` - and a literal goes through `{echo}`: `{echo 'text' | upper}`.
 
 Common functions: `trim`, `upper`, `lower`, `html`, `url`, `date`, `replace`, `left`, `right`, `contains`, `in`, `between`, `exists`
 
@@ -679,7 +679,7 @@ APP/
 
 ### Key Syntax Rules
 
-1. **Pipes need `{echo}`** - `{$var | upper}` won't work
+1. **A literal pipes through `{echo}`** - `{echo 'x' | upper}`; a field tag pipes as it stands, `{$var | upper}`
 2. **Arithmetic needs space** - `{echo $x | + 1}` not `| +1`
 3. **Quote literal strings** - `{count 'items'}` not `{count items}`
 4. **No inline CSS/JS** - PAD parses `{ }` as tags; use external files
