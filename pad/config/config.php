@@ -95,6 +95,15 @@
 
   $padFragmentCache = 'file';
 
+  // Remote data with a cache - {curl 'url', ttl=600}, data='url' with a ttl and the <ttl>
+  // of a _data/*.curl file, see lib/curlCache.php: 'file' keeps the copies under
+  // DATA/cache/curl/, 'apcu', 'redis' or 'memcached' in that store, FALSE fetches every
+  // time. $padCurlStale is how long, in seconds beyond its ttl, a copy is kept to serve
+  // when the source fails.
+
+  $padCurlCache = 'file';
+  $padCurlStale = 86400;
+
   $padSqlPadHost           = '127.0.0.1';
   $padSqlPadDatabase       = 'pad';
   $padSqlPadUser           = 'pad';

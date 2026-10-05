@@ -825,7 +825,7 @@ $padExpose = [ 'orders', 'total' ];</code></pre>
           <pre><code>{curl 'https://api.example.com/rates.json',
       ttl=600}</code></pre>
           <p><code>{curl}</code> and <code>.curl</code> files in <code>_data/</code> fetch and parse remote data, but every request fetches again. A <code>ttl=</code> option could use the <a href="https://github.com/herbert256/pad/tree/master/pad/cache/types">cache backends PAD already has</a> (apcu, file, redis, memcached, db), which would make dashboards on external APIs cheap. When the API is down, serve the last good copy and log the failure.</p>
-        </li>
+        <p class="done"><strong>Done.</strong> <code>{curl 'url', ttl=600}</code>, <code>data='url'</code> with <code>ttl=</code> and <code>_data/*.curl</code> files keep the answer that many seconds in the store <code>$padCurlCache</code> names (file, apcu, redis, memcached), and serve the last good copy - logging the failure - when the source is down. Regression: pages cases; manual page; docs.</p></li>
 
         <li class="idea" id="collections">
           <div class="idea-top"><span class="number" aria-hidden="true">40</span><h3>Markdown collections</h3><span class="effort">Medium</span></div>

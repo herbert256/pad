@@ -594,6 +594,10 @@ they belong. `{stack}` is filled in after the whole page has rendered, so a stac
   <script src="chart.js"></script>
 {/push}
 ```
+Remote data has a cache of its own: `{curl 'https://...', ttl=600}`, `data='https://...'`
+with a `ttl=` and a `_data/*.curl` file with a `<ttl>` keep the answer that long, and serve
+the last good copy - logging the failure - when the source is down. `$padCurlCache` picks
+the store: `'file'` (default), `'apcu'`, `'redis'`, `'memcached'` or `FALSE`.
 
 ### AJAX Support
 

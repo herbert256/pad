@@ -504,6 +504,16 @@ are attribute names (dashes allowed), never engine options.
 `$padFragmentCache` = `'file'` (default), `'apcu'` or `FALSE`; `padFragmentForget('name')`
 drops a section when what it shows has changed.
 
+### Remote data with a cache
+```
+{curl 'https://api.example.com/rates.json', ttl=600}
+{pad data='https://api.example.com/rates.json', ttl=600} {$rate} {/pad}
+_data/rates.curl:  <curl><url>https://...</url><ttl>600</ttl></curl>
+```
+The answer is kept `ttl` seconds; a source that fails afterwards gets the last good copy
+served and the failure logged. `$padCurlCache`: `'file'` (default), `'apcu'`, `'redis'`,
+`'memcached'`, `FALSE`. From PHP: `padCurlCached ( $input, $ttl )`.
+
 ### Translations and locale formatting
 ```
 {trans 'cart.title'}                          # _lang/<locale>.json: "cart.title": "Your cart"

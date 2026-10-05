@@ -165,7 +165,7 @@
     if ( $padInfo )
       include PAD . 'events/sql.php';
 
-    if ( $event )
+    if ( $event === TRUE )
       padEvent ( 'sql', [ 'sql' => $sql, 'input' => $input, 'vars' => $vars, 'result' => $return,
                           'rows' => $rows, 'ms' => $ms ] );
 

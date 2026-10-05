@@ -1,0 +1,147 @@
+<h1>Remote data with a cache</h1>
+
+<p>Data can come from another server: a URL as the data of a tag, a <code>.curl</code> file
+in <code>_data/</code>, or the <b>{curl}</b> tag for the raw answer. Each of them takes a
+<code>ttl</code> - the seconds to keep the answer - and within that time the page is served
+from the copy instead of asking the source again. A dashboard on an external API then costs
+one call per ttl, not one per visitor.</p>
+
+<p>A <code>.curl</code> file names the URL and the ttl. Here <code>_data/rates.curl</code>
+reads the rates from a page of this manual standing in for an API:</p>
+
+
+<pre><code>&lt;curl&gt;
+  &lt;url&gt;SELF://manual/?fragments/rates&amp;amp;padInclude&lt;/url&gt;
+  &lt;ttl&gt;600&lt;/ttl&gt;
+&lt;/curl&gt;</code></pre>
+
+
+<p>Its name is a tag, like any data file:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/remote_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue">rates</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>code</font>}</b>: <b>{<font color="green"><font color="red">$</font>rate</font>}</b>&lt;/li&gt;<b>{/<font color="blue">rates</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <ul>
+  <li>EUR: 1</li><li>USD: 1.08</li><li>GBP: 0.86</li>
+</ul>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<p>The same with the URL in the template - the ttl is an option of the tag the data is
+for, <code>{pad data='https://...', ttl=600}</code> - or the answer as it came,
+with <b>{curl}</b>:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/remote_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">curl </font><font color="red"><font color="black">'</font>SELF<font color="black">:</font>//manual/?fragments/rates&amp;padInclude<font color="black">'</font><font color="black">,</font> ttl=600</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>[{"code":"EUR","rate":1},{"code":"USD","rate":1.08},{"code":"GBP","rate":0.86}]</p>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<p>When the source fails after the ttl - it is down, or answers with an error - the last good
+copy is served and the failure is written to the error log, where an
+<a href="?pages/events">event hook</a> on <code>curl</code> hears it too. Only a good answer
+is kept, and a copy stays a day beyond its ttl for that purpose
+(<code>$padCurlStale</code>). <code>$padCurlCache</code> chooses where the copies live:
+<code>'file'</code>, <code>'apcu'</code>, <code>'redis'</code>, <code>'memcached'</code>,
+or <code>FALSE</code> to fetch every time.</p>

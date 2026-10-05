@@ -589,10 +589,40 @@ Make HTTP request.
 - `url` / first param: URL to request
 - Additional parameters added as query string
 - `SELF://` prefix replaced with current host
+- `ttl=600`: keep the answer that many seconds (see below)
 
 **Behavior:** Makes HTTP request, throws error if result is not 200
 
 **Returns:** Response data
+
+**Remote data with a cache:** with `ttl=` the answer is kept, and the requests within that
+many seconds are answered from the copy instead of asking the source again. When the source
+fails after the ttl - a failed transfer or any status but 2xx - the last good copy is served
+and the failure goes to the error log (and to the application's `_events/curl.php`). Only a
+good answer is kept; without a copy the failure is an error as before.
+
+```html
+{curl 'https://api.example.com/rates.json', ttl=600}
+
+{pad data='https://api.example.com/rates.json', ttl=600} {$code}: {$rate} {/pad}
+```
+
+Remote data takes the same ttl - from the tag, as above, or from a `_data/*.curl` file, which
+holds the URL or a `<curl>` document:
+
+```xml
+<curl>
+  <url>https://api.example.com/rates.json</url>
+  <ttl>600</ttl>
+</curl>
+```
+
+`$padCurlCache` picks the store - `'file'` (`DATA/cache/curl/`, the default), `'apcu'`,
+`'redis'` or `'memcached'` (on the page cache's `$padCacheRedis*`/`$padCacheMemcached*`
+connection settings) - or `FALSE` to fetch every time. `$padCurlStale` (default 86400) is how
+many seconds beyond its ttl a copy is kept for a failing source. From PHP:
+`padCurlCached ( $input, $ttl )` answers like `padCurl()` plus `['cache']` - `hit`, `miss`
+or `stale` - and `padCurlForget ( $input )` drops one copy.
 
 ---
 
