@@ -39,6 +39,17 @@
       if ( ! $type )
         $type = padContentType ( $data );
 
+      // A type often arrives as a file extension - of a _data/ file, or of the file name a
+      // download names - and those come in more than one spelling: .yml is YAML as much as
+      // .yaml is, .htm is HTML, and .CSV is .csv. The reader is data/<type>.php, so a
+      // _data/pets.yml was "no data type named 'yml'" under the strict check and read as CSV
+      // without it.
+
+      if ( is_string ( $type ) ) {
+        $type = strtolower ( $type );
+        $type = [ 'yml' => 'yaml', 'htm' => 'html' ] [$type] ?? $type;
+      }
+
       // The reference's data-types family: which pages a format is really parsed for. The
       // recorder only exists once the xref mode has started, hence the function test.
 
