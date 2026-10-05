@@ -128,8 +128,14 @@
 
     $locale = (string) $padLocale;
 
-    if ( isset ( $padTransCatalogs [$locale] ) )
-      return $padTransCatalogs [$locale];
+    // Kept per locale and per directory of the page: a {page} from a directory with a
+    // _lang/ of its own reads that one - kept per locale alone, it was given the catalog of
+    // the first page that asked.
+
+    $key = $locale . '|' . APP . '|' . ( $GLOBALS ['padDir'] ?? '' );
+
+    if ( isset ( $padTransCatalogs [$key] ) )
+      return $padTransCatalogs [$key];
 
     $dirs = [];
 
@@ -153,7 +159,7 @@
         }
       }
 
-    return $padTransCatalogs [$locale] = $catalog;
+    return $padTransCatalogs [$key] = $catalog;
 
   }
 
