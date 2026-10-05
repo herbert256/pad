@@ -27,7 +27,11 @@
   elseif ( $padFilesBase == 'pad'  ) $padFilesScan = "$padFilesDir";
   else                               $padFilesScan = "/$padFilesDir";
 
-  $padFilesScan = str_replace ( '//', '/', $padFilesScan);
+  // A trailing / comes off: the item is cut from the path behind the scanned directory and
+  // its separator, and with 'dir/' that cut took the first letter of every name - README
+  // became EADME, sub/b became ub/b.
+
+  $padFilesScan = rtrim ( str_replace ( '//', '/', $padFilesScan), '/' ) ?: '/';
 
   // A directory that is not there was a raw iterator exception. Strict mode names it;
   // the lenient walk answers the empty list a scan of nothing is.
@@ -70,17 +74,21 @@
     $padFiles ['file']  = $padFilesFile->getFilename();
     $padFiles ['ext']   = $padFilesFile->getExtension();
 
-    $padFiles ['item']  = str_replace ( $padFilesScan, '', $padFiles ['path'] );
+    // The item is the path behind the scanned directory and its separator, for a file and a
+    // directory alike - the / was taken off the files only, so a directory came as /sub
+    // where a file came as a.
+
+    $padFiles ['item']  = $padFiles ['path'];
+
+    if ( str_starts_with ( $padFiles ['item'], rtrim ( $padFilesScan, '/' ) . '/' ) )
+      $padFiles ['item'] = substr ( $padFiles ['item'], strlen ( rtrim ( $padFilesScan, '/' ) ) + 1 );
 
     // The extension comes off by its own length: cut at the last dot, a file without one
     // lost its last letter (README became READM) and a dot in a directory name cut the
     // path there (v1.2/README became v1).
 
-    if ( $padFilesFile->isFile() ) {
-      $padFiles ['item'] = substr ( $padFiles ['item'], 1 );
-      if ( $padFiles ['ext'] !== '' )
-        $padFiles ['item'] = substr ( $padFiles ['item'], 0, - strlen ( $padFiles ['ext'] ) - 1 );
-    }
+    if ( $padFilesFile->isFile() and $padFiles ['ext'] !== '' )
+      $padFiles ['item'] = substr ( $padFiles ['item'], 0, - strlen ( $padFiles ['ext'] ) - 1 );
 
     $padFiles ['dir']   = substr ( $padFiles ['item'], 0, strrpos($padFiles ['item'], '/')   );
 
