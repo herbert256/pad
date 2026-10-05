@@ -10,7 +10,9 @@
   $pqRandomDuplicates = $padPrm [$pad] ['duplicates']  ?? '';
   $pqRandomOnce       = $padPrm [$pad] ['atLeastOnce'] ?? '';
 
-  if ( ! $pqActionParm )
+  // Bare, it draws them all; a count of 0 draws none - see pqRandom().
+
+  if ( (string) $pqActionParm === '' )
     $pqActionCnt = count ( $pqResult );
 
   $pqResult = pqRandom ( $pqResult, $pqActionCnt, $pqRandomOrderly, $pqRandomDuplicates, $pqRandomOnce );

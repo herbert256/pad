@@ -175,8 +175,15 @@
     if  ( ! is_array ( $array ) or ! count ( $array ) )
       return [];
 
-    if ( ! $count or $count === TRUE )
+    // Only no count at all draws every member. A count of 0 draws none, as first=0 and
+    // last=0 take none - it was read as no count, so random=0 and randomize=0 drew them all.
+    // Under atLeastOnce the count gives way to every member, a count of 0 as any other.
+
+    if ( $count === TRUE or $count === NULL or $count === '' )
       $count = count ( $array );
+
+    if ( (int) $count < 1 and ! $once )
+      return [];
 
     if ( $dups or $count > count ( $array ) or $once )
       return pqRandomDups ( $array, $count, $order, $once );

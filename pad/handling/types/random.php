@@ -8,13 +8,14 @@
   // fresh numeric keys for numbered rows; named keys are kept.
   //
   // The count is the handler's count - a plain number, or 1 when the value is none, as
-  // first= and last= take it - and a bare random is every row. The raw value went to
+  // first= and last= take it - and a bare random is every row, which it says to pqRandom
+  // with TRUE: a count of 0 is a count there, and draws no row, as first=0 takes none. The raw value went to
   // pqRandom as it was written: random='abc' compared as text above any count of rows, and
   // the duplicates loop it went to picked until the request ran out of memory; random='-1'
   // and random='2.5' ended the request on array_rand's ValueError and a deprecation.
 
   $padHandRandKeys       = array_keys ( $padData [$pad] );
-  $padHandRandCount      = ( $padHandParm === TRUE ) ? 0 : (int) $padHandCnt;
+  $padHandRandCount      = ( $padHandParm === TRUE ) ? TRUE : (int) $padHandCnt;
   $padHandRandOrderly    = $padPrm [$pad] ['orderly']     ?? 0;
   $padHandRandDuplicates = $padPrm [$pad] ['duplicates']  ?? 0;
 
