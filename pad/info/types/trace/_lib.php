@@ -346,11 +346,15 @@
 
   function padInfoTraceStatusGo ( $type ) {
 
-    global $pad, $padResult, $padBase, $padBase, $padFalse;
+    global $pad, $padResult, $padBase, $padElse;
+
+    // Which branch the level rendered: the else branch when level/base.php took $padFalse
+    // for its base - $padElse says so - and the true one otherwise. It compared the base
+    // with itself, which always held, so -else could never be reported.
 
     if ( $padResult [$pad] and $padBase [$pad] )
-      if     ( $padBase [$pad] == $padBase  [$pad] )     return $type . '-true';
-      elseif ( $padBase [$pad] == $padFalse )            return $type . '-else';
+      if   ( $padElse [$pad] ?? FALSE )                  return $type . '-else';
+      else                                               return $type . '-true';
 
     if     ( ! $padResult [$pad] and ! $padBase [$pad] ) return $type . '-no-base';
     elseif ( $padResult [$pad]                         ) return $type . '-result';

@@ -917,13 +917,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pl" id="a8">
-      <div class="tag"><div class="priority">Open</div><div class="cat">A8 · Info</div></div>
+    <div class="finding pl fixed" id="a8">
+      <div class="tag"><div class="priority">Fixed</div><div class="cat">A8 · Info</div></div>
       <div>
-        <h3>The trace status cannot report <code>-else</code></h3>
+        <h3>The trace status cannot report <code>-else</code><span class="done">Fixed</span></h3>
         <p class="where">info/types/trace/_lib.php:351-353</p>
         <p><code>padInfoTraceStatusGo</code> compares <code>$padBase [$pad] == $padBase [$pad]</code>, which always holds, so a level with both a result and a base is always <code>-true</code> and <code>-else</code> is unreachable. The next line compares the base with <code>$padFalse</code>; what the first was meant to compare, most likely the result with the base, cannot be read from the code. Trace output only.</p>
         <div class="fix"><b>Decision:</b> what <code>-true</code> and <code>-else</code> are meant to say; then compare <code>$padResult</code> with <code>$padBase</code> and with <code>$padFalse</code> to match.</div>
+        <div class="resolved"><b>Fixed:</b> decided that <code>-true</code> and <code>-else</code> say which branch the level rendered. <code>padInfoTraceStatusGo</code> reads <code>$padElse[$pad]</code>, the flag <code>level/base.php</code> takes <code>$padFalse</code> by, instead of comparing the base with itself. Checked live with <code>$padInfoTraceStatus</code> on: <code>{rows}x@else@none{/rows}</code> over an empty array writes <code>status-else-else</code>, where the old code wrote <code>status-else-true</code>. An <code>{if}</code> that takes its <code>{else}</code> is still <code>-true</code>: the tag settles its branches itself, and to the level it is a hit. Trace output only, as the card says, and the info regression application with every option on passes.</div>
       </div>
     </div>
 
