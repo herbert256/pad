@@ -474,6 +474,17 @@ Supports JSON, XML, YAML, and CSV formats:
 {/data}
 ```
 
+### Stacks (push / stack)
+```
+<head>{stack 'scripts'}</head>                # filled in after the whole page rendered
+
+{push 'scripts', once='chart'}                # where a component needs it; once per key
+  <script src="chart.js"></script>
+{/push}
+```
+`once` without a key drops a push whose text the stack holds; `padStackPush('scripts', $html)`
+from PHP. A push inside a `{cache}` section is made again on every hit.
+
 ### HTML attribute helpers
 ```
 <button {attrs disabled=$busy, title=$help, aria-expanded=$open}>Save</button>

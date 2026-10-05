@@ -20,6 +20,11 @@
   // arrived in the input is a character, and a page written with the switch on in one
   // place and off in another restores alike.
 
+  // The {stack} markers are filled in now that every {push} of the page has been made -
+  // lib/stack.php - still in the engine's own encoding, as the pushes were rendered in it.
+
+  $padResult [0] = padStackFill ( $padResult [0] );
+
   $padOutput = padUnprotect ( padUnescape ( $padResult [0] ) );
 
   // With $padCsrf on, each form of the page that posts back here carries the session's

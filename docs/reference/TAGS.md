@@ -818,6 +818,45 @@ Render a mount point `<div>` for a React component, filled with data from a prov
 
 ---
 
+## Layout Tags
+
+### push
+Add rendered text to a named stack, for a `{stack}` elsewhere in the page to print.
+
+```html
+{push 'scripts', once='chart'}
+  <script src="chart.js"></script>
+{/push}
+```
+
+**Parameters:**
+- First parameter: the stack's name
+- `once='key'` - the first push of that key is kept, later ones are skipped before their
+  content renders (per stack); `once` without a key drops a push whose rendered text the
+  stack already holds
+
+**Behavior:** The content renders where the tag stands, with the variables of that spot, and
+prints nothing there. A push inside a `{cache}` section is stored with the section and made
+again on every hit. A `{page}` or `{code}` pass adds to the page's stacks; a sandboxed pass
+leaves no trace. From PHP: `padStackPush ( 'scripts', $html, $once )`.
+
+---
+
+### stack
+Everything pushed to a stack, in push order.
+
+```html
+<head>
+  {stack 'styles'}
+</head>
+```
+
+**Behavior:** The tag prints a marker that is filled in when the whole page has rendered, so
+a `{stack}` in the layout's `<head>` gets the pushes of the components below it. A stack
+nothing pushed to prints nothing.
+
+---
+
 ## Debugging Tags
 
 ### dump
@@ -1097,6 +1136,8 @@ Resume a previously ceased sequence iteration.
 | `restart` | Navigation | Restart processing |
 | `pager` | Navigation | Page links for a tag with the page option |
 | `csrf` | Web | Hidden CSRF token field of the session |
+| `push` | Layout | Add rendered text to a named stack |
+| `stack` | Layout | Print a stack, filled in after the page has rendered |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
 | `file` | Files | Write file |

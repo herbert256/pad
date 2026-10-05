@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAD Second Audit</title>
+<meta name="description" content="A second, deeper audit of the PAD (PHP Application Driver) framework after the first audit's findings were closed: every line of the engine, every shipped application, the entry points, the eight regression suites and the documentation, with each finding traced to source and reproduced on a running server.">
+<style>
+  :root {
+    --ink: #17221d;
+    --muted: #5e6d64;
+    --paper: #f5f2ea;
+    --card: #fffdf7;
+    --line: #ddd7c9;
+    --green: #176647;
+    --green-soft: #e6f2eb;
+    --amber: #985d08;
+    --amber-soft: #fff1d5;
+    --red: #a2362b;
+    --red-soft: #fbe7e4;
+    --crit: #7c1f18;
+    --crit-soft: #f7dedb;
+    --blue: #2f5a82;
+    --blue-soft: #e8f0f7;
+    --shadow: 0 14px 36px rgba(23, 34, 29, .09);
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --ink: #e7ece7;
+      --muted: #9aa89e;
+      --paper: #121713;
+      --card: #1a211c;
+      --line: #2d382f;
+      --green: #6fd3a2;
+      --green-soft: #15291f;
+      --amber: #e3b25e;
+      --amber-soft: #2e2413;
+      --red: #ef9b90;
+      --red-soft: #2f1a17;
+      --crit: #f6b4ab;
+      --crit-soft: #3a1b16;
+      --blue: #8db9e2;
+      --blue-soft: #16222e;
+      --shadow: 0 14px 36px rgba(0, 0, 0, .4);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink: #e7ece7;
+    --muted: #9aa89e;
+    --paper: #121713;
+    --card: #1a211c;
+    --line: #2d382f;
+    --green: #6fd3a2;
+    --green-soft: #15291f;
+    --amber: #e3b25e;
+    --amber-soft: #2e2413;
+    --red: #ef9b90;
+    --red-soft: #2f1a17;
+    --crit: #f6b4ab;
+    --crit-soft: #3a1b16;
+    --blue: #8db9e2;
+    --blue-soft: #16222e;
+    --shadow: 0 14px 36px rgba(0, 0, 0, .4);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 84% 4%, rgba(47, 90, 130, .10), transparent 26rem),
+      radial-gradient(circle at 6% 16%, rgba(23, 102, 71, .09), transparent 22rem),
+      var(--paper);
+    font: 16px/1.6 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  a { color: var(--blue); text-underline-offset: .18em; }
+  code, pre, .mono { font-family: var(--mono); }
+  code {
+    padding: .1em .34em;
+    border: 1px solid var(--line);
+    border-radius: .32rem;
+    background: color-mix(in srgb, var(--card) 70%, var(--paper));
+    font-size: .88em;
+    overflow-wrap: anywhere;
+  }
+  pre {
+    margin: .8rem 0 0;
+    padding: 1rem 1.1rem;
+    overflow: auto;
+    border: 1px solid #2c3630;
+    border-radius: .65rem;
+    color: #e9f3ec;
+    background: #1b2621;
+    font-size: .82rem;
+    line-height: 1.55;
+  }
+  pre code { border: 0; padding: 0; background: none; color: inherit; font-size: inherit; }
+  .wrap { width: min(1180px, calc(100% - 2rem)); margin: 0 auto; }
+  .hero { padding: 4.6rem 0 3rem; border-bottom: 1px solid var(--line); }
+  .eyebrow {
+    margin: 0 0 .9rem; color: var(--green); font-size: .76rem; font-weight: 800;
+    letter-spacing: .15em; text-transform: uppercase;
+  }
+  h1, h2, h3, h4 { line-height: 1.14; letter-spacing: -.022em; }
+  h1 { max-width: 20ch; margin: 0; font-size: clamp(2.3rem, 6vw, 4.6rem); }
+  h2 { margin: 0 0 1rem; font-size: clamp(1.55rem, 3vw, 2.3rem); }
+  h3 { margin: 0 0 .3rem; font-size: 1.16rem; }
+  .lede { max-width: 72ch; margin: 1.5rem 0 1rem; color: var(--ink); font-size: clamp(1.05rem, 2vw, 1.3rem); }
+  .stamp { color: var(--muted); font-size: .9rem; }
+  .verdict {
+    display: grid; grid-template-columns: auto 1fr; gap: 1.1rem; align-items: start;
+    max-width: 68rem; margin-top: 2rem; padding: 1.2rem 1.35rem;
+    border: 1px solid color-mix(in srgb, var(--red) 45%, var(--line));
+    border-left: .42rem solid var(--red); border-radius: .85rem;
+    background: var(--red-soft); box-shadow: var(--shadow);
+  }
+  .verdict > strong { white-space: nowrap; color: var(--red); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
+  .verdict p strong { color: var(--red); }
+  .verdict p { margin: 0; }
+  .verdict div > p + ul, .verdict div > ul + p { margin-top: .5rem; }
+  .verdict ul { margin: .4rem 0 0; padding-left: 1.15rem; }
+  nav {
+    position: sticky; top: 0; z-index: 5; border-bottom: 1px solid var(--line);
+    background: color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter: blur(12px);
+  }
+  nav .wrap { display: flex; gap: 1.15rem; overflow-x: auto; padding: .75rem 0; }
+  nav a { color: var(--ink); font-size: .85rem; font-weight: 700; text-decoration: none; white-space: nowrap; opacity: .82; }
+  nav a:hover { opacity: 1; }
+  main { padding: 2.6rem 0 4rem; }
+  section { scroll-margin-top: 4.2rem; margin: 0 0 3.4rem; }
+  .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .8rem; }
+  .metric, .card, .finding, .note, table { border: 1px solid var(--line); border-radius: .8rem; background: var(--card); box-shadow: 0 5px 18px rgba(23, 34, 29, .045); }
+  .metric { padding: 1rem 1.05rem; }
+  .metric b { display: block; font-size: 1.7rem; line-height: 1; }
+  .metric span { display: block; margin-top: .4rem; color: var(--muted); font-size: .82rem; }
+  .card { padding: 1.25rem; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .card p:first-child, .finding p:first-child { margin-top: 0; }
+  .card p:last-child, .finding p:last-child { margin-bottom: 0; }
+  p { margin: .7rem 0; }
+  table { width: 100%; border-collapse: collapse; overflow: hidden; }
+  th, td { padding: .62rem .75rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; font-size: .95rem; }
+  th { color: var(--muted); background: color-mix(in srgb, var(--card) 60%, var(--paper)); font-size: .72rem; letter-spacing: .05em; text-transform: uppercase; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: 0; }
+  tfoot td { font-weight: 800; background: color-mix(in srgb, var(--card) 55%, var(--paper)); }
+  .findings { display: grid; gap: 1rem; }
+  .finding { display: grid; grid-template-columns: 8.5rem 1fr; gap: 1.1rem; min-width: 0; padding: 1.2rem 1.25rem; }
+  .finding > div { min-width: 0; }
+  .finding h3 { scroll-margin-top: 4.5rem; }
+  .tag { align-self: start; display: grid; gap: .4rem; }
+  .priority { padding: .4rem .5rem; border-radius: .45rem; font-size: .72rem; font-weight: 850; letter-spacing: .05em; text-align: center; text-transform: uppercase; }
+  .pc .priority { color: var(--crit); background: var(--crit-soft); }
+  .ph .priority { color: var(--red); background: var(--red-soft); }
+  .pm .priority { color: var(--amber); background: var(--amber-soft); }
+  .pl .priority { color: var(--blue); background: var(--blue-soft); }
+  .cat { color: var(--muted); font-size: .72rem; text-align: center; }
+  .where { margin: .1rem 0 .55rem; color: var(--muted); font-size: .83rem; font-family: var(--mono); overflow-wrap: anywhere; }
+  .finding ul, .card ul { margin: .5rem 0 .3rem; padding-left: 1.15rem; }
+  .finding li + li, .card li + li { margin-top: .3rem; }
+  .fix { margin-top: .7rem; padding-top: .6rem; border-top: 1px dashed var(--line); font-size: .93rem; }
+  .fix b { color: var(--green); }
+  .live { display: inline-block; margin-left: .4rem; padding: .05rem .4rem; border-radius: .3rem; background: var(--green-soft); color: var(--green); font-size: .68rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; vertical-align: middle; }
+  .ev { margin: .6rem 0 0; padding: .6rem .8rem; border-left: 3px solid color-mix(in srgb, var(--blue) 55%, var(--line)); background: var(--blue-soft); font-size: .88rem; border-radius: 0 .45rem .45rem 0; }
+  .ev b { color: var(--blue); }
+  .done { display: inline-block; margin-left: .4rem; padding: .05rem .4rem; border-radius: .3rem; background: var(--green); color: var(--card); font-size: .68rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; vertical-align: middle; }
+  .finding.fixed { border-left: .36rem solid var(--green); }
+  .finding.fixed > div > p:not(.where), .finding.fixed .ev, .finding.fixed .fix, .finding.fixed ul { opacity: .62; }
+  .resolved { margin: .7rem 0 0; padding: .6rem .8rem; border-left: 3px solid var(--green); background: var(--green-soft); font-size: .9rem; border-radius: 0 .45rem .45rem 0; }
+  .resolved b { color: var(--green); }
+  .done.part { background: var(--amber); }
+  .finding.fixed.part { border-left-color: var(--amber); }
+  .finding.fixed.part > div > p:not(.where), .finding.fixed.part .ev, .finding.fixed.part .fix, .finding.fixed.part ul { opacity: 1; }
+  .resolved.part { border-left-color: var(--amber); background: var(--amber-soft); }
+  .resolved.part b { color: var(--amber); }
+  li.fixed { color: var(--muted); }
+  .resolved-inline { display: block; margin-top: .2rem; padding: .3rem .55rem; border-left: 3px solid var(--green); background: var(--green-soft); color: var(--ink); font-size: .88rem; border-radius: 0 .4rem .4rem 0; }
+  .good { border-left: .36rem solid var(--green); }
+  .good h3 { color: var(--green); }
+  .note { padding: 1rem 1.1rem; background: var(--blue-soft); border-color: color-mix(in srgb, var(--blue) 40%, var(--line)); }
+  .note strong { color: var(--blue); }
+  .pill { display: inline-block; padding: .1rem .5rem; border-radius: 1rem; font-size: .72rem; font-weight: 700; white-space: nowrap; }
+  .pill.c { color: var(--crit); background: var(--crit-soft); }
+  .pill.h { color: var(--red); background: var(--red-soft); }
+  .pill.m { color: var(--amber); background: var(--amber-soft); }
+  .pill.l { color: var(--blue); background: var(--blue-soft); }
+  .small { color: var(--muted); font-size: .85rem; }
+  footer { padding: 1.6rem 0 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .84rem; }
+  h2 .count { color: var(--muted); font-size: .6em; font-weight: 600; letter-spacing: 0; }
+  @media (max-width: 860px) {
+    .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-2 { grid-template-columns: 1fr; }
+    .finding { grid-template-columns: 1fr; gap: .7rem; }
+    .tag { grid-auto-flow: column; justify-content: start; }
+    .table-scroll { overflow-x: auto; }
+    table { min-width: 640px; }
+  }
+  .twice { display: inline-block; margin-left: .4rem; padding: .05rem .4rem; border-radius: .3rem; background: var(--blue-soft); color: var(--blue); font-size: .68rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; vertical-align: middle; }
+  .pi .priority { color: var(--muted); background: color-mix(in srgb, var(--line) 45%, var(--card)); }
+  .theme { border-left: .36rem solid var(--red); }
+  .theme h3 { color: var(--red); }
+  .ids { font-family: var(--mono); font-size: .85rem; white-space: nowrap; }
+  .table-scroll { overflow-x: auto; border-radius: .8rem; }
+  td code, th code { font-size: .82em; }
+  ol.order > li + li { margin-top: .55rem; }
+  .compact .finding { padding: 1rem 1.1rem; }
+  .compact .finding h3 { font-size: 1.05rem; }
+  @media (max-width: 520px) { .hero { padding-top: 2.8rem; } .metrics { grid-template-columns: 1fr; } .verdict { grid-template-columns: 1fr; } }
+  @media print {
+    body { background: #fff; font-size: 10.5pt; }
+    nav { display: none; } .hero { padding-top: 1rem; } .wrap { width: 100%; }
+    .metric, .card, .finding, table, .verdict, pre { box-shadow: none; break-inside: avoid; }
+    section { margin-bottom: 1.6rem; } pre { white-space: pre-wrap; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Second framework audit · deeper pass</p>
+    <h1>PAD, read a second time</h1>
+    <p class="lede">The first audit's 73 findings are closed. This second audit went further: nine reviews ran in parallel, between them reading every line of the engine, every shipped application, the web entry points, the eight regression suites and the documentation, and testing each claim against a running server. The fixes mostly hold. Where one doesn't, the gap is nearly always at an edge the fix didn't reach — a second way into a room whose first door was locked.</p>
+    <p class="stamp">Audited 5 October 2026 · commit <code>41369f908</code> · PHP 8.5.11 (Apache and CLI) · Apache 2.4.68 · <code>pad/</code>: 1,019 files, 29,064 lines, 546 functions · plus <code>apps/</code>, <code>www/</code>, <code>docs/</code> and the suites</p>
+    <div class="verdict">
+      <strong>Verdict<br>Better, not yet<br>safe to expose</strong>
+      <div>
+      <p>Where it was applied, the headline fix holds. A hostile value stays text when written as <code>{$x}</code> or <code>{echo $v}</code>, when spliced into a parameter (quoted or bare), when passed through a closing pipe, and when read through <code>object:</code>. The select builder, the <code>db()</code> placeholders, page routing and the file layer survived every probe. But the same boundary is still open at its edges:</p>
+      <ul>
+        <li>A custom tag's content — the documented way to write a tag — runs a request value as PAD, and so as PHP.</li>
+        <li>A <code>data=</code> value is sniffed as a path, so it includes any PHP file on disk.</li>
+        <li>The escaping's own stand-in characters, sent in a request, come out as live quotes.</li>
+      </ul>
+      <p>Around those:</p>
+      <ul>
+        <li>The field resolver still answers the database password, cookies and server variables.</li>
+        <li>Error reports and the track mode put secrets into a <code>DATA</code> directory that the shipped layout serves over HTTP.</li>
+        <li>The engine trusts its own requests to itself as local.</li>
+        <li>The developer tools act on a plain GET from anyone.</li>
+      </ul>
+      <p><strong>Not safe to expose to untrusted input or untrusted networks until C1 and H1–H8 are closed.</strong></p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav><div class="wrap">
+  <a href="#summary">Summary</a>
+  <a href="#method">Method</a>
+  <a href="#themes">Four seams</a>
+  <a href="#critical">Critical</a>
+  <a href="#high">High</a>
+  <a href="#medium">Medium</a>
+  <a href="#low">Low</a>
+  <a href="#info">Info</a>
+  <a href="#prior">First-audit fixes</a>
+  <a href="#suite">Test suites</a>
+  <a href="#docs">Documentation</a>
+  <a href="#sequences">Sequences</a>
+  <a href="#sound">Found sound</a>
+  <a href="#remediation">Remediation</a>
+</div></nav>
+
+<main class="wrap">
+
+<section id="summary">
+  <h2>Summary</h2>
+  <div class="metrics" style="margin-bottom:1.2rem">
+    <div class="metric"><b>1,019</b><span>PHP files in <code>pad/</code>, all lint-clean on PHP 8.5.11</span></div>
+    <div class="metric"><b>29,064</b><span>engine lines, plus 2,626 application files and the suites</span></div>
+    <div class="metric"><b>9</b><span>parallel reviews, each reading every line of its slice</span></div>
+    <div class="metric"><b>80</b><span>findings: 1 Critical · 10 High · 23 Medium · 32 Low · 14 Info</span></div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <h3>What this audit found</h3>
+      <p>The first audit found one design fault and its many consequences: values were re-read as template code. Its fix, <code>$padProtectValues</code>, is sound where it was applied. This audit finds the places it wasn't, and the boundaries that were never drawn. These fall into <a href="#themes">four seams</a>:</p>
+      <ul>
+        <li>Value-to-source edges the fix didn't cover.</li>
+        <li>A field resolver that reads the engine's own namespace.</li>
+        <li>A <code>DATA</code> directory that holds secrets and is served over HTTP.</li>
+        <li>A notion of "local" that the engine's requests to itself inherit.</li>
+      </ul>
+      <p>Beyond the seams, the audit found:</p>
+      <ul>
+        <li>An evaluator fault that silently mis-computes negation.</li>
+        <li>A Tidy pass that rewrites modern markup.</li>
+        <li>Error-recovery options that never fire for the common tag kinds.</li>
+        <li>The sequence runner's edges: overflow, membership and <code>from ≤ 0</code>.</li>
+        <li>A test corpus with some answers that cannot fail.</li>
+        <li>About forty documentation claims that are false today.</li>
+      </ul>
+      <p>Fifteen of the first audit's "Fixed" findings, and four of its applications-sweep fixes, turned out to be incomplete. Each is listed with the finding that shows it, in <a href="#prior">First-audit fixes</a>.</p>
+    </div>
+    <div class="card">
+      <h3>Severity</h3>
+      <p>
+        <span class="pill c">1 Critical</span>&nbsp;
+        <span class="pill h">10 High</span>&nbsp;
+        <span class="pill m">23 Medium</span>&nbsp;
+        <span class="pill l">32 Low</span>&nbsp;
+        <span class="pill l">14 Info</span>
+      </p>
+      <p>As in the first audit, severity is an engineering priority, not a CVSS score, and each finding states its preconditions.</p>
+      <ul>
+        <li><b>Critical:</b> remote compromise reachable through a documented, ordinary pattern.</li>
+        <li><b>High:</b> an exploitable security issue that needs one plausible application condition, or silent wrong output in a common feature.</li>
+        <li><b>Medium:</b> wrong behaviour in less common paths, a 500 on ordinary input, a DoS from modest input, or a test or document that would let a real regression ship.</li>
+      </ul>
+      <p class="small">Badges:</p>
+      <ul class="small">
+        <li><span class="live">verified live</span> means a review reproduced the finding against the server on this machine.</li>
+        <li><span class="twice">re-run</span> means the lead auditor reproduced it again independently before writing it up.</li>
+      </ul>
+      <p class="small">No tracked file was modified. The scratch pages, apps, dumps and one probe's track rows were removed afterwards, and the probe's writes into <code>DATA/reference</code> were reverted.</p>
+    </div>
+  </div>
+</section>
+
+<section id="method">
+  <h2>Scope &amp; method</h2>
+  <div class="grid-2" style="margin-bottom:1rem">
+    <div class="card">
+      <h3>Nine reviews, every line</h3>
+      <p>The first audit split <code>pad/</code> into six slices and left the applications mostly aside. This one split the whole repository into nine. Each reviewer:</p>
+      <ul>
+        <li>read every line of its slice;</li>
+        <li>read the first audit's notes for that area, so that no fixed item was reported as new, and so that each fix could be tested for completeness, regression or bypass;</li>
+        <li>reproduced its findings against the live Apache server through scratch pages and scratch applications, which it removed afterwards.</li>
+      </ul>
+      <p>A "remote" visitor was simulated with a forwarding header, which <code>padLoopback()</code> reads as somebody else. The server also answers on the LAN address, and several findings were confirmed there too.</p>
+      <p>The lead auditor then ran the serious findings again, independently, before writing them up (marked <span class="twice">re-run</span>). Findings that two reviews reached separately were merged; each such finding names both sources.</p>
+    </div>
+    <div class="card">
+      <h3>What was off limits</h3>
+      <ul>
+        <li><b>Nothing destructive.</b> The develop app's clean and build actions, the reference and examples harvests, and the runner's Test button were judged from the code. Only their reachability was probed, with a harmless GET.</li>
+        <li><b>No form submissions</b> that write to the demo database.</li>
+        <li><b>No external hosts.</b> Every SSRF probe pointed at this machine.</li>
+        <li><b>No full suite run during the audit.</b> The scratch pages would have shown up as "new".</li>
+      </ul>
+      <p>The tree was clean at <code>41369f908</code> when the audit started, and clean when it ended.</p>
+    </div>
+  </div>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Review</th><th>Slice</th><th class="num">Findings</th></tr></thead>
+    <tbody>
+      <tr><td>Expression evaluator</td><td><code>lib/eval</code>, <code>eval/</code>, <code>functions/</code>, <code>at/</code>, <code>properties/</code>, <code>lib/field</code>, FUNCTIONS.md</td><td class="num">4</td></tr>
+      <tr><td>Template core</td><td><code>pad.php</code>, <code>start/</code>, <code>inits/</code>, <code>build/</code>, <code>level/</code>, <code>walk/</code>, <code>occurrence/</code>, <code>call/</code>, <code>get/</code>, and 14 libraries</td><td class="num">4</td></tr>
+      <tr><td>Tags, options, data</td><td><code>tags/</code>, <code>types/</code>, <code>options/</code>, <code>handling/</code>, <code>data/</code>, <code>select/</code>, TAGS.md, DATABASE.md</td><td class="num">5</td></tr>
+      <tr><td>HTTP boundary</td><td><code>www/</code>, request variables, the session, switches, redirects, headers, the page cache, CSRF, XSS</td><td class="num">14</td></tr>
+      <tr><td>Reach &amp; execution</td><td>file, curl, db, <code>php:</code>, the sandbox, every <code>include</code>, <code>extract</code> and <code>$$</code></td><td class="num">8</td></tr>
+      <tr><td>Errors, info, output</td><td><code>error/</code>, <code>try/</code>, <code>info/</code>, <code>events/</code>, <code>exits/</code>, dumps, Tidy, <code>DATA/</code></td><td class="num">11</td></tr>
+      <tr><td>Sequences</td><td><code>sequence/</code> (370 files), 54 types against OEIS, membership against generation over 0..2000</td><td class="num">14</td></tr>
+      <tr><td>Applications</td><td>16 apps and <code>www/</code>: 584 pages and 2,849 links crawled, about 160 manual claims checked</td><td class="num">9</td></tr>
+      <tr><td>Suites &amp; docs</td><td>the runner, <code>ci.sh</code>, all 1,994 stored answers, coverage, and eleven documents</td><td class="num">18 + 40 claims</td></tr>
+    </tbody>
+    <tfoot><tr><td colspan="2">After merging the findings two reviews reached separately</td><td class="num">80</td></tr></tfoot>
+  </table></div>
+</section>
+
+<section id="themes">
+  <h2>Four seams</h2>
+  <p class="small" style="max-width:72ch">Most serious findings sit on one of four seams. Each is a place where a boundary the first audit drew stops short, or where none was ever drawn. Fixing a seam closes several findings at once, so the <a href="#remediation">remediation order</a> follows them.</p>
+  <div class="grid-2">
+    <div class="card theme">
+      <h3>1 · Values are text — except at the edges</h3>
+      <p><code>$padProtectValues</code> swaps the syntax characters of every value for private-use stand-ins and restores them as the page is written out. The swap is applied where values were known to land:</p>
+      <ul>
+        <li>a <code>{$x}</code>;</li>
+        <li>a tag's single-value answer;</li>
+        <li>a ternary side;</li>
+        <li>a piped value.</li>
+      </ul>
+      <p>Four edges escape it:</p>
+      <ul>
+        <li><b>A custom tag's <code>$padContent</code> is source by design.</b> A request value passed to the documented <code>button</code> tag therefore runs (<a href="#c1">C1</a>).</li>
+        <li><b>A <code>data=</code>, <code>{data 'n', $v}</code> or <code>{curl $v}</code> value is sniffed.</b> As a path it includes PHP; as a URL it is fetched (<a href="#h2">H2</a>).</li>
+        <li><b>The stand-ins are restored even when the request supplied them.</b> They are the one character class no escaper touches (<a href="#h1">H1</a>).</li>
+        <li><b>A <code>{page}</code> name lands in an inline script</b>, unvalidated (<a href="#m2">M2</a>).</li>
+      </ul>
+    </div>
+    <div class="card theme">
+      <h3>2 · The field resolver is its own namespace</h3>
+      <p>Request promotion was locked down: <code>padValidVar</code>, the <code>$padRequestVars</code> list, no cookies, and engine names refused. The <code>object:</code> form refuses engine names. But <code>{$x}</code> resolves through <code>padFieldLevel()</code>, which:</p>
+      <ul>
+        <li>reads <code>$GLOBALS[$x]</code> with no engine filter, so <code>{$padSqlPassword}</code> answers, as does <code>{$$sel}</code> with <code>sel</code> from the query;</li>
+        <li>scans every global array (<code>$_COOKIE</code>, <code>$_SERVER</code>, <code>$_ENV</code>, <code>$_FILES</code>) for the name.</li>
+      </ul>
+      <p>A cookie still presets <code>{$isAdmin}</code> (<a href="#h3">H3</a>). The session is a third route: every key in it becomes a global, across every app on the host (<a href="#m3">M3</a>).</p>
+    </div>
+    <div class="card theme">
+      <h3>3 · <code>DATA</code> is served, and it holds secrets</h3>
+      <p><code>www/README.md</code> documents <code>www/DATA → ../DATA</code> as the way to browse dumps over HTTP, and Apache lists the directory.</p>
+      <p>What lands there:</p>
+      <ul>
+        <li><b>Error reports</b> with the application's config source, database password included (<a href="#h4">H4</a>).</li>
+        <li><b>The track mode's copy of every request</b>: passwords, bearer tokens and session cookies in clear (<a href="#h5">H5</a>).</li>
+        <li><b>624 MB of traces</b> with no retention (<a href="#l17">L17</a>).</li>
+        <li><b>Any file a template writes</b>, a <code>.php</code> included, which then executes (<a href="#l5">L5</a>).</li>
+      </ul>
+      <p>The 0600 file modes from the first fix don't help, because the web server owns the files it serves.</p>
+    </div>
+    <div class="card theme">
+      <h3>4 · "Local" is inherited by the engine's own requests</h3>
+      <p><code>padLoopback()</code> trusts a loopback address that carries no forwarding header. Every request the engine makes to itself matches that description: <code>{get}</code>, <code>{page app=…}</code>, <code>{curl 'SELF://…'}</code>, and the harvest crawls. Each also:</p>
+      <ul>
+        <li>is addressed by the visitor's <code>Host</code> header;</li>
+        <li>carries the visitor's User-Agent.</li>
+      </ul>
+      <p>A remote visitor can therefore:</p>
+      <ul>
+        <li>reach the loopback-only switches;</li>
+        <li>receive the full local error report or the JSON channel;</li>
+        <li>point the server at any host and port (<a href="#h6">H6</a>).</li>
+      </ul>
+      <p>The developer apps go one step further and need no trick at all (<a href="#h7">H7</a>).</p>
+    </div>
+  </div>
+</section>
+
+<section id="critical">
+  <h2>Critical <span class="count">— 1</span></h2>
+  <div class="findings">
+
+    <div class="finding pc" id="c1">
+      <div class="tag"><div class="priority">Critical</div><div class="cat">Template injection → RCE</div></div>
+      <div>
+        <h3>A custom tag's content is template source, so a request value passed to the documented tag pattern runs as PAD, and as PHP<span class="live">verified live</span><span class="twice">re-run</span></h3>
+        <p class="where">level/go.php:37-52 · types/_go/tag.php:26-27,44-46 · level/base.php:9 · lib/scope.php:173-184 (padTagParm) · CLAUDE.md:191-197 · docs/APP.md:109-116 · first audit C1</p>
+        <p>CLAUDE.md teaches custom tags this way:</p>
+        <pre><code>$label = padTagParm('label', 'Click');
+$padContent = "&lt;a href=\"$href\" class=\"button\"&gt;$label&lt;/a&gt;";</code></pre>
+        <p><code>level/go.php</code> protects a tag's answer only when the tag returns a printable scalar. A tag that fills <code>$padContent</code> or echoes is producing "template text a tag produces … which is untouched", by design: a tag may legitimately emit PAD for the surrounding template.</p>
+        <p>But <code>padTagParm()</code> hands back the raw parameter value, not the protected one. So when the parameter came from a request, a row or a fetched page, the value is re-scanned as source. Once it is source, <code>$padPhpFunctions</code> (default: every function) lets it call PHP.</p>
+        <div class="ev"><b>Reproduced, in the test app:</b> <code>_tags/button.php</code> copied verbatim from CLAUDE.md. Page PHP <code>$v = $_GET['v'] ?? ''</code>, template <code>LINK:{button label=$v, href="?x"}</code>.<br>
+          <code>&amp;v={php:getcwd}</code> → <code>LINK:1&lt;a href="?x" class="button"&gt;/Users/herbert/pad/apps/test&lt;/a&gt;</code><br>
+          <code>&amp;v={echo 7 * 7}</code> → <code>…&gt;49&lt;/a&gt;</code><br>
+          A tag that does <code>echo padTagParm('x')</code> behaves the same. The stray <code>1</code> is a separate documentation bug: the example has no <code>return TRUE</code> (see <a href="#docs">Documentation</a>).</div>
+        <p>Why Critical rather than High: the precondition is not exotic. It is the pattern the framework's own guide teaches for writing a tag, applied to the most ordinary input, a label or a name. The shipped <code>manual/_tags/badge.php</code> has the same shape, though its callers pass literals. The first audit's C1 notes list every residual they closed; this one wasn't among them.</p>
+        <div class="fix"><b>Fix:</b> make <code>padTagParm()</code> (and <code>$padParm</code>) return the value protected under <code>$padProtectValues</code>, so text a tag builds from its parameters carries inert stand-ins, while text the tag author writes literally stays source. <code>exits/exits.php</code> already restores the stand-ins at output, so the rendered page is unchanged. Offer <code>padTagParmRaw()</code> for the rare tag that wants to run a parameter, and document that this is the PHP-side equivalent of <code>| code</code>. Add a Framework case built from the documented button tag.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="high">
+  <h2>High <span class="count">— 10</span></h2>
+  <div class="findings">
+
+    <div class="finding ph" id="h1">
+      <div class="tag"><div class="priority">High</div><div class="cat">XSS · escaping bypass</div></div>
+      <div>
+        <h3>The escaping's own stand-in characters, sent in a request, survive every escaper and come out as live quotes<span class="live">verified live</span><span class="twice">re-run</span></h3>
+        <p class="where">lib/encoding.php:93-116 (padProtectMap / padUnprotect) · exits/exits.php:17-22 · level/var.php:75-78 · functions/sanitize.php:12-15 · apps/demo/contact.pad:21 · first audit C1</p>
+        <p><code>padProtectMap()</code> maps the nine syntax characters to private-use code points: <code>"</code> → U+E022, <code>'</code> → U+E027, <code>{</code> → U+E07B, and so on. <code>exits/exits.php</code> runs <code>padUnprotect()</code> over the finished page "always … a stand-in that arrived in the input is a character".</p>
+        <p>So a request that sends U+E022 (bytes <code>EE 80 A2</code>) gets it through:</p>
+        <ul>
+          <li><code>htmlentities</code>, which leaves a valid private-use character alone;</li>
+          <li><code>padProtect()</code>, since it is not a key of the map;</li>
+          <li>every pipe, <code>| html</code> included.</li>
+        </ul>
+        <p>The finished page then turns it into a real <code>"</code>, after all escaping is done.</p>
+        <div class="ev"><b>Reproduced, on the shipped demo with the default config:</b> <code>/pad/demo/?contact&amp;name=x%EE%80%A2%20autofocus%20onfocus%3Dalert(document.domain)</code> renders <code>value="x" autofocus="" onfocus="alert(document.domain)"</code>. An ordinary <code>%22</code> in the same place is correctly encoded as <code>&amp;quot;</code>. Re-run on a scratch page <code>&lt;input value="{$name}"&gt;</code>: <code>value="x" onfocus="alert(1)"</code>.</div>
+        <div class="fix"><b>Fix:</b> make the stand-ins impossible to import. Strip or replace U+E000–U+E0FF (at least the nine mapped code points) from every request value before promotion, and in <code>padMakeSafe</code>, <code>padData</code> and the curl reader. Then only the engine can produce one, and the restore at output is exact. A Pages case that posts each of the nine stand-ins into an attribute pins it.</div>
+      </div>
+    </div>
+
+    <div class="finding ph" id="h2">
+      <div class="tag"><div class="priority">High</div><div class="cat">Code execution · SSRF</div></div>
+      <div>
+        <h3>A value used as a data source is sniffed: a path includes any PHP file on disk, and a URL is fetched from anywhere<span class="live">verified live</span><span class="twice">re-run</span></h3>
+        <p class="where">lib/checks.php:158-163 (padContentType) · lib/paths.php:92-130 (padDataFileName) · types/_go/local.php:20-23 · call/_try.php:6 · options/data.php:22-31 · tags/_go/store.php:37-38,56 · data/curl.php:12-26 · lib/curl.php:100-150 · apps/manual/lvl_occ/11.pad:1 · first audit C1, H6</p>
+        <p><code>padData()</code> sniffs an untyped string:</p>
+        <ul>
+          <li><b>A string that starts with <code>http:</code> or <code>https:</code></b> is typed <code>curl</code> and fetched.</li>
+          <li><b>A string that <code>padDataFileName()</code> can find</b> is typed <code>file</code>. That function joins the value into <code>APP2 . $dir . "_data/$value"</code> (and <code>COMMON . "_data/$value"</code>) and tries <code>.php</code> among the extensions. It never validates the name, so <code>../</code> walks out of <code>_data/</code>. A <code>.php</code> hit is run through <code>call/any.php</code> → <code>include</code>, a path that never passes <code>padFileCheck</code>.</li>
+        </ul>
+        <p>The first audit's fix refused only one sniffed type, <code>list</code>, for <code>data=</code> and curl bodies.</p>
+        <div class="ev"><b>Reproduced:</b>
+          <ul>
+            <li><b>Include.</b> Page PHP <code>$u = $_GET['u']</code>, template <code>R[{pad data=$u}({$m}){/pad}]</code>, and a marker <code>DATA/zzV/evil2.php</code> that returns <code>[["m" =&gt; "INCLUDED-" . PHP_SAPI]]</code>. <code>&amp;u=../../../../DATA/zzV/evil2</code> → <code>R[(INCLUDED-apache2handler)]</code>. The file needs no <code>_data</code> of its own; any reachable <code>.php</code> qualifies.</li>
+            <li><b>Fetch.</b> <code>{data 'zz', $u}</code> and <code>{pad data=$u}</code> with <code>u=http://localhost/pad/…</code> fetched the URL and rendered its body; the server's own access log shows the request.</li>
+          </ul>
+          The curl options allow http and https only (redirects included), up to five redirects, a 120 s timeout and no size cap. There is no host restriction, so loopback, private ranges and 169.254.169.254 are all reachable.</div>
+        <p>Precondition: a template passes a request value into a data source. The manual teaches exactly that: <code>{data 'myYaml', $yamlUrl}</code>. Running an existing PHP file is already damaging; combined with any way to place a file (see <a href="#l5">L5</a>), it is arbitrary code.</p>
+        <div class="fix"><b>Fix:</b>
+          <ul>
+            <li><b>Name check.</b> Validate the name in <code>padDataFileName()</code>: no <code>/</code>, <code>\</code>, <code>..</code> or NUL. Then <code>realpath</code> the hit and require it inside a <code>_data/</code> directory.</li>
+            <li><b>Explicit types.</b> Extend the <code>list</code> refusal so a value given through <code>data=</code>, the store's second parameter or <code>{curl}</code> is never sniffed as <code>file</code> or <code>curl</code>. A template that wants a file or a fetch should say <code>local:</code> or <code>curl</code> explicitly.</li>
+            <li><b>Value-sourced URLs.</b> Add an optional host allow-list (<code>$padCurlHosts</code>), refuse private and link-local addresses, and add a byte cap.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding ph" id="h3">
+      <div class="tag"><div class="priority">High</div><div class="cat">Disclosure · request trust</div></div>
+      <div>
+        <h3>The field resolver reads the engine's globals and every superglobal: <code>{$padSqlPassword}</code>, <code>{$$sel}</code>, cookies and server variables all answer<span class="live">verified live</span><span class="twice">re-run</span></h3>
+        <p class="where">lib/field/level.php:55-60, 66-77 · lib/field/prefix.php:32-35 · eval/single/object.php:14-17 (the guard that exists) · apps/regression/pages/request/crumb.php · first audit H7, C1 · reached by two reviews</p>
+        <p><code>padFieldLevel()</code> has two routes, and the first audit's guards cover neither:</p>
+        <ul>
+          <li><b>A direct read.</b> <code>array_key_exists($field, $GLOBALS)</code> returns the scalar with no <code>padEngineName()</code> filter. Every engine global is a field: the application and engine database passwords, hosts and users. With the documented indirection <code>{$$sel}</code> and <code>sel</code> taken from the query, the name is the visitor's choice. The first audit added exactly this guard to <code>object:</code>; the field form bypasses it.</li>
+          <li><b>A superglobal scan.</b> Every global array is searched for the key. Under the default <code>$padRequestVars = TRUE</code> the skip list is empty, so <code>$_COOKIE</code>, <code>$_SERVER</code>, <code>$_ENV</code> and <code>$_FILES</code> all answer. <code>$_SERVER</code> is never skipped, even under a restrictive list.</li>
+        </ul>
+        <p>The H7 fix stopped cookies becoming PHP globals. Its regression case checks <code>isset($crumb)</code> in PHP, so it passes while the template field stays open.</p>
+        <div class="ev"><b>Reproduced:</b>
+          <ul>
+            <li><code>[{$padSqlPassword}] [{$padSqlPadPassword}]</code> → <code>[app] [pad]</code>.</li>
+            <li><code>{$$sel}</code> with <code>&amp;sel=padSqlPassword</code> → the password; with <code>&amp;sel=SERVER_SOFTWARE</code> → <code>Apache/2.4.68 (Unix) PHP/8.5.11</code>.</li>
+            <li><code>curl -b crumb=STOLEN</code> on <code>[{$isSet}] [{$crumb | optional}] [{$DOCUMENT_ROOT}]</code>, whose PHP has <code>$isSet = isset($crumb) ? "SET" : "unset"</code> → <code>[unset] [STOLEN] [/Users/herbert/www/docs]</code>.</li>
+            <li>A cookie <code>isAdmin=1</code> turns <code>{if $isAdmin eq 1}</code> true on a page whose PHP never sets it.</li>
+          </ul>
+        </div>
+        <div class="fix"><b>Fix:</b> one classifier, shared with <code>padGetParms</code>:
+          <ul>
+            <li>refuse <code>padEngineName()</code> names on the direct read, in <code>padFieldSearch</code> too;</li>
+            <li>never scan <code>$_SERVER</code>, <code>$_ENV</code>, <code>$_FILES</code> or <code>$_COOKIE</code>, and once promotion has run, not <code>$_GET</code> or <code>$_POST</code> either;</li>
+            <li>validate the second name of <code>{$$x}</code> with <code>padValidVar()</code>.</li>
+          </ul>
+          Rewrite the <code>crumb</code> case to read the template field.</div>
+      </div>
+    </div>
+
+    <div class="finding ph" id="h4">
+      <div class="tag"><div class="priority">High</div><div class="cat">Disclosure · data at rest</div></div>
+      <div>
+        <h3>Error reports still contain the database password, and the shipped layout serves <code>DATA</code> over HTTP with a directory index<span class="live">verified live</span><span class="twice">re-run</span></h3>
+        <p class="where">inits/config.php:79 ($padConfigApp) · lib/dump.php:222-238, 288-299, 674-685 · error/claude.php:75, 129-148 · www/README.md:27 · www/DATA → ../DATA · apps/develop/errors.pad:8 · first audit H4 · reached by three reviews</p>
+        <p>Redaction works by key name. <code>$padConfigApp</code> holds the whole source text of the application's <code>_config/config.php</code>, which is where CLAUDE.md tells authors to put <code>$padSqlPassword</code>. Its key matches no secret pattern, so the source is printed in full into <code>pad.html</code> and <code>globals.html</code>, and into the JSON channel. The redacted line two rows below it, <code>padSqlPassword =&gt; *** redacted ***</code>, makes the leak easy to miss.</p>
+        <p>Further gaps the redaction misses:</p>
+        <ul>
+          <li>declared session variables, which are also globals;</li>
+          <li><code>Set-Cookie</code> in the list-shaped <code>headers_list()</code>;</li>
+          <li>hyphenated header names (<code>X-Api-Key</code>);</li>
+          <li><code>pwd</code>, <code>pin</code> and <code>passphrase</code>;</li>
+          <li><code>$padCurlLast['input']['cookies']</code>.</li>
+        </ul>
+        <p>The reports are reachable:</p>
+        <ul>
+          <li><code>www/README.md</code> documents the <code>DATA</code> symlink "so runtime output … is browsable over HTTP", and Apache indexes it.</li>
+          <li><code>develop/?errors</code>, itself unguarded (<a href="#h7">H7</a>), links every report.</li>
+          <li>The 0600/0700 modes from the first fix don't stop a web server that owns the files.</li>
+        </ul>
+        <div class="ev"><b>Reproduced:</b> a scratch app with <code>$padSqlPassword = "SECRET-ZZV-PWD"</code> in its config and a page with an undefined field.
+          <ul>
+            <li>A "remote" request got <code>500</code> and only an error id, which is correct.</li>
+            <li><code>DATA/dumps/zzV/index/&lt;id&gt;/globals.html</code> and <code>pad.html</code> both contain <code>padSqlPassword = "SECRET-ZZV-PWD";</code>.</li>
+            <li>Fetching <code>globals.html</code> over HTTP with a forwarding header → <code>200</code>. <code>GET /pad/DATA/</code> → <code>200</code>, a listing.</li>
+          </ul>
+          Another review fetched <code>phpinfo.html</code> and <code>request.html</code> the same way, also from the LAN address.</div>
+        <div class="fix"><b>Fix:</b>
+          <ul>
+            <li>Exclude <code>$padConfigApp</code> from every report, or redact the assignments inside it.</li>
+            <li>Redact by value as well: collect the configured passwords and the live session ids, and replace them wherever they appear.</li>
+            <li>Normalise <code>-</code> to <code>_</code> before matching, widen the pattern, and scan list-shaped headers.</li>
+            <li>Take the symlink advice out of <code>www/README.md</code>, and refuse to write reports while <code>DATA</code> resolves under <code>DOCUMENT_ROOT</code> (or warn loudly at boot).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding ph" id="h5">
+      <div class="tag"><div class="priority">High</div><div class="cat">Disclosure · credentials at rest</div></div>
+      <div>
+        <h3>The track info modes write every visitor's request, credentials and response in clear, world-readable, with no retention<span class="live">verified live</span></h3>
+        <p class="where">info/types/track/_lib.php:62-80 (padInfoTrackStart), 82-117 (padInfoTrackEnd) · config/info/info.php:13 · config/config.php:86 ($padFileMode 0644)</p>
+        <p>With <code>$padInfo</code> set to <code>track</code>, <code>info</code>, <code>myInfo</code> or <code>all</code>, each request writes one file:</p>
+        <pre><code>[ 'headers' =&gt; $headers, 'get' =&gt; $_GET, 'post' =&gt; $_POST, 'cookies' =&gt; $_COOKIE,
+  'data' =&gt; file_get_contents('php://input'), 'server' =&gt; $_SERVER, 'host' =&gt; $_ENV ]</code></pre>
+        <p>It has no <code>padRedact()</code>, mode 0644, and is never deleted. The end step adds the full response body. On this machine <code>DATA/track/requests</code> holds 1,936 such files, including session cookies.</p>
+        <div class="ev"><b>Reproduced:</b> a "remote" POST to a page under track mode, carrying <code>password=…</code>, <code>Authorization: Bearer …</code>, <code>X-Api-Key: …</code> and <code>PHPSESSID=…</code>. Then <code>GET /pad/DATA/track/requests/&lt;id&gt;.json</code> from the same remote position → <code>200</code>, with every secret in clear: the password twice, the session id three times, the API key twice, the bearer token once.</div>
+        <div class="fix"><b>Fix:</b>
+          <ul>
+            <li>Run the payload through <code>padRedact(…, TRUE)</code>, drop the raw body and <code>$_ENV</code>, and write it 0600.</li>
+            <li>Keep the newest N, as <code>$padErrorKeep</code> does.</li>
+            <li>Note in the config comment that <code>info</code> is a debugging mode, not a production one.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding ph" id="h6">
+      <div class="tag"><div class="priority">High</div><div class="cat">Trust boundary · SSRF</div></div>
+      <div>
+        <h3>The engine's requests to itself are trusted as local and addressed by the visitor's Host header: SSRF, loopback switches and the local error report all reach remote visitors<span class="live">verified live</span></h3>
+        <p class="where">lib/curl.php:118-126, 149 · error/claude.php:19-31 (padClaudeCheck), 39-53 (padLoopback), 60-63 (padSelfSwitch) · inits/host.php:20-44 · config/config.php:115 ($padHosts = []) · start/pad/pageApp.php:21-22 · tags/curl.php:18-25 · first audit H3, M1, Low "visitor switches" · reached by three reviews</p>
+        <p>Every request the engine makes to itself (<code>{get}</code>, <code>{page app=…, ajax=false}</code>, <code>{curl 'SELF://…'}</code>, the reference and examples crawls) has the same four properties:</p>
+        <ul>
+          <li><b>It goes to <code>$padHost</code></b>, built from the client's <code>Host</code> header. With the default empty <code>$padHosts</code>, any well-formed host and port is accepted.</li>
+          <li><b>It arrives from loopback with no forwarding header</b>, so <code>padLoopback()</code> calls it local.</li>
+          <li><b>It carries the visitor's User-Agent</b> (<code>curl.php:149</code>), so a visitor whose agent contains "curl" makes the inner request qualify for the JSON diagnostics channel.</li>
+          <li><b>It carries the visitor's <code>padSesID</code>/<code>padReqID</code></b>, to whatever host <code>$padHost</code> names.</li>
+        </ul>
+        <p>Under <code>log</code>, <code>ignore</code> or <code>dump</code>, <code>{curl}</code> reports a non-200 and still returns the body (<code>padError</code> without <code>return</code>).</p>
+        <div class="ev"><b>Reproduced, by three reviews independently:</b>
+          <ul>
+            <li><b>SSRF.</b> <code>[{get 'zzD/g2'}]</code> with <code>Host: 127.0.0.1:8765</code>: the listener on 8765 received the request with the visitor's cookies, and its HTML was spliced into the page.</li>
+            <li><b>Inherited trust.</b> A simulated remote with UA <code>curl-evil</code> requested a page with <code>{page $p, app='test', ajax=false}</code> and <code>p=zzD/lb&amp;padStats</code>. The inner page reported <code>LOOPBACK-TRUSTED padStats-ON ua=curl-evil</code>, while the same page fetched directly reported <code>remote padStats-off</code>.</li>
+            <li><b>Local report.</b> <code>&lt;div&gt;{curl 'SELF://zzG/?strict'}&lt;/div&gt;</code> under <code>log</code> returned a 200 that embedded the JSON channel, <code>padConfigApp</code> and its password included. With a browser UA it embedded the HTML local report instead.</li>
+          </ul>
+        </div>
+        <div class="fix"><b>Fix:</b>
+          <ul>
+            <li>Send self-fetches to a fixed internal base: <code>http://127.0.0.1</code> plus <code>$padRoot</code>, or a configured <code>$padHostBase</code>, with a <code>Host</code> header from <code>$padHosts</code>. Or ship a non-empty <code>$padHosts</code> and refuse requests that don't match it.</li>
+            <li>Mark self-fetches with a per-boot secret header, and let only that, not "loopback without forwarding", stand for a request this machine made.</li>
+            <li>Don't forward the visitor's User-Agent.</li>
+            <li>Make <code>tags/curl.php</code> <code>return padError(…)</code>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding ph" id="h7">
+      <div class="tag"><div class="priority">High</div><div class="cat">Authorization · CSRF</div></div>
+      <div>
+        <h3>The developer, harvest and regression apps act on a plain GET from any visitor: rewrite the source tree, wipe <code>DATA</code>, crawl a host the visitor names and serve what comes back raw</h3>
+        <p class="where">apps/develop/clean.php:6-9 · apps/develop/_lib/trim.php:20 · apps/develop/build.php:16-24 · apps/examples/build.php:4-12 · apps/examples/_lib/build.php:19 · apps/examples/show.php · apps/reference/build.php:4-12 · apps/regression/main/index.php:7-19 · reached by three reviews</p>
+        <p>Each destructive action is guarded only by <code>isset($go)</code>, <code>isset($goBuild)</code> or <code>isset($test)</code>, and those are ordinary request values. The apps ship in <code>www/</code>, which is the documented document root, with no loopback check and no token.</p>
+        <ul>
+          <li><b><code>develop/?clean&amp;go=1</code></b> runs <code>trimFiles($padHome)</code>, which rewrites every <code>.php</code> and <code>.pad</code> in the repository with a raw <code>file_put_contents</code>. That is outside <code>DATA</code>, past the guard the first audit relied on.</li>
+          <li><b><code>develop/?build&amp;goBuild=1</code></b> wipes <code>DATA/suites</code>, <code>dumps</code> and <code>temp</code>, then starts thousands of self-fetches.</li>
+          <li><b><code>examples/?build&amp;go=1</code></b> deletes <code>DATA/examples</code>, then crawls <code>$padHost</code>, which comes from the visitor's Host (<a href="#h6">H6</a>). It stores what it fetches, and <code>show.php</code> serves the stored HTML raw through <code>{!result}</code>: a stored-XSS chain.</li>
+          <li><b><code>reference/?build</code></b> deletes <code>DATA/reference</code> (tracked in git) and crawls with <code>&amp;padReference</code>, which bypasses the <code>padSelfSwitch</code> fix.</li>
+          <li><b><code>regression/main/?index&amp;test</code></b> deletes <code>DATA/dumps</code>, the error evidence, and runs every suite.</li>
+        </ul>
+        <div class="ev"><b>Verified:</b> reachability only, by design of this audit. <code>/pad/develop/</code> answers with the action links on <code>localhost</code> and on the LAN address <code>192.168.179.12</code>. The action pages answer 200 and wait only for the flag. The lead auditor read <code>clean.php</code> and confirmed there is no other guard. An <code>&lt;img src="…/develop/?clean&amp;go=1"&gt;</code> on any page a developer opens would fire it.</div>
+        <div class="fix"><b>Fix:</b>
+          <ul>
+            <li>Guard <code>develop</code>, <code>examples/?build</code>, <code>reference/?build</code>, <code>regression/main</code> (Test, Build and Record) and <code>develop/?errors</code> with <code>padLocal()</code>, or with a <code>$padDevTools</code> switch that defaults off.</li>
+            <li>Make the actions POST-only with a token.</li>
+            <li>Crawl from a configured base URL, not <code>$padHost</code>.</li>
+            <li>Document in <code>www/README.md</code> that these apps are not for deployment.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding ph" id="h8">
+      <div class="tag"><div class="priority">High</div><div class="cat">Path traversal</div></div>
+      <div>
+        <h3>The reference app lists any directory and reads any <code>.txt</code> file on the server<span class="live">verified live</span><span class="twice">re-run</span></h3>
+        <p class="where">apps/reference/dir.php:7 · apps/reference/pages.php:7 · compare apps/sequence/reference2.php:17-26 · first audit applications sweep (287297c06)</p>
+        <p>The two pages build their paths straight from the query, with no containment check:</p>
+        <ul>
+          <li><code>dir.php</code> runs <code>padFiles(DATA . "reference/$xref/$item")</code>;</li>
+          <li><code>pages.php</code> runs <code>file(DATA . "reference/$xref/$item.txt")</code>.</li>
+        </ul>
+        <p>The sweep added <code>realpath</code> containment to the sibling <code>sequence/reference2.php</code>, but missed these two. Unknown or array-valued names also 500.</p>
+        <div class="ev"><b>Reproduced:</b> <code>/pad/reference/?dir&amp;xref=../../../../../../etc&amp;item=ssh</code> lists <code>crypto</code>, <code>moduli</code>, <code>ssh_config</code>, <code>sshd_config</code> and more as links. Through <code>?pages</code>, any <code>.txt</code> file's lines that contain <code>;</code> are shown verbatim: a planted <code>dbpass=hunter2;index</code> rendered as <code>App: dbpass=hunter2 - Page: index</code>. The same probe against <code>sequence/?reference2</code> is contained.</div>
+        <div class="fix"><b>Fix:</b> the <code>reference2</code> pattern. Resolve with <code>realpath</code>, require the result under <code>realpath(DATA . 'reference') . '/'</code>, require <code>is_string</code>, and fall back to the default page when the check fails.</div>
+      </div>
+    </div>
+
+    <div class="finding ph" id="h9">
+      <div class="tag"><div class="priority">High</div><div class="cat">Evaluator correctness</div></div>
+      <div>
+        <h3>A minus or plus sign in front of a variable, a group or a call silently computes the wrong answer<span class="live">verified live</span><span class="twice">re-run</span></h3>
+        <p class="where">lib/eval/parse.php:399-429 · lib/eval/double.php:20-31 · lib/eval/const.php:58 (padEval_one) · first audit H8</p>
+        <p>The tokeniser treats <code>-</code>/<code>+</code> as a number's sign only when a digit follows. In <code>-$x</code>, <code>-(…)</code> or <code>-php:…</code> the sign becomes a standalone operator, so a binary context produces two adjacent operators.</p>
+        <p><code>padEvalDouble()</code> folds such a pair by applying the first operator "alone". It exempts only <code>!</code>/<code>NOT</code>, not a prefix sign. The fold leaves a structure that concatenates instead of negating, and nothing raises an error, even under the strict check.</p>
+        <div class="ev"><b>Reproduced</b> with <code>$a=5, $b=3, $n=2</code>:
+          <ul>
+            <li><code>{echo 5 * -3}</code> → <code>-15</code> (correct)</li>
+            <li><code>{echo 5 * -$b}</code> → <code>5-3</code></li>
+            <li><code>{echo $a - -$b}</code> → <code>5-3</code></li>
+            <li><code>{echo 5 * -(1 + 2)}</code> → <code>5-3</code></li>
+            <li><code>{echo 10 / -$n}</code> → the PAD error "a division by zero"</li>
+            <li><code>{echo 2 ** -$n}</code> → <code>2-1</code></li>
+            <li><code>{if $neg gt -$b}</code> with <code>$neg = -4</code> → true</li>
+          </ul>
+        </div>
+        <p>The H8 remediation fixed signs before literal digits (<code>5 * -3</code>, <code>mid(2,-1)</code>). Negating a variable, the common case in totals, discounts and offsets, was never covered.</p>
+        <div class="fix"><b>Fix:</b> when the second of two adjacent operators is <code>+</code>/<code>-</code> and no value precedes the first, bind it as a prefix sign to the value after it, as <code>!</code>/<code>NOT</code> already are. Equivalently, have the tokeniser emit a sign before <code>$</code>, <code>(</code> or a type reference when <code>padEvalParseAfterValue()</code> says no value precedes it; that predicate already exists. Pin each form above with a Framework case.</div>
+      </div>
+    </div>
+
+    <div class="finding ph" id="h10">
+      <div class="tag"><div class="priority">High</div><div class="cat">Documentation → XSS</div></div>
+      <div>
+        <h3>Two guides state the escaping forms backwards and recommend the raw one for user input<span class="live">verified live</span></h3>
+        <p class="where">docs/APP.md:242-243, 249, 1131 · docs/PAD.md:112, 130</p>
+        <p><code>docs/APP.md</code> lists <code>{$text}</code> as "Raw output (no escaping)" and <code>{!text}</code> as "HTML escaped output". Its best-practice table recommends <code>{!userInput}</code>, and <code>PAD.md</code> repeats it.</p>
+        <p>The engine does the opposite. <code>level/var.php:53-71</code> runs the sanitize chain only for <code>$</code>, and <code>{!x}</code> is <code>padRawValue</code>. Both guides also say a pipe needs <code>{echo}</code>, steering authors to the form that skips sanitize (<a href="#m1">M1</a>).</p>
+        <p>In this repository the docs are not a side issue. <code>CLAUDE.md</code> and <code>docs/</code> are what both people and coding agents read before writing PAD, so a wrong rule is copied straight into application code.</p>
+        <div class="ev"><b>Reproduced:</b> <code>B[{!q}]</code> with <code>q=&lt;b&gt;X&lt;/b&gt;</code> → live markup. <code>{$q}</code> → <code>&amp;lt;b&amp;gt;X&amp;lt;/b&amp;gt;</code>.</div>
+        <div class="fix"><b>Fix:</b> correct APP.md and PAD.md to match CLAUDE.md. <code>{$x}</code> is the escaped form; <code>{!x}</code> is raw and for trusted HTML only. Remove the claim that pipes need <code>{echo}</code>. Then sweep the rest of the false claims listed under <a href="#docs">Documentation</a>.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="medium">
+  <h2>Medium <span class="count">— 23</span></h2>
+  <div class="findings compact">
+
+    <div class="finding pm" id="m1">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">XSS</div></div>
+      <div>
+        <h3><code>{echo $x}</code>, ternary answers, <code>{#x}</code> and <code>php:</code> answers skip the sanitize chain, though CLAUDE.md and the manual present <code>{echo $x}</code> as the same as <code>{$x}</code><span class="live">verified live</span><span class="twice">re-run</span></h3>
+        <p class="where">level/var.php:53-71 · level/go.php:37-52 · CLAUDE.md "Critical Syntax Rules" 1 · apps/manual/pages/pipes.pad:9,91</p>
+        <p>The sanitize chain (<code>$padDataDefaultEnd</code>, by default <code>sanitize</code>) runs only when the sigil is <code>$</code>. A tag's answer and a ternary side are protected against PAD syntax but not HTML-escaped.</p>
+        <p>With <code>q=&lt;b&gt;X&lt;/b&gt;</code>, these all return the markup live:</p>
+        <ul>
+          <li><code>{echo $q}</code>, also after <code>{set $w = $q}</code></li>
+          <li><code>{rows}{first@rows ? $q : 'no'}{/rows}</code></li>
+          <li><code>{rows q2=$q}{#q2}{/rows}</code></li>
+          <li><code>{php:trim $q}</code></li>
+        </ul>
+        <p>By contrast <code>{$q}</code>, <code>{$$nm}</code>, <code>{$q | upper}</code> and <code>{$q@*}</code> are escaped.</p>
+        <p>CLAUDE.md's rule 1 says <code>{$var | upper}</code> and <code>{echo $var | upper}</code> "both work". The manual's pipes page teaches the echo form for variables, and its own render shows the difference: <code>{$text|trim}</code> gives <code>Hi &amp;lt;b&amp;gt;there…</code>, while <code>{echo $text|trim}</code> gives live <code>&lt;b&gt;</code>.</p>
+        <div class="fix"><b>Fix:</b> decide which way it goes, then make the docs say it.
+          <ul>
+            <li><b>Escape:</b> apply the data chain to <code>{echo}</code> answers and evaluated ternary sides whose value came from a field.</li>
+            <li><b>Document:</b> say plainly in CLAUDE.md, TAGS.md and the manual that only <code>{$x}</code> escapes. In that case the manual should show <code>{$x | f}</code> for anything a visitor wrote.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m2">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">XSS</div></div>
+      <div>
+        <h3><code>{page $p, app=…}</code>, and <code>{ajax}</code> with the strict check off, put the page and app names in an inline script with no validation<span class="live">verified live</span><span class="twice">re-run</span></h3>
+        <p class="where">start/pad/pageApp.php:11-22 · lib/page.php:85,105 · start/ajax.php:20-35 · start/page.php</p>
+        <p><code>start/page.php</code> hands an <code>app=</code> page to <code>pageApp.php</code> before <code>padPageCheck</code> runs, and <code>pageApp.php</code> validates neither name. <code>padPageAjax</code> writes them into <code>….open("GET","{$url}",true)</code>. <code>{ajax}</code> validates only under <code>$padCheckSyntax</code>.</p>
+        <p>With <code>ajax=false</code>, the same value becomes part of the URL the server fetches for itself, so a visitor can add query switches to that request (<a href="#h6">H6</a>).</p>
+        <div class="ev"><b>Reproduced:</b> <code>{page $p, app="test"}</code> with <code>p=x");alert(1);//</code> → <code>padAjax….open("GET","http://localhost/pad/test/?x");alert(1);//&amp;padInclude",true);</code></div>
+        <div class="fix"><b>Fix:</b> run <code>padPageCheck</code> and the application-name pattern in <code>pageApp.php</code> and <code>ajax.php</code> in every mode. Build the script with <code>json_encode($url, JSON_HEX_QUOT|JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS)</code>.</div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m3">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">Session</div></div>
+      <div>
+        <h3>One session cookie serves every app on the host, and every key in it becomes a global, not only the declared ones<span class="live">verified live</span></h3>
+        <p class="where">inits/parms.php:25-39 · config/config.php ($padSessionVars) · first audit H5, A2 (fixed as described)</p>
+        <p>The session cookie is <code>PHPSESSID</code> with <code>path=/</code> and no per-app name. <code>padGetParms('SESSION', $_SESSION)</code> promotes every key.</p>
+        <p>In PAD's normal layout, many apps under one host, a value one app keeps in the session therefore appears as a variable in another app. It is promoted ahead of request values. The first audit's fix holds for the declared names: <code>?zzRole=admin</code> no longer overrides one.</p>
+        <p>Nowhere tells app authors to call <code>session_regenerate_id()</code> at login.</p>
+        <div class="ev"><b>Reproduced:</b> page A stored <code>$_SESSION['zzForeignAdmin'] = 1</code>. Page B, in another app sharing the same cookie, saw <code>$zzForeignAdmin === 1</code>.</div>
+        <div class="fix"><b>Fix:</b> promote only <code>$padSessionVars</code>, give each app its own session name or cookie path, and document regenerating the id at login.</div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m4">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">Code-execution surface</div></div>
+      <div>
+        <h3>The <code>sandbox</code> pipe isolates variables, not authority: sandboxed text can still call PHP and reach files, URLs and the database<span class="live">verified live</span></h3>
+        <p class="where">start/pad/start.php:23-35 · lib/execute.php:31-42 · docs/reference/TAGS.md:282-289 · CLAUDE.md "Values Are Text" ("the same, in an isolated pass")</p>
+        <p>The sandbox saves and resets application variables, levels and stores, and it turns the strict check off. It leaves these untouched:</p>
+        <ul>
+          <li><code>$padPhpFunctions</code> (default: every function);</li>
+          <li><code>constant:</code> and <code>script:</code>;</li>
+          <li><code>{curl}</code>, <code>{file}</code> and <code>{dir}</code>;</li>
+          <li>the database tags.</li>
+        </ul>
+        <p>CLAUDE.md offers <code>| sandbox</code> beside <code>| code</code> for "a snippet kept in a database". An author reading "isolated" will reasonably pipe untrusted snippets through it.</p>
+        <div class="ev"><b>Reproduced:</b> <code>{echo $s | sandbox}</code> with <code>s={php:strtoupper('sandboxed')}</code>. The pass resolved the <code>php</code> prefix and reached <code>call_user_func_array</code>.</div>
+        <div class="fix"><b>Fix:</b>
+          <ul>
+            <li>While <code>$padStrBox</code> is set, apply a sandbox function list (default: none) and refuse <code>php:</code>, <code>constant:</code>, <code>script:</code>, <code>curl</code>, <code>file</code>, <code>dir</code> and the database tags.</li>
+            <li>Keep the strict check on.</li>
+            <li>Document what the sandbox does and does not isolate.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m5">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">Parser</div></div>
+      <div>
+        <h3>Two options written without a comma: the second is silently dropped, or the line reaches a PHP function and the page is a 500<span class="live">verified live</span></h3>
+        <p class="where">lib/options.php:140-150 · level/parms/parms.php:17-40 · level/parms/option.php:23 · lib/type.php:71 · types/php.php · eval/parms/php.php · first audit applications sweep ("an option after a parameter")</p>
+        <p>The no-comma shortcut added last round splits a value followed by an option name. Two options in a row, though, stay one item. <code>padSplit('=')</code> then takes everything after the first <code>=</code> as the value, and <code>option.php</code> evaluates it.</p>
+        <p>What happens next depends on the second option's name:</p>
+        <ul>
+          <li><b>Not a PHP function:</b> the evaluation keeps the leading value and drops the rest.</li>
+          <li><b>A PHP function, such as <code>sort</code>:</b> the bare-name fallback calls it, and <code>sort()</code> wants a reference.</li>
+        </ul>
+        <p>The strict check, whose job this is, says nothing.</p>
+        <div class="ev"><b>Reproduced:</b> with data <code>[{"n":3},{"n":1},{"n":2}]</code>:
+          <ul>
+            <li><code>{d sort="n" first=2}</code> → <code>1 2 3</code>; <code>first</code> is lost.</li>
+            <li><code>{d first=2 sort="n"}</code> → 500, "sort(): Argument #1 ($array) must be passed by reference".</li>
+            <li>With the comma, <code>1 2</code>.</li>
+          </ul>
+        </div>
+        <div class="fix"><b>Fix:</b> in <code>option.php</code>, detect <code>&lt;expr&gt; &lt;name&gt;=…</code> and raise "a comma is missing between options" under the strict check, as <code>parameter.php</code> already does for parameters. Never let an option value reach the PHP fallback as a bare call.</div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m6">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">Correctness · enshrined</div></div>
+      <div>
+        <h3>The documented property tag pair <code>{first@items}…{/first@items}</code> resolves a same-named row field first, and a Framework case records it<span class="live">verified live</span><span class="twice">re-run</span></h3>
+        <p class="where">lib/type.php:55-74 (padTypeCommon) · at/_lib/at.php:96-120 · apps/regression/framework/properties/the_tag_pair_resolves_the_field_first.txt · CLAUDE.md:337, 343, 691-697 · docs/reference/TAGS.md:984, 991-996</p>
+        <p>CLAUDE.md: "The sigil decides a name collision: with a row field named <code>first</code>, <code>{if first@orders}</code> is still the iteration state." That holds for <code>{if …}</code>, the ternary and <code>property:</code>. It does not hold for the tag pair, which is exactly the form taught for the first and last wrapper.</p>
+        <p>Columns named <code>first</code>, <code>last</code>, <code>count</code>, <code>key</code> or <code>name</code> are ordinary. The case's own answer, <code>F1PF2P</code>, records the bug as expected behaviour.</p>
+        <div class="ev"><b>Reproduced:</b> rows <code>[{"first":"Ann"},{"first":"Bob"}]</code> with <code>{items}{first@items}&lt;ul&gt;{/first@items}&lt;li&gt;{$first}&lt;/li&gt;{/items}</code> → <code>Ann&lt;ul&gt;&lt;li&gt;Ann&lt;/li&gt;Bob&lt;ul&gt;&lt;li&gt;Bob&lt;/li&gt;</code>. Every row gets the field and a <code>&lt;ul&gt;</code>.</div>
+        <div class="fix"><b>Fix:</b> resolve the tag-pair spelling of a name in <code>pad/properties/</code> to the property, as the other spellings do. Re-answer the case <code>P</code>. If the current behaviour is wanted, document the exception wherever the wrapper is taught.</div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m7">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">Error handling</div></div>
+      <div>
+        <h3><code>notOk=</code> and <code>error=</code> never fire when an app, <code>_common</code> or built-in tag throws<span class="live">verified live</span></h3>
+        <p class="where">types/_go/tag.php:26-27 → call/ob.php → call/_call.php:20 → try/call/_try.php · try/catch/call/_try.php:7-17 · try/catch/level/go.php:8-12 · docs/reference/OPTIONS.md:237-253</p>
+        <p>These tag kinds run their PHP inside the call-level guard. That guard catches a throw first, reports it and returns <code>''</code>. The level guard, the only one that honours <code>notOk</code> and <code>error</code>, never sees it. The <code>goNotOk</code> regression page tests only <code>php:</code>, the one form that works.</p>
+        <p>Plausible, not reproduced: <code>$padTry</code> is a single global, so a nested guard overwrites it, and a later throw would include the wrong catch file.</p>
+        <div class="ev"><b>Reproduced:</b> with <code>{content 'fb'}the not-ok half{/content}</code>, the template <code>[{zzboom notOk='fb'}]</code>, where <code>_tags/zzboom.php</code> throws, gives:
+          <ul>
+            <li>a 500 under the <code>pad</code> action;</li>
+            <li><code>[]</code> under <code>log</code>.</li>
+          </ul>
+          The same happens with <code>{exception 'xx' notOk='fb'}</code> and with <code>error='fb'</code>. <code>{php:hypot(1) notOk='fb'}</code> gives the fallback.</div>
+        <div class="fix"><b>Fix:</b> when the enclosing level carries <code>notOk</code> or <code>error</code>, let the call guard rethrow, or run the PHP unguarded under the level guard. Keep <code>$padTry</code> as a stack.</div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m8">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">Output · HTTP</div></div>
+      <div>
+        <h3>An error after the response is sent is written past <code>Content-Length</code> and desynchronises keep-alive connections<span class="live">verified live</span></h3>
+        <p class="where">lib/output.php:57-65 · exits/output.php:27 · lib/exit.php:53-54 · lib/dump.php:49-60</p>
+        <p><code>padWebSend</code> echoes the body, flushes and finishes the request. The info end-of-request work runs after that: the track, xml and trace writes and the track database inserts.</p>
+        <p>If any of it fails (the database is down, the disk is full, or the XML race in <a href="#l16">L16</a>), <code>padDumpTry</code> echoes about 3.5 KB of closing tags and <code>Error: &lt;id&gt;</code>. Under mod_php those bytes still reach the socket, after the declared length.</p>
+        <div class="ev"><b>Reproduced:</b> a track page whose report path was blocked by a directory answered <code>200, Content-Length: 130</code>, and a raw read showed <code>…&lt;/dd&gt;\r\nError: SMqgjmUs</code> after the body. <code>curl URL1 URL2</code> on one connection then failed with "Invalid status line". The concurrent XML runs reached the same path on their own.</div>
+        <div class="fix"><b>Fix:</b> once the response is sent, report errors only to the log and the dump, never to output. Or run the info end before <code>padWebSend</code>.</div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m9">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">DATA growth</div></div>
+      <div>
+        <h3><code>$padErrorKeep</code> retention is defeated by concurrent requests and by a symlinked <code>DATA</code><span class="live">verified live</span></h3>
+        <p class="where">lib/dump.php:520-534, 582-601, 690-719 (padDumpPrune) · lib/file.php:168-180 (padDeleteDataDir) · first audit H4</p>
+        <p><b>Concurrent requests.</b> A concurrent prune deletes reports that are still being written. The writer then re-creates fragments: an <code>error.txt</code>-only directory, or a report without <code>stack.html</code>. The prune recognises a report by <code>stack.html</code>, so it never sees these again.</p>
+        <p><b>A symlinked <code>DATA</code>.</b> <code>padDeleteDataDir</code> compares <code>realpath()</code> with the unresolved <code>DATA</code>, so when <code>DATA</code> is a symlink the delete silently does nothing.</p>
+        <div class="ev"><b>Reproduced:</b> 200 errors at 16 in parallel with <code>$padErrorKeep = 20</code> left 20 reports plus 38 orphans that are never pruned, two of them holding <code>globals.html</code>. The symlink case was run in isolation and reported "NOT deleted".</div>
+        <div class="fix"><b>Fix:</b>
+          <ul>
+            <li>Write each report into a temporary directory and rename it into place.</li>
+            <li>Prune report directories under a <code>flock</code>.</li>
+            <li>Compare paths against <code>realpath(DATA)</code>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m10">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">Output correctness</div></div>
+      <div>
+        <h3>The default Tidy pass deletes custom elements and framework attributes and changes form content<span class="live">verified live</span><span class="twice">re-run</span></h3>
+        <p class="where">config/tidy.php:24-40 · exits/tidy.php:36-40 · first audit M8 (quirks mode, fixed)</p>
+        <p><code>$padTidy</code> is on by default for every <code>text/html</code> page, with <code>clean</code>, <code>drop-empty-elements</code>, <code>indent</code> and the <code>merge-*</code> options. None of CLAUDE.md, APP.md or PAD.md says that the page is rewritten.</p>
+        <div class="ev"><b>Reproduced:</b> the page <code>&lt;my-app&gt;&lt;user-card name="x"&gt;hi&lt;/user-card&gt;&lt;/my-app&gt;&lt;div @click="go" :class="c"&gt;t&lt;/div&gt;&lt;textarea&gt;  two&lt;/textarea&gt;</code> came out as <code>hi</code>, <code>&lt;div&gt;t&lt;/div&gt;</code> and <code>&lt;textarea&gt; two&lt;/textarea&gt;</code>:
+          <ul>
+            <li>the custom elements are gone;</li>
+            <li>the Alpine/Vue attributes are gone;</li>
+            <li>the textarea lost a leading space, which corrupts what a form round-trips.</li>
+          </ul>
+          The review also saw <code>&lt;template&gt;&lt;li&gt;</code> gain an injected <code>&lt;ul&gt;</code>, and <code>white-space: pre</code> text collapsed.</div>
+        <div class="fix"><b>Fix:</b> either default <code>$padTidy</code> to FALSE, or drop <code>indent</code>, <code>clean</code>, <code>drop-empty-elements</code> and the merges. Declare <code>new-blocklevel-tags</code> and <code>new-inline-tags</code>, keep attributes Tidy doesn't know, and say in CLAUDE.md that Tidy rewrites the page.</div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m11">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">Robustness</div></div>
+      <div>
+        <h3>An array request parameter makes ordinary pages a 500, in the engine and in four shipped apps<span class="live">verified live</span></h3>
+        <p class="where">inits/parms.php (padGetParms2) · level/var.php · apps/demo/contact.php:12,21 · apps/demo/todo.php · apps/apps/browse.php:59 · apps/reference/dir.php · first audit applications sweep (fixed for the sequence app only)</p>
+        <p><code>name[]=x</code> is promoted as an array. The page then hands it to <code>trim()</code> or <code>preg_match()</code>, or writes <code>{$name}</code> as a scalar.</p>
+        <p>Each 500 also writes a report of about 1.2 MB, capped per app by <code>$padErrorKeep</code>, so it is a cheap way to fill a disk at 100 reports per app.</p>
+        <div class="ev"><b>Reproduced (each a 500):</b>
+          <ul>
+            <li><code>/pad/demo/?contact&amp;name[]=x</code></li>
+            <li><code>/pad/demo/?todo&amp;message[]=x</code></li>
+            <li><code>/pad/apps/?browse&amp;app[]=x</code></li>
+            <li><code>/pad/reference/?dir&amp;xref[]=x</code></li>
+            <li>a probe page with <code>{$q}</code> and <code>q[]=x</code></li>
+          </ul>
+        </div>
+        <div class="fix"><b>Fix:</b> refuse or flatten an array unless its name is declared as an array, and make field output tolerate one. In the apps, apply the <code>is_string</code> guard the sequence app already uses.</div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m12">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">Manual</div></div>
+      <div>
+        <h3>The manual teaches behaviour the engine no longer has<span class="live">verified live</span></h3>
+        <p class="where">apps/manual/pages/parse.pad:20 · ignore.pad:17,23,33,37,49,112 · ending_the_request.pad:35-39 · pipes.pad:9,91 · application_structure.pad:41-43 · conditions.pad:25-27 · fragments/pipes_3.pad · sequences.pad:4</p>
+        <p>The applications review checked about 160 concrete claims across all 136 manual pages. No page 500s or renders empty, and every link resolves. These claims are wrong:</p>
+        <ul>
+          <li><b><code>parse.pad:20</code></b> says an unquoted <code>{$myVar}</code> is read as the PHP constant of that name. Under <code>$padProtectValues</code> it is spliced as quoted text, so <code>{pad myOption={$myVar}}</code> gives <code>ZZABC</code>, not the constant. The sweep fix <code>07d585d52</code> missed this line.</li>
+          <li><b><code>ignore.pad</code></b> says JSON "would cause errors" without <code>ignore</code>, but it renders literally at 200, so example 4 demonstrates nothing. It says a JSON variable needs <code>| ignore</code>; values are text. It says spaced JS and CSS braces are parsed; <code>{</code> plus whitespace is kept.</li>
+          <li><b><code>ending_the_request.pad:35-39</code></b> says errors answer 500. Under <code>log</code> and <code>ignore</code> they answer 200.</li>
+          <li><b><code>pipes.pad</code></b> teaches <code>{echo $var | fn}</code> for variables, which skips sanitize (<a href="#m1">M1</a>).</li>
+          <li><b><code>application_structure.pad:41-43</code></b> describes the structure app as it was before the last sweep reworked it.</li>
+          <li><b>Smaller ones:</b>
+            <ul>
+              <li><code>conditions.pad:25-27</code> calls <code>{if $flag}</code> wrong, but it tests truth.</li>
+              <li><code>ignore.pad:112</code> gets nested <code>{ignore}</code> wrong.</li>
+              <li>The "Replace and uppercase" fragment actually uses <code>ucwords</code>.</li>
+              <li><code>sequences.pad:4</code> says "over eighty" types; there are exactly 80.</li>
+            </ul>
+          </li>
+        </ul>
+        <div class="fix"><b>Fix:</b> correct each page. Give each claim a fragment, so the Manual suite pins it.</div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m13">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">Test suite</div></div>
+      <div>
+        <h3>Shape-only answers leave hundreds of fixed results unasserted on the manual's data-handling pages and in the sequence actions<span class="live">verified live</span></h3>
+        <p class="where">apps/regression/manual/miscellaneous/handling.txt · manual/pages/data_handling.txt · sequence/actions.txt · sequence/sequences.txt · sequence/specials/{reduce,min_max,dedup,extra}.txt · sequence/keepRemoveFlag/{chance,random}.txt · apps/sequence/actions.pad:1-3</p>
+        <p>One random demo on a page (<code>shuffle</code>, <code>randomize=3</code>, <code>random</code>) turned the whole page's answer into a generic pattern: <code>/&lt;tr&gt;[\s\S]*?&lt;th…&gt;HTML…RESULT…&lt;\/table&gt;[\s\S]*/</code>.</p>
+        <ul>
+          <li><code>handling.txt</code> is 262 characters and covers 84 demos, 78 of them with fixed output.</li>
+          <li><code>data_handling.txt</code> covers the same 84 again, about 69 KB rendered.</li>
+          <li><code>actions.txt</code> covers about 30 fixed action results: average, count, sort, trim, product and the twelve set operations.</li>
+        </ul>
+        <p>The page comments still say "the crawl … compares the page with the draw masked". No masking exists in <code>getSuiteCompare</code>.</p>
+        <div class="ev"><b>Verified:</b> three renders of <code>sequence/?actions</code> differ only in the shuffle and randomize cells. A wrong <code>sort</code>, <code>trim</code> or <code>slice</code> there would pass the Manual and Sequence suites. The Framework suite's per-option cases cover some of it.</div>
+        <div class="fix"><b>Fix:</b> move the random demos to a page of their own, or build each pattern from the literal page text with <code>[\s\S]*?</code> over the random cells only.</div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m14">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">Test suite</div></div>
+      <div>
+        <h3>The suites' verdict depends on the User-Agent of whoever starts the run: <code>ci.sh</code> is green while the Test button is red<span class="live">verified live</span></h3>
+        <p class="where">lib/curl.php:149 · apps/regression/errors/syntax/a_sort_flag_that_does_not_exist_is_named.txt · errors/syntax/an_increment_counts_an_application_variable.txt</p>
+        <p>Every test fetch carries the caller's User-Agent. The error renderer answers JSON to curl, and HTML with <code>&amp;#039;</code> quotes to a browser.</p>
+        <p>108 of the 110 Errors patterns allow for both quote forms; these two don't. So the documented Test and Build buttons fail where <code>ci.sh</code> passes. Each path also tests only one of the two dump renderers.</p>
+        <div class="fix"><b>Fix:</b> send a fixed User-Agent from the runner, write the two patterns as <code>('|&amp;#039;)</code>, and decide which renderer each suite is meant to cover.</div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m15">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">Test suite</div></div>
+      <div>
+        <h3>The comparator and the lint accept answers that cannot fail, and the restart-guard tests pass on a time-limit fatal<span class="live">verified live</span></h3>
+        <p class="where">apps/regression/main/_lib/regression.php:504-550 (getSuiteCompare), 672-723 (getSuiteLint) · regression/error_ignore/restart.txt · regression/error_log/restart.txt</p>
+        <p>Run in the PHP CLI against the real functions:</p>
+        <ul>
+          <li>The answers <code>//</code>, <code>/^/</code>, <code>/[\s\S]*/</code> and <code>/x?/</code> all pass a 200 body reading <code>&lt;h1&gt;Fatal: totally wrong page&lt;/h1&gt;</code>, and the lint accepts all four.</li>
+          <li>A bare <code>HTTP 500</code> passes a time-limit fatal.</li>
+        </ul>
+        <p>The two <code>restart.txt</code> answers are exactly that. Their README says they exist to catch a restart loop that runs "until the time limit", and a broken guard would still pass, only slower. Today the guard answers in about 20 ms.</p>
+        <p>49 answers are empty. That is safe only while the strict check stays on.</p>
+        <div class="fix"><b>Fix:</b>
+          <ul>
+            <li>Lint: reject a lone pattern that matches the empty string or has no literal anchor.</li>
+            <li>Give the restart cases a verdict page that bounds the elapsed time, or one that checks the guard's log entry.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m16">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">Documentation</div></div>
+      <div>
+        <h3>About forty claims in CLAUDE.md and <code>docs/</code> are false today: examples that error, functions with the wrong signature, options that don't exist<span class="live">verified live</span></h3>
+        <p class="where">CLAUDE.md · docs/APP.md · docs/PAD.md · docs/reference/{TAGS,FUNCTIONS,PROPERTIES,OPTIONS,README}.md · docs/DATABASE.md · docs/REACT.md</p>
+        <p>The full list, with the reality behind each claim, is in <a href="#docs">Documentation</a>. The ones most likely to be copied:</p>
+        <ul>
+          <li><b>The <code>button.php</code> example</b> prints a stray <code>1</code>; it has no <code>return TRUE</code>.</li>
+          <li><b>A <code>fields</code> loop</b> closed with <code>{/fields}</code> errors.</li>
+          <li><b><code>padBetween($str, $open, $close)</code></b> actually takes six arguments and throws.</li>
+          <li><b><code>{php:strlen(@)}</code> as a tag</b> errors.</li>
+          <li><b><code>{else}</code> inside the bool, exists and count tags</b> errors.</li>
+          <li><b>"<code>{code}</code> executes PHP"</b> is false.</li>
+          <li><b>REACT.md's custom <code>reactData</code></b> overwrites the engine's <code>$padData</code>.</li>
+        </ul>
+        <div class="fix"><b>Fix:</b> correct the list. Then turn each documented example into a Framework case, so the docs can't drift from the engine again unnoticed.</div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m17">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">Sequences · overflow</div></div>
+      <div>
+        <h3>Overflow is checked after the plays and with <code>&gt;</code>: a keep, remove or flag crashes once its sequence passes <code>PHP_INT_MAX</code>, and terms that should end the run print as imprecise floats<span class="live">verified live</span><span class="twice">re-run</span></h3>
+        <p class="where">sequence/build/one.php:54-61 · types/even/bool.php:10 · first audit H9 ("stops cleanly")</p>
+        <p>The plays run on line 54, before the float-range guard on 60. The predicate is therefore handed the overflowed float.</p>
+        <p>The guard itself tests <code>&gt; PHP_INT_MAX</code>, and <code>(float)2⁶³ &gt; PHP_INT_MAX</code> is false, so a term of exactly 2⁶³ gets through. Shifts of 64 or more give 0.</p>
+        <div class="ev"><b>Reproduced:</b>
+          <ul>
+            <li><code>{sequence fibonacci, keep, even, rows=50}</code> → 500, "The float 1.2200160415121877E+19 is not representable as an int".</li>
+            <li><code>{sequence power=2, rows=70}</code> ends with <code>9.2233720368548E+18</code>.</li>
+            <li><code>tetrahedral, from=2097150</code> gives <code>1.5372308718331E+18</code>; A000292 gives 1537230871833083904.</li>
+            <li><code>cullen, from=64</code> → <code>1,1,1</code>; <code>kynea, from=64</code> → <code>-1,-1,-1</code>.</li>
+          </ul>
+          The same failure appeared with <code>flag, prime</code>, <code>remove, odd</code>, <code>catalan, keep, odd</code> and <code>power=2, keep, even</code>.</div>
+        <div class="fix"><b>Fix:</b> check the range right after a term is made, before the plays. Use <code>&gt;=</code>, compute the divided forms with <code>intdiv</code>, and refuse shifts of 63 or more.</div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m18">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">Sequences · DoS</div></div>
+      <div>
+        <h3>Membership on a value that is not a number crashes for 17 types and burns the full time limit for two others<span class="live">verified live</span></h3>
+        <p class="where">sequence/build/check.php:62-65 · types/*/bool.php</p>
+        <ul>
+          <li><b>A TypeError 500</b> for 17 types: <code>{sequence 'a..c', keep, T}</code> with T one of even, odd, happy, harshad, palindrome, powerful, semiprime, composite, triangular, pronic, kaprekar, lucky, strong, antiprime, prime, multiple or power.</li>
+          <li><b>A timeout</b> for square and golomb: <code>stop=a</code> is never reached, so a million terms are generated per candidate. <code>{sequence 'a..c', keep, square}</code> gave "Maximum execution time" after 30.7 s.</li>
+        </ul>
+        <p>That is reachable from a request wherever a template passes a form value into <code>sole=</code> or a range.</p>
+        <div class="fix"><b>Fix:</b> in <code>check.php</code>, answer FALSE for a candidate that isn't numeric, before any predicate or generation.</div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m19">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">Sequences · membership</div></div>
+      <div>
+        <h3>Membership past a type's table regenerates the sequence for every candidate, and past the 10⁶-term cap it silently answers FALSE<span class="live">verified live</span></h3>
+        <p class="where">sequence/build/check.php:65, 74-82 · inits/limits.php:25-27 · first audit M16, H9</p>
+        <p>The first audit cached the generated list on the path for types with no table. On the table path, <code>pqArray(…, "stop=$pqLoop")</code> still runs once per candidate.</p>
+        <p>The cap that ended the "10001² is not a square" bug only moved the limit: a check that the cap cuts short now answers FALSE.</p>
+        <div class="ev"><b>Reproduced:</b>
+          <ul>
+            <li><code>{sequence '10001..10200', flag, identity}</code> times out at about 0.2 s per candidate.</li>
+            <li><code>{sequence '10000..14000', keep, emirp}</code> → 500, time limit.</li>
+            <li><code>{sequence sole=10000000000000000, flag, square}</code> → <code>0</code> after 17.3 s, yet 10¹⁶ = (10⁸)².</li>
+          </ul>
+        </div>
+        <div class="fix"><b>Fix:</b> cache and extend the list per sequence on the table path too. Give the closed-form types (square, cubic, polygonal) integer-square-root predicates, and report a check that the cap cut short, as position lookups already do.</div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m20">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">Sequences · wrong terms</div></div>
+      <div>
+        <h3><code>prime</code> yields negative numbers, and its predicate crashes on fractions and text<span class="live">verified live</span><span class="twice">re-run</span></h3>
+        <p class="where">sequence/types/prime/bool.php:24-25</p>
+        <p><code>gmp_prob_prime</code> works on |n|. The fallback without gmp answers FALSE below 2, so the two paths disagree.</p>
+        <div class="ev"><b>Reproduced:</b>
+          <ul>
+            <li><code>{sequence prime, from=-20, rows=5}</code> → <code>-19 -17 -13 -11 -7</code>.</li>
+            <li><code>{sequence '-10..10', keep, prime}</code> → <code>-7 -5 -3 -2 2 3 5 7</code>; A000040 has positive primes only.</li>
+            <li><code>{sequence divide=2, keep, prime}</code> → 500, "Implicit conversion from float 0.5".</li>
+            <li><code>'1;7;abc;11', keep, prime</code> → 500, ValueError.</li>
+          </ul>
+        </div>
+        <div class="fix"><b>Fix:</b> answer FALSE when <code>$n &lt; 2</code> or <code>$n != (int) $n</code>, before calling gmp.</div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m21">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">Sequences · edge input</div></div>
+      <div>
+        <h3>Nine generators crash or give wrong terms when <code>from</code> is 0 or below<span class="live">verified live</span></h3>
+        <p class="where">sequence/types/{newmanConway,cullen,kynea,bell,moserdebruijn,polite,sylvester,catalan,pell}/*</p>
+        <ul>
+          <li><b>Crashes:</b>
+            <ul>
+              <li><code>newmanConway, from=0</code> recurses until the stack limit.</li>
+              <li><code>cullen, from=-1</code> and <code>kynea, from=-2</code> throw "Bit shift by negative number".</li>
+              <li><code>bell, from=-1</code> and <code>moserdebruijn, from=-2</code> hit an undefined array key.</li>
+            </ul>
+          </li>
+          <li><b>Wrong terms:</b>
+            <ul>
+              <li><code>polite, from=-3</code> → <code>3,4,5,1,3</code>; 4 and 1 are not polite (A138591).</li>
+              <li><code>sylvester, from=0</code> → <code>2,2,3</code>.</li>
+              <li><code>catalan, from=-2</code> → <code>1,1,1</code>.</li>
+              <li><code>pell, from=-3</code> → <code>-3,-2,-1,0</code>.</li>
+            </ul>
+          </li>
+        </ul>
+        <p>The first audit's sweep of all 80 types varied the parameters only, not <code>from</code>.</p>
+        <div class="fix"><b>Fix:</b> clamp <code>from ≥ 1</code> in an <code>init.php</code> for the function and loop types, as the bool types already do, and guard <code>n &lt; 1</code> inside the functions.</div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m22">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">Sequences · performance</div></div>
+      <div>
+        <h3>Four generators are slow enough that small parameters hit the time limit; recaman was named in the first audit and never fixed<span class="live">verified live</span></h3>
+        <p class="where">sequence/types/moserdebruijn/* · recaman/* · pronic/bool.php:11 · lucky/bool.php:53 · first audit M16</p>
+        <ul>
+          <li><b>moserdebruijn</b> rebuilds its table for every term: <code>to=60000</code> times out.</li>
+          <li><b>recaman</b> is O(n³): <code>sequence:recaman(6000)</code> takes 26.0 s.</li>
+          <li><b>pronic</b> tests membership by looping up to √x: <code>{sequence fibonacci, keep, pronic}</code> times out.</li>
+          <li><b>lucky</b> re-sieves from scratch: <code>{sequence lucky, from=1000000, rows=1}</code> times out.</li>
+        </ul>
+        <div class="fix"><b>Fix:</b>
+          <ul>
+            <li>moserdebruijn has a closed form: n's binary digits read in base 4.</li>
+            <li>Memoise recaman.</li>
+            <li>Use an integer-square-root test for pronic.</li>
+            <li>Bound the lucky sieve.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding pm" id="m23">
+      <div class="tag"><div class="priority">Medium</div><div class="cat">Sequences · membership</div></div>
+      <div>
+        <h3>Membership falls back wrongly for types whose values lag their position, and <code>pqArray</code> splices its parameter into template text<span class="live">verified live</span></h3>
+        <p class="where">sequence/build/check.php:75-82 · lib/sequence.php:130 (pqArray) · first audit M13</p>
+        <p>The fallback looks only among the first max(1, v) terms, and <code>pqArray</code> pastes the parameter, unquoted, into a template it then runs. M13 gave predicates to add, subtract, multiply and divide only.</p>
+        <div class="ev"><b>Reproduced, over 0..6:</b>
+          <ul>
+            <li><code>flag, modulo=3</code> → <code>0,1,1,0,0,0,0</code>, though 0 is a term.</li>
+            <li><code>flag, eval='@*2'</code> → <code>1,0,0,0,0,0,0</code>; expected <code>0,0,1,0,1,0,1</code>.</li>
+            <li><code>exponentiation=0.5</code> flags only 1, though 2 = √4 is a term.</li>
+          </ul>
+          Called directly, <code>pqArray('eval', '@*2', 'to=6')</code> returned six zeros, and a parameter with a comma in it ends the request.</div>
+        <div class="fix"><b>Fix:</b> pass the nested build's parameter as data, not spliced into template text, and add predicates where they are cheap.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="low">
+  <h2>Low <span class="count">— 32</span></h2>
+  <p class="small" style="max-width:72ch">Grouped by area. Each item names the place and the fix. Where an item was reproduced, the reproduction is summarised in a sentence; the reviews' full notes are available on request.</p>
+
+  <h3 style="margin:1.2rem 0 .6rem">Hardening</h3>
+  <div class="findings compact">
+    <div class="finding pl" id="l1"><div class="tag"><div class="priority">Low</div><div class="cat">Validation</div></div><div>
+      <h3><code>padValid()</code> accepts traversal and glob names that carry one <code>@</code></h3>
+      <p class="where">lib/valid.php:28-29 · at/_lib/check.php:89-92 · first audit H6</p>
+      <p>When <code>padAtCheck</code> passes, the name regex is skipped. <code>padAtCheckCondition()</code> returns TRUE whenever the operator is absent, so <code>padValid('a/../../etc/x@y')</code>, <code>padValid('a/b\c@1')</code> and <code>padValid('x*?[@q')</code> are all TRUE (run in the CLI). Only names written in a template reach it, and the target would need an <code>@</code> in its file name.</p>
+      <div class="fix"><b>Fix:</b> answer FALSE when the operator is absent, and require <code>padAtValid</code> for every part of the name.</div>
+    </div></div>
+    <div class="finding pl" id="l2"><div class="tag"><div class="priority">Low</div><div class="cat">Computed include</div></div><div>
+      <h3>The <code>type=</code> option goes into an include path without validation</h3>
+      <p class="where">lib/data.php:52-63 · tags/_go/store.php:56 · types/_go/local.php:17,36 · first audit H6</p>
+      <p><code>file_exists(PAD . "data/$type.php")</code> is followed by an include. The value comes from the template, or from a request value if the template writes <code>type=$x</code>. Found by reading; not reproduced.</p>
+      <div class="fix"><b>Fix:</b> an allow-list of the data types: xml, json, yaml, csv, list, range, html, curl, file.</div>
+    </div></div>
+    <div class="finding pl" id="l3"><div class="tag"><div class="priority">Low</div><div class="cat">Computed include</div></div><div>
+      <h3>Play names in a <code>make=</code>, <code>keep=</code>, <code>remove=</code> or <code>flag=</code> value reach sequence include paths without validation</h3>
+      <p class="where">sequence/plays/inits.php:24-28 · plays/add.php · build/include.php:9-12 · plays/init.php:11-26 · lib/sequence.php:303-317 · first audit M19</p>
+      <p><code>padSplit('|', …)</code> names are never run through <code>pqSeq()</code> or <code>padValidName()</code>; <code>file_exists</code> is the only guard. Exploiting it needs <code>make=$v</code> from a request plus a file named like a play at a reachable relative path. Found by reading.</p>
+      <div class="fix"><b>Fix:</b> run <code>padValidName()</code> and <code>pqSeq()</code> on each split name before <code>plays/add.php</code>.</div>
+    </div></div>
+    <div class="finding pl" id="l4"><div class="tag"><div class="priority">Low</div><div class="cat">SQL</div></div><div>
+      <h3>The placeholder quote tracker ignores SQL comments, <code>LIKE</code> wildcards are not escaped, and no connection charset is set</h3>
+      <p class="where">lib/db.php:61-62, 181-199 · lib/select.php (padSelectBind)</p>
+      <p>The three problems:</p>
+      <ul>
+        <li><b>Comments.</b> An apostrophe inside a <code>--</code>, <code>#</code> or <code>/* */</code> comment flips the tracker. A later bare <code>{0}</code> is then escaped but not quoted, so a non-numeric value lands as raw SQL. This needs author SQL of that shape. Plausible; not reproduced.</li>
+        <li><b>Wildcards.</b> <code>%</code> and <code>_</code> in a value pass into a <code>LIKE</code> as wildcards.</li>
+        <li><b>Charset.</b> No <code>mysqli_set_charset</code> is called, so the client default applies.</li>
+      </ul>
+      <div class="fix"><b>Fix:</b> skip comments in both trackers. Offer a <code>{0:like}</code> form that escapes wildcards. Call <code>mysqli_set_charset($c, 'utf8mb4')</code>.</div>
+    </div></div>
+    <div class="finding pl" id="l5"><div class="tag"><div class="priority">Low</div><div class="cat">File write · deployment</div></div><div>
+      <h3><code>{file}</code> lets a template choose any name and extension, and a <code>.php</code> under a served <code>DATA</code> executes<span class="live">verified live</span></h3>
+      <p class="where">tags/file.php:14-21 · lib/paths.php:68-90 · www/DATA</p>
+      <p>Writes are correctly confined to <code>DATA</code>. But on the documented layout <code>DATA</code> is under the docroot, and a <code>.php</code> placed there runs at <code>/pad/DATA/…</code> (verified). Any write path into <code>DATA</code> with a template-chosen extension is therefore code execution.</p>
+      <div class="fix"><b>Fix:</b> restrict <code>ext=</code> to a safe list and refuse <code>php</code>, <code>phtml</code> and <code>phar</code>. Take <code>DATA</code> out of the docroot (<a href="#h4">H4</a>).</div>
+    </div></div>
+    <div class="finding pl" id="l6"><div class="tag"><div class="priority">Low</div><div class="cat">SQL</div></div><div>
+      <h3>Select identifiers are wrapped in backticks without escaping embedded backticks</h3>
+      <p class="where">lib/select.php:129-139 (padSelectKeys), 505-514 (padSelectField)</p>
+      <p>Values are escaped since the first audit's C2 fix; identifiers are not. Normally they come from <code>$padSelect</code>, which is PHP, or from a literal <code>key="…"</code>. A template that wrote <code>key=$request</code> would splice the visitor's identifier. No working break was shown.</p>
+      <div class="fix"><b>Fix:</b> validate identifier parts against <code>[A-Za-z0-9_$]</code>, or double any backticks.</div>
+    </div></div>
+    <div class="finding pl" id="l7"><div class="tag"><div class="priority">Low</div><div class="cat">CSRF</div></div><div>
+      <h3>The engine offers no CSRF help, promotion makes GET and POST indistinguishable, and the demo todo acts on GET</h3>
+      <p class="where">inits/parms.php:49-50 · apps/demo/todoPost.php · docs/ANALYSE.md (a proposal only)</p>
+      <p>An app that checks <code>$action</code> also accepts the same request as a top-level GET link, which SameSite=Lax allows to carry the session cookie. <code>todoPost</code> acts on <code>$go</code> (add, done, delete, clear) whatever the method, and rewrites <code>todos.json</code> on every GET. Guestbook and contact check <code>REQUEST_METHOD</code>.</p>
+      <div class="fix"><b>Fix:</b> add a session-bound token helper, give apps a way to tell which method a value came from, and make <code>todoPost</code> POST-only.</div>
+    </div></div>
+    <div class="finding pl" id="l8"><div class="tag"><div class="priority">Low</div><div class="cat">Identity</div></div><div>
+      <h3>The <code>PAD</code> response header exposes the HttpOnly session id, <code>padSesID</code> is still accepted from the query, and no security headers are sent<span class="live">verified live</span></h3>
+      <p class="where">lib/output.php:121 · inits/ids.php:18</p>
+      <ul>
+        <li><b>The header.</b> <code>PAD: &lt;padSesID&gt;-&lt;padReqID&gt;</code> hands the session id to any same-origin script.</li>
+        <li><b>The query.</b> While cookies are on, a link can still plant a ten-year <code>padSesID</code> the sender knows.</li>
+        <li><b>Missing headers.</b> No <code>X-Content-Type-Options</code>, <code>X-Frame-Options</code> or CSP is sent, and <code>X-Powered-By</code> is.</li>
+      </ul>
+      <div class="fix"><b>Fix:</b> drop the session id from the header, read <code>padSesID</code> only from the cookie when <code>$padCookies</code> is on, and send a default set of security headers.</div>
+    </div></div>
+    <div class="finding pl" id="l9"><div class="tag"><div class="priority">Low</div><div class="cat">Routing</div></div><div>
+      <h3>On a case-insensitive filesystem, a case variant of the URL changes <code>$padApp</code><span class="live">verified live</span></h3>
+      <p class="where">www/pad.php:26-29</p>
+      <p><code>/pad/TEST/?…</code> runs <code>apps/test</code> with <code>$padApp = 'TEST'</code>. Any check keyed on the app name can be sidestepped this way, and so can the cache key and the dump directory. This affects macOS and Windows.</p>
+      <div class="fix"><b>Fix:</b> take the name from the directory on disk, or compare it against a scan of <code>apps/</code>.</div>
+    </div></div>
+  </div>
+
+  <h3 style="margin:1.6rem 0 .6rem">Engine correctness &amp; error handling</h3>
+  <div class="findings compact">
+    <div class="finding pl" id="l10"><div class="tag"><div class="priority">Low</div><div class="cat">Evaluator</div></div><div>
+      <h3><code>%</code> with a fractional divisor, and <code>0 ** -n</code>, end in a 500<span class="live">verified live</span></h3>
+      <p class="where">eval/go/doubleVarVar.php:43-58 · first audit H8 (division by zero)</p>
+      <p>The zero guard tests <code>$right == 0</code>, but <code>%</code> casts to int, so <code>0.5</code> becomes 0 and PHP throws: <code>{echo 5 % 0.5}</code> → 500, "Modulo by zero". <code>{echo 0 ** -2}</code> → 500, deprecated power of base 0.</p>
+      <div class="fix"><b>Fix:</b> guard <code>%</code> on <code>(int) $right == 0</code>, and guard base 0 with a negative exponent.</div>
+    </div></div>
+    <div class="finding pl" id="l11"><div class="tag"><div class="priority">Low</div><div class="cat">Parser</div></div><div>
+      <h3><code>{ignore}</code> doesn't protect a literal <code>{# … #}</code> from comment stripping<span class="live">verified live</span></h3>
+      <p class="where">lib/level.php:238-266 (padCommentStrip) · occurrence/init.php:16 · first audit M6</p>
+      <p>The strip runs over the whole base before the scanner reaches <code>{ignore}</code>. <code>{ignore}before {# literal #} after{/ignore}</code> → <code>before  after</code>.</p>
+      <div class="fix"><b>Fix:</b> skip <code>{ignore}</code> spans in <code>padCommentStrip</code>, as <code>build/build.php</code> does for its construct scan.</div>
+    </div></div>
+    <div class="finding pl" id="l12"><div class="tag"><div class="priority">Low</div><div class="cat">Strict check</div></div><div>
+      <h3>An <code>app:</code> miss inside an expression is silent, and four documented options do nothing<span class="live">verified live</span></h3>
+      <p class="where">inits/const.php:39 · docs/reference/OPTIONS.md:27, 550-556 · CLAUDE.md:588</p>
+      <ul>
+        <li><b>Silent misses.</b> <code>{echo 'x' | app:nosuchthing}</code> → <code>[]</code>, and <code>{echo '' | app:nosuchthing . 'z'}</code> → <code>[z]</code>, while <code>{app:nosuchthing}</code> as a tag does error. CLAUDE.md promises that "misses behind a type prefix" are reported.</li>
+        <li><b>Do-nothing options.</b> <code>track</code>, <code>trace</code>, <code>parent</code> and <code>pre</code> are in <code>padOptionsStart</code> but have no handler: <code>{true trace}x{/true}</code> → <code>x</code>, with no "nothing reads" error.</li>
+      </ul>
+      <div class="fix"><b>Fix:</b> report a prefixed miss in an expression the way a tag miss is reported, and either implement the four options or remove them from the list and the docs.</div>
+    </div></div>
+    <div class="finding pl" id="l13"><div class="tag"><div class="priority">Low</div><div class="cat">Parser · enshrined</div></div><div>
+      <h3><code>@start@</code> and <code>@end@</code> leak into the page when the page's PHP returns a string or nothing<span class="live">verified live</span></h3>
+      <p class="where">apps/regression/pages/manual/z99.txt · exits/exits.php:14-15</p>
+      <p>The markers are consumed when the page returns an array, and printed raw otherwise. The strict check reports a stray <code>@content@</code> but not a stray <code>@start@</code> or <code>@end@</code>. The <code>z99</code> answer records the raw markers as expected output.</p>
+      <div class="fix"><b>Fix:</b> consume or report them the way <code>@content@</code> is, then re-answer <code>z99</code>.</div>
+    </div></div>
+    <div class="finding pl" id="l14"><div class="tag"><div class="priority">Low</div><div class="cat">Error handling</div></div><div>
+      <h3>A PHP fatal under <code>boot</code> gives the visitor no error id and PAD logs nothing; a memory fatal under <code>pad</code> gives an empty 500<span class="live">verified live</span></h3>
+      <p class="where">error/boot.php:75, 106-107, 172-178 · error/types/exit.php:18</p>
+      <p>PHP has already sent its 500 for the fatal. <code>http_response_code(500)</code> then warns, the warning becomes a throw, and the remote branch that logs and prints the id never runs. A memory fatal leaves no headroom: reports stop at 9 of 21 files.</p>
+      <div class="fix"><b>Fix:</b> guard the status call with <code>headers_sent()</code>. Reserve a block of memory at boot and free it in the shutdown handlers.</div>
+    </div></div>
+    <div class="finding pl" id="l15"><div class="tag"><div class="priority">Low</div><div class="cat">Error handling</div></div><div>
+      <h3>With the try guards off, an uncaught throwable under <code>log</code>, <code>ignore</code> or <code>dump</code> ends as an empty 200<span class="live">verified live</span></h3>
+      <p class="where">error/error.php:44-55 · try/try.php:14-15 · first audit Low "HTTP status"</p>
+      <p><code>padErrorException</code> returns and PHP ends the script, so nothing renders and no status is set. With the guards on (the default), 21 throwing templates all rendered correctly.</p>
+      <div class="fix"><b>Fix:</b> end <code>padErrorException</code> with <code>padExit(500)</code>.</div>
+    </div></div>
+    <div class="finding pl" id="l16"><div class="tag"><div class="priority">Low</div><div class="cat">Concurrency</div></div><div>
+      <h3>The <code>xml</code> info mode stacks trees under concurrent requests, and <code>padFileGet</code>/<code>padFilePut</code> check before they act<span class="live">verified live</span></h3>
+      <p class="where">info/types/xml/start.php:33-34 · info/types/xml/_lib.php:196-207 · lib/file.php:40-49, 109 · first audit M12</p>
+      <ul>
+        <li><b>Stacked trees.</b> 32 concurrent requests left 50 lines and an Expat "junk after document element"; one request alone leaves 8 well-formed lines.</li>
+        <li><b>Check, then act.</b> At 48 concurrent requests, <code>file_get_contents</code> and <code>fileperms</code> failed on a file that had just vanished, and the resulting error was written after the response (<a href="#m8">M8</a>).</li>
+      </ul>
+      <div class="fix"><b>Fix:</b> build the XML in memory and write it once, atomically. Have the file layer tolerate a file that disappears.</div>
+    </div></div>
+    <div class="finding pl" id="l17"><div class="tag"><div class="priority">Low</div><div class="cat">DATA growth</div></div><div>
+      <h3>Trace, track and file output keep everything: <code>DATA/trace</code> is 624 MB in 155,188 files</h3>
+      <p class="where">info/types/trace/start.php:13, 27 · exits/output/file.php:15-17 · info/types/track/_lib.php</p>
+      <p>Trace makes a directory per request and raises the time limit to 900 s. Each <code>regression/info</code> run adds about 90 files. The reports are keyed by page name only, so apps overwrite each other's.</p>
+      <div class="fix"><b>Fix:</b> keep the newest N per mode, and key the paths by app.</div>
+    </div></div>
+  </div>
+
+  <h3 style="margin:1.6rem 0 .6rem">Sequences</h3>
+  <div class="findings compact">
+    <div class="finding pl" id="l18"><div class="tag"><div class="priority">Low</div><div class="cat">Sequences</div></div><div>
+      <h3>Parameterised types crash in the expression form<span class="live">verified live</span></h3>
+      <p class="where">sequence/types/range/build.php:12 · the expression-form entry</p>
+      <p><code>sequence:multiply(4)</code>, <code>add</code>, <code>subtract</code>, <code>power</code> and <code>exponentiation</code> give a raw TypeError 500. <code>sequence:range(4)</code> gives "Undefined variable $padParm". The expression form passes <code>''</code> where the tag form uses TRUE, and has no way to pass a parameter.</p>
+      <div class="fix"><b>Fix:</b> refuse a parameterised type in the expression form with a PAD error, or accept <code>sequence:multiply(4, 3)</code>.</div>
+    </div></div>
+    <div class="finding pl" id="l19"><div class="tag"><div class="priority">Low</div><div class="cat">Sequences</div></div><div>
+      <h3>A parameter fed from a store that is shorter than the run crashes<span class="live">verified live</span></h3>
+      <p class="where">sequence/plays/parm.php:11 · build/store.php:12</p>
+      <p><code>{sequence 6, make, add='short'}</code> with a three-term store → "Undefined array key 3". <code>{sequence add='short', rows=6}</code> fails the same way.</p>
+      <div class="fix"><b>Fix:</b> cycle the store or end the run, and say which in the docs.</div>
+    </div></div>
+    <div class="finding pl" id="l20"><div class="tag"><div class="priority">Low</div><div class="cat">Sequences</div></div><div>
+      <h3>The membership predicate disagrees with generation for some types<span class="live">verified live</span></h3>
+      <p class="where">sequence/types/power/bool.php:21 · multiple, even, palindrome, pronic, recaman, negation, not</p>
+      <ul>
+        <li><code>power=-2</code>: the predicate rejects −2 and −8, which are generated.</li>
+        <li><code>multiple=3</code>: it accepts 0 and negatives, which never are.</li>
+        <li>even, palindrome and pronic flag 0, though their generation starts at 2, 1 and 2.</li>
+        <li>recaman's predicate looks only at the first 10,000 terms, so 781 (term 16,774) flags 0.</li>
+        <li>By reading: negation and not answer FALSE below −10,000.</li>
+      </ul>
+      <div class="fix"><b>Fix:</b> derive each predicate from the generator's domain, and pin both against each other in a Sequence case.</div>
+    </div></div>
+    <div class="finding pl" id="l21"><div class="tag"><div class="priority">Low</div><div class="cat">Sequences</div></div><div>
+      <h3><code>randomly</code> samples a different pool depending on the build strategy<span class="live">verified live</span></h3>
+      <p class="where">sequence/build/randomly/build/inits.php:26-28</p>
+      <p>For function, bool and order builds without <code>to=</code>, the first pass makes only <code>rows</code> terms. So <code>{sequence happy, randomly, rows=5}</code> draws only from 1, 7, 10, 13 and 19, while prime draws from up to 10,000.</p>
+      <div class="fix"><b>Fix:</b> one pool size for every strategy, configurable.</div>
+    </div></div>
+    <div class="finding pl" id="l22"><div class="tag"><div class="priority">Low</div><div class="cat">Sequences</div></div><div>
+      <h3><code>skip</code> counts from different places in different types<span class="live">verified live</span></h3>
+      <p class="where">sequence/build/types/type/fixed.php (header comment)</p>
+      <ul>
+        <li>Order types count it from term 1: <code>{sequence fibonacci, from=5, skip=2, rows=3}</code> → <code>3 5 8</code>, so the skip had no effect.</li>
+        <li>Loop types count it from <code>from</code>: <code>prime, from=10, skip=2</code> loses 11.</li>
+        <li>The header comment describes a position the code never sets.</li>
+      </ul>
+      <div class="fix"><b>Fix:</b> one rule for every type, and a Framework case for each kind.</div>
+    </div></div>
+  </div>
+
+  <h3 style="margin:1.6rem 0 .6rem">Test suites</h3>
+  <div class="findings compact">
+    <div class="finding pl" id="l23"><div class="tag"><div class="priority">Low</div><div class="cat">Test suite</div></div><div>
+      <h3>Trimming and whitespace rules make some tests unable to fail<span class="live">verified live</span></h3>
+      <p class="where">lib/curl.php:295 (padCurlParse) · regression.php:860 · getSuiteOne · framework/functions/printf_width.txt</p>
+      <p>The body is trimmed twice and the Framework suite strips every newline with its indent. The server sends <code>   3.142</code> for <code>printf_width</code> and the answer is <code>3.142</code>, so the width is never tested. The same goes for <code>functions/trim</code>, <code>trim_leaves_the_inside_alone</code> and the trim step of <code>chained_functions_run_left_to_right</code>. In <code>catalog/handling</code>, the shuffle line shuffles a one-element list.</p>
+      <div class="fix"><b>Fix:</b> wrap such output in markers, <code>[{echo …}]</code>, and shuffle at least three elements, checked as a set.</div>
+    </div></div>
+    <div class="finding pl" id="l24"><div class="tag"><div class="priority">Low</div><div class="cat">Test suite</div></div><div>
+      <h3><code>ci.sh</code> and <code>gate.sh</code> hard-code the eight suite names</h3>
+      <p class="where">ci.sh:59 · getSuites()</p>
+      <p>The runner iterates <code>getSuites()</code>, which says it is "the single place a suite exists". A ninth suite would run, but the gate would never check it.</p>
+      <div class="fix"><b>Fix:</b> have the runner write a manifest of its suites, and have the gate require exactly that set.</div>
+    </div></div>
+    <div class="finding pl" id="l25"><div class="tag"><div class="priority">Low</div><div class="cat">Test suite</div></div><div>
+      <h3>The commit binding ignores a dirty tree</h3>
+      <p class="where">apps/regression/main/_lib/regression.php:730-737 (getSuiteCommit)</p>
+      <p>Only HEAD is stamped, so a run over uncommitted engine or answer edits passes as HEAD.</p>
+      <div class="fix"><b>Fix:</b> add a dirty flag, or a hash of <code>git status --porcelain</code>.</div>
+    </div></div>
+    <div class="finding pl" id="l26"><div class="tag"><div class="priority">Low</div><div class="cat">Test suite</div></div><div>
+      <h3>No check finds orphan answers, and ownership parity counts pages the walker drops</h3>
+      <p class="where">regression.php (getSuiteLint, the parity check, the walk rules)</p>
+      <p>Renaming a page silently drops its test; there are no orphan answers today. The walker's drop rules are substring tests: <code>{page</code> in an index, or a mention of <code>padFilePut</code> or <code>padRedirect</code> in a PHP-only page, comments included. Today the six dropped pages are all real actions.</p>
+      <div class="fix"><b>Fix:</b> add an orphan check to the lint, and compare parity with the actual work lists.</div>
+    </div></div>
+    <div class="finding pl" id="l27"><div class="tag"><div class="priority">Low</div><div class="cat">Test suite</div></div><div>
+      <h3>Three answers don't assert what their names say<span class="live">verified live</span></h3>
+      <p class="where">framework/lenient/an_empty_pipe_segment_is_skipped.txt · framework/tags/a_page_may_set_its_own_tidy_settings.txt · framework/tags/get_fetches_a_page_of_this_application_bare_and_escaped.txt · lib/eval/validate.php:117</p>
+      <ul>
+        <li><b>The empty pipe segment</b> records <code>[]</code>. The value is blanked, not skipped, as both the name and the comment in <code>validate.php</code> claim.</li>
+        <li><b>The tidy case</b> asserts nothing, because Tidy is skipped under <code>&amp;padInclude</code>.</li>
+        <li><b>The <code>get</code> case</b> is an unanchored <code>/all ok/</code>, so "bare and escaped" is never checked.</li>
+      </ul>
+      <div class="fix"><b>Fix:</b> rename the case, or change the behaviour, and anchor the patterns.</div>
+    </div></div>
+    <div class="finding pl" id="l28"><div class="tag"><div class="priority">Low</div><div class="cat">Test suite · enshrined</div></div><div>
+      <h3>Three answers record unrendered tags as expected output</h3>
+      <p class="where">pages/vars/at/1.txt · pages/vars/at/2.txt · framework/check/vars_at_5.txt</p>
+      <p>They record <code>&lt;br&gt; 3 {@abc}</code>, <code>&lt;br&gt; 6 {@klm.xyz}</code> and <code>2 - {@go}</code>. The demos list these forms among the working ones. They have never resolved, and the cases were switched to the lenient check so that the literal text passes.</p>
+      <div class="fix"><b>Fix:</b> make the forms work, or take them out of the demos and the answers.</div>
+    </div></div>
+    <div class="finding pl" id="l29"><div class="tag"><div class="priority">Low</div><div class="cat">Test suite · enshrined</div></div><div>
+      <h3>Four sequence behaviours are pinned by answers but documented nowhere</h3>
+      <p class="where">sequence/play/single/list.txt · framework cases on increment, span capping and <code>{last}</code> in <code>{while}</code></p>
+      <ul>
+        <li><code>{sequence even, list=4, rows=5}</code> renders nothing: <code>list</code> works only as a build, so as a play it drops everything.</li>
+        <li><code>increment=0</code> counts by one in the range form, but yields nothing in the loop form.</li>
+        <li><code>'1..3', increment=5</code> gives <code>1,3</code>.</li>
+        <li><code>{last}</code> inside <code>{while}</code> fires on every row.</li>
+      </ul>
+      <div class="fix"><b>Fix:</b> decide each one, then document it or fix it.</div>
+    </div></div>
+    <div class="finding pl" id="l30"><div class="tag"><div class="priority">Low</div><div class="cat">Test suite</div></div><div>
+      <h3>Some answers depend on mutable <code>DATA</code> state, and one crawled page writes on every visit</h3>
+      <p class="where">other/demo/todo.txt · other/demo/guestbook.txt · apps/demo/counter.php</p>
+      <p>The todo and guestbook answers need <code>DATA/demo/todos.json</code> and <code>guestbook.json</code> to hold <code>[]</code>. Using the demo app turns the Other suite red until they are reset, and the runner wipes only <code>dumps</code> and <code>temp</code>. <code>counter.php</code> writes on every crawl, against the rule that "a crawl … [runs] without changing anything".</p>
+      <div class="fix"><b>Fix:</b> point the demo at a fixture directory during runs, or reset it in the runner.</div>
+    </div></div>
+    <div class="finding pl" id="l31"><div class="tag"><div class="priority">Low</div><div class="cat">Test suite</div></div><div>
+      <h3><code>record.php</code> stores the raw body without the host rewrite</h3>
+      <p class="where">apps/regression/main/record.php</p>
+      <p>A recording made while the server is reached as 127.0.0.1 then fails on both hosts, because the comparator normalises only what comes back, not what was stored.</p>
+      <div class="fix"><b>Fix:</b> apply <code>getSuiteHostless</code> before writing.</div>
+    </div></div>
+    <div class="finding pl" id="l32"><div class="tag"><div class="priority">Low</div><div class="cat">Test suite</div></div><div>
+      <h3>Errors patterns also match their siblings' failures<span class="live">verified live</span></h3>
+      <p class="where">apps/regression/errors/**</p>
+      <p>Each pattern was cross-matched against every case body:</p>
+      <ul>
+        <li><code>/never closes/</code> matches five cases.</li>
+        <li><code>/there is no page named 'nosuchpage'/</code> matches the page, ajax, get and redirect cases.</li>
+        <li>The unclosed paren and bracket patterns are interchangeable, and so are the dir and files patterns.</li>
+      </ul>
+      <p>A message that named the wrong construct would still pass.</p>
+      <div class="fix"><b>Fix:</b> anchor each pattern on the construct it is about.</div>
+    </div></div>
+  </div>
+</section>
+
+<section id="info">
+  <h2>Informational <span class="count">— 14</span></h2>
+  <div class="card">
+    <ol>
+      <li id="i1"><b><code>{redirect 'https://…'}</code> cannot leave the application.</b> <code>start/redirect.php:8-17</code> describes an external redirect, but <code>padRedirect</code> always prefixes <code>$padHost$app/?</code> (<code>lib/api.php:19</code>), so external redirects silently break. There is no open redirect.</li>
+      <li id="i2"><b>The <code>^</code> sigil is dead code.</b> The branch in <code>level/var.php:45,58</code> is unreachable, because <code>level.php:31</code> never dispatches it. Revived, it would emit the JSON of the field's name, not its value.</li>
+      <li id="i3"><b><code>$padDiagnostics = TRUE</code> fails open behind a same-box proxy that adds no forwarding header</b>, such as nginx's default <code>proxy_pass</code>. The config comment documents this; a warning at boot would catch it.</li>
+      <li id="i4"><b><code>?padInclude</code>, open to every visitor by decision, drops <code>_inits.pad</code> and <code>_exits.pad</code></b>, along with any guard logic an author put in a wrapper. It is not documented in <code>docs/</code>.</li>
+      <li id="i5"><b>Error responses are oddly shaped.</b> <code>padDumpTry</code> sends <code>HTTP/1.0 500</code>, which forces <code>Connection: close</code>. Remote visitors get about 3.5 KB of closing tags before "Error: id", and the response has no <code>Cache-Control</code>.</li>
+      <li id="i6"><b>Two local-only echoes are unescaped:</b> <code>lib/dump.php:123</code> (<code>$padExceptionText</code>, a dead branch) and <code>lib/error.php:274</code> (<code>$buffer</code>).</li>
+      <li id="i7"><b>Trace clean-up compares size, not content.</b> <code>padInfoTraceCheckLocalOne</code> deletes a trace file when its size equals another file's.</li>
+      <li id="i8"><b>Any app can write into the tracked <code>DATA/reference</code>.</b> The <code>xref</code>, <code>info</code>, <code>myInfo</code> and <code>all</code> modes append to it. One of this audit's own probes did so, and the change was reverted.</li>
+      <li id="i9"><b>Tracked snapshots under <code>docs/apps/</code> hold old, unredacted dumps:</b> <code>padSqlPadPassword] =&gt; pad</code> fifteen times, plus session ids in file names. These are development credentials, but they belong in neither git nor a rendered page.</li>
+      <li id="i10"><b>Two evaluator edges.</b> <code>like()</code> builds <code>.*?</code>-heavy regexes from its pattern, so backtracking is possible if an app feeds it request data. <code>padValidVar</code> and the parser use ASCII <code>ctype_alpha</code>, so a multibyte field name is cut at its first non-ASCII byte.</li>
+      <li id="i11"><b><code>apps/react/_tags/json.php</code> reads <code>APP . "_data/$padParm.json"</code> with no name check.</b> Only template-written names reach it today. It is copied into REACT.md as the pattern to follow.</li>
+      <li id="i12"><b>Sequence documentation and comment drift:</b>
+        <ul>
+          <li>The README says <code>{fibonacci rows=10}</code> gives <code>1 1 2 … 55</code>; it gives <code>0 1 1 2 3 5 8 13 21 34</code>.</li>
+          <li>ACTIONS.md says <code>{pull:nums power=2}</code> squares each value; it gives powers of two.</li>
+          <li>The <code>pqPrime</code> comment says the table holds 10,000 primes; it holds 1,229.</li>
+          <li><code>oeis/make.php</code> says FALSE ends a build; <code>one.php</code> treats it as "skip".</li>
+          <li><code>even</code> ignores <code>increment=</code>.</li>
+          <li>EXPLAIN.md names the wrong entry point.</li>
+        </ul>
+      </li>
+      <li id="i13"><b>Suite housekeeping:</b> a stale <code>getRegressionGo</code> comment in <code>cache_*/probe.pad</code>; summaries that count catalog lines as tests but failures per page; and the scratch app <code>test</code>, which the Other suite crawls, so any scratch page fails the gate.</li>
+      <li id="i14"><b><code>pad/install/data.sh</code> is disabled.</b> It starts with <code>exit;</code>, then hard-codes <code>chown herbert:herbert</code>, while <code>www/README.md</code> still describes it as how the <code>DATA</code> symlink is made.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="prior">
+  <h2>First-audit fixes that are incomplete <span class="count">— 15 findings, 4 sweep items</span></h2>
+  <p class="small" style="max-width:72ch">Each review read the first audit's notes for its area and tried to get round each fix. Most fixes held, and the <a href="#sound">Found sound</a> section lists the ones that were tested hard. The rows below are the fixes that hold where they were applied but miss a second route to the same place.</p>
+  <div class="table-scroll"><table>
+    <thead><tr><th>First audit</th><th>What its fix closed</th><th>What is still open</th><th>Here</th></tr></thead>
+    <tbody>
+      <tr><td class="ids">C1</td><td><code>{$x}</code>, <code>{echo $v}</code>, quoted and bare splices, closing pipes, <code>object:</code>, list-typed <code>data=</code></td><td>a custom tag's content built from its parameters; <code>data=</code> and <code>{curl}</code> values sniffed as a file or a URL; stand-in characters sent in the request</td><td class="ids"><a href="#c1">C1</a> <a href="#h2">H2</a> <a href="#h1">H1</a></td></tr>
+      <tr><td class="ids">H3</td><td>the Host header no longer decides "local"</td><td>the engine's requests to itself count as loopback and carry the visitor's User-Agent</td><td class="ids"><a href="#h6">H6</a></td></tr>
+      <tr><td class="ids">H4</td><td>redaction by key, 0600 files, <code>$padErrorKeep</code></td><td><code>$padConfigApp</code> source text, session globals, <code>Set-Cookie</code>, gaps in the regex; <code>DATA</code> served; pruning under concurrency and through a symlink</td><td class="ids"><a href="#h4">H4</a> <a href="#m9">M9</a></td></tr>
+      <tr><td class="ids">H6</td><td><code>padValid</code> / <code>padValidName</code> on tag and type names</td><td><code>padDataFileName</code>, <code>type=</code> and play names unvalidated; an <code>@</code> bypasses <code>padValid</code></td><td class="ids"><a href="#h2">H2</a> <a href="#l1">L1</a> <a href="#l2">L2</a> <a href="#l3">L3</a></td></tr>
+      <tr><td class="ids">H7</td><td>the promotion list, no cookies promoted to globals, <code>object:</code> refuses engine names</td><td>the field resolver reads engine globals, cookies and <code>$_SERVER</code>; the regression case tests only <code>isset()</code></td><td class="ids"><a href="#h3">H3</a></td></tr>
+      <tr><td class="ids">H8</td><td>precedence, coercion, a sign before a digit, exact division by zero</td><td>a sign before a variable, group or call; <code>%</code> with a fractional divisor; <code>0 ** -n</code></td><td class="ids"><a href="#h9">H9</a> <a href="#l10">L10</a></td></tr>
+      <tr><td class="ids">H9</td><td>recurrences, positions, termination, "overflow stops cleanly"</td><td>overflow is checked after the plays and with <code>&gt;</code>; the 10⁶ cap answers FALSE silently</td><td class="ids"><a href="#m17">M17</a> <a href="#m19">M19</a></td></tr>
+      <tr><td class="ids">M1</td><td>http(s)-only fetches, the shape of the Host header</td><td>any well-formed Host is accepted by default; self-fetch SSRF</td><td class="ids"><a href="#h6">H6</a></td></tr>
+      <tr><td class="ids">M6</td><td>tags in <code>{# … #}</code> no longer run</td><td>the strip ignores <code>{ignore}</code></td><td class="ids"><a href="#l11">L11</a></td></tr>
+      <tr><td class="ids">M12</td><td>the XML reset deletes the right path</td><td>concurrent requests stack trees in one file</td><td class="ids"><a href="#l16">L16</a></td></tr>
+      <tr><td class="ids">M13</td><td>predicates for add, subtract, multiply, divide</td><td>modulo, exponentiation and eval still fall back wrongly</td><td class="ids"><a href="#m23">M23</a></td></tr>
+      <tr><td class="ids">M16</td><td>prime, bell, the per-row books, the cache on the no-table path</td><td>the table path regenerates per candidate; recaman untouched</td><td class="ids"><a href="#m19">M19</a> <a href="#m22">M22</a></td></tr>
+      <tr><td class="ids">M19</td><td>allow-lists for <code>build=</code> and <code>action=</code></td><td>play names inside <code>make=</code>/<code>keep=</code>/<code>remove=</code>/<code>flag=</code></td><td class="ids"><a href="#l3">L3</a></td></tr>
+      <tr><td>Low · visitor switches</td><td><code>padSelfSwitch</code> for <code>padReference</code>, <code>padExamples</code>, <code>padStats</code></td><td>reachable through self-fetches and the unguarded build pages</td><td class="ids"><a href="#h6">H6</a> <a href="#h7">H7</a></td></tr>
+      <tr><td>Low · HTTP status</td><td>an empty 200 under exit, log and ignore</td><td>an uncaught throwable with the guards off</td><td class="ids"><a href="#l15">L15</a></td></tr>
+      <tr><td>Sweep · option after parameter</td><td>a value, then an option, without a comma</td><td>an option, then an option, without a comma</td><td class="ids"><a href="#m5">M5</a></td></tr>
+      <tr><td>Sweep · <code>287297c06</code></td><td>containment and string checks in the sequence app</td><td><code>reference/dir.php</code> and <code>pages.php</code>; array parameters in demo, apps and reference</td><td class="ids"><a href="#h8">H8</a> <a href="#m11">M11</a></td></tr>
+      <tr><td>Sweep · <code>07d585d52</code></td><td>the manual's parse page</td><td>line 20's claim about an unquoted <code>{$myVar}</code></td><td class="ids"><a href="#m12">M12</a></td></tr>
+      <tr><td>Sweep · <code>bf708a4fc</code></td><td>the develop sequence generator acts only on <code>go=</code></td><td>the rest of the develop app acts on <code>go=</code> from anyone</td><td class="ids"><a href="#h7">H7</a></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="suite">
+  <h2>Test suites</h2>
+  <div class="grid-2" style="margin-bottom:1rem">
+    <div class="card">
+      <h3>What was read</h3>
+      <ul>
+        <li><b>All 1,994 stored answers</b> across the eight suites were searched for the usual signs of a bug: PHP warnings and notices, <code>Array</code>, <code>NULL</code>, mojibake, "Too many Levels", double-escaped HTML, and <code>{…}</code> left unrendered. Each hit was read against its case. No answer contains a PHP warning, <code>Array</code>, mojibake or a level overflow.</li>
+        <li><b>All ~1,000 one-line Framework answers</b> were checked against independent values: precedence, dates, printf, multibyte text, <code>like</code>, ranges and more than 60 sequence generators. All of them match.</li>
+        <li><b>The harness was read and tested:</b> the comparator, the lint, ownership parity, freshness, the run token, the commit binding and the host rewrite. They were tried in the PHP CLI against the real functions, and live against single pages.</li>
+      </ul>
+      <p>The serious problems are <a href="#m13">M13</a>, <a href="#m14">M14</a> and <a href="#m15">M15</a>; the smaller ones are <a href="#l23">L23</a>–<a href="#l32">L32</a>.</p>
+    </div>
+    <div class="card">
+      <h3>Coverage</h3>
+      <p>Every built-in name is exercised at least once, mostly through <code>pages/catalog/*</code>. That covers 57 tags, 41 functions, 24 options, 22 handling types, 25 properties and 26 explicit types.</p>
+      <p>The coverage is thin in places:</p>
+      <ul>
+        <li><code>trace</code>, <code>exception</code>, <code>exit</code> and <code>dump</code> appear on one page each.</li>
+        <li><code>file</code> appears once and <code>curl</code> twice.</li>
+        <li><code>field</code>, <code>record</code> and <code>check</code> are covered only where the MySQL demo database is present.</li>
+        <li>The info modes <code>all</code>, <code>myInfo</code> and <code>none</code> never run.</li>
+      </ul>
+      <p><b>35 config settings are never set to anything but their default:</b></p>
+      <ul>
+        <li><b>Request and host:</b> <code>$padRequestVars</code> as a list or <code>[]</code>, <code>$padSessionVars</code>, <code>$padHosts</code>, <code>$padHostBase</code>, <code>$padCookies</code>.</li>
+        <li><b>Errors:</b> <code>$padErrorReport</code>, <code>$padErrorKeep</code>, <code>$padDiagnostics</code>.</li>
+        <li><b>Output:</b> <code>$padGzip</code>, <code>$padWebEtag304</code>.</li>
+        <li><b>Sequences:</b> the three sequence limits.</li>
+        <li><b>Cache:</b> five settings.</li>
+        <li><b>Tidy:</b> eight settings.</li>
+      </ul>
+      <p>Several of these sit on the seams above. A Pages case per security-relevant setting would pin it.</p>
+    </div>
+  </div>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Answer</th><th>Records</th><th>Should be</th><th>Finding</th></tr></thead>
+    <tbody>
+      <tr><td><code>framework/properties/the_tag_pair_resolves_the_field_first</code></td><td><code>F1PF2P</code></td><td><code>P</code>, the property</td><td class="ids"><a href="#m6">M6</a></td></tr>
+      <tr><td><code>pages/request/crumb</code></td><td>PHP <code>isset()</code> only</td><td>the template field <code>{$crumb}</code> as well</td><td class="ids"><a href="#h3">H3</a></td></tr>
+      <tr><td><code>pages/manual/z99</code></td><td>raw <code>@start@ bb</code> / <code>@end@</code></td><td>markers consumed, or a strict error</td><td class="ids"><a href="#l13">L13</a></td></tr>
+      <tr><td><code>pages/vars/at/1</code>, <code>2</code>, <code>framework/check/vars_at_5</code></td><td><code>{@abc}</code>, <code>{@klm.xyz}</code>, <code>{@go}</code> literally</td><td>the values, or the forms removed</td><td class="ids"><a href="#l28">L28</a></td></tr>
+      <tr><td><code>framework/lenient/an_empty_pipe_segment_is_skipped</code></td><td><code>[]</code></td><td><code>[5]</code>, or renamed</td><td class="ids"><a href="#l27">L27</a></td></tr>
+      <tr><td><code>sequence/play/single/list</code> (third demo)</td><td>empty</td><td><code>4</code>, or an error</td><td class="ids"><a href="#l29">L29</a></td></tr>
+      <tr><td><code>regression/error_ignore/restart</code>, <code>error_log/restart</code></td><td>a bare <code>HTTP 500</code></td><td>a verdict that bounds the time</td><td class="ids"><a href="#m15">M15</a></td></tr>
+      <tr><td><code>errors/syntax/a_sort_flag_that_does_not_exist_is_named</code>, <code>an_increment_counts_an_application_variable</code></td><td>a literal <code>'</code></td><td><code>('|&amp;#039;)</code></td><td class="ids"><a href="#m14">M14</a></td></tr>
+      <tr><td><code>framework/functions/printf_width</code>, <code>trim</code>, <code>trim_leaves_the_inside_alone</code></td><td>trimmed values</td><td>bracketed output</td><td class="ids"><a href="#l23">L23</a></td></tr>
+      <tr><td><code>manual/miscellaneous/handling</code>, <code>manual/pages/data_handling</code>, <code>sequence/actions</code>, <code>sequence/sequences</code>, <code>sequence/specials/*</code></td><td>table shape</td><td>literal results, with the random cells masked</td><td class="ids"><a href="#m13">M13</a></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="docs">
+  <h2>Documentation</h2>
+  <p class="small" style="max-width:72ch">Each claim was checked against the engine. Most were reproduced on a probe page; the ones marked "read" were checked against the code. CLAUDE.md and <code>docs/</code> are what people and coding agents read before they write PAD, so a wrong rule here becomes wrong application code. That is why these are findings (<a href="#h10">H10</a>, <a href="#m16">M16</a>) rather than notes. Everything else in FUNCTIONS.md, and the library-function table in CLAUDE.md apart from <code>padBetween</code>, checked out.</p>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Where</th><th>Claim</th><th>Reality</th></tr></thead>
+    <tbody>
+      <tr><td><code>CLAUDE.md:191-197</code>, <code>APP.md:109-116</code></td><td>the <code>_tags/button.php</code> example</td><td>prints a stray <code>1</code> (no <code>return TRUE</code>), and runs a request value as code (<a href="#c1">C1</a>)</td></tr>
+      <tr><td><code>CLAUDE.md</code> rule 1, <code>FUNCTIONS.md:7</code>, <code>APP.md:249</code>, <code>PAD.md:130</code></td><td><code>{echo $x | f}</code> equals <code>{$x | f}</code>; pipes need <code>{echo}</code></td><td><code>{$x | f}</code> works and escapes; <code>{echo}</code> doesn't escape (<a href="#m1">M1</a>)</td></tr>
+      <tr><td><code>APP.md:242-243, 1131</code>, <code>PAD.md:112</code></td><td><code>{!x}</code> is HTML-escaped, <code>{$x}</code> raw</td><td>the reverse (<a href="#h10">H10</a>)</td></tr>
+      <tr><td><code>CLAUDE.md:301-304, 492</code>, <code>APP.md:383-387</code>, manual <code>conditions.pad</code></td><td><code>{if $flag}</code> is wrong; a condition must compare</td><td>the bare form tests truth: 1 → T, 0 → F</td></tr>
+      <tr><td><code>CLAUDE.md:337</code>, <code>TAGS.md:984</code></td><td>the sigil decides a name collision</td><td>not for the tag pair (<a href="#m6">M6</a>)</td></tr>
+      <tr><td><code>CLAUDE.md:508</code>, <code>TAGS.md:847</code></td><td><code>{php:strlen(@)}</code> as a tag</td><td><code>function "strlen(@)" not found</code>; <code>(@)</code> works only inside expressions</td></tr>
+      <tr><td><code>CLAUDE.md:560</code></td><td><code>{table}</code> is a database tag</td><td>no built-in <code>{table}</code> (it is <code>_common</code>'s); <code>{check}</code> is missing from the list</td></tr>
+      <tr><td><code>CLAUDE.md:588</code></td><td>"misses behind a type prefix" are reported</td><td>not inside an expression (<a href="#l12">L12</a>)</td></tr>
+      <tr><td><code>CLAUDE.md:706-713</code>, <code>PROPERTIES.md:405-411, 694-700</code></td><td>a fields loop closed with <code>{/fields}</code></td><td>"Field '$value' not found"; <code>{/fields@record}</code> is needed</td></tr>
+      <tr><td><code>CLAUDE.md:805</code></td><td><code>padBetween($str, $open, $close)</code></td><td>six arguments, three by reference, returns a bool; the three-argument call throws</td></tr>
+      <tr><td><code>CLAUDE.md:922</code></td><td><code>?page&amp;padInfo=trace</code> traces a page</td><td>no effect: <code>pad*</code> names are never filled from the request</td></tr>
+      <tr><td><code>TAGS.md:36</code></td><td><code>{when 'default'}</code> is the default branch</td><td>matches only the literal string <code>'default'</code></td></tr>
+      <tr><td><code>TAGS.md:100-102</code></td><td>a <code>{set}</code> inside a loop does not outlive it</td><td>it does: <code>[8][8]</code>, and a Framework case says so</td></tr>
+      <tr><td><code>TAGS.md:105</code></td><td><code>{set name='value', count=5}</code></td><td>"the {set} assigns nothing"</td></tr>
+      <tr><td><code>TAGS.md:211</code>, <code>DATABASE.md:172-177</code></td><td><code>{count $arrayName}</code>; "counting with {count}"</td><td>takes a quoted name; prints no number (the count is <code>count@tag</code>)</td></tr>
+      <tr><td><code>TAGS.md:462-467</code></td><td>curl takes <code>method=</code> and <code>data=</code></td><td>"option 'method' that nothing reads"; it is the <code>{set}</code> variables that are appended</td></tr>
+      <tr><td><code>TAGS.md:765</code></td><td><code>resume</code> resumes a ceased iteration</td><td>it transforms the stored sequence (read)</td></tr>
+      <tr><td><code>TAGS.md:785</code></td><td><code>get</code> "gets stored content"</td><td>it fetches a page, as <code>TAGS.md:115-119</code> correctly says</td></tr>
+      <tr><td><code>TAGS.md:853</code></td><td><code>field:</code> is a database field, <code>{field:"name from users"}</code></td><td>reads a variable; the SQL form errors</td></tr>
+      <tr><td><code>TAGS.md:916</code>, <code>reference/README.md:11, 39</code></td><td>a <code>cache</code> option</td><td>no such option</td></tr>
+      <tr><td><code>TAGS.md:925-927</code></td><td>the combined formatting example</td><td>renders <code>[]</code>; it needs <code>print</code> and commas</td></tr>
+      <tr><td><code>OPTIONS.md:27, 550-556</code></td><td><code>track</code>, <code>parent</code>, <code>trace</code>, <code>pre</code> work</td><td>they do nothing (<a href="#l12">L12</a>)</td></tr>
+      <tr><td><code>OPTIONS.md:237-253</code></td><td><code>notOk=</code> / <code>error=</code> catch a failing tag</td><td>only for <code>php:</code> (<a href="#m7">M7</a>)</td></tr>
+      <tr><td><code>reference/README.md:21</code></td><td>HANDLING.md is "error and exception handling"</td><td>it is about data handling</td></tr>
+      <tr><td><code>REACT.md:86-109</code></td><td>a custom <code>reactData.php</code> that assigns <code>$padData</code></td><td>overwrites engine state; an equivalent tag crashed. <code>reactData</code> is built in.</td></tr>
+      <tr><td><code>APP.md:427</code></td><td><code>{set $upper | upper}</code></td><td>errors</td></tr>
+      <tr><td><code>APP.md:578</code></td><td>request variables are filled only on POST</td><td>GET values are promoted too</td></tr>
+      <tr><td><code>APP.md:769</code></td><td>a <code>shift:</code> prefix</td><td>"there is no type named 'shift'"</td></tr>
+      <tr><td><code>APP.md:773</code></td><td><code>app:substr</code> calls an app function</td><td>silently gives <code>''</code></td></tr>
+      <tr><td><code>APP.md:796-826</code></td><td><code>{else}</code> inside the bool, exists and count tags</td><td>errors or renders nothing; <code>@else@</code> is needed</td></tr>
+      <tr><td><code>APP.md:843-853</code></td><td><code>{code}</code> executes PHP</td><td>it renders PAD and prints PHP as text</td></tr>
+      <tr><td><code>PAD.md:146-150</code></td><td><code>{case}</code> with <code>{/when}</code> and <code>{/else}</code></td><td>"Closing tag found without an open tag"</td></tr>
+      <tr><td><code>PAD.md:576-580</code></td><td>a callback names a function</td><td>it names a file in <code>_callbacks/</code> (read)</td></tr>
+      <tr><td><code>www/README.md:27</code></td><td>symlink <code>DATA</code> into the docroot so dumps are browsable</td><td>publishes the dumps (<a href="#h4">H4</a>)</td></tr>
+      <tr><td><code>pad/data/json.php:6-9</code></td><td>JSON embedded in surrounding text is used directly</td><td>the sniffer never routes it there: <code>prefix [ … ] suffix</code> renders nothing</td></tr>
+      <tr><td><code>TAGS.md:470</code></td><td><code>{curl}</code> "throws error if result is not 200"</td><td>under log, ignore or dump it returns the error body (<a href="#h6">H6</a>)</td></tr>
+      <tr><td><code>docs/ANALYSE.md:612-614</code></td><td><code>padValidFile</code></td><td>does not exist (a hypothetical example)</td></tr>
+      <tr><td>manual pages</td><td>parse, ignore, ending-the-request, pipes, application structure</td><td>see <a href="#m12">M12</a></td></tr>
+      <tr><td>sequence docs</td><td>README, ACTIONS.md, EXPLAIN.md, comments</td><td>see <a href="#i12">Info 12</a></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="sequences">
+  <h2>Sequences, type by type</h2>
+  <p class="small" style="max-width:72ch">How the generators were checked:</p>
+  <ul class="small" style="max-width:72ch">
+    <li><b>Terms:</b> each of the 54 parameterless types against its OEIS entry, for the first 40 terms.</li>
+    <li><b>Tables:</b> all 51 generated tables against references, in full, along with the 55,893-term Kolakoski list.</li>
+    <li><b>Membership:</b> flagged over 0..2000 and compared with generation.</li>
+    <li><b>Lookups:</b> position lookups against reference values, for example emirp(5000) = 328813 and newmanConway(900000) = 471610.</li>
+  </ul>
+  <p class="small" style="max-width:72ch">The maths is right over the normal range. The defects are at its edges and in the runner around it (<a href="#m17">M17</a>–<a href="#m23">M23</a>, <a href="#l18">L18</a>–<a href="#l22">L22</a>).</p>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Verdict</th><th>Types</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pill l">correct</span></td><td>add, and, or, xor, nand, nor, not, xnor, antiprime, biquadratic, ceil, floor, round, step, decagonal, divide, multiply, subtract, gnomonic, gould, happy, harshad, hexagonal, kaprekar, kolakoski, list, loop, range, repeat, lucas, mersenne, odd, octagonal, oeis, perfect, perrin, semiprime, strong, triangular, tribonacci, xpadovan, fibonacci, golomb (the last two still carry the runner issues M17 and M18)</td></tr>
+      <tr><td><span class="pill m">wrong terms</span></td><td>prime: negative numbers (<a href="#m20">M20</a>) · polite, sylvester, catalan, pell: when <code>from ≤ 0</code> (<a href="#m21">M21</a>)</td></tr>
+      <tr><td><span class="pill m">crash at the edge</span></td><td>newmanConway, bell, moserdebruijn, cullen, kynea: when <code>from ≤ 0</code> (<a href="#m21">M21</a>)</td></tr>
+      <tr><td><span class="pill m">membership disagrees</span></td><td>even, palindrome and pronic at 0 · multiple and <code>power=-2</code> (<a href="#l20">L20</a>) · modulo, exponentiation, eval (<a href="#m23">M23</a>) · recaman past 10,000 terms · negation and not below −10,000 · square past 10⁶ terms (<a href="#m19">M19</a>)</td></tr>
+      <tr><td><span class="pill m">overflow</span></td><td>imprecise floats from tetrahedral, octahedral, pentagonal, caterer (and, by reading, heptagonal, heptadecagonal, enneadecagonal, icosihenagonal) · 2⁶³ printed as a float by power, cubic, exponentiation · shifts that wrap in cullen and kynea at n ≥ 64 (<a href="#m17">M17</a>)</td></tr>
+      <tr><td><span class="pill m">too slow</span></td><td>moserdebruijn, recaman, pronic (membership), lucky (membership), identity and emirp past the table (<a href="#m19">M19</a>, <a href="#m22">M22</a>)</td></tr>
+      <tr><td><span class="pill l">not checkable</span></td><td>random and chance, which are random by design</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">Checked and sound:</p>
+  <ul class="small">
+    <li>all 29 actions on small stores, against the ACTIONS.md examples;</li>
+    <li>every range form: descending, crossing zero, <code>0..0</code>, <code>5..0</code>, letters, fractions, and an increment that is 0, negative or larger than the span;</li>
+    <li><code>from</code>, <code>to</code>, <code>rows</code>, <code>stop</code>, <code>sole</code>, <code>minimal</code>, <code>maximal</code>, <code>unique</code> and <code>rows=0</code>;</li>
+    <li>chains of push, pull and resume, and <code>toData</code>;</li>
+    <li>the <code>build=</code> and <code>action=</code> allow-lists;</li>
+    <li>the bitwise predicates;</li>
+    <li>a million candidates in about 0.7 s, and the cap on a <code>stop</code> that is never reached.</li>
+  </ul>
+</section>
+
+<section id="sound">
+  <h2>Checked and found sound</h2>
+  <p class="small" style="max-width:72ch">These were attacked on suspicion and held up. They are listed so that the findings above can be read at their true size, and so that the fixes they record get the credit.</p>
+  <div class="grid-2">
+    <div class="card good">
+      <h3>The trust boundary, where it was drawn</h3>
+      <ul>
+        <li><b>Hostile values are inert.</b> <code>{$v}</code>, <code>{!v}</code>, <code>{echo $v}</code>, <code>{echo '{$v}'}</code>, <code>{echo {$v}}</code>, <code>{$v | html_entity_decode}</code> and a closing <code>{/x | html_entity_decode}</code> all keep <code>{php:getcwd}</code> and <code>{echo 7*7}</code> as text. <code>padSpliceQuote</code> keeps <code>{echo {$n} + 1}</code> working and <code>{${$hi}}</code> resolving.</li>
+        <li><b><code>$padPhpFunctions</code> holds</b> against case variants, the bare-name fallback, pipes, <code>function:</code>, <code>app:</code>, a namespace backslash, <code>call_user_func</code> chains and parenthesised names. A refused function is named in the error at every site.</li>
+        <li><b><code>object:</code> refuses engine names</b>, and <code>constant:</code> reads only real constants.</li>
+        <li><b>No dangerous sinks.</b> There is no <code>eval</code>, <code>unserialize</code>, <code>create_function</code>, <code>assert</code> or <code>preg_replace /e</code> anywhere in <code>pad/</code>. Every <code>extract()</code> and <code>$$</code> was traced, and none is reachable with keys an attacker chooses.</li>
+        <li><b>Script execution is escaped.</b> <code>exec</code> escapes both the path and the arguments.</li>
+      </ul>
+    </div>
+    <div class="card good">
+      <h3>SQL, files and routing</h3>
+      <ul>
+        <li><b>The select builder</b> binds a request value as a quoted, escaped literal (<code>0 or 1=1</code> matches nothing). <code>order=</code> and <code>group=</code> enforce column lists, and <code>where=$cond</code> is refused.</li>
+        <li><b><code>db()</code></b> quotes or coerces bare placeholders, doubles backticks in identifiers and refuses multi-statement queries. The <code>x</code> keys are the documented raw escape hatch.</li>
+        <li><b>The file layer.</b> <code>padFileGet</code>, <code>padFilePut</code> and <code>padFileCheck</code> reject <code>..</code>, control characters and NUL. Writes stay inside <code>DATA</code> and are atomic, through a temp file and a rename. <code>padDirContained</code> is based on <code>realpath</code>.</li>
+        <li><b>Page routing.</b> <code>?_lib/x</code>, <code>?_config/config</code>, <code>?../_common/index</code> and <code>?.DS_Store</code> are all 404. <code>www/pad.php</code> resolves only real entry scripts, and <code>/pad.php</code> is a 404.</li>
+        <li><b>Parsers.</b> XML is read without <code>LIBXML_NOENT</code> or a DTD load, so there is no XXE. YAML has <code>decode_php=0</code>. The CSV quote and comma fixes hold.</li>
+      </ul>
+    </div>
+    <div class="card good">
+      <h3>Requests, sessions, errors</h3>
+      <ul>
+        <li><b>Request promotion.</b> <code>padValidVar</code> takes ASCII identifiers only, and PHP's dot and space conversion cannot produce a <code>pad</code>, <code>pq</code> or <code>_</code> name. A declared session name is never filled from the request.</li>
+        <li><b>Cookies</b> are HttpOnly and SameSite=Lax, and Secure over https. Strict session mode is on. <code>padSesID</code> and <code>padReqID</code> are checked against the 8-character shape.</li>
+        <li><b>Headers.</b> <code>header()</code> refuses CR and LF, and <code>padRedirect</code> cannot send a visitor off-site.</li>
+        <li><b>Remote error pages.</b> A visitor gets only <code>Error: &lt;id&gt;</code>, even with a spoofed Host. Log forging is blocked.</li>
+        <li><b>The page cache</b> is bypassed by a foreign cookie or an Authorization header, is keyed on app, host and URI, never stores a non-200 response or a session cookie, and validates ETags.</li>
+        <li><b>Recursion is bounded.</b> The restart guard, the 100-level limit and the <code>{while}</code> cap all hold. The 21 throwing templates were all contained by the try guards.</li>
+      </ul>
+    </div>
+    <div class="card good">
+      <h3>Applications and the harness</h3>
+      <ul>
+        <li><b>The crawl.</b> 584 pages and 2,849 links were crawled. No in-scope link is broken, no manual page 500s or renders empty, and classicModels matches the database row for row.</li>
+        <li><b>The apps' own code.</b>
+          <ul>
+            <li>No app builds SQL from request data, and the React providers bind their parameters.</li>
+            <li>The <code>apps/?browse</code> source viewer refuses traversal and redacts secrets.</li>
+            <li>The examples search is contained.</li>
+            <li><code>www/chess</code> builds the DOM without <code>innerHTML</code>.</li>
+            <li>The React pages use <code>getAttribute('data')</code> throughout.</li>
+          </ul>
+        </li>
+        <li><b>The gate fails closed</b> on a missing, stale, same-second or foreign result, on a non-2xx trigger, and on <code>new</code> or zero tests. <code>gate.sh</code> proves 11 of these refusals.</li>
+        <li><b>The comparator</b> requires an exact code for <code>HTTP</code> answers and a 2xx for patterns. The host rewrite is bounded to whole host names.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="remediation">
+  <h2>Remediation, in order</h2>
+  <div class="card">
+    <ol class="order">
+      <li><b>Close the value-to-source edges.</b>
+        <ul>
+          <li>Protect what <code>padTagParm()</code> returns (<a href="#c1">C1</a>).</li>
+          <li>Strip the stand-in code points from all input (<a href="#h1">H1</a>).</li>
+          <li>Stop sniffing a value from <code>data=</code> or <code>{curl}</code> as a file or a URL, and validate <code>padDataFileName</code> (<a href="#h2">H2</a>).</li>
+          <li>Validate and JSON-encode the <code>{page}</code> and <code>{ajax}</code> names (<a href="#m2">M2</a>).</li>
+        </ul>
+        Pin each one with a Framework case written from the documented pattern.</li>
+      <li><b>Give the field resolver the engine's rules:</b> no engine names and no superglobal scan, with one classifier shared with request promotion (<a href="#h3">H3</a>). Promote only the declared session names, and name sessions per app (<a href="#m3">M3</a>).</li>
+      <li><b>Take <code>DATA</code> out of the docroot and redact by value.</b>
+        <ul>
+          <li>Drop the README advice and the <code>develop</code> links.</li>
+          <li>Exclude <code>$padConfigApp</code> from reports and redact known secret values (<a href="#h4">H4</a>).</li>
+          <li>Redact the track payload, set its mode and add retention (<a href="#h5">H5</a>, <a href="#l17">L17</a>).</li>
+          <li>Make pruning atomic (<a href="#m9">M9</a>).</li>
+          <li>Refuse executable extensions in <code>{file}</code> (<a href="#l5">L5</a>).</li>
+        </ul>
+      </li>
+      <li><b>Stop the engine's own requests from inheriting trust.</b> Use a fixed internal base and a per-boot marker header, and stop forwarding the visitor's User-Agent (<a href="#h6">H6</a>).</li>
+      <li><b>Guard the developer apps</b> with <code>padLocal()</code> or a switch that defaults off, and require POST plus a token for their actions (<a href="#h7">H7</a>). Contain the reference app (<a href="#h8">H8</a>).</li>
+      <li><b>Fix the evaluator's prefix sign</b> (<a href="#h9">H9</a>), the fractional modulo (<a href="#l10">L10</a>) and the missing comma between options (<a href="#m5">M5</a>). Each is a few lines with a clear case.</li>
+      <li><b>Correct the docs.</b>
+        <ul>
+          <li>Fix the escaping rules first (<a href="#h10">H10</a>, <a href="#m1">M1</a>).</li>
+          <li>Then the rest of the table (<a href="#m16">M16</a>) and the manual (<a href="#m12">M12</a>).</li>
+          <li>Turn each documented example into a case.</li>
+        </ul>
+      </li>
+      <li><b>Make the suites able to fail:</b> literal answers with masked random cells (<a href="#m13">M13</a>), a fixed runner User-Agent (<a href="#m14">M14</a>), a lint that rejects patterns which cannot fail, and a timed restart verdict (<a href="#m15">M15</a>). Then re-answer the cases that encode bugs.</li>
+      <li><b>Work through the remaining Medium items</b> (<a href="#m4">M4</a>, <a href="#m6">M6</a>–<a href="#m8">M8</a>, <a href="#m10">M10</a>, <a href="#m11">M11</a>, <a href="#m17">M17</a>–<a href="#m23">M23</a>), then the Low items by area.</li>
+    </ol>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <p>Second audit of the PAD framework at commit <code>41369f908</code>, PHP 8.5.11 under Apache 2.4.68, 5 October 2026. The scope was <code>pad/</code>, <code>apps/</code>, <code>www/</code>, <code>docs/</code>, CLAUDE.md and the regression suites. Nine reviews ran in parallel, each reading every line of its slice. Findings were reproduced on the running server through scratch pages and scratch applications, all removed afterwards, and the lead auditor reproduced the serious ones again independently. No tracked file, answer or configuration was changed. One probe's writes into <code>DATA/reference</code> and three rows it left in the <code>pad</code> database's track tables were reverted. The first audit is at <a href="pad-audit.html">pad-audit.html</a>.</p>
+</footer>
+
+</body>
+</html>

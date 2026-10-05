@@ -14,6 +14,13 @@
   include PAD . 'inits/level.php';
   include PAD . "start/pad/$padStrBld.php";
   include PAD . 'start/pad/level.php';
+
+  // An isolated pass gets its stores back as they were, the {push} stacks among them, so a
+  // {stack} it printed is filled in now, from what was pushed while it ran - lib/stack.php.
+
+  if ( $padStrBox or $padStrCln or $padStrRes )
+    $padOut [$pad+1] = padStackFill ( $padOut [$pad+1] );
+
   include PAD . 'start/pad/end.php';
 
   return $padOut [$pad+1] ;

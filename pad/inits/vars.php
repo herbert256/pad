@@ -47,6 +47,11 @@
   $padContentStore = $padContentStore ?? [];
   $padBoolStore    = $padBoolStore    ?? [];
 
+  // The {push} stacks start empty on every run, a restart's included: what the abandoned
+  // page pushed belongs to a page that is not sent.
+
+  $padStackStore   = [];
+
   // The {file} tag's six path parts exist for the same reason as the stores above: the tag
   // writes them bare, padFileName() reads them through global, and a {file} inside a nested
   // pass needs the two to be the same variable. config/output/file.php runs after this and

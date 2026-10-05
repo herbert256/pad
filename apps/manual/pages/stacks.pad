@@ -1,0 +1,25 @@
+<h1>Stacks: push and stack</h1>
+
+<p>A component knows which script or stylesheet it needs; the layout knows where those belong. <code>{open}push 'name'{close}</code> adds rendered text to a named stack where the component is used, and <code>{open}stack 'name'{close}</code> prints the stack - in the <code>&lt;head&gt;</code>, say, far above the components that fill it.</p>
+
+{example 'fragments/stacks_1'}
+
+<h2>Filled in at the end</h2>
+
+<p>A page renders from top to bottom, so a <code>{open}stack{close}</code> in the head comes out before anything below it has pushed. It prints a marker instead, and the marker is replaced by the stack once the whole page has rendered: it gets every push of the page, made above it or below it, in the order they were made.</p>
+
+<h2>once</h2>
+
+<ul>
+  <li><code>once='chart'</code> - the first push of that key is kept and a later one is skipped before its content renders, so a component used fifty times renders its script tag once. Keys are per stack.</li>
+  <li><code>once</code> without a key - a push whose rendered text the stack already holds is dropped.</li>
+</ul>
+
+<h2>Where pushes come from</h2>
+
+<ul>
+  <li>The content of a push renders where the tag stands, with the variables of that spot - inside a loop, the row's.</li>
+  <li>A <code>{open}page{close}</code> or <code>{open}code{close}</code> pass adds to the page's stacks; a sandboxed pass keeps its own.</li>
+  <li>A push inside a <code>{open}cache{close}</code> section is stored with the section and made again on every hit.</li>
+  <li>From PHP: <code>padStackPush ( 'scripts', $html, $once )</code>.</li>
+</ul>

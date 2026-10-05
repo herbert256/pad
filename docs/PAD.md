@@ -581,6 +581,20 @@ row. A page that exposes nothing renders HTML as always - asked outright with `p
 it answers 406. `$padOutputType = 'json'` turns a whole application into one that answers
 data.
 
+### Layouts and Components
+
+A component declares the assets it needs where it is used; the layout prints them where
+they belong. `{stack}` is filled in after the whole page has rendered, so a stack in the
+`<head>` gets the pushes of everything below it:
+
+```
+<head>{stack 'scripts'}</head>
+
+{push 'scripts', once='chart'}     {# once per key, however often the component is used #}
+  <script src="chart.js"></script>
+{/push}
+```
+
 ### AJAX Support
 
 Handle AJAX requests seamlessly:

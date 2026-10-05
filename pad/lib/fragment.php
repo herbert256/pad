@@ -21,28 +21,33 @@
   //
   // $padFragmentCache picks the store: 'file' (DATA/cache/fragments/), 'apcu', or FALSE to
   // render every time.
+  //
+  // A {push} made while a section renders is part of what the section does, so it is kept
+  // with the rendering ('stacks') and made again on a hit - lib/stack.php records it.
 
   function padFragmentHit () {
 
     global $pad, $padFragment, $padFragmentCache;
 
     $padFragment [$pad] = [
-      'key'  => padFragmentKey (),
-      'ttl'  => padFragmentTtl (),
-      'hit'  => FALSE,
-      'body' => ''
+      'key'    => padFragmentKey (),
+      'ttl'    => padFragmentTtl (),
+      'hit'    => FALSE,
+      'body'   => '',
+      'stacks' => []
     ];
 
     if ( ! $padFragmentCache )
       return FALSE;
 
-    $body = padFragmentGet ( $padFragment [$pad] ['key'] );
+    $entry = padFragmentGet ( $padFragment [$pad] ['key'] );
 
-    if ( $body === FALSE )
+    if ( $entry === FALSE )
       return FALSE;
 
-    $padFragment [$pad] ['hit']  = TRUE;
-    $padFragment [$pad] ['body'] = $body;
+    $padFragment [$pad] ['hit']    = TRUE;
+    $padFragment [$pad] ['body']   = $entry ['body'];
+    $padFragment [$pad] ['stacks'] = $entry ['stacks'];
 
     return TRUE;
 
@@ -57,10 +62,16 @@
     if ( ! $fragment )
       return;
 
-    if ( $fragment ['hit'] )
+    if ( $fragment ['hit'] ) {
+
       $padResult [$pad] = $fragment ['body'];
-    elseif ( $padFragmentCache )
-      padFragmentPut ( $fragment ['key'], $padResult [$pad], $fragment ['ttl'] );
+
+      foreach ( $fragment ['stacks'] as [ $name, $text, $once ] )
+        padStackPush ( $name, $text, $once );
+
+    } elseif ( $padFragmentCache )
+
+      padFragmentPut ( $fragment ['key'], $padResult [$pad], $fragment ['ttl'], $fragment ['stacks'] ?? [] );
 
   }
 
@@ -105,13 +116,23 @@
 
   }
 
+  // An entry is [ 'body' => the rendering, 'stacks' => the pushes it made ]. A file holds
+  // the expiry time on its first line, followed - when there were pushes - by the length
+  // of their serialized list, which then stands in front of the body.
+
   function padFragmentGet ( $key ) {
 
     global $padFragmentCache;
 
     if ( $padFragmentCache == 'apcu' and function_exists ( 'apcu_fetch' ) ) {
-      $body = apcu_fetch ( "padFragment:$key", $found );
-      return $found ? $body : FALSE;
+
+      $entry = apcu_fetch ( "padFragment:$key", $found );
+
+      if ( ! $found )
+        return FALSE;
+
+      return is_array ( $entry ) ? $entry : [ 'body' => $entry, 'stacks' => [] ];
+
     }
 
     $file = DATA . "cache/fragments/$key";
@@ -122,23 +143,42 @@
     $text  = (string) file_get_contents ( $file );
     $split = strpos ( $text, "\n" );
 
-    if ( $split === FALSE or (int) substr ( $text, 0, $split ) < time () )
+    if ( $split === FALSE )
       return FALSE;
 
-    return substr ( $text, $split + 1 );
+    $head = explode ( ' ', substr ( $text, 0, $split ) );
+
+    if ( (int) $head [0] < time () )
+      return FALSE;
+
+    $size   = (int) ( $head [1] ?? 0 );
+    $stacks = $size ? @unserialize ( substr ( $text, $split + 1, $size ), [ 'allowed_classes' => FALSE ] ) : [];
+
+    return [
+      'body'   => substr ( $text, $split + 1 + $size ),
+      'stacks' => is_array ( $stacks ) ? $stacks : []
+    ];
 
   }
 
-  function padFragmentPut ( $key, $body, $ttl ) {
+  function padFragmentPut ( $key, $body, $ttl, $stacks = [] ) {
 
     global $padFragmentCache;
 
     if ( $padFragmentCache == 'apcu' and function_exists ( 'apcu_store' ) )
-      return apcu_store ( "padFragment:$key", $body, $ttl );
+      return apcu_store ( "padFragment:$key", [ 'body' => $body, 'stacks' => $stacks ], $ttl );
 
     padFragmentPurge ();
 
-    return padFilePut ( "cache/fragments/$key", ( time () + $ttl ) . "\n" . $body );
+    $head  = time () + $ttl;
+    $extra = '';
+
+    if ( $stacks ) {
+      $extra = serialize ( $stacks );
+      $head .= ' ' . strlen ( $extra );
+    }
+
+    return padFilePut ( "cache/fragments/$key", "$head\n$extra$body" );
 
   }
 
