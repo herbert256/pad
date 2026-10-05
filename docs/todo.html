@@ -524,7 +524,7 @@
           <pre><code>{debug $order}
 {debug}        <em>every field visible here</em></code></pre>
           <p><code>{dump}</code> stops the request with a full dump, and the <code>dump</code> option writes to a directory. Neither shows a single value in the page while rendering continues. <code>{debug}</code> would print a collapsible <code>&lt;details&gt;</code> tree for local requests and nothing for remote visitors, using the same local check as <a href="https://github.com/herbert256/pad/blob/master/pad/lib/dump.php">lib/dump.php</a>.</p>
-          <p class="references"><strong>Precedent:</strong> <a href="https://twig.symfony.com/doc/3.x/functions/dump.html">Twig dump</a></p>
+          <p class="done"><strong>Done.</strong> <code>{debug $x}</code> / <code>{debug}</code> (lib/debug.php): a collapsible <code>&lt;details&gt;</code> tree for local requests only (<code>padLocal()</code>, the same check the error channel uses), nothing for remote visitors; items read raw so an array field is the array and a missing one is named. Regression: two framework <code>tags/debug_*</code> cases; manual page <em>Inline debug</em>; TAGS.md, CLAUDE.md.</p><p class="references"><strong>Precedent:</strong> <a href="https://twig.symfony.com/doc/3.x/functions/dump.html">Twig dump</a></p>
         </li>
 
         <li class="idea" id="when-list">

@@ -969,6 +969,7 @@ Each `{tag}` creates a new level scope. PAD maintains global variables per level
 ## Debugging
 
 - Set `$padInfo = 'trace'` for execution tracing
+- Use `{debug $order}` for a collapsible view of a value inside the page (local requests only; `{debug}` alone shows every field visible there)
 - Use `{dump}` tag for variable inspection
 - Use `{trace}` tag for execution trace
 - Check `DATA/` directory for error dumps and logs

@@ -686,6 +686,23 @@ Dump debug information.
 
 ---
 
+### debug
+Show a value in the page while it renders - for a local request only.
+
+```html
+{debug $order}
+{debug}
+```
+
+**Behavior:** Writes a collapsible `<details>` tree of the value. `{debug}` alone shows every
+field visible where it stands - the rows of the enclosing levels, innermost first - and the
+application's variables. A missing `$name` is shown as missing rather than failing. A
+request that is not local (the command line, or loopback with nothing forwarded) gets
+nothing, and `$padDiagnostics = FALSE` switches it off everywhere. Unlike `{dump}` the
+request goes on.
+
+---
+
 ### trace
 Enable detailed tracing.
 
@@ -950,6 +967,7 @@ Resume a previously ceased sequence iteration.
 | `trans` | Output | Translated text from the `_lang/` catalogs |
 | `classes` | Output | Class list from conditional names |
 | `dump` | Debug | Dump info |
+| `debug` | Debug | Show a value inline, local requests only |
 | `trace` | Debug | Enable tracing |
 | `error` | Errors | Trigger error |
 | `exception` | Errors | Throw exception |
