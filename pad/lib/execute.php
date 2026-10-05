@@ -82,7 +82,7 @@
     $extra = '';
 
     foreach ( $parms as $parm )
-      $extra .= " '" . str_replace( "'", "\\'", $parm) . "',";
+      $extra .= " '" . str_replace ( [ '\\', "'" ], [ '\\\\', "\\'" ], (string) $parm ) . "',";
 
     if ( $extra )
       $extra = substr ( $extra, 0, -1 );
