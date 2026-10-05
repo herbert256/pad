@@ -279,7 +279,7 @@
       if ( padLocal () )
         echo "<pre>\nError: " . htmlspecialchars ( "$info", ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' ) . "</pre>";
       else
-        echo '<pre>Unknow error occurred.</pre>';
+        echo '<pre>Unknown error occurred.</pre>';
 
     } catch (Throwable $e) {
 
