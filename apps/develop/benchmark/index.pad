@@ -1,37 +1,25 @@
-<table border=1> 
+<p>{$benchShown} of {$benchCount} pages answered with their timings, in ms.</p>
+
+<table border=1>
 
   <tr>
-
-    <td>item</td>
+    <td>page</td>
     <td align="right">curl</td>
     <td align="right">total</td>
     <td align="right">boot</td>
-    <td align="right">pad</td>
+    <td align="right">engine</td>
     <td align="right">app</td>
-
   </tr>
 
   {list}
-
     <tr>
-
-      <td>{$item}</td>
-
-      <td align="right">{$curl | bm}</td>
-      <td align="right">{$total | bm}</td>
-      <td align="right">{$boot | bm}</td>
-      <td align="right">{$usr | bm}</td>
-      <td align="right">{$call | bm}</td>
-
+      <td>{$page}</td>
+      <td align="right">{$curl}</td>
+      <td align="right">{$total}</td>
+      <td align="right">{$boot}</td>
+      <td align="right">{$engine}</td>
+      <td align="right">{$app}</td>
     </tr>
-
-  @else@
-
-    <br>
-      No data, there are some requirements for PAD Benchmarks.<br>
-      - $padInfoStats must be TRUE<br>
-      - There must be regression result under _regression
-      
   {/list}
 
 </table>

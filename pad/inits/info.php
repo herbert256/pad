@@ -23,6 +23,17 @@
 
   }
 
+  // A benchmark asks a page for its timings: ?padStats, on a request this machine makes to
+  // itself, turns the stats mode on for that one request, which answers them in its
+  // PAD-Stats header (develop/benchmark reads them). A visitor cannot switch it.
+
+  if ( padSelfSwitch ( 'padStats' ) ) {
+
+    $padInfo      = $padInfo ?: 'stats';
+    $padInfoStats = TRUE;
+
+  }
+
   if ( $padInfo )
     include PAD . 'info/start/config.php';
 
