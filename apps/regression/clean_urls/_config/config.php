@@ -6,4 +6,8 @@
 
   $padCleanUrls = TRUE;
 
+  // A session variable with a route of the same name, members/[member]: the session keeps it.
+
+  $padSessionVars = [ 'member' ];
+
 ?>

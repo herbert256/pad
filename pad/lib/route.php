@@ -211,10 +211,17 @@
 
   }
 
+  // A name the application keeps in the session is never set from the path, as a request
+  // value never sets one (padRequestVar): a page [user].pad bound $user from the URL, the
+  // session's own value was then not taken, and the end of the request wrote the path's
+  // value into the session. The first bind runs before the configuration is read, so
+  // inits/parms.php drops such a name again before it takes the session in.
+
   function padRouteBind ( $vars ) {
 
     foreach ( $vars as $name => $value )
-      $GLOBALS [$name] = $value;
+      if ( ! in_array ( $name, $GLOBALS ['padSessionVars'] ?? [], TRUE ) )
+        $GLOBALS [$name] = $value;
 
   }
 

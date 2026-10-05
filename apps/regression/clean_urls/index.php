@@ -11,6 +11,8 @@
 
   $back = padCurl ( [ 'url' => $base . 'products/42?back', 'options' => [ 'FOLLOWLOCATION' => FALSE ] ] );
 
+  $session = trim ( padCurl ( $base . 'members/eve?padInclude' ) ['data'] );
+
   $location = str_replace ( $padHost, $padRoot, $back ['headers'] ['Location'] ?? '' );
   $status   = $back ['result'];
 

@@ -18,6 +18,13 @@
 
   if (count($padSessionVars) ) {
 
+    // A segment of a clean URL was bound before the configuration said which names are the
+    // session's (inits/page.php, lib/route.php); such a name is the session's, not the path's.
+
+    foreach ( $padSessionVars as $padVar )
+      if ( array_key_exists ( $padVar, $padRouteVars ?? [] ) )
+        unset ( $GLOBALS [$padVar] );
+
     padSessionStart ();
 
     padGetParms ('SESSION', $_SESSION ?? []);
