@@ -1333,7 +1333,7 @@ assigns it. `node editors/lsp/test.js` tests it; `./ci.sh` runs that as its `lsp
 | `regression/try_pad` | Test | Regression test for the try guards under the 'pad' action |
 | `regression/errors` | Test | The Errors suite: the tests that fail on purpose, answered lean under the boot action - no dumps |
 | `regression/common` | Test | The pages of the suite that use `_common` - `{example}`, `{demo}`, `{table}` - fetched and compared the same way |
-| `sequence` | Standard | Mathematical sequence subsystem demos |
+| `sequence` | Standard | Mathematical sequence subsystem demos - with a gallery of every type beside its OEIS entry, a sequence played as notes, and a guess-the-next-term game |
 | `structure` | Example | Demonstrates nested `_xxx` directories and inheritance |
 | `test` | Minimal | A scratch application for trying things out, `_common` switched off |
 

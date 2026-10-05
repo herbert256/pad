@@ -28,6 +28,7 @@ Output: `1 1 2 3 5 8 13 21 34 55`
 - **Aggregations:** `sum`, `average`, `minimum`, `maximum`, `count`
 - **Multi-sequence:** `append`, `merge`, `intersection`, `difference`
 - **OEIS Integration:** Fetch any sequence from the Online Encyclopedia of Integer Sequences
+- **Charts:** `{chart 'line', sequence='recaman', rows=32}` and `{sparkline sequence='prime', rows=20}` draw the terms as inline SVG; the sequence application's Gallery, Listen and Guess pages draw, play and quiz every type
 
 ## Getting Started
 

@@ -1,0 +1,14 @@
+<p>Every sequence type that needs no parameter, its first 24 terms drawn by
+<code>{open}sparkline sequence=$type, rows=24{close}</code>, beside the
+<a href="https://oeis.org">OEIS</a> entry the terms come from. Follow a name to hear it.</p>
+
+<table cellpadding="4">
+  {drawn}
+    <tr>
+      <td align="right"><a href="?listen&type={$type}">{$type}</a></td>
+      <td>{sparkline sequence=$type, rows=24}</td>
+      <td align="left"><small>{$first}, ...</small></td>
+      <td>{if $oeis ne ''}<a href="https://oeis.org/{$oeis}">{$oeis}</a>{/if}</td>
+    </tr>
+  {/drawn}
+</table>

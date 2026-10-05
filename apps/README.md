@@ -51,7 +51,7 @@ This directory contains PAD applications and examples.
 | [regression/try_pad](regression/try_pad/README.md) | Test | Regression test for the try guards under the 'pad' action - caught and reported into the page |
 | [regression/errors](regression/errors/README.md) | Test | The Errors suite: the tests that fail on purpose, answered lean under the boot action - no dumps |
 | [regression/common](regression/common/README.md) | Test | The pages of the suite that use _common - {example}, {demo}, {table} - fetched and compared the same way |
-| [sequence](sequence/README.md) | Standard | Mathematical sequence subsystem demos |
+| [sequence](sequence/README.md) | Standard | Mathematical sequence subsystem demos - gallery, listen and guess pages |
 | [structure](structure/README.md) | Example | Demonstrates PAD directory structure and nested `_xxx` directories |
 | [test](test/README.md) | Minimal | A scratch application for trying things out, with `_common` switched off |
 
