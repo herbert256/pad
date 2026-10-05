@@ -5,7 +5,8 @@
   //
   // padGetParms   promotes one array; a name already set is left alone (so the first
   //               source wins) and padValidVar rejects empty, non-identifier and
-  //               pad-prefixed names, which keeps engine state out of reach
+  //               pad-prefixed names, which keeps engine state out of reach; the query
+  //               key that names the page ($padPageKey, inits/page.php) is no value
   // padGetParms2  trims each request value, recursing into nested arrays; session values
   //               pass as they are
   // padRequestVar  whether a request value of that name may become a global: one the
@@ -15,7 +16,9 @@
   function padGetParms ( $type, $parms ) {
 
     foreach ( $parms as $field => $value )
-      if ( (!isset($GLOBALS[$field])) )
+      if ( $type == 'GET' and (string) $field === ( $GLOBALS ['padPageKey'] ?? '' ) )
+        continue;
+      elseif ( (!isset($GLOBALS[$field])) )
         if ( padValidVar ($field) )
           if ( $type == 'SESSION' or padRequestVar ($field, $type) )
             $GLOBALS [$field] = padGetParms2 ( $type, $value );

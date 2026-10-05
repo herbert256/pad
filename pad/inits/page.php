@@ -18,10 +18,18 @@
   // A page under _tests/ is private like every _ directory, except to pad test on the
   // command line (padTestPageCheck in lib/page.php).
 
+  // The query key that names the page - ?links - is the page's name, not a value of the
+  // request: $padPageKey keeps it, and neither inits/parms.php nor the field search
+  // (lib/field/level.php) takes it for a variable. It was one, an empty string, and on the
+  // page links a scalar $links was found before the array the page's .php set, so the tag
+  // {links} resolved as that empty field and never iterated. A restart keeps the key.
+
+  $padPageKey ??= '';
+
   if     ( isset($padPage) )                 $padPage = $padPage;
   elseif ( $padRoutePath !== ''
            and ! padRouteQuery () )          $padPage = $padRoutePath;
-  elseif ( count($_GET) )                    $padPage = array_key_first ($_GET);
+  elseif ( count($_GET) )                    $padPage = $padPageKey = (string) array_key_first ($_GET);
   elseif ( isset ( $_SERVER['argv'] [1] ) )  $padPage = $_SERVER['argv'] [1];
   else                                       $padPage = 'index';
 

@@ -66,10 +66,14 @@
     $skip = ( $GLOBALS ['padRequestVars'] ?? TRUE ) === TRUE
           ? [] : [ '_GET', '_POST', '_COOKIE', '_REQUEST', '_FILES' ];
 
+    // The query key that names the page - ?links - is no request value (inits/page.php).
+
+    $page = ( $field === ( $GLOBALS ['padPageKey'] ?? '' ) ) ? [ '_GET', '_REQUEST' ] : [];
+
     foreach ( $GLOBALS as $key => $value )
       if ( is_array ($value) and array_key_exists ( $field, $value)
            and substr($key, 0, 3) != 'pad' and substr($key, 0, 2) != 'pq'
-           and ! in_array ( $key, $skip ) )  {
+           and ! in_array ( $key, $skip ) and ! in_array ( $key, $page ) )  {
         $work = $value [$field];
         if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
         if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
