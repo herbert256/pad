@@ -1,0 +1,9 @@
+{set $i = 0}
+{while $i lt 2, toBool='looped'}
+  {increment $i}{$i}
+{/while}
+{spaceless toBool='wrapped'}
+  a {if 1 eq 2}x{/if} b
+{/spaceless}
+[{bool:looped}yes@else@no{/bool:looped}]
+[{bool:wrapped}yes@else@no{/bool:wrapped}]

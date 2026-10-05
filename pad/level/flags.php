@@ -6,6 +6,15 @@
   //
   // The notOk, null and else options fire from here. Also re-run by walk/next.php and
   // walk/end.php, which call the tag handler again and need the flags refreshed.
+  //
+  // Such a later pass - one after the level rendered an occurrence - does not judge the level
+  // again when it answers nothing: that answer ends the walk, {while} returns NULL when its
+  // condition fails, and the rows already rendered stand. Judged as a miss, a {while} that
+  // looped failed its demand and stored FALSE for its toBool, and so did a {spaceless} or
+  // {tidy} around an {if} that did not hold - its end pass read the result of whichever tag
+  // ran last inside it.
+
+  $padFlagsBefore = [ $padNull [$pad], $padElse [$pad], $padHit [$pad] ];
 
   if     ( $padTagResult === NULL ) $padNull [$pad] = TRUE;
   elseif ( $padTagResult === INF  ) $padNull [$pad] = TRUE;
@@ -24,6 +33,11 @@
 
   if     ( $padHit [$pad] and is_array($padTagResult) ) $padArray [$pad] = TRUE;
   else                                                  $padArray [$pad] = FALSE;
+
+  if ( $padOccur [$pad] and ! $padHit [$pad] ) {
+    list ( $padNull [$pad], $padElse [$pad], $padHit [$pad] ) = $padFlagsBefore;
+    return;
+  }
 
   if     ( ! $padHit  [$pad] and padTagParm ( 'notOk' ) ) include PAD . 'options/notOk.php';
   elseif ( ! $padHit  [$pad] and padTagParm ( 'error' ) ) include PAD . 'options/error.php';
