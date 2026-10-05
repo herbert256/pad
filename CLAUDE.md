@@ -103,7 +103,7 @@ apps/myapp/
 ├── _options/              # Custom tag options
 ├── _config/               # Application configuration
 │   └── config.php
-├── _data/                 # Static data files (XML, JSON)
+├── _data/                 # Data files (XML, JSON, YAML, CSV) and named .sql queries
 │
 └── subdir/                # Subdirectories can have own wrappers
     ├── _callbacks/        # Subdirectory callbacks
@@ -128,7 +128,7 @@ apps/myapp/
 | `_callbacks/` | Iteration hooks | `callback='name'` → `name.php` |
 | `_options/` | Tag options | Custom option handlers |
 | `_config/` | App config | `config.php` overrides |
-| `_data/` | Static data | XML, JSON files |
+| `_data/` | Static data, named queries | XML, JSON, YAML, CSV; `name.sql` runs as `{name}` |
 | `_scripts/` | Shell scripts | On demand |
 
 ### Wrapper Files (_inits.pad / _exits.pad)

@@ -163,6 +163,53 @@
 
   }
 
+  // A named query: the text of a _data/name.sql file, which {name} then iterates. Every
+  // {$field} in it is resolved where the tag stands - an option of the tag itself first
+  // ({topCustomers country='USA'}), then a field or a variable of the page - and bound as a placeholder,
+  // so it reaches MySQL as an escaped literal, a number, or for an array a list. The file
+  // reads: its statement must be a SELECT or one of db()'s reading verbs.
+
+  function padDbNamed ( $sql, $file ) {
+
+    global $padCheckSyntax;
+
+    $vars = [];
+
+    // Line comments are the file's own notes: -- at the start of a line.
+
+    $sql = preg_replace ( '/^[ \t]*--.*$/m', '', $sql );
+
+    $sql = preg_replace_callback ( '/\{\$([A-Za-z_][A-Za-z0-9_]*)\}/',
+
+      function ( $match ) use ( &$vars, $file, $padCheckSyntax ) {
+
+        global $pad, $padPrm;
+
+        $name = $match [1];
+        $key  = 'p' . count ( $vars );
+
+        if     ( isset ( $padPrm [$pad] [$name] ) ) $vars [$key] = padTagParm ( $name );
+        elseif ( padArrayCheck ( $name ) ) $vars [$key] = padArrayValue ( $name );
+        elseif ( padFieldCheck ( $name ) ) $vars [$key] = padFieldValue ( $name );
+        else {
+          if ( $padCheckSyntax )
+            padError ( "the named query " . basename ( $file ) . " reads {\$$name}, and there is no field named '$name'" );
+          $vars [$key] = '';
+        }
+
+        return '{' . $key . '}';
+
+      }, $sql );
+
+    $verb = strtolower ( strtok ( ltrim ( $sql ), " \t\r\n" ) );
+
+    if ( ! in_array ( $verb, [ 'select', 'array', 'record', 'field', 'check' ] ) )
+      return padError ( "the named query " . basename ( $file ) . " must read - it starts with '" . padMakeSafe ( $verb, 20 ) . "'" );
+
+    return db ( trim ( $sql ), $vars );
+
+  }
+
   // Fills the {0}, {1} ... placeholders in one pass over the statement, so a value that
   // itself holds {1} is never substituted again by the next placeholder. A placeholder the
   // statement writes inside a quoted literal - name = '{0}' - gets the value escaped, as it

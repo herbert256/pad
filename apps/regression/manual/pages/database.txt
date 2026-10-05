@@ -238,6 +238,79 @@ keeps to <code>*</code>:</p>
 
 <p>A <code>{record}</code> pair does the same for a single row.</p>
 
+<h2>Named queries - a .sql file in _data</h2>
+
+<p>A query can also live in a file of its own. <code>_data/staffByPhone.sql</code> holds:</p>
+
+<pre>-- The staff whose phone number matches a pattern, at most so many of them.
+select name, phone
+  from staff
+ where phone like {$pattern}
+ order by name
+ limit {$max}</pre>
+
+<p>and the tag <code>{staffByPhone}</code> runs it. The file is never run as PAD:
+each <code>{$name}</code> is bound as a placeholder - an option of the tag first,
+then a variable of the page - so a value can never become SQL. The statement must read.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/database_4.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/database_4.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $pattern </span><span style="color: #007700">= </span><span style="color: #DD0000">'%4%'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$max     </span><span style="color: #007700">= </span><span style="color: #0000BB">10</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">staffByPhone</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffByPhone</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">staffByPhone </font><font color="red">pattern=<font color="black">'</font><font color="black">%</font>3<font color="black">%</font><font color="black">'</font><font color="black">,</font> max=2</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffByPhone</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>bob jerry jim joe </p>
+<p>bob jerry </p>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
 <h2>Declared tables - the select subsystem</h2>
 
 <p>For an application built around its tables there is a third way: declare the tables once

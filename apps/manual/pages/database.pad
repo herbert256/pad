@@ -40,6 +40,23 @@ keeps to <code>*</code>:</p>
 
 <p>A <code>{open}record{close}</code> pair does the same for a single row.</p>
 
+<h2>Named queries - a .sql file in _data</h2>
+
+<p>A query can also live in a file of its own. <code>_data/staffByPhone.sql</code> holds:</p>
+
+<pre>-- The staff whose phone number matches a pattern, at most so many of them.
+select name, phone
+  from staff
+ where phone like {open}$pattern{close}
+ order by name
+ limit {open}$max{close}</pre>
+
+<p>and the tag <code>{open}staffByPhone{close}</code> runs it. The file is never run as PAD:
+each <code>{open}$name{close}</code> is bound as a placeholder - an option of the tag first,
+then a variable of the page - so a value can never become SQL. The statement must read.</p>
+
+{example 'fragments/database_4'}
+
 <h2>Declared tables - the select subsystem</h2>
 
 <p>For an application built around its tables there is a third way: declare the tables once

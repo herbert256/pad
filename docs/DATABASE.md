@@ -80,6 +80,35 @@ Uses the same special syntax as `db("CHECK ...")` - table name first, NO `* FROM
 
 To iterate a whole table by name without writing SQL, use the PAD Select subsystem below.
 
+### Named queries - `_data/*.sql`
+
+A `.sql` file in `_data/` is a query with a name: the tag of that name runs it and iterates
+the rows.
+
+**_data/staffByPhone.sql:**
+```sql
+-- The staff whose phone number matches a pattern
+select name, phone
+  from staff
+ where phone like {$pattern}
+ order by name
+ limit {$max}
+```
+
+```
+{staffByPhone}{$name} {/staffByPhone}                    # $pattern and $max of the page
+{staffByPhone pattern='%3%', max=2}{$name} {/staffByPhone}  # options of the tag win
+```
+
+- The file is never run as PAD, so no value is ever spliced into the SQL text: each
+  `{$name}` is bound through the `db()` placeholders - an escaped literal, a number as a
+  number, an array as a list for `IN ({$ids})`.
+- `{$name}` is looked up as an option of the tag first, then as a field or a variable of
+  the page; under the strict check a name that is neither is an error.
+- The statement must read: `select`, or one of the `array`, `record`, `field` and `check`
+  forms of `db()`. Lines starting with `--` are comments.
+- `{local:staffByPhone.sql}` names the file explicitly.
+
 ---
 
 ## PAD Select Subsystem

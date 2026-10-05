@@ -416,7 +416,7 @@
             <tr>
               <th scope="row"><code>.sql</code> data files</th>
               <td>The <code>_data/</code> lookup in <a href="https://github.com/herbert256/pad/blob/master/pad/lib/paths.php">lib/paths.php</a> finds <code>name.sql</code>, but <code>pad/data/</code> has no <code>sql.php</code> reader for it.</td>
-              <td>Make it a named query: <code>_data/topCustomers.sql</code> becomes the data of <code>{topCustomers}</code>, with page variables bound as placeholders.</td>
+              <td>Make it a named query: <code>_data/topCustomers.sql</code> becomes the data of <code>{topCustomers}</code>, with page variables bound as placeholders.<span class="done"><strong>Done.</strong> A <code>_data/name.sql</code> file runs as <code>{name}</code> (<code>padDbNamed</code> in lib/db.php, from types/_go/local.php). The file is never run as PAD; each <code>{$field}</code> is bound through the <code>db()</code> placeholders, a tag option first and then a page field, and the statement must read. Regression: pages <code>db/named</code> (incl. a hostile pattern; fails on the old engine with “no data type named sql”), errors <code>syntax/a_named_query_must_read</code> and <code>a_named_query_field_must_exist</code>; manual <em>Database</em> section; DATABASE.md and CLAUDE.md.</span></td>
             </tr>
             <tr>
               <th scope="row"><code>where=</code> examples</th>
