@@ -779,6 +779,51 @@ shown, not run. See also the `markdown` pipe in FUNCTIONS.md.
 
 ---
 
+### chart
+Draw a chart as inline SVG - no JavaScript, so it works in print and caches like any output.
+
+```html
+{chart 'bar', data='sales', label='month', value='amount'}
+{chart 'line', data='visits', value='count', title='Visits this week'}
+{chart 'bar', sequence='fibonacci', rows=12}
+```
+
+**Kinds:** `bar` (columns from a zero baseline), `line` (a line over a light wash, the last
+point marked), `sparkline` (see below).
+
+| Option | Description |
+|--------|-------------|
+| `data` | The rows: a `{data}` store, a sequence store, the page's array or a `_data` file of that name, or a literal (`data='[3,1,4]'`) |
+| `sequence` | Plot the first `rows` terms (default 10) of a sequence type instead |
+| `value` | The field that holds the number - by default the first numeric field |
+| `label` | The field for the category axis - by default the first other field, else the row number |
+| `title` | The accessible name; by default made from value and label |
+| `width`, `height` | The size, default 600 x 300; `.pad-chart { max-width: 100%; height: auto }` in the page's CSS makes it shrink with its container |
+
+**Accessibility:** `role="img"`, labelled by a `<title>` and a `<desc>` that lists the values;
+each bar and point has its own `<title>`, the tooltip on hover. A row without a number is
+left out; a chart without points writes nothing.
+
+**Colours:** CSS custom properties `--pad-chart-series`, `--pad-chart-text`,
+`--pad-chart-grid` and `--pad-chart-surface`, overridden on `.pad-chart`. The defaults follow
+the page's `color-scheme` (light-dark()), so a page that declares `color-scheme: light dark`
+gets the dark steps in dark mode.
+
+---
+
+### sparkline
+A word-sized line chart: no axes, the last point marked.
+
+```html
+Visits {sparkline data='visits', value='count'}
+{sparkline sequence='fibonacci', rows=12}
+```
+
+**Behavior:** `{chart 'sparkline', ...}` by another name, with the same options; 120 x 32 by
+default, scaled to its own minimum and maximum.
+
+---
+
 ### ignore
 Escape PAD syntax in content.
 
@@ -1231,6 +1276,8 @@ Resume a previously ceased sequence iteration.
 | `tidy` | Output | Format HTML |
 | `spaceless` | Output | Remove whitespace between HTML tags |
 | `markdown` | Output | Markdown written as HTML, raw HTML escaped |
+| `chart` | Output | Bar, line or sparkline chart as inline SVG |
+| `sparkline` | Output | Word-sized line chart as inline SVG |
 | `ignore` | Output | Escape content |
 | `reactData` | Output | React mount point with provider data |
 | `cache` | Output | Keep a section rendered (fragment cache) |

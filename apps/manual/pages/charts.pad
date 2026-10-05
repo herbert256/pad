@@ -1,0 +1,32 @@
+<h1>Charts</h1>
+
+<p>{tag 'chart'} draws a chart as inline SVG on the server. There is no JavaScript, so the
+chart prints, works where scripts do not run, and caches like any other output. A
+<code>bar</code> chart puts columns on a zero baseline; a <code>line</code> chart draws a line
+over a light wash with the last point marked.</p>
+
+{example 'fragments/charts_1'}
+
+<h2>Where the numbers come from</h2>
+
+<ul>
+  <li><code>data='sales'</code> - a {tag 'data'} store, a sequence store, an array of the page's PHP, or a <code>_data</code> file of that name.</li>
+  <li><code>value=</code> names the field with the number, <code>label=</code> the field for the axis. Without them the first numeric field is the value and the first other field the label.</li>
+  <li><code>sequence='fibonacci', rows=12</code> - the first terms of a sequence, for demo data straight away.</li>
+</ul>
+
+<h2>Sparklines</h2>
+
+<p>{tag 'sparkline'} is a line chart the size of a word, without axes, to stand in a sentence
+or a table cell.</p>
+
+{example 'fragments/charts_2'}
+
+<h2>Accessible and themeable</h2>
+
+<p>Every chart is an image to a screen reader (<code>role="img"</code>), named by its
+<code>title=</code> and described by a list of its values. Each bar and point carries its own
+tooltip. The colours are CSS custom properties - <code>--pad-chart-series</code>,
+<code>--pad-chart-text</code>, <code>--pad-chart-grid</code>, <code>--pad-chart-surface</code> -
+set on <code>.pad-chart</code>, and their defaults follow the page's
+<code>color-scheme</code>, light or dark.</p>

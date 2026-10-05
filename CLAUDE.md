@@ -561,6 +561,15 @@ A row is the file's front matter (YAML between `---` lines) plus `slug` (file na
 (the Markdown as HTML - print it raw with `{!body}`) and `source`. `html` lets raw HTML
 through; `padCollection('blog')` gives the rows to PHP.
 
+### Charts
+```
+{chart 'bar', data='sales', label='month', value='amount'}   # inline SVG, no JavaScript
+{chart 'line', data='visits', title='Visits this week'}      # data: store, page array, _data file
+{sparkline sequence='fibonacci', rows=12}                    # word-sized; sequence terms as data
+```
+`role="img"` with `<title>`/`<desc>`; colours are `--pad-chart-*` custom properties on
+`.pad-chart`, following the page's `color-scheme`.
+
 ### Variable Assignment
 ```
 {set $name = 'Alice'}              # Assign string

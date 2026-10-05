@@ -557,7 +557,7 @@
 {sparkline data='visits', value='count'}
 {sparkline sequence='fibonacci', rows=12}</code></pre>
           <p>Server-rendered SVG needs no JavaScript, works in emails and print, and caches like any other output. Bar, line and sparkline cover most dashboards, and the sequence subsystem provides demo data straight away. Colour through CSS variables so dark mode works, and add a <code>&lt;title&gt;</code> for screen readers.</p>
-          <p class="references"><strong>Precedent:</strong> none of the compared engines ship this; it would be distinctively PAD.</p>
+          <p class="done"><strong>Done.</strong> <code>{chart 'bar'|'line', data=…, label=…, value=…}</code> and <code>{sparkline sequence='fibonacci', rows=12}</code> draw inline SVG on the server, no JavaScript, from a data store, a sequence, the page’s array or a _data file - with <code>role="img"</code>, a <code>&lt;title&gt;</code> and a <code>&lt;desc&gt;</code> listing the values, tooltips, and colours as <code>--pad-chart-*</code> custom properties following the colour scheme. Regression: framework and errors cases; manual page <em>Charts</em>; docs.</p><p class="references"><strong>Precedent:</strong> none of the compared engines ship this; it would be distinctively PAD.</p>
         </li>
 
         <li class="idea" id="meta">
