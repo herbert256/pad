@@ -528,6 +528,19 @@ Escape PAD syntax in content.
 
 ---
 
+### Comments
+Not a tag: text the engine drops before it scans the template, tags inside included.
+
+```html
+{# a comment #}
+{-- a comment --}
+```
+
+**Rules:** `{--` must be followed by whitespace (so `{--gap:4px}` in CSS is not one); each
+form closes at the first `#}` or `--}` after it.
+
+---
+
 ### reactData
 Render a mount point `<div>` for a React component, filled with data from a provider.
 

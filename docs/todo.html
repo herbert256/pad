@@ -401,7 +401,7 @@
             <tr>
               <th scope="row"><code>{-- --}</code> comments</th>
               <td>The engine strips <code>{# … #}</code> comments (<a href="https://github.com/herbert256/pad/blob/master/pad/lib/level.php">lib/level.php</a>). <code>{-- … --}</code> fails with “there is no tag named '--'”. Still, HANDLING.md, CONSTRUCTS.md and TYPES.md use it in examples, and the Vim, Emacs, Kate, BBEdit and Notepad++ grammars highlight it as a comment.</td>
-              <td>Change the docs and editor grammars to <code>{# #}</code>, or make the engine accept <code>{-- --}</code> as a second comment form.</td>
+              <td>Change the docs and editor grammars to <code>{# #}</code>, or make the engine accept <code>{-- --}</code> as a second comment form.<span class="done"><strong>Done.</strong> The engine accepts <code>{-- … --}</code> as a second comment form (<code>padCommentStripDash</code> in lib/level.php), so the reference and all seven editor kits are right as written. <code>{--</code> must be followed by whitespace, so <code>:root{--gap:4px}</code> stays CSS. Regression: framework <code>tags/a_dash_comment_is_dropped_with_the_tags_inside_it</code> (fails on the old engine) and <code>tags/a_css_custom_property_is_not_a_dash_comment</code>; manual page <em>Comments</em>; CLAUDE.md, TAGS.md and PAD.md document both forms.</span></td>
             </tr>
             <tr>
               <th scope="row"><code>{^x}</code> JSON sigil</th>

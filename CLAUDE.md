@@ -421,6 +421,16 @@ The `@` represents the current value in expressions:
 {echo $text | '"' . @ . '"'}     # Wrap value in quotes
 ```
 
+### Comments
+
+Two forms, both dropped before the template is scanned, so a tag inside one never runs:
+```
+{# a comment #}
+{-- a comment, the form the editor kits toggle --}
+```
+`{--` must be followed by whitespace - `:root{--gap:4px}` inside `{ignore}` is CSS, not a
+comment - and both forms close at the first `#}` / `--}` after them.
+
 ### Ignore - Preventing PAD from Parsing Curly Braces
 
 The `ignore` feature tells PAD not to parse curly braces `{}` as PAD tags. Essential for JavaScript, JSON, CSS, or any content with curly braces.

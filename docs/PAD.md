@@ -103,6 +103,13 @@ $items = ['Apple', 'Banana', 'Cherry'];
 
 ## Template Syntax
 
+### Comments
+
+```
+{# dropped before the template is scanned #}
+{-- the same, in the form the editor kits toggle --}
+```
+
 ### Variables
 
 ```

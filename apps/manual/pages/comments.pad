@@ -1,0 +1,24 @@
+<h1>Comments</h1>
+
+<p>PAD has two comment forms. Both are taken out of the template before it is scanned, so a tag written inside one never runs and nothing of it reaches the output.</p>
+
+<ul>
+  <li><code>{open}# ... #{close}</code> - the original form</li>
+  <li><code>{open}-- ... --{close}</code> - the form the editor kits highlight and toggle</li>
+</ul>
+
+{example 'fragments/comments_1'}
+
+<h2>Rules</h2>
+
+<ul>
+  <li>A comment closes at the first <code>#{close}</code> or <code>--{close}</code> after it, and may span lines.</li>
+  <li><code>{open}--</code> must be followed by whitespace: a CSS custom property inside an {tag 'ignore'} block, <code>:root{open}--gap:4px{close}</code>, is CSS and stays as it is.</li>
+  <li><code>{open}#name{close}</code> is not a comment but the option sigil - the value of the tag option <code>name</code>.</li>
+</ul>
+
+<h2>See Also</h2>
+
+<ul>
+  <li>{manual 'ignore'} - keep PAD from parsing braces</li>
+</ul>

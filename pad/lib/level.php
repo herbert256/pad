@@ -237,7 +237,13 @@ function padSplitOnUnquotedColon ( $str ) {
 
   function padCommentStrip ( $text ) {
 
-    if ( ! is_string ( $text ) or ! str_contains ( $text, '{#' ) )
+    if ( ! is_string ( $text ) )
+      return $text;
+
+    if ( str_contains ( $text, '{--' ) )
+      $text = padCommentStripDash ( $text );
+
+    if ( ! str_contains ( $text, '{#' ) )
       return $text;
 
     $pos = 0;
@@ -258,6 +264,34 @@ function padSplitOnUnquotedColon ( $str ) {
       }
 
       $text = substr ( $text, 0, $pos ) . substr ( $text, $close + 2 );
+
+    }
+
+    return $text;
+
+  }
+
+
+  // The second comment form, {-- ... --}, the one the reference and every editor kit
+  // write. The {-- must be followed by whitespace, so a CSS custom property inside an
+  // {ignore} block - :root{--gap:4px} - is never read as a comment; the comment closes at
+  // the first --} after it, and one that never closes stays as it is.
+
+  function padCommentStripDash ( $text ) {
+
+    $pos = 0;
+
+    while ( ( $pos = strpos ( $text, '{--', $pos ) ) !== FALSE ) {
+
+      $after = $text [$pos + 3] ?? '';
+      $close = strpos ( $text, '--}', $pos + 3 );
+
+      if ( ( $after !== '' and ! ctype_space ( $after ) ) or $close === FALSE ) {
+        $pos += 3;
+        continue;
+      }
+
+      $text = substr ( $text, 0, $pos ) . substr ( $text, $close + 3 );
 
     }
 
