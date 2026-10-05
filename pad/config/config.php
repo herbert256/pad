@@ -107,6 +107,14 @@
   $padSelect    = [];
   $padRelations = [];
 
+  // The host names this server answers to, e.g. [ 'example.com', 'www.example.com' ]: a
+  // request naming another host is treated as naming the first. Empty takes the request's
+  // own Host header, once it is a well-formed host. $padHostBase, e.g.
+  // 'https://example.com/pad/', replaces the whole derived base - behind a proxy.
+
+  $padHosts     = [];
+  $padHostBase  = '';
+
   $padGzip      = FALSE;
   $padCookies   = TRUE;
   $padNoNo      = FALSE;

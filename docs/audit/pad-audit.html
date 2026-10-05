@@ -493,13 +493,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
   <h2>Medium <span class="count">— 26</span></h2>
   <div class="findings">
 
-    <div class="finding pm" id="m1">
+    <div class="finding pm fixed" id="m1">
       <div class="tag"><div class="priority">Medium</div><div class="cat">SSRF</div></div>
       <div>
-        <h3><code>$padHost</code> is built from the Host header, so the server fetches and redirects where the client says</h3>
+        <h3><code>$padHost</code> is built from the Host header, so the server fetches and redirects where the client says<span class="done">Fixed</span></h3>
         <p class="where">inits/host.php:12-31 · lib/curl.php:107-120 · lib/page.php:79-108 · lib/api.php:40</p>
         <p><code>$padHttpHost = $_SERVER['HTTP_HOST']</code> is unvalidated, and <code>{get}</code>, relative <code>{curl}</code>/<code>SELF://</code>, <code>{page app=}</code> and <code>padRedirect</code> all build URLs from it. <code>FOLLOWLOCATION</code> is on with no <code>MAXREDIRS</code> or protocol restriction, so a redirect can reach <code>file://</code>. The <code>padSesID</code>/<code>padReqID</code> cookies are forwarded to whatever host the header names, and a TLS-proxy deployment gets <code>http://</code> or internal-port URLs because <code>REQUEST_SCHEME</code>/<code>SERVER_PORT</code> are taken as-is.</p>
         <div class="fix"><b>Fix:</b> use a configured canonical base URL or a host allow-list; reach own apps through a fixed internal base; set <code>CURLOPT_PROTOCOLS_STR</code>/<code>REDIR_PROTOCOLS_STR</code> and a small <code>MAXREDIRS</code>.</div>
+        <div class="resolved"><b>Fixed:</b> <code>inits/host.php</code> takes the Host header only when it is a well-formed host name or bracketed IP literal with an optional port, and <code>localhost</code> otherwise; Apache already refuses the worst shapes, and this covers the servers that do not. A new <code>$padHosts</code> lists the names the server answers to, and a request naming another host is treated as naming the first: checked live with <code>[ 'localhost', '127.0.0.1' ]</code>, <code>Host: evil.example</code> built <code>http://localhost/pad/</code>. A new <code>$padHostBase</code> replaces the whole derived base, for a server behind a TLS proxy whose scheme and port the request does not show; without it, <code>HTTPS=on</code> now makes the scheme https even when <code>REQUEST_SCHEME</code> says otherwise. Every <code>padCurl</code> fetch is limited to http and https on the first request and on every redirect (<code>PROTOCOLS_STR</code>, <code>REDIR_PROTOCOLS_STR</code>), with at most five redirects, so a redirect can no longer reach <code>file://</code>. Decided: <code>$padHosts</code> defaults to empty, a well-formed Host of the client's choosing, because a default list would send every deployment's redirects to <code>localhost</code>. A server reachable under names it does not own should set the list; that is the one step left to deployment.</div>
       </div>
     </div>
 

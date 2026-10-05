@@ -132,6 +132,14 @@
     padCurlOpt ($options, 'FOLLOWLOCATION', true);
     padCurlOpt ($options, 'HEADER',         true);
 
+    // http and https only, the first request and every redirect alike, and a handful of
+    // redirects: a fetch that followed any redirect anywhere could be sent to file:// or
+    // round in circles.
+
+    padCurlOpt ($options, 'MAXREDIRS',          5);
+    padCurlOpt ($options, 'PROTOCOLS_STR',      'http,https');
+    padCurlOpt ($options, 'REDIR_PROTOCOLS_STR','http,https');
+
     // A fetch that can hang forever hangs whatever asked for it - the regression crawl most
     // of all. Callers can widen these through the options; without a bound there was none
     // at all (the audit's F-13).

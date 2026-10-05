@@ -9,11 +9,27 @@
   //
   // $padRoot may be preset by the entry point (www/pad.php); it defaults to /.
 
+  // The host is the client's Host header, and the engine fetches its own pages from it -
+  // {get}, {page app=}, SELF:// - and redirects visitors to it. So it must be a host name
+  // (or an IP literal) with an optional port, nothing else; when $padHosts lists the names
+  // this server answers to, any other is replaced by the first of them. $padHostBase, when
+  // set, is the whole base and the request is not asked at all - the setting for a server
+  // behind a proxy, whose scheme and port the request does not show.
+
   $padRequestScheme = $_SERVER ['REQUEST_SCHEME'] ?? 'http';
   $padHttpHost      = $_SERVER ['HTTP_HOST']      ?? 'localhost';
   $padServerPort    = $_SERVER ['SERVER_PORT']    ?? 80;
 
-  if (strpos ( $padHttpHost, ':') === FALSE )
+  if ( ( $_SERVER ['HTTPS'] ?? '' ) !== '' and ( $_SERVER ['HTTPS'] ?? '' ) !== 'off' )
+    $padRequestScheme = 'https';
+
+  if ( ! preg_match ( '/^([A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?)*|\[[0-9A-Fa-f:.]+\])(:[0-9]{1,5})?$/', $padHttpHost ) )
+    $padHttpHost = 'localhost';
+
+  if ( count ( $padHosts ?? [] ) and ! in_array ( strtolower ( preg_replace ( '/:[0-9]+$/', '', $padHttpHost ) ), array_map ( 'strtolower', $padHosts ), TRUE ) )
+    $padHttpHost = reset ( $padHosts );
+
+  if (strpos ( $padHttpHost, ':') === FALSE or str_ends_with ( $padHttpHost, ']' ) )
     if ( ($padRequestScheme == 'http'  and $padServerPort != 80) or
          ($padRequestScheme == 'https' and $padServerPort != 443) )
       $padHttpHost .= ':' . $padServerPort;
@@ -26,6 +42,9 @@
   if ( ! str_ends_with ( $padRoot, '/' ) )
     $padRoot .= '/';
   $padHost .= $padRoot;
+
+  if ( ( $padHostBase ?? '' ) !== '' )
+    $padHost = rtrim ( $padHostBase, '/' ) . '/';
 
   $padGo    = $padRoot . "$padApp/?";
   $padGoExt = $padHost . "$padApp/?";
