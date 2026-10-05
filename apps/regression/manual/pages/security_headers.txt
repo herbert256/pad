@@ -1,0 +1,91 @@
+/^\<h1\>Security headers\<\/h1\>
+
+\<p\>Every web response carries a few headers that cost nothing and close common holes\:\<\/p\>
+
+\<table border\="1" cellpadding\="8" cellspacing\="0" style\="border\-collapse\: collapse;"\>
+  \<tr\>\<th\>header\<\/th\>\<th\>default\<\/th\>\<th\>what it does\<\/th\>\<\/tr\>
+  \<tr\>\<td\>\<code\>X\-Content\-Type\-Options\<\/code\>\<\/td\>\<td\>\<code\>nosniff\<\/code\>\<\/td\>\<td\>the browser takes the content type as sent, and does not guess one\<\/td\>\<\/tr\>
+  \<tr\>\<td\>\<code\>Referrer\-Policy\<\/code\>\<\/td\>\<td\>\<code\>strict\-origin\-when\-cross\-origin\<\/code\>\<\/td\>\<td\>other sites see where a visitor came from, not the full address\<\/td\>\<\/tr\>
+  \<tr\>\<td\>\<code\>Content\-Security\-Policy\<\/code\>\<\/td\>\<td\>\<code\>frame\-ancestors 'self'\<\/code\>\<\/td\>\<td\>no other site can show your pages in a frame\<\/td\>\<\/tr\>
+\<\/table\>
+
+\<p\>\<code\>\$padSecurityHeaders\<\/code\> in \<code\>_config\/config\.php\<\/code\> lists the first two,
+name \=&gt; value \- an empty value leaves one out, \<code\>\[\]\<\/code\> sends none \- and
+\<code\>\$padCsp\<\/code\> is the policy, \<code\>''\<\/code\> for none\. A header the page's own PHP sent
+stands over the default\.\<\/p\>
+
+\<h2\>A strict policy and the \{nonce\} tag\<\/h2\>
+
+\<p\>A strict policy refuses inline scripts \- which is the point\: a script someone smuggled
+into the page does not run\. Your own inline script runs when it carries the request's nonce\.
+Write \<code\>'nonce'\<\/code\>, with the quotes, in the policy, and \<b\>\{nonce\}\<\/b\> in the script
+tag; the engine puts the same random value in both, new for every request\:\<\/p\>
+
+\<pre\>\$padCsp \= "default\-src 'self'; script\-src 'self' 'nonce'; frame\-ancestors 'self'";\<\/pre\>
+
+
+
+ 
+
+
+
+   
+    \<table border\="1" cellpadding\="10" cellspacing\="0"\>
+  
+
+  
+
+      
+          \<tr\>
+          
+            \<th bgcolor\="\#dddddd"\>
+              PHP \<br\>\<font size\="\-2"\>\<\/font\>
+            \<\/th\>
+          
+          
+            \<th bgcolor\="\#dddddd"\>
+              HTML \<br\>\<font size\="\-2"\>fragments\/security_headers_1\.pad\<\/font\>
+            \<\/th\>
+          
+          
+            \<th bgcolor\="\#dddddd"\>
+              Result
+            \<\/th\>
+          
+        \<\/tr\>
+      
+
+      \<tr\>
+        
+          \<td style\="vertical\-align\:top"\> \<\/td\>
+        
+        
+          \<td style\="vertical\-align\:top"\>\<pre\>\<code style\="color\: \#000000"\>&lt;script nonce\="\<b\>\{\<font color\="blue"\>nonce\<\/font\>\<font color\="red"\>\<\/font\>\}\<\/b\>"&gt;\<b\>\{\<font color\="blue"\>ignore\<\/font\>\<font color\="red"\>\<\/font\>\}\<\/b\>\<br\>  document\.title \= 'Hello';\<br\>\<b\>\{\/\<font color\="blue"\>ignore\<\/font\>\<font color\="red"\>\<\/font\>\}\<\/b\>&lt;\/script&gt;\<\/code\>\<\/pre\>\<\/td\>
+        
+        
+          \<td style\="vertical\-align\:top"\>
+  \<script nonce="[A-Za-z0-9+\/]{24}"\>
+  document\.title \= 'Hello';
+\<\/script\>
+
+\<\/td\>
+        
+      \<\/tr\>
+
+    
+
+  
+    \<\/table\>
+  
+
+
+
+
+
+\<ul\>
+  \<li\>The nonce is written only where the template writes \<b\>\{nonce\}\<\/b\>\. The engine does not
+  add it to the page's script tags\: a smuggled script would get it as well\.\<\/li\>
+  \<li\>\<b\>\{nonce\}\<\/b\> goes outside an \<b\>\{ignore\}\<\/b\> block \- inside one it is text\. The script's
+  body, with its braces, is what the \<b\>\{ignore\}\<\/b\> is for\.\<\/li\>
+  \<li\>A page carrying a nonce is never stored in the page cache\.\<\/li\>
+\<\/ul\>$/

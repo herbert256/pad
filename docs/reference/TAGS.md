@@ -606,6 +606,23 @@ that never flash do not open the session.
 
 ---
 
+### nonce
+This request's Content-Security-Policy nonce.
+
+```html
+<script nonce="{nonce}">{ignore}
+  document.title = 'Hello';
+{/ignore}</script>
+```
+
+**Behavior:** 18 random bytes, base64 - one value for the whole request, made on first use.
+`'nonce'` (quotes included) in `$padCsp` becomes `'nonce-<the value>'` in the header, so
+`$padCsp = "default-src 'self'; script-src 'self' 'nonce'"` lets exactly the scripts that
+carry it run. The engine never adds it to script tags itself. Outside `{ignore}` - inside
+one it is text. A page carrying a nonce is not stored in the page cache.
+
+---
+
 ## File Operation Tags
 
 ### files
@@ -1485,6 +1502,7 @@ Resume a previously ceased sequence iteration.
 | `input` | Web | Form field with refill, label and validation error |
 | `textarea` | Web | Text area with refill, label and validation error |
 | `flash` | Web | Flash messages that survive one redirect |
+| `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
 | `file` | Files | Write file |

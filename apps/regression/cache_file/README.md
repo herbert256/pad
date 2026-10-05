@@ -18,5 +18,6 @@ compares the index, so a backend that stops caching turns the page from yes to N
 | `identity.php/pad` | A request with a cookie of its own is built fresh, never answered with the anonymous visitor's cached page |
 | `guarded.php/pad` | A page under a `_guard.php` is built fresh for the request the guard lets in, and refused to one it does not - never answered from the cache |
 | `locked/` | The guarded directory: its `_guard.php` wants the header `X-Key: open`, its probe differs on every build |
+| `nonce.php/pad` | A page holding the request's CSP nonce (`script.pad`) is built fresh for each fetch, never stored |
 | `validators.php/pad` | The cache's validators belong to one URL: the probe's ETag gets a 304 from the probe only, and a date older than the cached copy gets the page |
 | `_config/config.php` | Switches the file cache on, 60 seconds, `_common` off |

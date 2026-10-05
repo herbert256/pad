@@ -50,6 +50,8 @@
       'request/guard'             => 'A _guard.php decides for its directory: let through, the page; refused, 403 and why; held in a {page}, nothing',
       'request/guarded/inside'    => 'The guarded fixture page, crawled without the key: refused with 403',
       'request/guardpage'         => 'A {page} of the guarded fixture page, crawled without the key: renders as nothing',
+      'request/headers'           => 'The security headers on every response, the request-s nonce in a strict policy and in the script tag alike, and a page-s own header standing',
+      'request/nonced'            => 'The nonce fixture bare: a script tag with some nonce, pinned by shape',
       'request/csrf'              => 'CSRF on the demo: a post without the session-s token, or with a wrong one, is 403; the form-s token - field or header - lets it through',
       'request/ses'               => 'The session fixture bare: some id, pinned by shape',
       'request/up'                => 'The upload fixture bare: no file',

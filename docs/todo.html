@@ -758,7 +758,7 @@ $padExpose = [ 'orders', 'total' ];</code></pre>
           <pre><code>&lt;script nonce="{nonce}"&gt; … &lt;/script&gt;</code></pre>
           <p>The output step (<a href="https://github.com/herbert256/pad/blob/master/pad/lib/output.php">lib/output.php</a>) sends content type, caching, <code>Vary</code> and <code>ETag</code> headers, but no security headers and no Content-Security-Policy. The proposal:</p>
           <ul>
-            <li>a default set of headers: <code>X-Content-Type-Options</code>, <code>Referrer-Policy</code> and <code>frame-ancestors</code>;</li>
+            <li>a default set of headers: <code>X-Content-Type-Options</code>, <code>Referrer-Policy</code> and <code>frame-ancestors</code>;<p class="done"><strong>Done.</strong> Every web response, refusals included, carries <code>X-Content-Type-Options: nosniff</code>, <code>Referrer-Policy: strict-origin-when-cross-origin</code> and <code>Content-Security-Policy: frame-ancestors 'self'</code>, configurable through <code>$padSecurityHeaders</code> and <code>$padCsp</code> (a header the page sent itself stands); <code>'nonce'</code> in <code>$padCsp</code> becomes the request’s nonce, which <code>{nonce}</code> writes, and a page carrying one is never cached. The engine never adds the nonce to scripts by itself. Regression: framework, pages and cache cases; manual page; TAGS.md, APP.md, CLAUDE.md.</p></li>
             <li>a <code>$padCsp</code> setting;</li>
             <li>a per-request <code>{nonce}</code>, so pages with inline <code>{ignore}</code> scripts can run under a strict policy.</li>
           </ul>

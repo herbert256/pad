@@ -162,6 +162,19 @@
 
   $padCsrf = FALSE;
 
+  // Security headers on every web response, see lib/security.php: name => value, a value
+  // of '' or FALSE leaves that one out, [] sends none. A header the page's own PHP sent
+  // stands. $padCsp is the Content-Security-Policy, '' none; 'nonce', quotes included, in
+  // a directive is this request's nonce, which {nonce} writes into <script nonce="...">:
+  // "default-src 'self'; script-src 'self' 'nonce'; frame-ancestors 'self'".
+
+  $padSecurityHeaders = [
+    'X-Content-Type-Options' => 'nosniff',
+    'Referrer-Policy'        => 'strict-origin-when-cross-origin',
+  ];
+
+  $padCsp = "frame-ancestors 'self'";
+
   $padDataDefaultStart = [];
   $padDataDefaultEnd   = ['sanitize'];
 

@@ -12,7 +12,8 @@
   // padWebHeaders        header entry point, guarded so it happens once, choosing between
   // padWebNoHeaders      just the status code ($padWebNoHeaders mode), and
   // padWebPadHeaders     the full set: PAD id, stats, encoding, content type and length,
-  //                      plus caching
+  //                      plus caching - and either way adding the security headers
+  //                      (padSecurityHeaders in lib/security.php)
   // padWebStats          adds the PAD-Stats header when info stats are on
   // padWebCacheHeaders   Cache-Control, Date, Expires and Etag, with the ages counted
   //                      down by how long this request has already taken
@@ -94,6 +95,8 @@
       padWebNoHeaders  ( $stop );
     else
       padWebPadHeaders ( $stop );
+
+    padSecurityHeaders ();
 
   }
 

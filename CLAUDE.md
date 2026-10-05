@@ -926,6 +926,13 @@ $padCoverage = false;
 // for one local request. develop/?replay re-asks every recorded page and names what changed.
 // A replay never writes: db() refuses writing statements, padFilePut the app's own writes.
 $padRecord = false;
+
+// Security headers on every web response; '' drops one, [] sends none, a header the page
+// sent itself stands. $padCsp is the Content-Security-Policy ('' none); 'nonce' in it is
+// this request's nonce, which {nonce} writes: <script nonce="{nonce}">.
+$padSecurityHeaders = ['X-Content-Type-Options' => 'nosniff',
+                       'Referrer-Policy' => 'strict-origin-when-cross-origin'];
+$padCsp = "frame-ancestors 'self'";
 ```
 
 ### Expression errors
@@ -1093,6 +1100,7 @@ Output: `Alice, Bob, Charlie`
 | `padCsrfToken()` | The session's CSRF token (`{csrf}` writes it as a hidden field) |
 | `padCsrfValid()` | Whether this request brought the session's token back |
 | `padPosted($form)` | Whether this request posted (the `{form}` of that name) |
+| `padNonce()` | This request's CSP nonce (`{nonce}`), named by `'nonce'` in `$padCsp` |
 | `padFlash($message, $type)` | A message for the next request - `padFlash('Saved.'); padRedirect('list');` then `{flash}<p class="{$type}">{$message}</p>{/flash}` |
 | `padValidate($rules, $data, $messages)` | `['email' => 'required\|email']` - one message per failing field, shown by `{input}` |
 

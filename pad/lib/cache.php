@@ -27,11 +27,12 @@
   // content type, status 200, no header the page's PHP added - a hit sends none of them -
   // and nothing of this visitor in it. A page that prints the visitor's own padSesID, as
   // {ajax} URLs do, handed that id to everyone who hit it - and a page holding the
-  // session's CSRF token would hand that to everyone, whose own posts it then fails.
+  // session's CSRF token would hand that to everyone, whose own posts it then fails, and
+  // one holding the request's CSP nonce would carry a nonce no later header names.
 
   function padCacheStorable () {
 
-    global $padContentType, $padCacheContentType, $padSesID, $padReqID, $padOutput, $padCsrfIssued;
+    global $padContentType, $padCacheContentType, $padSesID, $padReqID, $padOutput, $padCsrfIssued, $padNonce;
 
     if ( $padContentType !== ( $padCacheContentType ?? $padContentType ) )
       return FALSE;
@@ -43,7 +44,7 @@
       if ( ! preg_match ( '/^(X-Powered-By:|Set-Cookie: pad(Ses|Req)ID=)/i', $header ) )
         return FALSE;
 
-    foreach ( [ $padSesID ?? '', $padReqID ?? '', $padCsrfIssued ?? '' ] as $id )
+    foreach ( [ $padSesID ?? '', $padReqID ?? '', $padCsrfIssued ?? '', $padNonce ?? '' ] as $id )
       if ( $id !== '' and str_contains ( $padOutput, $id ) )
         return FALSE;
 
