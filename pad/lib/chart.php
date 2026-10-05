@@ -14,7 +14,8 @@
   //                    the data option already read - or the first rows terms of a sequence
   // padChartPoints     the rows as [ label, value ] points: value= names the field (else
   //                    the first numeric one), label= the field for the axis (else the first
-  //                    other one, else the row number); a row without a number is left out
+  //                    other one, else the row number); a row without a finite number is
+  //                    left out
   // padChart           the SVG: bar, line or sparkline
   //
   // Accessible: the svg has role="img" and is labelled by its <title> and a <desc> that
@@ -119,7 +120,7 @@
         $row = padToArray ( $row );
 
       if ( ! is_array ( $row ) ) {
-        if ( is_numeric ( $row ) )
+        if ( padChartFinite ( $row ) )
           $points [] = [ is_string ( $key ) ? $key : (string) $index, $row + 0 ];
         continue;
       }
@@ -135,7 +136,7 @@
             break;
           }
 
-      if ( ! is_numeric ( $v ) )
+      if ( ! padChartFinite ( $v ) )
         continue;
 
       $l = NULL;
@@ -154,6 +155,16 @@
     }
 
     return $points;
+
+  }
+
+  // A value the chart can plot: a number that is finite - '1e999' is numeric, but it is
+  // INF as a float, and the axis made no ticks of it and ended the page with an undefined
+  // array key.
+
+  function padChartFinite ( $value ) {
+
+    return is_numeric ( $value ) and is_finite ( (float) $value );
 
   }
 
