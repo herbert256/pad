@@ -842,7 +842,7 @@ $padExpose = [ 'orders', 'total' ];</code></pre>
   &lt;/a&gt;&lt;/h2&gt;
 {/collection}</code></pre>
           <p>A folder of Markdown files with YAML front matter as a data source. Each file is a row: the front-matter keys become fields, plus a <code>slug</code> and the rendered <code>body</code>. This builds on the <a href="https://github.com/herbert256/pad/blob/master/pad/data/yaml.php">YAML reader</a>, which needs the PHP yaml extension, and on <a href="#markdown">#16</a>. It would make PAD a small flat-file CMS.</p>
-        </li>
+        <p class="done"><strong>Done.</strong> <code>{collection 'blog', sort='date DESC'}</code> iterates the Markdown files of <code>_content/blog/</code> (looked up like <code>_data</code>): front-matter keys as fields plus <code>slug</code>, <code>body</code> (rendered by the markdown renderer) and <code>source</code>; <code>slug=$slug</code> picks one, <code>padCollection()</code> for PHP, a front-matter reader that needs no yaml extension. Regression: framework and errors cases; manual page <em>Collections</em>; docs.</p></li>
 
         <li class="idea" id="export">
           <div class="idea-top"><span class="number" aria-hidden="true">41</span><h3>Static site export</h3><span class="effort">Medium</span></div>

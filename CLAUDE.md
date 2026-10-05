@@ -106,6 +106,7 @@ apps/myapp/
 │   └── config.php
 ├── _data/                 # Data files (XML, JSON, YAML, CSV) and named .sql queries
 ├── _lang/                 # Translation catalogs: en.json, nl.json ... ({trans 'key'})
+├── _content/              # Markdown collections: _content/blog/*.md ({collection 'blog'})
 │
 └── subdir/                # Subdirectories can have own wrappers
     ├── _callbacks/        # Subdirectory callbacks
@@ -134,6 +135,7 @@ apps/myapp/
 | `_data/` | Static data, named queries | XML, JSON, YAML, CSV; `name.sql` runs as `{name}` |
 | `_scripts/` | Shell scripts | On demand |
 | `_lang/` | Translation catalogs | `nl.json` holds the keys `{trans 'key'}` looks up in locale `nl` |
+| `_content/` | Markdown collections | `_content/blog/*.md` with front matter are the rows of `{collection 'blog'}` |
 
 ### Wrapper Files (_inits.pad / _exits.pad)
 
@@ -492,6 +494,17 @@ drops a section when what it shows has changed.
 ```
 A built-in CommonMark subset (lib/markdown.php): headings, emphasis, code, lists, links,
 images, quotes, rules. `javascript:` links lose their URL; the HTML of a value stays a value.
+
+### Markdown collections
+```
+{collection 'blog', sort='date DESC', first=10}   # _content/blog/*.md, one row per file
+  <h2><a href="?blog/post&slug={$slug}">{$title}</a></h2>
+{/collection}
+{collection 'blog', slug=$slug}<h1>{$title}</h1>{!body}{/collection}   # one post
+```
+A row is the file's front matter (YAML between `---` lines) plus `slug` (file name), `body`
+(the Markdown as HTML - print it raw with `{!body}`) and `source`. `html` lets raw HTML
+through; `padCollection('blog')` gives the rows to PHP.
 
 ### Variable Assignment
 ```

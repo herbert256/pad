@@ -1,0 +1,27 @@
+<h1>Markdown collections</h1>
+
+<p>A folder of Markdown files is a data source - a small flat-file CMS. The files live in
+<code>_content/&lt;name&gt;/</code>, and {tag 'collection'} iterates them: each file is a
+row, the keys of its front matter (YAML between two <code>---</code> lines) are its fields,
+and three are added - <code>slug</code>, the file name without <code>.md</code>;
+<code>body</code>, the Markdown written as HTML; and <code>source</code>, the Markdown as it
+was.</p>
+
+<p>This manual has a folder <code>_content/news/</code> with two files. The newest first:</p>
+
+{example 'fragments/collections_1'}
+
+<h2>One post</h2>
+
+<p>A list links to the page of a post with its slug - <code>?news/post&amp;slug={open}$slug{close}</code> -
+and that page names it with the <code>slug</code> option. A slug that names no file gives no
+rows, so the <code>@else@</code> part answers.</p>
+
+{example 'fragments/collections_2'}
+
+<ul>
+  <li><code>body</code> is HTML; print it raw with <code>{open}!body{close}</code>. Raw HTML in a file is escaped unless the tag has the <code>html</code> option.</li>
+  <li><code>sort</code>, <code>first</code>, <code>where</code> and the other handling options work on the rows as on any data.</li>
+  <li>The folder is looked up like a <code>_data</code> file: the page's directory, its parents, then <code>_common</code>.</li>
+  <li>In PHP, <code>padCollection('news')</code> gives the same rows.</li>
+</ul>

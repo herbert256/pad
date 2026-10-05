@@ -47,6 +47,7 @@ apps/myapp/
 ├── _config/               # Application configuration
 │   └── config.php
 ├── _data/                 # Static data files (XML, JSON)
+├── _content/              # Markdown collections ({collection 'blog'})
 │
 └── subdir/                # Subdirectories can have own wrappers
     ├── _inits.pad
@@ -66,6 +67,7 @@ apps/myapp/
 | `_events/` | Event hooks | `error.php`, `sql.php`, `curl.php`, `output.php` - run on every request |
 | `_config/` | App config | `config.php` overrides |
 | `_data/` | Static data | XML, JSON files |
+| `_content/` | Markdown collections | `_content/blog/*.md` are the rows of `{collection 'blog'}` |
 
 ### _lib/ - PHP Functions
 
@@ -596,6 +598,39 @@ JSON/XML files in `_data/` become iterable tags:
   <a href="?{$page}">{$text}</a>
 {/menu}
 ```
+
+### Markdown Collections
+A folder of Markdown files under `_content/` is a data source - a small flat-file CMS. Each
+file is a row: the keys of its front matter become fields, plus `slug` (the file name without
+`.md`), `body` (the Markdown written as HTML) and `source` (the Markdown as it was).
+
+**File** (`_content/blog/hello.md`):
+```
+---
+title: Hello PAD
+date: 2026-10-05
+---
+First post ...
+```
+
+**Templates** - the list, and the page of one post (`?blog/post&slug=hello`):
+```
+{collection 'blog', sort='date DESC', first=10}
+  <h2><a href="?blog/post&slug={$slug}">{$title}</a></h2>
+{/collection}
+
+{collection 'blog', slug=$slug}
+  <h1>{$title}</h1>
+  {!body}
+@else@
+  No such post.
+{/collection}
+```
+
+The folder is looked up like a `_data` file: the page's directory first, then each parent,
+then `_common`. Raw HTML in a body is escaped unless the tag has the `html` option. The front
+matter is read with the PHP yaml extension when it is loaded, otherwise with a built-in reader
+for flat `key: value` lines, `[a, b]` lists and `- item` lists.
 
 ---
 

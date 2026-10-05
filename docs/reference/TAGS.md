@@ -211,6 +211,34 @@ Database access tags. The tag name becomes the `db()` command word, so do NOT wr
 
 ---
 
+### collection
+Iterate a folder of Markdown files - a small flat-file CMS.
+
+```html
+{collection 'blog', sort='date DESC', first=10}
+  <h2><a href="?blog/post&slug={$slug}">{$title}</a></h2>
+{/collection}
+
+{collection 'blog', slug=$slug}<h1>{$title}</h1>{!body}@else@No such post.{/collection}
+```
+
+**Behavior:** Reads `_content/<name>/*.md`, looked up like a `_data` file (the page's
+directory, its parents, then `_common`). Each file is a row: its front matter (YAML between
+`---` lines) as fields, plus `slug` (the file name without `.md`), `body` (the Markdown
+written as HTML by the `{markdown}` renderer - print it raw, `{!body}`) and `source` (the
+Markdown text). Rows come in file name order; `sort`, `first`, `where` and the other handling
+options work as on any data.
+
+| Option | Description |
+|--------|-------------|
+| `slug` | Only the file of that name - no rows (the `@else@`) when it is missing or not a plain name |
+| `html` | Let raw HTML in the bodies through; by default it is escaped |
+
+A missing collection is an error under the strict check. `padCollection('blog')` gives the
+rows to a page's PHP.
+
+---
+
 ### at
 Evaluate an `@` expression (for example against a sequence or data set).
 
@@ -1025,6 +1053,7 @@ Resume a previously ceased sequence iteration.
 | `record` | Database | Query single row |
 | `check` | Database | Boolean existence test |
 | `at` | Variables | Evaluate @ expression |
+| `collection` | Variables | Markdown files with front matter as rows |
 | `count` | Counters | Check element count |
 | `increment` | Counters | Increment variable |
 | `decrement` | Counters | Decrement variable |

@@ -1,0 +1,85 @@
+<h1>Markdown collections</h1>
+
+<p>A folder of Markdown files is a data source - a small flat-file CMS. The files live in
+<code>_content/&lt;name&gt;/</code>, and <b>{collection}</b> iterates them: each file is a
+row, the keys of its front matter (YAML between two <code>---</code> lines) are its fields,
+and three are added - <code>slug</code>, the file name without <code>.md</code>;
+<code>body</code>, the Markdown written as HTML; and <code>source</code>, the Markdown as it
+was.</p>
+
+<p>This manual has a folder <code>_content/news/</code> with two files. The newest first:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/collections_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">collection </font><font color="red"><font color="black">'</font>news<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>date DESC<font color="black">'</font></font>}</b><br>  &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>  &lt;p&gt;&lt;small&gt;<b>{<font color="green"><font color="red">$</font>date</font>}</b> - <b>{<font color="green"><font color="red">$</font>author</font>}</b>&lt;/small&gt;&lt;/p&gt;<br>  <b>{<font color="green"><font color="red"><font color="red">!</font></font>body</font>}</b><br><b>{/<font color="blue">collection</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+  <h3>Collections</h3>
+  <p><small>2026-10-06 - Herbert</small></p>
+  <p>A folder of Markdown files is now a data source:</p>
+<ul>
+<li>one file per row</li>
+<li>front matter as fields</li>
+</ul>
+
+  <h3>Markdown arrives</h3>
+  <p><small>2026-10-05 - Herbert</small></p>
+  <p>The <strong>markdown</strong> tag and pipe write Markdown as HTML.</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<h2>One post</h2>
+
+<p>A list links to the page of a post with its slug - <code>?news/post&amp;slug={$slug}</code> -
+and that page names it with the <code>slug</code> option. A slug that names no file gives no
+rows, so the <code>
