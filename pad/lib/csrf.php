@@ -115,6 +115,13 @@
 
     $action = html_entity_decode ( trim ( ( $match [1] ?? '' ) . ( $match [2] ?? '' ) . ( $match [3] ?? '' ) ), ENT_QUOTES, 'UTF-8' );
 
+    // Read as a browser reads it (the URL standard): the controls and spaces at its ends
+    // and every tab and line break within are dropped, and on a web page a backslash is a
+    // slash - /\elsewhere.example/ and /&#9;/elsewhere.example/ post to that site, and
+    // were handed the token as addresses on this one.
+
+    $action = str_replace ( [ "\t", "\n", "\r", '\\' ], [ '', '', '', '/' ], trim ( $action, "\x00..\x20" ) );
+
     if ( ! preg_match ( '#^([a-z][a-z0-9+.-]*:)?//#i', $action ) )
       return ! preg_match ( '/^[a-z][a-z0-9+.-]*:/i', $action );
 
