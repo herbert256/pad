@@ -62,8 +62,13 @@
 
   include PAD . 'inits/configCheck.php';
 
+  // Every pass that finds a queue applies it - configSet.php empties it behind itself. It
+  // was include_once: a request whose first pass already had a queue (pad lint, pad test)
+  // never applied the file writer's queued web type on the restart, and the page wrote
+  // itself to disk again and again until the restart limit stopped it.
+
   if ( isset ( $padSetConfig ) and count ( $padSetConfig ) )
-    include_once PAD . 'inits/configSet.php';
+    include PAD . 'inits/configSet.php';
 
   if ( $padErrorTry )
     include PAD . 'config/try.php';

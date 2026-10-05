@@ -25,9 +25,18 @@
     list ( $code2, $out2 ) = cliCheckRun ( [ 'render', 'regression/cli', 'sample', 'name=Ann' ] );
     list ( $code3, $out3 ) = cliCheckRun ( [ 'render', 'no/such/app' ] );
 
+    // A queued setting on the first pass - pad lint's strict check - and then the file
+    // writer's restart, which queues the web type for the page it restarts into: the
+    // second queue has to be applied as well, or the page writes itself again and again.
+
+    list ( $codeR4, $outR4 ) = cliCheckRun ( [ 'render', 'regression/output_file', 'payload', 'payload=1' ], [ 'PAD_LINT' => '1' ] );
+
+    padDeleteDataDir ( DATA . 'regression_output_file' );
+
     $render = ( $code1 === 0 and trim ( $out1 ) == '<p>Hello nobody</p>'
                 and $code2 === 0 and trim ( $out2 ) == '<p>Hello Ann</p>'
-                and $code3 === 1 ) ? 'yes' : 'NO';
+                and $code3 === 1
+                and $codeR4 === 0 and str_contains ( $outR4, 'wrote the page to disk' ) ) ? 'yes' : 'NO';
 
     // new - in a scratch home whose engine and _common are the real ones
 
