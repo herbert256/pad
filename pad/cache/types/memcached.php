@@ -4,7 +4,7 @@
   // holds the entry's age, the hashed URL key holds [age, etag], and "x<etag>" holds the
   // body, all written with $padCacheServerAge as their expiry.
   //
-  // Implements the padCacheInit/Etag/Url/Get/Store/Update/Delete interface that
+  // Implements the padCacheInit/Etag/Url/Body/Store/Update/Delete interface that
   // cache/inits.php and cache/exits.php call; padCacheInit opens the connection from the
   // $padCacheMemcached* settings. With $padCacheServerNoData the body is not written, so
   // the cache answers 304 from a client ETag but never serves a body. The URL key is
@@ -36,7 +36,7 @@
 
   }
 
-  function padCacheGet ($etag) {
+  function padCacheBody ($etag) {
 
     global $padCacheMemcached;
 

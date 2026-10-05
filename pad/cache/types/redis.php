@@ -4,7 +4,7 @@
   // key holds [age, etag], and "x<etag>" holds the body, all written with
   // $padCacheServerAge as their expiry.
   //
-  // Implements the padCacheInit/Etag/Url/Get/Store/Update/Delete interface that
+  // Implements the padCacheInit/Etag/Url/Body/Store/Update/Delete interface that
   // cache/inits.php and cache/exits.php call. padCacheInit opens the connection and turns
   // on the PHP serializer, which is what lets padCacheUrl store an array. With
   // $padCacheServerNoData the body is not written, so the cache answers 304 from a client
@@ -38,7 +38,7 @@
 
   }
 
-  function padCacheGet ($etag) {
+  function padCacheBody ($etag) {
 
     global $padCacheRedis;
 

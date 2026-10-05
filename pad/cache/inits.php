@@ -98,7 +98,7 @@
 
     if ( $padCacheAge >= $padCacheMax and ! $padCacheServerNoData ) {
 
-      $padOutput = padCacheGet ($padCacheEtag);
+      $padOutput = padCacheBody ($padCacheEtag);
 
       if ( $padOutput ) {
         $padStop = 200;

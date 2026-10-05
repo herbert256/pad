@@ -5,7 +5,7 @@
   // file's mtime is the entry's age.
   //
   // Implements the backend interface cache/inits.php and cache/exits.php call -
-  // padCacheInit (nothing to open here), padCacheEtag, padCacheUrl, padCacheGet,
+  // padCacheInit (nothing to open here), padCacheEtag, padCacheUrl, padCacheBody,
   // padCacheStore, padCacheUpdate, padCacheDelete - on top of the local helpers
   // padCacheExists, padCacheTouch, padCacheChkDir, padCacheDeleteFile and padCacheTime,
   // which prefix every path with $padCacheFile and create directories on demand.
@@ -40,7 +40,7 @@
 
   }
 
-  function padCacheGet ($etag) {
+  function padCacheBody ($etag) {
 
     global $padCacheFile;
 

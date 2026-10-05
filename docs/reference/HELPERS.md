@@ -369,6 +369,8 @@ string (`'3'`) or a float without a fraction (`3.0`).
 
 ## Environment and cache
 
+### Environment values
+
 | Function | What it answers |
 |----------|-----------------|
 | `padEnv ( $key, $default = NULL )` | The value of an environment key: the real environment (`getenv`, `$_ENV`, `$_SERVER`) first, then the application's `_config/.env`, then `.env` in the PAD home, else the default - a Closure default is called |
@@ -421,6 +423,95 @@ Edge rules:
 - No URL reaches `apps/` - the web server serves `www/` only - so an application's
   `_config/.env` is never served. The repository's `.gitignore` keeps `/.env`, the PAD home's
   file, out of git.
+
+### Cache and rate limits
+
+| Function | What it answers |
+|----------|-----------------|
+| `padCacheGet ( $key, $default = NULL )` | The value kept under the key, else the default - a Closure default is called |
+| `padCachePut ( $key, $value, $ttl = 3600 )` | Keeps the value for `$ttl` seconds (`NULL` for ever); TRUE when it is kept |
+| `padCacheHas ( $key )` | Whether the key holds a value that has not expired - a kept NULL counts |
+| `padCacheForget ( $key )` | Removes the key; TRUE when it held a value |
+| `padCacheFlush ()` | Removes every entry of this application, its rate limits included; TRUE |
+| `padRemember ( $key, $ttl, $callback )` | The kept value, or the callback's answer, kept for `$ttl` seconds |
+| `padRateLimit ( $key, $maxAttempts, $decaySeconds = 60 )` | Counts a hit: TRUE within `$maxAttempts` per window of `$decaySeconds`, FALSE over it |
+| `padRateLimitRemaining ( $key, $maxAttempts )` | The hits left in the current window |
+| `padRateLimitAvailableIn ( $key )` | The seconds until the current window ends, 0 when none runs |
+| `padRateLimitClear ( $key )` | Ends the window: the key starts from nothing; TRUE |
+
+`pad/lib/remember.php`. A file store under `DATA/cache/app/<application>/`: each application
+has its own entries, one file per key named by a hash of the key, holding the expiry time and
+the serialized value. A file is written beside its place and renamed over it, so a reader sees
+the old value or the new one, never half of one.
+
+```php
+<?php                                         // products.php
+
+  $products = padRemember ( 'products', 600, function () {
+    return db ( "ARRAY * FROM products ORDER BY name" );
+  } );
+
+?>
+```
+
+```php
+<?php                                         // product/save.php
+
+  db ( "UPDATE products SET price={0} WHERE id={1}", [ $price, $id ] );
+
+  padCacheForget ( 'products' );
+  padRedirect    ( 'products' );
+
+?>
+```
+
+```php
+<?php                                         // login.php
+
+  $key = 'login:' . $_SERVER ['REMOTE_ADDR'];
+
+  if ( padPosted ( 'login' ) ) {
+
+    if ( ! padRateLimit ( $key, 5, 60 ) )
+      $error = 'Too many attempts - try again in ' . padRateLimitAvailableIn ( $key ) . ' seconds.';
+
+    elseif ( loginValid ( $email, $password ) ) {       // the application's own check
+      padRateLimitClear ( $key );
+      padRedirect ( 'account' );
+    }
+
+  }
+
+?>
+```
+
+Edge rules:
+
+- A key is a non-empty string, or a number (`42` and `'42'` are one key). NULL, `''`, an array
+  or a boolean is a `padError` naming the function; then Get answers the default, Has, Put,
+  Forget and `padRateLimit` FALSE, Remaining and AvailableIn 0, and Remember the callback's
+  answer without keeping it.
+- What is kept is arrays and scalars - strings, numbers, TRUE, FALSE, NULL, nested as deep as
+  they go. Values are read back with `allowed_classes => FALSE`, so a value holding an object
+  (a Closure, a DateTime, a stdClass) or a resource is refused when it is put, with a
+  `padError`, and Put answers FALSE; Remember still answers the value.
+- The ttl: a number of seconds (a numeric string too; a fraction is rounded up), `NULL` for
+  ever, a `DateTimeInterface` (until then) or a `DateInterval` (from now); `INF` or a time too
+  far ahead to store is for ever. 0, a negative number or a moment in the past keeps nothing:
+  Put removes what the key held and answers FALSE, Remember runs the callback every time.
+  Anything else is a `padError`.
+- A kept NULL is a hit: `padCacheHas` is TRUE, and Remember does not run the callback again
+  until the entry expires. An expired entry is a miss; the files of expired entries nobody
+  reads again are swept once an hour, when the application writes an entry.
+- `padRemember` with a callback that is not callable is a `padError`, answering NULL. A
+  callback that throws stores nothing; the throwable goes on.
+- A rate limit is a fixed window: the first hit starts it, `$decaySeconds` long (1 or more,
+  else a `padError`), allowing `$maxAttempts` hits (a whole number, 0 or more - 0 allows
+  nothing). A hit over the limit is not counted. Hits that come at once are each counted -
+  they take turns on the application's lock file while they count. A rate limit and a cache
+  key of the same name are two entries; `padCacheFlush` clears both.
+- A replayed request (`develop/?replay`) writes nothing: Put, Forget, Flush and the counting
+  of a hit leave the store as it is.
 
 
 ---

@@ -14,7 +14,7 @@
   padCacheStore ( $noDataUrl, $noDataEtag, 'the body' );
 
   $noDataRow  = padCacheUrl ( $noDataUrl );
-  $noDataBody = padCacheGet ( $noDataEtag );
+  $noDataBody = padCacheBody ( $noDataEtag );
 
   padCacheDelete ( $noDataUrl, $noDataEtag );
 
