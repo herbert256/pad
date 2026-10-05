@@ -102,8 +102,11 @@
 
       } elseif ( $one[1] == 'hex' ) {
 
+        // An odd number of digits has its high nibble left out, as 0xABC is 0x0ABC: hex2bin
+        // takes whole bytes only and threw "must have an even length" on it.
+
         $result[$k][1] = 'VAL';
-        $result[$k][0] = hex2bin($one[0]);
+        $result[$k][0] = hex2bin ( ( strlen ( $one[0] ) % 2 ? '0' : '' ) . $one[0] );
 
       }
 
