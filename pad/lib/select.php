@@ -266,9 +266,9 @@
     global $padRelations;
 
     if  ( isset ( $padRelations [$relation] [$table] ) )
-      padSelectWhereKeys ( $where, padSelectRelationKeys ( $padRelations [$relation] [$table], $relation, $table ), $data, 0 );
+      padSelectWhereKeys ( $where, padSelectRelationKeys ( $padRelations [$relation] [$table], $relation, $table ), $data, 0, $relation );
     elseif ( isset ( $padRelations [$table] [$relation] ) )
-      padSelectWhereKeys ( $where, padSelectRelationKeys ( $padRelations [$table] [$relation], $table, $relation ), $data, 1);
+      padSelectWhereKeys ( $where, padSelectRelationKeys ( $padRelations [$table] [$relation], $table, $relation ), $data, 1, $relation );
 
   }
 
@@ -297,17 +297,34 @@
 
   }
 
-  function padSelectWhereKeys ( &$where, $keys, $data, $type ) {
+  function padSelectWhereKeys ( &$where, $keys, $data, $type, $outer ) {
 
     if ( is_array ($keys) )
       foreach ( $keys as $key => $value )
         if ( $type )
-          padSelectWhereAdd ( $where, $key, $data [ $value ] );
+          padSelectWhereAdd ( $where, $key, padSelectOuterValue ( $data, $value, $outer ) );
         else
-          padSelectWhereAdd ( $where, $value, $data [ $key ] );
+          padSelectWhereAdd ( $where, $value, padSelectOuterValue ( $data, $key, $outer ) );
     else
       foreach ( padExplode ( $keys, ',' ) as $field )
-        padSelectWhereAdd ( $where, $field, $data [ $field ] );
+        padSelectWhereAdd ( $where, $field, padSelectOuterValue ( $data, $field, $outer ) );
+
+  }
+
+  // The field of the enclosing select's current row that the relation is followed by. A
+  // row without it - the outer tag's fields= left it out - ended the request on a PHP
+  // undefined array key from inside the engine; it is named for what it is now, and the
+  // condition compares with an empty value, as the warning left it under the continuing
+  // error actions.
+
+  function padSelectOuterValue ( $data, $field, $outer ) {
+
+    if ( is_array ( $data ) and array_key_exists ( $field, $data ) )
+      return $data [$field];
+
+    padError ( "the relation to '$outer' is followed by its field '$field', which the row of '$outer' does not hold - select it in fields=" );
+
+    return NULL;
 
   }
 
