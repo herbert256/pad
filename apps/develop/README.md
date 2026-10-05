@@ -19,6 +19,7 @@ develop/
 ├── errors.pad/.php  # The error dumps a crawl left behind, one line per dump
 ├── links.pad/.php   # Every literal link in every application's templates, checked like $padCheckOutput does
 ├── coverage.pad/.php # Template coverage: start/stop a recording around a suite run, the report, a marked template
+├── replay.pad/.php  # Replay recorded GET requests against the current code, accept or delete what changed
 ├── examples.php     # Example generator
 ├── nuts.pad/.php    # Miscellaneous utilities
 ├── reference.php    # Reference builder

@@ -1,0 +1,75 @@
+<h1>Replay recorded traffic</h1>
+
+<p>Real use is the best test suite there is. With <code>$padRecord = TRUE</code> in
+<code>_config/config.php</code>, every GET request the application answers with a 200 is kept
+with its answer; <code>develop/?replay</code> later asks every one of those pages again, against
+the code as it stands, and names each page whose answer changed and the first line where it
+parts from the recording.</p>
+
+<ul>
+  <li>A name instead of TRUE picks the store, <code>DATA/replay/&lt;name&gt;/</code>, one file per
+      URL; <code>?page&amp;padRecord=name</code> records one request of this machine's own.</li>
+  <li>Only a request that brought no cookie but PAD's own two ids is recorded: one with a
+      session or a login cannot be replayed faithfully, because a replay comes without cookies.</li>
+  <li>The host an answer was recorded under counts as the host it is replayed on.</li>
+  <li>An answer that changed on purpose is accepted - it becomes the recording - and a page
+      that changes every time, a clock, is deleted from the store.</li>
+</ul>
+
+<p>A replay must never write. While one runs, <code>db()</code> refuses every statement that
+would change the database - it answers 0, as if no row changed - and <code>padFilePut</code>
+refuses what the application's own code asks to write:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/replay_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/replay_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $statements </span><span style="color: #007700">= [];<br><br>  foreach ( [ </span><span style="color: #DD0000">'select name from staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'check staff where id = 1'</span><span style="color: #007700">, </span><span style="color: #DD0000">'insert into log values (1)'</span><span style="color: #007700">, </span><span style="color: #DD0000">'update staff set salary = 0' </span><span style="color: #007700">] as </span><span style="color: #0000BB">$sql </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$statements </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'sql' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$sql</span><span style="color: #007700">, </span><span style="color: #DD0000">'replay' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padReplayWrites </span><span style="color: #007700">( </span><span style="color: #0000BB">$sql </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'refused' </span><span style="color: #007700">: </span><span style="color: #DD0000">'runs' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table border="1"&gt;<br>  <b>{<font color="blue">statements</font><font color="red"></font>}</b>&lt;tr&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>sql</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>replay</font>}</b>&lt;/td&gt;&lt;/tr&gt;<b>{/<font color="blue">statements</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <table border="1">
+  <tr><td>select name from staff</td><td>runs</td></tr><tr><td>check staff where id = 1</td><td>runs</td></tr><tr><td>insert into log values (1)</td><td>refused</td></tr><tr><td>update staff set salary = 0</td><td>refused</td></tr>
+</table>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>

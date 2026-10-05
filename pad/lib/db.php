@@ -22,6 +22,12 @@
 
   function db ( $sql, $vars = [] ) {
 
+    // A replayed request never writes: a statement that would change the database is not
+    // sent, and answers as if it changed nothing (lib/replay.php).
+
+    if ( padReplaying () and padReplayWrites ( $sql ) )
+      return 0;
+
     if ( ! function_exists ( 'mysqli_connect' ) )
       return FALSE;
 

@@ -64,6 +64,13 @@
 
     global $padInfo, $padDirMode, $padFileMode;
 
+    // A replayed request never writes: what the application's own code asks to write is
+    // answered as written and left alone; the engine's own logs and reports still go out
+    // (lib/replay.php).
+
+    if ( padReplaying () and padReplayAppWrite () )
+      return TRUE;
+
     if ( ! str_starts_with ( $file, DATA ) )
       $file = DATA . $file;
 

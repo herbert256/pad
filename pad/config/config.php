@@ -80,6 +80,14 @@
 
   $padCoverage = FALSE;
 
+  // Replay real traffic as tests: TRUE records every GET this application answers with a 200
+  // - one that brought no cookie but PAD's own ids - with its answer, in DATA/replay/default/;
+  // a name instead of TRUE picks the store. develop/?replay replays a store against the code
+  // as it stands and names every page whose answer changed. A replay never writes: db() and
+  // the application's padFilePut refuse while it runs. See lib/replay.php.
+
+  $padRecord = FALSE;
+
   $padInfo = '';
 
   $padCommon = TRUE;

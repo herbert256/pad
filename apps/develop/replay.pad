@@ -1,0 +1,40 @@
+<h2>Replay recorded traffic</h2>
+
+<p>
+  Stores:
+  {replayStores}
+    <a href="?replay&amp;store={$store}">{$store}</a> ({$cases} cases)
+  @else@
+    none - record with <code>$padRecord = TRUE</code> or <code>?page&amp;padRecord=name</code>
+  {/replayStores}
+</p>
+
+{if $replayStore ne ''}
+
+  <h3>{$replayStore}: {$replayCount} replayed, {$replaySame} the same</h3>
+
+  <p>
+    <a href="?replay&amp;store={$replayStore}&amp;acceptAll">accept every new answer</a> |
+    <a href="?replay&amp;store={$replayStore}&amp;clear">clear the store</a>
+  </p>
+
+  <table border="1" cellpadding="4">
+    <tr><th>Page</th><th>Status</th><th>Line</th><th>Recorded</th><th>Now</th><th></th></tr>
+    {replayChanged}
+      <tr>
+        <td>{$url}</td>
+        <td>{$status}</td>
+        <td>{$line}</td>
+        <td><code>{$want}</code></td>
+        <td><code>{$got}</code></td>
+        <td>
+          <a href="?replay&amp;store={$replayStore}&amp;accept={$id}">accept</a>
+          <a href="?replay&amp;store={$replayStore}&amp;delete={$id}">delete</a>
+        </td>
+      </tr>
+    @else@
+      <tr><td colspan="6">Every recorded page answers as it did.</td></tr>
+    {/replayChanged}
+  </table>
+
+{/if}

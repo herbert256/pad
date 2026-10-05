@@ -653,6 +653,7 @@ $padExpose        // The page variables answered as JSON or CSV (set in the page
 $padCache         // Enable caching
 $padCheckOutput   // Check the finished HTML of local requests (ids, alt, labels, links)
 $padCoverage      // Record template coverage of local requests (TRUE or a run name)
+$padRecord        // Record GET requests with their answers for replay (TRUE or a store name)
 
 // Database
 $padSqlHost
@@ -673,6 +674,7 @@ $padSqlPassword
 - Use `{trace}` tag for execution trace
 - Set `$padCheckOutput = TRUE` to have every local HTML response checked once it has rendered: duplicate ids, images without alt, form fields without a label and `?page` links to pages that do not exist are named in a panel at the end of the page and counted in a `PAD-Output-Check` header (one request: `?page&padCheckOutput`; every application's templates at once: `develop/?links`)
 - Set `$padCoverage = TRUE` (or a run name) to record template coverage of local requests - which templates were read, which tags ran, which `{if}`/`{case}` branch was taken - in `DATA/coverage/<run>.jsonl`; `develop/?coverage` starts and stops a recording of every application around a suite run and shows each template with what never ran marked
+- Set `$padRecord = TRUE` (or a store name) to keep every GET answered 200 - one that brought no cookie but PAD's own ids - with its answer in `DATA/replay/<store>/`; `develop/?replay` replays a store against the current code and names every page whose answer changed. A replay never writes: `db()` refuses statements that change the database and `padFilePut` the application's own writes
 - Check `DATA/` directory for error dumps and logs
 
 ## Best Practices
@@ -750,6 +752,8 @@ APP/
 ## Testing
 
 Run regression tests by visiting `/regression` in browser. Tests compare current output against stored HTML snapshots.
+
+Real traffic can be a suite too: with `$padRecord = TRUE` every GET request is kept with its answer, and `develop/?replay` re-asks every recorded page and names the ones whose answer changed.
 
 To see what the suites reach, record template coverage around a run: `develop/?coverage&start=suites`, `./ci.sh`, `develop/?coverage&stop`, then read `develop/?coverage&run=suites`.
 

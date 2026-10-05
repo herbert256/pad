@@ -39,6 +39,11 @@ db("SELECT * FROM users WHERE name={0}", [$name]);        // quoted for you
 db("SELECT * FROM users WHERE id IN ({0})", [[1, 2, 3]]);  // a list
 ```
 
+**During a replay** of recorded traffic (`$padRecord`, `develop/?replay`) `db()` never
+writes: a statement that would change the database - INSERT, UPDATE, DELETE, REPLACE,
+TRUNCATE, LOAD, CREATE, DROP, ALTER, RENAME, GRANT, REVOKE, CALL, LOCK - is not sent and
+answers 0, as if no row changed. Reads run as usual.
+
 ---
 
 ## Template Database Tags

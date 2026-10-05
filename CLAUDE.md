@@ -881,6 +881,12 @@ $padCheckOutput = false;
 // TRUE is the run 'default', a string names the run; ?page&padCoverage=name for one
 // request; develop/?coverage starts/stops recording every app and shows the report.
 $padCoverage = false;
+
+// Replay real traffic as tests: TRUE (or a store name) records every GET answered 200 -
+// one with no cookie but PAD's ids - with its answer in DATA/replay/<store>/; ?page&padRecord=name
+// for one local request. develop/?replay re-asks every recorded page and names what changed.
+// A replay never writes: db() refuses writing statements, padFilePut the app's own writes.
+$padRecord = false;
 ```
 
 ### Expression errors
@@ -1202,6 +1208,7 @@ Each `{tag}` creates a new level scope. PAD maintains global variables per level
 - Use `{trace}` tag for execution trace
 - Set `$padCheckOutput = true` (or add `&padCheckOutput` to a local request) to have the finished HTML checked for duplicate ids, images without alt, unlabelled fields and broken `?page` links; `develop/?links` checks every application's templates at once
 - Template coverage: `develop/?coverage&start=suites`, run `./ci.sh`, `develop/?coverage&stop`, then `develop/?coverage&run=suites` shows every template with the tags and `{if}`/`{case}` branches that never ran marked, and the files no request read (`$padCoverage` records one app's local requests)
+- Replay real traffic: `$padRecord = true` (or `?page&padRecord=name`) keeps each cookie-less GET with its answer; `develop/?replay&store=default` re-asks every recorded page against the current code and lists the pages whose answer changed, to accept or delete
 - Check `DATA/` directory for error dumps and logs
 
 ### Testing PAD Pages from Command Line

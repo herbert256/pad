@@ -956,7 +956,7 @@ _events/output.php   post-process the final HTML</code></pre>
         <li class="idea" id="replay">
           <div class="idea-top"><span class="number" aria-hidden="true">51</span><h3>Replay real traffic as tests</h3><span class="effort">Medium–large</span></div>
           <p>Track mode stores each request and response as JSON under <code>DATA/track/</code>. <code>pad replay</code> would re-run recorded GET requests against the current code and diff the output with the regression comparator, which already normalises the host. Real use becomes a regression suite: a framework change that alters any page’s output shows up before release. Requests with sessions and cookies need care, and a replay must never write.</p>
-        </li>
+        <p class="done"><strong>Done.</strong> <code>$padRecord</code> (or <code>?page&amp;padRecord=name</code> on a local request) keeps every cookie-less GET answered 200 with its answer in <code>DATA/replay/&lt;store&gt;/</code>; <code>develop/?replay</code> re-asks every recorded page against the current code and names each changed answer at its first differing line, to accept or delete. During a replay <code>db()</code> refuses statements that change the database and <code>padFilePut</code> the application’s writes. Regression: framework cases; manual page; docs.</p></li>
 
         <li class="idea" id="coverage">
           <div class="idea-top"><span class="number" aria-hidden="true">52</span><h3>Template coverage</h3><span class="effort">Medium</span></div>

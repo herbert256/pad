@@ -27,6 +27,12 @@
   if ( $padCoverageRun and ! padSecondTime ( 'exitCoverage' ) )
     padCoverageWrite ( $padStop );
 
+  // A GET this application records for replay is kept with the answer it is about to get
+  // (lib/replay.php) - the same moment, for the same reason.
+
+  if ( ( $padRecord or isset ( $_REQUEST ['padRecord'] ) ) and ! padSecondTime ( 'exitRecord' ) )
+    padReplayRecord ( $padStop );
+
   if ( $padOutputType != 'web' and $padCacheStop == 200 and $padCacheServerGzip )
     $padOutput = padUnzip ( $padOutput );
 
