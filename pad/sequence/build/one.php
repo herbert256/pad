@@ -11,8 +11,8 @@
   // rewrite $pq next, then minimal/maximal, unique and skip are applied. Accepted terms go
   // to $pqResult, with the pre-plays value in $pqOrgHit and each play's own answer in
   // $pqPlaysHit, which sequence/exits/extra/ exposes as extra fields on the tag's data.
-  // An order build also appends every generated term to $pqOrder, since later terms are
-  // computed from earlier ones, and suppresses the terms before the requested from=.
+  // An order build also appends every generated term to $pqOrder before any filter, since
+  // later terms are computed from earlier ones, and suppresses the terms before from=.
 
   $pqTries++;
 
@@ -36,6 +36,14 @@
 
   $pqOrgSet = $pq;
 
+  // An order build computes each term from the ones before it, so every generated term goes
+  // into its history now, before a play or a filter can turn it down: added only once
+  // accepted, a rejected term left a hole the next one read - {sequence fibonacci, keep,
+  // even} ended on an undefined key.
+
+  if ( $pqBuild == 'order' )
+    $pqOrder [] = $pqOrgSet;
+
   if ( count ( $pqPlays ) ) {
     include PQ . 'plays/plays.php';
     if ( $pq === FALSE )
@@ -49,11 +57,8 @@
   if ( $pqUnique and in_array ($pq, $pqResult) ) return TRUE;
   if ( $pqSkip and $pqTries <= $pqSkip )         return TRUE;
 
-  if ( $pqBuild == 'order' ) {
-    $pqOrder [] = $pqOrgSet;
-    if ( $pqLoop < $pqOrderFrom )
-      return TRUE;
-  }
+  if ( $pqBuild == 'order' and $pqLoop < $pqOrderFrom )
+    return TRUE;
 
   $pqResult [] = $pq;
   $pqOrgHit [] = $pqOrgSet;

@@ -12,7 +12,7 @@
   // does, flag replaces it with 1 or 0. A FALSE outcome rejects the term and ends the
   // chain. Every play's own answer is kept in $pqPlaysSet, which build/one.php stores so
   // it can be published as an extra field per row. $pqSeq/$pqBuild/$pqParm/$pqInc/$pqDone
-  // belong to the main sequence and are saved and restored around the loop.
+  // and $pqLoop belong to the main sequence and are saved and restored around the loop.
 
   $pqPlaysSet  = [];
   $pqSeqSave   = $pqSeq;
@@ -20,6 +20,7 @@
   $pqParmSave  = $pqParm;
   $pqIncSave   = $pqInc;
   $pqDoneSave  = $pqDone;
+  $pqLoopSave  = $pqLoop;
 
   // A play is asked for its term at a position, which has no step of its own: running on
   // the main sequence's increment - even's 2 - range stepped by 2 inside a play, so
@@ -62,5 +63,11 @@
   $pqParm  = $pqParmSave;
   $pqInc   = $pqIncSave;
   $pqDone  = $pqDoneSave;
+
+  // The candidate's position too: each play asks its own sequence at the term's value, and
+  // the position left behind was that value - an order build then read the term 0 as
+  // position 0, before its from=, and dropped it: {sequence fibonacci, square} lost its 0.
+
+  $pqLoop  = $pqLoopSave;
 
 ?>
