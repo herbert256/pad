@@ -71,12 +71,12 @@
 
   function padFieldFirstParmTag ($flag=0) {
 
-    global $pad, $padType, $padTag;
+    global $pad, $padAtTag, $padTag;
 
     $start = ($flag) ? $pad-1 : $pad;
 
     for ($i=$start; $i > 0; $i--)
-      if ( $padTag [$i] != 'if' and $padTag [$i] != 'case' and $padType[$i] != 'tag' )
+      if ( $padTag [$i] != 'if' and $padTag [$i] != 'case' and ! ( $padAtTag [$i] ?? FALSE ) )
         return $i;
 
     return max ( 0, $pad - 1 );
@@ -85,12 +85,12 @@
 
   function padFieldFirstNonTag ($lvl=0) {
 
-    global $pad, $padType;
+    global $pad, $padAtTag;
 
     $start = $pad-$lvl;
 
     for ($i=$start; $i > 0; $i--)
-      if ( $padType[$i] != 'tag' )
+      if ( ! ( $padAtTag [$i] ?? FALSE ) )
         return $i;
 
     return max ( 0, $pad - 1 );

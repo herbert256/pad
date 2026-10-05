@@ -82,6 +82,7 @@
   $padOptionsAppStart [$pad] = [];
 
   $padBaseValue  [$pad] = FALSE;
+  $padAtTag      [$pad] = FALSE;
 
   $padForceTagName  = '';
   $padForceDataName = '';

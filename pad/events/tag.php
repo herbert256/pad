@@ -8,7 +8,7 @@
   // Records the tag under its type (with any @property suffix stripped off) plus, for
   // plain 'tag' types, an entry in the properties index.
 
-  global $padInfoXref;
+  global $padInfoXref, $padAtTag;
 
   if ( $padInfoXref ) {
 
@@ -19,7 +19,7 @@
 
     padInfoXref ( 'tag', $padType [$pad], $padInfoTmp );
 
-    if ( $padType [$pad] == 'tag' )
+    if ( $padAtTag [$pad] ?? FALSE )
       padInfoXref ( 'properties', $padInfoTmp );
 
   }

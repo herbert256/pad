@@ -8,7 +8,7 @@
   //                 negative offset from $pad (shifted by $cor), a plain level number or
   //                 a tag name, searching from the current level down; FALSE if no match
   //   padAtKey      maps a 1-based ordinal onto the nth key of an associative array
-  //   padAtSetTag   marks the current level as type 'tag' once a property has resolved
+  //   padAtSetTag   marks the current level ($padAtTag) once a property has resolved
 
    function padAtDataNew ( $name, $names ) {
 
@@ -83,12 +83,17 @@
 
   function padAtSetTag () {
 
-    global $pad, $padType, $padEvalBusy;
+    global $pad, $padAtTag, $padEvalBusy;
 
     if ( $padEvalBusy ?? 0 )
       return;
 
-    $padType [$pad] = 'tag' ;
+    // A mark of its own, which the field lookups read: written into $padType it replaced
+    // the level's real type, and a level that walks again - {while}, {until}, {trace} -
+    // then dispatched to a types/tag.php that does not exist, a 500 for any property tag
+    // written directly inside one.
+
+    $padAtTag [$pad] = TRUE;
 
   }
 
