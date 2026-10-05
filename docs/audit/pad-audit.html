@@ -843,13 +843,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
   </div>
   <div class="findings">
 
-    <div class="finding pl" id="a1">
-      <div class="tag"><div class="priority">Open</div><div class="cat">A1 · Error handling</div></div>
+    <div class="finding pl fixed" id="a1">
+      <div class="tag"><div class="priority">Fixed</div><div class="cat">A1 · Error handling</div></div>
       <div>
-        <h3><code>db()</code> cannot report its own SQL errors</h3>
+        <h3><code>db()</code> cannot report its own SQL errors<span class="done">Fixed</span></h3>
         <p class="where">lib/db.php:51-54, 117-120</p>
         <p>Since PHP 8.1 mysqli defaults to <code>MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT</code>, and nothing calls <code>mysqli_report</code>, so <code>mysqli_connect</code> and <code>mysqli_query</code> throw <code>mysqli_sql_exception</code> instead of returning false. The <code>if ( ! $connect )</code> and <code>if ( ! $query )</code> branches, with their <code>padError ( 'SQL: … / ' . $sql )</code>, never run: the message the try guard reports lacks the statement, and under <code>log</code> or <code>ignore</code> the exception abandons the calling PHP file instead of <code>db()</code> answering empty.</p>
         <div class="fix"><b>Decision:</b> <code>mysqli_report ( MYSQLI_REPORT_OFF )</code> in <code>padDbConnect</code> brings the branches back, but under the continuing actions <code>db()</code> then hands its callers FALSE where they expect rows. Decide what <code>db()</code> answers after a failed statement, in line with the call-not-return rule of <code>cd3d66627</code>.</div>
+        <div class="resolved"><b>Fixed:</b> decided, as the card proposed: <code>padDbConnect</code> calls <code>mysqli_report(MYSQLI_REPORT_OFF)</code>, so <code>db()</code>'s own failure branches run again, and the message carries the statement: "SQL: 1146: Table 'demo.no_such_table' doesn't exist / select x from no_such_table limit 0,1" (an Errors case). After a failed statement <code>db()</code> answers the empty shape of its command, as for no rows: <code>''</code> for <code>field</code>, <code>[]</code> for <code>record</code> and <code>array</code>, FALSE otherwise. A failed connect is reported once, and the statements after it answer empty without touching a connection that is not there. Checked with a probe application under the <code>ignore</code> action: the page's PHP used to be abandoned at the failed query, and now goes on with <code>''</code> and an empty array.</div>
       </div>
     </div>
 

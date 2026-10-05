@@ -47,9 +47,16 @@
 
   }
 
+  // mysqli reports by return value here, as this file is written for: since PHP 8.1 it
+  // throws by default, so the failure branches below never ran - the message the try guard
+  // gave lacked the statement, and under the continuing actions the exception abandoned
+  // the calling PHP file instead of db() answering.
+
   function padDbConnect ( $host, $user, $password, $database ) {
 
-    $connect = mysqli_connect ( "$host" , $user , $password , $database );
+    mysqli_report ( MYSQLI_REPORT_OFF );
+
+    $connect = @mysqli_connect ( "$host" , $user , $password , $database );
 
     if ( ! $connect )
       return padError ( mysqli_connect_errno ( ) . ' - ' . mysqli_connect_error ( ) );
@@ -66,7 +73,7 @@
 
     $input = $sql;
 
-    if ( count ( $vars ) )
+    if ( count ( $vars ) and $padSqlConnect )
       $sql = padDbPlaceholders ( $padSqlConnect, $sql, $vars );
 
     $split   = explode(' ', trim($sql), 2);
@@ -85,10 +92,22 @@
 
     $_SQL [] = $sql;
 
-    $query = mysqli_query ( $padSqlConnect , $sql );
+    // No connection - the connect reported why - or a failed statement: reported with the
+    // statement, and db() answers the empty shape of its command, as for no rows: '' for a
+    // field, [] for a record or an array, FALSE for anything else.
 
-    if ( ! $query )
-      padError ( 'SQL: ' . mysqli_errno ( $padSqlConnect ) . ': ' . mysqli_error ( $padSqlConnect ) . ' / '. $sql );
+    $query = $padSqlConnect ? mysqli_query ( $padSqlConnect , $sql ) : FALSE;
+
+    if ( ! $query ) {
+
+      if ( $padSqlConnect )
+        padError ( 'SQL: ' . mysqli_errno ( $padSqlConnect ) . ': ' . mysqli_error ( $padSqlConnect ) . ' / '. $sql );
+
+      if ( $command == 'field' )                       return '';
+      if ( $command == 'record' or $command == 'array' ) return [];
+      return FALSE;
+
+    }
 
     $rows = mysqli_affected_rows($padSqlConnect);
 
