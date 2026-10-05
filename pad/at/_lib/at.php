@@ -100,8 +100,13 @@
 
     $check = str_replace ( '@*', '', $field );
 
+    // The nearest level that is not a property tag itself - the loop a bare {first@} stands
+    // in. The + 1 this had made up for the loop being marked as a property tag by mistake
+    // (padAtSetTag); in a loop at the top of the page it landed on the property's own
+    // level, and {current@} answered 0 on every row.
+
     if ( file_exists ( PAD . "at/properties/$check.php") ) {
-      $idx   = padFieldFirstNonTag ( $cor ) + 1 ;
+      $idx   = padFieldFirstNonTag ( $cor );
       $check = str_replace ( '@*', "@$idx", $field );
       $check = padAtValue ( $check, $cor );
       if ( $check !== INF )

@@ -92,6 +92,15 @@
     // the level's real type, and a level that walks again - {while}, {until}, {trace} -
     // then dispatched to a types/tag.php that does not exist, a 500 for any property tag
     // written directly inside one.
+    //
+    // Only the property tag's own level is marked. The same resolution runs while the tag's
+    // type is still being found, and for a {$first@xs} that opens no level at all; $pad is
+    // then the loop the reference stands in, and marked, that loop was passed over as if it
+    // were a property tag for the rest of its rows: after a {first@xs}...{/first@xs} a
+    // {#mask} of the loop was not found and {&current} answered 1 on every row.
+
+    if ( ( $GLOBALS ['padType'] [$pad] ?? '' ) != 'property' )
+      return;
 
     $padAtTag [$pad] = TRUE;
 
