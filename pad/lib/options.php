@@ -35,9 +35,12 @@
       $now .= $one;
 
       // A backslash before a quote escapes it, as padPipeSplit and the evaluator read it:
-      // 'it\'s' is one string, not one that ends at the t and opens another at the s.
+      // 'it\'s' is one string, not one that ends at the t and opens another at the s. And a
+      // backslash escapes a backslash, as the evaluator reads 'a\\' as a\ - its second one
+      // was taken to escape the closing quote, and the string ran on over the comma behind
+      // it: {tag 'a\\', name='x'} lost its name= to the parameter.
 
-      if ( $one == '\\' and in_array ( $input [$key+1] ?? '', [ "'", '"' ] ) ) {
+      if ( $one == '\\' and in_array ( $input [$key+1] ?? '', [ "'", '"', '\\' ] ) ) {
         $skip = TRUE;
         continue;
       }

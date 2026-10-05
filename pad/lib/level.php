@@ -115,7 +115,10 @@ function padSplitOnUnquotedColon ( $str ) {
 
         $ch = $input[$i];
 
-        if ($ch === '\\' && $i + 1 < $length && ($input[$i + 1] === "'" || $input[$i + 1] === '"')) {
+        // An escaped backslash is skipped whole as well, so the one in 'a\\' cannot escape
+        // the quote behind it and hide the pipe that follows.
+
+        if ($ch === '\\' && $i + 1 < $length && ($input[$i + 1] === "'" || $input[$i + 1] === '"' || $input[$i + 1] === '\\')) {
             $i++;
       } elseif ($ch === "'" && !$inDouble) {
             $inSingle = !$inSingle;
