@@ -11,6 +11,8 @@
   //                when a pager asks. The request value the links set is the one the page
   //                option was written with - page=$pg makes them set pg - and 'page'
   //                otherwise.
+  // padPagerBook   books one level's page, and keeps it with every fragment-cache section
+  //                rendering round it, so a hit books it again
   // padPagerItems  the links of one booked level as rows: previous, the numbers - the first,
   //                the last and a window around the current page, with a gap where pages
   //                are left out - and next. Each row has kind (prev, next, page, current,
@@ -27,7 +29,7 @@
 
   function padPagerKeep ( $total ) {
 
-    global $pad, $padPrm, $padParms, $padName, $padDone, $padPager, $padPagerCount;
+    global $pad, $padPrm, $padParms, $padName, $padDone, $padPagerCount, $padFragment;
 
     $query = 'page';
 
@@ -38,13 +40,36 @@
 
     $limit = ( ( $padDone [$pad] ['page'] ?? '' ) === 'limit' );
 
-    $padPager [ $padName [$pad] ] = [
+    // A level served from the fragment cache has no rows of its own to count: its booking
+    // is the one kept with the rendering, which padFragmentEnd books again.
+
+    if ( $padFragment [$pad] ['hit'] ?? FALSE )
+      return;
+
+    padPagerBook ( $padName [$pad], [
       'page'  => max ( 1, (int) ( $padPrm [$pad] ['page'] ?? 1 ) ),
       'rows'  => (int) ( $padPrm [$pad] ['rows'] ?? 10 ),
       'total' => $limit ? NULL : $total,
       'count' => $limit ? ( $padPagerCount [$pad] ?? '' ) : '',
       'query' => $query
-    ];
+    ] );
+
+  }
+
+  // Books a level's page under its name. Every fragment-cache section rendering round it
+  // keeps the booking with its rendering, as it keeps a {push}, so a hit - which runs no tag
+  // inside it - books it again (lib/fragment.php); a {pager} after the section found no
+  // paged tag on a hit, or a single page.
+
+  function padPagerBook ( $name, $booking ) {
+
+    global $pad, $padPager, $padFragment;
+
+    $padPager [$name] = $booking;
+
+    for ( $i = $pad; $i >= 0; $i-- )
+      if ( is_array ( $padFragment [$i] ?? NULL ) and ! $padFragment [$i] ['hit'] )
+        $padFragment [$i] ['pagers'] [$name] = $booking;
 
   }
 

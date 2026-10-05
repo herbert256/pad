@@ -23,7 +23,9 @@
   // render every time.
   //
   // A {push} made while a section renders is part of what the section does, so it is kept
-  // with the rendering ('stacks') and made again on a hit - lib/stack.php records it.
+  // with the rendering ('stacks') and made again on a hit - lib/stack.php records it. So is
+  // the page booking of a paged tag in it ('pagers', padPagerKeep in lib/pager.php): a
+  // {pager} after the section found no paged tag on a hit, or one with a single page.
 
   function padFragmentHit () {
 
@@ -34,7 +36,8 @@
       'ttl'    => padFragmentTtl (),
       'hit'    => FALSE,
       'body'   => '',
-      'stacks' => []
+      'stacks' => [],
+      'pagers' => []
     ];
 
     // A request for one response fragment alone (lib/respond.php) renders the section: a
@@ -64,6 +67,7 @@
     $padFragment [$pad] ['hit']    = TRUE;
     $padFragment [$pad] ['body']   = $entry ['body'];
     $padFragment [$pad] ['stacks'] = $entry ['stacks'];
+    $padFragment [$pad] ['pagers'] = $entry ['pagers'];
 
     return TRUE;
 
@@ -85,9 +89,12 @@
       foreach ( $fragment ['stacks'] as [ $name, $text, $once ] )
         padStackPush ( $name, $text, $once );
 
+      foreach ( $fragment ['pagers'] as $name => $booking )
+        padPagerBook ( $name, $booking );
+
     } elseif ( $padFragmentCache )
 
-      padFragmentPut ( $fragment ['key'], $padResult [$pad], $fragment ['ttl'], $fragment ['stacks'] ?? [] );
+      padFragmentPut ( $fragment ['key'], $padResult [$pad], $fragment ['ttl'], $fragment ['stacks'], $fragment ['pagers'] );
 
   }
 
@@ -139,9 +146,11 @@
 
   }
 
-  // An entry is [ 'body' => the rendering, 'stacks' => the pushes it made ]. A file holds
-  // the expiry time on its first line, followed - when there were pushes - by the length
-  // of their serialized list, which then stands in front of the body.
+  // An entry is [ 'body' => the rendering, 'stacks' => the pushes it made, 'pagers' => the
+  // page bookings it made ]. A file holds the expiry time on its first line, followed -
+  // when there were pushes or bookings - by the length of the two serialized together,
+  // which then stand in front of the body. An entry written when only the pushes were kept
+  // holds their list there, and is read as such.
 
   function padFragmentGet ( $key ) {
 
@@ -154,7 +163,7 @@
       if ( ! $found )
         return FALSE;
 
-      return is_array ( $entry ) ? $entry : [ 'body' => $entry, 'stacks' => [] ];
+      return ( is_array ( $entry ) ? $entry : [ 'body' => $entry ] ) + [ 'stacks' => [], 'pagers' => [] ];
 
     }
 
@@ -174,30 +183,37 @@
     if ( (int) $head [0] < time () )
       return FALSE;
 
-    $size   = (int) ( $head [1] ?? 0 );
-    $stacks = $size ? @unserialize ( substr ( $text, $split + 1, $size ), [ 'allowed_classes' => FALSE ] ) : [];
+    $size  = (int) ( $head [1] ?? 0 );
+    $extra = $size ? @unserialize ( substr ( $text, $split + 1, $size ), [ 'allowed_classes' => FALSE ] ) : [];
+
+    if ( ! is_array ( $extra ) )
+      $extra = [];
+
+    if ( ! array_key_exists ( 'stacks', $extra ) and ! array_key_exists ( 'pagers', $extra ) )
+      $extra = [ 'stacks' => $extra ];
 
     return [
       'body'   => substr ( $text, $split + 1 + $size ),
-      'stacks' => is_array ( $stacks ) ? $stacks : []
+      'stacks' => is_array ( $extra ['stacks'] ?? NULL ) ? $extra ['stacks'] : [],
+      'pagers' => is_array ( $extra ['pagers'] ?? NULL ) ? $extra ['pagers'] : []
     ];
 
   }
 
-  function padFragmentPut ( $key, $body, $ttl, $stacks = [] ) {
+  function padFragmentPut ( $key, $body, $ttl, $stacks = [], $pagers = [] ) {
 
     global $padFragmentCache;
 
     if ( $padFragmentCache == 'apcu' and function_exists ( 'apcu_store' ) )
-      return apcu_store ( "padFragment:$key", [ 'body' => $body, 'stacks' => $stacks ], $ttl );
+      return apcu_store ( "padFragment:$key", [ 'body' => $body, 'stacks' => $stacks, 'pagers' => $pagers ], $ttl );
 
     padFragmentPurge ();
 
     $head  = time () + $ttl;
     $extra = '';
 
-    if ( $stacks ) {
-      $extra = serialize ( $stacks );
+    if ( $stacks or $pagers ) {
+      $extra = serialize ( [ 'stacks' => $stacks, 'pagers' => $pagers ] );
       $head .= ' ' . strlen ( $extra );
     }
 
