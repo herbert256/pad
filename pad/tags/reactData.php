@@ -14,6 +14,13 @@
   $padReactProvider = padTagParm ( 'provider', $padReactId );
   $padReactType     = strtolower ( padTagParm ( 'type', 'record' ) );
 
+  // The provider is a file of _providers/ by its plain name, and the id an attribute value:
+  // provider='../_config/config' ran any PHP file of the tree, and an id with a quote in it
+  // broke out of the attribute.
+
+  if ( ! padValidName ( $padReactProvider ) )
+    return padError ( "the provider '$padReactProvider' is no plain name of a file in _providers/" );
+
   $padCall  = APP . "_providers/$padReactProvider.php";
   $padReact = include PAD . 'call/any.php';
 
@@ -27,7 +34,7 @@
   $padProviders [$padReactId] = $padReact;
 
   return '<div id="' 
-       . $padReactId
+       . htmlspecialchars ( (string) $padReactId, ENT_QUOTES, 'UTF-8' )
        . '" data="' 
        . padJsonForHtmlAttr ( $padReact ) 
        . '"></div>';
