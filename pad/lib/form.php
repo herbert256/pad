@@ -204,16 +204,22 @@
   // Where a field's value comes back from, or NULL when its form did not come back: the
   // post when this request posted - the field's own {form}, when it stands in a named one -
   // and for a {form method='get'} the query string once it holds more than the page's
-  // name and the engine's own switches: a search box keeps what was asked.
+  // name and the engine's own switches: a search box keeps what was asked. The page's name
+  // is the query string's first name only when the query string names the page: on a clean
+  // URL, /shop/search?q=pad, the path does, and the first name is the field
+  // (inits/page.php, lib/route.php).
 
   function padFormSource () {
 
-    global $padFormStack;
+    global $padFormStack, $padRoutePath;
 
     $form = $padFormStack ? end ( $padFormStack ) : NULL;
 
     if ( $form and $form ['method'] == 'get' ) {
-      $asked = array_filter ( array_slice ( array_keys ( $_GET ), 1 ), fn ( $key ) => ! padEngineName ( (string) $key ) );
+      $keys = array_keys ( $_GET );
+      if ( ( $padRoutePath ?? '' ) === '' or padRouteQuery () )
+        $keys = array_slice ( $keys, 1 );
+      $asked = array_filter ( $keys, fn ( $key ) => ! padEngineName ( (string) $key ) );
       return $asked ? $_GET : NULL;
     }
 
