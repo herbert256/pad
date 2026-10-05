@@ -678,7 +678,7 @@ _tests/cart.txt   the expected answer
         <li class="idea wide" id="treesitter">
           <div class="idea-top"><span class="number" aria-hidden="true">27</span><h3>A Tree-sitter grammar</h3><span class="effort">Medium–large</span></div>
           <p>editors/README.md lists this as the remaining gap: without a Tree-sitter grammar, Zed and Helix have no native PAD highlighting. It would also give Neovim structural selection, folding of tag pairs, and text objects such as “inside this <code>{items}</code> loop”. Generate its keyword lists from the same source as the completion data.</p>
-        </li>
+        <p class="done"><strong>Done.</strong> <code>editors/tree-sitter-pad</code>: a grammar with an external scanner that decides pairs the way pad/level/tag.php does (<code>{else}</code> and <code>{echo}</code> stay single, same-name pairs nest), HTML injection, folding and text objects for Zed, Helix and Neovim; <code>editors/generate.php</code> writes the built-in names into its highlight queries. Verified with tree-sitter-cli from npm (25 corpus tests, 23 highlight assertions); ci.sh runs the offline checks as its <em>treesitter</em> line and the corpus when the CLI is on the PATH. The Zed extension is untested (no Zed here). Manual page <em>Editor support</em>; README per editor.</p></li>
       </ol>
     </section>
 

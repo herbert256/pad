@@ -1429,6 +1429,10 @@ diagnostics on open and save from a real render, hover from `docs/reference/*.md
 go-to-definition along PAD's lookup order - `{mytag}` to the nearest `_tags/mytag.*`,
 `| money` to `_functions/money.php`, `{$total}` to the line of the paired `.php` that
 assigns it. `node editors/lsp/test.js` tests it; `./ci.sh` runs that as its `lsp` line.
+`editors/tree-sitter-pad` is a Tree-sitter grammar for Zed, Helix and Neovim - highlighting,
+folding of tag pairs, text objects - whose scanner pairs `{x}` with `{/x}` the way the
+engine does; the built-in names in its highlight queries are written by
+`php editors/generate.php`, and `./ci.sh` checks it as its `treesitter` line.
 
 ---
 

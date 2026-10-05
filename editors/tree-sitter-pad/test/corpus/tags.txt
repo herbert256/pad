@@ -1,0 +1,201 @@
+================================================================================
+A single tag
+================================================================================
+
+{echo $x}
+
+--------------------------------------------------------------------------------
+
+(template
+  (tag
+    (tag_name
+      (identifier))
+    (arguments
+      (variable))))
+
+================================================================================
+A pipe, with arguments, an arithmetic pipe and a printf format
+================================================================================
+
+{echo $name | upper | left(5) | + 1} {$nbr | %.2f}
+
+--------------------------------------------------------------------------------
+
+(template
+  (tag
+    (tag_name
+      (identifier))
+    (arguments
+      (variable)
+      (pipe
+        (function_name))
+      (pipe
+        (function_name))
+      (number)
+      (pipe)
+      (operator)
+      (number)))
+  (field_tag
+    (variable)
+    (arguments
+      (pipe)
+      (format))))
+
+================================================================================
+Options
+================================================================================
+
+{orders sort='id', rows=5 callback='double' trim}
+
+--------------------------------------------------------------------------------
+
+(template
+  (tag
+    (tag_name
+      (identifier))
+    (arguments
+      (option
+        (option_name)
+        (string))
+      (option
+        (option_name)
+        (number))
+      (option
+        (option_name)
+        (string))
+      (identifier))))
+
+================================================================================
+Prefixed names
+================================================================================
+
+{app:badge} {include:footer} {echo $x | function:money} {echo sequence:fibonacci(8)}
+
+--------------------------------------------------------------------------------
+
+(template
+  (tag
+    (tag_name
+      (prefix)
+      (identifier)))
+  (tag
+    (tag_name
+      (prefix)
+      (identifier)))
+  (tag
+    (tag_name
+      (identifier))
+    (arguments
+      (variable)
+      (pipe
+        (prefix)
+        (function_name))))
+  (tag
+    (tag_name
+      (identifier))
+    (arguments
+      (prefixed_name
+        (prefix)
+        (identifier))
+      (number))))
+
+================================================================================
+Properties
+================================================================================
+
+{echo count@items} {even@items ? even : odd}
+
+--------------------------------------------------------------------------------
+
+(template
+  (tag
+    (tag_name
+      (identifier))
+    (arguments
+      (property_reference
+        (property)
+        (identifier))))
+  (tag
+    (tag_name
+      (property)
+      (identifier))
+    (arguments
+      (operator)
+      (identifier)
+      (identifier))))
+
+================================================================================
+Word operators and the placeholder
+================================================================================
+
+{if $a eq 1 and $b ne 2}{/if} {echo 50 | @ * 4}
+
+--------------------------------------------------------------------------------
+
+(template
+  (block
+    (open_tag
+      (tag_name
+        (identifier))
+      (arguments
+        (variable)
+        (identifier)
+        (number)
+        (identifier)
+        (variable)
+        (identifier)
+        (number)))
+    (close_tag
+      (tag_name
+        (identifier))))
+  (tag
+    (tag_name
+      (identifier))
+    (arguments
+      (number)
+      (pipe)
+      (placeholder)
+      (operator)
+      (number))))
+
+================================================================================
+A tag inside a parameter
+================================================================================
+
+{if {clock 'L'} eq 1}x{/if}
+
+--------------------------------------------------------------------------------
+
+(template
+  (block
+    (open_tag
+      (tag_name
+        (identifier))
+      (arguments
+        (tag
+          (tag_name
+            (identifier))
+          (arguments
+            (string)))
+        (identifier)
+        (number)))
+    (body
+      (text))
+    (close_tag
+      (tag_name
+        (identifier)))))
+
+================================================================================
+A close tag no opener claims
+================================================================================
+
+a {/orders} b
+
+--------------------------------------------------------------------------------
+
+(template
+  (text)
+  (close_tag
+    (tag_name
+      (identifier)))
+  (text))

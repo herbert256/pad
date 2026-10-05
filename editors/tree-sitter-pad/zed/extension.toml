@@ -1,0 +1,15 @@
+id = "pad"
+name = "PAD"
+description = "PAD (PHP Application Driver) templates: Tree-sitter highlighting, folding and text objects"
+version = "0.1.0"
+schema_version = 1
+authors = ["herbert256"]
+repository = "https://github.com/herbert256/pad"
+
+# The grammar lives in a subdirectory of the PAD repository. Zed wants rev to be a commit
+# SHA: put in the one to build from (git rev-parse HEAD). For a local dev extension, point
+# repository at the checkout instead: repository = "file:///Users/herbert/pad".
+[grammars.pad]
+repository = "https://github.com/herbert256/pad"
+rev = "REPLACE-WITH-A-COMMIT-SHA"
+path = "editors/tree-sitter-pad"

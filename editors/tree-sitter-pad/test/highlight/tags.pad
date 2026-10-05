@@ -1,0 +1,34 @@
+{# Highlight assertions: each caret points at the column of the line above it. #}
+
+    {if $total gt 0}{echo $total | money | upper}{/if}
+    {# <- punctuation.special #}
+  {# ^ keyword #}
+     {# ^ variable #}
+            {# ^ keyword.operator #}
+                  {# ^ keyword #}
+                                {# ^ function.call #}
+                                        {# ^ function.builtin #}
+
+    {orders sort='id' trim}{$id}{/orders}
+    {# <- punctuation.special #}
+  {# ^ tag #}
+         {# ^ attribute #}
+              {# ^ string #}
+                   {# ^ attribute #}
+                         {# ^ variable #}
+
+    {app:badge} {first@items}x{/first@items} {count@items}
+    {# <- punctuation.special #}
+  {# ^ module #}
+      {# ^ tag #}
+              {# ^ property #}
+                                           {# ^ property #}
+
+    text @page@ {echo 50 | @ * 4} {$n | %.2f}
+      {# ^ keyword.directive #}
+                   {# ^ number #}
+                        {# ^ variable.builtin #}
+                                     {# ^ string.special #}
+
+    {# a comment #}
+      {# ^ comment #}

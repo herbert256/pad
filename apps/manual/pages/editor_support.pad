@@ -19,3 +19,13 @@ the paired <code>.php</code> that assigns it. Here, go to definition on <code>{o
 lands on <code>$total = 42;</code>.</p>
 
 {example 'fragments/editor_support_1'}
+
+<h2>Tree-sitter</h2>
+
+<p><code>editors/tree-sitter-pad</code> is a Tree-sitter grammar: native highlighting in Zed,
+Helix and Neovim, with the HTML around the tags highlighted as HTML. A pair of tags is one
+node of the tree, so an editor can fold <code>{open}orders{close} ... {open}/orders{close}</code>,
+select it, or select just what is inside it. Whether a tag is a pair is decided as the engine
+decides it: <code>{open}orders{close}</code> opens a block only when a <code>{open}/orders{close}</code>
+closes it further on, so <code>{open}else{close}</code> and <code>{open}echo $x{close}</code> stay
+single tags.</p>

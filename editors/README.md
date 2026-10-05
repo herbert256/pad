@@ -5,6 +5,7 @@
 | `sublime/` | Sublime Text | Full kit: syntax, colors, completions, close-tag plugin, snippets, comments, indent, build | copy files + `snippets/*` into `Packages/User/` |
 | `vscode/pad/` | VS Code, Cursor, Windsurf, VSCodium | Full kit: injection grammar, token colors, completion/close-tag provider, snippets, language config | copy dir to `~/.vscode/extensions/herbert.pad-lang-0.1.0` (or `~/.cursor/extensions/`, ...) |
 | `vim/` | Vim / Neovim | Syntax highlighting (HTML base + PAD injected everywhere, split sigil/name vars) | copy `syntax/` + `ftdetect/` into `~/.vim/` or `~/.config/nvim/` |
+| `tree-sitter-pad/` | Zed, Helix, Neovim | A Tree-sitter grammar: highlighting, HTML injection, folding of tag pairs, text objects (inside this `{items}` loop) - pairs are found the way the engine finds them | see `tree-sitter-pad/README.md` |
 | `lsp/` | Any LSP editor (Neovim, Helix, Emacs, Sublime-LSP, ...) | A zero-dependency Node language server: completions, close-tag suggestions, diagnostics from a real render under the strict check, hover from `docs/reference`, go-to-definition along PAD's lookup order (`{$total}` to the paired `.php`) | see `lsp/README.md` for per-client config |
 | `notepad-plus-plus/` | Notepad++ (Windows) | User Defined Language: keywords, comments, folding, PAD-purple styling | Language > User Defined Language > Import |
 | `bbedit/` | BBEdit (macOS) | Codeless language module: keywords, strings, `{--` comments | copy `PAD.plist` to `~/Library/Application Support/BBEdit/Language Modules/` |
@@ -18,12 +19,10 @@ JetBrains IDEs (PhpStorm): install the bundled "TextMate Bundles" plugin,
 then Settings > Editor > TextMate Bundles > `+` and select `editors/vscode/pad`
 - the VS Code grammar is imported directly.
 
-Not covered: a Tree-sitter grammar (needed for native Zed/Helix
-highlighting) - a separate parser project; the LSP covers completions there.
-
 The completion data (`vscode/pad/completions.json`, `lsp/completions.json`,
-`sublime/PAD.sublime-completions`) is generated from the framework source by
-`php editors/generate.php` - tags, pipe functions, properties, options (including the
-handling options), type prefixes and sequence types, each from its directory under `pad/`.
-Regenerate after adding a built-in; `./ci.sh` runs `php editors/generate.php --check` and
-fails while a list is stale.
+`sublime/PAD.sublime-completions`) and the built-in names of the Tree-sitter highlights
+(`tree-sitter-pad/queries/highlights.scm`, `tree-sitter-pad/helix/highlights.scm`) are
+generated from the framework source by `php editors/generate.php` - tags, pipe functions,
+properties, options (including the handling options), type prefixes and sequence types,
+each from its directory under `pad/`. Regenerate after adding a built-in; `./ci.sh` runs
+`php editors/generate.php --check` and fails while a list is stale.

@@ -1,0 +1,269 @@
+================================================================================
+A pair is a block
+================================================================================
+
+{orders}
+  <li>{$id}</li>
+{/orders}
+
+--------------------------------------------------------------------------------
+
+(template
+  (block
+    (open_tag
+      (tag_name
+        (identifier)))
+    (body
+      (text)
+      (field_tag
+        (variable))
+      (text))
+    (close_tag
+      (tag_name
+        (identifier)))))
+
+================================================================================
+A tag without a close is single
+================================================================================
+
+{orders}
+<li>{$id}</li>
+
+--------------------------------------------------------------------------------
+
+(template
+  (tag
+    (tag_name
+      (identifier)))
+  (text)
+  (field_tag
+    (variable))
+  (text))
+
+================================================================================
+Same-name pairs nest
+================================================================================
+
+{if $a eq 1}{if $b eq 2}x{/if}y{/if}
+
+--------------------------------------------------------------------------------
+
+(template
+  (block
+    (open_tag
+      (tag_name
+        (identifier))
+      (arguments
+        (variable)
+        (identifier)
+        (number)))
+    (body
+      (block
+        (open_tag
+          (tag_name
+            (identifier))
+          (arguments
+            (variable)
+            (identifier)
+            (number)))
+        (body
+          (text))
+        (close_tag
+          (tag_name
+            (identifier))))
+      (text))
+    (close_tag
+      (tag_name
+        (identifier)))))
+
+================================================================================
+A self-closing tag opens nothing
+================================================================================
+
+{items /}{items}x{/items}
+
+--------------------------------------------------------------------------------
+
+(template
+  (tag
+    (tag_name
+      (identifier))
+    (arguments
+      (operator)))
+  (block
+    (open_tag
+      (tag_name
+        (identifier)))
+    (body
+      (text))
+    (close_tag
+      (tag_name
+        (identifier)))))
+
+================================================================================
+Else and when are single tags inside the pair
+================================================================================
+
+{if $a eq 1}x{else}y{/if}
+{case $c}{when 'r'}red{else}other{/case}
+
+--------------------------------------------------------------------------------
+
+(template
+  (block
+    (open_tag
+      (tag_name
+        (identifier))
+      (arguments
+        (variable)
+        (identifier)
+        (number)))
+    (body
+      (text)
+      (tag
+        (tag_name
+          (identifier)))
+      (text))
+    (close_tag
+      (tag_name
+        (identifier))))
+  (block
+    (open_tag
+      (tag_name
+        (identifier))
+      (arguments
+        (variable)))
+    (body
+      (tag
+        (tag_name
+          (identifier))
+        (arguments
+          (string)))
+      (text)
+      (tag
+        (tag_name
+          (identifier)))
+      (text))
+    (close_tag
+      (tag_name
+        (identifier)))))
+
+================================================================================
+A property tag pairs with its own close
+================================================================================
+
+{first@items}<ul>{/first@items}
+
+--------------------------------------------------------------------------------
+
+(template
+  (block
+    (open_tag
+      (tag_name
+        (property)
+        (identifier)))
+    (body
+      (text))
+    (close_tag
+      (tag_name
+        (property)
+        (identifier)))))
+
+================================================================================
+Whitespace control
+================================================================================
+
+{~items~}
+  {$name}
+{~/items~}
+
+--------------------------------------------------------------------------------
+
+(template
+  (block
+    (open_tag
+      (tag_name
+        (identifier)))
+    (body
+      (field_tag
+        (variable)))
+    (close_tag
+      (tag_name
+        (identifier)))))
+
+================================================================================
+A close with a pipe
+================================================================================
+
+{message}x{/message | upper}
+
+--------------------------------------------------------------------------------
+
+(template
+  (block
+    (open_tag
+      (tag_name
+        (identifier)))
+    (body
+      (text))
+    (close_tag
+      (tag_name
+        (identifier))
+      (arguments
+        (pipe
+          (function_name))))))
+
+================================================================================
+Ignore keeps its content raw
+================================================================================
+
+{ignore}<script>if (a) { b(); } {/if}</script>{/ignore}
+
+--------------------------------------------------------------------------------
+
+(template
+  (ignore_block
+    (open_tag
+      (tag_name
+        (identifier)))
+    (raw_text)
+    (close_tag
+      (tag_name
+        (identifier)))))
+
+================================================================================
+An empty ignore
+================================================================================
+
+{ignore}{/ignore}
+
+--------------------------------------------------------------------------------
+
+(template
+  (ignore_block
+    (open_tag
+      (tag_name
+        (identifier)))
+    (close_tag
+      (tag_name
+        (identifier)))))
+
+================================================================================
+A close inside a comment does not end the pair
+================================================================================
+
+{orders}{# {/orders} #}x{/orders}
+
+--------------------------------------------------------------------------------
+
+(template
+  (block
+    (open_tag
+      (tag_name
+        (identifier)))
+    (body
+      (comment)
+      (text))
+    (close_tag
+      (tag_name
+        (identifier)))))

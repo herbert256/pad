@@ -105,6 +105,9 @@ file-types = ["pad"]
 language-servers = ["pad-lsp"]
 ```
 
+Highlighting, folding and text objects in Helix (and Zed) come from the Tree-sitter grammar
+in `editors/tree-sitter-pad` - its README has the `[[grammar]]` entry.
+
 ### Emacs (eglot)
 
 ```elisp
