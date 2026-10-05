@@ -436,7 +436,7 @@
             <tr>
               <th scope="row">Editor completion data</th>
               <td>editors/README.md says the completion lists are “generated from the framework source”, but no generator is in the repository.</td>
-              <td>Add the generator script and run it in <code>ci.sh</code>, so a new tag or function that is missing from the lists fails the check.</td>
+              <td>Add the generator script and run it in <code>ci.sh</code>, so a new tag or function that is missing from the lists fails the check.<span class="done"><strong>Done.</strong> <code>editors/generate.php</code> writes the three lists from <code>pad/</code> (tags, functions, properties, options incl. the handling options and start-phase names, type prefixes, sequence types); <code>--check</code> writes nothing and exits 1 when a list is stale, and <code>./ci.sh</code> runs it as an <em>editors</em> line. Regenerating added <code>foo</code>, <code>merge</code>, <code>where</code> and the handling options the hand-kept lists lacked. Proven: a fake tag file makes the check fail.</span></td>
             </tr>
           </tbody>
         </table>

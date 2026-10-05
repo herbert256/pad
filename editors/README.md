@@ -20,5 +20,8 @@ Not covered: a Tree-sitter grammar (needed for native Zed/Helix
 highlighting) - a separate parser project; the LSP covers completions there.
 
 The completion data (`vscode/pad/completions.json`, `lsp/completions.json`,
-`sublime/PAD.sublime-completions`) is generated from the framework source -
-regenerate after adding built-in tags or functions.
+`sublime/PAD.sublime-completions`) is generated from the framework source by
+`php editors/generate.php` - tags, pipe functions, properties, options (including the
+handling options), type prefixes and sequence types, each from its directory under `pad/`.
+Regenerate after adding a built-in; `./ci.sh` runs `php editors/generate.php --check` and
+fails while a list is stale.

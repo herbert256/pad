@@ -99,4 +99,16 @@ for suite in pages common errors framework regression sequence manual other; do
 
 done
 
+# The editor kits' completion lists are generated from pad/ by editors/generate.php: a tag,
+# function, option or property added without regenerating them fails the gate like a
+# failing suite. The gate's own test rig, which doctors the results directory, skips it.
+
+if [ -z "$CI_SUITES" ]; then
+  if php "$padHome/editors/generate.php" --check; then
+    printf '%-12s %s\n' editors "completion lists match pad/"
+  else
+    exit=1
+  fi
+fi
+
 exit $exit
