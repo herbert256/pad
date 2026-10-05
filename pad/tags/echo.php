@@ -17,6 +17,12 @@
 
   }
 
-  return padEval ( $padOpt [$pad] [0] );
+  // TRUE is written as PAD writes it everywhere else - {$flag} prints 1 - where the level
+  // read it as "render my content", which an {echo} has none of: {echo $flag} and
+  // {echo php:is_numeric('5')} printed nothing.
+
+  $padEchoValue = padEval ( $padOpt [$pad] [0] );
+
+  return ( $padEchoValue === TRUE ) ? '1' : $padEchoValue;
 
 ?>
