@@ -85,16 +85,20 @@
   }
 
   // A fetch has come back: a good answer is kept, a failure is answered with the copy
-  // there is, if there is one, and logged.
+  // there is, if there is one still within $padCurlStale beyond its ttl, and logged. The
+  // window is held here because a file entry outlives it until the hourly purge, a day
+  // later: the copy of any age was served, where the other stores had expired it.
 
   function padCurlCacheAfter ( $key, $output, $entry, $ttl ) {
+
+    global $padCurlStale;
 
     if ( str_starts_with ( (string) $output ['result'], '2' ) ) {
       padCurlCachePut ( $key, $output, $ttl );
       return $output + [ 'cache' => 'miss' ];
     }
 
-    if ( ! $entry )
+    if ( ! $entry or $entry ['time'] + $ttl + max ( 0, (int) $padCurlStale ) <= time () )
       return $output + [ 'cache' => 'miss' ];
 
     padLogError ( 'curl: ' . $output ['url'] . ' answered ' . $output ['result']
