@@ -16,8 +16,13 @@
   // A page that is not there took the whole response with it: the not-found error rose
   // inside the nested pass and the request answered an empty 200. Strict mode names the
   // page; the lenient walk gives the tag an empty value and the rest of the page lives.
+  //
+  // The page is named from the application root and resolved as the router resolves a
+  // URL (lib/page.php): a .html page counts, and a directory is its index.
 
-  if ( ! padAppPageCheck ( $padParm ) ) {
+  $padStrPagName = padPageCheck ( $padParm );
+
+  if ( ! $padStrPagName ) {
 
     if ( $padCheckSyntax )
       padError ( "there is no page named '$padParm'" );
@@ -31,7 +36,7 @@
   $padStrPag [$pad] [2] = $padDir;
   $padStrPag [$pad] [3] = $padPath;
 
-  $padPage    = $padParm;
+  $padPage    = $padStrPagName;
   $padInclude = padTagParm ( 'include', TRUE );
   $padDir     = padDir ();
   $padPath    = padPath ();

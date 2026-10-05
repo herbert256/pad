@@ -15,8 +15,16 @@
   // padPageAjax   returns a div plus an XMLHttpRequest that loads another PAD page into
   //               it at the client, carrying the session and request ids along
   // padPageGet    fetches another page server side over curl and returns its body
+  //
+  // padPageCheck and padPage take the application directory as an optional second
+  // argument, so {ajax app=} can ask the same question of another application. The router
+  // answers with these, and {page}, {get}, {redirect} and {ajax} ask them too: they used
+  // padAppPageCheck, the _include/-style search from the page's own directory up, which
+  // knew neither .html pages nor directory indexes - {page 'sub'} was refused where ?sub
+  // served sub/index - and found a page beside the current one that the nested build then
+  // looked for at the root.
 
-  function padPageCheck ( $page ) {
+  function padPageCheck ( $page, $app=APP ) {
 
     if ( ! preg_match ( '/^[a-zA-Z0-9][a-zA-Z0-9_\/-]*$/D', $page ) ) return FALSE;
     if ( trim($page) == '' )                                      return FALSE;
@@ -24,7 +32,7 @@
     if ( substr($page, -1) == '/')                                return FALSE;
     if ( strpos($page, '/_') !== FALSE)                           return FALSE;
 
-    return padPage ( $page );
+    return padPage ( $page, $app );
 
   }
 
@@ -45,9 +53,9 @@
 
   }
 
-  function padPage ( $page ) {
+  function padPage ( $page, $app=APP ) {
 
-    $location = APP;
+    $location = $app;
     $part     = padExplode ( $page, '/' );
 
     foreach ($part as $key => $value)

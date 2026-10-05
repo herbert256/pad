@@ -12,9 +12,10 @@
   $padExtQry = '&padInclude';
 
   // A page that is not there only surfaced as a failed curl, one wasted round-trip
-  // later. Strict mode names the page before the fetch.
+  // later. Strict mode names the page before the fetch, resolved as the router will
+  // resolve the URL (lib/page.php).
 
-  if ( $padCheckSyntax and ! padAppPageCheck ( $padExtPag ) )
+  if ( $padCheckSyntax and ! padPageCheck ( $padExtPag ) )
     padError ( "there is no page named '$padExtPag' for {get}" );
 
   foreach ( $padSetLvl [$pad] as $padK => $padV )
