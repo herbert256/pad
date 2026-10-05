@@ -36,6 +36,9 @@
 
     $prm = ( $unionBuild ) ? [] : ( $padPrm [$pad] ?? [] );
 
+    if ( ! padSelectFragments ( $prm ) )
+      return [];
+
     // Every select option the query was given goes on the xref record - the declaration's
     // words too, though the source filter keeps only what the page itself says.
 
@@ -285,6 +288,108 @@
     else        $where  = 'where ';
 
     $where .= $add . padSelectEscape ($value) . "'";
+
+  }
+
+  // The SQL a tag writes itself - where=, having=, order=, group= - is spliced into the
+  // statement as SQL, so it has to be the template's own text. Each must be written as a
+  // quoted string on the tag: where=$cond took a whole condition from a variable, which
+  // request input could fill. A value goes into where= and having= as $name, which this
+  // binds as a quoted literal of the application variable - the {$name} form splices text
+  // instead and is the template author's SQL. In order= and group= a $name is spliced as
+  // it is, so it must hold column names, each with an optional asc or desc. A table's
+  // declaration in $padSelect is PHP and is taken as written. FALSE refuses the query.
+
+  function padSelectFragments ( &$prm ) {
+
+    global $pad, $padParms;
+
+    foreach ( [ 'where', 'having', 'order', 'group' ] as $part ) {
+
+      if ( ! isset ( $prm [$part] ) or ! is_string ( $prm [$part] ) )
+        continue;
+
+      $org = '';
+
+      // The record keeps the item as written, name=value; the value is what follows the =.
+
+      foreach ( $padParms [$pad] ?? [] as $one )
+        if ( ( $one ['padPrmName'] ?? '' ) === $part ) {
+          $org = (string) ( $one ['padPrmOrg'] ?? '' );
+          $org = trim ( str_contains ( $org, '=' ) ? substr ( $org, strpos ( $org, '=' ) + 1 ) : $org );
+        }
+
+      if ( $org !== '' and ! is_numeric ( $org ) and $org [0] != "'" and $org [0] != '"' )
+        return padError ( "$part= is SQL the template writes: give it as a quoted string, and put a value in it as \$name" );
+
+      $prm [$part] = padSelectBind ( $prm [$part], in_array ( $part, [ 'order', 'group' ] ) );
+
+      if ( $prm [$part] === FALSE )
+        return FALSE;
+
+    }
+
+    return TRUE;
+
+  }
+
+  // Replaces each $name outside a quoted literal with the value of that application
+  // variable: a quoted, escaped literal (a number as a number, NULL as NULL), or for a
+  // column list the value as it is, which padSelectColumns then has to accept.
+
+  function padSelectBind ( $sql, $columns = FALSE ) {
+
+    $out   = '';
+    $quote = '';
+    $len   = strlen ( $sql );
+
+    for ( $i = 0; $i < $len; $i++ ) {
+
+      $char = $sql [$i];
+
+      if ( $quote ) {
+        if ( $char == '\\' and $i + 1 < $len ) { $out .= $char . $sql [++$i]; continue; }
+        if ( $char == $quote ) $quote = '';
+      } elseif ( $char == "'" or $char == '"' or $char == '`' )
+        $quote = $char;
+      elseif ( $char == '$' and preg_match ( '/\G\$([A-Za-z][A-Za-z0-9_]*)/', $sql, $match, 0, $i ) ) {
+
+        $name = $match [1];
+
+        if ( ! padValidVar ( $name ) or ! array_key_exists ( $name, $GLOBALS ) )
+          return padError ( "there is no application variable named \$$name for the select" );
+
+        $value = $GLOBALS [$name];
+
+        if ( $columns and ! padSelectColumns ( (string) $value ) )
+          return padError ( "\$$name in order= or group= must hold column names, each with an optional asc or desc" );
+
+        if     ( $columns                ) $out .= (string) $value;
+        elseif ( $value === NULL         ) $out .= 'NULL';
+        elseif ( is_bool ( $value )      ) $out .= $value ? '1' : '0';
+        elseif ( is_int ( $value ) or is_float ( $value ) or preg_match ( '/^-?[0-9]+(\.[0-9]+)?$/', (string) $value ) )
+                                           $out .= (string) $value;
+        else                               $out .= "'" . padSelectEscape ( $value ) . "'";
+
+        $i += strlen ( $match [0] ) - 1;
+        continue;
+
+      }
+
+      $out .= $char;
+
+    }
+
+    return $out;
+
+  }
+
+  function padSelectColumns ( $list ) {
+
+    $name = '(`[^`]+`|[A-Za-z_][A-Za-z0-9_]*)';
+    $item = "\\s*($name(\\.$name)?|[0-9]+)(\\s+(asc|desc))?\\s*";
+
+    return (bool) preg_match ( "/^$item(,$item)*$/i", $list );
 
   }
 

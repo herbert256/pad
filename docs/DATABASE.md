@@ -129,7 +129,19 @@ $padSelect ['openBugs'] = [
 {news sort="created_at desc" rows=10}
   {$title}
 {/news}
+
+<!-- A condition of your own: write it as a quoted string, put values in as $name -->
+{customers where="country = $country and creditLimit > $minimum", order="$sortColumn"}
+  {$customerName}
+{/customers}
 ```
+
+`where=`, `having=`, `order=` and `group=` written on a tag are SQL, so they must be quoted
+strings in the template; `where=$cond` is refused. Inside them a `$name` is bound by the select:
+in `where=`/`having=` as a quoted, escaped literal of that application variable (a number as a
+number), in `order=`/`group=` as column names, each with an optional `asc`/`desc`, and nothing
+else. `{$name}` there splices text into your SQL instead - use `$name`. Keys bound on the tag
+(`{users $id=5}`) are always escaped. Declarations in `$padSelect` are PHP and taken as written.
 
 ### Nested Relations (Automatic Joins)
 
