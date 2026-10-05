@@ -120,7 +120,10 @@
 
     $padTidy = $padMyTidy = FALSE;
 
-    return padUnprotect ( padUnescape ( $store ['regions'] [$name] ) );
+    // The {stack} markers in the region are filled as exits/exits.php fills the page's -
+    // the answer carried the bare marker instead of what was pushed.
+
+    return padUnprotect ( padUnescape ( padStackFill ( $store ['regions'] [$name] ) ) );
 
   }
 
