@@ -2,8 +2,10 @@
 
   // The evaluator's operator tables, shared by the tokeniser, padEvalAfter and padEvalOpr.
   //
-  //   padEval_precedence  every operator in the order padEvalOpr applies them, strongest
-  //                       first; a word not in this list is a candidate function name
+  //   padEval_precedence  every operator, strongest first; a word not in this list is a
+  //                       candidate function name
+  //   padEval_groups      the same operators grouped by equal strength, which is what
+  //                       padEvalOpr applies
   //   padEval_1           single-character operators the tokeniser recognises
   //   padEval_2           two-character operators, tested before the single-character ones
   //   padEval_txt         word operators, matched case-insensitively
@@ -19,8 +21,29 @@
     '**', '*', '/', '%', '+', '-',
     '.',
     'LT', 'LE', 'GT', 'GE', 'EQ', 'NE',
-    'AND', 'XOR', 'OR',
     'NOT',
+    'AND', 'XOR', 'OR',
+  ];
+
+  // The binding strength padEvalOpr applies, strongest first. The operators of one group
+  // bind equally and are taken left to right - 10 - 2 + 3 is 11 - except ** , which binds
+  // right to left: 2 ** 3 ** 2 is 2 ** 9. One operator per level, as the flat list above was
+  // walked, did all the + before any -, so 10 - 2 + 3 came out 5. NOT stands between the
+  // comparisons and AND, where Python has it: not $a eq $b denies the comparison, and
+  // $a and not $b denies $b alone.
+
+  const padEval_groups = [
+    [ '!' ],
+    [ '**' ],
+    [ '*', '/', '%' ],
+    [ '+', '-' ],
+    [ '.' ],
+    [ 'LT', 'LE', 'GT', 'GE' ],
+    [ 'EQ', 'NE' ],
+    [ 'NOT' ],
+    [ 'AND' ],
+    [ 'XOR' ],
+    [ 'OR' ],
   ];
 
   const padEval_1   = [ '!', '+', '-', '*', '/', '%', '.' ];

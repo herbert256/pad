@@ -46,9 +46,32 @@
     if ( $one == '>' and in_array($next, ['.','@'] ) )             return TRUE;
     if ( $one == '@' and ctype_alpha($next) )                      return TRUE;
     if ( $one == '@' and $next == '-' and ctype_digit($next2) )    return TRUE;
-    if ( $one == '<' and ctype_digit($next) )                      return TRUE;
-    if ( $one == '>' and ctype_digit($next) )                      return TRUE;
+    if ( $one == '<' and ctype_digit($next) and $prev == '.' )     return TRUE;
+    if ( $one == '>' and ctype_digit($next) and $prev == '.' )     return TRUE;
     if ( $one == '-' and in_array($prev, ['.','@'] ) )             return TRUE;
+
+    return FALSE;
+
+  }
+
+  // Whether the last token is a value - so that a - or + after it is an operator, not a
+  // sign: a literal, a field, a tag or option reference, the @ placeholder, a closing
+  // bracket, a property, or a bare word that is not itself an operator.
+
+  function padEvalParseAfterValue ( $result, $i ) {
+
+    if ( ! isset ( $result [$i] [1] ) )
+      return FALSE;
+
+    $kind = $result [$i] [1];
+
+    if ( in_array ( $kind, [ 'VAL', '$', '&', '#', '$$', 'close', 'a-close', 'hex', 'prop' ] ) )
+      return TRUE;
+
+    if ( $kind == 'other' ) {
+      $word = $result [$i] [0] ?? '';
+      return ! in_array ( strtoupper ( $word ), padEval_txt ) and ! isset ( padEval_alt [$word] );
+    }
 
     return FALSE;
 
@@ -370,13 +393,26 @@
 
       }
 
+      // A - or + in front of a digit is the number's sign only where no value stands before
+      // it: 5 -3 is a subtraction, as 5 - 3 is, where it read as the two values 5 and -3 and
+      // printed 5-3; 5 * -3 and $x eq -3 keep their sign.
+
+      // After a comma it is a sign again: the comma ended the previous argument - mid(2, -1).
+
+      $signed = FALSE;
+
+      if ( in_array ( $one, [ '-', '+' ] ) ) {
+        for ( $back = $key - 1; $back >= 0 and ctype_space ( $input [$back] ); $back-- ) ;
+        $signed = ( ( $back >= 0 and $input [$back] == ',' ) or ! padEvalParseAfterValue ( $result, $i ) );
+      }
+
       if ( ! $is_num  and
            (      ctype_digit($one)
              or ( $one == '.' and ctype_digit($next) )
-             or ( $one == '-' and ctype_digit($next) )
-             or ( $one == '-' and $next == '.' and ctype_digit($next2) )
-             or ( $one == '+' and ctype_digit($next) )
-             or ( $one == '+' and $next == '.' and ctype_digit($next2) )
+             or ( $signed and $one == '-' and ctype_digit($next) )
+             or ( $signed and $one == '-' and $next == '.' and ctype_digit($next2) )
+             or ( $signed and $one == '+' and ctype_digit($next) )
+             or ( $signed and $one == '+' and $next == '.' and ctype_digit($next2) )
            )
          ) {
 
@@ -411,6 +447,25 @@
         }
 
         $is_num = FALSE;
+
+      }
+
+      // < > and = are operators wherever they stand. Written without spaces they ran into
+      // the word beside them: $x<=3 became the text 5<=3, always true, and $x<3 a field
+      // named x<3. Spelled as padEval_alt has them, the two-character forms first.
+
+      if ( in_array ( $one, [ '<', '>', '=' ] ) ) {
+
+        $pair = isset ( padEval_alt [$one.$next] );
+
+        $i += 100;
+        $result [$i] [0] = padEval_alt [ $pair ? $one.$next : $one ];
+        $result [$i] [1] = 'OPR';
+
+        $is_other = FALSE;
+        $skip     = $pair ? 1 : 0;
+
+        continue;
 
       }
 

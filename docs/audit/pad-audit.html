@@ -442,10 +442,10 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding ph" id="h8">
+    <div class="finding ph fixed" id="h8">
       <div class="tag"><div class="priority">High</div><div class="cat">Correctness</div></div>
       <div>
-        <h3>The expression evaluator computes wrong answers silently — even with the strict check on<span class="live">verified live</span></h3>
+        <h3>The expression evaluator computes wrong answers silently — even with the strict check on<span class="live">verified live</span><span class="done">Fixed</span></h3>
         <p class="where">lib/eval/const.php:17-24 · lib/eval/double.php:18-24 · lib/eval/parse.php:79-82,372-389 · eval/type/parms.php:12-22</p>
         <p>Four independent parser faults make arithmetic and conditions wrong with no error raised:</p>
         <ul>
@@ -456,6 +456,7 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
         </ul>
         <p>These hit totals, discounts, pagination and access conditions. The regression suite's one arithmetic case (<code>2 + 3 * 4</code>) happens to survive because that particular order is right — which is also why the 986-of-987 framework replay passes: the baselines encode current behaviour.</p>
         <div class="fix"><b>Fix:</b> rebuild the evaluator around precedence groups with a prefix-unary pass; tokenize the symbol comparisons; only take a bare function's argument when the next token is a value. Add reference-valued tests, not just shape tests.</div>
+        <div class="resolved"><b>Fixed:</b> all four faults. <b>Precedence:</b> a new <code>padEval_groups</code> holds the operators by binding strength, and <code>padEvalOpr</code> applies a group's operators left to right, <code>**</code> right to left: <code>10 - 2 + 3</code> is 11, <code>8 / 2 * 2</code> 8, <code>10 % 3 * 2</code> 2 and <code>2 ** 3 ** 2</code> 512. <code>NOT</code> moved between the comparisons and <code>AND</code>, where Python has it, so <code>not $a eq $b</code> denies the comparison and <code>$a and not $b</code> denies <code>$b</code> alone. <b>Adjacent operators:</b> <code>padEvalDouble</code> no longer pairs an operator with a following prefix <code>!</code>/<code>NOT</code>, so <code>{if $one eq 2 and ! $zero}</code> is false. A <code>-</code> or <code>+</code> before a digit is a sign only where no value stands before it (or right after a comma, which ends an argument), so <code>5 -3</code> is 2 while <code>5 * -3</code>, <code>-3 + 1</code> and <code>mid(2, -1)</code> keep their sign. <b>Unspaced comparisons:</b> the tokeniser makes <code>&lt;</code>, <code>&gt;</code>, <code>=</code> and their pairs operators wherever they stand. <code>$x&lt;=3</code> had become the text <code>5&lt;=3</code>, always true, and <code>$x&gt;3</code> a field named <code>x&gt;3</code>; <code>&lt;</code>/<code>&gt;</code> plus a digit now continue a name only after a dot, the at-syntax form. <b>Bare function:</b> a function without parentheses takes the next token only when it is a value, so <code>{if now lt 5}</code> is false; <code>now gt 5</code> was always true because it compared nothing. Seven framework cases in <code>expressions/</code> pin independent answers. Against the old code they gave <code>5 2 4</code>, 64, <code>5-3</code>, an error, <code>TTF</code>, <code>T</code> and <code>700</code>. No stored answer had recorded the old arithmetic.</div>
       </div>
     </div>
 
@@ -874,13 +875,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pl" id="a5">
-      <div class="tag"><div class="priority">Open</div><div class="cat">A5 · Expression</div></div>
+    <div class="finding pl fixed" id="a5">
+      <div class="tag"><div class="priority">Fixed</div><div class="cat">A5 · Expression</div></div>
       <div>
-        <h3>A nested call in an argument list swallows the argument before it</h3>
+        <h3>A nested call in an argument list swallows the argument before it<span class="done">Fixed</span></h3>
         <p class="where">eval/type/parms.php:26-30</p>
         <p>A type that takes parameters treats the value token right in front of it as its piped value. Inside another call's argument list the tokenizer has dropped the commas, so the preceding argument looks piped: <code>{echo "a5c" | replace(5, sequence:fibonacci(6))}</code> fails with "replace wants 2 parameters" (the control <code>replace(5, 8)</code> gives <code>a8c</code>), and <code>{echo php:str_pad('7', 3, '0', php:constant('STR_PAD_LEFT'))}</code> gives <code>700</code> instead of <code>007</code>.</p>
         <div class="fix"><b>With <a href="#h8">H8</a>:</b> keep the argument separator as a token, or mark the argument ranges in <code>padEvalOpnCls</code>, so a call inside an argument list never consumes its neighbour.</div>
+        <div class="resolved"><b>Fixed:</b> with H8. A typed call inside another call's argument list no longer takes the value in front of it as its piped input: <code>eval/type/parms.php</code> sees that an enclosing call's parameter range (its <code>[3]</code>, set by <code>padEvalOpnCls</code> before the inside is evaluated) covers it. <code>{echo php:str_pad('7', 3, '0', php:constant('STR_PAD_LEFT'))}</code> gives <code>007</code>, where it gave <code>700</code>, and <code>replace(5, sequence:fibonacci(6))</code> no longer runs one parameter short. The fibonacci example answers <code>a5c</code>, which is right: the sixth term of 0, 1, 1, 2, 3, 5 is 5. A framework case pins the <code>str_pad</code> form.</div>
       </div>
     </div>
 

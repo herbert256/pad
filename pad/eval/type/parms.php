@@ -9,9 +9,13 @@
   // $value and is consumed too; otherwise the segment's own input $myself is used. Returns
   // whatever the eval/parms/ handler produces.
 
+  // Without parentheses the type takes the next token as its argument - but only a value:
+  // {if now gt 5} handed gt to now and compared nothing, always true.
+
   if ( $result [$k] [3] == 0 ) {
     $padEvalNextKey = padEvalNextKey ( $result, $k );
-    $result [$k] [3] = ( $padEvalNextKey and $padEvalNextKey <= $end ) ? $padEvalNextKey + 1 : 0;
+    $result [$k] [3] = ( $padEvalNextKey and $padEvalNextKey <= $end
+                         and ( $result [$padEvalNextKey] [1] ?? '' ) != 'OPR' ) ? $padEvalNextKey + 1 : 0;
   }
 
   $parm = [];
@@ -23,7 +27,17 @@
 
   $count = count ( $parm );
 
-  if ( $b >= $start and $result [$b] [1] == 'VAL' ) {
+  // Inside another call's argument list the value in front is the argument before this
+  // one, not a piped value - the commas between arguments are gone by now. replace(5,
+  // sequence:fibonacci(6)) handed the 5 to fibonacci and left replace one parameter short.
+
+  $padEvalInCall = FALSE;
+
+  foreach ( $result as $padEvalKey => $padEvalTok )
+    if ( $padEvalKey < $k and ( $padEvalTok [1] ?? '' ) == 'TYPE' and ( $padEvalTok [3] ?? 0 ) > $k )
+      $padEvalInCall = TRUE;
+
+  if ( $b >= $start and $result [$b] [1] == 'VAL' and ! $padEvalInCall ) {
     $value = $result [$b] [0];
     unset ($result [$b]);
   } else

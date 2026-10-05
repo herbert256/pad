@@ -15,7 +15,12 @@
       if ( $now < $start ) continue;
       if ( $now > $end   ) break;
 
-      if ( $previous !== NULL and $result [$now] [1] == 'OPR' and $result [$previous] [1] == 'OPR' ) {
+      // A prefix operator - ! or NOT - after an operator is not a pair: it belongs to the
+      // value behind it, and padEvalOpr applies it first. Taken as a pair, $one eq 2 and !
+      // $zero applied the and to the pipe input and came out true.
+
+      if ( $previous !== NULL and $result [$now] [1] == 'OPR' and $result [$previous] [1] == 'OPR'
+           and ! in_array ( $result [$now] [0], padEval_one ) ) {
 
         $b = $previous;
         include PAD . 'eval/actions/alone.php';
