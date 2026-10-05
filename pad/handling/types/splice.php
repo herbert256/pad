@@ -13,15 +13,21 @@
   // five rows keeps all five and splice='-7' removes all five. The rows left over were
   // count + offset, and a negative result of that went on to array_slice as a position
   // counted from the back - slice='-9' dropped the first row, splice='-7' kept three.
+  //
+  // A length is a length when it is written, 0 included: slice='2|0' keeps no row and
+  // splice='2|0' removes none, as first=0 keeps none. Tested for truth, a length of 0 - one
+  // an application computed with nothing to count - was no length at all, and the offset
+  // alone kept or removed the first two rows.
 
   $padHandCount = (int) count ( $padData [$pad] );
 
   $padExplode = explode ( '|', $padHandParm, 2 );
   $padHandP1  = (int)  $padExplode [0] ?? 0;
   $padHandP2  = (int) ($padExplode [1] ?? 0);
+  $padHandLen = trim ( $padExplode [1] ?? '' ) !== '';
 
   if ( $padHandName == 'splice' )
-    if ( $padHandP2 )
+    if ( $padHandLen )
       array_splice ( $padData [$pad], $padHandP1, $padHandP2 );
     else
       if ( $padHandP1 > 0 )
@@ -29,7 +35,7 @@
       else
         $padData [$pad] = array_slice ( $padData [$pad], 0, max ( 0, $padHandCount + $padHandP1 ) );
   else
-    if ( $padHandP2 )
+    if ( $padHandLen )
       $padData [$pad] = array_slice ( $padData [$pad], $padHandP1, $padHandP2, TRUE );
     else
       if ( $padHandP1 > 0 )
