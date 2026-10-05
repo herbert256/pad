@@ -29,9 +29,22 @@
   // padSitemapAnswer the request for one of the two answered, when the application has no
   //                  page of that name and $padSitemap is on
 
+  // A directory that holds a _guard.php is left out with everything below it - the walk
+  // passes over such a subdirectory, and the same holds for the application root and for
+  // every directory down to the one asked for, which the walk starts below: an application
+  // guarded at its root listed every page its guard stands over, in a sitemap.xml that is
+  // answered before any guard runs, and {sitemap 'admin'} listed admin/'s guarded pages.
+
   function padSitemapPages ( $dir = '' ) {
 
-    $dir = trim ( (string) $dir, '/' );
+    $dir   = trim ( (string) $dir, '/' );
+    $check = APP;
+
+    foreach ( array_merge ( [ '' ], $dir === '' ? [] : explode ( '/', $dir ) ) as $part ) {
+      $check .= ( $part === '' ) ? '' : "$part/";
+      if ( file_exists ( $check . '_guard.php' ) )
+        return [];
+    }
 
     return padSitemapWalk ( $dir === '' ? '' : "$dir/" );
 
