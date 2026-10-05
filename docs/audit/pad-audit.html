@@ -405,15 +405,16 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding ph fixed part" id="h5">
+    <div class="finding ph fixed" id="h5">
       <div class="tag"><div class="priority">High</div><div class="cat">Session integrity</div></div>
       <div>
-        <h3>Request input overrides session variables and is written back into the session<span class="live">verified live</span><span class="done part">Partly fixed</span></h3>
+        <h3>Request input overrides session variables and is written back into the session<span class="live">verified live</span><span class="done">Fixed</span></h3>
         <p class="where">inits/parms.php:15-24 · lib/parms.php:13-16 · lib/session.php:72-81</p>
         <p>POST, GET and cookie are imported first; the session is imported last and only fills names not already set (<code>if (!isset($GLOBALS[$field]))</code>). At exit, <code>padCloseSessionTry</code> writes every declared <code>$padSessionVars</code> name back: <code>$_SESSION[$var] = $GLOBALS[$var]</code>. So for any app that uses session variables, <code>?user=…</code> (or a cookie, or a cross-site POST) shadows the stored value for the request <em>and persists it</em> — the one source the server controls has the lowest priority. The file's own comment, suggesting <code>_inits.php</code> runs first, does not match <code>inits/inits.php</code>: request import precedes the application build. The <code>trim()</code> applied to session values breaks them: a NULL raises a deprecation (500 under <code>pad</code>), an object throws, ints/bools become strings. No <code>session_regenerate_id</code> or strict mode anywhere.</p>
         <div class="ev"><b>Reproduction:</b> fixture with <code>$padSessionVars = ['role']</code> and no assignment to <code>$role</code> anywhere. <code>GET ?index&amp;role=admin</code> → <code>role=admin</code>, new PHPSESSID; <code>GET ?index</code> with that cookie and no parameter → still <code>role=admin</code>.</div>
         <div class="fix"><b>Fix:</b> keep request values and server session state in separate stores; load the session before request import and never let request sources fill declared session names; write back only values the app assigned; copy non-string session values without trimming; enable <code>session.use_strict_mode</code>.</div>
         <div class="resolved part"><b>Partly fixed:</b> the session is taken in before POST, GET and cookie, and a request value never fills a name declared in <code>$padSessionVars</code>. Checked live against the fixture above with a cookie jar: <code>?index&amp;role=admin</code> leaves <code>role</code> empty, and so does the next request on that session. No suite case holds it, since the harness fetches a page without query parameters. A new <code>$padRequestVars</code> (TRUE, a list, or none) limits which request names become globals; under a list the field search no longer finds the rest in <code>$_GET</code>, <code>$_POST</code> or <code>$_COOKIE</code>. <b>Still open:</b> the write-back of names the application never assigned (<a href="#a2">A2</a>), the <code>trim()</code> on session values, <code>session_regenerate_id</code> and strict mode.</div>
+        <div class="resolved"><b>Fixed:</b> the rest of the fix line. Session values are taken as stored: <code>padGetParms2</code> trims only request strings, so a session int stays an int (checked live: <code>integer</code> after a round trip, where it came back a string) and a NULL or an object no longer ends the request. The write-back removes a declared name the application unset or set to NULL (A2). The session starts with <code>session.use_strict_mode</code>, so an id the server never issued is replaced: a planted <code>PHPSESSID=attackerchosen123</code> got a fresh id. Its cookie is <code>HttpOnly</code>, <code>SameSite=Lax</code>, and <code>Secure</code> over https. Decided: no <code>session_regenerate_id</code> in the engine, because PAD cannot tell when a privilege changes; an application calls PHP's own at login, which works with the engine's session. Checked with a probe application, since the harness keeps no cookies between requests.</div>
       </div>
     </div>
 
@@ -834,13 +835,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pl" id="a2">
-      <div class="tag"><div class="priority">Open</div><div class="cat">A2 · Session</div></div>
+    <div class="finding pl fixed" id="a2">
+      <div class="tag"><div class="priority">Fixed</div><div class="cat">A2 · Session</div></div>
       <div>
-        <h3>A session variable set to NULL or unset is never cleared</h3>
+        <h3>A session variable set to NULL or unset is never cleared<span class="done">Fixed</span></h3>
         <p class="where">lib/session.php:78-80</p>
         <p><code>padCloseSessionTry</code> writes a declared name back only <code>if ( isset ( $GLOBALS [$var] ) )</code>, so <code>$user = NULL</code> or <code>unset ( $user )</code> leaves the stored value in place: a logout done that way keeps the user on the next request. Only <code>$user = ''</code> clears it.</p>
         <div class="fix"><b>Decision, with <a href="#h5">H5</a>:</b> this is the write-back H5 redesigns ("write back only values the app assigned"). <code>unset ( $_SESSION [$var] )</code> when the application set the name to NULL or unset it is the small form of that.</div>
+        <div class="resolved"><b>Fixed:</b> <code>padCloseSessionTry</code> writes a declared name back when it is set and removes it from <code>$_SESSION</code> when the application set it to NULL or unset it. Checked live with a probe application: <code>unset ( $user )</code> on one request, and the next request found no stored user. Part of the H5 commit.</div>
       </div>
     </div>
 

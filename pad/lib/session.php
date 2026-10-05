@@ -7,7 +7,8 @@
   // padInclude        TRUE when this request is a nested include rather than a page
   // padSecondTime     one-shot guard: FALSE the first time an id is seen, TRUE after, so
   //                   shutdown steps cannot run twice
-  // padCloseSession   writes the globals named in $padSessionVars back into $_SESSION and
+  // padCloseSession   writes the globals named in $padSessionVars back into $_SESSION (an
+  //                   unset or NULL one is removed from it) and
   //                   closes the session early, so a slow page does not block the user's
   //                   other requests; wrapped so a failure here cannot break the exit
   // padID             the request id, or a fresh uniqid if the request never got one
@@ -74,9 +75,15 @@
     if ( ! isset ( $GLOBALS ['padSessionStarted'] ) or padSecondTime ( 'closeSession' ) )
       return;
 
+    // A declared name the application set to NULL or unset leaves the session: a logout
+    // written as $user = NULL or unset ( $user ) kept the user, since only a set name was
+    // written back.
+
     foreach ( $GLOBALS ['padSessionVars'] as $var )
       if ( isset ( $GLOBALS [$var] ) )
         $_SESSION [$var] = $GLOBALS [$var];
+      else
+        unset ( $_SESSION [$var] );
 
     session_write_close ();
 

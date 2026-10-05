@@ -6,7 +6,8 @@
   // padGetParms   promotes one array; a name already set is left alone (so the first
   //               source wins) and padValidVar rejects empty, non-identifier and
   //               pad-prefixed names, which keeps engine state out of reach
-  // padGetParms2  trims each value, recursing into nested arrays
+  // padGetParms2  trims each request value, recursing into nested arrays; session values
+  //               pass as they are
   // padRequestVar  whether a request value of that name may become a global: one the
   //               $padRequestVars setting lets through, and never a $padSessionVars name
 
@@ -34,12 +35,20 @@
 
   }
 
+  // Request values arrive as strings and are trimmed. Session values are what the
+  // application stored - a NULL, a number, a boolean, an object - and are taken as they
+  // are: trimming them turned an int into a string, raised a deprecation (a 500) on NULL
+  // and threw on an object.
+
   function padGetParms2 ( $type, $field ) {
+
+    if ( $type == 'SESSION' )
+      return $field;
 
     if ( is_array ( $field ) )
       foreach ( $field as $key => $value )
         $field [$key] = padGetParms2 ( $type, $value );
-    else
+    elseif ( is_string ( $field ) )
       $field = trim ($field);
 
     return $field;
