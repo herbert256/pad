@@ -32,7 +32,108 @@ no Composer. They are loaded on every request, like every file in `pad/lib/`.
 
 ## Arrays
 
-<!-- helpers: arrays -->
+`pad/lib/arr.php` - reading and writing nested arrays by a dot path, and the everyday work
+on a list of rows: one field of every row, the rows that pass, grouped, keyed, sorted,
+summed. Manual page: *Array helpers* (`?pages/arrays`).
+
+| Function | What it answers |
+|----------|-----------------|
+| `padArrGet ( $target, $key, $default = NULL )` | The value at a dot path, or the default (a Closure default is called); a NULL key answers the target itself |
+| `padArrSet ( &$array, $key, $value )` | Sets the value at a dot path, making every missing or plain level an array; answers the array. A `*` segment sets in every item; a NULL key replaces the whole array |
+| `padArrHas ( $array, $keys )` | TRUE when every dot path given exists - a NULL value exists. No keys is FALSE |
+| `padArrForget ( &$array, $keys )` | Removes one or several dot paths; answers the array. A `*` segment removes from every item (as the last segment: every item) |
+| `padArrOnly ( $array, $keys )` | The top-level keys given, in the order given; a key not there is left out |
+| `padArrExcept ( $array, $keys )` | The array without the keys given - dot paths too; the array given (and an object in it) is not changed |
+| `padArrPluck ( $rows, $value, $key = NULL )` | One field of every row as a list, or keyed by another field; both dot paths (or callbacks) |
+| `padArrWhere ( $rows, $key, $operator = NULL, $value = NULL )` | The rows that pass, keys kept - see the forms below |
+| `padArrFirst ( $array, $callback = NULL, $default = NULL )` | The first value, or the first the callback (value, key) is true for, or the default |
+| `padArrLast ( $array, $callback = NULL, $default = NULL )` | The same from the end |
+| `padArrGroupBy ( $rows, $key )` | `[ group => [ rows ] ]` by a dot path or a callback, groups in the order of their first row, each group a list |
+| `padArrKeyBy ( $rows, $key )` | The rows keyed by a dot path or a callback; a later row wins |
+| `padArrSortBy ( $rows, $key, $descending = FALSE )` | The rows sorted by a dot path, a callback, or (NULL key) the values; stable; string keys kept, a list numbered again. `$descending`: TRUE or `'desc'` |
+| `padArrFlatten ( $array, $depth = INF )` | The values as one list, nested arrays opened `$depth` levels deep (0: none) |
+| `padArrDot ( $array, $prepend = '' )` | A nested array as one level with dot path keys; an empty array stays a value |
+| `padArrUndot ( $array )` | Dot path keys made nested arrays again |
+| `padArrWrap ( $value )` | NULL `[]`, an array itself, anything else `[ $value ]` |
+| `padArrSum ( $rows, $key = NULL )` | The sum of the numbers among the values, or a field of every row; 0 for none |
+| `padArrAvg ( $rows, $key = NULL )` | Their average; NULL for none |
+| `padArrMin ( $rows, $key = NULL )` | The smallest; NULL for none |
+| `padArrMax ( $rows, $key = NULL )` | The largest; NULL for none |
+
+**Dot paths.** `'customer.address.city'`; a segment may be an integer key (`'lines.0.sku'`).
+A key that holds a dot itself - `'a.b'` as one key - is found as it is before the path is
+split. A `*` segment maps over every item of that level and answers a list
+(`'lines.*.sku'`); an item without the rest of the path gives NULL in the list, and a second
+`*` makes one list of the lists (`'orders.*.lines.*.sku'`). Objects are read like arrays: an
+`ArrayAccess` object through its offsets, any other object through its public properties.
+
+```php
+<?php
+
+  $order = json_decode ( $answer, TRUE );                       // an API's order
+
+  $city  = padArrGet ( $order, 'customer.address.city', 'unknown' );
+  $skus  = padArrGet ( $order, 'lines.*.sku' );                   // [ 'TEA', 'MUG' ]
+  padArrSet    ( $order, 'customer.address.zip', '2311 AB' );
+  padArrForget ( $order, 'customer.password, lines.*.cost' );
+
+  $rows     = db ( "ARRAY * FROM orders" );
+  $paid     = padArrWhere   ( $rows, 'status', 'paid' );
+  $large    = padArrWhere   ( $rows, 'total', '>=', 100 );
+  $someC    = padArrWhere   ( $rows, 'customer', 'like', 'c%' );
+  $choices  = padArrPluck   ( $customers, 'name', 'id' );         // id => name, a select box
+  $byState  = padArrGroupBy ( $rows, 'status' );
+  $newest   = padArrSortBy  ( $rows, 'created', 'desc' );
+  $firstBig = padArrFirst   ( $rows, fn ( $row ) => $row ['total'] > 500 );
+  $total    = padArrSum     ( $rows, 'total' );
+  $public   = padArrExcept  ( $user, 'password, login.ip' );
+
+?>
+```
+
+**padArrWhere forms.**
+
+| Call | Keeps the rows where |
+|------|----------------------|
+| `padArrWhere ( $rows, fn ( $row, $key ) => ... )` | the callback answers true |
+| `padArrWhere ( $rows, 'status', 'paid' )` | the field equals the value (loose `==`) |
+| `padArrWhere ( $rows, 'total', '>', 100 )` | the field compares so with the value |
+| `padArrWhere ( $rows, 'active' )` | the field is true in PHP's sense |
+
+Operators: `= == === != <> !== < > <= >=`, PAD's `eq ne lt gt le ge`, `in` and `not in` with a
+list of values, `like` with `%` (any run) and `_` (one character), case-insensitive and
+unicode-aware, `\%` and `\_` the characters themselves. Case and spaces in the operator do
+not matter (`'NOT IN'`). Equality is PHP's loose `==`, so the `'5'` a database answers equals
+a `5` written in PHP; `===` is strict. A NULL field matches no `like`; an object compared with
+a plain value is neither equal, smaller nor larger (no PHP warning).
+
+**Edge rules.**
+
+- A missing path answers the default; a path whose value is NULL answers NULL - it exists
+  (`padArrHas` says TRUE).
+- Where a set is expected - `$rows`, `$array` - an array, a `Traversable` or an object's
+  public properties are the set; NULL, `''`, `0`, FALSE and any other plain value are an empty
+  one: `padArrPluck ( NULL, 'name' )` is `[]`, `padArrFirst ( '', NULL, 'none' )` is `'none'`.
+  A string is never indexed into.
+- Keys (`$keys` of Has, Forget, Only, Except) are an array, a comma-separated string
+  (`'id, name'` - trimmed), or one integer; NULL or `[]` is none.
+- A field (`$key`, `$value`) is a dot path or a callback: a Closure, an invokable object or
+  `[ $object, 'method' ]`. A string is always a dot path - a field called `date` never runs
+  PHP's `date()`. A user callback gets the row and its key; one of PHP's own functions given
+  as a callback (`is_numeric(...)`) gets the row only. `padArrFirst`/`padArrLast` take a
+  callable string too (`'is_numeric'`).
+- A key made from a row's value (Pluck, GroupBy, KeyBy): NULL is `''`, TRUE/FALSE 1/0, a
+  whole float its integer, an enum its value or name, a `Stringable` its text.
+- Sum, Avg, Min and Max count ints, floats and numeric strings (as numbers) only: NULL, `''`,
+  `'n/a'`, TRUE and arrays are left out, not counted as 0.
+- `padArrSet` on an object writes in place: an `ArrayAccess` offset, a `stdClass` property,
+  a public property it has, or through `__set`.
+- Reported with `padError` (naming the function), after which the function answers an empty
+  value of its kind: a key that is no dot path (an array, TRUE, an object), a key list item
+  that is no key, an unknown `padArrWhere` operator, `in` without a list, `like` without a
+  text pattern, a row value that cannot be a key (an array), a `padArrFirst`/`padArrLast`
+  callback that is not callable, a depth that is negative or no number, a `padArrSet` or
+  `padArrForget` an object refuses (no such public property, a readonly one).
 
 
 ---
