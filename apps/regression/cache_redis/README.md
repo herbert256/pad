@@ -14,4 +14,5 @@ compares the index, so a backend that stops caching turns the page from yes to N
 | `index.php/pad` | Fetches the probe twice and states the verdict |
 | `probe.php/pad` | A page whose body differs on every build |
 | `nodata.php/pad` | Asks the backend directly that, with `$padCacheServerNoData`, the URL still names its ETag - what a 304 is answered from - and no body is kept |
+| `delete.php/pad` | Asks the backend directly that a deleted entry takes the URL's entry with it, so no 304 is answered for it |
 | `_config/config.php` | Switches the redis cache on, 60 seconds, `_common` off |

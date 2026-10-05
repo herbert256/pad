@@ -70,11 +70,17 @@
 
   }
 
+  // The URL's entry goes with the ETag, as in the file cache: left behind it still named
+  // the deleted ETag, as fresh as before, and a client holding that ETag was answered 304
+  // for a page that is no longer stored - under $padCacheServerNoData, where every request
+  // builds the page, any page that stopped being storable.
+
   function padCacheDelete ($url, $etag) {
 
     global $padCacheRedis, $padCacheServerNoData;
 
     $padCacheRedis->del($etag);
+    $padCacheRedis->del($url);
 
     if ( ! $padCacheServerNoData )
       $padCacheRedis->del("x$etag");
