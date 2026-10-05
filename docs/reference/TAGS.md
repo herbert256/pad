@@ -531,6 +531,37 @@ Escape PAD syntax in content.
 
 ---
 
+### attrs
+Write HTML attributes - quoted, escaped, the false ones left out.
+
+```html
+<button {attrs disabled=$busy, title=$help, aria-expanded=$open}>Save</button>
+```
+
+**Items:** `name=expression`, a bare `name` (written as a bare attribute), or an expression
+whose array value adds its keys as attributes. Names are HTML attribute names, dashes
+included (`data-id`, `aria-label`); `content=` or `print=` are attributes here, not options.
+
+**Behavior:** A boolean HTML attribute (`disabled`, `checked`, `selected`, `required`,
+`hidden`, ...) is written bare when its value is true and left out otherwise. Any other
+attribute is left out for FALSE, written bare for TRUE, and otherwise written with its
+value - the text `false` stays `aria-expanded="false"`; an empty value is an empty attribute.
+
+---
+
+### classes
+Build a class list from fixed and conditional names.
+
+```html
+<div class="{classes 'panel', active=$isActive, invalid=$hasErrors}">
+```
+
+**Items:** an expression - a string of one or more names, or an array of them - is always
+in; `name=condition` puts that name in when the condition holds. The result is deduplicated
+and escaped.
+
+---
+
 ### cache
 Keep a section of the page rendered - the fragment cache.
 
@@ -855,6 +886,8 @@ Resume a previously ceased sequence iteration.
 | `ignore` | Output | Escape content |
 | `reactData` | Output | React mount point with provider data |
 | `cache` | Output | Keep a section rendered (fragment cache) |
+| `attrs` | Output | HTML attributes, the false ones left out |
+| `classes` | Output | Class list from conditional names |
 | `dump` | Debug | Dump info |
 | `trace` | Debug | Enable tracing |
 | `error` | Errors | Trigger error |

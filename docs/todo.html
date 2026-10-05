@@ -227,7 +227,7 @@
   ...
 &lt;/div&gt;</code></pre>
           <p>PAD provides escaping primitives, but the inspection found no built-in attribute-map or conditional-class serializer. This helper should omit false HTML boolean attributes while preserving values such as <code>aria-expanded="false"</code>.</p>
-          <p class="references"><strong>Precedents:</strong> <a href="https://latte.nette.org/en/tags#toc-html-coder-helpers">Latte <code>n:attr</code> and <code>n:class</code></a></p>
+          <p class="done"><strong>Done.</strong> <code>{attrs …}</code> and <code>{classes …}</code> (lib/attrs.php). Their items are read raw, so attribute names with dashes and names like <code>content=</code> never reach the option machinery; boolean HTML attributes are written bare or left out, <code>aria-expanded="false"</code> is kept, values are escaped. Regression: six framework <code>tags/attrs_*</code>/<code>classes_*</code> cases (fail on the old engine); manual page <em>HTML attribute helpers</em>; TAGS.md, CLAUDE.md.</p><p class="references"><strong>Precedents:</strong> <a href="https://latte.nette.org/en/tags#toc-html-coder-helpers">Latte <code>n:attr</code> and <code>n:class</code></a></p>
         </li>
 
         <li class="feature" id="ifchanged">

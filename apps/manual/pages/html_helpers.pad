@@ -1,0 +1,27 @@
+<h1>HTML attribute helpers</h1>
+
+<p>Two tags write the parts of an HTML tag that depend on data, so a template needs no
+<code>{open}if{close}</code> inside a tag to leave an attribute out.</p>
+
+{example 'fragments/html_1'}
+
+<p>The result is easiest to see in the page source: the button reads
+<code>&lt;button disabled title="Saves the &amp;quot;draft&amp;quot; &amp;lt;now&amp;gt;" aria-expanded="false"&gt;</code>
+and the div <code>class="panel active"</code>.</p>
+
+<h2>attrs</h2>
+
+<ul>
+  <li><code>name=expression</code> - the attribute with its value, quoted and escaped.</li>
+  <li>A boolean HTML attribute - <code>disabled</code>, <code>checked</code>, <code>selected</code>, <code>required</code>, <code>hidden</code> ... - is written bare when its value is true and left out when it is not.</li>
+  <li>Any other attribute is left out for FALSE, written bare for TRUE, and otherwise written with its value: the text <code>false</code> stays <code>aria-expanded="false"</code>.</li>
+  <li>The names are attribute names, dashes included - <code>data-id</code>, <code>aria-label</code> - and never engine options: <code>content=</code> is the meta attribute.</li>
+</ul>
+
+<h2>classes</h2>
+
+<ul>
+  <li>An expression without a name - a string of names, or an array - is always in.</li>
+  <li><code>name=condition</code> puts the name in when the condition holds.</li>
+  <li>The list is deduplicated and escaped.</li>
+</ul>

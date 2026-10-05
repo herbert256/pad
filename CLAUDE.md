@@ -400,6 +400,14 @@ Supports JSON, XML, YAML, and CSV formats:
 {/data}
 ```
 
+### HTML attribute helpers
+```
+<button {attrs disabled=$busy, title=$help, aria-expanded=$open}>Save</button>
+<div class="{classes 'panel', active=$isActive, invalid=$hasErrors}">
+```
+A false boolean attribute is left out, a true one written bare; values are escaped. Items
+are attribute names (dashes allowed), never engine options.
+
 ### Fragment Cache
 ```
 {cache 'top-products', ttl=300}            # a named section, kept five minutes

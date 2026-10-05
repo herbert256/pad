@@ -10,7 +10,7 @@
   // 'rawJson' ignore} - and passes; the condition tags stay out entirely, their one
   // parameter being a whole expression where quotes and words mix legitimately.
 
-  if ( $padCheckSyntax
+  if ( $padCheckSyntax and ! padParmsRaw ()
        and ! in_array ( $padTag [$pad], [ 'if', 'elseif', 'while', 'until', 'case', 'when' ] )
        and preg_match ( "/^\s*('[^']*'|\"[^\"]*\")\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*$/", $padPrmOne, $padPrmShape )
        and ! file_exists ( PAD . "options/" . $padPrmShape [2] . ".php" )
@@ -27,7 +27,7 @@
   // The {tag ? true : false} option form is level/ternary.php's to read: its sides are not
   // an expression of their own, and evaluated as one they now made an inline ternary.
 
-  if ( in_array ( $padTag [$pad], [ 'increment', 'decrement', 'set' ] )
+  if ( in_array ( $padTag [$pad], [ 'increment', 'decrement', 'set' ] ) or padParmsRaw ()
        or str_starts_with ( ltrim ( $padOpt [$pad] [0] ?? '' ), '?' ) )
     $padPrmEval     = $padPrmOne;
   else

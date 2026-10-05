@@ -31,7 +31,7 @@
 
       include PAD . 'level/parms/variable.php';
 
-    elseif ( padValidVar ( $padPrmName ) and ! $padPrmCompare )
+    elseif ( padValidVar ( $padPrmName ) and ! $padPrmCompare and ! padParmsRaw () )
 
       include PAD . 'level/parms/option.php';
 
