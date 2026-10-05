@@ -125,10 +125,14 @@
     if ( ( $padMailFrom ?? '' ) !== '' )
       return $padMailFrom;
 
-    // The host as an address takes it: an IP literal in brackets, a name without a dot -
-    // localhost - completed, which an address must be.
+    // The host as an address takes it: an IP literal in brackets - an IPv6 one tagged
+    // IPv6:, as RFC 5321 writes it, without which it is no address - a name without a
+    // dot - localhost - completed, which an address must be.
 
     $host = trim ( parse_url ( $padHost, PHP_URL_HOST ) ?: 'localhost', '[]' );
+
+    if ( filter_var ( $host, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 ) )
+      return "noreply@[IPv6:$host]";
 
     if ( filter_var ( $host, FILTER_VALIDATE_IP ) )
       return "noreply@[$host]";
