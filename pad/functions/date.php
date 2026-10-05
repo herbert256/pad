@@ -37,7 +37,17 @@
   } else {
 
     $format = $parm [0];
-    $value  = strtotime ( $parm [1], $value );
+    $padDateShift = strtotime ( (string) $parm [1], $value );
+
+    // A modifier strtotime cannot read answered FALSE, which date() took for 0: 1970.
+
+    if ( $padDateShift === FALSE ) {
+      if ( $padCheckSyntax )
+        padError ( "the date function cannot read '" . padMakeSafe ( (string) $parm [1], 40 ) . "' as a change of date" );
+      return '';
+    }
+
+    $value = $padDateShift;
 
   }
 
