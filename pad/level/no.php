@@ -6,7 +6,13 @@
   // is single, the whole open..close span when a closing tag was found. noError used to be
   // parsed and ignored, so the tag it was written on leaked its own source into the page.
 
-  if ( in_array ( 'optional', $padPrmParse ) or in_array ( 'noError', $padPrmParse ) )
+  // The items are compared trimmed, as level/parms/ reads them: untrimmed, the space before
+  // a pipe or a comma - {nosuch optional | upper}, {nosuch noError , x=1} - made the word
+  // another one, and the name was reported after all.
+
+  $padNoItems = array_map ( 'trim', $padPrmParse );
+
+  if ( in_array ( 'optional', $padNoItems ) or in_array ( 'noError', $padNoItems ) )
     if ( padValidTag ($padWords [0]) ) {
 
       // The silent drop is the option's whole working, and the tag never becomes a level -
@@ -16,7 +22,7 @@
 
       if ( $padInfoXref ?? FALSE )
         foreach ( [ 'optional', 'noError' ] as $padNoName )
-          if ( in_array ( $padNoName, $padPrmParse ) )
+          if ( in_array ( $padNoName, $padNoItems ) )
             padInfoXref ( 'options', 'general', $padNoName );
 
       return include PAD . 'options/optional.php';
