@@ -62,30 +62,41 @@
   // {flash} or {flash 'error'}: the messages of this request - of that type only, when
   // one is named - as rows with message and type, taken out so that no second {flash}
   // shows them again. Those flashed during this very request come along: a page that
-  // flashes and renders itself shows them now, not on the next page.
+  // flashes and renders itself shows them now, not on the next page. One of those this
+  // {flash} does not show stays in the session, for the next request - a {flash 'error'}
+  // took the success flashed beside it out of the session too, and nothing ever showed it.
 
   function padFlashShow ( $type = '' ) {
 
     global $padFlashNow;
 
-    $now = $padFlashNow ?? [];
+    $taken = $padFlashNow ?? [];
+    $fresh = [];
 
     if ( session_status () === PHP_SESSION_ACTIVE and is_array ( $_SESSION ['padFlash'] ?? NULL ) ) {
-      $now = array_merge ( $now, $_SESSION ['padFlash'] );
+      $fresh = $_SESSION ['padFlash'];
       unset ( $_SESSION ['padFlash'] );
-      padFlashCookie ( FALSE );
     }
 
     $show = [];
     $keep = [];
+    $left = [];
 
-    foreach ( $now as $one )
-      if ( $type === '' or ( $one ['type'] ?? '' ) === $type )
-        $show [] = [ 'message' => (string) ( $one ['message'] ?? '' ), 'type' => (string) ( $one ['type'] ?? '' ) ];
-      else
-        $keep [] = $one;
+    foreach ( [ $taken, $fresh ] as $set => $list )
+      foreach ( $list as $one )
+        if ( $type === '' or ( $one ['type'] ?? '' ) === $type )
+          $show [] = [ 'message' => (string) ( $one ['message'] ?? '' ), 'type' => (string) ( $one ['type'] ?? '' ) ];
+        elseif ( $set == 0 )
+          $keep [] = $one;
+        else
+          $left [] = $one;
 
     $padFlashNow = $keep;
+
+    if ( $left )
+      $_SESSION ['padFlash'] = $left;
+    elseif ( $fresh )
+      padFlashCookie ( FALSE );
 
     return $show;
 
