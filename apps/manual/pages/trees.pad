@@ -1,0 +1,25 @@
+<h1>Recursive trees</h1>
+
+<p>Menus, category trees and threaded comments are trees: each row may hold a list of rows
+like itself. <code>{open}tree{close}</code> renders its body for every row, and inside that
+body <code>{open}recurse{close}</code> renders the same body again for the current row's
+children. <code>{open}branch{close}</code> renders only when the row has children - the place
+for the <code>&lt;ul&gt;</code> around the next level.</p>
+
+{example 'fragments/trees_1'}
+
+<p>The rows are named by the first parameter or by <code>data=</code> - a
+<code>{open}data{close}</code> block, an array of the page, a <code>_data/</code> file.
+<code>children</code> names the field that holds a row's children, <code>children</code> when
+not given.</p>
+
+<h2>Depth and the other properties</h2>
+
+<p><code>depth@tree</code> is 1 for the tree's own rows and one more for every level down -
+for indentation. The other properties, such as <code>current@tree</code> and
+<code>count@tree</code>, speak of the list being rendered. The {construct 'else'} part of
+<code>{open}branch{close}</code> renders for a leaf, and the handling options
+<code>sort</code>, <code>where</code> and <code>reverse</code> on the tree apply to every list,
+the children included.</p>
+
+{example 'fragments/trees_2'}

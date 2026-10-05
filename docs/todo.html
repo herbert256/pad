@@ -505,7 +505,7 @@
 {/tree}</code></pre>
           <p>Menus (<code>_common/_data/menu.json</code>), category trees, threaded comments and <code>{files recursive}</code> results are all trees. A tag can call itself up to the 100-level limit, but nothing says “render this body again for the children”.</p>
           <p><code>{recurse}</code> would re-enter the body with the current row’s children, <code>{branch}</code> would render only when there are children, and <code>depth@tree</code> would give the level for indentation.</p>
-          <p class="references"><strong>Precedent:</strong> <a href="https://jinja.palletsprojects.com/en/stable/templates/#for">Jinja recursive loops</a></p>
+          <p class="done"><strong>Done.</strong> <code>{tree 'menu', children='items'}…{/tree}</code> with <code>{recurse}</code> (the same body for the row’s children), <code>{branch}</code> (only when there are children; its <code>@else@</code> for a leaf) and the <code>depth</code> property; sort, where and reverse on the tree carry down to every list. Regression: framework and errors cases; manual page <em>Trees</em>; TAGS.md, PROPERTIES.md, CLAUDE.md.</p><p class="references"><strong>Precedent:</strong> <a href="https://jinja.palletsprojects.com/en/stable/templates/#for">Jinja recursive loops</a></p>
         </li>
 
         <li class="idea" id="whitespace">

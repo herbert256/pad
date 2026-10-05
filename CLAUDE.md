@@ -399,6 +399,18 @@ The pager follows the paged tag (it reads the total the page handling booked), l
 and marks the current page `aria-current="page"`. As a pair it iterates the links as rows -
 `$kind`, `$page`, `$label`, `$href` - for markup of your own.
 
+### Recursive Trees
+```
+<ul>
+{tree 'menu', children='items'}
+  <li>{$title}{branch}<ul>{recurse}</ul>{/branch}</li>
+{/tree}
+</ul>
+```
+`{recurse}` renders the tree's body again for the current row's children, `{branch}` only
+when there are any, and `depth@tree` is 1 for the top rows, one more per level. The rows come
+from the first parameter or `data=`; `children` defaults to `children`.
+
 ### Loop Control
 ```
 {continue 'tagname'}    # Skip to next iteration (like PHP's continue)

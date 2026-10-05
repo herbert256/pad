@@ -67,6 +67,54 @@ tag's place in it: the n-th `ifchanged` of a row is compared with the n-th of th
 
 ---
 
+### tree
+Renders a tree: its body for every row, and inside the body `{recurse}` renders the same
+body again for the current row's children - menus, category trees, threaded comments.
+
+```html
+<ul>
+{tree 'menu', children='items'}
+  <li><a href="?{$page}">{$title}</a>
+    {branch}<ul>{recurse}</ul>{/branch}
+  </li>
+{/tree}
+</ul>
+```
+
+**Parameters:**
+- First parameter, or `data=`: the rows - a `{data}` block, a stored sequence, an array of
+  the page or of an enclosing row, or a `_data/` file
+- `children` - the field holding a row's children (default `children`)
+
+**Behavior:** `depth@tree` is 1 for the tree's own rows and one more per `{recurse}`;
+`first@tree`, `count@tree` and the other properties speak of the list being rendered. The
+handling options `sort`, `where` and `reverse` written on the tree apply to every list, the
+children included. The `@else@` part shows when there are no rows at all. Strict mode names a
+tree without rows, or with a name nothing holds.
+
+---
+
+### branch
+Inside a `{tree}`: renders its content only when the current row has children - the `<ul>`
+around a `{recurse}` - and its `@else@` part for a leaf.
+
+```html
+{branch}<ul>{recurse}</ul>@else@<span class="leaf"></span>{/branch}
+```
+
+---
+
+### recurse
+Inside a `{tree}`: renders the tree's body once more for the children of the current row,
+each child a row of its own. A row without children renders nothing. The new level is
+named as the tree is, so `depth@tree` and `count@tree` follow it.
+
+```html
+{recurse}
+```
+
+---
+
 ### switch
 Rotating switch that cycles through options on each call.
 
@@ -1139,6 +1187,9 @@ Resume a previously ceased sequence iteration.
 | `if` | Control Flow | Conditional execution |
 | `case` | Control Flow | Switch-case matching |
 | `switch` | Control Flow | Rotating value switch |
+| `tree` | Control Flow | Render a tree, the body again per level of children |
+| `branch` | Control Flow | Inside a tree: render when the row has children |
+| `recurse` | Control Flow | Inside a tree: render the body for the row's children |
 | `ifchanged` | Control Flow | Render when a value changed since the previous row |
 | `while` | Control Flow | Loop while true |
 | `until` | Control Flow | Loop until true |
@@ -1326,6 +1377,7 @@ Access iteration state and metadata using `property@tag` syntax.
 | `current@tag` | Current occurrence (1-based) |
 | `count@tag` | Total items |
 | `remaining@tag` | Items remaining |
+| `depth@tag` | Depth in a recursion - a `{tree}`'s rows at 1 |
 | `done@tag` | Items completed |
 
 ### Data Access Properties

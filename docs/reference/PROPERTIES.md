@@ -486,6 +486,27 @@ Returns the name of the current tag/level.
 
 ---
 
+### depth
+
+How deep the level stands in a recursion: for a `{tree}`, 1 for its own rows and one more
+per `{recurse}` - for indenting a tree. Any other level counts the levels of its own name
+from the top down to itself, so a tag that calls itself has a depth too, and a level that
+does not is at depth 1.
+
+```
+{depth@tree}
+```
+
+**Example:**
+```html
+{tree 'menu', children='items'}
+  <p style="margin-left: {echo depth@tree | * 20}px">{$title}</p>
+  {branch}{recurse}{/branch}
+{/tree}
+```
+
+---
+
 ## Parameter & Option Properties
 
 Properties for accessing tag parameters and options.
@@ -640,6 +661,7 @@ Returns all level-scoped variables as an iterable array.
 | `firstFieldName@tag` | String | First field's name |
 | `firstFieldValue@tag` | Mixed | First field's value |
 | `name@tag` | String | Tag name |
+| `depth@tag` | Number | Depth in a recursion - a `{tree}`'s rows at 1 |
 | `parameter.n@tag` | Mixed | Positional parameter n, numbered from 1 |
 | `parameters@tag` | Array | All parameters |
 | `option.name@tag` | Mixed | The named option's value |
