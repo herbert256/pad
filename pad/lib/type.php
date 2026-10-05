@@ -86,6 +86,16 @@
     elseif ( padCheck       ( PAD . "tags/$type" )                 ) return 'pad';
 
     $common = padTypeCommon ( $type );
+
+    // A PHP function of the same name as a pipe function gives way to it: {substr 0, 2}
+    // reached PHP's substr() and came back whole, where {mid} and {left} - names PHP does
+    // not have - ran the pipe function as a tag. date, range, stripslashes, substr, time,
+    // trim and ucwords are such names.
+
+    if ( $common == 'php' and $goFunction
+         and ( padAppFunctionCheck ( $type ) or file_exists ( PAD . "functions/$type.php" ) ) )
+      return 'function';
+
     if ( $common )
       return $common;
 

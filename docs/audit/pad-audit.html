@@ -874,13 +874,14 @@ return call_user_func_array ( $padTag [$pad], $padUserFunc );   // no allow-list
       </div>
     </div>
 
-    <div class="finding pl" id="a4">
-      <div class="tag"><div class="priority">Open</div><div class="cat">A4 · Type resolution</div></div>
+    <div class="finding pl fixed" id="a4">
+      <div class="tag"><div class="priority">Fixed</div><div class="cat">A4 · Type resolution</div></div>
       <div>
-        <h3>A pipe function used as a tag can resolve to PHP's function of the same name</h3>
+        <h3>A pipe function used as a tag can resolve to PHP's function of the same name<span class="done">Fixed</span></h3>
         <p class="where">lib/type.php:42 · types/php.php</p>
         <p><code>{substr 0, 2}abcdef{/substr}</code> never reaches <code>padFunctionAsTag</code>: the bare word resolves to PHP's <code>substr()</code> first, so the content comes back whole (verified: <code>abcdef</code>), and <code>{substr 2}…{/substr}</code> ends in "substr() expects at least 2 arguments". <code>{mid 2, 1}</code>, <code>{left 2}</code> and <code>{replace 'a','x'}</code>, names PHP does not have, work.</p>
         <div class="fix"><b>Part of <a href="#c1">C1</a>:</b> once the <code>function_exists</code> fallback is dropped, or comes after the PAD function lookup, this resolves to the PAD function.</div>
+        <div class="resolved"><b>Fixed:</b> <code>padTypeTag</code> lets a pipe function (an application <code>_functions/</code> file or a built-in <code>functions/</code> one) win over a PHP function of the same name when a bare tag would otherwise resolve to PHP. <code>{substr 0, 2}abcdef{/substr}</code> gives <code>ab</code> where it came back whole, and <code>{trim}</code> runs the pipe function too. The names concerned are <code>date</code>, <code>range</code>, <code>stripslashes</code>, <code>substr</code>, <code>time</code>, <code>trim</code> and <code>ucwords</code>; no template used any of them as a tag. PHP's own is still there as <code>php:substr</code>. A framework case pins all three forms.</div>
       </div>
     </div>
 
