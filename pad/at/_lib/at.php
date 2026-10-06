@@ -151,9 +151,22 @@
 
   function padAtSpecial ( $names, $cor ) {
 
-    $special = ['_POST','_GET','_COOKIE','_SESSION','_FILES','_SERVER','_REQUEST','_ENV'] ;
+    // PHP's own arrays are no data of the page, so the @ path reads them no more than the
+    // plain field search does (lib/field/level.php): $_SERVER and $_ENV hold the request's
+    // headers and the secrets padEnv reads from there, $_COOKIE, $_FILES, $_SESSION and
+    // $_REQUEST have their own helpers, and a cookie is a variable only when a $padRequestVars
+    // list names it. {$_SERVER.HTTP_HOST}, {$HTTP_HOST@globals} and {$HTTP_HOST@_SERVER} read
+    // the host header before this. GET and POST are reached only under the default
+    // $padRequestVars, and never for an engine name - and those are imported into $GLOBALS,
+    // which at/types/globals.php searches first, so this only backs that up.
 
-    foreach ( $special as $field )
+    if ( ( $GLOBALS ['padRequestVars'] ?? TRUE ) !== TRUE )
+      return INF;
+
+    if ( padEngineName ( (string) reset ( $names ) ) )
+      return INF;
+
+    foreach ( [ '_GET', '_POST' ] as $field )
 
       if ( isset ( $GLOBALS [$field] ) and is_array ( $GLOBALS [$field] ) and count ( $GLOBALS [$field] )) {
         $check = padAtSearch ( $GLOBALS [$field], $names );
@@ -220,7 +233,13 @@
 
   function padAtGlobals2 ( $array, $names, $search ) {
 
-    if ( isset ( $search [$array] ) and is_array ( $search [$array] ) ) {
+    // The named array is not one of PHP's own superglobals: {$HTTP_HOST@_SERVER} would read
+    // the header straight out of the superglobal the direct access below reaches by name.
+    // Only the _ arrays and GLOBALS are kept out - an engine array such as $padMailLast is
+    // read as the field search reads it.
+
+    if ( ! str_starts_with ( (string) $array, '_' ) and $array !== 'GLOBALS'
+         and isset ( $search [$array] ) and is_array ( $search [$array] ) ) {
       $check = padAtSearch ( $search [$array], $names, 1 );
       if ( $check !== INF )
         return $check;
