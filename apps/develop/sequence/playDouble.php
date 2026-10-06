@@ -11,7 +11,7 @@
        . "{demo}{sequence one, $type='two'}\n  {\$sequence}\n{/sequence}{/demo}\n\n"
        . "{/table}";
 
-  padFilePut ( PT . "$type/flags/playDouble", 1 );
-  padFilePut ( APP . "sequence/play/double/{$type}.pad", $one );
+  file_put_contents ( PT . "$type/flags/playDouble", 1, LOCK_EX );
+  file_put_contents ( APPS . "sequence/play/double/{$type}.pad", "$one\n", LOCK_EX );
 
 ?>

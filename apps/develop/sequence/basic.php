@@ -11,6 +11,6 @@
   $one .= "{demo}{sequence $go}\n  {\$sequence}\n{/sequence}{/demo}\n\n";
   $one .= "{/table}";
 
-  padFilePut ( APP . "sequence/basic/{$type}.pad", $one );
+  file_put_contents ( APPS . "sequence/basic/{$type}.pad", "$one\n", LOCK_EX );
 
 ?>

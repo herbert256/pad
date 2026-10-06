@@ -15,6 +15,6 @@
        . "{demo}{pull mySequence, flag,   $type$go} {\$sequence} {/pull}{/demo}\n\n"
        . "{/table}";
 
-  padFilePut ( APP . "sequence/keepRemoveFlag/{$type}.pad", $one );
+  file_put_contents ( APPS . "sequence/keepRemoveFlag/{$type}.pad", "$one\n", LOCK_EX );
 
 ?>

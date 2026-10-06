@@ -7,6 +7,6 @@
   else
     mkdir ( $flagDir );
 
-  padFilePut ( $flagDir . 'readme.txt', 'This directory is generated' );
+  file_put_contents ( $flagDir . 'readme.txt', 'This directory is generated', LOCK_EX );
 
 ?>

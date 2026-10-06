@@ -1,8 +1,8 @@
 <?php
 
-  $parm = pqParm ( $type );
+  $parm = developSequenceParm ( $type );
 
   if ( $parm )
-    padFilePut ( PT . "$type/flags/parm", 1 );
+    file_put_contents ( PT . "$type/flags/parm", 1, LOCK_EX );
 
 ?>
