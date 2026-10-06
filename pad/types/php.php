@@ -16,6 +16,14 @@
 
   unset ( $padUserFunc [0] );
 
+  // A callable among the arguments is a call of its own, held to the same list as the
+  // expression form is (eval/parms/php.php): under a $padPhpFunctions list a listed
+  // dispatcher - {php:call_user_func 'strtoupper', ...} - could otherwise reach an unlisted
+  // function.
+
+  if ( $padPhpRefused = padPhpCallables ( $padTag [$pad], $padUserFunc ) )
+    return padError ( $padPhpRefused );
+
   return call_user_func_array ( $padTag [$pad], $padUserFunc );
 
 ?>
