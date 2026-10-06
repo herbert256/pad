@@ -76,6 +76,7 @@ This directory contains PAD applications and examples.
 | CLI | Command-line interface application |
 | Shared | Resources shared across multiple applications |
 | Plain PHP | PHP application that does not use PAD templating |
+| Minimal | The smallest possible application |
 
 ## Creating Applications
 

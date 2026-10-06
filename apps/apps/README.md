@@ -14,7 +14,8 @@ Lists all PAD applications with their descriptions, dynamically extracted from e
 ## How It Works
 
 1. Scans the `apps/` directory for subdirectories
-2. Skips hidden directories (`.`) and internal directories (`_`)
+2. Skips hidden directories (`.`), the internal directories (`_`) except `_common`, itself,
+   and of the regression family shows `regression/main` alone
 3. For each application, reads its `README.md` file
 4. Extracts the content of the `## Introduction` section using regex
 5. Displays a sorted table with links and descriptions
