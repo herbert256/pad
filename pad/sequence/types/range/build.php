@@ -9,8 +9,12 @@
   // applying that step a second time. A range='0' is a range, the bare 0 of 1..0: tested
   // for truth it was no range at all, and both it and padGetRange's own test made it 1..10.
 
-  if ( $pqParm === NULL or $pqParm === FALSE or $pqParm === '' )
-    $pqParm = $padParm;
+  // A bare range - {sequence range}, or sequence:range(n), which hands the TRUE of a bare
+  // option over - is no range given either: taken as the text 1, it was the range 1..1. An
+  // expression has no tag parameter to fall back to.
+
+  if ( $pqParm === NULL or $pqParm === FALSE or $pqParm === '' or $pqParm === TRUE )
+    $pqParm = $padParm ?? '';
 
   $pqDone [] = 'increment';
 
