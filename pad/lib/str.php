@@ -135,8 +135,16 @@
     if ( $radius === NULL )
       return '';
 
-    if ( ! preg_match ( '/^(.*?)(' . preg_quote ( $phrase, '/' ) . ')(.*)$/isu', $text, $match ) )
+    // The phrase alone is searched, and what stands before and after it is cut by its
+    // offset: ^(.*?)phrase(.*)$ took a backtracking step for every character before the
+    // phrase, and past PCRE's limit of a million a phrase that is there answered ''.
+
+    if ( ! preg_match ( '/' . preg_quote ( $phrase, '/' ) . '/iu', $text, $found, PREG_OFFSET_CAPTURE ) )
       return '';
+
+    [ $phrase, $at ] = $found [0];
+
+    $match = [ 1 => substr ( $text, 0, $at ), 2 => $phrase, 3 => substr ( $text, $at + strlen ( $phrase ) ) ];
 
     $before = padStrTrimStart ( $match [1] );
     $start  = padStrTrimStart ( mb_substr ( $before, max ( mb_strlen ( $before ) - $radius, 0 ) ) );
