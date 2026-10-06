@@ -401,6 +401,30 @@
 
     }
 
+    // fields=, db=, join= and union= go into the statement as SQL text too - a column list,
+    // a table, a join, a table to add - and nothing is bound in them, so they are the
+    // template's own text the same way: {t fields=$cols} took the column list from a
+    // variable, and with $cols = "phone as name" from the request the select answered every
+    // phone number under the name of a name; an array there went in key by key.
+
+    foreach ( [ 'fields', 'db', 'join', 'union' ] as $part ) {
+
+      if ( ! isset ( $prm [$part] ) or $prm [$part] === TRUE )
+        continue;
+
+      $org = '';
+
+      foreach ( $padParms [$pad] ?? [] as $one )
+        if ( ( $one ['padPrmName'] ?? '' ) === $part ) {
+          $org = (string) ( $one ['padPrmOrg'] ?? '' );
+          $org = trim ( str_contains ( $org, '=' ) ? substr ( $org, strpos ( $org, '=' ) + 1 ) : $org );
+        }
+
+      if ( $org !== '' and ! is_numeric ( $org ) and $org [0] != "'" and $org [0] != '"' )
+        return padError ( "$part= is SQL the template writes: give it as a quoted string" );
+
+    }
+
     return TRUE;
 
   }

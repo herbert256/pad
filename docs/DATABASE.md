@@ -174,9 +174,11 @@ $padSelect ['openBugs'] = [
 ```
 
 `where=`, `having=`, `order=` and `group=` written on a tag are SQL, so they must be quoted
-strings in the template; `where=$cond` is refused. Inside them a `$name` is bound by the select:
-in `where=`/`having=` as a quoted, escaped literal of that application variable (a number as a
-number - numeric text is text on MySQL, as for `db()`), in `order=`/`group=` as column names, each with an optional `asc`/`desc`, and nothing
+strings in the template; `where=$cond` is refused, and so is a `fields=`, `db=`, `join=` or
+`union=` taken from a variable. Inside the first four a `$name` is bound by the select: in
+`where=`/`having=` as a quoted, escaped literal of that application variable (a number as a
+number - numeric text is text on MySQL, as for `db()`), in
+`order=`/`group=` as column names, each with an optional `asc`/`desc`, and nothing
 else. `{$name}` there splices text into your SQL instead - use `$name`. Keys bound on the tag
 (`{users $id=5}`) are always escaped. Declarations in `$padSelect` are PHP and taken as written.
 On every other data - a `{array}` query, JSON, page PHP - `where=` and `group=` are the handling

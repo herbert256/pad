@@ -24,6 +24,7 @@
       'select/demo/type_is_a_known_word' => 'type= is the statement command word, so a value that tries to be a whole query is refused instead of spliced in',
       'select/demo/where_comment' => 'A comment with an apostrophe in where= does not stop the $name after it from binding',
       'select/demo/numeric_text'  => 'A $name holding numeric text is text in where= on MySQL, so name = $zero with 0 matches no name',
+      'select/demo/fields_is_written_in_the_template' => 'fields= is SQL the template writes, like where=: a column list from a variable is refused',
       'catalog/tags'              => 'One line per built-in tag no other page reaches - the catalogue half of the reference coverage',
       'catalog/prefixes'          => 'One line per type prefix, each in its literal spelling',
       'catalog/properties'        => 'Every property and @ reference form on one page',
