@@ -33,6 +33,21 @@
       $pqActionList [0] = $pqActionParm;
     }
 
+    // A count is a whole number from 0 up: first=2.5, last=-1 or pop='x' were read as 1 and
+    // took one term without a word - pop took it out of the store. Strict mode names it, and
+    // the sequence is left as it was, as element= and trim= leave it.
+
+    if ( in_array ( $pqAction, [ 'first', 'last', 'shift', 'pop', 'minimum', 'maximum', 'randomize' ] )
+         and (string) $pqActionParm !== '' and ! ctype_digit ( (string) $pqActionParm ) ) {
+
+      if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
+        padError ( "$pqAction= takes a count, not '$pqActionParm'" );
+
+      $pqActionsHit [$pqAction] = array_values ( $pqResult );
+      continue;
+
+    }
+
     $pqActionCnt   = ( ctype_digit ( (string) $pqActionParm ) ) ? $pqActionParm : 1;
     $pqActionKey   = array_key_first ( $pqResult ) ?? 0;
 
