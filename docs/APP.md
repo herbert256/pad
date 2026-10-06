@@ -1171,16 +1171,18 @@ Literal boolean conditions for always/never showing content:
 ```
 
 ### The `code` Tag
-Execute PHP code within templates:
+Render its content as PAD in a pass of its own - it runs no PHP: PHP written inside is
+printed as text. PHP belongs in the page's `.php` or in `_lib/`.
 ```
 {code}
-  $result = calculateSomething();
+  {set $total = $price * $qty}{$total}
 {/code}
 
-{code sandbox, function}
-  // Sandboxed execution with limited scope
-  $local = 'value';
+{code sandbox}
+  {-- an isolated pass: the page's variables and stores are not seen or changed --}
 {/code}
+
+{echo $snippet | code}      {-- a stored value run as PAD --}
 ```
 
 ### The `pad` Tag with Content Blocks
