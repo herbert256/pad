@@ -61,6 +61,14 @@
       if ( $app == 'develop' )
         continue;
 
+      // A page no address reaches is no page of the walk: the router takes a literal segment
+      // of letters, digits, _ and - only (lib/route.php), so v1.0/old and my.page answer 404
+      // to every request, and the crawls fetched them all the same - develop/?nuts ended on
+      // its {ajax} refusing them, a 500. A bracketed route stays: a path fills it in.
+
+      if ( ! padAppsListRoutable ( $item ) )
+        continue;
+
       $files ["$app/$item"] ['path'] = $path;
       $files ["$app/$item"] ['app']  = $app;
       $files ["$app/$item"] ['item'] = $item;
@@ -88,6 +96,20 @@
       $app .= '/' . array_shift ( $parts );
 
     return [ $app, substr ( $path, strlen ( $app ) + 1 ) ];
+
+  }
+
+
+  // Whether the router can reach a page by its name: each segment literal - letters,
+  // digits, _ and -, as lib/route.php takes it - or bracketed, a route a path fills in.
+
+  function padAppsListRoutable ( $item ) {
+
+    foreach ( explode ( '/', $item ) as $segment )
+      if ( ! preg_match ( '/^([a-zA-Z0-9][a-zA-Z0-9_-]*|\[[^\[\]\/]+\])$/D', $segment ) )
+        return FALSE;
+
+    return TRUE;
 
   }
 
