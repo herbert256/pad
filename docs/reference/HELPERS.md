@@ -263,7 +263,7 @@ string (`'3'`) or a float without a fraction (`3.0`).
 | `padValue ( $value, ...$args )` | a Closure called with the arguments; anything else as it is |
 | `padTransform ( $value, $callback, $default = NULL )` | `$callback ( $value )` when the value is filled, else the default - a Closure default called with the blank value |
 | `padTap ( $value, $callback )` | calls `$callback ( $value )`, answers the value |
-| `padRetry ( $times, $callback, $sleepMilliseconds = 0, $when = NULL )` | the callback's answer, called with the attempt number (1, 2 ...) until it does not throw, at most `$times` times |
+| `padRetry ( $times, $callback, $sleepMilliseconds = 0, $when = NULL )` | the callback's answer, called with the attempt number (1, 2 ...) until it does not throw, at most `$times` times (`INF`: no limit) |
 | `padRescue ( $callback, $rescue = NULL, $report = TRUE )` | the callback's answer, or `padValue ( $rescue, $e )` when it throws |
 | `padOnce ( $callback )` | the callback's answer, run once per request for the file and line that call padOnce |
 

@@ -108,7 +108,11 @@
 
   function padRetry ( $times, $callback, $sleepMilliseconds = 0, $when = NULL ) {
 
-    if ( ! is_numeric ( $times ) or (int) $times < 1 ) {
+    // The attempts are counted as the number given, not cast to an int first: INF is no
+    // limit, as Laravel's retry counts down from it for ever, where the cast raised PHP's
+    // "not representable as an int" warning - for NAN too, which is no number of attempts.
+
+    if ( ! is_numeric ( $times ) or is_nan ( (float) $times ) or $times < 1 ) {
       padError ( "padRetry: the number of attempts must be 1 or more, not " . padValueShow ( $times ) );
       return NULL;
     }
@@ -127,7 +131,7 @@
         return NULL;
       }
 
-    $times = (int) $times;
+    $times = floor ( (float) $times );
 
     for ( $attempt = 1 ; ; $attempt++ ) {
 
