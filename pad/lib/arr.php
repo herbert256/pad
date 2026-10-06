@@ -536,7 +536,8 @@
   // padArrRead walks the segments of a path into a target. A '*' segment reads the rest of
   // the path in every item of that level and answers the list - NULL for an item without
   // it, the way a missing field reads elsewhere in PAD - and a second '*' further on makes
-  // one list of the lists. A level that has no items for a '*' is a path not found.
+  // one list of the lists. A level that is no array or object for a '*' is a path not
+  // found; an empty one is there and answers an empty list.
 
   function padArrRead ( $target, $path, &$found ) {
 
