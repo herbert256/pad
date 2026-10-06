@@ -35,9 +35,15 @@
       $sum += $value + 0;
       $numbers++;
 
+      // A value in E notation - PHP writes every float below 0.0001 that way, 1.0E-5 - has
+      // the decimals of its mantissa less its exponent. It was left out of the count, so
+      // 0.00001 + 0.5 was rounded to the one decimal of 0.5 and came out 0.5.
+
       $text = strtolower ( trim ( (string) $value ) );
-      if ( str_contains ( $text, '.' ) and ! str_contains ( $text, 'e' ) )
-        $decimals = max ( $decimals, strlen ( $text ) - strpos ( $text, '.' ) - 1 );
+      $mant = str_contains ( $text, 'e' ) ? strstr ( $text, 'e', TRUE ) : $text;
+      $exp  = str_contains ( $text, 'e' ) ? (int) substr ( strstr ( $text, 'e' ), 1 ) : 0;
+      $dec  = str_contains ( $mant, '.' ) ? strlen ( $mant ) - strpos ( $mant, '.' ) - 1 : 0;
+      $decimals = max ( $decimals, $dec - $exp );
 
     }
 
