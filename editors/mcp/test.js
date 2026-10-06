@@ -146,6 +146,7 @@ async function main() {
         expect('pad_check places an error on its line in the page', r.text.includes('never closes') && r.text.includes('line 3'), r);
         r = await call('pad_check', { app: 'shop' });
         expect('pad_check of an application checks every page', r.text.startsWith('5 pages of shop checked: 2 with an error') && r.text.includes('broken') && r.text.includes('undefined'), r);
+        expect('pad_check of an application leaves the bracketed route products/[id] out', !r.error && !r.text.includes('[id]'), r);
 
         r = await call('pad_trace', { app: 'shop', page: 'orders' });
         expect('pad_trace returns the trace of the request', !r.error && r.text.includes('trace: DATA/trace/orders/') && /level\s+start\s+\{orders callback='double'\}/.test(r.text), r);

@@ -118,14 +118,17 @@ function pageSource(app, page) {
 }
 
 // The templates of an application that are pages: .pad and .html outside the _xxx
-// directories, each name once.
+// directories, each name once. A bracketed route - products/[id].pad, blog/[year]/ - is
+// reached through a path that fills in its value, never by its own name, so it is no page
+// to ask for: pad lint and pad export leave it out the same way, and checkPage refused its
+// name, which ended pad_check of a whole application that has one - the manual - on it.
 function pagesOf(dir) {
     const out = new Set();
     const walk = (d, prefix) => {
         let list = [];
         try { list = fs.readdirSync(d).sort(); } catch (e) { return; }
         for (const n of list) {
-            if (n[0] === '_' || n[0] === '.') continue;
+            if (n[0] === '_' || n[0] === '.' || n.includes('[')) continue;
             const full = path.join(d, n);
             if (isDir(full)) walk(full, prefix + n + '/');
             else if (/\.(pad|html)$/.test(n)) out.add(prefix + n.replace(/\.(pad|html)$/, ''));
