@@ -238,7 +238,7 @@ Resolve naming conflicts with explicit type prefixes:
 Create `_tags/mytag.php` in your app:
 ```php
 <?php
-$format = $padPrm[$pad]['format'] ?? $padOpt[$pad][1] ?? 'default';
+$format = padTagParm ( 'format', $padOpt [$pad] [1] ?: 'default' );
 return "Output: $format";
 ?>
 ```
@@ -389,7 +389,7 @@ The occurrence system (`occurrence/`) manages:
 Expressions in templates are parsed and evaluated by the eval subsystem:
 
 ```
-{$price * 1.1 | round(2)}
+{echo $price * 1.1 | round(@, 2)}
 ```
 
 Evaluation pipeline:
@@ -640,12 +640,10 @@ A page without PHP says what a `.php` would with `{meta}`, read while the page i
 
 ### AJAX Support
 
-Handle AJAX requests seamlessly:
+Embed a page the browser fetches after load:
 
 ```
-{ajax}
-  {# Content returned as AJAX response #}
-{/ajax}
+{ajax 'orders'}   {# a <div> the browser fills with ?orders&padInclude #}
 ```
 
 A named response fragment lets one template serve both the full page and the region an
@@ -709,9 +707,9 @@ in `pad/events/` serve the info modes - trace, stats, xref - and run only under 
 Execute PHP code at specific points:
 
 ```
-{data callback="myFunction"}
-  {# myFunction called for each row #}
-{/data}
+{staff callback='totals'}
+  {# _callbacks/totals.php runs at init, for each row and at exit #}
+{/staff}
 ```
 
 ## Configuration
@@ -830,7 +828,8 @@ outlives it.
 | `html`, `url` | Encoding |
 | `date('fmt')` | Format date |
 | `+ n`, `- n`, `* n`, `/ n` | Arithmetic |
-| `left(n)`, `cut(n)` | Truncate |
+| `left(n)`, `truncate(n)` | Shorten |
+| `cut('x')` | Remove every occurrence of x |
 | `after('x')`, `before('x')` | Extract substring |
 | `contains('x')` | Check substring |
 | `. 'str'` | Concatenate |
@@ -845,7 +844,7 @@ outlives it.
 
 ## Testing
 
-Run regression tests by visiting `/regression` in browser. Tests compare current output against stored HTML snapshots.
+Run the eight regression suites with `./ci.sh`, or open `regression/main/?index&test` in a browser. Tests compare current output against stored answers.
 
 Real traffic can be a suite too: with `$padRecord = TRUE` every GET request is kept with its answer, and `develop/?replay` re-asks every recorded page and names the ones whose answer changed.
 
