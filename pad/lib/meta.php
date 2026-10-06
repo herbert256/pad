@@ -97,21 +97,28 @@
   }
 
   // Splits the items of a {meta} at the commas that stand outside quotes and brackets into
-  // name => expression.
+  // name => expression. Inside quotes a backslash escapes the character after it, as the
+  // expression evaluator has it: title='Herbert\'s report' ended at the escaped quote, and
+  // the rest of the tag - sub='x' and every item after it - became part of the title.
 
   function padMetaItems ( $parms ) {
 
-    $items = [];
-    $parts = [];
-    $now   = '';
-    $quote = '';
-    $depth = 0;
+    $items  = [];
+    $parts  = [];
+    $now    = '';
+    $quote  = '';
+    $depth  = 0;
+    $escape = FALSE;
 
     foreach ( mb_str_split ( (string) $parms ) as $char ) {
 
       if ( $quote !== '' ) {
         $now .= $char;
-        if ( $char == $quote )
+        if ( $escape )
+          $escape = FALSE;
+        elseif ( $char == '\\' )
+          $escape = TRUE;
+        elseif ( $char == $quote )
           $quote = '';
         continue;
       }
@@ -153,14 +160,19 @@
   }
 
   // A literal of a {meta} item read from the file - a quoted string, a number, true, false
-  // or null - or NULL for anything that would need evaluating.
+  // or null - or NULL for anything that would need evaluating. A string's escapes - \' \"
+  // \\ \n \r \t - are read as the expression evaluator reads them.
 
   function padMetaLiteral ( $expr ) {
 
     $expr = trim ( (string) $expr );
 
-    if ( preg_match ( '/^([\'"])(.*)\1$/s', $expr, $match ) ) return $match [2];
-    if ( is_numeric ( $expr ) )                                return $expr + 0;
+    if ( preg_match ( '/^([\'"])(.*)\1$/s', $expr, $match ) )
+      return preg_replace_callback ( '/\\\\(.)/s',
+        fn ( $one ) => [ 'n' => "\n", 'r' => "\r", 't' => "\t" ] [ $one [1] ] ?? $one [1], $match [2] );
+
+    if ( is_numeric ( $expr ) )
+      return $expr + 0;
 
     return match ( strtolower ( $expr ) ) {
       'true'  => TRUE,
