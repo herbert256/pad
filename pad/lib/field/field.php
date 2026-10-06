@@ -92,6 +92,14 @@
 
     }
 
+    // A NAN - fdiv ( 0, 0 ), an average of nothing - is no value to print, as NULL is not:
+    // the field is there and answers empty, as {echo $x} already wrote it. Handed on, PHP
+    // 8.5 warned "unexpected NAN value was coerced to string" in sanitize or the first pipe
+    // that took it as text, and {$avg} ended the request.
+
+    if ( is_float ( $value ) and is_nan ( $value ) and $type == 2 )
+      $value = NULL;
+
     if     ($type ==  1) $return = ( $value !== NULL and ( $value === INF or ! is_scalar($value) ) ) ? FALSE : TRUE;
     elseif ($type ==  2) $return = ( $value === NULL or    $value === INF or ! is_scalar($value)   ) ? ''    : $value;
     elseif ($type ==  3) $return = ( $value === NULL or    $value === INF or   is_scalar($value)   ) ? FALSE : TRUE;
