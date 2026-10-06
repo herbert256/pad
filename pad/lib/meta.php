@@ -62,8 +62,16 @@
 
     $template = padLayoutUnmask ( $text, $masks );
 
+    // The layout is put in front of the page as an {extends} of its name, so a value that is
+    // no name never gets there: a layout taken from a variable - layout=$which - held
+    // nolayout}{echo 6 * 7}{x and the tag it closed early left the rest to run as the page's
+    // own template.
+
     if ( isset ( $padMeta ['layout'] ) and (string) $padMeta ['layout'] !== '' and ! str_contains ( $text, '{extends' ) )
-      $template = "{extends '" . str_replace ( "'", '', (string) $padMeta ['layout'] ) . "'}" . $template;
+      if ( preg_match ( '/^[A-Za-z0-9_\/.-]+$/D', (string) $padMeta ['layout'] ) )
+        $template = "{extends '" . $padMeta ['layout'] . "'}" . $template;
+      elseif ( $GLOBALS ['padCheckSyntax'] )
+        padError ( "there is no layout named '" . padMakeSafe ( (string) $padMeta ['layout'], 60 ) . "' - {meta layout=} names a template from the application root" );
 
     return $template;
 
