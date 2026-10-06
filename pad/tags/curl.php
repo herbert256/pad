@@ -34,8 +34,12 @@
 
   $padCurl = ( $padCurlTtl ) ? padCurlCached ( $padCurlIn, $padCurlTtl ) : padCurl ( $padCurlIn );
 
+  // A failed fetch answers the error, and nothing of what came back: under an error action
+  // that lets the request go on - log, ignore - the body of the failing answer, an error
+  // page as often as not, went into the page where the tag stood. The tag takes its @else@.
+
   if ( $padCurl ['result'] != '200' )
-    padError ( "Curl failed: " . $padCurl ['result'] . ' ' . $padCurl ['url'] );
+    return padError ( "Curl failed: " . $padCurl ['result'] . ' ' . $padCurl ['url'] );
 
   return $padCurl ['data'];
 
