@@ -25,6 +25,12 @@ function pqPell($n)
         $c = 2 * $b + $a;
         $a = $b;
         $b = $c;
+
+        // Past P(50) the term is a float out of the integer range, which ends the build: going
+        // on to n made a far position - from=1000000000000 - loop for ever.
+
+        if ( is_float ( $b ) )
+          return $b;
     }
     return $b;
 }

@@ -24,6 +24,12 @@
         $ans = $a * $ans;
         $a = $ans;
         $ans = $ans + 1;
+
+        // From the eighth term on the product is a float out of the integer range, which ends
+        // the build: going on to n made a far position - from=1000000000000 - loop for ever.
+
+        if ( is_float ( $ans ) )
+          return $ans;
     }
 
     return $ans;
