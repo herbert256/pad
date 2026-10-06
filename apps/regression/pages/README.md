@@ -30,7 +30,7 @@ the runner never rewrites it: an expectation the harness records for itself is a
 the code did, not a prediction. A test with no `.txt` yet comes up `new` and the overview shows
 exactly what came back.
 
-Three forms of expectation:
+Four forms of expectation:
 
 | form | example | compared |
 |------|---------|----------|
@@ -40,6 +40,6 @@ Three forms of expectation:
 | a pattern | `/^\d{4}-\d\d-\d\d/` | `preg_match`, for a page that answers differently every run |
 
 A directory whose index renders the files beside it - a `{page}` chain - is one test, not one per
-file. One that only links to them, as `regression/common`'s `error/` does, is one test per file.
+file. One that only links to them is one test per file.
 
-Give it a line in `getPagesWhatList()` in the runner so the overview can say what it checks.
+Give it a line in `getSuiteWhatList()` (`regression/main/_lib/what.php`) so the overview can say what it checks.

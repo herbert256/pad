@@ -14,7 +14,6 @@ What lives here:
 | test | why it is here |
 |------|----------------|
 | `deep/` | the page chain; `deep/four` embeds `deep/five` through `{example}` |
-| `error/` | the error pages themselves need nothing, but their menu (`error/index`) prints through `{block}` |
 | `manual/` | the parked manual pages - `{demo}`, `{table}`, `{example}`, `{block}` and `{source}` throughout |
 | `tableFun/` | the ten table pages `manual/table_fun` embeds through `{example}` |
 | `misc/eval` | shows its forms through `{demo}` and `{table}` |
