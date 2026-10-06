@@ -98,6 +98,12 @@
        or str_contains ( $padConfigApp, 'padErrorAction' )   ) $padConfigSet ['error']      = $padErrorAction;
   if ( $padOutputType  != $padConfigDefault ['outputType']
        or str_contains ( $padConfigApp, 'padOutputType' )   ) $padConfigSet ['outputType'] = $padOutputType;
+
+  // The source is read for the two words above and gone again: kept as a global it went
+  // whole into every error report - the JSON channel, the dumps under DATA/ - with the
+  // database password it holds in clear, two lines above padSqlPassword's "redacted".
+
+  unset ( $padConfigApp );
   if ( $padCache and ( $padCacheServerType ?? '' )         ) $padConfigSet ['cache']      = $padCacheServerType;
   elseif ( $padCache != $padConfigDefault ['cache'] and is_string ( $padCache ) )
                                                              $padConfigSet ['cache']      = $padCache;
