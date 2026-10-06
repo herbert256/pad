@@ -96,13 +96,18 @@
 
   function padRedact ( $value, $key = '', $deep = FALSE, $depth = 0 ) {
 
-    static $budget = 0;
+    static $budget = 0, $values = [];
+
+    // The values to redact are gathered once per walk, not for every text in it.
+
+    if ( $depth == 0 )
+      $values = padRedactValues ();
 
     if ( padRedactName ( $key ) )
       return '*** redacted ***';
 
     if ( is_string ( $value ) )
-      return padRedactText ( is_int ( $key ) ? padRedactLine ( $value ) : $value );
+      return padRedactText ( is_int ( $key ) ? padRedactLine ( $value ) : $value, $values );
 
     if ( ! is_array ( $value ) )
       return $value;
@@ -140,8 +145,12 @@
 
   function padRedactName ( $name ) {
 
-    return (bool) preg_match ( '/pass(word|wd|phrase)?$|passwd|pwd|secret|token|authorization|auth_pw|api_?key|app_?key|private_?key|^(http_|set_)?cookies?$|^phpsessid$|^padsesid$/i',
-                               str_replace ( '-', '_', (string) $name ) );
+    static $memo = [];
+
+    $name = is_scalar ( $name ) ? (string) $name : '';
+
+    return $memo [$name] ??= (bool) preg_match ( '/pass(word|wd|phrase)?$|passwd|pwd|secret|token|authorization|auth_pw|api_?key|app_?key|private_?key|^(http_|set_)?cookies?$|^phpsessid$|^padsesid$/i',
+                                                 str_replace ( '-', '_', $name ) );
 
   }
 
@@ -157,39 +166,31 @@
 
   }
 
-  // A text can be PHP source that assigns a secret: $padConfigApp holds the whole of the
-  // application's _config/config.php, where the database password and the application key
-  // are written, and it went into every report in clear beside the redacted globals of the
-  // same names. The value of each assignment to a secret's name - $name = ..., 'name' =>
-  // ..., define ( 'NAME', ... ) - is redacted; the rest of the text stays as it was.
+  // What a text shows of the request's secrets. The application's config source, where
+  // the database password and the application key are written, was the one text that
+  // assigned them; inits/config.php keeps it in no global now, and the patterns that read
+  // the assignments in every text ran PCRE out of its stack on a long quoted literal - the
+  // text came back empty, {debug} and the toolbar answered 500 - and cost a page full of
+  // strings five times its time under the toolbar. What stays are cheap, possessive passes,
+  // with the values to look for handed in by a walk that gathered them once.
 
-  function padRedactText ( $text ) {
+  function padRedactText ( $text, $values = NULL ) {
 
     // The request's own secrets by their value: the CSRF token stands in every level of a
     // rendered form and in whatever variable a page keeps it in, the session ids in the PAD
     // header line and the cookie lines - under names no pattern knows.
 
-    $text = str_replace ( padRedactValues (), '*** redacted ***', $text );
+    $values ??= padRedactValues ();
+
+    if ( $values )
+      $text = str_replace ( $values, '*** redacted ***', $text );
 
     // The password inside a URL - a DSN in the environment, a fetch with a login in it.
 
-    if ( str_contains ( $text, '@' ) )
-      $text = preg_replace ( '~(\b[a-z][a-z0-9+.-]*://[^\s/?#@:]*:)[^\s/?#@]+@~i', '$1*** redacted ***@', $text );
+    if ( str_contains ( $text, '://' ) and str_contains ( $text, '@' ) )
+      $text = preg_replace ( '~(\b[a-z][a-z0-9+.-]*+://[^\s/?#@:]*+:)[^\s/?#@]++@~i', '$1*** redacted ***@', $text ) ?? $text;
 
-    if ( ! str_contains ( $text, '=' ) and stripos ( $text, 'define' ) === FALSE )
-      return $text;
-
-    $value = '(\'(?:[^\'\\\\]|\\\\.)*\'|"(?:[^"\\\\]|\\\\.)*"|[^,;)\]\r\n]*)';
-
-    $text = preg_replace_callback ( '/(\$([A-Za-z_]\w*)((?:\s*\[[^\]\r\n]*\])*)\s*=(?![=>])\s*)' . $value . '/',
-      fn ( $m ) => ( padRedactName ( $m [2] ) or padRedactName ( trim ( (string) strrchr ( '[' . $m [3], '[' ), "[]'\" \t" ) ) )
-                   ? $m [1] . "'*** redacted ***'" : $m [0],
-      $text );
-
-    return preg_replace_callback ( '/((?:define\s*\(\s*)?([\'"])([A-Za-z_][\w.-]*)\2\s*(?:=>|,)\s*)' . $value . '/i',
-      fn ( $m ) => ( padRedactName ( $m [3] ) and ( $m [1] [0] != "'" and $m [1] [0] != '"' or str_contains ( $m [1], '=>' ) ) )
-                   ? $m [1] . "'*** redacted ***'" : $m [0],
-      $text );
+    return $text;
 
   }
 
