@@ -30,7 +30,10 @@ db("UPDATE users SET name='{0}' WHERE id={1}", [$name, $id]);
 
 **Placeholders:** a placeholder written inside quotes gets the value escaped. One written
 bare gets a number as a number and anything else as a quoted, escaped literal, so a bare
-`id={0}` cannot take `5 or 1=1` as SQL. An array written bare becomes a list. Placeholders are
+`id={0}` cannot take `5 or 1=1` as SQL. On MySQL text that looks like a number - every request
+value - is text too, as MySQL would compare a text column with the number (`name={0}` with `'0'`
+matched every name), except in a `LIMIT` or `OFFSET`, where it is the count it says; SQLite
+keeps it a number. An array written bare becomes a list. Placeholders are
 filled in one pass, so a value holding `{1}` stays as written. Keys starting with `x` are
 inserted raw - a deliberate escape hatch for SQL the code builds itself, never for input.
 ```php
@@ -173,7 +176,7 @@ $padSelect ['openBugs'] = [
 `where=`, `having=`, `order=` and `group=` written on a tag are SQL, so they must be quoted
 strings in the template; `where=$cond` is refused. Inside them a `$name` is bound by the select:
 in `where=`/`having=` as a quoted, escaped literal of that application variable (a number as a
-number), in `order=`/`group=` as column names, each with an optional `asc`/`desc`, and nothing
+number - numeric text is text on MySQL, as for `db()`), in `order=`/`group=` as column names, each with an optional `asc`/`desc`, and nothing
 else. `{$name}` there splices text into your SQL instead - use `$name`. Keys bound on the tag
 (`{users $id=5}`) are always escaped. Declarations in `$padSelect` are PHP and taken as written.
 On every other data - a `{array}` query, JSON, page PHP - `where=` and `group=` are the handling

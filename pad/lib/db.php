@@ -501,7 +501,8 @@
         if     ( $key [0] == 'x'    ) $add = is_array ( $value ) ? implode ( ',', $value ) : (string) $value;
         elseif ( $quote == '`'      ) $add = str_replace ( '`', '``', (string) $value );
         elseif ( $quote             ) $add = padDbEscape ( $connect, $value, $quote );
-        else                          $add = padDbLiteral ( $connect, $value );
+        else                          $add = padDbLiteral ( $connect, $value,
+                                             preg_match ( '/\b(limit|offset)\s*$|\blimit\s+[0-9]+\s*,\s*$/i', $out ) );
 
         // A bare negative number right after a minus - "10-{0}" with -5 - would join into
         // "10--5", which SQLite reads as "10" followed by a -- line comment that swallows
@@ -570,11 +571,18 @@
 
   }
 
-  function padDbLiteral ( $connect, $value ) {
+  // A number is a number. Text that looks like one - every request value arrives as text -
+  // is a quoted literal on MySQL, which compares a text column with a number as a number:
+  // the documented name = {0} with '0' matched every name that does not start with a digit,
+  // and '01234' lost its zero. In a limit or offset ($number) MySQL takes no quoted literal,
+  // so there numeric text stays the count it says. SQLite compares a text column with a
+  // number as text, and a quoted '3' against count(*) is never equal, so it keeps the number.
+
+  function padDbLiteral ( $connect, $value, $number = FALSE ) {
 
     if ( is_array ( $value ) )
       return count ( $value )
-           ? implode ( ',', array_map ( fn ( $one ) => padDbLiteral ( $connect, $one ), $value ) )
+           ? implode ( ',', array_map ( fn ( $one ) => padDbLiteral ( $connect, $one, $number ), $value ) )
            : 'NULL';
 
     if ( $value === NULL )
@@ -583,7 +591,10 @@
     if ( is_bool ( $value ) )
       return $value ? '1' : '0';
 
-    if ( is_int ( $value ) or is_float ( $value ) or preg_match ( '/^-?\d+(\.\d+)?$/', (string) $value ) )
+    if ( is_int ( $value ) or is_float ( $value ) )
+      return (string) $value;
+
+    if ( ( $number or $connect instanceof PDO ) and preg_match ( '/^-?\d+(\.\d+)?$/', (string) $value ) )
       return (string) $value;
 
     return "'" . padDbEscape ( $connect, $value, "'" ) . "'";
