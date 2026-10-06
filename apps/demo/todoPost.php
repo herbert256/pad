@@ -4,7 +4,14 @@
 
   $id = padRequest ( 'id', '' );
 
-  switch ( padRequest ( 'go', '' ) ) {
+  // Only a post acts. The demo turns $padCsrf on, which holds a post to its token, and a
+  // GET of ?todoPost&go=delete&id=... deleted the task all the same, no token asked - a
+  // link or an <img> on any page could add, finish, delete or clear the visitor's tasks.
+  // A GET shows the list as it stands.
+
+  $todoAction = padRequestIs ( 'POST' ) ? padRequest ( 'go', '' ) : '';
+
+  switch ( $todoAction ) {
 
     case 'add':
 
@@ -43,7 +50,8 @@
   
   }
 
-  padFilePut ( $dataFile, json_encode ( $todos, JSON_PRETTY_PRINT ) );
+  if ( $todoAction !== '' )
+    padFilePut ( $dataFile, json_encode ( $todos, JSON_PRETTY_PRINT ) );
 
   padRestart ( 'todo' );
 
