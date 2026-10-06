@@ -185,8 +185,19 @@
     if ( $precision === NULL )
       return 0;
 
-    if ( is_numeric ( $precision ) and $precision >= 0 and floor ( (float) $precision ) == $precision and $precision < PHP_INT_MAX )
-      return (int) $precision;
+    if ( is_numeric ( $precision ) and $precision >= 0 and floor ( (float) $precision ) == $precision and $precision < PHP_INT_MAX ) {
+
+      // At most 100 decimals - far past the 17 digits a float holds: number_format makes a
+      // string of that many, and 1e18 of them ended the request out of memory.
+
+      if ( $precision <= 100 )
+        return (int) $precision;
+
+      padError ( "$function: the $what " . padValueShow ( $precision ) . " is more than 100" );
+
+      return FALSE;
+
+    }
 
     padError ( "$function: the $what " . padValueShow ( $precision ) . " is not a whole number of 0 or more" );
 

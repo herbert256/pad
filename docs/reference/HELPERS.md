@@ -353,8 +353,8 @@ string (`'3'`) or a float without a fraction (`3.0`).
   are nothing to write: the answer is `''` (`padNumberClamp`: NULL) and nothing is reported.
 - Reported with `padError`, naming the function, and answered `''` (`padNumberClamp`: NULL):
   a value that is no number (`'twelve'`, an array, TRUE, INF), a precision or number of
-  decimals that is negative, has a fraction or lies past every whole number PHP has (INF,
-  `'1e20'`) (NULL is the default 0), a fraction handed to
+  decimals that is negative, has a fraction or is more than 100 (INF, `'1e20'` too; NULL is
+  the default 0), a fraction handed to
   `padNumberOrdinal`, a locale intl does not know, and for `padNumberClamp` a missing bound or
   a minimum above the maximum.
 
