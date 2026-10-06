@@ -190,16 +190,20 @@
 
     }
 
-    if ( array_key_exists ( 'count', $vars ) )
-      $text = str_replace ( '%d', (string) $vars ['count'], $text );
+    // The placeholders are filled in one pass over the text as it was written, the longest
+    // name first where two start alike (:count before :co). One after the other, a value
+    // that held a placeholder was filled in turn: name=':place' came out as the place.
 
-    uksort ( $vars, fn ( $a, $b ) => strlen ( $b ) <=> strlen ( $a ) );
+    $fill = [];
+
+    if ( array_key_exists ( 'count', $vars ) )
+      $fill ['%d'] = (string) $vars ['count'];
 
     foreach ( $vars as $name => $value )
       if ( is_scalar ( $value ) )
-        $text = str_replace ( ":$name", (string) $value, $text );
+        $fill [":$name"] = (string) $value;
 
-    return $text;
+    return strtr ( $text, $fill );
 
   }
 
