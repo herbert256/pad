@@ -82,30 +82,46 @@
   // The opening tags are found, and each form's end is looked for from its tag on, rather
   // than one regular expression taking in the content of every form: that ran out of
   // PCRE's backtrack limit on a form of about a megabyte - an admin list with a checkbox on
-  // each of its thousands of rows - and answered NULL, which ended the page.
+  // each of its thousands of rows - and answered NULL, which ended the page. A tag is read
+  // to its real end (padCsrfTag): a > inside a quoted value - title=">" - is no end, and
+  // the token went into the title.
 
   function padCsrfForms ( $html ) {
 
     if ( stripos ( $html, '<form' ) === FALSE )
       return $html;
 
-    preg_match_all ( '/<form\b[^>]*>/i', $html, $opens, PREG_OFFSET_CAPTURE );
+    preg_match_all ( '/<form(?=[\s\/>])/i', $html, $found, PREG_OFFSET_CAPTURE );
 
-    $out  = '';
-    $done = 0;
+    $starts = array_column ( $found [0], 1 );
+    $out    = '';
+    $done   = 0;
+    $next   = 0;
 
-    foreach ( $opens [0] as $index => [ $open, $at ] ) {
+    foreach ( $starts as $at ) {
 
-      $start = $at + strlen ( $open );
-      $inner = substr ( $html, $start, ( $opens [0] [$index + 1] [1] ?? strlen ( $html ) ) - $start );
+      if ( $at < $done )
+        continue;
+
+      $tag = padCsrfTag ( $html, $at );
+
+      if ( $tag === NULL )
+        break;
+
+      [ $start, $attrs ] = $tag;
+
+      while ( $next < count ( $starts ) and $starts [$next] < $start )
+        $next++;
+
+      $inner = substr ( $html, $start, ( $starts [$next] ?? strlen ( $html ) ) - $start );
 
       if ( preg_match ( '/<\/form\s*>/i', $inner, $close, PREG_OFFSET_CAPTURE ) )
         $inner = substr ( $inner, 0, $close [0] [1] );
 
-      if ( ! padCsrfFormPosts ( $open ) or str_contains ( $inner, 'name="' . padCsrfName . '"' ) )
-        continue;
-
-      $out .= substr ( $html, $done, $start - $done ) . padCsrfField ();
+      if ( padCsrfFormAttrs ( $attrs ) and ! str_contains ( $inner, 'name="' . padCsrfName . '"' ) )
+        $out .= substr ( $html, $done, $start - $done ) . padCsrfField ();
+      else
+        $out .= substr ( $html, $done, $start - $done );
 
       $done = $start;
 
@@ -115,21 +131,82 @@
 
   }
 
+  // The opening tag of a form - {form} asks too (lib/form.php) - and whether it posts here.
+
   function padCsrfFormPosts ( $open ) {
 
-    // The attributes as a browser reads them, one after the other, the first of a name
-    // counting: an action straight after a quote or a slash - method="post"action=... - is
-    // the action, text in another attribute's value - title="see action=?here" - is none,
-    // and the method is post exactly, any case. Each was looked for anywhere in the tag
-    // after a space, which took the first two for forms posting here and handed them the
-    // token, and gave it to method=" post" - a GET form, the token in its URL.
+    $tag = padCsrfTag ( $open, 0 );
 
-    preg_match_all ( '/([^\s"\'>\/=]+)(?:\s*=\s*(?:"([^"]*)"|\'([^\']*)\'|([^\s>]+)))?/', substr ( $open, 5 ), $found, PREG_SET_ORDER );
+    return $tag !== NULL and padCsrfFormAttrs ( $tag [1] );
 
-    $attrs = [];
+  }
 
-    foreach ( $found as $one )
-      $attrs [ strtolower ( $one [1] ) ] ??= ( $one [2] ?? '' ) . ( $one [3] ?? '' ) . ( $one [4] ?? '' );
+  // A start tag read as the HTML standard's tokenizer reads it: past its name, the
+  // attributes one after the other, the first of a name counting, names in lower case. A
+  // name runs to a space, a / , a > or an = - a quote is part of it, and it may start with
+  // an = - a value is quoted, or runs to a space or a > . [ the offset after the tag's > ,
+  // [ name => value ] ], or NULL for a tag that never closes. Read with one regular
+  // expression, x"action="?here" and =action="?here" were taken for the action, and a real
+  // one to another site after them got the token.
+
+  function padCsrfTag ( $html, $at ) {
+
+    $space  = " \t\n\f\r";
+    $length = strlen ( $html );
+    $index  = $at + 1 + strcspn ( $html, "$space/>", $at + 1 );
+    $attrs  = [];
+
+    while ( TRUE ) {
+
+      $index += strspn ( $html, "$space/", $index );
+
+      if ( $index >= $length )
+        return NULL;
+
+      if ( $html [$index] == '>' )
+        return [ $index + 1, $attrs ];
+
+      $from   = $index;
+      $index += 1 + strcspn ( $html, "$space/>=", $index + 1 );
+      $name   = strtolower ( substr ( $html, $from, $index - $from ) );
+      $index += strspn ( $html, $space, $index );
+      $value  = '';
+
+      if ( $index < $length and $html [$index] == '=' ) {
+
+        $index += 1 + strspn ( $html, $space, $index + 1 );
+        $quote  = $html [$index] ?? '';
+
+        if ( $quote == '"' or $quote == "'" ) {
+
+          $close = strpos ( $html, $quote, $index + 1 );
+
+          if ( $close === FALSE )
+            return NULL;
+
+          $value = substr ( $html, $index + 1, $close - $index - 1 );
+          $index = $close + 1;
+
+        } elseif ( $quote != '>' ) {
+
+          $from   = $index;
+          $index += strcspn ( $html, "$space>", $index );
+          $value  = substr ( $html, $from, $index - $from );
+
+        }
+
+      }
+
+      $attrs [$name] ??= $value;
+
+    }
+
+  }
+
+  // The method is post exactly, any case - method=" post" is a GET form to a browser, which
+  // put the token into its URL - and the action, when there is one, is on this site.
+
+  function padCsrfFormAttrs ( $attrs ) {
 
     if ( strtolower ( html_entity_decode ( $attrs ['method'] ?? '', ENT_QUOTES | ENT_HTML5, 'UTF-8' ) ) !== 'post' )
       return FALSE;
