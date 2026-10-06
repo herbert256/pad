@@ -67,6 +67,20 @@
 
   }
 
+  // The value of an item without a name. $extra naming an array - of the page or of the
+  // row - is that array: the expression evaluator reads a $field as one value only, so the
+  // documented {attrs $extra} and {classes $list} ended in "there is no field named".
+
+  function padAttrsValue ( $expr ) {
+
+    if ( preg_match ( '/^\$([A-Za-z_][A-Za-z0-9_]*)$/', trim ( $expr ), $match )
+         and ! padFieldCheck ( $match [1] ) and padArrayCheck ( $match [1] ) )
+      return padArrayValue ( $match [1] );
+
+    return padEval ( $expr );
+
+  }
+
   function padAttrsTrue ( $value ) {
 
     if ( is_array ( $value ) )
@@ -82,7 +96,8 @@
   // out for FALSE and NULL, written bare for TRUE, and otherwise written with its value -
   // 'false' stays aria-expanded="false" - an array joined with spaces. A name alone is a
   // bare attribute: {attrs required}. An item without a name is an expression whose array
-  // value adds its keys as attributes: {attrs $extra}.
+  // value adds its keys as attributes: {attrs $extra}. A key that is no attribute name is
+  // left out - written as it was, x" onmouseover="... ended the attribute list's quoting.
 
   function padAttrs () {
 
@@ -96,10 +111,11 @@
       }
 
       if ( $name === '' ) {
-        $value = padEval ( $expr );
+        $value = padAttrsValue ( $expr );
         if ( is_array ( $value ) )
           foreach ( $value as $key => $one )
-            padAttrsOne ( $out, (string) $key, $one );
+            if ( padAttrsBare ( (string) $key ) )
+              padAttrsOne ( $out, (string) $key, $one );
         continue;
       }
 
@@ -155,7 +171,7 @@
         continue;
       }
 
-      $value = padEval ( $expr );
+      $value = padAttrsValue ( $expr );
 
       foreach ( is_array ( $value ) ? $value : [ $value ] as $one )
         foreach ( preg_split ( '/\s+/', trim ( (string) $one ) ) as $class )
