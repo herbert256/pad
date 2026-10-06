@@ -227,6 +227,16 @@
 
     $array = reset ($parts);
 
+    // The part after @ names a global array here. A number is a level, resolved before this
+    // by padAtTag/padAtLevelGroup, so reaching this with one means no such level held the
+    // path - and it must not now be read as a container key: {$items.0} expands to {$items.0@N}
+    // over every level N, and padAtGlobals2 used N as a key, so a list global like
+    // $menu=[['items'=>...]] matched $menu[0] and its nested 'items' shadowed the page's own
+    // $items - {$items.0} answered empty while {$items.1} fell through to Apple's neighbour.
+
+    if ( is_numeric ( $array ) )
+      return INF;
+
     return padAtGlobals2 ( $array, $names, $GLOBALS );
 
   }
