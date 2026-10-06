@@ -4,49 +4,48 @@
   // n divides it at least twice - the powerful numbers 1, 4, 8, 9, 16, 25, 27, 32, 36, 49,
   // 64, 72, ...
   //
-  // Divides out 2 first, then the odd factors up to sqrt(n), rejecting as soon as any
-  // exponent comes out 1; whatever is left must be 1, since a surviving prime factor would
-  // occur only once. The only file in the type, so it is the generation path as well and
-  // the whole range is filtered through it.
+  // The prime factors are divided out while their cube stays within what is left, rejecting
+  // as soon as an exponent comes out 1. Every prime factor of what is left then lies above
+  // its cube root, so it holds at most two of them: it is 1, a prime, a product of two primes
+  // or the square of one, and only 1 and the square are powerful. Dividing on up to the
+  // square root cost a billion divisions for the product of two large primes. The only file
+  // in the type, so it is the generation path as well and the whole range is filtered
+  // through it.
   //
-  // Dividing 2 out of 0 leaves 0, so the first loop would never end; the powerful numbers
-  // are positive, so anything under 1 is answered before it.
+  // Dividing 2 out of 0 leaves 0, so the loop would never end; the powerful numbers are
+  // positive, so anything under 1 is answered before it.
 
   function pqBoolPowerful ($n, $p=0) {
 
     if ( ! pqBoolWhole ( $n ) or $n < 1 )
       return FALSE;
 
-    while ($n % 2 == 0)
-    {
-        $power = 0;
-        while ($n % 2 == 0)
-        {
-            $n /= 2;
-            $power++;
-        }
+    $n = (int) $n;
 
-        if ($power == 1)
-        return false;
+    for ( $factor = 2; $factor * $factor * $factor <= $n; $factor++ ) {
+
+      if ( $n % $factor )
+        continue;
+
+      $power = 0;
+
+      while ( $n % $factor == 0 ) {
+        $n = intdiv ( $n, $factor );
+        $power++;
+      }
+
+      if ( $power == 1 )
+        return FALSE;
+
     }
 
-    for ($factor = 3;
-         $factor <= sqrt($n);
-         $factor += 2)
-    {
+    $root = (int) sqrt ( (float) $n );
 
-        $power = 0;
-        while ($n % $factor == 0)
-        {
-            $n = $n / $factor;
-            $power++;
-        }
+    for ( $i = max ( 1, $root - 1 ); $i <= $root + 1; $i++ )
+      if ( $i * $i == $n )
+        return TRUE;
 
-        if ($power == 1)
-        return false;
-    }
-
-    return ($n == 1);
+    return FALSE;
 
   }
 
