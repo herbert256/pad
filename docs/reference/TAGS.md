@@ -787,6 +787,10 @@ Write content to file.
 - `stamp`: Include timestamp
 - `id`: Include unique ID
 
+**Refused:** the file goes under `DATA/`; a name the web server would run (`.php`, `.phtml`,
+`.phar` ... anywhere in it) or read as configuration (a part starting with a dot -
+`.htaccess`, `.user.ini`) is a PAD error and nothing is written.
+
 ---
 
 ### exists
