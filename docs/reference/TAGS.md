@@ -856,12 +856,15 @@ Return closing brace character.
 Make HTTP request.
 
 ```html
-{curl 'https://example.com/api', $q = 'x'}
+{curl 'http://example.com', post='name=x&id=1'}
 ```
 
 **Parameters:**
 - `url` / first param: URL to request
-- `$name = value` assignments are added to the query string (the tag makes a GET request)
+- `post` - the body to post (the request is then a POST); `user` and `password` - basic
+  authentication; `get`, `cookies`, `headers` and `options` (curl options by name) - arrays,
+  as `padCurl()` takes them
+- `$name=value` written on the tag are added to the URL as query values
 - `SELF://` prefix replaced with current host
 - `ttl=600`: keep the answer that many seconds (see below)
 

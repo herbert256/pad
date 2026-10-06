@@ -6,8 +6,9 @@
   // url= or the first parameter gives the address; every variable {set} at this level is
   // appended to it as a query parameter, and a SELF:// prefix becomes $padHost so an app
   // can call itself whatever host and mount prefix it is served under. The tag's
-  // parameters as a whole are the option array for padCurl(), so method=, data=, headers
-  // and the rest travel with it. Anything but HTTP 200 raises a PAD error.
+  // parameters as a whole are the input array of padCurl(), so what it reads travels with
+  // them - post=, user= and password=, and get=, cookies=, headers= and options= as
+  // arrays. Anything but HTTP 200 raises a PAD error.
   //
   // ttl=600 keeps the answer that many seconds (lib/curlCache.php): the requests in that
   // time are answered from the copy, and when the source fails afterwards the last good
@@ -21,6 +22,12 @@
     $padPrm [$pad] ['url'] = padAddGet ($padPrm [$pad] ['url'], $padK, $padV );
 
   $padPrm [$pad] ['url'] = str_replace('SELF://', $padHost, $padPrm [$pad] ['url']);
+
+  // Those are read here, by padCurl: the strict sweep of options nothing reads refused
+  // {curl ..., post='a=1'} - after the post had gone out.
+
+  foreach ( [ 'url', 'get', 'post', 'user', 'password', 'cookies', 'headers', 'options' ] as $padCurlKey )
+    padDone ( $padCurlKey );
 
   $padCurlTtl = padTagParm ( 'ttl', 0 );
   $padCurlIn  = array_diff_key ( $padPrm [$pad], [ 'ttl' => 1 ] );
