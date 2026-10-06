@@ -19,6 +19,10 @@
   $padDisplayErrors  = ini_set ('display_errors', 0);
   $padErrorReporting = error_reporting (E_ALL);
 
+  // Room for the report of a request that ran out of memory: freed by padBootRoom.
+
+  $padBootRoom = str_repeat ( ' ', 65536 );
+
   set_error_handler          ( 'padBootHandler'   );
   set_exception_handler      ( 'padBootException' );
   register_shutdown_function ( 'padBootShutdown'  );
@@ -59,8 +63,23 @@
 
     $error = error_get_last ();
 
-    if ( $error !== NULL )
+    if ( $error !== NULL ) {
+      padBootRoom ( $error );
       padBootStop ( $error['message'], $error['file'], $error['line'] );
+    }
+
+  }
+
+  // A fatal for memory leaves the shutdown hook none to report it with: the report died
+  // on its first allocation, the visitor got an empty 500 and the log nothing. The reserve
+  // goes, and the limit is raised for the report alone - the request is over.
+
+  function padBootRoom ( $error ) {
+
+    unset ( $GLOBALS ['padBootRoom'] );
+
+    if ( str_starts_with ( (string) ( $error ['message'] ?? '' ), 'Allowed memory size' ) )
+      @ini_set ( 'memory_limit', (string) ( memory_get_usage () + 64 * 1048576 ) );
 
   }
 
@@ -109,7 +128,10 @@
     for ( $i = 1; $i <= $j; $i++ )
       ob_get_clean ();
 
-    if ( ! headers_sent () )
+    // A fatal has had PHP set the 500 already, and a second http_response_code warns - the
+    // warning ended the report before the remote visitor's id was logged or shown.
+
+    if ( ! headers_sent () and http_response_code () != 500 )
       http_response_code(500);
 
     if     ( padAnswerSent () ) padShowErrorLog    ( $error, $file, $line );
@@ -158,7 +180,9 @@
 
       $error = preg_replace ( '/[\x00-\x1F\x7F]+/', ' ', (string) $error );
 
-      error_log ( "[PAD] $id $file:$line $error", 4 );
+      $where = ( $file !== '' ) ? "$file:$line " : '';
+
+      error_log ( "[PAD] $id $where$error", 4 );
 
       return $id;
 
@@ -188,11 +212,20 @@
 
   }
 
+  // A visitor from elsewhere gets the request id here too, and the log both messages: the
+  // report that failed was the one that would have logged them.
+
   function padBootProblems ( $error1, $error2 ) {
 
     if ( padLocal () and ! padAnswerSent () )
       echo '<pre><br>' . htmlspecialchars ( "$error2", ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' )
          . '<br>'     . htmlspecialchars ( "$error1", ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' ) . '</pre>';
+    elseif ( ! padLocal () ) {
+      $id = padShowErrorLog ( $error2, '', '' );
+      padShowErrorLog ( $error1, '', '' );
+      if ( ! padAnswerSent () )
+        echo "Error: $id";
+    }
 
     padBootExit ();
 

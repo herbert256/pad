@@ -81,8 +81,10 @@
 
     $error = error_get_last ();
 
-    if ( $error !== NULL )
+    if ( $error !== NULL ) {
+      padBootRoom ( $error );
       return padErrorGo ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
+    }
 
   }
 
