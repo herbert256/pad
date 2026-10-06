@@ -9,6 +9,7 @@ Lists all PAD applications with their descriptions, dynamically extracted from e
 - **Dynamic listing**: Scans the apps directory at runtime, so new applications appear immediately
 - **Auto-descriptions**: Extracts the Introduction section from each app's README.md
 - **Direct links**: Each application name links to its homepage
+- **Edit**: each application's *edit* link opens it in the editor (the `edit` application)
 
 ## How It Works
 

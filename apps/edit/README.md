@@ -10,6 +10,8 @@ Open `http://localhost/pad/edit/`. The first visit asks for the first user - the
 default password, and only this machine may make that user; more users are added in the
 editor (**⋯ → Users**). Pick an application (Alt+A); its files are on the left, in two roots:
 `apps/<app>/` and, when it has one, `www/<app>/` with its stylesheets and scripts.
+A link to `edit/?app=demo` opens the editor on that application, through the login when
+there is no session yet - the *edit* links of the apps listing (`/pad/apps/`) are such links.
 
 **Files.** The tree's toolbar and its context menu (right click, or Shift+F10) make a file, a
 folder, or one of PAD's kinds from a starter - a page pair, a tag, a component, a pipe

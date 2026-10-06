@@ -8,7 +8,8 @@
   // session names a user that still exists with the stamp it logged in with, so a deleted
   // user or a changed password ends the sessions that were open. The login page itself is
   // the one page open to a visitor who is not logged in; the JSON calls answer 403, which
-  // the editor takes as "log in again"; any other page sends the visitor to the login.
+  // the editor takes as "log in again"; any other page sends the visitor to the login, with
+  // the application a link asked for, ?app=demo, carried along.
 
   if ( PHP_SAPI === 'cli' )
     return TRUE;
@@ -25,6 +26,6 @@
   if ( $padPage == 'api' )
     return FALSE;
 
-  padRedirect ( 'login' );
+  padRedirect ( 'login', editAppAsked () );
 
 ?>

@@ -10,7 +10,7 @@
   $loginHint  = ( $loginSetup and PHP_SAPI !== 'cli' and ! padLoopback () ) ? 1 : 0;
 
   if ( editUserValid ( editStore (), $editUser, $editStamp ) )
-    padRedirect ( 'index' );
+    padRedirect ( 'index', editAppAsked () );
 
   if ( padPosted ( 'login' ) ) {
 
@@ -51,7 +51,7 @@
         $editUser  = $loginName;
         $editStamp = $loginStamp;
 
-        padRedirect ( 'index' );
+        padRedirect ( 'index', editAppAsked () );
 
       }
 

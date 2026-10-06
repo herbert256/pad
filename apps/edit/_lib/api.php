@@ -13,6 +13,7 @@
   //              the call's file in _api/ runs in a function of its own, with every PHP
   //              warning turned into an exception, so whatever goes wrong comes back as the
   //              call's error in the JSON answer, never as PAD's HTML error page
+  // editAppAsked the application a link asked for, kept through the login
   // editBody     the call's arguments: the JSON body as it was sent - not trimmed, a file's
   //              whitespace is its own - or, for an upload, the form fields
 
@@ -27,6 +28,18 @@
       return ! $editHosts or editHostNamed ( (array) $editHosts );
 
     return padLoopback () and editHostNamed ( array_merge ( [ 'localhost', '127.0.0.1', '[::1]', '::1' ], (array) $editHosts ) );
+
+  }
+
+  // The application a link into the editor asks for - ?app=demo, the apps listing's edit
+  // links - as query values that carry it through the login, so the editor opens on it;
+  // none when it names no application there is.
+
+  function editAppAsked () {
+
+    $app = $_GET ['app'] ?? '';
+
+    return ( is_string ( $app ) and isset ( editApps () [$app] ) ) ? [ 'app' => $app ] : [];
 
   }
 
