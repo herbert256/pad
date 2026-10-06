@@ -17,6 +17,12 @@
 
     padEventError ( $error, $file, $line );
 
+    // PHP shows what it is not caught - but once the answer has gone out, its "Uncaught
+    // Exception" landed behind the body, past the Content-Length the headers declared.
+
+    if ( padAnswerSent () )
+      ini_set ( 'display_errors', '0' );
+
     throw new Exception ( "$file:$line $error" );
 
   }
