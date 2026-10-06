@@ -61,6 +61,18 @@
     elseif ( isset              ( $padDataStore    [$item]       ) ) return 'data';
     elseif ( padAppIncludeCheck ( $item                          ) ) return 'include';
     elseif ( padTagCheck        ( $item                          ) ) return 'property';
+
+    // A page's own array variable is the data of {name}, where a request value of the same
+    // name must not be: a page sets $orders = db(...) and ?orders=evil made {orders} iterate
+    // the scalar 'evil' - the field check finds the request value in $_GET before the array
+    // check reaches the page's $orders - and ?todo&todos=x answered 500 when {$task} inside
+    // the loop then missed. A direct global that is an array wins over a like-named request
+    // value, so the page's data stands; a request value of a name the page does not set is
+    // still read as a field as before.
+
+    elseif ( is_array ( $GLOBALS [$item] ?? NULL )
+             and ( isset ( $_GET [$item] ) or isset ( $_POST [$item] ) or isset ( $_COOKIE [$item] ) ) ) return 'array';
+
     elseif ( padFieldCheck      ( $item                          ) ) return 'field';
     elseif ( padArrayCheck      ( $item                          ) ) return 'array';
     elseif ( padOptCheck        ( $item, 1                       ) ) return 'parm';
