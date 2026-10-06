@@ -746,24 +746,41 @@
     if ( $keep < 1 or ! is_dir ( $root ) )
       return;
 
-    // A report is a directory holding a stack.html. Found by that file, not by depth: a
-    // page in a subdirectory nests its reports one level deeper per path segment.
+    // A report is a directory that holds files. Found by them, not by depth: a page in a
+    // subdirectory nests its reports one level deeper per path segment. It was a directory
+    // holding a stack.html - and what a concurrent prune left was none: a report deleted
+    // while its request was still writing it, the rest of its files then making the
+    // directory again. Never counted, it never went: 200 errors at 16 at a time with
+    // $padErrorKeep at 20 left 64 directories, globals.html in some of them.
 
     $reports = [];
 
-    $files = new RecursiveIteratorIterator ( new RecursiveDirectoryIterator ( $root, FilesystemIterator::SKIP_DOTS ) );
+    try {
 
-    foreach ( $files as $file )
-      if ( $file->getFilename () == 'stack.html' )
-        $reports [] = $file->getPath ();
+      $files = new RecursiveIteratorIterator ( new RecursiveDirectoryIterator ( $root, FilesystemIterator::SKIP_DOTS ) );
+
+      foreach ( $files as $file )
+        if ( ! isset ( $reports [ $file->getPath () ] ) )
+          $reports [ $file->getPath () ] = (int) @filemtime ( $file->getPath () );
+
+    } catch ( Throwable $e ) {
+
+      return;
+
+    }
 
     if ( count ( $reports ) <= $keep )
       return;
 
-    usort ( $reports, fn ( $a, $b ) => filemtime ( $b ) <=> filemtime ( $a ) );
+    arsort ( $reports );
 
-    foreach ( array_slice ( $reports, $keep ) as $old )
-      padDeleteDataDir ( $old );
+    // A report another request's prune has taken first is no reason to stop.
+
+    foreach ( array_slice ( array_keys ( $reports ), $keep ) as $old )
+      try {
+        padDeleteDataDir ( $old );
+      } catch ( Throwable $e ) {
+      }
 
   }
 
