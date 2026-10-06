@@ -78,7 +78,12 @@
 
       function ( $m ) use ( $bases, $pages, $from ) {
 
-        $url  = $m [4];
+        // The attribute's text is HTML - an & in it is &amp; - and is read as the URL it
+        // stands for, so the link written back is escaped once: it was escaped a second time,
+        // and img/a&amp;b.png or style.css?v=1&amp;t=2 became a&amp;amp;b.png, a file the copy
+        // does not have.
+
+        $url  = html_entity_decode ( $m [4], ENT_QUOTES | ENT_HTML5 );
         $rest = NULL;
 
         foreach ( $bases as $base )
@@ -102,7 +107,7 @@
 
         if ( $rest === '' or $rest === './' or str_starts_with ( $rest, '?' ) ) {
 
-          $target = ( $rest === '' or $rest === './' ) ? 'index' : html_entity_decode ( substr ( $rest, 1 ) );
+          $target = ( $rest === '' or $rest === './' ) ? 'index' : substr ( $rest, 1 );
           $target = preg_split ( '/[&=]/', $target ) [0];
           $target = ( $target === '' ) ? 'index' : trim ( $target, '/' );
 
@@ -114,7 +119,7 @@
 
           $file = $rest;
 
-        return $m [1] . $m [2] . $m [3] . htmlspecialchars ( exportRelative ( $from, $file ), ENT_QUOTES ) . $anchor . $m [3];
+        return $m [1] . $m [2] . $m [3] . htmlspecialchars ( exportRelative ( $from, $file ) . $anchor, ENT_QUOTES ) . $m [3];
 
       },
 
