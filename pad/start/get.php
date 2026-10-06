@@ -26,6 +26,13 @@
     if ( ( $padExtPart = http_build_query ( [ $padK => $padV ] ) ) !== '' )
       $padExtQry .= "&$padExtPart";
 
+  // The page goes into the address with each segment encoded: a segment a route binds may
+  // hold what a query string reads as its own - products/[id] takes a&b - and went in as it
+  // was, so the page fetched was products/a, handed a value b, and a&padStats switched on
+  // what this server lets only its own requests switch on.
+
+  $padExtPag = implode ( '/', array_map ( 'rawurlencode', explode ( '/', (string) $padExtPag ) ) );
+
   return padEscape ( padPageGet ( $padExtPag, $padExtQry ) );
 
 ?>
