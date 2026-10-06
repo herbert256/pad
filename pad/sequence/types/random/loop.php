@@ -21,8 +21,9 @@
     }
 
     if ( is_numeric ( $pqParm ) )
-      if  ( mt_rand ( 1, $pqParm ) == 1 ) return TRUE;
-      else                                return FALSE;
+      // One in N is a draw below 1/N, so N may be a fraction - see chance/loop.php.
+      if  ( mt_rand ( 0, mt_getrandmax () - 1 ) / mt_getrandmax () * $pqParm < 1 ) return TRUE;
+      else                                                                       return FALSE;
 
   }
 

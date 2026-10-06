@@ -26,8 +26,11 @@
 
   } else {
 
-    if  ( mt_rand ( 1, $pqParm ) == 1 ) return TRUE;
-    else                                return FALSE;
+    // One in N is a draw below 1/N, so N may be a fraction: mt_rand ( 1, N ) took 2.5 as an
+    // integer and ended the request on PHP's deprecation of it.
+
+    if  ( mt_rand ( 0, mt_getrandmax () - 1 ) / mt_getrandmax () * $pqParm < 1 ) return TRUE;
+    else                                                                       return FALSE;
 
   }
 
