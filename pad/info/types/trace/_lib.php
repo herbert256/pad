@@ -67,9 +67,13 @@
 
   function padInfoTraceError ( $error ) {
 
-    global $padInfoTraceDir;
+    global $padInfoTrace, $padInfoTraceDir;
 
-    if ( ! function_exists ( 'padInfoTrace') )
+    // A trace that runs, not one that ran: a {trace} tag loads this library and, once it has
+    // ended, puts its directory away - the report went to dumps/<app>//ERROR, the file layer
+    // refused the path, and that second error replaced the report of the first.
+
+    if ( ! function_exists ( 'padInfoTrace') or ! ( $padInfoTrace ?? FALSE ) or ( $padInfoTraceDir ?? '' ) === '' )
       return;
 
     set_error_handler ( 'padErrorThrow' );
