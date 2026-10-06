@@ -403,7 +403,7 @@
 
     $dot = [];
 
-    padArrDotInto ( $dot, padArrItems ( $array ), (string) $prepend );
+    padArrDotInto ( $dot, padArrItems ( $array ), padStrText ( $prepend, 'padArrDot', FALSE ) );
 
     return $dot;
 
@@ -947,7 +947,9 @@
   // padArrKeyOf makes a value an array key for padArrPluck, padArrGroupBy and padArrKeyBy:
   // NULL is '', TRUE and FALSE 1 and 0, a whole float its integer, an enum its value or
   // name, a Stringable its text. An array or another object can be no key: reported, and
-  // NULL answered so that the row is left out.
+  // NULL answered so that the row is left out. Any other float is its text as padStrText
+  // writes it - INF, NAN - where (string) NAN is a PHP 8.5 warning that ended the request;
+  // the same holds for padArrDot's prefix and both sides of like.
 
   function padArrKeyOf ( $function, $value ) {
 
@@ -961,7 +963,7 @@
       return (int) $value;
 
     if ( is_float ( $value ) )
-      return ( is_finite ( $value ) and floor ( $value ) == $value and abs ( $value ) < 9.0e15 ) ? (int) $value : (string) $value;
+      return ( is_finite ( $value ) and floor ( $value ) == $value and abs ( $value ) < 9.0e15 ) ? (int) $value : padStrText ( $value, $function, FALSE );
 
     if ( $value instanceof BackedEnum )
       return $value -> value;
@@ -1160,7 +1162,7 @@
       return NULL;
     }
 
-    $parts = preg_split ( '/(\\\\.|%|_)/su', mb_scrub ( (string) $pattern, 'UTF-8' ), -1, PREG_SPLIT_DELIM_CAPTURE );
+    $parts = preg_split ( '/(\\\\.|%|_)/su', mb_scrub ( padStrText ( $pattern, 'padArrWhere', FALSE ), 'UTF-8' ), -1, PREG_SPLIT_DELIM_CAPTURE );
     $regex = '';
 
     foreach ( $parts as $part )
@@ -1191,7 +1193,7 @@
     if ( ! is_scalar ( $field ) )
       return FALSE;
 
-    return preg_match ( $regex, (string) $field ) === 1;
+    return preg_match ( $regex, padStrText ( $field, 'padArrWhere', FALSE ) ) === 1;
 
   }
 
