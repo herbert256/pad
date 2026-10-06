@@ -8,6 +8,13 @@
   // this is the identity. It earns its keep as a play, where {make even} rounds each term
   // of another sequence up to an even value.
 
+  // A value that is no whole number has no term here - a word in the list a make play is
+  // handed ended the request on the arithmetic, and a fraction on PHP's deprecation of it
+  // as an integer.
+
+  if ( ! pqBoolWhole ( $pqLoop ) )
+    return FALSE;
+
   if ( $pqLoop % 2 )
     $pqLoop++;
 

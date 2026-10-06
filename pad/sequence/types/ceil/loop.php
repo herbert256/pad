@@ -9,6 +9,12 @@
   // fractional one rounds to fractional multiples the way floor and round already did.
   // Cutting it down turned any parameter below 1 into a divisor of zero.
 
+  // A value that is no number has no term here - a word in the list a make play is handed
+  // ended the request on the arithmetic.
+
+  if ( ! is_numeric ( $pqLoop ) )
+    return FALSE;
+
   if ( ! $pqParm )
     $pqParm = 1;
 

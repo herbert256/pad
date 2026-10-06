@@ -8,6 +8,12 @@
   // whole number - cutting it down turned any parameter below 1 into a modulo of zero. A
   // whole parameter still gives whole answers.
 
+  // A value that is no number has no term here - a word in the list a make play is handed
+  // ended the request on the arithmetic.
+
+  if ( ! is_numeric ( $pqLoop ) )
+    return FALSE;
+
   if ( ! $pqParm )
     $pqParm = 1;
 

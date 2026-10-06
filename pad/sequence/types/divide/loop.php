@@ -8,6 +8,12 @@
   // drawn afresh for every candidate and can come up zero here, where the answer is that
   // this candidate has no term rather than that the run is wrong.
 
+  // A value that is no number has no term here - a word in the list a make play is handed
+  // ended the request on the arithmetic.
+
+  if ( ! is_numeric ( $pqLoop ) )
+    return FALSE;
+
   if ( ! $pqParm )
     return FALSE;
 

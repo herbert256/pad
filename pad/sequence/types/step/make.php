@@ -7,6 +7,12 @@
   // with the increment init.php sets; this is the file a {make step=4} play runs, and
   // plays/init.php discards init.php's increment so the spacing is applied only here.
 
+  // A value that is no number has no term here - a word in the list a make play is handed
+  // ended the request on the arithmetic.
+
+  if ( ! is_numeric ( $pqLoop ) )
+    return FALSE;
+
   $pqLoop = 1 + ( ($pqLoop-1) * $pqParm );
 
   return $pqLoop;

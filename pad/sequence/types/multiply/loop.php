@@ -5,6 +5,12 @@
   // tag's first parameter is the multiplier rather than a row count; as a play,
   // {make multiply=3} scales another sequence's terms.
 
+  // A value that is no number has no term here - a word in the list a make play is handed
+  // ended the request on the arithmetic.
+
+  if ( ! is_numeric ( $pqLoop ) )
+    return FALSE;
+
   return $pqLoop * $pqParm;
 
 ?>

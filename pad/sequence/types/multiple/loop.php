@@ -9,6 +9,12 @@
   // init.php refuses a step of zero, but one written as a range is drawn afresh for every
   // candidate and can come up zero here, where the answer is no term for this candidate.
 
+  // A value that is no number has no term here - a word in the list a make play is handed
+  // ended the request on the arithmetic.
+
+  if ( ! is_numeric ( $pqLoop ) )
+    return FALSE;
+
   if ( ! $pqParm )
     return FALSE;
 

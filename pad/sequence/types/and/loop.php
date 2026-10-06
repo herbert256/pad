@@ -5,6 +5,13 @@
   // Despite the name in the documentation the operator is bitwise, not logical; the
   // parameter is cast to int so a string parm still masks sensibly.
 
+  // A value that is no whole number has no term here - a word in the list a make play is
+  // handed ended the request on the arithmetic, and a fraction on PHP's deprecation of it
+  // as an integer.
+
+  if ( ! pqBoolWhole ( $pqLoop ) )
+    return FALSE;
+
   return $pqLoop & (int) $pqParm;
 
 ?>
