@@ -138,14 +138,8 @@
       if ( $tokens [0] [1] != 'other' ) continue;   // a quoted string, number, $field or @ is a value
 
       $word = $tokens [0] [0];
-      $up   = strtoupper ( $word );
 
-      if ( in_array ( $up, padEval_txt )        ) continue;   // eq, and, or ... the unary operator form
-      if ( in_array ( $up, padEval_precedence ) ) continue;
-      if ( isset ( padEval_alt [$word] )        ) continue;
-      if ( str_contains ( $word, ':' )          ) continue;   // an explicit prefix reports itself elsewhere
-      if ( padTypeFunction ( $word )            ) continue;   // a real function, or a tag applied as one
-      if ( defined ( $word )                    ) continue;   // a defined constant
+      if ( padEvalWordKnown ( $word ) ) continue;
 
       if ( function_exists ( $word ) )
         return padEvalValidateError ( "the PHP function '$word' is not allowed by \$padPhpFunctions", $eval );
@@ -153,6 +147,19 @@
       return padEvalValidateError ( "there is no pipe function named '$word'", $eval );
 
     }
+
+    // A word called like a function - zzzq(2) - must name one, wherever it stands. Taken for
+    // the word itself it was joined to its arguments: {echo $x | zzzq(2)} printed zzzq2 and
+    // {if zzzq(1) eq 1} compared that, where {echo $x | zzzq} is named as no pipe function.
+
+    $tokens = array_values ( $result );
+
+    foreach ( $tokens as $n => $token )
+      if ( $token [1] == 'other' and ( $tokens [$n+1] [1] ?? '' ) == 'open' and ! padEvalWordKnown ( $token [0] ) )
+        if ( function_exists ( $token [0] ) )
+          return padEvalValidateError ( "the PHP function '{$token[0]}' is not allowed by \$padPhpFunctions", $eval );
+        else
+          return padEvalValidateError ( "there is no function named '{$token[0]}'", $eval );
 
     // A comparison or logical operator needs a value on both sides. When one is missing the
     // evaluator borrows the pipe value for it, which is the point of {echo $x | + 1} - so
@@ -177,6 +184,25 @@
     }
 
     return TRUE;
+
+  }
+
+  // Whether a bare word reads as something: an operator word (eq, and, or ... the unary
+  // operator form), a prefixed name - which reports itself where it resolves - a real
+  // function or a tag applied as one, or a defined constant.
+
+  function padEvalWordKnown ( $word ) {
+
+    $up = strtoupper ( $word );
+
+    if ( in_array ( $up, padEval_txt )        ) return TRUE;
+    if ( in_array ( $up, padEval_precedence ) ) return TRUE;
+    if ( isset ( padEval_alt [$word] )        ) return TRUE;
+    if ( str_contains ( $word, ':' )          ) return TRUE;
+    if ( padTypeFunction ( $word )            ) return TRUE;
+    if ( defined ( $word )                    ) return TRUE;
+
+    return FALSE;
 
   }
 
