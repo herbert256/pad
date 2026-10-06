@@ -470,10 +470,16 @@
 
         $value = $GLOBALS [$name];
 
-        if ( $columns and ! padSelectColumns ( (string) $value ) )
+        // An array is a list of literals, as in a bare db() placeholder - name in ($names) -
+        // where it was escaped as one literal, 'jim,bob', which matched nothing, and on SQLite
+        // was cast to text with an "Array to string conversion"; in order= or group= it holds
+        // no column names.
+
+        if ( $columns and ( ! is_scalar ( $value ) or ! padSelectColumns ( (string) $value ) ) )
           return padError ( "\$$name in order= or group= must hold column names, each with an optional asc or desc" );
 
         if     ( $columns                ) $add = (string) $value;
+        elseif ( is_array ( $value )     ) $add = ( $connect = padDbApp () ) ? padDbLiteral ( $connect, $value ) : 'NULL';
         elseif ( $value === NULL         ) $add = 'NULL';
         elseif ( is_bool ( $value )      ) $add = $value ? '1' : '0';
         elseif ( is_int ( $value ) or is_float ( $value ) or ( ! $mysql and preg_match ( '/^-?[0-9]+(\.[0-9]+)?$/', (string) $value ) ) )
