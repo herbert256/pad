@@ -237,7 +237,10 @@
 
   }
 
-  // A date value as a timestamp: a number as it is, text through strtotime, empty as now.
+  // A date value as a timestamp: a number as it is, text read in the application's zone
+  // (padDateZone), empty as now. Text is read in the zone localDate writes it in: strtotime
+  // read it in the zone the request started with, so with $padTimezone New York the day
+  // 2023-11-15 was written Nov 14.
 
   function padLocaleTime ( $value ) {
 
@@ -247,7 +250,11 @@
     if ( is_numeric ( $value ) )
       return (int) $value;
 
-    $time = strtotime ( (string) $value );
+    try {
+      $time = ( new DateTimeImmutable ( (string) $value, padDateZone () ) ) -> getTimestamp ();
+    } catch ( Exception $e ) {
+      $time = FALSE;
+    }
 
     if ( $time === FALSE and $GLOBALS ['padCheckSyntax'] )
       padError ( "localDate cannot read '" . padMakeSafe ( (string) $value, 40 ) . "' as a date" );
