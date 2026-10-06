@@ -3,8 +3,8 @@
   // Files dropped on the tree, into one directory of the application. A file that exists
   // there is not overwritten.
 
-  $app  = editApp ( editArg ( $body, 'app' ) );
   $root = editArg ( $body, 'root', 'app' );
+  $app  = editRootApp ( editArg ( $body, 'app' ), $root );
   $dir  = trim ( editArg ( $body, 'dir' ), '/' );
   $base = editPath ( $app, $root, $dir );
 

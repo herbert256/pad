@@ -53,4 +53,9 @@
 
   $editDebug = TRUE;
 
+  // The framework itself, pad/, in the tree beside the application's files - to read it, set
+  // breakpoints in it, and change it. FALSE leaves it out.
+
+  $editEngine = TRUE;
+
 ?>

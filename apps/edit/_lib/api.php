@@ -130,11 +130,23 @@
 
   function editTarget ( $body, $key = 'path', $rootKey = 'root' ) {
 
-    $app  = editApp ( editArg ( $body, 'app' ) );
     $root = editArg ( $body, $rootKey, 'app' );
+    $app  = editRootApp ( editArg ( $body, 'app' ), $root );
     $rel  = trim ( editArg ( $body, $key ), '/' );
 
     return [ $app, $root, $rel, editPath ( $app, $root, $rel ) ];
+
+  }
+
+  // Where a copy or a move may go: between an application's two roots, or within the
+  // framework - not from the one to the other.
+
+  function editToRoot ( $root, $toRoot ) {
+
+    if ( ( $root === 'pad' ) !== ( $toRoot === 'pad' ) )
+      editFail ( 'files go between an application and the framework by hand - copy the text' );
+
+    return $toRoot;
 
   }
 

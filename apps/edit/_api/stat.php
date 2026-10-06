@@ -11,7 +11,8 @@
     if ( ! is_array ( $one ) )
       continue;
 
-    $file = editPath ( editApp ( $app ), (string) ( $one ['root'] ?? 'app' ), (string) ( $one ['path'] ?? '' ) );
+    $root = (string) ( $one ['root'] ?? 'app' );
+    $file = editPath ( editRootApp ( $app, $root ), $root, (string) ( $one ['path'] ?? '' ) );
 
     $list [] = [ 'root'   => (string) ( $one ['root'] ?? 'app' ),
                  'path'   => (string) ( $one ['path'] ?? '' ),

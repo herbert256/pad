@@ -16,7 +16,7 @@
   foreach ( explode ( '/', $toRel ) as $part )
     editName ( $part );
 
-  editMove ( $from, editPath ( $app, editArg ( $body, 'toRoot', $root ), $toRel ) );
+  editMove ( $from, editPath ( $app, editToRoot ( $root, editArg ( $body, 'toRoot', $root ) ), $toRel ) );
 
   return [ 'path' => $toRel ];
 

@@ -7,7 +7,7 @@
   if ( $rel === '' )
     editFail ( 'the root itself is not copied' );
 
-  $to = editPath ( $app, editArg ( $body, 'toRoot', $root ), trim ( editArg ( $body, 'to' ), '/' ) );
+  $to = editPath ( $app, editToRoot ( $root, editArg ( $body, 'toRoot', $root ) ), trim ( editArg ( $body, 'to' ), '/' ) );
 
   editCopy ( $from, $to );
 

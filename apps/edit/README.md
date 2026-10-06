@@ -10,6 +10,10 @@ Open `http://localhost/pad/edit/`. The first visit asks for the first user - the
 default password, and only this machine may make that user; more users are added in the
 editor (**⋯ → Users**). Pick an application (Alt+A); its files are on the left, in two roots:
 `apps/<app>/` and, when it has one, `www/<app>/` with its stylesheets and scripts.
+Below them, folded, is `pad/` - **the framework itself**, the same in every application: to
+read the engine, set breakpoints in it, and change it. It is loaded the first time it is
+opened; quick open finds its files, and the search panel's **pad/ too** searches it as well.
+A file of it opened from any application is the same tab.
 A link to `edit/?app=demo` opens the editor on that application, through the login when
 there is no session yet - the *edit* links of the apps listing (`/pad/apps/`) are such links.
 
@@ -110,6 +114,9 @@ The editor writes `.php` files: whoever can use it can run code on this machine.
   on a port of its own, with a token that only the web server's user can read. An
   expression in its console runs in the paused request - as much as the editor can do
   anyway. `$editDebug = FALSE` switches it off.
+- A PHP file the editor itself runs on - the framework's, the editor's own - is not saved
+  when it does not parse: with it no page would answer any more, this editor neither, and it
+  could not be put right from here. Any other file is saved as it is.
 - The terminal runs commands as the web server's user - no more than the editor can do by
   writing a PHP file, but more directly; `$editTerminal = FALSE` switches it off. Its jobs
   and their output are kept in the system's temporary directory (mode 0700), not under
@@ -132,6 +139,7 @@ The editor writes `.php` files: whoever can use it can run code on this machine.
 | `$editTerminal` | `TRUE` | the terminal in the bottom panel |
 | `$editShell` | `''` | the terminal's shell - `''` takes bash, zsh or sh |
 | `$editDebug` | `TRUE` | the step debugger in the bottom panel |
+| `$editEngine` | `TRUE` | the framework, `pad/`, in the tree |
 
 Without Monaco - no internet, a wrong address - the editor falls back to a plain text area:
 files still open, change and save.

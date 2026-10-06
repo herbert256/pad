@@ -9,7 +9,9 @@
   //            www/<app>/index.php, nested ones like regression/main too - and _common
   // editRoots  the roots of an application: 'app' (apps/<app>/), and 'www' (www/<app>/,
   //            its stylesheets and scripts) when it has one
-  // editRoot   one root, as a real path ending in /
+  // editRoot   one root, as a real path ending in /; 'pad' is the framework itself, pad/,
+  //            the same for every application ($editEngine switches it off)
+  // editRootApp the application a root needs: none for 'pad'
   // editPath   a path inside a root, refused when it leaves it: a .. or empty segment, a
   //            control character or backslash, .git, or a symbolic link pointing out
 
@@ -96,7 +98,27 @@
 
   }
 
+  function editEngine () {
+
+    global $editEngine;
+
+    return ( $editEngine ?? TRUE ) and is_dir ( editHome () . '/pad' );
+
+  }
+
+  function editRootApp ( $app, $root ) {
+
+    return $root === 'pad' ? '' : editApp ( $app );
+
+  }
+
   function editRoot ( $app, $root ) {
+
+    if ( $root === 'pad' ) {
+      if ( ! editEngine () )
+        editFail ( 'the framework is not shown here: $editEngine' );
+      return realpath ( editHome () . '/pad' ) . '/';
+    }
 
     $roots = editRoots ( $app );
 

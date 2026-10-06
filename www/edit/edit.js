@@ -25,6 +25,7 @@
     apps: [],
     files: [],            // the flat list of the current application's tree
     fileIndex: {},        // root|path -> entry
+    engine: { files: [], git: null, loaded: false },   // the framework, pad/
     git: null,            // root -> path -> mark
     branch: '',
     base: null,           // the language data shared by every application
@@ -118,7 +119,16 @@
     return new Date(seconds * 1000).toLocaleString();
   }
 
-  function key(app, root, path) { return app + '|' + root + '|' + path; }
+  // A framework file is the same whichever application is open: its key has no application.
+  function key(app, root, path) { return (root === 'pad' ? '' : app) + '|' + root + '|' + path; }
+
+  // The root a file is in, as a path from the checkout: apps/<app>, www/<app>, pad.
+  function rootLabel(app, root) { return root === 'pad' ? 'pad' : (root === 'www' ? 'www/' : 'apps/') + app; }
+  function shownPath(app, root, path) { return rootLabel(app, root) + (path ? '/' + path : ''); }
+
+  // Within the open application, a path as the tree reads it: www/ and pad/ in front of
+  // the files of those roots.
+  function relLabel(root, path) { return (root === 'www' ? 'www/' : root === 'pad' ? 'pad/' : '') + path; }
 
   function langOf(root, path) {
     var e = ext(path);
@@ -644,6 +654,7 @@
   // A document - read from the server once, then kept: a tab shows it, a definition lookup
   // may load one without a tab.
   function ensureDoc(app, root, path) {
+    if (root === 'pad') app = '';
     var k = key(app, root, path);
     if (E.docs[k]) return Promise.resolve(E.docs[k]);
     if (E.docs[k + '#loading']) return E.docs[k + '#loading'];
@@ -702,7 +713,7 @@
       E.editor.setModel(null);
       if (d) showViewer(d);
     }
-    if (d && d.app === E.app) select(d.root, d.path, false, true);
+    if (d && (d.app === E.app || d.root === 'pad')) select(d.root, d.path, false, true);
     if (d && d.kind === 'text' && !d.checked) { d.checked = true; check(d, false); }
     renderTabs();
     renderStatus();
@@ -775,7 +786,7 @@
       var same = E.tabs.filter(function (o) { return E.docs[o] && basename(E.docs[o].path) === label; }).length > 1;
       var tab = el('div', { class: 'tab' + (k === E.active ? ' active' : '') + (isDirty(d) ? ' dirty' : '') + (d.changedOnDisk ? ' stale' : ''),
                             role: 'tab', 'aria-selected': k === E.active ? 'true' : 'false', tabindex: '0', draggable: 'true',
-                            title: d.root === 'src' ? d.path + ' (read-only, from the debugger)' : d.app + ' - ' + (d.root === 'www' ? 'www/' : '') + d.path,
+                            title: d.root === 'src' ? d.path + ' (read-only, from the debugger)' : d.root === 'pad' ? 'pad/' + d.path + ' - the framework' : d.app + ' - ' + (d.root === 'www' ? 'www/' : '') + d.path,
                             onclick: function () { activate(k); if (d.kind === 'text') E.editor.focus(); },
                             onauxclick: function (ev) { if (ev.button === 1) closeTab(k); },
                             onkeydown: function (ev) { if (ev.key === 'Enter') activate(k); },
@@ -783,6 +794,7 @@
         el('span', { class: 'badge ' + badge[1], text: badge[0] }),
         el('span', { class: 'tab-name', text: label }),
         d.root === 'src' ? el('span', { class: 'tab-dir', text: dbgShort(dirname(d.path)) }) :
+        d.root === 'pad' ? el('span', { class: 'tab-dir', text: 'pad/' + dirname(d.path) }) :
         same || d.app !== E.app ? el('span', { class: 'tab-dir', text: (d.app !== E.app ? d.app + ':' : '') + (dirname(d.path) || '/') }) : null,
         el('button', { type: 'button', class: 'tab-close', 'aria-label': 'Close ' + label, title: 'Close (Alt+W)',
                        onclick: function (ev) { ev.stopPropagation(); closeTab(k); } }, [el('span', { class: 'dot' }), icon('close')])
@@ -812,7 +824,7 @@
       { label: 'Close saved', icon: 'close', run: function () { closeMany(E.tabs.filter(function (o) { return !isDirty(E.docs[o]); })); } },
       { label: 'Close all', icon: 'close', run: function () { closeMany(E.tabs.slice()); } },
       '-',
-      d.root === 'src' ? null : { label: 'Reveal in tree', icon: 'side', run: function () { if (d.app !== E.app) switchApp(d.app).then(function () { select(d.root, d.path, true); }); else select(d.root, d.path, true); } },
+      d.root === 'src' ? null : { label: 'Reveal in tree', icon: 'side', run: function () { if (d.app !== E.app && d.root !== 'pad') switchApp(d.app).then(function () { select(d.root, d.path, true); }); else select(d.root, d.path, true); } },
       { label: 'Copy path', icon: 'copy', run: function () { if (d.root === 'src') { if (navigator.clipboard) navigator.clipboard.writeText(d.path); toast('Copied ' + d.path); } else copyPath(d.app, d.root, d.path); } }
     ]);
   }
@@ -859,6 +871,7 @@
       loadAppLang(d.app);
     }
     if (d.app === E.app) refreshTree(true);
+    if (d.root === 'pad') loadEngine(true);
     if (E.previewOn) reloadPreview();
     if (E.panelTab === 'history') renderHistory();
     if (lang === 'pad' && d.app === E.app) {
@@ -967,7 +980,7 @@
       var ms = byUri[uri].sort(function (a, b) { return a.startLineNumber - b.startLineNumber; });
       total += ms.length;
       list.appendChild(el('div', { class: 'group-head' }, [el('span', { class: 'badge ' + (BADGES[ext(d.path)] || ['', 'b-txt'])[1], text: (BADGES[ext(d.path)] || ['TXT'])[0] }),
-                                                          el('strong', { text: basename(d.path) }), el('span', { class: 'muted', text: ' ' + d.app + '/' + dirname(d.path) })]));
+                                                          el('strong', { text: basename(d.path) }), el('span', { class: 'muted', text: ' ' + shownPath(d.app, d.root, dirname(d.path)) })]));
       ms.forEach(function (m) {
         list.appendChild(el('button', { type: 'button', class: 'result', onclick: function () {
           openFile(d.app, d.root, d.path, { line: m.startLineNumber, column: m.startColumn });
@@ -985,14 +998,32 @@
   // The tree
   // ------------------------------------------------------------------------------------
 
+  function allFiles() { return E.engine.loaded ? E.files.concat(E.engine.files) : E.files; }
+
+  function indexFiles() {
+    E.fileIndex = {};
+    allFiles().forEach(function (f) { E.fileIndex[f.root + '|' + f.path] = f; });
+  }
+
+  // The framework's files, loaded the first time its folder is opened (or quick open and
+  // search need them) and again when one of them was saved.
+  function loadEngine(again) {
+    if (!boot.engine || (E.engine.loaded && !again) || E.engine.loading) return Promise.resolve();
+    E.engine.loading = true;
+    return api('tree', { engine: true, git: true }).then(function (r) {
+      E.engine = { files: r.files, git: r.git, loaded: true, loading: false };
+      indexFiles();
+      renderTree();
+    }).catch(function (e) { E.engine.loading = false; toast('The framework: ' + e.message, 'error'); });
+  }
+
   function refreshTree(quiet) {
     if (!E.app) return Promise.resolve();
     var app = E.app;
     return api('tree', { app: app, git: true }).then(function (r) {
       if (app !== E.app) return;
       E.files = r.files;
-      E.fileIndex = {};
-      r.files.forEach(function (f) { E.fileIndex[f.root + '|' + f.path] = f; });
+      indexFiles();
       E.git = r.git;
       E.branch = r.branch || '';
       renderTree();
@@ -1002,12 +1033,14 @@
 
   function buildTree() {
     var roots = [], nodes = {};
-    (E.apps.filter(function (a) { return a.name === E.app; })[0] || { roots: ['app'] }).roots.forEach(function (root) {
-      var n = { root: root, path: '', dir: true, name: (root === 'www' ? 'www/' : 'apps/') + E.app, children: [], top: true };
+    var names = (E.apps.filter(function (a) { return a.name === E.app; })[0] || { roots: ['app'] }).roots.slice();
+    if (boot.engine) names.push('pad');
+    names.forEach(function (root) {
+      var n = { root: root, path: '', dir: true, name: rootLabel(E.app, root), children: [], top: true };
       nodes[root + '|'] = n;
       roots.push(n);
     });
-    E.files.forEach(function (f) {
+    allFiles().forEach(function (f) {
       var n = { root: f.root, path: f.path, dir: f.dir, name: basename(f.path), size: f.size, mtime: f.mtime, children: [] };
       nodes[f.root + '|' + f.path] = n;
       var parent = nodes[f.root + '|' + dirname(f.path)];
@@ -1023,14 +1056,15 @@
     box.textContent = '';
     var filter = $('treeFilter').value.trim().toLowerCase();
     if (filter) {
-      var hits = fuzzy(E.files.filter(function (f) { return !f.dir; }), filter, function (f) { return (f.root === 'www' ? 'www/' : '') + f.path; }).slice(0, 300);
-      hits.forEach(function (f) { box.appendChild(row({ root: f.root, path: f.path, dir: false, name: basename(f.path) }, 0, (f.root === 'www' ? 'www/' : '') + dirname(f.path))); });
+      var hits = fuzzy(allFiles().filter(function (f) { return !f.dir; }), filter, function (f) { return relLabel(f.root, f.path); }).slice(0, 300);
+      hits.forEach(function (f) { box.appendChild(row({ root: f.root, path: f.path, dir: false, name: basename(f.path) }, 0, relLabel(f.root, dirname(f.path)))); });
       if (!hits.length) box.appendChild(el('p', { class: 'empty', text: 'No file matches.' }));
       return;
     }
     var exp = expandedSet();
     var walk = function (n, depth, parent) {
-      var r = row(n, depth);
+      var r = row(n, depth, n.top && n.root === 'pad' ? 'the framework' : '');
+      if (n.top && n.root === 'pad' && expandedSet()['pad|'] && !E.engine.loaded) loadEngine();
       parent.appendChild(r);
       if (n.dir && exp[n.root + '|' + n.path]) {
         var group = el('div', { role: 'group' });
@@ -1043,8 +1077,8 @@
   }
 
   function gitMark(root, path, dir) {
-    if (!E.git || !E.git[root]) return '';
-    var g = E.git[root];
+    var g = root === 'pad' ? E.engine.git : E.git && E.git[root];
+    if (!g) return '';
     if (!dir) return g[path] || '';
     var pre = path ? path + '/' : '';
     for (var p in g) if (p.indexOf(pre) === 0) return '•';
@@ -1201,7 +1235,7 @@
   }
 
   function copyPath(app, root, path) {
-    var full = (root === 'www' ? 'www/' : 'apps/') + app + (path ? '/' + path : '');
+    var full = shownPath(app, root, path);
     if (navigator.clipboard) navigator.clipboard.writeText(full).then(function () { toast('Copied ' + full); }, function () { toast(full); });
     else toast(full);
   }
@@ -1222,7 +1256,7 @@
 
   function newFile() {
     var t = targetDir();
-    return ask('New file', 'Name - in ' + ((t.root === 'www' ? 'www/' : 'apps/') + E.app + '/' + t.dir).replace(/\/$/, ''), '', {
+    return ask('New file', 'Name - in ' + shownPath(E.app, t.root, t.dir), '', {
       ok: 'Make', note: 'A name with a / makes the directories too: admin/users.pad. A name without an extension makes a page pair - name.php and name.pad.'
     }).then(function (name) {
       if (!name) return;
@@ -1239,7 +1273,7 @@
 
   function newFolder() {
     var t = targetDir();
-    return ask('New folder', 'Name - in ' + ((t.root === 'www' ? 'www/' : 'apps/') + E.app + '/' + t.dir).replace(/\/$/, ''), '', { ok: 'Make' }).then(function (name) {
+    return ask('New folder', 'Name - in ' + shownPath(E.app, t.root, t.dir), '', { ok: 'Make' }).then(function (name) {
       if (!name) return;
       return api('create', { app: E.app, root: t.root, dir: t.dir, name: name, kind: 'dir' }).then(function (r) {
         expandedSet()[t.root + '|' + r.made[0]] = true;
@@ -1312,14 +1346,14 @@
   }
 
   function moveNode(n) {
-    return ask('Move', 'New path, from the root of ' + (n.root === 'www' ? 'www/' : 'apps/') + E.app, n.path, { ok: 'Move' }).then(function (to) {
+    return ask('Move', 'New path, from the root of ' + rootLabel(E.app, n.root), n.path, { ok: 'Move' }).then(function (to) {
       if (!to || to === n.path) return;
       return move(n.root, n.path, n.root, to);
     });
   }
 
   function move(root, path, toRoot, to) {
-    var moving = openDocs().filter(function (d) { return d.app === E.app && d.root === root && (d.path === path || d.path.indexOf(path + '/') === 0); });
+    var moving = openDocs().filter(function (d) { return (d.app === E.app || root === 'pad') && d.root === root && (d.path === path || d.path.indexOf(path + '/') === 0); });
     var dirty = moving.filter(isDirty);
     var go = function () {
       return api('rename', { app: E.app, root: root, path: path, toRoot: toRoot, to: to }).then(function () {
@@ -1355,7 +1389,7 @@
     return confirmBox('Delete', 'Move ' + what + ' to the trash? It can be put back from the trash.', 'Move to trash', true).then(function (yes) {
       if (!yes) return;
       return api('delete', { app: E.app, root: n.root, path: n.path }).then(function () {
-        var gone = openDocs().filter(function (d) { return d.app === E.app && d.root === n.root && (d.path === n.path || d.path.indexOf(n.path + '/') === 0); });
+        var gone = openDocs().filter(function (d) { return (d.app === E.app || n.root === 'pad') && d.root === n.root && (d.path === n.path || d.path.indexOf(n.path + '/') === 0); });
         gone.forEach(function (d) { closeTab(key(d.app, d.root, d.path), true); });
         toast('Moved to the trash: ' + basename(n.path), 'ok');
         select(n.root, dirname(n.path), false);
@@ -1493,10 +1527,10 @@
           shown = t ? fuzzy(items, t, function (x) { return x.label; }) : items;
         }
       } else {
-        var files = E.files.filter(function (f) { return !f.dir; });
-        var hits = q.trim() ? fuzzy(files, q.trim(), function (f) { return (f.root === 'www' ? 'www/' : '') + f.path; }) : recent();
+        var files = allFiles().filter(function (f) { return !f.dir; });
+        var hits = q.trim() ? fuzzy(files, q.trim(), function (f) { return relLabel(f.root, f.path); }) : recent();
         shown = hits.slice(0, 60).map(function (f) {
-          return { label: basename(f.path), note: (f.root === 'www' ? 'www/' : '') + dirname(f.path), badge: BADGES[ext(f.path)], run: function () { openFile(f.app || E.app, f.root, f.path); } };
+          return { label: basename(f.path), note: relLabel(f.root, dirname(f.path)), badge: BADGES[ext(f.path)], run: function () { openFile(f.app || E.app, f.root, f.path); } };
         });
       }
       cursor = Math.min(cursor, Math.max(0, shown.length - 1));
@@ -1518,6 +1552,7 @@
     });
     var close = modal(prefix === '>' ? 'Commands' : 'Go to file', el('div', { class: 'picker' }, [input, list]), { wide: true });
     render();
+    if (boot.engine && !E.engine.loaded) loadEngine().then(render);
     setTimeout(function () { input.focus(); input.setSelectionRange(input.value.length, input.value.length); }, 40);
   }
 
@@ -1555,7 +1590,8 @@
     var out = $('searchResults');
     out.textContent = '';
     out.appendChild(el('p', { class: 'empty', text: 'Searching…' }));
-    api('search', { app: E.app, query: q, regex: $('searchRegex').checked, case: $('searchCase').checked, word: $('searchWord').checked }).then(function (r) {
+    api('search', { app: E.app, query: q, regex: $('searchRegex').checked, case: $('searchCase').checked, word: $('searchWord').checked,
+                     engine: boot.engine && $('searchEngine').checked }).then(function (r) {
       out.textContent = '';
       var groups = {};
       r.hits.forEach(function (h) { (groups[h.root + '|' + h.path] = groups[h.root + '|' + h.path] || []).push(h); });
@@ -1563,7 +1599,7 @@
       Object.keys(groups).forEach(function (g) {
         var hits = groups[g], f = hits[0];
         out.appendChild(el('div', { class: 'group-head' }, [el('span', { class: 'badge ' + (BADGES[ext(f.path)] || ['', 'b-txt'])[1], text: (BADGES[ext(f.path)] || ['TXT'])[0] }),
-                                                           el('strong', { text: basename(f.path) }), el('span', { class: 'muted', text: ' ' + (f.root === 'www' ? 'www/' : '') + dirname(f.path) + ' (' + hits.length + ')' })]));
+                                                           el('strong', { text: basename(f.path) }), el('span', { class: 'muted', text: ' ' + relLabel(f.root, dirname(f.path)) + ' (' + hits.length + ')' })]));
         hits.forEach(function (h) {
           var text = h.text, s = h.start, e = h.start + h.length;
           out.appendChild(el('button', { type: 'button', class: 'result', onclick: function () {
@@ -1907,6 +1943,10 @@
     var out = [];
     abs.split('/').forEach(function (seg) { if (seg === '..') out.pop(); else if (seg && seg !== '.') out.push(seg); });
     abs = '/' + out.join('/');
+    if (boot.engine && home && abs.indexOf(home + '/pad/') === 0) {
+      var enginePath = abs.slice(home.length + 5);
+      return E.fileIndex['pad|' + enginePath] ? { app: '', root: 'pad', path: enginePath, line: parts[2] ? parseInt(parts[2], 10) : 0, column: parts[3] ? parseInt(parts[3], 10) : 0 } : null;
+    }
     var rootName = abs.indexOf(home + '/apps/') === 0 ? 'app' : abs.indexOf(home + '/www/') === 0 ? 'www' : '';
     if (!home || !rootName) return null;
     var rest = abs.slice(home.length + (rootName === 'app' ? 6 : 5));
@@ -2123,12 +2163,13 @@
 
   function dbgAbs(d) {
     if (d.root === 'src') return d.path;
-    return (boot.home || '') + '/' + (d.root === 'www' ? 'www/' : 'apps/') + d.app + '/' + d.path;
+    return (boot.home || '') + '/' + shownPath(d.app, d.root, d.path);
   }
 
   // A path on this machine as a file of an application, or null - an engine file, say.
   function dbgLocate(file) {
     var home = boot.home || '';
+    if (boot.engine && home && file.indexOf(home + '/pad/') === 0) return { app: '', root: 'pad', path: file.slice(home.length + 5) };
     var root = file.indexOf(home + '/apps/') === 0 ? 'app' : file.indexOf(home + '/www/') === 0 ? 'www' : '';
     if (!home || !root) return null;
     var rest = file.slice(home.length + (root === 'app' ? 6 : 5));
@@ -2706,7 +2747,7 @@
         if (!items.length) { list.appendChild(el('p', { class: 'empty', text: 'The trash is empty.' })); return; }
         items.forEach(function (t) {
           list.appendChild(el('div', { class: 'trash-row' }, [icon(t.dir ? 'folderPlus' : 'file'),
-            el('span', { class: 'path', text: (t.root === 'www' ? 'www/' : 'apps/') + t.app + '/' + t.path }),
+            el('span', { class: 'path', text: shownPath(t.app, t.root, t.path) }),
             el('span', { class: 'muted', text: ago(t.time) + ' - ' + (t.user || '') }),
             button('Put back', 'history', function () {
               api('trash', { op: 'restore', id: t.id }).then(function () { toast('Put back: ' + t.path, 'ok'); load(); if (t.app === E.app) refreshTree(); })
@@ -2886,7 +2927,7 @@
     right.textContent = '';
     if (E.branch) left.appendChild(el('span', { class: 'st', title: 'git branch' }, [icon('git'), E.branch]));
     left.appendChild(el('button', { type: 'button', class: 'st link', onclick: appPicker, title: 'Switch application (Alt+A)' }, [icon('apps'), E.app || '-']));
-    if (d) left.appendChild(el('span', { class: 'st path', text: d.root === 'src' ? dbgShort(d.path) + ' (read-only)' : (d.root === 'www' ? 'www/' : 'apps/') + d.app + '/' + d.path }));
+    if (d) left.appendChild(el('span', { class: 'st path', text: d.root === 'src' ? dbgShort(d.path) + ' (read-only)' : shownPath(d.app, d.root, d.path) }));
     right.appendChild(el('button', { type: 'button', class: 'st link' + (E.problemTotal ? ' bad' : ''), onclick: function () { showPanel('problems'); }, title: 'Problems' },
                          [icon(E.problemTotal ? 'warning' : 'check'), String(E.problemTotal || 0)]));
     if (d && d.kind === 'text') {
@@ -2975,6 +3016,7 @@
     ['problems', 'search', 'history', 'terminal', 'debug'].forEach(function (p) { $('ptab-' + p).addEventListener('click', function () { showPanel(p); }); });
     if (!boot.terminal) $('ptab-terminal').hidden = true;
     if (!boot.debug) $('ptab-debug').hidden = true;
+    if (!boot.engine) $('searchEngine').parentNode.hidden = true;
     $('termInput').addEventListener('keydown', termKeys);
     $('termStop').addEventListener('click', function () { termStop(); $('termInput').focus(); });
     $('termForm').addEventListener('submit', function (e) { e.preventDefault(); });

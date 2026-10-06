@@ -41,7 +41,38 @@
 
   function editGitDir ( $app, $root ) {
 
+    if ( $root == 'pad' )
+      return 'pad';
+
     return ( $root == 'www' ? 'www/' : 'apps/' ) . $app;
+
+  }
+
+  // [ path => mark ] for the framework's changed files.
+
+  function editGitEngine () {
+
+    $out = editGitRun ( [ 'status', '--porcelain=v1', '-z', '--untracked-files=all', '--', 'pad/' ] );
+
+    if ( $out === NULL )
+      return NULL;
+
+    $status  = [];
+    $entries = explode ( "\0", $out );
+
+    for ( $i = 0; $i < count ( $entries ); $i++ ) {
+      $entry = $entries [$i];
+      if ( strlen ( $entry ) < 4 )
+        continue;
+      $code = substr ( $entry, 0, 2 );
+      if ( $code [0] == 'R' or $code [0] == 'C' )
+        $i++;
+      $path = substr ( $entry, 3 );
+      if ( str_starts_with ( $path, 'pad/' ) )
+        $status [ substr ( $path, 4 ) ] = $code == '??' ? '?' : ( str_contains ( $code, 'D' ) ? 'D' : ( str_contains ( $code, 'A' ) ? 'A' : 'M' ) );
+    }
+
+    return $status;
 
   }
 

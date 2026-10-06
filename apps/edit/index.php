@@ -14,6 +14,7 @@
     'home'      => editHome (),
     'terminal'  => (bool) $editTerminal,
     'debug'     => (bool) $editDebug,
+    'engine'    => editEngine (),
     'root'      => $padRoot,
     'limits'    => [ 'upload' => editIniBytes ( 'upload_max_filesize' ),
                      'post'   => editIniBytes ( 'post_max_size' ),

@@ -6,7 +6,9 @@
   // for. Nothing that exists is overwritten: when one of the files is there already,
   // none is made.
 
-  [ $app, $root, $dir ] = [ editApp ( editArg ( $body, 'app' ) ), editArg ( $body, 'root', 'app' ), trim ( editArg ( $body, 'dir' ), '/' ) ];
+  $root = editArg ( $body, 'root', 'app' );
+  $app  = editRootApp ( editArg ( $body, 'app' ), $root );
+  $dir  = trim ( editArg ( $body, 'dir' ), '/' );
 
   $name = trim ( editArg ( $body, 'name' ), '/' );
   $kind = editArg ( $body, 'kind', 'file' );
@@ -88,8 +90,8 @@
 
   }
 
-  if ( $kind != 'file' and $root != 'app' )
-    editFail ( 'PAD files live in the application, not in www/' );
+  if ( $kind != 'file' and $kind != 'dir' and $root != 'app' )
+    editFail ( 'PAD files live in the application, not in www/ or the framework' );
 
   // Every place first, then the writing: all or nothing.
 

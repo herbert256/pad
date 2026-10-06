@@ -21,7 +21,8 @@
                          'svg' => 'image/svg+xml', 'avif' => 'image/avif', 'bmp' => 'image/bmp' ];
 
   // Every file and directory of an application, both roots, as one flat list sorted by
-  // root and path - the browser builds the tree from it, and quick open searches it.
+  // root and path - the browser builds the tree from it, and quick open searches it. The
+  // framework, pad/, is listed on its own: it is the same for every application.
 
   function editTree ( $app, $limit = 20000 ) {
 
@@ -31,6 +32,30 @@
       editTreeWalk ( editRoot ( $app, $root ), '', $root, $list, $limit );
 
     return $list;
+
+  }
+
+  function editEngineTree ( $limit = 20000 ) {
+
+    $list = [];
+
+    editTreeWalk ( editRoot ( '', 'pad' ), '', 'pad', $list, $limit );
+
+    return $list;
+
+  }
+
+  // The PHP the editor itself runs on - the framework, and the editor's own files: one of
+  // them that does not parse would stop every page, the editor's too, and it could not be
+  // put right from here any more. Such a save is refused; any other file is saved as it is.
+
+  function editRunsOn ( $app, $root, $rel ) {
+
+    if ( editExt ( $rel ) !== 'php' )
+      return FALSE;
+
+    return $root === 'pad' or ( $root === 'app' and $app === 'edit' )
+        or ( $root === 'www' and $app === 'edit' );
 
   }
 

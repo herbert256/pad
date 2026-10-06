@@ -19,15 +19,19 @@
   if ( @preg_match ( $pattern, '' ) === FALSE )
     editFail ( 'that is not a regular expression PHP takes' );
 
-  $hits = [];
-  $more = FALSE;
+  $hits  = [];
+  $more  = FALSE;
+  $files = editTree ( $app );
 
-  foreach ( editTree ( $app ) as $one ) {
+  if ( ! empty ( $body ['engine'] ) and editEngine () )
+    $files = array_merge ( $files, editEngineTree () );
+
+  foreach ( $files as $one ) {
 
     if ( $one ['dir'] or $one ['size'] > 2 * 1024 * 1024 )
       continue;
 
-    $file = editPath ( $app, $one ['root'], $one ['path'] );
+    $file = editPath ( editRootApp ( $app, $one ['root'] ), $one ['root'], $one ['path'] );
     $text = (string) @file_get_contents ( $file );
 
     if ( str_contains ( $text, "\0" ) or ! mb_check_encoding ( $text, 'UTF-8' ) or ! preg_match ( $pattern, $text ) )

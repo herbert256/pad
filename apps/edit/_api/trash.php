@@ -11,7 +11,7 @@
 
     case 'restore':
       $meta = editTrashMeta ( editStore (), $id );
-      editTrashRestore ( editStore (), $id, editPath ( editApp ( $meta ['app'] ), $meta ['root'], $meta ['path'] ) );
+      editTrashRestore ( editStore (), $id, editPath ( editRootApp ( (string) $meta ['app'], (string) $meta ['root'] ), $meta ['root'], $meta ['path'] ) );
       return [ 'app' => $meta ['app'], 'root' => $meta ['root'], 'path' => $meta ['path'] ];
 
     case 'drop':

@@ -26,6 +26,10 @@
   if ( $there and ! is_writable ( $file ) )
     editFail ( 'the file is read-only' );
 
+  if ( editRunsOn ( $app, $root, $rel ) and $parse = editCheckPhp ( $text ) )
+    editFail ( 'not saved - the editor itself runs on this file, and with an error in it no page would answer any more, '
+             . 'this editor neither: line ' . $parse [0] ['line'] . ', ' . $parse [0] ['message'] );
+
   if ( $there ) {
     $old = (string) file_get_contents ( $file );
     if ( $old !== $text )
