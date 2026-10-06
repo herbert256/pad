@@ -22,9 +22,9 @@ as many <code>{open}elseif{close}</code> branches as needed and an
 
 {example 'fragments/conditions_2'}
 
-<p><b>A condition needs a comparison.</b> <code>{open}if $flag{close}</code> is not a
-shorthand for testing truth - write what is being compared:
-<code>{open}if $flag eq 1{close}</code>.</p>
+<p><b>A bare value is tested for its truth.</b> <code>{open}if $flag{close}</code> holds
+unless the value is empty, <code>0</code>, <code>'0'</code> or FALSE - the truth PHP gives it;
+write a comparison when a particular value is meant: <code>{open}if $count eq 0{close}</code>.</p>
 
 <h2>Case and when</h2>
 

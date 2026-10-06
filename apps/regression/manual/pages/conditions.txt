@@ -156,9 +156,9 @@ as many <code>{elseif}</code> branches as needed and an
 
 
 
-<p><b>A condition needs a comparison.</b> <code>{if $flag}</code> is not a
-shorthand for testing truth - write what is being compared:
-<code>{if $flag eq 1}</code>.</p>
+<p><b>A bare value is tested for its truth.</b> <code>{if $flag}</code> holds
+unless the value is empty, <code>0</code>, <code>'0'</code> or FALSE - the truth PHP gives it;
+write a comparison when a particular value is meant: <code>{if $count eq 0}</code>.</p>
 
 <h2>Case and when</h2>
 

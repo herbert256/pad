@@ -549,11 +549,12 @@ Arithmetic pipes require a space between the operator and operand:
 ```
 
 **If/Else Syntax:**
-Conditionals must use comparison operators (`eq`, `ne`, `gt`, `lt`, `ge`, `le`, `==`, `!=`, etc.):
+A condition compares with the operators (`eq`, `ne`, `gt`, `lt`, `ge`, `le`, `==`, `!=`, etc.),
+or tests a bare value for its truth, as PHP tests it - `''`, `'0'`, `0` and FALSE fail:
 ```
-{if $count eq 0}Empty{/if}              # Correct
-{if {clock 'L'} eq 1}Leap year{/if}     # Correct - nested tag as value
-{if $flag}True{/if}                      # Wrong - needs comparison
+{if $count eq 0}Empty{/if}              # A comparison
+{if {clock 'L'} eq 1}Leap year{/if}     # A nested tag as value
+{if $flag}True{/if}                      # The value's truth
 ```
 
 ### Iteration Properties
@@ -1594,7 +1595,7 @@ Output: `Alice, Bob, Charlie`
 1. **Templates drive execution** - not code including templates
 2. **Use `{echo}` for pipes** - bare `{$var | func}` doesn't work
 3. **Arithmetic needs space** - `{echo $x | + 1}` not `| +1`
-4. **Conditionals need comparison** - `{if $flag eq 1}` not `{if $flag}`
+4. **A bare condition tests truth** - `{if $flag}` fails for `''`, `'0'`, `0` and FALSE; compare when a value is meant
 5. **Quote literal strings** - `{count 'items'}` not `{count items}`
 6. **`{continue}` skips iterations** - like PHP; use `{resume}` to transform stored sequences
 7. **Use type prefixes** - `{pull:seq}`, `{data:items}`, `{php:func}` to disambiguate

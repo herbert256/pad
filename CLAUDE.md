@@ -419,10 +419,10 @@ Arithmetic pipes require a space between the operator and operand:
 {/if}
 ```
 
-**Important:** Conditionals need comparison operators:
+A bare value is tested for its truth, as PHP tests it - `''`, `'0'`, `0` and FALSE fail:
 ```
-{if $count eq 0}Empty{/if}     # Correct
-{if $flag}True{/if}            # WRONG - needs comparison
+{if $count eq 0}Empty{/if}     # A comparison
+{if $flag}True{/if}            # The value's truth - write a comparison when a value is meant
 ```
 
 ### Loops (Data Iteration)
@@ -846,7 +846,7 @@ source.
 3. **Quote literal strings** - `{count 'items'}` not `{count items}`
 4. **No inline CSS/JS** - PAD parses `{ }` as tags; use external files or `{ignore}` wrapper
 5. **Use `padRedirect()`** - Don't use `exit` or `die` in PAD apps
-6. **Conditionals need comparison** - `{if $flag eq 1}` not `{if $flag}`
+6. **A bare condition tests truth** - `{if $flag}` fails for `''`, `'0'`, `0` and FALSE; compare when a value is meant: `{if $count eq 0}`
 7. **`$` vs `%` variables** - `$var` is level (constant), `%var` is occurrence (per-iteration)
 8. **CHECK syntax** - Use `db("CHECK table WHERE...")` NOT `db("CHECK * FROM table...")`
 9. **Boolean options** - Use `{tag option}` NOT `{tag option="true"}` - just the option name is enough
