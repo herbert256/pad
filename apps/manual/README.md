@@ -9,21 +9,28 @@ Interactive documentation and examples for the PAD framework.
 ```
 manual/
 ├── _callbacks/      # Documentation callbacks
+├── _config/         # Manual configuration
+├── _content/        # Markdown collection fixture
 ├── _data/           # Documentation data
 ├── _functions/      # Documentation functions
 ├── _include/        # Documentation includes
 ├── _inits.pad       # Manual wrapper
+├── _lang/           # Translation catalogs for the locale page
+├── _layouts/        # Layout fixture for the layouts page
 ├── _lib/            # Manual libraries
+├── _mail/           # Mail template fixture
 ├── _scripts/        # Manual scripts
 ├── _tags/           # Documentation tags
 ├── callback/        # Callback documentation
 ├── constructs/      # Language construct docs
 ├── content/         # Content management docs
 ├── data/            # Data handling docs
+├── fragments/       # The small examples the topic pages embed
+├── guarded/         # The directory-guard example
 ├── hello/           # Hello World examples
 ├── lvl_occ/         # Level/occurrence docs
 ├── miscellaneous/   # Miscellaneous topics
-├── pages/           # Page structure docs
+├── pages/           # The topic pages - one per menu entry
 ├── php_and_html/    # PHP/HTML integration
 ├── prefix/          # Type prefix docs
 ├── properties/      # Property docs
