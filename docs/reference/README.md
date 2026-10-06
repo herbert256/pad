@@ -24,7 +24,7 @@ This directory contains reference documentation for PAD template syntax elements
 | File | Description |
 |------|-------------|
 | [EVAL.md](EVAL.md) | Expression evaluation internals and parser details |
-| [HANDLING.md](HANDLING.md) | Error and exception handling |
+| [HANDLING.md](HANDLING.md) | Data handling options - sort, where, group, first, page, rows, slice, dedup, ... |
 
 ## Sequences
 
