@@ -954,14 +954,15 @@
 
   // padArrCallback answers a Closure that takes ( $value, $key ): a user's callback as it
   // is, one of PHP's own functions handed the value only - intval(...) would take the key
-  // for its base, trim(...) for the characters to trim.
+  // for its base, trim(...) for the characters to trim. A variadic one too: max(...) took
+  // the key for a second value and answered the row, array_merge(...) refused it.
 
   function padArrCallback ( $callback ) {
 
     $closure = Closure::fromCallable ( $callback );
     $reflect = new ReflectionFunction ( $closure );
 
-    if ( ! $reflect -> isInternal () or $reflect -> isVariadic () )
+    if ( ! $reflect -> isInternal () )
       return $closure;
 
     if ( $reflect -> getNumberOfParameters () == 0 )
