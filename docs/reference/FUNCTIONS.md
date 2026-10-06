@@ -544,7 +544,10 @@ empty; a value that is no date answers empty too, and the strict check names it.
 `html`, `sanitize`, `url`, `escape`, `slug`, `slashes`, `stripslashes`, `encodeHigh`, `stripLow`, `ignore`
 
 ### HTML
-`bold`, `nbsp`
+`bold`, `nbsp`, `markdown`
+
+### Numbers
+`abbreviate`, `ordinal`
 
 ### Length
 `max_len`, `truncate`, `bytes`
@@ -562,7 +565,7 @@ empty; a value that is no date answers empty too, and the strict check names it.
 `trans`, `currency`, `localDate`
 
 ### Date/Time
-`now`, `date`, `time`, `timestamp`
+`now`, `date`, `time`, `timestamp`, `ago`
 
 ### Arithmetic
 `+`, `-`, `*`, `/`
