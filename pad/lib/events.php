@@ -58,14 +58,18 @@
 
   function padEventError ( $error, $file, $line ) {
 
-    global $padEventErrorBusy;
+    global $padErrorTry, $padEventErrorBusy;
 
     if ( ! padEventCheck ( 'error' ) )
       return;
 
-    // A padError raised inside the hook comes back as a throwable as well (padErrorHook).
+    // A padError raised inside the hook comes back as a throwable as well (padErrorHook), and
+    // the try guards stand aside while it runs: a guard's catch file reports straight to the
+    // error action, and an expression of the hook that divided by zero was the error shown.
 
     $padEventErrorBusy = TRUE;
+    $padEventErrorTry  = $padErrorTry;
+    $padErrorTry       = FALSE;
 
     set_error_handler ( 'padErrorThrow' );
 
@@ -82,6 +86,7 @@
       restore_error_handler ();
 
       $padEventErrorBusy = FALSE;
+      $padErrorTry       = $padEventErrorTry;
 
     }
 
