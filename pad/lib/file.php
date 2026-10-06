@@ -84,13 +84,18 @@
     // Apache's AddHandler reads x.php.txt - and none it reads as its own configuration -
     // .htaccess, .htpasswd, .user.ini. DATA lies under the docroot in the documented layout,
     // and a name an application took from the request - padFilePut ( "exports/$name", ... )
-    // - wrote a page the visitor could then run. The harvest's copies of the applications'
-    // sources are what examples/ is for, and the engine's own markers (.purged, .swept) are
-    // no configuration; {file} refuses every name that starts with a dot besides.
+    // - wrote a page the visitor could then run. The examples harvest keeps copies of the
+    // applications' .php sources under examples/, and that writer alone - apps/examples/
+    // _lib/build.php, told by the call itself, as padReplayAppWrite tells an application's
+    // write - may: by the name alone, padFilePut ( 'examples/' . $name ) from any page wrote
+    // a .php there. The engine's own markers (.purged, .swept) are no configuration; {file}
+    // refuses every name that starts with a dot besides.
 
-    $name = substr ( $file, strlen ( DATA ) );
+    $name    = substr ( $file, strlen ( DATA ) );
+    $harvest = ( str_starts_with ( $name, 'examples/' )
+                 and padCorrectPath ( debug_backtrace ( DEBUG_BACKTRACE_IGNORE_ARGS, 1 ) [0] ['file'] ?? '' ) === APPS . 'examples/_lib/build.php' );
 
-    if ( ! str_starts_with ( $name, 'examples/' )
+    if ( ! $harvest
          and preg_match ( '/\.(php\d*|phtml|pht|phar|phps)(\.|\/|$)|(^|\/)\.(htaccess|htpasswd|user\.ini)$/i', $name ) )
       return padError ( "padFilePut writes no '$name' - a name the web server would run or read as its own configuration" );
 
