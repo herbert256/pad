@@ -33,9 +33,23 @@
 
   // No content means an empty string - a content of 0 is a value - and then the source is
   // the second parameter when there is one, else nothing.
+  //
+  // A {content} keeps that parameter as template source only when it is written out - a
+  // quoted string, {content 'c', 'Hi {$name}'} - as the content between the tags is. A
+  // value is text: {content 'c', $v} ran what $v held as PAD when {c} rendered, where
+  // {content 'c'}{$v}{/content} keeps it text.
 
-  if ( (string) $padContent === '' )
+  if ( (string) $padContent === '' ) {
+
     $padStoreSource = $padOpt [$pad] [2] ?? '';
+
+    if ( $padTag [$pad] == 'content' and $padProtectValues )
+      foreach ( $padParms [$pad] as $padStoreParm )
+        if ( $padStoreParm ['padPrmKind'] == 'parm' and $padStoreParm ['padPrmName'] === 2
+             and ! is_string ( padMetaLiteral ( $padStoreParm ['padPrmOrg'] ) ) )
+          $padStoreSource = padProtect ( $padStoreSource );
+
+  }
   elseif ($padTag [$pad] == 'content' and $padWalk [$pad] == 'start')
     $padStoreSource = $padBase [$pad];
   else
