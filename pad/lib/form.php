@@ -121,6 +121,13 @@
       $list   = array_values ( array_filter ( array_map ( 'trim', $list ), 'strlen' ) );
       $value  = padFormFind ( $data, $field ) [1] ?? '';
       $value  = is_string ( $value ) ? trim ( $value ) : $value;
+
+      // A field that is an object read like an array - an ArrayObject - is a list, one that
+      // is text a Stringable: any other was cast to a text, and the request ended on it.
+
+      if ( is_object ( $value ) and ! $value instanceof Stringable )
+        $value = ( $value instanceof Traversable ) ? iterator_to_array ( $value ) : get_object_vars ( $value );
+
       $number = (bool) array_intersect ( array_map ( 'strtolower', $list ), [ 'numeric', 'integer' ] );
       $empty  = ( $value === '' or $value === NULL or $value === [] );
 
