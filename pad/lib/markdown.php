@@ -464,7 +464,9 @@
   // from each of its backticks with a shorter length, each try a scan to the end of the
   // text - 200 kB of runs took seventeen seconds - then autolinks, raw HTML
   // (html option only), images and links; what they produce is held, the rest is escaped,
-  // and emphasis and line breaks are marked up on the escaped text.
+  // and emphasis and line breaks are marked up on the escaped text. A pass that gives up on
+  // a text too long for PCRE's backtrack limit - a paragraph over a megabyte - leaves the
+  // text as it was, as the emphasis below does: its NULL handed on was a deprecation.
 
   function padMarkdownInline ( $text, $html, &$hold ) {
 
@@ -477,19 +479,19 @@
           $code = substr ( $code, 1, -1 );
         return padMarkdownHold ( '<code>' . padMarkdownEscape ( $code ) . '</code>', $hold );
       },
-      $text );
+      $text ) ?? $text;
 
     $text = preg_replace_callback ( '/<((?:https?|ftp|mailto):[^\s<>]*|[a-zA-Z0-9.!#$%&\'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+)>/',
       function ( $m ) use ( &$hold ) {
         $href = str_contains ( $m [1], ':' ) ? $m [1] : 'mailto:' . $m [1];
         return padMarkdownHold ( '<a href="' . padMarkdownEscape ( $href ) . '">' . padMarkdownEscape ( $m [1] ) . '</a>', $hold );
       },
-      $text );
+      $text ) ?? $text;
 
     if ( $html )
       $text = preg_replace_callback ( '/<\/?[a-zA-Z][a-zA-Z0-9-]*(?:\s[^<>]*)?\/?>|<!--.*?-->/s',
         function ( $m ) use ( &$hold ) { return padMarkdownHold ( $m [0], $hold ); },
-        $text );
+        $text ) ?? $text;
 
     $text = preg_replace_callback (
       '/(!?)\[((?:[^\[\]]|\[[^\[\]]*\])*)\]\([ \t\n]*(<[^<>\n]*>|[^\s()]*(?:\([^\s()]*\)[^\s()]*)*)(?:[ \t\n]+("[^"]*"|\'[^\']*\'))?[ \t\n]*\)/',
@@ -508,7 +510,7 @@
           return padMarkdownHold ( $label, $hold );
         return padMarkdownHold ( "<a href=\"$url\"$title>$label</a>", $hold );
       },
-      $text );
+      $text ) ?? $text;
 
     $text = padMarkdownEscape ( $text );
 
