@@ -11,6 +11,14 @@
 
     $padBase [$pad] = padEval ( $padPipeBefore [$pad], $padBase [$pad], TRUE );
 
+    // The result is the content the level scans and the @start@/@end@ check searches, so it
+    // has to be a string: a pipe that answered NULL - a function with no return - left it
+    // NULL and strpos() in padOpenClosePos ended the request (level/start.php). A scalar
+    // becomes its text, anything else empty.
+
+    if ( ! is_string ( $padBase [$pad] ) )
+      $padBase [$pad] = is_scalar ( $padBase [$pad] ) ? (string) $padBase [$pad] : '';
+
     // The result becomes the content the level scans, so a value the pipe wrote into it -
     // {tag | @ . $v} with $v a tag or a PHP call - ran as template code, where the closing
     // pipe's result (level/pipes/after.php) and a tag's {echo} answer are kept as text. Its
