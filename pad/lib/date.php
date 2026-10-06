@@ -140,7 +140,14 @@
         return NULL;
 
       if ( $frozen instanceof DateTimeImmutable and $parts ['year'] === FALSE and $parts ['month'] === FALSE and $parts ['day'] === FALSE ) {
-        $date = @$frozen->setTimezone ( padDateZone () )->modify ( $value );
+
+        // A zone the text names - '10:30 UTC', 'tomorrow Europe/London' - is kept, as it is
+        // with the clock running: modify passes over a zone written in the text and counts
+        // in the zone of the moment it changes, so the frozen moment is put in that zone
+        // first. It answered 10:30 and midnight in the application's zone.
+
+        $zone = $parts ['is_localtime'] ? ( new DateTimeImmutable ( $value, padDateZone () ) )->getTimezone () : padDateZone ();
+        $date = @$frozen->setTimezone ( $zone )->modify ( $value );
         return ( $date instanceof DateTimeImmutable ) ? $date : NULL;
       }
 
