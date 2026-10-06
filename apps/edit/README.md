@@ -145,7 +145,13 @@ xdebug.mode = debug                 ; develop changes var_dump and error pages -
 xdebug.start_with_request = trigger ; only a request that asks: XDEBUG_SESSION
 ```
 
-and the web server restarted. Xdebug connects back to `xdebug.client_port` (9003); an IDE
+and the web server restarted (`apachectl -k graceful`). `pecl upgrade xdebug` brings a newer
+release; PECL refuses to install over an extension the PHP running it has loaded, so the
+`zend_extension` line is commented out for the upgrade - PECL writes it back - and the build
+needs the C compiler as `cc`: with another `cc` earlier on the PATH, give it as
+`CC=/usr/bin/clang pecl upgrade xdebug`. `pecl list` shows the version installed.
+
+Xdebug connects back to `xdebug.client_port` (9003); an IDE
 listening there at the same time keeps the editor's debugger from starting. A browser
 extension that sets an `XDEBUG_SESSION` cookie for the whole site makes every request ask
 for a debugger - the editor's are let go, the pages' stop at their breakpoints.
