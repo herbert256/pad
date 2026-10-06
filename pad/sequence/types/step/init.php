@@ -11,4 +11,17 @@
 
   $pqInc = $pqParm;
 
+  // The step is set once, before the first candidate, so a parameter written as a range is
+  // drawn here and one naming a store gives its first term - put in place as they came, the
+  // text '1..3' or the store's name was added to the candidate and the request ended on "A
+  // non-numeric value encountered". A bare step is the 1 the other types read TRUE as.
+
+  pqRandomParm ( $pqInc );
+
+  if ( ! is_numeric ( $pqInc ) and is_scalar ( $pqInc ) and isset ( $pqStore [$pqInc] ) )
+    $pqInc = reset ( $pqStore [$pqInc] );
+
+  if ( ! is_numeric ( $pqInc ) )
+    $pqInc = 1;
+
 ?>
