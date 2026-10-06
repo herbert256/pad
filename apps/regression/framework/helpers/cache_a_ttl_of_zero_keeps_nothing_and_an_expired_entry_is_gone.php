@@ -21,13 +21,16 @@
 
   $text = json_encode ( [ padCachePut ( 'fw-ttl-text', 'kept', '60' ), padCacheGet ( 'fw-ttl-text' ) ] );
 
-  // One second, then a little more than a second later the entry is gone.
+  // Two seconds, then a little more than two seconds later the entry is gone. A ttl counts
+  // whole seconds of the clock, so one of a single second can end a moment after it was put -
+  // put at the end of a second, read at the start of the next - which a busy server's read
+  // sometimes was; two seconds keep the entry through any read under a second later.
 
-  padCachePut ( 'fw-ttl-short', 'kept', 1 );
+  padCachePut ( 'fw-ttl-short', 'kept', 2 );
 
   $before = padCacheGet ( 'fw-ttl-short', 'gone' );
 
-  usleep ( 1100000 );
+  usleep ( 2100000 );
 
   $after = json_encode ( [ padCacheGet ( 'fw-ttl-short', 'gone' ), padCacheHas ( 'fw-ttl-short' ) ] );
 
