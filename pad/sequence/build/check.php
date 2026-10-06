@@ -66,7 +66,19 @@
     if ( ! is_numeric ( $pqLoop ) or $pqLoop <= $padSeqCheckMax [$pqSeq] )
       return FALSE;
 
-    return in_array ( $pqLoop, pqTerms ( $pqSeq, $pqParm, [ 'stop' => $pqLoop ] ) );
+    // Past the table the terms are generated on to a stop at or above the candidate once per
+    // sequence and parameter, and again with the stop doubled when a later candidate passes
+    // it - generated afresh for every candidate, a flag of identity over 10001..14000 built
+    // ten thousand terms four thousand times and ran into the time limit.
+
+    $pqCheckKey = $pqSeq . '|' . ( is_scalar ( $pqParm ) ? $pqParm : serialize ( $pqParm ) );
+
+    if ( ! isset ( $padSeqCheckStop [$pqCheckKey] ) or $padSeqCheckStop [$pqCheckKey] [0] < $pqLoop ) {
+      $pqCheckStop = max ( $pqLoop, 2 * ( $padSeqCheckStop [$pqCheckKey] [0] ?? $padSeqCheckMax [$pqSeq] ) );
+      $padSeqCheckStop [$pqCheckKey] = [ $pqCheckStop, pqTerms ( $pqSeq, $pqParm, [ 'stop' => $pqCheckStop ] ) ];
+    }
+
+    return in_array ( $pqLoop, $padSeqCheckStop [$pqCheckKey] [1] );
 
   }
 
