@@ -470,7 +470,20 @@
     if ( str_starts_with ( $url, '<' ) and str_ends_with ( $url, '>' ) )
       $url = substr ( $url, 1, -1 );
 
-    $plain = preg_replace ( '/[\x00-\x20]/', '', html_entity_decode ( $url, ENT_QUOTES | ENT_HTML5, 'UTF-8' ) );
+    // Every whole numeric reference - the ones padMarkdownEscape leaves standing for the
+    // browser - is decoded as the browser decodes it, a control character too: html_entity_
+    // decode leaves &#13; as it is and the browser drops the CR from the URL, so java&#13;
+    // script: was a javascript: link. Then the named ones, then every control character and
+    // space is taken out before the scheme is read.
+
+    $plain = preg_replace_callback ( '/&#(?:[xX]([0-9a-fA-F]+)|([0-9]+));/',
+      function ( $m ) {
+        $code = ( $m [1] ?? '' ) !== '' ? hexdec ( $m [1] ) : (int) $m [2];
+        return ( $code > 0 and $code <= 0x10FFFF and ( $char = mb_chr ( $code, 'UTF-8' ) ) !== FALSE ) ? $char : "\u{FFFD}";
+      },
+      $url );
+
+    $plain = preg_replace ( '/[\x00-\x20]/', '', html_entity_decode ( $plain, ENT_QUOTES | ENT_HTML5, 'UTF-8' ) );
 
     if ( preg_match ( '/^([a-zA-Z][a-zA-Z0-9+.\-]*):/', $plain, $m ) )
       if ( ! in_array ( strtolower ( $m [1] ), [ 'http', 'https', 'mailto', 'ftp', 'tel' ] ) )
