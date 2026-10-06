@@ -347,20 +347,65 @@
   }
 
   // What stands between {ignore} tags is set aside while the blocks are resolved and put
-  // back after.
+  // back after, and so is a comment - {# ... #} and {-- ... --}, found as padCommentStrip
+  // finds them: a tag inside one never runs, and an {extends}, a {block} or a {meta} that
+  // was commented out was applied by the assembly all the same.
 
   function padLayoutMask ( $text, &$masks ) {
 
-    return preg_replace_callback ( '/\{ignore\}.*?\{\/ignore\}/s', function ( $match ) use ( &$masks ) {
+    $text = preg_replace_callback ( '/\{ignore\}.*?\{\/ignore\}/s', function ( $match ) use ( &$masks ) {
       $masks [] = $match [0];
       return "\u{E0F2}" . ( count ( $masks ) - 1 ) . "\u{E0F3}";
     }, (string) $text );
 
+    foreach ( [ '{--', '{#' ] as $open )
+      for ( $pos = strpos ( $text, $open ); $pos !== FALSE; $pos = strpos ( $text, $open, $pos ) ) {
+        $end = padLayoutComment ( $text, $pos, $open );
+        if ( $end === FALSE ) {
+          $pos += strlen ( $open );
+          continue;
+        }
+        $masks [] = substr ( $text, $pos, $end - $pos );
+        $mark     = "\u{E0F2}" . ( count ( $masks ) - 1 ) . "\u{E0F3}";
+        $text     = substr ( $text, 0, $pos ) . $mark . substr ( $text, $end );
+        $pos     += strlen ( $mark );
+      }
+
+    return $text;
+
   }
+
+  // The end of the comment that opens at $pos, or FALSE when none opens there: {-- needs
+  // whitespace after it, {#name} and {#name | pipe} are the option sigil, and a {# that
+  // meets another {# before any #} is no comment - the rules of padCommentStrip.
+
+  function padLayoutComment ( $text, $pos, $open ) {
+
+    if ( $open == '{--' ) {
+      $after = $text [$pos + 3] ?? '';
+      $close = strpos ( $text, '--}', $pos + 3 );
+      return ( ( $after !== '' and ! ctype_space ( $after ) ) or $close === FALSE ) ? FALSE : $close + 3;
+    }
+
+    if ( preg_match ( '/\G\{#[A-Za-z_][A-Za-z0-9_]*\s*[}|]/', $text, $match, 0, $pos ) )
+      return FALSE;
+
+    $close = strpos ( $text, '#}', $pos + 2 );
+    $next  = strpos ( $text, '{#', $pos + 2 );
+
+    return ( $close === FALSE or ( $next !== FALSE and $next < $close ) ) ? FALSE : $close + 2;
+
+  }
+
+  // A comment can hold an {ignore} that was set aside first, so what comes back can hold a
+  // mark of its own.
 
   function padLayoutUnmask ( $text, $masks ) {
 
-    return preg_replace_callback ( '/\x{E0F2}(\d+)\x{E0F3}/u', fn ( $match ) => $masks [ (int) $match [1] ] ?? '', $text );
+    for ( $i = 0; $i < 3 and str_contains ( $text, "\u{E0F2}" ); $i++ )
+      $text = preg_replace_callback ( '/\x{E0F2}(\d+)\x{E0F3}/u', fn ( $match ) => $masks [ (int) $match [1] ] ?? '', $text );
+
+    return $text;
 
   }
 
