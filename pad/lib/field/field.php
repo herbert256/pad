@@ -132,7 +132,20 @@
 
   }
 
+  // A path starts in the application's data, not in PHP's arrays nor in the engine's: the
+  // search of the global arrays no longer hands those out (padFieldLevel), but a path that
+  // names one at its head walked straight in - {$_SERVER.DB_PASSWORD} and
+  // {echo $_SERVER.DB_PASSWORD} printed a SetEnv secret, {$_COOKIE.x} a cookie never
+  // promoted, {$padCurlLast.input.password} the password of the engine's last fetch. Such a
+  // head is a path not found. $padMailLast is the engine array TAGS.md hands to templates
+  // ({$padMailLast.subject}), and stays.
+
   function padFieldAt ( $field, $lvl ) {
+
+    $head = preg_split ( '/[.@:]/', $field ) [0];
+
+    if ( $head !== 'padMailLast' and padEngineName ( $head ) )
+      return INF;
 
     if ( str_starts_with ($field, '@') and substr_count($field, '@') == 1 )
       $field .= '@*';
