@@ -48,7 +48,20 @@
       if ( $id !== '' and str_contains ( $padOutput, $id ) )
         return FALSE;
 
+    if ( padCacheLocalOnly ( $padOutput ) )
+      return FALSE;
+
     return TRUE;
+
+  }
+
+  // What a page shows this machine alone: the box of a {debug}, which padDebug writes for a
+  // local request only (lib/debug.php). Built for one, the page went into the cache, and
+  // every visitor after it was answered with the values {debug} keeps from them.
+
+  function padCacheLocalOnly ( $html ) {
+
+    return str_contains ( $html, '<details class="pad-debug"' );
 
   }
 

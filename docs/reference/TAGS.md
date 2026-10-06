@@ -1451,7 +1451,8 @@ field visible where it stands - the rows of the enclosing levels, innermost firs
 application's variables. A missing `$name` is shown as missing rather than failing. Only a
 local request - the command line, or loopback with nothing forwarded - gets it; any other gets
 nothing, and `$padDiagnostics = FALSE` switches it off everywhere. Unlike `{dump}` the
-request goes on.
+request goes on. A page or a `{cache}` section that holds a debug box is never stored in the
+page or fragment cache, so no later visitor is served what a local request was shown.
 
 ---
 

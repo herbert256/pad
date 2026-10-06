@@ -114,6 +114,12 @@
       if ( $id !== '' and str_contains ( $text, $id ) )
         return FALSE;
 
+    // Nor what this machine alone is shown - a {debug} box (padCacheLocalOnly): the body
+    // is still in the engine's encoding here, so it is read as the page will go out.
+
+    if ( padCacheLocalOnly ( padUnprotect ( padUnescape ( $text ) ) ) )
+      return FALSE;
+
     return TRUE;
 
   }
