@@ -69,8 +69,17 @@
     if ( array_key_exists ( $index, $search ) ) return '';
 
     $keys = array_keys ( $search );
+    $key  = $keys [ $index - 1 ] ?? '';
 
-    return $keys [ $index - 1 ] ?? '';
+    // An ordinal names the Nth key, so a number chosen by a value reached an engine secret by
+    // its position - {$53@globals} with 53 the place of padSqlPassword in $GLOBALS read the
+    // password, where the name padSqlPassword is refused. A secret key is no answer, whatever
+    // picks it; an application key never carries a secret's name.
+
+    if ( padEngineSecret ( $key ) )
+      return '';
+
+    return $key;
 
   }
 

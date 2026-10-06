@@ -73,9 +73,16 @@
       // padAtKey answers '' for no ordinal; a key it does answer may be 0, which is a key -
       // tested for truth, [0 => 'zero', 'k' => 'kay'] had no first element at all.
 
+      // An engine secret is no answer however the path reaches its key - by its name, by a
+      // value-chosen ordinal (padAtKey) or by a condition - so a key padEngineSecret names is
+      // stepped into by none of them. An application key never carries such a name.
+
       $found = padAtKey ( $current, $name );
 
       if ( $found !== '' ) {
+
+        if ( padEngineSecret ( $found ) )
+          return INF;
 
         $current = &$current [$found];
 
@@ -89,14 +96,14 @@
 
         $idx = padAtSearchCondition ( $current, $name );
 
-        if ($idx === INF)
+        if ($idx === INF or padEngineSecret ( $idx ) )
           return INF;
 
         $current = &$current [$idx];
 
         continue;
 
-      } elseif ( ! array_key_exists ( $name, $current ) )
+      } elseif ( ! array_key_exists ( $name, $current ) or padEngineSecret ( $name ) )
 
         return INF;
 
