@@ -1,8 +1,9 @@
 <?php
 
   // Make build for oeis, the strategy pqBuild() picks for this type: returns the $pqLoop'th
-  // term of the OEIS sequence named by the parameter, or FALSE once the table runs out,
-  // which ends the build.
+  // term of the OEIS sequence named by the parameter, or FALSE once the table runs out.
+  // build/one.php reads FALSE as a candidate without a term, not as the end of the build, so
+  // a run past the last term ends on its rows, its to= or its try limit.
   //
   // Same table as oeis/fixed.php, read a term at a time, so from/to/increment index into the
   // sequence. The term list is 0-indexed, hence $pqLoop-1. Asking pqOeis() once per term

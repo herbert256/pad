@@ -6,7 +6,7 @@
   // called by prime/make.php. Loaded on every prime build anyway, because build/include.php
   // pulls in a type's function.php unconditionally.
   //
-  // The first 10,000 primes come from the PADprime table; past it the list grows from the
+  // The 1,229 primes below 10,000 come from the PADprime table; past it the list grows from the
   // table's end, each candidate put to pqBoolPrime(), which divides only up to its square
   // root, and the list is kept for the next call. It started from 2 for every term and
   // divided each candidate by every prime before it - 24 seconds at from=20000.
