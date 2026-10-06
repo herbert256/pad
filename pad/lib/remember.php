@@ -125,9 +125,13 @@
       return NULL;
     }
 
-    $file = padCacheAppFile ( $key, 'cache', 'padRemember' );
+    // A ttl of 0 or less runs the callback also when the key holds a value an earlier call
+    // kept: that value was answered, and a page asking for a fresh one got the stale one.
 
-    if ( $file === '' or padCacheAppExpires ( $ttl, 'padRemember' ) === NULL )
+    $file  = padCacheAppFile ( $key, 'cache', 'padRemember' );
+    $ahead = ( $file === '' ) ? NULL : padCacheAppExpires ( $ttl, 'padRemember' );
+
+    if ( $ahead === NULL or $ahead < 0 )
       return $callback ();
 
     $entry = padCacheAppRead ( $file );
