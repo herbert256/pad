@@ -787,10 +787,15 @@
 
   function padStrText ( $value, $function, $scrub = TRUE ) {
 
+    // NAN is the text NAN, as PHP always wrote it: PHP 8.5 warns when it casts NAN to a
+    // string, and the warning ended the request.
+
     if ( is_string ( $value ) )
       $text = $value;
     elseif ( $value === NULL or $value === FALSE )
       return '';
+    elseif ( is_float ( $value ) and is_nan ( $value ) )
+      $text = 'NAN';
     elseif ( is_scalar ( $value ) or $value instanceof Stringable )
       $text = (string) $value;
     else {
