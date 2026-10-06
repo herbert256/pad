@@ -176,14 +176,16 @@
   }
 
   // A precision or a number of decimals: a whole number of 0 or more, numeric text too.
-  // NULL is the default, 0.
+  // NULL is the default, 0. One past any whole number PHP has - INF, 1e20 - is reported
+  // too: INF was a PHP warning, and the text '1e20' became PHP_INT_MAX decimals, which
+  // number_format answered by running out of memory.
 
   function padNumberPrecision ( $function, $precision, $what = 'precision' ) {
 
     if ( $precision === NULL )
       return 0;
 
-    if ( is_numeric ( $precision ) and $precision >= 0 and floor ( (float) $precision ) == $precision )
+    if ( is_numeric ( $precision ) and $precision >= 0 and floor ( (float) $precision ) == $precision and $precision < PHP_INT_MAX )
       return (int) $precision;
 
     padError ( "$function: the $what " . padValueShow ( $precision ) . " is not a whole number of 0 or more" );
