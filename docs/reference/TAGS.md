@@ -168,16 +168,17 @@ Loop until condition becomes true.
 ## Variable and Data Tags
 
 ### set
-Set one or more variables. At the top of a page the variable is a global; inside a level the
-assignment shadows any global of the name and is unwound when the level closes, so what a
-loop sets does not outlive it.
+Set one or more variables as globals. The assignment sticks: a `{set}` inside a loop or any
+other level outlives it - `{set $x = 1}{sequence 3}{set $x = 8}{/sequence}{$x}` gives 8.
+(A `$name = value` written on another tag, `{users $n = 5}`, is that level's own and is
+unwound when the level closes.)
 
 ```html
-{set name='value', count=5, active=TRUE}
+{set $name = 'value', $count = 5, $active = TRUE}
 ```
 
 **Parameters:**
-- Named parameters become global variables
+- `$name = value` pairs become global variables - a pair without its `$` is an error
 
 **Note:** Cannot be used as open/close tag pair
 
@@ -212,7 +213,8 @@ Store data to the data store for iteration.
 **Parameters:**
 - First parameter: Data store name
 
-**Behavior:** Stores data and iterates over it
+**Behavior:** Stores the data under the name and prints nothing; `{store_name}...{/store_name}`
+iterates it
 
 ---
 
@@ -231,14 +233,16 @@ Store content to the content store.
 ---
 
 ### bool
-Store boolean value to store.
+Store boolean value to store - the content (or the second parameter) reduced to TRUE or FALSE.
 
 ```html
-{bool 'store_name'}
+{bool 'store_name'}content{/bool}
+{bool 'store_name', $value}
 ```
 
 **Parameters:**
 - First parameter: Store name
+- Second parameter: the value, when there is no content - with neither the flag is FALSE
 
 ---
 
@@ -311,13 +315,17 @@ Evaluate an `@` expression (for example against a sequence or data set).
 Check if array/data has elements.
 
 ```html
-{count $arrayName}
+{count 'arrayName'}
   Has elements
+@else@
+  Empty
 {/count}
 ```
 
 **Parameters:**
-- First parameter: Variable or data store name
+- First parameter: the quoted name of a data store or page array - `{count $arrayName}`
+  evaluates the array itself and is an error. It prints no number; the number of rows is
+  `count@tag`
 
 **Returns:** TRUE if has elements, FALSE if empty
 
