@@ -5,7 +5,7 @@
 
   function pqOctahedral ($n) {
 
-    return $n * (2 * $n * $n + 1) / 3;
+    return pqProduct ( [ $n, 2 * $n * $n + 1 ], 3 );
 
   }
 

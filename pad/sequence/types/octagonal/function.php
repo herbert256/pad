@@ -5,7 +5,7 @@
 
   function pqOctagonal ($n) {
 
-    return 3 * $n * $n - 2 * $n;
+    return $n * ( 3 * $n - 2 );
 
   }
 

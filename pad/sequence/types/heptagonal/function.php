@@ -5,7 +5,7 @@
 
   function pqHeptagonal ($n) {
 
-    return ((5 * $n * $n) - (3 * $n)) / 2;
+    return pqProduct ( [ $n, 5 * $n - 3 ], 2 );
 
   }
 

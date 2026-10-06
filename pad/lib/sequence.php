@@ -343,6 +343,39 @@
 
   }
 
+  // The product of the factors divided by a divisor that divides it exactly - the figurate
+  // formulas n(3n - 1)/2, n(n + 1)(n + 2)/6 and the like - with the divisor taken out of the
+  // factors before they are multiplied, so nothing formed along the way is larger than the
+  // term itself. Multiplied out first, 3n^2 passed PHP_INT_MAX while (3n^2 - n)/2 still fit,
+  // and the term came back as an imprecise float. Factors that are not all whole numbers
+  // are multiplied out as before.
+
+  function pqProduct ( $factors, $divisor ) {
+
+    foreach ( $factors as $factor )
+      if ( ! pqBoolWhole ( $factor ) )
+        return array_product ( $factors ) / $divisor;
+
+    foreach ( $factors as $key => $factor ) {
+
+      $gcd  = abs ( (int) $factor );
+      $rest = $divisor;
+
+      while ( $rest ) {
+        $swap = $gcd % $rest;
+        $gcd  = $rest;
+        $rest = $swap;
+      }
+
+      $factors [$key] = intdiv ( (int) $factor, $gcd );
+      $divisor        = intdiv ( $divisor, $gcd );
+
+    }
+
+    return array_product ( $factors ) / $divisor;
+
+  }
+
   function pqBuild ( $check, $for='' ) {
 
     if ( $check == 'pull' )

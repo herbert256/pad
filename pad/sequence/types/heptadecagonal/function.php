@@ -5,7 +5,7 @@
 
   function pqHeptadecagonal  ($n) {
 
-    return ( (15 * $n * $n) -  13 * $n) / 2;
+    return pqProduct ( [ $n, 15 * $n - 13 ], 2 );
 
   }
 

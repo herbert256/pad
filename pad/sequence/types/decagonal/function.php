@@ -5,7 +5,7 @@
 
   function pqDecagonal ($n) {
 
-    return 4 * $n * $n - 3 * $n;
+    return $n * ( 4 * $n - 3 );
 
   }
 

@@ -7,7 +7,7 @@
 function pqCaterer ($n)
 {
 
-    return ($n * ( $n + 1)) / 2 + 1;
+    return pqProduct ( [ $n, $n + 1 ], 2 ) + 1;
 }
 
 ?>
