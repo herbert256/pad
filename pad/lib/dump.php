@@ -702,13 +702,11 @@
     $ctype = $_SERVER ['CONTENT_TYPE'] ?? '';
     $json  = json_decode ( $txt, TRUE );
 
-    if ( str_contains ( $ctype, 'application/x-www-form-urlencoded' ) ) {
+    // A form is read pair by pair (padRedactQuery): parse_str warns past max_input_vars, and
+    // under the track mode a post of more fields than that answered 500.
 
-      parse_str ( $txt, $form );
-
-      return [ http_build_query ( padRedact ( $form, '', TRUE ) ), 'txt' ];
-
-    }
+    if ( str_contains ( $ctype, 'application/x-www-form-urlencoded' ) )
+      return [ padRedactText ( padRedactQuery ( $txt ) ), 'txt' ];
 
     if ( is_array ( $json ) )
       return [ padJson ( padRedact ( $json, '', TRUE ) ), 'json' ];

@@ -166,6 +166,34 @@
 
   }
 
+  // A query - a form body, the query of a URL - with the value of each field whose name is
+  // a secret's redacted, read pair by pair as it stands: the name of user[password] is
+  // password. No parse_str, which stops at max_input_vars with a warning.
+
+  function padRedactQuery ( $query ) {
+
+    $pairs = explode ( '&', $query );
+
+    foreach ( $pairs as $i => $pair ) {
+
+      if ( ! str_contains ( $pair, '=' ) )
+        continue;
+
+      $field = explode ( '=', $pair, 2 ) [0];
+      $name  = urldecode ( $field );
+
+      if ( preg_match ( '/\[([^\[\]]*+)\]$/', $name, $match ) )
+        $name = $match [1];
+
+      if ( padRedactName ( $name ) )
+        $pairs [$i] = $field . '=' . urlencode ( '*** redacted ***' );
+
+    }
+
+    return implode ( '&', $pairs );
+
+  }
+
   // What a text shows of the request's secrets. The application's config source, where
   // the database password and the application key are written, was the one text that
   // assigned them; inits/config.php keeps it in no global now, and the patterns that read
