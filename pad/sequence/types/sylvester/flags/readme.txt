@@ -1,1 +1,1 @@
-This directory is generared
+This directory is generated
