@@ -20,6 +20,16 @@
 
     $field = rtrim ( $field );
 
+    // A leading ~ is the whitespace-control sigil, which padTildeStrip removes before the
+    // scanner reaches the tag, so the engine never sees it here - but the reference's syntax
+    // highlighter checks raw source, where {~notLast@contact} still carries it. It is not
+    // part of the name, so it is dropped before the name is validated; the stricter name
+    // check below would otherwise fail ~notLast and the highlighter lose the colour of a
+    // valid tag.
+
+    if ( str_starts_with ( $field, '~' ) )
+      $field = substr ( $field, 1 );
+
     if ( preg_match ( '/\s/', $field  ) ) return FALSE;
     if ( substr_count($field, '@') != 1 ) return FALSE;
 
@@ -73,6 +83,13 @@
       if ( $check1 == '>' and ctype_digit ( $check2) ) return TRUE;
     }
 
+    // The positional search forms 3< (third from the start) and 2> (second from the end),
+    // which padAtSearchIdx reads - a run of digits then one < or >. They used to pass only
+    // because padAtCheckCondition answered TRUE for a part with no operator; named here so
+    // that blanket yes could become a no.
+
+    if ( preg_match ( '/^\d+[<>]$/', $part ) ) return TRUE;
+
     if ( padAtCheckCondition ( $part, '<>' ) ) return TRUE;
     if ( padAtCheckCondition ( $part, '<=' ) ) return TRUE;
     if ( padAtCheckCondition ( $part, '>=' ) ) return TRUE;
@@ -88,8 +105,14 @@
 
   function padAtCheckCondition ( $part, $condition ) {
 
+    // This helper vets the name=value / name<>value search forms. When its operator is not
+    // in the part, the part is not that form - so the answer is "no", not "yes": returning
+    // TRUE here let every check pass and made padAtCheckNamePart accept any part at all, so
+    // padValid('a/../../etc/x@y') and padValid('x*?[@q') were TRUE. With a plain no, the part
+    // falls to the padAtValid test below, which a path or a glob character fails.
+
     if ( ! str_contains ( $part, $condition ) )
-      return TRUE;
+      return FALSE;
 
     $parts = explode ( $condition, $part );
 
