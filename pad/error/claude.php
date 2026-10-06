@@ -76,7 +76,7 @@
       return '*** redacted ***';
 
     if ( is_string ( $value ) )
-      return padRedactText ( $value );
+      return padRedactText ( is_int ( $key ) ? padRedactLine ( $value ) : $value );
 
     if ( ! is_array ( $value ) )
       return $value;
@@ -91,11 +91,26 @@
 
   }
 
-  // Whether a name - a key, a variable, a header - is a secret's.
+  // Whether a name - a key, a variable, a header - is a secret's. A name is read as HTTP
+  // writes it as well: X-Api-Key and Set-Cookie went out in clear, the pattern knowing only
+  // the underscore, and so did the USERPWD of a fetch with a login and a passphrase.
 
   function padRedactName ( $name ) {
 
-    return (bool) preg_match ( '/pass(word|wd)?$|passwd|secret|token|authorization|auth_pw|api_?key|app_?key|private_?key|^(http_)?cookie$|^phpsessid$|^padsesid$/i', (string) $name );
+    return (bool) preg_match ( '/pass(word|wd|phrase)?$|passwd|pwd|secret|token|authorization|auth_pw|api_?key|app_?key|private_?key|^(http_|set_)?cookies?$|^phpsessid$|^padsesid$/i',
+                               str_replace ( '-', '_', (string) $name ) );
+
+  }
+
+  // A list holds headers as lines - headers_list (), the PAD headers - so a line is
+  // redacted after its name when the name is a secret's: Set-Cookie: carries the session.
+
+  function padRedactLine ( $line ) {
+
+    if ( preg_match ( '/^([A-Za-z0-9_-]+)(\s*:\s*)/', $line, $match ) and padRedactName ( $match [1] ) )
+      return $match [1] . $match [2] . '*** redacted ***';
+
+    return $line;
 
   }
 
@@ -106,6 +121,11 @@
   // ..., define ( 'NAME', ... ) - is redacted; the rest of the text stays as it was.
 
   function padRedactText ( $text ) {
+
+    // The password inside a URL - a DSN in the environment, a fetch with a login in it.
+
+    if ( str_contains ( $text, '@' ) )
+      $text = preg_replace ( '~(\b[a-z][a-z0-9+.-]*://[^\s/?#@:]*:)[^\s/?#@]+@~i', '$1*** redacted ***@', $text );
 
     if ( ! str_contains ( $text, '=' ) and stripos ( $text, 'define' ) === FALSE )
       return $text;
