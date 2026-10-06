@@ -75,6 +75,15 @@
     }
 
     $arr = padXmlToArrayIterator ( $xml );
+
+    // A document with no element - only a prolog or a comment - iterates to nothing, and
+    // reset() of the empty array is FALSE, which the single-element unwrap and
+    // padXmlToArrayCheck then walked with foreach: the request ended on "foreach() argument
+    // must be of type array, false given" from inside the reader. No element is no rows.
+
+    if ( ! $arr )
+      return [];
+
     $arr = reset($arr);
 
     if ( is_array($arr) and count ($arr) == 1 and isset ($arr[0]) and is_array ($arr[0]) )
