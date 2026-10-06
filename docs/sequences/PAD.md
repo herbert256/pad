@@ -66,7 +66,7 @@ Over 70 mathematical and number theory sequences including:
 - **tetrahedral**, **octahedral**, **caterer**
 
 **Other Sequences**
-- **recaman**, **sylvester**, **newman-conway** - Recursive sequences
+- **recaman**, **sylvester**, **newmanConway** - Recursive sequences
 - **mersenne**, **cullen**, **kynea** - Named after mathematicians
 - **perfect**, **powerful**, **polite**, **harshad**, **kaprekar** - Special properties
 - **oeis** - Reference OEIS sequences
@@ -101,8 +101,8 @@ Transform and analyze sequences:
 - **sort.php** - Sort ascending
 - **reverse.php** - Reverse order
 - **shuffle.php**, **randomize.php** - Random reordering
-- **shift.php** - Rotate elements
-- **dedup.php**, **distinct.php** - Remove duplicates
+- **shift.php** - Take the first N out of the store
+- **dedup.php** - Remove duplicates; **distinct.php** - count the different values
 
 **Combination**
 - **append.php**, **prepend.php** - Add elements
@@ -114,7 +114,7 @@ Transform and analyze sequences:
 
 **Structure**
 - **assoc.php** - Create associative arrays
-- **set.php** - Set operations
+- **set.php** - Set up an action called from an expression
 
 ### Options (options/types/)
 
@@ -122,7 +122,7 @@ Configure sequence generation:
 
 **Range Control**
 - **from.php**, **to.php** - Define range boundaries
-- **min.php**, **max.php** - Value constraints
+- **minimal.php**, **maximal.php** - Value constraints
 - **increment.php** - Step size
 
 **Limit Control**
@@ -210,7 +210,7 @@ Which kind a type is follows from the files in its directory: a `bool.php` predi
 values, while `function.php`, `loop.php`, `order.php` and `fixed.php` are given a position.
 
 ### Storage and Reuse
-- Store sequences in named variables (build)
+- Store sequences in named stores (push, name)
 - Save results to data store (toData)
 - Pull/push stack operations
 - Reference built sequences
