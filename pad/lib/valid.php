@@ -19,6 +19,11 @@
   //               directory it is looked up in
   // padValidID    a session or request id as padRandomString() mints it, eight letters
   //               and digits
+  //
+  // Every pattern ends in $/D: a bare $ also matches before a newline that ends the text,
+  // so a cookie padSesID=abcdefgh%0A was an id PAD minted - and the newline went on into
+  // the cookie header, where PHP refused it and the request ended in a 500 - and abc
+  // followed by a newline was a variable name.
 
   function padValid ( $name ) {
 
@@ -28,7 +33,7 @@
     if ( padAtCheck ( $name ) )
       return TRUE;
 
-    if ( ! preg_match ( '/^[a-zA-Z][:#a-zA-Z0-9_]*$/',$name ) )
+    if ( ! preg_match ( '/^[a-zA-Z][:#a-zA-Z0-9_]*$/D',$name ) )
       return FALSE;
 
     return TRUE;
@@ -48,7 +53,7 @@
 
   function padValidID ( $id ) {
 
-    return is_string ( $id ) and preg_match ( '/^[A-Za-z0-9]{8}$/', $id );
+    return is_string ( $id ) and preg_match ( '/^[A-Za-z0-9]{8}$/D', $id );
 
   }
 
@@ -58,7 +63,7 @@
   function padValidVar ($name) {
 
     if ( trim($name) == '' )                                 return FALSE;
-    if ( ! preg_match('/^[a-zA-Z][a-zA-Z0-9_]*$/',$name) )   return FALSE;
+    if ( ! preg_match('/^[a-zA-Z][a-zA-Z0-9_]*$/D',$name) )  return FALSE;
     if ( padEngineName ( $name ) )                           return FALSE;
 
     return TRUE;
@@ -79,8 +84,8 @@
 
   function padAtValid ( $part ) {
 
-    if ( trim($part) == '' )                                       return FALSE;
-    if ( ! preg_match ( '/^[a-zA-Z0-9_-][a-zA-Z0-9_:]*$/', $part ) ) return FALSE;
+    if ( trim($part) == '' )                                        return FALSE;
+    if ( ! preg_match ( '/^[a-zA-Z0-9_-][a-zA-Z0-9_:]*$/D', $part ) ) return FALSE;
 
     return TRUE;
 
@@ -94,7 +99,7 @@
     if ( padAtCheck ($name) )
       return TRUE;
 
-    if ( preg_match('/^[a-zA-Z][a-zA-Z0-9:_]*$/',$name) )
+    if ( preg_match('/^[a-zA-Z][a-zA-Z0-9:_]*$/D',$name) )
       return TRUE;
 
     return FALSE;
