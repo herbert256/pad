@@ -118,12 +118,14 @@ padEvalMulti  ( $result );          // Handle multiple expressions
 
 Operators bind in these groups, strongest first. The operators of one group bind equally
 and are applied left to right - `10 - 2 + 3` is 11, `12 / 2 * 3` is 18 - except `**`,
-which binds right to left: `2 ** 3 ** 2` is `2 ** 9`, 512:
+which binds right to left: `2 ** 3 ** 2` is `2 ** 9`, 512. A sign before a value and `!`
+bind weaker than `**`, as in PHP - `-$b ** 2` and `-3 ** 2` are -9 - and a sign or `!` that
+opens the right operand of `**` belongs to that operand: `2 ** -$b` is `2 ** (-$b)`:
 
 ```php
 const padEval_groups = [
-  [ '!' ],                          // NOT (unary)
   [ '**' ],                         // Power
+  [ '!', 'NEG', 'POS' ],            // NOT and the signs (unary)
   [ '*', '/', '%' ],                // Multiplication
   [ '+', '-' ],                     // Addition
   [ '.' ],                          // String concatenation

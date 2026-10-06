@@ -53,6 +53,25 @@
         $b = $keys [$j-1];
         $f = ( $j > 1 ) ? $keys [$j-2] : -1;
 
+        // The right operand of ** may open with a sign or a !, which binds weaker than the
+        // power and so would still stand there: 2 ** -$b took the piped value as its
+        // exponent. That operand's own unary operators are applied first, the innermost
+        // one now and the others as padEvalOpr comes back round.
+
+        if ( $group === [ '**' ] and $result[$b][1] == 'OPR' and $result[$b][0] === '**'
+             and $t[1] == 'OPR' and in_array ( $t[0], padEval_one ) ) {
+
+          for ( $u = $j; isset ( $keys [$u+1] ) and $result [ $keys [$u+1] ] [1] == 'OPR'
+                         and in_array ( $result [ $keys [$u+1] ] [0], padEval_one ); $u++ ) ;
+
+          if ( isset ( $keys [$u+1] ) and $result [ $keys [$u+1] ] [1] == 'VAL' ) {
+            $b = $keys [$u];
+            $k = $keys [$u+1];
+            return include PAD . 'eval/actions/single.php';
+          }
+
+        }
+
         if ( $result[$b][1] == 'OPR' and in_array ( $result[$b][0], $group, TRUE ) )
           if     ( in_array ( $result[$b][0], padEval_one ) and $t[1] == 'VAL' ) return include PAD . 'eval/actions/single.php';
           elseif ( in_array ( $result[$b][0], padEval_one ) and $t[1] == 'OPR' ) return include PAD . 'eval/actions/singleRight.php';

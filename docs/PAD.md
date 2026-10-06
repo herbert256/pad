@@ -398,7 +398,7 @@ Evaluation pipeline:
 3. **Split** → Separate by pipe operators
 4. **Execute** → Apply operators, call functions
 
-Operator precedence: `!` and a sign before a value (`-$x`, `-(1 + 2)`) → `**` → `*` `/` `%` → `+` `-` → `.` → `lt` `le` `gt` `ge` → `eq` `ne` → `not` → `and` → `xor` → `or` → `??`, the ternary weakest; one group applies left to right, `**` right to left
+Operator precedence: `**` → `!` and a sign before a value (`-$x`, `-(1 + 2)`; `-$x ** 2` is `-($x ** 2)`) → `*` `/` `%` → `+` `-` → `.` → `lt` `le` `gt` `ge` → `eq` `ne` → `not` → `and` → `xor` → `or` → `??`, the ternary weakest; one group applies left to right, `**` right to left
 
 ### 7. Output Generation
 

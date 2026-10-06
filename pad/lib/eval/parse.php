@@ -136,6 +136,8 @@
     $is_hex = $is_var = $is_prm = $is_tag = $is_str = $is_quote = $is_num = $is_other = FALSE;
     $skip   = $i = 0;
 
+    $signedNumbers = [];
+
     foreach ( $input as $key => $one ) {
 
       if ($skip) {
@@ -491,6 +493,10 @@
         $result[$i][0] = $one;
         $result[$i][1] = 'VAL';
         $is_other = FALSE;
+
+        if ( in_array ( $one, [ '-', '+' ] ) )
+          $signedNumbers [$i] = TRUE;
+
         continue;
 
       }
@@ -544,6 +550,7 @@
         $i += 100;
         $result [$i] [0] = ( $one == '-' ) ? 'NEG' : 'POS';
         $result [$i] [1] = 'OPR';
+        $result [$i] [2] = $one;
 
         $is_other = FALSE;
 
@@ -656,6 +663,23 @@
       $result[$i][0] .= $one;
 
     }
+
+    // A number that took its sign along and stands before ** is a sign before the power:
+    // -3 ** 2 is -9, as in PHP and as -$b ** 2 is, where the number was squared with its
+    // sign and answered 9. The sign becomes the NEG or POS it is elsewhere.
+
+    foreach ( array_keys ( $signedNumbers ) as $k ) {
+
+      $after = padEvalNextKey ( $result, $k );
+
+      if ( $after and $result [$after] [1] == 'OPR' and $result [$after] [0] === '**' ) {
+        $result [$k - 50] = [ $result [$k] [0] [0] == '-' ? 'NEG' : 'POS', 'OPR', $result [$k] [0] [0] ];
+        $result [$k] [0]  = substr ( $result [$k] [0], 1 );
+      }
+
+    }
+
+    ksort ( $result );
 
   }
 

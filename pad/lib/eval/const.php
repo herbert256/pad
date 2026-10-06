@@ -35,12 +35,15 @@
   // right to left: 2 ** 3 ** 2 is 2 ** 9. One operator per level, as the flat list above was
   // walked, did all the + before any -, so 10 - 2 + 3 came out 5. NOT stands between the
   // comparisons and AND, where Python has it: not $a eq $b denies the comparison, and
-  // $a and not $b denies $b alone. The signs bind with !, as the sign of a number does:
-  // 5 * -$b ** 2 is (-3) ** 2 times 5, as 5 * -3 ** 2 is.
+  // $a and not $b denies $b alone. The signs and ! bind weaker than ** and stronger than the
+  // rest, as in PHP: -$b ** 2 is -($b ** 2), -9, with brackets around it or an operator
+  // before it as well - (-$b ** 2) and 0 + -$b ** 2 were 9 while -$b ** 2 was -9. A sign or
+  // a ! that stands as the right operand of ** is its own operand's first (padEvalOpr):
+  // 2 ** -$b is 2 ** (-$b).
 
   const padEval_groups = [
-    [ '!', 'NEG', 'POS' ],
     [ '**' ],
+    [ '!', 'NEG', 'POS' ],
     [ '*', '/', '%' ],
     [ '+', '-' ],
     [ '.' ],
