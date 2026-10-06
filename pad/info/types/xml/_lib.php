@@ -11,8 +11,8 @@
   // parameter; occurrences only get an <occurs> block when there really is more than one.
   //
   // padInfoXmlOpen, padInfoXmlLine and padInfoXmlClose keep $padInfoXmlDepth for the indentation
-  // and go through padInfoXmlWrite, which appends a line to $padInfoXmlFile; padInfoXmlMore
-  // escapes the attributes.
+  // and go through padInfoXmlWrite, which adds a line to $padInfoXmlText - written to
+  // $padInfoXmlFile in one go by info/types/xml/end.php; padInfoXmlMore escapes the attributes.
   //
   // Compact mode strips the attributes and occurrences and skips levels that produced no output,
   // leaving a bare skeleton of the processing tree.
@@ -185,16 +185,20 @@
 
   }
 
+  // Each line was appended to the file on its own, so two requests for one page at the same
+  // moment wove their trees into each other - 24 at once left 106 lines where one request
+  // writes 23, and no parser read it. The tree is gathered here and written whole.
+
   function padInfoXmlWrite ( $xml ) {
 
-    global $padInfoXmlDepth, $padInfoXmlFile;
+    global $padInfoXmlDepth, $padInfoXmlText;
 
     if ( $padInfoXmlDepth > 0 )
       $spaces = str_repeat ( ' ', $padInfoXmlDepth * 2 );
     else
       $spaces = '';
 
-    padFilePut ( $padInfoXmlFile, "$spaces$xml", 1 );
+    $padInfoXmlText .= "$spaces$xml\n";
 
   }
 

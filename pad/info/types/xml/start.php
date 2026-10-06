@@ -7,10 +7,9 @@
   // append to $padInfoXmlEvents, the ordered log info/types/xml/end.php later replays.
   //
   // Also picks the output file - DATA/_xml/complete/<page>.xml, or include/ for an included
-  // page, with compact/ inserted when $padInfoXmlCompact - and deletes an earlier copy.
-  // The name is relative to DATA, where padFilePut writes it; the delete looked for it
-  // relative to the working directory, never found it, and every request appended one more
-  // copy of the tree to the same file.
+  // page, with compact/ inserted when $padInfoXmlCompact. The end writes it whole, over an
+  // earlier copy: deleted here first, it was one more race for a request beside it - a file
+  // another one had just deleted failed the unlink.
 
   global $padInfoXmlCompact;
 
@@ -29,8 +28,5 @@
 
   if ( $padInfoXmlCompact )
     $padInfoXmlFile = str_replace('_xml/', '_xml/compact/', $padInfoXmlFile);
-
-  if ( file_exists ( DATA . $padInfoXmlFile ) )
-    unlink ( DATA . $padInfoXmlFile );
 
 ?>
