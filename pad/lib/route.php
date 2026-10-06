@@ -19,6 +19,7 @@
   //                  has beyond the entry point's directory when a FallbackResource left
   //                  PATH_INFO unset - with an &name=value tail moved into the request
   //                  values, so a link written {$padGo}page&x=1 works in either form
+  // padRequestPathRaw  that path as the request URI writes it, still encoded
   // padRouteQuery    whether the query string names the page instead: ?about on a clean
   //                  URL - the relative link every existing template writes - goes to about
   // padRouteQueryName  that name as the query string sent it, the dots and spaces PHP made _
@@ -34,24 +35,33 @@
     if ( PHP_SAPI == 'cli' )
       return '';
 
-    $path = (string) ( $_SERVER ['PATH_INFO'] ?? '' );
+    // The path as the client wrote it, when the request URI shows it - and says what
+    // PATH_INFO says, where there is one: the & that starts the tail is a raw one there,
+    // and an encoded %26 inside a segment is part of the segment.
+    // PATH_INFO arrives decoded, and the path was decoded before the tail was split off, so
+    // products/a%26b reached products/[id] as a with a value b - and the encoding {get},
+    // {ajax} and padRedirect () give a routed segment was undone under clean URLs.
 
-    if ( $path === '' ) {
+    $info = trim ( (string) ( $_SERVER ['PATH_INFO'] ?? '' ), '/' );
+    $raw  = padRequestPathRaw ();
 
-      $uri    = rawurldecode ( explode ( '?', (string) ( $_SERVER ['REQUEST_URI'] ?? '' ), 2 ) [0] );
-      $script = (string) ( $_SERVER ['SCRIPT_NAME'] ?? '' );
-      $base   = rtrim ( str_replace ( '\\', '/', dirname ( $script ) ), '/' ) . '/';
+    if ( $raw !== NULL and ( $info === '' or trim ( rawurldecode ( $raw ), '/' ) === $info ) ) {
 
-      if ( $uri !== $script and str_starts_with ( $uri, $base ) )
-        $path = substr ( $uri, strlen ( $base ) );
+      list ( $path, $tail ) = array_pad ( explode ( '&', trim ( $raw, '/' ), 2 ), 2, NULL );
+
+      $path = trim ( rawurldecode ( $path ), '/' );
+
+    } else {
+
+      $path = $info;
+      $tail = NULL;
+
+      if ( str_contains ( $path, '&' ) )
+        list ( $path, $tail ) = explode ( '&', $path, 2 );
 
     }
 
-    $path = trim ( $path, '/' );
-
-    if ( str_contains ( $path, '&' ) ) {
-
-      list ( $path, $tail ) = explode ( '&', $path, 2 );
+    if ( $tail !== NULL ) {
 
       parse_str ( $tail, $values );
 
@@ -70,6 +80,35 @@
     }
 
     return $path;
+
+  }
+
+  // The path below the entry point as it stands in the request URI, still encoded, or NULL
+  // when the URI does not begin with the entry point's directory: each segment of that
+  // directory is compared decoded, and the entry script's own name after it - index.php/... -
+  // is passed over.
+
+  function padRequestPathRaw () {
+
+    $uri    = explode ( '?', (string) ( $_SERVER ['REQUEST_URI'] ?? '' ), 2 ) [0];
+    $script = explode ( '/', str_replace ( '\\', '/', (string) ( $_SERVER ['SCRIPT_NAME'] ?? '' ) ) );
+
+    if ( $uri === '' or count ( $script ) < 2 )
+      return NULL;
+
+    $have = explode ( '/', $uri );
+    $base = count ( $script ) - 1;
+
+    for ( $i = 0; $i < $base; $i++ )
+      if ( ! isset ( $have [$i] ) or rawurldecode ( $have [$i] ) !== $script [$i] )
+        return NULL;
+
+    $rest = array_slice ( $have, $base );
+
+    if ( isset ( $rest [0] ) and rawurldecode ( $rest [0] ) === $script [$base] )
+      array_shift ( $rest );
+
+    return implode ( '/', $rest );
 
   }
 
