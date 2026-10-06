@@ -29,6 +29,14 @@
     if ( $pqRandomInc )
       $pqInc = pqRandomParm3 ( $pqRandomInc );
 
+    // Out past the integer range a float no longer moves when the step is added - -1e19 + 1
+    // is -1e19 - and the walk offered the same candidate again until the try limit, so
+    // {sequence modulo=7, from=-10000000000000000000, rows=3} answered -3 -3 -3. A walk that
+    // does not advance has nothing more to offer.
+
+    if ( $pqGo + $pqInc <= $pqGo )
+      break;
+
     $pqGo = $pqGo + $pqInc;
 
   }
