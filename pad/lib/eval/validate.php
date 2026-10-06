@@ -10,7 +10,8 @@
   // printf format is kept whole by the tokeniser and so is skipped here as well.
   //
   // Position is one-based over the expression as the tokeniser sees it - padUnescape()d, so
-  // a brace that travelled as an entity is counted as the one character it becomes. Inside a
+  // a brace that travelled as an entity is counted as the one character it becomes - and in
+  // characters, not bytes: after an é every position named was one too far. Inside a
   // string a backslash escapes the next character, so \' and \" do not close it; a quote of
   // the other kind is an ordinary character there and is left alone.
   //
@@ -24,6 +25,8 @@
 
     $text = padUnescape ( $eval );
     $len  = strlen ( $text );
+
+    // A position is counted in bytes on the way and named in characters (padEvalValidateAt).
 
     $quote   = '';    // the open quote character, '' when outside a string
     $quoteAt = 0;     // where that string opened
@@ -59,12 +62,12 @@
         $open = ( $one == ')' ) ? '(' : '[';
 
         if ( ! $stack )
-          return padEvalValidateError ( "the $one at position $at closes nothing that was opened", $text );
+          return padEvalValidateError ( "the $one at position " . padEvalValidateAt ( $text, $at ) . " closes nothing that was opened", $text );
 
         list ( $was, $wasAt ) = array_pop ( $stack );
 
         if ( $was != $open )
-          return padEvalValidateError ( "the $one at position $at does not match the $was opened at position $wasAt", $text );
+          return padEvalValidateError ( "the $one at position " . padEvalValidateAt ( $text, $at ) . " does not match the $was opened at position " . padEvalValidateAt ( $text, $wasAt ), $text );
 
         continue;
 
@@ -73,11 +76,11 @@
     }
 
     if ( $quote )
-      return padEvalValidateError ( "the string opened with $quote at position $quoteAt is never closed", $text );
+      return padEvalValidateError ( "the string opened with $quote at position " . padEvalValidateAt ( $text, $quoteAt ) . " is never closed", $text );
 
     if ( $stack ) {
       list ( $was, $wasAt ) = end ( $stack );
-      return padEvalValidateError ( "the $was opened at position $wasAt is never closed", $text );
+      return padEvalValidateError ( "the $was opened at position " . padEvalValidateAt ( $text, $wasAt ) . " is never closed", $text );
     }
 
     return TRUE;
@@ -188,6 +191,14 @@
     if ( $token [1] == 'OPR'   and in_array ( $token [0], $compare )                ) return TRUE;
 
     return FALSE;
+
+  }
+
+  // The one-based character position of the one-based byte position $at in $text.
+
+  function padEvalValidateAt ( $text, $at ) {
+
+    return mb_strlen ( substr ( $text, 0, $at - 1 ), 'UTF-8' ) + 1;
 
   }
 
