@@ -1122,13 +1122,14 @@ Uses `{when value}` syntax for branches:
 ```
 
 ### The `bool` Tag
-Creates a named boolean condition usable as a tag:
+Creates a named boolean condition usable as a tag - `{else}` belongs to `{if}` and `{case}`
+only, every other tag splits on `@else@`:
 ```
 {bool 'isActive'}1{/bool}      # Define the boolean
 
 {isActive}                      # Use as a tag (NOT {$isActive})
   <p>Active!</p>
-{else}
+@else@
   <p>Inactive</p>
 {/isActive}
 ```
@@ -1138,7 +1139,7 @@ Block tag for file existence checks (not nested in `{if}`):
 ```
 {exists APP . 'path/to/file.pad'}
   File exists
-{else}
+@else@
   File not found
 {/exists}
 ```
@@ -1148,7 +1149,7 @@ Checks if an array has elements. Quote the array name:
 ```
 {count 'items'}
   Array has elements
-{else}
+@else@
   Array is empty
 {/count}
 ```
