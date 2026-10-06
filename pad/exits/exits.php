@@ -62,6 +62,16 @@
   if ( $padTidy or $padMyTidy or str_contains ( $padOutput, '@tidy@' ) )
     include PAD . 'exits/tidy.php';
 
+  // A data answer (lib/expose.php) is made here, where the page's rendering stood, so the
+  // output hook below sees what goes out: the writers made it after the hook, which was
+  // handed the empty rendering of the templates a data answer skips, and the JSON or CSV
+  // went out past it.
+
+  if ( $padOutputType == 'json' )
+    $padOutput = padExposeJson ();
+  elseif ( $padOutputType == 'csv' )
+    $padOutput = padExposeCsv ();
+
   // The application's _events/output.php sees the page as it will go out and may change
   // it - before the ETag and the page cache, so both describe what is actually sent.
 

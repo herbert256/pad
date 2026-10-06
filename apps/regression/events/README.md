@@ -23,4 +23,5 @@ can show what the error hook kept.
 | `sql.php/pad` | Runs one `db()` statement |
 | `curl.php/pad` | Fetches a page of this application and a port nothing listens on |
 | `output.pad`, `sub/output.pad` | Carry the marker the output hooks replace |
+| `outputdata.php/pad`, `outputjson.php/pad` | A page exposing the marker as data, and the page that asks it for JSON: the hook sees the JSON |
 | `_config/config.php` | The `'ignore'` action, the demo database, `_common` off |
