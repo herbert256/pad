@@ -14,6 +14,7 @@
       'secret',
       'token',
       'apikey', 'api_key',
+      'appkey', 'app_key',
       'credential', 'cred',
       'auth',
       'private',
