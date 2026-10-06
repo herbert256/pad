@@ -1849,8 +1849,8 @@ other word after a value is a pipe, `{echo 'abc' upper}` gives `ABC`.
 | `where` | Keep the rows an expression holds for |
 | `callback` | Run callback |
 | `ignore` | Skip PAD processing |
-| `noError` | Suppress errors |
-| `dump` | Debug output |
+| `noError` | An unknown tag renders nothing (as `optional`) |
+| `dump` | A state dump under `DATA/dumps/` |
 
 ### Combined Formatting Example
 

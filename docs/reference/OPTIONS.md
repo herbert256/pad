@@ -26,10 +26,13 @@ Options are processed at different phases during tag execution:
 
 | Phase | When | Options |
 |-------|------|---------|
-| **Start** | Before content generation | `track`, `before`, `where`, `group`, `dedup`, `page`, `sort`, `ignore`, `print`, `parent`, `trace`, `pre` |
-| **End** | After content generation | `toBool`, `toContent`, `toData`, `tidy`, `dump` |
-| **Callback** | During callback execution | `callback` |
-| **Special** | Handled at specific points | `data`, `content`, `else`, `null`, `bool`, `optional`, `noError` |
+| **Data** | Before the tag runs | `data` |
+| **Flags** | When the tag has answered | `notOk` / `error`, `null`, `else`, `demand`, then `dump` and `content` |
+| **Handling** | Then, in the order written | `sort`, `where`, `group`, `first`, `page`, `rows`, `dedup`, ... - see [HANDLING.md](HANDLING.md) |
+| **Start** | Before the occurrences render | application `_options/`, then `ignore`, `print` |
+| **Callback** | Around the occurrences | `callback`, `before` |
+| **End** | After the occurrences rendered | application `_options/end/`, then `toBool`, `toContent`, `toData`, `tidy` |
+| **Special** | Handled at specific points | `bool` (read by `{if}`), `optional`, `noError` (an unknown tag), `cache` |
 
 ---
 
@@ -377,15 +380,14 @@ Cleans up whitespace and formatting in the output.
 
 ### noError
 
-Suppresses error handling for the tag.
+The same as `optional`: a tag whose name resolves to no tag renders nothing instead of an error.
 
 ```
 {tagName noError}
 ```
 
-**Behavior:** Handled in `level/var.php` - prevents error reporting
-
-**Use case:** When errors are expected and should be silently ignored.
+**Behavior:** Read by `level/no.php`, the fallback for an unknown tag. A tag that exists and
+fails still reports its error.
 
 ---
 
@@ -421,17 +423,10 @@ Processes callback in "before" mode - runs before content generation.
 
 ---
 
-## Start Phase Options
+## Handling Options
 
-Options processed at the start of tag execution.
-
-### track
-
-Enables tracking for the tag.
-
-```
-{tagName track}
-```
+The handling options are processed after the tag has answered, in the order written - see
+[HANDLING.md](HANDLING.md).
 
 ### dedup
 
@@ -482,29 +477,7 @@ Enables sorting.
 {tagName sort}
 ```
 
-### parent
-
-Handles parent relationship.
-
-```
-{tagName parent}
-```
-
-### trace
-
-Enables tracing for debugging.
-
-```
-{tagName trace}
-```
-
-### pre
-
-Enables preprocessing.
-
-```
-{tagName pre}
-```
+For tracing a page, see `{trace}` in [TAGS.md](TAGS.md#trace) and `$padInfo = 'trace'`.
 
 ---
 
@@ -530,7 +503,8 @@ handler does not run and the stored rendering stands in. See `{cache}` in
 
 ### dump
 
-Outputs debug information about current state.
+Writes a state dump under `DATA/dumps/<app>/<page>/` - nothing appears in the page - once
+the tag has answered and again after its handling options.
 
 ```
 {tagName dump}
@@ -598,25 +572,21 @@ Enables direct output printing with formatting options.
 | Option | Description |
 |--------|-------------|
 | `ignore` | Skip PAD processing |
-| `noError` | Suppress errors |
+| `noError` | An unknown tag renders nothing (as `optional`) |
 | `callback` | Run application callback |
 | `before` | Callback before content |
 | `print` | Direct output mode |
-| `dump` | Debug output |
+| `dump` | A state dump under `DATA/dumps/` |
 
-### Start Phase
+### Handling
 | Option | Description |
 |--------|-------------|
-| `track` | Enable tracking |
 | `where` | Keep the rows an expression holds for |
 | `group` | One occurrence per value of a field, with count, rows and aggregates |
 | `sum`, `avg`, `min`, `max` | The aggregates of `group` |
 | `dedup` | Deduplicate data |
 | `page` | Enable pagination |
 | `sort` | Enable sorting |
-| `parent` | Handle parent |
-| `trace` | Enable tracing |
-| `pre` | Preprocessing |
 
 ---
 
@@ -657,12 +627,14 @@ count as readers for the strict unread-option check.
 
 ## Processing Order
 
-1. **Data retrieval**: `data`, `content`
-2. **Conditional setup**: `else`
-3. **Start options**: `track`, `before`, `dedup`, `page`, `sort`, `ignore`, `print`, `parent`, `trace`, `pre`
-4. **App options**: Custom application options (`_options/`)
-5. **Content generation**: Tag processing
-6. **Flag handling**: `null` (if NULL result)
-7. **Callback**: `callback`
-8. **App end options**: Custom application options (`_options/end/`)
-9. **End options**: `toBool`, `toContent`, `toData`, `tidy`, `dump`
+1. **Data retrieval**: `data`
+2. **Tag processing**: the tag's handler runs
+3. **Flags**: `notOk` / `error`, `null`, `else`, `demand`
+4. **Dump and content**: `dump`, then `content` merged
+5. **Handling**: `sort`, `where`, `group`, `first`, `page`, `dedup`, ... in the order written (`dump` again after them)
+6. **App options**: Custom application options (`_options/`)
+7. **Start options**: `ignore`, `print`
+8. **Callback**: `callback` (with `before`)
+9. **Occurrences**: the content renders per row
+10. **App end options**: Custom application options (`_options/end/`)
+11. **End options**: `toBool`, `toContent`, `toData`, `tidy`
