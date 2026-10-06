@@ -347,7 +347,7 @@ PAD runs through Apache or similar. Entry points are in `www/`.
 ?>
 ```
 
-`www/pad.php` detects the OS, derives the app name and the URL mount prefix (`$padRoot`) from the entry script's `SCRIPT_NAME`, and includes `pad/pad.php` (which defines `APP`, `DATA` and the other constants). The `www/` tree can be served at the domain root or mounted under a prefix; generated cross-app links use `$padPath` and follow the mount automatically.
+`www/pad.php` detects the OS, derives the app name and the URL mount prefix (`$padRoot`) from the entry script's `SCRIPT_NAME`, and includes `pad/pad.php` (which defines `APP`, `DATA` and the other constants). The `www/` tree can be served at the domain root or mounted under a prefix; generated cross-app links use `$padHost` and follow the mount automatically.
 
 ## Creating a New Application
 
@@ -709,7 +709,7 @@ Named parameters are in `$padPrm[$pad]`:
 ```php
 <?php
   // Usage: {clock 'H:i:s'} or {clock format='Y-m-d'}
-  $format = $padPrm[$pad]['format'] ?? $padOpt[$pad][1] ?? 'Y-m-d H:i:s';
+  $format = padTagParm ( 'format', $padOpt [$pad] [1] ?: 'Y-m-d H:i:s' );
   return date($format);
 ?>
 ```
@@ -1293,7 +1293,7 @@ Run PHP code before all pages:
   $title = ucfirst ( $padPage );
 
   // Check authentication
-  session_start ();
+  padSessionStart ();
   $loggedIn = isset ( $_SESSION ['user'] );
 ?>
 ```
@@ -1407,17 +1407,13 @@ Use the `DATA` directory for writable data:
 
 ```php
 <?php
-  $dataFile = DATA . 'myapp/data.json';
+  // A relative path is under DATA/ for both; padFilePut makes the directory
 
-  // Ensure directory exists
-  if ( ! is_dir ( DATA . 'myapp' ) )
-    mkdir ( DATA . 'myapp', 0755, TRUE );
+  // Read - an empty list until the file is first written
+  $data = json_decode ( padFileGet ( 'myapp/data.json', '[]' ), TRUE );
 
-  // Read
-  $data = json_decode ( file_get_contents ( $dataFile ), TRUE );
-
-  // Write
-  file_put_contents ( $dataFile, json_encode ( $data ) );
+  // Write - padFilePut writes under DATA/, through a temporary file
+  padFilePut ( 'myapp/data.json', json_encode ( $data ) );
 ?>
 ```
 
