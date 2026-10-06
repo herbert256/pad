@@ -42,8 +42,14 @@
     if ( ! padReloadOn () )
       return;
 
+    // The name as an address: a routed segment is the value it was asked with, decoded -
+    // item/a#b&c - and written as it stood, the browser took #b&c&padReload for a fragment
+    // and polled item/a, a whole page and no stamp. Each segment is encoded, and the query
+    // form names the page whether or not the application writes clean URLs.
+
     $page  = ( ( $padPageAsked ?? '' ) !== '' ) ? $padPageAsked : $padPage;
-    $url   = json_encode ( $padGo . $page . '&padReload', JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP );
+    $page  = implode ( '/', array_map ( 'rawurlencode', explode ( '/', $page ) ) );
+    $url   = json_encode ( rtrim ( $padGo, '?' ) . '?' . $page . '&padReload', JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP );
     $stamp = json_encode ( (string) padReloadStamp (), JSON_HEX_TAG );
 
     padOutputAdd ( "\n<script id=\"padReload\">(function () {\n"
