@@ -40,4 +40,8 @@ develop/
 
 ## Access
 
-Via web browser: `http://server/develop/`
+Via web browser on this machine: `http://localhost/develop/`. The tools act on a plain GET -
+they rewrite the sources, wipe and fill `DATA/` - so `_guard.php` lets only this machine at
+them: loopback with nothing forwarded, `localhost` (or `127.0.0.1`, `[::1]`) in the Host
+header, and not sent by a page of another site. Everyone else gets a 403; the index, which
+only lists the tools, stays open.
