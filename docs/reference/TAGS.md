@@ -128,8 +128,8 @@ Rotating switch that cycles through options on each call.
 **Returns:** Next value in rotation sequence
 
 The rotation lives for the request, but not across a nested pass: engine state is restored
-when a `{code}` pass of any kind returns, so a rotation counted inside one is rolled back
-with it, and a pass starts every rotation it meets from the first value.
+when a `{code}` pass of any kind returns, so a pass continues each rotation from where the page
+had it, and the steps it took are rolled back when it returns.
 
 ---
 
@@ -1233,13 +1233,14 @@ form closes at the first `#}` or `--}` after it.
 Render a mount point `<div>` for a React component, filled with data from a provider.
 
 ```html
-{reactData id="products" provider="products" type="array"}
+{reactData id='products', provider='products'}
 ```
 
 **Parameters:**
 - `id` - DOM id of the generated div (default `myReactId`)
 - `provider` - Provider file in `_providers/<name>.php` (defaults to `id`)
-- `type` - `record`, `array` or `check` (default `record`)
+- `type` - `check` turns the provider's result into 1 or 0; otherwise (`record`, the default,
+  or `array`) the result is passed as the provider returned it
 
 **Behavior:** Runs the provider, stores the result in `$padProviders`, and outputs `<div id="..." data="...">` with the JSON HTML-escaped for the attribute. Read it in JS with `getAttribute('data')`. See [REACT.md](../REACT.md).
 
@@ -1444,8 +1445,8 @@ Show a value in the page while it renders - for a local request only.
 
 **Behavior:** Writes a collapsible `<details>` tree of the value. `{debug}` alone shows every
 field visible where it stands - the rows of the enclosing levels, innermost first - and the
-application's variables. A missing `$name` is shown as missing rather than failing. A
-request that is not local (the command line, or loopback with nothing forwarded) gets
+application's variables. A missing `$name` is shown as missing rather than failing. Only a
+local request - the command line, or loopback with nothing forwarded - gets it; any other gets
 nothing, and `$padDiagnostics = FALSE` switches it off everywhere. Unlike `{dump}` the
 request goes on.
 
@@ -1947,6 +1948,8 @@ Access iteration state and metadata using `property@tag` syntax.
 A property also reads as a value inside an expression - `{if first@items}`, `{if current@items
 eq 2}` - because a property name followed by `@` and a target is one reference there. Any other
 word before `@` keeps the placeholder reading: elsewhere in an expression `@` is the current
-value being piped in. The bare spelling is the property and nothing else; a row field of the
-same name is what the `$`-spelling reads - `{$first@orders}` - so the sigil resolves the
-collision.
+value being piped in. Inside an expression the bare spelling is the property and nothing else;
+a row field of the same name is what the `$`-spelling reads - `{$first@orders}` - so the sigil
+resolves the collision there. Written as a tag - `{first@orders}...{/first@orders}`,
+`{name@users}` - a row field of that name wins; use `{if first@orders}` when the rows can carry
+such a field.
