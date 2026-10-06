@@ -92,9 +92,29 @@
       foreach ( $fragment ['pagers'] as $name => $booking )
         padPagerBook ( $name, $booking );
 
-    } elseif ( $padFragmentCache )
+    } elseif ( $padFragmentCache and padFragmentStorable ( $padResult [$pad], $fragment ['stacks'] ) )
 
       padFragmentPut ( $fragment ['key'], $padResult [$pad], $fragment ['ttl'], $fragment ['stacks'], $fragment ['pagers'] );
+
+  }
+
+  // A rendering that holds something of this visitor's or of this request's is not kept,
+  // as the page cache keeps no such page (padCacheStorable): the session's CSRF token - a
+  // {form}, {csrf}, a live region - went to every later visitor of the section, who could
+  // post with it on the first one's behalf, and the CSP nonce was one no later header
+  // names, so the section's scripts stopped running. Neither are the visitor's own ids.
+
+  function padFragmentStorable ( $body, $stacks ) {
+
+    global $padCsrfIssued, $padNonce, $padSesID, $padReqID;
+
+    $text = $body . serialize ( $stacks );
+
+    foreach ( [ $padCsrfIssued ?? '', $padNonce ?? '', $padSesID ?? '', $padReqID ?? '' ] as $id )
+      if ( $id !== '' and str_contains ( $text, $id ) )
+        return FALSE;
+
+    return TRUE;
 
   }
 

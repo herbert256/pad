@@ -1213,7 +1213,9 @@ selects the store (`'file'`, `'apcu'`, or `FALSE` to render every time);
 PHP that runs before the template - the page's `.php` - runs on a hit too. What the section
 leaves for the rest of the page is kept with it and made again on a hit: its `{push}`es, and
 the page booking of a paged tag in it, for a `{pager}` further down. A request for one
-response fragment, or the post of a live region, renders the section and stores nothing.
+response fragment, or the post of a live region, renders the section and stores nothing. A
+rendering that holds the visitor's CSRF token (a `{form}`, `{csrf}`, a live region) or the
+request's `{nonce}` is not stored either: it renders every time.
 
 ---
 
