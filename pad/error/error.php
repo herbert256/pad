@@ -51,7 +51,13 @@
     $padExceptionError = $e->getMessage();
     $padExceptionText  = "$padExceptionFile:$padExceptionLine $padExceptionError" ;
 
-    return padErrorGo ( "EXCEPTION: $padExceptionError", $padExceptionFile, $padExceptionLine );
+    padErrorGo ( "EXCEPTION: $padExceptionError", $padExceptionFile, $padExceptionLine );
+
+    // An action that carries on - log, ignore, dump - comes back here, but an uncaught
+    // throwable has unwound the page and PHP ends the request once this handler returns:
+    // with nothing rendered, it ended as an empty 200. It ends as the failure it is.
+
+    padExit ( 500 );
 
   }
 
