@@ -77,7 +77,9 @@
   // _SESSION and _COOKIE - the reports that go to disk. The application key, $padAppKey,
   // is one: whoever reads it can forge every signed link and open every sealed value.
 
-  function padRedact ( $value, $key = '', $deep = FALSE ) {
+  function padRedact ( $value, $key = '', $deep = FALSE, $depth = 0 ) {
+
+    static $budget = 0;
 
     if ( padRedactName ( $key ) )
       return '*** redacted ***';
@@ -88,13 +90,30 @@
     if ( ! is_array ( $value ) )
       return $value;
 
+    // A global array can hold itself - $loop ['self'] = &$loop - and the walk went round it
+    // until the call stack ran out, taking the report of the real error with it. Deep enough
+    // for any data, and a bound on the arrays one walk visits for a loop that branches.
+
+    if ( $depth == 0 )
+      $budget = 100000;
+
+    if ( $depth >= 32 or --$budget < 0 )
+      return '*** nested too deep ***';
+
+    // Into a new array: the one walked is a copy, but a row an application walked with
+    // foreach ( ... as &$row ) is a reference in it, and the redaction written into the copy
+    // went through to the application's own data - after {debug}, after an error under the
+    // dump action, the page went on with its passwords replaced.
+
+    $redacted = [];
+
     foreach ( $value as $k => $v )
       if ( ( $key == '_COOKIE' ) or ( $deep and $key == '_SESSION' ) )
-        $value [$k] = is_array ( $v ) ? '*** redacted ***' : ( $v === '' ? '' : '*** redacted ***' );
+        $redacted [$k] = is_array ( $v ) ? '*** redacted ***' : ( $v === '' ? '' : '*** redacted ***' );
       else
-        $value [$k] = padRedact ( $v, $k, $deep );
+        $redacted [$k] = padRedact ( $v, $k, $deep, $depth + 1 );
 
-    return $value;
+    return $redacted;
 
   }
 
