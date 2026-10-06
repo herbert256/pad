@@ -1239,7 +1239,7 @@ Output: `Alice, Bob, Charlie`
 
 | Function | Description |
 |----------|-------------|
-| `padRedirect($url, $vars)` | Redirect to URL with optional variables |
+| `padRedirect($page, $vars, $app)` | Redirect to a page of this application (or of `$app`) with optional variables - no page: back to the one asked for |
 | `padRestart($page)` | Restart processing with new page |
 
 ### Forms and Security
@@ -1327,7 +1327,7 @@ Output: `Alice, Bob, Charlie`
 |----------|-------------|
 | `padRandomString($len)` | Generate random string |
 | `padExplode($str, $delim, $limit)` | Smart explode with trimming |
-| `padBetween($str, $open, $close)` | Extract between delimiters |
+| `padBetween($str, $open, $close, &$before, &$between, &$after)` | Split at the first `$open`...`$close` - TRUE when both are there, the three parts by reference |
 | `padMakeSafe($input, $len)` | Sanitize input |
 
 ---
