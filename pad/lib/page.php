@@ -120,6 +120,12 @@
 
     $url = padAddIds ( $url );
 
+    // The address goes into the script as one JavaScript string. A page name is no plain
+    // word when a route binds it - products/[id] takes any segment - and written as it was,
+    // x");alert(1);(" closed the string and ran as the page's own script.
+
+    $url = json_encode ( $url, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_INVALID_UTF8_SUBSTITUTE );
+
     return <<< END
 <div id="{$ajax}"></div>
 
@@ -134,7 +140,7 @@
       }
     }
   }
-  {$ajax}.open("GET","{$url}",true);
+  {$ajax}.open("GET",{$url},true);
   {$ajax}.send();
 </script>
 END;

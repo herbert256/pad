@@ -16,10 +16,31 @@
 
   $padPageInclude = ( $padPageInclude ) ? '&padInclude' : '';
 
+  // The application and the page are checked as that application's router will resolve
+  // them (lib/page.php), as {ajax app=} checks them under the strict check. Neither was,
+  // and both went as they came into the script the browser runs and into the address this
+  // server fetches for itself: {page $p, app='shop'} with p=x");alert(1);// ran a script. A
+  // page that is not there is an error under the strict check and nothing without it, as
+  // for a {page} of this application.
+
+  if ( ! preg_match ( '/^[a-zA-Z0-9][a-zA-Z0-9_\/-]*$/D', (string) $padPageApp ) or str_contains ( $padPageApp, '//' )
+       or ! padPageCheck ( (string) $padPagePage, APPS . "$padPageApp/" ) ) {
+
+    if ( $padCheckSyntax )
+      padError ( "there is no page named '$padPagePage' in the application '$padPageApp'" );
+
+    return '';
+
+  }
+
   if ( $padPageAjax )
     return padPageAjax ( $padPagePage, $padPageInclude, $padPageApp );
 
-  $padPageUrl  = "$padHost$padPageApp/?$padPagePage$padPageInclude";
+  // A route segment may hold what a query string reads as its own - products/[id] takes
+  // 1&padStats - so each segment is encoded, and the other application binds the value
+  // whole instead of taking a switch from it.
+
+  $padPageUrl  = "$padHost$padPageApp/?" . implode ( '/', array_map ( 'rawurlencode', explode ( '/', (string) $padPagePage ) ) ) . $padPageInclude;
   $padPageCurl = padCurl ( $padPageUrl );
 
   if ( ! str_starts_with ( $padPageCurl ['result'], '2' ) )
