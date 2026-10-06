@@ -111,12 +111,14 @@
     if ( ! preg_match ( '/\saction\s*=\s*(?:"([^"]*)"|\'([^\']*)\'|([^\s>]+))/i', $open, $match ) )
       return TRUE;
 
-    $action = html_entity_decode ( trim ( ( $match [1] ?? '' ) . ( $match [2] ?? '' ) . ( $match [3] ?? '' ) ), ENT_QUOTES, 'UTF-8' );
+    $action = html_entity_decode ( trim ( ( $match [1] ?? '' ) . ( $match [2] ?? '' ) . ( $match [3] ?? '' ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
 
     // Read as a browser reads it (the URL standard): the controls and spaces at its ends
     // and every tab and line break within are dropped, and on a web page a backslash is a
     // slash - /\elsewhere.example/ and /&#9;/elsewhere.example/ post to that site, and
-    // were handed the token as addresses on this one.
+    // were handed the token as addresses on this one. The references are HTML5's: with
+    // only those of HTML 4 decoded, /&Tab;/elsewhere.example/ and &sol;&sol;elsewhere.example/
+    // were still read as paths here.
 
     $action = str_replace ( [ "\t", "\n", "\r", '\\' ], [ '', '', '', '/' ], trim ( $action, "\x00..\x20" ) );
 
