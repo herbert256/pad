@@ -6,6 +6,13 @@
 
 function pqTetrahedral ($n) {
 
+  // A position below the first one, or between two, has no term: the formula answered there
+  // with numbers that are no terms of the sequence - pentagonal at -2 and -1 gave 7 and 2.
+
+  if ( ! pqBoolWhole ( $n ) or $n < 0 )
+    return FALSE;
+
+
   return pqProduct ( [ $n, $n + 1, $n + 2 ], 6 );
 
 }
