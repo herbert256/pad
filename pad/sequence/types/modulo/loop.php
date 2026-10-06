@@ -11,6 +11,9 @@
   if ( ! $pqParm )
     $pqParm = 1;
 
-  return fmod ( $pqLoop, $pqParm );
+  // The + 0 turns the float -0 that rounds a small negative value, and that fmod gives for a
+  // negative multiple, into 0: printed, it read -0.
+
+  return fmod ( $pqLoop, $pqParm ) + 0;
 
 ?>

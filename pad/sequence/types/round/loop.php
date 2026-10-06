@@ -7,6 +7,9 @@
   if ( ! $pqParm )
     $pqParm = 1;
 
-  return round ( $pqLoop / $pqParm ) * $pqParm;
+  // The + 0 turns the float -0 that rounds a small negative value, and that fmod gives for a
+  // negative multiple, into 0: printed, it read -0.
+
+  return round ( $pqLoop / $pqParm ) * $pqParm + 0;
 
 ?>
