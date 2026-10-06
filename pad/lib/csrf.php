@@ -105,13 +105,27 @@
 
   function padCsrfFormPosts ( $open ) {
 
-    if ( ! preg_match ( '/\smethod\s*=\s*["\']?\s*post\b/i', $open ) )
+    // The attributes as a browser reads them, one after the other, the first of a name
+    // counting: an action straight after a quote or a slash - method="post"action=... - is
+    // the action, text in another attribute's value - title="see action=?here" - is none,
+    // and the method is post exactly, any case. Each was looked for anywhere in the tag
+    // after a space, which took the first two for forms posting here and handed them the
+    // token, and gave it to method=" post" - a GET form, the token in its URL.
+
+    preg_match_all ( '/([^\s"\'>\/=]+)(?:\s*=\s*(?:"([^"]*)"|\'([^\']*)\'|([^\s>]+)))?/', substr ( $open, 5 ), $found, PREG_SET_ORDER );
+
+    $attrs = [];
+
+    foreach ( $found as $one )
+      $attrs [ strtolower ( $one [1] ) ] ??= ( $one [2] ?? '' ) . ( $one [3] ?? '' ) . ( $one [4] ?? '' );
+
+    if ( strtolower ( html_entity_decode ( $attrs ['method'] ?? '', ENT_QUOTES | ENT_HTML5, 'UTF-8' ) ) !== 'post' )
       return FALSE;
 
-    if ( ! preg_match ( '/\saction\s*=\s*(?:"([^"]*)"|\'([^\']*)\'|([^\s>]+))/i', $open, $match ) )
+    if ( ! array_key_exists ( 'action', $attrs ) )
       return TRUE;
 
-    $action = html_entity_decode ( trim ( ( $match [1] ?? '' ) . ( $match [2] ?? '' ) . ( $match [3] ?? '' ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+    $action = html_entity_decode ( trim ( $attrs ['action'] ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
 
     // Read as a browser reads it (the URL standard): the controls and spaces at its ends
     // and every tab and line break within are dropped, and on a web page a backslash is a
