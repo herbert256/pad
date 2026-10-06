@@ -673,6 +673,10 @@
   // missing or plain becomes an array, a '*' segment (when $wild) writes into every item.
   // It answers a new array for an array - PHP's arrays are values - and the same object,
   // written in place, for an object.
+  //
+  // $wild is padArrSet's walk. padArrUndot's builds arrays only: a '*' is the character
+  // it is, and an object on the way is replaced as a plain value is - written in place, the
+  // object the caller handed to padArrUndot changed, or was an error without that property.
 
   function padArrWrite ( $function, $target, $path, $value, $wild ) {
 
@@ -681,7 +685,7 @@
 
     $segment = array_shift ( $path );
 
-    if ( ! is_array ( $target ) and ! is_object ( $target ) )
+    if ( ! is_array ( $target ) and ( ! $wild or ! is_object ( $target ) ) )
       $target = [];
 
     if ( $wild and $segment === '*' ) {
