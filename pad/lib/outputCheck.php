@@ -263,6 +263,15 @@
       if ( $app === '' )
         return NULL;
 
+      // A directory of www/ that is no application's entry point - www/wasm/, the index.html
+      // of www/regression/ - is the web server's to serve as it is, no page link: it was
+      // taken for an application and reported broken.
+
+      $www = dirname ( APPS ) . "/www/$app";
+
+      if ( is_dir ( $www ) and ! file_exists ( "$www/index.php" ) )
+        return NULL;
+
     }
 
     $page = ( $clean !== '' ) ? $clean : 'index';
