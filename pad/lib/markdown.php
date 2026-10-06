@@ -459,13 +459,16 @@
   }
 
   // The inline structure of one block's text. Code spans and backslash escapes go first,
-  // in one left-to-right pass - the one that starts first wins - then autolinks, raw HTML
+  // in one left-to-right pass - the one that starts first wins; a run of backticks that
+  // nothing closes is passed whole ((*SKIP)), as CommonMark has it, rather than tried again
+  // from each of its backticks with a shorter length, each try a scan to the end of the
+  // text - 200 kB of runs took seventeen seconds - then autolinks, raw HTML
   // (html option only), images and links; what they produce is held, the rest is escaped,
   // and emphasis and line breaks are marked up on the escaped text.
 
   function padMarkdownInline ( $text, $html, &$hold ) {
 
-    $text = preg_replace_callback ( '/\\\\([!-\/:-@\[-`{-~])|(`+)(?!`)(.+?)(?<!`)\2(?!`)/s',
+    $text = preg_replace_callback ( '/\\\\([!-\/:-@\[-`{-~])|(`+)(?!`)(*SKIP)(.+?)(?<!`)\2(?!`)/s',
       function ( $m ) use ( &$hold ) {
         if ( $m [1] !== '' )
           return padMarkdownHold ( padMarkdownEscape ( $m [1] ), $hold );
