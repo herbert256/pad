@@ -131,7 +131,8 @@ actions do. A parameter that is not a number is reported; `divide` will not take
 {pull:nums multiply=2}        # Multiply each by 2
 {pull:nums divide=4}          # Divide each by 4
 {pull:nums modulo=3}          # Modulo 3 of each
-{pull:nums power=2}           # Square each element
+{pull:nums power=2}           # 2 raised to each element
+{pull:nums exponentiation=2}  # Square each element
 {pull:nums exponentiation=3}  # Cube each element
 {pull:nums ceil}              # Ceiling of each
 {pull:nums floor}             # Floor of each
@@ -140,7 +141,8 @@ actions do. A parameter that is not a number is reported; `divide` will not take
 ```
 
 `increment` is not an action either - it is the option that sets the step a sequence counts
-in, and has no effect written after a pull.
+in; after a pull it steps through the stored list: `{pull:nums increment=3}` over 1..10 gives
+1 4 7 10.
 
 ## Bitwise Operations (plays, not actions)
 
@@ -177,7 +179,8 @@ With `seqA` holding 1 to 6 and `seqB` holding 4 to 9:
 values only in the store. For the one-sided operation use `onlyNow`.
 
 Every one of these needs a store to work with. Named without one, or named with a store that
-was never pushed, they leave the sequence as it is.
+was never pushed, they leave the sequence as it is - except `intersection`, which under the
+strict check names the store that is not there.
 
 ## The `resume` Tag
 
@@ -248,7 +251,6 @@ generation options, and the arithmetic and bitwise entries above are plays.
 | `shift=N` | Take the first N out of the store and show them |
 | `pop=N` | Take the last N out of the store and show them |
 | `trim` | Remove from the ends, by `both` / `left` / `right` |
-| `negative` | Invert whatever the action just selected |
 | `sum` | Sum of the values, 0 when empty |
 | `product` | Product of the values, 1 when empty |
 | `average` | Mean; nothing when empty |
@@ -266,6 +268,8 @@ generation options, and the arithmetic and bitwise entries above are plays.
 | `difference='seq'` | Values in one or the other but not both |
 | `onlyNow='seq'` | Values in the sequence but not the store |
 | `onlyStore='seq'` | Values in the store but not the sequence |
+
+`negative` is no action but an option of them: it inverts whatever the action just selected.
 
 ## Type Prefixes for Sequences
 
