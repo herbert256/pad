@@ -9,8 +9,8 @@
   // after this - an assignment there replaces a request value, but code that merely tests
   // whether a name is set sees the one the request brought.
   //
-  // If the application declared $padSessionVars the session is started and taken in
-  // first, so the state the server keeps outranks anything the request says; every
+  // If the application declared $padSessionVars the session is started and those names
+  // are taken in first, so the state the server keeps outranks anything the request says; every
   // declared variable is guaranteed to exist (empty string if absent) so templates need
   // not test for it. Then POST, GET and cookie values, trimmed, for the names
   // $padRequestVars lets through - never a declared session name, which a request could
@@ -27,7 +27,11 @@
 
     padSessionStart ();
 
-    padGetParms ('SESSION', $_SESSION ?? []);
+    // The declared names only: the session cookie is the host's, so every key another
+    // application kept in it - or a helper keeping its own state - came out as a variable
+    // of this one, ahead of the request and the page, once any name was declared.
+
+    padGetParms ('SESSION', array_intersect_key ( $_SESSION ?? [], array_flip ( $padSessionVars ) ) );
 
     foreach ($padSessionVars as $padVar)
       if ( ! isset ($GLOBALS [$padVar]) )
