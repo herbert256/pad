@@ -11,28 +11,60 @@
   // lucky depends only on the numbers below it, so a sieve run to any limit at or above the
   // candidate gives the right answer for it.
   //
-  // The range is grown in doubling steps and only when a candidate passes the current limit,
-  // so a build walking upwards sieves a handful of times rather than once per candidate.
-  // $pqLuckyList and $pqLuckyLimit are pq* globals, so inits/clear.php drops them between
-  // runs and the first candidate of the next run builds them again.
+  // A number past the sieve is followed through the passes instead: an odd n stands at
+  // position (n + 1) / 2 among the odd numbers, a pass with step k strikes it when its
+  // position is a multiple of k and otherwise moves it down by the number struck before it,
+  // and once its position is below the step no later pass reaches it. The steps are the
+  // lucky numbers themselves, and only those up to about n / ln n are needed, so the sieve
+  // is grown in doubling steps only as far as the steps run out. Sieving up to twice the
+  // candidate instead cost a time that grows with its square: {sequence lucky,
+  // from=1000000} sieved two million numbers and ran into the time limit.
+  //
+  // $pqLuckyList, $pqLuckySteps and $pqLuckyLimit are pq* globals, so inits/clear.php drops
+  // them between runs and the first candidate of the next run builds them again.
 
   function pqBoolLucky ( $n, $p=0 ) {
 
-    global $pqLuckyList, $pqLuckyLimit;
+    global $pqLuckyList, $pqLuckySteps, $pqLuckyLimit;
 
     if ( ! pqBoolWhole ( $n ) or $n < 1 )
       return FALSE;
 
-    if ( ! isset ( $pqLuckyLimit ) or $pqLuckyLimit < $n )
-      pqLuckySieve ( $n * 2 );
+    if ( ! isset ( $pqLuckyLimit ) )
+      pqLuckySieve ( 100 );
 
-    return isset ( $pqLuckyList [$n] );
+    if ( $n <= $pqLuckyLimit )
+      return isset ( $pqLuckyList [$n] );
+
+    $n = (int) $n;
+
+    if ( $n % 2 == 0 )
+      return FALSE;
+
+    $position = intdiv ( $n + 1, 2 );
+
+    for ( $i = 1; ; $i++ ) {
+
+      while ( ! isset ( $pqLuckySteps [$i] ) )
+        pqLuckySieve ( 2 * $pqLuckyLimit );
+
+      $step = $pqLuckySteps [$i];
+
+      if ( $position < $step )
+        return TRUE;
+
+      if ( $position % $step == 0 )
+        return FALSE;
+
+      $position -= intdiv ( $position, $step );
+
+    }
 
   }
 
   function pqLuckySieve ( $limit ) {
 
-    global $pqLuckyList, $pqLuckyLimit;
+    global $pqLuckyList, $pqLuckySteps, $pqLuckyLimit;
 
     if ( $limit < 100 )
       $limit = 100;
@@ -57,6 +89,7 @@
     }
 
     $pqLuckyList  = array_flip ( $pqLuckyNums );
+    $pqLuckySteps = $pqLuckyNums;
     $pqLuckyLimit = $limit;
 
   }
