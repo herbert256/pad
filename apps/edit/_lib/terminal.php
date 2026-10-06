@@ -31,6 +31,20 @@
     if ( ! is_dir ( $base ) )
       @mkdir ( $base, 0700, TRUE );
 
+    // The name is known to anyone who knows where the checkout is, in a directory every
+    // user of the machine may write in: one that another user made there first - or a link
+    // they put there - held the scripts the terminal runs, the output of its commands and
+    // the debugger's token, theirs to read and to swap. It is this user's own and closed to
+    // everyone else, or nothing runs.
+
+    $dir = rtrim ( $base, '/' );
+
+    clearstatcache ( TRUE, $dir );
+
+    if ( is_link ( $dir ) or ! is_dir ( $dir ) or ( fileperms ( $dir ) & 0077 )
+         or ( function_exists ( 'posix_geteuid' ) and fileowner ( $dir ) !== posix_geteuid () ) )
+      editFail ( "the directory of the terminal's jobs, $dir, is not this user's own and closed to others" );
+
     return $base;
 
   }
