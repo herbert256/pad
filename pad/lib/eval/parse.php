@@ -527,6 +527,27 @@
 
       }
 
+      // The same sign in front of anything but a digit - a field, a group, a call, a number
+      // written after a space - is the unary NEG or POS, where an operator, an opening bracket
+      // or a comma stands before it: 5 * -$b, -(1 + 2) inside a group, mid(2, -$n). It was
+      // the binary operator, and the two operators side by side were folded one of them
+      // alone: 5 * -$b printed 5-3, mid(2, -$n) was mid(0). At the head of an expression or
+      // a pipe segment it stays the binary one, whose missing left side is the piped value -
+      // {echo 10 | - 3} is 7.
+
+      if ( $signed and in_array ( $one, [ '-', '+' ] )
+           and ( ( $back >= 0 and $input [$back] == ',' ) or ( isset ( $result [$i] [1] ) and $result [$i] [1] != 'pipe' ) ) ) {
+
+        $i += 100;
+        $result [$i] [0] = ( $one == '-' ) ? 'NEG' : 'POS';
+        $result [$i] [1] = 'OPR';
+
+        $is_other = FALSE;
+
+        continue;
+
+      }
+
       // ?? is the empty-coalescing operator and ? : the inline ternary. A : glued to a word
       // never gets here - the word took it, as in php:strlen - so only a : standing apart is
       // the ternary's.

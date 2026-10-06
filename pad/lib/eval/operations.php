@@ -8,11 +8,13 @@
   // padEvalCheck for a range too short to have two operands, padEvalType to turn a typed
   // reference or function call into a value. Then padEval_groups is walked strongest first,
   // and the token stream scanned for the first operator of that group - the last one for
-  // the right-binding ** ; $f is the left operand candidate, $b the operator and $t (at
-  // key $k) the right one.
+  // the right-binding ** and for the unary groups, so the operator nearest its operand is
+  // applied first: in ! ! 0 and ! -$n the first ! met an operator on its right and negated
+  // the piped value instead, and !!0 printed 11; $f is the left operand candidate, $b the
+  // operator and $t (at key $k) the right one.
   //
   // Which of eval/actions/ is included depends on what is actually present: single and
-  // singleRight for the unary NOT forms, double when both sides are values, doubleLeft and
+  // singleRight for the unary forms, double when both sides are values, doubleLeft and
   // doubleRight when a side is missing - those substitute $myself, the pipe input, which is
   // what makes {echo $x | + 1} add to the piped value. Each action is entered with
   // `return include`, so exactly one operator is applied per call.
@@ -38,7 +40,7 @@
 
       $order = array_keys ( $keys );
 
-      if ( $group === [ '**' ] )
+      if ( in_array ( $group, [ [ '**' ], [ '!', 'NEG', 'POS' ], [ 'NOT' ] ], TRUE ) )
         $order = array_reverse ( $order );
 
       foreach ( $order as $j ) {

@@ -12,7 +12,8 @@
   //   padEval_alt         symbol spellings mapped onto their word form, so <, <=, =, ==,
   //                       <> and != all reduce to LT/LE/EQ/NE
   //   padEval_one         the unary operators - the ones eval/go/go.php runs with a right
-  //                       operand only
+  //                       operand only. NEG and POS are the signs before a value that is no
+  //                       digit (-$x, -(...)); only the tokeniser makes them, never a word
   //
   // ?? binds weakest of the binary operators - $a ?? $b . 'x' is $a ?? ($b . 'x') - and the
   // inline ternary cond ? a : b weaker still: padEvalTernary takes it before any group.
@@ -34,10 +35,11 @@
   // right to left: 2 ** 3 ** 2 is 2 ** 9. One operator per level, as the flat list above was
   // walked, did all the + before any -, so 10 - 2 + 3 came out 5. NOT stands between the
   // comparisons and AND, where Python has it: not $a eq $b denies the comparison, and
-  // $a and not $b denies $b alone.
+  // $a and not $b denies $b alone. The signs bind with !, as the sign of a number does:
+  // 5 * -$b ** 2 is (-3) ** 2 times 5, as 5 * -3 ** 2 is.
 
   const padEval_groups = [
-    [ '!' ],
+    [ '!', 'NEG', 'POS' ],
     [ '**' ],
     [ '*', '/', '%' ],
     [ '+', '-' ],
@@ -60,7 +62,7 @@
   // therefore not unary at all - it fell through to the binary path, where doubleVarVar.php has
   // no line for it either, and {echo '' | not 0} rendered 200.
 
-  const padEval_one = ['NOT','!'];
+  const padEval_one = ['NOT','!','NEG','POS'];
 
   const padEval_alt = [
     '<'  => 'LT',
