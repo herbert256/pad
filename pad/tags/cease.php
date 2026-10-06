@@ -25,6 +25,13 @@
 
       unset (  $padData [$padCeaseLevel] [$padK] );
 
+  // A {while} or {until} iterates by re-running its handler while $padWalk is 'next', not
+  // over a data set, so dropping the rows behind the current one left it looping and
+  // {cease} did nothing at all - {while $i lt 6}...{cease}...{/while} ran to 6. Clearing
+  // the walk lets the current pass finish, as cease promises, and asks for no further one.
+
+  $padWalk [$padCeaseLevel] = '';
+
   return TRUE;
 
 ?>
