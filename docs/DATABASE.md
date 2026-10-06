@@ -154,13 +154,13 @@ $padSelect ['openBugs'] = [
   {$username}
 {/users}
 
-<!-- Filter by field -->
-{forum_boards $slug=$slug}
+<!-- Filter by another field - $field=value on the tag binds the declared key only -->
+{forum_boards where="slug = $slug"}
   {$name}
 {/forum_boards}
 
-<!-- With options -->
-{news sort="created_at desc" rows=10}
+<!-- With options, separated by commas -->
+{news sort="created_at desc", rows=10}
   {$title}
 {/news}
 
@@ -206,13 +206,16 @@ When a table tag is nested inside another, PAD automatically uses the defined re
 {/forum_topics}
 ```
 
-### Counting with {count}
+### Counting related rows
 
 ```html
 {forum_boards}
-  {$name}: {count 'forum_topics'} topics
+  {$name}: {forum_topics fields='count(*) as n'}{$n}{/forum_topics} topics
 {/forum_boards}
 ```
+
+(`{count 'name'}` is no counter: it is a test whether a data store holds anything, and prints no
+number.)
 
 ### Combining with {field} for Stats
 
