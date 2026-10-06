@@ -125,9 +125,12 @@
 
     $waits = is_array ( $sleepMilliseconds ) ? array_values ( $sleepMilliseconds ) : [ $sleepMilliseconds ];
 
+    // A wait is a finite number: INF and NAN were cast to an int for usleep, which PHP 8.5
+    // answers with "the float INF is not representable as an int".
+
     foreach ( $waits as $wait )
-      if ( ! is_numeric ( $wait ) or $wait < 0 ) {
-        padError ( "padRetry: a wait of " . padValueShow ( $wait ) . " milliseconds is not 0 or more" );
+      if ( ! is_numeric ( $wait ) or ! is_finite ( (float) $wait ) or $wait < 0 ) {
+        padError ( "padRetry: a wait of " . padValueShow ( $wait ) . " milliseconds is not a finite number of 0 or more" );
         return NULL;
       }
 
