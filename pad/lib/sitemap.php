@@ -129,7 +129,19 @@
 
     }
 
-    return ! preg_match ( '/\{meta\b[^}]*\bsitemap\s*=\s*([\'"]?)(false|no|0)\1/i', padFileGet ( $template ) );
+    // The {meta} tags are found as the page assembly finds them - padMetaFind over the text
+    // with its comments and {ignore} parts set aside (padLayoutMask) - so a {meta
+    // sitemap=false} that is commented out leaves the page listed, where a pattern over the
+    // raw file took it for the real one.
+
+    $masks = [];
+
+    foreach ( padMetaFind ( padLayoutMask ( padFileGet ( $template ), $masks ) ) as $one )
+      foreach ( padMetaItems ( $one ['parms'] ) as $item => $expr )
+        if ( $item == 'sitemap' and preg_match ( '/^([\'"]?)(false|no|0)\1$/i', trim ( $expr ) ) )
+          return FALSE;
+
+    return TRUE;
 
   }
 
