@@ -258,20 +258,24 @@ Alias for `notOk`.
 
 ## Output Formatting Options
 
+The formatting options - quote, open, close, glue - work on what the `print` option prints,
+each row's first field, and run only through it: written without `print` they do nothing.
+With `$staff` rows named joe, jim and john:
+
 ### quote
 
-Wraps content with specified quote characters.
+Wraps each printed value in the specified quote characters.
 
 ```
-{tagName quote="'"}
-{tagName quote='"'}
+{tagName print, quote="'"}
+{tagName print, quote='"'}
 ```
 
 **Result:** `'content'` or `"content"`
 
 **Example:**
 ```
-{$name quote="'"}  →  'John'
+{staff print, quote="'"}  →  'joe''jim''john'
 ```
 
 ### open
@@ -279,14 +283,14 @@ Wraps content with specified quote characters.
 Prepends content at the start of the first occurrence only.
 
 ```
-{tagName open="prefix"}
+{tagName print, open="prefix"}
 ```
 
 **Implementation:** Wraps in `{first}prefix{/first}`
 
 **Example:**
 ```
-{list open="["}  →  [item1, item2, item3
+{staff print, open="["}  →  [joejimjohn
 ```
 
 ### close
@@ -294,19 +298,19 @@ Prepends content at the start of the first occurrence only.
 Appends content at the end of the last occurrence only.
 
 ```
-{tagName close="suffix"}
+{tagName print, close="suffix"}
 ```
 
 **Implementation:** Wraps in `{last}suffix{/last}`
 
 **Example:**
 ```
-{list close="]"}  →  item1, item2, item3]
+{staff print, close="]"}  →  joejimjohn]
 ```
 
 ### glue
 
-Adds a separator between items (not after the last one). Formatting options - glue, quote, open, close - only run through the print option; written without it they do nothing.
+Adds a separator between items (not after the last one).
 
 ```
 {tagName print, glue=", "}
@@ -316,7 +320,7 @@ Adds a separator between items (not after the last one). Formatting options - gl
 
 **Example:**
 ```
-{list print, glue=", "}  →  item1, item2, item3
+{staff print, glue=", "}  →  joe, jim, john
 ```
 
 ### Combined Formatting
@@ -324,10 +328,10 @@ Adds a separator between items (not after the last one). Formatting options - gl
 Options can be combined for complex formatting:
 
 ```
-{list quote="'" glue=", " open="[" close="]"}
+{staff print, quote="'", glue=", ", open="[", close="]"}
 ```
 
-**Result:** `['item1', 'item2', 'item3']`
+**Result:** `['joe', 'jim', 'john']`
 
 ---
 
@@ -543,7 +547,7 @@ Enables direct output printing with formatting options.
 
 **Example:**
 ```
-{list print quote="'" glue=", "}
+{staff print, quote="'", glue=", "}  →  'joe', 'jim', 'john'
 ```
 
 ---
@@ -573,10 +577,10 @@ Enables direct output printing with formatting options.
 ### Formatting
 | Option | Description |
 |--------|-------------|
-| `quote` | Wrap in quotes |
-| `open` | Prefix on first item |
-| `close` | Suffix on last item |
-| `glue` | Separator between items |
+| `quote` | Wrap in quotes - with `print` |
+| `open` | Prefix on first item - with `print` |
+| `close` | Suffix on last item - with `print` |
+| `glue` | Separator between items - with `print` |
 | `tidy` | Clean whitespace |
 
 ### Control

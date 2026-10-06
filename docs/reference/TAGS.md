@@ -1829,10 +1829,11 @@ other word after a value is a pipe, `{echo 'abc' upper}` gives `ABC`.
 
 | Option | Description | Example |
 |--------|-------------|---------|
-| `quote` | Wrap in quotes | `quote="'"` |
-| `open` | Prefix on first | `open="["` |
-| `close` | Suffix on last | `close="]"` |
-| `glue` | Separator | `glue=", "` |
+| `print` | Print each row's first field | `print` |
+| `quote` | Wrap in quotes - with `print` | `quote="'"` |
+| `open` | Prefix on first - with `print` | `open="["` |
+| `close` | Suffix on last - with `print` | `close="]"` |
+| `glue` | Separator - with `print` | `glue=", "` |
 | `tidy` | Clean whitespace | |
 
 ### Control Options
@@ -1854,9 +1855,10 @@ other word after a value is a pipe, `{echo 'abc' upper}` gives `ABC`.
 ### Combined Formatting Example
 
 ```
-{list quote="'" glue=", " open="[" close="]"}
+{items print, quote="'", glue=", ", open="[", close="]"}
 ```
-Result: `['item1', 'item2', 'item3']`
+Result: `['item1', 'item2', 'item3']` - quote, open, close and glue work on what `print` prints, and
+without it do nothing.
 
 ---
 
