@@ -24,6 +24,15 @@
 
   if ( $padCommand === 'sample' ) {
 
+    // The application is held to the names every other command takes (cliApp): it was taken
+    // as it came, so pad sample ../x <page> wrote its _samples/ outside apps/, and one that
+    // is not there ended on the engine's die - with exit status 0, as a capture that worked.
+
+    include __DIR__ . '/_commands/lib.php';
+
+    if ( ! cliApp ( $argv [2] ?? '' ) )
+      exit ( cliFail ( "there is no application named '" . ( $argv [2] ?? '' ) . "' - pad sample <app> <page>" ) );
+
     $padApp       = $argv [2] ?? '';
     $padPage      = $argv [3] ?? 'index';
     $padSampleCli = TRUE;
