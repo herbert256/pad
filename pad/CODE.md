@@ -3,6 +3,14 @@
 **Analysis Date:** January 2026
 **Scope:** `/Users/herbert/pad/pad/` (948 PHP files, ~393,000 lines)
 
+> **A snapshot, kept as it was written.** Most of its findings have been dealt with since:
+> `inits/fast.php` (the deserialization of section 1) and `level/eval.php` no longer exist,
+> script arguments go through `escapeshellarg()` and the name through `padValidName()`,
+> `padStrSto` and `padLevelVars` are defined in `inits/const.php`, the error channel answers
+> only the command line and this machine's own unforwarded requests, and the engine has grown
+> to 1,142 PHP files. Read it as history, not as a description of the current code - the
+> audits in `docs/audit/` record what was found and fixed after it.
+
 ---
 
 ## Table of Contents
