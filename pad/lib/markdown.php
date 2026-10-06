@@ -493,28 +493,92 @@
 
   }
 
+  // Code spans and backslash escapes, one pass from left to right. A backslash before ASCII
+  // punctuation is that character; a run of backticks opens a span that the next run of the
+  // same length closes - a whole run each, as CommonMark has it - and a run nothing closes
+  // is text. The runs are listed once, by length, and each length is walked forward once:
+  // the pattern that did this scanned from every run without a partner to the end of the
+  // text, and runs of a thousand lengths before 480 kB of text took seconds.
+
+  function padMarkdownCode ( $text, &$hold ) {
+
+    if ( ! str_contains ( $text, '`' ) and ! str_contains ( $text, '\\' ) )
+      return $text;
+
+    preg_match_all ( '/`+/', $text, $runs, PREG_OFFSET_CAPTURE );
+
+    $closers = [];
+    $next    = [];
+
+    foreach ( $runs [0] as [ $run, $at ] )
+      $closers [ strlen ( $run ) ] [] = $at;
+
+    $out = '';
+    $n   = strlen ( $text );
+    $i   = 0;
+
+    while ( $i < $n ) {
+
+      $skip = strcspn ( $text, '\\`', $i );
+
+      if ( $skip ) {
+        $out .= substr ( $text, $i, $skip );
+        $i   += $skip;
+        continue;
+      }
+
+      if ( $text [$i] == '\\' ) {
+        if ( $i + 1 < $n and preg_match ( '/[!-\/:-@\[-`{-~]/', $text [$i + 1] ) ) {
+          $out .= padMarkdownHold ( padMarkdownEscape ( $text [$i + 1] ), $hold );
+          $i   += 2;
+        } else {
+          $out .= '\\';
+          $i++;
+        }
+        continue;
+      }
+
+      $length = strspn ( $text, '`', $i );
+      $end    = $i + $length;
+      $list   = $closers [$length] ?? [];
+      $k      = $next [$length] ?? 0;
+
+      while ( isset ( $list [$k] ) and $list [$k] <= $end )
+        $k++;
+
+      $next [$length] = $k;
+
+      if ( ! isset ( $list [$k] ) ) {
+        $out .= substr ( $text, $i, $length );
+        $i    = $end;
+        continue;
+      }
+
+      $code = str_replace ( "\n", ' ', substr ( $text, $end, $list [$k] - $end ) );
+
+      if ( preg_match ( '/^ .*[^ ].* $/s', $code ) )
+        $code = substr ( $code, 1, -1 );
+
+      $out .= padMarkdownHold ( '<code>' . padMarkdownEscape ( $code ) . '</code>', $hold );
+      $i    = $list [$k] + $length;
+
+    }
+
+    return $out;
+
+  }
+
   // The inline structure of one block's text. Code spans and backslash escapes go first,
-  // in one left-to-right pass - the one that starts first wins; a run of backticks that
-  // nothing closes is passed whole ((*SKIP)), as CommonMark has it, rather than tried again
-  // from each of its backticks with a shorter length, each try a scan to the end of the
-  // text - 200 kB of runs took seventeen seconds - then autolinks, raw HTML
-  // (html option only), images and links; what they produce is held, the rest is escaped,
-  // and emphasis and line breaks are marked up on the escaped text. A pass that gives up on
-  // a text too long for PCRE's backtrack limit - a paragraph over a megabyte - leaves the
-  // text as it was, as the emphasis below does: its NULL handed on was a deprecation.
+  // in one left-to-right pass (padMarkdownCode) - the one that starts first wins - then
+  // autolinks, raw HTML (html option only), images and links; what they produce is held,
+  // the rest is escaped, and emphasis and line breaks are marked up on the escaped text. A
+  // pass that gives up on a text too long for PCRE's backtrack limit - a paragraph over a
+  // megabyte - leaves the text as it was, as the emphasis below does: its NULL handed on
+  // was a deprecation.
 
   function padMarkdownInline ( $text, $html, &$hold ) {
 
-    $text = preg_replace_callback ( '/\\\\([!-\/:-@\[-`{-~])|(`+)(?!`)(*SKIP)(.+?)(?<!`)\2(?!`)/s',
-      function ( $m ) use ( &$hold ) {
-        if ( $m [1] !== '' )
-          return padMarkdownHold ( padMarkdownEscape ( $m [1] ), $hold );
-        $code = str_replace ( "\n", ' ', $m [3] );
-        if ( preg_match ( '/^ .*[^ ].* $/s', $code ) )
-          $code = substr ( $code, 1, -1 );
-        return padMarkdownHold ( '<code>' . padMarkdownEscape ( $code ) . '</code>', $hold );
-      },
-      $text ) ?? $text;
+    $text = padMarkdownCode ( $text, $hold );
 
     $text = preg_replace_callback ( '/<((?:https?|ftp|mailto):[^\s<>]*|[a-zA-Z0-9.!#$%&\'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+)>/',
       function ( $m ) use ( &$hold ) {
