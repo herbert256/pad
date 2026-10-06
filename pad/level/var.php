@@ -37,8 +37,12 @@
 
   // {$$x} takes the name of the field from a value, and a value may come from the request -
   // the name was used unchecked, so a value naming one of the engine's own globals read it
-  // out. The name a value gives is an application variable or a dotted path into one, as
-  // padValidVar has it; any other name is refused, and reads as a field that is not there.
+  // out. A value-chosen name is refused when its head (the part before the first . @ : or [)
+  // is an engine name - pad*, pq*, a superglobal - so the password and the config are not
+  // read out, and when it holds markup: a quote or an angle bracket would close the attribute
+  // it is written into, as {?$sel} with 'a"><b>' did. Every ordinary field name stands,
+  // which the ASCII-identifier check this replaced wrongly refused - a row field named
+  // first-name, _id, café or name@rows that the direct form reads.
 
   $padFldRefused = FALSE;
 
@@ -50,8 +54,9 @@
       $padFld = '';
 
     $padFld        = (string) $padFld;
-    $padFldRefused = ( ! preg_match ( '/^[A-Za-z][A-Za-z0-9_]*(\.[A-Za-z0-9_]+)*$/', $padFld )
-                       or ! padValidVar ( strtok ( $padFld, '.' ) ) );
+    $padFldRefused = ( $padFld === ''
+                       or padEngineName ( preg_split ( '/[.@:\[]/', $padFld, 2 ) [0] )
+                       or preg_match ( '/[\s"\'<>`\\\\\x00-\x1F]/u', $padFld ) );
 
   }
 
