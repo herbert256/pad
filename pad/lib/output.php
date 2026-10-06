@@ -251,7 +251,12 @@
     padHeader ('Date: '          . gmdate('D, d M Y H:i:s', $_SERVER['REQUEST_TIME']        ) . ' GMT');;
     padHeader ('Expires: '       . gmdate('D, d M Y H:i:s', $_SERVER['REQUEST_TIME'] + $age ) . ' GMT');
     padHeader ('Last-Modified: ' . gmdate('D, d M Y H:i:s', $padTime                       ) . ' GMT');
-    padHeader ('Etag: '          . '"' . $padEtag . ( $gzip ? '-gzip' : '' ) . '"');
+
+    // No body to describe, no tag: the headers of a {flush} go out before the page is whole
+    // (lib/flush.php), and said Etag: "", one tag for every flushed page.
+
+    if ( (string) $padEtag !== '' )
+      padHeader ('Etag: '        . '"' . $padEtag . ( $gzip ? '-gzip' : '' ) . '"');
 
   }
 
