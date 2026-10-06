@@ -8,6 +8,22 @@
   // value through untouched - the one thing a pipe must never do is swallow it. Reading
   // a missing parameter was a PHP error before either could speak.
 
+  // The pad: prefix names the kind outright - {echo $x | pad:upper} - and a name with no
+  // file here went to the include as it was: {echo $x | pad:strtoupper} ended the request
+  // on a PHP warning in either mode. Named under the strict check, empty in the lenient
+  // walk, as an unknown pipe function is.
+
+  if ( ! file_exists ( PAD . "functions/$name.php" ) ) {
+
+    global $padCheckSyntax;
+
+    if ( $padCheckSyntax )
+      padError ( "there is no PAD function named '$name'" );
+
+    return '';
+
+  }
+
   $padFnNeeds = [ 'replace' => 2, 'between'    => 2, 'range'    => 2,
                   'mid'     => 1, 'substr'     => 1, 'left'     => 1,
                   'right'   => 1, 'max_len'    => 1, 'like'     => 1,
