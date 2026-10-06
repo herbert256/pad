@@ -297,7 +297,7 @@ See [sequences/](sequences/README.md) for complete documentation.
 When a request arrives, PAD is initialized via `pad.php`:
 
 ```
-Request → pad.php → config/config.php → start/enter/start.php
+Request → pad.php → start/pad.php → config/config.php → start/pad/go.php
 ```
 
 The entry point:
@@ -314,7 +314,7 @@ The build system assembles the complete page:
 ```
 build/build.php
 ├── build/dirs.php      → Create directory hierarchy
-├── build/_lib.php      → Collect library files
+├── build/libs.php      → Collect library files (build/lib.php)
 ├── build/base.php      → Build template structure
 │   ├── _inits.pad files (outer to inner)
 │   ├── @page@ placeholder
@@ -358,14 +358,14 @@ When a tag is encountered, PAD determines its type:
 |--------|------|---------|
 | `$` | Variable | `{$name}` |
 | `#` | Option | `{#param}` |
-| `&` | Tag reference | `{&tagname}` |
+| `&` | Property of the current tag | `{&current}` |
 | `!` | Raw field (no sanitize chain) | `{!snippet}` |
 | `?` | Field as a query fragment | `{?id}` → `&id=7` |
 | `^` | Field as JSON for an attribute | `data-props="{^product}"` |
 | `@` | Property | `{first@tag}` |
 | (none) | Tag/Field | `{users}`, `{if}` |
 
-Types are resolved in order: app → pad → data → content → field → tag
+Types are resolved in order: app → common → pad → pull → bool → content → select → data → include → property → field → array → parm → level → constant → local → script → php → sequence → action → function
 
 ### 5. Data Iteration
 
@@ -417,7 +417,8 @@ pad/
 ├── pad.php              # Main entry point
 │
 ├── start/               # Execution lifecycle
-│   ├── enter/           # Entry points (page, code, ajax, redirect)
+│   ├── page.php ...     # Entry points (page, code, ajax, redirect, restart)
+│   ├── pad/             # The run of one pass - go.php, level.php
 │   ├── start/           # Initialization phase
 │   └── end/             # Termination phase
 │
@@ -425,7 +426,7 @@ pad/
 │   ├── build.php        # Main build orchestrator
 │   ├── base.php         # Template structure
 │   ├── page.php         # Page processing
-│   └── _lib.php         # Library collection
+│   └── libs.php         # Library collection
 │
 ├── level/               # Tag processing
 │   ├── level.php        # Main level processor
@@ -444,19 +445,18 @@ pad/
 │   └── end.php          # Level completion
 │
 ├── eval/                # Expression evaluation
-│   ├── eval.php         # Main evaluator
-│   ├── parse.php        # Expression parser
+│   ├── eval.php         # Main evaluator (the parser is lib/eval/parse.php)
 │   ├── actions/         # Operator actions
 │   ├── go/              # Operator execution
 │   └── single/          # Type resolvers
 │
-├── types/               # Tag type handlers (25+)
-├── tags/                # Template tags (40+)
-├── functions/           # Pipe functions (40+)
-├── options/             # Tag options (50+)
-├── handling/            # Data handling (15 handlers)
-├── properties/          # Tag properties (25 properties)
-├── constructs/          # Special constructs (7 constructs)
+├── types/               # Tag type handlers (25)
+├── tags/                # Template tags (90+)
+├── functions/           # Pipe functions (55)
+├── options/             # Tag options (25)
+├── handling/            # Data handling (28 handlers)
+├── properties/          # Tag properties (26 properties)
+├── constructs/          # Special constructs (6 constructs)
 │
 ├── lib/                 # PHP library
 ├── config/              # Configuration
