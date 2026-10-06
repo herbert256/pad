@@ -414,10 +414,23 @@
     $out   = '';
     $quote = '';
     $len   = strlen ( $sql );
+    $mysql = ! ( padDbApp () instanceof PDO );
 
     for ( $i = 0; $i < $len; $i++ ) {
 
       $char = $sql [$i];
+
+      // A comment the author wrote in where= or having= is copied as it stands, its $name
+      // left unbound: an apostrophe in it - where="/* the staff's pick */ name = $who" -
+      // opened a quoted literal, so every $name after it was taken for quoted text and not
+      // bound, and the select failed on "Unknown column '$who'". db()'s placeholder pass
+      // skips comments the same way (padDbComment).
+
+      if ( ! $quote and ( $end = padDbComment ( $sql, $i, $mysql ) ) ) {
+        $out .= substr ( $sql, $i, $end - $i );
+        $i    = $end - 1;
+        continue;
+      }
 
       if ( $quote ) {
         if ( $char == '\\' and $i + 1 < $len ) { $out .= $char . $sql [++$i]; continue; }
