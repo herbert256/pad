@@ -96,6 +96,15 @@
 
     global $padCommon;
 
+    // A name stays inside the _data directory it is looked for in: a ../ segment, a
+    // backslash or a NUL climbed out of it, and since a data value is sniffed as a file
+    // name (padContentType), data=$name with ../../x from the request found any file on
+    // the disk - and included and ran it when it was a .php.
+
+    if ( ! is_string ( $check ) or $check === '' or str_contains ( $check, "\0" ) or str_contains ( $check, '\\' )
+         or in_array ( '..', explode ( '/', $check ), TRUE ) )
+      return '';
+
     foreach ( padDirs () as $key => $value ) {
 
       $file = APP2 . $value . "_data/$check";
