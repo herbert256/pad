@@ -47,6 +47,15 @@
   if     ( $pq === FALSE ) return TRUE;
   elseif ( $pq === TRUE  ) $pq = $pqLoop;
 
+  // A term out of the integer range ends the run as soon as it is made, before a play is
+  // handed it: checked only after the plays, keep even was asked about the overflowed float
+  // and {sequence fibonacci, keep, even, rows=50} ended the request on "not representable as
+  // an int". 2^63 is out of range too, though as a float it compares equal to PHP_INT_MAX -
+  // tested with >, {sequence power=2, rows=70} ended on 9.2233720368548E+18. A play can make
+  // such a value as well, so the same test follows the plays.
+
+  if ( is_float ( $pq ) and ( $pq < PHP_INT_MIN or $pq >= PHP_INT_MAX ) ) return FALSE;
+
   $pqOrgSet = $pq;
 
   // An order build computes each term from the ones before it, so every generated term goes
@@ -63,8 +72,7 @@
       return ! $pqPlaysOut;
   }
 
-  if ( is_float ($pq)   and $pq < PHP_INT_MIN  ) return FALSE;
-  if ( is_float ($pq)   and $pq > PHP_INT_MAX  ) return FALSE;
+  if ( is_float ($pq)   and ( $pq < PHP_INT_MIN or $pq >= PHP_INT_MAX ) ) return FALSE;
   if ( is_numeric ($pq) and $pq < $pqMin       ) return TRUE;
   if ( is_numeric ($pq) and $pq > $pqMax       ) return TRUE;
   if ( $pqUnique and in_array ($pq, $pqResult) ) return TRUE;
