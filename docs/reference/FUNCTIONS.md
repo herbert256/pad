@@ -56,7 +56,7 @@ Functions that extract substrings by position.
 
 | Function | Parameters | Description |
 |----------|------------|-------------|
-| `substr` | start [, length] | PHP `substr()` - extract substring from position |
+| `substr` | start [, length] | `mb_substr()` - extract substring from a 0-based position, counted in characters |
 | `left` | count | Returns the first N characters |
 | `right` | count | Returns the last N characters |
 | `mid` | start, length | Returns substring starting at position (1-based index) |
@@ -87,7 +87,7 @@ Functions that change the case of text.
 |----------|------------|-------------|
 | `upper` | - | Converts to uppercase, letter by letter in UTF-8 (`café` → `CAFÉ`) |
 | `lower` | - | Converts to lowercase, letter by letter in UTF-8 (`ÉCOLE` → `école`) |
-| `capitalize` | - | Capitalizes first letter of each word (PHP `ucwords`) |
+| `capitalize` | - | Capitalizes first letter of each word, in UTF-8 (`éric` → `Éric`) - PHP's `ucwords` knows ASCII only |
 | `ucwords` | - | Alias for `capitalize` |
 
 ### Examples
