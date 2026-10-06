@@ -15,7 +15,10 @@
   // character after $ can open a name, padEvalParseValid whether a character continues
   // one. Both are deliberately generous so name@tag, dotted paths, prefixes with : and
   // the <, > and * wildcards of the at-syntax stay inside a single token instead of being
-  // torn apart as operators.
+  // torn apart as operators. A byte from 0x80 up is a letter of a name, as PHP has it: the
+  // test was ctype_alpha, which the locale decides - under C.UTF-8 it took the first byte
+  // of an é and not the second, so {if $café eq 1} looked for a field named caf and half
+  // a letter, where {$café} found the variable.
   //
   // Numbers accept a leading sign, decimals, exponents and 0x hex; strings accept both
   // quote styles with \n \r \t \\ \' \" escapes. Whitespace and commas end the current
@@ -50,7 +53,7 @@
   function padEvalParseStart ( $next, $next2 ) {
 
     if ( $next == '-' and ctype_xdigit($next2) )         return TRUE;
-    if ( preg_match('/^[a-zA-Z0-9_]/', $next))           return TRUE;
+    if ( preg_match('/^[a-zA-Z0-9_\x80-\xff]/', $next))  return TRUE;
     if ( $next == '*' and in_array($next2, ['.','@'] ) ) return TRUE;
     if ( $next == '<' and in_array($next2, ['.','@'] ) ) return TRUE;
     if ( $next == '>' and in_array($next2, ['.','@'] ) ) return TRUE;
@@ -63,7 +66,7 @@
 
   function padEvalParseValid ( $one, $next, $next2, $prev ) {
 
-    if ( ctype_alpha($one) or ctype_digit($one) )                  return TRUE;
+    if ( preg_match('/^[a-zA-Z0-9\x80-\xff]$/D', $one) )           return TRUE;
     if ( in_array($one, ['_',':'] ) )                              return TRUE;
     if ( $one == '.' and preg_match('/^[a-zA-Z0-9_]/', $next ) )   return TRUE;
     if ( $one == '.' and in_array($next, ['<','>','*'] ) )         return TRUE;
