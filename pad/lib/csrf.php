@@ -118,7 +118,7 @@
       if ( preg_match ( '/<\/form\s*>/i', $inner, $close, PREG_OFFSET_CAPTURE ) )
         $inner = substr ( $inner, 0, $close [0] [1] );
 
-      if ( padCsrfFormAttrs ( $attrs ) and ! str_contains ( $inner, 'name="' . padCsrfName . '"' ) )
+      if ( padCsrfFormAttrs ( $attrs ) and padCsrfControlsHere ( $inner ) and ! str_contains ( $inner, 'name="' . padCsrfName . '"' ) )
         $out .= substr ( $html, $done, $start - $done ) . padCsrfField ();
       else
         $out .= substr ( $html, $done, $start - $done );
@@ -211,10 +211,38 @@
     if ( strtolower ( padCsrfDecode ( $attrs ['method'] ?? '' ) ) !== 'post' )
       return FALSE;
 
-    if ( ! array_key_exists ( 'action', $attrs ) )
+    return ! array_key_exists ( 'action', $attrs ) or padCsrfActionHere ( $attrs ['action'] );
+
+  }
+
+  // A submit button's formaction= sends the form where it says: a form holding one that
+  // points to another site handed the token along with every click on that button.
+
+  function padCsrfControlsHere ( $html ) {
+
+    if ( stripos ( $html, 'formaction' ) === FALSE )
       return TRUE;
 
-    $action = padCsrfDecode ( $attrs ['action'] );
+    preg_match_all ( '/<(?:button|input)(?=[\s\/>])/i', $html, $found, PREG_OFFSET_CAPTURE );
+
+    foreach ( $found [0] as [ , $at ] ) {
+
+      $tag = padCsrfTag ( $html, $at );
+
+      if ( $tag !== NULL and array_key_exists ( 'formaction', $tag [1] ) and ! padCsrfActionHere ( $tag [1] ['formaction'] ) )
+        return FALSE;
+
+    }
+
+    return TRUE;
+
+  }
+
+  // An action - or a formaction - on this site.
+
+  function padCsrfActionHere ( $action ) {
+
+    $action = padCsrfDecode ( $action );
 
     // Read as a browser reads it (the URL standard): the controls and spaces at its ends
     // and every tab and line break within are dropped, and on a web page a backslash is a

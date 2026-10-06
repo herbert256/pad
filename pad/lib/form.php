@@ -606,6 +606,12 @@
          and str_contains ( padUnprotect ( $content ), 'type="file"' ) )
       $open = preg_replace ( '/^<form method="post"/', '<form method="post" enctype="multipart/form-data"', $open );
 
+    // A button in it with a formaction= on another site sends the form there, and the token
+    // went along (lib/csrf.php).
+
+    if ( ! padCsrfControlsHere ( padUnprotect ( $content ) ) )
+      $open = str_replace ( padCsrfField (), '', $open );
+
     return padProtect ( $open ) . $content . padProtect ( '</form>' );
 
   }
