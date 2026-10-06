@@ -161,13 +161,15 @@
 
   // A literal of a {meta} item read from the file - a quoted string, a number, true, false
   // or null - or NULL for anything that would need evaluating. A string's escapes - \' \"
-  // \\ \n \r \t - are read as the expression evaluator reads them.
+  // \\ \n \r \t - are read as the expression evaluator reads them. A string is one string:
+  // 'required|' . $r . '' starts and ends with a quote too, and passed for a literal - the
+  // form rules' check that their rules are written out let a variable through.
 
   function padMetaLiteral ( $expr ) {
 
     $expr = trim ( (string) $expr );
 
-    if ( preg_match ( '/^([\'"])(.*)\1$/s', $expr, $match ) )
+    if ( preg_match ( '/^([\'"])((?:(?!\1)[^\\\\]|\\\\.)*)\1$/s', $expr, $match ) )
       return preg_replace_callback ( '/\\\\(.)/s',
         fn ( $one ) => [ 'n' => "\n", 'r' => "\r", 't' => "\t" ] [ $one [1] ] ?? $one [1], $match [2] );
 
