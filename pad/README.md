@@ -30,6 +30,7 @@ pad/
 ├── occurrence/    # Data iteration
 ├── options/       # Tag options
 ├── properties/    # Tag properties
+├── select/        # Select subsystem (declared tables)
 ├── sequence/      # Sequence subsystem
 ├── start/         # Execution lifecycle
 ├── tags/          # Template tags
@@ -70,6 +71,7 @@ For complete framework documentation, see [docs/PAD.md](../docs/PAD.md).
 | occurrence/ | Template iteration tracking and state management |
 | options/ | Tag options processing (quote, glue, toData, etc.) |
 | properties/ | Tag property accessors (first@, last@, count@, etc.) |
+| select/ | The Select subsystem - a `$padSelect` table as a tag, its options (`where`, `order`, `join` ...) in `select/types/` |
 | sequence/ | Mathematical sequence generation (80+ types) |
 | start/ | Execution engine and context management |
 | tags/ | Template tags (if, while, data, set, echo, etc.) |
