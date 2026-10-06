@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Shared resources and utilities available to all PAD applications via symbolic links or includes.
+Shared resources and utilities the engine adds to every PAD application while $padCommon is TRUE, the default.
 
 ## Structure
 
@@ -27,4 +27,4 @@ _common/
 
 ## Usage
 
-Applications can link to `_common` directories to inherit shared functionality without duplicating code.
+Nothing is linked: the engine adds `_common` to every application - its `_lib`, `_tags`, `_include`, `_data`, the `_inits.pad` wrapper and `_inits.php`/`_exits.php` - unless the application sets `$padCommon = FALSE` in its `_config/config.php`.
