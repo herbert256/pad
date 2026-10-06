@@ -144,8 +144,8 @@ Functions for encoding and escaping text for various contexts.
 ```
 {echo '<script>' | html}    → '&lt;script&gt;'
 {echo 'hello world' | url}  → 'hello+world'
-{"it's here" | slashes}     → "it\'s here"
-{json 'products' | ignore}  → the tag's JSON, which it HTML-escaped itself, kept from the PAD parser
+{echo "it's here" | slashes} → "it\'s here"
+{json 'products' | ignore}  → an application's own _tags/json.php (CLAUDE.md): the JSON it HTML-escaped itself, kept from the PAD parser
 {echo $json | html | ignore} → any value: html makes it safe inside an attribute, ignore keeps PAD off it
 {echo 'Crème Brûlée & Co.' | slug} → 'creme-brulee-co'
 ```
