@@ -15,7 +15,7 @@ Demonstrates that the PAD framework can host traditional PHP applications that d
 
 | File | Description |
 |------|-------------|
-| `_config/` | Configuration (minimal) |
+| `_config/config.php` | Sets `$padNoNo = TRUE` - what makes the application plain PHP |
 | `index.php` | Plain PHP output without templates |
 
 ## Code
@@ -29,7 +29,7 @@ Demonstrates that the PAD framework can host traditional PHP applications that d
 
 ## Concept
 
-While PAD typically pairs `.php` data files with `.pad` templates, this app shows that you can run plain PHP when no `.pad` template exists.
+While PAD typically pairs `.php` data files with `.pad` templates, this app shows that you can run plain PHP: with `$padNoNo = TRUE` in `_config/config.php` the page's `.php` runs on its own, with no template, level loop or wrapper. A `.php` without a `.pad` in an ordinary application still goes through the engine.
 
 ## Access
 
