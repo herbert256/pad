@@ -53,8 +53,14 @@
   if ( $padWalk [$pad] == 'end' )
     include PAD . 'walk/end.php';
 
+  // Inside a pass that runs in a PHP function the exit phase goes through the same lift as
+  // the row phase - see occurrence/occurrence.php.
+
   if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']) )
-    include PAD . 'callback/exit.php' ;
+    if ( $GLOBALS ['padStrFunCnt'] ?? 0 )
+      padCallbackBeforeXxx ( 'exit' );
+    else
+      include PAD . 'callback/exit.php' ;
 
   if ( $padFragment [$pad] ?? FALSE )
     padFragmentEnd ();

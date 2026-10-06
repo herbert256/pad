@@ -8,7 +8,9 @@
   // the locals back out as globals. That is what lets a callback read and write template
   // variables as ordinary PHP variables.
   //
-  // padCallbackBeforeXxx  the init and exit callbacks, which see the whole data set
+  // padCallbackBeforeXxx  the init and exit callbacks, which see the whole data set - and
+  //                       every phase of a streaming callback inside a pass that runs in a
+  //                       PHP function, whose scope does not hold the row's fields
   // padCallbackBeforeRow  one row, passed in and taken back out through the local $row;
   //                       any pre-existing global $row is saved and restored around it
 
