@@ -143,6 +143,7 @@
     if ( str_starts_with ( strtolower ( $url ), strtolower ( $padHost ) ) ) {
       $input ['cookies'] ['padSesID'] = $padSesID;
       $input ['cookies'] ['padReqID'] = $padReqID;
+      $input ['headers'] = ( $input ['headers'] ?? [] ) + padSelfFetchHeaders ();
     }
 
     $options = $input ['options'] ?? [];

@@ -60,6 +60,23 @@
 
   }
 
+  // The engine's own fetches of this site - {get}, {curl 'SELF://...'}, {page} over HTTP -
+  // arrive from loopback with nothing forwarded, and were taken for this machine's own even
+  // when a visitor from elsewhere had caused them: the page fetched for that visitor showed
+  // its {debug} boxes and its toolbar, answered its errors with the full report - or, the
+  // visitor's user agent riding along, with the JSON channel - and honoured the loopback
+  // switches. A fetch made for a request that is not local says who it was made for, the
+  // way a proxy does: padLoopback then takes it for somebody else as well.
+
+  function padSelfFetchHeaders () {
+
+    if ( padLocal () or ! isset ( $_SERVER ['REMOTE_ADDR'] ) )
+      return [];
+
+    return [ 'X-Forwarded-For' => $_SERVER ['HTTP_X_FORWARDED_FOR'] ?? $_SERVER ['REMOTE_ADDR'] ];
+
+  }
+
   // A request switch that only this machine's own crawls send - padReference (the reference
   // build writes xref files under DATA) and padExamples (the examples harvest; both bypass
   // the page cache and tidy) - counts only on the command line or from loopback: any
