@@ -85,7 +85,12 @@
   elseif ( $padFirst == '&' ) $padVal = padTagValue   ($padFld);
   elseif ( $padFirst == '^' ) $padVal = padJsonEscape ($padFld);
 
-  if ( $padFirst == '$' )
+  // The field {$x} and the tag parameter {#x} both run the sanitize chain: a parameter is
+  // the caller's data, and a component that prints {#title} wrote it to the page raw, so
+  // {card title=$x} with '<script>' was an injection. {!x} stays the raw escape hatch, and
+  // {?x} {^x} {&x} keep their own encodings.
+
+  if ( in_array ( $padFirst, [ '$', '#' ], TRUE ) )
     foreach ( $padDataDefaultStart as $padOptOne )
       $padVal = padEval ( $padOptOne, $padVal );
 
@@ -96,7 +101,7 @@
   // of the value - so a field whose last pipe it is skips the end chain, whose sanitize
   // would escape the markup just made: {$post.body | markdown} shows the post.
 
-  if ( $padFirst == '$' and ! preg_match ( '/(^|\|)\s*markdown\s*(\(\s*\))?\s*$/', $padVarOpts ) )
+  if ( in_array ( $padFirst, [ '$', '#' ], TRUE ) and ! preg_match ( '/(^|\|)\s*markdown\s*(\(\s*\))?\s*$/', $padVarOpts ) )
     foreach ( $padDataDefaultEnd as $padOptOne )
       $padVal = padEval ( $padOptOne, $padVal );
 
