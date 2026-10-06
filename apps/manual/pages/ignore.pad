@@ -14,7 +14,9 @@
 
 <h4>Example 1: JavaScript with Object Literals</h4>
 
-<p>Without {tag 'ignore'}, PAD would try to parse the JavaScript object literal as PAD tags:</p>
+<p>A brace followed by a space or a line end is left alone, but compact code -
+<code>function f(){open}return 1;{close}</code>, <code>a{open}color:red{close}</code> - is read as
+tags. Wrapped in {tag 'ignore'}, the code is safe whichever way it is written:</p>
 
 {example 'fragments/ignore_1'}
 
@@ -26,11 +28,11 @@
 
 <h3>2. As a Pipe Function: <code>| ignore</code></h3>
 
-<p>Apply ignore to the output of an expression to prevent PAD from parsing curly braces in that output. This is useful when passing JSON data to JavaScript.</p>
+<p>Apply ignore to the output of an expression to prevent PAD from parsing curly braces in that output. A variable's value needs it no more: values are text, their braces are never parsed (with <code>$padProtectValues</code> on, the default). It matters for what a tag answers as template source - an application tag that builds its <code>$padContent</code>, such as a <code>{open}json 'products' | ignore{close}</code> - and with <code>$padProtectValues</code> off.</p>
 
 <h4>Example 3: JSON Data in Attributes</h4>
 
-<p>When a variable contains JSON data, use the {tag 'ignore'} pipe function to prevent PAD from parsing the curly braces:</p>
+<p>JSON from a variable, passed to JavaScript through a data attribute - the pipe changes nothing here while values are protected, and keeps the braces safe when they are not:</p>
 
 {example 'fragments/ignore_4'}
 
@@ -46,13 +48,13 @@
 
 {example 'fragments/ignore_5'}
 
-<p>Without the ignore option, PAD would try to parse <code>{open}"theme": "dark"{close}</code> as PAD tags, causing errors.</p>
+<p>Without the ignore option, PAD would read <code>{open}color:red{close}</code> as a tag - "there is no type named 'color'".</p>
 
 <h2>Best Practices</h2>
 
 <ul>
   <li><strong>Always use {tag 'ignore'} for JavaScript blocks</strong> - Any <code>&lt;script&gt;</code> tag with JavaScript should be wrapped</li>
-  <li><strong>Use <code>| ignore</code> for dynamic JSON</strong> - When expressions output JSON, pipe through ignore</li>
+  <li><strong>Use <code>| ignore</code> on a tag's JSON</strong> - When a tag answers JSON as template source, pipe it through ignore</li>
   <li><strong>Keep CSS in external files</strong> - But if inline CSS is needed, wrap in {tag 'ignore'}</li>
   <li><strong>Minimal scope</strong> - Only wrap what needs to be ignored, not entire templates</li>
   <li><strong>Not needed for HTML</strong> - Regular HTML doesn't use curly braces, no ignore needed</li>
@@ -109,7 +111,7 @@
 <h2>Important Notes</h2>
 
 <ul>
-  <li><strong>Cannot nest</strong> - Once inside an ignore block, all content is literal until <code>{open}/ignore{close}</code></li>
+  <li><strong>Pairs nest</strong> - an inner <code>{open}ignore{close}...{open}/ignore{close}</code> inside an ignore block is kept as literal text, and the block ends at its own closing tag</li>
   <li><strong>Use sparingly</strong> - Only use where necessary to avoid confusion</li>
   <li><strong>External files preferred</strong> - For large JavaScript or CSS, use external files instead of inline code</li>
 </ul>
