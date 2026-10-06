@@ -230,8 +230,10 @@
 
   // The host names this server answers to, e.g. [ 'example.com', 'www.example.com' ]: a
   // request naming another host is treated as naming the first. Empty takes the request's
-  // own Host header, once it is a well-formed host. $padHostBase, e.g.
-  // 'https://example.com/pad/', replaces the whole derived base - behind a proxy.
+  // own Host header, once it is a well-formed host. The engine's fetches of its own pages
+  // connect to the server's own address whatever the host (lib/paths.php padSelfConnect).
+  // $padHostBase, e.g. 'https://example.com/pad/', replaces the whole derived base - behind
+  // a proxy - and those fetches then go where it says.
 
   $padHosts     = [];
   $padHostBase  = '';

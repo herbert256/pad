@@ -16,6 +16,7 @@
   // padDataFileData  loads such a file through types/_go/local.php
   // padAddGet        appends one urlencoded key=value, picking ? or & as needed
   // padAddIds        appends the session and request ids, so links keep the request chain
+  // padSelfConnect   where a fetch of this site connects: the server's own socket
 
   function padDirs () {
 
@@ -152,6 +153,40 @@
     $str = ( strpos ($url, '?' ) === FALSE ) ? '?' : '&';
 
     return $url . $str . $key . '=' . urlencode($val);
+
+  }
+
+  // Where the engine's own fetches of this site connect - {get}, {curl 'SELF://...'},
+  // {page app=} over HTTP, padPrefetch: $padHost is made of the visitor's Host header, and a
+  // request naming Host: attacker.example, or 127.0.0.1:22, had the server fetch from that
+  // host and port and splice what came back into the page (and into a {cache} section every
+  // later visitor got). The fetch keeps its address - the Host header still picks the site,
+  // TLS still checks that name - but connects to the socket this request arrived on,
+  // SERVER_ADDR and SERVER_PORT (php -S says its address as SERVER_NAME), as curl's
+  // CONNECT_TO. A $padHostBase is an address the configuration gives - a proxy in front, a
+  // port the request does not show - and is fetched as it says; so is a request with no
+  // server address, the command line.
+
+  function padSelfConnect () {
+
+    global $padHost, $padHostBase;
+
+    if ( ( $padHostBase ?? '' ) !== '' or PHP_SAPI == 'cli' )
+      return [];
+
+    $addr = (string) ( $_SERVER ['SERVER_ADDR'] ?? ( PHP_SAPI == 'cli-server' ? ( $_SERVER ['SERVER_NAME'] ?? '' ) : '' ) );
+    $port = (string) ( $_SERVER ['SERVER_PORT'] ?? '' );
+    $url  = parse_url ( (string) $padHost );
+
+    if ( $addr === '' or ! ctype_digit ( $port ) or ! is_array ( $url ) or ( $url ['host'] ?? '' ) === '' )
+      return [];
+
+    $at = $url ['port'] ?? ( strtolower ( $url ['scheme'] ?? '' ) == 'https' ? 443 : 80 );
+
+    if ( str_contains ( $addr, ':' ) and ! str_starts_with ( $addr, '[' ) )
+      $addr = "[$addr]";
+
+    return [ $url ['host'] . ":$at:$addr:$port" ];
 
   }
 

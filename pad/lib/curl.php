@@ -144,6 +144,8 @@
       $input ['cookies'] ['padSesID'] = $padSesID;
       $input ['cookies'] ['padReqID'] = $padReqID;
       $input ['headers'] = ( $input ['headers'] ?? [] ) + padSelfFetchHeaders ();
+      if ( $padSelfConnect = padSelfConnect () )
+        $input ['options'] ['CONNECT_TO'] ??= $padSelfConnect;
     }
 
     $options = $input ['options'] ?? [];
