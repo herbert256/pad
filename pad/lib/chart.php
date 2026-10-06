@@ -160,11 +160,13 @@
 
   // A value the chart can plot: a number that is finite - '1e999' is numeric, but it is
   // INF as a float, and the axis made no ticks of it and ended the page with an undefined
-  // array key.
+  // array key - and no larger than 1e300 either way, so the axis around it stays finite
+  // too: 1.7e308 rounded its top tick up to INF and the tick loop never ended, and 1e308
+  // beside -1e308 spanned INF and divided by zero.
 
   function padChartFinite ( $value ) {
 
-    return is_numeric ( $value ) and is_finite ( (float) $value );
+    return is_numeric ( $value ) and is_finite ( (float) $value ) and abs ( (float) $value ) <= 1e300;
 
   }
 
