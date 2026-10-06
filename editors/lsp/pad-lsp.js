@@ -658,6 +658,9 @@ process.stdin.on('data', (chunk) => {
         buffer = buffer.slice(headerEnd + 4 + length);
         let msg = null;
         try { msg = JSON.parse(body); } catch (e) { continue; /* ignore malformed */ }
+        // JSON that is no message - null, a number - is malformed too: handle() cannot take
+        // it apart, and the catch below then read msg.id of null and the server died
+        if (msg === null || typeof msg !== 'object') continue;
         try { handle(msg); } catch (e) {
             if (msg.id !== undefined) send({ jsonrpc: '2.0', id: msg.id, error: { code: -32603, message: String(e && e.message || e) } });
         }

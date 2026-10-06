@@ -23,6 +23,16 @@ const waiting = new Map();
 const diagnostics = new Map();
 const diagnosticWaiters = [];
 
+// A server that dies answers every request - waiting or still to come - with how it ended,
+// so a check fails on the spot instead of waiting out the time limit.
+let exited;
+server.on('exit', (code) => {
+    exited = code;
+    for (const [id, resolve] of waiting) resolve({ id, exited: code });
+    waiting.clear();
+});
+server.stdin.on('error', () => {});
+
 server.stdout.on('data', (chunk) => {
     buffer = Buffer.concat([buffer, chunk]);
     for (;;) {
@@ -50,6 +60,7 @@ function write(msg) {
 
 function request(method, params) {
     const id = nextId++;
+    if (exited !== undefined) return Promise.resolve({ id, exited });
     return new Promise((resolve) => { waiting.set(id, resolve); write({ id, method, params }); });
 }
 
@@ -102,6 +113,17 @@ async function main() {
     expect('initialize offers definition', caps.definitionProvider === true, caps);
     expect('initialize asks for saves', caps.textDocumentSync.save !== undefined, caps);
     notify('initialized', {});
+
+    // a body that is JSON but no message - null, a number, a string - is passed over, and
+    // what comes after it is answered
+    for (const junk of ['null', '5', '"x"']) {
+        const body = Buffer.from(junk, 'utf8');
+        server.stdin.write('Content-Length: ' + body.length + '\r\n\r\n');
+        server.stdin.write(body);
+    }
+    const alive = await request('textDocument/hover', { textDocument: { uri: uri('orders.pad') }, position: { line: 0, character: 0 } });
+    if (alive.exited !== undefined) throw new Error('the language server died on a message that is no object (exit ' + alive.exited + ')');
+    expect('a message that is no object leaves the server answering', 'result' in alive, alive);
 
     for (const f of ['orders.pad', 'admin/report.pad', 'broken.pad', 'undefined.pad', '_include/footer.pad']) open(f);
 
