@@ -37,6 +37,12 @@
   elseif ( padCacheGuarded () )
     $padCache = FALSE;
 
+  // An HTMX request is answered fresh: the page's PHP may answer it with one response
+  // fragment (lib/respond.php), and a hit gave it the whole page stored under the address.
+
+  elseif ( isset ( $_SERVER ['HTTP_HX_REQUEST'] ) )
+    $padCache = FALSE;
+
   if ( ! $padCache )
     return;
 

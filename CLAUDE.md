@@ -651,7 +651,8 @@ it out) when the app caches; `access=`/`sitemap=` are kept for `padMeta('access'
 ```
 `?orders&padFragment=order-list` (or `$padFragmentOnly` set in PHP) answers with that
 fragment alone - for HTMX swaps and `{ajax 'orders', fragment='order-list'}`; a normal
-request renders the whole page.
+request renders the whole page. The page cache answers an `HX-Request` fresh and never stores
+a fragment the PHP chose, since its key is the address.
 
 ### HTML attribute helpers
 ```

@@ -32,9 +32,17 @@
 
   function padCacheStorable () {
 
-    global $padContentType, $padCacheContentType, $padSesID, $padReqID, $padOutput, $padCsrfIssued, $padNonce;
+    global $padContentType, $padCacheContentType, $padSesID, $padReqID, $padOutput, $padCsrfIssued, $padNonce,
+           $padFragmentSent, $padFragmentOnly;
 
     if ( $padContentType !== ( $padCacheContentType ?? $padContentType ) )
+      return FALSE;
+
+    // A response fragment the page's PHP chose - from a header the key does not hold, an
+    // HX-Request - is no answer to the address: stored under it, every browser after the
+    // HTMX swap got the bare fragment as the whole page. One the address names is.
+
+    if ( ( $padFragmentSent ?? FALSE ) and (string) ( $_REQUEST ['padFragment'] ?? '' ) !== (string) $padFragmentOnly )
       return FALSE;
 
     if ( http_response_code () and http_response_code () != 200 )
