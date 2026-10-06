@@ -7,6 +7,12 @@
   // padData() with the file extension as the type. Included by padData() as
   // data/<type>.php; padContentType picks 'file' when such a file exists.
 
+  // The name is often a value - data=$name - so it stays inside _data/: a .. segment walked
+  // out of the directory, and whatever file it reached was read, a .php among them run.
+
+  if ( preg_match ( '#(^|[/\\\\])\.\.([/\\\\]|$)#', $data ) )
+    return padError ( "the data name '" . padMakeSafe ( $data, 60 ) . "' leaves the _data directory" );
+
   $check = padDataFileName ( $data );
 
   return padDataFileData ( $check );

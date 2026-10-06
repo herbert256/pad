@@ -102,6 +102,16 @@
 
     if ( ! strpos( $url, '://') ) {
 
+      // The name stays inside _data/: {curl $name} with a .. segment walked out of the
+      // directory, and whatever file it reached was read, a .php among them run.
+
+      if ( preg_match ( '#(^|[/\\\\])\.\.([/\\\\]|$)#', $url ) ) {
+        padError ( "the data name '" . padMakeSafe ( $url, 60 ) . "' leaves the _data directory" );
+        $output         = padCurlError ( $output, 'the name leaves the _data directory' );
+        $output ['done'] = TRUE;
+        return $output;
+      }
+
       $check = padDataFileName ( $url );
 
       if ( $check ) {
