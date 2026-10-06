@@ -38,11 +38,18 @@ There is no PAD code in the application PHP code at all !
 </html>
 ```
 
-The data that is send to the browser:
+The data that is send to the browser - with Tidy on, as it is by default, the page is also
+completed and indented:
 ```html
+<!DOCTYPE html>
 <html>
+  <head>
+    <title></title>
+  </head>
   <body>
-    <h1>Hello World !</h1>
+    <h1>
+      Hello World !
+    </h1>
   </body>
 </html>
 ```
@@ -88,7 +95,7 @@ The PAD framework itself - the template engine, tag processors, expression evalu
 
 ### www/
 
-Web server document root files. Contains PHP entry points that configure `APP` and `DATA` constants and include the PAD framework.
+Web server document root files. Contains the PHP entry points that set the paths and the application name and include the PAD framework, which defines the `APP` and `DATA` constants.
 
 - See [www/README.md](www/README.md) for web server setup.
 
@@ -98,7 +105,6 @@ Runtime data directory for generated files:
 - Cache files
 - Log files
 - Debug dumps
-- Session data
 - Temporary files
 
 This directory should be writable by the web server and excluded from version control.
