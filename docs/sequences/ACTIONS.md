@@ -37,7 +37,7 @@ two: `{pull:a sort='b'}` sorts a and b together rather than sorting a by a field
 {pull:nums first=3}       # First 3 elements
 {pull:nums last=3}        # Last 3 elements
 {pull:nums element=5}     # Get 5th element, counting from 1
-{pull:nums slice='3|4}    # From offset 3, length 4 - counting from 0
+{pull:nums slice='3|4'}   # From offset 3, length 4 - counting from 0
 {pull:nums minimum}       # Smallest value
 {pull:nums minimum=3}     # The 3 smallest, back in their original order
 {pull:nums maximum=3}     # The 3 largest

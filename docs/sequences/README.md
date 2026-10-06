@@ -1,6 +1,6 @@
 # PAD Sequence Documentation
 
-The PAD sequence subsystem is a powerful mathematical sequence generation and manipulation engine. It provides over 80 sequence types, sequence storage and retrieval, and a rich set of transformation operations.
+The PAD sequence subsystem is a powerful mathematical sequence generation and manipulation engine. It provides 80 sequence types, sequence storage and retrieval, and a rich set of transformation operations.
 
 ## Quick Example
 
@@ -14,14 +14,14 @@ Output: `0 1 1 2 3 5 8 13 21 34`
 
 | File | Description |
 |------|-------------|
-| [SEQUENCES.md](SEQUENCES.md) | Sequence types - all 80+ available sequences and how to generate them |
+| [SEQUENCES.md](SEQUENCES.md) | Sequence types - all 80 available sequences and how to generate them |
 | [ACTIONS.md](ACTIONS.md) | Sequence actions - transformations, aggregations, and operations |
 | [EXPLAIN.md](EXPLAIN.md) | Technical internals - how the sequence subsystem works |
 | [PAD.md](PAD.md) | Framework integration - sequence implementation details |
 
 ## Key Features
 
-- **80+ Sequence Types:** Fibonacci, prime, triangular, Lucas, Catalan, and many more
+- **80 Sequence Types:** Fibonacci, prime, triangular, Lucas, Catalan, and many more
 - **Storage & Retrieval:** Store sequences with `push`, retrieve with `pull`
 - **Transformations:** `reverse`, `sort`, `shuffle`, `dedup`
 - **Selection:** `first`, `last`, `slice`, `shift`, `pop`

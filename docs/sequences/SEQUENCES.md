@@ -55,7 +55,7 @@ sequence to be mistaken for one, so a typo went unnoticed:
 {sequence prmie, rows=5}{$sequence} {/sequence}     # error: 'prmie' is not a sequence type, a store or an action
 ```
 
-## Sequence Types (80+)
+## Sequence Types (80)
 
 ### Mathematical Sequences
 
