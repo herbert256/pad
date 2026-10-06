@@ -267,3 +267,27 @@ A close inside a comment does not end the pair
     (close_tag
       (tag_name
         (identifier)))))
+
+================================================================================
+An option sigil inside a pair is no comment
+================================================================================
+
+{if #title}<h2>{#title}</h2>{/if}
+
+--------------------------------------------------------------------------------
+
+(template
+  (block
+    (open_tag
+      (tag_name
+        (identifier))
+      (arguments
+        (variable)))
+    (body
+      (text)
+      (field_tag
+        (variable))
+      (text))
+    (close_tag
+      (tag_name
+        (identifier)))))

@@ -100,6 +100,17 @@ static void skip_comment ( TSLexer *lexer, int32_t mark ) {
   }
 }
 
+// Just after {#: tells whether this is the option sigil {#name} or {#name | pipe} - a
+// parameter of the tag, which the engine's padCommentStrip leaves standing - rather than a
+// comment. Reads the name and the spaces after it, which a comment skips all the same.
+static bool option_sigil ( TSLexer *lexer ) {
+  if ( ! is_name_start ( lexer->lookahead ) ) return false;
+  while ( is_name_start ( lexer->lookahead ) || ( lexer->lookahead >= '0' && lexer->lookahead <= '9' ) )
+    advance ( lexer );
+  while ( is_space ( lexer->lookahead ) ) advance ( lexer );
+  return lexer->lookahead == '}' || lexer->lookahead == '|';
+}
+
 // Searches the rest of the text for the {/name} that closes the opener just read, counting
 // the {name} openers and {/name} closers on the way.
 static bool find_close ( TSLexer *lexer, const char *name, unsigned length ) {
@@ -115,9 +126,11 @@ static bool find_close ( TSLexer *lexer, const char *name, unsigned length ) {
 
     advance ( lexer );
 
+    // {#title} in a pair's content was taken for a comment and skipped to the next #} - or
+    // to the end - so {if #title}<h2>{#title}</h2>{/if} was never a block.
     if ( lexer->lookahead == '#' ) {
       advance ( lexer );
-      skip_comment ( lexer, '#' );
+      if ( ! option_sigil ( lexer ) ) skip_comment ( lexer, '#' );
       continue;
     }
 
