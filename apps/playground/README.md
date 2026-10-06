@@ -19,7 +19,9 @@ its template is the link maker's, and it runs on this machine.
 The playground runs the template it is given, so it is closed down:
 
 - **This machine only.** `_inits.php` answers 403 to every request that is not local
-  (`padLocal()` - the command line, or loopback with no forwarding header).
+  (`padLocal()` - the command line, or loopback with no forwarding header) or that names
+  another host than `localhost`, `127.0.0.1` or `[::1]` - a page on another site that has its
+  own name resolve to 127.0.0.1 reaches the loopback address too.
 - **A post from its own form only.** `$padCsrf = TRUE`: a post to `?render` carries the CSRF
   token of the playground's form, so a page on another site cannot make this machine's
   browser post it a template - which would come from loopback, as local as any other.
