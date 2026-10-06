@@ -116,7 +116,7 @@ $items = ['Apple', 'Banana', 'Cherry'];
 ```
 {$simple}                      {# Simple variable #}
 {$user.name}                   {# Object/array property #}
-{$items[0]}                    {# Array index #}
+{$items.0}                     {# Array element by key - a dotted path #}
 {!text}                        {# Raw - skips the sanitize chain #}
 {$value | default('N/A')}      {# Default value #}
 ```

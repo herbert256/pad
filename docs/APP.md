@@ -403,7 +403,7 @@ Visit `http://yourserver/myapp/` in your browser.
 ```
 {$variable}                    # Output variable
 {$user.name}                   # Object/array property
-{$items[0]}                    # Array index
+{$items.0}                     # Array element by key - a dotted path, as above
 ```
 
 **Output escaping options:**
