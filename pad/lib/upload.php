@@ -22,18 +22,25 @@
     unset ( $padUploadErrors [$field], $padUploadErrorParts [$field] );
 
     // What the call asks for is checked whether a file came or not: a size or a directory
-    // it cannot read is the application's mistake, and named on the first request.
+    // it cannot read is the application's mistake, and named on the first request. A
+    // directory it does not take stores nothing, also under an error action that carries
+    // on - the name was reported and then used, so one built from a request value,
+    // ../../www/x, put the visitor's file wherever it pointed.
 
     $limit = padUploadBytes ( $max );
     $dir   = trim ( str_replace ( '\\', '/', (string) $dir ), '/' );
+    $plain = ( $dir !== '' and preg_match ( '#^[A-Za-z0-9_-]+(/[A-Za-z0-9_-]+)*$#', $dir ) );
 
-    if ( $dir === '' or ! preg_match ( '#^[A-Za-z0-9_-]+(/[A-Za-z0-9_-]+)*$#', $dir ) )
+    if ( ! $plain )
       padError ( "padUpload stores under DATA in a plain directory name - '$dir' is not one" );
 
     $file = $_FILES [$field] ?? NULL;
 
     if ( ! is_array ( $file ) or ( $file ['error'] ?? UPLOAD_ERR_NO_FILE ) === UPLOAD_ERR_NO_FILE )
       return NULL;
+
+    if ( ! $plain )
+      return FALSE;
 
     // The visitor names the field: one sent as a list - avatar[] where the page takes one
     // avatar - is refused like any file the page cannot take. It was the author's error,
