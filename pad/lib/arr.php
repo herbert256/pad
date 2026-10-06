@@ -1257,8 +1257,11 @@
     if ( is_string ( $value ) )
       return "'" . padMakeSafe ( $value, 40 ) . "'";
 
+    // NAN is written NAN: PHP 8.5 warns when it casts NAN to a string, and that warning
+    // took the place of the report it was named in.
+
     if ( is_int ( $value ) or is_float ( $value ) )
-      return (string) $value;
+      return is_nan ( (float) $value ) ? 'NAN' : (string) $value;
 
     return get_debug_type ( $value );
 

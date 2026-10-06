@@ -80,7 +80,9 @@
 
   // Freezing reads the moment the way padDateParse does, so a test can write
   // padNowFreeze ( '2026-01-15 10:00:00' ). It answers the frozen moment, or NULL when the
-  // clock runs again; what is no date is named and leaves the clock as it was.
+  // clock runs again; what is no date is named and leaves the clock as it was. A value is
+  // named as padStrText writes it: (string) NAN is a PHP 8.5 warning, which took the place
+  // of the report here and in padAgo.
 
   function padNowFreeze ( $time = NULL ) {
 
@@ -92,7 +94,7 @@
     $moment = padDateParse ( $time );
 
     if ( $moment === NULL ) {
-      padError ( "padNowFreeze cannot read '" . padMakeSafe ( is_scalar ( $time ) ? (string) $time : get_debug_type ( $time ), 40 ) . "' as a date" );
+      padError ( "padNowFreeze cannot read '" . padMakeSafe ( is_scalar ( $time ) ? padStrText ( $time, 'padNowFreeze', FALSE ) : get_debug_type ( $time ), 40 ) . "' as a date" );
       return NULL;
     }
 
@@ -205,7 +207,7 @@
     $moment = padDateParse ( $date );
 
     if ( $moment === NULL ) {
-      padError ( "padAgo cannot read '" . padMakeSafe ( is_scalar ( $date ) ? (string) $date : get_debug_type ( $date ), 40 ) . "' as a date" );
+      padError ( "padAgo cannot read '" . padMakeSafe ( is_scalar ( $date ) ? padStrText ( $date, 'padAgo', FALSE ) : get_debug_type ( $date ), 40 ) . "' as a date" );
       return '';
     }
 
@@ -215,7 +217,7 @@
       $from = padDateParse ( $now );
 
     if ( $from === NULL ) {
-      padError ( "padAgo cannot read '" . padMakeSafe ( is_scalar ( $now ) ? (string) $now : get_debug_type ( $now ), 40 ) . "' as the moment to count from" );
+      padError ( "padAgo cannot read '" . padMakeSafe ( is_scalar ( $now ) ? padStrText ( $now, 'padAgo', FALSE ) : get_debug_type ( $now ), 40 ) . "' as the moment to count from" );
       return '';
     }
 
