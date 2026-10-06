@@ -9,10 +9,14 @@
   // Lengths and offsets are counted from the front, as for last: a pop of 0 multiplied out
   // to -0, which took every term and emptied the store.
 
-  if ( $pqPull )
+  // A store that was never pushed has nothing to take out: the pull build has said so under
+  // the strict check, and under the lenient walk the shift read the undefined key and ended
+  // the request - only the result is cut then, as with nothing pulled.
+
+  if ( $pqPull and isset ( $pqStore [$pqPull] ) )
     $pqStoreUpdated = TRUE;
 
-  if ( $pqPull )
+  if ( $pqPull and isset ( $pqStore [$pqPull] ) )
     if ( count($pqStore [$pqPull]) > $pqActionCnt )
       if ( $pqAction == 'shift')
         $pqStore [$pqPull] = array_slice($pqStore [$pqPull], $pqActionCnt);
