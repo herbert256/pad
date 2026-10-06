@@ -59,6 +59,12 @@
 
   }
 
+  // What came in is filed as an error report keeps it (padRedact): the passwords of a posted
+  // form, an Authorization header, an API key and the session cookies stood in clear in a
+  // file anyone who could read DATA could read. Cookies keep their names, the body is kept
+  // as redacted form or JSON fields or by its size alone, and the environment - where the
+  // server keeps its own secrets - is left out.
+
   function padInfoTrackStart () {
 
    global $padLog;
@@ -66,16 +72,25 @@
     if ( function_exists ('getallheaders') ) $headers = getallheaders() ?? [];
     else                                     $headers = [];
 
-    padFilePut ( "track/requests/$padLog-entry.json",  [
-        'headers' => $headers,
-        'get'     => $_GET    ?? '',
-        'post'    => $_POST   ?? '',
-        'files '  => $_FILES  ?? '',
-        'cookies' => $_COOKIE ?? '',
-        'data'    => file_get_contents ('php://input') ?? '',
-        'server'  => $_SERVER ?? '',
-        'host'    => $_ENV ?? ''
+    padInfoTrackPut ( "track/requests/$padLog-entry.json",  [
+        'headers' => padRedact ( $headers,        '',        TRUE ),
+        'get'     => padRedact ( $_GET    ?? [], '_GET',    TRUE ),
+        'post'    => padRedact ( $_POST   ?? [], '_POST',   TRUE ),
+        'files'   => padRedact ( $_FILES  ?? [], '_FILES',  TRUE ),
+        'cookies' => padRedact ( $_COOKIE ?? [], '_COOKIE', TRUE ),
+        'data'    => padDumpInputKept () [0],
+        'server'  => padRedact ( $_SERVER ?? [], '_SERVER', TRUE )
     ] );
+
+  }
+
+  // Owner only, as the error reports are (padDumpFilePut).
+
+  function padInfoTrackPut ( $file, $data ) {
+
+    padFilePut ( $file, $data );
+
+    @chmod ( DATA . $file, 0600 );
 
   }
 
@@ -97,18 +112,18 @@
         unset ( $phpHeaders [$key] );
     }
 
-    padFilePut (
+    padInfoTrackPut (
       "track/requests/$padLog.json",
-        [ 'pad' => padInfo (),
+        [ 'pad' => padRedact ( padInfo (), '', TRUE ),
           'in'  => json_decode ( padInfoGet ( DATA . "track/requests/$padLog-entry.json" ) ),
-          'out' => [
+          'out' => padRedact ( [
              'http'    => $http,
              'headers' => [
                'php'     => $phpHeaders,
                'pad'     => $padHeaders ],
              'length'  => $padLen   ?? '',
              'data'    => $padOutput,
-            ]
+            ], '', TRUE )
         ]
     );
 
@@ -125,7 +140,7 @@
     else
       $dir = 'complete';
 
-    padFilePut ( "track/data/$dir/$padStartPage.html", $padOutput );
+    padInfoTrackPut ( "track/data/$dir/$padStartPage.html", padRedactText ( (string) $padOutput ) );
 
   }
 

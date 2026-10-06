@@ -670,10 +670,24 @@
 
     global $padDumpToDirDone;
 
-    $txt = file_get_contents ('php://input') ?: '';
+    [ $txt, $type ] = padDumpInputKept ();
 
     if ( $txt === '' )
       return;
+
+    padDumpFilePut ( $padDumpToDirDone . "/input.$type", $txt );
+
+  }
+
+  // The request body as a report may keep it, and the extension that says what it is -
+  // shared with the track info mode (info/types/track/_lib.php).
+
+  function padDumpInputKept () {
+
+    $txt = file_get_contents ('php://input') ?: '';
+
+    if ( $txt === '' )
+      return [ '', 'txt' ];
 
     $ctype = $_SERVER ['CONTENT_TYPE'] ?? '';
     $json  = json_decode ( $txt, TRUE );
@@ -681,22 +695,15 @@
     if ( str_contains ( $ctype, 'application/x-www-form-urlencoded' ) ) {
 
       parse_str ( $txt, $form );
-      $txt  = http_build_query ( padRedact ( $form, '', TRUE ) );
-      $type = 'txt';
 
-    } elseif ( is_array ( $json ) ) {
-
-      $txt  = padJson ( padRedact ( $json, '', TRUE ) );
-      $type = 'json';
-
-    } else {
-
-      $txt  = strlen ( $txt ) . ' bytes of ' . ( $ctype ?: 'an unnamed type' ) . ' - not kept';
-      $type = 'txt';
+      return [ http_build_query ( padRedact ( $form, '', TRUE ) ), 'txt' ];
 
     }
 
-    padDumpFilePut ( $padDumpToDirDone . "/input.$type", $txt );
+    if ( is_array ( $json ) )
+      return [ padJson ( padRedact ( $json, '', TRUE ) ), 'json' ];
+
+    return [ strlen ( $txt ) . ' bytes of ' . ( $ctype ?: 'an unnamed type' ) . ' - not kept', 'txt' ];
 
   }
 
