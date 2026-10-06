@@ -18,12 +18,17 @@
 
     $directory = new RecursiveDirectoryIterator (APPS);
     $iterator  = new RecursiveIteratorIterator  ($directory);
+    $files     = [];
 
     foreach ($iterator as $one ) {
 
       $path = padCorrectPath ( $one->getPathname() );
 
-      if ( strpos ( $path, '/_') ) continue;
+      // An _xxx directory of an application hides what is in it - asked of the part below
+      // APPS, not of the whole path: a checkout that itself stands below an _xxx directory,
+      // a CI runner's _work, had every path hidden, and the empty list ended on ksort(NULL).
+
+      if ( str_contains ( '/' . substr ( $path, strlen ( APPS ) ), '/_' ) ) continue;
 
       $ext = substr($path, strrpos($path, '.')+1 );
 
