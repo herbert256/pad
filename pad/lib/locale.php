@@ -152,8 +152,11 @@
         $file = "$dir$name.json";
         if ( is_file ( $file ) ) {
           $more = json_decode ( (string) file_get_contents ( $file ), TRUE );
+          // array_replace, not array_merge: a key that is a number - "404", "2024" - is an
+          // integer key once decoded, and array_merge numbered those again from 0, so the
+          // key was lost and the more specific catalog never replaced it.
           if ( is_array ( $more ) )
-            $catalog = array_merge ( $catalog, $more );
+            $catalog = array_replace ( $catalog, $more );
           elseif ( $GLOBALS ['padCheckSyntax'] )
             padError ( "the catalog $file is not valid JSON" );
         }
