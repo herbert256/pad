@@ -95,7 +95,12 @@
       if ( ! @mkdir ( $dir, $padDirMode, true ) and ! is_dir ( $dir ) )
         return padError ( "Error creating directory: $dir" );
 
-    if ( ! file_exists ( $file ) ) {
+    // A missing file is made here only for an append, or for NULL - a whole write renames its
+    // temporary file into place below, with the mode. Touched first, a new file stood empty
+    // until that rename, and a reader in between - the file page cache serving a body - read
+    // an empty page where the old contents or the new were promised.
+
+    if ( ! file_exists ( $file ) and ( $append or $data === null ) ) {
       @touch ( $file );
       @chmod ( $file, $padFileMode );
     }
