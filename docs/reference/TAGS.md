@@ -639,7 +639,9 @@ the field, after a checkbox or radio), `value=` (the value before anything was p
 `id=` (default: the name), `checked` (a checkbox's state before a post), `rules=` (its rules,
 checked before the page's PHP - see `{form}`); every other item is an attribute of the field.
 
-**Behavior:** After a post of its form the field shows the posted value, escaped; a checkbox
+**Behavior:** After a post of its form the field shows the posted value, escaped - found
+where PHP files the name, so `user[email]` is `$_POST['user']['email']` and `first.name`
+is `first_name`, for its rules as well; a checkbox
 or radio is checked when the posted value is its own; a password or file field is never
 refilled. When `padValidate` reported the field, its message follows in
 `<span class="error" id="<id>-error">`, worded with the field's label, and the field gets

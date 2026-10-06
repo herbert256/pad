@@ -1,0 +1,13 @@
+200
+<form method="post"><input type="hidden" name="padCsrfToken"><input type="hidden" name="padForm" value="person"><div class="error" role="alert">Please correct the errors below.</div>
+<input type="email" name="user[email]" id="user-email" value="nope" aria-invalid="true" aria-describedby="user-email-error"><span class="error" id="user-email-error">User[email] must be a valid e-mail address</span>
+<input type="text" name="first.name" id="first-name" value="toolongname" aria-invalid="true" aria-describedby="first-name-error"><span class="error" id="first-name-error">First.name must be at most 5 characters</span>
+</form>
+not stored
+
+200
+<form method="post"><input type="hidden" name="padCsrfToken"><input type="hidden" name="padForm" value="person">
+<input type="email" name="user[email]" id="user-email" value="a@b.nl">
+<input type="text" name="first.name" id="first-name" value="Ann">
+</form>
+stored a@b.nl Ann

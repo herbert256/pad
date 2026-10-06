@@ -105,7 +105,7 @@
 
       $list   = is_array ( $list ) ? $list : explode ( '|', (string) $list );
       $list   = array_values ( array_filter ( array_map ( 'trim', $list ), 'strlen' ) );
-      $value  = $data [$field] ?? '';
+      $value  = padFormFind ( $data, $field ) [1] ?? '';
       $value  = is_string ( $value ) ? trim ( $value ) : $value;
       $number = (bool) array_intersect ( $list, [ 'numeric', 'integer' ] );
       $empty  = ( $value === '' or $value === NULL or $value === [] );
@@ -160,6 +160,7 @@
 
     $value = (string) $value;
     $size  = $number ? (float) $value : mb_strlen ( $value );
+    $other = ( $name == 'same' ) ? ( padFormFind ( $data, $arg ) [1] ?? '' ) : '';
 
     return match ( $name ) {
       'required' => $value !== '',
@@ -172,7 +173,7 @@
       'max'      => $size <= (float) $arg,
       'in'       => in_array ( $value, array_map ( 'trim', explode ( ',', $arg ) ), TRUE ),
       'regex'    => (bool) @preg_match ( $arg, $value ),
-      'same'     => is_scalar ( $data [$arg] ?? '' ) and $value === trim ( (string) ( $data [$arg] ?? '' ) ),
+      'same'     => is_scalar ( $other ) and $value === trim ( (string) $other ),
       'date'     => padValidateDate ( $value ),
       default    => TRUE
     };
@@ -290,10 +291,58 @@
 
     $source = padFormSource ();
 
-    if ( $source === NULL or ! array_key_exists ( $name, $source ) )
-      return $default;
+    [ $found, $value ] = ( $source === NULL ) ? [ FALSE, NULL ] : padFormFind ( $source, $name );
 
-    return is_string ( $source [$name] ) ? $source [$name] : $default;
+    return ( $found and is_string ( $value ) ) ? $value : $default;
+
+  }
+
+  // A field's value in the posted data, found where PHP files it: user[email] is
+  // $_POST ['user'] ['email'], tags[] the list $_POST ['tags'], and first.name arrives as
+  // first_name. The rules and the refill looked for $_POST ['user[email]'], found nothing,
+  // and every rule but required passed what was posted. A key that is the name itself -
+  // data handed to padValidate can have one - is found first. [ found, value ].
+
+  function padFormFind ( $data, $name ) {
+
+    $name = (string) $name;
+
+    if ( ! is_array ( $data ) )
+      return [ FALSE, NULL ];
+
+    if ( array_key_exists ( $name, $data ) )
+      return [ TRUE, $data [$name] ];
+
+    foreach ( padFormPath ( $name ) as $level => $segment ) {
+
+      if ( $segment === '' and $level )
+        break;
+
+      if ( ! is_array ( $data ) or ! array_key_exists ( $segment, $data ) )
+        return [ FALSE, NULL ];
+
+      $data = $data [$segment];
+
+    }
+
+    return [ TRUE, $data ];
+
+  }
+
+  // A field name read as PHP reads it (main/php_variables.c): the spaces before it dropped,
+  // a space or a dot before the first [ made an underscore, then each [key] a level, [] the
+  // list itself - up to a ] that no [ follows. A [ that never closes is an underscore too.
+
+  function padFormPath ( $name ) {
+
+    $name = ltrim ( $name, ' ' );
+
+    if ( ! preg_match ( '/^([^\[]*)((?:\[[^\]]*\])+)/', $name, $match ) )
+      return [ strtr ( $name, ' .[', '___' ) ];
+
+    preg_match_all ( '/\[([^\]]*)\]/', $match [2], $keys );
+
+    return array_merge ( [ strtr ( $match [1], ' .', '__' ) ], $keys [1] );
 
   }
 
