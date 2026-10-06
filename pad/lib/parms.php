@@ -6,7 +6,9 @@
   // padGetParms   promotes one array; a name already set is left alone (so the first
   //               source wins) - set to NULL as well: $currentUser = NULL in the config,
   //               filled by _inits.php only for a signed-in visitor, was filled by
-  //               ?currentUser=admin, as isset() called it unset - and padValidVar rejects
+  //               ?currentUser=admin, as isset() called it unset; the session alone fills
+  //               a NULL, being the application's own state: $rvUser = NULL is the signed-
+  //               out default the stored session value restores - and padValidVar rejects
   //               empty, non-identifier and pad-prefixed names, which keeps engine state
   //               out of reach; the query key that names the page ($padPageKey,
   //               inits/page.php) is no value
@@ -21,7 +23,7 @@
     foreach ( $parms as $field => $value )
       if ( $type == 'GET' and (string) $field === ( $GLOBALS ['padPageKey'] ?? '' ) )
         continue;
-      elseif ( ! array_key_exists ( $field, $GLOBALS ) )
+      elseif ( ! array_key_exists ( $field, $GLOBALS ) or ( $type == 'SESSION' and $GLOBALS [$field] === NULL ) )
         if ( padValidVar ($field) )
           if ( $type == 'SESSION' or padRequestVar ($field, $type) )
             $GLOBALS [$field] = padGetParms2 ( $type, $value );
