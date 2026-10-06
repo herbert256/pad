@@ -72,9 +72,15 @@
     if ( ! is_array ( $padGroupRow ) )
       $padGroupRow = [];
 
+    // A value is told by its text, as dedup tells it: 5 from a database row and '5' from a
+    // CSV row are one value, where serialize kept the integer and the string apart and the
+    // same customer came out as two groups.
+
     $padGroupId = [];
-    foreach ( $padGroupKeys as $padGroupKey )
-      $padGroupId [] = $padGroupRow [$padGroupKey] ?? '';
+    foreach ( $padGroupKeys as $padGroupKey ) {
+      $padGroupOne   = $padGroupRow [$padGroupKey] ?? '';
+      $padGroupId [] = is_scalar ( $padGroupOne ) ? (string) $padGroupOne : $padGroupOne;
+    }
 
     $padGroupId = serialize ( $padGroupId );
 
