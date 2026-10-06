@@ -72,8 +72,15 @@
   // HTML escaping that leaves an existing entity - &amp; &#123; &#x7B; &open; - as it is.
   // Only a whole reference counts: &#58top; is no entity, and left alone a browser reads
   // its &#58 as a colon, so [a](javascript&#58top;alert(1)) was a javascript: link.
+  //
+  // The markdown pipe runs on a value before it is protected, so a value from the request
+  // can carry a quote's or the backslash's stand-in (U+E022 ...); each is escaped as the
+  // character it stands for, which exits.php would otherwise make live after this - a quote
+  // in a value closed the title the renderer built and added a handler.
 
   function padMarkdownEscape ( $text ) {
+
+    $text = padUnprotectQuotes ( $text );
 
     $text = preg_replace ( '/&(?!(?:[a-zA-Z][a-zA-Z0-9]*|#[0-9]+|#[xX][0-9a-fA-F]+);)/', '&amp;', $text );
 
