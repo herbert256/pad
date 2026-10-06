@@ -8,6 +8,11 @@
   // that is no style word is an ICU pattern instead: localDate('d MMMM y'). The value is a
   // Unix timestamp or a date in text; empty is now. Without PHP's intl extension the answer
   // is date('Y-m-d'), with ' H:i' when a time style was asked for.
+  //
+  // The timezone is the application's as the call finds it (padDateZone, lib/date.php): a
+  // $padTimezone the page's PHP sets for itself is the zone the date is written in, as padAgo
+  // and padNow have it. The zone PHP was given as the request started wrote Tokyo's
+  // 07:13 as 22:13 UTC.
 
   $padLdStyles = [ 'none' => -1, 'full' => 0, 'long' => 1, 'medium' => 2, 'short' => 3 ];
 
@@ -41,7 +46,7 @@
         $padLdLocale,
         $padLdPattern ? IntlDateFormatter::NONE : $padLdStyles [$padLdDate],
         $padLdPattern ? IntlDateFormatter::NONE : $padLdStyles [$padLdTime],
-        date_default_timezone_get (),
+        padDateZone (),
         IntlDateFormatter::GREGORIAN,
         $padLdPattern ?: NULL
       );
@@ -58,6 +63,7 @@
 
   }
 
-  return date ( ( $padLdTime != 'none' ) ? 'Y-m-d H:i' : 'Y-m-d', $padLdStamp );
+  return ( new DateTimeImmutable ( "@$padLdStamp" ) ) -> setTimezone ( padDateZone () )
+                                                     -> format ( ( $padLdTime != 'none' ) ? 'Y-m-d H:i' : 'Y-m-d' );
 
 ?>
