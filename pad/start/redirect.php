@@ -17,6 +17,25 @@
        and ! padPageCheck ( $padParm ) )
     padError ( "there is no page named '$padParm' for {redirect}" );
 
+  // An absolute address - http:// or https:// - is where the browser goes, as written: the
+  // tag's target is a URL (TAGS.md) and the check above lets one leave the application. It
+  // went through padRedirect as a page name and came out as ?https://... on this site. The
+  // values set on the tag ride along; the visitor's ids do not leave the site. padRedirect
+  // itself stays inside the site, so a PHP page handing it a value from the request is no
+  // open redirect - a template that writes {redirect $url} decides where that leads.
+
+  if ( preg_match ( '#^https?://#i', (string) $padParm ) ) {
+
+    $padRedirectUrl = (string) $padParm;
+
+    foreach ( $padSetLvl [$pad] as $padK => $padV )
+      $padRedirectUrl = padAddGet ( $padRedirectUrl, $padK, $padV );
+
+    padHeader ( "Location: $padRedirectUrl" );
+    padExit ( 302 );
+
+  }
+
   padRedirect ( $padParm, $padSetLvl [$pad] );
 
 ?>

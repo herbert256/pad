@@ -496,10 +496,14 @@ Redirect to another page of the application.
 ```
 
 **Parameters:**
-- First parameter: the page to redirect to - a page name, also in its `?page` form
-- `$name = value` assignments are added to the query string
+- First parameter: URL to redirect to - a page of the application, also in its `?page` form
+  (routes resolved, as `{page}` resolves them), or an absolute `http://` / `https://` address
+- Variables set on the tag (`$color='red'`): added to the address's query string
 
-**Behavior:** Performs HTTP redirect (302) through `padRedirect()` and ends the request
+**Behavior:** Performs HTTP redirect (302) and ends the request. A page name stays on the
+site; an absolute address is sent as written, so a target taken from the request is the
+template's to check first. `padRedirect()` in PHP takes page names only and never leaves the
+site.
 
 ---
 

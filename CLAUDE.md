@@ -1248,7 +1248,7 @@ Output: `Alice, Bob, Charlie`
 
 | Function | Description |
 |----------|-------------|
-| `padRedirect($page, $vars, $app)` | Redirect to a page of this application (or of `$app`) with optional variables - no page: back to the one asked for |
+| `padRedirect($page, $vars, $app)` | Redirect to a page of this application (or of `$app`) with optional variables - no page: back to the one asked for; never off the site, `{redirect}` also takes an absolute URL |
 | `padRestart($page)` | Restart processing with new page |
 
 ### Forms and Security
