@@ -920,7 +920,7 @@ See the following files for complete reference documentation:
 
 See [DATABASE.md](docs/DATABASE.md) for complete database documentation including:
 - PHP `db()` function (RECORD, ARRAY, FIELD, CHECK, INSERT, UPDATE)
-- Template database tags ({field}, {table}, {record}, {array})
+- Template database tags ({field}, {record}, {array}, {check})
 - PAD Select Subsystem (declarative table access, relations, automatic joins)
 
 ---
