@@ -18,6 +18,9 @@ The playground runs the template it is given, so it is closed down:
 
 - **This machine only.** `_inits.php` answers 403 to every request that is not local
   (`padLocal()` - the command line, or loopback with no forwarding header).
+- **A post from its own form only.** `$padCsrf = TRUE`: a post to `?render` carries the CSRF
+  token of the playground's form, so a page on another site cannot make this machine's
+  browser post it a template - which would come from loopback, as local as any other.
 - **No PHP from the template.** `$padPhpFunctions = []`: `php:` calls and bare PHP function
   pipes are refused with an error.
 - **No request values.** `$padRequestVars = []`: the posted template and data are read by
@@ -39,6 +42,6 @@ anywhere else - on this machine, for this machine's user.
 | `index.php` / `index.pad` | The editor: template, data, output frame |
 | `render.php` / `render.pad` | Renders the posted template with the posted data through `padCode()` |
 | `_inits.php` | Turns every non-local request away |
-| `_config/config.php` | No PHP functions, no request variables, no `_common`, no database |
+| `_config/config.php` | CSRF tokens; no PHP functions, no request variables, no `_common`, no database |
 | `www/playground/playground.js` | Keeps the panes in the URL hash, renders on load and on Ctrl+Enter |
 | `www/playground/playground.css` | The two-pane layout |
