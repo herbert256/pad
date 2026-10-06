@@ -24,10 +24,15 @@
     if ( PHP_SAPI === 'cli' )
       return TRUE;
 
-    if ( $editRemote )
-      return ! $editHosts or editHostNamed ( (array) $editHosts );
+    // $editHosts names the hosts a request may name besides this machine's own names, opened
+    // up or not: with $editRemote and a host listed, a request naming localhost was refused.
 
-    return padLoopback () and editHostNamed ( array_merge ( [ 'localhost', '127.0.0.1', '[::1]', '::1' ], (array) $editHosts ) );
+    $hosts = array_merge ( [ 'localhost', '127.0.0.1', '[::1]', '::1' ], (array) $editHosts );
+
+    if ( $editRemote )
+      return ! $editHosts or editHostNamed ( $hosts );
+
+    return padLoopback () and editHostNamed ( $hosts );
 
   }
 
