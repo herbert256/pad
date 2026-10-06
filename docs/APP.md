@@ -1545,8 +1545,8 @@ Output: `Alice, Bob, Charlie`
 
 | Syntax | Purpose | Example |
 |--------|---------|---------|
-| `{$var}` | Output variable | `{$name}` |
-| `{!var}` | HTML-escaped output | `{!userInput}` |
+| `{$var}` | Output variable, HTML-escaped (the sanitize chain) | `{$name}` |
+| `{!var}` | Raw output - trusted HTML only | `{!body}` |
 | `{$obj.prop}` | Property access | `{$user.email}` |
 | `{echo expr}` | Evaluate expression | `{echo $a + $b}` |
 | `{echo $x \| func}` | Pipe function | `{echo $text \| upper}` |
