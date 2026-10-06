@@ -1082,25 +1082,31 @@ Tags can have multiple sources (app tags, data, sequences, etc.). Use type prefi
 | Prefix | Purpose |
 |--------|---------|
 | `app:` | App tag from `_tags/` directory |
+| `common:` | Tag from the `_common` application |
 | `pad:` | Built-in PAD tag |
 | `php:` | Call PHP function directly |
 | `function:` | Custom PAD function from `_functions/` |
 | `data:` | Defined data block |
 | `content:` | Content block definition |
+| `include:` | Snippet from `_include/` |
 | `local:` | Files from `_data/` directory |
 | `script:` | Execute from `_scripts/` |
 | `array:` | Access array as loop |
+| `level:` | Array field of an enclosing row |
+| `parm:` | Parameter or option of the enclosing tag |
+| `property:` | Tag property |
 | `constant:` | Access PHP constant |
 | `bool:` | Access bool definition |
 | `pull:` | Retrieved stored sequence |
-| `field:` | Database field query |
+| `field:` | A field (variable) value - the database value is the `{field "..."}` tag |
 | `select:` | Declared select table |
+| `sequence:` | Sequence type |
 | `action:` | Sequence action |
-| `shift:` | Sequence shift operation |
+| `flag:` / `make:` / `keep:` / `remove:` | Sequence operations |
 
 **Function type prefixes in pipes:**
 ```
-{$abc | app:substr (1, 1)}    # Call app function
+{$price | app:money}          # Call the app's _functions/money.php
 {$abc | pad:substr (1, 1)}    # Call pad function
 {$abc | php:substr (@, 1, 1)} # Call raw PHP function (@ = value)
 ```
