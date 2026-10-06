@@ -564,8 +564,8 @@ The fields refill from the post when their form came back and show the message
 `padValidate` found - in the page's PHP:
 `if ( padPosted ( 'contact' ) ) $errors = padValidate ( [ 'email' => 'required|email' ] );`
 Rules: required, email, url, numeric, integer, min:n, max:n, in:a,b, regex:/x/, same:field,
-accepted, date. A value posted as a list (`name[]`) passes `required` and `in:` (every item)
-only.
+accepted, date. A list passes `required` and `in:` (every item) only, and only on a field
+named for one (`tags[]`); on a field of one value it breaks every rule.
 
 The rules can stand on the fields instead - checked before any PHP runs:
 ```

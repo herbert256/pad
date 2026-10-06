@@ -124,6 +124,12 @@
       $number = (bool) array_intersect ( array_map ( 'strtolower', $list ), [ 'numeric', 'integer' ] );
       $empty  = ( $value === '' or $value === NULL or $value === [] );
 
+      // A list belongs to a field named for one - tags[] - and a field of one value posted
+      // as a list breaks every rule it has: name[]=x passed required and color[]=red passed
+      // in:, and the page went on with a list where its form has one text.
+
+      $single = ( is_array ( $value ) and ! str_ends_with ( (string) $field, '[]' ) );
+
       foreach ( $list as $rule )
         if ( ! in_array ( strtolower ( explode ( ':', $rule, 2 ) [0] ), padValidateRules, TRUE ) )
           padValidateUnknown ( $rule );
@@ -137,7 +143,7 @@
         if ( $empty and $name != 'required' and $name != 'accepted' )
           continue;
 
-        if ( padValidateRule ( $name, $arg, $value, $data, $number ) )
+        if ( ! $single and padValidateRule ( $name, $arg, $value, $data, $number ) )
           continue;
 
         $padFormErrorParts [$field] = padValidateMessage ( $field, $name, $arg, $number, $messages );
@@ -156,8 +162,8 @@
 
   }
 
-  // A list - a field posted as name[] - is the value of a multiple choice: required asks
-  // for an item, and in: holds every item to its list. Any other rule speaks about one
+  // A list - the value of a field named name[], a multiple choice - asks required for an
+  // item, and in: holds every item to its list. Any other rule speaks about one
   // value, which a list is not: color[]=evil, posted where the form has one color field,
   // passed in:, email, integer and every other rule, and the page went on with a list its
   // rules never looked at.
