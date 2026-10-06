@@ -180,9 +180,13 @@
            : 2097152;
     }
 
-    $power = [ '' => 0, 'K' => 1, 'M' => 2, 'G' => 3 ] [ strtoupper ( $match [2] ) ];
+    // A size beyond what a number holds is the largest there is: its cast ended the request
+    // under PHP 8.5 and came out negative, smaller than any file.
 
-    return (int) round ( (float) $match [1] * ( 1024 ** $power ) );
+    $power = [ '' => 0, 'K' => 1, 'M' => 2, 'G' => 3 ] [ strtoupper ( $match [2] ) ];
+    $bytes = round ( (float) $match [1] * ( 1024 ** $power ) );
+
+    return ( $bytes >= PHP_INT_MAX ) ? PHP_INT_MAX : (int) $bytes;
 
   }
 
