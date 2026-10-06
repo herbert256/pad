@@ -82,6 +82,27 @@
 
   }
 
+  // Whether an attribute an array brought may be written: the array's keys are data -
+  // often a visitor's, decoded from JSON - so an event handler (on...) is left out, and so
+  // is a URL attribute whose value names a scheme that runs script (padMarkdownUrl's test:
+  // javascript:, data:, a control character hidden in a reference ...). The names written
+  // in the template are the author's and are not judged.
+
+  function padAttrsSafe ( $name, $value ) {
+
+    $name = strtolower ( $name );
+
+    if ( str_starts_with ( $name, 'on' ) )
+      return FALSE;
+
+    if ( in_array ( $name, [ 'href', 'src', 'action', 'formaction', 'xlink:href', 'poster', 'cite', 'background', 'data' ] )
+         and is_scalar ( $value ) and ! is_bool ( $value ) )
+      return padMarkdownUrl ( (string) $value ) !== FALSE;
+
+    return TRUE;
+
+  }
+
   function padAttrsTrue ( $value ) {
 
     if ( is_array ( $value ) )
@@ -115,7 +136,7 @@
         $value = padAttrsValue ( $expr );
         if ( is_array ( $value ) )
           foreach ( $value as $key => $one )
-            if ( padAttrsBare ( (string) $key ) )
+            if ( padAttrsBare ( (string) $key ) and padAttrsSafe ( (string) $key, $one ) )
               padAttrsOne ( $out, (string) $key, $one );
         continue;
       }
