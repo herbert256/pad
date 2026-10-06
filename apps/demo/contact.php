@@ -8,11 +8,17 @@
   // that keeps them. A post that breaks one never gets here; the form comes back refilled
   // with what was typed, each message beside its field.
 
-  if ( padPosted ( 'contact' ) ) {
+  // The rules let a field posted as a list - name[]=x - through, so a message whose fields
+  // are not all text is not stored: htmlspecialchars() was handed the array and the post
+  // ended on a 500. The form comes back as it was sent.
+
+  $sent = padRequestOnly ( [ 'name', 'email', 'subject', 'message' ] );
+
+  if ( padPosted ( 'contact' ) and count ( array_filter ( $sent, 'is_string' ) ) == count ( $sent ) ) {
 
     $messages = json_decode ( padFileGet ( $dataFile ), TRUE ) ?: [];
 
-    $entry          = array_map ( 'htmlspecialchars', padRequestOnly ( [ 'name', 'email', 'subject', 'message' ] ) );
+    $entry          = array_map ( 'htmlspecialchars', $sent );
     $entry ['date'] = padNow ( 'Y-m-d H:i:s' );
 
     $messages [] = $entry;

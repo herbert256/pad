@@ -10,7 +10,10 @@
     $name    = padRequest ( 'name',    '' );
     $comment = padRequest ( 'comment', '' );
 
-    if ( padFilled ( $name ) and padFilled ( $comment ) ) {
+    // A field posted as a list - name[]=x - is no text: it is asked for again, where
+    // htmlspecialchars() was handed the array and the post ended on a 500.
+
+    if ( is_string ( $name ) and is_string ( $comment ) and padFilled ( $name ) and padFilled ( $comment ) ) {
       $entry = [
         'name'    => htmlspecialchars ( $name ),
         'comment' => htmlspecialchars ( $comment ),

@@ -16,7 +16,7 @@
     case 'add':
 
       $task = padRequest ( 'task', '' );
-      if ( padFilled ( $task ) ) {
+      if ( is_string ( $task ) and padFilled ( $task ) ) {     // task[]=x is no task
         $todos [] = [
           'id'   => uniqid (),
           'task' => htmlspecialchars ( $task ),
