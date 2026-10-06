@@ -1818,12 +1818,12 @@ other word after a value is a pipe, `{echo 'abc' upper}` gives `ABC`.
 
 | Option | Description |
 |--------|-------------|
-| `bool` | Check/create boolean flag |
+| `bool` | `{if bool='name'}`: the stored flag is the condition |
 | `optional` | Suppress not-found errors |
-| `demand` | Mark as required |
-| `null` | Alternative for NULL |
-| `else` | Alternative for empty/false |
-| `notOk` / `error` | Alternative for error |
+| `demand` | An error when the tag produced nothing |
+| `null` | Content (a `{content}` name, snippet or page) shown for NULL |
+| `else` | Content shown for an empty or false answer |
+| `notOk` / `error` | Content shown for any miss, or when a `php:` call throws |
 
 ### Formatting Options
 

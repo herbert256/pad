@@ -144,7 +144,7 @@ Stores a boolean result based on the output state.
 
 ### bool
 
-Retrieves or creates a boolean flag value.
+Makes the stored boolean flag the condition of an `{if}`.
 
 ```
 {if bool="flagName"}
@@ -153,6 +153,7 @@ Retrieves or creates a boolean flag value.
 **Behavior:**
 - If flag exists in `$padBoolStore`, returns its value
 - If not, the flag is `FALSE`, as an unset flag reads everywhere
+- Read by `{if}` only; on any other tag it does nothing
 
 **Example:**
 ```
@@ -180,28 +181,31 @@ Marks a tag as optional - suppresses "not found" errors.
 
 ### demand
 
-Marks a tag as required (callback mode).
+Marks a tag as required: it must produce something.
 
 ```
 {tagName demand}
 ```
 
 **Behavior:**
-- Returns TRUE (for callback processing)
-- Indicates the tag must produce output
+- A tag that answers NULL, FALSE, `''` or an empty array - after `notOk`, `null` and `else`
+  had their turn - is a PAD error: "Tag 'x' carries demand and produced nothing"
 
 ---
 
 ## Conditional Content Options
 
-Options that provide alternative content based on result state.
+Options that show other content based on what the tag itself answered. The value of each is
+the **name** of that content - a `{content 'name'}` block, or else an `_include/` snippet, a
+page or a tag of that name (`get/content.php`) - never literal text: `else="Nothing here"`
+shows nothing.
 
 ### null
 
-Provides alternative content when result is NULL.
+Shows the named content when the tag answers NULL.
 
 ```
-{tagName null="alternativeContent"}
+{tagName null="contentName"}
 ```
 
 **Triggers when:**
@@ -215,15 +219,16 @@ Provides alternative content when result is NULL.
 
 **Example:**
 ```
-{$user.avatar null="defaultAvatar"}
+{content 'noAvatar'}<img src="anonymous.png" alt="">{/content}
+{avatar null="noAvatar"}...{/avatar}
 ```
 
 ### else
 
-Provides alternative content when result is empty/false.
+Shows the named content when the tag answers an empty or false result.
 
 ```
-{tagName else="alternativeContent"}
+{tagName else="contentName"}
 ```
 
 **Triggers when:**
@@ -231,27 +236,33 @@ Provides alternative content when result is empty/false.
 - Result is `FALSE`
 - Result is empty string `''`
 
+What the tag answered decides, before the handling options run: rows that `where=` or
+`first=` take away leave the level to its `@else@` branch instead
+([HANDLING.md](HANDLING.md#emptied-by-handling)).
+
 **Example:**
 ```
-{users where='$premium eq 1', else="noPremiumUsers"}
+{content 'noPremium'}<p>No premium users yet.</p>{/content}
+{premiumUsers else="noPremium"}...{/premiumUsers}
 ```
 
 ### notOk
 
-Provides alternative content on error/failure state.
+Shows the named content when the tag produced nothing - NULL, FALSE, `''` or an empty array,
+taking precedence over `null` and `else` - or when a built-in tag's handler threw a PHP
+exception, as a `php:` call can. A PAD error, and an exception from an application's `_tags/`
+file, are still reported.
 
 ```
-{tagName notOk="errorContent"}
+{tagName notOk="contentName"}
 ```
-
-**Similar to `else` but for error conditions.**
 
 ### error
 
 Alias for `notOk`.
 
 ```
-{tagName error="errorContent"}
+{tagName error="contentName"}
 ```
 
 ---
@@ -566,12 +577,12 @@ Enables direct output printing with formatting options.
 ### Conditional
 | Option | Description |
 |--------|-------------|
-| `bool` | Check/create boolean flag |
+| `bool` | `{if bool='name'}`: the stored flag is the condition |
 | `optional` | Suppress not-found errors |
-| `demand` | Mark as required |
-| `null` | Alternative for NULL |
-| `else` | Alternative for empty/false |
-| `notOk` | Alternative for error |
+| `demand` | An error when the tag produced nothing |
+| `null` | Named content for NULL |
+| `else` | Named content for empty/false |
+| `notOk` | Named content for any miss, or a thrown `php:` call |
 | `error` | Alias for notOk |
 
 ### Formatting
