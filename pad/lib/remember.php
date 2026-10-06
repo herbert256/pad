@@ -243,7 +243,11 @@
       return NULL;
     }
 
-    return [ $file, (int) $maxAttempts, (int) ceil ( (float) $decaySeconds ) ];
+    // A window too long for a whole number - 1e20 seconds - is one that ends in the year
+    // 9999: the cast to a whole number ended the request, and an end of the window past
+    // PHP_INT_MAX was written as a float that was never read back, so no hit counted.
+
+    return [ $file, (int) $maxAttempts, (int) ceil ( min ( (float) $decaySeconds, 253402300799 - time () ) ) ];
 
   }
 
