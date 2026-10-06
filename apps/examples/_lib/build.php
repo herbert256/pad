@@ -16,6 +16,9 @@
 
     global $padHost;
 
+    if ( examplesGuarded ( $app, $item ) )
+      return;
+
     $curl = padCurl ( "$padHost$app/?$item&padInclude" );
 
     if ( ! str_starts_with ( $curl ['result'], '2' ) )
@@ -40,6 +43,31 @@
       padFilePut ( "examples/$app/$item.pad",  padFileGet ( APPS . "$app/$item.html" ) );
 
     padFilePut ( "examples/$app/$item.html", padTidySmall ( $curl ['data'], TRUE ) );
+
+  }
+
+  // A page behind a _guard.php - in its own directory or any above it, up to the application
+  // root - is no example: what a crawl gets there is the guard's answer, a refusal or a
+  // login page, and a login page carries its session's own CSRF token, so every harvest
+  // stored a different file. The sitemap leaves the same pages out (lib/sitemap.php).
+
+  function examplesGuarded ( $app, $item ) {
+
+    $dir   = APPS . "$app/";
+    $parts = explode ( '/', $item );
+
+    array_pop ( $parts );
+
+    if ( file_exists ( $dir . '_guard.php' ) )
+      return TRUE;
+
+    foreach ( $parts as $part ) {
+      $dir .= "$part/";
+      if ( file_exists ( $dir . '_guard.php' ) )
+        return TRUE;
+    }
+
+    return FALSE;
 
   }
 
