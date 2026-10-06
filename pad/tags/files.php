@@ -64,6 +64,12 @@
 
     $padFilesName = $padFilesFile->getFilename();
 
+    // . and .. are no entries of the directory but its references to itself and its
+    // parent; with includeHidden they were listed, one pair for every directory of a
+    // recursive scan.
+
+    if ( $padFilesName == '.' or $padFilesName == '..' ) continue;
+
     if ( $padFilesOnlyFiles       and ! $padFilesFile->isFile()                     ) continue;
     if ( $padFilesOnlyDirs        and ! $padFilesFile->isDir()                      ) continue;
     if ( $padFilesMask            and ! fnmatch ( $padFilesMask, $padFilesName    ) ) continue;
