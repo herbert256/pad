@@ -9,4 +9,9 @@
 
   $who = "x' or name > '";
 
+  // A negative number bound after a minus keeps its distance, so "salary > 2000-$adj" is
+  // 2000 - (-1000) = 3000 and not a -- comment that leaves SQLite with half a clause.
+
+  $adj = -1000;
+
 ?>

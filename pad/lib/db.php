@@ -498,10 +498,21 @@
         if ( isset ( $match [2] ) and is_scalar ( $value ) )
           $value = mb_substr ( (string) $value, 0, (int) $match [2] );
 
-        if     ( $key [0] == 'x'    ) $out .= is_array ( $value ) ? implode ( ',', $value ) : $value;
-        elseif ( $quote == '`'      ) $out .= str_replace ( '`', '``', (string) $value );
-        elseif ( $quote             ) $out .= padDbEscape ( $connect, $value, $quote );
-        else                          $out .= padDbLiteral ( $connect, $value );
+        if     ( $key [0] == 'x'    ) $add = is_array ( $value ) ? implode ( ',', $value ) : (string) $value;
+        elseif ( $quote == '`'      ) $add = str_replace ( '`', '``', (string) $value );
+        elseif ( $quote             ) $add = padDbEscape ( $connect, $value, $quote );
+        else                          $add = padDbLiteral ( $connect, $value );
+
+        // A bare negative number right after a minus - "10-{0}" with -5 - would join into
+        // "10--5", which SQLite reads as "10" followed by a -- line comment that swallows
+        // the rest of the statement (MySQL wants white space after --, so it computed
+        // 10 - -5 = 15): the drivers disagreed and SQLite gave the wrong answer or an
+        // "incomplete input" error. A space keeps the two minuses apart.
+
+        if ( $add !== '' and $add [0] === '-' and $out !== '' and $out [ strlen ( $out ) - 1 ] === '-' )
+          $add = " $add";
+
+        $out .= $add;
 
         $i += strlen ( $match [0] ) - 1;
         continue;

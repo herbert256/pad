@@ -426,12 +426,21 @@
         if ( $columns and ! padSelectColumns ( (string) $value ) )
           return padError ( "\$$name in order= or group= must hold column names, each with an optional asc or desc" );
 
-        if     ( $columns                ) $out .= (string) $value;
-        elseif ( $value === NULL         ) $out .= 'NULL';
-        elseif ( is_bool ( $value )      ) $out .= $value ? '1' : '0';
+        if     ( $columns                ) $add = (string) $value;
+        elseif ( $value === NULL         ) $add = 'NULL';
+        elseif ( is_bool ( $value )      ) $add = $value ? '1' : '0';
         elseif ( is_int ( $value ) or is_float ( $value ) or preg_match ( '/^-?[0-9]+(\.[0-9]+)?$/', (string) $value ) )
-                                           $out .= (string) $value;
-        else                               $out .= "'" . padSelectEscape ( $value ) . "'";
+                                           $add = (string) $value;
+        else                               $add = "'" . padSelectEscape ( $value ) . "'";
+
+        // A bare negative number right after a minus - where="salary > 1000-$n", $n = -1 -
+        // would join into "1000--1", a -- line comment on SQLite that swallows the rest of
+        // the clause (MySQL wants white space after --). A space keeps the two minuses apart.
+
+        if ( $add !== '' and $add [0] === '-' and $out !== '' and $out [ strlen ( $out ) - 1 ] === '-' )
+          $add = " $add";
+
+        $out .= $add;
 
         $i += strlen ( $match [0] ) - 1;
         continue;
