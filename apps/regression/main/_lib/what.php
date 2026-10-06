@@ -92,6 +92,7 @@
       'misc/parms'                => 'Parameters, options and variables on a tag, over a PHP array, a constant and a store',
       'misc/datatypes'            => 'The html and range data types: a tidied document walked to its values, and both range spellings',
       'misc/curl_stale'           => 'A source that fails past the ttl: the last good copy is served',
+      'misc/nocurl_reads_web_urls_only' => 'Without ext-curl padNoCurl fetches http and https only - a file:// URL is the 999 failure',
       'remote/stamp'              => 'A JSON document new on every fetch - the source the curl ttl cases fetch twice',
       'remote/curl_ttl'           => 'The ttl option of {curl}: two fetches of a changing document within the ttl answer alike',
       'remote/curl_data_ttl'      => 'A ttl for remote data: a _data/*.curl file with a <ttl>, and data= with the ttl option',

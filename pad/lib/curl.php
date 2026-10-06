@@ -36,6 +36,13 @@
 
   function padNoCurl ( $output ) {
 
+    // http and https only, as padCurl's PROTOCOLS_STR has it: without ext-curl a fetch of
+    // file:///... or php://filter/... was read by file_get_contents as it stood, so a URL
+    // from a value - data=$url, {curl $url} - read any file the PHP user could.
+
+    if ( str_contains ( $output ['url'], '://' ) and ! preg_match ( '#^https?://#i', $output ['url'] ) )
+      return padCurlError ( $output, 'padNoCurl: only http and https are fetched' );
+
     set_error_handler ( 'padErrorThrow' );
     $errorReporting = error_reporting (0);
 
