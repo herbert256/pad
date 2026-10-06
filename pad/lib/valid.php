@@ -122,29 +122,79 @@
   // callable are held to the list; NULL, which array_map takes for no callback, passes. The
   // message for the first callable refused comes back, FALSE when there is none - always
   // FALSE under TRUE, which allows every function anyway.
+  //
+  // PHP declares some callables without the type, and those were let through: the last
+  // argument of array_udiff and its kin (the last two of array_udiff_uassoc and
+  // array_uintersect_uassoc) - php:array_udiff([$file], [$text], 'file_put_contents') wrote
+  // a file - ob_start's first, pcntl_signal's second, the values of
+  // preg_replace_callback_array's patterns and of the yaml functions' callbacks. A call
+  // that forwards - call_user_func, call_user_func_array, forward_static_call(_array) - is
+  // held to the list for the call it makes, so call_user_func('array_map', 'strrev', ...)
+  // is strrev called by array_map; and a forwarding function is never itself a callback,
+  // since array_map('call_user_func', ['strrev'], ...) would call what its data names.
 
   function padPhpCallables ( $name, $args ) {
 
     if ( ( $GLOBALS ['padPhpFunctions'] ?? TRUE ) === TRUE or ! function_exists ( $name ) )
       return FALSE;
 
-    $params = ( new ReflectionFunction ( $name ) ) -> getParameters ();
-    $last   = end ( $params );
+    $args    = array_values ( $args );
+    $lower   = strtolower ( $name );
+    $forward = [ 'call_user_func', 'call_user_func_array', 'forward_static_call', 'forward_static_call_array' ];
+    $params  = ( new ReflectionFunction ( $name ) ) -> getParameters ();
+    $last    = end ( $params );
+    $calls   = [];
 
-    foreach ( array_values ( $args ) as $at => $arg ) {
+    foreach ( $args as $at => $arg ) {
 
       $param = $params [$at] ?? ( ( $last and $last -> isVariadic () ) ? $last : NULL );
 
-      if ( ! $param or ! str_contains ( (string) $param -> getType (), 'callable' ) or $arg === NULL )
-        continue;
-
-      if ( ! is_string ( $arg ) )
-        return "a callable that is no function name, handed to '$name', is not allowed by \$padPhpFunctions";
-
-      if ( ! padPhpAllowed ( $arg ) )
-        return "the PHP function '" . padMakeSafe ( $arg, 40 ) . "' is not allowed by \$padPhpFunctions";
+      if ( $param and str_contains ( (string) $param -> getType (), 'callable' ) )
+        $calls [] = $arg;
 
     }
+
+    if ( preg_match ( '/^array_(u(diff|intersect)|(diff|intersect)_u)/', $lower ) and $args ) {
+      $calls [] = end ( $args );
+      if ( preg_match ( '/^array_u(diff|intersect)_uassoc$/', $lower ) and count ( $args ) > 1 )
+        $calls [] = $args [ count ( $args ) - 2 ];
+    }
+
+    if ( $lower == 'ob_start' )
+      $calls [] = $args [0] ?? NULL;
+
+    if ( $lower == 'pcntl_signal' )
+      $calls [] = $args [1] ?? NULL;
+
+    if ( $lower == 'preg_replace_callback_array' and is_array ( $args [0] ?? NULL ) )
+      $calls = array_merge ( $calls, array_values ( $args [0] ) );
+
+    foreach ( $params as $at => $param )
+      if ( $param -> getName () == 'callbacks' and is_array ( $args [$at] ?? NULL ) )
+        $calls = array_merge ( $calls, array_values ( $args [$at] ) );
+
+    foreach ( $calls as $call ) {
+
+      if ( $call === NULL )
+        continue;
+
+      if ( ! is_string ( $call ) )
+        return "a callable that is no function name, handed to '$name', is not allowed by \$padPhpFunctions";
+
+      if ( ! padPhpAllowed ( $call ) )
+        return "the PHP function '" . padMakeSafe ( $call, 40 ) . "' is not allowed by \$padPhpFunctions";
+
+      if ( in_array ( strtolower ( $call ), $forward, TRUE ) )
+        return "the PHP function '" . strtolower ( $call ) . "' calls whatever it is handed - under \$padPhpFunctions it is handed to no other function";
+
+    }
+
+    if ( in_array ( $lower, [ 'call_user_func', 'forward_static_call' ], TRUE ) and is_string ( $args [0] ?? NULL ) )
+      return padPhpCallables ( $args [0], array_slice ( $args, 1 ) );
+
+    if ( in_array ( $lower, [ 'call_user_func_array', 'forward_static_call_array' ], TRUE )
+         and is_string ( $args [0] ?? NULL ) and is_array ( $args [1] ?? NULL ) )
+      return padPhpCallables ( $args [0], $args [1] );
 
     return FALSE;
 
