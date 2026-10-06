@@ -999,8 +999,9 @@ part of the page (a big `{table}`, a `{curl}`) is still rendering.
 body: tidy, gzip of the whole body, the ETag and its 304, `Content-Length` and the page cache;
 the headers go out with the first part, so a header or cookie set after it is lost. It stands at
 the top level of the page or its wrapper - inside another tag, or in a page whose PHP returns
-data, strict mode reports it. In a page rendered inside another (`{page}`) and for an output
-type other than web it does nothing. The page's PHP runs before any of the template, so what
+data, strict mode reports it. In a page rendered inside another (`{page}`), for an output
+type other than web, and in a request answered with a part of the page - a response fragment
+(`padFragment`), the post of a `{live}` region - it does nothing. The page's PHP runs before any of the template, so what
 a flush wins is the rendering below it. A `{stack}` in the part that goes out early gets the
 pushes made before the flush only - a push below it cannot reach text the browser already has.
 

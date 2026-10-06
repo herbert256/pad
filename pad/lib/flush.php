@@ -20,15 +20,22 @@
   // padFlush      sends what is new since the last flush and remembers how much went
   // padFlushRest  at the end of the request, the part of the page not sent yet
   // padFlushSend  writes a chunk past PAD's output buffers, which keep whatever they hold
+  //
+  // A request answered with a part of the page - one response fragment (lib/respond.php),
+  // the post of a live region (lib/live.php) - flushes nothing: what goes out is that part
+  // alone, and the head of the page a flush above it sent went in front of it, into the
+  // element an HTMX swap or a live event replaces.
 
   function padFlushCan () {
 
-    global $pad, $padOutputType, $padStop, $padCacheStop;
+    global $pad, $padOutputType, $padStop, $padCacheStop, $padFragmentOnly;
 
     return ( $pad == 1
              and $padOutputType == 'web'
              and PHP_SAPI != 'cli'
-             and $padCacheStop != 200 );
+             and $padCacheStop != 200
+             and (string) $padFragmentOnly === ''
+             and padLive () === '' );
 
   }
 
