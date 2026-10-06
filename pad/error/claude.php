@@ -36,6 +36,9 @@
   // load - and no forwarding header. A proxy on the same box connects from loopback for
   // every visitor, so a request that says it was forwarded stands for somebody else. The
   // Host header is the client's to write and decides nothing. Shared by padLocal().
+  //
+  // Any header a proxy adds says so, not the client address alone: an nginx that passes on
+  // only X-Forwarded-Proto, a Via line, a CDN's or a tunnel's client address header.
 
   function padLoopback () {
 
@@ -45,7 +48,11 @@
       return FALSE;
 
     foreach ( [ 'HTTP_X_FORWARDED_FOR', 'HTTP_FORWARDED', 'HTTP_X_REAL_IP',
-                'HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_HOST' ] as $header )
+                'HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_HOST', 'HTTP_X_FORWARDED_PROTO',
+                'HTTP_X_FORWARDED_PORT', 'HTTP_X_FORWARDED_SERVER', 'HTTP_VIA',
+                'HTTP_FORWARDED_FOR', 'HTTP_X_ORIGINAL_FORWARDED_FOR', 'HTTP_X_CLIENT_IP',
+                'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_CF_CONNECTING_IP', 'HTTP_TRUE_CLIENT_IP',
+                'HTTP_FASTLY_CLIENT_IP' ] as $header )
       if ( isset ( $_SERVER [$header] ) )
         return FALSE;
 
