@@ -28,7 +28,18 @@
     $notice  = (int) $warning | E_NOTICE | E_USER_NOTICE;
     $all     = (int) $notice  | E_DEPRECATED | E_USER_DEPRECATED ;
 
-    error_reporting ( $$level );
+    // A word that is no level failed every request with "Undefined variable $warnings" - or,
+    // for the word level, with a TypeError - naming nothing a configuration says. The boot
+    // handlers still stand when this runs, and report it as inits/configCheck.php reports
+    // the other closed words.
+
+    $levels = compact ( 'none', 'error', 'warning', 'notice', 'all' );
+
+    if ( ! is_string ( $level ) or ! isset ( $levels [$level] ) )
+      throw new \ErrorException ( "PAD: there is no error level named '" . ( is_scalar ( $level ) ? $level : gettype ( $level ) )
+                                  . "' - none, error, warning, notice or all" );
+
+    error_reporting ( $levels [$level] );
 
   }
 
