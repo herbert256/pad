@@ -41,7 +41,13 @@
     if ( $n % 2 == 0 )
       return FALSE;
 
-    $position = intdiv ( $n + 1, 2 );
+    // A number past twice $padSeqMaxTries is not followed: the steps it needs outgrow any
+    // sieve a request can run, and near PHP_INT_MAX n + 1 was a float intdiv() refused.
+
+    if ( $n > 2 * ( $GLOBALS ['padSeqMaxTries'] ?? 1000000 ) )
+      return FALSE;
+
+    $position = intdiv ( $n, 2 ) + 1;
 
     for ( $i = 1; ; $i++ ) {
 

@@ -22,6 +22,13 @@
 
     $n = (int) $n;
 
+    // A term is at most 64 past its position, so close to PHP_INT_MAX it is out of the integer
+    // range: answered as such it ends the build, where n + bits(n) became a float that decbin()
+    // ended the request on.
+
+    if ( $n > PHP_INT_MAX - 128 )
+      return (float) PHP_INT_MAX * 2;
+
     return $n + $bits ( $n + $bits ( $n ) );
 
   }

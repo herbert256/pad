@@ -21,7 +21,9 @@
   if ( $pqTo != PHP_INT_MAX )
     $pqTo = $pqTo * 2 - 1;
 
-  if ( ! ($pqFrom % 2) )
+  // fmod, as from= doubled may have left the integer range - % ended the request on the float.
+
+  if ( ! fmod ( $pqFrom, 2 ) )
     $pqFrom++;
 
 ?>
