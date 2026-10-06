@@ -1486,8 +1486,9 @@ curl "http://localhost/pad/manual/"            # Framework manual
 curl "http://localhost/pad/reference/"         # Cross-reference
 curl "http://localhost/pad/pad/?hello"         # Hello World test
 
-# Debugging output
-curl "http://localhost/pad/app/?page&padInfo=trace"  # With trace
+# Debugging output - a request cannot switch the trace on ($padInfo is never filled from
+# the query): set $padInfo = 'trace' in _config/config.php, or render with --trace (below)
+curl "http://localhost/pad/app/?page&padCheckOutput"   # With the output check
 
 # Run all eight suites (results in DATA/suites/; DATA/reference and DATA/examples are
 # harvested by the develop app and stand between builds)
