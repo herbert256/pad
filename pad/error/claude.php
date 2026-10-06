@@ -166,31 +166,16 @@
 
   }
 
-  // A query - a form body, the query of a URL - with the value of each field whose name is
-  // a secret's redacted, read pair by pair as it stands: the name of user[password] is
-  // password. No parse_str, which stops at max_input_vars with a warning.
+  // A query - a form body, the query of a URL in a text - with the value of each field
+  // whose name is a secret's redacted, read pair by pair as it stands: the name of
+  // user[password] is password. No parse_str, which stops at max_input_vars with a warning.
 
   function padRedactQuery ( $query ) {
 
-    $pairs = explode ( '&', $query );
-
-    foreach ( $pairs as $i => $pair ) {
-
-      if ( ! str_contains ( $pair, '=' ) )
-        continue;
-
-      $field = explode ( '=', $pair, 2 ) [0];
-      $name  = urldecode ( $field );
-
-      if ( preg_match ( '/\[([^\[\]]*+)\]$/', $name, $match ) )
-        $name = $match [1];
-
-      if ( padRedactName ( $name ) )
-        $pairs [$i] = $field . '=' . urlencode ( '*** redacted ***' );
-
-    }
-
-    return implode ( '&', $pairs );
+    return preg_replace_callback ( '/(^|[?&;])([^=&#?;\s]++)=([^&#;\s]*+)/',
+      fn ( $m ) => padRedactName ( preg_match ( '/\[([^\[\]]*+)\]$/', urldecode ( $m [2] ), $key ) ? $key [1] : urldecode ( $m [2] ) )
+                   ? $m [1] . $m [2] . '=' . urlencode ( '*** redacted ***' ) : $m [0],
+      $query ) ?? $query;
 
   }
 
@@ -217,6 +202,12 @@
 
     if ( str_contains ( $text, '://' ) and str_contains ( $text, '@' ) )
       $text = preg_replace ( '~(\b[a-z][a-z0-9+.-]*+://[^\s/?#@:]*+:)[^\s/?#@]++@~i', '$1*** redacted ***@', $text ) ?? $text;
+
+    // A secret in a query: ?reset&token=... was redacted in $_GET and stood in clear in
+    // REQUEST_URI, QUERY_STRING and the referer of the next page.
+
+    if ( str_contains ( $text, '=' ) )
+      $text = padRedactQuery ( $text );
 
     return $text;
 
