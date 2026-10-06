@@ -72,10 +72,11 @@
 
   function padRedact ( $value, $key = '', $deep = FALSE ) {
 
-    $key = (string) $key;
-
-    if ( preg_match ( '/pass(word|wd)?$|passwd|secret|token|authorization|auth_pw|api_?key|app_?key|private_?key|^(http_)?cookie$|^phpsessid$|^padsesid$/i', $key ) )
+    if ( padRedactName ( $key ) )
       return '*** redacted ***';
+
+    if ( is_string ( $value ) )
+      return padRedactText ( $value );
 
     if ( ! is_array ( $value ) )
       return $value;
@@ -87,6 +88,39 @@
         $value [$k] = padRedact ( $v, $k, $deep );
 
     return $value;
+
+  }
+
+  // Whether a name - a key, a variable, a header - is a secret's.
+
+  function padRedactName ( $name ) {
+
+    return (bool) preg_match ( '/pass(word|wd)?$|passwd|secret|token|authorization|auth_pw|api_?key|app_?key|private_?key|^(http_)?cookie$|^phpsessid$|^padsesid$/i', (string) $name );
+
+  }
+
+  // A text can be PHP source that assigns a secret: $padConfigApp holds the whole of the
+  // application's _config/config.php, where the database password and the application key
+  // are written, and it went into every report in clear beside the redacted globals of the
+  // same names. The value of each assignment to a secret's name - $name = ..., 'name' =>
+  // ..., define ( 'NAME', ... ) - is redacted; the rest of the text stays as it was.
+
+  function padRedactText ( $text ) {
+
+    if ( ! str_contains ( $text, '=' ) and stripos ( $text, 'define' ) === FALSE )
+      return $text;
+
+    $value = '(\'(?:[^\'\\\\]|\\\\.)*\'|"(?:[^"\\\\]|\\\\.)*"|[^,;)\]\r\n]*)';
+
+    $text = preg_replace_callback ( '/(\$([A-Za-z_]\w*)((?:\s*\[[^\]\r\n]*\])*)\s*=(?![=>])\s*)' . $value . '/',
+      fn ( $m ) => ( padRedactName ( $m [2] ) or padRedactName ( trim ( (string) strrchr ( '[' . $m [3], '[' ), "[]'\" \t" ) ) )
+                   ? $m [1] . "'*** redacted ***'" : $m [0],
+      $text );
+
+    return preg_replace_callback ( '/((?:define\s*\(\s*)?([\'"])([A-Za-z_][\w.-]*)\2\s*(?:=>|,)\s*)' . $value . '/i',
+      fn ( $m ) => ( padRedactName ( $m [3] ) and ( $m [1] [0] != "'" and $m [1] [0] != '"' or str_contains ( $m [1], '=>' ) ) )
+                   ? $m [1] . "'*** redacted ***'" : $m [0],
+      $text );
 
   }
 
