@@ -15,7 +15,11 @@ function pqRecaman($n)
 {
   static $terms = [ 0 ], $seen = [ 0 => TRUE ];
 
-  if ( ! pqBoolWhole ( $n ) )
+  // A position past $padSeqMaxTries, the ceiling a run walks to, is not made: the history
+  // for it outgrew the memory a request has - from=100000000 asked for gigabytes and ended
+  // the request on the memory limit.
+
+  if ( ! pqBoolWhole ( $n ) or $n > ( $GLOBALS ['padSeqMaxTries'] ?? 1000000 ) )
     return FALSE;
 
   if($n <= 1)
