@@ -388,9 +388,12 @@
 
   }
 
+  // The body as a report on disk keeps it (padDumpInputKept): raw, it showed the password
+  // of a failed login a few lines under the request values that had it redacted.
+
   function padDumpInput ( ) {
 
-    padDumpLines ( 'Input', file_get_contents ('php://input') );
+    padDumpLines ( 'Input', padDumpInputKept () [0] );
 
   }
  
