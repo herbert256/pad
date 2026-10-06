@@ -21,6 +21,23 @@
     return;
   }
 
+  // And the sequence it is put on has to have what the strategy runs - its own loop.php,
+  // order.php, fixed.php and so on. build='order' on prime included a types/prime/order.php
+  // that is not there and ended the request on the include warning, as fixed and build did on
+  // the main sequence and on a play, and given looked for the list only an action's call
+  // hands over. check needs no file of the type's, nor does pull for the main sequence or
+  // order for a play, which reads the type's table. A store with no play to put it on leaves
+  // the name with nothing to do, as before.
+
+  $pqBuildSeq  = pqStore ( $pqBuild ) ? ( reset ( $pqPlays ) ['pqSeq'] ?? '' ) : $pqSeq;
+  $pqBuildFree = pqStore ( $pqBuild ) ? [ 'check', 'order' ] : [ 'check', 'pull' ];
+
+  if ( $pqBuildSeq and ! in_array ( $pqBuildName, $pqBuildFree )
+                   and ! file_exists ( PT . "$pqBuildSeq/$pqBuildName.php" ) ) {
+    padError ( "the $pqBuildSeq sequence has no build strategy named '$pqBuildName'" );
+    return;
+  }
+
   if ( pqStore ( $pqBuild ) ) {
 
     foreach ( $pqPlays as $padK => $padV ) {
