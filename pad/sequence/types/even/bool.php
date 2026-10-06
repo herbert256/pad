@@ -7,6 +7,9 @@
 
   function pqBoolEven( $n, $p=0 ) {
 
+    if ( ! pqBoolWhole ( $n ) )
+      return FALSE;
+
     if ( $n & 1 )
       return FALSE;
     else

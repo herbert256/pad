@@ -20,7 +20,7 @@
 
     global $pqLuckyList, $pqLuckyLimit;
 
-    if ( $n < 1 )
+    if ( ! pqBoolWhole ( $n ) or $n < 1 )
       return FALSE;
 
     if ( ! isset ( $pqLuckyLimit ) or $pqLuckyLimit < $n )

@@ -13,7 +13,7 @@
 
   function pqBoolHarshad ( $n, $p=0 ) {
 
-    if ( $n < 1 )
+    if ( ! pqBoolWhole ( $n ) or $n < 1 )
       return FALSE;
 
     $sum = 0;

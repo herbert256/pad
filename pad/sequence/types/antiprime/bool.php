@@ -16,7 +16,7 @@
 
   function pqBoolAntiprime ($n, $p=0) {
 
-    if ( $n < 1 )
+    if ( ! pqBoolWhole ( $n ) or $n < 1 )
       return FALSE;
 
     $init = pqBoolAntiprimeDivisors ($n);

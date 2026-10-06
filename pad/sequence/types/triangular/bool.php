@@ -9,7 +9,7 @@
 
 function pqBoolTriangular ($num) {
 
-    if ($num < 0)
+    if ( ! pqBoolWhole ( $num ) or $num < 0 )
         return false;
 
     $c = (-2 * $num);

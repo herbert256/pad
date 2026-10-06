@@ -13,7 +13,7 @@
 
   function pqBoolStrong ($number, $p=0) {
 
-    if ( $number < 1 )
+    if ( ! pqBoolWhole ( $number ) or $number < 1 )
       return FALSE;
 
     $x = $number;

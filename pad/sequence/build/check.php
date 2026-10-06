@@ -59,7 +59,11 @@
     if ( ! $padSeqCheckGrow [$pqSeq] )
       return FALSE;
 
-    if ( is_numeric ( $pqLoop ) and $pqLoop <= $padSeqCheckMax [$pqSeq] )
+    // A value that is no number is no term of a table's numbers either: generating on to a
+    // stop it named never reached it, and {sequence 'a;9;b', flag, square} spent the whole
+    // time limit on its first candidate.
+
+    if ( ! is_numeric ( $pqLoop ) or $pqLoop <= $padSeqCheckMax [$pqSeq] )
       return FALSE;
 
     return in_array ( $pqLoop, pqArray ( $pqSeq, $pqParm, "stop=$pqLoop" ) );

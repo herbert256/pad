@@ -8,6 +8,9 @@
 
   function pqBoolPalindrome ($n, $p=0) {
 
+    if ( ! pqBoolWhole ( $n ) )
+      return FALSE;
+
     if ( $n == padTypeReverse($n) )
       return TRUE;
     else

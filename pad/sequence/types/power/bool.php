@@ -20,7 +20,7 @@
     if ( $x == 1 and $y != 1 )
       return FALSE;
 
-    if ( $x < 1 )
+    if ( ! pqBoolWhole ( $x ) or $x < 1 )
       return FALSE;
 
     while ($x % $y == 0)

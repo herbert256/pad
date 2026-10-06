@@ -7,6 +7,9 @@
 
   function pqBoolPronic($x, $p=0) {
 
+    if ( ! pqBoolWhole ( $x ) )
+      return false;
+
     for ($i = 0;
          $i <= (sqrt($x));
          $i++)

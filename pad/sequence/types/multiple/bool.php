@@ -10,7 +10,7 @@
 
   function pqBoolMultiple ( $n, $p=0 ) {
 
-    if ( ! $p )
+    if ( ! is_numeric ( $n ) or ! $p )
       return FALSE;
 
     return ( $n == ceil ( $n / $p ) * $p );

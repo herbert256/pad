@@ -10,6 +10,9 @@
 
 function pqBoolKaprekar($n, $p=0)
 {
+    if ( ! pqBoolWhole ( $n ) )
+    return false;
+
     if ($n == 1)
     return true;
 

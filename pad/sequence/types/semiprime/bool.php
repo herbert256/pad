@@ -11,6 +11,9 @@
 
   function pqBoolSemiprime ($num, $p=0) {
 
+    if ( ! pqBoolWhole ( $num ) )
+      return FALSE;
+
     $cnt = 0;
 
     for ( $i = 2; $cnt < 2 &&

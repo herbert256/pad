@@ -10,7 +10,7 @@
 function pqBoolComposite($n, $p=0)
 {
 
-    if ($n <= 1)
+    if ( ! pqBoolWhole ( $n ) or $n <= 1 )
         return false;
     if ($n <= 3)
         return false;

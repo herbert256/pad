@@ -307,6 +307,26 @@
 
   }
 
+  // Whether $x is a whole number an integer predicate can work with: a number, without a
+  // fraction, inside the integer range. The membership tests of the integer sequences -
+  // prime, even, happy and the rest - answer no for anything else before doing arithmetic on
+  // it: keep, remove and flag hand them whatever the list holds, and a fraction or a word
+  // ended the request inside a % or an &, or in gmp_prob_prime().
+
+  function pqBoolWhole ( $x ) {
+
+    if ( ! is_numeric ( $x ) )
+      return FALSE;
+
+    $x = $x + 0;
+
+    if ( is_int ( $x ) )
+      return TRUE;
+
+    return is_finite ( $x ) and floor ( $x ) == $x and $x >= PHP_INT_MIN and $x < PHP_INT_MAX;
+
+  }
+
   function pqBuild ( $check, $for='' ) {
 
     if ( $check == 'pull' )

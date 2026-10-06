@@ -12,8 +12,10 @@
 
   function pqBoolPrime ( $n, $p=0 ) {
 
-    if ( $n < 2 )
+    if ( ! pqBoolWhole ( $n ) or $n < 2 )
       return FALSE;
+
+    $n = (int) $n;
 
     if ( ! function_exists ( 'gmp_prob_prime' ) ) {
 

@@ -13,7 +13,7 @@
 
   function pqBoolHappy ($num, $p=0) {
 
-    if ( $num < 1 )
+    if ( ! pqBoolWhole ( $num ) or $num < 1 )
       return FALSE;
 
     $n = $num;
