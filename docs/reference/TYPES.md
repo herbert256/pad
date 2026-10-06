@@ -29,7 +29,7 @@ Explicitly specify the type for disambiguation.
 {users}              ← Auto-detected as 'select' type (if declared in $padSelect)
 {select:users}       ← Explicitly specified as select type
 {field:username}     ← Explicitly field type
-{php:strtoupper}     ← Explicitly PHP function type
+{php:strtoupper 'abc'} ← Explicitly PHP function type
 ```
 
 ---
@@ -66,7 +66,8 @@ When no explicit type is given, PAD checks in this order (see `padTypeTag()` and
 
 ### app
 
-Loads application-specific tags from the `APP2/` directory.
+Loads application-specific tags from `_tags/` in the page's directory or a parent's, up to the
+application root.
 
 ```
 {myCustomTag}
@@ -76,8 +77,8 @@ Loads application-specific tags from the `APP2/` directory.
 **Resolution:** Checks `padAppTagCheck()` for tag in application directory.
 
 **Files loaded:**
-- `APP2/myCustomTag.php` - PHP logic
-- `APP2/myCustomTag.pad` - PAD template
+- `_tags/myCustomTag.php` - PHP logic
+- `_tags/myCustomTag.pad` - PAD template
 
 **Use case:** Application-specific custom tags.
 
@@ -286,18 +287,23 @@ Retrieves PHP constants by name.
 Loads local data files with automatic type detection.
 
 ```
-{local:data/users.json}
-{myfile.csv}
+{local:users.json}
+{myfile}            ← _data/myfile.csv, the extension found for it
 ```
 
-**Resolution:** `padDataFileName($tagName)`
+**Resolution:** `padDataFileName($tagName)` - a file directly in `_data/` (a name holds no `/`),
+with its extension or with the first of `.xml`, `.json`, `.yaml`, `.csv`, `.php`, `.curl`,
+`.sql` that exists; a bare tag is written without the extension.
 
 **Supported formats:**
 - `.php` - Executes PHP and returns result
 - `.json` - Parsed as JSON
+- `.yaml` - Parsed as YAML
 - `.csv` - Parsed as CSV
 - `.xml` - Parsed as XML
-- Other - Raw content
+- `.curl` - Fetches the URL it names
+- `.sql` - Runs the named query
+- Other - an error, unless `type=` names the format
 
 **Options:**
 - `name` - Override data name
@@ -306,8 +312,8 @@ Loads local data files with automatic type detection.
 
 **Example:**
 ```
-{local:config/settings.json}
-{data.csv name="myData" type="csv"}
+{local:settings.json}
+{local:data.csv name='myData', type='csv'}
 ```
 
 ---
@@ -364,12 +370,12 @@ Executes PAD functions as tags.
 **Behavior:**
 - Supports start/end tag pairs
 - Content is passed as input value
-- Options become function parameters
+- Positional parameters become the function's arguments
 
 **Example:**
 ```
 {upper}hello{/upper}  →  HELLO
-{replace 'a' 'b'}aaa{/replace}  →  bbb
+{replace 'a', 'b'}aaa{/replace}  →  bbb
 ```
 
 ---
@@ -390,7 +396,7 @@ Calls PHP built-in functions directly.
 **Example:**
 ```
 {php:strlen 'hello'}  →  5
-{php:array_sum (1,2,3)}  →  6
+{php:array_sum [1,2,3]}  →  6
 ```
 
 ---
@@ -401,23 +407,18 @@ Executes external shell scripts.
 
 ```
 {script:myscript}
-{script:processor.sh arg1 arg2}
+{script:processor 'arg1', 'arg2'}
 ```
 
-**Resolution:** `padScriptCheck($tagName)`
+**Resolution:** `padScriptCheck($tagName)` - `_scripts/<name>`, or `_scripts/<name>.<ext>`, from
+the page's directory up to the application root.
 
 **Features:**
-- Arguments are escaped with `escapeshellarg()`
-- Supports glob patterns for script selection
+- Positional arguments, separated by commas, are escaped with `escapeshellarg()`
 - Captures stdout output
 - Error code checking and reporting
 
 **Returns:** Script output (stdout).
-
-**Example:**
-```
-{script:generate.sh template="main"}
-```
 
 ---
 
@@ -599,7 +600,7 @@ types/
 ### Mixed Type Usage
 
 ```html
-{users where="active=1" toData="activeUsers"}
+{users where='$active eq 1', toData='activeUsers'}
 
 {if data:activeUsers}
   <h2>Active Users ({php:count data:activeUsers})</h2>
@@ -610,7 +611,7 @@ types/
   <p>No active users</p>
 {/if}
 
-<footer>{constant:APP_VERSION}</footer>
+<footer>{constant:PHP_VERSION}</footer>
 ```
 
 ### Explicit Type Disambiguation
