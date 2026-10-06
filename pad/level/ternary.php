@@ -23,6 +23,13 @@
 
     $padTernaryGo = padEval ( $padTernaryGo );
 
+    // The side is spliced into the content as text, so a list or object has no place there -
+    // {true ? [1,2] : x} ended the request on "Array to string conversion"; an array answers
+    // empty, as {echo [1,2]} does, rather than crash.
+
+    if ( ! is_scalar ( $padTernaryGo ) )
+      $padTernaryGo = '';
+
     if ( $padProtectValues )
       $padTernaryGo = padProtect ( $padTernaryGo );
 
