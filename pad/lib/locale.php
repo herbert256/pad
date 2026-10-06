@@ -20,8 +20,12 @@
 
     $locale = str_replace ( '-', '_', trim ( (string) $locale ) );
 
+    // A region is written in capitals - nl_NL, es_419 - and a script, four letters, with one
+    // - zh_Hant, sr_Latn - as the catalog files are named: upper-cased, zh_Hant was looked
+    // for as zh_HANT.json, which a file system that tells cases apart does not have.
+
     if ( preg_match ( '/^([a-zA-Z]{2,3})(?:_([a-zA-Z0-9]{2,4}))?$/', $locale, $match ) )
-      return strtolower ( $match [1] ) . ( isset ( $match [2] ) ? '_' . strtoupper ( $match [2] ) : '' );
+      return strtolower ( $match [1] ) . ( isset ( $match [2] ) ? '_' . ( strlen ( $match [2] ) == 4 ? ucfirst ( strtolower ( $match [2] ) ) : strtoupper ( $match [2] ) ) : '' );
 
     return '';
 
