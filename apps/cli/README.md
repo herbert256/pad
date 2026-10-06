@@ -54,10 +54,10 @@ pad help                           # the list
 - **export** renders every page as the web gets it - the web output type, tidy as the
   application sets it, no toolbar - into `<dir>/<page>.html` (`orders/list.html` for a page
   in a subdirectory), and copies what `www/<app>/` holds beside the entry point (less `.php`
-  files and `_` names). Links are rewritten: `?page`, `/app/?page` and the absolute form
-  become the relative `page.html` when that page was exported, and a link to an application
-  file (`style.css`) the relative path to its copy, so a page one directory down still finds
-  it. Query values after the page name cannot be static: such a link lands on the page as it
+  files and `_` names). Links are rewritten: `?page`, `/app/?page`, the clean `/app/page` and
+  the absolute forms become the relative `page.html` when that page was exported, and a link
+  to an application file (`style.css`) the relative path to its copy, so a page one directory
+  down still finds it. Query values after the page name cannot be static: such a link lands on the page as it
   renders without them. A page that fails or answers nothing is reported and left out.
 
 - **test** runs the application's own tests. A test is a page in `_tests/` - `cart.pad`, and

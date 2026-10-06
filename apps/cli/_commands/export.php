@@ -5,13 +5,14 @@
   // Every page the suites would walk is rendered as the web gets it - pad render with
   // PAD_EXPORT, four child processes at a time, no toolbar and no live reload - and written
   // as <page>.html, a page in a subdirectory as <dir>/<page>.html. The links of each page
-  // are rewritten on the way: ?page, the application's own /app/?page and its absolute
-  // form become the relative page.html when that page was exported; a link to a file of the
-  // application (style.css) becomes the relative path to its copy, so a page one directory
-  // down still finds it. Query values after the page name cannot be static, so a link with
-  // them lands on the page as it renders without them. The assets are what www/<app>/ holds
-  // beside the entry point - stylesheets, scripts, images, data files - copied less the
-  // .php files, the _ and . names, and the directories that are applications of their own.
+  // are rewritten on the way: ?page, the application's own /app/?page, the clean /app/page
+  // and their absolute forms become the relative page.html when that page was exported; a
+  // link to a file of the application (style.css) becomes the relative path to its copy, so
+  // a page one directory down still finds it. Query values after the page name cannot be
+  // static, so a link with them lands on the page as it renders without them. The assets
+  // are what www/<app>/ holds beside the entry point - stylesheets, scripts, images, data
+  // files - copied less the .php files, the _ and . names, and the directories that are
+  // applications of their own.
   //
   // A page that fails, or answers with nothing (a redirect), is reported and left out. Exit
   // status 1 when any page failed. PAD_HOST, when set, is the server the pages render
@@ -115,9 +116,20 @@
           elseif ( in_array ( "$target/index",  $pages, TRUE ) ) $file = "$target/index.html";
           else   return $m [0];
 
-        } else
+        } else {
 
-          $file = $rest;
+          // A path that names a page is that page's copy - the clean form $padCleanUrls has
+          // $padGo write, /app/about and /app/about&x=1, which the router reads as the page
+          // about (lib/route.php): it was taken for a file named about, which the copy does
+          // not have. Any other path is a file of the application.
+
+          $page = trim ( preg_split ( '/[?&]/', $rest ) [0], '/' );
+
+          if     ( $page !== '' and in_array ( $page,         $pages, TRUE ) ) $file = "$page.html";
+          elseif ( $page !== '' and in_array ( "$page/index", $pages, TRUE ) ) $file = "$page/index.html";
+          else   $file = $rest;
+
+        }
 
         return $m [1] . $m [2] . $m [3] . htmlspecialchars ( exportRelative ( $from, $file ) . $anchor, ENT_QUOTES ) . $m [3];
 
