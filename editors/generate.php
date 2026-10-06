@@ -172,6 +172,16 @@
   $check = in_array ( '--check', $argv ?? [] );
   $stale = 0;
 
+  // A highlights file whose markers are gone - edited away, or the file missing - can be
+  // neither written nor checked, and that is said, with status 1: the two Tree-sitter files
+  // simply dropped out of $files, --check answered 0 and the gate printed "completion lists
+  // match pad/" while a tag added to pad/ never reached them.
+
+  if ( ! isset ( $files ["$treeSitter/queries/highlights.scm"] ) ) {
+    $stale++;
+    fwrite ( STDERR, "stale: editors/tree-sitter-pad/queries/highlights.scm has no '$tsBegin' ... '$tsEnd' markers to write between\n" );
+  }
+
   foreach ( $files as $file => $text ) {
 
     if ( @file_get_contents ( $file ) === $text )
@@ -188,6 +198,6 @@
 
   }
 
-  exit ( ( $check and $stale ) ? 1 : 0 );
+  exit ( ( ( $check and $stale ) or ! isset ( $files ["$treeSitter/queries/highlights.scm"] ) ) ? 1 : 0 );
 
 ?>
