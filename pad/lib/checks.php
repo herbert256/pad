@@ -200,6 +200,13 @@
     if ( padDataFileName ( $content ) )
       return 'file';
 
+    // A one-line name with a .. segment is a data name padDataFileName refused for walking
+    // out of _data/, not a CSV header with no rows: data/file.php says so as an error,
+    // where the walk was dropped without a word and the tag rendered nothing.
+
+    if ( ! str_contains ( $content, "\n" ) and preg_match ( '#(^|[/\\\\])\.\.([/\\\\]|$)#', $content ) )
+      return 'file';
+
     return 'csv';
 
   }
