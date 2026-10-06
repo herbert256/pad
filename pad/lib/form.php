@@ -142,10 +142,21 @@
 
   }
 
+  // A list - a field posted as name[] - is the value of a multiple choice: required asks
+  // for an item, and in: holds every item to its list. Any other rule speaks about one
+  // value, which a list is not: color[]=evil, posted where the form has one color field,
+  // passed in:, email, integer and every other rule, and the page went on with a list its
+  // rules never looked at.
+
   function padValidateRule ( $name, $arg, $value, $data, $number ) {
 
     if ( is_array ( $value ) )
-      return ( $name == 'required' ) ? count ( $value ) > 0 : TRUE;
+      return match ( $name ) {
+        'required' => count ( $value ) > 0,
+        'in'       => count ( $value ) == count ( array_filter ( $value, fn ( $one ) =>
+                        is_string ( $one ) and padValidateRule ( 'in', $arg, trim ( $one ), $data, $number ) ) ),
+        default    => FALSE
+      };
 
     $value = (string) $value;
     $size  = $number ? (float) $value : mb_strlen ( $value );
