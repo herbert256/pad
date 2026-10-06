@@ -58,8 +58,14 @@
 
   function padEventError ( $error, $file, $line ) {
 
+    global $padEventErrorBusy;
+
     if ( ! padEventCheck ( 'error' ) )
       return;
+
+    // A padError raised inside the hook comes back as a throwable as well (padErrorHook).
+
+    $padEventErrorBusy = TRUE;
 
     set_error_handler ( 'padErrorThrow' );
 
@@ -74,6 +80,8 @@
     } finally {
 
       restore_error_handler ();
+
+      $padEventErrorBusy = FALSE;
 
     }
 
