@@ -11,7 +11,11 @@
   // through padStrFun() in lib/execute.php; every other pass goes straight to
   // start/pad/pad.php. Either way the pass's output is returned to the include.
 
-  $padStrBox = padTagParm ( 'sandbox'  );
+  // The {sandbox} tag is a sandboxed pass by its name - and so is the sandbox pipe, which
+  // is that tag run as a function: without the option written on it, as {code sandbox}
+  // writes it, the pass saw the page's variables and stores and left its own behind.
+
+  $padStrBox = padTagParm ( 'sandbox'  ) ?: ( $padTag [$pad] == 'sandbox' );
   $padStrRes = padTagParm ( 'reset'    );
   $padStrCln = padTagParm ( 'clean'    );
   $padStrFun = padTagParm ( 'function' );
