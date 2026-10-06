@@ -67,9 +67,10 @@
 
   }
 
-  // The value of an item without a name. $extra naming an array - of the page or of the
-  // row - is that array: the expression evaluator reads a $field as one value only, so the
-  // documented {attrs $extra} and {classes $list} ended in "there is no field named".
+  // The value of an item. $extra naming an array - of the page or of the row - is that
+  // array: the expression evaluator reads a $field as one value only, so the documented
+  // {attrs $extra} and {classes $list} ended in "there is no field named", and so did a
+  // named item - class=$list, joined with spaces, or active=$items, in when not empty.
 
   function padAttrsValue ( $expr ) {
 
@@ -119,7 +120,7 @@
         continue;
       }
 
-      padAttrsOne ( $out, $name, padEval ( $expr ) );
+      padAttrsOne ( $out, $name, padAttrsValue ( $expr ) );
 
     }
 
@@ -166,7 +167,7 @@
     foreach ( padAttrsItems () as [ $name, $expr ] ) {
 
       if ( $name !== '' ) {
-        if ( padAttrsTrue ( padEval ( $expr ) ) )
+        if ( padAttrsTrue ( padAttrsValue ( $expr ) ) )
           $out [] = $name;
         continue;
       }
