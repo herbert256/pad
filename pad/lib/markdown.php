@@ -510,16 +510,19 @@
     $text = padMarkdownEscape ( $text );
 
     // Emphasis and line breaks. A pattern that gives up on a pathological text (PCRE's
-    // backtrack limit) leaves the text as it was rather than empty.
+    // backtrack limit) leaves the text as it was rather than empty. (*COMMIT) after an
+    // opening run ends the search when that run finds nothing to close it: every run after
+    // it has fewer closing runs left, so none of them can match either - without it the
+    // lazy scan ran from each run to the end of the text, and 160 kB of **a took seconds.
 
     $marks = [
-      '/(?<![*\w])\*\*\*(?=\S)(.+?)(?<=\S)\*\*\*(?![*\w])/s' => '<em><strong>$1</strong></em>',
-      '/\*\*(?=[^\s*])(.+?)(?<=[^\s*])\*\*/s'                 => '<strong>$1</strong>',
-      '/(?<!\w)__(?=[^\s_])(.+?)(?<=[^\s_])__(?!\w)/s'        => '<strong>$1</strong>',
-      '/\*(?=[^\s*])(.+?)(?<=[^\s*])\*/s'                     => '<em>$1</em>',
-      '/(?<!\w)_(?=[^\s_])(.+?)(?<=[^\s_])_(?!\w)/s'          => '<em>$1</em>',
-      '/(?: {2,}|\\\\)\n/'                                  => "<br />\n",
-      '/ +\n/'                                               => "\n"
+      '/(?<![*\w])\*\*\*(?=\S)(*COMMIT)(.+?)(?<=\S)\*\*\*(?![*\w])/s' => '<em><strong>$1</strong></em>',
+      '/\*\*(?=[^\s*])(*COMMIT)(.+?)(?<=[^\s*])\*\*/s'                => '<strong>$1</strong>',
+      '/(?<!\w)__(?=[^\s_])(*COMMIT)(.+?)(?<=[^\s_])__(?!\w)/s'       => '<strong>$1</strong>',
+      '/\*(?=[^\s*])(*COMMIT)(.+?)(?<=[^\s*])\*/s'                    => '<em>$1</em>',
+      '/(?<!\w)_(?=[^\s_])(*COMMIT)(.+?)(?<=[^\s_])_(?!\w)/s'         => '<em>$1</em>',
+      '/(?: {2,}|\\\\)\n/'                                            => "<br />\n",
+      '/ +\n/'                                                        => "\n"
     ];
 
     foreach ( $marks as $pattern => $replace )
