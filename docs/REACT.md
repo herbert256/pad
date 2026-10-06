@@ -96,41 +96,20 @@ Use this pattern for database-driven or dynamic data.
 
 ```
 apps/myapp/
-├── _providers/           # PHP data providers
-│   ├── topic.php         # Returns topic record
-│   ├── user.php          # Returns user record
-│   └── posts.php         # Returns posts array
-└── _tags/
-    └── reactData.php     # Custom tag implementation
+└── _providers/           # PHP data providers
+    ├── topic.php         # Returns topic record
+    ├── user.php          # Returns user record
+    └── posts.php         # Returns posts array
 ```
 
 ### The {reactData} Tag
 
-**_tags/reactData.php:**
-```php
-<?php
-  // Get tag parameters
-  $padId = padTagParm('id', '');           // HTML element ID
-  $padProvider = padTagParm('provider', ''); // Provider name
-
-  // Execute provider to get data
-  $padProviderFile = APP . "_providers/$padProvider.php";
-  if (file_exists($padProviderFile)) {
-    $padData = include $padProviderFile;
-  } else {
-    padError("Provider not found: $padProvider");
-  }
-
-  // Convert to JSON and HTML-escape for attribute
-  $padJson = json_encode($padData);
-  $padJsonEscaped = htmlspecialchars($padJson, ENT_QUOTES, 'UTF-8');
-
-  // Generate HTML div with data attribute
-  $padContent = "<div id=\"$padId\" data=\"$padJsonEscaped\"></div>";
-
-  return TRUE;
-?>
-```
+`{reactData}` is a built-in tag (`pad/tags/reactData.php`) - an application writes no tag of
+its own for it, and a `_tags/reactData.php` would replace the built-in one, since application
+tags are found first. It runs `_providers/<provider>.php` (`provider=` defaults to `id=`),
+keeps the result in `$padProviders[<id>]` for the providers after it, and writes
+`<div id="<id>" data="<JSON>">` with the JSON escaped for the attribute. `type='check'` turns
+the result into 1 or 0. The engine's `$padData` is not a name a provider or tag may assign.
 
 ### Provider Files
 
@@ -294,7 +273,14 @@ PAD parses `{ }` as tags. When working with JavaScript/React:
 ### Use | ignore Pipe
 
 ```html
-<div data-config="{echo $configJson | ignore}"></div>
+<div data-config="{echo $configJson | html | ignore}"></div>
+```
+
+`html` escapes the JSON's quotes for the attribute - `{echo}` does not - and `ignore` keeps PAD
+off the braces. For an array field `data-config="{^config}"` does both:
+
+```html
+<div data-config="{^config}"></div>
 ```
 
 ---
@@ -333,8 +319,7 @@ apps/myapp/
 │   ├── user.php
 │   └── posts.php
 ├── _tags/
-│   ├── json.php              # {json} tag for static data
-│   └── reactData.php         # {reactData} tag for dynamic data
+│   └── json.php              # {json} tag for static data - {reactData} is built in
 └── pages/
     └── forum/
         └── topic.pad
