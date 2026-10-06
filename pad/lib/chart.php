@@ -100,14 +100,14 @@
 
     $wide = ( $kind == 'sparkline' );
 
-    return padChart ( $kind, padChartPoints ( $rows, $label, $value ),
+    return padChart ( $kind, padChartPoints ( $rows, $label, $value, ! $wide ),
                       (string) padTagParm ( 'title', $name ),
                       max ( 20, (int) padTagParm ( 'width',  $wide ? 120 : 600 ) ),
                       max ( 10, (int) padTagParm ( 'height', $wide ? 32  : 300 ) ) );
 
   }
 
-  function padChartPoints ( $rows, $label, $value ) {
+  function padChartPoints ( $rows, $label, $value, $axis = TRUE ) {
 
     $points = [];
     $index  = 0;
@@ -120,7 +120,7 @@
         $row = padToArray ( $row );
 
       if ( ! is_array ( $row ) ) {
-        if ( padChartFinite ( $row ) )
+        if ( padChartFinite ( $row, $axis ) )
           $points [] = [ is_string ( $key ) ? $key : (string) $index, $row + 0 ];
         continue;
       }
@@ -136,7 +136,7 @@
             break;
           }
 
-      if ( ! padChartFinite ( $v ) )
+      if ( ! padChartFinite ( $v, $axis ) )
         continue;
 
       $l = NULL;
@@ -162,11 +162,12 @@
   // INF as a float, and the axis made no ticks of it and ended the page with an undefined
   // array key - and no larger than 1e300 either way, so the axis around it stays finite
   // too: 1.7e308 rounded its top tick up to INF and the tick loop never ended, and 1e308
-  // beside -1e308 spanned INF and divided by zero.
+  // beside -1e308 spanned INF and divided by zero. The bound is the axis's: a sparkline has
+  // none and scales to its own minimum and maximum, so it takes every finite value.
 
-  function padChartFinite ( $value ) {
+  function padChartFinite ( $value, $axis = TRUE ) {
 
-    return is_numeric ( $value ) and is_finite ( (float) $value ) and abs ( (float) $value ) <= 1e300;
+    return is_numeric ( $value ) and is_finite ( (float) $value ) and ( ! $axis or abs ( (float) $value ) <= 1e300 );
 
   }
 
@@ -406,13 +407,16 @@
     $n    = count ( $points );
     $pad  = 5;
 
-    if ( $max == $min ) {
-      $max += 1;
-      $min -= 1;
-    }
+    // Halved before they are subtracted, so 1e308 beside -1e308 spans a finite number; equal
+    // values draw a flat line through the middle - widening them by one was lost on a value
+    // past 2^53, and the scale divided by zero.
 
     $x = fn ( $i ) => $n == 1 ? $width / 2 : $pad + $i * ( $width - 2 * $pad ) / ( $n - 1 );
-    $y = fn ( $v ) => $pad + ( $max - $v ) / ( $max - $min ) * ( $height - 2 * $pad );
+
+    if ( $max == $min )
+      $y = fn ( $v ) => $height / 2;
+    else
+      $y = fn ( $v ) => $pad + ( $max / 2 - $v / 2 ) / ( $max / 2 - $min / 2 ) * ( $height - 2 * $pad );
 
     $line = '';
     foreach ( $points as $i => $point )
