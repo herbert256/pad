@@ -1208,7 +1208,7 @@ Output: `Alice, Bob, Charlie`
 
 ### Dynamic Fields
 ```
-{record}
+{record "* from users where id=5"}
   {fields@record}
     {$name}: {$value}
   {/fields@record}

@@ -731,7 +731,7 @@ Returns all level variables as an iterable array.
 ### Dynamic Field Display
 
 ```html
-{record}
+{record "* from users where id=5"}
   <dl>
   {fields@record}
     <dt>{$name}</dt>
