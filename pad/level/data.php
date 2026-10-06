@@ -22,4 +22,12 @@
 
   $padData [$pad] = padData ( $padData [$pad] );
 
+  // The data may be a copy of another level's array - {data@users} hands back the whole set
+  // the enclosing {users} loop is on - and a PHP array copy keeps the internal pointer where
+  // the original stood, so occurrence/init.php read key() from the middle and the pair
+  // iterated from the current row onward: {data@u} inside {u} gave a:abc b:bc c:c. Rewound
+  // here, before the first occurrence, so it walks the whole set every time.
+
+  reset ( $padData [$pad] );
+
 ?>
