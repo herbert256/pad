@@ -264,7 +264,12 @@
 
     $out = [];
 
-    foreach ( explode ( ',', $list ) as $one ) {
+    // The commas between the addresses, not one inside a quoted name: "Doe, John" <john@...>
+    // is one address, and its half "Doe was no address, the mail stopping on that error.
+
+    preg_match_all ( '/(?:"(?:[^"\\\\]|\\\\.)*"|[^,"])+/', $list, $parts );
+
+    foreach ( $parts [0] as $one ) {
 
       $one = trim ( $one );
 
