@@ -68,7 +68,7 @@ Content merge placeholder for inserting content into parent templates.
 
 **Usage:**
 ```html
-<!-- Parent template -->
+<!-- _tags/article.pad - used as {article}<p>child</p>{/article} -->
 <article>
   <header>Article Header</header>
   @content@
@@ -77,15 +77,17 @@ Content merge placeholder for inserting content into parent templates.
 ```
 
 **Behavior:**
-- Used in the content merging system (`lib/content.php`)
+- Used in the content merging system (`lib/content.php`): a custom tag's template, the
+  `content=` option, a `{slot}` frame - written in a page with nothing merging into it, the
+  strict check stops it ("an @content@ stands where nothing merges content into it")
 - Content before `@content@` becomes the prefix
 - Content after `@content@` becomes the suffix
 - Child content is inserted at the `@content@` position
 
-**Merge Options:**
-- `merge="top"` - Insert at top of content area
-- `merge="bottom"` - Insert at bottom of content area
-- Default merges at the `@content@` marker position
+**Merge Options** (`merge=`, when neither side holds an `@content@`):
+- `merge="top"` - the merged content above the tag's own (the default)
+- `merge="bottom"` - below it
+- `merge="replace"` - instead of it
 
 ---
 
@@ -93,54 +95,48 @@ Content merge placeholder for inserting content into parent templates.
 
 ### @start@
 
-Start marker that splits content for deferred processing.
+Start marker: what stands before it is a prelude, rendered once before the rows.
 
-**Purpose:** Marks the beginning of a section that should be processed after initial content.
+**Purpose:** Splits a tag's content into a prelude, the body that renders per row, and - with
+`@end@` - a coda.
 
 **Usage:**
 ```html
 {myTag}
-  <header>Always shown</header>
+  <header>once, before the rows</header>
   @start@
-  <main>Shown after data processing</main>
+  <li>per row</li>
+  @end@
+  <footer>once, after the rows</footer>
 {/myTag}
 ```
 
 **Behavior:**
-- Detected by `padOpenCloseOk()` (see `level/start.php`)
-- Splits `$padBase` into two parts at the `@start@` marker
-- Content before `@start@` is processed immediately
-- Content after `@start@` is stored in `$padStartBase` for later processing
-- Enables two-phase processing within a single tag
+- Detected by `padOpenCloseOk()` (see `level/start.php`, `level/start_end/`)
+- The content before `@start@` renders once, before the first row
+- The content between `@start@` and `@end@` renders for each row
+- `@start@` and `@end@` go together: the strict check refuses one without the other ("an
+  @start@ needs its @end@ behind it") or the two in the wrong order
 
 **Use Cases:**
-- Deferred content rendering
-- Conditional section processing
+- A table header above the rows
 - Separation of setup and main content
 
 ---
 
 ### @end@
 
-End marker that splits content for pre-processing.
+End marker: what stands after it is a coda, rendered once after all rows.
 
-**Purpose:** Marks content that should be processed before the main content ends.
+**Purpose:** Closes the per-row body that `@start@` opened.
 
-**Usage:**
-```html
-{myTag}
-  <main>Main content</main>
-  @end@
-  <footer>Processed before tag closes</footer>
-{/myTag}
-```
+**Usage:** see `@start@` above - the two are written together.
 
 **Behavior:**
-- Detected by `padOpenCloseOk()` (see `level/start.php`)
-- Splits `$padBase` at the `@end@` marker
-- Content before `@end@` is the main content
-- Content after `@end@` is stored in `$padEndBase`
-- Enables pre-closure processing within a single tag
+- Detected by `padOpenCloseOk()` (see `level/start.php`, `level/start_end/`)
+- The content after `@end@` renders once, after the last row (`count@` and the other
+  properties of the level are there)
+- Without its `@start@` the strict check refuses it ("an @end@ needs its @start@ before it")
 
 **Use Cases:**
 - Footer content that needs special handling
@@ -222,17 +218,20 @@ Tidy marker that triggers HTML output formatting.
 
 ## Construct Files
 
-Constructs are registered by validation files in `PAD/constructs/`:
+Constructs are registered by files in `PAD/constructs/`:
 
-| File | Construct | Purpose |
-|------|-----------|---------|
-| `page.php` | `@page@` | Validates page construct |
-| `content.php` | `@content@` | Validates content construct |
-| `start.php` | `@start@` | Validates start construct |
-| `end.php` | `@end@` | Validates end construct |
-| `tidy.php` | `@tidy@` | Validates tidy construct |
+| File | Construct |
+|------|-----------|
+| `page.php` | `@page@` |
+| `content.php` | `@content@` |
+| `start.php` | `@start@` |
+| `end.php` | `@end@` |
+| `else.php` | `@else@` |
+| `tidy.php` | `@tidy@` |
 
-All validation files return `TRUE` to indicate the construct is recognized and valid. (`@else@` is handled directly by the split logic in `level/split.php` and `build/split.php` and has no validation file.)
+The files are a registry, never included: under the strict check, when the page is built
+(`build/build.php`), an `@word@` of the template without its file here is an error -
+"there is no @foo@ construct". Text inside `{ignore}` is not read.
 
 ---
 
@@ -264,7 +263,7 @@ All validation files return `TRUE` to indicate the construct is recognized and v
 
 ### Content Merging
 
-**Parent template (layout.pad):**
+**Parent template (`_tags/layout.pad`):**
 ```html
 <div class="container">
   <aside class="sidebar">{include:sidebar}</aside>
@@ -274,10 +273,12 @@ All validation files return `TRUE` to indicate the construct is recognized and v
 </div>
 ```
 
-**Child content:**
+**Child content, in a page:**
 ```html
-<h1>Page Title</h1>
-<p>Page content goes here...</p>
+{layout}
+  <h1>Page Title</h1>
+  <p>Page content goes here...</p>
+{/layout}
 ```
 
 ### Empty-Data Fallback
