@@ -34,20 +34,24 @@
   // No content means an empty string - a content of 0 is a value - and then the source is
   // the second parameter when there is one, else nothing.
   //
-  // A {content} keeps that parameter as template source only when it is written out - a
-  // quoted string, {content 'c', 'Hi {$name}'} - as the content between the tags is. A
-  // value is text: {content 'c', $v} ran what $v held as PAD when {c} rendered, where
-  // {content 'c'}{$v}{/content} keeps it text.
+  // That parameter is a value unless it is written out - a quoted string, {content 'c',
+  // 'Hi {$name}'} - and a value is text: {content 'c', $v} ran what $v held as PAD when
+  // {c} rendered, where {content 'c'}{$v}{/content} keeps it text; {data 'd', $v} ran the
+  // elements of a value that reads as a PAD list, as data=$v does not; {bool} below.
+
+  $padStoreValue = FALSE;
 
   if ( (string) $padContent === '' ) {
 
     $padStoreSource = $padOpt [$pad] [2] ?? '';
 
-    if ( $padTag [$pad] == 'content' and $padProtectValues )
+    if ( $padProtectValues )
       foreach ( $padParms [$pad] as $padStoreParm )
-        if ( $padStoreParm ['padPrmKind'] == 'parm' and $padStoreParm ['padPrmName'] === 2
-             and ! is_string ( padMetaLiteral ( $padStoreParm ['padPrmOrg'] ) ) )
-          $padStoreSource = padProtect ( $padStoreSource );
+        if ( $padStoreParm ['padPrmKind'] == 'parm' and $padStoreParm ['padPrmName'] === 2 )
+          $padStoreValue = ! is_string ( padMetaLiteral ( $padStoreParm ['padPrmOrg'] ) );
+
+    if ( $padTag [$pad] == 'content' and $padStoreValue )
+      $padStoreSource = padProtect ( $padStoreSource );
 
   }
   elseif ($padTag [$pad] == 'content' and $padWalk [$pad] == 'start')
@@ -64,9 +68,14 @@
 
   } elseif ( $padTag [$pad] == 'data' ) {
 
+    $padStoreList = $padStoreSource;
+
     if ( ! padIsDefaultData ( $padData [$pad] ) )
       $padStoreData = $padData [$pad];
-    else
+    elseif ( $padStoreValue and is_string ( $padStoreList ) and padContentType ( $padStoreList ) == 'list' ) {
+      padError ( "the data value reads as a PAD list, whose elements would run as expressions" );
+      $padStoreData = [];
+    } else
       $padStoreData = padData ($padStoreSource, padTagParm('type'), $padName [$pad]);
 
   } elseif ( $padTag [$pad] == 'bool' ) {
@@ -74,19 +83,11 @@
     // A bool from a value - {bool 'b', $v} - is that value's own truth, not the value run
     // as PAD: padMakeFlag hands a string to padEval, and the parameter was evaluated to the
     // value before it got here, so $v holding a php: call ran it. Blank and '0' are FALSE,
-    // any other value TRUE, PHP's own (bool) rule. A value and a written-out literal are
-    // told apart from the parameter's text, as {content}'s second parameter is. The pair
-    // form's content keeps padMakeFlag: padEval leaves a {$field} source untouched, so no
-    // value runs there and its flag stays as it was.
+    // any other value TRUE, PHP's own (bool) rule. A written-out literal is evaluated as
+    // before ($padStoreValue above). The pair form's content keeps padMakeFlag: padEval
+    // leaves a {$field} source untouched, so no value runs there and its flag stays.
 
-    $padBoolValue = FALSE;
-
-    if ( $padProtectValues and (string) $padContent === '' )
-      foreach ( $padParms [$pad] as $padStoreParm )
-        if ( $padStoreParm ['padPrmKind'] == 'parm' and $padStoreParm ['padPrmName'] === 2 )
-          $padBoolValue = ! is_string ( padMetaLiteral ( $padStoreParm ['padPrmOrg'] ) );
-
-    if ( $padBoolValue )
+    if ( $padStoreValue )
       $padStoreData = ! in_array ( trim ( (string) $padStoreSource ), [ '', '0' ], TRUE );
     else
       $padStoreData = padMakeFlag ( $padStoreSource );
