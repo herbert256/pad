@@ -48,11 +48,12 @@ sequence/
 
 ## Sequence Types
 
-- Natural numbers, integers, primes
-- Fibonacci, Lucas, Pell sequences
-- Triangular, square, pentagonal numbers
-- Factorials, powers, roots
-- And many more mathematical sequences
+- Counting, ranges and lists: identity (1, 2, 3 ...), negation, range, list, repeat, step
+- Primes and their kin: prime, composite, emirp, semiprime, mersenne, perfect
+- Fibonacci, Lucas, Pell, Perrin, Tribonacci, Catalan, Bell sequences
+- Figurate numbers: triangular, square, pentagonal, hexagonal, tetrahedral ...
+- Powers: power, exponentiation, cubic, biquadratic
+- And many more mathematical sequences - eighty types in all
 
 ## Access
 
