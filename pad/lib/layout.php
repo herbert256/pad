@@ -256,8 +256,13 @@
   // Replaces every named block of a text by what it stands for: the most derived override,
   // its {parent} the next one down, the last one the block's own content - and so on for
   // the blocks inside what comes out. $used collects the names met.
+  //
+  // $open holds the blocks being filled round the text. A block met again inside what it
+  // is filled with - {block 'title'} inside the override of 'title', or 'a' in the override
+  // of 'b' and 'b' in that of 'a' - keeps its own content there: filled again it was
+  // filled without end, and the request died on PHP's call stack.
 
-  function padLayoutFill ( $text, $defs, &$used, $strict = FALSE ) {
+  function padLayoutFill ( $text, $defs, &$used, $strict = FALSE, $open = [] ) {
 
     foreach ( array_reverse ( padLayoutBlocks ( $text ) ) as $pair ) {
 
@@ -266,8 +271,15 @@
 
       $used [$name] = TRUE;
 
-      $content = padLayoutContent ( $defs [$name] ?? [], 0, $default, $strict );
-      $content = padLayoutFill ( $content, $defs, $used, $strict );
+      if ( isset ( $open [$name] ) ) {
+        if ( $GLOBALS ['padCheckSyntax'] )
+          padError ( "the block '$name' stands inside what overrides it" );
+        $content = padLayoutParent ( $default, '' );
+      }
+      else
+        $content = padLayoutContent ( $defs [$name] ?? [], 0, $default, $strict );
+
+      $content = padLayoutFill ( $content, $defs, $used, $strict, $open + [ $name => TRUE ] );
 
       $text = substr ( $text, 0, $pair ['start'] ) . $content . substr ( $text, $pair ['end'] );
 
