@@ -1111,6 +1111,7 @@ pad render demo clock         # a page to stdout; name=value pairs become reques
 pad lint shop [dir]           # every page rendered under the strict check, errors with file:line:col
 pad export demo out/          # a static copy: page.html files with rewritten links, www/demo/ assets
 pad test shop [name]          # the app's own tests in apps/shop/_tests/ (--record, --all)
+pad sample shop orders        # the page run once, its variables kept in apps/shop/_samples/orders.json
 pad help
 ```
 
