@@ -1248,7 +1248,7 @@ Output: `Alice, Bob, Charlie`
 | `padSessionStart()` | Start the PHP session on demand, strict mode and safe cookie flags |
 | `padCsrfToken()` | The session's CSRF token (`{csrf}` writes it as a hidden field) |
 | `padCsrfValid()` | Whether this request brought the session's token back |
-| `padPosted($form)` | Whether this request posted (the `{form}` of that name) - and kept the `rules=` of its template |
+| `padPosted($form)` | Whether this request posted (the `{form}` of that name) - and kept the `rules=` of its template; without a name, on a page whose template has rules, only a post of one of its forms |
 | `padFormFailed($form)` | Whether the form came back and broke the `rules=` of its template |
 | `padUpload($field, types: [...], max: '2M')` | Store an uploaded file safely: real type (finfo), size limit, random name in `DATA/uploads/` - the record, NULL (none sent) or FALSE (refused) |
 | `padUploadError($field)` | Why `padUpload` refused the field's file (also shown by `{input type='file'}`) |

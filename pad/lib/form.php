@@ -39,9 +39,23 @@
   const padValidateRules = [ 'required', 'accepted', 'email', 'url', 'numeric', 'integer',
                              'min', 'max', 'in', 'regex', 'same', 'date' ];
 
+  // Asked without a name, on a page whose template gives fields rules, only a post of a
+  // form of that template kept them: a post naming no form - padForm left out - or a form
+  // the template does not have was never checked, and leaving padForm out of a post skipped
+  // every rule of a page that asked padPosted ().
+
   function padPosted ( $form = '' ) {
 
-    return padFormCameBack ( $form ) and ! padFormFailed ( $form );
+    if ( ! padFormCameBack ( $form ) or padFormFailed ( $form ) )
+      return FALSE;
+
+    if ( $form !== '' and $form !== NULL )
+      return TRUE;
+
+    $rules  = padFormRules ();
+    $posted = $_POST [padFormName] ?? '';
+
+    return ! array_filter ( $rules ) or ( is_string ( $posted ) and array_key_exists ( $posted, $rules ) );
 
   }
 
@@ -584,7 +598,7 @@
   }
 
   // The rules a template text gives the fields of its named forms: [ form => [ field =>
-  // rules ] ]. They are read before the page's PHP has made any variable, so only what is
+  // rules ] ], a form without rules [ form => [] ]. They are read before the page's PHP has made any variable, so only what is
   // written out counts - a quoted field name and quoted rules - each evaluated as the tag
   // will evaluate it. Comments, ~ and {ignore} are taken as the engine takes them: a field
   // commented out has no rules. A form name met twice - the form in both branches of an
@@ -631,9 +645,16 @@
 
       $items = padFormRulesItems ( $parms );
 
+      // Every form with its name written out is there, its fields with rules or not: a post
+      // of a form the text does not have kept none of its rules (padPosted).
+
       if ( $tag == 'form' ) {
-        if ( ! str_ends_with ( rtrim ( $parms ), '/' ) )
+        if ( ! str_ends_with ( rtrim ( $parms ), '/' ) ) {
           $forms [] = $items;
+          $named    = padFormRulesLiteral ( $items ['name'] );
+          if ( $named !== NULL and $named !== '' )
+            $rules [$named] ??= [];
+        }
         continue;
       }
 
