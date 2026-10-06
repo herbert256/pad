@@ -24,9 +24,14 @@
   } else {
 
     // An action that carries on - log, ignore - comes back here; the operator then answers
-    // empty, where go.php went on to read a $now nothing had set.
+    // empty, where go.php went on to read a $now nothing had set. Named under the strict
+    // check, as text that is no number is (padEvalNumber); the lenient walk answers the
+    // empty it answers for what cannot be evaluated, where this error ended the request.
 
-    padError ( "$opr on an array of " . count ( $left ) . " and a value: only an array of numbers, against a number, sums to one value" );
+    global $padCheckSyntax;
+
+    if ( $padCheckSyntax )
+      padError ( "$opr on an array of " . count ( $left ) . " and a value: only an array of numbers, against a number, sums to one value" );
 
     $now = '';
 
