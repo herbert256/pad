@@ -21,11 +21,11 @@ Multiple handlers can be combined and are applied in sequence.
 Sorts data by one or more fields with configurable direction and sort type.
 
 ```
-{data sort}
-{data sort="fieldName"}
-{data sort="fieldName ASC"}
-{data sort="fieldName DESC"}
-{data sort="field1 ASC; field2 DESC"}
+{items sort}
+{items sort="fieldName"}
+{items sort="fieldName ASC"}
+{items sort="fieldName DESC"}
+{items sort="field1 ASC; field2 DESC"}
 ```
 
 **Parameters:**
@@ -60,7 +60,7 @@ Sorts data by one or more fields with configurable direction and sort type.
 Reverses the order of data array.
 
 ```
-{data reverse}
+{items reverse}
 ```
 
 **Parameters:** None (boolean flag)
@@ -80,7 +80,7 @@ Reverses the order of data array.
 Randomly shuffles all elements.
 
 ```
-{data shuffle}
+{items shuffle}
 ```
 
 **Parameters:** None (boolean flag)
@@ -100,15 +100,18 @@ Randomly shuffles all elements.
 Selects random elements with advanced options.
 
 ```
-{data random}
-{data random="5"}
-{data random="3", orderly, duplicates}
+{items random}
+{items random="5"}
+{items random="3", orderly, duplicates}
 ```
 
 **Parameters:**
 - `random` - Number of random items to select (default: all)
 - `orderly` - Keep original order of selected items
 - `duplicates` - Allow duplicate selections
+
+`atLeastOnce`, the third companion in `handling/types/`, is read by the sequence `randomize`
+action only; on a data tag it has no effect.
 
 **Examples:**
 ```html
@@ -161,8 +164,8 @@ SQL, applied by the query - and is left alone by this handler.
 Gets the first N elements.
 
 ```
-{data first}
-{data first="5"}
+{items first}
+{items first="5"}
 ```
 
 **Parameters:**
@@ -187,8 +190,8 @@ Gets the first N elements.
 Gets the last N elements.
 
 ```
-{data last}
-{data last="5"}
+{items last}
+{items last="5"}
 ```
 
 **Parameters:**
@@ -213,7 +216,7 @@ Gets the last N elements.
 Gets a specific row by number.
 
 ```
-{data row="3"}
+{items row="3"}
 ```
 
 **Parameters:**
@@ -236,8 +239,8 @@ Gets a specific row by number.
 Paginates data into pages.
 
 ```
-{data page="1", rows="10"}
-{data page="2", rows="25"}
+{items page="1", rows="10"}
+{items page="2", rows="25"}
 ```
 
 **Parameters:**
@@ -269,7 +272,7 @@ request variable, `page=$pg ?? 1`, and the links set `pg`.
 Gets a specific number of rows (shorthand for pagination).
 
 ```
-{data rows="10"}
+{items rows="10"}
 ```
 
 **Parameters:**
@@ -296,8 +299,8 @@ Gets a specific number of rows (shorthand for pagination).
 Sets the starting position for data selection.
 
 ```
-{data start="5"}
-{data start="-3"}
+{items start="5"}
+{items start="-3"}
 ```
 
 **Parameters:**
@@ -320,8 +323,8 @@ Sets the starting position for data selection.
 Sets the ending position for data selection.
 
 ```
-{data end="10"}
-{data end="-1"}
+{items end="10"}
+{items end="-1"}
 ```
 
 **Parameters:**
@@ -346,8 +349,8 @@ Sets the ending position for data selection.
 Extracts a portion of the array (keeps selected elements).
 
 ```
-{data slice="5"}
-{data slice="3|7"}
+{items slice="5"}
+{items slice="3|7"}
 ```
 
 **Parameters:**
@@ -375,8 +378,8 @@ Extracts a portion of the array (keeps selected elements).
 Removes a portion of the array (removes selected elements).
 
 ```
-{data splice="5"}
-{data splice="3|2"}
+{items splice="5"}
+{items splice="3|2"}
 ```
 
 **Parameters:**
@@ -406,7 +409,7 @@ Removes a portion of the array (removes selected elements).
 Removes duplicate entries from single-field arrays.
 
 ```
-{data dedup}
+{items dedup}
 ```
 
 **Parameters:** None (boolean flag)
@@ -429,11 +432,11 @@ Removes duplicate entries from single-field arrays.
 Trims elements from the beginning and/or end of the array.
 
 ```
-{data trim}
-{data trim="2"}
-{data trim="3", left}
-{data trim="3", right}
-{data trim="2", both}
+{items trim}
+{items trim="2"}
+{items trim="3", left}
+{items trim="3", right}
+{items trim="2", both}
 ```
 
 **Parameters:**
@@ -539,7 +542,7 @@ so `{staff where='$salary gt 2500', sort='name', negative}` is every row that do
 sorted.
 
 ```
-{data first="3", negative}
+{items first="3", negative}
 {-- Gets all items EXCEPT the first 3 --}
 ```
 
@@ -603,8 +606,8 @@ Functions can be combined and are applied in sequence:
 {items shuffle, first="5"}
 {-- Shuffle then get first 5 (5 random items) --}
 
-{logs sort="date DESC", dedup, first="100"}
-{-- Sort, deduplicate, limit to 100 --}
+{tags sort, dedup, first="100"}
+{-- Sort, drop repeated tags, limit to 100 --}
 ```
 
 ---
