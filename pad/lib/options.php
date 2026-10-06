@@ -154,4 +154,25 @@
 
   }
 
+  // Whether an option of this level was written out in the template - glue=', ', quote="'",
+  // a number - rather than taken from a value, glue=$sep. A written-out option is the
+  // author's template text; a value goes in as text (padProtect), or a separator a visitor
+  // sent ran as template code. The value is the item's text behind its first =, read by
+  // padMetaLiteral.
+
+  function padOptionLiteral ( $name ) {
+
+    global $pad, $padParms;
+
+    foreach ( $padParms [$pad] ?? [] as $one )
+      if ( $one ['padPrmKind'] == 'option' and $one ['padPrmName'] == $name ) {
+        $text = explode ( '=', (string) $one ['padPrmOrg'], 2 ) [1] ?? '';
+        $read = padMetaLiteral ( $text );
+        return is_string ( $read ) or is_int ( $read ) or is_float ( $read ) or is_bool ( $read );
+      }
+
+    return FALSE;
+
+  }
+
 ?>
