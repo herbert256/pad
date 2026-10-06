@@ -345,14 +345,21 @@
 
   // A login moves the visitor to a new session id, so an id someone learned or planted
   // before it is worth nothing after it - session fixation. The data moves along and the
-  // old session is deleted.
+  // old session is deleted. The CSRF token does not move along: one planted with the
+  // session was known to whoever planted it, and kept the forms of the logged-in visitor
+  // open to them; the next form gets a new one (padCsrfToken).
 
   function padSessionRegenerate () {
 
     if ( headers_sent () or ! padSessionOpen ( TRUE ) )
       return FALSE;
 
-    return session_regenerate_id ( TRUE );
+    if ( ! session_regenerate_id ( TRUE ) )
+      return FALSE;
+
+    unset ( $_SESSION ['padCsrf'] );
+
+    return TRUE;
 
   }
 
