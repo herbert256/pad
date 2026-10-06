@@ -44,9 +44,15 @@
 
   }
 
+  // A value, a region and an event are texts: one posted as a list - padValue[]=7,
+  // padLive[]=box - is no value, and was read as a text, the Array to string conversion
+  // ending the request of any page a post reached, since every request asks padLive.
+
   function padLiveValue () {
 
-    return (string) ( $_POST ['padValue'] ?? '' );
+    $value = $_POST ['padValue'] ?? '';
+
+    return is_string ( $value ) ? $value : '';
 
   }
 
@@ -55,9 +61,9 @@
 
   function padLiveField ( $name ) {
 
-    $value = (string) ( $_POST [$name] ?? '' );
+    $value = $_POST [$name] ?? '';
 
-    return preg_match ( '/^[A-Za-z0-9_-]{1,64}$/D', $value ) ? $value : '';
+    return ( is_string ( $value ) and preg_match ( '/^[A-Za-z0-9_-]{1,64}$/D', $value ) ) ? $value : '';
 
   }
 
