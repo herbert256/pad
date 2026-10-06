@@ -17,7 +17,11 @@
     // products/[id] that answers it - and within the application, in the clean form when
     // $padCleanUrls says the links take it.
 
-    if ( ! $go  ) $go  = ( $padPageAsked ?? '' ) !== '' ? $padPageAsked : $padPage;
+    // That name is the decoded path, and a segment a route bound may hold what an address
+    // reads as its own - a&b, c#d, e%f - so each segment is encoded again: written as it
+    // was, the browser came back to a, to c, to a broken escape.
+
+    if ( ! $go  ) $go  = implode ( '/', array_map ( 'rawurlencode', explode ( '/', ( $padPageAsked ?? '' ) !== '' ? $padPageAsked : $padPage ) ) );
 
     // A page written the way a link writes it, ?about - {redirect} lets that form through
     // its check as a target of its own (start/redirect.php) - is that page: the ? is the one
