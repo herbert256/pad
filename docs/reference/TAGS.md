@@ -590,8 +590,9 @@ the message above the fields when the form came back with errors (`error` alone:
 correct the errors below."); every other item is an attribute of the `<form>` tag
 (`action=`, `class=`, `enctype=`), written as `{attrs}` writes them.
 
-**Behavior:** A posting form gets the hidden `padCsrfToken` field and a hidden `padForm`
-field holding its name - `padPosted('contact')` is TRUE when this form came back. The fields
+**Behavior:** A posting form gets the hidden `padCsrfToken` field - not when its `action=`
+is on another site, which the token would be handed to - and a hidden `padForm` field
+holding its name - `padPosted('contact')` is TRUE when this form came back. The fields
 inside refill only when their own form came back; a `{form method='get'}` refills from the
 query string. A posting form holding a file field gets `enctype="multipart/form-data"`
 unless it names an enctype itself. With `error=`, a form that came back while `padValidate`

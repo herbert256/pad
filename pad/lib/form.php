@@ -543,8 +543,13 @@
     $method = strtolower ( (string) ( $take ['method'] ?? 'post' ) );
     $open   = '<form method="' . padFormEscape ( $method ) . '"' . ( $attrs ? ' ' . implode ( ' ', $attrs ) : '' ) . '>';
 
+    // The token only goes along to this site, as padCsrfForms decides (lib/csrf.php): a
+    // {form} with an action= on another site handed the session's token to that site, which
+    // could then post as the visitor here.
+
     if ( $method == 'post' ) {
-      $open .= padCsrfField ();
+      if ( padCsrfFormPosts ( $open ) )
+        $open .= padCsrfField ();
       if ( $name !== '' )
         $open .= '<input type="hidden" name="' . padFormName . '" value="' . padFormEscape ( $name ) . '">';
     }
