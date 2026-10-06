@@ -87,6 +87,22 @@
 
   }
 
+  // A run parameter that has to be a number - from=, to=, rows= and the rest - and is none:
+  // the strict check names it, and the lenient walk carries on with its default.
+
+  function pqNumber ( $name, &$value, $default ) {
+
+    if ( is_numeric ( $value ) or $value === $default )
+      return;
+
+    if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
+      padError ( "$name= takes a number, not '"
+               . ( is_scalar ( $value ) ? ( is_bool ( $value ) ? '' : $value ) : gettype ( $value ) ) . "'" );
+
+    $value = $default;
+
+  }
+
   function pqShuffle ( &$array ) {
 
     $shuffled = [];

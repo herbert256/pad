@@ -15,6 +15,7 @@
   // each drawn on their own below and the single value came out a range, or nothing.
 
   pqRandomParm ( $pqSole );
+  pqNumber     ( 'sole', $pqSole, 0 );
 
   if ( $pqSole )
     $pqFrom = $pqTo = $pqSole;
@@ -46,5 +47,22 @@
   pqRandomParm ( $pqRows );
   pqRandomParm ( $pqStop );
   pqRandomParm ( $pqSkip );
+
+  // Each of these is a number, or a range one has just been drawn from. One that is neither
+  // - from='abc', a request value that held no number - is named by the strict check and
+  // takes its default under the lenient walk: used as it came, from= and increment= ended
+  // the request on string - int inside the iterators, to= set a bound no number stays under
+  // and ran to the million-candidate ceiling, and skip= or minimal= turned every candidate
+  // down.
+
+  pqNumber ( 'from',      $pqFrom, 1           );
+  pqNumber ( 'to',        $pqTo,   PHP_INT_MAX );
+  pqNumber ( 'increment', $pqInc,  1           );
+  pqNumber ( 'rows',      $pqRows, NULL        );
+  pqNumber ( 'try',       $pqTry,  0           );
+  pqNumber ( 'stop',      $pqStop, PHP_INT_MAX );
+  pqNumber ( 'skip',      $pqSkip, 0           );
+  pqNumber ( 'minimal',   $pqMin,  PHP_INT_MIN );
+  pqNumber ( 'maximal',   $pqMax,  PHP_INT_MAX );
 
 ?>
