@@ -41,8 +41,8 @@
          6 => $padLen ?? 0,
          7 => $padStop ?? '',
          8 => $padEtag ?? '',
-         9 => $_SERVER ['REQUEST_URI']     ?? '' ,
-        10 => $_SERVER ['HTTP_REFERER']    ?? '' ,
+         9 => padRedactText ( $_SERVER ['REQUEST_URI']  ?? '' ),
+        10 => padRedactText ( $_SERVER ['HTTP_REFERER'] ?? '' ),
         11 => $_SERVER ['REMOTE_ADDR']     ?? '' ,
         12 => $_SERVER ['HTTP_USER_AGENT'] ?? ''
       ]
@@ -50,14 +50,16 @@
 
   }
 
+  // The database rows are kept as the files are (padRedactText): the page went in with the
+  // CSRF token of its forms, the address and the referer with the secrets of their queries.
+  // And in one statement - asked first and inserted after, two requests for one new page
+  // at the same moment both inserted it and the second died on the duplicate key.
+
   function padInfoTrackDbData ( ) {
 
     global $padEtag, $padOutput;
 
-    $etag = padDb ( "check track_data where etag='{1}'", [ 1 => $padEtag ] );
-
-    if ( ! $etag )
-      $session = padDb ( "insert into track_data values('{1}', '{2}')", [ 1 => $padEtag, 2=> $padOutput ] );
+    padDb ( "insert ignore into track_data values('{1}', '{2}')", [ 1 => $padEtag, 2 => padRedactText ( (string) $padOutput ) ] );
 
   }
 
