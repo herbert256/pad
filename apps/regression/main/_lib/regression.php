@@ -503,9 +503,11 @@
     if ( $host === '' or $host === 'localhost' )
       return $text;
 
-    // After // or a JSON-escaped \/\/, and not followed by more of a host name.
+    // After // or a JSON-escaped \/\/, and not followed by more of a host name - nor by a
+    // port of its own: run on http://127.0.0.1/pad/, the http://127.0.0.1:8000/ a page
+    // names for pad serve is another server, and was read as localhost:8000.
 
-    return preg_replace ( '#(//|\\\\/\\\\/)' . preg_quote ( $host, '#' ) . '(?![\w.-])#', '$1localhost', $text );
+    return preg_replace ( '#(//|\\\\/\\\\/)' . preg_quote ( $host, '#' ) . '(?![\w.-]|:\d)#', '$1localhost', $text );
 
   }
 
