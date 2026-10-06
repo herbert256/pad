@@ -230,10 +230,22 @@
     if ( PHP_SAPI === 'cli' )
       return TRUE;
 
-    if ( ( $GLOBALS ['padDiagnostics'] ?? TRUE ) === FALSE )
+    if ( padDiagnosticsOff () )
       return FALSE;
 
     return padLoopback ();
+
+  }
+
+  // $padDiagnostics says no: FALSE, or any value that means it - a 0 in the configuration,
+  // the '0' or 'off' an .env holds when the setting is read through padEnv. Only the boolean
+  // counted, and every other no left the full reports on.
+
+  function padDiagnosticsOff () {
+
+    $value = $GLOBALS ['padDiagnostics'] ?? TRUE;
+
+    return ! $value or ( is_string ( $value ) and in_array ( strtolower ( trim ( $value ) ), [ 'off', 'no', 'false' ], TRUE ) );
 
   }
 

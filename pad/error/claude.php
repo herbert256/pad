@@ -22,7 +22,7 @@
     if ( PHP_SAPI === 'cli' )
       return TRUE;
 
-    if ( ( $GLOBALS ['padDiagnostics'] ?? TRUE ) === FALSE )
+    if ( padDiagnosticsOff () )
       return FALSE;
 
     $agent = $_SERVER ['HTTP_USER_AGENT'] ?? '';
