@@ -1063,7 +1063,7 @@ apps/cli/pad sample shop orders   # the same capture, into apps/shop/_samples/or
 
 Under `$padCheckSyntax` (the default), the expression evaluator reports a malformed
 expression in the source's own terms, naming the exact fault and its position:
-- unbalanced quotes, `( )` or `[ ]` — `{echo (1 + 2}` → *the ( at position ... is never closed*
+- unbalanced quotes, `( )` or `[ ]` — `{echo (1 + 2}` → *the ( opened at position 1 is never closed*
 - a misspelled pipe function — `{echo $x | uppr}` → *there is no pipe function named 'uppr'*
 - a comparison operator missing an operand where no pipe value can stand in for it —
   `{if $x eq}` → *the operator 'eq' has nothing on its right*
