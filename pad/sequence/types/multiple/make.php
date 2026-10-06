@@ -11,6 +11,6 @@
   if ( ! is_numeric ( $pqLoop ) )
     return FALSE;
 
-  return ceil ( $pqLoop / $pqParm ) * $pqParm ;
+  return pqCeilMultiple ( $pqLoop, $pqParm );
 
 ?>

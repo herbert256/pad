@@ -396,6 +396,26 @@
 
   }
 
+  // $x rounded up to a multiple of $p, as ceil ( $x / $p ) * $p rounds it, but in whole numbers
+  // when both are whole and $p is above 0: through a float the quotient lost its last digits
+  // past 2^53, and {sequence multiple=3, from=-9223372036854775808} began on the imprecise
+  // -9.2233720368548E+18 rather than on -9223372036854775806.
+
+  function pqCeilMultiple ( $x, $p ) {
+
+    if ( ! pqBoolWhole ( $x ) or ! pqBoolWhole ( $p ) or $p <= 0 )
+      return ceil ( $x / $p ) * $p;
+
+    $x    = (int) $x;
+    $p    = (int) $p;
+    $rest = $x % $p;
+
+    if     ( $rest == 0 ) return $x;
+    elseif ( $rest  > 0 ) return $x + ( $p - $rest );
+    else                  return $x - $rest;
+
+  }
+
   // Whether $x is a term of the figurate sequence n(an - b)/d, n from 1 up: n is about the
   // square root of dx/a, so the root is taken once and the whole n next to it are tried
   // with the exact pqProduct the type generates with. Generated up to the candidate

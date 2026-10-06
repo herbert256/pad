@@ -22,6 +22,6 @@
     return;
 
   $pqInc   = $pqParm;
-  $pqFrom = ceil ( $pqFrom / $pqParm) * $pqParm;
+  $pqFrom = pqCeilMultiple ( $pqFrom, $pqParm );
 
 ?>

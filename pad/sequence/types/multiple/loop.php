@@ -18,6 +18,6 @@
   if ( ! $pqParm )
     return FALSE;
 
-  return ceil ( $pqLoop / $pqParm) * $pqParm;
+  return pqCeilMultiple ( $pqLoop, $pqParm );
 
 ?>
