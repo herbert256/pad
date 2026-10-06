@@ -79,8 +79,14 @@
 
         $coalesce = ( ( $next [$k] [1] ?? '' ) == 'OPR' and ( $next [$k] [0] ?? '' ) == '??' );
 
+        // A field that holds a list is there, and is no value here - $x reads a scalar. It
+        // was reported as a field that does not exist: {if $items eq 'a'} with $items set.
+
         if ( $padCheckSyntax and ! $coalesce and ! padFieldCheck ( $one[0] ) )
-          padError ( "Expression error: there is no field named '\${$one[0]}'" );
+          if ( padArrayCheck ( $one[0] ) )
+            padError ( "Expression error: the field '\${$one[0]}' is a list, not a value" );
+          else
+            padError ( "Expression error: there is no field named '\${$one[0]}'" );
 
         $result[$k][1] = 'VAL';
         $result[$k][0] = padFieldValue ( $one[0] );
