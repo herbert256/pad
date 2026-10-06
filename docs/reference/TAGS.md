@@ -473,7 +473,8 @@ error too.
 ---
 
 ### pad
-Generic PAD include tag.
+A level with no behaviour of its own - a carrier for `data=`, `content=`, `name=`, pipes and
+properties. It includes nothing.
 
 ```html
 {pad data='source'}
@@ -481,7 +482,7 @@ Generic PAD include tag.
 {/pad}
 ```
 
-**Behavior:** Processes PAD template with data
+**Behavior:** Renders its content once, or per row with `data=`
 
 ---
 
@@ -953,7 +954,7 @@ Evaluate and output expression.
 
 ```html
 {echo $variable}
-{echo '5 + 3'}
+{echo 5 + 3}          → 8 - a quoted '5 + 3' is the text itself
 ```
 
 **Parameters:**
@@ -1630,13 +1631,13 @@ Pull stored sequence data.
 ---
 
 ### flag
-Set sequence flag.
+Each value of a sequence as 1 or 0: whether it belongs to the named sequence type.
 
 ```html
-{flag}
+{flag '1..10', even}{$sequence} {/flag}       → 0 1 0 1 0 1 0 1 0 1
 ```
 
-**Behavior:** Used within sequence processing
+**Behavior:** Membership flags in place of the values
 
 ---
 
@@ -1644,7 +1645,7 @@ Set sequence flag.
 Keep sequence values matching criteria.
 
 ```html
-{keep}
+{keep '1..10', prime}{$sequence} {/keep}      → 2 3 5 7
 ```
 
 **Behavior:** Filter to keep matching values
@@ -1655,7 +1656,7 @@ Keep sequence values matching criteria.
 Remove sequence values matching criteria.
 
 ```html
-{remove}
+{remove '1..10', prime}{$sequence} {/remove}  → 1 4 6 8 9 10
 ```
 
 **Behavior:** Filter to remove matching values
@@ -1666,7 +1667,7 @@ Remove sequence values matching criteria.
 Transform sequence values.
 
 ```html
-{make}
+{make '1..5', add=10}{$sequence} {/make}      → 11 12 13 14 15
 ```
 
 **Behavior:** Transform values during sequence generation
@@ -1674,13 +1675,17 @@ Transform sequence values.
 ---
 
 ### resume
-Resume a previously ceased sequence iteration.
+Transform the last pushed sequence in place, through an action.
 
 ```html
+{sequence '1..5', push='s'}{/sequence}
 {resume reverse}
+{pull 's'}{$sequence} {/pull}                  → 5 4 3 2 1
 ```
 
-**Behavior:** Delegates to the sequence subsystem (`sequence/start/tags/resume.php`); continues iteration of a stored sequence, optionally through an action. See [sequences](../sequences/).
+**Behavior:** Delegates to the sequence subsystem (`sequence/start/tags/resume.php`); applies
+the action to the sequence pushed last and writes the result back over its store. It prints
+nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 
 ---
 
@@ -1698,7 +1703,7 @@ Resume a previously ceased sequence iteration.
 | `while` | Control Flow | Loop while true |
 | `until` | Control Flow | Loop until true |
 | `set` | Variables | Set global variables |
-| `get` | Variables | Get stored content |
+| `get` | Variables | Fetch another page of the app |
 | `data` | Variables | Store/iterate data |
 | `content` | Variables | Store content |
 | `bool` | Variables | Store boolean |
@@ -1717,7 +1722,7 @@ Resume a previously ceased sequence iteration.
 | `action` | Execution | Execute action |
 | `ajax` | Execution | AJAX handler |
 | `live` | Execution | A region that re-renders on the server when clicked, submitted or changed |
-| `pad` | Execution | PAD include |
+| `pad` | Execution | Generic level for data=, content=, name= |
 | `redirect` | Navigation | HTTP redirect |
 | `restart` | Navigation | Restart processing |
 | `pager` | Navigation | Page links for a tag with the page option |
@@ -1774,11 +1779,11 @@ Resume a previously ceased sequence iteration.
 | `cease` | Loop Control | Soft stop (graceful end) |
 | `break` | Loop Control | Hard stop (immediate exit) |
 | `pull` | Sequences | Pull stored data |
-| `flag` | Sequences | Set flag |
+| `flag` | Sequences | Mark membership as 1 or 0 |
 | `keep` | Sequences | Keep matching |
 | `remove` | Sequences | Remove matching |
 | `make` | Sequences | Transform values |
-| `resume` | Sequences | Resume ceased iteration |
+| `resume` | Sequences | Transform the last pushed sequence in place |
 
 ---
 
