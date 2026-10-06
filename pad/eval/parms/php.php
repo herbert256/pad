@@ -16,6 +16,11 @@
   if ( ! count ($parm) and ( $value !== '' or ( new ReflectionFunction ( $name ) ) -> getNumberOfRequiredParameters () ) )
     $parm [0] = $value;
 
+  // A callable among the arguments is a call of its own, held to the same list.
+
+  if ( $padPhpRefused = padPhpCallables ( $name, $parm ) )
+    return padError ( $padPhpRefused );
+
   return call_user_func_array ($name, $parm);
 
 ?>

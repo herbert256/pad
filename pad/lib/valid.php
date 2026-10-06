@@ -19,6 +19,9 @@
   //               directory it is looked up in
   // padValidID    a session or request id as padRandomString() mints it, eight letters
   //               and digits
+  // padPhpCallables  under a $padPhpFunctions list, the callables a PHP call is handed:
+  //               every argument for a parameter the function declares callable must be
+  //               a function the list allows (padPhpAllowed in lib/type.php)
   //
   // Every pattern ends in $/D: a bare $ also matches before a newline that ends the text,
   // so a cookie padSesID=abcdefgh%0A was an id PAD minted - and the newline went on into
@@ -88,6 +91,41 @@
     if ( ! preg_match ( '/^[a-zA-Z0-9_-][a-zA-Z0-9_:]*$/D', $part ) ) return FALSE;
 
     return TRUE;
+
+  }
+
+  // A $padPhpFunctions list names the functions a template may call, and a listed function
+  // that takes a callable calls whatever it is handed: with array_map listed and strtoupper
+  // not, php:array_map('strtoupper', $list) called strtoupper all the same, and
+  // call_user_func or usort on the list opened every function. The parameters PHP declares
+  // callable are held to the list; NULL, which array_map takes for no callback, passes. The
+  // message for the first callable refused comes back, FALSE when there is none - always
+  // FALSE under TRUE, which allows every function anyway.
+
+  function padPhpCallables ( $name, $args ) {
+
+    if ( ( $GLOBALS ['padPhpFunctions'] ?? TRUE ) === TRUE or ! function_exists ( $name ) )
+      return FALSE;
+
+    $params = ( new ReflectionFunction ( $name ) ) -> getParameters ();
+    $last   = end ( $params );
+
+    foreach ( array_values ( $args ) as $at => $arg ) {
+
+      $param = $params [$at] ?? ( ( $last and $last -> isVariadic () ) ? $last : NULL );
+
+      if ( ! $param or ! str_contains ( (string) $param -> getType (), 'callable' ) or $arg === NULL )
+        continue;
+
+      if ( ! is_string ( $arg ) )
+        return "a callable that is no function name, handed to '$name', is not allowed by \$padPhpFunctions";
+
+      if ( ! padPhpAllowed ( $arg ) )
+        return "the PHP function '" . padMakeSafe ( $arg, 40 ) . "' is not allowed by \$padPhpFunctions";
+
+    }
+
+    return FALSE;
 
   }
 
