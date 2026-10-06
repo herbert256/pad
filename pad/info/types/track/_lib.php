@@ -21,10 +21,12 @@
     $session = $padSesID;
     $request = $padReqID;
 
-    if ( padDb ( "check track_session where session='{1}'", [ 1 => $session ] ) )
-      padDb ( "update track_session set requests=requests+1 where session='{1}'", [ 1 => $session ] );
-    else
-      padDb ( "insert into track_session values('{1}', NOW(), NOW(), 1)", [ 1 => $session ] );
+    // One statement: asked first and inserted after, the requests of one new session that
+    // came together each found no row and each inserted it - all but the first died on the
+    // duplicate key, after their answer had gone out, and filed nothing.
+
+    padDb ( "insert into track_session values('{1}', NOW(), NOW(), 1)
+             on duplicate key update requests=requests+1", [ 1 => $session ] );
 
     if ( ! $padInfoTrackDbRequest )
       return;
