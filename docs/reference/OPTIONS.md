@@ -56,7 +56,7 @@ Retrieves data from a named source.
 **Example:**
 ```
 {users data="cachedUsers"}
-{list data="queryResults"}
+{pad data="queryResults"}...{/pad}
 ```
 
 ### content
@@ -71,7 +71,7 @@ Retrieves content from the content store.
 
 **Example:**
 ```
-{div content="savedHeader"}
+{pad content="savedHeader"}
 ```
 
 ### merge
@@ -141,8 +141,8 @@ Stores the generated content/output to a named variable.
 
 **Example:**
 ```
-{header toContent="pageHeader"}
-{div content="pageHeader"}
+{header toContent="pageHeader"}...{/header}
+{pad content="pageHeader"}
 ```
 
 ### toBool
