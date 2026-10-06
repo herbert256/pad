@@ -430,14 +430,14 @@ A field tag pipes as it stands; a literal or an expression goes through `{echo}`
 {echo $text | upper}                # Uppercase
 {echo $text | lower}                # Lowercase
 {echo $text | trim}                 # Remove whitespace
-{echo $text | capitalize}           # Capitalize first letter
+{echo $text | capitalize}           # Capitalize each word
 {echo $text | bold}                 # Wrap in <b> tags
 {echo $text | html}                 # HTML-encode
 {echo $text | left(5)}              # First 5 characters
-{echo $text | cut(100)}             # Truncate to 100 chars
+{echo $text | truncate(100)}        # At most 100 chars, ending on a word, with …
 {echo $text | after('@')}           # Everything after first @
 {echo $text | before('.')}          # Everything before first .
-{echo $text | between('(', ')')}    # Extract between delimiters
+{echo $text | after('(') | before(')')}  # Extract between delimiters
 {echo $text | contains('word')}     # Check if contains substring
 ```
 
@@ -464,7 +464,7 @@ A field tag pipes as it stands; a literal or an expression goes through `{echo}`
 **Number Formatting:**
 ```
 {echo $price | %.2f}                # Format to 2 decimal places
-{echo $value | number(2)}           # Alternative number format
+{echo $value | number_format(@, 2)} # 1,234.50
 ```
 
 **Printf-style format specifiers:**
@@ -688,8 +688,8 @@ To evaluate arithmetic expressions, use `{echo expression}`:
 PHP functions can be called directly as tags without custom wrappers:
 ```
 {date_default_timezone_get}             # Calls PHP function directly
-{time}                                   # Returns Unix timestamp
-{rand 1 100}                            # Random number between 1-100
+{php:time}                               # Unix timestamp - a bare {time} is the pipe function
+{rand 1, 100}                            # Random number between 1-100
 ```
 
 ---
@@ -1052,7 +1052,6 @@ Both pipe from a field tag or through `{echo}`:
 ```
 {echo $text | trim}              # PAD function
 {echo $text | strlen}            # PHP function
-{echo $items | count}            # PHP function
 {echo $name | ucfirst}           # PHP function
 {$text | trim}                   # a field tag pipes as it stands
 ```
@@ -1592,7 +1591,8 @@ Output: `Alice, Bob, Charlie`
 | `html` | HTML encode |
 | `date('fmt')` | Format date |
 | `+ n`, `- n`, `* n`, `/ n` | Arithmetic |
-| `left(n)`, `cut(n)` | Truncate |
+| `left(n)`, `truncate(n)` | Shorten |
+| `cut('x')` | Remove every occurrence of x |
 | `after('x')`, `before('x')` | Extract substring |
 | `contains('x')` | Check substring |
 | `. 'str'` | Concatenate |
