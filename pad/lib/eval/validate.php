@@ -148,6 +148,18 @@
 
     }
 
+    // A sign the tokeniser read as NEG or POS - after an operator, a bracket or a comma - has
+    // a value of its own to work on and never borrows the piped one: with nothing behind it
+    // it is a mistake, {echo $a + -}, which answered 5 + 0 without a word since the sign
+    // became an operator of its own.
+
+    $tokens = array_values ( $result );
+
+    foreach ( $tokens as $n => $token )
+      if ( $token [1] == 'OPR' and in_array ( $token [0], [ 'NEG', 'POS' ] )
+           and in_array ( $tokens [$n+1] [1] ?? 'end', [ 'end', 'pipe', 'close', 'a-close' ] ) )
+        return padEvalValidateError ( "the operator '" . ( $token [2] ?? $token [0] ) . "' has nothing on its right", $eval );
+
     // A word called like a function - zzzq(2) - must name one, wherever it stands. Taken for
     // the word itself it was joined to its arguments: {echo $x | zzzq(2)} printed zzzq2 and
     // {if zzzq(1) eq 1} compared that, where {echo $x | zzzq} is named as no pipe function.
