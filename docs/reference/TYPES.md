@@ -48,14 +48,14 @@ When no explicit type is given, PAD checks in this order (see `padTypeTag()` and
 8. **data** - Data store
 9. **include** - Application include file
 10. **property** - Tag property
-11. **field** - Database field value
+11. **field** - Field of the current data row
 12. **array** - Array value
 13. **parm** - Parameter value
 14. **level** - Level variable
 15. **constant** - PHP constant
 16. **local** - Local data file
 17. **script** - External script
-18. **php** - PHP function
+18. **php** - PHP function - one that is also a pipe function (`trim`, `date`, `substr` ...) runs as the pipe function
 19. **sequence** - Sequence type
 20. **action** - Sequence action
 21. **function** - PAD function (fallback)
@@ -203,8 +203,8 @@ Retrieves field values from the current data context.
 Retrieves tag properties from parent tags.
 
 ```
-{property:id}
-{@id}  ← Shorthand for property
+{property:current}
+{&current}  ← Shorthand for property
 ```
 
 **Resolution:** `padTagValue($tagName)`
@@ -213,7 +213,7 @@ Retrieves tag properties from parent tags.
 
 **Example:**
 ```
-{list}{@index}{/list}
+{users}{&current}{/users}
 ```
 
 ---
@@ -232,17 +232,31 @@ Retrieves array values by name.
 
 ---
 
-### level
+### parm
 
-Retrieves level variables from the processing stack.
+Retrieves a parameter or option of the nearest enclosing tag that has one.
 
 ```
-{level:varName}
+{users mode="fast"}{parm:mode}{/users}
+```
+
+**Resolution:** `padOptValue($tagName, 1)`
+
+---
+
+### level
+
+Retrieves an array field of an enclosing row - the nearest level outward that holds one - and
+iterates it.
+
+```
+{orders}{level:lines}{$product}{/level:lines}{/orders}
 ```
 
 **Resolution:** `padGetLevelArray($tagName)`
 
-**Use case:** Access variables from parent processing levels.
+**Use case:** Walk a nested array of the row being rendered. A `{tag $name = value}` level
+variable is not what it reads.
 
 ---
 
@@ -457,15 +471,17 @@ Retrieves values from the sequence store.
 
 ### flag
 
-Handles sequence flags.
+Turns each value of a sequence into 1 or 0: whether it belongs to the named sequence type.
 
 ```
-{flag:myFlag}
+{flag:prime}
+{mySeq:flag even}
 ```
 
-**Resolution:** `isset($padBoolStore[$tagName])`
+**Resolution:** `padTypeSeq()` - a sequence type or a stored sequence.
 
-**Implementation:** Delegates to `PQ/start/types/flag.php`.
+**Implementation:** Delegates to `PQ/start/types/flag.php`. (In an expression, `flag:name`
+reads the bool store instead.)
 
 ---
 
@@ -486,10 +502,10 @@ Creates new sequence values.
 
 ### keep
 
-Keeps/stores sequence values.
+Keeps only the values the named sequence type accepts; nothing is stored.
 
 ```
-{keep:mySequence}
+{keep:mySequence even}
 ```
 
 **Implementation:** Delegates to `PQ/start/types/keep.php`.
@@ -498,10 +514,10 @@ Keeps/stores sequence values.
 
 ### remove
 
-Removes sequence values.
+Drops the values the named sequence type accepts; no store is dropped.
 
 ```
-{remove:mySequence}
+{remove:mySequence even}
 ```
 
 **Implementation:** Delegates to `PQ/start/types/remove.php`.
@@ -521,7 +537,8 @@ Removes sequence values.
 | `field` | Current data | Field values |
 | `property` | Parent tag | Tag properties |
 | `array` | Arrays | Named arrays |
-| `level` | Stack | Level variables |
+| `parm` | Enclosing tag | Parameter/option value |
+| `level` | Enclosing rows | Nested array field |
 | `constant` | PHP | PHP constants |
 | `local` | Files | Local data files |
 | `include` | APP | Include files |
@@ -532,10 +549,10 @@ Removes sequence values.
 | `sequence` | PQ | Sequence types |
 | `action` | PQ | Sequence actions |
 | `pull` | pqStore | Sequence values |
-| `flag` | pqStore | Sequence flags |
+| `flag` | PQ | Membership flags, 1 or 0 |
 | `make` | PQ | Sequence creation |
-| `keep` | PQ | Sequence storage |
-| `remove` | PQ | Sequence removal |
+| `keep` | PQ | Filter: keep the matches |
+| `remove` | PQ | Filter: drop the matches |
 
 ---
 
@@ -554,14 +571,15 @@ types/
 ├── content.php     → Content store
 ├── data.php        → Data store
 ├── field.php       → Field value
-├── flag.php        → Sequence flag
+├── flag.php        → Sequence membership flags
 ├── function.php    → PAD function
 ├── include.php     → Include file
 ├── keep.php        → Sequence keep
-├── level.php       → Level variable
+├── level.php       → Array field of an enclosing row
 ├── local.php       → Local file
 ├── make.php        → Sequence make
 ├── pad.php         → PAD tag
+├── parm.php        → Tag parameter
 ├── php.php         → PHP function
 ├── property.php    → Tag property
 ├── pull.php        → Sequence pull
@@ -607,8 +625,8 @@ types/
 ### Sequence Operations
 
 ```html
-{fibonacci:make 1 10}
-{fibonacci:sum}
-{fibonacci:pull}
-{fibonacci:remove}
+{fibonacci:make rows=10, push='fib'}{/fibonacci:make}
+{fib:sum}{$sequence}{/fib:sum}
+{pull:fib}{$sequence} {/pull:fib}
+{fib:remove even}{$sequence} {/fib:remove}
 ```
