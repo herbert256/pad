@@ -378,7 +378,7 @@ the session; these do the same by name, whatever those settings let through. Man
 | `padRequestMethod ()` | The method upper-cased - `GET`, `POST`, `PUT`, `M-SEARCH` ... any method HTTP allows; `GET` when there is none (the command line). The engine asks it too - the CSRF check, `padPosted`, the page cache and the 304 |
 | `padRequestIs ( $method )` | `TRUE` when the method is this one, or one of a list / comma-separated text, in any case |
 | `padSession ( $key = NULL, $default = NULL )` | One value of the session by name or dot path, or the default; `NULL` key: all of it (`[]` without a session). Never starts a session |
-| `padSessionPut ( $key, $value )` | Keeps a value at a dot path, starting the session when there is none; an array of names and values puts them all. `TRUE`, or `FALSE` when no session can start (headers sent) |
+| `padSessionPut ( $key, $value = NULL )` | Keeps a value at a dot path, starting the session when there is none; an array of names and values puts them all. `TRUE`, or `FALSE` when no session can start (headers sent) |
 | `padSessionHas ( $keys )` | `TRUE` when every name is in the session - a `NULL` value counts |
 | `padSessionPull ( $key, $default = NULL )` | The value, taken out of the session; the default when it is not there |
 | `padSessionForget ( $keys )` | Removes one or several names or dot paths from the session |
@@ -417,7 +417,7 @@ the session; these do the same by name, whatever those settings let through. Man
 ```php
   $sort   = padRequest ( 'sort', 'date' );                         // ?orders&sort=total
   $name   = padRequest ( 'customer.name' );                        // customer[name], or JSON
-  $ids    = padRequest ( 'items.*.id' );                           // [ 3, 7 ]
+  $ids    = padRequest ( 'items.*.id' );                           // [ '3', '7' ]
   $save   = padRequestOnly ( 'customer.email, note' );
   $cart   = padSession ( 'cart.items', [] );
   $coupon = padSessionPull ( 'cart.coupon' );
@@ -456,7 +456,7 @@ Edge rules:
   `padFlashInput` flashes nothing.
 - `padUrl`: a page written as a link writes it - `?about`, `about&x=1` - is that page with
   those values; a `#fragment` stays at the end; the page's segments are URL-encoded; the
-  values go through `http_build_query` (arrays as `tags[0]=...`, `NULL` left out); a string
+  values go through `http_build_query` (arrays as `tags%5B0%5D=...`, `NULL` left out); a string
   of values is appended as it is. The form follows `$padCleanUrls` at the moment of the call.
 - `padBack` follows the Referer only to this host and port and a path under this
   application's own directory (`/pad/shop/`, not `/pad/shop2/`), http or https, with no
