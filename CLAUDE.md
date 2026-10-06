@@ -1634,8 +1634,8 @@ header('Location: ?tickets/index'); exit;  // WRONG
 PAD parses `{ }` as tags. Prefer external files, or use `{ignore}` for inline code:
 ```html
 <link rel="stylesheet" href="style.css">  <!-- Best -->
-{ignore}<style>body { color: red; }</style>{/ignore}  <!-- OK -->
-<style>body { color: red; }</style>        <!-- WRONG - will parse {} -->
+{ignore}<style>body {color: red}</style>{/ignore}  <!-- OK -->
+<style>body {color: red}</style>        <!-- WRONG - will parse {color: red} -->
 ```
 
 ### Live Regions (interactivity without app JavaScript)

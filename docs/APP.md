@@ -1021,7 +1021,7 @@ PAD parses `{ }` as template tags. CSS and JavaScript use braces extensively, ca
 
 <!-- NOT inline styles with braces -->
 <style>
-  body { color: red; }  <!-- PAD tries to parse { color: red } as a tag! -->
+  body {color: red}  <!-- PAD tries to parse {color: red} as a tag! -->
 </style>
 ```
 
