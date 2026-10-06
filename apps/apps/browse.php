@@ -61,6 +61,12 @@
   $dir  = padRequest ( 'dir',  '' );
   $file = padRequest ( 'file', '' );
 
+  // A list from the query string - app[]=x - names nothing: preg_match got the array and
+  // the page ended on a TypeError, a 500.
+  $app  = is_string ( $app )  ? $app  : '';
+  $dir  = is_string ( $dir )  ? $dir  : '';
+  $file = is_string ( $file ) ? $file : '';
+
   $appPath = '';
   $appDirs = [];
   $appFiles = [];

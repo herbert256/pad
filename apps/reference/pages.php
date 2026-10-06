@@ -1,6 +1,8 @@
 <?php
 
-  if ( ! isset ( $type ) ) $type = 'PAD Tags';
+  // A list from the query string - type[]=x - is no type, as in dir.php.
+
+  if ( ! isset ( $type ) or ! is_string ( $type ) ) $type = 'PAD Tags';
   if ( ! isset ( $xref ) ) $xref = 'tag/pad';
   if ( ! isset ( $item ) ) $item = 'switch';
 
