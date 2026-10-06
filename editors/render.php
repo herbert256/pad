@@ -11,7 +11,8 @@
   // 0 when the request ended 2xx or 3xx, 1 otherwise - and a PAD error prints the JSON body
   // of pad/error/claude.php (the message, the PHP file and line, the engine's globals), so
   // a caller gets a strict syntax check of a page with its real data, no server needed.
-  // A wrong application or page name ends with status 2 and a line on stderr.
+  // A wrong application name ends with status 2 and a line on stderr; a page the application
+  // does not have is the engine's own answer, "Page 'x' not found" on stdout with status 1.
   //
   // apps/cli/pad renders the cli application only; this one takes the application from its
   // first argument, nested ones too (regression/errors). --apps points at another
