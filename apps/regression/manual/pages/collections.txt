@@ -82,4 +82,73 @@ was.</p>
 
 <p>A list links to the page of a post with its slug - <code>?news/post&amp;slug={$slug}</code> -
 and that page names it with the <code>slug</code> option. A slug that names no file gives no
-rows, so the <code>
+rows, so the <b>@</b><b>else</b><b>@</b> part answers.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/collections_2.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/collections_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $slug </span><span style="color: #007700">= </span><span style="color: #DD0000">'markdown'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">collection </font><font color="red"><font color="black">'</font>news<font color="black">'</font><font color="black">,</font> slug=<font color="red">$</font>slug</font>}</b><br>  &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>  <b>{<font color="green"><font color="red">!</font>body</font>}</b><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  No such post.<br><b>{/<font color="blue">collection</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+  <h3>Markdown arrives</h3>
+  <p>The <strong>markdown</strong> tag and pipe write Markdown as HTML.</p>
+
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<ul>
+  <li><code>body</code> is HTML; print it raw with <code>{!body}</code>. Raw HTML in a file is escaped unless the tag has the <code>html</code> option.</li>
+  <li><code>sort</code>, <code>first</code>, <code>where</code> and the other handling options work on the rows as on any data.</li>
+  <li>The folder is looked up like a <code>_data</code> file: the page's directory, its parents, then <code>_common</code>.</li>
+  <li>In PHP, <code>padCollection('news')</code> gives the same rows.</li>
+</ul>

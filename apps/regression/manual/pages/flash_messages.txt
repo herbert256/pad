@@ -66,4 +66,14 @@ carries that: <code>padFlash ( 'Thanks, your message was sent.' )</code> before 
 
 <ul>
   <li><b>{flash}</b> renders its content once per message, with <code>{$message}</code>
-  and <code>{$type}</code>; without a message the <code>
+  and <code>{$type}</code>; without a message the <b>@</b><b>else</b><b>@</b> half renders.
+  <code>{flash 'error'}</code> shows the messages of that type only.</li>
+  <li>The type is the second argument of <code>padFlash</code>, <code>info</code> when it is
+  left out.</li>
+  <li>A message lives exactly one request after the one that flashed it - the redirect's
+  destination - and is gone after that, shown or not. A page that flashes and renders itself
+  shows it at once, as here.</li>
+  <li>The message is kept in the session, which starts on demand. A small
+  <code>padFlash</code> cookie tells the next request that there is something to take, so the
+  pages that never flash do not open the session at all.</li>
+</ul>
