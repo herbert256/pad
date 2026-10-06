@@ -35,8 +35,12 @@
     if ( ! is_array ( $file ) or ( $file ['error'] ?? UPLOAD_ERR_NO_FILE ) === UPLOAD_ERR_NO_FILE )
       return NULL;
 
+    // The visitor names the field: one sent as a list - avatar[] where the page takes one
+    // avatar - is refused like any file the page cannot take. It was the author's error,
+    // and renaming the field turned any upload page into an error report.
+
     if ( is_array ( $file ['error'] ) )
-      padError ( "padUpload takes one file per field - '$field' holds several" );
+      return padUploadRefuse ( $field, ':label must be one file', '' );
 
     if ( in_array ( $file ['error'], [ UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE ] ) )
       return padUploadRefuse ( $field, ':label is larger than :n', padUploadSize ( $limit ?: padUploadBytes ( ini_get ( 'upload_max_filesize' ) ) ) );
