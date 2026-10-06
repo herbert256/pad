@@ -18,10 +18,12 @@
   $request = explode ( '-', $r ['headers'] ['PAD'] ?? '' ) [1] ?? '';
   $file    = DATA . "track/requests/$request.json";
 
-  // The recorder finishes after the response has been flushed back - with all five info
-  // modes on, and the suite fetching a dozen pages at once, that can take a few seconds.
+  // The recorder finishes after the response has been flushed back, and last of the five
+  // info modes this application runs - after a trace with every option on, which writes
+  // hundreds of files. With the suite fetching a dozen pages at once, the xml case twelve
+  // probes among them, that took more than ten seconds.
 
-  for ( $settle = 0; $settle < 100 and ! file_exists ( $file ); $settle++ ) {
+  for ( $settle = 0; $settle < 300 and ! file_exists ( $file ); $settle++ ) {
     usleep ( 100000 );
     clearstatcache ();
   }
