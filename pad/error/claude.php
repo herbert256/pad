@@ -193,12 +193,23 @@
 
   }
 
-  // Random values only, long enough not to stand for anything else by chance.
+  // Random values only, long enough not to stand for anything else by chance - and minted by
+  // the server: the session cookies are the visitor's to send, and a PHPSESSID or padSesID
+  // chosen to read like an attack's payload made that payload disappear from every report
+  // of it. PHP's session id counts under strict mode alone, where PHP refuses an id it did
+  // not make; PAD's when it is not the one the browser brought.
 
   function padRedactValues () {
 
-    $values = [ $GLOBALS ['padSesID'] ?? '', $GLOBALS ['padCsrfIssued'] ?? '', $_SESSION ['padCsrf'] ?? '',
-                $_COOKIE [ session_name () ] ?? '', session_id (), $GLOBALS ['padAppKey'] ?? '' ];
+    global $padSesID;
+
+    $values = [ $GLOBALS ['padCsrfIssued'] ?? '', $_SESSION ['padCsrf'] ?? '', $GLOBALS ['padAppKey'] ?? '' ];
+
+    if ( session_status () === PHP_SESSION_ACTIVE and ini_get ( 'session.use_strict_mode' ) )
+      $values [] = session_id ();
+
+    if ( isset ( $padSesID ) and ! in_array ( $padSesID, [ $_COOKIE ['padSesID'] ?? NULL, $_REQUEST ['padSesID'] ?? NULL ], TRUE ) )
+      $values [] = $padSesID;
 
     return array_values ( array_filter ( $values, fn ( $value ) => is_string ( $value ) and strlen ( $value ) >= 8 ) );
 

@@ -5,6 +5,10 @@
   // whatever variable a page keeps it in, and PAD's session id rides the PAD header line.
   // An error report of a remote visitor's request carried that visitor's token in five files.
 
+  // A session id PAD minted for this request - one the browser brought is the visitor's own
+  // text, which is not redacted by its value (redaction_hides_no_text_a_visitor_chose).
+
+  $padSesID = padRandomString ();
   $token    = padCsrfToken ();
   $redacted = padRedact ( [
     'form' => '<input type="hidden" name="padCsrfToken" value="' . $token . '">',
