@@ -24,12 +24,24 @@
   --side-width: 280px;
   --panel-height: 220px;
   --preview-width: 480px;
+  --term-bg: #fbfbfc;
+  --term-fg: #1f2933;
+  --term-c0: #2e3440; --term-c1: #c0392b; --term-c2: #2e7d32; --term-c3: #9a6700;
+  --term-c4: #1f5fbf; --term-c5: #8b3d8b; --term-c6: #0e7c7b; --term-c7: #6b7480;
+  --term-c8: #5c6670; --term-c9: #e0453a; --term-c10: #3a9a3f; --term-c11: #b58200;
+  --term-c12: #2f7bd8; --term-c13: #a64ca6; --term-c14: #12938f; --term-c15: #1f2933;
   --mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
   --sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   color-scheme: light;
 }
 
 :root[data-theme="dark"] {
+  --term-bg: #12161c;
+  --term-fg: #d8dee9;
+  --term-c0: #3b4252; --term-c1: #ec5f66; --term-c2: #99c794; --term-c3: #f9ae58;
+  --term-c4: #6699cc; --term-c5: #c695c6; --term-c6: #5fb4b4; --term-c7: #d8dee9;
+  --term-c8: #65737e; --term-c9: #f07c82; --term-c10: #b5d9b0; --term-c11: #fac863;
+  --term-c12: #8fb8e0; --term-c13: #d8b0d8; --term-c14: #8ad1d1; --term-c15: #ffffff;
   --bg: #161a21;
   --bg-2: #1e232c;
   --bg-3: #1b2028;
@@ -53,6 +65,12 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
+    --term-bg: #12161c;
+    --term-fg: #d8dee9;
+    --term-c0: #3b4252; --term-c1: #ec5f66; --term-c2: #99c794; --term-c3: #f9ae58;
+    --term-c4: #6699cc; --term-c5: #c695c6; --term-c6: #5fb4b4; --term-c7: #d8dee9;
+    --term-c8: #65737e; --term-c9: #f07c82; --term-c10: #b5d9b0; --term-c11: #fac863;
+    --term-c12: #8fb8e0; --term-c13: #d8b0d8; --term-c14: #8ad1d1; --term-c15: #ffffff;
     --bg: #161a21;
     --bg-2: #1e232c;
     --bg-3: #1b2028;
@@ -559,6 +577,82 @@ body {
   }
   .toggle input:checked + span { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
   .toggle input:focus-visible + span { outline: 2px solid var(--select-line); }
+
+  /* ---------------------------------------------------------------- terminal */
+
+  .term { padding: 0; display: flex; flex-direction: column; }
+  .term-state { margin-left: 8px; font-size: 11px; color: var(--muted); }
+  .term-state.busy { color: var(--warn); }
+  .term-stop { margin-left: 6px; color: var(--danger); }
+  .term-screen {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: 6px 12px 10px;
+    background: var(--term-bg);
+    color: var(--term-fg);
+    font: 12.5px/1.45 var(--mono);
+    cursor: text;
+  }
+  .term-row { white-space: pre-wrap; word-break: break-all; min-height: 1.45em; }
+  .term-command { margin-top: 6px; }
+  .term-line { display: flex; align-items: baseline; gap: 0; margin: 0; }
+  .term-prompt { white-space: pre; flex: none; cursor: text; }
+  .term-dir { color: var(--term-c6); }
+  .term-sign { color: var(--term-c5); font-weight: 700; }
+  .term-input {
+    flex: 1;
+    min-width: 40px;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    color: var(--term-fg);
+    font: inherit;
+    outline: none;
+    caret-color: var(--accent);
+  }
+  .term-probe { position: absolute; visibility: hidden; white-space: pre; }
+  .term-link { color: inherit; text-decoration: underline dotted; text-underline-offset: 2px; cursor: pointer; }
+  .term-link:hover { color: var(--term-c12); text-decoration-style: solid; }
+  .t-bold { font-weight: 700; }
+  .t-dim { opacity: .65; }
+  .t-italic { font-style: italic; }
+  .t-underline { text-decoration: underline; }
+  .t-inv-fg { color: var(--term-bg); }
+  .t-inv-bg { background: var(--term-fg); }
+  .t-fg0 { color: var(--term-c0); }
+  .t-bg0 { background: var(--term-c0); }
+  .t-fg1 { color: var(--term-c1); }
+  .t-bg1 { background: var(--term-c1); }
+  .t-fg2 { color: var(--term-c2); }
+  .t-bg2 { background: var(--term-c2); }
+  .t-fg3 { color: var(--term-c3); }
+  .t-bg3 { background: var(--term-c3); }
+  .t-fg4 { color: var(--term-c4); }
+  .t-bg4 { background: var(--term-c4); }
+  .t-fg5 { color: var(--term-c5); }
+  .t-bg5 { background: var(--term-c5); }
+  .t-fg6 { color: var(--term-c6); }
+  .t-bg6 { background: var(--term-c6); }
+  .t-fg7 { color: var(--term-c7); }
+  .t-bg7 { background: var(--term-c7); }
+  .t-fg8 { color: var(--term-c8); }
+  .t-bg8 { background: var(--term-c8); }
+  .t-fg9 { color: var(--term-c9); }
+  .t-bg9 { background: var(--term-c9); }
+  .t-fg10 { color: var(--term-c10); }
+  .t-bg10 { background: var(--term-c10); }
+  .t-fg11 { color: var(--term-c11); }
+  .t-bg11 { background: var(--term-c11); }
+  .t-fg12 { color: var(--term-c12); }
+  .t-bg12 { background: var(--term-c12); }
+  .t-fg13 { color: var(--term-c13); }
+  .t-bg13 { background: var(--term-c13); }
+  .t-fg14 { color: var(--term-c14); }
+  .t-bg14 { background: var(--term-c14); }
+  .t-fg15 { color: var(--term-c15); }
+  .t-bg15 { background: var(--term-c15); }
 
   /* ---------------------------------------------------------------- status bar */
 

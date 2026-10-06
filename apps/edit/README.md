@@ -60,6 +60,13 @@ settings in `_config/` files, `db()`'s verbs; signature help; hover; go to defin
 - Every save keeps the version it replaces: **History** compares and restores them. Compare
   with git's HEAD. A file changed on disk while it is open is read again, or, when it has
   changes of yours, shown side by side with them before it is overwritten.
+- A terminal in the bottom panel (Ctrl+\`): commands run in a shell on this machine, in the
+  application's directory to start with; `cd` carries over to the next command, the output
+  streams in with its colours, a file of an application in it is a link that opens it,
+  Ctrl+C (or **Stop**) stops a command and what it started, Tab completes a name, ↑ ↓ go
+  through the history, `clear` or Ctrl+L empties the screen. There is no terminal device:
+  a command gets no input, and full-screen programs (vi, top, less) do not work. The `pad`
+  command is on the PATH.
 - Light and dark, font size, tab size, word wrap, minimap, autosave (**⋯ → Settings**).
 - Monaco's own palette (F1) holds every editor command and the PAD ones; **⋯ → Keyboard
   shortcuts** lists the keys.
@@ -81,6 +88,10 @@ The editor writes `.php` files: whoever can use it can run code on this machine.
   link out.
 - The preview runs the application's page in a sandboxed frame: its scripts cannot reach the
   editor.
+- The terminal runs commands as the web server's user - no more than the editor can do by
+  writing a PHP file, but more directly; `$editTerminal = FALSE` switches it off. Its jobs
+  and their output are kept in the system's temporary directory (mode 0700), not under
+  `DATA/`; a job whose page is gone is stopped after two minutes.
 - `DATA/` must not be served by the web server in production - it holds the users, the
   history and the trash (as it holds the engine's keys).
 
@@ -96,6 +107,8 @@ The editor writes `.php` files: whoever can use it can run code on this machine.
 | `$editHistoryKeep` | `50` | versions kept per file |
 | `$editTrashDays` | `30` | days a deleted file stays in the trash |
 | `$editMaxText` | 2 MB | the largest file opened as text |
+| `$editTerminal` | `TRUE` | the terminal in the bottom panel |
+| `$editShell` | `''` | the terminal's shell - `''` takes bash, zsh or sh |
 
 Without Monaco - no internet, a wrong address - the editor falls back to a plain text area:
 files still open, change and save.
@@ -118,6 +131,7 @@ suite's Other run lists its pages as *new* until they have answers.
 | `_lib/language.php` | The names and documentation behind completion and hover |
 | `_lib/check.php` | PHP syntax checks, and PAD's own render of a page |
 | `_lib/git.php` | Changed files, HEAD versions, the branch |
+| `_lib/terminal.php` | The terminal's jobs: run, read, stop, complete |
 | `_lib/api.php` | Access, and the running of a call |
 | `_templates/` | The starters of new files |
 | `_tests/` | `pad test edit` |

@@ -42,4 +42,10 @@
 
   $editMaxText = 2 * 1024 * 1024;
 
+  // The terminal in the editor's bottom panel runs commands in a shell as the web server's
+  // user. FALSE switches it off; $editShell names the shell, '' takes bash, zsh or sh.
+
+  $editTerminal = TRUE;
+  $editShell    = '';
+
 ?>

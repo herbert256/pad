@@ -11,6 +11,8 @@
     'host'      => $padHost,
     'remote'    => (bool) $editRemote,
     'trashDays' => $editTrashDays,
+    'home'      => editHome (),
+    'terminal'  => (bool) $editTerminal,
     'limits'    => [ 'upload' => editIniBytes ( 'upload_max_filesize' ),
                      'post'   => editIniBytes ( 'post_max_size' ),
                      'text'   => $editMaxText ]

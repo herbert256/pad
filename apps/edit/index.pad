@@ -70,6 +70,9 @@
           <button type="button" class="ptab active" id="ptab-problems" role="tab" aria-selected="true">Problems <span class="count" id="problemsCount"></span></button>
           <button type="button" class="ptab" id="ptab-search" role="tab" aria-selected="false">Search</button>
           <button type="button" class="ptab" id="ptab-history" role="tab" aria-selected="false">History</button>
+          <button type="button" class="ptab" id="ptab-terminal" role="tab" aria-selected="false">Terminal</button>
+          <span class="term-state" id="termState" aria-live="polite"></span>
+          <button type="button" class="btn small term-stop" id="termStop" hidden>Stop</button>
           <button type="button" class="btn ghost panel-close" id="panelClose" title="Close the panel" aria-label="Close the panel"></button>
         </div>
         <div class="panel-body" id="panel-problems" role="tabpanel"><div id="problemsList"></div></div>
@@ -84,6 +87,15 @@
           <div id="searchResults"></div>
         </div>
         <div class="panel-body" id="panel-history" role="tabpanel" hidden><div id="historyList"></div></div>
+        <div class="panel-body term" id="panel-terminal" role="tabpanel" hidden>
+          <div class="term-screen" id="termScreen">
+            <div class="term-out" id="termOut" role="log" aria-label="Terminal output"></div>
+            <form class="term-line" id="termForm" autocomplete="off">
+              <label class="term-prompt" id="termPrompt" for="termInput"></label>
+              <input type="text" class="term-input" id="termInput" spellcheck="false" autocapitalize="off" aria-label="Command">
+            </form>
+          </div>
+        </div>
       </section>
 
     </section>

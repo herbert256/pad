@@ -199,7 +199,8 @@
     warning: 'M8 1.5l7 12.5H1z M8 6v4 M8 12h.01',
     info: 'M8 14.5a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13z M8 7v4.5 M8 4.5h.01',
     sun: 'M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z M8 1v1.5 M8 13.5V15 M1 8h1.5 M13.5 8H15 M3 3l1 1 M12 12l1 1 M3 13l1-1 M12 4l1-1',
-    moon: 'M13.5 9.5A6 6 0 0 1 6.5 2.5a6 6 0 1 0 7 7z'
+    moon: 'M13.5 9.5A6 6 0 0 1 6.5 2.5a6 6 0 1 0 7 7z',
+    terminal: 'M1.5 2.5h13v11h-13z M4 6l2.5 2L4 10 M8 10.5h4'
   };
 
   function icon(name, cls) {
@@ -1379,6 +1380,9 @@
 
   function switchApp(app) {
     if (!app || !E.apps.some(function (a) { return a.name === app; })) app = E.apps.some(function (a) { return a.name === 'demo'; }) ? 'demo' : (E.apps[0] || {}).name;
+    if (T.ready && !T.job && T.cwd === T.root && app !== E.app) {
+      api('terminal', { op: 'where', app: app }).then(function (r) { T.cwd = T.root = r.cwd; termPrompt(); }).catch(function () {});
+    }
     E.app = app;
     store('app', app);
     $('appName').textContent = app;
@@ -1523,14 +1527,17 @@
     settings.panelOpen = true;
     saveSettings();
     applySettings();
-    ['problems', 'search', 'history'].forEach(function (p) {
+    ['problems', 'search', 'history', 'terminal'].forEach(function (p) {
       $('panel-' + p).hidden = p !== name;
       var t = $('ptab-' + p);
       t.classList.toggle('active', p === name);
       t.setAttribute('aria-selected', p === name ? 'true' : 'false');
     });
+    $('termState').hidden = name !== 'terminal';
+    $('termStop').hidden = name !== 'terminal' || !T.job;
     if (name === 'history') renderHistory();
     if (name === 'search') setTimeout(function () { $('searchInput').focus(); $('searchInput').select(); }, 30);
+    if (name === 'terminal') termStart().then(function () { $('termInput').focus(); termScroll(); });
   }
 
   function runSearch(ev) {
@@ -1738,6 +1745,359 @@
   }
 
   // ------------------------------------------------------------------------------------
+  // The terminal: a command runs on the server as a job (apps/edit/_lib/terminal.php) whose
+  // output is read a few times a second until it is done. Colours and the codes most tools
+  // write are shown; a file name of an application in the output opens it. No input reaches
+  // a command, and full-screen programs do not work: there is no terminal device.
+  // ------------------------------------------------------------------------------------
+
+  var T = { cwd: '', root: '', shell: '', job: null, offset: 0, started: 0, stops: 0, runCwd: '',
+            history: store('termHistory') || [], pos: -1, draft: '', row: null, cr: false, style: {}, ready: false };
+
+  function termRel(path) {
+    var home = boot.home || '';
+    if (home && path === home) return '~pad';
+    if (home && path.indexOf(home + '/') === 0) return path.slice(home.length + 1);
+    return path;
+  }
+
+  function termPrompt() {
+    var p = $('termPrompt');
+    p.textContent = '';
+    p.appendChild(el('span', { class: 'term-dir', text: termRel(T.cwd || T.root || '') }));
+    p.appendChild(el('span', { class: 'term-sign', text: T.job ? ' … ' : ' $ ' }));
+    p.title = T.cwd || '';
+    $('termState').textContent = T.job ? 'running - Ctrl+C stops' : '';
+    $('termState').classList.toggle('busy', !!T.job);
+    $('termStop').hidden = !T.job || E.panelTab !== 'terminal';
+  }
+
+  function termStart() {
+    if (T.ready) { termPrompt(); return Promise.resolve(); }
+    T.ready = true;
+    return api('terminal', { op: 'where', app: E.app }).then(function (r) {
+      T.cwd = T.root = r.cwd;
+      T.shell = r.shell.split('/').pop();
+      termWrite('\x1b[2m' + T.shell + ' in ' + termRel(T.cwd) + ' - commands run on this machine as the web server\'s user, with no input and no terminal device.\n' +
+                'Tab completes a name, ↑ ↓ go through the history, Ctrl+C stops a command, clear (or Ctrl+L) empties the screen.\x1b[0m\n');
+      termPrompt();
+    }).catch(function (e) { T.ready = false; termWrite('\x1b[31m' + e.message + '\x1b[0m\n'); });
+  }
+
+  function termColumns() {
+    var probe = el('span', { class: 'term-probe', text: 'MMMMMMMMMM' });
+    $('termOut').appendChild(probe);
+    var w = probe.getBoundingClientRect().width / 10 || 8;
+    probe.remove();
+    return Math.max(20, Math.floor(($('termScreen').clientWidth - 24) / w));
+  }
+
+  function termAtBottom() {
+    var s = $('termScreen');
+    return s.scrollHeight - s.scrollTop - s.clientHeight < 40;
+  }
+
+  function termScroll() { var s = $('termScreen'); s.scrollTop = s.scrollHeight; }
+
+  function termRow() {
+    var out = $('termOut');
+    T.row = el('div', { class: 'term-row' });
+    out.appendChild(T.row);
+    while (out.childNodes.length > 5000) out.removeChild(out.firstChild);
+    return T.row;
+  }
+
+  function termClear() {
+    $('termOut').textContent = '';
+    T.row = null;
+    T.cr = false;
+  }
+
+  // The 256 colours past the first sixteen: a 6 x 6 x 6 cube, then 24 greys.
+  function termColor(n) {
+    if (n < 16) return null;
+    if (n >= 232) { var g = 8 + (n - 232) * 10; return 'rgb(' + g + ',' + g + ',' + g + ')'; }
+    n -= 16;
+    var v = function (x) { return x ? 55 + x * 40 : 0; };
+    return 'rgb(' + v(Math.floor(n / 36)) + ',' + v(Math.floor(n / 6) % 6) + ',' + v(n % 6) + ')';
+  }
+
+  function termSgr(params) {
+    var p = params === '' ? [0] : params.split(';').map(function (x) { return parseInt(x, 10) || 0; });
+    var st = T.style;
+    for (var i = 0; i < p.length; i++) {
+      var c = p[i];
+      if (c === 0) { st = {}; }
+      else if (c === 1) st.bold = true;
+      else if (c === 2) st.dim = true;
+      else if (c === 3) st.italic = true;
+      else if (c === 4) st.underline = true;
+      else if (c === 7) st.inverse = true;
+      else if (c === 22) { delete st.bold; delete st.dim; }
+      else if (c === 23) delete st.italic;
+      else if (c === 24) delete st.underline;
+      else if (c === 27) delete st.inverse;
+      else if (c >= 30 && c <= 37) st.fg = c - 30;
+      else if (c >= 90 && c <= 97) st.fg = c - 90 + 8;
+      else if (c === 39) delete st.fg;
+      else if (c >= 40 && c <= 47) st.bg = c - 40;
+      else if (c >= 100 && c <= 107) st.bg = c - 100 + 8;
+      else if (c === 49) delete st.bg;
+      else if ((c === 38 || c === 48) && p[i + 1] === 5) { st[c === 38 ? 'fg' : 'bg'] = p[i + 2]; i += 2; }
+      else if ((c === 38 || c === 48) && p[i + 1] === 2) { st[c === 38 ? 'fg' : 'bg'] = 'rgb(' + p[i + 2] + ',' + p[i + 3] + ',' + p[i + 4] + ')'; i += 4; }
+    }
+    T.style = st;
+  }
+
+  function termSpan(text) {
+    var st = T.style, cls = [], style = {};
+    var fg = st.inverse ? st.bg : st.fg, bg = st.inverse ? st.fg : st.bg;
+    if (st.inverse && fg === undefined) cls.push('t-inv-fg');
+    if (st.inverse && bg === undefined) cls.push('t-inv-bg');
+    [['fg', fg], ['bg', bg]].forEach(function (x) {
+      if (x[1] === undefined) return;
+      if (typeof x[1] === 'number' && x[1] < 16) cls.push('t-' + x[0] + x[1]);
+      else style[x[0] === 'fg' ? 'color' : 'backgroundColor'] = typeof x[1] === 'number' ? termColor(x[1]) : x[1];
+    });
+    if (st.bold) cls.push('t-bold');
+    if (st.dim) cls.push('t-dim');
+    if (st.italic) cls.push('t-italic');
+    if (st.underline) cls.push('t-underline');
+    var span = el('span', { class: cls.join(' ') || null, style: style });
+    termLinks(span, text);
+    return span;
+  }
+
+  // A file name in the output that is a file of an application - relative to the
+  // directory the command ran in, or absolute - becomes a link that opens it, at its line
+  // when one follows the name (file.pad:12).
+  var TERM_FILE = /(?:\/|\.{1,2}\/)?(?:[\w@.\-]+\/)*[\w@\-][\w@.\-]*\.(?:pad|php|html|js|css|json|md|txt|sql|xml|yaml|yml|sh|csv)(?::\d+(?::\d+)?)?/g;
+
+  function termLinks(span, text) {
+    var last = 0, m;
+    TERM_FILE.lastIndex = 0;
+    while ((m = TERM_FILE.exec(text)) !== null) {
+      var target = termTarget(m[0]);
+      if (!target) continue;
+      if (m.index > last) span.appendChild(document.createTextNode(text.slice(last, m.index)));
+      span.appendChild(el('a', { href: '#', class: 'term-link', title: 'Open ' + target.app + '/' + target.path,
+                                 onclick: (function (t) { return function (e) { e.preventDefault(); openFile(t.app, t.root, t.path, t.line ? { line: t.line, column: t.column || 1 } : null); }; })(target) },
+                          [m[0]]));
+      last = m.index + m[0].length;
+    }
+    if (last < text.length) span.appendChild(document.createTextNode(text.slice(last)));
+  }
+
+  function termTarget(token) {
+    var home = boot.home || '';
+    var parts = token.match(/^(.*?)(?::(\d+))?(?::(\d+))?$/);
+    var name = parts[1];
+    var abs = name.charAt(0) === '/' ? name : (T.runCwd || T.cwd) + '/' + name;
+    var out = [];
+    abs.split('/').forEach(function (seg) { if (seg === '..') out.pop(); else if (seg && seg !== '.') out.push(seg); });
+    abs = '/' + out.join('/');
+    var rootName = abs.indexOf(home + '/apps/') === 0 ? 'app' : abs.indexOf(home + '/www/') === 0 ? 'www' : '';
+    if (!home || !rootName) return null;
+    var rest = abs.slice(home.length + (rootName === 'app' ? 6 : 5));
+    var app = E.apps.map(function (a) { return a.name; }).filter(function (a) { return rest.indexOf(a + '/') === 0; })
+                .sort(function (a, b) { return b.length - a.length; })[0];
+    if (!app) return null;
+    var path = rest.slice(app.length + 1);
+    if (app === E.app && !E.fileIndex[rootName + '|' + path]) return null;
+    return { app: app, root: rootName, path: path, line: parts[2] ? parseInt(parts[2], 10) : 0, column: parts[3] ? parseInt(parts[3], 10) : 0 };
+  }
+
+  var TERM_CODES = /\x1b\[([0-9;?]*)([A-Za-z])|\x1b\][^\x07\x1b]*(?:\x07|\x1b\\)|\x1b[()][A-Za-z0-9]|\x1b.|\r\n|\n|\r|\x07|\x08|[^\x1b\r\n\x07\x08]+/g;
+
+  function termWrite(text) {
+    var stick = termAtBottom(), m;
+    TERM_CODES.lastIndex = 0;
+    while ((m = TERM_CODES.exec(text)) !== null) {
+      var t = m[0];
+      if (t === '\n' || t === '\r\n') { if (!T.row) termRow(); T.row = null; T.cr = false; }
+      else if (t === '\r') T.cr = true;
+      else if (t === '\x07') continue;
+      else if (t === '\x08') { if (T.row && T.row.lastChild) { var lc = T.row.lastChild; lc.textContent = lc.textContent.slice(0, -1); } }
+      else if (m[2] === 'm') termSgr(m[1]);
+      else if (m[2] === 'K') { if (T.row) T.row.textContent = ''; }
+      else if (m[2] === 'J' && (m[1] === '2' || m[1] === '3')) termClear();
+      else if (t.charAt(0) === '\x1b') continue;
+      else {
+        if (!T.row) termRow();
+        if (T.cr) { T.row.textContent = ''; T.cr = false; }
+        T.row.appendChild(termSpan(t));
+      }
+    }
+    if (stick) termScroll();
+  }
+
+  function termEcho(command) {
+    var row = termRow();
+    row.classList.add('term-command');
+    row.appendChild(el('span', { class: 'term-dir', text: termRel(T.cwd) }));
+    row.appendChild(el('span', { class: 'term-sign', text: ' $ ' }));
+    row.appendChild(el('span', { text: command }));
+    T.row = null;
+    termScroll();
+  }
+
+  function termRun(command) {
+    if (T.job) return;
+    termEcho(command);
+    if (/^\s*(clear|cls)\s*$/.test(command)) { termClear(); return; }
+    if (!command.trim()) return;
+    if (T.history[T.history.length - 1] !== command) T.history.push(command);
+    if (T.history.length > 500) T.history = T.history.slice(-500);
+    store('termHistory', T.history);
+    T.job = 'starting';
+    T.runCwd = T.cwd;
+    T.style = {};
+    T.row = null;
+    T.cr = false;
+    termPrompt();
+    api('terminal', { op: 'run', command: command, cwd: T.cwd, app: E.app, columns: termColumns() }).then(function (r) {
+      T.job = r.id;
+      T.cwd = T.runCwd = r.cwd;
+      T.offset = 0;
+      T.started = Date.now();
+      T.stops = 0;
+      termPrompt();
+      termPoll();
+    }).catch(function (e) {
+      T.job = null;
+      termWrite('\x1b[31m' + e.message + '\x1b[0m\n');
+      termPrompt();
+    });
+  }
+
+  // One read at a time: a read asked for while one is under way follows it at once.
+  function termPoll() {
+    clearTimeout(T.timer);
+    var id = T.job;
+    if (!id || id === 'starting') return;
+    if (T.polling) { T.again = true; return; }
+    T.polling = true;
+    api('terminal', { op: 'read', id: id, offset: T.offset }).then(function (r) {
+      T.polling = false;
+      if (T.job !== id) return;
+      if (r.text) termWrite(r.text);
+      T.offset = r.offset;
+      if (r.done) termDone(r);
+      else if (T.again) { T.again = false; termPoll(); }
+      else T.timer = setTimeout(termPoll, r.text ? 60 : 250);
+    }).catch(function (e) {
+      T.polling = false;
+      if (T.job !== id) return;
+      T.job = null;
+      termWrite('\n\x1b[31m' + e.message + '\x1b[0m\n');
+      termPrompt();
+    });
+  }
+
+  function termDone(r) {
+    T.job = null;
+    T.again = false;
+    if (r.cwd) T.cwd = r.cwd;
+    T.row = null;
+    T.cr = false;
+    T.style = {};
+    var secs = (Date.now() - T.started) / 1000;
+    var notes = [];
+    if (r.stopped) notes.push('stopped');
+    else if (r.exit) notes.push('exit ' + r.exit);
+    if (secs >= 2) notes.push(secs < 60 ? secs.toFixed(1) + ' s' : Math.floor(secs / 60) + ' min ' + Math.round(secs % 60) + ' s');
+    if (notes.length) termWrite('\x1b[' + (r.stopped || r.exit ? '31' : '2') + 'm[' + notes.join(', ') + ']\x1b[0m\n');
+    termPrompt();
+    termScroll();
+    // A command may have changed files: the tree, and open files nobody is editing.
+    refreshTree(true);
+    checkDisk();
+  }
+
+  function termStop() {
+    if (!T.job || T.job === 'starting') return;
+    T.stops++;
+    if (T.row) termWrite('\n');
+    termWrite('\x1b[2m^C\x1b[0m\n');
+    // read at once: the job is gone, and the next timer may be a second away in a tab the
+    // browser throttles
+    api('terminal', { op: 'kill', id: T.job, hard: T.stops > 1 }).then(termPoll, function (e) { toast(e.message, 'error'); });
+  }
+
+  function termComplete(input) {
+    var value = input.value, at = input.selectionStart;
+    var before = value.slice(0, at);
+    var word = (before.match(/[^\s'"]*$/) || [''])[0];
+    api('terminal', { op: 'complete', cwd: T.cwd, app: E.app, word: word }).then(function (names) {
+      if (!names.length) return;
+      var common = names.reduce(function (a, b) { var i = 0; while (i < a.length && a[i] === b[i]) i++; return a.slice(0, i); });
+      if (common.length > word.length || names.length === 1) {
+        var add = (names.length === 1 ? names[0] + (/\/$/.test(names[0]) ? '' : ' ') : common).slice(word.length);
+        input.value = before + add + value.slice(at);
+        input.setSelectionRange(at + add.length, at + add.length);
+      } else {
+        termEcho(value);
+        termWrite(names.map(function (n) { return n.split('/').filter(Boolean).pop() + (/\/$/.test(n) ? '/' : ''); }).join('  ') + '\n');
+      }
+    }).catch(function () {});
+  }
+
+  function termKeys(e) {
+    var input = e.target;
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (T.job) return;
+      var command = input.value;
+      input.value = '';
+      T.pos = -1;
+      termRun(command);
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      if (!T.history.length) return;
+      e.preventDefault();
+      if (T.pos === -1) { T.draft = input.value; T.pos = T.history.length; }
+      T.pos = Math.max(0, Math.min(T.history.length, T.pos + (e.key === 'ArrowUp' ? -1 : 1)));
+      input.value = T.pos === T.history.length ? T.draft : T.history[T.pos];
+      if (T.pos === T.history.length) T.pos = -1;
+      input.setSelectionRange(input.value.length, input.value.length);
+    } else if (e.key === 'Tab' && !e.shiftKey) {
+      e.preventDefault();
+      termComplete(input);
+    } else if (e.ctrlKey && !e.metaKey && e.key.toLowerCase() === 'c') {
+      e.preventDefault();
+      if (T.job) termStop();
+      else { termEcho(input.value + '^C'); input.value = ''; T.pos = -1; }
+    } else if (e.ctrlKey && !e.metaKey && e.key.toLowerCase() === 'l') {
+      e.preventDefault();
+      termClear();
+    } else if (e.ctrlKey && !e.metaKey && e.key.toLowerCase() === 'u') {
+      e.preventDefault();
+      input.value = input.value.slice(input.selectionStart);
+      input.setSelectionRange(0, 0);
+    }
+  }
+
+  function toggleTerminal() {
+    if (!boot.terminal) { toast('The terminal is switched off ($editTerminal)'); return; }
+    if (settings.panelOpen && E.panelTab === 'terminal' && document.activeElement === $('termInput')) {
+      if (currentDoc() && currentDoc().kind === 'text') E.editor.focus();
+      return;
+    }
+    showPanel('terminal');
+  }
+
+  // A job still running when the page goes stops with it - a beacon can carry the token
+  // in the body, where a fetch would no longer be waited for.
+  window.addEventListener('pagehide', function () {
+    if (!T.job || T.job === 'starting' || !navigator.sendBeacon) return;
+    var form = new FormData();
+    form.append('padCsrfToken', csrf);
+    form.append('op', 'kill');
+    form.append('id', T.job);
+    form.append('hard', '1');
+    navigator.sendBeacon('?api&action=terminal&padFormat=json', form);
+  });
+
+  // ------------------------------------------------------------------------------------
   // Settings, users, trash, shortcuts
   // ------------------------------------------------------------------------------------
 
@@ -1863,6 +2223,7 @@
     { id: 'panel', label: 'Toggle bottom panel', keys: MOD + 'J', icon: 'panel', run: function () { settings.panelOpen = !settings.panelOpen; saveSettings(); applySettings(); } },
     { id: 'reveal', label: 'Reveal in tree', icon: 'side', run: function () { var d = currentDoc(); if (d) select(d.root, d.path, true); } },
     { id: 'history', label: 'Show the history of this file', icon: 'history', run: function () { showPanel('history'); } },
+    { id: 'terminal', label: 'Terminal', keys: 'Ctrl+`', icon: 'terminal', run: toggleTerminal },
     { id: 'head', label: 'Compare with HEAD', icon: 'git', run: function () { compareHead(currentDoc()); } },
     { id: 'apps', label: 'Switch application', keys: 'Alt+A', icon: 'apps', run: appPicker },
     { id: 'newApp', label: 'New application', icon: 'filePlus', run: newApp },
@@ -1925,6 +2286,7 @@
     if (e.altKey && !mod && code === 'BracketRight') return run('next');
     if (e.altKey && !mod && code === 'BracketLeft') return run('prev');
     if (e.key === 'F7') return run('check');
+    if (e.ctrlKey && !e.metaKey && !e.altKey && (code === 'Backquote' || k === '`')) return run('terminal');
   }, true);
 
   window.addEventListener('beforeunload', function (e) {
@@ -2062,7 +2424,12 @@
     $('tree').addEventListener('dragover', function (e) { if (Array.prototype.indexOf.call(e.dataTransfer.types, 'Files') >= 0) e.preventDefault(); });
     $('tree').addEventListener('drop', function (e) { if (e.dataTransfer.files && e.dataTransfer.files.length) { e.preventDefault(); var t = targetDir(); upload(t.dir, t.root, e.dataTransfer.files); } });
 
-    ['problems', 'search', 'history'].forEach(function (p) { $('ptab-' + p).addEventListener('click', function () { showPanel(p); }); });
+    ['problems', 'search', 'history', 'terminal'].forEach(function (p) { $('ptab-' + p).addEventListener('click', function () { showPanel(p); }); });
+    if (!boot.terminal) $('ptab-terminal').hidden = true;
+    $('termInput').addEventListener('keydown', termKeys);
+    $('termStop').addEventListener('click', function () { termStop(); $('termInput').focus(); });
+    $('termForm').addEventListener('submit', function (e) { e.preventDefault(); });
+    $('termScreen').addEventListener('mouseup', function () { if (!String(window.getSelection())) $('termInput').focus(); });
     $('panelClose').appendChild(icon('close'));
     $('panelClose').addEventListener('click', function () { settings.panelOpen = false; saveSettings(); applySettings(); });
     $('searchForm').addEventListener('submit', runSearch);
