@@ -227,7 +227,7 @@ Resolve naming conflicts with explicit type prefixes:
 ```
 {app:mytag}              # App tag from _tags/
 {pad:tagname}            # Built-in PAD tag
-{php:strlen(@)}          # Call PHP function
+{php:strlen 'abc'}       # Call PHP function - {echo $x | php:strlen(@)} in an expression
 {data:items}             # Defined data block
 {pull:mySequence}        # Stored sequence
 {field "name from users"}  # Database single value (the field: prefix reads a variable)

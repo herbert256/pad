@@ -1775,21 +1775,21 @@ Resolve naming conflicts with explicit prefixes:
 | `app:` | App tag from `_tags/` | `{app:mytag}` |
 | `common:` | Tag from the `_common` app | `{common:menu}` |
 | `pad:` | Built-in PAD tag | `{pad:if}` |
-| `php:` | Call PHP function | `{php:strlen(@)}` |
+| `php:` | Call PHP function | `{php:strlen 'abc'}` as a tag, `{echo $x \| php:strlen(@)}` in an expression |
 | `function:` | Custom PAD function | `{$x \| function:myfunc}` |
 | `data:` | Defined data block | `{data:items}` |
 | `content:` | Content block | `{content:header}` |
 | `include:` | Snippet from `_include/` | `{include:header}` |
 | `pull:` | Stored sequence | `{pull:mySeq}` |
-| `field:` | Database field | `{field:"name from users"}` |
+| `field:` | Field (variable) value | `{field:name}` - the database single value is the `{field "col from table..."}` tag |
 | `select:` | Declared select table | `{select:users}` |
 | `local:` | Files from `_data/` | `{local:menu.json}` |
 | `constant:` | PHP constant | `{constant:PHP_VERSION}` |
 | `bool:` | Boolean store | `{bool:isAdmin}` |
 | `array:` | Access array as loop | `{array:items}` |
-| `level:` | Level variable | `{level:varName}` |
+| `level:` | Array field of an enclosing row | `{level:kids}...{/level:kids}` |
 | `parm:` | Tag parameter value | `{parm:name}` |
-| `property:` | Tag property | `{property:id}` |
+| `property:` | Tag property | `{property:current}` |
 | `script:` | Script from `_scripts/` | `{script:backup}` |
 | `sequence:` | Sequence type | `{sequence:fibonacci}` |
 | `action:` | Sequence action | `{action:reverse}` |
