@@ -510,6 +510,18 @@
   }
 
 
+  // What record stores for a page: the trimmed body with the run's own host read as
+  // localhost, the way the comparator reads what comes back. Stored raw, an answer recorded
+  // while the server was reached as http://127.0.0.1/pad/ kept that host, and since only
+  // the fetched side is rewritten it could never match again, on that host or on localhost.
+
+  function getSuiteRecordBody ( $data ) {
+
+    return getSuiteHostless ( trim ( $data ) );
+
+  }
+
+
   // The three answer forms, judged in one place for every suite: an HTTP code with an
   // optional pattern over the raw body, a /pattern/ over the trimmed body, or an exact
   // body - the last two insisting on a healthy response, because a fragment surviving

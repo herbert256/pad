@@ -51,7 +51,7 @@
   if ( ! str_starts_with ( $recCurl ['result'], '2' ) )
     return padError ( "'$recName' answers HTTP " . $recCurl ['result'] . " - a failing page records nothing" );
 
-  $recNew  = trim ( $recCurl ['data'] );
+  $recNew  = getSuiteRecordBody ( $recCurl ['data'] );
   $recHash = substr ( md5 ( $recNew ), 0, 12 );
 
   if ( ( $go ?? '' ) != $recHash ) {
