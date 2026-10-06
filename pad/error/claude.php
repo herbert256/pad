@@ -163,7 +163,7 @@
 
   function padClaudeError ( $error, $file, $line ) {
 
-    if ( padClaudeCheck () ) {
+    if ( padClaudeCheck () and ! padAnswerSent () ) {
 
       padClaudeFields ( $app, $pad, $php, $seq );
 

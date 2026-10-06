@@ -292,10 +292,13 @@
 
     try {
 
-      if ( padLocal () )
-        echo "<pre>\nError: " . htmlspecialchars ( "$info", ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' ) . "</pre>";
-      else
-        echo '<pre>Unknown error occurred.</pre>';
+      // Not behind a response that has gone out (padAnswerSent in error/boot.php).
+
+      if ( ! padAnswerSent () )
+        if ( padLocal () )
+          echo "<pre>\nError: " . htmlspecialchars ( "$info", ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' ) . "</pre>";
+        else
+          echo '<pre>Unknown error occurred.</pre>';
 
     } catch (Throwable $e) {
 
@@ -313,10 +316,11 @@
 
       padEmptyBuffers ( $buffer );
 
-      if ( padLocal () )
-        echo "\n<pre>" . htmlspecialchars ( "$error", ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' ) . "\n\n$buffer</pre>";
-      else
-        echo 'Error: ' . padID ();
+      if ( ! padAnswerSent () )
+        if ( padLocal () )
+          echo "\n<pre>" . htmlspecialchars ( "$error", ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' ) . "\n\n$buffer</pre>";
+        else
+          echo 'Error: ' . padID ();
 
     } catch (Throwable $e) {
 
@@ -341,7 +345,8 @@
 
     } catch (Throwable $e2) {
 
-      echo 'oops';
+      if ( ! padAnswerSent () )
+        echo 'oops';
 
     }
 

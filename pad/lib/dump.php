@@ -47,6 +47,13 @@
 
     global $padOutput, $padOutputType, $padSent;
 
+    // After the response has gone out the report goes to disk alone (padAnswerSent).
+
+    if ( padAnswerSent () ) {
+      padDumpToDir ( $info );
+      return;
+    }
+
     if ( ! headers_sent () )
       header ( 'HTTP/1.0 500 Internal Server Error' );
 

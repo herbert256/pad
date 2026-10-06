@@ -112,8 +112,9 @@
     if ( ! headers_sent () )
       http_response_code(500);
 
-    if ( padLocal () )  padShowErrorLocal  ( $error, $file, $line );
-    else                padShowErrorRemote ( $error, $file, $line );
+    if     ( padAnswerSent () ) padShowErrorLog    ( $error, $file, $line );
+    elseif ( padLocal ()      ) padShowErrorLocal  ( $error, $file, $line );
+    else                        padShowErrorRemote ( $error, $file, $line );
 
   }
 
@@ -141,6 +142,12 @@
 
   function padShowErrorRemote ( $error, $file, $line ) {
 
+      echo 'Error: ' . padShowErrorLog ( $error, $file, $line );
+
+  }
+
+  function padShowErrorLog ( $error, $file, $line ) {
+
       global $padReqID;
 
       $id = $padReqID ?? bin2hex(random_bytes(8));
@@ -153,7 +160,7 @@
 
       error_log ( "[PAD] $id $file:$line $error", 4 );
 
-      echo "Error: $id";
+      return $id;
 
   }
 
@@ -183,7 +190,7 @@
 
   function padBootProblems ( $error1, $error2 ) {
 
-    if ( padLocal () )
+    if ( padLocal () and ! padAnswerSent () )
       echo '<pre><br>' . htmlspecialchars ( "$error2", ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' )
          . '<br>'     . htmlspecialchars ( "$error1", ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' ) . '</pre>';
 
@@ -205,6 +212,18 @@
   // header, so any visitor sending Host: localhost got the full report with the database
   // passwords; and it trusted a developer host name written into the list. Behind
   // $padDiagnostics, read before config exists as the default TRUE.
+
+  // Whether the response has gone out: over HTTP its body and Content-Length are on the
+  // wire, and a report echoed after them lands behind the declared length - a client that
+  // reuses the connection reads it as the start of its next response. An error then goes
+  // to the log and the report on disk, never to the output. The command line has no such
+  // framing, and a late error printed there is still worth reading.
+
+  function padAnswerSent () {
+
+    return isset ( $GLOBALS ['padSent'] ) and PHP_SAPI != 'cli';
+
+  }
 
   function padLocal () {
 
