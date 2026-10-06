@@ -134,9 +134,13 @@
 
   }
 
+  // The name is encoded as the value is: a name a value chose - {?$sel} - is any text a
+  // request key can be, and went into the page as it was, ?sel=a"><script>... and a key of
+  // that name closing the href it stood in.
+
   function padUrlValue ( $parm )  {
 
-    return "&$parm=" . urlencode ( padFieldValue ( $parm ) );
+    return '&' . urlencode ( $parm ) . '=' . urlencode ( padFieldValue ( $parm ) );
 
   }
 
