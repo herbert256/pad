@@ -1299,7 +1299,7 @@ Output: `Alice, Bob, Charlie`
 | Function | Description |
 |----------|-------------|
 | `padFileGet($file, $default)` | Read file contents - a relative path is under `DATA/` |
-| `padFilePut($file, $data, $append)` | Write file contents - under `DATA/` only, a relative path there too |
+| `padFilePut($file, $data, $append)` | Write file contents - under `DATA/` only, a relative path there too; never a name the web server runs (`.php`, `.phtml` ...) or reads as configuration (`.htaccess`, `.user.ini`) |
 | `padFileCheck($file)` | Validate file path |
 
 ### Mail

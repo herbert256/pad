@@ -8,7 +8,9 @@
   //              php://input is the one special case, for a raw request body
   // padFilePut   writes (or appends) under DATA only - a relative path is taken there -
   //              creating the directory with $padDirMode and the file with $padFileMode if
-  //              needed, encoding arrays and objects as JSON, and locking the write
+  //              needed, encoding arrays and objects as JSON, and locking the write; never
+  //              a name the web server would run (.php ...) or read as configuration
+  //              (.htaccess, .user.ini)
   // padFileCheck the shared path guard: absolute, no .., no //, no control characters. It
   //              returns a message on rejection and '' when the path is acceptable
   //
@@ -77,6 +79,20 @@
     $check = padFileCheck ( $file );
     if ( $check )
       return padError ( $check );
+
+    // No file the web server would run - .php, .phtml, .phar ... anywhere in the name, as
+    // Apache's AddHandler reads x.php.txt - and none it reads as its own configuration -
+    // .htaccess, .htpasswd, .user.ini. DATA lies under the docroot in the documented layout,
+    // and a name an application took from the request - padFilePut ( "exports/$name", ... )
+    // - wrote a page the visitor could then run. The harvest's copies of the applications'
+    // sources are what examples/ is for, and the engine's own markers (.purged, .swept) are
+    // no configuration; {file} refuses every name that starts with a dot besides.
+
+    $name = substr ( $file, strlen ( DATA ) );
+
+    if ( ! str_starts_with ( $name, 'examples/' )
+         and preg_match ( '/\.(php\d*|phtml|pht|phar|phps)(\.|\/|$)|(^|\/)\.(htaccess|htpasswd|user\.ini)$/i', $name ) )
+      return padError ( "padFilePut writes no '$name' - a name the web server would run or read as its own configuration" );
 
     if ( $padInfo )
       include PAD . 'events/put.php';
