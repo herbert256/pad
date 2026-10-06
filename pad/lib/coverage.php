@@ -220,8 +220,14 @@
     $stack = [];
     $len   = strlen ( $source );
     $pos   = 0;
+    $skip  = padCoverageComments ( $source );
 
     while ( ( $pos = strpos ( $source, '{', $pos ) ) !== FALSE ) {
+
+      if ( isset ( $skip [$pos] ) ) {
+        $pos = $skip [$pos];
+        continue;
+      }
 
       $end = padCoverageClose ( $source, $pos );
 
@@ -270,6 +276,53 @@
     }
 
     return $items;
+
+  }
+
+  // The comments of a template, as lib/level.php takes them out before a scan - start =>
+  // the offset after them: a {-- that whitespace follows up to the first --}, a {# that is
+  // no {#name} up to the first #}. Read by brace depth, the tags in a {-- --} comment were
+  // items that never ran, and a { left open in a {# #} one carried the scan past its end.
+
+  function padCoverageComments ( $source ) {
+
+    $spans = [];
+    $pos   = 0;
+
+    while ( ( $pos = strpos ( $source, '{--', $pos ) ) !== FALSE ) {
+
+      $after = $source [$pos + 3] ?? '';
+      $close = strpos ( $source, '--}', $pos + 3 );
+
+      if ( ( $after !== '' and ! ctype_space ( $after ) ) or $close === FALSE ) {
+        $pos += 3;
+        continue;
+      }
+
+      $spans [$pos] = $close + 3;
+      $pos          = $close + 3;
+
+    }
+
+    $pos = 0;
+
+    while ( ( $pos = strpos ( $source, '{#', $pos ) ) !== FALSE ) {
+
+      $close = strpos ( $source, '#}', $pos + 2 );
+      $next  = strpos ( $source, '{#', $pos + 2 );
+
+      if ( preg_match ( '/\G\{#[A-Za-z_][A-Za-z0-9_]*\s*[}|]/', $source, $match, 0, $pos )
+           or $close === FALSE or ( $next !== FALSE and $next < $close ) ) {
+        $pos += 2;
+        continue;
+      }
+
+      $spans [$pos] = $close + 2;
+      $pos          = $close + 2;
+
+    }
+
+    return $spans;
 
   }
 
