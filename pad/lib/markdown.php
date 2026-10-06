@@ -99,6 +99,20 @@
 
   }
 
+  // The text of what was held inside a link's URL or title, which are attribute values: a
+  // backslash escape is its character again, a code span or an autolink its text without
+  // the tags. The URL is judged after this - javascript\:alert(1) is javascript:alert(1),
+  // not a word with a stand-in where its colon was - and no held tag lands, quotes and
+  // all, inside the attribute.
+
+  function padMarkdownText ( $text, $hold ) {
+
+    return preg_replace_callback ( '/\x1A(\d+)\x1A/',
+      fn ( $m ) => strip_tags ( padMarkdownRestore ( $hold [ (int) $m [1] ] ?? '', $hold ) ),
+      $text );
+
+  }
+
   function padMarkdownIndent ( $line ) {
 
     return strlen ( $line ) - strlen ( ltrim ( $line, ' ' ) );
@@ -476,8 +490,8 @@
       '/(!?)\[((?:[^\[\]]|\[[^\[\]]*\])*)\]\([ \t\n]*(<[^<>\n]*>|[^\s()]*(?:\([^\s()]*\)[^\s()]*)*)(?:[ \t\n]+("[^"]*"|\'[^\']*\'))?[ \t\n]*\)/',
       function ( $m ) use ( $html, &$hold ) {
         $image = ( $m [1] == '!' );
-        $url   = padMarkdownUrl ( $m [3] );
-        $title = isset ( $m [4] ) ? ' title="' . padMarkdownEscape ( substr ( $m [4], 1, -1 ) ) . '"' : '';
+        $url   = padMarkdownUrl ( padMarkdownText ( $m [3], $hold ) );
+        $title = isset ( $m [4] ) ? ' title="' . padMarkdownEscape ( padMarkdownText ( substr ( $m [4], 1, -1 ), $hold ) ) . '"' : '';
         $label = padMarkdownInline ( $m [2], $html, $hold );
         if ( $image ) {
           $alt = padMarkdownEscape ( strip_tags ( padMarkdownRestore ( $label, $hold ) ) );
