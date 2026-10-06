@@ -82,7 +82,7 @@
         // A field that holds a list is there, and is no value here - $x reads a scalar. It
         // was reported as a field that does not exist: {if $items eq 'a'} with $items set.
 
-        if ( $padCheckSyntax and ! $coalesce and ! padFieldCheck ( $one[0] ) )
+        if ( $padCheckSyntax and ! $coalesce and ! padFieldCheck ( $one[0] ) and ! padStrHidden ( $one[0] ) )
           if ( padArrayCheck ( $one[0] ) )
             padError ( "Expression error: the field '\${$one[0]}' is a list, not a value" );
           else

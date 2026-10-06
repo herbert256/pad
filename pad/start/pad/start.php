@@ -16,12 +16,10 @@
   include PAD . 'start/start/start.php';
   include PAD . 'start/start/pad.php';
 
-  // A sandboxed pass renders over hidden state, so a tag over a hidden store is not a
-  // typo - the strict syntax check stands down for the pass, and the snapshot above puts
-  // the outer setting back afterwards.
-
-  if ( $padStrBox )
-    $padCheckSyntax = FALSE;
+  // A sandboxed pass renders over hidden state, so a tag over a hidden store or a field the
+  // page set is not a typo: those misses pass quietly (padStrHidden, lib/execute.php, asked
+  // where a missing field or tag is reported). The strict check itself stays on - it stood
+  // down for the whole pass, and a typo or a broken expression in a {sandbox} said nothing.
 
   if ( $padStrBox or $padStrCln or $padStrRes ) {
     include PAD . 'start/start/app.php';

@@ -74,7 +74,7 @@
   if ( $padFldRefused and ! $padVarFallback and $padCheckSyntax )
     padError ( "the name '$padFld' that {" . $padBetween . "} takes from a value is no application variable" );
 
-  if ( ! $padFldRefused and ! $padFldChk and ! $padVarFallback and $padCheckSyntax )
+  if ( ! $padFldRefused and ! $padFldChk and ! $padVarFallback and $padCheckSyntax and ! padStrHidden ( $padFld ) )
     padError ( "Field '$padFirst$padFld' not found" );
 
   if     ( $padFldRefused   ) $padVal = '';

@@ -39,7 +39,7 @@
   // answer. A miss may then meet the generic catch-all too and speak twice in the log;
   // under every ending action the first report is the last.
 
-  if ( $padCheckSyntax ) {
+  if ( $padCheckSyntax and ! padStrHidden ( $padWords [0] ) ) {
 
     $padNoTag = $padWords [0];
 
