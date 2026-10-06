@@ -199,8 +199,11 @@
     if ( array_key_exists ( 'count', $vars ) )
       $fill ['%d'] = (string) $vars ['count'];
 
+    // A NULL value - a database column without one - is nothing, as {trans} hands it over;
+    // passed over, it left ':name' standing in the text.
+
     foreach ( $vars as $name => $value )
-      if ( is_scalar ( $value ) )
+      if ( is_scalar ( $value ) or $value === NULL )
         $fill [":$name"] = (string) $value;
 
     return strtr ( $text, $fill );
