@@ -198,7 +198,10 @@
   }
 
   // The position of the quote that closes a value, FALSE when this text does not hold it
-  // yet. In double quotes a backslash escapes the character after it, \" among them.
+  // yet. In double quotes a backslash escapes the character after it, \" among them. A
+  // walk from quote or backslash to the next, not one regular expression over the value:
+  // that ran out of PCRE's JIT stack on a value of some ten thousand characters - a
+  // certificate - and its failed match ended the request.
 
   function padEnvQuote ( $body, $quote ) {
 
@@ -207,11 +210,22 @@
       return ( $end === FALSE ) ? FALSE : $end;
     }
 
-    preg_match ( '/^(?:[^"\\\\]|\\\\.)*/s', $body, $match );
+    $length = strlen ( $body );
+    $at     = strcspn ( $body, '"\\' );
 
-    $end = strlen ( $match [0] );
+    while ( $at < $length ) {
 
-    return ( $end < strlen ( $body ) and $body [$end] == '"' ) ? $end : FALSE;
+      if ( $body [$at] == '"' )
+        return $at;
+
+      $at += 2;
+
+      if ( $at < $length )
+        $at += strcspn ( $body, '"\\', $at );
+
+    }
+
+    return FALSE;
 
   }
 
