@@ -1448,7 +1448,8 @@ see it, before any `_inits.php` or page PHP runs:
 
 ```php
 <?php
-  // apps/shop/admin/_guard.php
+  // apps/shop/admin/_guard.php - session_user and session_role listed in $padSessionVars:
+  // a guard runs before _inits.php, so a variable set there is not there yet
   if ( ! $session_user )
     padRedirect ( 'login' );
 
