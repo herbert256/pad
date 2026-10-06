@@ -4,16 +4,18 @@ This document provides a complete reference for all PAD tag options.
 
 ## Usage
 
-Options are specified as attributes on PAD tags:
+Options are specified on PAD tags, separated by commas:
 
 ```
-{tagName option="value" anotherOption="value"}
+{tagName option="value", anotherOption="value"}
 ```
 
-Multiple options can be combined:
+A space does not separate two options: `{staff sort="name" first=1}` gives `sort` the value
+`"name" first=1`, and `first` is never read. Only an option directly after a single parameter
+may leave its comma out - `{data 'x' ignore}`. Multiple options can be combined:
 
 ```
-{data toData="myData" quote="'" glue=", " open="[" close="]"}
+{staff print, toContent="list", quote="'", glue=", ", open="[", close="]"}
 ```
 
 ---
@@ -92,8 +94,8 @@ Stores the processed data array to a named variable.
 
 **Example:**
 ```
-{users where='$active eq 1' toData="activeUsers"}
-{list data="activeUsers"}...{/list}
+{users where='$active eq 1', toData="activeUsers"}
+{pad data="activeUsers"}...{/pad}
 ```
 
 ### toContent
@@ -132,7 +134,7 @@ Stores a boolean result based on the output state.
 
 **Example:**
 ```
-{users where='$admin eq 1' toBool="hasAdmins"}
+{users where='$admin eq 1', toBool="hasAdmins"}
 {if bool="hasAdmins"}...{/if}
 ```
 
@@ -231,7 +233,7 @@ Provides alternative content when result is empty/false.
 
 **Example:**
 ```
-{users where='$premium eq 1' else="noPremiumUsers"}
+{users where='$premium eq 1', else="noPremiumUsers"}
 ```
 
 ### notOk
@@ -394,7 +396,7 @@ Invokes an application callback for custom processing.
 Processes callback in "before" mode - runs before content generation.
 
 ```
-{tagName before callback="initData"}
+{tagName before, callback="initData"}
 ```
 
 **Behavior:**
