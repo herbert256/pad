@@ -6,7 +6,7 @@
   // value is the verdict. Uses the cheapest test the type offers, in order: its bool.php
   // predicate pqBoolXxx(), membership in the term list its fixed.php or build.php returns,
   // membership in its precomputed PADxxx constant, and failing all of those, generating
-  // the sequence up to $pqLoop with pqArray() and looking in that.
+  // the sequence up to $pqLoop with pqTerms() and looking in that.
   //
   // A precomputed table holds the sequence's first terms, not all of them, so it can only
   // settle the question up to the largest value in it: a hit is a member, and a miss is a
@@ -14,8 +14,8 @@
   // generated on rather than the question being answered no - the table used to be read as
   // the whole sequence, which reported 10001^2 not a square. The largest value is kept in
   // $padSeqCheckMax so a range of candidates does not walk the table for each of them, and
-  // it is a pad* name because generating goes through a nested sequence run and
-  // inits/clear.php drops every pq* on the way in.
+  // it is a pad* name so it outlives the run: inits/clear.php drops every pq* when the next
+  // tag starts.
   //
   // Generating on only makes sense for a sequence still climbing at the end of its table,
   // which is what $padSeqCheckGrow records. One that is not - negation counts downwards -
@@ -66,7 +66,7 @@
     if ( ! is_numeric ( $pqLoop ) or $pqLoop <= $padSeqCheckMax [$pqSeq] )
       return FALSE;
 
-    return in_array ( $pqLoop, pqArray ( $pqSeq, $pqParm, "stop=$pqLoop" ) );
+    return in_array ( $pqLoop, pqTerms ( $pqSeq, $pqParm, [ 'stop' => $pqLoop ] ) );
 
   }
 
@@ -80,7 +80,7 @@
 
   if ( ! isset ( $padSeqCheckList [$pqCheckKey] ) or $padSeqCheckList [$pqCheckKey] [0] < $pqCheckTo ) {
     $pqCheckTo = max ( $pqCheckTo, 2 * ( $padSeqCheckList [$pqCheckKey] [0] ?? 0 ) );
-    $padSeqCheckList [$pqCheckKey] = [ $pqCheckTo, pqArray ( $pqSeq, $pqParm, "to=$pqCheckTo" ) ];
+    $padSeqCheckList [$pqCheckKey] = [ $pqCheckTo, pqTerms ( $pqSeq, $pqParm, [ 'to' => $pqCheckTo ] ) ];
   }
 
   return in_array ( $pqLoop, array_slice ( $padSeqCheckList [$pqCheckKey] [1], 0, max ( 1, (int) $pqLoop ) ) );

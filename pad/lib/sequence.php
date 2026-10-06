@@ -155,6 +155,21 @@
 
   }
 
+  // pqTerms is pqArray for a sequence type the engine itself generates to look in: the type
+  // and its parameter go to sequence/terms.php as data, the run is bounded by $parms - stop,
+  // to or sole - and the terms come back as they were made, nothing rendered. A parameter of
+  // nothing is the bare type, as pqArray writes it.
+
+  function pqTerms ( $sequence, $parm, $parms ) {
+
+    $pqSetAction = $sequence;
+    $pqSetParm   = ( $parm === FALSE or $parm === NULL or $parm === '' ) ? TRUE : $parm;
+    $pqSetParms  = $parms;
+
+    return include PQ . 'sequence/terms.php';
+
+  }
+
   function pqAction ( $action  ) {
 
     if ( $action and file_exists ( PA . "$action.php" ) )
