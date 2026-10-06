@@ -66,14 +66,30 @@
       $config ['show-body-only'] = true;
     }
 
+    // What Tidy must not rewrite is held out of the pass and put back after it: the content
+    // of a <textarea> is a form value, and Tidy dropped its leading whitespace - "  two" came
+    // back as "two", so a refilled form posted something else than it showed - and the
+    // content of a <template> is markup for a script, into which Tidy put a <ul> round a
+    // bare <li>. Each is replaced by a mark of this request's own, no page text.
+
+    $held = [];
+    $mark = 'padTidyHeld' . bin2hex ( random_bytes ( 8 ) ) . 'x';
+
+    $data = preg_replace_callback ( '#(<(textarea|template)\b[^>]*>)(.*?)(</\2\s*>)#is', function ( $match ) use ( &$held, $mark ) {
+      $held [] = $match [3];
+      return $match [1] . $mark . ( count ( $held ) - 1 ) . 'x' . $match [4];
+    }, $data ) ?? $data;
+
     try {
       $tidy = new tidy;
       $tidy->parseString($data, $config, $padTidyCcsid );
       $tidy->cleanRepair();
-      return $tidy->value ?? $data;
+      $value = $tidy->value ?? $data;
     } catch (Throwable $e) {
-      return $data;
+      $value = $data;
     }
+
+    return preg_replace_callback ( '#\s*' . $mark . '(\d+)x\s*#', fn ( $match ) => $held [ $match [1] ], $value ) ?? $value;
 
   }
 

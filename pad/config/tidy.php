@@ -7,6 +7,9 @@
   // when $padTidy is on. The $padMyTidy* flags configure PAD's own lightweight fallback
   // (exits/myTidy.php), used when tidy is off but $padMyTidy is on.
   //
+  // custom-tags keeps the elements HTML does not define - <my-app>, <user-card>: a Web
+  // Component, a framework's own tag. Without it Tidy deleted them and kept their text.
+  //
   // Each is a default: an application's _config/config.php, or its page, may set any of
   // them, and what it leaves unset takes the value here. They were plain assignments, and
   // since this file is read at the very end of the request they overwrote whatever the
@@ -36,7 +39,8 @@
     'merge-spans'         => 'yes',
     'force-output'        => true,
     'show-warnings'       => FALSE,
-    'merge-divs'          => 'yes'
+    'merge-divs'          => 'yes',
+    'custom-tags'         => 'inline'
   ];
 
   $padMyTidySanitize         ??= [];
