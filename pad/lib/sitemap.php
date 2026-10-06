@@ -68,8 +68,12 @@
       if ( str_starts_with ( $entry, '_' ) or str_starts_with ( $entry, '.' ) or str_contains ( $entry, '[' ) )
         continue;
 
+      // A directory is walked when its name can stand in a page name: the router takes a
+      // literal segment of letters, digits, _ and - only (lib/route.php), so the pages of a
+      // v1.0/ or a my docs/ were listed at addresses that all answer 404.
+
       if ( is_dir ( "$path$entry" ) ) {
-        if ( ! file_exists ( "$path$entry/_guard.php" ) )
+        if ( ! file_exists ( "$path$entry/_guard.php" ) and preg_match ( '/^[a-zA-Z0-9][a-zA-Z0-9_-]*$/D', $entry ) )
           $dirs [] = $entry;
         continue;
       }

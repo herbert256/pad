@@ -20,4 +20,5 @@ that goes back with `padBack`), a bracketed route - beside the pages it lists.
 | `back.php` | An action that only goes back (`padBack`), left out |
 | `products/[id].pad` | A route with no one address, left out |
 | `[slug].pad` | A route at the root, which binds any name but leaves `?sitemap.xml` and `?robots.txt` to the engine |
+| `dotted.php/pad` | A directory with a dot in its name, made for the moment of one walk: no address reaches its pages, and the sitemap leaves them out |
 | `_config/config.php` | Switches `$padSitemap` on, `_common` off |
