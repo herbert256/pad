@@ -10,7 +10,9 @@ a bug report, or showing someone an example through a link.
 Open `http://localhost/pad/playground/`. The left pane holds the template and its data, a
 JSON object whose keys become the template's variables; the right pane shows the result.
 **Render** (or Ctrl+Enter) renders it, **Show the HTML** shows the HTML it produced. The
-address bar always holds both panes in its `#s=` hash, so copying it shares the example.
+address bar always holds both panes in its `#s=` hash, so copying it shares the example. An
+example opened from such a link fills the panes but does not run until **Render** is pressed:
+its template is the link maker's, and it runs on this machine.
 
 ## What it allows
 
@@ -43,5 +45,5 @@ anywhere else - on this machine, for this machine's user.
 | `render.php` / `render.pad` | Renders the posted template with the posted data through `padCode()` |
 | `_inits.php` | Turns every non-local request away |
 | `_config/config.php` | CSRF tokens; no PHP functions, no request variables, no `_common`, no database |
-| `www/playground/playground.js` | Keeps the panes in the URL hash, renders on load and on Ctrl+Enter |
+| `www/playground/playground.js` | Keeps the panes in the URL hash, renders the sample on load and on Ctrl+Enter |
 | `www/playground/playground.css` | The two-pane layout |
