@@ -668,6 +668,11 @@
   // plural, the irregular pairs matched whole (plural: singular => plural, singular: the
   // other way), the irregular endings matched at the end of a compound too, the regular
   // words those endings would catch, and the -us words whose plural is -uses.
+  //
+  // The nouns in -u and -i whose plural only adds an s - menu, guru, ski, emoji - stand
+  // among the pairs, menu and the -eau words among the endings (submenu, mainMenu): the
+  // rules read a word in -us or -is as a singular, so 'menus' stayed 'menus' as a singular
+  // and became 'menuses' as a plural.
 
   function padStrInflections () {
 
@@ -726,7 +731,14 @@
       'goalie'     => 'goalies',    'newbie'     => 'newbies',    'smoothie'   => 'smoothies',
       'sortie'     => 'sorties',    'auntie'     => 'aunties',    'birdie'     => 'birdies',
       'budgie'     => 'budgies',    'techie'     => 'techies',    'foodie'     => 'foodies',
-      'collie'     => 'collies'
+      'collie'     => 'collies',    'emu'        => 'emus',       'gnu'        => 'gnus',
+      'tutu'       => 'tutus',      'haiku'      => 'haikus',     'tofu'       => 'tofus',
+      'sudoku'     => 'sudokus',    'ski'        => 'skis',       'taxi'       => 'taxis',
+      'kiwi'       => 'kiwis',      'alibi'      => 'alibis',     'bikini'     => 'bikinis',
+      'martini'    => 'martinis',   'safari'     => 'safaris',    'emoji'      => 'emojis',
+      'wiki'       => 'wikis',      'sari'       => 'saris',      'deli'       => 'delis',
+      'yeti'       => 'yetis',      'chili'      => 'chilis',     'khaki'      => 'khakis',
+      'semi'       => 'semis',      'mini'       => 'minis'
     ];
 
     // Woman before man: both answer the same, but the longer one is the word meant.
@@ -736,7 +748,8 @@
       'knife'  => 'knives',   'wife'   => 'wives',    'life'   => 'lives',    'leaf'   => 'leaves',
       'loaf'   => 'loaves',   'thief'  => 'thieves',  'sheaf'  => 'sheaves',  'elf'    => 'elves',
       'half'   => 'halves',   'calf'   => 'calves',   'wolf'   => 'wolves',   'scarf'  => 'scarves',
-      'hoof'   => 'hooves',   'wharf'  => 'wharves'
+      'hoof'   => 'hooves',   'wharf'  => 'wharves',  'menu'   => 'menus',    'guru'   => 'gurus',
+      'bureau' => 'bureaus',  'plateau' => 'plateaus', 'chateau' => 'chateaus', 'tableau' => 'tableaus'
     ];
 
     $regular = [
