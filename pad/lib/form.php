@@ -388,9 +388,15 @@
 
   }
 
+  // A field refills from the request, so its value may carry a stand-in of a quote or the
+  // backslash - U+E022, U+E027, U+E05C - that exits.php turns into the live character after
+  // this escaping: it is escaped as the character it stands for (padUnprotectQuotes), as the
+  // pipe escapers are, or value="{...}" let the request close the attribute and add a
+  // handler.
+
   function padFormEscape ( $text ) {
 
-    return htmlspecialchars ( (string) $text, ENT_QUOTES, 'UTF-8' );
+    return htmlspecialchars ( padUnprotectQuotes ( (string) $text ), ENT_QUOTES, 'UTF-8' );
 
   }
 

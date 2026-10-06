@@ -151,7 +151,11 @@
     if ( is_array ( $value ) )
       $value = implode ( ' ', array_filter ( array_map ( 'strval', $value ), 'strlen' ) );
 
-    $out [$key] = $name . '="' . htmlspecialchars ( (string) $value, ENT_QUOTES, 'UTF-8' ) . '"';
+    // The stand-in of a quote or the backslash from the request is escaped as that character
+    // (padUnprotectQuotes), which exits.php would otherwise make a live quote after this
+    // escaping - closing the attribute data-x="{$v}" built and adding an event handler.
+
+    $out [$key] = $name . '="' . htmlspecialchars ( padUnprotectQuotes ( (string) $value ), ENT_QUOTES, 'UTF-8' ) . '"';
 
   }
 
@@ -181,7 +185,7 @@
 
     }
 
-    return htmlspecialchars ( implode ( ' ', array_unique ( $out ) ), ENT_QUOTES, 'UTF-8' );
+    return htmlspecialchars ( padUnprotectQuotes ( implode ( ' ', array_unique ( $out ) ) ), ENT_QUOTES, 'UTF-8' );
 
   }
 
