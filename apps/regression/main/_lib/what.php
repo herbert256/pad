@@ -21,6 +21,7 @@
       'select/support/prefix'     => 'The select: prefix spelling of a declared table, which also says the word the reference matcher looks for',
       'select/demo/options'       => 'Every option a declared table takes on the tag - where, order, fields, group, having, rollup, distinctrow, db and union - one labelled line each over the staff table',
       'select/demo/bound'         => 'A value bound into where= as $name - a quote stays inside the literal, a comma matches - and a column list bound into order=',
+      'select/demo/type_is_a_known_word' => 'type= is the statement command word, so a value that tries to be a whole query is refused instead of spliced in',
       'catalog/tags'              => 'One line per built-in tag no other page reaches - the catalogue half of the reference coverage',
       'catalog/prefixes'          => 'One line per type prefix, each in its literal spelling',
       'catalog/properties'        => 'Every property and @ reference form on one page',

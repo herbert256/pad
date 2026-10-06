@@ -90,6 +90,16 @@
       $type            = $padHtmlAttrJson;
     }
 
+    // The mode is the statement's command word, so it must be one of the row shapes db()
+    // knows - array, record or field. It was spliced in front of the SQL as written, so
+    // {table type=$t} with $t = "array name from customers limit 1 #" put a whole query of
+    // the visitor's into the statement; a bad word is refused now, as htmlAttrJson= is.
+
+    $type = strtolower ( (string) $type );
+
+    if ( ! in_array ( $type, [ 'array', 'record', 'field' ], TRUE ) )
+      return padError ( "type= takes array, record or field, not '" . padMakeSafe ( $type, 40 ) . "'" );
+
     $padSelStart = padSelectStart  ( $all, $distinct, $distinctrow);
     $padSelGroup = padSelectGroup  ( $padSelGroup, $rollup );
     $having      = padSelectHaving ( $having );
