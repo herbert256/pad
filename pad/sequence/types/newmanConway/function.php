@@ -4,37 +4,27 @@
   // Newman-Conway sequence, a(1) = a(2) = 1 and a(n) = a(a(n-1)) + a(n - a(n-1)), giving
   // 1, 1, 2, 2, 3, 4, 4, 4, 5, 6, 7, 7, 8, ...
   //
-  // The doubly self-referential recursion is hopeless without help, so terms are memoised
-  // in $pqCache - a $pq* global, and so wiped between runs by sequence/inits/clear.php.
+  // Every term reads only terms before it, so the terms are made in order from the last one
+  // kept, and kept between calls. Asked by recursion with a memo, a far position went down
+  // one call per term not yet made: from=60000 ended the request on PHP's maximum call stack
+  // size. A position past $padSeqMaxTries, the ceiling a run walks to, is not made - the
+  // list for it would outgrow the memory a request has.
   //
-  // The sequence starts at a(1): a position below it has no term and answers FALSE, which
-  // drops the candidate. Without that a(0) asked for a(a(-1)), which asked for a(a(-2)),
-  // down to the end of the stack - from=0 ended the request on infinite recursion.
+  // The sequence starts at a(1): a position below it, or between two, has no term and
+  // answers FALSE, which drops the candidate - a(0) asked for a(a(-1)) down to the end of
+  // the stack.
 
 function pqNewmanConway ($n) {
 
-  global $pqCache;
+  static $terms = [ 1 => 1, 2 => 1 ];
 
-  if ( $n < 1 )
+  if ( ! pqBoolWhole ( $n ) or $n < 1 or $n > ( $GLOBALS ['padSeqMaxTries'] ?? 1000000 ) )
     return FALSE;
 
-  if ($n == 1 || $n == 2)
-    return 1;
+  for ( $i = count ( $terms ) + 1; $i <= $n; $i++ )
+    $terms [$i] = $terms [ $terms [$i - 1] ] + $terms [ $i - $terms [$i - 1] ];
 
-  if ( ! isset ( $pqCache ) )
-    $pqCache = [];
-
-  if ( isset ( $pqCache [$n] ) )
-    return $pqCache [$n];
-
-  $now = pqNewmanConway ( pqNewmanConway ($n - 1)     )
-         +
-       pqNewmanConway ( $n - pqNewmanConway($n - 1) );
-
-  $pqCache [$n] = $now;
-
-  return $now;
-
+  return $terms [$n];
 }
 
 ?>
