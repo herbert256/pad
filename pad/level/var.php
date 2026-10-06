@@ -79,6 +79,15 @@
   if ( $padFldRefused and ! $padVarFallback and $padCheckSyntax )
     padError ( "the name '$padFld' that {" . $padBetween . "} takes from a value is no application variable" );
 
+  // A field that holds a list, written where {$x} wants a value, is named as what it is,
+  // not reported missing - the field is there - the way the expression form does
+  // (lib/eval/after.php): {$items} with $items an array said "Field '$items' not found" and
+  // sent the author hunting a typo that was not there.
+
+  if ( ! $padFldRefused and ! $padFldChk and ! $padVarFallback and $padCheckSyntax
+       and in_array ( $padFirst, [ '$', '?', '!' ], TRUE ) and padArrayCheck ( $padFld ) )
+    padError ( "the field '$padFirst$padFld' is a list, not a value" );
+
   if ( ! $padFldRefused and ! $padFldChk and ! $padVarFallback and $padCheckSyntax and ! padStrHidden ( $padFld ) )
     padError ( "Field '$padFirst$padFld' not found" );
 
