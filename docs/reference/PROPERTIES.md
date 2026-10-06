@@ -78,16 +78,20 @@ property - a `first` column, say - the bare spelling is still the property and t
 {if $first@orders eq 'Dave'}       comparing that field
 ```
 
-The tag pair resolves fields first, as it always has - `{first@orders}...{/first@orders}`
-over such rows prints the field and renders its content on every row. From inside the level
+The tag form resolves fields first, as it always has - the pair
+`{first@orders}...{/first@orders}` over such rows prints the field and renders its content on
+every row, and a single `{name@users}` over rows with a `name` field prints that field. From inside the level
 the `property:` prefix reaches the property whatever the row carries:
 `{if property:first}`.
 
 ### Ternary Conditionals
 
 ```
-{even@rows ? class="even" : class="odd"}
+{even@rows ? 'class="even"' : 'class="odd"'}
 ```
+
+A side that is more than one bare word is quoted: unquoted, `class="even"` is read as an
+expression and comes out empty.
 
 ---
 
@@ -123,7 +127,7 @@ Returns `TRUE` if this is the last iteration.
 {last@tagname}
 ```
 
-**Logic:** `$padKey[$padIdx] == array_key_last($padData[$padIdx])`
+**Logic:** `$padKey[$padIdx] === array_key_last($padData[$padIdx])`
 
 **Example:**
 ```html
@@ -497,11 +501,12 @@ Returns the name of the current tag/level.
 **Example:**
 ```html
 {users}
-  Processing tag: {name@users}
+  Processing tag: {echo name@users}
 {/users}
 ```
 
-**Output:** `Processing tag: users`
+**Output:** `Processing tag: users` - written as a tag, `{name@users}`, a `name` field of the rows
+would win
 
 ---
 
