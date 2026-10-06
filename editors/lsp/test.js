@@ -142,6 +142,14 @@ async function main() {
     const closers = (r.result || []).map((c) => c.label);
     expect('close-tag completion skips else, self-closed and commented tags', closers.join(',') === 'if,orders', closers);
 
+    // whitespace control: {~items~} opens a pair and {~/orders~} closes one, the ~ just
+    // inside the brace taking the whitespace on that side
+    const tildeUri = uri('orders.pad').replace('orders.pad', 'tilde.pad');
+    notify('textDocument/didOpen', { textDocument: { uri: tildeUri, languageId: 'pad', version: 1, text: "{~items~}\n{orders}\n{~/orders~}\n{~/" } });
+    r = await request('textDocument/completion', { textDocument: { uri: tildeUri }, position: { line: 3, character: 3 } });
+    const tildeClosers = (r.result || []).map((c) => c.label);
+    expect('close-tag completion reads the tags written with whitespace control', tildeClosers.join(',') === 'items', tildeClosers);
+
     // hover from docs/reference, and from the application's own files
     let h = await hover('orders.pad', '{echo', 2);
     expect('hover on a tag shows its TAGS.md section', h.includes('### echo') && h.includes('TAGS.md'), h);

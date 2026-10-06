@@ -32,7 +32,9 @@ const KIND = {
     Module: 9, Operator: 24, Class: 7, Snippet: 15,
 };
 
-const TAG_RE = /\{(\/?)([A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)?)([^{}]*)/g;
+// A ~ just inside the brace is whitespace control - {~items~}, {~/items} - and no part of
+// the name: without it here such a pair was never opened or never closed for the close-tag help.
+const TAG_RE = /\{~?(\/?)([A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)?)([^{}]*)/g;
 const SINGLE_TAGS = new Set([
     'set', 'get', 'echo', 'increment', 'decrement', 'redirect', 'restart',
     'exit', 'break', 'continue', 'cease', 'dump', 'error', 'exception',
@@ -85,7 +87,7 @@ function openTags(before) {
         if (m[1]) {
             const i = stack.lastIndexOf(m[2]);
             if (i >= 0) stack.length = i;
-        } else if (!SINGLE_TAGS.has(m[2]) && !BRANCH_TAGS.has(m[2]) && !m[3].trimEnd().endsWith('/')) {
+        } else if (!SINGLE_TAGS.has(m[2]) && !BRANCH_TAGS.has(m[2]) && !m[3].replace(/~$/, '').trimEnd().endsWith('/')) {
             stack.push(m[2]);
         }
     }
@@ -95,7 +97,7 @@ function openTags(before) {
 function completion(params) {
     const before = textBefore(params.textDocument.uri, params.position);
 
-    const closeMatch = before.match(/\{\/([A-Za-z0-9_:]*)$/);
+    const closeMatch = before.match(/\{~?\/([A-Za-z0-9_:]*)$/);
     if (closeMatch) {
         const stack = openTags(before.slice(0, -closeMatch[0].length));
         return stack.reverse().map((name, i) => ({

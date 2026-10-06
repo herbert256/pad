@@ -3,8 +3,9 @@ import re
 import sublime
 import sublime_plugin
 
-# {tag or {/tag, with optional type prefix ({data:items})
-TAG_RE = re.compile(r'\{(/?)([A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)?)([^{}]*)')
+# {tag or {/tag, with optional type prefix ({data:items}), and the ~ of whitespace control
+# just inside the brace ({~items~}, {~/items})
+TAG_RE = re.compile(r'\{~?(/?)([A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)?)([^{}]*)')
 
 # built-in tags that never take a closing tag - kept off the open-tag stack
 SINGLE_TAGS = {
@@ -34,7 +35,7 @@ def open_tags(view, point):
         if closing:
             if name in stack:
                 del stack[len(stack) - 1 - stack[::-1].index(name):]
-        elif name not in SINGLE_TAGS and name not in BRANCH_TAGS and not m.group(3).rstrip().endswith('/'):
+        elif name not in SINGLE_TAGS and name not in BRANCH_TAGS and not m.group(3).rstrip('~').rstrip().endswith('/'):
             stack.append(name)
     return stack
 
@@ -67,9 +68,10 @@ class PadCloseTagListener(sublime_plugin.EventListener):
             return None
         if not view.match_selector(point, 'text.html.pad'):
             return None
-        if view.substr(sublime.Region(point - 2, point)) != '{/':
+        before = view.substr(sublime.Region(max(0, point - 3), point))
+        if not before.endswith('{/') and before != '{~/':
             return None
-        stack = open_tags(view, point - 2)
+        stack = open_tags(view, point - (3 if before == '{~/' else 2))
         if not stack:
             return None
         items = [

@@ -1,8 +1,9 @@
 const vscode = require('vscode');
 const COMPLETIONS = require('./completions.json');
 
-// {tag or {/tag, with optional type prefix ({data:items})
-const TAG_RE = /\{(\/?)([A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)?)([^{}]*)/g;
+// {tag or {/tag, with optional type prefix ({data:items}), and the ~ of whitespace control
+// just inside the brace ({~items~}, {~/items})
+const TAG_RE = /\{~?(\/?)([A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)?)([^{}]*)/g;
 
 // built-in tags that never take a closing tag
 const SINGLE_TAGS = new Set([
@@ -36,7 +37,7 @@ function openTags(document, position) {
         if (closing) {
             const i = stack.lastIndexOf(name);
             if (i >= 0) stack.length = i;
-        } else if (!SINGLE_TAGS.has(name) && !BRANCH_TAGS.has(name) && !m[3].trimEnd().endsWith('/')) {
+        } else if (!SINGLE_TAGS.has(name) && !BRANCH_TAGS.has(name) && !m[3].replace(/~$/, '').trimEnd().endsWith('/')) {
             stack.push(name);
         }
     }
@@ -61,7 +62,7 @@ function activate(context) {
         {
             provideCompletionItems(document, position) {
                 const line = document.lineAt(position.line).text.slice(0, position.character);
-                const m = line.match(/\{\/([A-Za-z0-9_:]*)$/);
+                const m = line.match(/\{~?\/([A-Za-z0-9_:]*)$/);
                 if (m) {
                     const stack = openTags(document,
                         position.translate(0, -(m[0].length)));
