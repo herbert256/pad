@@ -619,12 +619,24 @@
 
     }
 
+    // A key of a type the object refuses - SplFixedArray takes integers only - is a key it
+    // does not have: its TypeError ended the request.
+
     if ( $target instanceof ArrayAccess ) {
 
-      if ( ! $target -> offsetExists ( $segment ) )
+      try {
+
+        if ( ! $target -> offsetExists ( $segment ) )
+          return FALSE;
+
+        $value = $target [$segment];
+
+      } catch ( TypeError $e ) {
+
         return FALSE;
 
-      $value = $target [$segment];
+      }
+
       return TRUE;
 
     }
