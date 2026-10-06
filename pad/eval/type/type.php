@@ -33,6 +33,12 @@
 
   }
 
+  // A NAN a call answers - php:fdiv(0, 0) - is empty, as one an operator makes (go.php):
+  // handed on, PHP 8.5 warned as the next pipe, a concatenation or a condition took it.
+
+  if ( is_float ( $value ) and is_nan ( $value ) )
+    $value = '';
+
   $result [$k] [1] = 'VAL';
   $result [$k] [0] = $value;
 

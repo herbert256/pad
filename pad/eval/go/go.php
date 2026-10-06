@@ -26,6 +26,13 @@
     elseif (   is_array ($left) and   is_array ($right) ) include PAD . 'eval/go/doubleArrArr.php';
   }
 
+  // A NAN - INF - INF, (-8) ** (1/3) - is no value the rest can use: PHP 8.5 warns when it
+  // is turned into text or a truth, and that warning ended the request. It is empty, as a
+  // NAN field is (padField).
+
+  if ( is_float ( $now ) and is_nan ( $now ) )
+    $now = '';
+
   $result [$b] [0] = $now;
   $result [$b] [1] = 'VAL'; padEvalTrace ( 'go', $result );
 
