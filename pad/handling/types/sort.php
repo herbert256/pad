@@ -64,6 +64,15 @@
 
   }
 
+  // A final ascending column of the rows' original positions keeps the sort stable: two
+  // rows with equal keys stay in the order they came. array_multisort breaks a tie on the
+  // last array it is given, which was $padData itself - so ties were ordered by comparing
+  // whole rows, and {rows sort='dept'} reordered rows of one dept by their other fields.
+
+  $padSortArgs [] = range ( 0, count ( $padData [$pad] ) - 1 );
+  $padSortArgs [] = SORT_ASC;
+  $padSortArgs [] = SORT_NUMERIC;
+
   $padSortArgs [] = &$padData [$pad];
 
   call_user_func_array ('array_multisort', $padSortArgs);
