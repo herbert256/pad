@@ -35,6 +35,7 @@
                                              $padPage = (string) array_key_first ($_GET);
     if ( $_GET [ array_key_first ($_GET) ] === '' )
                                              $padPageKey = $padPage;
+                                             $padPage = padRouteQueryName ( $padPage );
   }
   elseif ( isset ( $_SERVER['argv'] [1] ) )  $padPage = $_SERVER['argv'] [1];
   else                                       $padPage = 'index';

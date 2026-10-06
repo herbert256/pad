@@ -21,6 +21,7 @@
   //                  values, so a link written {$padGo}page&x=1 works in either form
   // padRouteQuery    whether the query string names the page instead: ?about on a clean
   //                  URL - the relative link every existing template writes - goes to about
+  // padRouteQueryName  that name as the query string sent it, the dots and spaces PHP made _
   // padPageRoute     a page name resolved: [ 'page' => ..., 'vars' => [...] ] or FALSE; an
   //                  existing page as it is, otherwise the bracketed names, a literal name
   //                  before a bracket and a single segment before the rest
@@ -84,7 +85,24 @@
     if ( $first === NULL or ( $_GET [$first] ?? NULL ) !== '' )
       return FALSE;
 
-    return padPageRoute ( (string) $first ) !== FALSE;
+    return padPageRoute ( padRouteQueryName ( (string) $first ) ) !== FALSE;
+
+  }
+
+  // The page name the query string starts with, as it was sent: PHP writes a dot or a space
+  // in a query key as _, so ?products/v1.2 reached the router as products/v1_2 and bound $id
+  // v1_2, where the path form binds v1.2. The first name of the query string is read again,
+  // and taken when it is the same key spelled as PHP would and the router finds a page for
+  // it - a page whose file has the _ in its name is still found by either spelling.
+
+  function padRouteQueryName ( $key ) {
+
+    $raw = urldecode ( explode ( '=', explode ( '&', (string) ( $_SERVER ['QUERY_STRING'] ?? '' ), 2 ) [0], 2 ) [0] );
+
+    if ( $raw !== $key and strtr ( $raw, ' .', '__' ) === $key and padPageRoute ( $raw ) !== FALSE )
+      return $raw;
+
+    return $key;
 
   }
 
