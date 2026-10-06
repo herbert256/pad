@@ -26,6 +26,15 @@
 
       $length = (int) substr ( $buffer, 0, $zero );
 
+      // A negative length is no packet of Xdebug's - anything on this machine can connect -
+      // and "-4\0" cut nothing off the buffer: the same bytes were taken for ever, the list
+      // of packets growing until the debugger ran out of memory. The rest goes with it.
+
+      if ( $length < 0 ) {
+        $buffer = '';
+        break;
+      }
+
       if ( strlen ( $buffer ) < $zero + 1 + $length + 1 )
         break;
 
