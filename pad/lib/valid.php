@@ -12,6 +12,8 @@
   //               ended the request with a 500
   // padEngineName pad*, pq*, PHP's superglobals, GLOBALS and this - the names that belong
   //               to the engine or to PHP
+  // padEngineSecret an engine name that holds a credential - a password, a key, a token,
+  //               the session id, the configuration's source text - which no field answers
   // padAtValid    one part either side of an @ in a property reference
   // padValidName  a name the engine joins into a file path or a glob - a prefixed type
   //               name, a script, callback or option: no directory separator, no .., no
@@ -82,6 +84,25 @@
     return str_starts_with ( $name, 'pad' ) or str_starts_with ( $name, 'pq' )
         or in_array ( $name, [ 'GLOBALS', '_POST', '_GET', '_COOKIE', '_SESSION', '_FILES',
                                '_SERVER', '_REQUEST', '_ENV', 'this' ], TRUE );
+
+  }
+
+  // The engine's credentials, which a template field never answers (lib/field/field.php):
+  // the passwords of the databases, $padAppKey, the session id the cookie keeps from
+  // scripts, and the source text of the configuration files that hold them. Named by the
+  // rule the error reports redact by, so a credential added later is covered by its name.
+  // The engine's other names stay fields - {$padHost}, {$padGo}, {$padPage} and the rest
+  // that the applications' templates read.
+
+  function padEngineSecret ( $name ) {
+
+    if ( ! is_string ( $name ) or ! padEngineName ( $name ) )
+      return FALSE;
+
+    if ( in_array ( $name, [ 'padSesID', 'padConfigApp', 'padConfigDefault' ], TRUE ) )
+      return TRUE;
+
+    return (bool) preg_match ( '/pass(word|wd)?$|passwd|secret|token|api_?key|app_?key|private_?key/i', $name );
 
   }
 

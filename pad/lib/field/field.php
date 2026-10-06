@@ -54,7 +54,22 @@
     if ( $padInfo )
       include PAD . 'events/fieldStart.php';
 
-    if ( str_contains ( $field, '@' ) or str_contains ( $field, '.' ) ) {
+    // A credential of the engine is no field, written in any form - {$padSqlPassword},
+    // {$padSqlPassword@*}, {$GLOBALS:padSqlPassword}, field:padAppKey: each answered the
+    // database password or the application key to any template (audit2 H3), and so to
+    // whatever a value chose. Not found, as a name nothing holds (padEngineSecret).
+
+    $secret = FALSE;
+
+    foreach ( preg_split ( '/[.@:]/', (string) $field ) as $part )
+      if ( padEngineSecret ( $part ) )
+        $secret = TRUE;
+
+    if ( $secret ) {
+
+      $value = INF;
+
+    } elseif ( str_contains ( $field, '@' ) or str_contains ( $field, '.' ) ) {
 
       $value = padFieldAt ( $field, $lvl );
 
