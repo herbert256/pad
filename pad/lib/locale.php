@@ -95,13 +95,16 @@
         return $chosen;
     }
 
+    // The weight is q in either case, as HTTP reads a parameter name: Q=0.1 was passed over
+    // and the language stood at 1.
+
     $accept = [];
 
     foreach ( explode ( ',', $_SERVER ['HTTP_ACCEPT_LANGUAGE'] ?? '' ) as $n => $part ) {
       $bits = explode ( ';', trim ( $part ) );
       $q    = 1.0;
       foreach ( array_slice ( $bits, 1 ) as $bit )
-        if ( preg_match ( '/^\s*q\s*=\s*([0-9.]+)/', $bit, $match ) )
+        if ( preg_match ( '/^\s*q\s*=\s*([0-9.]+)/i', $bit, $match ) )
           $q = (float) $match [1];
       if ( trim ( $bits [0] ) !== '' and $q > 0 )
         $accept [] = [ $q, -$n, trim ( $bits [0] ) ];
