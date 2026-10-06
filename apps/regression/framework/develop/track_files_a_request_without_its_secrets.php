@@ -18,9 +18,10 @@
   $request = explode ( '-', $r ['headers'] ['PAD'] ?? '' ) [1] ?? '';
   $file    = DATA . "track/requests/$request.json";
 
-  // The recorder finishes after the response has been flushed back.
+  // The recorder finishes after the response has been flushed back - with all five info
+  // modes on, and the suite fetching a dozen pages at once, that can take a few seconds.
 
-  for ( $settle = 0; $settle < 20 and ! file_exists ( $file ); $settle++ ) {
+  for ( $settle = 0; $settle < 100 and ! file_exists ( $file ); $settle++ ) {
     usleep ( 100000 );
     clearstatcache ();
   }
