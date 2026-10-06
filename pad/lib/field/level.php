@@ -11,7 +11,8 @@
   //      live in $GLOBALS)
   //   4  $GLOBALS itself - the variables a page's .php file left behind
   //   5  any global array that happens to carry the key, skipping pad* and pq* engine state
-  //      - and PHP's request arrays when $padRequestVars is a list
+  //      and PHP's own arrays - but for GET and POST, which are searched only under the
+  //      default $padRequestVars and never for an engine name
   //   6  down the level stack again for tag parameters, then options, then function-level
   //      variables
   //
@@ -61,10 +62,20 @@
 
     // PHP's request arrays are global arrays too, and searching them hands a template any
     // request value by name - around a $padRequestVars list, which decides the names that
-    // reach it. Under the default TRUE the search stays as it always was.
+    // reach it. Under the default TRUE the GET and POST values stay searched, as they always
+    // were, but never for an engine name, which no request may fill (padValidVar).
+    //
+    // PHP's other arrays are no data of the page. A cookie is a variable only when a
+    // $padRequestVars list names it, and promotion made it one then; $_SERVER and $_ENV hold
+    // the request's headers and the secrets padEnv reads from there; $_FILES and $_SESSION
+    // have helpers of their own. Searched like the page's own arrays, a cookie isAdmin=1
+    // answered {$isAdmin} on a page that never set it, {$DOCUMENT_ROOT} the server's
+    // directory and {$DB_PASSWORD} a SetEnv secret.
 
-    $skip = ( $GLOBALS ['padRequestVars'] ?? TRUE ) === TRUE
-          ? [] : [ '_GET', '_POST', '_COOKIE', '_REQUEST', '_FILES' ];
+    $skip = [ '_SERVER', '_ENV', '_COOKIE', '_FILES', '_SESSION', '_REQUEST' ];
+
+    if ( ( $GLOBALS ['padRequestVars'] ?? TRUE ) !== TRUE or padEngineName ( $field ) or str_starts_with ( $field, '_' ) )
+      $skip = array_merge ( $skip, [ '_GET', '_POST' ] );
 
     // The query key that names the page - ?links - is no request value (inits/page.php).
 

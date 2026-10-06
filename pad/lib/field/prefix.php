@@ -4,8 +4,9 @@
   // searching outwards the way padFieldLevel does.
   //
   // padFieldPrefix picks the container: a level whose name= matches the prefix supplies its
-  // current iteration row, otherwise a global array of that name is tried, otherwise the
-  // row of level $idx that padField already worked out - or $GLOBALS at level 0.
+  // current iteration row, otherwise a global array of that name - not PHP's, nor the
+  // engine's - is tried, otherwise the row of level $idx that padField already worked out
+  // - or $GLOBALS at level 0.
   //
   // padFieldSearch does the actual read: objects and resources are cast to arrays first,
   // and a hit still has to match what the caller asked for - types 1 and 2 want a scalar,
@@ -22,7 +23,10 @@
 
       }
 
-      if ( isset ( $GLOBALS [$prefix] ) )
+      // An application's array, never PHP's own or the engine's: {$_SERVER:SERVER_SOFTWARE}
+      // and {$_COOKIE:name} read what the field search no longer hands out (padFieldLevel).
+
+      if ( isset ( $GLOBALS [$prefix] ) and ! padEngineName ( $prefix ) and ! str_starts_with ( $prefix, '_' ) )
         return padFieldSearch ( $GLOBALS [$prefix], $field, $type );
 
     }
