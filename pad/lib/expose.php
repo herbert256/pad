@@ -23,6 +23,7 @@
   // padExposeJson     the JSON body: one object keyed by the exposed names
   // padExposeList     the list a CSV answer is made of: the first exposed array
   // padExposeCsv      the CSV body: a header row of the columns, then a line per row
+  // padExposeCell     a cell a spreadsheet would run as a formula, made text
   // padExposeRefuse   the 406 answer for a format this page cannot give
 
   function padClientFormat () {
@@ -165,7 +166,7 @@
 
     $csv = fopen ( 'php://temp', 'r+' );
 
-    fputcsv ( $csv, $columns, ',', '"', '' );
+    fputcsv ( $csv, array_map ( 'padExposeCell', $columns ), ',', '"', '' );
 
     foreach ( $rows as $row ) {
 
@@ -173,7 +174,7 @@
 
       foreach ( $columns as $column ) {
         $cell    = $row [$column] ?? '';
-        $line [] = is_array ( $cell ) || is_object ( $cell ) ? json_encode ( $cell ) : ( is_bool ( $cell ) ? (int) $cell : $cell );
+        $line [] = padExposeCell ( is_array ( $cell ) || is_object ( $cell ) ? json_encode ( $cell ) : ( is_bool ( $cell ) ? (int) $cell : $cell ) );
       }
 
       fputcsv ( $csv, $line, ',', '"', '' );
@@ -187,6 +188,21 @@
     fclose ( $csv );
 
     return $body;
+
+  }
+
+  // A spreadsheet runs a cell that starts with =, +, - or @ - or with a tab or a carriage
+  // return in front of one - as a formula: a visitor's =HYPERLINK(...) or +cmd|... in the
+  // data became a link or a command in the spreadsheet of whoever opened the export. Such a
+  // text cell gets a ' in front, which a spreadsheet shows as the text it is; a number of
+  // either sign is no formula and stays as it is.
+
+  function padExposeCell ( $cell ) {
+
+    if ( is_string ( $cell ) and preg_match ( '/^[=+\-@\t\r]/', $cell ) and ! is_numeric ( $cell ) )
+      return "'$cell";
+
+    return $cell;
 
   }
 

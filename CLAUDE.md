@@ -141,7 +141,9 @@ $padExpose = [ 'orders', 'total' ];    // never an engine name (pad*, pq*, _*)
 ```
 
 - JSON is one object keyed by the exposed names; CSV is the first exposed list - a header
-  row of every key, then a line per row. The templates do not run for such a request.
+  row of every key, then a line per row, a text cell starting with `=`, `+`, `-` or `@` written
+  with a `'` in front so a spreadsheet does not run it. The templates do not run for such a
+  request.
 - `padFormat=` asked outright on a page that exposes nothing, a format that does not
   exist, or CSV without a list answers 406; asked only through `Accept`, the page renders
   as HTML. An exposing page sends `Vary: Accept`.
