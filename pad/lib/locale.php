@@ -54,26 +54,26 @@
 
   function padLocaleMatch ( $wanted, $locales ) {
 
-    // A tag of more parts than a language and a script or region - zh-Hant-TW, sr-Latn-RS,
-    // de-DE-1996 - is read without the parts after those, and one whose second part is no
-    // script or region on its language alone: it matched nothing, not even its language,
-    // and the visitor got the default locale.
+    // A tag of more parts than a language and a script or region - zh-Hans-CN, sr-Latn-RS,
+    // de-DE-1996 - is matched on its language and second part, then on its language and
+    // third part, then on its language alone: it matched nothing, not even its language,
+    // and the third part was dropped after that, so zh-Hans-CN chose zh_TW over zh_CN.
 
-    $parts = array_slice ( explode ( '_', str_replace ( '-', '_', trim ( (string) $wanted ) ) ), 0, 2 );
+    $parts    = explode ( '_', str_replace ( '-', '_', trim ( (string) $wanted ) ) );
+    $language = padLocaleNormal ( $parts [0] );
 
-    $wanted = padLocaleNormal ( implode ( '_', $parts ) );
-
-    if ( $wanted === '' and count ( $parts ) == 2 )
-      $wanted = padLocaleNormal ( $parts [0] );
-
-    if ( $wanted === '' )
+    if ( $language === '' )
       return '';
 
-    foreach ( $locales as $one )
-      if ( padLocaleNormal ( $one ) === $wanted )
-        return $one;
+    $tries = [];
 
-    $language = explode ( '_', $wanted ) [0];
+    foreach ( array_slice ( $parts, 1, 2 ) as $part )
+      $tries [] = padLocaleNormal ( $parts [0] . '_' . $part );
+
+    foreach ( array_filter ( $tries ) as $wanted )
+      foreach ( $locales as $one )
+        if ( padLocaleNormal ( $one ) === $wanted )
+          return $one;
 
     foreach ( $locales as $one )
       if ( explode ( '_', padLocaleNormal ( $one ) ) [0] === $language )
