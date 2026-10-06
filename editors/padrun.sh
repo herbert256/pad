@@ -8,13 +8,22 @@
 
 f="$1"
 
+# The checkout is the nearest directory above the file that holds pad/pad.php, as the
+# language server finds it - cut at the first /apps/ of the path, a checkout that itself
+# stands below a directory named apps (~/apps/pad) took that one for its own and found no
+# entry point.
+
+root=$(dirname "$f")
+while [ "$root" != "/" ] && [ "$root" != "." ] && [ ! -f "$root/pad/pad.php" ]; do
+  root=$(dirname "$root")
+done
+
 case "$f" in
-  */apps/*) ;;
+  "$root"/apps/*) ;;
   *) echo "not inside apps/: $f" >&2; exit 1 ;;
 esac
 
-root="${f%%/apps/*}"
-rel="${f#*/apps/}"
+rel="${f#"$root"/apps/}"
 rel="${rel%.pad}"
 rel="${rel%.html}"
 rel="${rel%.php}"
