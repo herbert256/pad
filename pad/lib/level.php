@@ -153,9 +153,26 @@ function padSplitOnUnquotedColon ( $str ) {
   // The enclosing tag is the last { before the splice: the scanner resolves the innermost
   // tag first and left to right, so every complete tag before this point is gone already.
 
+  // The } that closes the { at $from, by brace depth - so an inner tag's braces are stepped
+  // over. Used to turn a whole {...} into literal text when a value would otherwise re-enter
+  // the scan as a tag or a glued reference. FALSE when the brace never closes.
+
+  function padSpliceMatch ( $text, $from ) {
+
+    $depth = 0;
+    $len   = strlen ( $text );
+
+    for ( $i = $from; $i < $len; $i++ )
+      if     ( $text [$i] == '{' ) $depth++;
+      elseif ( $text [$i] == '}' and ! --$depth ) return $i;
+
+    return FALSE;
+
+  }
+
   function padSpliceQuote ( $value ) {
 
-    global $pad, $padOut, $padStart;
+    global $pad, $padOut, $padStart, $padEnd;
 
     if ( ! is_scalar ( $value ) or is_bool ( $value ) )
       return $value;
@@ -174,13 +191,53 @@ function padSplitOnUnquotedColon ( $str ) {
     $before = substr ( $padOut [$pad], $start - $window, $window );
     $open   = strrpos ( $before, '{' );
 
-    if ( $open === FALSE or $open >= $window - 1 )
+    if ( $open === FALSE )
       return $value;
 
-    $inside = substr ( $before, $open + 1 );
+    $inside = ( $open >= $window - 1 ) ? '' : substr ( $before, $open + 1 );
+
+    // A value spliced right after a { re-enters the scan in a tag's own place - {{$x}} would
+    // run the value as a tag, PHP calls and all - and a value glued to a sigil - {${$x}},
+    // {!{$x}} - builds a field reference from it, which {$$x} already refuses to read out of
+    // an engine global. "Values are text": the value never becomes a tag, and a value-built
+    // field name is an application variable or nothing. In both cases the enclosing { is
+    // turned into its &open; stand-in, so the whole {...} prints as the literal text it
+    // wraps - the value kept out of tag position, an engine name shown rather than read -
+    // and the inner tag's own span, which the escape lengthens the buffer before, moves
+    // along by that growth. The documented {${$hi}} indirection to an application variable
+    // still resolves: a safe name is left glued as it was.
+
+    $padSpliceBare = ( $inside === '' );
+    $padSpliceName = ( ! $padSpliceBare and ! preg_match ( '/\s/', $inside )
+                       and preg_match ( '/^[$!?^#&]+$/', $inside )
+                       and ! padValidVar ( strtok ( $value, '.' ) ) );
+
+    if ( $padSpliceBare or $padSpliceName ) {
+
+      $bracePos = $start - $window + $open;
+      $closePos = padSpliceMatch ( $padOut [$pad], $bracePos );
+
+      if ( $closePos !== FALSE ) {
+
+        $grow = strlen ( '&open;' ) - 1;
+
+        // The close stands after the inner tag's span, so its escape leaves the span where
+        // it is; done after it, since replacing the earlier open would shift the close.
+
+        $padOut   [$pad]  = substr_replace ( $padOut [$pad], '&close;', $closePos, 1 );
+        $padOut   [$pad]  = substr_replace ( $padOut [$pad], '&open;',  $bracePos, 1 );
+        $padStart [$pad] += $grow;
+        $padEnd   [$pad] += $grow;
+
+      }
+
+      return $value;
+
+    }
 
     // A { followed by whitespace or a double quote opens no tag (padWhiteCheck), so the
-    // value stands in text: literal JSON, {"id": {$id}}, had quotes put round it.
+    // value stands in text: literal JSON, {"id": {$id}}, had quotes put round it; a value
+    // glued to a safe application name stands as it was too.
 
     if ( ctype_space ( $inside [0] ) or $inside [0] == '"' or str_contains ( $inside, '}' ) or ! preg_match ( '/\s/', $inside ) )
       return $value;
