@@ -315,16 +315,14 @@
   // $_POST ['user'] ['email'], tags[] the list $_POST ['tags'], and first.name arrives as
   // first_name. The rules and the refill looked for $_POST ['user[email]'], found nothing,
   // and every rule but required passed what was posted. A key that is the name itself -
-  // data handed to padValidate can have one - is found first. [ found, value ].
+  // data handed to padValidate can have one - is found first, and data handed to it can
+  // be an object read like an array, an ArrayObject. [ found, value ].
 
   function padFormFind ( $data, $name ) {
 
     $name = (string) $name;
 
-    if ( ! is_array ( $data ) )
-      return [ FALSE, NULL ];
-
-    if ( array_key_exists ( $name, $data ) )
+    if ( padFormHas ( $data, $name ) )
       return [ TRUE, $data [$name] ];
 
     foreach ( padFormPath ( $name ) as $level => $segment ) {
@@ -332,7 +330,7 @@
       if ( $segment === '' and $level )
         break;
 
-      if ( ! is_array ( $data ) or ! array_key_exists ( $segment, $data ) )
+      if ( ! padFormHas ( $data, $segment ) )
         return [ FALSE, NULL ];
 
       $data = $data [$segment];
@@ -340,6 +338,15 @@
     }
 
     return [ TRUE, $data ];
+
+  }
+
+  function padFormHas ( $data, $key ) {
+
+    if ( is_array ( $data ) )
+      return array_key_exists ( $key, $data );
+
+    return ( $data instanceof ArrayAccess and $data->offsetExists ( $key ) );
 
   }
 
