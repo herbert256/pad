@@ -48,4 +48,9 @@
   $editTerminal = TRUE;
   $editShell    = '';
 
+  // The step debugger: Xdebug in the request being debugged connects to a debugger
+  // process the editor starts, on xdebug.client_port (9003). FALSE switches it off.
+
+  $editDebug = TRUE;
+
 ?>

@@ -68,6 +68,24 @@ settings in `_config/` files, `db()`'s verbs; signature help; hover; go to defin
   a command gets no input, and full-screen programs (vi, top, less) do not work. The `pad`
   command is on the PATH.
 - Light and dark, font size, tab size, word wrap, minimap, autosave (**⋯ → Settings**).
+
+**Debugging** - the **Debug** tab of the bottom panel, a step debugger for the PHP of a page
+through Xdebug:
+
+- Breakpoints go in PHP files: a click in the gutter or F9 at the cursor; Shift+click gives
+  one a condition (`$id == 42`). They keep to their lines as the text changes, are listed in
+  the panel, and stay set between visits. **exceptions** stops where one is thrown, **first
+  line** at the start of every request.
+- **Debug the page** starts the debugger and loads the previewed page with `XDEBUG_SESSION`
+  in its address; **every request to …** sets that as a cookie for the application's own
+  path, so its pages stop in any browser tab - a form posted, a link followed. The editor's
+  own requests are never stopped.
+- When a request stops, its file opens at the line, marked in the gutter; files of the
+  engine open read-only, as the debugger reads them. The panel shows the call stack (a
+  click shows that frame's variables), the locals, the superglobals, watches, and a console
+  that evaluates PHP in the paused request. Hovering a `$variable` shows its value.
+- Continue (F5), step over (F10), into (F11), out (Shift+F11), stop the request (Shift+F5).
+- One request at a time is held; another that comes meanwhile runs on without stopping.
 - Monaco's own palette (F1) holds every editor command and the PAD ones; **⋯ → Keyboard
   shortcuts** lists the keys.
 
@@ -88,6 +106,10 @@ The editor writes `.php` files: whoever can use it can run code on this machine.
   link out.
 - The preview runs the application's page in a sandboxed frame: its scripts cannot reach the
   editor.
+- The debugger listens on this machine's loopback addresses only; the editor talks to it
+  on a port of its own, with a token that only the web server's user can read. An
+  expression in its console runs in the paused request - as much as the editor can do
+  anyway. `$editDebug = FALSE` switches it off.
 - The terminal runs commands as the web server's user - no more than the editor can do by
   writing a PHP file, but more directly; `$editTerminal = FALSE` switches it off. Its jobs
   and their output are kept in the system's temporary directory (mode 0700), not under
@@ -109,9 +131,24 @@ The editor writes `.php` files: whoever can use it can run code on this machine.
 | `$editMaxText` | 2 MB | the largest file opened as text |
 | `$editTerminal` | `TRUE` | the terminal in the bottom panel |
 | `$editShell` | `''` | the terminal's shell - `''` takes bash, zsh or sh |
+| `$editDebug` | `TRUE` | the step debugger in the bottom panel |
 
 Without Monaco - no internet, a wrong address - the editor falls back to a plain text area:
 files still open, change and save.
+
+The debugger needs Xdebug in the PHP that serves the pages, with its step debugger on - in
+`php.ini` (Homebrew: `/opt/homebrew/etc/php/<version>/php.ini`):
+
+```ini
+zend_extension = xdebug.so          ; pecl install xdebug
+xdebug.mode = debug                 ; develop changes var_dump and error pages - leave it out
+xdebug.start_with_request = trigger ; only a request that asks: XDEBUG_SESSION
+```
+
+and the web server restarted. Xdebug connects back to `xdebug.client_port` (9003); an IDE
+listening there at the same time keeps the editor's debugger from starting. A browser
+extension that sets an `XDEBUG_SESSION` cookie for the whole site makes every request ask
+for a debugger - the editor's are let go, the pages' stop at their breakpoints.
 
 An application made with **New application** is made as `pad new` makes one; the regression
 suite's Other run lists its pages as *new* until they have answers.
@@ -132,6 +169,9 @@ suite's Other run lists its pages as *new* until they have answers.
 | `_lib/check.php` | PHP syntax checks, and PAD's own render of a page |
 | `_lib/git.php` | Changed files, HEAD versions, the branch |
 | `_lib/terminal.php` | The terminal's jobs: run, read, stop, complete |
+| `_lib/debug.php` | Starts, asks and stops the debugger process |
+| `_lib/dbgp.php` | DBGp, Xdebug's protocol: packets, commands, properties |
+| `_bin/debugger.php` | The debugger process: Xdebug's side and the editor's |
 | `_lib/api.php` | Access, and the running of a call |
 | `_templates/` | The starters of new files |
 | `_tests/` | `pad test edit` |

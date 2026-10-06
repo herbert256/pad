@@ -547,6 +547,7 @@
       wordWrap: settings.wordWrap,
       minimap: { enabled: !!settings.minimap },
       linkedEditing: true,
+      glyphMargin: true,
       bracketPairColorization: { enabled: true },
       guides: { bracketPairs: 'active', indentation: true },
       renderWhitespace: 'selection',
@@ -596,6 +597,7 @@
     if (E.real) {
       window.PadMode.closeOnType(monaco, hooks, E.editor);
       registerActions();
+      if (boot.debug) dbgSetup();
     }
     E.editor.onDidChangeCursorPosition(function () { renderStatus(); });
     if (window.matchMedia)
@@ -657,6 +659,7 @@
       }
       E.docs[k] = d;
       if (d.kind === 'text' && d.model.getLanguageId() === 'pad') loadFields(d);
+      if (d.kind === 'text') dbgDecorate(d);
       return d;
     });
     E.docs[k + '#loading'] = p;
@@ -749,6 +752,7 @@
   }
 
   function onChange(d) {
+    dbgTrack(d);
     var wasDirty = d.wasDirty;
     d.wasDirty = isDirty(d);
     if (wasDirty !== d.wasDirty) { renderTabs(); renderStatus(); if (d === currentDoc()) document.title = basename(d.path) + (d.wasDirty ? ' ●' : '') + ' - PAD edit'; }
@@ -771,13 +775,14 @@
       var same = E.tabs.filter(function (o) { return E.docs[o] && basename(E.docs[o].path) === label; }).length > 1;
       var tab = el('div', { class: 'tab' + (k === E.active ? ' active' : '') + (isDirty(d) ? ' dirty' : '') + (d.changedOnDisk ? ' stale' : ''),
                             role: 'tab', 'aria-selected': k === E.active ? 'true' : 'false', tabindex: '0', draggable: 'true',
-                            title: d.app + ' - ' + (d.root === 'www' ? 'www/' : '') + d.path,
+                            title: d.root === 'src' ? d.path + ' (read-only, from the debugger)' : d.app + ' - ' + (d.root === 'www' ? 'www/' : '') + d.path,
                             onclick: function () { activate(k); if (d.kind === 'text') E.editor.focus(); },
                             onauxclick: function (ev) { if (ev.button === 1) closeTab(k); },
                             onkeydown: function (ev) { if (ev.key === 'Enter') activate(k); },
                             oncontextmenu: function (ev) { ev.preventDefault(); tabMenu(ev, k); } }, [
         el('span', { class: 'badge ' + badge[1], text: badge[0] }),
         el('span', { class: 'tab-name', text: label }),
+        d.root === 'src' ? el('span', { class: 'tab-dir', text: dbgShort(dirname(d.path)) }) :
         same || d.app !== E.app ? el('span', { class: 'tab-dir', text: (d.app !== E.app ? d.app + ':' : '') + (dirname(d.path) || '/') }) : null,
         el('button', { type: 'button', class: 'tab-close', 'aria-label': 'Close ' + label, title: 'Close (Alt+W)',
                        onclick: function (ev) { ev.stopPropagation(); closeTab(k); } }, [el('span', { class: 'dot' }), icon('close')])
@@ -807,8 +812,8 @@
       { label: 'Close saved', icon: 'close', run: function () { closeMany(E.tabs.filter(function (o) { return !isDirty(E.docs[o]); })); } },
       { label: 'Close all', icon: 'close', run: function () { closeMany(E.tabs.slice()); } },
       '-',
-      { label: 'Reveal in tree', icon: 'side', run: function () { if (d.app !== E.app) switchApp(d.app).then(function () { select(d.root, d.path, true); }); else select(d.root, d.path, true); } },
-      { label: 'Copy path', icon: 'copy', run: function () { copyPath(d.app, d.root, d.path); } }
+      d.root === 'src' ? null : { label: 'Reveal in tree', icon: 'side', run: function () { if (d.app !== E.app) switchApp(d.app).then(function () { select(d.root, d.path, true); }); else select(d.root, d.path, true); } },
+      { label: 'Copy path', icon: 'copy', run: function () { if (d.root === 'src') { if (navigator.clipboard) navigator.clipboard.writeText(d.path); toast('Copied ' + d.path); } else copyPath(d.app, d.root, d.path); } }
     ]);
   }
 
@@ -817,7 +822,7 @@
   }
 
   function persistTabs() {
-    store('tabs', { list: E.tabs.map(function (k) { var d = E.docs[k]; return d ? [d.app, d.root, d.path] : null; }).filter(Boolean),
+    store('tabs', { list: E.tabs.map(function (k) { var d = E.docs[k]; return d && d.root !== 'src' ? [d.app, d.root, d.path] : null; }).filter(Boolean),
                     active: E.active });
   }
 
@@ -880,7 +885,7 @@
   // one is read again; one with changes gets a mark, and its save will show the difference.
   function checkDisk() {
     var byApp = {};
-    openDocs().forEach(function (d) { if (d.kind === 'text') (byApp[d.app] = byApp[d.app] || []).push({ root: d.root, path: d.path }); });
+    openDocs().forEach(function (d) { if (d.kind === 'text' && d.root !== 'src') (byApp[d.app] = byApp[d.app] || []).push({ root: d.root, path: d.path }); });
     Object.keys(byApp).forEach(function (app) {
       api('stat', { app: app, files: byApp[app] }).then(function (list) {
         list.forEach(function (s) {
@@ -919,7 +924,7 @@
   }
 
   function check(d, withText) {
-    if (!d || d.kind !== 'text' || !d.model) return Promise.resolve();
+    if (!d || d.kind !== 'text' || !d.model || d.root === 'src') return Promise.resolve();
     var lang = d.model.getLanguageId();
     if (lang !== 'pad' && lang !== 'php') return Promise.resolve();
     if (lang === 'pad' && d.root !== 'app') return Promise.resolve();
@@ -1319,7 +1324,7 @@
     var go = function () {
       return api('rename', { app: E.app, root: root, path: path, toRoot: toRoot, to: to }).then(function () {
         moving.forEach(function (d) {
-          var oldKey = key(d.app, d.root, d.path);
+          var oldKey = key(d.app, d.root, d.path), oldAbs = dbgAbs(d);
           d.root = toRoot;
           d.path = to + d.path.slice(path.length);
           var newKey = key(d.app, d.root, d.path);
@@ -1330,6 +1335,7 @@
           if (E.active === oldKey) E.active = newKey;
           var lang = langOf(d.root, d.path);
           if (d.model && d.model.getLanguageId() !== lang) E.monaco.editor.setModelLanguage(d.model, lang);
+          if (D.bps[oldAbs]) { D.bps[dbgAbs(d)] = D.bps[oldAbs]; delete D.bps[oldAbs]; dbgSaveBps(); }
         });
         toast('Moved to ' + to, 'ok');
         renderTabs();
@@ -1392,6 +1398,7 @@
     history.replaceState(null, '', '?index&app=' + encodeURIComponent(app));
     return Promise.all([refreshTree(), E.appLang[app] ? Promise.resolve() : loadAppLang(app)]).then(function () {
       renderWelcome();
+      dbgRender();
       if (E.previewOn && !currentDoc()) showPreview(E.previewPage[app] || '');
     });
   }
@@ -1527,7 +1534,7 @@
     settings.panelOpen = true;
     saveSettings();
     applySettings();
-    ['problems', 'search', 'history', 'terminal'].forEach(function (p) {
+    ['problems', 'search', 'history', 'terminal', 'debug'].forEach(function (p) {
       $('panel-' + p).hidden = p !== name;
       var t = $('ptab-' + p);
       t.classList.toggle('active', p === name);
@@ -1538,6 +1545,7 @@
     if (name === 'history') renderHistory();
     if (name === 'search') setTimeout(function () { $('searchInput').focus(); $('searchInput').select(); }, 30);
     if (name === 'terminal') termStart().then(function () { $('termInput').focus(); termScroll(); });
+    if (name === 'debug') dbgBuild();
   }
 
   function runSearch(ev) {
@@ -1573,6 +1581,7 @@
     var d = currentDoc();
     box.textContent = '';
     if (!d || d.kind !== 'text') { box.appendChild(el('p', { class: 'empty', text: 'Open a file to see its earlier versions.' })); return; }
+    if (d.root === 'src') { box.appendChild(el('p', { class: 'empty', text: 'A file shown by the debugger, read-only: it has no history here.' })); return; }
     var head = el('div', { class: 'panel-tools' }, [
       el('strong', { text: basename(d.path) }),
       E.git ? button('Compare with HEAD', 'git', function () { compareHead(d); }) : null
@@ -1615,7 +1624,7 @@
   }
 
   function compareHead(d) {
-    if (!d) return;
+    if (!d || d.root === 'src') return;
     api('git', { app: d.app, root: d.root, path: d.path, op: 'head' }).then(function (r) {
       if (r.text === null) { toast(basename(d.path) + ' is not in HEAD'); return; }
       diffView(basename(d.path) + ' - HEAD', 'Left: the file in the last commit (' + (E.branch || 'HEAD') + '). Right: the editor now.', r.text, d.model.getValue(), langOf(d.root, d.path), []);
@@ -1671,6 +1680,8 @@
 
   function previewFor(d) {
     if (!d) return;
+    // a page under the debugger keeps the preview: reloading it would abandon the request
+    if (D.on && D.state && D.state.session && /XDEBUG_SESSION=/.test($('previewFrame').getAttribute('src') || '')) return;
     if (d.kind === 'text' && ext(d.path) === 'md') { previewMarkdown(d); return; }
     var page = d.root === 'app' && d.app === E.app ? pageOf(d.path) : null;
     if (page !== null) showPreview(page);
@@ -2098,6 +2109,529 @@
   });
 
   // ------------------------------------------------------------------------------------
+  // The step debugger: Xdebug in the request being debugged talks to the debugger process
+  // the editor starts (apps/edit/_bin/debugger.php); this asks it for its state - a long
+  // poll - and sends it the breakpoints and the steps. Breakpoints go in PHP files: a click
+  // in the gutter, F9 at the cursor, Shift+click for a condition. A request is debugged
+  // when it carries XDEBUG_SESSION: Debug the page loads the preview with it, and a cookie
+  // can carry it for every request of one application.
+  // ------------------------------------------------------------------------------------
+
+  var D = { info: null, on: false, seq: 0, state: null, frame: 0, view: 'locals', polling: false, built: false,
+            bps: store('breakpoints') || {}, exceptions: !!store('dbgExceptions'), first: !!store('dbgFirst'),
+            watches: store('dbgWatches') || [], cur: null, shownBreak: '' };
+
+  function dbgAbs(d) {
+    if (d.root === 'src') return d.path;
+    return (boot.home || '') + '/' + (d.root === 'www' ? 'www/' : 'apps/') + d.app + '/' + d.path;
+  }
+
+  // A path on this machine as a file of an application, or null - an engine file, say.
+  function dbgLocate(file) {
+    var home = boot.home || '';
+    var root = file.indexOf(home + '/apps/') === 0 ? 'app' : file.indexOf(home + '/www/') === 0 ? 'www' : '';
+    if (!home || !root) return null;
+    var rest = file.slice(home.length + (root === 'app' ? 6 : 5));
+    var app = E.apps.map(function (a) { return a.name; }).filter(function (a) { return rest.indexOf(a + '/') === 0; })
+                .sort(function (a, b) { return b.length - a.length; })[0];
+    return app ? { app: app, root: root, path: rest.slice(app.length + 1) } : null;
+  }
+
+  function dbgShort(file) {
+    var home = boot.home || '';
+    return home && file.indexOf(home + '/') === 0 ? file.slice(home.length + 1) : file;
+  }
+
+  // ---- breakpoints
+
+  function dbgIsPhp(d) { return d && d.model && d.model.getLanguageId() === 'php'; }
+
+  function dbgDecorate(d) {
+    if (!E.real || !d || !d.model) return;
+    var list = D.bps[dbgAbs(d)] || [];
+    var decos = list.map(function (bp) {
+      return { range: new E.monaco.Range(bp.line, 1, bp.line, 1),
+               options: { glyphMarginClassName: bp.condition ? 'dbg-bp dbg-bp-cond' : 'dbg-bp', stickiness: 1,
+                          glyphMarginHoverMessage: { value: bp.condition ? 'Breakpoint when `' + bp.condition + '`' : 'Breakpoint - click to remove, Shift+click for a condition' } } };
+    });
+    d.bpIds = d.model.deltaDecorations(d.bpIds || [], decos);
+  }
+
+  // Lines move as the text is edited; the decorations move with them, so the breakpoints
+  // are read back from where their decorations went.
+  function dbgTrack(d) {
+    if (!d.bpIds || !d.bpIds.length) return;
+    var list = D.bps[dbgAbs(d)] || [];
+    var moved = false;
+    d.bpIds.forEach(function (id, i) {
+      var r = d.model.getDecorationRange(id);
+      if (r && list[i] && list[i].line !== r.startLineNumber) { list[i].line = r.startLineNumber; moved = true; }
+    });
+    if (moved) { dbgSaveBps(); dbgRenderBps(); }
+  }
+
+  var dbgSyncSoon = debounce(function () { dbgSync(); }, 400);
+
+  function dbgSaveBps() {
+    Object.keys(D.bps).forEach(function (k) { if (!D.bps[k].length) delete D.bps[k]; });
+    store('breakpoints', D.bps);
+    dbgSyncSoon();
+  }
+
+  function toggleBreakpoint(d, line) {
+    if (!d || !d.model) return;
+    if (!dbgIsPhp(d)) { toast('Breakpoints stop PHP code - set them in a .php file; a template is not PHP'); return; }
+    var key = dbgAbs(d), list = D.bps[key] = D.bps[key] || [];
+    var i = list.findIndex(function (bp) { return bp.line === line; });
+    if (i >= 0) list.splice(i, 1); else list.push({ line: line, condition: '' });
+    list.sort(function (a, b) { return a.line - b.line; });
+    dbgDecorate(d);
+    dbgSaveBps();
+    dbgRenderBps();
+  }
+
+  function editCondition(d, line) {
+    if (!dbgIsPhp(d)) return toggleBreakpoint(d, line);
+    var key = dbgAbs(d), list = D.bps[key] = D.bps[key] || [];
+    var bp = list.filter(function (b) { return b.line === line; })[0];
+    ask('Breakpoint condition', 'Stop at line ' + line + ' only when this PHP expression is true', bp ? bp.condition : '', {
+      ok: 'Set', note: 'For example $id == 42 or count($rows) > 10. Empty: stop every time.'
+    }).then(function (cond) {
+      if (cond === null) return;
+      if (!bp) { bp = { line: line, condition: '' }; list.push(bp); list.sort(function (a, b) { return a.line - b.line; }); }
+      bp.condition = cond;
+      dbgDecorate(d);
+      dbgSaveBps();
+      dbgRenderBps();
+    });
+  }
+
+  function dbgBpList() {
+    var out = [];
+    Object.keys(D.bps).forEach(function (file) {
+      D.bps[file].forEach(function (bp) { out.push({ file: file, line: bp.line, condition: bp.condition || '' }); });
+    });
+    return out;
+  }
+
+  function dbgSync() {
+    if (!D.on) return Promise.resolve();
+    return api('debug', { op: 'breakpoints', list: dbgBpList(), exceptions: D.exceptions, first: D.first })
+      .catch(function (e) { toast('Breakpoints: ' + e.message, 'error'); });
+  }
+
+  // ---- the debugger process
+
+  function dbgStart() {
+    return api('debug', { op: 'start' }).then(function (info) {
+      D.info = info;
+      D.on = true;
+      dbgLog('The debugger listens on port ' + info.port + ' - Debug the page, or send a request with XDEBUG_SESSION.');
+      return dbgSync().then(function () { dbgLoop(); dbgRender(); });
+    }).catch(function (e) { toast('Debugger: ' + e.message, 'error'); dbgLog(e.message, 'error'); dbgRender(); });
+  }
+
+  function dbgStop() {
+    api('debug', { op: 'stop' }).then(function () {
+      D.on = false;
+      D.state = null;
+      dbgCurrent(null);
+      dbgLog('The debugger stopped.');
+      dbgRender();
+    }).catch(function (e) { toast(e.message, 'error'); });
+  }
+
+  function dbgLoop() {
+    if (!D.on || D.polling) return;
+    D.polling = true;
+    api('debug', { op: 'state', since: D.seq }).then(function (st) {
+      D.polling = false;
+      if (st.off) { D.on = false; D.state = null; dbgCurrent(null); dbgRender(); return; }
+      dbgApply(st);
+      setTimeout(dbgLoop, 30);
+    }).catch(function (e) {
+      D.polling = false;
+      dbgLog(e.message, 'error');
+      setTimeout(dbgLoop, 2000);
+    });
+  }
+
+  function dbgApply(st) {
+    var before = D.state;
+    D.state = st;
+    D.seq = st.seq;
+    (st.log || []).slice(before && before.log ? before.log.length : 0).forEach(function (line) { dbgLog(line.replace(/^\S+ /, ''), 'note'); });
+    if (st.status === 'break' && st.location) {
+      var mark = st.breaks + '|' + st.location.file + ':' + st.location.line;
+      if (mark !== D.shownBreak) {
+        D.shownBreak = mark;
+        D.frame = 0;
+        if (st.message) dbgLog(st.message, 'error');
+        dbgReveal(st.location.file, st.location.line, true);
+        if (E.panelTab !== 'debug' || !settings.panelOpen) showPanel('debug');
+        dbgWatchAll();
+      }
+    } else {
+      dbgCurrent(null);
+      D.shownBreak = '';
+    }
+    dbgRender();
+  }
+
+  function dbgCmd(op) {
+    if (!D.state || D.state.status !== 'break') return;
+    api('debug', { op: op }).then(function () {
+      D.state.status = 'running';
+      dbgCurrent(null);
+      dbgRender();
+    }).catch(function (e) { toast(e.message, 'error'); });
+  }
+
+  function dbgPaused() { return !!(D.on && D.state && D.state.status === 'break'); }
+
+  // ---- where it stopped
+
+  function dbgReveal(file, line, current) {
+    var at = dbgLocate(file);
+    var ticket = D.revealed = (D.revealed || 0) + 1;
+    var opened = at ? openFile(at.app, at.root, at.path, { line: line, column: 1 }) : openSource(file, line);
+    return Promise.resolve(opened).then(function (d) {
+      // only the last reveal marks its line: an earlier one that answers late does not
+      if (current && d && ticket === D.revealed && dbgPaused()) dbgCurrent(d, line);
+      return d;
+    });
+  }
+
+  // The line a paused request stands on - one at a time: every mark put before is taken off.
+  function dbgCurrent(d, line) {
+    (D.marks || []).forEach(function (m) { if (m.doc.model && !m.doc.model.isDisposed()) m.doc.model.deltaDecorations(m.ids, []); });
+    D.marks = [];
+    if (!d || !d.model || !E.real) return;
+    D.marks.push({ doc: d, ids: d.model.deltaDecorations([], [{ range: new E.monaco.Range(line, 1, line, 1),
+                                                                 options: { isWholeLine: true, className: 'dbg-line', glyphMarginClassName: 'dbg-arrow' } }]) });
+  }
+
+  // A file the editor has no root for - the engine's own, under pad/ - is shown read-only,
+  // as the debugger reads it.
+  function openSource(file, line) {
+    var k = key('', 'src', file);
+    var show = function (d) {
+      if (E.tabs.indexOf(k) < 0) E.tabs.push(k);
+      activate(k);
+      E.editor.setPosition({ lineNumber: line || 1, column: 1 });
+      if (E.editor.revealLineInCenter) E.editor.revealLineInCenter(line || 1);
+      return d;
+    };
+    if (E.docs[k]) return Promise.resolve(show(E.docs[k]));
+    if (D.loading && D.loading[k]) return D.loading[k].then(function (d) { return d && show(d); });
+    D.loading = D.loading || {};
+    return D.loading[k] = api('debug', { op: 'source', file: file }).then(function (r) {
+      delete D.loading[k];
+      if (E.docs[k]) return show(E.docs[k]);
+      var d = { app: '', root: 'src', path: file, kind: 'text', writable: false, sha1: '', size: r.text.length, info: {} };
+      d.model = E.monaco.editor.createModel(r.text, langOf('www', file), E.monaco.Uri.parse('pad://src' + file.split('/').map(encodeURIComponent).join('/')));
+      d.savedVersion = d.model.getAlternativeVersionId();
+      d.model.onDidChangeContent(function () { onChange(d); });
+      E.docs[k] = d;
+      dbgDecorate(d);
+      return show(d);
+    }).catch(function (e) { delete D.loading[k]; toast(dbgShort(file) + ': ' + e.message, 'error'); });
+  }
+
+  // ---- the panel
+
+  function dbgBuild() {
+    if (D.built) return;
+    D.built = true;
+    var p = $('panel-debug');
+    var check = function (id, label, on, title) {
+      return el('label', { class: 'dbg-check', title: title }, [el('input', { type: 'checkbox', id: id, checked: on }), label]);
+    };
+    p.appendChild(el('div', { class: 'dbg-bar', id: 'dbgBar' }, [
+      el('button', { type: 'button', class: 'btn small', id: 'dbgPower' }, ['Start the debugger']),
+      el('button', { type: 'button', class: 'btn small', id: 'dbgPage', title: 'Load the previewed page with XDEBUG_SESSION, so its PHP stops at the breakpoints' }, [icon('play'), 'Debug the page']),
+      check('dbgCookie', 'every request to ' + (E.app || 'the app'), false, 'A cookie, XDEBUG_SESSION, for this application only: its pages stop at the breakpoints in any tab'),
+      el('span', { class: 'dbg-sep' }),
+      el('button', { type: 'button', class: 'btn small', id: 'dbgRun', title: 'Continue (F5)' }, ['Continue']),
+      el('button', { type: 'button', class: 'btn small', id: 'dbgOver', title: 'Step over (F10)' }, ['Over']),
+      el('button', { type: 'button', class: 'btn small', id: 'dbgInto', title: 'Step into (F11)' }, ['Into']),
+      el('button', { type: 'button', class: 'btn small', id: 'dbgOut', title: 'Step out (Shift+F11)' }, ['Out']),
+      el('button', { type: 'button', class: 'btn small danger', id: 'dbgHalt', title: 'Stop the request (Shift+F5)' }, ['Stop']),
+      el('span', { class: 'dbg-sep' }),
+      check('dbgExc', 'exceptions', D.exceptions, 'Stop where an exception is thrown'),
+      check('dbgFirst', 'first line', D.first, 'Stop at the first line of every request'),
+      el('span', { class: 'dbg-status', id: 'dbgStatus', 'aria-live': 'polite' })
+    ]));
+    p.appendChild(el('div', { class: 'dbg-main' }, [
+      el('section', { class: 'dbg-col' }, [el('h4', { text: 'Call stack' }), el('div', { id: 'dbgStack', class: 'dbg-list' }),
+                                            el('h4', { text: 'Breakpoints' }), el('div', { id: 'dbgBps', class: 'dbg-list' })]),
+      el('section', { class: 'dbg-col dbg-vars' }, [
+        el('div', { class: 'dbg-tabs', role: 'tablist' }, [['locals', 'Locals'], ['globals', 'Superglobals'], ['watch', 'Watch']].map(function (t) {
+          return el('button', { type: 'button', class: 'dbg-vtab', 'data-view': t[0], onclick: function () { D.view = t[0]; dbgRenderVars(); } }, [t[1]]);
+        })),
+        el('div', { id: 'dbgVars', class: 'dbg-tree' })
+      ]),
+      el('section', { class: 'dbg-col dbg-console' }, [
+        el('h4', { text: 'Console' }),
+        el('div', { id: 'dbgLog', class: 'dbg-log', role: 'log' }),
+        el('form', { class: 'dbg-eval', onsubmit: function (e) { e.preventDefault(); dbgEvalInput(); } },
+           [el('input', { type: 'text', id: 'dbgEval', spellcheck: 'false', autocomplete: 'off', placeholder: 'A PHP expression, evaluated in the paused request', 'aria-label': 'Evaluate' })])
+      ])
+    ]));
+    $('dbgPower').addEventListener('click', function () { if (D.on) dbgStop(); else dbgStart(); });
+    $('dbgPage').addEventListener('click', dbgPage);
+    $('dbgRun').addEventListener('click', function () { dbgCmd('run'); });
+    $('dbgOver').addEventListener('click', function () { dbgCmd('step_over'); });
+    $('dbgInto').addEventListener('click', function () { dbgCmd('step_into'); });
+    $('dbgOut').addEventListener('click', function () { dbgCmd('step_out'); });
+    $('dbgHalt').addEventListener('click', function () { if (D.state && D.state.session) api('debug', { op: 'stop_request' }).catch(function (e) { toast(e.message, 'error'); }); });
+    $('dbgExc').addEventListener('change', function () { D.exceptions = this.checked; store('dbgExceptions', D.exceptions); dbgSync(); });
+    $('dbgFirst').addEventListener('change', function () { D.first = this.checked; store('dbgFirst', D.first); dbgSync(); });
+    $('dbgCookie').addEventListener('change', function () { dbgCookie(E.app, this.checked); });
+    if (!D.info) api('debug', { op: 'status' }).then(function (info) {
+      D.info = info;
+      if (!info.loaded) dbgLog('This PHP has no Xdebug: install it (pecl install xdebug) and set xdebug.mode=debug - see the editor\'s README.', 'error');
+      else if (!info.debug) dbgLog('Xdebug ' + info.version + ' runs here without its step debugger: xdebug.mode is "' + info.mode + '" - add debug to it.', 'error');
+      else dbgLog('Xdebug ' + info.version + ', step debugging on port ' + info.port + '. Set breakpoints in a .php file (gutter, F9), start the debugger, Debug the page.');
+      if (info.running && !D.on) { D.on = true; dbgSync().then(dbgLoop); }
+      dbgRender();
+    }).catch(function (e) { dbgLog(e.message, 'error'); });
+    dbgRender();
+  }
+
+  function dbgCookieOn(app) {
+    return document.cookie.split('; ').some(function (c) { return c === 'XDEBUG_SESSION=padedit'; }) && (store('dbgCookies') || []).indexOf(app) >= 0;
+  }
+
+  // The cookie's path is the application's own, so the editor's requests never carry it.
+  function dbgCookie(app, on) {
+    var path = (boot.root || '/') + app + '/';
+    document.cookie = 'XDEBUG_SESSION=padedit; path=' + path + '; SameSite=Lax' + (on ? '' : '; max-age=0');
+    var apps = (store('dbgCookies') || []).filter(function (a) { return a !== app; });
+    if (on) apps.push(app);
+    store('dbgCookies', apps);
+    dbgLog(on ? 'Every request to ' + app + ' now asks for the debugger (a cookie for ' + path + ').' : 'Requests to ' + app + ' no longer ask for the debugger.');
+    if (on && !D.on) dbgStart();
+  }
+
+  function dbgPage() {
+    var go = function () {
+      var d = currentDoc();
+      var page = d && d.root === 'app' && d.app === E.app ? pageOf(d.path) : null;
+      if (page === null) page = E.previewPage[E.app] || '';
+      var url = previewUrl(page);
+      url += (url.indexOf('?') >= 0 ? '&' : '?') + 'XDEBUG_SESSION=padedit';
+      openPreviewPane();
+      showPreviewUrl(url);
+      dbgLog('Loading ' + url.replace(boot.host, '') + ' under the debugger.');
+    };
+    if (D.on) go(); else dbgStart().then(function () { if (D.on) go(); });
+  }
+
+  function dbgRender() {
+    if (!D.built) return;
+    var st = D.state, paused = dbgPaused();
+    $('dbgPower').textContent = D.on ? 'Stop the debugger' : 'Start the debugger';
+    $('dbgPower').classList.toggle('primary', !D.on);
+    ['dbgRun', 'dbgOver', 'dbgInto', 'dbgOut'].forEach(function (id) { $(id).disabled = !paused; });
+    $('dbgHalt').disabled = !(st && st.session);
+    $('dbgCookie').checked = dbgCookieOn(E.app);
+    $('dbgCookie').parentNode.lastChild.textContent = 'every request to ' + E.app;
+    var text = !D.on ? 'off' : !st ? 'starting…' : st.status === 'break' ? 'paused at ' + dbgShort(st.location ? st.location.file : '') + ':' + (st.location ? st.location.line : '')
+             : st.status === 'running' ? 'running ' + dbgShort(st.session ? st.session.file : '') : 'waiting for a request on port ' + st.port;
+    $('dbgStatus').textContent = text;
+    $('dbgDot').className = 'dbg-dot' + (paused ? ' paused' : D.on ? ' on' : '');
+    var stack = $('dbgStack');
+    stack.textContent = '';
+    (st && st.status === 'break' ? st.stack : []).forEach(function (f, i) {
+      var own = !!dbgLocate(f.file);
+      stack.appendChild(el('button', { type: 'button', class: 'dbg-frame' + (i === D.frame ? ' active' : '') + (own ? '' : ' engine'), title: f.file + ':' + f.line,
+                                       onclick: function () { dbgFrame(i); } },
+                           [el('strong', { text: f.where }), el('span', { class: 'muted', text: ' ' + dbgShort(f.file).replace(/^.*\//, '') + ':' + f.line })]));
+    });
+    if (!stack.childNodes.length) stack.appendChild(el('p', { class: 'empty', text: D.on ? 'Not paused.' : 'The debugger is off.' }));
+    dbgRenderBps();
+    dbgRenderVars();
+  }
+
+  function dbgRenderBps() {
+    if (!D.built) return;
+    var box = $('dbgBps');
+    box.textContent = '';
+    var list = dbgBpList();
+    list.forEach(function (bp) {
+      box.appendChild(el('div', { class: 'dbg-bprow' }, [
+        el('button', { type: 'button', class: 'dbg-frame', title: bp.file, onclick: function () { dbgReveal(bp.file, bp.line, false); } },
+           [el('span', { class: 'dbg-bpdot' + (bp.condition ? ' cond' : '') }), dbgShort(bp.file).replace(/^.*\//, '') + ':' + bp.line,
+            bp.condition ? el('span', { class: 'muted', text: ' if ' + bp.condition }) : null]),
+        el('button', { type: 'button', class: 'tab-close', 'aria-label': 'Remove the breakpoint', onclick: function () {
+          D.bps[bp.file] = (D.bps[bp.file] || []).filter(function (b) { return b.line !== bp.line; });
+          openDocs().forEach(function (d) { if (dbgAbs(d) === bp.file) dbgDecorate(d); });
+          dbgSaveBps();
+          dbgRenderBps();
+        } }, [icon('close')])
+      ]));
+    });
+    if (!list.length) box.appendChild(el('p', { class: 'empty', text: 'None - click in the gutter of a .php file.' }));
+  }
+
+  function dbgFrame(i) {
+    var st = D.state;
+    if (!dbgPaused() || !st.stack[i]) return;
+    D.frame = i;
+    dbgReveal(st.stack[i].file, st.stack[i].line, true);
+    api('debug', { op: 'frame', depth: i }).then(function (r) { st.locals = r.locals; D.view = 'locals'; dbgRender(); })
+      .catch(function (e) { toast(e.message, 'error'); });
+    dbgRender();
+  }
+
+  function dbgValue(p) {
+    if (p.type === 'array') return el('span', { class: 'dv-type', text: 'array(' + p.numchildren + ')' });
+    if (p.type === 'object') return el('span', { class: 'dv-type', text: (p.classname || 'object') + ' {' + p.numchildren + '}' });
+    if (p.type === 'string') return el('span', { class: 'dv-str', text: JSON.stringify(p.value) + (p.cut ? '…' : '') });
+    if (p.type === 'null' || p.type === 'uninitialized') return el('span', { class: 'dv-null', text: p.type });
+    if (p.type === 'bool') return el('span', { class: 'dv-num', text: p.value === '1' ? 'true' : 'false' });
+    return el('span', { class: p.type === 'int' || p.type === 'float' ? 'dv-num' : '', text: p.value });
+  }
+
+  function dbgVarRow(p, depth, context, frame, parentBox) {
+    var row = el('div', { class: 'dbg-var', style: { paddingLeft: depth * 14 + 6 + 'px' } });
+    var kids = el('div', { class: 'dbg-kids', hidden: true });
+    var open = false;
+    var toggle = p.children ? icon('chevron', 'chev') : el('span', { class: 'chev-space' });
+    row.appendChild(toggle);
+    row.appendChild(el('span', { class: 'dv-name', text: p.name || p.fullname || '(value)' }));
+    row.appendChild(el('span', { class: 'dv-eq', text: p.children ? '' : ' = ' }));
+    row.appendChild(dbgValue(p));
+    if (p.children) {
+      row.classList.add('openable');
+      row.addEventListener('click', function () {
+        open = !open;
+        toggle.classList.toggle('open', open);
+        kids.hidden = !open;
+        if (!open || kids.childNodes.length) return;
+        var fill = function (items) { items.forEach(function (c) { dbgVarRow(c, depth + 1, context, frame, kids); }); };
+        if (p.items && p.items.length >= p.numchildren) { fill(p.items); return; }
+        if (!p.fullname) { fill(p.items || []); return; }
+        api('debug', { op: 'property', name: p.fullname, depth: frame, context: context }).then(function (r) {
+          fill((r.property && r.property.items) || []);
+          var more = r.property && r.property.numchildren > (r.property.items || []).length;
+          if (more) kids.appendChild(el('div', { class: 'dbg-var muted', style: { paddingLeft: (depth + 1) * 14 + 26 + 'px' },
+                                                  text: '… ' + (r.property.numchildren - r.property.items.length) + ' more' }));
+        }).catch(function (e) { kids.appendChild(el('div', { class: 'dbg-var muted', text: e.message })); });
+      });
+    }
+    row.title = p.fullname + (p.type ? ' : ' + p.type : '');
+    parentBox.appendChild(row);
+    parentBox.appendChild(kids);
+  }
+
+  function dbgRenderVars() {
+    if (!D.built) return;
+    Array.prototype.forEach.call(document.querySelectorAll('.dbg-vtab'), function (b) { b.classList.toggle('active', b.getAttribute('data-view') === D.view); });
+    var box = $('dbgVars'), st = D.state;
+    box.textContent = '';
+    if (D.view === 'watch') {
+      D.watches.forEach(function (w, i) {
+        var line = el('div', { class: 'dbg-watch' });
+        if (w.result) dbgVarRow(w.result, 0, 0, D.frame, line);
+        else line.appendChild(el('div', { class: 'dbg-var' }, [el('span', { class: 'chev-space' }), el('span', { class: 'dv-name', text: w.expression }),
+                                                                el('span', { class: 'muted', text: w.error ? '  ' + w.error : '  -' })]));
+        line.appendChild(el('button', { type: 'button', class: 'tab-close dbg-unwatch', 'aria-label': 'Remove the watch', onclick: function () {
+          D.watches.splice(i, 1); dbgSaveWatches(); dbgRenderVars(); } }, [icon('close')]));
+        box.appendChild(line);
+      });
+      box.appendChild(el('form', { class: 'dbg-eval', onsubmit: function (e) {
+        e.preventDefault();
+        var v = this.querySelector('input').value.trim();
+        if (!v) return;
+        D.watches.push({ expression: v });
+        dbgSaveWatches();
+        dbgWatchAll();
+      } }, [el('input', { type: 'text', placeholder: 'Add a watch: a PHP expression', spellcheck: 'false' })]));
+      return;
+    }
+    var list = st && st.status === 'break' ? (D.view === 'globals' ? st.globals : st.locals) : [];
+    (list || []).forEach(function (p) { dbgVarRow(p, 0, D.view === 'globals' ? 1 : 0, D.frame, box); });
+    if (!box.childNodes.length) box.appendChild(el('p', { class: 'empty', text: dbgPaused() ? 'No variables here.' : 'Variables show when a request is paused.' }));
+  }
+
+  function dbgSaveWatches() {
+    store('dbgWatches', D.watches.map(function (w) { return { expression: w.expression }; }));
+  }
+
+  function dbgWatchAll() {
+    if (!dbgPaused()) { dbgRenderVars(); return; }
+    Promise.all(D.watches.map(function (w) {
+      return api('debug', { op: 'eval', expression: w.expression }).then(function (r) {
+        w.result = r.property ? Object.assign({}, r.property, { name: w.expression, fullname: '' }) : null;
+        w.error = '';
+      }, function (e) { w.result = null; w.error = e.message; });
+    })).then(dbgRenderVars);
+  }
+
+  function dbgLog(text, kind) {
+    var box = $('dbgLog');
+    if (!box) return;
+    box.appendChild(el('div', { class: 'dbg-msg' + (kind ? ' ' + kind : ''), text: text }));
+    while (box.childNodes.length > 300) box.removeChild(box.firstChild);
+    box.scrollTop = box.scrollHeight;
+  }
+
+  function dbgEvalInput() {
+    var input = $('dbgEval'), v = input.value.trim();
+    if (!v) return;
+    input.value = '';
+    var box = $('dbgLog');
+    box.appendChild(el('div', { class: 'dbg-msg cmd', text: '› ' + v }));
+    if (!dbgPaused()) { dbgLog('Not paused: an expression is evaluated in a paused request.', 'error'); return; }
+    api('debug', { op: 'eval', expression: v }).then(function (r) {
+      var line = el('div', { class: 'dbg-msg result' });
+      if (r.property) dbgVarRow(Object.assign({}, r.property, { name: '', fullname: '' }), 0, 0, D.frame, line);
+      else line.textContent = '(nothing)';
+      box.appendChild(line);
+      box.scrollTop = box.scrollHeight;
+    }).catch(function (e) { dbgLog(e.message, 'error'); });
+  }
+
+  // While paused, a PHP variable under the mouse shows its value.
+  function dbgHover(model, position) {
+    if (!dbgPaused()) return null;
+    var line = model.getLineContent(position.lineNumber);
+    var m, re = /\$[A-Za-z_][A-Za-z0-9_]*(?:(?:->|::)[A-Za-z_][A-Za-z0-9_]*|\[(?:'[^']*'|"[^"]*"|\d+)\])*/g;
+    while ((m = re.exec(line)) !== null) {
+      var s = m.index + 1, e = s + m[0].length;
+      if (position.column < s || position.column > e) continue;
+      return api('debug', { op: 'property', name: m[0], depth: D.frame }).then(function (r) {
+        var p = r.property;
+        if (!p) return null;
+        var text = p.children ? (p.type === 'object' ? (p.classname || 'object') : 'array') + ' (' + p.numchildren + ')\n' +
+                   (p.items || []).slice(0, 20).map(function (c) { return '  ' + c.name + ' => ' + (c.children ? c.type + '(' + c.numchildren + ')' : c.type === 'string' ? JSON.stringify(c.value) : c.value); }).join('\n')
+                 : p.type === 'string' ? JSON.stringify(p.value) : p.type + ' ' + p.value;
+        return { range: new E.monaco.Range(position.lineNumber, s, position.lineNumber, e), contents: [{ value: '```\n' + m[0] + ' = ' + text + '\n```' }] };
+      }, function () { return null; });
+    }
+    return null;
+  }
+
+  function dbgSetup() {
+    if (!E.real) return;
+    E.monaco.languages.registerHoverProvider('php', { provideHover: function (model, position) { return dbgHover(model, position); } });
+    E.editor.onMouseDown(function (e) {
+      if (!e.target || e.target.type !== E.monaco.editor.MouseTargetType.GUTTER_GLYPH_MARGIN || !e.target.position) return;
+      var d = currentDoc();
+      if (!d) return;
+      if (e.event.shiftKey) editCondition(d, e.target.position.lineNumber);
+      else toggleBreakpoint(d, e.target.position.lineNumber);
+    });
+    api('debug', { op: 'status' }).then(function (info) {
+      D.info = info;
+      if (info.running) { D.on = true; dbgSync().then(dbgLoop); }
+      dbgRender();
+    }).catch(function () {});
+  }
+
+  // ------------------------------------------------------------------------------------
   // Settings, users, trash, shortcuts
   // ------------------------------------------------------------------------------------
 
@@ -2224,6 +2758,14 @@
     { id: 'reveal', label: 'Reveal in tree', icon: 'side', run: function () { var d = currentDoc(); if (d) select(d.root, d.path, true); } },
     { id: 'history', label: 'Show the history of this file', icon: 'history', run: function () { showPanel('history'); } },
     { id: 'terminal', label: 'Terminal', keys: 'Ctrl+`', icon: 'terminal', run: toggleTerminal },
+    { id: 'debugPanel', label: 'Debugger', icon: 'play', run: function () { showPanel('debug'); } },
+    { id: 'debugPage', label: 'Debug the page', icon: 'play', run: function () { showPanel('debug'); dbgPage(); } },
+    { id: 'breakpoint', label: 'Toggle breakpoint', keys: 'F9', icon: 'warning', run: function () { var d = currentDoc(); if (d && d.kind === 'text') toggleBreakpoint(d, E.editor.getPosition().lineNumber); } },
+    { id: 'continue', label: 'Debugger: continue', keys: 'F5', icon: 'play', run: function () { if (dbgPaused()) dbgCmd('run'); else if (D.on) dbgPage(); } },
+    { id: 'stepOver', label: 'Debugger: step over', keys: 'F10', icon: 'chevron', run: function () { dbgCmd('step_over'); } },
+    { id: 'stepInto', label: 'Debugger: step into', keys: 'F11', icon: 'chevron', run: function () { dbgCmd('step_into'); } },
+    { id: 'stepOut', label: 'Debugger: step out', keys: 'Shift+F11', icon: 'chevron', run: function () { dbgCmd('step_out'); } },
+    { id: 'stopRequest', label: 'Debugger: stop the request', keys: 'Shift+F5', icon: 'close', run: function () { if (D.state && D.state.session) api('debug', { op: 'stop_request' }).catch(function (e) { toast(e.message, 'error'); }); } },
     { id: 'head', label: 'Compare with HEAD', icon: 'git', run: function () { compareHead(currentDoc()); } },
     { id: 'apps', label: 'Switch application', keys: 'Alt+A', icon: 'apps', run: appPicker },
     { id: 'newApp', label: 'New application', icon: 'filePlus', run: newApp },
@@ -2287,6 +2829,12 @@
     if (e.altKey && !mod && code === 'BracketLeft') return run('prev');
     if (e.key === 'F7') return run('check');
     if (e.ctrlKey && !e.metaKey && !e.altKey && (code === 'Backquote' || k === '`')) return run('terminal');
+    if (e.key === 'F9' && !e.shiftKey) return run('breakpoint');
+    if (e.key === 'F5' && e.shiftKey && D.on) return run('stopRequest');
+    if (e.key === 'F5' && !e.shiftKey && !mod && D.on) return run('continue');
+    if (e.key === 'F10' && dbgPaused()) return run('stepOver');
+    if (e.key === 'F11' && e.shiftKey && dbgPaused()) return run('stepOut');
+    if (e.key === 'F11' && !e.shiftKey && dbgPaused()) return run('stepInto');
   }, true);
 
   window.addEventListener('beforeunload', function (e) {
@@ -2338,7 +2886,7 @@
     right.textContent = '';
     if (E.branch) left.appendChild(el('span', { class: 'st', title: 'git branch' }, [icon('git'), E.branch]));
     left.appendChild(el('button', { type: 'button', class: 'st link', onclick: appPicker, title: 'Switch application (Alt+A)' }, [icon('apps'), E.app || '-']));
-    if (d) left.appendChild(el('span', { class: 'st path', text: (d.root === 'www' ? 'www/' : 'apps/') + d.app + '/' + d.path }));
+    if (d) left.appendChild(el('span', { class: 'st path', text: d.root === 'src' ? dbgShort(d.path) + ' (read-only)' : (d.root === 'www' ? 'www/' : 'apps/') + d.app + '/' + d.path }));
     right.appendChild(el('button', { type: 'button', class: 'st link' + (E.problemTotal ? ' bad' : ''), onclick: function () { showPanel('problems'); }, title: 'Problems' },
                          [icon(E.problemTotal ? 'warning' : 'check'), String(E.problemTotal || 0)]));
     if (d && d.kind === 'text') {
@@ -2424,8 +2972,9 @@
     $('tree').addEventListener('dragover', function (e) { if (Array.prototype.indexOf.call(e.dataTransfer.types, 'Files') >= 0) e.preventDefault(); });
     $('tree').addEventListener('drop', function (e) { if (e.dataTransfer.files && e.dataTransfer.files.length) { e.preventDefault(); var t = targetDir(); upload(t.dir, t.root, e.dataTransfer.files); } });
 
-    ['problems', 'search', 'history', 'terminal'].forEach(function (p) { $('ptab-' + p).addEventListener('click', function () { showPanel(p); }); });
+    ['problems', 'search', 'history', 'terminal', 'debug'].forEach(function (p) { $('ptab-' + p).addEventListener('click', function () { showPanel(p); }); });
     if (!boot.terminal) $('ptab-terminal').hidden = true;
+    if (!boot.debug) $('ptab-debug').hidden = true;
     $('termInput').addEventListener('keydown', termKeys);
     $('termStop').addEventListener('click', function () { termStop(); $('termInput').focus(); });
     $('termForm').addEventListener('submit', function (e) { e.preventDefault(); });

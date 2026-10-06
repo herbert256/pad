@@ -71,6 +71,7 @@
           <button type="button" class="ptab" id="ptab-search" role="tab" aria-selected="false">Search</button>
           <button type="button" class="ptab" id="ptab-history" role="tab" aria-selected="false">History</button>
           <button type="button" class="ptab" id="ptab-terminal" role="tab" aria-selected="false">Terminal</button>
+          <button type="button" class="ptab" id="ptab-debug" role="tab" aria-selected="false">Debug <span class="dbg-dot" id="dbgDot"></span></button>
           <span class="term-state" id="termState" aria-live="polite"></span>
           <button type="button" class="btn small term-stop" id="termStop" hidden>Stop</button>
           <button type="button" class="btn ghost panel-close" id="panelClose" title="Close the panel" aria-label="Close the panel"></button>
@@ -87,6 +88,7 @@
           <div id="searchResults"></div>
         </div>
         <div class="panel-body" id="panel-history" role="tabpanel" hidden><div id="historyList"></div></div>
+        <div class="panel-body dbg" id="panel-debug" role="tabpanel" hidden></div>
         <div class="panel-body term" id="panel-terminal" role="tabpanel" hidden>
           <div class="term-screen" id="termScreen">
             <div class="term-out" id="termOut" role="log" aria-label="Terminal output"></div>

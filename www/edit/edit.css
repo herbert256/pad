@@ -654,6 +654,61 @@ body {
   .t-fg15 { color: var(--term-c15); }
   .t-bg15 { background: var(--term-c15); }
 
+  /* ---------------------------------------------------------------- debugger */
+
+  .dbg { padding: 0; display: flex; flex-direction: column; }
+  .dbg-dot:not(.on):not(.paused) { display: none; }
+  .dbg-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-left: 4px; background: var(--ok); vertical-align: 1px; }
+  .dbg-dot.paused { background: var(--warn); box-shadow: 0 0 0 3px color-mix(in srgb, var(--warn) 30%, transparent); }
+  .dbg-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; padding: 5px 10px; border-bottom: 1px solid var(--line-2); flex: none; }
+  .dbg-bar .btn[disabled] { opacity: .4; }
+  .dbg-sep { width: 1px; height: 18px; background: var(--line); margin: 0 4px; }
+  .dbg-check { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: var(--muted); }
+  .dbg-status { margin-left: auto; font-size: 12px; color: var(--muted); font-family: var(--mono); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 45%; }
+  .dbg-main { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(180px, 1fr) minmax(240px, 1.6fr) minmax(220px, 1.4fr); }
+  .dbg-col { min-height: 0; overflow: auto; border-right: 1px solid var(--line-2); display: flex; flex-direction: column; }
+  .dbg-col:last-child { border-right: 0; }
+  .dbg-col h4 { margin: 6px 10px 2px; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); }
+  .dbg-list { display: flex; flex-direction: column; }
+  .dbg-frame {
+    display: flex; align-items: center; gap: 6px; width: 100%; border: 0; background: transparent; text-align: left;
+    padding: 2px 10px; cursor: pointer; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .dbg-frame:hover { background: var(--hover); }
+  .dbg-frame.active { background: var(--select); }
+  .dbg-frame.engine { opacity: .6; }
+  .dbg-frame strong { font-weight: 600; font-family: var(--mono); }
+  .dbg-bprow { display: flex; align-items: center; }
+  .dbg-bprow .dbg-frame { flex: 1; min-width: 0; }
+  .dbg-bpdot { width: 9px; height: 9px; border-radius: 50%; background: #e51400; flex: none; }
+  .dbg-bpdot.cond { background: #f0a30a; }
+  .dbg-tabs { display: flex; gap: 2px; padding: 4px 8px 0; flex: none; }
+  .dbg-vtab { border: 0; background: transparent; padding: 4px 8px; font-size: 12px; cursor: pointer; color: var(--muted); border-bottom: 2px solid transparent; }
+  .dbg-vtab.active { color: var(--text); border-bottom-color: var(--accent-2); }
+  .dbg-tree { flex: 1; overflow: auto; padding: 4px 0; font: 12px/1.5 var(--mono); }
+  .dbg-var { display: flex; align-items: center; gap: 2px; padding-right: 8px; white-space: nowrap; }
+  .dbg-var.openable { cursor: pointer; }
+  .dbg-var:hover { background: var(--hover); }
+  .dbg-var .chev { width: 11px; height: 11px; color: var(--muted); transition: transform .1s; }
+  .dbg-var .chev.open { transform: rotate(90deg); }
+  .dbg-var .chev-space { width: 11px; flex: none; }
+  .dv-name { color: var(--accent); }
+  .dv-eq { color: var(--muted); white-space: pre; }
+  .dv-str { color: var(--ok); overflow: hidden; text-overflow: ellipsis; }
+  .dv-num { color: var(--warn); }
+  .dv-null, .dv-type { color: var(--muted); font-style: italic; margin-left: 6px; }
+  .dbg-watch { position: relative; }
+  .dbg-unwatch { position: absolute; right: 4px; top: 0; }
+  .dbg-console { min-width: 0; }
+  .dbg-log { flex: 1; overflow: auto; padding: 2px 10px; font: 12px/1.5 var(--mono); }
+  .dbg-msg { white-space: pre-wrap; word-break: break-word; }
+  .dbg-msg.note { color: var(--muted); }
+  .dbg-msg.error { color: var(--danger); }
+  .dbg-msg.cmd { color: var(--accent-2); margin-top: 4px; }
+  .dbg-eval { padding: 4px 8px 6px; flex: none; }
+  .dbg-eval input { width: 100%; padding: 4px 8px; border: 1px solid var(--line); border-radius: 5px; background: var(--bg-3); font: 12px var(--mono); }
+  .dbg-eval input:focus { outline: 2px solid var(--select-line); outline-offset: -1px; }
+
   /* ---------------------------------------------------------------- status bar */
 
   .status {
@@ -899,3 +954,31 @@ body {
   }
 
 }
+
+/* Decorations inside Monaco's own DOM, so outside the scope above: a breakpoint in the
+   gutter, and the line a paused request stands on. */
+
+.monaco-editor .dbg-bp::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin: 4px 0 0 5px;
+  border-radius: 50%;
+  background: #e51400;
+}
+
+.monaco-editor .dbg-bp-cond::before { background: #f0a30a; }
+
+.monaco-editor .dbg-arrow::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  border-style: solid;
+  border-width: 6px 0 6px 10px;
+  border-color: transparent transparent transparent #ffcc00;
+}
+
+.monaco-editor .dbg-line { background: rgba(255, 204, 0, .18); }
+.monaco-editor .margin-view-overlays .cgmr { cursor: pointer; }
