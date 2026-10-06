@@ -81,7 +81,7 @@ Lets assume <code style="color: #000000"><b>{<font color="green"><font color="re
 
 
 <p>
-If you do not put quotes around <code style="color: #000000"><b>{<font color="green"><font color="red">$</font>myVar</font>}</b></code> then below will be executed: the bare word ABC is read as the PHP constant ABC when one is defined, and as the text ABC when not - a quoted value is always the text
+Without quotes around <code style="color: #000000"><b>{<font color="green"><font color="red">$</font>myVar</font>}</b></code> the result is the same: a field written into a tag's parameters is spliced in as a quoted string (a plain number as the number), so its value stays the text ABC. Only a bare word written in the template itself, as below, is read as the PHP constant of that name when one is defined, and as the text when not - a quoted value is always the text
 </p>
 
 
