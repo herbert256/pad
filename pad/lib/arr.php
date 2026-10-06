@@ -139,6 +139,13 @@
 
   function padArrOnly ( $array, $keys ) {
 
+    // A Traversable that is no ArrayAccess - a generator, an IteratorAggregate - is read
+    // through its items, as padArrExcept reads it: its keys are no properties, and it
+    // answered nothing.
+
+    if ( $array instanceof Traversable and ! $array instanceof ArrayAccess )
+      $array = padArrItems ( $array );
+
     $only = [];
 
     foreach ( padArrKeyList ( 'padArrOnly', $keys ) as $key )
