@@ -822,6 +822,7 @@ Edge rules:
   the host and the form of the address are not, so a link holds behind a proxy and in the
   `?page`, the clean and the `index.php/page` form alike, and the order of the values does
   not count. A value added, removed or changed - `padInclude` too - another page or
-  application, an expiry moved or passed, a signature missing or not 64 hex characters:
-  `FALSE`. The signature is compared with `hash_equals`. The values are visible in the link:
+  application, an expiry moved or passed, a signature missing or not 64 hex characters, a
+  value of the link named again in a post or a JSON body (the page would read that one):
+  `FALSE`. A field the body adds - a form posted to the link - leaves it valid. The signature is compared with `hash_equals`. The values are visible in the link:
   sign what must not change, seal (`padEncrypt`) what must not be read.

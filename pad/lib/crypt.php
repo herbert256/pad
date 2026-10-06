@@ -252,6 +252,18 @@
     if ( ( $padPageKey ?? '' ) !== '' and ( $vars [$padPageKey] ?? NULL ) === '' )
       unset ( $vars [$padPageKey] );
 
+    // A value of the link that the body of the request names again would stand in for the
+    // signed one: the page's variables take a post over the query string (inits/parms.php)
+    // and padRequest a JSON body over both, so a post of id=43 to the link signed for id=42
+    // was read as 43 under a valid signature. A field of the body's own - a form posted to
+    // the link - is no value of the link.
+
+    $body = padRequestJson () + ( is_array ( $_POST ?? NULL ) ? $_POST : [] );
+
+    foreach ( array_keys ( $_GET ) as $name )
+      if ( array_key_exists ( $name, $body ) )
+        return FALSE;
+
     if ( array_key_exists ( 'padExpires', $vars ) ) {
 
       if ( ! is_string ( $vars ['padExpires'] ) or ! ctype_digit ( $vars ['padExpires'] ) )
