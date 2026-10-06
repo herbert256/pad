@@ -261,12 +261,15 @@
     // signed one: the page's variables take a post over the query string (inits/parms.php)
     // and padRequest a JSON body over both, so a post of id=43 to the link signed for id=42
     // was read as 43 under a valid signature. A field of the body's own - a form posted to
-    // the link - is no value of the link.
+    // the link - is no value of the link. A dotted key of a JSON body is a path into those
+    // values for padRequest, its whole name looked for first: {"user.id":43} sent to the
+    // link signed for user[id]=42 was read as user.id 43 - a key whose part before its
+    // first dot is a value of the link counts as that value.
 
     $body = padRequestJson () + ( is_array ( $_POST ?? NULL ) ? $_POST : [] );
 
-    foreach ( array_keys ( $_GET ) as $name )
-      if ( array_key_exists ( $name, $body ) )
+    foreach ( array_keys ( $body ) as $name )
+      if ( array_key_exists ( $name, $_GET ) or array_key_exists ( explode ( '.', (string) $name, 2 ) [0], $_GET ) )
         return FALSE;
 
     if ( array_key_exists ( 'padExpires', $vars ) ) {

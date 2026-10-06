@@ -826,6 +826,7 @@ Edge rules:
   `?page`, the clean and the `index.php/page` form alike, and the order of the values does
   not count. A value added, removed or changed - `padInclude` too - another page or
   application, an expiry moved or passed, a signature missing or not 64 hex characters, a
-  value of the link named again in a post or a JSON body (the page would read that one):
+  value of the link named again in a post or a JSON body, or a dotted JSON key walking into
+  one - `user.id` for a signed `user[id]` (the page would read that one):
   `FALSE`. A field the body adds - a form posted to the link - leaves it valid. The signature is compared with `hash_equals`. The values are visible in the link:
   sign what must not change, seal (`padEncrypt`) what must not be read.
