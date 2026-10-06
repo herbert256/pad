@@ -6,8 +6,9 @@ registration, no configuration. The file's name is the name in the template.</p>
 <h2>A tag of your own: _tags/</h2>
 
 <p>A file <code>_tags/badge.php</code> makes <code>{open}badge{close}</code> a tag. The file
-reads its parameters with <code>padTagParm ( name, default )</code>, puts what it renders in
-<code>$padContent</code>, and returns TRUE. The <code>app:</code> prefix names it
+reads its parameters with <code>padTagParm ( name, default )</code> and returns what it
+renders - a value, whose braces stay text; <code>$padContent</code> is template source, so
+nothing built from a parameter goes there. The <code>app:</code> prefix names it
 explicitly when another meaning of the name is in the way:</p>
 
 {example 'fragments/extending_1'}
@@ -17,9 +18,7 @@ explicitly when another meaning of the name is in the way:</p>
 
   $label = padTagParm ( 'label', 'plain' );
 
-  $padContent = "&amp;laquo;$label&amp;raquo;";
-
-  return TRUE;
+  return '&amp;laquo;' . htmlspecialchars ( $label ) . '&amp;raquo;';
 
 ?&gt;</code></pre>
 {/ignore}

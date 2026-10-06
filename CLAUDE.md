@@ -288,12 +288,16 @@ Files in `_lib/` are automatically included.
 <?php
   $label = padTagParm('label', 'Click');
   $href  = padTagParm('href', '#');
-  $padContent = "<a href=\"$href\" class=\"button\">$label</a>";
-  return TRUE;
+  return '<a href="' . htmlspecialchars($href) . '" class="button">' . htmlspecialchars($label) . '</a>';
 ?>
 ```
 
 Use in templates: `{button label="Submit", href="?submit"}`
+
+What a tag returns is a value: its braces stay text, as every value's do. `$padContent` is
+template source instead - the content the level goes on to process - so text built from a
+parameter belongs in the return value, never in `$padContent`, where a visitor's
+`{php:...}` in the parameter would run.
 
 **_tags/json.php** (for React integration):
 ```php

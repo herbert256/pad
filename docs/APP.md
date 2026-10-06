@@ -161,10 +161,13 @@ Create custom template tags.
 <?php
   $label = padTagParm ( 'label', 'Click' );
   $href  = padTagParm ( 'href', '#' );
-  $padContent = "<a href=\"$href\" class=\"button\">$label</a>";
-  return TRUE;
+  return '<a href="' . htmlspecialchars ( $href ) . '" class="button">' . htmlspecialchars ( $label ) . '</a>';
 ?>
 ```
+
+What a tag returns is a value: its braces stay text. `$padContent` is template source - the
+content the level goes on to process - so text built from a parameter belongs in the return
+value, never in `$padContent`, where a visitor's `{php:...}` in the parameter would run.
 
 Use in templates:
 ```
