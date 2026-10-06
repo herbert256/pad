@@ -65,7 +65,15 @@
     if ( ! $least )
       return $text;
 
-    return preg_replace ( '/^ {0,' . $least . '}/m', '', $text );
+    // Counted per line rather than written as ^ {0,N}: a quantifier past 65535 - a line
+    // indented 65536 spaces - is one PCRE refuses to compile, a warning and a 500.
+
+    $lines = explode ( "\n", $text );
+
+    foreach ( $lines as $k => $line )
+      $lines [$k] = substr ( $line, min ( $least, strspn ( $line, ' ' ) ) );
+
+    return implode ( "\n", $lines );
 
   }
 
@@ -172,6 +180,24 @@
 
   }
 
+  // Whether a line closes the fence opened with $marker: up to three spaces, a run of the
+  // marker's character at least as long, and nothing after it but spaces and tabs. Counted
+  // rather than written as a pattern: a quantifier past 65535 - a fence of 70000 backticks
+  // - is one PCRE refuses to compile, a warning and a 500.
+
+  function padMarkdownFenceClose ( $line, $marker ) {
+
+    $lead = strspn ( $line, ' ' );
+
+    if ( $lead > 3 )
+      return FALSE;
+
+    $run = strspn ( $line, $marker [0], $lead );
+
+    return $run >= strlen ( $marker ) and trim ( substr ( $line, $lead + $run ), " \t" ) === '';
+
+  }
+
   // Does this line start a block of its own, so it ends a paragraph above it rather than
   // continuing it. An ordered item only interrupts a paragraph when it starts at 1.
 
@@ -223,7 +249,7 @@
         $code = [];
         $i++;
 
-        while ( $i < $n and ! preg_match ( '/^ {0,3}' . preg_quote ( $marker [0], '/' ) . '{' . strlen ( $marker ) . ',}[ \t]*$/', $lines [$i] ) ) {
+        while ( $i < $n and ! padMarkdownFenceClose ( $lines [$i], $marker ) ) {
           $code [] = preg_replace ( '/^ {0,' . $indent . '}/', '', $lines [$i] );
           $i++;
         }
