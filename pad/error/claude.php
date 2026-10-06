@@ -122,6 +122,12 @@
 
   function padRedactText ( $text ) {
 
+    // The request's own secrets by their value: the CSRF token stands in every level of a
+    // rendered form and in whatever variable a page keeps it in, the session ids in the PAD
+    // header line and the cookie lines - under names no pattern knows.
+
+    $text = str_replace ( padRedactValues (), '*** redacted ***', $text );
+
     // The password inside a URL - a DSN in the environment, a fetch with a login in it.
 
     if ( str_contains ( $text, '@' ) )
@@ -141,6 +147,17 @@
       fn ( $m ) => ( padRedactName ( $m [3] ) and ( $m [1] [0] != "'" and $m [1] [0] != '"' or str_contains ( $m [1], '=>' ) ) )
                    ? $m [1] . "'*** redacted ***'" : $m [0],
       $text );
+
+  }
+
+  // Random values only, long enough not to stand for anything else by chance.
+
+  function padRedactValues () {
+
+    $values = [ $GLOBALS ['padSesID'] ?? '', $GLOBALS ['padCsrfIssued'] ?? '', $_SESSION ['padCsrf'] ?? '',
+                $_COOKIE [ session_name () ] ?? '', session_id (), $GLOBALS ['padAppKey'] ?? '' ];
+
+    return array_values ( array_filter ( $values, fn ( $value ) => is_string ( $value ) and strlen ( $value ) >= 8 ) );
 
   }
 
