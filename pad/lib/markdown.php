@@ -117,15 +117,21 @@
   }
 
   // The text of what was held inside a link's URL or title, which are attribute values: a
-  // backslash escape is its character again, a code span or an autolink its text without
-  // the tags. The URL is judged after this - javascript\:alert(1) is javascript:alert(1),
-  // not a word with a stand-in where its colon was - and no held tag lands, quotes and
-  // all, inside the attribute.
+  // backslash escape is its character again, a code span or an autolink - an element the
+  // renderer made - its text without the tags. A single tag the html option's raw pass held
+  // is its own source: it is the <page> or <my file.pdf> of a destination in pointy
+  // brackets, which the pass took for a tag and the tags taken off left as href="". The URL
+  // is judged after this - javascript\:alert(1) is javascript:alert(1), not a word with a
+  // stand-in where its colon was - and the URL and the title are escaped after it, so no
+  // held quote lands live inside the attribute.
 
   function padMarkdownText ( $text, $hold ) {
 
     return preg_replace_callback ( '/\x1A(\d+)\x1A/',
-      fn ( $m ) => strip_tags ( padMarkdownRestore ( $hold [ (int) $m [1] ] ?? '', $hold ) ),
+      function ( $m ) use ( $hold ) {
+        $piece = padMarkdownRestore ( $hold [ (int) $m [1] ] ?? '', $hold );
+        return preg_match ( '/^<(code|a)\b[^>]*>.*<\/\1>$/s', $piece ) ? strip_tags ( $piece ) : $piece;
+      },
       $text );
 
   }
