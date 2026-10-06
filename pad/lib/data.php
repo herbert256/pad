@@ -80,6 +80,15 @@
 
       $data = include PAD . "data/$type.php";
 
+      // A reader that could not parse its input answers FALSE through padError. Under the
+      // error actions that carry on - 'log', 'ignore' - padData used to walk that FALSE
+      // through the shape fixers below, so one "JSON conversion error" was followed by two
+      // "foreach() argument must be of type array, false given" from inside the engine. A
+      // reader that gave no array gives no rows.
+
+      if ( ! is_array ( $data ) )
+        $data = [];
+
     }
 
     // A RECORD answer of db() is one row, which the fixers below would otherwise take for
