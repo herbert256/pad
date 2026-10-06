@@ -54,15 +54,19 @@
 
       if ( $one[1] == 'other' ) {
 
+        // [2] keeps the operator as the template wrote it, for a message to name.
+
         if ( isset ( padEval_alt [$one[0]] ) ) {
 
           $result[$k][0] = padEval_alt [$one[0]];
           $result[$k][1] = 'OPR';
+          $result[$k][2] = $one[0];
 
         } elseif ( in_array ( strtoupper($one[0]), padEval_txt ) ) {
 
           $result[$k][0] = strtoupper($one[0]);
           $result[$k][1] = 'OPR';
+          $result[$k][2] = $one[0];
 
         } else {
 

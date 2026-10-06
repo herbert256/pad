@@ -10,6 +10,11 @@
 
   $opr = $result [$b] [0];
 
+  // The operator as the template wrote it - >= rather than GE - for the messages of the
+  // array forms (the tokeniser and padEvalAfter keep the spelling in [2]).
+
+  $oprWritten = $result [$b] [2] ?? $opr;
+
   // The empty-coalescing operator: the left value unless it is empty - '', NULL, an empty
   // list or a field that is not there - and then the right one. 0 is a value.
 

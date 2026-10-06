@@ -31,7 +31,7 @@
     global $padCheckSyntax;
 
     if ( $padCheckSyntax )
-      padError ( "$opr on an array of " . count ( $left ) . " and a value: only an array of numbers, against a number, sums to one value" );
+      padError ( "$oprWritten on an array of " . count ( $left ) . " and a value: only an array of numbers, against a number, sums to one value" );
 
     $now = '';
 
