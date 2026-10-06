@@ -7,6 +7,14 @@
   if ( ! count ( $pqResult ) )
     return;
 
-  $pqResult = [ $pqActionKey => array_sum ( $pqResult ) / count ( $pqResult ) ];
+  // The mean of the numbers among the values: a word - a list or a store can hold one - ended
+  // the request on PHP's "Addition is not supported on type string". Values with no number
+  // among them have no mean either, and leave nothing.
+
+  $pqAverageOf = array_filter ( $pqResult, 'is_numeric' );
+
+  $pqResult = count ( $pqAverageOf )
+            ? [ $pqActionKey => array_sum ( $pqAverageOf ) / count ( $pqAverageOf ) ]
+            : [];
 
 ?>

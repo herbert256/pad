@@ -13,7 +13,16 @@
   if ( ! count ( $pqResult ) )
     return;
 
-  $pqMedianValues = array_values ( $pqResult );
+  // The median of the numbers among the values: a word - a list or a store can hold one - was
+  // sorted in among them and added to one, which ended the request. Values with no number
+  // among them have no median, and leave nothing.
+
+  $pqMedianValues = array_values ( array_filter ( $pqResult, 'is_numeric' ) );
+
+  if ( ! count ( $pqMedianValues ) ) {
+    $pqResult = [];
+    return;
+  }
 
   sort ( $pqMedianValues, SORT_NUMERIC );
 

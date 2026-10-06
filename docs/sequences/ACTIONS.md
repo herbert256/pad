@@ -116,6 +116,8 @@ Apply an expression to each element:
 
 Over an empty sequence, `count`, `sum`, `distinct` and `product` answer 0, 0, 0 and 1, while
 `average`, `median` and `element` have no answer to give and leave it empty.
+`sum`, `product`, `average` and `median` work on the numbers among the values - a word a list
+or a store holds is left out, and values with no number among them have no mean or median.
 
 `unique` is not an action. It is a generation option that drops a repeated value as the
 sequence is built, so it runs before any action does.
