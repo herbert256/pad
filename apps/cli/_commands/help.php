@@ -13,6 +13,7 @@ pad - the PAD command
   pad export <app> <dir>                a static copy: <page>.html files and the assets of www/<app>/
   pad test <app> [name] [--record]      the application's own tests, in apps/<app>/_tests/
   pad test --all [--brief]              the tests of every application that has them
+  pad sample <app> [page]               the page rendered once, its variables kept in _samples/
   pad help                              this list
 
 Without a command word, pad runs the cli application: pad [page].
