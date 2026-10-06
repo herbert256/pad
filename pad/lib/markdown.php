@@ -183,8 +183,16 @@
   // The block structure: one pass over the lines, each block taking the lines it owns. A
   // list item and a block quote hand their own lines to a recursive call. $tight is set for
   // the items of a tight list, whose paragraphs are written without <p>.
+  //
+  // $depth counts those calls. Each level holds a copy of its lines, so 60000 > in a row
+  // asked for gigabytes; past twenty levels the rest is the text of a paragraph.
 
-  function padMarkdownBlocks ( $lines, $html, $tight, &$hold ) {
+  function padMarkdownBlocks ( $lines, $html, $tight, &$hold, $depth = 0 ) {
+
+    if ( $depth >= 20 ) {
+      $text = padMarkdownInline ( padMarkdownLines ( $lines ), $html, $hold );
+      return $tight ? "$text\n" : "<p>$text</p>\n";
+    }
 
     $out = '';
     $n   = count ( $lines );
@@ -279,13 +287,13 @@
 
         }
 
-        $out .= "<blockquote>\n" . padMarkdownBlocks ( $quote, $html, FALSE, $hold ) . "</blockquote>\n";
+        $out .= "<blockquote>\n" . padMarkdownBlocks ( $quote, $html, FALSE, $hold, $depth + 1 ) . "</blockquote>\n";
         continue;
 
       }
 
       if ( padMarkdownItem ( $line ) ) {
-        $out .= padMarkdownList ( $lines, $i, $html, $hold );
+        $out .= padMarkdownList ( $lines, $i, $html, $hold, $depth );
         continue;
       }
 
@@ -350,7 +358,7 @@
   // is loose - paragraphs in <p> - when a blank line separates two items or two blocks
   // inside one item.
 
-  function padMarkdownList ( $lines, &$i, $html, &$hold ) {
+  function padMarkdownList ( $lines, &$i, $html, &$hold, $depth ) {
 
     $n     = count ( $lines );
     $first = padMarkdownItem ( $lines [$i] );
@@ -430,7 +438,7 @@
 
     foreach ( $items as $body ) {
 
-      $inner = rtrim ( padMarkdownBlocks ( $body, $html, ! $loose, $hold ) );
+      $inner = rtrim ( padMarkdownBlocks ( $body, $html, ! $loose, $hold, $depth + 1 ) );
 
       if ( $loose )
         $out .= "<li>\n$inner\n</li>\n";
