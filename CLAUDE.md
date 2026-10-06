@@ -557,6 +557,20 @@ The fields refill from the post when their form came back and show the message
 Rules: required, email, url, numeric, integer, min:n, max:n, in:a,b, regex:/x/, same:field,
 accepted, date.
 
+The rules can stand on the fields instead - checked before any PHP runs:
+```
+{form 'contact', error='Please correct the errors below.'}     # the message above the fields
+  {input 'email', type='email', label='E-mail', rules='required|email'}
+  {textarea 'message', label='Message', rows=6, rules='required|max:2000'}
+{/form}
+```
+A post of the form is validated against them from the page's text (lib/form.php), so
+`padPosted ( 'contact' )` is TRUE only for a post that kept them - the PHP stores and
+redirects, a failed post renders refilled with its messages (`padFormFailed`). Only the
+page's own template (and its `_inits.pad`/`_exits.pad`) is read, literal rules only: rules in
+a snippet, custom tag, `{page}` or layout, from a variable, in an `action=`/GET form or on a
+file field are errors.
+
 ### Data Definition
 ```
 {data 'colors'}
@@ -1233,7 +1247,8 @@ Output: `Alice, Bob, Charlie`
 | `padSessionStart()` | Start the PHP session on demand, strict mode and safe cookie flags |
 | `padCsrfToken()` | The session's CSRF token (`{csrf}` writes it as a hidden field) |
 | `padCsrfValid()` | Whether this request brought the session's token back |
-| `padPosted($form)` | Whether this request posted (the `{form}` of that name) |
+| `padPosted($form)` | Whether this request posted (the `{form}` of that name) - and kept the `rules=` of its template |
+| `padFormFailed($form)` | Whether the form came back and broke the `rules=` of its template |
 | `padUpload($field, types: [...], max: '2M')` | Store an uploaded file safely: real type (finfo), size limit, random name in `DATA/uploads/` - the record, NULL (none sent) or FALSE (refused) |
 | `padUploadError($field)` | Why `padUpload` refused the field's file (also shown by `{input type='file'}`) |
 | `padNonce()` | This request's CSP nonce (`{nonce}`), named by `'nonce'` in `$padCsp` |

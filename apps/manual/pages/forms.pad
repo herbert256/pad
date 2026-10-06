@@ -45,3 +45,28 @@ pretended in the PHP, the way a visitor's would arrive:</p>
 
 <p>After a post that passes, store it and send the visitor on with <code>padRedirect ()</code>:
 a refresh of the page they land on does not post a second time.</p>
+
+<h2>Rules in the template</h2>
+
+<p>The rules can stand on the fields themselves: <code>rules='required|email'</code> on an
+{tag 'input'} or a {tag 'textarea'}. They are read from the page's template before its PHP
+runs, and a post of the form is checked against them there - <code>padPosted ( 'contact' )</code>
+is true only for a post that kept them, so the PHP acts on a good post alone. A post that broke
+one renders the form again, refilled, with the messages beside the fields and the form's
+<code>error=</code> above them (<code>error</code> alone says "Please correct the errors
+below."):</p>
+
+{example 'fragments/forms_4', skipResult}
+
+<ul>
+  <li>Only what is written out counts: quoted rules, on a field with a quoted name, in a
+  {tag 'form'} with a name that posts back to its own page. Rules on a field in a snippet, a
+  custom tag, a {tag 'page'} or a layout, rules made from a variable, rules in a form with
+  <code>action=</code> or <code>method='get'</code> and rules on a file field are errors -
+  nothing would check them.</li>
+  <li>Every field of the posted form that has rules is checked, also one in an {tag 'if'}
+  branch that did not render. A field that is there only sometimes keeps its check in the
+  PHP: <code>padValidate</code> adds its messages to those of the template.</li>
+  <li><code>padFormFailed ( 'contact' )</code> is true when the form came back and broke its
+  rules.</li>
+</ul>

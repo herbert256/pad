@@ -4,19 +4,15 @@
   <div class="message">{$message}</div>
 {/flash}
 
-{if $hasErrors}
-  <div class="message error">Please correct the errors below.</div>
-{/if}
+{form 'contact', error='Please correct the errors below.'}
 
-{form 'contact'}
+  <p>{input 'name', label='Your Name: *', rules='required|max:100'}</p>
 
-  <p>{input 'name', label='Your Name: *'}</p>
+  <p>{input 'email', type='email', label='Your Email: *', rules='required|email'}</p>
 
-  <p>{input 'email', type='email', label='Your Email: *'}</p>
+  <p>{input 'subject', label='Subject: *', rules='required|max:200'}</p>
 
-  <p>{input 'subject', label='Subject: *'}</p>
-
-  <p>{textarea 'message', label='Message: *', rows=6}</p>
+  <p>{textarea 'message', label='Message: *', rows=6, rules='required|max:2000'}</p>
 
   <p>
     <input type="submit" value="Send Message">

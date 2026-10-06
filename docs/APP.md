@@ -853,6 +853,33 @@ the rules are `required`, `email`, `url`, `numeric`, `integer`, `min:n`, `max:n`
 `required` only. The field shows the message in the words of its own label, with
 `aria-invalid` and `aria-describedby`.
 
+The rules can stand on the fields in the template instead, and the PHP then only acts:
+
+```html
+{form 'contact', error='Please correct the errors below.'}
+  {input 'email', type='email', label='E-mail', rules='required|email'}
+  {textarea 'message', label='Message', rows=6, rules='required|max:2000'}
+  <button>Send</button>
+{/form}
+```
+
+```php
+<?php
+  if ( padPosted ( 'contact' ) ) {
+    // store it ...
+    padRedirect ( 'contact', [ 'sent' => 1 ] );
+  }
+?>
+```
+
+The rules are read from the page's template before any PHP runs and a post of the form is
+checked against them there, so `padPosted('contact')` is TRUE only for a post that kept them;
+one that broke them renders the form again, refilled, with the messages and the `error=`
+banner, and `padFormFailed('contact')` is TRUE. Only literal rules in the page's own template
+count - rules in a snippet, a custom tag, a `{page}` or a layout are an error, as nothing would
+check them; a field that is there only sometimes keeps its check in the PHP, where
+`padValidate` adds its messages to the template's.
+
 ### File Uploads
 `padUpload` takes the file of one field and stores it safely - its real type read from its
 content with `finfo` and held against the allowed types (`image/*` for any image), the size

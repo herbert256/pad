@@ -4,7 +4,9 @@
   // themselves from what was posted and show the error that validation found for them.
   //
   // padPosted      whether this request posted - and, given a name, posted the {form} of
-  //                that name, so a page with two forms knows which one came back
+  //                that name, so a page with two forms knows which one came back - and
+  //                passed the rules its template gives the form's fields
+  // padFormFailed  whether the post came back and broke those rules
   // padValidate    checks the posted values against rules ('required|email|max:2000') and
   //                answers the errors, one message per field; {input} and {textarea} show
   //                them beside their field
@@ -14,6 +16,19 @@
   //
   // The tags - {form}, {input}, {textarea} - are pad/tags/form.php, input.php and
   // textarea.php, built on padFormOpen, padFormInput and padFormTextarea below.
+  //
+  // Rules in the template. A field can carry its own rules - {input 'email', rules=
+  // 'required|email'} - and the template then says what the page's PHP said with
+  // padValidate. The template renders after the PHP, so the rules are not checked while it
+  // renders: build/page.php reads them from the page's text before any _inits.php runs
+  // (padFormRulesOf, literal values only, the way {meta} is read) and a post of a named
+  // {form} is validated there (padFormPost). The page's PHP finds it done: padPosted
+  // ( 'contact' ) is TRUE only for a post that passed, so the PHP that stores and redirects
+  // runs for a good post alone, and a post that failed renders the form again, refilled,
+  // with the messages beside the fields and the error= of the {form} above them. Only the
+  // page's own text is read - with its _inits.pad and _exits.pad - so a field with rules
+  // in a snippet, a custom tag, a {page} or a layout is an error (padFormRulesCheck), as is
+  // one in a form that posts elsewhere (action=), by GET, or a file field.
   //
   // Before this every page validated by hand into an $errors array and copied each posted
   // value into a variable of its own to put it back into the form - the demo's contact page
@@ -26,6 +41,15 @@
 
   function padPosted ( $form = '' ) {
 
+    return padFormCameBack ( $form ) and ! padFormFailed ( $form );
+
+  }
+
+  // Whether the form came back, whatever its rules said - what the fields read to refill
+  // themselves and to show their errors.
+
+  function padFormCameBack ( $form = '' ) {
+
     if ( ! padRequestIs ( 'POST' ) )
       return FALSE;
 
@@ -36,20 +60,44 @@
 
   }
 
+  // Whether the form came back and broke the rules of its template; without a name, the
+  // form the post names.
+
+  function padFormFailed ( $form = '' ) {
+
+    global $padFormChecked;
+
+    if ( ! padFormCameBack ( $form ) )
+      return FALSE;
+
+    $posted = $_POST [padFormName] ?? '';
+
+    return is_string ( $posted ) and ! empty ( $padFormChecked [$posted] );
+
+  }
+
   // The rules of a field are a string split on | or an array of them; a rule takes its
   // argument after a colon. A field that is empty is checked for 'required' only - any
   // other rule speaks about a value that is there. The first rule a field fails gives its
   // message, which $messages can replace per field ('email') or per field and rule
   // ('email.required'); :label is the field's name made readable, :n the rule's argument.
+  //
+  // The errors it answers are those of its own fields. The fields show those together with
+  // what an earlier check left for other fields - the rules of the template, checked before
+  // the page's PHP - so a page can add a check of its own to them.
 
   function padValidate ( $rules, $data = NULL, $messages = [] ) {
 
     global $padFormErrors, $padFormErrorParts;
 
-    $padFormErrorParts = [];
+    $padFormErrors     = $padFormErrors     ?? [];
+    $padFormErrorParts = $padFormErrorParts ?? [];
+
+    foreach ( array_keys ( $rules ) as $field )
+      unset ( $padFormErrors [$field], $padFormErrorParts [$field] );
 
     if ( $data === NULL )
-      $data = padPosted () ? $_POST : $_GET;
+      $data = padRequestIs ( 'POST' ) ? $_POST : $_GET;
 
     $errors = [];
 
@@ -88,7 +136,7 @@
 
     }
 
-    $padFormErrors = $errors;
+    $padFormErrors = array_replace ( $padFormErrors, $errors );
 
     return $errors;
 
@@ -223,7 +271,7 @@
       return $asked ? $_GET : NULL;
     }
 
-    return padPosted ( $form ['name'] ?? '' ) ? $_POST : NULL;
+    return padFormCameBack ( $form ['name'] ?? '' ) ? $_POST : NULL;
 
   }
 
@@ -280,7 +328,7 @@
 
     foreach ( padAttrsItems () as [ $key, $expr ] ) {
 
-      $bare = preg_match ( '/^[A-Za-z_:@][-A-Za-z0-9_:.@]*$/', $expr );
+      $bare = padAttrsBare ( $expr );
 
       if ( $key === '' and ! $bare and $name === NULL ) {
         $name = (string) padEval ( $expr );
@@ -357,7 +405,9 @@
 
   function padFormInput () {
 
-    [ $name, $take, $attrs ] = padFormItems ( 'input', [ 'type', 'label', 'value', 'id', 'checked' ] );
+    [ $name, $take, $attrs ] = padFormItems ( 'input', [ 'type', 'label', 'value', 'id', 'checked', 'rules' ] );
+
+    padFormRulesCheck ( 'input', $name, $take );
 
     $type    = strtolower ( (string) ( $take ['type'] ?? 'text' ) );
     $default = (string) ( $take ['value'] ?? '' );
@@ -398,7 +448,9 @@
 
   function padFormTextarea () {
 
-    [ $name, $take, $attrs ] = padFormItems ( 'textarea', [ 'label', 'value', 'id' ] );
+    [ $name, $take, $attrs ] = padFormItems ( 'textarea', [ 'label', 'value', 'id', 'rules' ] );
+
+    padFormRulesCheck ( 'textarea', $name, $take );
 
     $value = padFormValue ( $name, (string) ( $take ['value'] ?? '' ) );
 
@@ -415,12 +467,18 @@
   // form is kept on a stack while its content renders, so a field knows which form it is
   // in and refills only when that one came back; padFormClose takes it off again and puts
   // the tags round the rendered content - as values, inert like any other a tag answers.
+  //
+  // error='Please correct the errors below.' is the message above the fields when the form
+  // came back with errors - those of its template's rules or of padValidate; error alone
+  // says just that.
+
+  const padFormErrorText = 'Please correct the errors below.';
 
   function padFormOpen () {
 
-    global $padFormStack;
+    global $padFormStack, $padFormErrors, $padUploadErrors;
 
-    [ $name, $take, $attrs ] = padFormItems ( 'form', [ 'method' ] );
+    [ $name, $take, $attrs ] = padFormItems ( 'form', [ 'method', 'error' ] );
 
     $method = strtolower ( (string) ( $take ['method'] ?? 'post' ) );
     $open   = '<form method="' . padFormEscape ( $method ) . '"' . ( $attrs ? ' ' . implode ( ' ', $attrs ) : '' ) . '>';
@@ -432,6 +490,13 @@
     }
 
     $padFormStack [] = [ 'name' => $name, 'method' => $method, 'open' => $open ];
+
+    $error = $take ['error'] ?? NULL;
+    $error = ( $error === TRUE ) ? padFormErrorText : $error;
+
+    if ( is_scalar ( $error ) and $error !== FALSE and (string) $error !== ''
+         and ( $padFormErrors or $padUploadErrors ) and padFormSource () !== NULL )
+      $padFormStack [ array_key_last ( $padFormStack ) ] ['open'] .= '<div class="error" role="alert">' . padFormEscape ( $error ) . '</div>';
 
   }
 
@@ -450,6 +515,227 @@
       $open = preg_replace ( '/^<form method="post"/', '<form method="post" enctype="multipart/form-data"', $open );
 
     return padProtect ( $open ) . $content . padProtect ( '</form>' );
+
+  }
+
+  // The rules a template text gives the fields of its named forms: [ form => [ field =>
+  // rules ] ]. They are read before the page's PHP has made any variable, so only what is
+  // written out counts - a quoted field name and quoted rules - each evaluated as the tag
+  // will evaluate it. Comments, ~ and {ignore} are taken as the engine takes them: a field
+  // commented out has no rules. A form name met twice - the form in both branches of an
+  // {if} - is one form with the fields of both; one field cannot have two sets of rules.
+  // What would leave rules unchecked is an error, under strict mode and without it: rules
+  // outside a named form, in a form that posts to another page (action=) or by GET, on a
+  // file field, a rule that does not exist, rules made while the page renders.
+
+  function padFormRulesOf ( $text ) {
+
+    $rules = [];
+
+    if ( ! str_contains ( (string) $text, 'rules' ) )
+      return $rules;
+
+    $masks  = [];
+    $text   = padLayoutMask ( padTildeStrip ( padCommentStrip ( (string) $text ) ), $masks );
+    $forms  = [];
+    $offset = 0;
+
+    preg_match_all ( '/\{(\/?)(?:pad:)?(form|input|textarea)(?=[ }\/\n\t\r])/', $text, $found, PREG_OFFSET_CAPTURE | PREG_SET_ORDER );
+
+    foreach ( $found as $one ) {
+
+      $pos  = $one [0] [1];
+      $open = $one [0] [0];
+      $tag  = $one [1] [0] . $one [2] [0];
+
+      if ( $pos < $offset or $tag == '/input' or $tag == '/textarea' )
+        continue;
+
+      $end = padPairTagEnd ( $text, $pos + strlen ( $open ) );
+
+      if ( $end === FALSE )
+        break;
+
+      $offset = $end + 1;
+      $parms  = substr ( $text, $pos + strlen ( $open ), $end - $pos - strlen ( $open ) );
+
+      if ( $tag == '/form' ) {
+        array_pop ( $forms );
+        continue;
+      }
+
+      $items = padFormRulesItems ( $parms );
+
+      if ( $tag == 'form' ) {
+        if ( ! str_ends_with ( rtrim ( $parms ), '/' ) )
+          $forms [] = $items;
+        continue;
+      }
+
+      if ( array_key_exists ( 'rules', $items ['take'] ) )
+        padFormRulesField ( $rules, $tag, $items, $forms ? end ( $forms ) : NULL );
+
+    }
+
+    return $rules;
+
+  }
+
+  // The items of a tag as they stand in the text, unevaluated: the name - the first item
+  // without a name that is not a bare word, as padFormItems takes it - and the named ones.
+
+  function padFormRulesItems ( $parms ) {
+
+    $parms = trim ( $parms );
+
+    if ( str_ends_with ( $parms, '/' ) )
+      $parms = substr ( $parms, 0, -1 );
+
+    $parms = trim ( padPipeSplit ( $parms ) [0] );
+
+    if ( str_ends_with ( $parms, '/' ) )
+      $parms = substr ( $parms, 0, -1 );
+
+    $name = NULL;
+    $take = [];
+
+    foreach ( padParseOptions ( $parms ) as $item ) {
+
+      [ $key, $expr ] = padAttrsSplit ( trim ( $item ) );
+
+      if ( $key !== '' )
+        $take [ strtolower ( $key ) ] = $expr;
+      elseif ( padAttrsBare ( $expr ) )
+        $take [ strtolower ( $expr ) ] = 'TRUE';
+      elseif ( $expr !== '' and $name === NULL )
+        $name = $expr;
+
+    }
+
+    return [ 'name' => $name, 'take' => $take ];
+
+  }
+
+  // A value written out - a quoted string or a number, without a tag in it - as the tag
+  // will evaluate it; NULL for anything else.
+
+  function padFormRulesLiteral ( $expr ) {
+
+    if ( $expr === NULL )
+      return NULL;
+
+    $literal = padMetaLiteral ( $expr );
+
+    if ( ! is_string ( $literal ) and ! is_int ( $literal ) and ! is_float ( $literal ) )
+      return NULL;
+
+    if ( str_contains ( (string) $literal, '{' ) )
+      return NULL;
+
+    return padFormRulesText ( padEval ( $expr ) );
+
+  }
+
+  function padFormRulesText ( $value ) {
+
+    if ( is_array ( $value ) )
+      $value = implode ( '|', $value );
+
+    return padUnescape ( padUnprotect ( (string) $value ) );
+
+  }
+
+  function padFormRulesField ( &$rules, $tag, $items, $form ) {
+
+    $name  = padFormRulesLiteral ( $items ['name'] );
+    $list  = padFormRulesLiteral ( $items ['take'] ['rules'] );
+    $field = '{' . $tag . ( $name !== NULL ? " '$name'" : '' ) . '}';
+
+    if ( $name === NULL or $name === '' )
+      return padError ( "the rules of $field need its field name written out - {" . $tag . " 'email', rules='required|email'}" );
+
+    if ( $list === NULL )
+      return padError ( "the rules of $field must be written out - rules='required|email' - they are read before the page's PHP runs" );
+
+    $named = $form ? padFormRulesLiteral ( $form ['name'] ) : NULL;
+
+    if ( $named === NULL or $named === '' )
+      return padError ( "the rules of $field need a {form} with its name written out around it - {form 'contact'}" );
+
+    $where = "$field in {form '$named'}";
+
+    if ( isset ( $form ['take'] ['action'] ) )
+      return padError ( "the rules of $where are never checked - the form posts to another page (action=)" );
+
+    if ( strtolower ( (string) padFormRulesLiteral ( $form ['take'] ['method'] ?? "'post'" ) ) !== 'post' )
+      return padError ( "the rules of $where are never checked - only a form that posts is validated" );
+
+    if ( $tag == 'input' and strtolower ( (string) padFormRulesLiteral ( $items ['take'] ['type'] ?? "''" ) ) == 'file' )
+      return padError ( "the rules of $where are never checked - a file field is checked by padUpload" );
+
+    foreach ( explode ( '|', $list ) as $rule ) {
+      $rule = strtolower ( trim ( explode ( ':', $rule, 2 ) [0] ) );
+      if ( $rule !== '' and ! in_array ( $rule, padValidateRules, TRUE ) )
+        return padError ( "the rules of $where have no rule named '$rule' - there are " . implode ( ', ', padValidateRules ) );
+    }
+
+    if ( isset ( $rules [$named] [$name] ) and $rules [$named] [$name] !== $list )
+      return padError ( "$where has two sets of rules - '" . $rules [$named] [$name] . "' and '$list'" );
+
+    $rules [$named] [$name] = $list;
+
+  }
+
+  // The rules of the request's page, read once from the text build/page.php kept.
+
+  function padFormRules () {
+
+    global $padFormRules, $padFormText;
+
+    return $padFormRules ??= padFormRulesOf ( $padFormText ?? '' );
+
+  }
+
+  // The post pass, from build/page.php before the first _inits.php: a post of a named form
+  // whose fields have rules in the page's template is validated against them. Run again on
+  // a restart, for the page restarted to.
+
+  function padFormPost () {
+
+    global $padFormChecked;
+
+    $padFormChecked = [];
+
+    $form = $_POST [padFormName] ?? NULL;
+
+    if ( ! padRequestIs ( 'POST' ) or ! is_string ( $form ) or $form === '' )
+      return;
+
+    $rules = padFormRules () [$form] ?? [];
+
+    if ( $rules )
+      $padFormChecked [$form] = padValidate ( $rules, $_POST );
+
+  }
+
+  // A field that renders with rules= must be one the post pass read: the same form, field
+  // and rules in the page's own text. One from a snippet, a custom tag, a {page} or a layout
+  // - or rules a tag made - would be shown and never checked.
+
+  function padFormRulesCheck ( $tag, $name, $take ) {
+
+    if ( ! array_key_exists ( 'rules', $take ) )
+      return;
+
+    $known = padFormRules ();
+    $form  = padFormCurrent ();
+    $field = '{' . $tag . " '$name'}";
+
+    if ( $form === '' )
+      return padError ( "the rules of $field need a {form} with a name around it - {form 'contact'}" );
+
+    if ( ( $known [$form] [$name] ?? NULL ) !== padFormRulesText ( $take ['rules'] ) )
+      padError ( "the rules of $field in {form '$form'} are never checked - rules= is read from the page's own template before its PHP runs, and this field stands in a snippet, a custom tag, a {page} or a layout, or its rules are made while the page renders" );
 
   }
 

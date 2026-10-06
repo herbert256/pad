@@ -1,0 +1,7 @@
+{form 'order', error}
+{input 'qty', label='Quantity', rules='required|integer|min:1'}
+{input 'email', type='email', rules='required|email'}
+{input 'note'}
+{if 1 eq 2}{input 'code', rules='required'}{/if}
+{/form}
+{$state}

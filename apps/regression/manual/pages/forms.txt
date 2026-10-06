@@ -214,4 +214,76 @@ pretended in the PHP, the way a visitor's would arrive\:\<\/p\>
 
 
 \<p\>After a post that passes, store it and send the visitor on with \<code\>padRedirect \(\)\<\/code\>\:
-a refresh of the page they land on does not post a second time\.\<\/p\>$/
+a refresh of the page they land on does not post a second time\.\<\/p\>
+
+\<h2\>Rules in the template\<\/h2\>
+
+\<p\>The rules can stand on the fields themselves\: \<code\>rules\='required\|email'\<\/code\> on an
+\<b\>\{input\}\<\/b\> or a \<b\>\{textarea\}\<\/b\>\. They are read from the page's template before its PHP
+runs, and a post of the form is checked against them there \- \<code\>padPosted \( 'contact' \)\<\/code\>
+is true only for a post that kept them, so the PHP acts on a good post alone\. A post that broke
+one renders the form again, refilled, with the messages beside the fields and the form's
+\<code\>error\=\<\/code\> above them \(\<code\>error\<\/code\> alone says "Please correct the errors
+below\."\)\:\<\/p\>
+
+
+
+ 
+
+
+
+   
+    \<table border\="1" cellpadding\="10" cellspacing\="0"\>
+  
+
+  
+
+      
+          \<tr\>
+          
+            \<th bgcolor\="\#dddddd"\>
+              PHP \<br\>\<font size\="\-2"\>fragments\/forms_4\.php\<\/font\>
+            \<\/th\>
+          
+          
+            \<th bgcolor\="\#dddddd"\>
+              HTML \<br\>\<font size\="\-2"\>fragments\/forms_4\.pad\<\/font\>
+            \<\/th\>
+          
+          
+        \<\/tr\>
+      
+
+      \<tr\>
+        
+          \<td style\="vertical\-align\:top"\>\<pre\>\<code style\="color\: \#000000"\>\<span style\="color\: \#0000BB"\>&lt;\?php\<br\>\<br\>  \<\/span\>\<span style\="color\: \#FF8000"\>\/\/ Runs after the post was checked against the rules of forms_4\.pad, and acts only when\<br\>  \/\/ it kept them; a post that broke one renders the form again, with its messages\.\<br\>\<br\>  \<\/span\>\<span style\="color\: \#007700"\>if \( \<\/span\>\<span style\="color\: \#0000BB"\>padPosted \<\/span\>\<span style\="color\: \#007700"\>\( \<\/span\>\<span style\="color\: \#DD0000"\>'contact' \<\/span\>\<span style\="color\: \#007700"\>\) \) \{\<br\>\<br\>    \<\/span\>\<span style\="color\: \#0000BB"\>padFlash \<\/span\>\<span style\="color\: \#007700"\>\( \<\/span\>\<span style\="color\: \#DD0000"\>'Thank you for your message\.' \<\/span\>\<span style\="color\: \#007700"\>\);\<br\>\<br\>    \<\/span\>\<span style\="color\: \#0000BB"\>padRedirect \<\/span\>\<span style\="color\: \#007700"\>\(\);\<br\>\<br\>  \}\<br\>\<br\>\<\/span\>\<span style\="color\: \#0000BB"\>\?&gt;\<\/span\>\<\/code\>\<\/pre\> \<\/td\>
+        
+        
+          \<td style\="vertical\-align\:top"\>\<pre\>\<code style\="color\: \#000000"\>\<b\>\{\<font color\="blue"\>form \<\/font\>\<font color\="red"\>\<font color\="black"\>'\<\/font\>contact\<font color\="black"\>'\<\/font\>\<font color\="black"\>,\<\/font\> error\=\<font color\="black"\>'\<\/font\>Please correct the errors below\.\<font color\="black"\>'\<\/font\>\<\/font\>\}\<\/b\>\<br\>  \<b\>\{\<font color\="blue"\>input \<\/font\>\<font color\="red"\>\<font color\="black"\>'\<\/font\>email\<font color\="black"\>'\<\/font\>\<font color\="black"\>,\<\/font\> type\=\<font color\="black"\>'\<\/font\>email\<font color\="black"\>'\<\/font\>\<font color\="black"\>,\<\/font\> label\=\<font color\="black"\>'\<\/font\>E\-mail\<font color\="black"\>'\<\/font\>\<font color\="black"\>,\<\/font\> rules\=\<font color\="black"\>'\<\/font\>required\<font color\="black"\>\|\<\/font\>email\<font color\="black"\>'\<\/font\>\<\/font\>\}\<\/b\>\<br\>  \<b\>\{\<font color\="blue"\>textarea \<\/font\>\<font color\="red"\>\<font color\="black"\>'\<\/font\>message\<font color\="black"\>'\<\/font\>\<font color\="black"\>,\<\/font\> label\=\<font color\="black"\>'\<\/font\>Message\<font color\="black"\>'\<\/font\>\<font color\="black"\>,\<\/font\> rows\=3\<font color\="black"\>,\<\/font\> rules\=\<font color\="black"\>'\<\/font\>required\<font color\="black"\>\|\<\/font\>max\<font color\="black"\>\:\<\/font\>2000\<font color\="black"\>'\<\/font\>\<\/font\>\}\<\/b\>\<br\>  &lt;button&gt;Send&lt;\/button&gt;\<br\>\<b\>\{\/\<font color\="blue"\>form\<\/font\>\<font color\="red"\>\<\/font\>\}\<\/b\>\<\/code\>\<\/pre\>\<\/td\>
+        
+        
+      \<\/tr\>
+
+    
+
+  
+    \<\/table\>
+  
+
+
+
+
+
+
+\<ul\>
+  \<li\>Only what is written out counts\: quoted rules, on a field with a quoted name, in a
+  \<b\>\{form\}\<\/b\> with a name that posts back to its own page\. Rules on a field in a snippet, a
+  custom tag, a \<b\>\{page\}\<\/b\> or a layout, rules made from a variable, rules in a form with
+  \<code\>action\=\<\/code\> or \<code\>method\='get'\<\/code\> and rules on a file field are errors \-
+  nothing would check them\.\<\/li\>
+  \<li\>Every field of the posted form that has rules is checked, also one in an \<b\>\{if\}\<\/b\>
+  branch that did not render\. A field that is there only sometimes keeps its check in the
+  PHP\: \<code\>padValidate\<\/code\> adds its messages to those of the template\.\<\/li\>
+  \<li\>\<code\>padFormFailed \( 'contact' \)\<\/code\> is true when the form came back and broke its
+  rules\.\<\/li\>
+\<\/ul\>$/

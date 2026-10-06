@@ -585,15 +585,44 @@ A form that posts back to the page, carrying the session's CSRF token and its ow
 {/form}
 ```
 
-**Items:** the form's name first; `method='get'` for a form that does not post; every other
-item is an attribute of the `<form>` tag (`action=`, `class=`, `enctype=`), written as
-`{attrs}` writes them.
+**Items:** the form's name first; `method='get'` for a form that does not post; `error=`
+the message above the fields when the form came back with errors (`error` alone: "Please
+correct the errors below."); every other item is an attribute of the `<form>` tag
+(`action=`, `class=`, `enctype=`), written as `{attrs}` writes them.
 
 **Behavior:** A posting form gets the hidden `padCsrfToken` field and a hidden `padForm`
 field holding its name - `padPosted('contact')` is TRUE when this form came back. The fields
 inside refill only when their own form came back; a `{form method='get'}` refills from the
 query string. A posting form holding a file field gets `enctype="multipart/form-data"`
-unless it names an enctype itself.
+unless it names an enctype itself. With `error=`, a form that came back while `padValidate`
+or the rules of its fields left an error starts with `<div class="error" role="alert">`
+holding the message.
+
+**Rules in the template:** the fields of a named form can carry their own rules -
+`rules='required|email'` on `{input}` and `{textarea}`, the rules of `padValidate`. They are
+read from the page's template before any PHP runs (`_inits.php` included), and a post of
+the form is checked against them there: `padPosted('contact')` is TRUE only for a post that
+kept them - the PHP that stores and redirects runs for a good post alone - and
+`padFormFailed('contact')` for one that broke them, which renders the form again, refilled,
+the messages beside the fields. Every field of the form with rules is checked, also one in
+an `{if}` branch that did not render; a field that is there only sometimes keeps its check in
+the PHP, where `padValidate` adds its messages to those of the template.
+
+```html
+{form 'contact', error='Please correct the errors below.'}
+  {input 'email', type='email', label='E-mail', rules='required|email'}
+  {textarea 'message', label='Message', rows=6, rules='required|max:2000'}
+{/form}
+```
+
+Only the page's own template is read - with its `_inits.pad` and `_exits.pad` - and only what
+is written out: quoted rules on a field with a quoted name, in a form with a quoted name. A
+field with rules in an `_include` snippet, a custom tag, a `{page}` or an `{extends}` layout,
+rules from a variable, rules outside a named form, in a form with `action=` or
+`method='get'`, on a file field, a rule that does not exist and one field given two sets of
+rules are errors, strict check or not - each would be rules nothing checks. A rule with
+braces writes them as `&open;` and `&close;`: `rules='regex:/^\d&open;4&close;$/'`. Custom
+messages stay with `padValidate`'s third argument.
 
 ---
 
@@ -607,8 +636,8 @@ A form field that refills from what was posted and shows the error `padValidate`
 
 **Items:** the field name first; `type=` (default `text`), `label=` (a `<label for>` before
 the field, after a checkbox or radio), `value=` (the value before anything was posted),
-`id=` (default: the name), `checked` (a checkbox's state before a post); every other item is
-an attribute of the field.
+`id=` (default: the name), `checked` (a checkbox's state before a post), `rules=` (its rules,
+checked before the page's PHP - see `{form}`); every other item is an attribute of the field.
 
 **Behavior:** After a post of its form the field shows the posted value, escaped; a checkbox
 or radio is checked when the posted value is its own; a password or file field is never
@@ -624,6 +653,7 @@ refused its file the same way.
 
 ```html
 {textarea 'message', label='Message', rows=6, required}
+{textarea 'message', label='Message', rows=6, rules='required|max:2000'}
 ```
 
 ---

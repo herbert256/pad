@@ -61,6 +61,13 @@
 
   $padStackStore   = [];
 
+  // The form rules of the page's template (lib/form.php): the text they are read from, set
+  // by build/page.php, what was read from it, and the outcome of the post pass per form.
+
+  $padFormText    = '';
+  $padFormRules   = NULL;
+  $padFormChecked = [];
+
   // The {file} tag's six path parts exist for the same reason as the stores above: the tag
   // writes them bare, padFileName() reads them through global, and a {file} inside a nested
   // pass needs the two to be the same variable. config/output/file.php runs after this and

@@ -10,7 +10,7 @@ Interactive demo showcasing PAD framework features with practical examples.
 |------|-------------|
 | Guestbook | A simple guestbook where visitors can leave messages |
 | Todo List | A task manager to add, complete, and delete tasks |
-| Contact Form | A contact form with `{form}`, `{input}` and `padValidate` - refill and inline errors |
+| Contact Form | A contact form with `{form}` and `{input}` whose rules stand on the fields (`rules='required|email'`), checked before `contact.php` runs - refill and inline errors |
 | Page Counter | A visitor counter that tracks page views |
 | Clock | Display current date and time using a custom tag |
 

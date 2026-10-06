@@ -8,7 +8,9 @@
   // _lib and _inits.pad. Whatever those files echo is kept as content; the page's return
   // value decides the rest - an array becomes the page data ($padBuild), a scalar is
   // appended as content, NULL drops the page's content and template (the _exits.php chain
-  // still runs), FALSE selects the @else@ half.
+  // still runs), FALSE selects the @else@ half. Ahead of all of it a post of a {form} is
+  // checked against the rules= its fields carry in the page's template (lib/form.php), so
+  // padPosted tells the PHP whether the post passed.
   //
   // The .pad template is appended - or the text an entry point handed over in
   // $padPageSource - its {meta} tags applied by lib/meta.php and its layout blocks resolved
@@ -33,6 +35,14 @@
   // as usual when it has not; the requested page must have one. A capture runs everything
   // as usual and keeps what the PHP of the requested page made.
 
+  // The form rules (lib/form.php) are read from the request's page as it is written, with
+  // its frame - before any PHP, which a post of a form is validated ahead of.
+
+  if ( $padStrCnt < 0 ) {
+    $padFormText  = $padBuildBase . ( $GLOBALS ['padPageSource'] ?? padPageTemplate ( APP . $padPage ) );
+    $padFormRules = NULL;
+  }
+
   $padBuildSample  = ( $padSampleMode == 'use' ) ? padSampleLoad ( $padPage ) : NULL;
   $padBuildCapture = ( $padSampleMode == 'capture' and $padStrCnt < 0 );
 
@@ -51,6 +61,9 @@
     $padBuildCall = TRUE;
 
   } else {
+
+    if ( $padStrCnt < 0 )
+      padFormPost ();
 
     if ( $padCommon ) {
       $padCall = COMMON . '/_inits.php';

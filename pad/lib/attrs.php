@@ -37,17 +37,33 @@
 
       $item = trim ( $one ['padPrmOrg'] ?? '' );
 
-      if ( $item === '' )
-        continue;
-
-      if ( preg_match ( '/^([A-Za-z_:@][-A-Za-z0-9_:.@]*)\s*=(?!=)\s*(.*)$/s', $item, $match ) )
-        $items [] = [ $match [1], $match [2] ];
-      else
-        $items [] = [ '', $item ];
+      if ( $item !== '' )
+        $items [] = padAttrsSplit ( $item );
 
     }
 
     return $items;
+
+  }
+
+  // One item as [ name, expression ] - split at its first = when what stands before it is an
+  // attribute name - or [ '', item ]. The form rules read from a template before it renders
+  // (lib/form.php) split their items with it too, so both read a name the same way.
+
+  function padAttrsSplit ( $item ) {
+
+    if ( preg_match ( '/^([A-Za-z_:@][-A-Za-z0-9_:.@]*)\s*=(?!=)\s*(.*)$/s', $item, $match ) )
+      return [ $match [1], $match [2] ];
+
+    return [ '', $item ];
+
+  }
+
+  // Whether an item is a bare word - an attribute written without a value, required.
+
+  function padAttrsBare ( $item ) {
+
+    return (bool) preg_match ( '/^[A-Za-z_:@][-A-Za-z0-9_:.@]*$/', $item );
 
   }
 

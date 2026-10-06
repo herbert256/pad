@@ -401,7 +401,7 @@
     'while': 'while ${1:\\$i} ${2:le} ${3:10}}\n\t$0\n\t{increment ${1:\\$i}}\n{/while}',
     'data': 'data \'${1:name}\'}\n\t${0:["a", "b"]}\n{/data}',
     'ignore': 'ignore}\n$0\n{/ignore}',
-    'form': 'form \'${1:name}\'}\n\t{input \'${2:email}\', type=\'${3:email}\', label=\'${4:E-mail}\', required}\n\t<button>${5:Send}</button>\n{/form}',
+    'form': 'form \'${1:name}\', error}\n\t{input \'${2:email}\', type=\'${3:email}\', label=\'${4:E-mail}\', rules=\'${5:required|email}\'}\n\t<button>${6:Send}</button>\n{/form}',
     'cache': 'cache \'${1:name}\', ttl=${2:300}}\n\t$0\n{/cache}',
     'block': 'block \'${1:title}\'}$0{/block}',
     'fragment': 'fragment \'${1:name}\'}\n\t$0\n{/fragment}',
