@@ -69,11 +69,13 @@
 
   }
 
-  // HTML escaping that leaves an existing entity - &amp; &#123; &open; - as it is.
+  // HTML escaping that leaves an existing entity - &amp; &#123; &#x7B; &open; - as it is.
+  // Only a whole reference counts: &#58top; is no entity, and left alone a browser reads
+  // its &#58 as a colon, so [a](javascript&#58top;alert(1)) was a javascript: link.
 
   function padMarkdownEscape ( $text ) {
 
-    $text = preg_replace ( '/&(?!#?[a-zA-Z0-9]+;)/', '&amp;', $text );
+    $text = preg_replace ( '/&(?!(?:[a-zA-Z][a-zA-Z0-9]*|#[0-9]+|#[xX][0-9a-fA-F]+);)/', '&amp;', $text );
 
     return str_replace ( [ '<', '>', '"' ], [ '&lt;', '&gt;', '&quot;' ], $text );
 
