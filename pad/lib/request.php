@@ -267,6 +267,12 @@
     if ( is_int ( array_key_first ( [ $top => TRUE ] ) ) )
       return padError ( "padSessionPut: a session name cannot be a number ('$top') - PHP's session does not keep it" );
 
+    // A | in a top-level name is worse: PHP's session refuses to write the session at all,
+    // and every value of it - the login among them - is gone after the request, silently.
+
+    if ( str_contains ( (string) $top, '|' ) )
+      return padError ( "padSessionPut: a session name cannot hold a | ('$top') - PHP's session would not be written at all" );
+
     padSessionWrite ( $view, $top );
 
     return TRUE;

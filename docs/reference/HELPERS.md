@@ -470,8 +470,8 @@ Edge rules:
 - Author mistakes are reported with `padError` and the function then answers its empty
   value: a name that is no text or number, `padSessionPull` or `padSessionPut` without a
   name, `padSessionPut` under a top-level name that is a number (PHP's session drops those
-  silently when it writes) or with a value PHP cannot serialize (a Closure - the whole
-  session would not be written), `padRequestIs` without a method, `padUrl` with values that are
+  silently when it writes) or holds a `|` (PHP's session would not be written at all) or
+  with a value PHP cannot serialize (a Closure - the whole session would not be written), `padRequestIs` without a method, `padUrl` with values that are
   no array or text, a `padBack` fallback that is no page name, `padAbort` with a status
   outside 400-599 (no abort then) or a message that is no text.
 - A page that only calls `padBack` is an action, like one that only calls `padRedirect`: the
