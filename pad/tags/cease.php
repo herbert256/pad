@@ -29,8 +29,11 @@
   // over a data set, so dropping the rows behind the current one left it looping and
   // {cease} did nothing at all - {while $i lt 6}...{cease}...{/while} ran to 6. Clearing
   // the walk lets the current pass finish, as cease promises, and asks for no further one.
+  // Only the 'next' walk is cleared: a two-pass tag ({markdown}, toData and the rest) carries
+  // 'end' for the pass that post-processes its result, which clearing dropped.
 
-  $padWalk [$padCeaseLevel] = '';
+  if ( $padWalk [$padCeaseLevel] == 'next' )
+    $padWalk [$padCeaseLevel] = '';
 
   return TRUE;
 
