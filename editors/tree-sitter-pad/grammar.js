@@ -61,9 +61,16 @@ module.exports = grammar({
     )),
 
     // {# ... #} and {-- ... --}: both close at the first #} / --} after them, and {--
-    // must be followed by whitespace.
+    // must be followed by whitespace. The option sigil {#name} or {#name | pipe} is no
+    // comment - the engine's padCommentStrip leaves it - so a {# that opens a name opens a
+    // comment only when what follows the name (and its spaces) is not } or |; without that,
+    // <h2>{#title}</h2> ... {# note #} was one comment from the sigil to the note's end.
     comment: _ => token(choice(
-      /\{#([^#]|#+[^#}])*#+\}/,
+      /\{#([^A-Za-z_#]|#+[^#}])([^#]|#+[^#}])*#+\}/,
+      /\{##+\}/,
+      /\{#[A-Za-z_][A-Za-z0-9_]*\s*#+([^#}]([^#]|#+[^#}])*#+)?\}/,
+      /\{#[A-Za-z_][A-Za-z0-9_]*[^A-Za-z0-9_\s}|#]([^#]|#+[^#}])*#+\}/,
+      /\{#[A-Za-z_][A-Za-z0-9_]*\s+[^\s}|#]([^#]|#+[^#}])*#+\}/,
       /\{--\s([^-]|-[^-]|--+[^-}])*--+\}/,
     )),
 
