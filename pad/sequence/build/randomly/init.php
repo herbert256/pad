@@ -34,6 +34,12 @@
   if ( ! pqStore ( $pqBuild ) and $pqRandomlyEnd == PHP_INT_MAX )
     $pqRandomlyEnd = $pqRandomlyStart + ( ( $GLOBALS ['padSeqDefaultTries'] ?? 10000 ) - 1 ) * $pqInc;
 
-  $pqRandomlySteps = intval ( ( $pqRandomlyEnd - $pqRandomlyStart ) / $pqInc );
+  // The window is walked in steps of the increment - over a store a whole number of entries,
+  // 1 or more, the step the fixed iterator takes itself: increment=0 divided by nothing here
+  // and ended the request, and increment=0.5 drew the entry at index 1.5.
+
+  $pqRandomlyInc = pqStore ( $pqBuild ) ? max ( 1, (int) ceil ( $pqInc ) ) : $pqInc;
+
+  $pqRandomlySteps = intval ( ( $pqRandomlyEnd - $pqRandomlyStart ) / $pqRandomlyInc );
 
 ?>

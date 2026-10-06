@@ -18,7 +18,11 @@
   $pqRandomStart = ( $pqMin == PHP_INT_MIN ) ? 1 : $pqMin;
   $pqRandomEnd   = $pqMax;
 
-  if ( $pqInc != 1 )
+  // An increment below 1 makes no steps - the loop never starts on one - and divided by
+  // nothing here: {sequence random, increment=0} ended the request instead of answering
+  // nothing, and so did random as a play under a run with that increment.
+
+  if ( $pqInc != 1 and $pqInc >= 1 )
     $pqRandomSteps = intval ( ( $pqRandomEnd - $pqRandomStart ) / $pqInc );
 
 ?>

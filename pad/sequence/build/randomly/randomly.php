@@ -6,7 +6,7 @@
   // to use as $pqLoop: for a stored sequence the term at a random index of $pqFixed,
   // otherwise a random point on the from/to/increment grid.
 
-  $pqRandomlyRand = $pqRandomlyStart + rand ( 0, $pqRandomlySteps ) * $pqInc;
+  $pqRandomlyRand = $pqRandomlyStart + rand ( 0, $pqRandomlySteps ) * $pqRandomlyInc;
 
   if ( pqStore ( $pqBuild ) )
     return $pqFixed [$pqRandomlyRand];
