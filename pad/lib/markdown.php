@@ -365,9 +365,10 @@
       if ( ! $item or $item ['type'] != $type )
         break;
 
-      $width = $item ['width'];
-      $body  = [ $item ['content'] ];
-      $blank = FALSE;
+      $width  = $item ['width'];
+      $body   = [ $item ['content'] ];
+      $blank  = FALSE;
+      $filled = ( trim ( $item ['content'] ) !== '' );
       $i++;
 
       while ( $i < $n ) {
@@ -381,11 +382,16 @@
           continue;
         }
 
+        // A blank line between two blocks of the item makes the list loose. Whether the item
+        // holds text yet is kept as it grows: joining the whole item again for every line
+        // after a blank one went quadratic.
+
         if ( padMarkdownIndent ( $line ) >= $width ) {
-          if ( $blank and trim ( implode ( '', $body ) ) !== '' )
+          if ( $blank and $filled )
             $loose = TRUE;
           $body [] = substr ( $line, $width );
           $blank   = FALSE;
+          $filled  = TRUE;
           $i++;
           continue;
         }
@@ -394,6 +400,7 @@
           break;
 
         $body [] = $line;
+        $filled  = TRUE;
         $i++;
 
       }
