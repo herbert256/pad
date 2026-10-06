@@ -56,6 +56,12 @@
 
   if ( is_float ( $pq ) and ( $pq < PHP_INT_MIN or $pq >= PHP_INT_MAX ) ) return FALSE;
 
+  // A term that is no number at all - the square root exponentiation=0.5 takes of a negative
+  // value - is no term: printed, PHP ended the request on the NAN coerced to a string. Not a
+  // play's answer either, below.
+
+  if ( is_float ( $pq ) and is_nan ( $pq ) ) return TRUE;
+
   $pqOrgSet = $pq;
 
   // An order build computes each term from the ones before it, so every generated term goes
@@ -73,6 +79,7 @@
   }
 
   if ( is_float ($pq)   and ( $pq < PHP_INT_MIN or $pq >= PHP_INT_MAX ) ) return FALSE;
+  if ( is_float ($pq)   and is_nan ( $pq )   ) return TRUE;
   if ( is_numeric ($pq) and $pq < $pqMin       ) return TRUE;
   if ( is_numeric ($pq) and $pq > $pqMax       ) return TRUE;
   if ( $pqUnique and in_array ($pq, $pqResult) ) return TRUE;
