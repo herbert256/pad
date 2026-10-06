@@ -121,7 +121,7 @@
       $list   = array_values ( array_filter ( array_map ( 'trim', $list ), 'strlen' ) );
       $value  = padFormFind ( $data, $field ) [1] ?? '';
       $value  = is_string ( $value ) ? trim ( $value ) : $value;
-      $number = (bool) array_intersect ( $list, [ 'numeric', 'integer' ] );
+      $number = (bool) array_intersect ( array_map ( 'strtolower', $list ), [ 'numeric', 'integer' ] );
       $empty  = ( $value === '' or $value === NULL or $value === [] );
 
       foreach ( $list as $rule )
