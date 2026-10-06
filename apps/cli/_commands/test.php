@@ -50,6 +50,13 @@
     $testNames = array_values ( array_filter ( testNames ( $testApp ),
                    fn ( $one ) => $testOnly === '' or $one === $testOnly or str_starts_with ( $one, "$testOnly/" ) ) );
 
+    // A name that is no test of the application is a mistake, not a pass: it ran nothing and
+    // said "0 tests, 0 failed" with exit status 0, so a misspelt name in a CI line turned the
+    // tests off without a word.
+
+    if ( $testOnly !== '' and ! $testNames )
+      return cliFail ( "$testApp has no test named '$testOnly' - its tests are in apps/$testApp/_tests/" );
+
     $testPages  = array_map ( fn ( $one ) => "_tests/$one", $testNames );
     $testResult = cliRunPages ( $testApp, $testPages, [ 'PAD_TEST' => '1' ] );
     $testLines  = [];
