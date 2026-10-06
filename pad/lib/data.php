@@ -32,6 +32,15 @@
     elseif ( strlen(trim($input)) == 0 ) $data = [];
     else                                 $data = trim ( $input );
 
+    // A UTF-8 byte order mark leads a string that an editor or a download saved as UTF-8:
+    // it is no whitespace, so trim leaves it, and it made the first CSV column "\xEF\xBB\xBFname"
+    // and pushed an XML document's <?xml off the start - "XML declaration allowed only at
+    // the start" - while a JSON or XML string behind it was not recognised on sight and read
+    // as CSV. It is stripped here, once, before the type is sniffed and the reader runs.
+
+    if ( is_string ( $data ) and str_starts_with ( $data, "\xEF\xBB\xBF" ) )
+      $data = ltrim ( substr ( $data, 3 ) );
+
     if ( ! is_array ( $data ) ) {
 
       if ( ! $type )
