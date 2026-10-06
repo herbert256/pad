@@ -182,6 +182,27 @@ async function main() {
         expect('pad_test reports a failed run', !r.error && r.text.startsWith('FAILED') && r.text.includes('manual       2 pages, 2 tests, 1 failed'), r);
         expect('pad_test lists the failing test with what was wanted', r.text.includes('manual: pages/broken (failed)') && r.text.includes('want: the answer') && r.text.includes('got:  something else'), r);
 
+        // a php that ends without reading the template it is handed - one that fails to start,
+        // a wrong binary - closes the pipe under a large write; the server answers the call
+        // with the failure and stays up for the next one
+        if (fs.existsSync('/usr/bin/false')) {
+            const quick = spawn(process.execPath, [path.join(__dirname, 'pad-mcp.js')], { cwd: home, env: Object.assign({}, env, { PAD_PHP: '/usr/bin/false' }) });
+            let said = '';
+            quick.stdout.setEncoding('utf8');
+            quick.stdout.on('data', (d) => { said += d; });
+            const ended = new Promise((resolve) => quick.on('exit', (code) => resolve('exit ' + code)));
+            quick.stdin.on('error', () => {});
+            quick.stdin.write(JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'pad_render', arguments: { app: 'shop', template: 'x'.repeat(2000000) } } }) + '\n');
+            const answered = () => said.includes('"id":1') && said.includes('"id":2');
+            for (let i = 0; i < 100 && !answered(); i++) {
+                if (i === 10) quick.stdin.write(JSON.stringify({ jsonrpc: '2.0', id: 2, method: 'ping' }) + '\n');
+                const end = await Promise.race([ended, new Promise((resolve) => setTimeout(() => resolve(null), 50))]);
+                if (end) { said += ' [' + end + ']'; break; }
+            }
+            expect('a php that does not read the template leaves the server answering', answered() && said.includes('"isError":true'), said.slice(-300));
+            quick.kill();
+        }
+
         const bad = await call('pad_nothing', {});
         expect('an unknown tool is a protocol error', bad.rpc && bad.rpc.code === -32602, bad);
         const unknown = await request('resources/list');

@@ -81,6 +81,10 @@ function render({ app, page, template, query, trace }) {
         child.stderr.on('data', (d) => { err += d; });
         child.on('error', (e) => { clearTimeout(timer); resolve({ code: -1, out: '', err: String(e.message) }); });
         child.on('close', (code) => { clearTimeout(timer); resolve({ code, out, err }); });
+        // A php that ends before it read the template - one that fails to start, or a wrong
+        // binary - closes the pipe under the write: the EPIPE has a listener here, and the
+        // close above answers the call, where it went unhandled and ended the whole server.
+        child.stdin.on('error', () => {});
         child.stdin.end(template !== undefined ? String(template) : '');
     });
 }
