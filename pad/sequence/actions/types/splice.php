@@ -13,9 +13,14 @@
   // The offset is a number: splice='abc' ended the request on array_splice's TypeError.
   // Strict mode names it, and the sequence is left as it was.
 
-  if ( ! is_numeric ( $pqActionList [0] ?? '' ) ) {
+  // The offset and a length are whole numbers - splice=2.5 or '1|1.5' ended the request on
+  // PHP's deprecation of the fraction - and only the store comes in third or in second place.
+
+  if ( ! pqBoolWhole ( $pqActionList [0] ?? '' )
+       or ( count ( $pqActionList ) > 1 and is_numeric ( $pqActionList [1] ) and ! pqBoolWhole ( $pqActionList [1] ) )
+       or ( count ( $pqActionList ) > 2 and ! pqBoolWhole ( $pqActionList [1] ) ) ) {
     if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
-      padError ( "splice= takes an offset, not '" . ( $pqActionList [0] ?? '' ) . "'" );
+      padError ( "splice= takes an offset, not '" . implode ( '|', $pqActionList ) . "'" );
     return;
   }
 
