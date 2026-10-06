@@ -491,9 +491,13 @@ function hover(params) {
 // The page a file stands for when it is checked: a .pad or .html outside the _xxx
 // directories is a page itself; a _inits.pad or _exits.pad wraps every page of its
 // directory, so the directory's index is rendered for it. Snippets (_include, _tags) have
-// no page of their own and are not checked.
+// no page of their own and are not checked, and neither is a bracketed route -
+// products/[id].pad, blog/[year]/[slug].pad: it is reached through a path that fills in its
+// value, never by its own name, and rendered by name it is a page not found, which stood
+// as an error on every such template.
 function pageFor(loc) {
     if (!loc.apps || loc.privateDir) return null;
+    if (loc.inApp.some((part) => part.includes('['))) return null;
     const base = loc.inApp[loc.inApp.length - 1];
     const dirs = loc.inApp.slice(0, -1);
     if (!/\.(pad|html)$/.test(base)) return null;
