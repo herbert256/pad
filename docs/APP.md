@@ -797,7 +797,8 @@ directory) instead of running any PHP - not `orders.php`, nor the `_inits.php` a
 ## Form Handling
 
 ### Automatic Form Variables
-PAD automatically makes POST form fields available as PHP variables matching the field name:
+PAD makes request values - POST and GET - available as PHP variables matching the field name,
+as `$padRequestVars` allows (TRUE, the default: all of them; a list: those names; []: none):
 ```html
 <form method="post">
   <input name="username">    <!-- Available as $username -->
@@ -806,8 +807,8 @@ PAD automatically makes POST form fields available as PHP variables matching the
 ```
 
 **Important:**
-- Variables are only populated on POST requests, not GET
-- Always check request method: `if ($_SERVER['REQUEST_METHOD'] == 'POST')`
+- A GET value fills the variable as a POST value does - check the method when it matters:
+  `padRequestIs ( 'post' )`, or `padPosted ( 'contact' )` for a `{form}`
 - Watch for naming conflicts with other variables (e.g., form field `message` vs success `$message`)
 
 **Example** (`contact.php`):
@@ -929,16 +930,18 @@ session starts on demand the first time a token is needed.
 ### The `db()` Wrapper
 PAD provides a `db()` function for database queries. It uses positional placeholders `{0}`, `{1}`, etc.
 
-**Important:** PAD does NOT add quotes around placeholders - you must add them yourself for string values:
+**Placeholders quote themselves:** written bare, a string value becomes a quoted, escaped
+literal and a number stays a number; written inside quotes, the value is only escaped. Both
+forms are safe:
 ```php
-// Correct - quotes around string placeholders
+// Inside quotes - the value is escaped
 db("SELECT * FROM users WHERE username='{0}'", [$username]);
 db("INSERT INTO posts (title, content) VALUES ('{0}', '{1}')", [$title, $content]);
 
-// Wrong - missing quotes for strings
-db("SELECT * FROM users WHERE username={0}", [$username]);  // SQL error!
+// Bare - quoted and escaped for you
+db("SELECT * FROM users WHERE username={0}", [$username]);
 
-// Numeric values don't need quotes
+// A number stays a number - and '5 or 1=1' becomes a quoted string, never SQL
 db("SELECT * FROM users WHERE id={0}", [$id]);
 ```
 
