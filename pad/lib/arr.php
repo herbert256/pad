@@ -628,7 +628,9 @@
     }
 
     // A key of a type the object refuses - SplFixedArray takes integers only - is a key it
-    // does not have: its TypeError ended the request.
+    // does not have: its TypeError ended the request. Only PHP refusing the key here is
+    // that (padArrRefused): a TypeError inside the application's own offsetGet is its bug,
+    // and goes on to be reported rather than hide behind the default.
 
     if ( $target instanceof ArrayAccess ) {
 
@@ -640,6 +642,9 @@
         $value = $target [$segment];
 
       } catch ( TypeError $e ) {
+
+        if ( ! padArrRefused ( $e ) )
+          throw $e;
 
         return FALSE;
 
@@ -812,7 +817,8 @@
   }
 
   // padArrUnset removes one key of an array or an object; an object that refuses - a
-  // readonly property - is reported.
+  // readonly property - is reported. A key of a type the object refuses (padArrRefused) is
+  // not there to remove, as padArrStep reads it; it was reported as not removable.
 
   function padArrUnset ( $function, $target, $segment ) {
 
@@ -833,7 +839,8 @@
 
     } catch ( Throwable $e ) {
 
-      $refused = $e -> getMessage ();
+      if ( ! ( $e instanceof TypeError and padArrRefused ( $e ) ) )
+        $refused = $e -> getMessage ();
 
     }
 
@@ -841,6 +848,16 @@
       padError ( "$function cannot remove '" . padMakeSafe ( (string) $segment, 40 ) . "' from an object of class " . get_class ( $target ) . " - $refused" );
 
     return $target;
+
+  }
+
+  // padArrRefused tells PHP refusing the type of a key on an ArrayAccess object - an
+  // SplFixedArray handed a text key - from a TypeError of the object's own code: PHP's is
+  // raised where this file asked for the key, the other in the application's file.
+
+  function padArrRefused ( $error ) {
+
+    return $error -> getFile () === __FILE__;
 
   }
 
