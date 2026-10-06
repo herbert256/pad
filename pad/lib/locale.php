@@ -50,7 +50,17 @@
 
   function padLocaleMatch ( $wanted, $locales ) {
 
-    $wanted = padLocaleNormal ( $wanted );
+    // A tag of more parts than a language and a script or region - zh-Hant-TW, sr-Latn-RS,
+    // de-DE-1996 - is read without the parts after those, and one whose second part is no
+    // script or region on its language alone: it matched nothing, not even its language,
+    // and the visitor got the default locale.
+
+    $parts = array_slice ( explode ( '_', str_replace ( '-', '_', trim ( (string) $wanted ) ) ), 0, 2 );
+
+    $wanted = padLocaleNormal ( implode ( '_', $parts ) );
+
+    if ( $wanted === '' and count ( $parts ) == 2 )
+      $wanted = padLocaleNormal ( $parts [0] );
 
     if ( $wanted === '' )
       return '';
