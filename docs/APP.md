@@ -419,7 +419,7 @@ Visit `http://yourserver/myapp/` in your browser.
 A field tag pipes as it stands; a literal or an expression goes through `{echo}`.
 ```
 {$name | upper}                     # a field tag pipes
-{echo $name | upper}                # the same through {echo}
+{echo $name | upper}                # the same value, printed raw - {echo} skips the sanitize chain
 {echo $text | trim | lower}         # chain multiple
 {echo $date | date('Y-m-d')}        # with parameters
 {echo 'hello' | upper}              # a literal needs {echo}
@@ -1594,7 +1594,7 @@ Output: `Alice, Bob, Charlie`
 ### Key Distinctions from PHP
 
 1. **Templates drive execution** - not code including templates
-2. **Use `{echo}` for pipes** - bare `{$var | func}` doesn't work
+2. **A literal pipes through `{echo}`** - `{echo 'x' | upper}`; a field tag pipes as it stands, `{$var | upper}`, and only the field tag escapes
 3. **Arithmetic needs space** - `{echo $x | + 1}` not `| +1`
 4. **A bare condition tests truth** - `{if $flag}` fails for `''`, `'0'`, `0` and FALSE; compare when a value is meant
 5. **Quote literal strings** - `{count 'items'}` not `{count items}`

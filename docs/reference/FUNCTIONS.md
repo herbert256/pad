@@ -9,7 +9,7 @@ a literal or an expression goes through `{echo}`:
 
 ```
 {$name | upper}                   # a field tag pipes
-{echo $name | upper}              # the same through {echo}
+{echo $name | upper}              # the same value, printed raw - {echo} skips the sanitize chain
 {echo $text | trim | lower}       # Chained functions
 {echo $date | date('Y-m-d')}      # With parameters
 {echo 'hello' | upper}            # a literal needs {echo}

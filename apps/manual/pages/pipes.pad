@@ -97,7 +97,7 @@ context it lands in - <code>html</code>, <code>attr</code>, <code>js</code>, <co
 <h2>Important Rules</h2>
 
 <ul>
-  <li><strong>A literal needs {tag 'echo'}</strong> - <code>{open}echo 'text' | upper{close}</code>; a field pipes as it stands, <code>{open}$var | upper{close}</code>, as well as through <code>{open}echo $var | upper{close}</code></li>
+  <li><strong>A literal needs {tag 'echo'}</strong> - <code>{open}echo 'text' | upper{close}</code>; a field pipes as it stands, <code>{open}$var | upper{close}</code>, as well as through <code>{open}echo $var | upper{close}</code> - which prints the value raw, without the sanitize chain the field tag runs</li>
   <li><strong>Arithmetic needs spaces</strong> - <code>{open}echo $x | + 1{close}</code> NOT <code>{open}echo $x | +1{close}</code></li>
   <li><strong>Quote string parameters</strong> - <code>{open}echo $x | replace('a','b'){close}</code></li>
   <li><strong>Functions apply left to right</strong> - <code>{open}echo $x | trim | upper{close}</code> trims first, then uppercases</li>

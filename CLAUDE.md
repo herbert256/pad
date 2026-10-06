@@ -842,7 +842,7 @@ source.
 
 ## Critical Syntax Rules (Common Mistakes)
 
-1. **Pipe a value through `{echo}` or a field tag** - `{$var | upper}` and `{echo $var | upper}` both work; a literal needs the `{echo}`
+1. **Pipe a value through `{echo}` or a field tag** - `{$var | upper}` and `{echo $var | upper}` both work, but only the field tag runs the sanitize chain - `{echo}` prints the value raw; a literal needs the `{echo}`
 2. **Arithmetic needs space** - `{echo $x | + 1}` not `| +1`
 3. **Quote literal strings** - `{count 'items'}` not `{count items}`
 4. **No inline CSS/JS** - PAD parses `{ }` as tags; use external files or `{ignore}` wrapper
