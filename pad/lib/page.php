@@ -113,6 +113,12 @@
     $ajax = 'padAjax' . md5 ( $page . $qry . $app ) ;
     //$ajax = 'padAjax' . padRandomString(8);
 
+    // Each segment of the page is encoded, as {get} asks for its page: a segment a route
+    // binds may hold what a query string reads as its own, and products/a&b loaded
+    // products/a with a value b into the browser.
+
+    $page = implode ( '/', array_map ( 'rawurlencode', explode ( '/', (string) $page ) ) );
+
     if ( $app )
       $url = "$padHost$app/?$page$qry";
     else
