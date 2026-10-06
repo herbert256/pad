@@ -211,17 +211,20 @@
     // name first where two start alike (:count before :co). One after the other, a value
     // that held a placeholder was filled in turn: name=':place' came out as the place.
 
+    // A value is written as padStrText writes it: NAN as NAN, where (string) NAN is a PHP
+    // 8.5 warning that ended the request.
+
     $fill = [];
 
     if ( array_key_exists ( 'count', $vars ) )
-      $fill ['%d'] = (string) $vars ['count'];
+      $fill ['%d'] = padStrText ( $vars ['count'], 'padTrans', FALSE );
 
     // A NULL value - a database column without one - is nothing, as {trans} hands it over;
     // passed over, it left ':name' standing in the text.
 
     foreach ( $vars as $name => $value )
       if ( is_scalar ( $value ) or $value === NULL )
-        $fill [":$name"] = (string) $value;
+        $fill [":$name"] = padStrText ( $value, 'padTrans', FALSE );
 
     return strtr ( $text, $fill );
 
