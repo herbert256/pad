@@ -31,6 +31,9 @@
   // as 9973, the 1229th prime, and sequence:fibonacci(100) as the 93rd term, the last that
   // fits an integer. Strict mode says which.
 
+  if ( ! $pqRows )
+    return '';
+
   if ( count ( $pqResult ) < $pqRows ) {
 
     if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )

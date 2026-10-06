@@ -12,7 +12,7 @@
   // an action called fibonacci, found none, and ended the request.
 
   $pqSeq  = $pqSetAction;
-  $pqRows = intval ( $pqSetParms [0] ?? 1 );
+  $pqRows = $pqSetParms [0] ?? 1;
 
   // The call names the type and nothing more, as a bare {sequence multiply} does, and so the
   // type's parameter is the TRUE a bare option is - read as the 1 those types default to. It
@@ -22,8 +22,22 @@
 
   $pqParm = TRUE;
 
-  if ( $pqRows < 1 )
-    $pqRows = 1;
+  // A position counts from 1 and is a whole number, as element= takes one. 0, -3 and 2.7 were
+  // cut down to a whole number of at least 1, so sequence:prime(0) answered 2, the first
+  // prime, and sequence:fibonacci(2.7) the second term; they have no term, and the strict
+  // check says so.
+
+  if ( ! pqBoolWhole ( $pqRows ) or $pqRows < 1 ) {
+
+    if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
+      padError ( "sequence:$pqSeq() takes a position from 1 up, not '"
+               . ( is_scalar ( $pqRows ) ? $pqRows : gettype ( $pqRows ) ) . "'" );
+
+    $pqRows = 0;
+
+  }
+
+  $pqRows = (int) $pqRows;
 
   // The term asked for may lie beyond the default candidate limit - the 1230th prime is past
   // the 10,000th integer - so a position lookup may test up to the hard ceiling, and
