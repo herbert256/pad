@@ -16,7 +16,10 @@ their own could leave the local server no worker to answer them.
 | `curl_ttl.pad` | `{curl ..., ttl=60}` twice answers alike |
 | `curl_data_ttl.php/pad` | A `_data/*.curl` file with a `<ttl>`, and `data=` with the ttl option |
 | `curl_data_self.pad` | `data='SELF://...'` is fetched from this server, as `{curl}` has it |
+| `disposition.php` | A download named `report.file` whose body is the name of a data file here |
+| `curl_data_disposition.pad` | That download is read as the text it is - `_data/localOnly.json` is never read |
 | `prefetch.php/pad` | `padPrefetch`: two slow sources served together, each read as named data |
 | `prefetch_ttl.php/pad` | `padPrefetch` with a ttl: the second prefetch is answered from the copy |
 | `_data/stampKept.curl` | A `<curl>` document with a url and a ttl |
+| `_data/localOnly.json` | The data file the download names, which no fetch may read |
 | `_config/config.php` | `_common` off |

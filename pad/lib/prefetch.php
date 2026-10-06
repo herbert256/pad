@@ -71,7 +71,23 @@
         return [];
       }
 
-    return padData ( $curl ['data'], $curl ['type'], $name );
+    // Nor is a fetched body a reference to something on this server: a body that reads as
+    // the name of a _data file ('file') was that file - a .php among them included and run
+    // - and one that reads as a URL ('curl') was fetched in its turn. Either is read as the
+    // text it is.
+
+    $type = $curl ['type'];
+
+    if ( is_string ( $curl ['data'] ) ) {
+
+      $type = $type ?: padContentType ( $curl ['data'] );
+
+      if ( $type == 'file' or $type == 'curl' )
+        $type = 'csv';
+
+    }
+
+    return padData ( $curl ['data'], $type, $name );
 
   }
 

@@ -301,10 +301,16 @@
 
     $output ['data'] = str_replace ( "\r\n", "\n", $output ['data'] );
 
+    // The file name a download gives itself is the remote side's to choose, so only the
+    // extension of a document format names the reader: filename="report.file" made the body
+    // the name of a local _data file to read - a .php among them included and run - and
+    // "x.curl" a URL to fetch in turn. Any other extension leaves the body to be recognised.
+
     if ( ! $output ['type'] and $file) {
       $pos = strrpos($file, '.');
-      if ( $pos !== FALSE )
-        $output ['type'] = substr($file, $pos+1);
+      $ext = ( $pos !== FALSE ) ? strtolower ( substr ( $file, $pos + 1 ) ) : '';
+      if ( in_array ( $ext, [ 'html', 'htm', 'xml', 'json', 'csv', 'yaml', 'yml' ], TRUE ) )
+        $output ['type'] = $ext;
     }
 
     if ( ! $output ['type'] )
