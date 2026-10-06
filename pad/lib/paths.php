@@ -165,7 +165,10 @@
   // SERVER_ADDR and SERVER_PORT (php -S says its address as SERVER_NAME), as curl's
   // CONNECT_TO. A $padHostBase is an address the configuration gives - a proxy in front, a
   // port the request does not show - and is fetched as it says; so is a request with no
-  // server address, the command line.
+  // server address, the command line. The port is as good as the server makes it: Apache
+  // with UseCanonicalName Off (its default) fills SERVER_PORT from a port the Host header
+  // names, so such a request still picks the port of this machine the fetch goes to -
+  // UseCanonicalPhysicalPort On, or a $padHostBase, pins it.
 
   function padSelfConnect () {
 
