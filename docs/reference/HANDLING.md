@@ -525,11 +525,13 @@ group by, applied by the query - and is left alone by this handler.
 ## Emptied by Handling
 
 When the tag found rows and the handling options left none - a `where` nothing passes, a
-`first=0` - the level shows its `@else@` branch, as it does when the tag itself comes back
-empty:
+`first=0` - the level is treated as a tag that came back empty: a `notOk=`, `error=` or
+`else=` option stands in with its content, otherwise the level shows its `@else@` branch, and
+`demand` is an error unless an option stood in:
 
 ```
 {staff where='$salary gt 9999'}{$name}@else@Nobody earns that much{/staff}
+{staff where='$salary gt 9999', else='nobody'}{$name}{/staff}
 ```
 
 ---

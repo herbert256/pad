@@ -109,15 +109,35 @@
     padPagerKeep ( 0 );
 
   // Rows the tag found, and the handling left none of them - a where nothing passed, a
-  // first=0: the level has nothing to show, so it shows its @else@ branch, as it does when
-  // the tag itself comes back empty. Without an @else@ the level renders nothing, as before.
+  // first=0: the level has nothing to show, so it is treated as a tag that came back empty.
+  // A notOk=, error= or else= option stands in with its content, as level/flags.php has it
+  // for an empty tag; otherwise the @else@ branch shows; without either the level renders
+  // nothing, as before. demand is an error unless an option stood in. level/flags.php ran
+  // before the handling, while the rows were still there, so the documented
+  // {users where='$premium eq 1' else="noPremiumUsers"} rendered nothing, a notOk= the same,
+  // and a demanded tag whose where emptied it passed in silence.
 
-  if ( $padHandBefore and ! count ( $padData [$pad] ) and ! $padTagSeq [$pad] and $padFalse !== '' ) {
+  if ( $padHandBefore and ! count ( $padData [$pad] ) and ! $padTagSeq [$pad] ) {
 
-    $padElse [$pad] = TRUE;
-    $padHit  [$pad] = FALSE;
-    $padBase [$pad] = $padFalse;
-    $padData [$pad] = padDefaultData ();
+    $padHandRecover = padTagParm ( 'notOk' ) ? 'notOk' : ( padTagParm ( 'error' ) ? 'error' : ( padTagParm ( 'else' ) ? 'else' : '' ) );
+
+    if ( $padHandRecover ) {
+
+      include PAD . "options/$padHandRecover.php";
+
+      $padBase [$pad] = $padContent;
+
+    } elseif ( $padFalse !== '' ) {
+
+      $padElse [$pad] = TRUE;
+      $padHit  [$pad] = FALSE;
+      $padBase [$pad] = $padFalse;
+      $padData [$pad] = padDefaultData ();
+
+    }
+
+    if ( ! $padHandRecover and padTagParm ( 'demand' ) )
+      padError ( "Tag '" . $padTag [$pad] . "' carries demand and produced nothing" );
 
   }
 
