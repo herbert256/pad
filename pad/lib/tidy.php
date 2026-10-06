@@ -7,6 +7,8 @@
   //                 actually produced something
   // padTidy         the general pass over page output using $padTidyConfig; for a
   //                 fragment or an included page it emits the body only
+  // padTidyHold     holds the content of a <textarea> or a <template> out of that pass
+  // padTidyClose    where such an element closes, a template by its depth
   // padTidySmall    an aggressive minifier - drops comments and empty elements, then
   //                 strips newlines, runs of spaces and whitespace between tags
   //
@@ -74,11 +76,7 @@
 
     $held = [];
     $mark = 'padTidyHeld' . bin2hex ( random_bytes ( 8 ) ) . 'x';
-
-    $data = preg_replace_callback ( '#(<(textarea|template)\b[^>]*>)(.*?)(</\2\s*>)#is', function ( $match ) use ( &$held, $mark ) {
-      $held [] = $match [3];
-      return $match [1] . $mark . ( count ( $held ) - 1 ) . 'x' . $match [4];
-    }, $data ) ?? $data;
+    $data = padTidyHold ( $data, $held, $mark );
 
     try {
       $tidy = new tidy;
@@ -90,6 +88,62 @@
     }
 
     return preg_replace_callback ( '#\s*' . $mark . '(\d+)x\s*#', fn ( $match ) => $held [ $match [1] ], $value ) ?? $value;
+
+  }
+
+  // The content of each element padTidy holds out of the pass, replaced by the mark and its
+  // number. A <textarea> holds text and ends at its own close; a <template> is matched by
+  // depth - held up to the first </template>, a template inside a template left the outer
+  // one's </ul></template> to Tidy, which dropped them, and the rest of the page went into
+  // the template. An element that never closes is left to Tidy.
+
+  function padTidyHold ( $data, &$held, $mark ) {
+
+    $out = '';
+    $at  = 0;
+
+    while ( preg_match ( '#<(textarea|template)(?=[\s/>])[^>]*>#i', $data, $open, PREG_OFFSET_CAPTURE, $at ) ) {
+
+      $from  = $open [0] [1] + strlen ( $open [0] [0] );
+      $close = padTidyClose ( $data, strtolower ( $open [1] [0] ), $from );
+
+      $out .= substr ( $data, $at, $from - $at );
+      $at   = $from;
+
+      if ( $close === NULL )
+        continue;
+
+      $held [] = substr ( $data, $from, $close - $from );
+      $out    .= $mark . ( count ( $held ) - 1 ) . 'x';
+      $at      = $close;
+
+    }
+
+    return $out . substr ( $data, $at );
+
+  }
+
+  // Where the element opened before $from closes: the next close of a <textarea>, the close
+  // at depth 0 of anything else, or NULL.
+
+  function padTidyClose ( $data, $name, $from ) {
+
+    $depth = 1;
+    $tags  = '#<(/?)' . preg_quote ( $name, '#' ) . '(?=[\s/>])[^>]*>#i';
+
+    while ( preg_match ( $tags, $data, $tag, PREG_OFFSET_CAPTURE, $from ) ) {
+
+      if ( $tag [1] [0] == '/' ) {
+        if ( --$depth == 0 )
+          return $tag [0] [1];
+      } elseif ( $name != 'textarea' and ! str_ends_with ( $tag [0] [0], '/>' ) )
+        $depth++;
+
+      $from = $tag [0] [1] + strlen ( $tag [0] [0] );
+
+    }
+
+    return NULL;
 
   }
 
