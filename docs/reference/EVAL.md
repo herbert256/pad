@@ -11,12 +11,14 @@ The eval subsystem is responsible for parsing and evaluating expressions in PAD 
 The main entry point is `eval.php`:
 
 ```php
-// Fast path: if expression is a simple function name, use optimized path
-if ( file_exists ( PAD . "functions/$eval.php" ) )
+// Fast path: if expression is a plain name of a built-in pipe function, use optimized path
+if ( preg_match ( '/^[A-Za-z][A-Za-z0-9_]*$/', $eval ) and file_exists ( PAD . "functions/$eval.php" ) )
   return include PAD . 'eval/fast.php';
 
 // Full evaluation pipeline
-padEvalParse ( $result, $eval );   // Step 1: Parse into tokens
+$result = padEvalParsed ( $eval );                 // Step 1: Validate and parse into tokens (kept per request)
+if ( ! padEvalCheckPipes ( $result, $eval, $pipe ) )  // the pipe functions named must exist
+  return '';
 padEvalAfter ( $result );          // Step 2: Resolve types and operators
 padEvalPipes ( $result, $pipes );  // Step 3: Split on pipe operators
 
@@ -43,9 +45,11 @@ The `padEvalParse()` function tokenizes the expression into an array of tokens. 
 | `VAL` | Literal value | `'hello'`, `123`, `3.14` |
 | `OPR` | Operator | `+`, `-`, `*`, `LT`, `AND` |
 | `$` | Variable reference | `$name` |
-| `&` | Tag reference | `&tagname` |
+| `&` | Property of the current tag | `&current` |
 | `#` | Option/parameter reference | `#option` |
-| `$$` | Property reference | `@property` or `$$prop` |
+| `$$` | The `@` placeholder - the piped value | `@`, `$$` |
+| `prop` | Property reference | `first@items`, `current@` |
+| `%` | A whole expression that is a printf format | `%05.2f` |
 | `TYPE` | Typed value accessor | `field:name`, `data:key` |
 | `pipe` | Pipe separator | `\|` |
 | `open` | Open parenthesis | `(` |
@@ -231,16 +235,17 @@ else
 | `field` | `single/field.php` | `padFieldValue($name)` |
 | `data` | `single/data.php` | `$GLOBALS['padDataStore'][$name]` |
 | `content` | `single/content.php` | `$GLOBALS['padContentStore'][$name]` |
-| `property` | `single/property.php` | `padTagValue($name)` |
-| `tag` | `single/tag.php` | `padOptValue($name, 1)` |
+| `property` | `single/property.php` | `padTagValue($name, 1)` |
+| `parm` | `single/parm.php` | `padOptValue($name, 1)` |
 | `array` | `single/array.php` | `padArrayValue($name, TRUE)` |
 | `constant` | `single/constant.php` | `constant($name)` |
 | `level` | `single/level.php` | `padGetLevelArray($name)` |
-| `flag` | `single/flag.php` | Flag value |
-| `pull` | `single/pull.php` | Pulled value |
-| `object` | `single/object.php` | Object property |
-| `local` | `single/local.php` | Local variable |
-| `include` | `single/include.php` | Included content |
+| `bool` | `single/bool.php` | `$padBoolStore[$name]`, FALSE when not set |
+| `flag` | `single/flag.php` | `$padBoolStore[$name]` - an error when not set |
+| `pull` | `single/pull.php` | The stored sequence `$pqStore[$name]` |
+| `object` | `single/object.php` | An application global as an array (`padToArray`) |
+| `local` | `single/local.php` | A `_data/` file's data |
+| `include` | `single/include.php` | An `_include/` snippet, rendered |
 
 ### Parameterized Types (`parms/`)
 
@@ -249,10 +254,12 @@ Types that accept parameters:
 | Type | File | Description |
 |------|------|-------------|
 | `tag` | `parms/tag.php` | Tag as function: `padTagAsFunction($name, $value, $parm)` |
-| `parm` | `parms/parm.php` | Parameter access with type |
-| `pad` | `parms/pad.php` | PAD include |
-| `php` | `parms/php.php` | PHP include |
-| `app` | `parms/app.php` | Application include |
+| `pad` | `parms/pad.php` | A built-in pipe function, `functions/$name.php`, after its parameter count is checked |
+| `php` | `parms/php.php` | A PHP function `$padPhpFunctions` allows |
+| `app` | `parms/app.php` | An application's `_functions/` file |
+| `function` | `parms/function.php` | Whichever function kind the name is |
+| `action` | `parms/action.php` | A sequence action |
+| `script` | `parms/script.php` | A `_scripts/` script |
 | `sequence` | `parms/sequence.php` | Sequence generator |
 
 ## Fast Path (`fast.php`)
@@ -260,10 +267,15 @@ Types that accept parameters:
 For simple expressions that are just function names (e.g., `trim`), the fast path bypasses full parsing:
 
 ```php
-if ( $GLOBALS['padInfo'] )
+$kind  = 'pad';
+$name  = $eval;
+$count = 0;
+$parm  = [];
+
+if ( $padInfo )
   include PAD . 'events/functionsFast.php';  // Tracing
 
-return include PAD . "functions/$eval.php";  // Direct function call
+return include PAD . 'eval/parms/pad.php';   // The function, through the parameter-count check
 ```
 
 ## Directory Structure
@@ -291,28 +303,30 @@ eval/
 │   └── singleArr.php     # OP array
 │
 ├── parms/                # Parameterized type handlers
-│   ├── app.php           # Application include
-│   ├── pad.php           # PAD include
-│   ├── parm.php          # Parameter access
-│   ├── php.php           # PHP include
+│   ├── action.php        # Sequence action
+│   ├── app.php           # Application function (_functions/)
+│   ├── function.php      # Any function kind
+│   ├── pad.php           # Built-in pipe function
+│   ├── php.php           # PHP function
+│   ├── script.php        # Script from _scripts/
 │   ├── sequence.php      # Sequence generator
 │   └── tag.php           # Tag as function
 │
 ├── single/               # Simple type handlers
 │   ├── array.php         # Array access
+│   ├── bool.php          # Bool store
 │   ├── constant.php      # PHP constant
 │   ├── content.php       # Content store
 │   ├── data.php          # Data store
 │   ├── field.php         # Field/variable
-│   ├── flag.php          # Flag value
+│   ├── flag.php          # Bool store, strict
 │   ├── include.php       # Include content
-│   ├── level.php         # Level variable
-│   ├── local.php         # Local variable
-│   ├── object.php        # Object property
+│   ├── level.php         # Array field of an enclosing row
+│   ├── local.php         # A _data/ file
+│   ├── object.php        # Application global as array
 │   ├── parm.php          # Parameter value
 │   ├── property.php      # Property value
-│   ├── pull.php          # Pulled value
-│   └── tag.php           # Tag value
+│   └── pull.php          # Stored sequence
 │
 └── type/                 # Type dispatch
     ├── parms.php         # Parameterized type handler
@@ -336,8 +350,11 @@ lib/eval/
 ├── operations.php  # Main operator processing
 ├── parse.php       # Expression parser
 ├── pipes.php       # Pipe splitting
+├── reduce.php      # An array reduced to the one value an operator needs
 ├── result.php      # Result computation
+├── ternary.php     # The inline ternary cond ? a : b
 ├── types.php       # Type utilities
+├── validate.php    # The check before parsing - brackets, strings, functions, operands
 └── value.php       # Value handling
 ```
 
@@ -386,7 +403,7 @@ reads the expression and names the fault and its position - `Expression error: .
 
 While it runs:
 - "there is no field named '$x'" - a missing field (`lib/eval/after.php`)
-- "'a' is not a number for +", "a division by zero in /" - arithmetic on what is no number
+- "'a' is not a number for +", "a division by zero in /" - arithmetic
 - "the ? of an inline ternary has no :", "a branch of an inline ternary is empty" (`lib/eval/ternary.php`)
 - "No result back", "More than one result back", "Result is not a value" - an expression that reduced to no single value
 - "Unsupported \\ char" - Invalid escape sequence
