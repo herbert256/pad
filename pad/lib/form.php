@@ -172,7 +172,7 @@
       'max'      => $size <= (float) $arg,
       'in'       => in_array ( $value, array_map ( 'trim', explode ( ',', $arg ) ), TRUE ),
       'regex'    => (bool) @preg_match ( $arg, $value ),
-      'same'     => $value === trim ( (string) ( $data [$arg] ?? '' ) ),
+      'same'     => is_scalar ( $data [$arg] ?? '' ) and $value === trim ( (string) ( $data [$arg] ?? '' ) ),
       'date'     => padValidateDate ( $value ),
       default    => TRUE
     };
