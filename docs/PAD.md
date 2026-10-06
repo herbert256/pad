@@ -152,9 +152,9 @@ Common functions: `trim`, `upper`, `lower`, `html`, `url`, `date`, `replace`, `l
 {/if}
 
 {case $status}
-  {when 'active'}Active{/when}
-  {when 'pending'}Pending{/when}
-  {else}Unknown{/else}
+  {when 'active'}Active
+  {when 'pending'}Pending
+  {else}Unknown
 {/case}
 ```
 
@@ -169,8 +169,8 @@ Common functions: `trim`, `upper`, `lower`, `html`, `url`, `date`, `replace`, `l
   {increment $i}
 {/while}
 
-{files dir="images" mask="*.jpg"}
-  <img src="{$path}">
+{files 'images', base='app', mask='*.jpg'}  {# _data, images ... of the application #}
+  <li>{$file}</li>
 {/files}
 ```
 
@@ -201,10 +201,10 @@ Properties: `first@tag`, `last@tag`, `even@tag`, `odd@tag`, `current@tag`, `coun
 Control tag behavior with options:
 
 ```
-{users sort="name" first="10"}           {# Sort and limit #}
-{products sort="price DESC" page="1" rows="20"}
-{items shuffle first="5"}                {# Random selection #}
-{data content="users" toData="cached"}   {# Data operations #}
+{users sort='name', first=10}           {# Sort and limit - options are comma-separated #}
+{products sort='price DESC', page=1, rows=20}
+{items shuffle, first=5}                 {# Random selection #}
+{users sort='name', toData='sorted'}     {# Data operations - the sorted rows as {sorted} #}
 ```
 
 ### Data Definition
