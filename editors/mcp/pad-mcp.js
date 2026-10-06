@@ -98,7 +98,14 @@ function describe(result, source) {
     const g = json.pad || {};
     const lines = ['PAD error: ' + json.error.replace(/^PAD:\s*/, '').trim()];
     const tag = (typeof g.padBetweenOrg === 'string' && g.padBetweenOrg) || '';
-    if (tag) {
+    const t = json.template;
+    // The engine's own placing first: the file, line and tag of the report's template. The
+    // search below finds only the first spot the tag's text stands, which named line 1 for
+    // an unclosed {if 1 eq 1} on line 3 when a closed one stood earlier; it stays for a
+    // template given as text, which the engine cannot place in a file.
+    if (t && typeof t.file === 'string' && t.line > 0)
+        lines.push('tag: ' + (t.tag || '{' + tag + '}') + ', line ' + t.line + ' of ' + t.file);
+    else if (tag) {
         let where = '';
         const at = source ? source.indexOf('{' + tag) : -1;
         if (at >= 0) where = ', line ' + (source.slice(0, at).split('\n').length);

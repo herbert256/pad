@@ -144,6 +144,8 @@ async function main() {
         expect('pad_check passes a template the page\'s data satisfies', !r.error && r.text.startsWith('ok'), r);
         r = await call('pad_check', { app: 'shop', page: 'broken' });
         expect('pad_check places an error on its line in the page', r.text.includes('never closes') && r.text.includes('line 3'), r);
+        r = await call('pad_check', { app: 'shop', page: 'twice' });
+        expect('pad_check names the line the engine places the error on, not an earlier tag of the same text', r.text.includes('tag: {if 1 eq 1}, line 3 of editors/fixture/apps/shop/twice.pad'), r);
         r = await call('pad_check', { app: 'shop' });
         expect('pad_check of an application checks every page', r.text.startsWith('6 pages of shop checked: 3 with an error') && r.text.includes('broken') && r.text.includes('undefined'), r);
         expect('pad_check of an application leaves the bracketed route products/[id] out', !r.error && !r.text.includes('[id]'), r);
