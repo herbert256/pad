@@ -370,8 +370,10 @@
 
   function pqProduct ( $factors, $divisor ) {
 
+    // PHP_INT_MIN too, whose absolute value is no integer.
+
     foreach ( $factors as $factor )
-      if ( ! pqBoolWhole ( $factor ) )
+      if ( ! pqBoolWhole ( $factor ) or $factor == PHP_INT_MIN )
         return array_product ( $factors ) / $divisor;
 
     foreach ( $factors as $key => $factor ) {
