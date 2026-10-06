@@ -117,9 +117,12 @@
 
   }
 
+  // A type is a directory of PT named by a plain name: with ../ in it the name reached any
+  // directory on disk, and the type's files were included from there.
+
   function pqSeq ( $seq  ) {
 
-    if ( $seq and file_exists ( PT . "$seq" ) )
+    if ( $seq and padValidName ( $seq ) and file_exists ( PT . "$seq" ) )
       return TRUE;
     else
       return FALSE;
