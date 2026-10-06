@@ -71,7 +71,25 @@
 
   } elseif ( $padTag [$pad] == 'bool' ) {
 
-    $padStoreData = padMakeFlag ($padStoreSource);
+    // A bool from a value - {bool 'b', $v} - is that value's own truth, not the value run
+    // as PAD: padMakeFlag hands a string to padEval, and the parameter was evaluated to the
+    // value before it got here, so $v holding a php: call ran it. Blank and '0' are FALSE,
+    // any other value TRUE, PHP's own (bool) rule. A value and a written-out literal are
+    // told apart from the parameter's text, as {content}'s second parameter is. The pair
+    // form's content keeps padMakeFlag: padEval leaves a {$field} source untouched, so no
+    // value runs there and its flag stays as it was.
+
+    $padBoolValue = FALSE;
+
+    if ( $padProtectValues and (string) $padContent === '' )
+      foreach ( $padParms [$pad] as $padStoreParm )
+        if ( $padStoreParm ['padPrmKind'] == 'parm' and $padStoreParm ['padPrmName'] === 2 )
+          $padBoolValue = ! is_string ( padMetaLiteral ( $padStoreParm ['padPrmOrg'] ) );
+
+    if ( $padBoolValue )
+      $padStoreData = ! in_array ( trim ( (string) $padStoreSource ), [ '', '0' ], TRUE );
+    else
+      $padStoreData = padMakeFlag ( $padStoreSource );
 
   }
 
