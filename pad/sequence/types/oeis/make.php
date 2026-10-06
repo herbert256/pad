@@ -11,6 +11,12 @@
 
   include_once PT . 'oeis/read.php';
 
+  // A position is a whole number: a word or a fraction among the values a play is handed has
+  // no term here, where it ended the request on the arithmetic or the array key it made.
+
+  if ( ! pqBoolWhole ( $pqLoop ) )
+    return FALSE;
+
   $pqOeisSeq = pqOeis ( $pqParm );
 
   if ( isset ( $pqOeisSeq [$pqLoop-1] ) )

@@ -36,9 +36,12 @@
     return FALSE;
   if ( $pqRandomly   ) $pqLoop = include PQ . 'build/randomly/randomly.php';
 
+  // A function type computes the term at a position, and a position is a whole number: at
+  // from=2.5 bell read the undefined row 2.5 of its triangle and ended the request.
+
       if ( pqStore ( $pqBuild ) )  $pq = $pqLoop;
   elseif ($pqBuild == 'bool'    )  $pq = ( 'pqBool' . ucfirst($pqSeq) ) ( $pqLoop, $pqParm );
-  elseif ($pqBuild == 'function')  $pq = ( 'pq'     . ucfirst($pqSeq) ) ( $pqLoop );
+  elseif ($pqBuild == 'function')  $pq = pqBoolWhole ( $pqLoop ) ? ( 'pq' . ucfirst($pqSeq) ) ( $pqLoop ) : FALSE;
   elseif ($pqBuild == 'check'   )  $pq = include PQ . "build/mode.php";
   elseif ($pqBuild == 'loop'    )  $pq = include PT . "$pqSeq/loop.php";
   elseif ($pqBuild == 'make'    )  $pq = include PT . "$pqSeq/make.php";

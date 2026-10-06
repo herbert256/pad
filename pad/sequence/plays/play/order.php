@@ -7,6 +7,12 @@
   // that table reaches far enough, and otherwise falls back to generating the sequence once
   // through pqTerms() with sole=, which costs a build of its own. FALSE if neither yields one.
 
+  // A position is a whole number: a word or a fraction among the values a play is handed has
+  // no term here, where it ended the request on the arithmetic or the array key it made.
+
+  if ( ! pqBoolWhole ( $pqLoop ) )
+    return FALSE;
+
   if ( defined ( "PAD$pqSeq" ) and isset ( constant ( "PAD$pqSeq" ) [$pqLoop-1] ) )
     return constant ( "PAD$pqSeq" ) [$pqLoop-1];
 
