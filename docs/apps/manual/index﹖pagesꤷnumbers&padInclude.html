@@ -1,0 +1,324 @@
+
+
+<p>Numbers written for people from a page's PHP: grouped with the locale's marks, shortened
+to 1.5K or 1.5 million, as a place, a percentage or a file size - and kept between bounds.
+These are the functions of Laravel's <code>Number</code> class, as plain functions. The
+<code>abbreviate</code> and <code>ordinal</code> pipes do the same in a template.</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+  <tr><th>function</th><th>what it does</th></tr>
+  <tr><td><code>padNumberFormat ( $number, $decimals, $locale )</code></td><td>the number grouped, with exactly so many decimals, the locale's way</td></tr>
+  <tr><td><code>padNumberPercentage ( $number, $precision )</code></td><td>25 as 25%, 25.55 with a precision of 1 as 25.6%, the locale's way</td></tr>
+  <tr><td><code>padNumberAbbreviate ( $number, $precision )</code></td><td>1500 as 2K, or 1.5K with a precision of 1 - K, M, B, T, Q</td></tr>
+  <tr><td><code>padNumberForHumans ( $number, $precision )</code></td><td>1500000 as 2 million, or 1.5 million</td></tr>
+  <tr><td><code>padNumberFileSize ( $bytes, $precision )</code></td><td>1536 as 2 KB, or 1.5 KB - what the <code>bytes</code> pipe answers</td></tr>
+  <tr><td><code>padNumberOrdinal ( $number )</code></td><td>1st, 2nd, 3rd, 4th, 11th, 21st, 112th</td></tr>
+  <tr><td><code>padNumberClamp ( $number, $min, $max )</code></td><td>the number, or the bound it went past</td></tr>
+</table>
+
+<h2>Formatting</h2>
+
+<p><code>padNumberFormat</code> writes exactly <code>$decimals</code> decimals, with the
+thousands grouped and the decimal mark of the locale: the request's
+<code>$padLocale</code>, or the one given. <code>padNumberPercentage</code> takes a share
+already counted in hundreds - 25 is 25% - and writes it the locale's way too. Half is
+rounded up, so 2.5 is 3. PHP's intl extension does the writing when it is there; without
+it the number is written the plain <code>number_format</code> way.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/numbers_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/numbers_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// An order total written for the visitor - in the request's<br>  // locale, then in two others - and a share of the sales.<br><br>  </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">1234567.891</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$en </span><span style="color: #007700">= </span><span style="color: #0000BB">padNumberFormat </span><span style="color: #007700">( </span><span style="color: #0000BB">$total</span><span style="color: #007700">, </span><span style="color: #0000BB">2 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$nl </span><span style="color: #007700">= </span><span style="color: #0000BB">padNumberFormat </span><span style="color: #007700">( </span><span style="color: #0000BB">$total</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'nl' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$de </span><span style="color: #007700">= </span><span style="color: #0000BB">padNumberFormat </span><span style="color: #007700">( </span><span style="color: #0000BB">$total</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'de_DE' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$share </span><span style="color: #007700">= </span><span style="color: #0000BB">padNumberPercentage </span><span style="color: #007700">( </span><span style="color: #0000BB">25.55</span><span style="color: #007700">, </span><span style="color: #0000BB">1 </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>en</font>}</b> - <b>{<font color="green"><font color="red">$</font>nl</font>}</b> - <b>{<font color="green"><font color="red">$</font>de</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Share of the sales: <b>{<font color="green"><font color="red">$</font>share</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>1,234,567.89 - 1.234.567,89 - 1.234.567,89</p>
+<p>Share of the sales: 25.6%</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Short and readable</h2>
+
+<p><code>padNumberAbbreviate</code> and <code>padNumberForHumans</code> write a large number
+in thousands, millions, billions, trillions or quadrillions, and
+<code>padNumberFileSize</code> a byte count in units of 1024. The precision is the most
+decimals written, the trailing zeros dropped: 1000 with a precision of 1 is 1K. The unit is
+chosen on the number as it will be written, so 999999 is 1M, not 1000K. Below 1000 the
+number has no unit, and a size below 1024 is in B. These write English, with a point before
+the decimals.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/numbers_2.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/numbers_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Counters, a sentence and a download size, for people.<br><br>  </span><span style="color: #0000BB">$numbers </span><span style="color: #007700">= [ </span><span style="color: #0000BB">950</span><span style="color: #007700">, </span><span style="color: #0000BB">1500</span><span style="color: #007700">, </span><span style="color: #0000BB">48210</span><span style="color: #007700">, </span><span style="color: #0000BB">1534200</span><span style="color: #007700">, </span><span style="color: #0000BB">2500000000 </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$stats </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$numbers </span><span style="color: #007700">as </span><span style="color: #0000BB">$number </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$stats </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$number</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'short'  </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padNumberAbbreviate </span><span style="color: #007700">( </span><span style="color: #0000BB">$number</span><span style="color: #007700">, </span><span style="color: #0000BB">1 </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'words'  </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padNumberForHumans  </span><span style="color: #007700">( </span><span style="color: #0000BB">$number</span><span style="color: #007700">, </span><span style="color: #0000BB">1 </span><span style="color: #007700">)<br>    ];<br><br>  </span><span style="color: #0000BB">$download </span><span style="color: #007700">= </span><span style="color: #0000BB">padNumberFileSize </span><span style="color: #007700">( </span><span style="color: #0000BB">5347737</span><span style="color: #007700">, </span><span style="color: #0000BB">1 </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table border="1" cellpadding="4" cellspacing="0"&gt;<br>  &lt;tr&gt;&lt;th&gt;number&lt;/th&gt;&lt;th&gt;abbreviate&lt;/th&gt;&lt;th&gt;for humans&lt;/th&gt;&lt;/tr&gt;<br><b>{<font color="blue">stats</font><font color="red"></font>}</b><br>  &lt;tr&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>number</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>short</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>words</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br><b>{/<font color="blue">stats</font><font color="red"></font>}</b><br>&lt;/table&gt;<br>&lt;p&gt;The download is <b>{<font color="green"><font color="red">$</font>download</font>}</b>.&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <table border="1" cellpadding="4" cellspacing="0">
+  <tr><th>number</th><th>abbreviate</th><th>for humans</th></tr>
+
+  <tr><td>950</td><td>950</td><td>950</td></tr>
+
+  <tr><td>1500</td><td>1.5K</td><td>1.5 thousand</td></tr>
+
+  <tr><td>48210</td><td>48.2K</td><td>48.2 thousand</td></tr>
+
+  <tr><td>1534200</td><td>1.5M</td><td>1.5 million</td></tr>
+
+  <tr><td>2500000000</td><td>2.5B</td><td>2.5 billion</td></tr>
+
+</table>
+<p>The download is 5.1 MB.</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Places and bounds</h2>
+
+<p><code>padNumberOrdinal</code> writes the English place of a whole number - 11th, 12th
+and 13th take th, as do 111th to 113th. <code>padNumberClamp</code> keeps a number between a
+minimum and a maximum: a page number from the address that has to stay within the pages
+there are.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/numbers_3.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/numbers_3.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The page number from the address, kept within the pages<br>  // there are, and the places of a race.<br><br>  </span><span style="color: #0000BB">$pages </span><span style="color: #007700">= </span><span style="color: #0000BB">12</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$kept  </span><span style="color: #007700">= [];<br><br>  foreach ( [ -</span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #0000BB">4</span><span style="color: #007700">, </span><span style="color: #0000BB">40 </span><span style="color: #007700">] as </span><span style="color: #0000BB">$asked </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$kept </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'asked' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$asked</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'shown' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padNumberClamp </span><span style="color: #007700">( </span><span style="color: #0000BB">$asked</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">$pages </span><span style="color: #007700">)<br>    ];<br><br>  </span><span style="color: #0000BB">$finished </span><span style="color: #007700">= [ </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #0000BB">11</span><span style="color: #007700">, </span><span style="color: #0000BB">22</span><span style="color: #007700">, </span><span style="color: #0000BB">101 </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$ordinals </span><span style="color: #007700">= </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( </span><span style="color: #DD0000">'padNumberOrdinal'</span><span style="color: #007700">, </span><span style="color: #0000BB">$finished </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$places   </span><span style="color: #007700">= </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">', '</span><span style="color: #007700">, </span><span style="color: #0000BB">$ordinals </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">kept</font><font color="red"></font>}</b><br>  &lt;p&gt;Page <b>{<font color="green"><font color="red">$</font>asked</font>}</b> asked, page <b>{<font color="green"><font color="red">$</font>shown</font>}</b> shown&lt;/p&gt;<br><b>{/<font color="blue">kept</font><font color="red"></font>}</b><br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>places</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+  <p>Page -3 asked, page 1 shown</p>
+
+  <p>Page 4 asked, page 4 shown</p>
+
+  <p>Page 40 asked, page 12 shown</p>
+
+<p>1st, 2nd, 3rd, 11th, 22nd, 101st</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>In a template</h2>
+
+<p>The <code>abbreviate</code> pipe is <code>padNumberAbbreviate</code> -
+<code>{$views | abbreviate}</code>, <code>{$views | abbreviate(1)}</code> -
+and the <code>ordinal</code> pipe is <code>padNumberOrdinal</code>. A value that is not a
+number goes through them unchanged, as it does through <code>bytes</code>.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/numbers_4.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/numbers_4.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The PHP hands over plain numbers; the template writes them<br>  // for people.<br><br>  </span><span style="color: #0000BB">$runners </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">, </span><span style="color: #DD0000">'place' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'views' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1534200 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'</span><span style="color: #007700">, </span><span style="color: #DD0000">'place' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'views' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">48210   </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Cee'</span><span style="color: #007700">, </span><span style="color: #DD0000">'place' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">'views' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">950     </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">runners</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="green">$place</font> <font color="black">|</font> <font color="blue">ordinal</font>}</b>: <b>{<font color="green"><font color="red">$</font>name</font>}</b>,<br>     <b>{<font color="green">$views</font> <font color="black">|</font> <font color="blue">abbreviate(1)</font>}</b> views&lt;/p&gt;<br><b>{/<font color="blue">runners</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+  <p>1st: Ann,
+     1.5M views</p>
+
+  <p>2nd: Bob,
+     48.2K views</p>
+
+  <p>3rd: Cee,
+     950 views</p>
+
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Nothing and mistakes</h2>
+
+<p>NULL, FALSE and empty text are nothing to write: every function answers an empty string
+for them, <code>padNumberClamp</code> NULL. A value that is no number, a negative precision,
+a fraction handed to <code>padNumberOrdinal</code>, a locale intl does not know and a
+minimum above the maximum are reported as errors that name the function.</p>

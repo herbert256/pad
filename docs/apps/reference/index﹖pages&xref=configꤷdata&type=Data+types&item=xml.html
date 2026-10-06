@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Data types - xml
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Data types - xml
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: callback/before<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">callback/before.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue">staff </font><font color="red">callback=<font color="black">'</font>before.php<font color="black">'</font><font color="black">,</font> before</font>}</b><br><br>    <b>{<font color="blue">first</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;Totals&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$salaryTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$bonusTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$totalTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">first</font><font color="red"></font>}</b><br><br>    &lt;tr align="right" bgcolor="<b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>yellow<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pink<font color="black">'</font></font>}</b>"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br> <br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxebec0e178956420939e5ca936ab2b330"></div>
+                        <script>
+                        padAjaxebec0e178956420939e5ca936ab2b330 = new XMLHttpRequest();
+                        padAjaxebec0e178956420939e5ca936ab2b330.onreadystatechange=function() {
+                        if (padAjaxebec0e178956420939e5ca936ab2b330.readyState === 4) {
+                        if (padAjaxebec0e178956420939e5ca936ab2b330.status === 200) {
+                        document.getElementById("padAjaxebec0e178956420939e5ca936ab2b330").innerHTML=padAjaxebec0e178956420939e5ca936ab2b330.responseText;
+                        } else {
+                        document.getElementById("padAjaxebec0e178956420939e5ca936ab2b330").innerHTML=padAjaxebec0e178956420939e5ca936ab2b330.statusText;
+                        }
+                        }
+                        }
+                        padAjaxebec0e178956420939e5ca936ab2b330.open("GET","http://localhost/pad/manual/?callback/before&padInclude",true);
+                        padAjaxebec0e178956420939e5ca936ab2b330.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: callback/demand<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">callback/demand.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue">staff </font><font color="red">callback=<font color="black">'</font>demand.php<font color="black">'</font></font>}</b><br><br>    &lt;tr align="right" <br>        bgcolor="<b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>yellow<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pink<font color="black">'</font></font>}</b>"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><br>  &lt;tr&gt;<br>    &lt;td&gt;Totals&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$salaryTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$bonusTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$totalTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br> <br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax597307190bf318317ac5f9be4588b643"></div>
+                        <script>
+                        padAjax597307190bf318317ac5f9be4588b643 = new XMLHttpRequest();
+                        padAjax597307190bf318317ac5f9be4588b643.onreadystatechange=function() {
+                        if (padAjax597307190bf318317ac5f9be4588b643.readyState === 4) {
+                        if (padAjax597307190bf318317ac5f9be4588b643.status === 200) {
+                        document.getElementById("padAjax597307190bf318317ac5f9be4588b643").innerHTML=padAjax597307190bf318317ac5f9be4588b643.responseText;
+                        } else {
+                        document.getElementById("padAjax597307190bf318317ac5f9be4588b643").innerHTML=padAjax597307190bf318317ac5f9be4588b643.statusText;
+                        }
+                        }
+                        }
+                        padAjax597307190bf318317ac5f9be4588b643.open("GET","http://localhost/pad/manual/?callback/demand&padInclude",true);
+                        padAjax597307190bf318317ac5f9be4588b643.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: data/2<br>
+                  <div id="padAjax8867fb8efe6f98111b0a62ad5d440ab3"></div>
+                  <script>
+                  padAjax8867fb8efe6f98111b0a62ad5d440ab3 = new XMLHttpRequest();
+                  padAjax8867fb8efe6f98111b0a62ad5d440ab3.onreadystatechange=function() {
+                  if (padAjax8867fb8efe6f98111b0a62ad5d440ab3.readyState === 4) {
+                  if (padAjax8867fb8efe6f98111b0a62ad5d440ab3.status === 200) {
+                  document.getElementById("padAjax8867fb8efe6f98111b0a62ad5d440ab3").innerHTML=padAjax8867fb8efe6f98111b0a62ad5d440ab3.responseText;
+                  } else {
+                  document.getElementById("padAjax8867fb8efe6f98111b0a62ad5d440ab3").innerHTML=padAjax8867fb8efe6f98111b0a62ad5d440ab3.statusText;
+                  }
+                  }
+                  }
+                  padAjax8867fb8efe6f98111b0a62ad5d440ab3.open("GET","http://localhost/pad/manual/?data/2&padInclude",true);
+                  padAjax8867fb8efe6f98111b0a62ad5d440ab3.send();
+                  </script><br>
+                  <hr>
+                  App: manual - Page: data/3<br>
+                  <div id="padAjax3df612cafbd378a287ae00d84480a2de"></div>
+                  <script>
+                  padAjax3df612cafbd378a287ae00d84480a2de = new XMLHttpRequest();
+                  padAjax3df612cafbd378a287ae00d84480a2de.onreadystatechange=function() {
+                  if (padAjax3df612cafbd378a287ae00d84480a2de.readyState === 4) {
+                  if (padAjax3df612cafbd378a287ae00d84480a2de.status === 200) {
+                  document.getElementById("padAjax3df612cafbd378a287ae00d84480a2de").innerHTML=padAjax3df612cafbd378a287ae00d84480a2de.responseText;
+                  } else {
+                  document.getElementById("padAjax3df612cafbd378a287ae00d84480a2de").innerHTML=padAjax3df612cafbd378a287ae00d84480a2de.statusText;
+                  }
+                  }
+                  }
+                  padAjax3df612cafbd378a287ae00d84480a2de.open("GET","http://localhost/pad/manual/?data/3&padInclude",true);
+                  padAjax3df612cafbd378a287ae00d84480a2de.send();
+                  </script><br>
+                  <hr>
+                  App: manual - Page: fragments/options/options_1<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/options/options_1.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">staff </font><font color="red">words</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staff</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxadf724d0ba191fae80b2f025cb8f7779"></div>
+                        <script>
+                        padAjaxadf724d0ba191fae80b2f025cb8f7779 = new XMLHttpRequest();
+                        padAjaxadf724d0ba191fae80b2f025cb8f7779.onreadystatechange=function() {
+                        if (padAjaxadf724d0ba191fae80b2f025cb8f7779.readyState === 4) {
+                        if (padAjaxadf724d0ba191fae80b2f025cb8f7779.status === 200) {
+                        document.getElementById("padAjaxadf724d0ba191fae80b2f025cb8f7779").innerHTML=padAjaxadf724d0ba191fae80b2f025cb8f7779.responseText;
+                        } else {
+                        document.getElementById("padAjaxadf724d0ba191fae80b2f025cb8f7779").innerHTML=padAjaxadf724d0ba191fae80b2f025cb8f7779.statusText;
+                        }
+                        }
+                        }
+                        padAjaxadf724d0ba191fae80b2f025cb8f7779.open("GET","http://localhost/pad/manual/?fragments/options/options_1&padInclude",true);
+                        padAjaxadf724d0ba191fae80b2f025cb8f7779.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: fragments/options/options_2<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/options/options_2.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">staff </font><font color="red">wrap=<font color="black">'</font>em<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staff</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax1a15c1e21f34cd589e66914748590fec"></div>
+                        <script>
+                        padAjax1a15c1e21f34cd589e66914748590fec = new XMLHttpRequest();
+                        padAjax1a15c1e21f34cd589e66914748590fec.onreadystatechange=function() {
+                        if (padAjax1a15c1e21f34cd589e66914748590fec.readyState === 4) {
+                        if (padAjax1a15c1e21f34cd589e66914748590fec.status === 200) {
+                        document.getElementById("padAjax1a15c1e21f34cd589e66914748590fec").innerHTML=padAjax1a15c1e21f34cd589e66914748590fec.responseText;
+                        } else {
+                        document.getElementById("padAjax1a15c1e21f34cd589e66914748590fec").innerHTML=padAjax1a15c1e21f34cd589e66914748590fec.statusText;
+                        }
+                        }
+                        }
+                        padAjax1a15c1e21f34cd589e66914748590fec.open("GET","http://localhost/pad/manual/?fragments/options/options_2&padInclude",true);
+                        padAjax1a15c1e21f34cd589e66914748590fec.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: lvl_occ/12<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">lvl_occ/12.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myXml<font color="black">'</font><font color="black">,</font> <font color="black">'</font>level_demo.xml<font color="black">'</font></font>}</b><br><br>&lt;table border='1'&gt;<br>  <b>{<font color="blue">myXml</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">column</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>column</font>}</b>&lt;/td&gt;<br>      <b>{/<font color="blue">column</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">myXml</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8bd4100af43b8ddbc5d102afbd6e46de"></div>
+                        <script>
+                        padAjax8bd4100af43b8ddbc5d102afbd6e46de = new XMLHttpRequest();
+                        padAjax8bd4100af43b8ddbc5d102afbd6e46de.onreadystatechange=function() {
+                        if (padAjax8bd4100af43b8ddbc5d102afbd6e46de.readyState === 4) {
+                        if (padAjax8bd4100af43b8ddbc5d102afbd6e46de.status === 200) {
+                        document.getElementById("padAjax8bd4100af43b8ddbc5d102afbd6e46de").innerHTML=padAjax8bd4100af43b8ddbc5d102afbd6e46de.responseText;
+                        } else {
+                        document.getElementById("padAjax8bd4100af43b8ddbc5d102afbd6e46de").innerHTML=padAjax8bd4100af43b8ddbc5d102afbd6e46de.statusText;
+                        }
+                        }
+                        }
+                        padAjax8bd4100af43b8ddbc5d102afbd6e46de.open("GET","http://localhost/pad/manual/?lvl_occ/12&padInclude",true);
+                        padAjax8bd4100af43b8ddbc5d102afbd6e46de.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: miscellaneous/level_and_occurrence_variables<br>
+                  <div id="padAjaxc91b3df939b12e075d519dfe7042407c"></div>
+                  <script>
+                  padAjaxc91b3df939b12e075d519dfe7042407c = new XMLHttpRequest();
+                  padAjaxc91b3df939b12e075d519dfe7042407c.onreadystatechange=function() {
+                  if (padAjaxc91b3df939b12e075d519dfe7042407c.readyState === 4) {
+                  if (padAjaxc91b3df939b12e075d519dfe7042407c.status === 200) {
+                  document.getElementById("padAjaxc91b3df939b12e075d519dfe7042407c").innerHTML=padAjaxc91b3df939b12e075d519dfe7042407c.responseText;
+                  } else {
+                  document.getElementById("padAjaxc91b3df939b12e075d519dfe7042407c").innerHTML=padAjaxc91b3df939b12e075d519dfe7042407c.statusText;
+                  }
+                  }
+                  }
+                  padAjaxc91b3df939b12e075d519dfe7042407c.open("GET","http://localhost/pad/manual/?miscellaneous/level_and_occurrence_variables&padInclude",true);
+                  padAjaxc91b3df939b12e075d519dfe7042407c.send();
+                  </script><br>
+                  <hr>
+                  App: manual - Page: pages/application_options<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/application_options.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Options of your own<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A file in the application's &lt;code&gt;_options/&lt;/code&gt; directory makes its name an option<br>of every tag - written bare, &lt;code&gt;<b>{<font color="blue">staff </font><font color="red">words</font>}</b>&lt;/code&gt;, or with a value,<br>&lt;code&gt;<b>{<font color="blue">staff </font><font color="red">wrap=<font color="black">'</font>em<font color="black">'</font></font>}</b>&lt;/code&gt;. Where the file stands decides when it runs:&lt;/p&gt;<br><br>&lt;table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;"&gt;<br>  &lt;tr&gt;&lt;th&gt;file&lt;/th&gt;&lt;th&gt;runs&lt;/th&gt;&lt;th&gt;&lt;code&gt;$padContent&lt;/code&gt; is&lt;/th&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;_options/name.php&lt;/code&gt;&lt;/td&gt;&lt;td&gt;before the tag renders&lt;/td&gt;&lt;td&gt;the template between the tags&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;_options/end/name.php&lt;/code&gt;&lt;/td&gt;&lt;td&gt;after the tag rendered&lt;/td&gt;&lt;td&gt;the result - every occurrence, joined&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;p&gt;&amp;nbsp;&lt;/p&gt;<br><br>&lt;p&gt;The handler changes &lt;code&gt;$padContent&lt;/code&gt;, and the option's value is in<br>&lt;code&gt;$padGetName&lt;/code&gt; - TRUE when the option is written bare. An end option sees the<br>fields filled in, so it can count, mark or tidy what the tag produced. Here<br>&lt;code&gt;fragments/options/_options/end/words.php&lt;/code&gt; appends a word count:&lt;/p&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b><br>&lt;code&gt;<span style="color: #0000BB">&lt;?php                                   </span><span style="color: #FF8000">// _options/end/words.php<br><br>  </span><span style="color: #0000BB">$padContent </span><span style="color: #007700">.= </span><span style="color: #DD0000">'(' </span><span style="color: #007700">. </span><span style="color: #0000BB">str_word_count </span><span style="color: #007700">( </span><span style="color: #0000BB">strip_tags </span><span style="color: #007700">( </span><span style="color: #0000BB">$padContent </span><span style="color: #007700">) ) . </span><span style="color: #DD0000">' words)'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span>&lt;/code&gt;<br><b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/options/options_1<font color="black">'</font></font>}</b><br><br>&lt;p&gt;With a value - &lt;code&gt;_options/end/wrap.php&lt;/code&gt; puts the result in the element it is<br>given:&lt;/p&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b><br>&lt;code&gt;<span style="color: #0000BB">&lt;?php                                   </span><span style="color: #FF8000">// _options/end/wrap.php<br><br>  </span><span style="color: #0000BB">$padContent </span><span style="color: #007700">= </span><span style="color: #DD0000">"&lt;</span><span style="color: #0000BB">$padGetName</span><span style="color: #DD0000">&gt;" </span><span style="color: #007700">. </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$padContent </span><span style="color: #007700">) . </span><span style="color: #DD0000">"&lt;/</span><span style="color: #0000BB">$padGetName</span><span style="color: #DD0000">&gt;"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span>&lt;/code&gt;<br><b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/options/options_2<font color="black">'</font></font>}</b><br><br>&lt;p&gt;An option may have both files: the first works on the template, the second on what it<br>became. The end options run before the built-in &lt;code&gt;toContent&lt;/code&gt;, &lt;code&gt;toData&lt;/code&gt;<br>and &lt;code&gt;tidy&lt;/code&gt; - those store or tidy what the end option made - and before the closing<br>tag's pipe. Like tags and callbacks they are looked up from the page's directory up to the<br>application root.&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax7704f86deb4d8fdb39326fa676205654"></div>
+                        <script>
+                        padAjax7704f86deb4d8fdb39326fa676205654 = new XMLHttpRequest();
+                        padAjax7704f86deb4d8fdb39326fa676205654.onreadystatechange=function() {
+                        if (padAjax7704f86deb4d8fdb39326fa676205654.readyState === 4) {
+                        if (padAjax7704f86deb4d8fdb39326fa676205654.status === 200) {
+                        document.getElementById("padAjax7704f86deb4d8fdb39326fa676205654").innerHTML=padAjax7704f86deb4d8fdb39326fa676205654.responseText;
+                        } else {
+                        document.getElementById("padAjax7704f86deb4d8fdb39326fa676205654").innerHTML=padAjax7704f86deb4d8fdb39326fa676205654.statusText;
+                        }
+                        }
+                        }
+                        padAjax7704f86deb4d8fdb39326fa676205654.open("GET","http://localhost/pad/manual/?pages/application_options&padInclude",true);
+                        padAjax7704f86deb4d8fdb39326fa676205654.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/callback<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/callback.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">block</font><font color="red"></font>}</b><br>&lt;p&gt;<br>It's possible to put a PHP file in the directory '_callbacks' that is called back at the processing of a pad tag.&lt;br&gt;<br>- With option 'before' the callback happens for every occurrence before the processing of the ocurrences.&lt;br&gt;<br>- Without 'before' the callback happens during the processing of the occurrences, as each one is processed.<br><br>&lt;/p&gt;<br><b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>callback/before<font color="black">'</font><font color="black">,</font> php=<font color="black">'</font>_callbacks/before.php<font color="black">'</font><font color="black">,</font> skipClose</font>}</b>          <br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>callback/demand<font color="black">'</font><font color="black">,</font> php=<font color="black">'</font>_callbacks/demand.php<font color="black">'</font><font color="black">,</font> skipOpen</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxde3845636cdb708bd6ea0cf18c953283"></div>
+                        <script>
+                        padAjaxde3845636cdb708bd6ea0cf18c953283 = new XMLHttpRequest();
+                        padAjaxde3845636cdb708bd6ea0cf18c953283.onreadystatechange=function() {
+                        if (padAjaxde3845636cdb708bd6ea0cf18c953283.readyState === 4) {
+                        if (padAjaxde3845636cdb708bd6ea0cf18c953283.status === 200) {
+                        document.getElementById("padAjaxde3845636cdb708bd6ea0cf18c953283").innerHTML=padAjaxde3845636cdb708bd6ea0cf18c953283.responseText;
+                        } else {
+                        document.getElementById("padAjaxde3845636cdb708bd6ea0cf18c953283").innerHTML=padAjaxde3845636cdb708bd6ea0cf18c953283.statusText;
+                        }
+                        }
+                        }
+                        padAjaxde3845636cdb708bd6ea0cf18c953283.open("GET","http://localhost/pad/manual/?pages/callback&padInclude",true);
+                        padAjaxde3845636cdb708bd6ea0cf18c953283.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/examples_used_in_this_manual<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/examples_used_in_this_manual.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">block</font><font color="red"></font>}</b><br>  &lt;p&gt;This manual will use the <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b> tag for general PAD features.<br>  &lt;p&gt;Below the internal PHP code for the <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b> tag. That is not so much ))&lt;/p&gt;<br>  &lt;p&gt;<b>{<font color="blue">example </font><font color="red"><font color="black">'</font>miscellaneous/true<font color="black">'</font><font color="black">,</font> skipHeader<font color="black">,</font> skipPad<font color="black">,</font> skipResult</font>}</b>&lt;/p&gt;<br>  &lt;p&gt;As the <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b> tag does not do anything itself, it must be given content & data. <br>  &lt;br&gt;(if there is no data assigned to it then it will have default 1 data occurence)<br><b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>miscellaneous/pad<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>staff/index<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax695ab0e91f8d0091fabaacfa80dc3118"></div>
+                        <script>
+                        padAjax695ab0e91f8d0091fabaacfa80dc3118 = new XMLHttpRequest();
+                        padAjax695ab0e91f8d0091fabaacfa80dc3118.onreadystatechange=function() {
+                        if (padAjax695ab0e91f8d0091fabaacfa80dc3118.readyState === 4) {
+                        if (padAjax695ab0e91f8d0091fabaacfa80dc3118.status === 200) {
+                        document.getElementById("padAjax695ab0e91f8d0091fabaacfa80dc3118").innerHTML=padAjax695ab0e91f8d0091fabaacfa80dc3118.responseText;
+                        } else {
+                        document.getElementById("padAjax695ab0e91f8d0091fabaacfa80dc3118").innerHTML=padAjax695ab0e91f8d0091fabaacfa80dc3118.statusText;
+                        }
+                        }
+                        }
+                        padAjax695ab0e91f8d0091fabaacfa80dc3118.open("GET","http://localhost/pad/manual/?pages/examples_used_in_this_manual&padInclude",true);
+                        padAjax695ab0e91f8d0091fabaacfa80dc3118.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/level_and_occurrence_variables<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/level_and_occurrence_variables.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">block</font><font color="red"></font>}</b><br>  $xxx variables are set once at the beginning of a level&lt;br&gt;<br>  %xxx variables are set on every occurence inside a level&lt;br&gt;<br><b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>miscellaneous/level_and_occurrence_variables<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax234a588b441380bbe6d0e8777d9c6e74"></div>
+                        <script>
+                        padAjax234a588b441380bbe6d0e8777d9c6e74 = new XMLHttpRequest();
+                        padAjax234a588b441380bbe6d0e8777d9c6e74.onreadystatechange=function() {
+                        if (padAjax234a588b441380bbe6d0e8777d9c6e74.readyState === 4) {
+                        if (padAjax234a588b441380bbe6d0e8777d9c6e74.status === 200) {
+                        document.getElementById("padAjax234a588b441380bbe6d0e8777d9c6e74").innerHTML=padAjax234a588b441380bbe6d0e8777d9c6e74.responseText;
+                        } else {
+                        document.getElementById("padAjax234a588b441380bbe6d0e8777d9c6e74").innerHTML=padAjax234a588b441380bbe6d0e8777d9c6e74.statusText;
+                        }
+                        }
+                        }
+                        padAjax234a588b441380bbe6d0e8777d9c6e74.open("GET","http://localhost/pad/manual/?pages/level_and_occurrence_variables&padInclude",true);
+                        padAjax234a588b441380bbe6d0e8777d9c6e74.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/levels_and_occurrences<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/levels_and_occurrences.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;<br>  <b>{<font color="blue">block</font><font color="red"></font>}</b><br>    PAD is data driven, the PAD data concepts are named Level and Occurence<br>    &lt;br&gt;&lt;br&gt;<br>    Below example: &lt;br&gt;<br>    - Is two levels deep &lt;br&gt;<br>    - The level 'row' has 3 occurences&lt;br&gt;<br>    - The level 'column' has 5 occurences&lt;br&gt;&lt;br&gt;<br>  <b>{/<font color="blue">block</font><font color="red"></font>}</b><br>  <b>{<font color="blue">example </font><font color="red"><font color="black">'</font>lvl_occ/1<font color="black">'</font><font color="black">,</font> skipNames<font color="black">,</font> center</font>}</b><br>&lt;/p&gt;<br><br><b>{<font color="blue">block</font><font color="red"></font>}</b><br>  If not specifield for a PAD tag then default it has 1 occurence.<br>  &lt;br&gt;&lt;br&gt;&lt;hr&gt;&lt;br&gt;<br>  Just for fun, below the above example implemented in a few different ways.<br>  &lt;br&gt;<br>  Hopefully all this magic will be explained in this manual.<br><b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br>&lt;p&gt; <br><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>2..12<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>xxx<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">example </font><font color="red"><font color="black">'</font>lvl_occ/<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>xxx</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> skipNames<b><font color="black">{</font><font color="blue">notFirst</font><font color="red"></font><font color="black">}</font></b><font color="black">,</font>skipOpen<font color="black">,</font>skipHeader<b><font color="black">{</font>/<font color="blue">notFirst</font><font color="red"></font><font color="black">}</font></b><b><font color="black">{</font><font color="blue">notLast</font><font color="red"></font><font color="black">}</font></b><font color="black">,</font>skipClose<b><font color="black">{</font>/<font color="blue">notLast</font><font color="red"></font><font color="black">}</font></b></font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d"></div>
+                        <script>
+                        padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d = new XMLHttpRequest();
+                        padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d.onreadystatechange=function() {
+                        if (padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d.readyState === 4) {
+                        if (padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d.status === 200) {
+                        document.getElementById("padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d").innerHTML=padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d.responseText;
+                        } else {
+                        document.getElementById("padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d").innerHTML=padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d.statusText;
+                        }
+                        }
+                        }
+                        padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d.open("GET","http://localhost/pad/manual/?pages/levels_and_occurrences&padInclude",true);
+                        padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/prefix<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/prefix.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">It can get confusing because a PAD tag can be so many things,&lt;br&gt;<br>to solve this, use a prefix that gives the tag type. <br><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>prefix/prefix<font color="black">'</font></font>}</b><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>prefix/types<font color="black">'</font></font>}</b><br><b>{<font color="blue">extra </font><font color="red"><font color="black">'</font>prefix/prefix<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax94e925fb0bb3e406c5afdea3328aaf85"></div>
+                        <script>
+                        padAjax94e925fb0bb3e406c5afdea3328aaf85 = new XMLHttpRequest();
+                        padAjax94e925fb0bb3e406c5afdea3328aaf85.onreadystatechange=function() {
+                        if (padAjax94e925fb0bb3e406c5afdea3328aaf85.readyState === 4) {
+                        if (padAjax94e925fb0bb3e406c5afdea3328aaf85.status === 200) {
+                        document.getElementById("padAjax94e925fb0bb3e406c5afdea3328aaf85").innerHTML=padAjax94e925fb0bb3e406c5afdea3328aaf85.responseText;
+                        } else {
+                        document.getElementById("padAjax94e925fb0bb3e406c5afdea3328aaf85").innerHTML=padAjax94e925fb0bb3e406c5afdea3328aaf85.statusText;
+                        }
+                        }
+                        }
+                        padAjax94e925fb0bb3e406c5afdea3328aaf85.open("GET","http://localhost/pad/manual/?pages/prefix&padInclude",true);
+                        padAjax94e925fb0bb3e406c5afdea3328aaf85.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/properties<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/properties.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">Tag properties give information about a tag, they can be used:<br><br>&lt;p&gt;&lt;table border=0&gt;<br>&lt;tr&gt;&lt;td&gt;- as a pad tag &lt;/td&gt;&lt;td&gt;<b>{<font color="blue">source</font><font color="red"></font>}</b><b>{<font color="blue">first</font><font color="red"></font>}</b> ... <b>{/<font color="blue">first</font><font color="red"></font>}</b><b>{/<font color="blue">source</font><font color="red"></font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>&lt;tr&gt;&lt;td&gt;- as a variable with the & prefix &amp;nbsp; &lt;/td&gt;&lt;td&gt;<b>{<font color="blue">source</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">&amp;first</font>}</b> ... <b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">source</font><font color="red"></font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>properties/doc1<font color="black">'</font></font>}</b><br><br>&lt;p&gt;When working with properties of a tag that is deeper in the stack of tags, the name of that tag must be given.<br> <br>&lt;p&gt;&lt;table border=0&gt;<br>&lt;tr&gt;&lt;td&gt;- as parameter when used as tag&lt;/td&gt;&lt;/tr&gt;<br>&lt;tr&gt;&lt;td&gt;- as prefix, when used as &amp;var&lt;/td&gt;&lt;/tr&gt;<br>&lt;tr&gt;&lt;td&gt;- relative level number&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>properties/doc2<font color="black">'</font></font>}</b><br><br>&lt;!-- todo-1 --&gt;<br><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>properties/doc4<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">usesFragment </font><font color="red"><font color="black">'</font>properties/_lib/lib<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax1520cc8f0e65785573428b1184432948"></div>
+                        <script>
+                        padAjax1520cc8f0e65785573428b1184432948 = new XMLHttpRequest();
+                        padAjax1520cc8f0e65785573428b1184432948.onreadystatechange=function() {
+                        if (padAjax1520cc8f0e65785573428b1184432948.readyState === 4) {
+                        if (padAjax1520cc8f0e65785573428b1184432948.status === 200) {
+                        document.getElementById("padAjax1520cc8f0e65785573428b1184432948").innerHTML=padAjax1520cc8f0e65785573428b1184432948.responseText;
+                        } else {
+                        document.getElementById("padAjax1520cc8f0e65785573428b1184432948").innerHTML=padAjax1520cc8f0e65785573428b1184432948.statusText;
+                        }
+                        }
+                        }
+                        padAjax1520cc8f0e65785573428b1184432948.open("GET","http://localhost/pad/manual/?pages/properties&padInclude",true);
+                        padAjax1520cc8f0e65785573428b1184432948.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

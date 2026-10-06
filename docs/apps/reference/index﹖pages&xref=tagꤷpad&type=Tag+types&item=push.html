@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - push
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - push
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: fragments/stacks_1<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/stacks_1.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;Stylesheets this page needs:&lt;/p&gt;<br>&lt;ul&gt;<b>{<font color="blue">stack </font><font color="red"><font color="black">'</font>styles<font color="black">'</font></font>}</b>&lt;/ul&gt;<br><br><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>n<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">push </font><font color="red"><font color="black">'</font>styles<font color="black">'</font><font color="black">,</font> once=<font color="black">'</font>badge<font color="black">'</font></font>}</b>&lt;li&gt;badge.css&lt;/li&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b><br>  &lt;span class="badge"&gt;badge <b>{<font color="green"><font color="red">$</font>n</font>}</b>&lt;/span&gt;<br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br><br><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>styles<font color="black">'</font></font>}</b>&lt;li&gt;footer.css&lt;/li&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3327868c8d52c0b706a6c4f5c4ffe4d1"></div>
+                        <script>
+                        padAjax3327868c8d52c0b706a6c4f5c4ffe4d1 = new XMLHttpRequest();
+                        padAjax3327868c8d52c0b706a6c4f5c4ffe4d1.onreadystatechange=function() {
+                        if (padAjax3327868c8d52c0b706a6c4f5c4ffe4d1.readyState === 4) {
+                        if (padAjax3327868c8d52c0b706a6c4f5c4ffe4d1.status === 200) {
+                        document.getElementById("padAjax3327868c8d52c0b706a6c4f5c4ffe4d1").innerHTML=padAjax3327868c8d52c0b706a6c4f5c4ffe4d1.responseText;
+                        } else {
+                        document.getElementById("padAjax3327868c8d52c0b706a6c4f5c4ffe4d1").innerHTML=padAjax3327868c8d52c0b706a6c4f5c4ffe4d1.statusText;
+                        }
+                        }
+                        }
+                        padAjax3327868c8d52c0b706a6c4f5c4ffe4d1.open("GET","http://localhost/pad/manual/?fragments/stacks_1&padInclude",true);
+                        padAjax3327868c8d52c0b706a6c4f5c4ffe4d1.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_push_needs_the_name_of_a_stack<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_push_needs_the_name_of_a_stack.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">push</font><font color="red"></font>}</b>x<b>{/<font color="blue">push</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb33bd0280770fd3e3f12b38003412122"></div>
+                        <script>
+                        padAjaxb33bd0280770fd3e3f12b38003412122 = new XMLHttpRequest();
+                        padAjaxb33bd0280770fd3e3f12b38003412122.onreadystatechange=function() {
+                        if (padAjaxb33bd0280770fd3e3f12b38003412122.readyState === 4) {
+                        if (padAjaxb33bd0280770fd3e3f12b38003412122.status === 200) {
+                        document.getElementById("padAjaxb33bd0280770fd3e3f12b38003412122").innerHTML=padAjaxb33bd0280770fd3e3f12b38003412122.responseText;
+                        } else {
+                        document.getElementById("padAjaxb33bd0280770fd3e3f12b38003412122").innerHTML=padAjaxb33bd0280770fd3e3f12b38003412122.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb33bd0280770fd3e3f12b38003412122.open("GET","http://localhost/pad/regression/errors/?syntax/a_push_needs_the_name_of_a_stack&padInclude",true);
+                        padAjaxb33bd0280770fd3e3f12b38003412122.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_push_never_closes<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_push_never_closes.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>x</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax64765b2e8d8560672ca1335878a90066"></div>
+                        <script>
+                        padAjax64765b2e8d8560672ca1335878a90066 = new XMLHttpRequest();
+                        padAjax64765b2e8d8560672ca1335878a90066.onreadystatechange=function() {
+                        if (padAjax64765b2e8d8560672ca1335878a90066.readyState === 4) {
+                        if (padAjax64765b2e8d8560672ca1335878a90066.status === 200) {
+                        document.getElementById("padAjax64765b2e8d8560672ca1335878a90066").innerHTML=padAjax64765b2e8d8560672ca1335878a90066.responseText;
+                        } else {
+                        document.getElementById("padAjax64765b2e8d8560672ca1335878a90066").innerHTML=padAjax64765b2e8d8560672ca1335878a90066.statusText;
+                        }
+                        }
+                        }
+                        padAjax64765b2e8d8560672ca1335878a90066.open("GET","http://localhost/pad/regression/errors/?syntax/a_push_never_closes&padInclude",true);
+                        padAjax64765b2e8d8560672ca1335878a90066.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: passes/a_plain_pass_adds_to_the_stacks_of_the_page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">passes/a_plain_pass_adds_to_the_stacks_of_the_page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">code</font><font color="red"></font>}</b><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>&lt;in&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b><b>{/<font color="blue">code</font><font color="red"></font>}</b>[<b>{<font color="blue">stack </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax200516ffabad239604f3db6c0ea3aa0a"></div>
+                        <script>
+                        padAjax200516ffabad239604f3db6c0ea3aa0a = new XMLHttpRequest();
+                        padAjax200516ffabad239604f3db6c0ea3aa0a.onreadystatechange=function() {
+                        if (padAjax200516ffabad239604f3db6c0ea3aa0a.readyState === 4) {
+                        if (padAjax200516ffabad239604f3db6c0ea3aa0a.status === 200) {
+                        document.getElementById("padAjax200516ffabad239604f3db6c0ea3aa0a").innerHTML=padAjax200516ffabad239604f3db6c0ea3aa0a.responseText;
+                        } else {
+                        document.getElementById("padAjax200516ffabad239604f3db6c0ea3aa0a").innerHTML=padAjax200516ffabad239604f3db6c0ea3aa0a.statusText;
+                        }
+                        }
+                        }
+                        padAjax200516ffabad239604f3db6c0ea3aa0a.open("GET","http://localhost/pad/regression/framework/?passes/a_plain_pass_adds_to_the_stacks_of_the_page&padInclude",true);
+                        padAjax200516ffabad239604f3db6c0ea3aa0a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: passes/a_sandboxed_pass_fills_its_own_stacks<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">passes/a_sandboxed_pass_fills_its_own_stacks.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">code </font><font color="red">sandbox</font>}</b>&lt;<b>{<font color="blue">stack </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>&gt;<b>{<font color="blue">push </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>&lt;in&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b><b>{/<font color="blue">code</font><font color="red"></font>}</b>]<b>{<font color="blue">push </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>&lt;out&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b>[<b>{<font color="blue">stack </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa01816058860e932e943f334016ead38"></div>
+                        <script>
+                        padAjaxa01816058860e932e943f334016ead38 = new XMLHttpRequest();
+                        padAjaxa01816058860e932e943f334016ead38.onreadystatechange=function() {
+                        if (padAjaxa01816058860e932e943f334016ead38.readyState === 4) {
+                        if (padAjaxa01816058860e932e943f334016ead38.status === 200) {
+                        document.getElementById("padAjaxa01816058860e932e943f334016ead38").innerHTML=padAjaxa01816058860e932e943f334016ead38.responseText;
+                        } else {
+                        document.getElementById("padAjaxa01816058860e932e943f334016ead38").innerHTML=padAjaxa01816058860e932e943f334016ead38.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa01816058860e932e943f334016ead38.open("GET","http://localhost/pad/regression/framework/?passes/a_sandboxed_pass_fills_its_own_stacks&padInclude",true);
+                        padAjaxa01816058860e932e943f334016ead38.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: passes/a_sandboxed_pass_leaves_no_push_behind<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">passes/a_sandboxed_pass_leaves_no_push_behind.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">code </font><font color="red">sandbox</font>}</b><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>&lt;in&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b><b>{/<font color="blue">code</font><font color="red"></font>}</b><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>&lt;out&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b>[<b>{<font color="blue">stack </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb00b1fda95b3380378dc51fd97eb4fa7"></div>
+                        <script>
+                        padAjaxb00b1fda95b3380378dc51fd97eb4fa7 = new XMLHttpRequest();
+                        padAjaxb00b1fda95b3380378dc51fd97eb4fa7.onreadystatechange=function() {
+                        if (padAjaxb00b1fda95b3380378dc51fd97eb4fa7.readyState === 4) {
+                        if (padAjaxb00b1fda95b3380378dc51fd97eb4fa7.status === 200) {
+                        document.getElementById("padAjaxb00b1fda95b3380378dc51fd97eb4fa7").innerHTML=padAjaxb00b1fda95b3380378dc51fd97eb4fa7.responseText;
+                        } else {
+                        document.getElementById("padAjaxb00b1fda95b3380378dc51fd97eb4fa7").innerHTML=padAjaxb00b1fda95b3380378dc51fd97eb4fa7.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb00b1fda95b3380378dc51fd97eb4fa7.open("GET","http://localhost/pad/regression/framework/?passes/a_sandboxed_pass_leaves_no_push_behind&padInclude",true);
+                        padAjaxb00b1fda95b3380378dc51fd97eb4fa7.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_page_with_a_stack_in_a_live_region<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_page_with_a_stack_in_a_live_region.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_page_with_a_stack_in_a_live_region.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $n </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padLiveValue </span><span style="color: #007700">() + </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>box<font color="black">'</font></font>}</b>&lt;ul&gt;<b>{<font color="blue">stack </font><font color="red"><font color="black">'</font>items<font color="black">'</font></font>}</b>&lt;/ul&gt;<b>{<font color="blue">push </font><font color="red"><font color="black">'</font>items<font color="black">'</font></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>n</font>}</b>&lt;/li&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b><b>{/<font color="blue">live</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax4e10d31979e116e20dcdd27fb0821c33"></div>
+                        <script>
+                        padAjax4e10d31979e116e20dcdd27fb0821c33 = new XMLHttpRequest();
+                        padAjax4e10d31979e116e20dcdd27fb0821c33.onreadystatechange=function() {
+                        if (padAjax4e10d31979e116e20dcdd27fb0821c33.readyState === 4) {
+                        if (padAjax4e10d31979e116e20dcdd27fb0821c33.status === 200) {
+                        document.getElementById("padAjax4e10d31979e116e20dcdd27fb0821c33").innerHTML=padAjax4e10d31979e116e20dcdd27fb0821c33.responseText;
+                        } else {
+                        document.getElementById("padAjax4e10d31979e116e20dcdd27fb0821c33").innerHTML=padAjax4e10d31979e116e20dcdd27fb0821c33.statusText;
+                        }
+                        }
+                        }
+                        padAjax4e10d31979e116e20dcdd27fb0821c33.open("GET","http://localhost/pad/regression/framework/?tags/a_page_with_a_stack_in_a_live_region&padInclude",true);
+                        padAjax4e10d31979e116e20dcdd27fb0821c33.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_push_inside_a_cached_section_is_made_again_on_a_hit<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_push_inside_a_cached_section_is_made_again_on_a_hit.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_push_inside_a_cached_section_is_made_again_on_a_hit.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'fw-push' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fw-push<font color="black">'</font></font>}</b><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>&lt;a&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b>A<b>{/<font color="blue">cache</font><font color="red"></font>}</b><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fw-push<font color="black">'</font></font>}</b><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>&lt;b&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b>B<b>{/<font color="blue">cache</font><font color="red"></font>}</b>[<b>{<font color="blue">stack </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb9888e3f90da1332da1a2cfc40da2c8a"></div>
+                        <script>
+                        padAjaxb9888e3f90da1332da1a2cfc40da2c8a = new XMLHttpRequest();
+                        padAjaxb9888e3f90da1332da1a2cfc40da2c8a.onreadystatechange=function() {
+                        if (padAjaxb9888e3f90da1332da1a2cfc40da2c8a.readyState === 4) {
+                        if (padAjaxb9888e3f90da1332da1a2cfc40da2c8a.status === 200) {
+                        document.getElementById("padAjaxb9888e3f90da1332da1a2cfc40da2c8a").innerHTML=padAjaxb9888e3f90da1332da1a2cfc40da2c8a.responseText;
+                        } else {
+                        document.getElementById("padAjaxb9888e3f90da1332da1a2cfc40da2c8a").innerHTML=padAjaxb9888e3f90da1332da1a2cfc40da2c8a.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb9888e3f90da1332da1a2cfc40da2c8a.open("GET","http://localhost/pad/regression/framework/?tags/a_push_inside_a_cached_section_is_made_again_on_a_hit&padInclude",true);
+                        padAjaxb9888e3f90da1332da1a2cfc40da2c8a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_stack_nothing_was_pushed_to_prints_nothing<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_stack_nothing_was_pushed_to_prints_nothing.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">stack </font><font color="red"><font color="black">'</font>nothing<font color="black">'</font></font>}</b>]<b>{<font color="blue">push </font><font color="red"><font color="black">'</font>styles<font color="black">'</font><font color="black">,</font> once=<font color="black">'</font>x<font color="black">'</font></font>}</b>&lt;s&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b>[<b>{<font color="blue">stack </font><font color="red"><font color="black">'</font>styles<font color="black">'</font> <font color="black">|</font> upper</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax9d54dc02f8b366676c7e8a580e4ceae0"></div>
+                        <script>
+                        padAjax9d54dc02f8b366676c7e8a580e4ceae0 = new XMLHttpRequest();
+                        padAjax9d54dc02f8b366676c7e8a580e4ceae0.onreadystatechange=function() {
+                        if (padAjax9d54dc02f8b366676c7e8a580e4ceae0.readyState === 4) {
+                        if (padAjax9d54dc02f8b366676c7e8a580e4ceae0.status === 200) {
+                        document.getElementById("padAjax9d54dc02f8b366676c7e8a580e4ceae0").innerHTML=padAjax9d54dc02f8b366676c7e8a580e4ceae0.responseText;
+                        } else {
+                        document.getElementById("padAjax9d54dc02f8b366676c7e8a580e4ceae0").innerHTML=padAjax9d54dc02f8b366676c7e8a580e4ceae0.statusText;
+                        }
+                        }
+                        }
+                        padAjax9d54dc02f8b366676c7e8a580e4ceae0.open("GET","http://localhost/pad/regression/framework/?tags/a_stack_nothing_was_pushed_to_prints_nothing&padInclude",true);
+                        padAjax9d54dc02f8b366676c7e8a580e4ceae0.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_stack_prints_what_the_page_pushes_below_it<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_stack_prints_what_the_page_pushes_below_it.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;head&gt;<b>{<font color="blue">stack </font><font color="red"><font color="black">'</font>scripts<font color="black">'</font></font>}</b>&lt;/head&gt;<b>{<font color="blue">push </font><font color="red"><font color="black">'</font>scripts<font color="black">'</font></font>}</b>&lt;script a&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b>&lt;p&gt;body&lt;/p&gt;<b>{<font color="blue">push </font><font color="red"><font color="black">'</font>scripts<font color="black">'</font></font>}</b>&lt;script b&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax2ab19b7283266d344b4b888fc6af5c2c"></div>
+                        <script>
+                        padAjax2ab19b7283266d344b4b888fc6af5c2c = new XMLHttpRequest();
+                        padAjax2ab19b7283266d344b4b888fc6af5c2c.onreadystatechange=function() {
+                        if (padAjax2ab19b7283266d344b4b888fc6af5c2c.readyState === 4) {
+                        if (padAjax2ab19b7283266d344b4b888fc6af5c2c.status === 200) {
+                        document.getElementById("padAjax2ab19b7283266d344b4b888fc6af5c2c").innerHTML=padAjax2ab19b7283266d344b4b888fc6af5c2c.responseText;
+                        } else {
+                        document.getElementById("padAjax2ab19b7283266d344b4b888fc6af5c2c").innerHTML=padAjax2ab19b7283266d344b4b888fc6af5c2c.statusText;
+                        }
+                        }
+                        }
+                        padAjax2ab19b7283266d344b4b888fc6af5c2c.open("GET","http://localhost/pad/regression/framework/?tags/a_stack_prints_what_the_page_pushes_below_it&padInclude",true);
+                        padAjax2ab19b7283266d344b4b888fc6af5c2c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/padStackPush_adds_to_a_stack_from_php<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/padStackPush_adds_to_a_stack_from_php.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/padStackPush_adds_to_a_stack_from_php.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  padStackPush </span><span style="color: #007700">( </span><span style="color: #DD0000">'js'</span><span style="color: #007700">, </span><span style="color: #DD0000">'&lt;a&gt;' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">padStackPush </span><span style="color: #007700">( </span><span style="color: #DD0000">'js'</span><span style="color: #007700">, </span><span style="color: #DD0000">'&lt;a&gt;'</span><span style="color: #007700">, </span><span style="color: #DD0000">'only-once' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">padStackPush </span><span style="color: #007700">( </span><span style="color: #DD0000">'js'</span><span style="color: #007700">, </span><span style="color: #DD0000">'&lt;x&gt;'</span><span style="color: #007700">, </span><span style="color: #DD0000">'only-once' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">stack </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>]<b>{<font color="blue">push </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>&lt;b&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8b143ffe3792482742aa1dd2ad046138"></div>
+                        <script>
+                        padAjax8b143ffe3792482742aa1dd2ad046138 = new XMLHttpRequest();
+                        padAjax8b143ffe3792482742aa1dd2ad046138.onreadystatechange=function() {
+                        if (padAjax8b143ffe3792482742aa1dd2ad046138.readyState === 4) {
+                        if (padAjax8b143ffe3792482742aa1dd2ad046138.status === 200) {
+                        document.getElementById("padAjax8b143ffe3792482742aa1dd2ad046138").innerHTML=padAjax8b143ffe3792482742aa1dd2ad046138.responseText;
+                        } else {
+                        document.getElementById("padAjax8b143ffe3792482742aa1dd2ad046138").innerHTML=padAjax8b143ffe3792482742aa1dd2ad046138.statusText;
+                        }
+                        }
+                        }
+                        padAjax8b143ffe3792482742aa1dd2ad046138.open("GET","http://localhost/pad/regression/framework/?tags/padStackPush_adds_to_a_stack_from_php&padInclude",true);
+                        padAjax8b143ffe3792482742aa1dd2ad046138.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/push_with_once_and_no_key_drops_text_the_stack_holds<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/push_with_once_and_no_key_drops_text_the_stack_holds.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>css<font color="black">'</font><font color="black">,</font> once</font>}</b>&lt;link a&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>css<font color="black">'</font><font color="black">,</font> once</font>}</b>&lt;link b&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>css<font color="black">'</font><font color="black">,</font> once</font>}</b>&lt;link a&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b>[<b>{<font color="blue">stack </font><font color="red"><font color="black">'</font>css<font color="black">'</font></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax98222ff57285bb5ce7d1509aaecc345f"></div>
+                        <script>
+                        padAjax98222ff57285bb5ce7d1509aaecc345f = new XMLHttpRequest();
+                        padAjax98222ff57285bb5ce7d1509aaecc345f.onreadystatechange=function() {
+                        if (padAjax98222ff57285bb5ce7d1509aaecc345f.readyState === 4) {
+                        if (padAjax98222ff57285bb5ce7d1509aaecc345f.status === 200) {
+                        document.getElementById("padAjax98222ff57285bb5ce7d1509aaecc345f").innerHTML=padAjax98222ff57285bb5ce7d1509aaecc345f.responseText;
+                        } else {
+                        document.getElementById("padAjax98222ff57285bb5ce7d1509aaecc345f").innerHTML=padAjax98222ff57285bb5ce7d1509aaecc345f.statusText;
+                        }
+                        }
+                        }
+                        padAjax98222ff57285bb5ce7d1509aaecc345f.open("GET","http://localhost/pad/regression/framework/?tags/push_with_once_and_no_key_drops_text_the_stack_holds&padInclude",true);
+                        padAjax98222ff57285bb5ce7d1509aaecc345f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/push_with_once_keeps_the_first_push_of_a_key<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/push_with_once_keeps_the_first_push_of_a_key.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>i<font color="black">'</font></font>}</b><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>js<font color="black">'</font><font color="black">,</font> once=<font color="black">'</font>chart<font color="black">'</font></font>}</b>&lt;chart <b>{<font color="green"><font color="red">$</font>i</font>}</b>&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>&lt;row <b>{<font color="green"><font color="red">$</font>i</font>}</b>&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>[<b>{<font color="blue">stack </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax734152cff48fc4cc27cea6c1702b6fa6"></div>
+                        <script>
+                        padAjax734152cff48fc4cc27cea6c1702b6fa6 = new XMLHttpRequest();
+                        padAjax734152cff48fc4cc27cea6c1702b6fa6.onreadystatechange=function() {
+                        if (padAjax734152cff48fc4cc27cea6c1702b6fa6.readyState === 4) {
+                        if (padAjax734152cff48fc4cc27cea6c1702b6fa6.status === 200) {
+                        document.getElementById("padAjax734152cff48fc4cc27cea6c1702b6fa6").innerHTML=padAjax734152cff48fc4cc27cea6c1702b6fa6.responseText;
+                        } else {
+                        document.getElementById("padAjax734152cff48fc4cc27cea6c1702b6fa6").innerHTML=padAjax734152cff48fc4cc27cea6c1702b6fa6.statusText;
+                        }
+                        }
+                        }
+                        padAjax734152cff48fc4cc27cea6c1702b6fa6.open("GET","http://localhost/pad/regression/framework/?tags/push_with_once_keeps_the_first_push_of_a_key&padInclude",true);
+                        padAjax734152cff48fc4cc27cea6c1702b6fa6.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: stacks/page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">stacks/page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>styles<font color="black">'</font></font>}</b>&lt;link a&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b>body<b>{<font color="blue">push </font><font color="red"><font color="black">'</font>scripts<font color="black">'</font></font>}</b>&lt;script b&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>styles<font color="black">'</font></font>}</b>&lt;link c&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8376235d3bf6ac75f2cd34fe209786ab"></div>
+                        <script>
+                        padAjax8376235d3bf6ac75f2cd34fe209786ab = new XMLHttpRequest();
+                        padAjax8376235d3bf6ac75f2cd34fe209786ab.onreadystatechange=function() {
+                        if (padAjax8376235d3bf6ac75f2cd34fe209786ab.readyState === 4) {
+                        if (padAjax8376235d3bf6ac75f2cd34fe209786ab.status === 200) {
+                        document.getElementById("padAjax8376235d3bf6ac75f2cd34fe209786ab").innerHTML=padAjax8376235d3bf6ac75f2cd34fe209786ab.responseText;
+                        } else {
+                        document.getElementById("padAjax8376235d3bf6ac75f2cd34fe209786ab").innerHTML=padAjax8376235d3bf6ac75f2cd34fe209786ab.statusText;
+                        }
+                        }
+                        }
+                        padAjax8376235d3bf6ac75f2cd34fe209786ab.open("GET","http://localhost/pad/regression/pages/?stacks/page&padInclude",true);
+                        padAjax8376235d3bf6ac75f2cd34fe209786ab.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

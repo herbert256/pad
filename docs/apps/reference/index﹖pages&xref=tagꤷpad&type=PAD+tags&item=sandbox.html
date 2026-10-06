@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - PAD tags - sandbox
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - PAD tags - sandbox
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: tags/sandbox_does_the_same<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/sandbox_does_the_same.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">sandbox</font><font color="red"></font>}</b><br>  <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>in<font color="black">'</font></font>}</b><br><b>{/<font color="blue">sandbox</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax6be39a62529d8b29d8dedc5625fad837"></div>
+                        <script>
+                        padAjax6be39a62529d8b29d8dedc5625fad837 = new XMLHttpRequest();
+                        padAjax6be39a62529d8b29d8dedc5625fad837.onreadystatechange=function() {
+                        if (padAjax6be39a62529d8b29d8dedc5625fad837.readyState === 4) {
+                        if (padAjax6be39a62529d8b29d8dedc5625fad837.status === 200) {
+                        document.getElementById("padAjax6be39a62529d8b29d8dedc5625fad837").innerHTML=padAjax6be39a62529d8b29d8dedc5625fad837.responseText;
+                        } else {
+                        document.getElementById("padAjax6be39a62529d8b29d8dedc5625fad837").innerHTML=padAjax6be39a62529d8b29d8dedc5625fad837.statusText;
+                        }
+                        }
+                        }
+                        padAjax6be39a62529d8b29d8dedc5625fad837.open("GET","http://localhost/pad/regression/framework/?tags/sandbox_does_the_same&padInclude",true);
+                        padAjax6be39a62529d8b29d8dedc5625fad837.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: catalog/tags<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">catalog/tags.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">catalog/tags.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The directory the dir and files lines list: hello/, which holds exactly its index<br>  // trio and nothing that would change with the suite.<br><br>  </span><span style="color: #0000BB">$catDir </span><span style="color: #007700">= </span><span style="color: #0000BB">APP </span><span style="color: #007700">. </span><span style="color: #DD0000">'hello'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">action:   <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..4<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>catAct<font color="black">'</font></font>/}</b><b>{<font color="blue">action </font><font color="red">catAct<font color="black">,</font> reverse</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b>,<b>{/<font color="blue">action</font><font color="red"></font>}</b><br>bool:     <b>{<font color="blue">bool </font><font color="red"><font color="black">'</font>catB<font color="black">'</font></font>}</b>1<b>{/<font color="blue">bool</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>catB</font><font color="red"></font>}</b>yes<b>{/<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>catB</font><font color="red"></font>}</b><br>break:    <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>catBr<font color="black">'</font></font>}</b>[1,2,3,4]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">catBr</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>catBr</font>}</b>,<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>catBr eq 2</font>}</b><b>{<font color="blue">break </font><font color="red"><font color="black">'</font>catBr<font color="black">'</font></font>/}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">catBr</font><font color="red"></font>}</b><br>case:     <b>{<font color="blue">case </font><font color="red"><font color="black">'</font>blue<font color="black">'</font></font>}</b><b>{<font color="blue">when </font><font color="red"><font color="black">'</font>red<font color="black">'</font></font>}</b>stop<b>{<font color="blue">when </font><font color="red"><font color="black">'</font>blue<font color="black">'</font></font>}</b>go<b>{/<font color="blue">case</font><font color="red"></font>}</b><br>cease:    <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>catCe<font color="black">'</font></font>}</b>[1,2,3,4]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">catCe</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>catCe</font>}</b>,<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>catCe eq 2</font>}</b><b>{<font color="blue">cease </font><font color="red"><font color="black">'</font>catCe<font color="black">'</font></font>/}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">catCe</font><font color="red"></font>}</b><br>continue: <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>catCo<font color="black">'</font></font>}</b>[1,2,3]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">catCo</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>catCo eq 2</font>}</b><b>{<font color="blue">continue </font><font color="red"><font color="black">'</font>catCo<font color="black">'</font></font>/}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>catCo</font>}</b>,<b>{/<font color="blue">catCo</font><font color="red"></font>}</b><br>curl:     <b>{<font color="blue">curl </font><font color="red"><font color="black">'</font>SELF<font color="black">:</font>//regression/pages/?pairing&amp;padInclude<font color="black">'</font></font>}</b><br>decrement: <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>catI = 5</font>/}</b><b>{<font color="blue">decrement </font><font color="red"><font color="red">$</font>catI</font>/}</b><b>{<font color="green"><font color="red">$</font>catI</font>}</b><br>dir:      <b>{<font color="blue">dir </font><font color="red"><font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>catDir</font><font color="black">}</font></b><font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>dir</font>}</b><b>{<font color="blue">notLast</font><font color="red"></font>}</b> <b>{/<font color="blue">notLast</font><font color="red"></font>}</b><b>{/<font color="blue">dir</font><font color="red"></font>}</b><br>exists:   <b>{<font color="blue">exists </font><font color="red"><font color="black">'</font>hello/index.pad<font color="black">'</font></font>}</b>y<b>{/<font color="blue">exists</font><font color="red"></font>}</b><b>{<font color="blue">exists </font><font color="red"><font color="black">'</font>nope.xyz<font color="black">'</font></font>}</b>n<b>{/<font color="blue">exists</font><font color="red"></font>}</b><br>false:    <b>{<font color="blue">false</font><font color="red"></font>}</b>n<b>{/<font color="blue">false</font><font color="red"></font>}</b>.<br>files:    <b>{<font color="blue">files </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> base=<font color="black">'</font>app<font color="black">'</font><font color="black">,</font> onlyFiles</font>}</b><b>{<font color="green"><font color="red">$</font>item</font>}</b>.<b>{<font color="green"><font color="red">$</font>ext</font>}</b><b>{<font color="blue">notLast</font><font color="red"></font>}</b> <b>{/<font color="blue">notLast</font><font color="red"></font>}</b><b>{/<font color="blue">files</font><font color="red"></font>}</b><br>flag:     <b>{<font color="blue">flag </font><font color="red">prime<font color="black">,</font> rows=6<font color="black">,</font> from=10</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b>,<b>{/<font color="blue">flag</font><font color="red"></font>}</b><br>foo:      <b>{<font color="blue">foo</font><font color="red"></font>}</b><br>get:      <b>{<font color="blue">get </font><font color="red"><font color="black">'</font>pairing<font color="black">'</font></font>}</b><br>ignore:   <b>{<font color="blue">ignore</font><font color="red"></font>}</b><b>{<font color="blue">a</font><font color="red"></font>}</b> <b>{<font color="blue">b</font><font color="red"></font>}</b><b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br>keep:     <b>{<font color="blue">keep </font><font color="red">prime<font color="black">,</font> rows=4<font color="black">,</font> from=10</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b>,<b>{/<font color="blue">keep</font><font color="red"></font>}</b><br>make:     <b>{<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b>,<b>{/<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b><br>null:     <b>{<font color="blue">null</font><font color="red"></font>}</b>n<b>{/<font color="blue">null</font><font color="red"></font>}</b>.<br>output:   <b>{<font color="blue">output </font><font color="red"><font color="black">'</font>web<font color="black">'</font></font>}</b>.<br>pull:     <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>catPu<font color="black">'</font></font>/}</b><b>{<font color="blue">pull </font><font color="red"><font color="black">'</font>catPu<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b>,<b>{/<font color="blue">pull</font><font color="red"></font>}</b><br>remove:   <b>{<font color="blue">remove </font><font color="red">prime<font color="black">,</font> rows=6<font color="black">,</font> from=10</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b>,<b>{/<font color="blue">remove</font><font color="red"></font>}</b><br>resume:   <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..4<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>catRe<font color="black">'</font></font>/}</b><b>{<font color="blue">resume </font><font color="red">add=10</font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>catRe</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b>,<b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>catRe</font><font color="red"></font>}</b><br>sandbox:  <b>{<font color="blue">sandbox</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>in<font color="black">'</font></font>}</b><b>{/<font color="blue">sandbox</font><font color="red"></font>}</b><br>tidy:     <b>{<font color="blue">tidy</font><font color="red"></font>}</b>&lt;p &gt;&lt;b &gt;x&lt;/b &gt;&lt;/p &gt;<b>{/<font color="blue">tidy</font><font color="red"></font>}</b><br>until:    <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>catU = 0</font>/}</b><b>{<font color="blue">until </font><font color="red"><font color="red">$</font>catU eq 3</font>}</b><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>catU</font>/}</b><b>{<font color="green"><font color="red">$</font>catU</font>}</b>,<b>{/<font color="blue">until</font><font color="red"></font>}</b><br>marker:   <b><font color="black">@</font><font color="purple">tidy</font><font color="black">@</font></b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax1d141fb65f89408b5bf453dee59f79bf"></div>
+                        <script>
+                        padAjax1d141fb65f89408b5bf453dee59f79bf = new XMLHttpRequest();
+                        padAjax1d141fb65f89408b5bf453dee59f79bf.onreadystatechange=function() {
+                        if (padAjax1d141fb65f89408b5bf453dee59f79bf.readyState === 4) {
+                        if (padAjax1d141fb65f89408b5bf453dee59f79bf.status === 200) {
+                        document.getElementById("padAjax1d141fb65f89408b5bf453dee59f79bf").innerHTML=padAjax1d141fb65f89408b5bf453dee59f79bf.responseText;
+                        } else {
+                        document.getElementById("padAjax1d141fb65f89408b5bf453dee59f79bf").innerHTML=padAjax1d141fb65f89408b5bf453dee59f79bf.statusText;
+                        }
+                        }
+                        }
+                        padAjax1d141fb65f89408b5bf453dee59f79bf.open("GET","http://localhost/pad/regression/pages/?catalog/tags&padInclude",true);
+                        padAjax1d141fb65f89408b5bf453dee59f79bf.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

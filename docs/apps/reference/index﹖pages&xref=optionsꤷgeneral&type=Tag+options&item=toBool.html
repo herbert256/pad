@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag options - toBool
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag options - toBool
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: options/and_records_false_when_nothing_was<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/and_records_false_when_nothing_was.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>x<font color="black">'</font></font>}</b><br>  []<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">x </font><font color="red">toBool=<font color="black">'</font>f<font color="black">'</font></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>x</font>}</b><br><b>{/<font color="blue">x</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>f</font><font color="red"></font>}</b><br>  yes<br><b>{/<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>f</font><font color="red"></font>}</b><br>no</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxe77ea6d33ffbb70c96c2f7b2c786e1ef"></div>
+                        <script>
+                        padAjaxe77ea6d33ffbb70c96c2f7b2c786e1ef = new XMLHttpRequest();
+                        padAjaxe77ea6d33ffbb70c96c2f7b2c786e1ef.onreadystatechange=function() {
+                        if (padAjaxe77ea6d33ffbb70c96c2f7b2c786e1ef.readyState === 4) {
+                        if (padAjaxe77ea6d33ffbb70c96c2f7b2c786e1ef.status === 200) {
+                        document.getElementById("padAjaxe77ea6d33ffbb70c96c2f7b2c786e1ef").innerHTML=padAjaxe77ea6d33ffbb70c96c2f7b2c786e1ef.responseText;
+                        } else {
+                        document.getElementById("padAjaxe77ea6d33ffbb70c96c2f7b2c786e1ef").innerHTML=padAjaxe77ea6d33ffbb70c96c2f7b2c786e1ef.statusText;
+                        }
+                        }
+                        }
+                        padAjaxe77ea6d33ffbb70c96c2f7b2c786e1ef.open("GET","http://localhost/pad/regression/framework/?options/and_records_false_when_nothing_was&padInclude",true);
+                        padAjaxe77ea6d33ffbb70c96c2f7b2c786e1ef.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: options/toBool_on_a_loop_or_a_wrapper_reads_what_it_rendered_not_how_its_walk_ended<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/toBool_on_a_loop_or_a_wrapper_reads_what_it_rendered_not_how_its_walk_ended.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>i = 0</font>}</b><br><b>{<font color="blue">while </font><font color="red"><font color="red">$</font>i lt 2<font color="black">,</font> toBool=<font color="black">'</font>looped<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>i</font>}</b><b>{<font color="green"><font color="red">$</font>i</font>}</b><br><b>{/<font color="blue">while</font><font color="red"></font>}</b><br><b>{<font color="blue">spaceless </font><font color="red">toBool=<font color="black">'</font>wrapped<font color="black">'</font></font>}</b><br>  a <b>{<font color="blue">if </font><font color="red">1 eq 2</font>}</b>x<b>{/<font color="blue">if</font><font color="red"></font>}</b> b<br><b>{/<font color="blue">spaceless</font><font color="red"></font>}</b><br>[<b>{<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>looped</font><font color="red"></font>}</b>yes<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>no<b>{/<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>looped</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>wrapped</font><font color="red"></font>}</b>yes<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>no<b>{/<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>wrapped</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxbfc0d02ca673408d35f004bb2cb92a73"></div>
+                        <script>
+                        padAjaxbfc0d02ca673408d35f004bb2cb92a73 = new XMLHttpRequest();
+                        padAjaxbfc0d02ca673408d35f004bb2cb92a73.onreadystatechange=function() {
+                        if (padAjaxbfc0d02ca673408d35f004bb2cb92a73.readyState === 4) {
+                        if (padAjaxbfc0d02ca673408d35f004bb2cb92a73.status === 200) {
+                        document.getElementById("padAjaxbfc0d02ca673408d35f004bb2cb92a73").innerHTML=padAjaxbfc0d02ca673408d35f004bb2cb92a73.responseText;
+                        } else {
+                        document.getElementById("padAjaxbfc0d02ca673408d35f004bb2cb92a73").innerHTML=padAjaxbfc0d02ca673408d35f004bb2cb92a73.statusText;
+                        }
+                        }
+                        }
+                        padAjaxbfc0d02ca673408d35f004bb2cb92a73.open("GET","http://localhost/pad/regression/framework/?options/toBool_on_a_loop_or_a_wrapper_reads_what_it_rendered_not_how_its_walk_ended&padInclude",true);
+                        padAjaxbfc0d02ca673408d35f004bb2cb92a73.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: options/toBool_records_whether_anything_was_produced<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/toBool_records_whether_anything_was_produced.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>x<font color="black">'</font></font>}</b><br>  ["b","a"]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">x </font><font color="red">toBool=<font color="black">'</font>f<font color="black">'</font></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>x</font>}</b><br><b>{/<font color="blue">x</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>f</font><font color="red"></font>}</b><br>  yes<br><b>{/<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>f</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxdac5ba6712eda8cddcc0462743f1de82"></div>
+                        <script>
+                        padAjaxdac5ba6712eda8cddcc0462743f1de82 = new XMLHttpRequest();
+                        padAjaxdac5ba6712eda8cddcc0462743f1de82.onreadystatechange=function() {
+                        if (padAjaxdac5ba6712eda8cddcc0462743f1de82.readyState === 4) {
+                        if (padAjaxdac5ba6712eda8cddcc0462743f1de82.status === 200) {
+                        document.getElementById("padAjaxdac5ba6712eda8cddcc0462743f1de82").innerHTML=padAjaxdac5ba6712eda8cddcc0462743f1de82.responseText;
+                        } else {
+                        document.getElementById("padAjaxdac5ba6712eda8cddcc0462743f1de82").innerHTML=padAjaxdac5ba6712eda8cddcc0462743f1de82.statusText;
+                        }
+                        }
+                        }
+                        padAjaxdac5ba6712eda8cddcc0462743f1de82.open("GET","http://localhost/pad/regression/framework/?options/toBool_records_whether_anything_was_produced&padInclude",true);
+                        padAjaxdac5ba6712eda8cddcc0462743f1de82.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: catalog/options<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">catalog/options.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">bool:     <b>{<font color="blue">bool </font><font color="red"><font color="black">'</font>oB<font color="black">'</font></font>}</b>1<b>{/<font color="blue">bool</font><font color="red"></font>}</b><b>{<font color="blue">oB </font><font color="red">bool=<font color="black">'</font>x<font color="black">'</font></font>}</b>y<b>{/<font color="blue">oB</font><font color="red"></font>}</b>.<br>demand:   <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>oXs<font color="black">'</font></font>}</b>[1,2,3]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">oXs </font><font color="red">demand</font>}</b><b>{<font color="green"><font color="red">$</font>oXs</font>}</b>,<b>{/<font color="blue">oXs</font><font color="red"></font>}</b><br>dump:     <b>{<font color="blue">true </font><font color="red">dump</font>}</b>d<b>{/<font color="blue">true</font><font color="red"></font>}</b><br>else:     <b>{<font color="blue">if </font><font color="red">1 eq 2</font>}</b>A<b>{<font color="blue">else</font><font color="red"></font>}</b>B<b>{/<font color="blue">if</font><font color="red"></font>}</b><br>error:    <b>{<font color="blue">true </font><font color="red">error=<font color="black">'</font>e<font color="black">'</font></font>}</b>x<b>{/<font color="blue">true</font><font color="red"></font>}</b><br>glue:     <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>oG<font color="black">'</font></font>}</b>["b","a"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">oG </font><font color="red">print<font color="black">,</font> glue=<font color="black">'</font><font color="black">,</font> <font color="black">'</font></font>}</b><br>ignore:   <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>oI<font color="black">'</font> ignore</font>}</b>{"k":5}<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">oI</font><font color="red"></font>}</b><b>{<font color="blue">key<font color="black"><b><font color="red">@</font></b></font>oI</font><font color="red"></font>}</b>=<b>{<font color="blue">firstFieldValue<font color="black"><b><font color="red">@</font></b></font>oI</font><font color="red"></font>}</b><b>{/<font color="blue">oI</font><font color="red"></font>}</b><br>noError:  <b>{<font color="blue">nosuch </font><font color="red">noError</font>}</b>x<b>{/<font color="blue">nosuch</font><font color="red"></font>}</b><br>notOk:    <b>{<font color="blue">content </font><font color="red"><font color="black">'</font>oops<font color="black">'</font></font>}</b>bad<b>{/<font color="blue">content</font><font color="red"></font>}</b><b>{<font color="blue">false </font><font color="red">notOk=<font color="black">'</font>oops<font color="black">'</font></font>}</b>yes<b>{/<font color="blue">false</font><font color="red"></font>}</b><br>null:     <b>{<font color="blue">null </font><font color="red">null=<font color="black">'</font>oops<font color="black">'</font></font>}</b>y<b>{/<font color="blue">null</font><font color="red"></font>}</b><br>print:    <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>oP<font color="black">'</font></font>}</b>["b","a"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">oP </font><font color="red">print</font>}</b><br>quote:    <b>{<font color="blue">oP </font><font color="red">print<font color="black">,</font> quote=<font color="black">'</font>"<font color="black">'</font></font>}</b><br>tidy:     <b>{<font color="blue">true </font><font color="red">tidy</font>}</b>&lt;i &gt;y&lt;/i &gt;<b>{/<font color="blue">true</font><font color="red"></font>}</b><br>toBool:   <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>oE<font color="black">'</font></font>}</b>[]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">oE </font><font color="red">toBool=<font color="black">'</font>oF<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>oE</font>}</b><b>{/<font color="blue">oE</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>oF</font><font color="red"></font>}</b>yes<b>{/<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>oF</font><font color="red"></font>}</b>no<br>toContent: <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>oC<font color="black">'</font></font>}</b>[1,2]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">oC </font><font color="red">toContent=<font color="black">'</font>oK<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>oC</font>}</b>,<b>{/<font color="blue">oC</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>oK</font><font color="red"></font>}</b><br>toData:   <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>oD<font color="black">'</font></font>}</b>["b","a"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">oD </font><font color="red">toData=<font color="black">'</font>oY<font color="black">'</font></font>/}</b><b>{<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>oY</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>oD</font>}</b>,<b>{/<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>oY</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8ec0b0d7c0dd2c97df9ba4e1ea85b5ec"></div>
+                        <script>
+                        padAjax8ec0b0d7c0dd2c97df9ba4e1ea85b5ec = new XMLHttpRequest();
+                        padAjax8ec0b0d7c0dd2c97df9ba4e1ea85b5ec.onreadystatechange=function() {
+                        if (padAjax8ec0b0d7c0dd2c97df9ba4e1ea85b5ec.readyState === 4) {
+                        if (padAjax8ec0b0d7c0dd2c97df9ba4e1ea85b5ec.status === 200) {
+                        document.getElementById("padAjax8ec0b0d7c0dd2c97df9ba4e1ea85b5ec").innerHTML=padAjax8ec0b0d7c0dd2c97df9ba4e1ea85b5ec.responseText;
+                        } else {
+                        document.getElementById("padAjax8ec0b0d7c0dd2c97df9ba4e1ea85b5ec").innerHTML=padAjax8ec0b0d7c0dd2c97df9ba4e1ea85b5ec.statusText;
+                        }
+                        }
+                        }
+                        padAjax8ec0b0d7c0dd2c97df9ba4e1ea85b5ec.open("GET","http://localhost/pad/regression/pages/?catalog/options&padInclude",true);
+                        padAjax8ec0b0d7c0dd2c97df9ba4e1ea85b5ec.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

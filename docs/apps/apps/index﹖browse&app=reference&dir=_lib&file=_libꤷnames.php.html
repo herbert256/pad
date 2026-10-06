@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: reference/_lib
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: reference/ lib
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=reference.html">..</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=reference&amp;dir=_lib&amp;file=_lib%EA%A4%B7build.php.html">build.php</a>
+                  </li>
+                  <li class="current">names.php
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  _lib/names.php
+                </h3>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The reference a request names: $xref a directory under DATA/reference/, $item a name in<br>  // it - both straight from the query string, and the item names are whatever the harvest<br>  // met, quotes, parentheses and @ among them. What is held to is the tree: every part of<br>  // the name a real one, no '..' or '.' or empty part, so the path never climbs out of<br>  // DATA/reference/ - ?dir&amp;xref=..&amp;item=.. listed the repository's root, and ?pages read<br>  // any .txt file it named. A list from the query string ([] in the name) is no name.<br><br>  </span><span style="color: #007700">function </span><span style="color: #0000BB">referenceName </span><span style="color: #007700">( </span><span style="color: #0000BB">$name </span><span style="color: #007700">) {<br><br>    if ( ! </span><span style="color: #0000BB">is_string </span><span style="color: #007700">( </span><span style="color: #0000BB">$name </span><span style="color: #007700">) or </span><span style="color: #0000BB">$name </span><span style="color: #007700">=== </span><span style="color: #DD0000">'' </span><span style="color: #007700">or </span><span style="color: #0000BB">preg_match </span><span style="color: #007700">( </span><span style="color: #DD0000">'/[\x00-\x1f\\\\]/'</span><span style="color: #007700">, </span><span style="color: #0000BB">$name </span><span style="color: #007700">) )<br>      return </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br>    foreach ( </span><span style="color: #0000BB">explode </span><span style="color: #007700">( </span><span style="color: #DD0000">'/'</span><span style="color: #007700">, </span><span style="color: #0000BB">$name </span><span style="color: #007700">) as </span><span style="color: #0000BB">$part </span><span style="color: #007700">)<br>      if ( </span><span style="color: #0000BB">$part </span><span style="color: #007700">=== </span><span style="color: #DD0000">'' </span><span style="color: #007700">or </span><span style="color: #0000BB">$part </span><span style="color: #007700">=== </span><span style="color: #DD0000">'.' </span><span style="color: #007700">or </span><span style="color: #0000BB">$part </span><span style="color: #007700">=== </span><span style="color: #DD0000">'..' </span><span style="color: #007700">)<br>        return </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br>    return </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

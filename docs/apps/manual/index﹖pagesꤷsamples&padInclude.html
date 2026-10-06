@@ -1,0 +1,97 @@
+
+
+<p>A page is two files: the PHP that gets the data and the template that shows it. A
+designer working on the template needs the data, but not the database, the login or the
+rest of the server behind it. Ask for the page with <code>&amp;padSample</code> and PAD runs
+no PHP at all - not the page's, nor an <code>_inits.php</code> or <code>_exits.php</code>
+around it - and takes the variables from <code>_samples/&lt;page&gt;.json</code> in the
+page's directory instead.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/samples_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/samples_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $who    </span><span style="color: #007700">= </span><span style="color: #DD0000">'the real page'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$orders </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10100</span><span style="color: #007700">, </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10223.83 </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10101</span><span style="color: #007700">, </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10549.01 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;Orders, as <b>{<font color="green"><font color="red">$</font>who</font>}</b> sees them:&lt;/p&gt;<br>&lt;ul&gt;<br>  <b>{<font color="blue">orders</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>number</font>}</b>: <b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/li&gt;<b>{/<font color="blue">orders</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>Orders, as the real page sees them:</p>
+<ul>
+  <li>10100: 10223.83</li><li>10101: 10549.01</li>
+</ul>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<p>Beside that page lies <code>fragments/_samples/samples_1.json</code>:</p>
+
+<pre>{ "who": "a designer", "orders": [ { "number": 1, "total": 9.5 } ] }</pre>
+
+<p>so <a href="index%EF%B9%96fragments%EA%A4%B7samples_1&amp;padSample.html">?fragments/samples_1&amp;padSample</a>
+shows that order instead - from this machine only, see below.</p>
+
+<h2>Capturing a sample</h2>
+
+<ul>
+  <li><code>?orders&amp;padSample=capture</code> renders the page for real and writes the variables its PHP made to <code>DATA/samples/&lt;app&gt;/orders.json</code>, where the preview finds them too.</li>
+  <li><code>apps/cli/pad sample shop orders</code> does the same from the shell, into the application's own <code>_samples/orders.json</code>, to commit with the template. Read it first: it holds whatever the page read.</li>
+</ul>
+
+<h2>Database tags in the template</h2>
+
+<p>A database tag in the template still asks the database, unless it has a name the sample
+holds: <code>{array "* from orders", name='orders'}</code> reads the sample's
+<code>orders</code>, and a capture records the database's answer under that name.</p>
+
+<h2>Who may ask</h2>
+
+<p>Skipping the PHP skips the checks it makes, so <code>$padSample</code> decides:
+<code>'local'</code>, the default, honours <code>padSample</code> for a request this machine
+makes to itself; <code>TRUE</code> for everyone - only on a design server without real data
+behind it; <code>FALSE</code> never. A capture is always local only.</p>

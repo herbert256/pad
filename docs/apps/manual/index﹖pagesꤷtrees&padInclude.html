@@ -1,0 +1,211 @@
+
+
+<p>Menus, category trees and threaded comments are trees: each row may hold a list of rows
+like itself. <code>{tree}</code> renders its body for every row, and inside that
+body <code>{recurse}</code> renders the same body again for the current row's
+children. <code>{branch}</code> renders only when the row has children - the place
+for the <code>&lt;ul&gt;</code> around the next level.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/trees_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/trees_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $menu </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Home' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Shop'</span><span style="color: #007700">, </span><span style="color: #DD0000">'items' </span><span style="color: #007700">=&gt; [<br>        [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Shoes'</span><span style="color: #007700">, </span><span style="color: #DD0000">'items' </span><span style="color: #007700">=&gt; [ [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Boots' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Sandals' </span><span style="color: #007700">] ] ],<br>        [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Hats' </span><span style="color: #007700">] ] ],<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'About' </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;ul&gt;<br><b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>menu<font color="black">'</font><font color="black">,</font> children=<font color="black">'</font>items<font color="black">'</font></font>}</b><br>  &lt;li&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b><br>    <b>{<font color="blue">branch</font><font color="red"></font>}</b>&lt;ul&gt;<b>{<font color="blue">recurse</font><font color="red"></font>}</b>&lt;/ul&gt;<b>{/<font color="blue">branch</font><font color="red"></font>}</b><br>  &lt;/li&gt;<br><b>{/<font color="blue">tree</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <ul>
+
+  <li>Home
+    
+  </li>
+
+  <li>Shop
+    <ul>
+  <li>Shoes
+    <ul>
+  <li>Boots
+    
+  </li>
+
+  <li>Sandals
+    
+  </li>
+</ul>
+  </li>
+
+  <li>Hats
+    
+  </li>
+</ul>
+  </li>
+
+  <li>About
+    
+  </li>
+
+</ul>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<p>The rows are named by the first parameter or by <code>data=</code> - a
+<code>{data}</code> block, an array of the page, a <code>_data/</code> file.
+<code>children</code> names the field that holds a row's children, <code>children</code> when
+not given.</p>
+
+<h2>Depth and the other properties</h2>
+
+<p><code>depth@tree</code> is 1 for the tree's own rows and one more for every level down -
+for indentation. The other properties, such as <code>current@tree</code> and
+<code>count@tree</code>, speak of the list being rendered. The <b>@</b><b>else</b><b>@</b> part of
+<code>{branch}</code> renders for a leaf, and the handling options
+<code>sort</code>, <code>where</code> and <code>reverse</code> on the tree apply to every list,
+the children included.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/trees_2.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/trees_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $menu </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Home' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Shop'</span><span style="color: #007700">, </span><span style="color: #DD0000">'items' </span><span style="color: #007700">=&gt; [<br>        [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Shoes'</span><span style="color: #007700">, </span><span style="color: #DD0000">'items' </span><span style="color: #007700">=&gt; [ [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Boots' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Sandals' </span><span style="color: #007700">] ] ],<br>        [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Hats' </span><span style="color: #007700">] ] ],<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'About' </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>menu<font color="black">'</font><font color="black">,</font> children=<font color="black">'</font>items<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>title<font color="black">'</font></font>}</b><br>  &lt;p style="margin: 0 0 0 <b>{<font color="blue">echo </font><font color="red">depth<font color="black">@</font>tree <font color="black">|</font> * 20</font>}</b>px"&gt;<br>    <b>{<font color="blue">branch</font><font color="red"></font>}</b>&amp;#9662;@else@&amp;middot;<b>{/<font color="blue">branch</font><font color="red"></font>}</b><br>    <b>{<font color="green"><font color="red">$</font>title</font>}</b> &lt;small&gt;(<b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>tree</font><font color="red"></font>}</b> of <b>{<font color="blue">count<font color="black"><b><font color="red">@</font></b></font>tree</font><font color="red"></font>}</b>)&lt;/small&gt;<br>  &lt;/p&gt;<br>  <b>{<font color="blue">branch</font><font color="red"></font>}</b><b>{<font color="blue">recurse</font><font color="red"></font>}</b><b>{/<font color="blue">branch</font><font color="red"></font>}</b><br><b>{/<font color="blue">tree</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+  <p style="margin: 0 0 0 20px">
+    &middot;
+    About <small>(1 of 3)</small>
+  </p>
+  
+
+  <p style="margin: 0 0 0 20px">
+    &middot;
+    Home <small>(2 of 3)</small>
+  </p>
+  
+
+  <p style="margin: 0 0 0 20px">
+    &#9662;
+    Shop <small>(3 of 3)</small>
+  </p>
+  
+  <p style="margin: 0 0 0 40px">
+    &middot;
+    Hats <small>(1 of 2)</small>
+  </p>
+  
+
+  <p style="margin: 0 0 0 40px">
+    &#9662;
+    Shoes <small>(2 of 2)</small>
+  </p>
+  
+  <p style="margin: 0 0 0 60px">
+    &middot;
+    Boots <small>(1 of 2)</small>
+  </p>
+  
+
+  <p style="margin: 0 0 0 60px">
+    &middot;
+    Sandals <small>(2 of 2)</small>
+  </p>
+  
+
+
+
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+

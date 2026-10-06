@@ -1,0 +1,84 @@
+
+
+<p>The character in front of a name says which value is meant and how it is written into the page. None of these opens a level - the value is spliced in where the tag stood.</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+  <tr style="background: #f0f0f0;"><th>Form</th><th>Writes</th></tr>
+  <tr><td><code>{$name}</code></td><td>The field, through the sanitize chain</td></tr>
+  <tr><td><code>{!name}</code></td><td>The same field raw - the sanitize chain is skipped</td></tr>
+  <tr><td><code>{?name}</code></td><td>The field as a query fragment: <code>&amp;name=url+encoded</code></td></tr>
+  <tr><td><code>{^name}</code></td><td>The field as JSON, escaped for a double-quoted HTML attribute; an array is encoded whole</td></tr>
+  <tr><td><code>{&#35;name}</code></td><td>An option or parameter of the tag</td></tr>
+  <tr><td><code>{&amp;name}</code></td><td>A property of the tag</td></tr>
+</table>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/sigils_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/sigils_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $name    </span><span style="color: #007700">= </span><span style="color: #DD0000">'Tom &amp; Jerry'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$snippet </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;b&gt;bold&lt;/b&gt;'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$product </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Chair'</span><span style="color: #007700">, </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">49.5 </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;Field: <b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Raw: <b>{<font color="green"><font color="red">!</font>snippet</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Query: &lt;a href="?page<b>{<font color="green">?name</font>}</b>"&gt;link&lt;/a&gt;&lt;/p&gt;<br>&lt;div data-props="{^product}"&gt;JSON in an attribute&lt;/div&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>Field: Tom &amp; Jerry</p>
+<p>Raw: <b>bold</b></p>
+<p>Query: <a href="?page&name=Tom+%26+Jerry">link</a></p>
+<div data-props="{&quot;name&quot;:&quot;Chair&quot;,&quot;price&quot;:49.5}">JSON in an attribute</div>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<p>The JSON form is made for mount points of client-side components: <code>JSON.parse(elem.getAttribute('data-props'))</code> reads it back, with no custom tag and no <b>{ignore}</b> pipe.</p>
+
+<h2>See Also</h2>
+
+<ul>
+  <li><a href="index%EF%B9%96pages%EA%A4%B7php_and_html.html">Php and html</a></li>
+  <li><a href="index%EF%B9%96pages%EA%A4%B7escaping_special_PAD_chars.html">Escaping special PAD chars</a></li>
+</ul>

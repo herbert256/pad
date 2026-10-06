@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - stampKept
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - stampKept
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/remote - Page: curl_data_ttl<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">curl_data_ttl.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">curl_data_ttl.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The same document as a data= url, fetched twice with the ttl the tag gives.<br><br>  </span><span style="color: #0000BB">$stampUrl </span><span style="color: #007700">= </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/remote/?stamp&amp;padInclude&amp;as=data'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">stampKept</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>stamp</font>}</b><b>{/<font color="blue">stampKept</font><font color="red"></font>}</b> <b>{<font color="blue">stampKept</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>stamp</font>}</b><b>{/<font color="blue">stampKept</font><font color="red"></font>}</b> <b>{<font color="blue">pad </font><font color="red">data=<font color="red">$</font>stampUrl<font color="black">,</font> ttl=60</font>}</b><b>{<font color="green"><font color="red">$</font>stamp</font>}</b><b>{/<font color="blue">pad</font><font color="red"></font>}</b> <b>{<font color="blue">pad </font><font color="red">data=<font color="red">$</font>stampUrl<font color="black">,</font> ttl=60</font>}</b><b>{<font color="green"><font color="red">$</font>stamp</font>}</b><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax212635d836c4756ed08fc342534529a7"></div>
+                        <script>
+                        padAjax212635d836c4756ed08fc342534529a7 = new XMLHttpRequest();
+                        padAjax212635d836c4756ed08fc342534529a7.onreadystatechange=function() {
+                        if (padAjax212635d836c4756ed08fc342534529a7.readyState === 4) {
+                        if (padAjax212635d836c4756ed08fc342534529a7.status === 200) {
+                        document.getElementById("padAjax212635d836c4756ed08fc342534529a7").innerHTML=padAjax212635d836c4756ed08fc342534529a7.responseText;
+                        } else {
+                        document.getElementById("padAjax212635d836c4756ed08fc342534529a7").innerHTML=padAjax212635d836c4756ed08fc342534529a7.statusText;
+                        }
+                        }
+                        }
+                        padAjax212635d836c4756ed08fc342534529a7.open("GET","http://localhost/pad/regression/remote/?curl_data_ttl&padInclude",true);
+                        padAjax212635d836c4756ed08fc342534529a7.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

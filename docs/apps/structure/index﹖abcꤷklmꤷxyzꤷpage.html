@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - page
+    </title>
+  </head>
+  <body>
+    <h1>
+      Many different PAD parts together in one page.
+    </h1>
+    <hr>
+    <h1></h1>
+    <ul>
+      <li>Line in _inits.pad / root
+      </li>
+      <li>Variable in _inits.php / abc/klm/xyz
+        <ul>
+          <li>Line in _inits.pad / abc
+          </li>
+          <li>Variable in _inits.php / abc/klm/xyz
+            <ul>
+              <li>Line in _inits.pad / abc/klm
+              </li>
+              <li>Variable in _inits.php / abc/klm/xyz
+                <ul>
+                  <li>Line in _inits.pad / abc/klm/xyz
+                  </li>
+                  <li>Variable in _inits.php / abc/klm/xyz
+                  </li>
+                  <li>Line in page.pad / abc/klm/xyz
+                  </li>
+                  <li>Variable in page.php / abc/klm/xyz
+                  </li>
+                  <li>XML 1 from _data / root
+                  </li>
+                  <li>XML 2 from _data / root
+                  </li>
+                  <li>Line in _tags/myTag.pad / abc
+                  </li>
+                  <li>Variable in _tags/myTag.php / abc
+                  </li>
+                  <li>Line for _function/Myfunction.php in abc/klm
+                  </li>
+                  <li>Line for _option/myOption.php in root
+                  </li>
+                  <li>Line for _scripts/myScript.sh root
+                  </li>
+                  <li>Line for _callbacks/myCallback in root
+                  </li>
+                  <li>Line in _include/myInclude.pad / abc/klm/xyz
+                  </li>
+                  <li>Variable in _include/myInclude.php / abc/klm/xyz
+                  </li>
+                  <li>Line in _lib/myLib.pad / abc/klm/xyz
+                  </li>
+                  <li>Variable in _lib/myLib.php / abc/klm/xyz
+                  </li>
+                  <li>Line in _exits.pad / abc/klm/xyz
+                  </li>
+                  <li>Variable in _exits.php / root
+                  </li>
+                </ul>
+              </li>
+              <li>Line in _exits.pad / abc/klm
+              </li>
+              <li>Variable in _exits.php / root
+              </li>
+            </ul>
+          </li>
+          <li>Line in _exits.pad / abc
+          </li>
+          <li>Variable in _exits.php / root
+          </li>
+        </ul>
+      </li>
+      <li>Line in _exits.pad / root
+      </li>
+      <li>Variable in _exits.php / root
+      </li>
+    </ul>
+    <hr>
+    <h2>
+      Sequence of calls
+    </h2>
+    <p>
+      Note that some values 'root/abc/klm/xyz' look incorrect. This comes because all inits/exits/page PHP sources are called before the rendering of the PAD templates start. The sequence is.
+    </p>
+    <ul>
+      <li>/_inits.php
+      </li>
+      <li>/abc/_inits.php
+      </li>
+      <li>/abc/klm/_inits.php
+      </li>
+      <li>/abc/klm/xyz/_inits.php
+      </li>
+      <li>/abc/klm/xyz/page.php
+      </li>
+      <li>/abc/klm/xyz/_exits.php
+      </li>
+      <li>/abc/klm/_exits.php
+      </li>
+      <li>/abc/_exits.php
+      </li>
+      <li>/_exits.php
+      </li>
+    </ul>
+    <p>
+      So it is possible (and in this example application it happens) that:<br>
+      - &lt;page&gt;.php PHP code overwrites variables from the _inits.php PHP code<br>
+      - the _exit.php files overwrites variabeles from &lt;page&gt;.php and _inits.php fPHP code<br>
+      <br>
+      An earlier version of PAD did prevent this, but in reality it is handy, this way you can set for exampe a $title variable in the page PHP code that is used in the _inits.pad template.
+    </p>
+    <hr>
+    <h2>
+      Ajax calls of the pages without _inits.pad
+    </h2>
+    <hr>
+    <h3>
+      ?page
+    </h3>
+    <ul>
+      <div id="padAjaxa23bc266fe10e3ca7ac12ba55743175d"></div>
+      <script>
+      padAjaxa23bc266fe10e3ca7ac12ba55743175d = new XMLHttpRequest();
+      padAjaxa23bc266fe10e3ca7ac12ba55743175d.onreadystatechange=function() {
+      if (padAjaxa23bc266fe10e3ca7ac12ba55743175d.readyState === 4) {
+      if (padAjaxa23bc266fe10e3ca7ac12ba55743175d.status === 200) {
+        document.getElementById("padAjaxa23bc266fe10e3ca7ac12ba55743175d").innerHTML=padAjaxa23bc266fe10e3ca7ac12ba55743175d.responseText;
+      } else {
+        document.getElementById("padAjaxa23bc266fe10e3ca7ac12ba55743175d").innerHTML=padAjaxa23bc266fe10e3ca7ac12ba55743175d.statusText;
+      }
+      }
+      }
+      padAjaxa23bc266fe10e3ca7ac12ba55743175d.open("GET","http://localhost/pad/structure/?page&padInclude",true);
+      padAjaxa23bc266fe10e3ca7ac12ba55743175d.send();
+      </script>
+    </ul>
+    <hr>
+    <h3>
+      ?abc/page
+    </h3>
+    <ul>
+      <div id="padAjax97b0a2ffe0adc8661c333435e935dcaa"></div>
+      <script>
+      padAjax97b0a2ffe0adc8661c333435e935dcaa = new XMLHttpRequest();
+      padAjax97b0a2ffe0adc8661c333435e935dcaa.onreadystatechange=function() {
+      if (padAjax97b0a2ffe0adc8661c333435e935dcaa.readyState === 4) {
+      if (padAjax97b0a2ffe0adc8661c333435e935dcaa.status === 200) {
+        document.getElementById("padAjax97b0a2ffe0adc8661c333435e935dcaa").innerHTML=padAjax97b0a2ffe0adc8661c333435e935dcaa.responseText;
+      } else {
+        document.getElementById("padAjax97b0a2ffe0adc8661c333435e935dcaa").innerHTML=padAjax97b0a2ffe0adc8661c333435e935dcaa.statusText;
+      }
+      }
+      }
+      padAjax97b0a2ffe0adc8661c333435e935dcaa.open("GET","http://localhost/pad/structure/?abc/page&padInclude",true);
+      padAjax97b0a2ffe0adc8661c333435e935dcaa.send();
+      </script>
+    </ul>
+    <hr>
+    <h3>
+      ?abc/klm/page
+    </h3>
+    <ul>
+      <div id="padAjax98f339850b273603b7cb0fc226c53f8c"></div>
+      <script>
+      padAjax98f339850b273603b7cb0fc226c53f8c = new XMLHttpRequest();
+      padAjax98f339850b273603b7cb0fc226c53f8c.onreadystatechange=function() {
+      if (padAjax98f339850b273603b7cb0fc226c53f8c.readyState === 4) {
+      if (padAjax98f339850b273603b7cb0fc226c53f8c.status === 200) {
+        document.getElementById("padAjax98f339850b273603b7cb0fc226c53f8c").innerHTML=padAjax98f339850b273603b7cb0fc226c53f8c.responseText;
+      } else {
+        document.getElementById("padAjax98f339850b273603b7cb0fc226c53f8c").innerHTML=padAjax98f339850b273603b7cb0fc226c53f8c.statusText;
+      }
+      }
+      }
+      padAjax98f339850b273603b7cb0fc226c53f8c.open("GET","http://localhost/pad/structure/?abc/klm/page&padInclude",true);
+      padAjax98f339850b273603b7cb0fc226c53f8c.send();
+      </script>
+    </ul>
+    <hr>
+    <h3>
+      ?abc/klm/xyz/page
+    </h3>
+    <ul>
+      <div id="padAjax009334f070b11b9f5fabaa9e1ccd5013"></div>
+      <script>
+      padAjax009334f070b11b9f5fabaa9e1ccd5013 = new XMLHttpRequest();
+      padAjax009334f070b11b9f5fabaa9e1ccd5013.onreadystatechange=function() {
+      if (padAjax009334f070b11b9f5fabaa9e1ccd5013.readyState === 4) {
+      if (padAjax009334f070b11b9f5fabaa9e1ccd5013.status === 200) {
+        document.getElementById("padAjax009334f070b11b9f5fabaa9e1ccd5013").innerHTML=padAjax009334f070b11b9f5fabaa9e1ccd5013.responseText;
+      } else {
+        document.getElementById("padAjax009334f070b11b9f5fabaa9e1ccd5013").innerHTML=padAjax009334f070b11b9f5fabaa9e1ccd5013.statusText;
+      }
+      }
+      }
+      padAjax009334f070b11b9f5fabaa9e1ccd5013.open("GET","http://localhost/pad/structure/?abc/klm/xyz/page&padInclude",true);
+      padAjax009334f070b11b9f5fabaa9e1ccd5013.send();
+      </script>
+    </ul>
+    <hr>
+  </body>
+</html>

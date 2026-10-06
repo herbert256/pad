@@ -1,0 +1,156 @@
+
+
+<p>Help texts, release notes and content kept in a database are easier to write as Markdown.
+<b>{markdown}</b> writes what it wraps as HTML: the content renders first, so fields and tags
+in it resolve, and the result is then read as Markdown. The text is dedented first, so the
+block can be indented along with the template around it.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/markdown_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/markdown_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $version </span><span style="color: #007700">= </span><span style="color: #DD0000">'2.1'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">markdown</font><font color="red"></font>}</b><br>  ## Release notes for <b>{<font color="green"><font color="red">$</font>version</font>}</b><br><br>  - **Faster** first render<br>  - Lists can be *nested*:<br>    1. one<br>    2. two<br><br>  &gt; See [the manual](?index) for the rest.<br><b>{/<font color="blue">markdown</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <h2>Release notes for 2.1</h2>
+<ul>
+<li><strong>Faster</strong> first render</li>
+<li>Lists can be <em>nested</em>:
+<ol>
+<li>one</li>
+<li>two</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>See <a href="index%EF%B9%96index.html">the manual</a> for the rest.</p>
+</blockquote>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>The markdown pipe</h2>
+
+<p>A value - a post body from the database - goes through the <code>markdown</code> pipe, or
+is given to the tag as its parameter: <code>{markdown $post.body}</code>. The HTML it
+makes is safe by construction, so a field whose last pipe is <code>markdown</code> skips the
+sanitize chain that would escape the markup again.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/markdown_2.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/markdown_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $post </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'body' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"Written by a *visitor*: &lt;script&gt;alert(1)&lt;/script&gt; and `{php:getcwd}`" </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="green">$post.body</font> <font color="black">|</font> <font color="blue">markdown</font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>Written by a <em>visitor</em>: &lt;script&gt;alert(1)&lt;/script&gt; and <code>{php:getcwd}</code></p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>What is safe</h2>
+
+<ul>
+  <li>Raw HTML in the text is escaped, not passed on. The <code>html</code> option of the tag lets the template author's own markup through; the pipe has no such form.</li>
+  <li>A link or image whose URL names a scheme other than http, https, mailto, ftp or tel - <code>javascript:</code>, <code>data:</code> - keeps only its text.</li>
+  <li>The HTML made from a value stays a value: PAD tags written in a post are shown, never run.</li>
+  <li>Braces in the template's own Markdown - code samples - need the <code>ignore</code> option: <code>{markdown ignore}</code>.</li>
+</ul>
+
+<p>The built-in renderer is a CommonMark subset: headings, paragraphs, emphasis, code spans
+and code blocks, lists, links, images, block quotes and rules. Reference-style links, tables
+and footnotes are not supported.</p>

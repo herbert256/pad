@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Editor support
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Editor support
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <div style="display: inline-block; text-align: left;">
+                    <p>
+                      The kits in <code>editors/</code> give PAD templates highlighting, completion and snippets in Sublime Text, VS Code, Vim, Emacs, Kate, BBEdit and Notepad++. An editor that speaks the Language Server Protocol - Neovim, Helix, Zed, Emacs with eglot, Sublime Text with LSP - runs <code>editors/lsp/pad-lsp.js</code>, a Node server without dependencies.
+                    </p>
+                    <h2>
+                      The language server
+                    </h2>
+                    <ul>
+                      <li>
+                        <strong>Completion</strong> - the built-in tags, functions, options, properties and type prefixes, and after <code>{/</code> the tags still open.
+                      </li>
+                      <li>
+                        <strong>Diagnostics</strong> - when a page is opened or saved, PAD itself renders it on the command line under the strict syntax check (<code>editors/render.php</code>), and the error lands on the tag it names. A <code>_inits.pad</code> is checked through the index page of its directory; a snippet in <code>_include</code> or <code>_tags</code> has no page of its own and is not rendered.
+                      </li>
+                      <li>
+                        <strong>Hover</strong> - the text of <code>docs/reference</code> for the tag, function, option, property or type prefix under the cursor; on an application's own tag or function, the comment at the top of its file; on a field, the line that assigns it.
+                      </li>
+                      <li>
+                        <strong>Go to definition</strong> - PAD's own lookup order: <code>{badge}</code> to the nearest <code>_tags/badge.*</code> up the directories, then <code>_common</code>, then the engine; <code>{include:footer}</code> to <code>_include/footer.pad</code>; <code>| money</code> to <code>_functions/money.php</code>; <code>callback='x'</code> to <code>_callbacks/x.php</code>.
+                      </li>
+                    </ul>
+                    <p>
+                      Page pairing makes one more jump possible: from a field in the template to the line of the paired <code>.php</code> that assigns it. Here, go to definition on <code>{$total}</code> lands on <code>$total = 42;</code>.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/editor_support_1.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/editor_support_1.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $total </span><span style="color: #007700">= </span><span style="color: #0000BB">42</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;p&gt;Total: <b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/p&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <p>
+                            Total: 42
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <h2>
+                      Tree-sitter
+                    </h2>
+                    <p>
+                      <code>editors/tree-sitter-pad</code> is a Tree-sitter grammar: native highlighting in Zed, Helix and Neovim, with the HTML around the tags highlighted as HTML. A pair of tags is one node of the tree, so an editor can fold <code>{orders} ... {/orders}</code>, select it, or select just what is inside it. Whether a tag is a pair is decided as the engine decides it: <code>{orders}</code> opens a block only when a <code>{/orders}</code> closes it further on, so <code>{else}</code> and <code>{echo $x}</code> stay single tags.
+                    </p>
+                    <h2>
+                      AI assistants
+                    </h2>
+                    <p>
+                      <code>editors/mcp/pad-mcp.js</code> is an MCP server: an assistant such as Claude Code asks the engine itself instead of relying on what it remembers. It renders a page, or a template that exists in no file yet, and runs the strict syntax check on it; it traces a request, lists the applications, their pages and the built-ins, looks a tag or function up in the reference, and runs the regression suites. Register it with <code>claude mcp add pad -- node editors/mcp/pad-mcp.js</code>.
+                    </p>
+                  </div>
+                </center>
+              </td>
+            </tr>
+          </table>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <hr>
+                <table valign="top" align="center">
+                  <tr>
+                    <td valign="top">
+                      <h3 align="center">
+                        Basic concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tags.html">Tags</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7conditions.html">Conditions</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7loops.html">Loops</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7trees.html">Trees</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7examples_used_in_this_manual.html">Examples used in this manual</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7parse.html">Parse</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7levels_and_occurrences.html">Levels and occurrences</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_content_tag.html">The content tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_data_tag.html">The data tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7php_and_html.html">Php and html</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7properties.html">Properties</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7field_sigils.html">Field sigils</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Constructs
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7else.html">Else</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7start_end.html">Start end</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7content.html">Content</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page.html">Page</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Text and markup
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7comments.html">Comments</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7whitespace.html">Whitespace</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ignore.html">Ignore</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7escaping_special_PAD_chars.html">Escaping special PAD chars</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Advanced concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7prefix.html">Prefix</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7options_variables_parameters.html">Options variables parameters</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7callback.html">Callback</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tag_return_values.html">Tag return values</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7level_and_occurrence_variables.html">Level and occurrence variables</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7walking.html">Walking</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ending_the_request.html">Ending the request</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sequences.html">Sequences</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Data
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7data_handling.html">Data handling</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7grouping.html">Grouping</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pager.html">Pager</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7lookup.html">Lookup</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7database.html">Database</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sqlite.html">Sqlite</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7collections.html">Collections</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7remote_data.html">Remote data</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7parallel_fetching.html">Parallel fetching</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7data_answers.html">Data answers</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        PHP helpers
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7arrays.html">Arrays</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7strings.html">Strings</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7values.html">Values</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7numbers.html">Numbers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_sessions.html">Requests and sessions</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7environment_and_cache.html">Environment and cache</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7dates_and_logging.html">Dates and logging</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7hashing_and_encryption.html">Hashing and encryption</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Output
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7html_helpers.html">Html helpers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7markdown.html">Markdown</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7charts.html">Charts</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7locale.html">Locale</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7fragment_cache.html">Fragment cache</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7flush.html">Flush</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7live.html">Live</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Layouts and components
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7layouts.html">Layouts</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page_meta.html">Page meta</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7components.html">Components</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7stacks.html">Stacks</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7response_fragments.html">Response fragments</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        The application
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7application_structure.html">Application structure</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7extending.html">Extending</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7events.html">Events</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7application_options.html">Application options</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_urls.html">Requests and urls</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7clean_urls.html">Clean urls</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sitemap.html">Sitemap</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7mail.html">Mail</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Forms and security
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7forms.html">Forms</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7csrf_protection.html">Csrf protection</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7flash_messages.html">Flash messages</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7directory_guards.html">Directory guards</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7security_headers.html">Security headers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7file_uploads.html">File uploads</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Development tools
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7debug.html">Debug</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7template_errors.html">Template errors</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7toolbar.html">Toolbar</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7output_checks.html">Output checks</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7coverage.html">Coverage</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7replay.html">Replay</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7live_reload.html">Live reload</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7samples.html">Samples</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7app_tests.html">App tests</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pad_command.html">Pad command</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7static_export.html">Static export</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7playground.html">Playground</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7editor_support.html">Editor support</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pad_in_the_browser.html">Pad in the browser</a>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

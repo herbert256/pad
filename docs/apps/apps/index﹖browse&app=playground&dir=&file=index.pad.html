@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: playground
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: playground
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=playground&amp;dir=_config.html">_config/</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=playground&amp;dir=&amp;file=_inits.php.html">_inits.php</a>
+                  </li>
+                  <li class="current">index.pad
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=playground&amp;dir=&amp;file=index.php.html">index.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=playground&amp;dir=&amp;file=render.pad.html">render.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=playground&amp;dir=&amp;file=render.php.html">render.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  index.pad
+                </h3>
+                <pre><code style="color: #000000">&lt;!DOCTYPE html&gt;<br>&lt;html lang="en"&gt;<br>&lt;head&gt;<br>  &lt;meta charset="utf-8"&gt;<br>  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;<br>  &lt;title&gt;PAD playground&lt;/title&gt;<br>  &lt;link rel="stylesheet" href="playground.css"&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br><br>  &lt;h1&gt;PAD playground&lt;/h1&gt;<br><br>  &lt;form method="post" action="?render" target="playOut" id="playForm"&gt;<br>    &lt;div class="panes"&gt;<br>      &lt;div class="pane"&gt;<br>        &lt;label for="source"&gt;Template&lt;/label&gt;<br>        &lt;textarea id="source" name="source" spellcheck="false" rows="14"&gt;<b>{<font color="green"><font color="red">$</font>sampleSource</font>}</b>&lt;/textarea&gt;<br>        &lt;label for="data"&gt;Data - a JSON object, each key a variable&lt;/label&gt;<br>        &lt;textarea id="data" name="data" spellcheck="false" rows="10"&gt;<b>{<font color="green"><font color="red">$</font>sampleData</font>}</b>&lt;/textarea&gt;<br>        &lt;p&gt;<br>          &lt;button type="submit"&gt;Render&lt;/button&gt;<br>          &lt;button type="submit" formaction="?render&amp;amp;view=source"&gt;Show the HTML&lt;/button&gt;<br>          &lt;span class="hint"&gt;Ctrl+Enter renders; the address bar always links to what is typed here.&lt;/span&gt;<br>        &lt;/p&gt;<br>      &lt;/div&gt;<br>      &lt;div class="pane"&gt;<br>        &lt;span class="caption"&gt;Output&lt;/span&gt;<br>        &lt;iframe id="playOut" name="playOut" title="Output" sandbox&gt;&lt;/iframe&gt;<br>      &lt;/div&gt;<br>    &lt;/div&gt;<br>  &lt;/form&gt;<br><br>  &lt;p class="limits"&gt;This machine only. A template here may not call PHP functions, sees no<br>  request values and no database, and gets five seconds, 64 KB of source and 256 KB of output.<br>  The output frame is sandboxed: its scripts do not run. Errors show as PAD reports them.&lt;/p&gt;<br><br>  &lt;script src="playground.js"&gt;&lt;/script&gt;<br><br>&lt;/body&gt;<br>&lt;/html&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

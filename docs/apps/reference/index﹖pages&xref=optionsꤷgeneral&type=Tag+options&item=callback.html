@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag options - callback
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag options - callback
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: callback/before<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">callback/before.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue">staff </font><font color="red">callback=<font color="black">'</font>before.php<font color="black">'</font><font color="black">,</font> before</font>}</b><br><br>    <b>{<font color="blue">first</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;Totals&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$salaryTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$bonusTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$totalTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">first</font><font color="red"></font>}</b><br><br>    &lt;tr align="right" bgcolor="<b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>yellow<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pink<font color="black">'</font></font>}</b>"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br> <br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxebec0e178956420939e5ca936ab2b330"></div>
+                        <script>
+                        padAjaxebec0e178956420939e5ca936ab2b330 = new XMLHttpRequest();
+                        padAjaxebec0e178956420939e5ca936ab2b330.onreadystatechange=function() {
+                        if (padAjaxebec0e178956420939e5ca936ab2b330.readyState === 4) {
+                        if (padAjaxebec0e178956420939e5ca936ab2b330.status === 200) {
+                        document.getElementById("padAjaxebec0e178956420939e5ca936ab2b330").innerHTML=padAjaxebec0e178956420939e5ca936ab2b330.responseText;
+                        } else {
+                        document.getElementById("padAjaxebec0e178956420939e5ca936ab2b330").innerHTML=padAjaxebec0e178956420939e5ca936ab2b330.statusText;
+                        }
+                        }
+                        }
+                        padAjaxebec0e178956420939e5ca936ab2b330.open("GET","http://localhost/pad/manual/?callback/before&padInclude",true);
+                        padAjaxebec0e178956420939e5ca936ab2b330.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: callback/demand<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">callback/demand.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue">staff </font><font color="red">callback=<font color="black">'</font>demand.php<font color="black">'</font></font>}</b><br><br>    &lt;tr align="right" <br>        bgcolor="<b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>yellow<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pink<font color="black">'</font></font>}</b>"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><br>  &lt;tr&gt;<br>    &lt;td&gt;Totals&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$salaryTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$bonusTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$totalTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br> <br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax597307190bf318317ac5f9be4588b643"></div>
+                        <script>
+                        padAjax597307190bf318317ac5f9be4588b643 = new XMLHttpRequest();
+                        padAjax597307190bf318317ac5f9be4588b643.onreadystatechange=function() {
+                        if (padAjax597307190bf318317ac5f9be4588b643.readyState === 4) {
+                        if (padAjax597307190bf318317ac5f9be4588b643.status === 200) {
+                        document.getElementById("padAjax597307190bf318317ac5f9be4588b643").innerHTML=padAjax597307190bf318317ac5f9be4588b643.responseText;
+                        } else {
+                        document.getElementById("padAjax597307190bf318317ac5f9be4588b643").innerHTML=padAjax597307190bf318317ac5f9be4588b643.statusText;
+                        }
+                        }
+                        }
+                        padAjax597307190bf318317ac5f9be4588b643.open("GET","http://localhost/pad/manual/?callback/demand&padInclude",true);
+                        padAjax597307190bf318317ac5f9be4588b643.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: expressions/function_reaches_what_a_callback_left_behind<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">expressions/function_reaches_what_a_callback_left_behind.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>n<font color="black">'</font></font>}</b><br>  [1,2,3]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">n </font><font color="red">callback=<font color="black">'</font>before.php<font color="black">'</font><font color="black">,</font> before</font>}</b><br>  <b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>n</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>sum<font color="black">@</font>function</font>}</b><b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>n</font><font color="red"></font>}</b><br><b>{/<font color="blue">n</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd0440969699e82784193ecac4c711c54"></div>
+                        <script>
+                        padAjaxd0440969699e82784193ecac4c711c54 = new XMLHttpRequest();
+                        padAjaxd0440969699e82784193ecac4c711c54.onreadystatechange=function() {
+                        if (padAjaxd0440969699e82784193ecac4c711c54.readyState === 4) {
+                        if (padAjaxd0440969699e82784193ecac4c711c54.status === 200) {
+                        document.getElementById("padAjaxd0440969699e82784193ecac4c711c54").innerHTML=padAjaxd0440969699e82784193ecac4c711c54.responseText;
+                        } else {
+                        document.getElementById("padAjaxd0440969699e82784193ecac4c711c54").innerHTML=padAjaxd0440969699e82784193ecac4c711c54.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd0440969699e82784193ecac4c711c54.open("GET","http://localhost/pad/regression/framework/?expressions/function_reaches_what_a_callback_left_behind&padInclude",true);
+                        padAjaxd0440969699e82784193ecac4c711c54.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: lenient/a_missing_callback_is_skipped<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">lenient/a_missing_callback_is_skipped.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">lenient/a_missing_callback_is_skipped.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The lenient walk under test: with the syntax check off, what is not there yields<br>  // empty and the page lives on.<br><br>  </span><span style="color: #0000BB">$padCheckSyntax </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">data </font><font color="red"><font color="black">'</font>u<font color="black">'</font></font>}</b>[1,2]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">u </font><font color="red">callback=<font color="black">'</font>nosuch.php<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>u</font>}</b><b>{/<font color="blue">u</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax97563e47e9523ac020b569b1032bd3c9"></div>
+                        <script>
+                        padAjax97563e47e9523ac020b569b1032bd3c9 = new XMLHttpRequest();
+                        padAjax97563e47e9523ac020b569b1032bd3c9.onreadystatechange=function() {
+                        if (padAjax97563e47e9523ac020b569b1032bd3c9.readyState === 4) {
+                        if (padAjax97563e47e9523ac020b569b1032bd3c9.status === 200) {
+                        document.getElementById("padAjax97563e47e9523ac020b569b1032bd3c9").innerHTML=padAjax97563e47e9523ac020b569b1032bd3c9.responseText;
+                        } else {
+                        document.getElementById("padAjax97563e47e9523ac020b569b1032bd3c9").innerHTML=padAjax97563e47e9523ac020b569b1032bd3c9.statusText;
+                        }
+                        }
+                        }
+                        padAjax97563e47e9523ac020b569b1032bd3c9.open("GET","http://localhost/pad/regression/framework/?lenient/a_missing_callback_is_skipped&padInclude",true);
+                        padAjax97563e47e9523ac020b569b1032bd3c9.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_before_callback_can_add_a_field_to_every_row<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_before_callback_can_add_a_field_to_every_row.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>n<font color="black">'</font></font>}</b><br>  [1,2,3]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">n </font><font color="red">callback=<font color="black">'</font>before.php<font color="black">'</font><font color="black">,</font> before</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>double</font>}</b>,<br><b>{/<font color="blue">n</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxdc7e5384bcb19cba5d0531825c47c2e9"></div>
+                        <script>
+                        padAjaxdc7e5384bcb19cba5d0531825c47c2e9 = new XMLHttpRequest();
+                        padAjaxdc7e5384bcb19cba5d0531825c47c2e9.onreadystatechange=function() {
+                        if (padAjaxdc7e5384bcb19cba5d0531825c47c2e9.readyState === 4) {
+                        if (padAjaxdc7e5384bcb19cba5d0531825c47c2e9.status === 200) {
+                        document.getElementById("padAjaxdc7e5384bcb19cba5d0531825c47c2e9").innerHTML=padAjaxdc7e5384bcb19cba5d0531825c47c2e9.responseText;
+                        } else {
+                        document.getElementById("padAjaxdc7e5384bcb19cba5d0531825c47c2e9").innerHTML=padAjaxdc7e5384bcb19cba5d0531825c47c2e9.statusText;
+                        }
+                        }
+                        }
+                        padAjaxdc7e5384bcb19cba5d0531825c47c2e9.open("GET","http://localhost/pad/regression/framework/?tags/a_before_callback_can_add_a_field_to_every_row&padInclude",true);
+                        padAjaxdc7e5384bcb19cba5d0531825c47c2e9.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/and_finishes_its_total_before_the_first_occurrence<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/and_finishes_its_total_before_the_first_occurrence.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>n<font color="black">'</font></font>}</b><br>  [1,2,3]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">n </font><font color="red">callback=<font color="black">'</font>before.php<font color="black">'</font><font color="black">,</font> before</font>}</b><br>  <b>{<font color="blue">first</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>sum</font>}</b>:<b>{/<font color="blue">first</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>n</font>}</b>,<br><b>{/<font color="blue">n</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa330cc384dab3f855f82bdd1a7c45c72"></div>
+                        <script>
+                        padAjaxa330cc384dab3f855f82bdd1a7c45c72 = new XMLHttpRequest();
+                        padAjaxa330cc384dab3f855f82bdd1a7c45c72.onreadystatechange=function() {
+                        if (padAjaxa330cc384dab3f855f82bdd1a7c45c72.readyState === 4) {
+                        if (padAjaxa330cc384dab3f855f82bdd1a7c45c72.status === 200) {
+                        document.getElementById("padAjaxa330cc384dab3f855f82bdd1a7c45c72").innerHTML=padAjaxa330cc384dab3f855f82bdd1a7c45c72.responseText;
+                        } else {
+                        document.getElementById("padAjaxa330cc384dab3f855f82bdd1a7c45c72").innerHTML=padAjaxa330cc384dab3f855f82bdd1a7c45c72.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa330cc384dab3f855f82bdd1a7c45c72.open("GET","http://localhost/pad/regression/framework/?tags/and_finishes_its_total_before_the_first_occurrence&padInclude",true);
+                        padAjaxa330cc384dab3f855f82bdd1a7c45c72.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/without_before_it_runs_init_then_a_row_each_then_exit<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/without_before_it_runs_init_then_a_row_each_then_exit.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>n<font color="black">'</font></font>}</b><br>  [1,2,3]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">n </font><font color="red">callback=<font color="black">'</font>demand.php<font color="black">'</font></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>n</font>}</b>,<br><b>{/<font color="blue">n</font><font color="red"></font>}</b><br><b>{<font color="green"><font color="red">$</font>mark</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc456dda87c182df4e6675fa3b75b7163"></div>
+                        <script>
+                        padAjaxc456dda87c182df4e6675fa3b75b7163 = new XMLHttpRequest();
+                        padAjaxc456dda87c182df4e6675fa3b75b7163.onreadystatechange=function() {
+                        if (padAjaxc456dda87c182df4e6675fa3b75b7163.readyState === 4) {
+                        if (padAjaxc456dda87c182df4e6675fa3b75b7163.status === 200) {
+                        document.getElementById("padAjaxc456dda87c182df4e6675fa3b75b7163").innerHTML=padAjaxc456dda87c182df4e6675fa3b75b7163.responseText;
+                        } else {
+                        document.getElementById("padAjaxc456dda87c182df4e6675fa3b75b7163").innerHTML=padAjaxc456dda87c182df4e6675fa3b75b7163.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc456dda87c182df4e6675fa3b75b7163.open("GET","http://localhost/pad/regression/framework/?tags/without_before_it_runs_init_then_a_row_each_then_exit&padInclude",true);
+                        padAjaxc456dda87c182df4e6675fa3b75b7163.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: callback<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">callback.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">callback.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The row phase of a streaming callback reads the occurrence's fields as plain PHP variables.<br>  // A case rendered inside another request cannot show that: those fields are the nested<br>  // pass's locals rather than globals, so the callback never sees them. In a real request it<br>  // does, which is what the manual's staff example relies on and what this page pins.<br><br>  </span><span style="color: #0000BB">$rows </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">rows </font><font color="red">callback=<font color="black">'</font>stream.php<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b>,<b>{/<font color="blue">rows</font><font color="red"></font>}</b>total=<b>{<font color="green"><font color="red">$</font>sum</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxeea901d8a6f0e44f362545aaeaeed92f"></div>
+                        <script>
+                        padAjaxeea901d8a6f0e44f362545aaeaeed92f = new XMLHttpRequest();
+                        padAjaxeea901d8a6f0e44f362545aaeaeed92f.onreadystatechange=function() {
+                        if (padAjaxeea901d8a6f0e44f362545aaeaeed92f.readyState === 4) {
+                        if (padAjaxeea901d8a6f0e44f362545aaeaeed92f.status === 200) {
+                        document.getElementById("padAjaxeea901d8a6f0e44f362545aaeaeed92f").innerHTML=padAjaxeea901d8a6f0e44f362545aaeaeed92f.responseText;
+                        } else {
+                        document.getElementById("padAjaxeea901d8a6f0e44f362545aaeaeed92f").innerHTML=padAjaxeea901d8a6f0e44f362545aaeaeed92f.statusText;
+                        }
+                        }
+                        }
+                        padAjaxeea901d8a6f0e44f362545aaeaeed92f.open("GET","http://localhost/pad/regression/pages/?callback&padInclude",true);
+                        padAjaxeea901d8a6f0e44f362545aaeaeed92f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: catalog/properties<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">catalog/properties.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">catalog/properties.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// What the at-type lines read: a global for @all, and one for the saved group to shadow.<br>  // The function line runs the catsum callback from _callbacks/, whose row phase totals the<br>  // rows into $t.<br><br>  </span><span style="color: #0000BB">$catAll   </span><span style="color: #007700">= </span><span style="color: #DD0000">'found'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$catSaved </span><span style="color: #007700">= </span><span style="color: #DD0000">'outer'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">current:  <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cXs<font color="black">'</font></font>}</b>[7,8]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>,<b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>done:     <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">done<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>,<b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>key:      <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">key<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>,<b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>remaining: <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">remaining<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>,<b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>count:    <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">count<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>,<b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>nameProp: <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">name<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>,<b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>first:    <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>[<b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cXs</font>}</b>,<b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>last:     <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cXs</font>}</b>,<b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>]<b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b><b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>notFirst: <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">notFirst<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>-<b>{/<font color="blue">notFirst<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cXs</font>}</b><b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>notLast:  <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cXs</font>}</b><b>{<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>,<b>{/<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b><b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>even:     <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">even<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>E<b>{/<font color="blue">even<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b><b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>odd:      <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>O<b>{/<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b><b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>border:   <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">border<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>|<b>{/<font color="blue">border<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cXs</font>}</b><b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>middle:   <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cYs<font color="black">'</font></font>}</b>[1,2,3]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">cYs</font><font color="red"></font>}</b><b>{<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font>cYs</font><font color="red"></font>}</b>M<b>{/<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font>cYs</font><font color="red"></font>}</b><b>{/<font color="blue">cYs</font><font color="red"></font>}</b><br>fields:   <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cU<font color="black">'</font></font>}</b>[{"a":1,"b":2}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">cU</font><font color="red"></font>}</b><b>{<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>cU</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b>=<b>{<font color="green"><font color="red">$</font>value</font>}</b>,<b>{/<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>cU</font><font color="red"></font>}</b><b>{/<font color="blue">cU</font><font color="red"></font>}</b><br>firstFieldName:  <b>{<font color="blue">cU</font><font color="red"></font>}</b><b>{<font color="blue">firstFieldName<font color="black"><b><font color="red">@</font></b></font>cU</font><font color="red"></font>}</b>,<b>{/<font color="blue">cU</font><font color="red"></font>}</b><br>firstFieldValue: <b>{<font color="blue">cU</font><font color="red"></font>}</b><b>{<font color="blue">firstFieldValue<font color="black"><b><font color="red">@</font></b></font>cU</font><font color="red"></font>}</b>,<b>{/<font color="blue">cU</font><font color="red"></font>}</b><br>keys:     <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cKv<font color="black">'</font> ignore</font>}</b>{"a":1,"b":2}<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">cKv</font><font color="red"></font>}</b><b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>cKv</font><font color="red"></font>}</b><b>{<font color="blue">keys<font color="black"><b><font color="red">@</font></b></font>cKv</font><font color="red"></font>}</b>[<b>{<font color="green"><font color="red">$</font>name</font>}</b>]<b>{/<font color="blue">keys<font color="black"><b><font color="red">@</font></b></font>cKv</font><font color="red"></font>}</b><b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>cKv</font><font color="red"></font>}</b><b>{/<font color="blue">cKv</font><font color="red"></font>}</b><br>parameter: <b>{<font color="blue">true </font><font color="red"><font color="black">'</font>p1<font color="black">'</font><font color="black">,</font> <font color="black">'</font>p2<font color="black">'</font></font>}</b><b>{<font color="blue">parameter.1<font color="black"><b><font color="red">@</font></b></font>true</font><font color="red"></font>}</b>/<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>parameter.2<font color="black">@</font>true</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>variable:  <b>{<font color="blue">true </font><font color="red"><font color="red">$</font>t=<font color="black">'</font>9<font color="black">'</font></font>}</b><b>{<font color="blue">variable.t<font color="black"><b><font color="red">@</font></b></font>true</font><font color="red"></font>}</b>/<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>variable.t<font color="black">@</font>true</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>option:    <b>{<font color="blue">true </font><font color="red">opt=<font color="black">'</font>v<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>option.opt<font color="black">@</font>true</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>any:       <b>{<font color="blue">true </font><font color="red"><font color="red">$</font>cAny=<font color="black">'</font>9<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>cAny<font color="black">@</font>any</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>options:   <b>{<font color="blue">true </font><font color="red">opt=<font color="black">'</font>w<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>opt<font color="black">@</font>options</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>parameters: <b>{<font color="blue">true </font><font color="red"><font color="black">'</font>q1<font color="black">'</font><font color="black">,</font> <font color="black">'</font>q2<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>2<font color="black">@</font>parameters</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>saved:     <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cSv<font color="black">'</font></font>}</b>["x"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">cSv </font><font color="red"><font color="black">%</font>catSaved=<font color="black">'</font>inner<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>catSaved</font>}</b>/<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>catSaved<font color="black">@</font>saved</font>}</b><b>{/<font color="blue">cSv</font><font color="red"></font>}</b><br>variables: <b>{<font color="blue">true </font><font color="red"><font color="red">$</font>cV=<font color="black">'</font>n<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>cV<font color="black">@</font>variables</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>all:       <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>catAll<font color="black">@</font>all</font>}</b><br>sequences: <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>cSeq<font color="black">'</font></font>/}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>cSeq.3<font color="black">@</font>sequences</font>}</b><br>tags:      <b>{<font color="blue">true </font><font color="red"><font color="red">$</font>cT=<font color="black">'</font>7<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>cT<font color="black">@</font>tags</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>level:     <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cLv<font color="black">'</font></font>}</b>["x","y"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">cLv</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>0.cLv<font color="black">@</font>level</font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>1.cLv<font color="black">@</font>level</font>}</b>,<b>{/<font color="blue">cLv</font><font color="red"></font>}</b><br>dataAt:    <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cAd<font color="black">'</font></font>}</b>{"cKey":9}<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>cKey.cAd<font color="black">@</font>data</font>}</b><br>function:  <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cFn<font color="black">'</font></font>}</b>[1,2]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">cFn </font><font color="red">callback=<font color="black">'</font>catsum.php<font color="black">'</font><font color="black">,</font> before</font>}</b><b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>cFn</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>t<font color="black">@</font>function</font>}</b><b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>cFn</font><font color="red"></font>}</b><b>{/<font color="blue">cFn</font><font color="red"></font>}</b><br>dataProp:  <b>{<font color="blue">cLv</font><font color="red"></font>}</b><b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>cLv</font><font color="red"></font>}</b>[<b>{<font color="blue">data<font color="black"><b><font color="red">@</font></b></font>cLv</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cLv</font>}</b>,<b>{/<font color="blue">data<font color="black"><b><font color="red">@</font></b></font>cLv</font><font color="red"></font>}</b>]<b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>cLv</font><font color="red"></font>}</b><b>{/<font color="blue">cLv</font><font color="red"></font>}</b><br>condition: <b>{<font color="blue">cLv</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">first<font color="black">@</font>cLv</font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cLv</font>}</b><b>{<font color="blue">if </font><font color="red">notLast<font color="black">@</font>cLv</font>}</b>-<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">cLv</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax94a827465d52b76028bd5039c8f5f6cd"></div>
+                        <script>
+                        padAjax94a827465d52b76028bd5039c8f5f6cd = new XMLHttpRequest();
+                        padAjax94a827465d52b76028bd5039c8f5f6cd.onreadystatechange=function() {
+                        if (padAjax94a827465d52b76028bd5039c8f5f6cd.readyState === 4) {
+                        if (padAjax94a827465d52b76028bd5039c8f5f6cd.status === 200) {
+                        document.getElementById("padAjax94a827465d52b76028bd5039c8f5f6cd").innerHTML=padAjax94a827465d52b76028bd5039c8f5f6cd.responseText;
+                        } else {
+                        document.getElementById("padAjax94a827465d52b76028bd5039c8f5f6cd").innerHTML=padAjax94a827465d52b76028bd5039c8f5f6cd.statusText;
+                        }
+                        }
+                        }
+                        padAjax94a827465d52b76028bd5039c8f5f6cd.open("GET","http://localhost/pad/regression/pages/?catalog/properties&padInclude",true);
+                        padAjax94a827465d52b76028bd5039c8f5f6cd.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: structure - Page: abc/klm/page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">abc/klm/page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">abc/klm/page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'abc/klm'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / abc/klm <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc917b676505d804926e91589c3d90226"></div>
+                        <script>
+                        padAjaxc917b676505d804926e91589c3d90226 = new XMLHttpRequest();
+                        padAjaxc917b676505d804926e91589c3d90226.onreadystatechange=function() {
+                        if (padAjaxc917b676505d804926e91589c3d90226.readyState === 4) {
+                        if (padAjaxc917b676505d804926e91589c3d90226.status === 200) {
+                        document.getElementById("padAjaxc917b676505d804926e91589c3d90226").innerHTML=padAjaxc917b676505d804926e91589c3d90226.responseText;
+                        } else {
+                        document.getElementById("padAjaxc917b676505d804926e91589c3d90226").innerHTML=padAjaxc917b676505d804926e91589c3d90226.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc917b676505d804926e91589c3d90226.open("GET","http://localhost/pad/structure/?abc/klm/page&padInclude",true);
+                        padAjaxc917b676505d804926e91589c3d90226.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: structure - Page: abc/klm/xyz/page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">abc/klm/xyz/page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">abc/klm/xyz/page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'abc/klm/xyz'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / abc/klm/xyz <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax2a0dab99bbdbb54770537d8555f44a9e"></div>
+                        <script>
+                        padAjax2a0dab99bbdbb54770537d8555f44a9e = new XMLHttpRequest();
+                        padAjax2a0dab99bbdbb54770537d8555f44a9e.onreadystatechange=function() {
+                        if (padAjax2a0dab99bbdbb54770537d8555f44a9e.readyState === 4) {
+                        if (padAjax2a0dab99bbdbb54770537d8555f44a9e.status === 200) {
+                        document.getElementById("padAjax2a0dab99bbdbb54770537d8555f44a9e").innerHTML=padAjax2a0dab99bbdbb54770537d8555f44a9e.responseText;
+                        } else {
+                        document.getElementById("padAjax2a0dab99bbdbb54770537d8555f44a9e").innerHTML=padAjax2a0dab99bbdbb54770537d8555f44a9e.statusText;
+                        }
+                        }
+                        }
+                        padAjax2a0dab99bbdbb54770537d8555f44a9e.open("GET","http://localhost/pad/structure/?abc/klm/xyz/page&padInclude",true);
+                        padAjax2a0dab99bbdbb54770537d8555f44a9e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: structure - Page: abc/page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">abc/page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">abc/page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'abc'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / abc <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5dc502569ad4cc76b54abcbc256c51ab"></div>
+                        <script>
+                        padAjax5dc502569ad4cc76b54abcbc256c51ab = new XMLHttpRequest();
+                        padAjax5dc502569ad4cc76b54abcbc256c51ab.onreadystatechange=function() {
+                        if (padAjax5dc502569ad4cc76b54abcbc256c51ab.readyState === 4) {
+                        if (padAjax5dc502569ad4cc76b54abcbc256c51ab.status === 200) {
+                        document.getElementById("padAjax5dc502569ad4cc76b54abcbc256c51ab").innerHTML=padAjax5dc502569ad4cc76b54abcbc256c51ab.responseText;
+                        } else {
+                        document.getElementById("padAjax5dc502569ad4cc76b54abcbc256c51ab").innerHTML=padAjax5dc502569ad4cc76b54abcbc256c51ab.statusText;
+                        }
+                        }
+                        }
+                        padAjax5dc502569ad4cc76b54abcbc256c51ab.open("GET","http://localhost/pad/structure/?abc/page&padInclude",true);
+                        padAjax5dc502569ad4cc76b54abcbc256c51ab.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: structure - Page: def/klm/page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">def/klm/page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">def/klm/page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'def/klm'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / def/klm <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax42d2bf205801f330dd49a37dfa614ebb"></div>
+                        <script>
+                        padAjax42d2bf205801f330dd49a37dfa614ebb = new XMLHttpRequest();
+                        padAjax42d2bf205801f330dd49a37dfa614ebb.onreadystatechange=function() {
+                        if (padAjax42d2bf205801f330dd49a37dfa614ebb.readyState === 4) {
+                        if (padAjax42d2bf205801f330dd49a37dfa614ebb.status === 200) {
+                        document.getElementById("padAjax42d2bf205801f330dd49a37dfa614ebb").innerHTML=padAjax42d2bf205801f330dd49a37dfa614ebb.responseText;
+                        } else {
+                        document.getElementById("padAjax42d2bf205801f330dd49a37dfa614ebb").innerHTML=padAjax42d2bf205801f330dd49a37dfa614ebb.statusText;
+                        }
+                        }
+                        }
+                        padAjax42d2bf205801f330dd49a37dfa614ebb.open("GET","http://localhost/pad/structure/?def/klm/page&padInclude",true);
+                        padAjax42d2bf205801f330dd49a37dfa614ebb.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: structure - Page: def/page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">def/page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">def/page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'def'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / def <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxf25461ca03a4d2c8e89fad5fe5743064"></div>
+                        <script>
+                        padAjaxf25461ca03a4d2c8e89fad5fe5743064 = new XMLHttpRequest();
+                        padAjaxf25461ca03a4d2c8e89fad5fe5743064.onreadystatechange=function() {
+                        if (padAjaxf25461ca03a4d2c8e89fad5fe5743064.readyState === 4) {
+                        if (padAjaxf25461ca03a4d2c8e89fad5fe5743064.status === 200) {
+                        document.getElementById("padAjaxf25461ca03a4d2c8e89fad5fe5743064").innerHTML=padAjaxf25461ca03a4d2c8e89fad5fe5743064.responseText;
+                        } else {
+                        document.getElementById("padAjaxf25461ca03a4d2c8e89fad5fe5743064").innerHTML=padAjaxf25461ca03a4d2c8e89fad5fe5743064.statusText;
+                        }
+                        }
+                        }
+                        padAjaxf25461ca03a4d2c8e89fad5fe5743064.open("GET","http://localhost/pad/structure/?def/page&padInclude",true);
+                        padAjaxf25461ca03a4d2c8e89fad5fe5743064.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: structure - Page: page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'root'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / root <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb"></div>
+                        <script>
+                        padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb = new XMLHttpRequest();
+                        padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb.onreadystatechange=function() {
+                        if (padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb.readyState === 4) {
+                        if (padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb.status === 200) {
+                        document.getElementById("padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb").innerHTML=padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb.responseText;
+                        } else {
+                        document.getElementById("padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb").innerHTML=padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb.statusText;
+                        }
+                        }
+                        }
+                        padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb.open("GET","http://localhost/pad/structure/?page&padInclude",true);
+                        padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

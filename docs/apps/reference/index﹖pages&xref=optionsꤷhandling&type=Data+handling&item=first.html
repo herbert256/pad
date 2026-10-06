@@ -1,6 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<!DOCTYPE html>
+<html>
+  <head>
     <title>
       PAD - Reference - Data handling - first
     </title>
@@ -11,14 +11,14 @@
         PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
       </h1>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table><br>
+      </table><br>
       <hr width="75%">
     </center>
     <blockquote>
@@ -27,343 +27,557 @@
           <h1>
             Reference - Data handling - first
           </h1>
-          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tbody><tr>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
               <td>
                 <center>
                   <hr>
                   App: manual - Page: miscellaneous/handling<br>
-                  <div id="padAjaxKQcMlOAo"><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                      <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                       12                       13                       14                       15                       16                       17                       18                       19                       20                       21                       22                       23                       24                       25                       26                       27                       28                       29                       30                       31                       32                       33                       34                       35                       36                       37                       38                       39                       40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">row  = 10           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->20<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">rows = 10           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">rows = 10<font color="black">,</font> page = 2 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30<!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                       <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                        12                        13                        14                        15                        16                        17                        18                        19                        20                        21                        22                        23                        24                        25                        26                        27                        28                        29                        30                        31                        32                        33                        34                        35                        36                        37                        38                        39                        40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = 10           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">end   = 20           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = 10<font color="black">,</font> end = 20 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->20  21  22  23  24  25  26  27  28  29  30<!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                         <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                          12                          13                          14                          15                          16                          17                          18                          19                          20                          21                          22                          23                          24                          25                          26                          27                          28                          29                          30                          31                          32                          33                          34                          35                          36                          37                          38                          39                          40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = -20            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">end   = -10            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = -20<font color="black">,</font> end = 20  </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = -20<font color="black">,</font> end = -10 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30<!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                        <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                         12                         13                         14                         15                         16                         17                         18                         19                         20                         21                         22                         23                         24                         25                         26                         27                         28                         29                         30                         31                         32                         33                         34                         35                         36                         37                         38                         39                         40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start =  20<font color="black">,</font> rows = 5 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->30  31  32  33  34<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">end   =  10<font color="black">,</font> rows = 5 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->16  17  18  19  20<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = -20<font color="black">,</font> rows = 5 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">end   = -10<font color="black">,</font> rows = 5 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->26  27  28  29  30<!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>          <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11           12           13           14           15           16           17           18           19           20           21           22           23           24           25           26           27           28           29           30           31           32           33           34           35           36           37           38           39           40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">first</font>}</b>    <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">first=10</font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">last</font>}</b>     <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">last=10</font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->31   32   33   34   35   36   37   38   39   40<!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                 12                 13                 14                 15                 16                 17                 18                 19                 20                 21                 22                 23                 24                 25                 26                 27                 28                 29                 30                 31                 32                 33                 34                 35                 36                 37                 38                 39                 40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">trim</font>}</b>           <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->12            13            14            15            16            17            18            19            20            21            22            23            24            25            26            27            28            29            30            31            32            33            34            35            36            37            38            39<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">trim=10</font>}</b>        <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21         22         23         24         25         26         27         28         29         30<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">trim=10<font color="black">,</font> left</font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21   22   23   24   25   26   27   28   29   30   31   32   33   34   35   36   37   38   39   40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">trim=10<font color="black">,</font> right</font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">trim=10<font color="black">,</font> both</font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21   22   23   24   25   26   27   28   29   30<!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                   <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                    12                    13                    14                    15                    16                    17                    18                    19                    20                    21                    22                    23                    24                    25                    26                    27                    28                    29                    30                    31                    32                    33                    34                    35                    36                    37                    38                    39                    40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = 10</font>}</b>       <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11        12        13        14        15        16        17        18        19        20<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = 10</font>}</b>       <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21        22        23        24        25        26        27        28        29        30        31        32        33        34        35        36        37        38        39        40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = -10</font>}</b>      <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->31       32       33       34       35       36       37       38       39       40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = -10</font>}</b>      <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11       12       13       14       15       16       17       18       19       20       21       22       23       24       25       26       27       28       29       30<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font></font>}</b>   <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21    22    23    24    25<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font></font>}</b>   <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11    12    13    14    15    16    17    18    19    20    26    27    28    29    30    31    32    33    34    35    36    37    38    39    40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font></font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21   22   23   24   25   26   27   28   29   30   31   32   33   34   35<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font></font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11   12   13   14   15   16   17   18   19   20   36   37   38   39   40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font></font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21   22   23   24   25<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font></font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11   12   13   14   15   16   17   18   19   20   26   27   28   29   30   31   32   33   34   35   36   37   38   39   40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font></font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30  31  32  33  34  35<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font></font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>         <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11          12          13          14          15          16          17          18          19          20          21          22          23          24          25          26          27          28          29          30          31          32          33          34          35          36          37          38          39          40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->40  39  38  37  36  35  34  33  32  31  30  29  28  27  26  25  24  23  22  21  20  19  18  17  16  15  14  13  12  11<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">shuffle</font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  34  35  37  32  23  30  13  27  16  25  24  29  36  17  15  28  11  22  12  40  31  33  21  38  14  39  26  20  18<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">random</font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->26   16   40   17   31   20   15   33   19   34   12   27   28   21   36   25   37   11   22   23   24   32   14   29   35   18   38   30   13   39<!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                                <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                                 12                                 13                                 14                                 15                                 16                                 17                                 18                                 19                                 20                                 21                                 22                                 23                                 24                                 25                                 26                                 27                                 28                                 29                                 30                                 31                                 32                                 33                                 34                                 35                                 36                                 37                                 38                                 39                                 40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">random=20</font>}</b>                      <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21                       30                       33                       29                       20                       22                       32                       17                       19                       38                       26                       28                       35                       27                       31                       39                       23                       11                       36                       24<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">random=20<font color="black">,</font> orderly</font>}</b>             <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11              14              15              17              18              19              21              22              23              25              27              29              30              31              32              33              34              36              37              39<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">random=20<font color="black">,</font> duplicates</font>}</b>          <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->40           33           17           38           32           18           23           17           40           32           32           18           19           20           13           22           31           31           16           30<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">random=20<font color="black">,</font> orderly<font color="black">,</font> duplicates</font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->13  17  19  19  19  22  22  23  24  26  26  26  26  30  32  34  34  35  39  39<!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p>
-
-<p>With the 'negative' option, the result is the negative of the handling option.
-
-</p><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                    <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                     12                     13                     14                     15                     16                     17                     18                     19                     20                     21                     22                     23                     24                     25                     26                     27                     28                     29                     30                     31                     32                     33                     34                     35                     36                     37                     38                     39                     40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">first=5           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">first=5<font color="black">,</font> negative </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                               12                               13                               14                               15                               16                               17                               18                               19                               20                               21                               22                               23                               24                               25                               26                               27                               28                               29                               30                               31                               32                               33                               34                               35                               36                               37                               38                               39                               40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = 10                 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = 10<font color="black">,</font> negative       </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = 10                 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = 10<font color="black">,</font> negative       </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20<!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                               12                               13                               14                               15                               16                               17                               18                               19                               20                               21                               22                               23                               24                               25                               26                               27                               28                               29                               30                               31                               32                               33                               34                               35                               36                               37                               38                               39                               40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = -10                </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = -10<font color="black">,</font> negative      </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = -10                </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = -10<font color="black">,</font> negative      </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                               12                               13                               14                               15                               16                               17                               18                               19                               20                               21                               22                               23                               24                               25                               26                               27                               28                               29                               30                               31                               32                               33                               34                               35                               36                               37                               38                               39                               40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font>             </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font><font color="black">,</font> negative   </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font>             </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font><font color="black">,</font> negative   </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25<!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                               12                               13                               14                               15                               16                               17                               18                               19                               20                               21                               22                               23                               24                               25                               26                               27                               28                               29                               30                               31                               32                               33                               34                               35                               36                               37                               38                               39                               40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font>            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30  31  32  33  34  35<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font><font color="black">,</font> negative  </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font>            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font><font color="black">,</font> negative  </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30  31  32  33  34  35<!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                               12                               13                               14                               15                               16                               17                               18                               19                               20                               21                               22                               23                               24                               25                               26                               27                               28                               29                               30                               31                               32                               33                               34                               35                               36                               37                               38                               39                               40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font>            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font><font color="black">,</font> negative  </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font>            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font><font color="black">,</font> negative  </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25<!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                               12                               13                               14                               15                               16                               17                               18                               19                               20                               21                               22                               23                               24                               25                               26                               27                               28                               29                               30                               31                               32                               33                               34                               35                               36                               37                               38                               39                               40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font>           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30  31  32  33  34  35<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font><font color="black">,</font> negative </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font>           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15  16  17  18  19  20  36  37  38  39  40<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font><font color="black">,</font> negative </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  22  23  24  25  26  27  28  29  30  31  32  33  34  35<!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p></div>
+                  <div id="padAjax82578a7c6cf0d6b17e8d3ad764a8339f"></div>
                   <script>
-                  padAjaxKQcMlOAo = new XMLHttpRequest();
-                  padAjaxKQcMlOAo.onreadystatechange=function() {
-                  if (padAjaxKQcMlOAo.readyState === 4) {
-                  if (padAjaxKQcMlOAo.status === 200) {
-                  document.getElementById("padAjaxKQcMlOAo").innerHTML=padAjaxKQcMlOAo.responseText;
+                  padAjax82578a7c6cf0d6b17e8d3ad764a8339f = new XMLHttpRequest();
+                  padAjax82578a7c6cf0d6b17e8d3ad764a8339f.onreadystatechange=function() {
+                  if (padAjax82578a7c6cf0d6b17e8d3ad764a8339f.readyState === 4) {
+                  if (padAjax82578a7c6cf0d6b17e8d3ad764a8339f.status === 200) {
+                  document.getElementById("padAjax82578a7c6cf0d6b17e8d3ad764a8339f").innerHTML=padAjax82578a7c6cf0d6b17e8d3ad764a8339f.responseText;
                   } else {
-                  document.getElementById("padAjaxKQcMlOAo").innerHTML=padAjaxKQcMlOAo.statusText;
+                  document.getElementById("padAjax82578a7c6cf0d6b17e8d3ad764a8339f").innerHTML=padAjax82578a7c6cf0d6b17e8d3ad764a8339f.statusText;
                   }
                   }
                   }
-                  padAjaxKQcMlOAo.open("GET","http://localhost/manual/?miscellaneous/handling&padInclude&padSesID=DiM2hOlW&padReqID=EJlhEjOD",true);
-                  padAjaxKQcMlOAo.send();
+                  padAjax82578a7c6cf0d6b17e8d3ad764a8339f.open("GET","http://localhost/pad/manual/?miscellaneous/handling&padInclude",true);
+                  padAjax82578a7c6cf0d6b17e8d3ad764a8339f.send();
                   </script><br>
+                  <hr>
+                  App: regression/framework - Page: options/a_dotted_option_value_keeps_the_level_name<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">options/a_dotted_option_value_keeps_the_level_name.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/a_dotted_option_value_keeps_the_level_name.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $items </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">"n" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"a" </span><span style="color: #007700">], [ </span><span style="color: #DD0000">"n" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"b" </span><span style="color: #007700">], [ </span><span style="color: #DD0000">"n" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"c" </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$cfg   </span><span style="color: #007700">= [ </span><span style="color: #DD0000">"max" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">items </font><font color="red">first=<font color="red">$</font>cfg.max</font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b>:<b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>items</font><font color="red"></font>}</b>/<b>{<font color="blue">count<font color="black"><b><font color="red">@</font></b></font>items</font><font color="red"></font>}</b> <b>{/<font color="blue">items</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax1905c0f20d0e7efbc018cf5d50f42794"></div>
+                        <script>
+                        padAjax1905c0f20d0e7efbc018cf5d50f42794 = new XMLHttpRequest();
+                        padAjax1905c0f20d0e7efbc018cf5d50f42794.onreadystatechange=function() {
+                        if (padAjax1905c0f20d0e7efbc018cf5d50f42794.readyState === 4) {
+                        if (padAjax1905c0f20d0e7efbc018cf5d50f42794.status === 200) {
+                        document.getElementById("padAjax1905c0f20d0e7efbc018cf5d50f42794").innerHTML=padAjax1905c0f20d0e7efbc018cf5d50f42794.responseText;
+                        } else {
+                        document.getElementById("padAjax1905c0f20d0e7efbc018cf5d50f42794").innerHTML=padAjax1905c0f20d0e7efbc018cf5d50f42794.statusText;
+                        }
+                        }
+                        }
+                        padAjax1905c0f20d0e7efbc018cf5d50f42794.open("GET","http://localhost/pad/regression/framework/?options/a_dotted_option_value_keeps_the_level_name&padInclude",true);
+                        padAjax1905c0f20d0e7efbc018cf5d50f42794.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: options/an_at_start_level_left_without_rows_renders_prelude_and_coda<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/an_at_start_level_left_without_rows_renders_prelude_and_coda.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>d<font color="black">'</font></font>}</b>[{"n":"a"},{"n":"b"},{"n":"c"}]<b>{/<font color="blue">data</font><font color="red"></font>}</b>&lt;<b>{<font color="blue">d </font><font color="red">negative<font color="black">,</font> first=3</font>}</b>pre <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b>x<b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b> post<b>{/<font color="blue">d</font><font color="red"></font>}</b>&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8f8d004e2b17f34c24647fbe91e6023e"></div>
+                        <script>
+                        padAjax8f8d004e2b17f34c24647fbe91e6023e = new XMLHttpRequest();
+                        padAjax8f8d004e2b17f34c24647fbe91e6023e.onreadystatechange=function() {
+                        if (padAjax8f8d004e2b17f34c24647fbe91e6023e.readyState === 4) {
+                        if (padAjax8f8d004e2b17f34c24647fbe91e6023e.status === 200) {
+                        document.getElementById("padAjax8f8d004e2b17f34c24647fbe91e6023e").innerHTML=padAjax8f8d004e2b17f34c24647fbe91e6023e.responseText;
+                        } else {
+                        document.getElementById("padAjax8f8d004e2b17f34c24647fbe91e6023e").innerHTML=padAjax8f8d004e2b17f34c24647fbe91e6023e.statusText;
+                        }
+                        }
+                        }
+                        padAjax8f8d004e2b17f34c24647fbe91e6023e.open("GET","http://localhost/pad/regression/framework/?options/an_at_start_level_left_without_rows_renders_prelude_and_coda&padInclude",true);
+                        padAjax8f8d004e2b17f34c24647fbe91e6023e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: options/first_takes_a_count_that_php_set_as_a_number<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">options/first_takes_a_count_that_php_set_as_a_number.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/first_takes_a_count_that_php_set_as_a_number.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $cnt </span><span style="color: #007700">= </span><span style="color: #0000BB">2</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>d<font color="black">'</font></font>}</b>[{"n":"a"},{"n":"b"},{"n":"c"}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">d </font><font color="red">first=<font color="red">$</font>cnt</font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">d</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax78d03f7da30a33c8b396d190fd1f80af"></div>
+                        <script>
+                        padAjax78d03f7da30a33c8b396d190fd1f80af = new XMLHttpRequest();
+                        padAjax78d03f7da30a33c8b396d190fd1f80af.onreadystatechange=function() {
+                        if (padAjax78d03f7da30a33c8b396d190fd1f80af.readyState === 4) {
+                        if (padAjax78d03f7da30a33c8b396d190fd1f80af.status === 200) {
+                        document.getElementById("padAjax78d03f7da30a33c8b396d190fd1f80af").innerHTML=padAjax78d03f7da30a33c8b396d190fd1f80af.responseText;
+                        } else {
+                        document.getElementById("padAjax78d03f7da30a33c8b396d190fd1f80af").innerHTML=padAjax78d03f7da30a33c8b396d190fd1f80af.statusText;
+                        }
+                        }
+                        }
+                        padAjax78d03f7da30a33c8b396d190fd1f80af.open("GET","http://localhost/pad/regression/framework/?options/first_takes_a_count_that_php_set_as_a_number&padInclude",true);
+                        padAjax78d03f7da30a33c8b396d190fd1f80af.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: options/first_takes_one_from_the_front<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/first_takes_one_from_the_front.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>n<font color="black">'</font></font>}</b><br>  [1,2,3,4,5,6]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">n </font><font color="red">first</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>n</font>}</b>,<br><b>{/<font color="blue">n</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb4f09b31a492e37eadca2f4c9c21e021"></div>
+                        <script>
+                        padAjaxb4f09b31a492e37eadca2f4c9c21e021 = new XMLHttpRequest();
+                        padAjaxb4f09b31a492e37eadca2f4c9c21e021.onreadystatechange=function() {
+                        if (padAjaxb4f09b31a492e37eadca2f4c9c21e021.readyState === 4) {
+                        if (padAjaxb4f09b31a492e37eadca2f4c9c21e021.status === 200) {
+                        document.getElementById("padAjaxb4f09b31a492e37eadca2f4c9c21e021").innerHTML=padAjaxb4f09b31a492e37eadca2f4c9c21e021.responseText;
+                        } else {
+                        document.getElementById("padAjaxb4f09b31a492e37eadca2f4c9c21e021").innerHTML=padAjaxb4f09b31a492e37eadca2f4c9c21e021.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb4f09b31a492e37eadca2f4c9c21e021.open("GET","http://localhost/pad/regression/framework/?options/first_takes_one_from_the_front&padInclude",true);
+                        padAjaxb4f09b31a492e37eadca2f4c9c21e021.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: options/first_with_a_count<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/first_with_a_count.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>n<font color="black">'</font></font>}</b><br>  [1,2,3,4,5,6]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">n </font><font color="red">first=2</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>n</font>}</b>,<br><b>{/<font color="blue">n</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxdfef492094361da65e76bd71189fc472"></div>
+                        <script>
+                        padAjaxdfef492094361da65e76bd71189fc472 = new XMLHttpRequest();
+                        padAjaxdfef492094361da65e76bd71189fc472.onreadystatechange=function() {
+                        if (padAjaxdfef492094361da65e76bd71189fc472.readyState === 4) {
+                        if (padAjaxdfef492094361da65e76bd71189fc472.status === 200) {
+                        document.getElementById("padAjaxdfef492094361da65e76bd71189fc472").innerHTML=padAjaxdfef492094361da65e76bd71189fc472.responseText;
+                        } else {
+                        document.getElementById("padAjaxdfef492094361da65e76bd71189fc472").innerHTML=padAjaxdfef492094361da65e76bd71189fc472.statusText;
+                        }
+                        }
+                        }
+                        padAjaxdfef492094361da65e76bd71189fc472.open("GET","http://localhost/pad/regression/framework/?options/first_with_a_count&padInclude",true);
+                        padAjaxdfef492094361da65e76bd71189fc472.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: options/first_zero_shows_the_else_branch<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/first_zero_shows_the_else_branch.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">staff </font><font color="red">first=0</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">staff</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax24d042bbb2695e06fce7214967e99446"></div>
+                        <script>
+                        padAjax24d042bbb2695e06fce7214967e99446 = new XMLHttpRequest();
+                        padAjax24d042bbb2695e06fce7214967e99446.onreadystatechange=function() {
+                        if (padAjax24d042bbb2695e06fce7214967e99446.readyState === 4) {
+                        if (padAjax24d042bbb2695e06fce7214967e99446.status === 200) {
+                        document.getElementById("padAjax24d042bbb2695e06fce7214967e99446").innerHTML=padAjax24d042bbb2695e06fce7214967e99446.responseText;
+                        } else {
+                        document.getElementById("padAjax24d042bbb2695e06fce7214967e99446").innerHTML=padAjax24d042bbb2695e06fce7214967e99446.statusText;
+                        }
+                        }
+                        }
+                        padAjax24d042bbb2695e06fce7214967e99446.open("GET","http://localhost/pad/regression/framework/?options/first_zero_shows_the_else_branch&padInclude",true);
+                        padAjax24d042bbb2695e06fce7214967e99446.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: options/group_runs_in_order_with_sort_and_first<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">options/group_runs_in_order_with_sort_and_first.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/group_runs_in_order_with_sort_and_first.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $orders </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">"number" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">"customer" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"bob"</span><span style="color: #007700">,   </span><span style="color: #DD0000">"total" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"10.10" </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">"number" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">"customer" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"alice"</span><span style="color: #007700">, </span><span style="color: #DD0000">"total" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">20      </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">"number" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">"customer" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"bob"</span><span style="color: #007700">,   </span><span style="color: #DD0000">"total" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"20.20" </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">"number" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">4</span><span style="color: #007700">, </span><span style="color: #DD0000">"customer" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"alice"</span><span style="color: #007700">, </span><span style="color: #DD0000">"total" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">7       </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">"number" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5</span><span style="color: #007700">, </span><span style="color: #DD0000">"customer" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"carol"</span><span style="color: #007700">, </span><span style="color: #DD0000">"total" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1       </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">orders </font><font color="red">sort=<font color="black">'</font>total<font color="black">'</font><font color="black">,</font> group=<font color="black">'</font>customer<font color="black">'</font></font>}</b>[<b>{<font color="green"><font color="red">$</font>customer</font>}</b>:<b>{<font color="blue">rows</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>number</font>}</b><b>{/<font color="blue">rows</font><font color="red"></font>}</b>]<b>{/<font color="blue">orders</font><font color="red"></font>}</b>|<b>{<font color="blue">orders </font><font color="red">group=<font color="black">'</font>customer<font color="black">'</font><font color="black">,</font> sum=<font color="black">'</font>total<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>total DESC<font color="black">'</font><font color="black">,</font> first=2</font>}</b>[<b>{<font color="green"><font color="red">$</font>customer</font>}</b> <b>{<font color="green"><font color="red">$</font>total</font>}</b>]<b>{/<font color="blue">orders</font><font color="red"></font>}</b>|<b>{<font color="blue">orders </font><font color="red">group=<font color="black">'</font>customer<font color="black">'</font><font color="black">,</font> where=<font color="black">'</font><font color="red">$</font>count gt 1<font color="black">'</font><font color="black">,</font> negative</font>}</b><b>{<font color="green"><font color="red">$</font>customer</font>}</b><b>{/<font color="blue">orders</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5695976b99177b53c8ace0a99edb069e"></div>
+                        <script>
+                        padAjax5695976b99177b53c8ace0a99edb069e = new XMLHttpRequest();
+                        padAjax5695976b99177b53c8ace0a99edb069e.onreadystatechange=function() {
+                        if (padAjax5695976b99177b53c8ace0a99edb069e.readyState === 4) {
+                        if (padAjax5695976b99177b53c8ace0a99edb069e.status === 200) {
+                        document.getElementById("padAjax5695976b99177b53c8ace0a99edb069e").innerHTML=padAjax5695976b99177b53c8ace0a99edb069e.responseText;
+                        } else {
+                        document.getElementById("padAjax5695976b99177b53c8ace0a99edb069e").innerHTML=padAjax5695976b99177b53c8ace0a99edb069e.statusText;
+                        }
+                        }
+                        }
+                        padAjax5695976b99177b53c8ace0a99edb069e.open("GET","http://localhost/pad/regression/framework/?options/group_runs_in_order_with_sort_and_first&padInclude",true);
+                        padAjax5695976b99177b53c8ace0a99edb069e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: options/last_zero_keeps_no_row_as_first_zero_does<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/last_zero_keeps_no_row_as_first_zero_does.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>u<font color="black">'</font></font>}</b>[1,2,3]<b>{/<font color="blue">data</font><font color="red"></font>}</b>[<b>{<font color="blue">u </font><font color="red">first=0</font>}</b><b>{<font color="green"><font color="red">$</font>u</font>}</b><b>{/<font color="blue">u</font><font color="red"></font>}</b>][<b>{<font color="blue">u </font><font color="red">last=0</font>}</b><b>{<font color="green"><font color="red">$</font>u</font>}</b><b>{/<font color="blue">u</font><font color="red"></font>}</b>][<b>{<font color="blue">u </font><font color="red">last=0<font color="black">,</font> negative</font>}</b><b>{<font color="green"><font color="red">$</font>u</font>}</b><b>{/<font color="blue">u</font><font color="red"></font>}</b>][<b>{<font color="blue">u </font><font color="red">last=2</font>}</b><b>{<font color="green"><font color="red">$</font>u</font>}</b><b>{/<font color="blue">u</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxcff95842b781046f246f93f164cc8058"></div>
+                        <script>
+                        padAjaxcff95842b781046f246f93f164cc8058 = new XMLHttpRequest();
+                        padAjaxcff95842b781046f246f93f164cc8058.onreadystatechange=function() {
+                        if (padAjaxcff95842b781046f246f93f164cc8058.readyState === 4) {
+                        if (padAjaxcff95842b781046f246f93f164cc8058.status === 200) {
+                        document.getElementById("padAjaxcff95842b781046f246f93f164cc8058").innerHTML=padAjaxcff95842b781046f246f93f164cc8058.responseText;
+                        } else {
+                        document.getElementById("padAjaxcff95842b781046f246f93f164cc8058").innerHTML=padAjaxcff95842b781046f246f93f164cc8058.statusText;
+                        }
+                        }
+                        }
+                        padAjaxcff95842b781046f246f93f164cc8058.open("GET","http://localhost/pad/regression/framework/?options/last_zero_keeps_no_row_as_first_zero_does&padInclude",true);
+                        padAjaxcff95842b781046f246f93f164cc8058.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: options/negative_inverts_the_selection_and_leaves_the_order_alone<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/negative_inverts_the_selection_and_leaves_the_order_alone.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>xs<font color="black">'</font></font>}</b><br>  [3,1,4,2]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br>[<b>{<font color="blue">xs </font><font color="red">where=<font color="black">'</font><font color="red">$</font>xs gt 2<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>xs<font color="black">'</font><font color="black">,</font> negative</font>}</b><b>{<font color="green"><font color="red">$</font>xs</font>}</b><b>{/<font color="blue">xs</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue">xs </font><font color="red">first=2<font color="black">,</font> reverse<font color="black">,</font> negative</font>}</b><b>{<font color="green"><font color="red">$</font>xs</font>}</b><b>{/<font color="blue">xs</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax57cb656e649916512335843a05933d1a"></div>
+                        <script>
+                        padAjax57cb656e649916512335843a05933d1a = new XMLHttpRequest();
+                        padAjax57cb656e649916512335843a05933d1a.onreadystatechange=function() {
+                        if (padAjax57cb656e649916512335843a05933d1a.readyState === 4) {
+                        if (padAjax57cb656e649916512335843a05933d1a.status === 200) {
+                        document.getElementById("padAjax57cb656e649916512335843a05933d1a").innerHTML=padAjax57cb656e649916512335843a05933d1a.responseText;
+                        } else {
+                        document.getElementById("padAjax57cb656e649916512335843a05933d1a").innerHTML=padAjax57cb656e649916512335843a05933d1a.statusText;
+                        }
+                        }
+                        }
+                        padAjax57cb656e649916512335843a05933d1a.open("GET","http://localhost/pad/regression/framework/?options/negative_inverts_the_selection_and_leaves_the_order_alone&padInclude",true);
+                        padAjax57cb656e649916512335843a05933d1a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: options/negative_keeps_what_the_option_would_have_dropped<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/negative_keeps_what_the_option_would_have_dropped.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>n<font color="black">'</font></font>}</b><br>  [1,2,3,4,5,6]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">n </font><font color="red">first=2<font color="black">,</font> negative</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>n</font>}</b>,<br><b>{/<font color="blue">n</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa50412b78e4656ab79d4a42559c74162"></div>
+                        <script>
+                        padAjaxa50412b78e4656ab79d4a42559c74162 = new XMLHttpRequest();
+                        padAjaxa50412b78e4656ab79d4a42559c74162.onreadystatechange=function() {
+                        if (padAjaxa50412b78e4656ab79d4a42559c74162.readyState === 4) {
+                        if (padAjaxa50412b78e4656ab79d4a42559c74162.status === 200) {
+                        document.getElementById("padAjaxa50412b78e4656ab79d4a42559c74162").innerHTML=padAjaxa50412b78e4656ab79d4a42559c74162.responseText;
+                        } else {
+                        document.getElementById("padAjaxa50412b78e4656ab79d4a42559c74162").innerHTML=padAjaxa50412b78e4656ab79d4a42559c74162.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa50412b78e4656ab79d4a42559c74162.open("GET","http://localhost/pad/regression/framework/?options/negative_keeps_what_the_option_would_have_dropped&padInclude",true);
+                        padAjaxa50412b78e4656ab79d4a42559c74162.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: options/negative_leaves_sort_reverse_and_shuffle_their_rows<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/negative_leaves_sort_reverse_and_shuffle_their_rows.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>n<font color="black">'</font></font>}</b><br>  [3,1,5,2,4]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br>[<b>{<font color="blue">n </font><font color="red">where=<font color="black">'</font><font color="red">$</font>n gt 2<font color="black">'</font><font color="black">,</font> sort<font color="black">,</font> negative</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>n</font>}</b>,<br><b>{/<font color="blue">n</font><font color="red"></font>}</b>][<b>{<font color="blue">n </font><font color="red">first=2<font color="black">,</font> reverse<font color="black">,</font> negative</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>n</font>}</b>,<br><b>{/<font color="blue">n</font><font color="red"></font>}</b>][<b>{<font color="blue">n </font><font color="red">sort<font color="black">,</font> last=2<font color="black">,</font> negative</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>n</font>}</b>,<br><b>{/<font color="blue">n</font><font color="red"></font>}</b>][<b>{<font color="blue">n </font><font color="red">first=3<font color="black">,</font> shuffle<font color="black">,</font> negative</font>}</b><br>  x<br><b>{/<font color="blue">n</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax95f9d9119f7de1712ebbca22fe38aece"></div>
+                        <script>
+                        padAjax95f9d9119f7de1712ebbca22fe38aece = new XMLHttpRequest();
+                        padAjax95f9d9119f7de1712ebbca22fe38aece.onreadystatechange=function() {
+                        if (padAjax95f9d9119f7de1712ebbca22fe38aece.readyState === 4) {
+                        if (padAjax95f9d9119f7de1712ebbca22fe38aece.status === 200) {
+                        document.getElementById("padAjax95f9d9119f7de1712ebbca22fe38aece").innerHTML=padAjax95f9d9119f7de1712ebbca22fe38aece.responseText;
+                        } else {
+                        document.getElementById("padAjax95f9d9119f7de1712ebbca22fe38aece").innerHTML=padAjax95f9d9119f7de1712ebbca22fe38aece.statusText;
+                        }
+                        }
+                        }
+                        padAjax95f9d9119f7de1712ebbca22fe38aece.open("GET","http://localhost/pad/regression/framework/?options/negative_leaves_sort_reverse_and_shuffle_their_rows&padInclude",true);
+                        padAjax95f9d9119f7de1712ebbca22fe38aece.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: options/where_runs_in_order_with_first<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/where_runs_in_order_with_first.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">staff </font><font color="red">where=<font color="black">'</font><font color="red">$</font>salary gt 1500<font color="black">'</font><font color="black">,</font> first=2</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staff</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax4e417245c4652172db9ca70b852599d9"></div>
+                        <script>
+                        padAjax4e417245c4652172db9ca70b852599d9 = new XMLHttpRequest();
+                        padAjax4e417245c4652172db9ca70b852599d9.onreadystatechange=function() {
+                        if (padAjax4e417245c4652172db9ca70b852599d9.readyState === 4) {
+                        if (padAjax4e417245c4652172db9ca70b852599d9.status === 200) {
+                        document.getElementById("padAjax4e417245c4652172db9ca70b852599d9").innerHTML=padAjax4e417245c4652172db9ca70b852599d9.responseText;
+                        } else {
+                        document.getElementById("padAjax4e417245c4652172db9ca70b852599d9").innerHTML=padAjax4e417245c4652172db9ca70b852599d9.statusText;
+                        }
+                        }
+                        }
+                        padAjax4e417245c4652172db9ca70b852599d9.open("GET","http://localhost/pad/regression/framework/?options/where_runs_in_order_with_first&padInclude",true);
+                        padAjax4e417245c4652172db9ca70b852599d9.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/ifchanged_starts_afresh_when_the_loop_runs_again<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/ifchanged_starts_afresh_when_the_loop_runs_again.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>orders<font color="black">'</font></font>}</b>[{"c":"ann","n":1},{"c":"ann","n":2},{"c":"bob","n":3},{"c":"ann","n":4}]<b>{/<font color="blue">data</font><font color="red"></font>}</b>[<b>{<font color="blue">orders </font><font color="red">first=2</font>}</b><b>{<font color="blue">ifchanged </font><font color="red"><font color="red">$</font>c</font>}</b>&lt;h&gt;<b>{<font color="green"><font color="red">$</font>c</font>}</b>&lt;/h&gt;<b>{/<font color="blue">ifchanged</font><font color="red"></font>}</b><b>{/<font color="blue">orders</font><font color="red"></font>}</b>][<b>{<font color="blue">orders </font><font color="red">first=2</font>}</b><b>{<font color="blue">ifchanged </font><font color="red"><font color="red">$</font>c</font>}</b>&lt;h&gt;<b>{<font color="green"><font color="red">$</font>c</font>}</b>&lt;/h&gt;<b>{/<font color="blue">ifchanged</font><font color="red"></font>}</b><b>{/<font color="blue">orders</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax452d041acc963353785db69c22dc4e28"></div>
+                        <script>
+                        padAjax452d041acc963353785db69c22dc4e28 = new XMLHttpRequest();
+                        padAjax452d041acc963353785db69c22dc4e28.onreadystatechange=function() {
+                        if (padAjax452d041acc963353785db69c22dc4e28.readyState === 4) {
+                        if (padAjax452d041acc963353785db69c22dc4e28.status === 200) {
+                        document.getElementById("padAjax452d041acc963353785db69c22dc4e28").innerHTML=padAjax452d041acc963353785db69c22dc4e28.responseText;
+                        } else {
+                        document.getElementById("padAjax452d041acc963353785db69c22dc4e28").innerHTML=padAjax452d041acc963353785db69c22dc4e28.statusText;
+                        }
+                        }
+                        }
+                        padAjax452d041acc963353785db69c22dc4e28.open("GET","http://localhost/pad/regression/framework/?tags/ifchanged_starts_afresh_when_the_loop_runs_again&padInclude",true);
+                        padAjax452d041acc963353785db69c22dc4e28.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
-          </tbody></table>
+          </table>
         </blockquote>
       </center>
     </blockquote>
@@ -371,17 +585,17 @@
       <hr width="75%">
       <br>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table>
+      </table>
       <p>
         <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
       </p>
     </center>
-  
-</body></html>
+  </body>
+</html>

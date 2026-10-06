@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - v
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - v
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: lenient/a_wrong_data_type_sniffs_the_data<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">lenient/a_wrong_data_type_sniffs_the_data.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">lenient/a_wrong_data_type_sniffs_the_data.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The lenient walk under test: with the syntax check off, what cannot be evaluated<br>  // yields empty, what nothing claims stays as written, and the walk carries on.<br><br>  </span><span style="color: #0000BB">$padCheckSyntax </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>v<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>nope<font color="black">'</font></font>}</b>[7]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">v</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>v</font>}</b><b>{/<font color="blue">v</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd318623a559c1ecca9bba398e1a7644e"></div>
+                        <script>
+                        padAjaxd318623a559c1ecca9bba398e1a7644e = new XMLHttpRequest();
+                        padAjaxd318623a559c1ecca9bba398e1a7644e.onreadystatechange=function() {
+                        if (padAjaxd318623a559c1ecca9bba398e1a7644e.readyState === 4) {
+                        if (padAjaxd318623a559c1ecca9bba398e1a7644e.status === 200) {
+                        document.getElementById("padAjaxd318623a559c1ecca9bba398e1a7644e").innerHTML=padAjaxd318623a559c1ecca9bba398e1a7644e.responseText;
+                        } else {
+                        document.getElementById("padAjaxd318623a559c1ecca9bba398e1a7644e").innerHTML=padAjaxd318623a559c1ecca9bba398e1a7644e.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd318623a559c1ecca9bba398e1a7644e.open("GET","http://localhost/pad/regression/framework/?lenient/a_wrong_data_type_sniffs_the_data&padInclude",true);
+                        padAjaxd318623a559c1ecca9bba398e1a7644e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: lenient/an_empty_option_value_reads_as_a_flag<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">lenient/an_empty_option_value_reads_as_a_flag.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">lenient/an_empty_option_value_reads_as_a_flag.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The lenient walk under test: with the syntax check off, what cannot be evaluated<br>  // yields empty, what nothing claims stays as written, and the walk carries on.<br><br>  </span><span style="color: #0000BB">$padCheckSyntax </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>v<font color="black">'</font><font color="black">,</font> type=</font>}</b>[7]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">v</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>v</font>}</b><b>{/<font color="blue">v</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb6725512e6123822b7e7a9dcddd7535e"></div>
+                        <script>
+                        padAjaxb6725512e6123822b7e7a9dcddd7535e = new XMLHttpRequest();
+                        padAjaxb6725512e6123822b7e7a9dcddd7535e.onreadystatechange=function() {
+                        if (padAjaxb6725512e6123822b7e7a9dcddd7535e.readyState === 4) {
+                        if (padAjaxb6725512e6123822b7e7a9dcddd7535e.status === 200) {
+                        document.getElementById("padAjaxb6725512e6123822b7e7a9dcddd7535e").innerHTML=padAjaxb6725512e6123822b7e7a9dcddd7535e.responseText;
+                        } else {
+                        document.getElementById("padAjaxb6725512e6123822b7e7a9dcddd7535e").innerHTML=padAjaxb6725512e6123822b7e7a9dcddd7535e.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb6725512e6123822b7e7a9dcddd7535e.open("GET","http://localhost/pad/regression/framework/?lenient/an_empty_option_value_reads_as_a_flag&padInclude",true);
+                        padAjaxb6725512e6123822b7e7a9dcddd7535e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: lenient/an_unread_option_is_ignored<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">lenient/an_unread_option_is_ignored.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">lenient/an_unread_option_is_ignored.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The lenient walk under test: with the syntax check off, what nothing claims stays in<br>  // the output as written.<br><br>  </span><span style="color: #0000BB">$padCheckSyntax </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>v<font color="black">'</font><font color="black">,</font> ignor</font>}</b>[7]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">v</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>v</font>}</b><b>{/<font color="blue">v</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxdb61ad313120688eee35358f96ca95ad"></div>
+                        <script>
+                        padAjaxdb61ad313120688eee35358f96ca95ad = new XMLHttpRequest();
+                        padAjaxdb61ad313120688eee35358f96ca95ad.onreadystatechange=function() {
+                        if (padAjaxdb61ad313120688eee35358f96ca95ad.readyState === 4) {
+                        if (padAjaxdb61ad313120688eee35358f96ca95ad.status === 200) {
+                        document.getElementById("padAjaxdb61ad313120688eee35358f96ca95ad").innerHTML=padAjaxdb61ad313120688eee35358f96ca95ad.responseText;
+                        } else {
+                        document.getElementById("padAjaxdb61ad313120688eee35358f96ca95ad").innerHTML=padAjaxdb61ad313120688eee35358f96ca95ad.statusText;
+                        }
+                        }
+                        }
+                        padAjaxdb61ad313120688eee35358f96ca95ad.open("GET","http://localhost/pad/regression/framework/?lenient/an_unread_option_is_ignored&padInclude",true);
+                        padAjaxdb61ad313120688eee35358f96ca95ad.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

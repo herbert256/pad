@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - PAD tags - live
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - PAD tags - live
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: fragments/live_1<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/live_1.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/live_1.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $count </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padLiveValue </span><span style="color: #007700">();<br><br>  if ( </span><span style="color: #0000BB">padLiveEvent </span><span style="color: #007700">() == </span><span style="color: #DD0000">'add'   </span><span style="color: #007700">) </span><span style="color: #0000BB">$count</span><span style="color: #007700">++;<br>  if ( </span><span style="color: #0000BB">padLiveEvent </span><span style="color: #007700">() == </span><span style="color: #DD0000">'reset' </span><span style="color: #007700">) </span><span style="color: #0000BB">$count </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>counter<font color="black">'</font></font>}</b><br>  &lt;p&gt;Clicked <b>{<font color="green"><font color="red">$</font>count</font>}</b> times&lt;/p&gt;<br>  &lt;button pad-click="add" pad-value="<b>{<font color="green"><font color="red">$</font>count</font>}</b>"&gt;Add one&lt;/button&gt;<br>  &lt;button pad-click="reset"&gt;Reset&lt;/button&gt;<br><b>{/<font color="blue">live</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax40b01b63012c6fdf34b6f6dd815b937e"></div>
+                        <script>
+                        padAjax40b01b63012c6fdf34b6f6dd815b937e = new XMLHttpRequest();
+                        padAjax40b01b63012c6fdf34b6f6dd815b937e.onreadystatechange=function() {
+                        if (padAjax40b01b63012c6fdf34b6f6dd815b937e.readyState === 4) {
+                        if (padAjax40b01b63012c6fdf34b6f6dd815b937e.status === 200) {
+                        document.getElementById("padAjax40b01b63012c6fdf34b6f6dd815b937e").innerHTML=padAjax40b01b63012c6fdf34b6f6dd815b937e.responseText;
+                        } else {
+                        document.getElementById("padAjax40b01b63012c6fdf34b6f6dd815b937e").innerHTML=padAjax40b01b63012c6fdf34b6f6dd815b937e.statusText;
+                        }
+                        }
+                        }
+                        padAjax40b01b63012c6fdf34b6f6dd815b937e.open("GET","http://localhost/pad/manual/?fragments/live_1&padInclude",true);
+                        padAjax40b01b63012c6fdf34b6f6dd815b937e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_live_region_must_close<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_live_region_must_close.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>a<font color="black">'</font></font>}</b>x</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax01132016e531bbf3bdef8a776419c820"></div>
+                        <script>
+                        padAjax01132016e531bbf3bdef8a776419c820 = new XMLHttpRequest();
+                        padAjax01132016e531bbf3bdef8a776419c820.onreadystatechange=function() {
+                        if (padAjax01132016e531bbf3bdef8a776419c820.readyState === 4) {
+                        if (padAjax01132016e531bbf3bdef8a776419c820.status === 200) {
+                        document.getElementById("padAjax01132016e531bbf3bdef8a776419c820").innerHTML=padAjax01132016e531bbf3bdef8a776419c820.responseText;
+                        } else {
+                        document.getElementById("padAjax01132016e531bbf3bdef8a776419c820").innerHTML=padAjax01132016e531bbf3bdef8a776419c820.statusText;
+                        }
+                        }
+                        }
+                        padAjax01132016e531bbf3bdef8a776419c820.open("GET","http://localhost/pad/regression/errors/?syntax/a_live_region_must_close&padInclude",true);
+                        padAjax01132016e531bbf3bdef8a776419c820.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_live_region_needs_a_name<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_live_region_needs_a_name.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">live</font><font color="red"></font>}</b>x<b>{/<font color="blue">live</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxce733927dba16f8d1793e4806975dded"></div>
+                        <script>
+                        padAjaxce733927dba16f8d1793e4806975dded = new XMLHttpRequest();
+                        padAjaxce733927dba16f8d1793e4806975dded.onreadystatechange=function() {
+                        if (padAjaxce733927dba16f8d1793e4806975dded.readyState === 4) {
+                        if (padAjaxce733927dba16f8d1793e4806975dded.status === 200) {
+                        document.getElementById("padAjaxce733927dba16f8d1793e4806975dded").innerHTML=padAjaxce733927dba16f8d1793e4806975dded.responseText;
+                        } else {
+                        document.getElementById("padAjaxce733927dba16f8d1793e4806975dded").innerHTML=padAjaxce733927dba16f8d1793e4806975dded.statusText;
+                        }
+                        }
+                        }
+                        padAjaxce733927dba16f8d1793e4806975dded.open("GET","http://localhost/pad/regression/errors/?syntax/a_live_region_needs_a_name&padInclude",true);
+                        padAjaxce733927dba16f8d1793e4806975dded.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_page_with_a_live_counter<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_page_with_a_live_counter.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_page_with_a_live_counter.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $count </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padLiveValue </span><span style="color: #007700">();<br><br>  if ( </span><span style="color: #0000BB">padLiveEvent </span><span style="color: #007700">() == </span><span style="color: #DD0000">'add' </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$count</span><span style="color: #007700">++;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;h1&gt;Counter&lt;/h1&gt;<b>{<font color="blue">live </font><font color="red"><font color="black">'</font>counter<font color="black">'</font></font>}</b>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b>&lt;/p&gt;&lt;button pad-click="add" pad-value="<b>{<font color="green"><font color="red">$</font>count</font>}</b>"&gt;+1&lt;/button&gt;<b>{/<font color="blue">live</font><font color="red"></font>}</b>&lt;p&gt;after&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax1a52760437e54bfc55909041eb5cbd3b"></div>
+                        <script>
+                        padAjax1a52760437e54bfc55909041eb5cbd3b = new XMLHttpRequest();
+                        padAjax1a52760437e54bfc55909041eb5cbd3b.onreadystatechange=function() {
+                        if (padAjax1a52760437e54bfc55909041eb5cbd3b.readyState === 4) {
+                        if (padAjax1a52760437e54bfc55909041eb5cbd3b.status === 200) {
+                        document.getElementById("padAjax1a52760437e54bfc55909041eb5cbd3b").innerHTML=padAjax1a52760437e54bfc55909041eb5cbd3b.responseText;
+                        } else {
+                        document.getElementById("padAjax1a52760437e54bfc55909041eb5cbd3b").innerHTML=padAjax1a52760437e54bfc55909041eb5cbd3b.statusText;
+                        }
+                        }
+                        }
+                        padAjax1a52760437e54bfc55909041eb5cbd3b.open("GET","http://localhost/pad/regression/framework/?tags/a_page_with_a_live_counter&padInclude",true);
+                        padAjax1a52760437e54bfc55909041eb5cbd3b.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_page_with_a_stack_in_a_live_region<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_page_with_a_stack_in_a_live_region.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_page_with_a_stack_in_a_live_region.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $n </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padLiveValue </span><span style="color: #007700">() + </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>box<font color="black">'</font></font>}</b>&lt;ul&gt;<b>{<font color="blue">stack </font><font color="red"><font color="black">'</font>items<font color="black">'</font></font>}</b>&lt;/ul&gt;<b>{<font color="blue">push </font><font color="red"><font color="black">'</font>items<font color="black">'</font></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>n</font>}</b>&lt;/li&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b><b>{/<font color="blue">live</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax4e10d31979e116e20dcdd27fb0821c33"></div>
+                        <script>
+                        padAjax4e10d31979e116e20dcdd27fb0821c33 = new XMLHttpRequest();
+                        padAjax4e10d31979e116e20dcdd27fb0821c33.onreadystatechange=function() {
+                        if (padAjax4e10d31979e116e20dcdd27fb0821c33.readyState === 4) {
+                        if (padAjax4e10d31979e116e20dcdd27fb0821c33.status === 200) {
+                        document.getElementById("padAjax4e10d31979e116e20dcdd27fb0821c33").innerHTML=padAjax4e10d31979e116e20dcdd27fb0821c33.responseText;
+                        } else {
+                        document.getElementById("padAjax4e10d31979e116e20dcdd27fb0821c33").innerHTML=padAjax4e10d31979e116e20dcdd27fb0821c33.statusText;
+                        }
+                        }
+                        }
+                        padAjax4e10d31979e116e20dcdd27fb0821c33.open("GET","http://localhost/pad/regression/framework/?tags/a_page_with_a_stack_in_a_live_region&padInclude",true);
+                        padAjax4e10d31979e116e20dcdd27fb0821c33.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/live_wraps_its_content_in_a_region_and_brings_the_script_once<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/live_wraps_its_content_in_a_region_and_brings_the_script_once.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>a<font color="black">'</font></font>}</b>x<b>{/<font color="blue">live</font><font color="red"></font>}</b><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>b<font color="black">'</font></font>}</b>y<b>{/<font color="blue">live</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxeffd41e0c906e05ab0a42fd47ac5992b"></div>
+                        <script>
+                        padAjaxeffd41e0c906e05ab0a42fd47ac5992b = new XMLHttpRequest();
+                        padAjaxeffd41e0c906e05ab0a42fd47ac5992b.onreadystatechange=function() {
+                        if (padAjaxeffd41e0c906e05ab0a42fd47ac5992b.readyState === 4) {
+                        if (padAjaxeffd41e0c906e05ab0a42fd47ac5992b.status === 200) {
+                        document.getElementById("padAjaxeffd41e0c906e05ab0a42fd47ac5992b").innerHTML=padAjaxeffd41e0c906e05ab0a42fd47ac5992b.responseText;
+                        } else {
+                        document.getElementById("padAjaxeffd41e0c906e05ab0a42fd47ac5992b").innerHTML=padAjaxeffd41e0c906e05ab0a42fd47ac5992b.statusText;
+                        }
+                        }
+                        }
+                        padAjaxeffd41e0c906e05ab0a42fd47ac5992b.open("GET","http://localhost/pad/regression/framework/?tags/live_wraps_its_content_in_a_region_and_brings_the_script_once&padInclude",true);
+                        padAjaxeffd41e0c906e05ab0a42fd47ac5992b.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: live/counter<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">live/counter.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">live/counter.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A live counter on a page that has $padCsrf on (the application's _config/config.php<br>  // switches it on for this page): live/csrf.php fetches it and posts its events.<br><br>  </span><span style="color: #0000BB">$count </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padLiveValue </span><span style="color: #007700">();<br><br>  if ( </span><span style="color: #0000BB">padLiveEvent </span><span style="color: #007700">() == </span><span style="color: #DD0000">'add' </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$count</span><span style="color: #007700">++;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>counter<font color="black">'</font></font>}</b>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b>&lt;/p&gt;&lt;button pad-click="add" pad-value="<b>{<font color="green"><font color="red">$</font>count</font>}</b>"&gt;+1&lt;/button&gt;<b>{/<font color="blue">live</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd66b9786df2b601b523ca5dd455798db"></div>
+                        <script>
+                        padAjaxd66b9786df2b601b523ca5dd455798db = new XMLHttpRequest();
+                        padAjaxd66b9786df2b601b523ca5dd455798db.onreadystatechange=function() {
+                        if (padAjaxd66b9786df2b601b523ca5dd455798db.readyState === 4) {
+                        if (padAjaxd66b9786df2b601b523ca5dd455798db.status === 200) {
+                        document.getElementById("padAjaxd66b9786df2b601b523ca5dd455798db").innerHTML=padAjaxd66b9786df2b601b523ca5dd455798db.responseText;
+                        } else {
+                        document.getElementById("padAjaxd66b9786df2b601b523ca5dd455798db").innerHTML=padAjaxd66b9786df2b601b523ca5dd455798db.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd66b9786df2b601b523ca5dd455798db.open("GET","http://localhost/pad/regression/pages/?live/counter&padInclude",true);
+                        padAjaxd66b9786df2b601b523ca5dd455798db.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: request/livebar<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">request/livebar.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">request/livebar.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The page a live event is posted to, with the development helpers on: the toolbar, the<br>  // live reload script and the output check belong to the page, not to the region the<br>  // answer to an event replaces.<br><br>  </span><span style="color: #0000BB">$padToolbar     </span><span style="color: #007700">= </span><span style="color: #DD0000">'local'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padReload      </span><span style="color: #007700">= </span><span style="color: #DD0000">'local'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padCheckOutput </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>bar<font color="black">'</font></font>}</b>&lt;p&gt;region&lt;/p&gt;&lt;input name="q"&gt;<b>{/<font color="blue">live</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd37eee63d4d82fff0e5b850790d41269"></div>
+                        <script>
+                        padAjaxd37eee63d4d82fff0e5b850790d41269 = new XMLHttpRequest();
+                        padAjaxd37eee63d4d82fff0e5b850790d41269.onreadystatechange=function() {
+                        if (padAjaxd37eee63d4d82fff0e5b850790d41269.readyState === 4) {
+                        if (padAjaxd37eee63d4d82fff0e5b850790d41269.status === 200) {
+                        document.getElementById("padAjaxd37eee63d4d82fff0e5b850790d41269").innerHTML=padAjaxd37eee63d4d82fff0e5b850790d41269.responseText;
+                        } else {
+                        document.getElementById("padAjaxd37eee63d4d82fff0e5b850790d41269").innerHTML=padAjaxd37eee63d4d82fff0e5b850790d41269.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd37eee63d4d82fff0e5b850790d41269.open("GET","http://localhost/pad/regression/pages/?request/livebar&padInclude",true);
+                        padAjaxd37eee63d4d82fff0e5b850790d41269.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: request/livecsrf<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">request/livecsrf.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">request/livecsrf.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The page a live event is posted to, with CSRF protection on (_config/config.php). The<br>  // event's value is shown, so the answer says the page ran for it.<br><br>  </span><span style="color: #0000BB">$liveSaid </span><span style="color: #007700">= </span><span style="color: #0000BB">padLiveValue </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b>&lt;p&gt;said <b>{<font color="green"><font color="red">$</font>liveSaid</font>}</b>&lt;/p&gt;<b>{/<font color="blue">live</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax7c02f5d3978cba317321b9c30bf2b4c7"></div>
+                        <script>
+                        padAjax7c02f5d3978cba317321b9c30bf2b4c7 = new XMLHttpRequest();
+                        padAjax7c02f5d3978cba317321b9c30bf2b4c7.onreadystatechange=function() {
+                        if (padAjax7c02f5d3978cba317321b9c30bf2b4c7.readyState === 4) {
+                        if (padAjax7c02f5d3978cba317321b9c30bf2b4c7.status === 200) {
+                        document.getElementById("padAjax7c02f5d3978cba317321b9c30bf2b4c7").innerHTML=padAjax7c02f5d3978cba317321b9c30bf2b4c7.responseText;
+                        } else {
+                        document.getElementById("padAjax7c02f5d3978cba317321b9c30bf2b4c7").innerHTML=padAjax7c02f5d3978cba317321b9c30bf2b4c7.statusText;
+                        }
+                        }
+                        }
+                        padAjax7c02f5d3978cba317321b9c30bf2b4c7.open("GET","http://localhost/pad/regression/pages/?request/livecsrf&padInclude",true);
+                        padAjax7c02f5d3978cba317321b9c30bf2b4c7.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Hashing and encryption
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Hashing and encryption
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <div style="display: inline-block; text-align: left;">
+                    <p>
+                      Three jobs every application with users meets: keeping passwords so that nobody - the database's reader included - can read them back; handing a value to the browser that it cannot read or change; and sending a link that works for the one who got it, until it expires. PHP has the building blocks - <code>password_hash</code>, sodium, <code>hash_hmac</code> - and these helpers put them together the safe way.
+                    </p>
+                    <table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
+                      <tr>
+                        <th>
+                          function
+                        </th>
+                        <th>
+                          what it answers
+                        </th>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padHash ( $password )</code>
+                        </td>
+                        <td>
+                          the password hashed with <code>password_hash</code> and PHP's default algorithm - the text to store
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padHashCheck ( $password, $hash )</code>
+                        </td>
+                        <td>
+                          whether the password matches the hash
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padHashNeedsRehash ( $hash )</code>
+                        </td>
+                        <td>
+                          whether the hash was made with weaker settings than PHP's default now
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padEncrypt ( $value )</code>
+                        </td>
+                        <td>
+                          the value sealed: JSON-encoded, encrypted and signed, as one URL-safe string
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padDecrypt ( $payload, $default = NULL )</code>
+                        </td>
+                        <td>
+                          the value back - or the default for a payload that was changed, cut short or sealed with another key
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padSignedUrl ( $page, $vars = [], $expires = NULL )</code>
+                        </td>
+                        <td>
+                          a link to a page of this application with an expiry time and a signature
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padSignatureValid ()</code>
+                        </td>
+                        <td>
+                          whether this request came by such a link, unchanged and not expired
+                        </td>
+                      </tr>
+                    </table>
+                    <h2>
+                      Passwords
+                    </h2>
+                    <p>
+                      A password is never stored, only its hash. <code>padHash</code> makes one with a new random salt each time, so two users with the same password get different hashes; <code>padHashCheck</code> tells whether a password typed at login matches the stored hash.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/hashing_and_encryption_1.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/hashing_and_encryption_1.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $phrase </span><span style="color: #007700">= </span><span style="color: #DD0000">'correct horse battery staple'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$hash   </span><span style="color: #007700">= </span><span style="color: #0000BB">padHash </span><span style="color: #007700">( </span><span style="color: #0000BB">$phrase </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$right  </span><span style="color: #007700">= </span><span style="color: #0000BB">padHashCheck </span><span style="color: #007700">( </span><span style="color: #0000BB">$phrase</span><span style="color: #007700">, </span><span style="color: #0000BB">$hash </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$wrong  </span><span style="color: #007700">= </span><span style="color: #0000BB">padHashCheck </span><span style="color: #007700">( </span><span style="color: #DD0000">'Tr0ub4dor&amp;3'</span><span style="color: #007700">, </span><span style="color: #0000BB">$hash </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$rehash </span><span style="color: #007700">= </span><span style="color: #0000BB">padHashNeedsRehash </span><span style="color: #007700">( </span><span style="color: #0000BB">$hash </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$shape  </span><span style="color: #007700">= </span><span style="color: #0000BB">substr </span><span style="color: #007700">( </span><span style="color: #0000BB">$hash</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">4 </span><span style="color: #007700">) . </span><span style="color: #DD0000">'... '<br>          </span><span style="color: #007700">. </span><span style="color: #0000BB">strlen </span><span style="color: #007700">( </span><span style="color: #0000BB">$hash </span><span style="color: #007700">) . </span><span style="color: #DD0000">' characters'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;p&gt;Stored: <b>{<font color="green"><font color="red">$</font>shape</font>}</b>&lt;/p&gt;<br>&lt;p&gt;The right password matches: <b>{<font color="green"><font color="red">$</font>right</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Another password matches: <b>{<font color="green"><font color="red">$</font>wrong</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Needs a new hash: <b>{<font color="green"><font color="red">$</font>rehash</font>}</b>&lt;/p&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <p>
+                            Stored: $2y$... 60 characters
+                          </p>
+                          <p>
+                            The right password matches: yes
+                          </p>
+                          <p>
+                            Another password matches: no
+                          </p>
+                          <p>
+                            Needs a new hash: no
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <ul>
+                      <li>After a successful login, <code>padHashNeedsRehash</code> says whether the stored hash was made with older settings - a lower cost, an older algorithm. The password is at hand right then, so the hash can be made again and stored.
+                      </li>
+                      <li>A password that is no text, or a hash that is none - the <code>NULL</code> of a user that does not exist - simply does not match: <code>padHashCheck</code> answers <code>FALSE</code>, never an error.
+                      </li>
+                    </ul>
+                    <h2>
+                      Sealed values
+                    </h2>
+                    <p>
+                      <code>padEncrypt</code> seals a value - text, a number, an array: whatever JSON holds - so it can travel through the browser in a cookie, a hidden field or a link, and come back unread and unchanged. Anyone can carry the payload; only the application can open it.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/hashing_and_encryption_2.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/hashing_and_encryption_2.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $payload </span><span style="color: #007700">= </span><span style="color: #0000BB">padEncrypt </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1042</span><span style="color: #007700">,<br>                            </span><span style="color: #DD0000">'step'  </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'payment' </span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">$length  </span><span style="color: #007700">= </span><span style="color: #0000BB">strlen </span><span style="color: #007700">( </span><span style="color: #0000BB">$payload </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$back    </span><span style="color: #007700">= </span><span style="color: #0000BB">padDecrypt </span><span style="color: #007700">( </span><span style="color: #0000BB">$payload </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$changed </span><span style="color: #007700">= </span><span style="color: #0000BB">substr </span><span style="color: #007700">( </span><span style="color: #0000BB">$payload</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, -</span><span style="color: #0000BB">1 </span><span style="color: #007700">) . </span><span style="color: #DD0000">'x'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$forged  </span><span style="color: #007700">= </span><span style="color: #0000BB">padDecrypt </span><span style="color: #007700">( </span><span style="color: #0000BB">$changed</span><span style="color: #007700">, </span><span style="color: #DD0000">'refused' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;p&gt;Sealed: <b>{<font color="green"><font color="red">$</font>length</font>}</b> URL-safe characters&lt;/p&gt;<br>&lt;p&gt;Opened: order <b>{<font color="green"><font color="red">$</font>back.order</font>}</b>, step <b>{<font color="green"><font color="red">$</font>back.step</font>}</b>&lt;/p&gt;<br>&lt;p&gt;One character changed: <b>{<font color="green"><font color="red">$</font>forged</font>}</b>&lt;/p&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <p>
+                            Sealed: 95 URL-safe characters
+                          </p>
+                          <p>
+                            Opened: order 1042, step payment
+                          </p>
+                          <p>
+                            One character changed: refused
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <ul>
+                      <li>The value is JSON-encoded and sealed with sodium's <code>secretbox</code> and a random nonce, so the same value sealed twice gives two different payloads.
+                      </li>
+                      <li>A payload that was changed in a single character, cut short, or sealed with another key opens to the default - <code>NULL</code> unless one is given. An object comes back as an array.
+                      </li>
+                    </ul>
+                    <h2>
+                      Signed links
+                    </h2>
+                    <p>
+                      A link in a mail - <em>confirm your address</em>, <em>download your invoice</em> - has to work without a login, for the one who got it, and stop working after a while. <code>padSignedUrl</code> adds the time it expires and a signature over the application, the page and every value; <code>padSignatureValid ()</code>, in the page the link leads to, says whether the request came by such a link.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/hashing_and_encryption_3.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/hashing_and_encryption_3.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $link </span><span style="color: #007700">= </span><span style="color: #0000BB">padSignedUrl </span><span style="color: #007700">( </span><span style="color: #DD0000">'invoice'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1042 </span><span style="color: #007700">], </span><span style="color: #0000BB">3600 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$shown </span><span style="color: #007700">= </span><span style="color: #0000BB">preg_replace </span><span style="color: #007700">(<br>    [ </span><span style="color: #DD0000">'/padExpires=\d+/'</span><span style="color: #007700">, </span><span style="color: #DD0000">'/padSignature=\w+/' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'padExpires=...'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'padSignature=...'   </span><span style="color: #007700">],<br>    </span><span style="color: #0000BB">$link<br>  </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$here  </span><span style="color: #007700">= </span><span style="color: #0000BB">padSignatureValid </span><span style="color: #007700">() ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;p&gt;&lt;code&gt;<b>{<font color="green"><font color="red">$</font>shown</font>}</b>&lt;/code&gt;&lt;/p&gt;<br>&lt;p&gt;This page came by a signed link: <b>{<font color="green"><font color="red">$</font>here</font>}</b>&lt;/p&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <p>
+                            <code>http://localhost/pad/manual/?invoice&amp;id=1042&amp;padExpires=...&amp;padSignature=...</code>
+                          </p>
+                          <p>
+                            This page came by a signed link: no
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <p>
+                      The page the link leads to checks it before anything else:
+                    </p>
+                    <pre>// invoice.php
+if ( ! padSignatureValid () )
+  padRedirect ( 'link_expired' );
+
+$invoice = db ( "RECORD * FROM invoices WHERE id = {0}", [ $id ] );</pre>
+                    <ul>
+                      <li>The expiry is a number of seconds, a <code>DateInterval</code> or a moment such as <code>'+2 days'</code>; without one the link never expires.
+                      </li>
+                      <li>A value changed, added or removed, another page, an expiry moved or passed - each makes the signature invalid. The order of the values does not count, and the link holds in the clean form too.
+                      </li>
+                      <li>The link is absolute, since it is mostly mailed; the values are visible in it - sign what must not change, seal what must not be read.
+                      </li>
+                    </ul>
+                    <h2>
+                      The key
+                    </h2>
+                    <p>
+                      Sealing and signing use the application key. Without a setting it is the file <code>DATA/keys/&lt;application&gt;.key</code>, made the first time it is needed - 32 random bytes, readable by its owner only, under <code>DATA/</code> where no URL reaches. Set <code>$padAppKey</code> in <code>_config/config.php</code> - 32 bytes, or <code>'base64:'</code> and 32 bytes in base64, the form the key file holds - when several servers must read each other's values, and keep it out of version control. A new key makes every value sealed and every link signed before it unreadable. The error reports never show it.
+                    </p>
+                  </div>
+                </center>
+              </td>
+            </tr>
+          </table>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <hr>
+                <table valign="top" align="center">
+                  <tr>
+                    <td valign="top">
+                      <h3 align="center">
+                        Basic concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tags.html">Tags</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7conditions.html">Conditions</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7loops.html">Loops</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7trees.html">Trees</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7examples_used_in_this_manual.html">Examples used in this manual</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7parse.html">Parse</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7levels_and_occurrences.html">Levels and occurrences</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_content_tag.html">The content tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_data_tag.html">The data tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7php_and_html.html">Php and html</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7properties.html">Properties</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7field_sigils.html">Field sigils</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Constructs
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7else.html">Else</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7start_end.html">Start end</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7content.html">Content</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page.html">Page</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Text and markup
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7comments.html">Comments</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7whitespace.html">Whitespace</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ignore.html">Ignore</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7escaping_special_PAD_chars.html">Escaping special PAD chars</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Advanced concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7prefix.html">Prefix</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7options_variables_parameters.html">Options variables parameters</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7callback.html">Callback</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tag_return_values.html">Tag return values</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7level_and_occurrence_variables.html">Level and occurrence variables</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7walking.html">Walking</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ending_the_request.html">Ending the request</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sequences.html">Sequences</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Data
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7data_handling.html">Data handling</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7grouping.html">Grouping</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pager.html">Pager</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7lookup.html">Lookup</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7database.html">Database</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sqlite.html">Sqlite</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7collections.html">Collections</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7remote_data.html">Remote data</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7parallel_fetching.html">Parallel fetching</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7data_answers.html">Data answers</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        PHP helpers
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7arrays.html">Arrays</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7strings.html">Strings</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7values.html">Values</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7numbers.html">Numbers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_sessions.html">Requests and sessions</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7environment_and_cache.html">Environment and cache</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7dates_and_logging.html">Dates and logging</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7hashing_and_encryption.html">Hashing and encryption</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Output
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7html_helpers.html">Html helpers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7markdown.html">Markdown</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7charts.html">Charts</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7locale.html">Locale</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7fragment_cache.html">Fragment cache</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7flush.html">Flush</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7live.html">Live</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Layouts and components
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7layouts.html">Layouts</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page_meta.html">Page meta</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7components.html">Components</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7stacks.html">Stacks</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7response_fragments.html">Response fragments</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        The application
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7application_structure.html">Application structure</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7extending.html">Extending</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7events.html">Events</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7application_options.html">Application options</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_urls.html">Requests and urls</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7clean_urls.html">Clean urls</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sitemap.html">Sitemap</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7mail.html">Mail</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Forms and security
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7forms.html">Forms</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7csrf_protection.html">Csrf protection</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7flash_messages.html">Flash messages</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7directory_guards.html">Directory guards</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7security_headers.html">Security headers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7file_uploads.html">File uploads</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Development tools
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7debug.html">Debug</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7template_errors.html">Template errors</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7toolbar.html">Toolbar</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7output_checks.html">Output checks</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7coverage.html">Coverage</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7replay.html">Replay</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7live_reload.html">Live reload</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7samples.html">Samples</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7app_tests.html">App tests</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pad_command.html">Pad command</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7static_export.html">Static export</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7playground.html">Playground</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7editor_support.html">Editor support</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pad_in_the_browser.html">Pad in the browser</a>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

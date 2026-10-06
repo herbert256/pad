@@ -1,0 +1,267 @@
+
+
+<p>Three jobs every application with users meets: keeping passwords so that nobody - the
+database's reader included - can read them back; handing a value to the browser that it
+cannot read or change; and sending a link that works for the one who got it, until it
+expires. PHP has the building blocks - <code>password_hash</code>, sodium,
+<code>hash_hmac</code> - and these helpers put them together the safe way.</p>
+
+<table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
+  <tr><th>function</th><th>what it answers</th></tr>
+  <tr><td><code>padHash ( $password )</code></td><td>the password hashed with <code>password_hash</code> and PHP's default algorithm - the text to store</td></tr>
+  <tr><td><code>padHashCheck ( $password, $hash )</code></td><td>whether the password matches the hash</td></tr>
+  <tr><td><code>padHashNeedsRehash ( $hash )</code></td><td>whether the hash was made with weaker settings than PHP's default now</td></tr>
+  <tr><td><code>padEncrypt ( $value )</code></td><td>the value sealed: JSON-encoded, encrypted and signed, as one URL-safe string</td></tr>
+  <tr><td><code>padDecrypt ( $payload, $default = NULL )</code></td><td>the value back - or the default for a payload that was changed, cut short or sealed with another key</td></tr>
+  <tr><td><code>padSignedUrl ( $page, $vars = [], $expires = NULL )</code></td><td>a link to a page of this application with an expiry time and a signature</td></tr>
+  <tr><td><code>padSignatureValid ()</code></td><td>whether this request came by such a link, unchanged and not expired</td></tr>
+</table>
+
+<h2>Passwords</h2>
+
+<p>A password is never stored, only its hash. <code>padHash</code> makes one with a new
+random salt each time, so two users with the same password get different hashes;
+<code>padHashCheck</code> tells whether a password typed at login matches the stored hash.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/hashing_and_encryption_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/hashing_and_encryption_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $phrase </span><span style="color: #007700">= </span><span style="color: #DD0000">'correct horse battery staple'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$hash   </span><span style="color: #007700">= </span><span style="color: #0000BB">padHash </span><span style="color: #007700">( </span><span style="color: #0000BB">$phrase </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$right  </span><span style="color: #007700">= </span><span style="color: #0000BB">padHashCheck </span><span style="color: #007700">( </span><span style="color: #0000BB">$phrase</span><span style="color: #007700">, </span><span style="color: #0000BB">$hash </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$wrong  </span><span style="color: #007700">= </span><span style="color: #0000BB">padHashCheck </span><span style="color: #007700">( </span><span style="color: #DD0000">'Tr0ub4dor&amp;3'</span><span style="color: #007700">, </span><span style="color: #0000BB">$hash </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$rehash </span><span style="color: #007700">= </span><span style="color: #0000BB">padHashNeedsRehash </span><span style="color: #007700">( </span><span style="color: #0000BB">$hash </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$shape  </span><span style="color: #007700">= </span><span style="color: #0000BB">substr </span><span style="color: #007700">( </span><span style="color: #0000BB">$hash</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">4 </span><span style="color: #007700">) . </span><span style="color: #DD0000">'... '<br>          </span><span style="color: #007700">. </span><span style="color: #0000BB">strlen </span><span style="color: #007700">( </span><span style="color: #0000BB">$hash </span><span style="color: #007700">) . </span><span style="color: #DD0000">' characters'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;Stored: <b>{<font color="green"><font color="red">$</font>shape</font>}</b>&lt;/p&gt;<br>&lt;p&gt;The right password matches: <b>{<font color="green"><font color="red">$</font>right</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Another password matches: <b>{<font color="green"><font color="red">$</font>wrong</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Needs a new hash: <b>{<font color="green"><font color="red">$</font>rehash</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>Stored: $2y$... 60 characters</p>
+<p>The right password matches: yes</p>
+<p>Another password matches: no</p>
+<p>Needs a new hash: no</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<ul>
+  <li>After a successful login, <code>padHashNeedsRehash</code> says whether the stored hash
+  was made with older settings - a lower cost, an older algorithm. The password is at hand
+  right then, so the hash can be made again and stored.</li>
+  <li>A password that is no text, or a hash that is none - the <code>NULL</code> of a user
+  that does not exist - simply does not match: <code>padHashCheck</code> answers
+  <code>FALSE</code>, never an error.</li>
+</ul>
+
+<h2>Sealed values</h2>
+
+<p><code>padEncrypt</code> seals a value - text, a number, an array: whatever JSON holds -
+so it can travel through the browser in a cookie, a hidden field or a link, and come back
+unread and unchanged. Anyone can carry the payload; only the application can open it.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/hashing_and_encryption_2.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/hashing_and_encryption_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $payload </span><span style="color: #007700">= </span><span style="color: #0000BB">padEncrypt </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1042</span><span style="color: #007700">,<br>                            </span><span style="color: #DD0000">'step'  </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'payment' </span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">$length  </span><span style="color: #007700">= </span><span style="color: #0000BB">strlen </span><span style="color: #007700">( </span><span style="color: #0000BB">$payload </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$back    </span><span style="color: #007700">= </span><span style="color: #0000BB">padDecrypt </span><span style="color: #007700">( </span><span style="color: #0000BB">$payload </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$changed </span><span style="color: #007700">= </span><span style="color: #0000BB">substr </span><span style="color: #007700">( </span><span style="color: #0000BB">$payload</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, -</span><span style="color: #0000BB">1 </span><span style="color: #007700">) . </span><span style="color: #DD0000">'x'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$forged  </span><span style="color: #007700">= </span><span style="color: #0000BB">padDecrypt </span><span style="color: #007700">( </span><span style="color: #0000BB">$changed</span><span style="color: #007700">, </span><span style="color: #DD0000">'refused' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;Sealed: <b>{<font color="green"><font color="red">$</font>length</font>}</b> URL-safe characters&lt;/p&gt;<br>&lt;p&gt;Opened: order <b>{<font color="green"><font color="red">$</font>back.order</font>}</b>, step <b>{<font color="green"><font color="red">$</font>back.step</font>}</b>&lt;/p&gt;<br>&lt;p&gt;One character changed: <b>{<font color="green"><font color="red">$</font>forged</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>Sealed: 95 URL-safe characters</p>
+<p>Opened: order 1042, step payment</p>
+<p>One character changed: refused</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<ul>
+  <li>The value is JSON-encoded and sealed with sodium's <code>secretbox</code> and a random
+  nonce, so the same value sealed twice gives two different payloads.</li>
+  <li>A payload that was changed in a single character, cut short, or sealed with another
+  key opens to the default - <code>NULL</code> unless one is given. An object comes back as
+  an array.</li>
+</ul>
+
+<h2>Signed links</h2>
+
+<p>A link in a mail - <em>confirm your address</em>, <em>download your invoice</em> - has to
+work without a login, for the one who got it, and stop working after a while.
+<code>padSignedUrl</code> adds the time it expires and a signature over the application, the
+page and every value; <code>padSignatureValid ()</code>, in the page the link leads to, says
+whether the request came by such a link.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/hashing_and_encryption_3.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/hashing_and_encryption_3.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $link </span><span style="color: #007700">= </span><span style="color: #0000BB">padSignedUrl </span><span style="color: #007700">( </span><span style="color: #DD0000">'invoice'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1042 </span><span style="color: #007700">], </span><span style="color: #0000BB">3600 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$shown </span><span style="color: #007700">= </span><span style="color: #0000BB">preg_replace </span><span style="color: #007700">(<br>    [ </span><span style="color: #DD0000">'/padExpires=\d+/'</span><span style="color: #007700">, </span><span style="color: #DD0000">'/padSignature=\w+/' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'padExpires=...'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'padSignature=...'   </span><span style="color: #007700">],<br>    </span><span style="color: #0000BB">$link<br>  </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$here  </span><span style="color: #007700">= </span><span style="color: #0000BB">padSignatureValid </span><span style="color: #007700">() ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;&lt;code&gt;<b>{<font color="green"><font color="red">$</font>shown</font>}</b>&lt;/code&gt;&lt;/p&gt;<br>&lt;p&gt;This page came by a signed link: <b>{<font color="green"><font color="red">$</font>here</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p><code>http://localhost/pad/manual/?invoice&amp;id=1042&amp;padExpires=...&amp;padSignature=...</code></p>
+<p>This page came by a signed link: no</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<p>The page the link leads to checks it before anything else:</p>
+
+<pre>// invoice.php
+if ( ! padSignatureValid () )
+  padRedirect ( 'link_expired' );
+
+$invoice = db ( "RECORD * FROM invoices WHERE id = {0}", [ $id ] );</pre>
+
+<ul>
+  <li>The expiry is a number of seconds, a <code>DateInterval</code> or a moment such as
+  <code>'+2 days'</code>; without one the link never expires.</li>
+  <li>A value changed, added or removed, another page, an expiry moved or passed - each makes
+  the signature invalid. The order of the values does not count, and the link holds in the
+  clean form too.</li>
+  <li>The link is absolute, since it is mostly mailed; the values are visible in it - sign
+  what must not change, seal what must not be read.</li>
+</ul>
+
+<h2>The key</h2>
+
+<p>Sealing and signing use the application key. Without a setting it is the file
+<code>DATA/keys/&lt;application&gt;.key</code>, made the first time it is needed - 32 random
+bytes, readable by its owner only, under <code>DATA/</code> where no URL reaches. Set
+<code>$padAppKey</code> in <code>_config/config.php</code> - 32 bytes, or
+<code>'base64:'</code> and 32 bytes in base64, the form the key file holds - when several
+servers must read each other's values, and keep it out of version control. A new key makes
+every value sealed and every link signed before it unreadable. The error reports never show
+it.</p>

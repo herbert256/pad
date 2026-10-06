@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - apps
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - apps
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: apps - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">index.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">global </span><span style="color: #0000BB">$padRoot</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$title </span><span style="color: #007700">= </span><span style="color: #DD0000">'PAD Applications'</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// Get the apps directory (parent of current app)<br>  </span><span style="color: #0000BB">$appsDir </span><span style="color: #007700">= </span><span style="color: #0000BB">dirname</span><span style="color: #007700">(</span><span style="color: #0000BB">APP</span><span style="color: #007700">) . </span><span style="color: #DD0000">'/'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$apps </span><span style="color: #007700">= [];<br><br>  </span><span style="color: #FF8000">// Scan for application directories<br>  </span><span style="color: #0000BB">$dirs </span><span style="color: #007700">= </span><span style="color: #0000BB">scandir</span><span style="color: #007700">(</span><span style="color: #0000BB">$appsDir</span><span style="color: #007700">);<br><br>  foreach (</span><span style="color: #0000BB">$dirs </span><span style="color: #007700">as </span><span style="color: #0000BB">$dir</span><span style="color: #007700">) {<br><br>    </span><span style="color: #FF8000">// Skip hidden files and current/parent dirs<br>    </span><span style="color: #007700">if (</span><span style="color: #0000BB">$dir</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">] === </span><span style="color: #DD0000">'.'</span><span style="color: #007700">) continue;<br><br>    </span><span style="color: #FF8000">// Skip _ prefixed directories except _common<br>    </span><span style="color: #007700">if (</span><span style="color: #0000BB">$dir</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">] === </span><span style="color: #DD0000">'_' </span><span style="color: #007700">&amp;& </span><span style="color: #0000BB">$dir </span><span style="color: #007700">!== </span><span style="color: #DD0000">'_common'</span><span style="color: #007700">) continue;<br><br>    </span><span style="color: #0000BB">$appPath </span><span style="color: #007700">= </span><span style="color: #0000BB">$appsDir </span><span style="color: #007700">. </span><span style="color: #0000BB">$dir </span><span style="color: #007700">. </span><span style="color: #DD0000">'/'</span><span style="color: #007700">;<br><br>    </span><span style="color: #FF8000">// Must be a directory<br>    </span><span style="color: #007700">if (!</span><span style="color: #0000BB">is_dir</span><span style="color: #007700">(</span><span style="color: #0000BB">$appPath</span><span style="color: #007700">)) continue;<br><br>    </span><span style="color: #FF8000">// Skip self<br>    </span><span style="color: #007700">if (</span><span style="color: #0000BB">$dir </span><span style="color: #007700">=== </span><span style="color: #DD0000">'apps'</span><span style="color: #007700">) continue;<br><br>    </span><span style="color: #FF8000">// Of the regression family only the main application is listed: the pages suites and<br>    // the per-backend and per-action test applications are its instruments, and<br>    // regression/main is where they are driven from. The regression/ directory itself is a<br>    // namespace, not an app, so the listing descends into the one entry it shows.<br>    </span><span style="color: #007700">if (</span><span style="color: #0000BB">str_starts_with</span><span style="color: #007700">(</span><span style="color: #0000BB">$dir</span><span style="color: #007700">, </span><span style="color: #DD0000">'regression'</span><span style="color: #007700">) &amp;& </span><span style="color: #0000BB">$dir </span><span style="color: #007700">!== </span><span style="color: #DD0000">'regression'</span><span style="color: #007700">) continue;<br><br>    if (</span><span style="color: #0000BB">$dir </span><span style="color: #007700">=== </span><span style="color: #DD0000">'regression'</span><span style="color: #007700">) {<br>      </span><span style="color: #0000BB">$dir     </span><span style="color: #007700">= </span><span style="color: #DD0000">'regression/main'</span><span style="color: #007700">;<br>      </span><span style="color: #0000BB">$appPath </span><span style="color: #007700">= </span><span style="color: #0000BB">$appsDir </span><span style="color: #007700">. </span><span style="color: #0000BB">$dir </span><span style="color: #007700">. </span><span style="color: #DD0000">'/'</span><span style="color: #007700">;<br>    }<br><br>    </span><span style="color: #0000BB">$app </span><span style="color: #007700">= [<br>      </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$dir</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'path' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$appPath</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; (</span><span style="color: #0000BB">$dir </span><span style="color: #007700">=== </span><span style="color: #DD0000">'_common'</span><span style="color: #007700">) ? </span><span style="color: #DD0000">'' </span><span style="color: #007700">: </span><span style="color: #0000BB">$padRoot </span><span style="color: #007700">. </span><span style="color: #0000BB">$dir </span><span style="color: #007700">. </span><span style="color: #DD0000">'/'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'description' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">''<br>    </span><span style="color: #007700">];<br><br>    </span><span style="color: #FF8000">// Try to read README.md and extract Introduction section<br>    </span><span style="color: #0000BB">$readmePath </span><span style="color: #007700">= </span><span style="color: #0000BB">$appPath </span><span style="color: #007700">. </span><span style="color: #DD0000">'README.md'</span><span style="color: #007700">;<br><br>    if (</span><span style="color: #0000BB">file_exists</span><span style="color: #007700">(</span><span style="color: #0000BB">$readmePath</span><span style="color: #007700">)) {<br>      </span><span style="color: #0000BB">$content </span><span style="color: #007700">= </span><span style="color: #0000BB">file_get_contents</span><span style="color: #007700">(</span><span style="color: #0000BB">$readmePath</span><span style="color: #007700">);<br><br>      </span><span style="color: #FF8000">// Extract Introduction section content<br>      // Pattern: ## Introduction followed by text until next ## or end<br>      </span><span style="color: #007700">if (</span><span style="color: #0000BB">preg_match</span><span style="color: #007700">(</span><span style="color: #DD0000">'/## Introduction\s*\n+(.+?)(?=\n## |\n#|\z)/s'</span><span style="color: #007700">, </span><span style="color: #0000BB">$content</span><span style="color: #007700">, </span><span style="color: #0000BB">$matches</span><span style="color: #007700">)) {<br>        </span><span style="color: #0000BB">$description </span><span style="color: #007700">= </span><span style="color: #0000BB">trim</span><span style="color: #007700">(</span><span style="color: #0000BB">$matches</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]);<br>        </span><span style="color: #FF8000">// Clean up: remove extra whitespace and limit length<br>        </span><span style="color: #0000BB">$description </span><span style="color: #007700">= </span><span style="color: #0000BB">preg_replace</span><span style="color: #007700">(</span><span style="color: #DD0000">'/\s+/'</span><span style="color: #007700">, </span><span style="color: #DD0000">' '</span><span style="color: #007700">, </span><span style="color: #0000BB">$description</span><span style="color: #007700">);<br>        </span><span style="color: #0000BB">$app</span><span style="color: #007700">[</span><span style="color: #DD0000">'description'</span><span style="color: #007700">] = </span><span style="color: #0000BB">$description</span><span style="color: #007700">;<br>      }<br>    }<br><br>    </span><span style="color: #0000BB">$apps</span><span style="color: #007700">[] = </span><span style="color: #0000BB">$app</span><span style="color: #007700">;<br>  }<br><br>  </span><span style="color: #FF8000">// Sort: _common first, then alphabetically<br>  </span><span style="color: #0000BB">usort</span><span style="color: #007700">(</span><span style="color: #0000BB">$apps</span><span style="color: #007700">, function(</span><span style="color: #0000BB">$a</span><span style="color: #007700">, </span><span style="color: #0000BB">$b</span><span style="color: #007700">) {<br>    if (</span><span style="color: #0000BB">$a</span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">] === </span><span style="color: #DD0000">'_common'</span><span style="color: #007700">) return -</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br>    if (</span><span style="color: #0000BB">$b</span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">] === </span><span style="color: #DD0000">'_common'</span><span style="color: #007700">) return </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br>    return </span><span style="color: #0000BB">strcasecmp</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">], </span><span style="color: #0000BB">$b</span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]);<br>  });<br><br>  </span><span style="color: #0000BB">$appCount </span><span style="color: #007700">= </span><span style="color: #0000BB">count</span><span style="color: #007700">(</span><span style="color: #0000BB">$apps</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;style&gt;<br>  .apps-list { border-collapse: collapse; margin: 0 auto; }<br>  .apps-list th { text-align: left; padding: 8px 16px; border-bottom: 2px solid #999; }<br>  .apps-list td { padding: 6px 16px; border-bottom: 1px solid #ccc; vertical-align: top; }<br>  .apps-list a { text-decoration: none; }<br>  .apps-list a:hover { text-decoration: underline; }<br>&lt;/style&gt;<br><br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>appCount</font>}</b> applications&lt;/p&gt;<br><br>&lt;table class="apps-list"&gt;<br>  &lt;tr&gt;<br>    &lt;th&gt;Application&lt;/th&gt;<br>    &lt;th&gt;Description&lt;/th&gt;<br>    &lt;th&gt;Code&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <b>{<font color="blue">apps</font><font color="red"></font>}</b><br>  &lt;tr&gt;<br>    &lt;td&gt;<br>      <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>link ne <font color="black">'</font><font color="black">'</font></font>}</b>&lt;a href="<b>{<font color="green"><font color="red">$</font>link</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/a&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br>      <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>link eq <font color="black">'</font><font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;/td&gt;<br>    &lt;td&gt;<br>      <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>description ne <font color="black">'</font><font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>description</font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><br>      <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>description eq <font color="black">'</font><font color="black">'</font></font>}</b>&lt;i&gt;No description available&lt;/i&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;/td&gt;<br>    &lt;td&gt;&lt;a href="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>edit/?index&amp;app=<b>{<font color="green"><font color="red">$</font>name</font>}</b>"&gt;edit&lt;/a&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  <b>{/<font color="blue">apps</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax2490aa7d50159ab9f7afbb2c11bb8890"></div>
+                        <script>
+                        padAjax2490aa7d50159ab9f7afbb2c11bb8890 = new XMLHttpRequest();
+                        padAjax2490aa7d50159ab9f7afbb2c11bb8890.onreadystatechange=function() {
+                        if (padAjax2490aa7d50159ab9f7afbb2c11bb8890.readyState === 4) {
+                        if (padAjax2490aa7d50159ab9f7afbb2c11bb8890.status === 200) {
+                        document.getElementById("padAjax2490aa7d50159ab9f7afbb2c11bb8890").innerHTML=padAjax2490aa7d50159ab9f7afbb2c11bb8890.responseText;
+                        } else {
+                        document.getElementById("padAjax2490aa7d50159ab9f7afbb2c11bb8890").innerHTML=padAjax2490aa7d50159ab9f7afbb2c11bb8890.statusText;
+                        }
+                        }
+                        }
+                        padAjax2490aa7d50159ab9f7afbb2c11bb8890.open("GET","http://localhost/pad/apps/?index&padInclude",true);
+                        padAjax2490aa7d50159ab9f7afbb2c11bb8890.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

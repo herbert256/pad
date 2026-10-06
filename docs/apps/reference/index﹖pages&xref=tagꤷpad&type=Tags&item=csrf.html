@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tags - csrf
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tags - csrf
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: fragments/csrf_protection_1<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/csrf_protection_1.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;form method="post"&gt;<br>  <b>{<font color="blue">csrf</font><font color="red"></font>}</b><br>  &lt;input type="text" name="note"&gt;<br>  &lt;button&gt;Send&lt;/button&gt;<br>&lt;/form&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3aff15492d410bdb0f0250fd33e0fd33"></div>
+                        <script>
+                        padAjax3aff15492d410bdb0f0250fd33e0fd33 = new XMLHttpRequest();
+                        padAjax3aff15492d410bdb0f0250fd33e0fd33.onreadystatechange=function() {
+                        if (padAjax3aff15492d410bdb0f0250fd33e0fd33.readyState === 4) {
+                        if (padAjax3aff15492d410bdb0f0250fd33e0fd33.status === 200) {
+                        document.getElementById("padAjax3aff15492d410bdb0f0250fd33e0fd33").innerHTML=padAjax3aff15492d410bdb0f0250fd33e0fd33.responseText;
+                        } else {
+                        document.getElementById("padAjax3aff15492d410bdb0f0250fd33e0fd33").innerHTML=padAjax3aff15492d410bdb0f0250fd33e0fd33.statusText;
+                        }
+                        }
+                        }
+                        padAjax3aff15492d410bdb0f0250fd33e0fd33.open("GET","http://localhost/pad/manual/?fragments/csrf_protection_1&padInclude",true);
+                        padAjax3aff15492d410bdb0f0250fd33e0fd33.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/csrf_is_added_to_every_form_that_posts_back_to_the_site<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/csrf_is_added_to_every_form_that_posts_back_to_the_site.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/csrf_is_added_to_every_form_that_posts_back_to_the_site.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padCsrf </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;form method="post"&gt;a&lt;/form&gt;&lt;form method="get"&gt;b&lt;/form&gt;&lt;form method="post" action="https://example.org/"&gt;c&lt;/form&gt;&lt;form method="POST" action="?x"&gt;<b>{<font color="blue">csrf</font><font color="red"></font>}</b>d&lt;/form&gt;&lt;form action="<b>{<font color="green"><font color="red">$</font>padHost</font>}</b>test/" method=post&gt;e&lt;/form&gt;&lt;form method="post" action="//elsewhere.example/"&gt;f&lt;/form&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax2e178f51504d6b41f074c048ea67ddd8"></div>
+                        <script>
+                        padAjax2e178f51504d6b41f074c048ea67ddd8 = new XMLHttpRequest();
+                        padAjax2e178f51504d6b41f074c048ea67ddd8.onreadystatechange=function() {
+                        if (padAjax2e178f51504d6b41f074c048ea67ddd8.readyState === 4) {
+                        if (padAjax2e178f51504d6b41f074c048ea67ddd8.status === 200) {
+                        document.getElementById("padAjax2e178f51504d6b41f074c048ea67ddd8").innerHTML=padAjax2e178f51504d6b41f074c048ea67ddd8.responseText;
+                        } else {
+                        document.getElementById("padAjax2e178f51504d6b41f074c048ea67ddd8").innerHTML=padAjax2e178f51504d6b41f074c048ea67ddd8.statusText;
+                        }
+                        }
+                        }
+                        padAjax2e178f51504d6b41f074c048ea67ddd8.open("GET","http://localhost/pad/regression/framework/?tags/csrf_is_added_to_every_form_that_posts_back_to_the_site&padInclude",true);
+                        padAjax2e178f51504d6b41f074c048ea67ddd8.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/csrf_writes_a_hidden_field_holding_the_session_token<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/csrf_writes_a_hidden_field_holding_the_session_token.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">csrf</font><font color="red"></font>}</b>|<b>{<font color="blue">csrf </font><font color="red">token</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8e6aef7e29bbc0e839db2301f07e8986"></div>
+                        <script>
+                        padAjax8e6aef7e29bbc0e839db2301f07e8986 = new XMLHttpRequest();
+                        padAjax8e6aef7e29bbc0e839db2301f07e8986.onreadystatechange=function() {
+                        if (padAjax8e6aef7e29bbc0e839db2301f07e8986.readyState === 4) {
+                        if (padAjax8e6aef7e29bbc0e839db2301f07e8986.status === 200) {
+                        document.getElementById("padAjax8e6aef7e29bbc0e839db2301f07e8986").innerHTML=padAjax8e6aef7e29bbc0e839db2301f07e8986.responseText;
+                        } else {
+                        document.getElementById("padAjax8e6aef7e29bbc0e839db2301f07e8986").innerHTML=padAjax8e6aef7e29bbc0e839db2301f07e8986.statusText;
+                        }
+                        }
+                        }
+                        padAjax8e6aef7e29bbc0e839db2301f07e8986.open("GET","http://localhost/pad/regression/framework/?tags/csrf_writes_a_hidden_field_holding_the_session_token&padInclude",true);
+                        padAjax8e6aef7e29bbc0e839db2301f07e8986.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

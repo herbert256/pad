@@ -1,6 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<!DOCTYPE html>
+<html>
+  <head>
     <title>
       PAD - Reference - Tag properties - parameters
     </title>
@@ -11,14 +11,14 @@
         PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
       </h1>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table><br>
+      </table><br>
       <hr width="75%">
     </center>
     <blockquote>
@@ -27,132 +27,195 @@
           <h1>
             Reference - Tag properties - parameters
           </h1>
-          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tbody><tr>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
               <td>
                 <center>
                   <hr>
                   App: manual - Page: miscellaneous/options_variables_parameters<br>
-                  <div id="padAjaxfPeiLgsu"><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">name=<font color="black">'</font>cool<font color="black">'</font><font color="black">,</font> abc=123<font color="black">,</font> <font color="black">'</font>fiets<font color="black">'</font><font color="black">,</font> <font color="red">$</font>abc=<font color="black">'</font>banaan<font color="black">'</font><font color="black">,</font> <font color="red">$</font>go=<font color="black">'</font>nuts<font color="black">'</font><font color="black">,</font> xyz=789<font color="black">,</font> 12*15</font>}</b><br><br>  &lt;h3&gt;variables&lt;/h3&gt;<br>  <br>  &lt;table border="1"&gt;<br>    &lt;th&gt;name&lt;/th&gt;<br>    &lt;th&gt;value&lt;/th&gt;<br>    <b>{<font color="blue">variables</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">variables</font><font color="red"></font>}</b><br>  &lt;/table&gt;<br><br>  &lt;h3&gt;options&lt;/h3&gt;<br>  <br>  &lt;table border="1"&gt;<br>    &lt;th&gt;name&lt;/th&gt;<br>    &lt;th&gt;value&lt;/th&gt;<br>    <b>{<font color="blue">options</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">options</font><font color="red"></font>}</b><br>  &lt;/table&gt;<br><br>  &lt;h3&gt;parameters&lt;/h3&gt;<br>  <br>  &lt;table border="1"&gt;<br>    &lt;th&gt;name&lt;/th&gt;<br>    &lt;th&gt;value&lt;/th&gt;<br>    <b>{<font color="blue">parameters</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">parameters</font><font color="red"></font>}</b><br>  &lt;/table&gt;<br><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>variables</h3>
-  
-  <table border="1">
-    <tbody><tr><th>name</th>
-    <th>value</th>
-    
-      </tr><tr>
-        <td>abc</td>
-        <td>banaan</td>
-      </tr>
-    
-      <tr>
-        <td>go</td>
-        <td>nuts</td>
-      </tr>
-    
-  </tbody></table>
-
-  <h3>options</h3>
-  
-  <table border="1">
-    <tbody><tr><th>name</th>
-    <th>value</th>
-    
-      </tr><tr>
-        <td>name</td>
-        <td>cool</td>
-      </tr>
-    
-      <tr>
-        <td>abc</td>
-        <td>123</td>
-      </tr>
-    
-      <tr>
-        <td>xyz</td>
-        <td>789</td>
-      </tr>
-    
-  </tbody></table>
-
-  <h3>parameters</h3>
-  
-  <table border="1">
-    <tbody><tr><th>name</th>
-    <th>value</th>
-    
-      </tr><tr>
-        <td>1</td>
-        <td>fiets</td>
-      </tr>
-    
-      <tr>
-        <td>2</td>
-        <td>180</td>
-      </tr>
-    
-  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">name=<font color="black">'</font>cool<font color="black">'</font><font color="black">,</font> abc=123<font color="black">,</font> <font color="black">'</font>fiets<font color="black">'</font><font color="black">,</font> <font color="red">$</font>abc=<font color="black">'</font>banaan<font color="black">'</font><font color="black">,</font> <font color="red">$</font>go=<font color="black">'</font>nuts<font color="black">'</font><font color="black">,</font> xyz=789<font color="black">,</font> 12*15</font>}</b><br><br>  &lt;h3&gt;variables&lt;/h3&gt;<br><br>  The value of variable 'abc' is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>variable<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>abc</font>}</b> &lt;br&gt;<br>  The value of variable 'go' is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>variable<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>go</font>}</b> &lt;br&gt;<br>  <br>  &lt;h3&gt;options&lt;/h3&gt;<br>  <br>  The value of option 'abc' is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>option<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>abc</font>}</b> &lt;br&gt;<br>  The value of option 'xyz' is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>option<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>xyz</font>}</b> &lt;br&gt;<br>  <br>  &lt;h3&gt;parameters&lt;/h3&gt;<br>  <br>  The first parameters is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>parameter<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>1</font>}</b> &lt;br&gt;<br>  The second parameter is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>parameter<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>2</font>}</b> &lt;br&gt;<br>  <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>variables</h3>
-
-  The value of variable 'abc' is: banaan <br>
-  The value of variable 'go' is: nuts <br>
-  
-  <h3>options</h3>
-  
-  The value of option 'abc' is: 123 <br>
-  The value of option 'xyz' is: 789 <br>
-  
-  <h3>parameters</h3>
-  
-  The first parameters is: fiets <br>
-  The second parameter is: 180 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">name=<font color="black">'</font>cool<font color="black">'</font><font color="black">,</font> abc=123<font color="black">,</font> <font color="black">'</font>fiets<font color="black">'</font><font color="black">,</font> <font color="red">$</font>abc=<font color="black">'</font>banaan<font color="black">'</font><font color="black">,</font> <font color="red">$</font>go=<font color="black">'</font>nuts<font color="black">'</font><font color="black">,</font> xyz=789<font color="black">,</font> 12*15</font>}</b><br><br>  &lt;h3&gt;variables&lt;/h3&gt;<br><br>  Variables can be directy accessed with the $ char &lt;br&gt;<br>  - variable 'abc' - <b>{<font color="green"><font color="red">$</font>abc</font>}</b> &lt;br&gt;<br>  - variable 'go' - <b>{<font color="green"><font color="red">$</font>go</font>}</b> &lt;br&gt;<br>  <br>  &lt;h3&gt;options&lt;/h3&gt;<br><br>  Options can be directy accessed with the # char &lt;br&gt;<br>  - option 'abc' - <b>{<font color="green"><font color="red">#</font>abc</font>}</b> &lt;br&gt;<br>  - option 'xyz' - <b>{<font color="green"><font color="red">#</font>xyz</font>}</b> &lt;br&gt;<br>    <br>  &lt;h3&gt;parameters&lt;/h3&gt;<br>  <br>  Parameters can be directy accesed with the $ char  &lt;br&gt;<br>  - The first parameters is: <b>{<font color="green"><font color="red">$</font>1</font>}</b> &lt;br&gt;<br>  - The second parameter is: <b>{<font color="green"><font color="red">$</font>2</font>}</b> &lt;br&gt;<br>  <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>variables</h3>
-
-  Variables can be directy accessed with the $ char <br>
-  - variable 'abc' - banaan <br>
-  - variable 'go' - nuts <br>
-  
-  <h3>options</h3>
-
-  Options can be directy accessed with the # char <br>
-  - option 'abc' - 123 <br>
-  - option 'xyz' - 789 <br>
-    
-  <h3>parameters</h3>
-  
-  Parameters can be directy accesed with the $ char  <br>
-  - The first parameters is: fiets <br>
-  - The second parameter is: 180 <br><!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p></div>
+                  <div id="padAjax3d2622026a5d0606b5439c0820621b47"></div>
                   <script>
-                  padAjaxfPeiLgsu = new XMLHttpRequest();
-                  padAjaxfPeiLgsu.onreadystatechange=function() {
-                  if (padAjaxfPeiLgsu.readyState === 4) {
-                  if (padAjaxfPeiLgsu.status === 200) {
-                  document.getElementById("padAjaxfPeiLgsu").innerHTML=padAjaxfPeiLgsu.responseText;
+                  padAjax3d2622026a5d0606b5439c0820621b47 = new XMLHttpRequest();
+                  padAjax3d2622026a5d0606b5439c0820621b47.onreadystatechange=function() {
+                  if (padAjax3d2622026a5d0606b5439c0820621b47.readyState === 4) {
+                  if (padAjax3d2622026a5d0606b5439c0820621b47.status === 200) {
+                  document.getElementById("padAjax3d2622026a5d0606b5439c0820621b47").innerHTML=padAjax3d2622026a5d0606b5439c0820621b47.responseText;
                   } else {
-                  document.getElementById("padAjaxfPeiLgsu").innerHTML=padAjaxfPeiLgsu.statusText;
+                  document.getElementById("padAjax3d2622026a5d0606b5439c0820621b47").innerHTML=padAjax3d2622026a5d0606b5439c0820621b47.statusText;
                   }
                   }
                   }
-                  padAjaxfPeiLgsu.open("GET","http://localhost/manual/?miscellaneous/options_variables_parameters&padInclude&padSesID=DiM2hOlW&padReqID=GDxO38YO",true);
-                  padAjaxfPeiLgsu.send();
+                  padAjax3d2622026a5d0606b5439c0820621b47.open("GET","http://localhost/pad/manual/?miscellaneous/options_variables_parameters&padInclude",true);
+                  padAjax3d2622026a5d0606b5439c0820621b47.send();
                   </script><br>
+                  <hr>
+                  App: regression/framework - Page: expressions/parameters_reaches_the_positional_parameters_of_a_level<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">expressions/parameters_reaches_the_positional_parameters_of_a_level.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">true </font><font color="red"><font color="black">'</font>p1<font color="black">'</font><font color="black">,</font> <font color="black">'</font>p2<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>2<font color="black">@</font>parameters</font>}</b><br><b>{/<font color="blue">true</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb3e852eca157a3ee7a7ab5a3c674aa99"></div>
+                        <script>
+                        padAjaxb3e852eca157a3ee7a7ab5a3c674aa99 = new XMLHttpRequest();
+                        padAjaxb3e852eca157a3ee7a7ab5a3c674aa99.onreadystatechange=function() {
+                        if (padAjaxb3e852eca157a3ee7a7ab5a3c674aa99.readyState === 4) {
+                        if (padAjaxb3e852eca157a3ee7a7ab5a3c674aa99.status === 200) {
+                        document.getElementById("padAjaxb3e852eca157a3ee7a7ab5a3c674aa99").innerHTML=padAjaxb3e852eca157a3ee7a7ab5a3c674aa99.responseText;
+                        } else {
+                        document.getElementById("padAjaxb3e852eca157a3ee7a7ab5a3c674aa99").innerHTML=padAjaxb3e852eca157a3ee7a7ab5a3c674aa99.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb3e852eca157a3ee7a7ab5a3c674aa99.open("GET","http://localhost/pad/regression/framework/?expressions/parameters_reaches_the_positional_parameters_of_a_level&padInclude",true);
+                        padAjaxb3e852eca157a3ee7a7ab5a3c674aa99.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: properties/parameters_walks_them_all<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">properties/parameters_walks_them_all.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>xs<font color="black">'</font></font>}</b><br>  [7,8]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">xs </font><font color="red"><font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">parameters<font color="black"><b><font color="red">@</font></b></font>xs</font><font color="red"></font>}</b><br>    <b>{<font color="green"><font color="red">$</font>value</font>}</b>,<br>  <b>{/<font color="blue">parameters<font color="black"><b><font color="red">@</font></b></font>xs</font><font color="red"></font>}</b><br><b>{/<font color="blue">xs</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb13576ba038b288d9d7249e1ce0892a5"></div>
+                        <script>
+                        padAjaxb13576ba038b288d9d7249e1ce0892a5 = new XMLHttpRequest();
+                        padAjaxb13576ba038b288d9d7249e1ce0892a5.onreadystatechange=function() {
+                        if (padAjaxb13576ba038b288d9d7249e1ce0892a5.readyState === 4) {
+                        if (padAjaxb13576ba038b288d9d7249e1ce0892a5.status === 200) {
+                        document.getElementById("padAjaxb13576ba038b288d9d7249e1ce0892a5").innerHTML=padAjaxb13576ba038b288d9d7249e1ce0892a5.responseText;
+                        } else {
+                        document.getElementById("padAjaxb13576ba038b288d9d7249e1ce0892a5").innerHTML=padAjaxb13576ba038b288d9d7249e1ce0892a5.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb13576ba038b288d9d7249e1ce0892a5.open("GET","http://localhost/pad/regression/framework/?properties/parameters_walks_them_all&padInclude",true);
+                        padAjaxb13576ba038b288d9d7249e1ce0892a5.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: catalog/properties<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">catalog/properties.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">catalog/properties.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// What the at-type lines read: a global for @all, and one for the saved group to shadow.<br>  // The function line runs the catsum callback from _callbacks/, whose row phase totals the<br>  // rows into $t.<br><br>  </span><span style="color: #0000BB">$catAll   </span><span style="color: #007700">= </span><span style="color: #DD0000">'found'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$catSaved </span><span style="color: #007700">= </span><span style="color: #DD0000">'outer'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">current:  <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cXs<font color="black">'</font></font>}</b>[7,8]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>,<b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>done:     <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">done<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>,<b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>key:      <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">key<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>,<b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>remaining: <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">remaining<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>,<b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>count:    <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">count<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>,<b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>nameProp: <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">name<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>,<b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>first:    <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>[<b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cXs</font>}</b>,<b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>last:     <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cXs</font>}</b>,<b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>]<b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b><b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>notFirst: <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">notFirst<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>-<b>{/<font color="blue">notFirst<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cXs</font>}</b><b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>notLast:  <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cXs</font>}</b><b>{<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>,<b>{/<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b><b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>even:     <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">even<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>E<b>{/<font color="blue">even<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b><b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>odd:      <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>O<b>{/<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b><b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>border:   <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">border<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>|<b>{/<font color="blue">border<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cXs</font>}</b><b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>middle:   <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cYs<font color="black">'</font></font>}</b>[1,2,3]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">cYs</font><font color="red"></font>}</b><b>{<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font>cYs</font><font color="red"></font>}</b>M<b>{/<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font>cYs</font><font color="red"></font>}</b><b>{/<font color="blue">cYs</font><font color="red"></font>}</b><br>fields:   <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cU<font color="black">'</font></font>}</b>[{"a":1,"b":2}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">cU</font><font color="red"></font>}</b><b>{<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>cU</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b>=<b>{<font color="green"><font color="red">$</font>value</font>}</b>,<b>{/<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>cU</font><font color="red"></font>}</b><b>{/<font color="blue">cU</font><font color="red"></font>}</b><br>firstFieldName:  <b>{<font color="blue">cU</font><font color="red"></font>}</b><b>{<font color="blue">firstFieldName<font color="black"><b><font color="red">@</font></b></font>cU</font><font color="red"></font>}</b>,<b>{/<font color="blue">cU</font><font color="red"></font>}</b><br>firstFieldValue: <b>{<font color="blue">cU</font><font color="red"></font>}</b><b>{<font color="blue">firstFieldValue<font color="black"><b><font color="red">@</font></b></font>cU</font><font color="red"></font>}</b>,<b>{/<font color="blue">cU</font><font color="red"></font>}</b><br>keys:     <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cKv<font color="black">'</font> ignore</font>}</b>{"a":1,"b":2}<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">cKv</font><font color="red"></font>}</b><b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>cKv</font><font color="red"></font>}</b><b>{<font color="blue">keys<font color="black"><b><font color="red">@</font></b></font>cKv</font><font color="red"></font>}</b>[<b>{<font color="green"><font color="red">$</font>name</font>}</b>]<b>{/<font color="blue">keys<font color="black"><b><font color="red">@</font></b></font>cKv</font><font color="red"></font>}</b><b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>cKv</font><font color="red"></font>}</b><b>{/<font color="blue">cKv</font><font color="red"></font>}</b><br>parameter: <b>{<font color="blue">true </font><font color="red"><font color="black">'</font>p1<font color="black">'</font><font color="black">,</font> <font color="black">'</font>p2<font color="black">'</font></font>}</b><b>{<font color="blue">parameter.1<font color="black"><b><font color="red">@</font></b></font>true</font><font color="red"></font>}</b>/<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>parameter.2<font color="black">@</font>true</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>variable:  <b>{<font color="blue">true </font><font color="red"><font color="red">$</font>t=<font color="black">'</font>9<font color="black">'</font></font>}</b><b>{<font color="blue">variable.t<font color="black"><b><font color="red">@</font></b></font>true</font><font color="red"></font>}</b>/<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>variable.t<font color="black">@</font>true</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>option:    <b>{<font color="blue">true </font><font color="red">opt=<font color="black">'</font>v<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>option.opt<font color="black">@</font>true</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>any:       <b>{<font color="blue">true </font><font color="red"><font color="red">$</font>cAny=<font color="black">'</font>9<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>cAny<font color="black">@</font>any</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>options:   <b>{<font color="blue">true </font><font color="red">opt=<font color="black">'</font>w<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>opt<font color="black">@</font>options</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>parameters: <b>{<font color="blue">true </font><font color="red"><font color="black">'</font>q1<font color="black">'</font><font color="black">,</font> <font color="black">'</font>q2<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>2<font color="black">@</font>parameters</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>saved:     <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cSv<font color="black">'</font></font>}</b>["x"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">cSv </font><font color="red"><font color="black">%</font>catSaved=<font color="black">'</font>inner<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>catSaved</font>}</b>/<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>catSaved<font color="black">@</font>saved</font>}</b><b>{/<font color="blue">cSv</font><font color="red"></font>}</b><br>variables: <b>{<font color="blue">true </font><font color="red"><font color="red">$</font>cV=<font color="black">'</font>n<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>cV<font color="black">@</font>variables</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>all:       <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>catAll<font color="black">@</font>all</font>}</b><br>sequences: <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>cSeq<font color="black">'</font></font>/}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>cSeq.3<font color="black">@</font>sequences</font>}</b><br>tags:      <b>{<font color="blue">true </font><font color="red"><font color="red">$</font>cT=<font color="black">'</font>7<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>cT<font color="black">@</font>tags</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>level:     <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cLv<font color="black">'</font></font>}</b>["x","y"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">cLv</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>0.cLv<font color="black">@</font>level</font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>1.cLv<font color="black">@</font>level</font>}</b>,<b>{/<font color="blue">cLv</font><font color="red"></font>}</b><br>dataAt:    <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cAd<font color="black">'</font></font>}</b>{"cKey":9}<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>cKey.cAd<font color="black">@</font>data</font>}</b><br>function:  <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cFn<font color="black">'</font></font>}</b>[1,2]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">cFn </font><font color="red">callback=<font color="black">'</font>catsum.php<font color="black">'</font><font color="black">,</font> before</font>}</b><b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>cFn</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>t<font color="black">@</font>function</font>}</b><b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>cFn</font><font color="red"></font>}</b><b>{/<font color="blue">cFn</font><font color="red"></font>}</b><br>dataProp:  <b>{<font color="blue">cLv</font><font color="red"></font>}</b><b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>cLv</font><font color="red"></font>}</b>[<b>{<font color="blue">data<font color="black"><b><font color="red">@</font></b></font>cLv</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cLv</font>}</b>,<b>{/<font color="blue">data<font color="black"><b><font color="red">@</font></b></font>cLv</font><font color="red"></font>}</b>]<b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>cLv</font><font color="red"></font>}</b><b>{/<font color="blue">cLv</font><font color="red"></font>}</b><br>condition: <b>{<font color="blue">cLv</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">first<font color="black">@</font>cLv</font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cLv</font>}</b><b>{<font color="blue">if </font><font color="red">notLast<font color="black">@</font>cLv</font>}</b>-<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">cLv</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax94a827465d52b76028bd5039c8f5f6cd"></div>
+                        <script>
+                        padAjax94a827465d52b76028bd5039c8f5f6cd = new XMLHttpRequest();
+                        padAjax94a827465d52b76028bd5039c8f5f6cd.onreadystatechange=function() {
+                        if (padAjax94a827465d52b76028bd5039c8f5f6cd.readyState === 4) {
+                        if (padAjax94a827465d52b76028bd5039c8f5f6cd.status === 200) {
+                        document.getElementById("padAjax94a827465d52b76028bd5039c8f5f6cd").innerHTML=padAjax94a827465d52b76028bd5039c8f5f6cd.responseText;
+                        } else {
+                        document.getElementById("padAjax94a827465d52b76028bd5039c8f5f6cd").innerHTML=padAjax94a827465d52b76028bd5039c8f5f6cd.statusText;
+                        }
+                        }
+                        }
+                        padAjax94a827465d52b76028bd5039c8f5f6cd.open("GET","http://localhost/pad/regression/pages/?catalog/properties&padInclude",true);
+                        padAjax94a827465d52b76028bd5039c8f5f6cd.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: vars/at/random<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">vars/at/random.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">vars/at/random.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] = </span><span style="color: #0000BB">111</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] = </span><span style="color: #0000BB">112</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] = </span><span style="color: #0000BB">113</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] = </span><span style="color: #0000BB">121</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] = </span><span style="color: #0000BB">122</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] = </span><span style="color: #0000BB">123</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] = </span><span style="color: #0000BB">131</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] = </span><span style="color: #0000BB">132</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] = </span><span style="color: #0000BB">133</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] = </span><span style="color: #0000BB">211</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] = </span><span style="color: #0000BB">212</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] = </span><span style="color: #0000BB">213</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] = </span><span style="color: #0000BB">221</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] = </span><span style="color: #0000BB">222</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] = </span><span style="color: #0000BB">223</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] = </span><span style="color: #0000BB">231</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] = </span><span style="color: #0000BB">232</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] = </span><span style="color: #0000BB">233</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] = </span><span style="color: #0000BB">311</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] = </span><span style="color: #0000BB">312</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] = </span><span style="color: #0000BB">313</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] = </span><span style="color: #0000BB">321</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] = </span><span style="color: #0000BB">322</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] = </span><span style="color: #0000BB">323</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] = </span><span style="color: #0000BB">331</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] = </span><span style="color: #0000BB">332</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'c'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] = </span><span style="color: #0000BB">333</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="green"><font color="red">#</font> The * wildcard picks a random element, so this page answers differently every run and the<br>   crawl marks it random rather than comparing it. The values are meant to match the shapes<br>   noted beside them - 11? is any of 111, 112, 113 and so on.<br><br>   The last three lines once asked for a single variable, option or parameter of a named<br>   level through the dotted group form. That resolves to nothing; only the loop form used<br>   here works. <font color="red">#</font></font>}</b><br><br>&lt;br&gt;<br><br><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>25..100<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>myRange<font color="black">'</font></font>/}</b><br><br><b>{<font color="green"><font color="red">$</font>myRange.*</font>}</b> &lt;br&gt; <br><b>{<font color="green"><font color="red">$</font>*</font><font color="red">@</font><font color="purple">myRange</font>}</b> &lt;br&gt; <br><b>{<font color="green"><font color="red">$</font>myRange.*</font><font color="red">@</font><font color="purple">sequence</font>}</b> &lt;br&gt; <br><br>&lt;hr&gt;<br><br><b>{<font color="blue">pad </font><font color="red">name=<font color="black">'</font>cool<font color="black">'</font><font color="black">,</font> abc=123<font color="black">,</font> <font color="black">'</font>fiets<font color="black">'</font><font color="black">,</font> <font color="red">$</font>abc=<font color="black">'</font>banaan<font color="black">'</font><font color="black">,</font> <font color="red">$</font>go=<font color="black">'</font>nuts<font color="black">'</font><font color="black">,</font> xyz=789<font color="black">,</font> 12*15<font color="black">,</font> 34</font>}</b><br><br><b>{<font color="blue">variables<font color="black"><b><font color="red">@</font></b></font>cool</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b>=<b>{<font color="green"><font color="red">$</font>value</font>}</b> <b>{/<font color="blue">variables<font color="black"><b><font color="red">@</font></b></font>cool</font><font color="red"></font>}</b> &lt;br&gt;<br><b>{<font color="blue">options<font color="black"><b><font color="red">@</font></b></font>cool</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b>=<b>{<font color="green"><font color="red">$</font>value</font>}</b> <b>{/<font color="blue">options<font color="black"><b><font color="red">@</font></b></font>cool</font><font color="red"></font>}</b> &lt;br&gt;<br><b>{<font color="blue">parameters<font color="black"><b><font color="red">@</font></b></font>cool</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>value</font>}</b> <b>{/<font color="blue">parameters<font color="black"><b><font color="red">@</font></b></font>cool</font><font color="red"></font>}</b> &lt;br&gt;<br><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;hr&gt;<br><br>11?<br>&lt;br&gt;<br><b>{<font color="green"><font color="red">$</font>a.b.1.c.1.*</font>}</b><br>&lt;br&gt;&lt;br&gt;<br>11?<br>&lt;br&gt;<br><b>{<font color="green"><font color="red">$</font>a.b.&lt;.c.&lt;.*</font>}</b><br>&lt;br&gt;&lt;br&gt;<br>??1<br>???<br>??3<br>&lt;br&gt;<br><b>{<font color="green"><font color="red">$</font>a.b.*.c.*.&lt;</font>}</b><br><b>{<font color="green"><font color="red">$</font>a.b.*.c.*.*</font>}</b><br><b>{<font color="green"><font color="red">$</font>a.b.*.c.*.&gt;</font>}</b><br>&lt;br&gt;&lt;br&gt;<br>33?<br>&lt;br&gt;<br><b>{<font color="green"><font color="red">$</font>a.b.&gt;.c.&gt;.*</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxab76cfb71f4200c4ad58165fbedb432d"></div>
+                        <script>
+                        padAjaxab76cfb71f4200c4ad58165fbedb432d = new XMLHttpRequest();
+                        padAjaxab76cfb71f4200c4ad58165fbedb432d.onreadystatechange=function() {
+                        if (padAjaxab76cfb71f4200c4ad58165fbedb432d.readyState === 4) {
+                        if (padAjaxab76cfb71f4200c4ad58165fbedb432d.status === 200) {
+                        document.getElementById("padAjaxab76cfb71f4200c4ad58165fbedb432d").innerHTML=padAjaxab76cfb71f4200c4ad58165fbedb432d.responseText;
+                        } else {
+                        document.getElementById("padAjaxab76cfb71f4200c4ad58165fbedb432d").innerHTML=padAjaxab76cfb71f4200c4ad58165fbedb432d.statusText;
+                        }
+                        }
+                        }
+                        padAjaxab76cfb71f4200c4ad58165fbedb432d.open("GET","http://localhost/pad/regression/pages/?vars/at/random&padInclude",true);
+                        padAjaxab76cfb71f4200c4ad58165fbedb432d.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
-          </tbody></table>
+          </table>
         </blockquote>
       </center>
     </blockquote>
@@ -160,17 +223,17 @@
       <hr width="75%">
       <br>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table>
+      </table>
       <p>
         <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
       </p>
     </center>
-  
-</body></html>
+  </body>
+</html>

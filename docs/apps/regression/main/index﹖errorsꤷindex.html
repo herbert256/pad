@@ -1,0 +1,2601 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Errors suite - 277 pages, 277 tests, 0 failed
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../../pad/index.html">home</a> | <a href="../../manual/index.html">manual</a> | <a href="../../reference/index.html">reference</a> | <a href="../../examples/index.html">examples</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../../sequence/index.html">sequence</a> | <a href="../../develop/index.html">develop</a> | <a href="../../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td>
+                <hr style="margin:2; border: 1px solid black; width:100%">
+                <a href="index%EF%B9%96index.html">Index</a> &nbsp; <a href="index%EF%B9%96pages%EA%A4%B7index.html">Pages</a> &nbsp; <a href="index%EF%B9%96common%EA%A4%B7index.html">Common</a> &nbsp; <b>Errors</b> &nbsp; <a href="index%EF%B9%96framework%EA%A4%B7index.html">Framework</a> &nbsp; <a href="index%EF%B9%96regression%EA%A4%B7index.html">Regression</a> &nbsp; <a href="index%EF%B9%96sequence%EA%A4%B7index.html">Sequence</a> &nbsp; <a href="index%EF%B9%96manual%EA%A4%B7index.html">Manual</a> &nbsp; <a href="index%EF%B9%96other%EA%A4%B7index.html">Other</a> &nbsp; | &nbsp; <a href="?errors/index&amp;test">Test</a> &nbsp; | &nbsp; <a href="?build">Build</a>
+                <hr style="margin:2; border: 1px solid black; width:100%">
+              </td>
+            </tr>
+          </table>
+          <h1>
+            Errors suite - 277 pages, 277 tests, 0 failed
+          </h1>
+          <p>
+            <b>277 pages, 277 tests, 0 failed</b> - all ok
+          </p>
+          <p>
+            Every test here fails on purpose: the strict syntax checks, the expression evaluator's reports, the pages that end a request, and the error handler family, each answering an expected <code>HTTP 500</code> asserted by a pattern over the message. The application declares the <code>boot</code> error action, so an expected failure is the lean JSON answer - no heavy error page, nothing under <code>DATA/dumps</code>, and the same shape for every requester. These cases live in <code>apps/regression/errors/</code>, with <code>_common</code> switched off.
+          </p>
+          <table border="1" cellpadding="4" cellspacing="0">
+            <tr>
+              <th>
+                page
+              </th>
+              <th>
+                what it checks
+              </th>
+              <th>
+                status
+              </th>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?error/demand&amp;padInclude">error/demand</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?error/dump&amp;padInclude">error/dump</a>
+              </td>
+              <td>
+                The {dump} tag, which stops the request on the engine state dump
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?error/exit&amp;padInclude">error/exit</a>
+              </td>
+              <td>
+                The {exit} tag, which ends the request where it stands - and ships nothing at all, which the pattern pins
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?error/index&amp;padInclude">error/index</a>
+              </td>
+              <td>
+                The menu of the pages that end a request; each of those is a test of its own
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?error/throw&amp;padInclude">error/throw</a>
+              </td>
+              <td>
+                The {exception} tag, which throws a real PHP exception from the template
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?eval/a_division_by_zero&amp;padInclude">eval/a_division_by_zero</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?eval/a_format_needing_more_than_one_value&amp;padInclude">eval/a_format_needing_more_than_one_value</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?eval/a_sequence_term_beyond_reach&amp;padInclude">eval/a_sequence_term_beyond_reach</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?eval/a_splice_offset_is_a_number&amp;padInclude">eval/a_splice_offset_is_a_number</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?eval/a_ternary_needs_its_colon&amp;padInclude">eval/a_ternary_needs_its_colon</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?eval/bracket_mismatch&amp;padInclude">eval/bracket_mismatch</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?eval/dangling_operator&amp;padInclude">eval/dangling_operator</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?eval/matches_needs_a_regular_expression&amp;padInclude">eval/matches_needs_a_regular_expression</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?eval/strict_undefined_field&amp;padInclude">eval/strict_undefined_field</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?eval/text_is_no_number&amp;padInclude">eval/text_is_no_number</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?eval/unclosed_bracket&amp;padInclude">eval/unclosed_bracket</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?eval/unclosed_paren&amp;padInclude">eval/unclosed_paren</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?eval/unclosed_string&amp;padInclude">eval/unclosed_string</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?eval/unknown_pipe_function&amp;padInclude">eval/unknown_pipe_function</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?handlers/error_1&amp;padInclude">handlers/error_1</a>
+              </td>
+              <td>
+                An engine-raised PHP warning from a tag - an undefined variable - which $padErrorLevel promotes to an ended request
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?handlers/error_2&amp;padInclude">handlers/error_2</a>
+              </td>
+              <td>
+                The same engine-raised warning from the page rather than from a tag
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?handlers/exception_1&amp;padInclude">handlers/exception_1</a>
+              </td>
+              <td>
+                An uncaught PHP exception from a tag
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?handlers/exception_2&amp;padInclude">handlers/exception_2</a>
+              </td>
+              <td>
+                An uncaught PHP exception from a page
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?handlers/index&amp;padInclude">handlers/index</a>
+              </td>
+              <td>
+                The menu of the handler family; each of those is a test of its own
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?handlers/pad_1&amp;padInclude">handlers/pad_1</a>
+              </td>
+              <td>
+                The {error} tag, which ends the request from the template
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?handlers/pad_2&amp;padInclude">handlers/pad_2</a>
+              </td>
+              <td>
+                The same failure raised from the page
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?handlers/shutdown_1&amp;padInclude">handlers/shutdown_1</a>
+              </td>
+              <td>
+                A fatal error, which the shutdown handler catches rather than the error handler
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?handlers/shutdown_2&amp;padInclude">handlers/shutdown_2</a>
+              </td>
+              <td>
+                The same from a page
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?handlers/warning_1&amp;padInclude">handlers/warning_1</a>
+              </td>
+              <td>
+                A PHP warning, which $padErrorLevel promotes to an ended request
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?handlers/warning_2&amp;padInclude">handlers/warning_2</a>
+              </td>
+              <td>
+                The same from a page
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/cache_a_key_that_is_an_array&amp;padInclude">helpers/cache_a_key_that_is_an_array</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/cache_a_key_that_is_empty&amp;padInclude">helpers/cache_a_key_that_is_empty</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/cache_a_ttl_that_is_not_a_number&amp;padInclude">helpers/cache_a_ttl_that_is_not_a_number</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/cache_a_value_that_holds_an_object&amp;padInclude">helpers/cache_a_value_that_holds_an_object</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/cache_remember_without_a_callback&amp;padInclude">helpers/cache_remember_without_a_callback</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/dates_ago_names_a_moment_to_count_from_that_is_no_date&amp;padInclude">helpers/dates_ago_names_a_moment_to_count_from_that_is_no_date</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/dates_ago_names_what_is_no_date&amp;padInclude">helpers/dates_ago_names_what_is_no_date</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/dates_ago_pipe_names_what_is_no_date&amp;padInclude">helpers/dates_ago_pipe_names_what_is_no_date</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/dates_freeze_names_what_is_no_date&amp;padInclude">helpers/dates_freeze_names_what_is_no_date</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/dates_now_names_a_format_that_is_no_text&amp;padInclude">helpers/dates_now_names_a_format_that_is_no_text</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/dates_timezone_that_does_not_exist_is_named&amp;padInclude">helpers/dates_timezone_that_does_not_exist_is_named</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/encryption_names_a_value_that_is_no_json&amp;padInclude">helpers/encryption_names_a_value_that_is_no_json</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/encryption_names_an_app_key_of_the_wrong_length&amp;padInclude">helpers/encryption_names_an_app_key_of_the_wrong_length</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/env_a_key_that_is_not_a_string&amp;padInclude">helpers/env_a_key_that_is_not_a_string</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/env_a_line_that_is_not_key_value&amp;padInclude">helpers/env_a_line_that_is_not_key_value</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/env_a_quoted_value_that_is_never_closed&amp;padInclude">helpers/env_a_quoted_value_that_is_never_closed</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/env_an_empty_key&amp;padInclude">helpers/env_an_empty_key</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/env_text_after_the_closing_quote&amp;padInclude">helpers/env_text_after_the_closing_quote</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/hashing_names_a_password_that_bcrypt_cannot_take&amp;padInclude">helpers/hashing_names_a_password_that_bcrypt_cannot_take</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/hashing_names_a_password_that_is_no_text&amp;padInclude">helpers/hashing_names_a_password_that_is_no_text</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/logging_names_a_context_that_is_no_array&amp;padInclude">helpers/logging_names_a_context_that_is_no_array</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/logging_names_a_level_psr3_does_not_know&amp;padInclude">helpers/logging_names_a_level_psr3_does_not_know</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/ratelimit_a_maximum_that_is_negative&amp;padInclude">helpers/ratelimit_a_maximum_that_is_negative</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/ratelimit_a_window_shorter_than_a_second&amp;padInclude">helpers/ratelimit_a_window_shorter_than_a_second</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/requests_abort_takes_an_error_status_only&amp;padInclude">helpers/requests_abort_takes_an_error_status_only</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/requests_is_takes_a_method_name&amp;padInclude">helpers/requests_is_takes_a_method_name</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/requests_names_are_texts_or_lists_of_texts&amp;padInclude">helpers/requests_names_are_texts_or_lists_of_texts</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/requests_session_names_are_no_numbers&amp;padInclude">helpers/requests_session_names_are_no_numbers</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/requests_session_put_needs_a_name&amp;padInclude">helpers/requests_session_put_needs_a_name</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/requests_session_values_are_serializable&amp;padInclude">helpers/requests_session_values_are_serializable</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/requests_url_takes_its_values_as_an_array&amp;padInclude">helpers/requests_url_takes_its_values_as_an_array</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/signing_names_a_lifetime_that_is_not_positive&amp;padInclude">helpers/signing_names_a_lifetime_that_is_not_positive</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/signing_names_a_value_the_link_makes_itself&amp;padInclude">helpers/signing_names_a_value_the_link_makes_itself</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/signing_names_an_expiry_moment_that_has_passed&amp;padInclude">helpers/signing_names_an_expiry_moment_that_has_passed</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/signing_names_an_expiry_that_is_no_date&amp;padInclude">helpers/signing_names_an_expiry_that_is_no_date</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?helpers/signing_names_values_that_are_no_array&amp;padInclude">helpers/signing_names_values_that_are_no_array</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?source/a_field_typo_names_its_line_and_column&amp;padInclude">source/a_field_typo_names_its_line_and_column</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?source/a_field_typo_offers_the_nearest_name&amp;padInclude">source/a_field_typo_offers_the_nearest_name</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?source/a_pipe_typo_offers_the_nearest_function&amp;padInclude">source/a_pipe_typo_offers_the_nearest_function</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?source/a_stray_close_brace_is_pointed_at&amp;padInclude">source/a_stray_close_brace_is_pointed_at</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?source/an_error_in_a_loop_names_its_line&amp;padInclude">source/an_error_in_a_loop_names_its_line</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?source/an_error_in_a_page_names_the_tag_that_built_it&amp;padInclude">source/an_error_in_a_page_names_the_tag_that_built_it</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?source/an_error_in_a_page_names_the_wrappers_around_it&amp;padInclude">source/an_error_in_a_page_names_the_wrappers_around_it</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?source/an_error_in_a_snippet_names_the_snippet&amp;padInclude">source/an_error_in_a_snippet_names_the_snippet</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?source/an_error_in_a_wrapper_names_the_wrapper&amp;padInclude">source/an_error_in_a_wrapper_names_the_wrapper</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?source/frame/index&amp;padInclude">source/frame/index</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?source/framed/index&amp;padInclude">source/framed/index</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?source/nested/inner&amp;padInclude">source/nested/inner</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_bare_pull_with_nothing_pushed_is_named&amp;padInclude">syntax/a_bare_pull_with_nothing_pushed_is_named</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_begin_is_not_a_construct&amp;padInclude">syntax/a_begin_is_not_a_construct</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_block_of_an_extending_page_overrides_nothing&amp;padInclude">syntax/a_block_of_an_extending_page_overrides_nothing</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_branch_belongs_inside_a_tree&amp;padInclude">syntax/a_branch_belongs_inside_a_tree</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_break_needs_a_loop&amp;padInclude">syntax/a_break_needs_a_loop</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_break_needs_its_level&amp;padInclude">syntax/a_break_needs_its_level</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_break_offset_past_the_page_root_is_reported&amp;padInclude">syntax/a_break_offset_past_the_page_root_is_reported</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_build_strategy_must_be_one_there_is&amp;padInclude">syntax/a_build_strategy_must_be_one_there_is</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_cache_needs_a_name&amp;padInclude">syntax/a_cache_needs_a_name</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_cache_never_closes&amp;padInclude">syntax/a_cache_never_closes</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_callback_needs_its_file&amp;padInclude">syntax/a_callback_needs_its_file</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_case_needs_a_value&amp;padInclude">syntax/a_case_needs_a_value</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_case_needs_a_when&amp;padInclude">syntax/a_case_needs_a_when</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_case_never_closes&amp;padInclude">syntax/a_case_never_closes</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_chart_of_an_unknown_kind_is_reported&amp;padInclude">syntax/a_chart_of_an_unknown_kind_is_reported</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_chart_without_data_is_reported&amp;padInclude">syntax/a_chart_without_data_is_reported</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_close_brace_never_opens&amp;padInclude">syntax/a_close_brace_never_opens</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_collection_that_does_not_exist_is_reported&amp;padInclude">syntax/a_collection_that_does_not_exist_is_reported</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_comma_is_missing_between_parameters&amp;padInclude">syntax/a_comma_is_missing_between_parameters</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_comment_closes_with_hash&amp;padInclude">syntax/a_comment_closes_with_hash</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_comment_never_closes&amp;padInclude">syntax/a_comment_never_closes</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_constant_prefix_asserts_its_constant&amp;padInclude">syntax/a_constant_prefix_asserts_its_constant</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_content_marker_needs_a_consumer&amp;padInclude">syntax/a_content_marker_needs_a_consumer</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_continue_needs_a_loop&amp;padInclude">syntax/a_continue_needs_a_loop</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_csv_answer_needs_an_exposed_list&amp;padInclude">syntax/a_csv_answer_needs_an_exposed_list</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_currency_locale_intl_does_not_know&amp;padInclude">syntax/a_currency_locale_intl_does_not_know</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_data_prefix_asserts_its_store&amp;padInclude">syntax/a_data_prefix_asserts_its_store</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_data_type_must_exist&amp;padInclude">syntax/a_data_type_must_exist</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_data_value_is_not_read_as_a_list&amp;padInclude">syntax/a_data_value_is_not_read_as_a_list</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_database_tag_needs_a_statement&amp;padInclude">syntax/a_database_tag_needs_a_statement</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_decrement_counts_a_number&amp;padInclude">syntax/a_decrement_counts_a_number</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_dir_tag_needs_its_directory&amp;padInclude">syntax/a_dir_tag_needs_its_directory</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_dir_tag_stays_inside_the_tree&amp;padInclude">syntax/a_dir_tag_stays_inside_the_tree</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_duplicate_option_is_reported&amp;padInclude">syntax/a_duplicate_option_is_reported</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_duplicate_when_is_reported&amp;padInclude">syntax/a_duplicate_when_is_reported</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_failed_statement_names_its_sql&amp;padInclude">syntax/a_failed_statement_names_its_sql</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_files_tag_needs_its_directory&amp;padInclude">syntax/a_files_tag_needs_its_directory</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_files_tag_stays_inside_the_tree&amp;padInclude">syntax/a_files_tag_stays_inside_the_tree</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_flush_stands_at_the_top_level&amp;padInclude">syntax/a_flush_stands_at_the_top_level</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_form_must_close&amp;padInclude">syntax/a_form_must_close</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_fractional_element_position_is_named&amp;padInclude">syntax/a_fractional_element_position_is_named</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_fractional_trim_count_is_named&amp;padInclude">syntax/a_fractional_trim_count_is_named</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_fragment_needs_a_name&amp;padInclude">syntax/a_fragment_needs_a_name</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_function_wants_its_parameters&amp;padInclude">syntax/a_function_wants_its_parameters</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_get_needs_its_page&amp;padInclude">syntax/a_get_needs_its_page</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_json_answer_needs_something_exposed&amp;padInclude">syntax/a_json_answer_needs_something_exposed</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_live_region_must_close&amp;padInclude">syntax/a_live_region_must_close</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_live_region_needs_a_name&amp;padInclude">syntax/a_live_region_needs_a_name</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_localDate_locale_intl_does_not_know&amp;padInclude">syntax/a_localDate_locale_intl_does_not_know</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_lookup_names_a_data_set_that_is_there&amp;padInclude">syntax/a_lookup_names_a_data_set_that_is_there</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_lookup_needs_its_data_set&amp;padInclude">syntax/a_lookup_needs_its_data_set</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_loop_offset_stays_inside_the_page&amp;padInclude">syntax/a_loop_offset_stays_inside_the_page</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_loop_stops_at_the_ceiling&amp;padInclude">syntax/a_loop_stops_at_the_ceiling</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_mail_goes_to_an_address&amp;padInclude">syntax/a_mail_goes_to_an_address</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_mail_header_may_not_hold_a_line_break&amp;padInclude">syntax/a_mail_header_may_not_hold_a_line_break</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_mail_needs_a_subject&amp;padInclude">syntax/a_mail_needs_a_subject</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_mail_template_must_exist&amp;padInclude">syntax/a_mail_template_must_exist</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_mail_transport_must_exist&amp;padInclude">syntax/a_mail_transport_must_exist</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_markdown_never_closes&amp;padInclude">syntax/a_markdown_never_closes</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_merge_is_top_bottom_or_replace&amp;padInclude">syntax/a_merge_is_top_bottom_or_replace</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_meta_item_is_name_is_value&amp;padInclude">syntax/a_meta_item_is_name_is_value</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_missing_field_is_reported&amp;padInclude">syntax/a_missing_field_is_reported</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_missing_field_with_a_pipe_is_reported_without_the_pipe&amp;padInclude">syntax/a_missing_field_with_a_pipe_is_reported_without_the_pipe</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_named_query_field_must_exist&amp;padInclude">syntax/a_named_query_field_must_exist</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_named_query_must_read&amp;padInclude">syntax/a_named_query_must_read</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_nested_select_needs_a_relation&amp;padInclude">syntax/a_nested_select_needs_a_relation</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_page_extends_two_layouts&amp;padInclude">syntax/a_page_extends_two_layouts</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_page_is_named_from_the_application_root&amp;padInclude">syntax/a_page_is_named_from_the_application_root</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_page_may_not_expose_an_engine_variable&amp;padInclude">syntax/a_page_may_not_expose_an_engine_variable</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_page_tag_needs_its_page&amp;padInclude">syntax/a_page_tag_needs_its_page</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_pager_needs_its_paged_tag_before_it&amp;padInclude">syntax/a_pager_needs_its_paged_tag_before_it</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_php_function_must_be_on_the_list&amp;padInclude">syntax/a_php_function_must_be_on_the_list</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_php_prefix_asserts_its_function&amp;padInclude">syntax/a_php_prefix_asserts_its_function</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_pipe_operator_needs_a_space&amp;padInclude">syntax/a_pipe_operator_needs_a_space</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_prefix_names_a_type_the_engine_has&amp;padInclude">syntax/a_prefix_names_a_type_the_engine_has</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_property_needs_its_level&amp;padInclude">syntax/a_property_needs_its_level</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_property_typo_names_the_property&amp;padInclude">syntax/a_property_typo_names_the_property</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_pull_of_a_store_never_pushed_is_named&amp;padInclude">syntax/a_pull_of_a_store_never_pushed_is_named</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_pull_prefix_asserts_its_sequence&amp;padInclude">syntax/a_pull_prefix_asserts_its_sequence</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_push_needs_the_name_of_a_stack&amp;padInclude">syntax/a_push_needs_the_name_of_a_stack</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_push_never_closes&amp;padInclude">syntax/a_push_never_closes</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_range_needs_its_end&amp;padInclude">syntax/a_range_needs_its_end</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_react_provider_is_a_plain_name&amp;padInclude">syntax/a_react_provider_is_a_plain_name</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_recurse_belongs_inside_a_tree&amp;padInclude">syntax/a_recurse_belongs_inside_a_tree</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_redirect_needs_its_page&amp;padInclude">syntax/a_redirect_needs_its_page</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_request_for_a_fragment_the_page_lacks&amp;padInclude">syntax/a_request_for_a_fragment_the_page_lacks</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_required_parameter_is_left_out&amp;padInclude">syntax/a_required_parameter_is_left_out</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_restart_loop_is_named&amp;padInclude">syntax/a_restart_loop_is_named</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_restart_loop_partner&amp;padInclude">syntax/a_restart_loop_partner</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_resume_before_any_push_is_named&amp;padInclude">syntax/a_resume_before_any_push_is_named</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_reversed_sequence_names_its_miss&amp;padInclude">syntax/a_reversed_sequence_names_its_miss</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_script_is_named_whole_not_by_its_first_letters&amp;padInclude">syntax/a_script_is_named_whole_not_by_its_first_letters</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_select_join_needs_the_key_of_the_joined_table&amp;padInclude">syntax/a_select_join_needs_the_key_of_the_joined_table</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_select_key_is_quoted_as_an_identifier&amp;padInclude">syntax/a_select_key_is_quoted_as_an_identifier</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_select_key_relation_needs_the_other_key&amp;padInclude">syntax/a_select_key_relation_needs_the_other_key</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_select_order_binds_column_names_only&amp;padInclude">syntax/a_select_order_binds_column_names_only</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_select_output_mode_is_a_known_shape&amp;padInclude">syntax/a_select_output_mode_is_a_known_shape</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_select_prefix_asserts_its_table&amp;padInclude">syntax/a_select_prefix_asserts_its_table</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_select_relation_reads_a_field_of_the_outer_row&amp;padInclude">syntax/a_select_relation_reads_a_field_of_the_outer_row</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_select_where_is_written_in_the_template&amp;padInclude">syntax/a_select_where_is_written_in_the_template</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_sequence_option_typo_is_reported&amp;padInclude">syntax/a_sequence_option_typo_is_reported</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_set_needs_an_assignment&amp;padInclude">syntax/a_set_needs_an_assignment</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_sitemap_names_a_directory_there_is&amp;padInclude">syntax/a_sitemap_names_a_directory_there_is</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_slot_needs_a_name&amp;padInclude">syntax/a_slot_needs_a_name</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_slot_stands_outside_any_custom_tag&amp;padInclude">syntax/a_slot_stands_outside_any_custom_tag</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_sort_flag_that_does_not_exist_is_named&amp;padInclude">syntax/a_sort_flag_that_does_not_exist_is_named</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_stack_needs_a_name&amp;padInclude">syntax/a_stack_needs_a_name</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_start_needs_its_end&amp;padInclude">syntax/a_start_needs_its_end</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_store_must_not_shadow_a_tag&amp;padInclude">syntax/a_store_must_not_shadow_a_tag</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_store_tag_needs_a_name&amp;padInclude">syntax/a_store_tag_needs_a_name</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_strict_expression_names_its_missing_field&amp;padInclude">syntax/a_strict_expression_names_its_missing_field</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_switch_needs_values&amp;padInclude">syntax/a_switch_needs_values</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_tag_that_declares_its_parameters_is_given_another&amp;padInclude">syntax/a_tag_that_declares_its_parameters_is_given_another</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_trans_needs_a_key&amp;padInclude">syntax/a_trans_needs_a_key</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_tree_names_rows_that_are_there&amp;padInclude">syntax/a_tree_names_rows_that_are_there</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_tree_needs_its_rows&amp;padInclude">syntax/a_tree_needs_its_rows</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_value_listed_in_two_whens_is_reported&amp;padInclude">syntax/a_value_listed_in_two_whens_is_reported</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_when_behind_the_else_never_answers&amp;padInclude">syntax/a_when_behind_the_else_never_answers</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_when_needs_a_value&amp;padInclude">syntax/a_when_needs_a_value</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_when_stands_inside_its_case&amp;padInclude">syntax/a_when_stands_inside_its_case</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_while_needs_a_condition&amp;padInclude">syntax/a_while_needs_a_condition</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_while_never_closes&amp;padInclude">syntax/a_while_never_closes</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_wrapper_holds_one_page_marker&amp;padInclude">syntax/a_wrapper_holds_one_page_marker</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/a_yaml_parse_error_names_its_reason&amp;padInclude">syntax/a_yaml_parse_error_names_its_reason</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_aggregate_of_group_needs_its_field&amp;padInclude">syntax/an_aggregate_of_group_needs_its_field</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_ajax_needs_its_page&amp;padInclude">syntax/an_ajax_needs_its_page</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_assert_needs_a_condition&amp;padInclude">syntax/an_assert_needs_a_condition</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_assert_that_fails_names_its_condition&amp;padInclude">syntax/an_assert_that_fails_names_its_condition</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_at_needs_its_path&amp;padInclude">syntax/an_at_needs_its_path</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_echo_needs_an_expression&amp;padInclude">syntax/an_echo_needs_an_expression</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_elseif_needs_a_condition&amp;padInclude">syntax/an_elseif_needs_a_condition</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_elseif_stands_inside_its_if&amp;padInclude">syntax/an_elseif_stands_inside_its_if</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_empty_pipe_segment_is_reported&amp;padInclude">syntax/an_empty_pipe_segment_is_reported</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_empty_tag_is_reported&amp;padInclude">syntax/an_empty_tag_is_reported</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_end_needs_its_start&amp;padInclude">syntax/an_end_needs_its_start</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_if_needs_a_condition&amp;padInclude">syntax/an_if_needs_a_condition</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_if_never_closes&amp;padInclude">syntax/an_if_never_closes</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_ifchanged_needs_a_value&amp;padInclude">syntax/an_ifchanged_needs_a_value</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_include_prefix_asserts_its_snippet&amp;padInclude">syntax/an_include_prefix_asserts_its_snippet</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_increment_counts_a_number&amp;padInclude">syntax/an_increment_counts_a_number</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_increment_counts_an_application_variable&amp;padInclude">syntax/an_increment_counts_an_application_variable</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_input_needs_a_field_name&amp;padInclude">syntax/an_input_needs_a_field_name</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_open_brace_never_closes&amp;padInclude">syntax/an_open_brace_never_closes</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_option_needs_its_value&amp;padInclude">syntax/an_option_needs_its_value</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_option_nothing_reads&amp;padInclude">syntax/an_option_nothing_reads</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_orphan_close_tag_is_reported&amp;padInclude">syntax/an_orphan_close_tag_is_reported</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_unknown_construct_is_reported&amp;padInclude">syntax/an_unknown_construct_is_reported</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_unknown_tag_is_reported&amp;padInclude">syntax/an_unknown_tag_is_reported</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_unknown_tag_with_options_on_its_closing_tag_is_reported_by_its_own_name&amp;padInclude">syntax/an_unknown_tag_with_options_on_its_closing_tag_is_reported_by_its_own_name</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/an_until_needs_a_condition&amp;padInclude">syntax/an_until_needs_a_condition</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/arrays_first_takes_a_callback_as_its_second_argument&amp;padInclude">syntax/arrays_first_takes_a_callback_as_its_second_argument</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/arrays_flatten_takes_no_negative_depth&amp;padInclude">syntax/arrays_flatten_takes_no_negative_depth</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/arrays_get_takes_a_dot_path_as_its_key&amp;padInclude">syntax/arrays_get_takes_a_dot_path_as_its_key</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/arrays_group_by_needs_a_plain_value_to_key_a_row_by&amp;padInclude">syntax/arrays_group_by_needs_a_plain_value_to_key_a_row_by</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/arrays_has_takes_keys_as_an_array_or_a_string&amp;padInclude">syntax/arrays_has_takes_keys_as_an_array_or_a_string</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/arrays_set_cannot_write_a_property_an_object_does_not_have&amp;padInclude">syntax/arrays_set_cannot_write_a_property_an_object_does_not_have</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/arrays_where_in_needs_a_list_of_values&amp;padInclude">syntax/arrays_where_in_needs_a_list_of_values</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/arrays_where_like_needs_a_text_pattern&amp;padInclude">syntax/arrays_where_like_needs_a_text_pattern</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/arrays_where_with_an_unknown_operator_is_reported&amp;padInclude">syntax/arrays_where_with_an_unknown_operator_is_reported</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/badwrap/index&amp;padInclude">syntax/badwrap/index</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/before_the_first_when_nothing_renders&amp;padInclude">syntax/before_the_first_when_nothing_renders</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/date_names_a_change_it_cannot_read&amp;padInclude">syntax/date_names_a_change_it_cannot_read</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/expose_names_a_variable_the_page_never_set&amp;padInclude">syntax/expose_names_a_variable_the_page_never_set</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/extends_names_a_layout_that_does_not_exist&amp;padInclude">syntax/extends_names_a_layout_that_does_not_exist</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/extends_stands_inside_another_tag&amp;padInclude">syntax/extends_stands_inside_another_tag</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/form_rules_give_a_field_one_set&amp;padInclude">syntax/form_rules_give_a_field_one_set</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/form_rules_in_a_form_posting_elsewhere_are_refused&amp;padInclude">syntax/form_rules_in_a_form_posting_elsewhere_are_refused</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/form_rules_in_a_get_form_are_refused&amp;padInclude">syntax/form_rules_in_a_get_form_are_refused</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/form_rules_in_a_snippet_are_never_checked&amp;padInclude">syntax/form_rules_in_a_snippet_are_never_checked</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/form_rules_must_be_rules_that_exist&amp;padInclude">syntax/form_rules_must_be_rules_that_exist</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/form_rules_must_be_written_out&amp;padInclude">syntax/form_rules_must_be_written_out</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/form_rules_need_a_form_with_a_name&amp;padInclude">syntax/form_rules_need_a_form_with_a_name</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/form_rules_on_a_file_field_are_refused&amp;padInclude">syntax/form_rules_on_a_file_field_are_refused</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/group_needs_the_field_to_group_on&amp;padInclude">syntax/group_needs_the_field_to_group_on</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/meta_names_an_engine_variable&amp;padInclude">syntax/meta_names_an_engine_variable</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/meta_stands_inside_another_tag&amp;padInclude">syntax/meta_stands_inside_another_tag</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/numbers_a_precision_cannot_be_negative&amp;padInclude">syntax/numbers_a_precision_cannot_be_negative</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/numbers_a_value_must_be_a_number&amp;padInclude">syntax/numbers_a_value_must_be_a_number</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/numbers_an_ordinal_wants_a_whole_number&amp;padInclude">syntax/numbers_an_ordinal_wants_a_whole_number</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/numbers_clamp_wants_its_minimum_below_its_maximum&amp;padInclude">syntax/numbers_clamp_wants_its_minimum_below_its_maximum</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/numbers_format_wants_a_locale_intl_knows&amp;padInclude">syntax/numbers_format_wants_a_locale_intl_knows</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/object_reads_no_engine_variable&amp;padInclude">syntax/object_reads_no_engine_variable</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/padStrLimit_needs_a_limit_of_zero_or_more&amp;padInclude">syntax/padStrLimit_needs_a_limit_of_zero_or_more</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/padStrMask_needs_a_character_to_mask_with&amp;padInclude">syntax/padStrMask_needs_a_character_to_mask_with</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/padStrMask_needs_a_whole_number_as_its_index&amp;padInclude">syntax/padStrMask_needs_a_whole_number_as_its_index</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/padStrPlural_needs_a_number_as_its_count&amp;padInclude">syntax/padStrPlural_needs_a_number_as_its_count</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/padStrRandom_needs_a_length_of_zero_or_more&amp;padInclude">syntax/padStrRandom_needs_a_length_of_zero_or_more</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/padStrSquish_needs_a_text_not_an_array&amp;padInclude">syntax/padStrSquish_needs_a_text_not_an_array</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/padStrUuid_makes_version_4_or_7&amp;padInclude">syntax/padStrUuid_makes_version_4_or_7</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/padStrWords_needs_a_whole_number_of_words&amp;padInclude">syntax/padStrWords_needs_a_whole_number_of_words</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/padUpload_keeps_to_a_directory_under_data&amp;padInclude">syntax/padUpload_keeps_to_a_directory_under_data</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/padUpload_names_a_size_it_cannot_read&amp;padInclude">syntax/padUpload_names_a_size_it_cannot_read</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/padValidate_names_a_rule_it_does_not_know&amp;padInclude">syntax/padValidate_names_a_rule_it_does_not_know</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/parent_stands_outside_an_overriding_block&amp;padInclude">syntax/parent_stands_outside_an_overriding_block</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/parms_stands_outside_any_custom_tag&amp;padInclude">syntax/parms_stands_outside_any_custom_tag</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/the_pair_ignore_never_closes&amp;padInclude">syntax/the_pair_ignore_never_closes</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/the_sections_stand_in_order&amp;padInclude">syntax/the_sections_stand_in_order</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/values_a_callback_must_be_a_function_or_a_closure&amp;padInclude">syntax/values_a_callback_must_be_a_function_or_a_closure</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/errors/?syntax/values_retry_needs_one_attempt_or_more&amp;padInclude">syntax/values_retry_needs_one_attempt_or_more</a>
+              </td>
+              <td></td>
+              <td>
+                ok
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../../pad/index.html">home</a> | <a href="../../manual/index.html">manual</a> | <a href="../../reference/index.html">reference</a> | <a href="../../examples/index.html">examples</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../../sequence/index.html">sequence</a> | <a href="../../develop/index.html">develop</a> | <a href="../../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: examples
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: examples
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=examples&amp;dir=_lib.html">_lib/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=examples&amp;dir=_tests.html">_tests/</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=examples&amp;dir=&amp;file=_inits.pad.html">_inits.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=examples&amp;dir=&amp;file=build.php.html">build.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=examples&amp;dir=&amp;file=index.pad.html">index.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=examples&amp;dir=&amp;file=index.php.html">index.php</a>
+                  </li>
+                  <li class="current">show.pad
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=examples&amp;dir=&amp;file=show.php.html">show.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  show.pad
+                </h3>
+                <pre><code style="color: #000000"><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>show eq <font color="black">'</font><font color="black">'</font></font>}</b><br><br>  &lt;p&gt;Pick an example from the &lt;a href="?index<b>{<font color="green">?q</font>}</b>"&gt;search&lt;/a&gt;.&lt;/p&gt;<br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;h1&gt;<b>{<font color="green"><font color="red">$</font>show</font>}</b>&lt;/h1&gt;<br><br>  &lt;p&gt;&lt;a href="?index<b>{<font color="green">?q</font>}</b>"&gt;back to the search&lt;/a&gt;&lt;/p&gt;<br><br>  &lt;div class="example-view"&gt;<br><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>hasPhp eq 1</font>}</b><br>      &lt;div class="example-panel"&gt;<br>        &lt;h4&gt;PHP&lt;/h4&gt;<br>        &lt;div class="example-body"&gt;<b>{<font color="green"><font color="red">!</font>srcPhp</font>}</b>&lt;/div&gt;<br>      &lt;/div&gt;<br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>hasPad eq 1</font>}</b><br>      &lt;div class="example-panel"&gt;<br>        &lt;h4&gt;PAD&lt;/h4&gt;<br>        &lt;div class="example-body"&gt;<b>{<font color="green"><font color="red">!</font>srcPad</font>}</b>&lt;/div&gt;<br>      &lt;/div&gt;<br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>    &lt;div class="example-panel"&gt;<br>      &lt;h4&gt;Result&lt;/h4&gt;<br>      &lt;div class="example-body"&gt;<b>{<font color="green"><font color="red">!</font>result</font>}</b>&lt;/div&gt;<br>    &lt;/div&gt;<br><br>  &lt;/div&gt;<br><br><b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Parms functions - encodeHigh
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Parms functions - encodeHigh
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: functions/encodeHigh<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">functions/encodeHigh.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>café<font color="black">'</font> <font color="black">|</font> encodeHigh</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8c7bec1239c110db6437055ce86174a1"></div>
+                        <script>
+                        padAjax8c7bec1239c110db6437055ce86174a1 = new XMLHttpRequest();
+                        padAjax8c7bec1239c110db6437055ce86174a1.onreadystatechange=function() {
+                        if (padAjax8c7bec1239c110db6437055ce86174a1.readyState === 4) {
+                        if (padAjax8c7bec1239c110db6437055ce86174a1.status === 200) {
+                        document.getElementById("padAjax8c7bec1239c110db6437055ce86174a1").innerHTML=padAjax8c7bec1239c110db6437055ce86174a1.responseText;
+                        } else {
+                        document.getElementById("padAjax8c7bec1239c110db6437055ce86174a1").innerHTML=padAjax8c7bec1239c110db6437055ce86174a1.statusText;
+                        }
+                        }
+                        }
+                        padAjax8c7bec1239c110db6437055ce86174a1.open("GET","http://localhost/pad/regression/framework/?functions/encodeHigh&padInclude",true);
+                        padAjax8c7bec1239c110db6437055ce86174a1.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: catalog/functions<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">catalog/functions.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">catalog/functions.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The value the stripLow line cleans: printable letters around two control characters.<br><br>  </span><span style="color: #0000BB">$catLow </span><span style="color: #007700">= </span><span style="color: #DD0000">"a\x01b\x02c"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">after:      <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a/b<font color="black">'</font> <font color="black">|</font> after(<font color="black">'</font>/<font color="black">'</font>)</font>}</b><br>afterLast:  <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a/b/c<font color="black">'</font> <font color="black">|</font> afterLast(<font color="black">'</font>/<font color="black">'</font>)</font>}</b><br>before:     <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a/b<font color="black">'</font> <font color="black">|</font> before(<font color="black">'</font>/<font color="black">'</font>)</font>}</b><br>beforeLast: <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a.b.c<font color="black">'</font> <font color="black">|</font> beforeLast(<font color="black">'</font>.<font color="black">'</font>)</font>}</b><br>between:    <b>{<font color="blue">echo </font><font color="red">17 <font color="black">|</font> between(10<font color="black">,</font> 66)</font>}</b>.<br>bold:       <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>important<font color="black">'</font> <font color="black">|</font> bold</font>}</b><br>close:      <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>items<font color="black">'</font> <font color="black">|</font> close <font color="black">|</font> ignore</font>}</b><br>contains:   <b>{<font color="blue">echo </font><font color="red">12345 <font color="black">|</font> contains(<font color="black">'</font>34<font color="black">'</font>)</font>}</b>.<br>cut:        <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>banana<font color="black">'</font> <font color="black">|</font> cut(<font color="black">'</font>an<font color="black">'</font>)</font>}</b><br>encodeHigh: <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>café<font color="black">'</font> <font color="black">|</font> encodeHigh</font>}</b><br>exists:     <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>hello/index.pad<font color="black">'</font> <font color="black">|</font> exists</font>}</b>.<br>html:       <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>&lt;b&gt;<font color="black">'</font> <font color="black">|</font> html</font>}</b><br>in:         <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a<font color="black">'</font> <font color="black">|</font> in(<font color="black">'</font>a<font color="black">'</font>)</font>}</b>.<br>left:       <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> left(2)</font>}</b><br>like:       <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> like(<font color="black">'</font>a<font color="black">%</font><font color="black">'</font>)</font>}</b>.<br>max_len:    <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> max_len(4)</font>}</b><br>mid:        <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> mid(2<font color="black">,</font> 3)</font>}</b><br>nbsp:       <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>hello world<font color="black">'</font> <font color="black">|</font> nbsp</font>}</b><br>open:       <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>items<font color="black">'</font> <font color="black">|</font> open <font color="black">|</font> ignore</font>}</b><br>optional:   <b>{<font color="green">$catNoSuch</font> <font color="black">|</font> <font color="blue">optional</font>}</b>ok<br>range:      <b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> range(0<font color="black">,</font> 100)</font>}</b>.<br>replace:    <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> replace(<font color="black">'</font>b<font color="black">'</font><font color="black">,</font> <font color="black">'</font>x<font color="black">'</font>)</font>}</b><br>right:      <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> right(2)</font>}</b><br>sanitize:   <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>&lt;b&gt;x&lt;/b&gt;<font color="black">'</font> <font color="black">|</font> sanitize</font>}</b><br>slashes:    <b>{<font color="blue">echo </font><font color="red">"it<font color="black">'</font>s" <font color="black">|</font> slashes</font>}</b><br>stripLow:   <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>catLow <font color="black">|</font> stripLow</font>}</b><br>stripslashes: <b>{<font color="blue">echo </font><font color="red">"it<font color="black">'</font>s" <font color="black">|</font> slashes <font color="black">|</font> stripslashes</font>}</b><br>tag:        <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>items<font color="black">'</font> <font color="black">|</font> tag <font color="black">|</font> ignore</font>}</b><br>time:       <b>{<font color="blue">echo </font><font color="red">1702483200 <font color="black">|</font> time(<font color="black">'</font>Y<font color="black">'</font>)</font>}</b><br>timestamp:  <b>{<font color="blue">echo </font><font color="red">1702483200 <font color="black">|</font> timestamp(<font color="black">'</font>Y<font color="black">'</font>)</font>}</b><br>trim:       <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>  a b  <font color="black">'</font> <font color="black">|</font> trim</font>}</b><br>ucwords:    <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>hello world<font color="black">'</font> <font color="black">|</font> ucwords</font>}</b><br>white:      <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a       b<font color="black">'</font> <font color="black">|</font> white</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax12fb4e8bbfec5ccb52f69bf2165aa981"></div>
+                        <script>
+                        padAjax12fb4e8bbfec5ccb52f69bf2165aa981 = new XMLHttpRequest();
+                        padAjax12fb4e8bbfec5ccb52f69bf2165aa981.onreadystatechange=function() {
+                        if (padAjax12fb4e8bbfec5ccb52f69bf2165aa981.readyState === 4) {
+                        if (padAjax12fb4e8bbfec5ccb52f69bf2165aa981.status === 200) {
+                        document.getElementById("padAjax12fb4e8bbfec5ccb52f69bf2165aa981").innerHTML=padAjax12fb4e8bbfec5ccb52f69bf2165aa981.responseText;
+                        } else {
+                        document.getElementById("padAjax12fb4e8bbfec5ccb52f69bf2165aa981").innerHTML=padAjax12fb4e8bbfec5ccb52f69bf2165aa981.statusText;
+                        }
+                        }
+                        }
+                        padAjax12fb4e8bbfec5ccb52f69bf2165aa981.open("GET","http://localhost/pad/regression/pages/?catalog/functions&padInclude",true);
+                        padAjax12fb4e8bbfec5ccb52f69bf2165aa981.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: _common/_lib
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: common/ lib
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=_common.html">..</a>
+                  </li>
+                  <li class="current">apps.php
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=_common&amp;dir=_lib&amp;file=_lib%EA%A4%B7colors.php.html">colors.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=_common&amp;dir=_lib&amp;file=_lib%EA%A4%B7example.php.html">example.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=_common&amp;dir=_lib&amp;file=_lib%EA%A4%B7menu.php.html">menu.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=_common&amp;dir=_lib&amp;file=_lib%EA%A4%B7reference.php.html">reference.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  _lib/apps.php
+                </h3>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The application walkers, shared infrastructure: the suites in regression/main<br>  // enumerate their pages from here, develop's harvest and nuts pages walk the same list,<br>  // and record resolves a test name back to its application with the same boundary rule.<br><br>  // Every page of every application, walked once per request. Either half names a page,<br>  // so the .pad-only and .php-only forms both count and a pair counts once; a page with<br>  // no template that redirects (padRedirect, padBack), restarts or writes is an action,<br>  // not a page, and a crawl has to be able to run without changing anything.<br><br>  </span><span style="color: #007700">function </span><span style="color: #0000BB">padAppsList </span><span style="color: #007700">() {<br><br>    static </span><span style="color: #0000BB">$cache </span><span style="color: #007700">= </span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br><br>    if ( </span><span style="color: #0000BB">$cache </span><span style="color: #007700">!== </span><span style="color: #0000BB">NULL </span><span style="color: #007700">)<br>      return </span><span style="color: #0000BB">$cache</span><span style="color: #007700">;<br><br>    </span><span style="color: #0000BB">$directory </span><span style="color: #007700">= new </span><span style="color: #0000BB">RecursiveDirectoryIterator </span><span style="color: #007700">(</span><span style="color: #0000BB">APPS</span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$iterator  </span><span style="color: #007700">= new </span><span style="color: #0000BB">RecursiveIteratorIterator  </span><span style="color: #007700">(</span><span style="color: #0000BB">$directory</span><span style="color: #007700">);<br><br>    foreach (</span><span style="color: #0000BB">$iterator </span><span style="color: #007700">as </span><span style="color: #0000BB">$one </span><span style="color: #007700">) {<br><br>      </span><span style="color: #0000BB">$path </span><span style="color: #007700">= </span><span style="color: #0000BB">padCorrectPath </span><span style="color: #007700">( </span><span style="color: #0000BB">$one</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getPathname</span><span style="color: #007700">() );<br><br>      if ( </span><span style="color: #0000BB">strpos </span><span style="color: #007700">( </span><span style="color: #0000BB">$path</span><span style="color: #007700">, </span><span style="color: #DD0000">'/_'</span><span style="color: #007700">) ) continue;<br><br>      </span><span style="color: #0000BB">$ext </span><span style="color: #007700">= </span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #0000BB">$path</span><span style="color: #007700">, </span><span style="color: #0000BB">strrpos</span><span style="color: #007700">(</span><span style="color: #0000BB">$path</span><span style="color: #007700">, </span><span style="color: #DD0000">'.'</span><span style="color: #007700">)+</span><span style="color: #0000BB">1 </span><span style="color: #007700">);<br><br>      if ( </span><span style="color: #0000BB">$ext </span><span style="color: #007700">!= </span><span style="color: #DD0000">'pad' </span><span style="color: #007700">and </span><span style="color: #0000BB">$ext </span><span style="color: #007700">!= </span><span style="color: #DD0000">'php' </span><span style="color: #007700">and </span><span style="color: #0000BB">$ext </span><span style="color: #007700">!= </span><span style="color: #DD0000">'html' </span><span style="color: #007700">)<br>        continue;<br><br>      if ( </span><span style="color: #0000BB">$ext </span><span style="color: #007700">== </span><span style="color: #DD0000">'php' </span><span style="color: #007700">and ! </span><span style="color: #0000BB">file_exists </span><span style="color: #007700">( </span><span style="color: #0000BB">substr </span><span style="color: #007700">( </span><span style="color: #0000BB">$path</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, -</span><span style="color: #0000BB">4 </span><span style="color: #007700">) . </span><span style="color: #DD0000">'.pad' </span><span style="color: #007700">)<br>                         and ! </span><span style="color: #0000BB">file_exists </span><span style="color: #007700">( </span><span style="color: #0000BB">substr </span><span style="color: #007700">( </span><span style="color: #0000BB">$path</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, -</span><span style="color: #0000BB">4 </span><span style="color: #007700">) . </span><span style="color: #DD0000">'.html' </span><span style="color: #007700">) ) {<br><br>        </span><span style="color: #0000BB">$source </span><span style="color: #007700">= </span><span style="color: #0000BB">padFileGet </span><span style="color: #007700">( </span><span style="color: #0000BB">$path </span><span style="color: #007700">);<br><br>        if ( </span><span style="color: #0000BB">str_contains </span><span style="color: #007700">( </span><span style="color: #0000BB">$source</span><span style="color: #007700">, </span><span style="color: #DD0000">'padRedirect'      </span><span style="color: #007700">)<br>          or </span><span style="color: #0000BB">str_contains </span><span style="color: #007700">( </span><span style="color: #0000BB">$source</span><span style="color: #007700">, </span><span style="color: #DD0000">'padBack'          </span><span style="color: #007700">)<br>          or </span><span style="color: #0000BB">str_contains </span><span style="color: #007700">( </span><span style="color: #0000BB">$source</span><span style="color: #007700">, </span><span style="color: #DD0000">'padRestart'       </span><span style="color: #007700">)<br>          or </span><span style="color: #0000BB">str_contains </span><span style="color: #007700">( </span><span style="color: #0000BB">$source</span><span style="color: #007700">, </span><span style="color: #DD0000">'padFilePut'       </span><span style="color: #007700">)<br>          or </span><span style="color: #0000BB">str_contains </span><span style="color: #007700">( </span><span style="color: #0000BB">$source</span><span style="color: #007700">, </span><span style="color: #DD0000">'padDeleteDataDir' </span><span style="color: #007700">) )<br>          continue;<br><br>      }<br><br>      </span><span style="color: #0000BB">$file </span><span style="color: #007700">= </span><span style="color: #0000BB">str_replace </span><span style="color: #007700">( </span><span style="color: #0000BB">APPS</span><span style="color: #007700">, </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #0000BB">$path </span><span style="color: #007700">);<br><br>      list ( </span><span style="color: #0000BB">$app</span><span style="color: #007700">, </span><span style="color: #0000BB">$item </span><span style="color: #007700">) = </span><span style="color: #0000BB">padAppBoundary </span><span style="color: #007700">( </span><span style="color: #0000BB">$file </span><span style="color: #007700">);<br><br>      </span><span style="color: #0000BB">$item </span><span style="color: #007700">= </span><span style="color: #0000BB">substr </span><span style="color: #007700">( </span><span style="color: #0000BB">$item</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">strrpos </span><span style="color: #007700">( </span><span style="color: #0000BB">$item</span><span style="color: #007700">, </span><span style="color: #DD0000">'.' </span><span style="color: #007700">) );<br><br>      </span><span style="color: #FF8000">// The runner's own tooling is not a page under test - develop is where builds and<br>      // cleanups are driven from, and fetching some of its pages does exactly that.<br><br>      </span><span style="color: #007700">if ( </span><span style="color: #0000BB">$app </span><span style="color: #007700">== </span><span style="color: #DD0000">'develop' </span><span style="color: #007700">)<br>        continue;<br><br>      </span><span style="color: #0000BB">$files </span><span style="color: #007700">[</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$app</span><span style="color: #DD0000">/</span><span style="color: #0000BB">$item</span><span style="color: #DD0000">"</span><span style="color: #007700">] [</span><span style="color: #DD0000">'path'</span><span style="color: #007700">] = </span><span style="color: #0000BB">$path</span><span style="color: #007700">;<br>      </span><span style="color: #0000BB">$files </span><span style="color: #007700">[</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$app</span><span style="color: #DD0000">/</span><span style="color: #0000BB">$item</span><span style="color: #DD0000">"</span><span style="color: #007700">] [</span><span style="color: #DD0000">'app'</span><span style="color: #007700">]  = </span><span style="color: #0000BB">$app</span><span style="color: #007700">;<br>      </span><span style="color: #0000BB">$files </span><span style="color: #007700">[</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$app</span><span style="color: #DD0000">/</span><span style="color: #0000BB">$item</span><span style="color: #DD0000">"</span><span style="color: #007700">] [</span><span style="color: #DD0000">'item'</span><span style="color: #007700">] = </span><span style="color: #0000BB">$item</span><span style="color: #007700">;<br><br>    }<br><br>    </span><span style="color: #0000BB">ksort </span><span style="color: #007700">(</span><span style="color: #0000BB">$files</span><span style="color: #007700">);<br><br>    return </span><span style="color: #0000BB">$cache </span><span style="color: #007700">= </span><span style="color: #0000BB">$files</span><span style="color: #007700">;<br><br>  }<br><br><br>  </span><span style="color: #FF8000">// The application inside a path: the shortest leading run of directories with an entry<br>  // point of its own, and what is left below it. A directory holding only applications,<br>  // like regression/, is a namespace, and an app below it keeps the namespace in its<br>  // name: 'regression/main'.<br><br>  </span><span style="color: #007700">function </span><span style="color: #0000BB">padAppBoundary </span><span style="color: #007700">( </span><span style="color: #0000BB">$path </span><span style="color: #007700">) {<br><br>    </span><span style="color: #0000BB">$parts </span><span style="color: #007700">= </span><span style="color: #0000BB">explode </span><span style="color: #007700">( </span><span style="color: #DD0000">'/'</span><span style="color: #007700">, </span><span style="color: #0000BB">dirname </span><span style="color: #007700">( </span><span style="color: #0000BB">$path </span><span style="color: #007700">) );<br>    </span><span style="color: #0000BB">$app   </span><span style="color: #007700">= </span><span style="color: #0000BB">array_shift </span><span style="color: #007700">( </span><span style="color: #0000BB">$parts </span><span style="color: #007700">);<br><br>    while ( </span><span style="color: #0000BB">$parts </span><span style="color: #007700">and ! </span><span style="color: #0000BB">padAppsListRoot </span><span style="color: #007700">( </span><span style="color: #0000BB">$app </span><span style="color: #007700">) )<br>      </span><span style="color: #0000BB">$app </span><span style="color: #007700">.= </span><span style="color: #DD0000">'/' </span><span style="color: #007700">. </span><span style="color: #0000BB">array_shift </span><span style="color: #007700">( </span><span style="color: #0000BB">$parts </span><span style="color: #007700">);<br><br>    return [ </span><span style="color: #0000BB">$app</span><span style="color: #007700">, </span><span style="color: #0000BB">substr </span><span style="color: #007700">( </span><span style="color: #0000BB">$path</span><span style="color: #007700">, </span><span style="color: #0000BB">strlen </span><span style="color: #007700">( </span><span style="color: #0000BB">$app </span><span style="color: #007700">) + </span><span style="color: #0000BB">1 </span><span style="color: #007700">) ];<br><br>  }<br><br><br>  </span><span style="color: #FF8000">// An application is a name with an entry point: www/&lt;app&gt;/index.php is what makes a<br>  // name fetchable, so it is also what draws the app boundary inside a nested name.<br><br>  </span><span style="color: #007700">function </span><span style="color: #0000BB">padAppsListRoot </span><span style="color: #007700">( </span><span style="color: #0000BB">$app </span><span style="color: #007700">) {<br><br>    static </span><span style="color: #0000BB">$roots </span><span style="color: #007700">= [];<br><br>    return </span><span style="color: #0000BB">$roots </span><span style="color: #007700">[</span><span style="color: #0000BB">$app</span><span style="color: #007700">] ??= </span><span style="color: #0000BB">file_exists </span><span style="color: #007700">( </span><span style="color: #0000BB">dirname </span><span style="color: #007700">( </span><span style="color: #0000BB">APPS </span><span style="color: #007700">) . </span><span style="color: #DD0000">"/www/</span><span style="color: #0000BB">$app</span><span style="color: #DD0000">/index.php" </span><span style="color: #007700">);<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

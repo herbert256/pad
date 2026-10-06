@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: edit
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: edit
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=_api.html">_api/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=_bin.html">_bin/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=_config.html">_config/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=_lib.html">_lib/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=_templates.html">_templates/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=_tests.html">_tests/</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=&amp;file=_guard.php.html">_guard.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=&amp;file=api.php.html">api.php</a>
+                  </li>
+                  <li class="current">index.pad
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=&amp;file=index.php.html">index.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=&amp;file=login.pad.html">login.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=&amp;file=login.php.html">login.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=&amp;file=logout.php.html">logout.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  index.pad
+                </h3>
+                <pre><code style="color: #000000">&lt;!DOCTYPE html&gt;<br>&lt;html lang="en"&gt;<br>&lt;head&gt;<br>  &lt;meta charset="utf-8"&gt;<br>  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;<br>  &lt;meta name="robots" content="noindex"&gt;<br>  &lt;meta name="csrf-token" content="<b>{<font color="blue">csrf </font><font color="red">token</font>}</b>"&gt;<br>  &lt;title&gt;PAD edit&lt;/title&gt;<br>  &lt;link rel="stylesheet" href="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>edit/edit.css"&gt;<br>&lt;/head&gt;<br>&lt;body class="editor-page" data-boot="{^editBoot}"&gt;<br><br>  &lt;header class="top"&gt;<br>    &lt;div class="brand"&gt;&lt;span class="logo" aria-hidden="true"&gt;&amp;#123;&amp;#125;&lt;/span&gt; &lt;span&gt;PAD edit&lt;/span&gt;&lt;/div&gt;<br>    &lt;button type="button" class="app-button" id="appButton" title="Switch application (Alt+A)"&gt;<br>      &lt;span class="muted"&gt;app&lt;/span&gt; &lt;strong id="appName"&gt;…&lt;/strong&gt; &lt;span aria-hidden="true"&gt;&amp;#9662;&lt;/span&gt;<br>    &lt;/button&gt;<br>    &lt;button type="button" class="quick-button" id="quickButton" title="Go to file"&gt;<br>      &lt;span&gt;Go to file…&lt;/span&gt; &lt;kbd id="quickKeys"&gt;&lt;/kbd&gt;<br>    &lt;/button&gt;<br>    &lt;div class="top-actions"&gt;<br>      &lt;button type="button" class="btn ghost" id="saveButton" title="Save" aria-label="Save"&gt;&lt;/button&gt;<br>      &lt;button type="button" class="btn ghost" id="previewButton" title="Preview (Alt+P)" aria-label="Preview"&gt;&lt;/button&gt;<br>      &lt;button type="button" class="btn ghost" id="panelButton" title="Bottom panel" aria-label="Bottom panel"&gt;&lt;/button&gt;<br>      &lt;button type="button" class="btn ghost" id="menuButton" title="More" aria-label="More" aria-haspopup="menu"&gt;&lt;/button&gt;<br>    &lt;/div&gt;<br>    &lt;form method="post" action="?logout" id="logoutForm" hidden&gt;&lt;/form&gt;<br>  &lt;/header&gt;<br><br>  &lt;div class="main"&gt;<br><br>    &lt;aside class="side" aria-label="Files"&gt;<br>      &lt;div class="side-tools" id="sideTools"&gt;&lt;/div&gt;<br>      &lt;input type="search" class="tree-filter" id="treeFilter" placeholder="Filter files" aria-label="Filter files" spellcheck="false"&gt;<br>      &lt;div class="tree" id="tree" role="tree" aria-label="Files of the application"&gt;&lt;/div&gt;<br>      &lt;input type="file" id="uploadInput" multiple hidden&gt;<br>    &lt;/aside&gt;<br><br>    &lt;div class="gutter gutter-x" id="sideGutter" title="Drag to resize, double-click to reset"&gt;&lt;/div&gt;<br><br>    &lt;section class="work"&gt;<br><br>      &lt;div class="tabs" id="tabs" role="tablist" aria-label="Open files"&gt;&lt;/div&gt;<br><br>      &lt;div class="center"&gt;<br>        &lt;div class="editor-area"&gt;<br>          &lt;div class="editor-host" id="editorHost"&gt;&lt;/div&gt;<br>          &lt;div class="welcome" id="welcome"&gt;&lt;/div&gt;<br>          &lt;div class="viewer" id="viewer" hidden&gt;&lt;/div&gt;<br>        &lt;/div&gt;<br>        &lt;div class="gutter gutter-x" id="previewGutter" hidden&gt;&lt;/div&gt;<br>        &lt;section class="preview" id="preview" aria-label="Preview" hidden&gt;<br>          &lt;div class="preview-bar"&gt;<br>            &lt;input type="text" id="previewUrl" class="preview-url" aria-label="Previewed address" spellcheck="false"&gt;<br>            &lt;button type="button" class="btn ghost device" id="devicePhone" title="Phone width" aria-label="Phone width"&gt;&lt;/button&gt;<br>            &lt;button type="button" class="btn ghost device" id="deviceTablet" title="Tablet width" aria-label="Tablet width"&gt;&lt;/button&gt;<br>            &lt;button type="button" class="btn ghost device on" id="deviceDesktop" title="Full width" aria-label="Full width"&gt;&lt;/button&gt;<br>            &lt;button type="button" class="btn ghost" id="previewReload" title="Reload" aria-label="Reload"&gt;&lt;/button&gt;<br>            &lt;a class="btn ghost" id="previewOpen" href="#" target="_blank" rel="noopener" title="Open in a new tab" aria-label="Open in a new tab"&gt;&lt;/a&gt;<br>            &lt;button type="button" class="btn ghost" id="previewClose" title="Close the preview" aria-label="Close the preview"&gt;&lt;/button&gt;<br>          &lt;/div&gt;<br>          &lt;div class="preview-stage"&gt;&lt;iframe id="previewFrame" title="Preview" sandbox="allow-scripts allow-forms allow-popups allow-modals allow-downloads"&gt;&lt;/iframe&gt;&lt;/div&gt;<br>        &lt;/section&gt;<br>      &lt;/div&gt;<br><br>      &lt;div class="gutter gutter-y" id="panelGutter" title="Drag to resize, double-click to reset"&gt;&lt;/div&gt;<br><br>      &lt;section class="panel" aria-label="Panel"&gt;<br>        &lt;div class="panel-tabs" role="tablist"&gt;<br>          &lt;button type="button" class="ptab active" id="ptab-problems" role="tab" aria-selected="true"&gt;Problems &lt;span class="count" id="problemsCount"&gt;&lt;/span&gt;&lt;/button&gt;<br>          &lt;button type="button" class="ptab" id="ptab-search" role="tab" aria-selected="false"&gt;Search&lt;/button&gt;<br>          &lt;button type="button" class="ptab" id="ptab-history" role="tab" aria-selected="false"&gt;History&lt;/button&gt;<br>          &lt;button type="button" class="ptab" id="ptab-terminal" role="tab" aria-selected="false"&gt;Terminal&lt;/button&gt;<br>          &lt;button type="button" class="ptab" id="ptab-debug" role="tab" aria-selected="false"&gt;Debug &lt;span class="dbg-dot" id="dbgDot"&gt;&lt;/span&gt;&lt;/button&gt;<br>          &lt;span class="term-state" id="termState" aria-live="polite"&gt;&lt;/span&gt;<br>          &lt;button type="button" class="btn small term-stop" id="termStop" hidden&gt;Stop&lt;/button&gt;<br>          &lt;button type="button" class="btn ghost panel-close" id="panelClose" title="Close the panel" aria-label="Close the panel"&gt;&lt;/button&gt;<br>        &lt;/div&gt;<br>        &lt;div class="panel-body" id="panel-problems" role="tabpanel"&gt;&lt;div id="problemsList"&gt;&lt;/div&gt;&lt;/div&gt;<br>        &lt;div class="panel-body" id="panel-search" role="tabpanel" hidden&gt;<br>          &lt;form class="search-form" id="searchForm"&gt;<br>            &lt;input type="search" id="searchInput" placeholder="Search in the application" aria-label="Search" spellcheck="false"&gt;<br>            &lt;label class="toggle" title="Regular expression"&gt;&lt;input type="checkbox" id="searchRegex"&gt;&lt;span&gt;.*&lt;/span&gt;&lt;/label&gt;<br>            &lt;label class="toggle" title="Match case"&gt;&lt;input type="checkbox" id="searchCase"&gt;&lt;span&gt;Aa&lt;/span&gt;&lt;/label&gt;<br>            &lt;label class="toggle" title="Whole word"&gt;&lt;input type="checkbox" id="searchWord"&gt;&lt;span&gt;ab&lt;/span&gt;&lt;/label&gt;<br>            &lt;label class="check-label" title="Search the framework, pad/, as well"&gt;&lt;input type="checkbox" id="searchEngine"&gt; pad/ too&lt;/label&gt;<br>            &lt;button type="submit" class="btn primary small"&gt;Search&lt;/button&gt;<br>          &lt;/form&gt;<br>          &lt;div id="searchResults"&gt;&lt;/div&gt;<br>        &lt;/div&gt;<br>        &lt;div class="panel-body" id="panel-history" role="tabpanel" hidden&gt;&lt;div id="historyList"&gt;&lt;/div&gt;&lt;/div&gt;<br>        &lt;div class="panel-body dbg" id="panel-debug" role="tabpanel" hidden&gt;&lt;/div&gt;<br>        &lt;div class="panel-body term" id="panel-terminal" role="tabpanel" hidden&gt;<br>          &lt;div class="term-screen" id="termScreen"&gt;<br>            &lt;div class="term-out" id="termOut" role="log" aria-label="Terminal output"&gt;&lt;/div&gt;<br>            &lt;form class="term-line" id="termForm" autocomplete="off"&gt;<br>              &lt;label class="term-prompt" id="termPrompt" for="termInput"&gt;&lt;/label&gt;<br>              &lt;input type="text" class="term-input" id="termInput" spellcheck="false" autocapitalize="off" aria-label="Command"&gt;<br>            &lt;/form&gt;<br>          &lt;/div&gt;<br>        &lt;/div&gt;<br>      &lt;/section&gt;<br><br>    &lt;/section&gt;<br><br>  &lt;/div&gt;<br><br>  &lt;footer class="status" id="status"&gt;<br>    &lt;div class="status-left" id="statusLeft"&gt;&lt;/div&gt;<br>    &lt;div class="status-right" id="statusRight"&gt;&lt;/div&gt;<br>  &lt;/footer&gt;<br><br>  &lt;div id="layer"&gt;&lt;/div&gt;<br>  &lt;div class="toasts" id="toasts" aria-live="polite"&gt;&lt;/div&gt;<br><br>  &lt;script src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>edit/pad-mode.js"&gt;&lt;/script&gt;<br>  &lt;script src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>edit/php-mode.js"&gt;&lt;/script&gt;<br>  &lt;script src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>edit/edit.js"&gt;&lt;/script&gt;<br><br>&lt;/body&gt;<br>&lt;/html&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - fwStaffRows
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - fwStaffRows
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: tags/the_cache_option_skips_the_tag_on_a_hit<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/the_cache_option_skips_the_tag_on_a_hit.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/the_cache_option_skips_the_tag_on_a_hit.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The option form keys on the page and the tag as written, so the two tags below are one<br>  // entry: the second is a hit, and its handler - which counts - never runs. vary= makes the<br>  // entry this request's own, so a run never meets an earlier run's copy.<br><br>  </span><span style="color: #0000BB">$calls </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$token </span><span style="color: #007700">= </span><span style="color: #0000BB">uniqid </span><span style="color: #007700">( </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br>  function </span><span style="color: #0000BB">fwStaffRows </span><span style="color: #007700">() {<br>    global </span><span style="color: #0000BB">$calls</span><span style="color: #007700">;<br>    </span><span style="color: #0000BB">$calls</span><span style="color: #007700">++;<br>    return [ [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'joe' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'jim' </span><span style="color: #007700">] ];<br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>fwStaffRows </font><font color="red">cache=60<font color="black">,</font> vary=<font color="red">$</font>token</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>fwStaffRows</font><font color="red"></font>}</b>|<b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>fwStaffRows </font><font color="red">cache=60<font color="black">,</font> vary=<font color="red">$</font>token</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>fwStaffRows</font><font color="red"></font>}</b>|<b>{<font color="green"><font color="red">$</font>calls</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax574842280c6b4c79ed4e8125008f6bac"></div>
+                        <script>
+                        padAjax574842280c6b4c79ed4e8125008f6bac = new XMLHttpRequest();
+                        padAjax574842280c6b4c79ed4e8125008f6bac.onreadystatechange=function() {
+                        if (padAjax574842280c6b4c79ed4e8125008f6bac.readyState === 4) {
+                        if (padAjax574842280c6b4c79ed4e8125008f6bac.status === 200) {
+                        document.getElementById("padAjax574842280c6b4c79ed4e8125008f6bac").innerHTML=padAjax574842280c6b4c79ed4e8125008f6bac.responseText;
+                        } else {
+                        document.getElementById("padAjax574842280c6b4c79ed4e8125008f6bac").innerHTML=padAjax574842280c6b4c79ed4e8125008f6bac.statusText;
+                        }
+                        }
+                        }
+                        padAjax574842280c6b4c79ed4e8125008f6bac.open("GET","http://localhost/pad/regression/framework/?tags/the_cache_option_skips_the_tag_on_a_hit&padInclude",true);
+                        padAjax574842280c6b4c79ed4e8125008f6bac.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

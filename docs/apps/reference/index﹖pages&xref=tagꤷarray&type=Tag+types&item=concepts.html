@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - concepts
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - concepts
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: sequence - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">index.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Front page: names the five ideas the subsystem is built from, and describes the one the<br>  // concept= parameter asks for.<br>  //<br>  // concept arrives from the query string, so it is only used when it names one of them -<br>  // reading $concepts with an unknown key ended the request with a 500 instead of a page,<br>  // and so did concept[]=, which arrives as an array.<br><br>  </span><span style="color: #0000BB">$concepts </span><span style="color: #007700">[</span><span style="color: #DD0000">'sequences'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'Something that defines a Sequence list'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$concepts </span><span style="color: #007700">[</span><span style="color: #DD0000">'stores'</span><span style="color: #007700">]     = </span><span style="color: #DD0000">'A stored sequence list'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$concepts </span><span style="color: #007700">[</span><span style="color: #DD0000">'actions'</span><span style="color: #007700">]    = </span><span style="color: #DD0000">'An action executed on a Sequence list'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$concepts </span><span style="color: #007700">[</span><span style="color: #DD0000">'plays'</span><span style="color: #007700">]      = </span><span style="color: #DD0000">'Execute a Sequence on a Sequence'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$concepts </span><span style="color: #007700">[</span><span style="color: #DD0000">'resume'</span><span style="color: #007700">]     = </span><span style="color: #DD0000">'Resume on a stored Sequence'</span><span style="color: #007700">;<br><br>  if ( ! isset ( </span><span style="color: #0000BB">$concept </span><span style="color: #007700">) or ! </span><span style="color: #0000BB">is_string </span><span style="color: #007700">( </span><span style="color: #0000BB">$concept </span><span style="color: #007700">) or ! isset ( </span><span style="color: #0000BB">$concepts </span><span style="color: #007700">[</span><span style="color: #0000BB">$concept</span><span style="color: #007700">] ) )<br>    </span><span style="color: #0000BB">$concept </span><span style="color: #007700">= </span><span style="color: #DD0000">'sequences'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Sequences'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$conceptTitle </span><span style="color: #007700">= </span><span style="color: #0000BB">ucfirst </span><span style="color: #007700">(</span><span style="color: #0000BB">$concept </span><span style="color: #007700">) . </span><span style="color: #DD0000">' - ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$concepts </span><span style="color: #007700">[</span><span style="color: #0000BB">$concept</span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">lines</font><font color="red"></font>}</b><br>  <b>{<font color="blue">concepts</font><font color="red"></font>}</b><br>    <b>{<font color="blue">if </font><font color="red">&amp;concepts<font color="black">:</font>key NE <font color="red">$</font>concept</font>}</b><br>      &lt;a href="?index&amp;go=index&amp;concept=<b>{<font color="purple"><font color="red">&</font>concepts<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>key</font>}</b>"&gt;<b>{<font color="purple">&amp;concepts</font><font color="black">:</font><font color="green">key</font> <font color="black">|</font> <font color="blue">ucfirst</font>}</b>&lt;/a&gt;<br>    <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>      &lt;b&gt; <b>{<font color="purple">&amp;concepts</font><font color="black">:</font><font color="green">key</font> <font color="black">|</font> <font color="blue">ucfirst</font>}</b> &lt;/b&gt;<br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    <b>{<font color="blue">notLast</font><font color="red"></font>}</b> | <b>{/<font color="blue">notLast</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">concepts</font><font color="red"></font>}</b><br><b>{/<font color="blue">lines</font><font color="red"></font>}</b><br><br>&lt;h2&gt;<b>{<font color="green"><font color="red">$</font>conceptTitle</font>}</b>&lt;/h2&gt;<br><br><b>{<font color="blue">block</font><font color="red"></font>}</b><br>  <b>{<font color="blue">page </font><font color="red"><font color="black">'</font>concepts/<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>concept</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> include</font>}</b><br><b>{/<font color="blue">block</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax27c51e5f9107ee69694473250775029a"></div>
+                        <script>
+                        padAjax27c51e5f9107ee69694473250775029a = new XMLHttpRequest();
+                        padAjax27c51e5f9107ee69694473250775029a.onreadystatechange=function() {
+                        if (padAjax27c51e5f9107ee69694473250775029a.readyState === 4) {
+                        if (padAjax27c51e5f9107ee69694473250775029a.status === 200) {
+                        document.getElementById("padAjax27c51e5f9107ee69694473250775029a").innerHTML=padAjax27c51e5f9107ee69694473250775029a.responseText;
+                        } else {
+                        document.getElementById("padAjax27c51e5f9107ee69694473250775029a").innerHTML=padAjax27c51e5f9107ee69694473250775029a.statusText;
+                        }
+                        }
+                        }
+                        padAjax27c51e5f9107ee69694473250775029a.open("GET","http://localhost/pad/sequence/?index&padInclude",true);
+                        padAjax27c51e5f9107ee69694473250775029a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

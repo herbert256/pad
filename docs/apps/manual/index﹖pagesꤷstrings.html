@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - String helpers
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            String helpers
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <div style="display: inline-block; text-align: left;">
+                    <p>
+                      The text a page shows is often made in its PHP first: a title cut to fit a card, a column name turned into a label, a slug for a database column, a token for a mail. PHP's own <code>substr</code> and <code>ucwords</code> count bytes and know only ASCII; the <code>padStr</code> functions count characters, so an accented letter or an emoji is never cut in half. They are plain functions, loaded on every request like the rest of <code>pad/lib/</code>.
+                    </p>
+                    <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+                      <tr>
+                        <th>
+                          function
+                        </th>
+                        <th>
+                          what it answers
+                        </th>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padStrLimit ( $text, $limit = 100, $end = '...' )</code>
+                        </td>
+                        <td>
+                          at most <code>$limit</code> characters, <code>$end</code> added when something was cut
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padStrWords ( $text, $words = 100, $end = '...' )</code>
+                        </td>
+                        <td>
+                          at most <code>$words</code> words
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padStrExcerpt ( $text, $phrase, $radius = 100, $omission = '...' )</code>
+                        </td>
+                        <td>
+                          the phrase with <code>$radius</code> characters on either side, found case-insensitively
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padStrSquish ( $text )</code>
+                        </td>
+                        <td>
+                          trimmed, every run of whitespace one space
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padStrCamel</code>, <code>padStrStudly</code>, <code>padStrSnake ( $text, $delimiter = '_' )</code>, <code>padStrKebab</code>, <code>padStrHeadline</code>
+                        </td>
+                        <td>
+                          userName, UserName, user_name, user-name, User Name - from a name in any of those cases
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padStrTitle ( $text )</code>
+                        </td>
+                        <td>
+                          every word with a capital
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padStrSlug ( $text, $separator = '-' )</code>
+                        </td>
+                        <td>
+                          a readable URL part - what the <code>slug</code> pipe gives
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padStrAfter</code>, <code>padStrAfterLast</code>, <code>padStrBefore</code>, <code>padStrBeforeLast ( $text, $search )</code>
+                        </td>
+                        <td>
+                          the text after or before the first or last occurrence - what the pipes of those names give
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padStrBetween ( $text, $from, $to )</code>
+                        </td>
+                        <td>
+                          what stands between the first <code>$from</code> and the last <code>$to</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padStrIs ( $pattern, $value )</code>
+                        </td>
+                        <td>
+                          whether the value matches a pattern with <code>*</code> wildcards, or one of a list
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padStrMask ( $text, $character, $index, $length = NULL )</code>
+                        </td>
+                        <td>
+                          a stretch of the text replaced by one character
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padStrPlural ( $word, $count = 2 )</code>, <code>padStrSingular ( $word )</code>
+                        </td>
+                        <td>
+                          the English plural or singular of a word
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padStrRandom ( $length = 16 )</code>
+                        </td>
+                        <td>
+                          random letters and digits
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padStrUuid ( $version = 4 )</code>
+                        </td>
+                        <td>
+                          a version 4 (random) or version 7 (time-ordered) UUID
+                        </td>
+                      </tr>
+                    </table>
+                    <h2>
+                      Shortening text
+                    </h2>
+                    <p>
+                      <code>padStrLimit</code> cuts at a number of characters and <code>padStrWords</code> at a number of words; both trim the space the cut leaves, add <code>$end</code> only when something was cut, and give a text that fits back as it is. <code>padStrExcerpt</code> is the snippet of a search result: the place the phrase stands, with the text around it. <code>padStrSquish</code> makes text pasted into a form field compare and store the same way, tabs, newlines and no-break spaces included.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/strings_1.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/strings_1.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $text </span><span style="color: #007700">= </span><span style="color: #DD0000">'PAD templates drive the flow: data, logic and output '<br>        </span><span style="color: #007700">. </span><span style="color: #DD0000">'all follow the template.'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$limit   </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrLimit   </span><span style="color: #007700">( </span><span style="color: #0000BB">$text</span><span style="color: #007700">, </span><span style="color: #0000BB">20 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$words   </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrWords   </span><span style="color: #007700">( </span><span style="color: #0000BB">$text</span><span style="color: #007700">, </span><span style="color: #0000BB">4 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$excerpt </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrExcerpt </span><span style="color: #007700">( </span><span style="color: #0000BB">$text</span><span style="color: #007700">, </span><span style="color: #DD0000">'LOGIC'</span><span style="color: #007700">, </span><span style="color: #0000BB">10 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$squish  </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrSquish  </span><span style="color: #007700">( </span><span style="color: #DD0000">"  data,\n\t logic   and  output " </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>limit</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>words</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>excerpt</font>}</b>&lt;/p&gt;<br>&lt;p&gt;[<b>{<font color="green"><font color="red">$</font>squish</font>}</b>]&lt;/p&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <p>
+                            PAD templates drive...
+                          </p>
+                          <p>
+                            PAD templates drive the...
+                          </p>
+                          <p>
+                            ...ow: data, logic and outpu...
+                          </p>
+                          <p>
+                            [data, logic and output]
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <h2>
+                      Names in every case
+                    </h2>
+                    <p>
+                      The case functions read the words of a name whatever case it is in - an underscore, a dash, a space or a change of case separates them - and write them in the case asked for, so <code>created_at</code>, <code>createdAt</code> and <code>CreatedAt</code> all turn into each other. <code>padStrHeadline</code> makes a label of a column name; <code>padStrTitle</code> recases a sentence and leaves the rest of it as it is.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/strings_2.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/strings_2.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $names </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'created_at'</span><span style="color: #007700">, </span><span style="color: #DD0000">'orderTotal'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'customer-name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'HTMLParser' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$columns </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$names </span><span style="color: #007700">as </span><span style="color: #0000BB">$column </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$columns </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'column'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$column</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'camel'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrCamel    </span><span style="color: #007700">( </span><span style="color: #0000BB">$column </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'studly'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrStudly   </span><span style="color: #007700">( </span><span style="color: #0000BB">$column </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'snake'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrSnake    </span><span style="color: #007700">( </span><span style="color: #0000BB">$column </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'kebab'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrKebab    </span><span style="color: #007700">( </span><span style="color: #0000BB">$column </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'headline' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrHeadline </span><span style="color: #007700">( </span><span style="color: #0000BB">$column </span><span style="color: #007700">)<br>    ];<br><br>  </span><span style="color: #0000BB">$sentence </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrTitle </span><span style="color: #007700">( </span><span style="color: #DD0000">'the quick brown fox' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;table&gt;<br>  &lt;tr&gt;&lt;th&gt;name&lt;/th&gt;&lt;th&gt;camel&lt;/th&gt;<br>      &lt;th&gt;studly&lt;/th&gt;&lt;th&gt;snake&lt;/th&gt;<br>      &lt;th&gt;kebab&lt;/th&gt;&lt;th&gt;headline&lt;/th&gt;&lt;/tr&gt;<br>  <b>{<font color="blue">columns</font><font color="red"></font>}</b><br>  &lt;tr&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>column</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>camel</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>studly</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>snake</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>kebab</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>headline</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>  <b>{/<font color="blue">columns</font><font color="red"></font>}</b><br>&lt;/table&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>sentence</font>}</b>&lt;/p&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <table>
+                            <tr>
+                              <th>
+                                name
+                              </th>
+                              <th>
+                                camel
+                              </th>
+                              <th>
+                                studly
+                              </th>
+                              <th>
+                                snake
+                              </th>
+                              <th>
+                                kebab
+                              </th>
+                              <th>
+                                headline
+                              </th>
+                            </tr>
+                            <tr>
+                              <td>
+                                created_at
+                              </td>
+                              <td>
+                                createdAt
+                              </td>
+                              <td>
+                                CreatedAt
+                              </td>
+                              <td>
+                                created_at
+                              </td>
+                              <td>
+                                created-at
+                              </td>
+                              <td>
+                                Created At
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                orderTotal
+                              </td>
+                              <td>
+                                orderTotal
+                              </td>
+                              <td>
+                                OrderTotal
+                              </td>
+                              <td>
+                                order_total
+                              </td>
+                              <td>
+                                order-total
+                              </td>
+                              <td>
+                                Order Total
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                customer-name
+                              </td>
+                              <td>
+                                customerName
+                              </td>
+                              <td>
+                                CustomerName
+                              </td>
+                              <td>
+                                customer_name
+                              </td>
+                              <td>
+                                customer-name
+                              </td>
+                              <td>
+                                Customer Name
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                HTMLParser
+                              </td>
+                              <td>
+                                htmlParser
+                              </td>
+                              <td>
+                                HtmlParser
+                              </td>
+                              <td>
+                                html_parser
+                              </td>
+                              <td>
+                                html-parser
+                              </td>
+                              <td>
+                                Html Parser
+                              </td>
+                            </tr>
+                          </table>
+                          <p>
+                            The Quick Brown Fox
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <h2>
+                      Slugs and cutting at a marker
+                    </h2>
+                    <p>
+                      <code>padStrSlug</code> is the <code>slug</code> pipe - the pipe calls it - so a slug stored when a post is saved is the slug a template makes for its link. The same holds for <code>after</code>, <code>afterLast</code>, <code>before</code> and <code>beforeLast</code>: a text without the search string comes back unchanged. <code>padStrBetween</code> takes what follows the first <code>$from</code> up to the last <code>$to</code>.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/strings_3.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/strings_3.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $post </span><span style="color: #007700">= </span><span style="color: #DD0000">'Crème Brûlée & Co. - a recipe'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$slug </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrSlug </span><span style="color: #007700">( </span><span style="color: #0000BB">$post </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$file   </span><span style="color: #007700">= </span><span style="color: #DD0000">'shop/orders/list.pad'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$top    </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrBefore     </span><span style="color: #007700">( </span><span style="color: #0000BB">$file</span><span style="color: #007700">, </span><span style="color: #DD0000">'/' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$folder </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrBeforeLast </span><span style="color: #007700">( </span><span style="color: #0000BB">$file</span><span style="color: #007700">, </span><span style="color: #DD0000">'/' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$base   </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrAfterLast  </span><span style="color: #007700">( </span><span style="color: #0000BB">$file</span><span style="color: #007700">, </span><span style="color: #DD0000">'/' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$html    </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;title&gt;Orders&lt;/title&gt;'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$heading </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrBetween </span><span style="color: #007700">( </span><span style="color: #0000BB">$html</span><span style="color: #007700">, </span><span style="color: #DD0000">'&lt;title&gt;'</span><span style="color: #007700">, </span><span style="color: #DD0000">'&lt;/title&gt;' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>slug</font>}</b> - the pipe: <b>{<font color="green">$post</font> <font color="black">|</font> <font color="blue">slug</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>top</font>}</b> | <b>{<font color="green"><font color="red">$</font>folder</font>}</b> | <b>{<font color="green"><font color="red">$</font>base</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>heading</font>}</b>&lt;/p&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <p>
+                            creme-brulee-co-a-recipe - the pipe: creme-brulee-co-a-recipe
+                          </p>
+                          <p>
+                            shop | shop/orders | list.pad
+                          </p>
+                          <p>
+                            Orders
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <h2>
+                      Patterns and masks
+                    </h2>
+                    <p>
+                      <code>padStrIs</code> matches a value against a pattern in which <code>*</code> stands for any run of characters - a list of patterns matches when one of them does - without writing a regular expression. <code>padStrMask</code> hides part of a text: a negative index counts from the end, a negative length stops that many characters before it.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/strings_4.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/strings_4.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $allowed </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'admin/*'</span><span style="color: #007700">, </span><span style="color: #DD0000">'reports/*.pdf' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$paths </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'admin/users'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'reports/may.pdf'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'reports/may.csv' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$checks </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$paths </span><span style="color: #007700">as </span><span style="color: #0000BB">$path </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$checks </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'path'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$path</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'allowed' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrIs </span><span style="color: #007700">( </span><span style="color: #0000BB">$allowed</span><span style="color: #007700">, </span><span style="color: #0000BB">$path </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no'<br>    </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$card  </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrMask </span><span style="color: #007700">( </span><span style="color: #DD0000">'4111 1111 1111 1234'</span><span style="color: #007700">, </span><span style="color: #DD0000">'*'</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, -</span><span style="color: #0000BB">4 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$email </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrMask </span><span style="color: #007700">( </span><span style="color: #DD0000">'ann.smith@example.com'</span><span style="color: #007700">, </span><span style="color: #DD0000">'*'</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">8 </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><b>{<font color="blue">checks</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>path</font>}</b>: <b>{<font color="green"><font color="red">$</font>allowed</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">checks</font><font color="red"></font>}</b><br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>card</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>email</font>}</b>&lt;/p&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <p>
+                            admin/users: yes
+                          </p>
+                          <p>
+                            reports/may.pdf: yes
+                          </p>
+                          <p>
+                            reports/may.csv: no
+                          </p>
+                          <p>
+                            ***************1234
+                          </p>
+                          <p>
+                            a********@example.com
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <h2>
+                      Plural and singular
+                    </h2>
+                    <p>
+                      <code>padStrPlural</code> gives the English plural of the last word of a text: the irregular words (person, child, mouse, knife ...), the uncountable ones (sheep, information, equipment ...) and the rules for -y, -s, -x, -ch and the rest. A count of one keeps the word, so <code>"$n " . padStrPlural ( 'file', $n )</code> reads right for every number; an array or a Countable counts as its size. The case of the word is kept: Person, People; PERSON, PEOPLE. <code>padStrSingular</code> goes the other way.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/strings_5.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/strings_5.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $carts </span><span style="color: #007700">= [];<br><br>  foreach ( [ </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">2 </span><span style="color: #007700">] as </span><span style="color: #0000BB">$n </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$carts </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'n'      </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$n</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'items'  </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrPlural </span><span style="color: #007700">( </span><span style="color: #DD0000">'item'</span><span style="color: #007700">,   </span><span style="color: #0000BB">$n </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'people' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrPlural </span><span style="color: #007700">( </span><span style="color: #DD0000">'person'</span><span style="color: #007700">, </span><span style="color: #0000BB">$n </span><span style="color: #007700">)<br>    ];<br><br>  </span><span style="color: #0000BB">$nouns </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'city'</span><span style="color: #007700">, </span><span style="color: #DD0000">'child'</span><span style="color: #007700">, </span><span style="color: #DD0000">'knife'</span><span style="color: #007700">, </span><span style="color: #DD0000">'analysis'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'sheep'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Person'</span><span style="color: #007700">, </span><span style="color: #DD0000">'blogPost' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$words </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$nouns </span><span style="color: #007700">as </span><span style="color: #0000BB">$word </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$words </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'word'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$word</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'plural' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrPlural </span><span style="color: #007700">( </span><span style="color: #0000BB">$word </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'back'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrSingular </span><span style="color: #007700">( </span><span style="color: #0000BB">padStrPlural </span><span style="color: #007700">( </span><span style="color: #0000BB">$word </span><span style="color: #007700">) )<br>    ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><b>{<font color="blue">carts</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>n</font>}</b> <b>{<font color="green"><font color="red">$</font>items</font>}</b> for <b>{<font color="green"><font color="red">$</font>n</font>}</b> <b>{<font color="green"><font color="red">$</font>people</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">carts</font><font color="red"></font>}</b><br>&lt;table&gt;<br>  &lt;tr&gt;&lt;th&gt;word&lt;/th&gt;&lt;th&gt;plural&lt;/th&gt;&lt;th&gt;singular again&lt;/th&gt;&lt;/tr&gt;<br>  <b>{<font color="blue">words</font><font color="red"></font>}</b><br>  &lt;tr&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>word</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>plural</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>back</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>  <b>{/<font color="blue">words</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <p>
+                            0 items for 0 people
+                          </p>
+                          <p>
+                            1 item for 1 person
+                          </p>
+                          <p>
+                            2 items for 2 people
+                          </p>
+                          <table>
+                            <tr>
+                              <th>
+                                word
+                              </th>
+                              <th>
+                                plural
+                              </th>
+                              <th>
+                                singular again
+                              </th>
+                            </tr>
+                            <tr>
+                              <td>
+                                city
+                              </td>
+                              <td>
+                                cities
+                              </td>
+                              <td>
+                                city
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                child
+                              </td>
+                              <td>
+                                children
+                              </td>
+                              <td>
+                                child
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                knife
+                              </td>
+                              <td>
+                                knives
+                              </td>
+                              <td>
+                                knife
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                analysis
+                              </td>
+                              <td>
+                                analyses
+                              </td>
+                              <td>
+                                analysis
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                sheep
+                              </td>
+                              <td>
+                                sheep
+                              </td>
+                              <td>
+                                sheep
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                Person
+                              </td>
+                              <td>
+                                People
+                              </td>
+                              <td>
+                                Person
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                blogPost
+                              </td>
+                              <td>
+                                blogPosts
+                              </td>
+                              <td>
+                                blogPost
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                    <h2>
+                      Random strings and UUIDs
+                    </h2>
+                    <p>
+                      <code>padStrRandom</code> draws letters and digits with <code>random_int</code>, PHP's secure generator - good for a token or a code to mail. <code>padStrUuid</code> makes a UUID as RFC 9562 writes it: version 4 is random; version 7 starts with the time, so ids made later sort later and a database index on them stays in order. The example shows their shape, as their value differs on every request.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/strings_6.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/strings_6.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $token </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrRandom </span><span style="color: #007700">( </span><span style="color: #0000BB">32 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$first </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrUuid </span><span style="color: #007700">( </span><span style="color: #0000BB">7 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$later </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrUuid </span><span style="color: #007700">( </span><span style="color: #0000BB">7 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$id    </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrUuid </span><span style="color: #007700">();<br><br>  </span><span style="color: #FF8000">// Random on every request: what is shown is their shape,<br>  // not their value.<br><br>  </span><span style="color: #0000BB">$tokenShape </span><span style="color: #007700">= </span><span style="color: #0000BB">preg_match </span><span style="color: #007700">( </span><span style="color: #DD0000">'/^[A-Za-z0-9]{32}$/'</span><span style="color: #007700">, </span><span style="color: #0000BB">$token </span><span style="color: #007700">)<br>              ? </span><span style="color: #DD0000">'32 letters and digits' </span><span style="color: #007700">: </span><span style="color: #DD0000">'wrong'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$shape      </span><span style="color: #007700">= </span><span style="color: #0000BB">preg_replace </span><span style="color: #007700">( </span><span style="color: #DD0000">'/[0-9a-f]/'</span><span style="color: #007700">, </span><span style="color: #DD0000">'x'</span><span style="color: #007700">, </span><span style="color: #0000BB">$id </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$versions   </span><span style="color: #007700">= </span><span style="color: #0000BB">$id </span><span style="color: #007700">[</span><span style="color: #0000BB">14</span><span style="color: #007700">] . </span><span style="color: #DD0000">' and ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$first </span><span style="color: #007700">[</span><span style="color: #0000BB">14</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$ordered    </span><span style="color: #007700">= </span><span style="color: #0000BB">strcmp </span><span style="color: #007700">( </span><span style="color: #0000BB">$later</span><span style="color: #007700">, </span><span style="color: #0000BB">$first </span><span style="color: #007700">) &gt; </span><span style="color: #0000BB">0 </span><span style="color: #007700">? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;p&gt;token: <b>{<font color="green"><font color="red">$</font>tokenShape</font>}</b>&lt;/p&gt;<br>&lt;p&gt;uuid: <b>{<font color="green"><font color="red">$</font>shape</font>}</b>, versions <b>{<font color="green"><font color="red">$</font>versions</font>}</b>&lt;/p&gt;<br>&lt;p&gt;a later version 7 sorts after an earlier one: <b>{<font color="green"><font color="red">$</font>ordered</font>}</b>&lt;/p&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <p>
+                            token: 32 letters and digits
+                          </p>
+                          <p>
+                            uuid: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx, versions 4 and 7
+                          </p>
+                          <p>
+                            a later version 7 sorts after an earlier one: yes
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <h2>
+                      Wrong input
+                    </h2>
+                    <p>
+                      <code>NULL</code> and <code>FALSE</code> are read as an empty text and a number as its digits, so the functions take a database value as it comes. An array, a negative limit, an unknown UUID version or an empty mask character is a mistake of the author: it is reported as a PAD error naming the function, and the function answers an empty value.
+                    </p>
+                  </div>
+                </center>
+              </td>
+            </tr>
+          </table>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <hr>
+                <table valign="top" align="center">
+                  <tr>
+                    <td valign="top">
+                      <h3 align="center">
+                        Basic concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tags.html">Tags</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7conditions.html">Conditions</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7loops.html">Loops</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7trees.html">Trees</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7examples_used_in_this_manual.html">Examples used in this manual</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7parse.html">Parse</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7levels_and_occurrences.html">Levels and occurrences</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_content_tag.html">The content tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_data_tag.html">The data tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7php_and_html.html">Php and html</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7properties.html">Properties</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7field_sigils.html">Field sigils</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Constructs
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7else.html">Else</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7start_end.html">Start end</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7content.html">Content</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page.html">Page</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Text and markup
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7comments.html">Comments</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7whitespace.html">Whitespace</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ignore.html">Ignore</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7escaping_special_PAD_chars.html">Escaping special PAD chars</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Advanced concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7prefix.html">Prefix</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7options_variables_parameters.html">Options variables parameters</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7callback.html">Callback</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tag_return_values.html">Tag return values</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7level_and_occurrence_variables.html">Level and occurrence variables</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7walking.html">Walking</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ending_the_request.html">Ending the request</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sequences.html">Sequences</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Data
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7data_handling.html">Data handling</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7grouping.html">Grouping</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pager.html">Pager</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7lookup.html">Lookup</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7database.html">Database</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sqlite.html">Sqlite</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7collections.html">Collections</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7remote_data.html">Remote data</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7parallel_fetching.html">Parallel fetching</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7data_answers.html">Data answers</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        PHP helpers
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7arrays.html">Arrays</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7strings.html">Strings</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7values.html">Values</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7numbers.html">Numbers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_sessions.html">Requests and sessions</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7environment_and_cache.html">Environment and cache</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7dates_and_logging.html">Dates and logging</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7hashing_and_encryption.html">Hashing and encryption</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Output
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7html_helpers.html">Html helpers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7markdown.html">Markdown</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7charts.html">Charts</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7locale.html">Locale</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7fragment_cache.html">Fragment cache</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7flush.html">Flush</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7live.html">Live</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Layouts and components
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7layouts.html">Layouts</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page_meta.html">Page meta</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7components.html">Components</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7stacks.html">Stacks</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7response_fragments.html">Response fragments</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        The application
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7application_structure.html">Application structure</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7extending.html">Extending</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7events.html">Events</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7application_options.html">Application options</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_urls.html">Requests and urls</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7clean_urls.html">Clean urls</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sitemap.html">Sitemap</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7mail.html">Mail</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Forms and security
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7forms.html">Forms</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7csrf_protection.html">Csrf protection</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7flash_messages.html">Flash messages</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7directory_guards.html">Directory guards</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7security_headers.html">Security headers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7file_uploads.html">File uploads</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Development tools
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7debug.html">Debug</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7template_errors.html">Template errors</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7toolbar.html">Toolbar</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7output_checks.html">Output checks</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7coverage.html">Coverage</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7replay.html">Replay</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7live_reload.html">Live reload</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7samples.html">Samples</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7app_tests.html">App tests</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pad_command.html">Pad command</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7static_export.html">Static export</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7playground.html">Playground</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7editor_support.html">Editor support</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pad_in_the_browser.html">Pad in the browser</a>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

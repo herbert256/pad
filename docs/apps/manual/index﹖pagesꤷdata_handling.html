@@ -1,6 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<!DOCTYPE html>
+<html>
+  <head>
     <title>
       PAD - data_handling
     </title>
@@ -11,14 +11,14 @@
         PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
       </h1>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table><br>
+      </table><br>
       <hr width="75%">
     </center>
     <blockquote>
@@ -27,994 +27,1056 @@
           <h1>
             Data handling
           </h1>
-          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tbody><tr>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
               <td>
                 <center>
-                  <p>
-                    It is possible to process the data from a <b>{tag}</b> before it is used by PAD to construct the output.
-                  </p>
-                  <p>
-                    This is done by using one of the below options.
-                  </p>
-                  <p>
-                    dedup, end, first, last, page, random, reverse, row, rows, shuffle, slice, sort, splice, start, trim
-                  </p>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $myArray </span><span style="color: #007700">= [<br>    </span><span style="color: #0000BB">11</span><span style="color: #007700">,</span><span style="color: #0000BB">12</span><span style="color: #007700">,</span><span style="color: #0000BB">13</span><span style="color: #007700">,</span><span style="color: #0000BB">14</span><span style="color: #007700">,</span><span style="color: #0000BB">15</span><span style="color: #007700">,</span><span style="color: #0000BB">16</span><span style="color: #007700">,</span><span style="color: #0000BB">17</span><span style="color: #007700">,</span><span style="color: #0000BB">18</span><span style="color: #007700">,</span><span style="color: #0000BB">19</span><span style="color: #007700">,</span><span style="color: #0000BB">20</span><span style="color: #007700">,<br>    </span><span style="color: #0000BB">21</span><span style="color: #007700">,</span><span style="color: #0000BB">22</span><span style="color: #007700">,</span><span style="color: #0000BB">23</span><span style="color: #007700">,</span><span style="color: #0000BB">24</span><span style="color: #007700">,</span><span style="color: #0000BB">25</span><span style="color: #007700">,</span><span style="color: #0000BB">26</span><span style="color: #007700">,</span><span style="color: #0000BB">27</span><span style="color: #007700">,</span><span style="color: #0000BB">28</span><span style="color: #007700">,</span><span style="color: #0000BB">29</span><span style="color: #007700">,</span><span style="color: #0000BB">30</span><span style="color: #007700">,<br>    </span><span style="color: #0000BB">31</span><span style="color: #007700">,</span><span style="color: #0000BB">32</span><span style="color: #007700">,</span><span style="color: #0000BB">33</span><span style="color: #007700">,</span><span style="color: #0000BB">34</span><span style="color: #007700">,</span><span style="color: #0000BB">35</span><span style="color: #007700">,</span><span style="color: #0000BB">36</span><span style="color: #007700">,</span><span style="color: #0000BB">37</span><span style="color: #007700">,</span><span style="color: #0000BB">38</span><span style="color: #007700">,</span><span style="color: #0000BB">39</span><span style="color: #007700">,</span><span style="color: #0000BB">40<br>  </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
-                      </td>
-                    </tr>
-                  </tbody></table>
-                  <p></p>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        HTML
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        RESULT
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                      <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">row  = 10           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->20<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">rows = 10           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">rows = 10<font color="black">,</font> page = 2 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                  </tbody></table>
-                  <p></p>
-                  <p></p>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        HTML
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        RESULT
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                       <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = 10           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">end   = 20           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = 10<font color="black">,</font> end = 20 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->20 21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                  </tbody></table>
-                  <p></p>
-                  <p></p>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        HTML
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        RESULT
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                         <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = -20            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">end   = -10            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = -20<font color="black">,</font> end = 20  </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = -20<font color="black">,</font> end = -10 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                  </tbody></table>
-                  <p></p>
-                  <p></p>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        HTML
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        RESULT
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                        <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start =  20<font color="black">,</font> rows = 5 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->30 31 32 33 34<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">end   =  10<font color="black">,</font> rows = 5 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->16 17 18 19 20<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = -20<font color="black">,</font> rows = 5 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">end   = -10<font color="black">,</font> rows = 5 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->26 27 28 29 30<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                  </tbody></table>
-                  <p></p>
-                  <p></p>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        HTML
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        RESULT
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>          <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">first</font>}</b>    <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">first=10</font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">last</font>}</b>     <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">last=10</font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                  </tbody></table>
-                  <p></p>
-                  <p></p>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        HTML
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        RESULT
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">trim</font>}</b>           <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">trim=10</font>}</b>        <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">trim=10<font color="black">,</font> left</font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">trim=10<font color="black">,</font> right</font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">trim=10<font color="black">,</font> both</font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                  </tbody></table>
-                  <p></p>
-                  <p></p>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        HTML
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        RESULT
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                   <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = 10</font>}</b>       <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = 10</font>}</b>       <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = -10</font>}</b>      <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = -10</font>}</b>      <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font></font>}</b>   <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font></font>}</b>   <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font></font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font></font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font></font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font></font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font></font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font></font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                  </tbody></table>
-                  <p></p>
-                  <p></p>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        HTML
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        RESULT
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>         <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->40 39 38 37 36 35 34 33 32 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">shuffle</font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->33 38 26 35 30 22 21 28 17 27 12 18 25 24 13 14 34 16 11 23 37 29 39 40 15 20 31 19 36 32<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">random</font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->16 27 35 14 31 11 19 38 25 30 17 13 39 24 15 23 34 40 32 26 29 36 12 33 28 20 22 21 18 37<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                  </tbody></table>
-                  <p></p>
-                  <p></p>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        HTML
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        RESULT
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                                <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">random=20</font>}</b>                      <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->20 40 11 21 19 38 34 25 24 26 15 39 17 12 30 37 33 32 29 36<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">random=20<font color="black">,</font> orderly</font>}</b>             <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 13 14 15 19 23 24 25 27 28 30 31 32 33 34 35 36 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">random=20<font color="black">,</font> duplicates</font>}</b>          <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->17 11 36 29 26 37 38 39 33 39 31 31 17 26 35 29 28 27 34 12<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">random=20<font color="black">,</font> orderly<font color="black">,</font> duplicates</font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 16 16 19 20 21 22 22 24 24 28 29 33 33 35 36 37 38 40 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                  </tbody></table>
-                  <p></p>
-                  <p>
-                    With the 'negative' option, the result is the negative of the handling option.
-                  </p>
-                  <p></p>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        HTML
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        RESULT
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                    <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">first=5           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">first=5<font color="black">,</font> negative </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                  </tbody></table>
-                  <p></p>
-                  <p></p>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        HTML
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        RESULT
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = 10                 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = 10<font color="black">,</font> negative       </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = 10                 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = 10<font color="black">,</font> negative       </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                  </tbody></table>
-                  <p></p>
-                  <p></p>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        HTML
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        RESULT
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = -10                </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = -10<font color="black">,</font> negative      </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = -10                </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = -10<font color="black">,</font> negative      </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                  </tbody></table>
-                  <p></p>
-                  <p></p>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        HTML
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        RESULT
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font>             </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font><font color="black">,</font> negative   </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font>             </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font><font color="black">,</font> negative   </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                  </tbody></table>
-                  <p></p>
-                  <p></p>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        HTML
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        RESULT
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font>            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font><font color="black">,</font> negative  </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font>            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font><font color="black">,</font> negative  </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                  </tbody></table>
-                  <p></p>
-                  <p></p>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        HTML
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        RESULT
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font>            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font><font color="black">,</font> negative  </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font>            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font><font color="black">,</font> negative  </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                  </tbody></table>
-                  <p></p>
-                  <p></p>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        HTML
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        RESULT
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font>           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font><font color="black">,</font> negative </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font>           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <!-- START DEMO SOURCE -->
-                        <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font><font color="black">,</font> negative </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-                      </td>
-                      <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35<!-- END DEMO RESULT --></span></code>
-                      </td>
-                    </tr>
-                  </tbody></table>
-                  <p></p>
+                  <div style="display: inline-block; text-align: left;">
+                    <p>
+                      It is possible to process the data from a <b>{tag}</b> before it is used by PAD to construct the output.
+                    </p>
+                    <p>
+                      This is done by using one of the below options.
+                    </p>
+                    <p>
+                      dedup, end, first, group, last, page, random, reverse, row, rows, shuffle, slice, sort, splice, start, trim, where
+                    </p>
+                    <p>
+                      The options run in the order they are written. <code>where</code> keeps the rows a quoted expression holds for, evaluated per row with the row's fields; when the options leave no row at all, the tag shows its <b>@</b><b>else</b><b>@</b> branch. <code>group</code> folds the rows into one occurrence per value of a field, with subtotals - see <a href="index%EF%B9%96pages%EA%A4%B7grouping.html">grouping with subtotals</a>.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $myArray </span><span style="color: #007700">= [<br>    </span><span style="color: #0000BB">11</span><span style="color: #007700">,</span><span style="color: #0000BB">12</span><span style="color: #007700">,</span><span style="color: #0000BB">13</span><span style="color: #007700">,</span><span style="color: #0000BB">14</span><span style="color: #007700">,</span><span style="color: #0000BB">15</span><span style="color: #007700">,</span><span style="color: #0000BB">16</span><span style="color: #007700">,</span><span style="color: #0000BB">17</span><span style="color: #007700">,</span><span style="color: #0000BB">18</span><span style="color: #007700">,</span><span style="color: #0000BB">19</span><span style="color: #007700">,</span><span style="color: #0000BB">20</span><span style="color: #007700">,<br>    </span><span style="color: #0000BB">21</span><span style="color: #007700">,</span><span style="color: #0000BB">22</span><span style="color: #007700">,</span><span style="color: #0000BB">23</span><span style="color: #007700">,</span><span style="color: #0000BB">24</span><span style="color: #007700">,</span><span style="color: #0000BB">25</span><span style="color: #007700">,</span><span style="color: #0000BB">26</span><span style="color: #007700">,</span><span style="color: #0000BB">27</span><span style="color: #007700">,</span><span style="color: #0000BB">28</span><span style="color: #007700">,</span><span style="color: #0000BB">29</span><span style="color: #007700">,</span><span style="color: #0000BB">30</span><span style="color: #007700">,<br>    </span><span style="color: #0000BB">31</span><span style="color: #007700">,</span><span style="color: #0000BB">32</span><span style="color: #007700">,</span><span style="color: #0000BB">33</span><span style="color: #007700">,</span><span style="color: #0000BB">34</span><span style="color: #007700">,</span><span style="color: #0000BB">35</span><span style="color: #007700">,</span><span style="color: #0000BB">36</span><span style="color: #007700">,</span><span style="color: #0000BB">37</span><span style="color: #007700">,</span><span style="color: #0000BB">38</span><span style="color: #007700">,</span><span style="color: #0000BB">39</span><span style="color: #007700">,</span><span style="color: #0000BB">40<br>  </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                      </tr>
+                    </table>
+                    <p></p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          HTML
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          RESULT
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                      <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">row  = 10           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->20<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">rows = 10           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">rows = 10<font color="black">,</font> page = 2 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                    </table>
+                    <p></p>
+                    <p></p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          HTML
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          RESULT
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                       <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = 10           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">end   = 20           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = 10<font color="black">,</font> end = 20 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->20 21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                    </table>
+                    <p></p>
+                    <p></p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          HTML
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          RESULT
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                         <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = -20            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">end   = -10            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = -20<font color="black">,</font> end = 20  </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = -20<font color="black">,</font> end = -10 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                    </table>
+                    <p></p>
+                    <p></p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          HTML
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          RESULT
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                        <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start =  20<font color="black">,</font> rows = 5 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->30 31 32 33 34<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">end   =  10<font color="black">,</font> rows = 5 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->16 17 18 19 20<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">start = -20<font color="black">,</font> rows = 5 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">end   = -10<font color="black">,</font> rows = 5 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->26 27 28 29 30<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                    </table>
+                    <p></p>
+                    <p></p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          HTML
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          RESULT
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>          <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">first</font>}</b>    <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">first=10</font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">last</font>}</b>     <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">last=10</font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                    </table>
+                    <p></p>
+                    <p></p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          HTML
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          RESULT
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">trim</font>}</b>           <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">trim=10</font>}</b>        <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">trim=10<font color="black">,</font> left</font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">trim=10<font color="black">,</font> right</font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">trim=10<font color="black">,</font> both</font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                    </table>
+                    <p></p>
+                    <p></p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          HTML
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          RESULT
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                   <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = 10</font>}</b>       <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = 10</font>}</b>       <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = -10</font>}</b>      <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = -10</font>}</b>      <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font></font>}</b>   <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font></font>}</b>   <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font></font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font></font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font></font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font></font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font></font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font></font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                    </table>
+                    <p></p>
+                    <p></p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          HTML
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          RESULT
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>         <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->40 39 38 37 36 35 34 33 32 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">shuffle</font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->37 14 21 23 30 35 34 18 19 36 25 33 26 40 16 11 31 27 39 12 15 20 28 24 13 17 29 22 38 32<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">random</font>}</b>  <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->16 14 38 29 30 39 24 26 12 31 27 33 17 22 32 28 35 34 36 23 37 15 13 20 11 18 40 25 19 21<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                    </table>
+                    <p></p>
+                    <p></p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          HTML
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          RESULT
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                                <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">random=20</font>}</b>                      <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->27 16 34 33 40 15 22 24 39 18 38 32 30 26 36 29 14 23 12 20<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">random=20<font color="black">,</font> orderly</font>}</b>             <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 13 15 16 17 20 21 23 24 25 26 27 29 30 31 33 35 36 37 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">random=20<font color="black">,</font> duplicates</font>}</b>          <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->27 14 39 33 34 23 31 25 36 32 12 26 20 15 34 13 25 28 28 33<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">random=20<font color="black">,</font> orderly<font color="black">,</font> duplicates</font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 16 17 18 21 24 24 25 27 31 35 36 37 37 37 37 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                    </table>
+                    <p></p>
+                    <p>
+                      With the 'negative' option, the result is the negative of the handling option.
+                    </p>
+                    <p></p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          HTML
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          RESULT
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                    <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">first=5           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">first=5<font color="black">,</font> negative </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                    </table>
+                    <p></p>
+                    <p></p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          HTML
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          RESULT
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = 10                 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = 10<font color="black">,</font> negative       </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = 10                 </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = 10<font color="black">,</font> negative       </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                    </table>
+                    <p></p>
+                    <p></p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          HTML
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          RESULT
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = -10                </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = -10<font color="black">,</font> negative      </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = -10                </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = -10<font color="black">,</font> negative      </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                    </table>
+                    <p></p>
+                    <p></p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          HTML
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          RESULT
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font>             </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font><font color="black">,</font> negative   </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font>             </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>5<font color="black">'</font><font color="black">,</font> negative   </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                    </table>
+                    <p></p>
+                    <p></p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          HTML
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          RESULT
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font>            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font><font color="black">,</font> negative  </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font>            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>10<font color="black">|</font>-5<font color="black">'</font><font color="black">,</font> negative  </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                    </table>
+                    <p></p>
+                    <p></p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          HTML
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          RESULT
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font>            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font><font color="black">,</font> negative  </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font>            </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>5<font color="black">'</font><font color="black">,</font> negative  </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                    </table>
+                    <p></p>
+                    <p></p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          HTML
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          RESULT
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b>                              <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font>           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">slice  = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font><font color="black">,</font> negative </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font>           </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">splice = <font color="black">'</font>-20<font color="black">|</font>-5<font color="black">'</font><font color="black">,</font> negative </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30 31 32 33 34 35<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                    </table>
+                    <p></p>
+                    <p></p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          HTML
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          RESULT
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">where = <font color="black">'</font><font color="red">$</font>myArray gt 35<font color="black">'</font>                    </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->36 37 38 39 40<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">where = <font color="black">'</font><font color="red">$</font>myArray gt 20 and <font color="red">$</font>myArray lt 24<font color="black">'</font> </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">where = <font color="black">'</font><font color="red">$</font>myArray gt 20<font color="black">'</font><font color="black">,</font> rows = 3          </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <!-- START DEMO SOURCE -->
+                          <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">where = <font color="black">'</font><font color="red">$</font>myArray gt 20<font color="black">'</font><font color="black">,</font> negative          </font>}</b> <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> <b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                        </td>
+                        <td style="vertical-align:top">
+                          <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12 13 14 15 16 17 18 19 20<!-- END DEMO RESULT --></span></code>
+                        </td>
+                      </tr>
+                    </table>
+                    <p></p>
+                  </div>
                 </center>
               </td>
             </tr>
-          </tbody></table>
-          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tbody><tr>
+          </table>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
               <td>
                 <hr>
                 <table valign="top" align="center">
-                  <tbody><tr>
+                  <tr>
                     <td valign="top">
                       <h3 align="center">
-                        Basic Concepts
+                        Basic concepts
                       </h3>
                       <ul>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7tags.html">Tags</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7conditions.html">Conditions</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7loops.html">Loops</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7trees.html">Trees</a>
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7examples_used_in_this_manual.html">Examples used in this manual</a>
@@ -1037,6 +1099,43 @@
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7properties.html">Properties</a>
                         </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7field_sigils.html">Field sigils</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Constructs
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7else.html">Else</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7start_end.html">Start end</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7content.html">Content</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page.html">Page</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Text and markup
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7comments.html">Comments</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7whitespace.html">Whitespace</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ignore.html">Ignore</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7escaping_special_PAD_chars.html">Escaping special PAD chars</a>
+                        </li>
                       </ul>
                     </td>
                     <td>
@@ -1057,9 +1156,6 @@
                           <a href="index%EF%B9%96pages%EA%A4%B7callback.html">Callback</a>
                         </li>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7escaping_special_PAD_chars.html">Escaping special PAD chars</a>
-                        </li>
-                        <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7tag_return_values.html">Tag return values</a>
                         </li>
                         <li>
@@ -1069,7 +1165,77 @@
                           <a href="index%EF%B9%96pages%EA%A4%B7walking.html">Walking</a>
                         </li>
                         <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ending_the_request.html">Ending the request</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sequences.html">Sequences</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Data
+                      </h3>
+                      <ul>
+                        <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7data_handling.html">Data handling</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7grouping.html">Grouping</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pager.html">Pager</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7lookup.html">Lookup</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7database.html">Database</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sqlite.html">Sqlite</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7collections.html">Collections</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7remote_data.html">Remote data</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7parallel_fetching.html">Parallel fetching</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7data_answers.html">Data answers</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        PHP helpers
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7arrays.html">Arrays</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7strings.html">Strings</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7values.html">Values</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7numbers.html">Numbers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_sessions.html">Requests and sessions</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7environment_and_cache.html">Environment and cache</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7dates_and_logging.html">Dates and logging</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7hashing_and_encryption.html">Hashing and encryption</a>
                         </li>
                       </ul>
                     </td>
@@ -1078,39 +1244,161 @@
                     </td>
                     <td valign="top">
                       <h3 align="center">
-                        Constructs
+                        Output
                       </h3>
                       <ul>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7else.html">Else</a>
+                          <a href="index%EF%B9%96pages%EA%A4%B7html_helpers.html">Html helpers</a>
                         </li>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7start_end.html">Start end</a>
+                          <a href="index%EF%B9%96pages%EA%A4%B7markdown.html">Markdown</a>
                         </li>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7content.html">Content</a>
+                          <a href="index%EF%B9%96pages%EA%A4%B7charts.html">Charts</a>
                         </li>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7page.html">Page</a>
+                          <a href="index%EF%B9%96pages%EA%A4%B7locale.html">Locale</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7fragment_cache.html">Fragment cache</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7flush.html">Flush</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7live.html">Live</a>
                         </li>
                       </ul>
                       <h3 align="center">
-                        Miscellaneous
+                        Layouts and components
                       </h3>
                       <ul>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7ignore.html">Ignore</a>
+                          <a href="index%EF%B9%96pages%EA%A4%B7layouts.html">Layouts</a>
                         </li>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page_meta.html">Page meta</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7components.html">Components</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7stacks.html">Stacks</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7response_fragments.html">Response fragments</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        The application
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7application_structure.html">Application structure</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7extending.html">Extending</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7events.html">Events</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7application_options.html">Application options</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_urls.html">Requests and urls</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7clean_urls.html">Clean urls</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sitemap.html">Sitemap</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7mail.html">Mail</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Forms and security
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7forms.html">Forms</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7csrf_protection.html">Csrf protection</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7flash_messages.html">Flash messages</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7directory_guards.html">Directory guards</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7security_headers.html">Security headers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7file_uploads.html">File uploads</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Development tools
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7debug.html">Debug</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7template_errors.html">Template errors</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7toolbar.html">Toolbar</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7output_checks.html">Output checks</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7coverage.html">Coverage</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7replay.html">Replay</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7live_reload.html">Live reload</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7samples.html">Samples</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7app_tests.html">App tests</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pad_command.html">Pad command</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7static_export.html">Static export</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7playground.html">Playground</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7editor_support.html">Editor support</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pad_in_the_browser.html">Pad in the browser</a>
                         </li>
                       </ul>
                     </td>
                   </tr>
-                </tbody></table>
+                </table>
               </td>
             </tr>
-          </tbody></table>
+          </table>
         </blockquote>
       </center>
     </blockquote>
@@ -1118,17 +1406,17 @@
       <hr width="75%">
       <br>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table>
+      </table>
       <p>
         <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
       </p>
     </center>
-  
-</body></html>
+  </body>
+</html>

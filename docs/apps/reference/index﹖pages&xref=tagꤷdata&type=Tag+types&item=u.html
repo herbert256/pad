@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - u
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - u
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_break_needs_its_level<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_break_needs_its_level.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>u<font color="black">'</font></font>}</b>[1,2,3]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">u</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>u</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>u eq 2</font>}</b><b>{<font color="blue">break </font><font color="red"><font color="black">'</font>nosuch<font color="black">'</font></font>/}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">u</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxacc0a7ac7514112361a40501bebc567a"></div>
+                        <script>
+                        padAjaxacc0a7ac7514112361a40501bebc567a = new XMLHttpRequest();
+                        padAjaxacc0a7ac7514112361a40501bebc567a.onreadystatechange=function() {
+                        if (padAjaxacc0a7ac7514112361a40501bebc567a.readyState === 4) {
+                        if (padAjaxacc0a7ac7514112361a40501bebc567a.status === 200) {
+                        document.getElementById("padAjaxacc0a7ac7514112361a40501bebc567a").innerHTML=padAjaxacc0a7ac7514112361a40501bebc567a.responseText;
+                        } else {
+                        document.getElementById("padAjaxacc0a7ac7514112361a40501bebc567a").innerHTML=padAjaxacc0a7ac7514112361a40501bebc567a.statusText;
+                        }
+                        }
+                        }
+                        padAjaxacc0a7ac7514112361a40501bebc567a.open("GET","http://localhost/pad/regression/errors/?syntax/a_break_needs_its_level&padInclude",true);
+                        padAjaxacc0a7ac7514112361a40501bebc567a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_break_offset_past_the_page_root_is_reported<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_break_offset_past_the_page_root_is_reported.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>u<font color="black">'</font></font>}</b>[1,2,3]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">u</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>u</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>u eq 2</font>}</b><b>{<font color="blue">break </font><font color="red">-10</font>/}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">u</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax7860fa073e20698ec4af9a1f6bd51dff"></div>
+                        <script>
+                        padAjax7860fa073e20698ec4af9a1f6bd51dff = new XMLHttpRequest();
+                        padAjax7860fa073e20698ec4af9a1f6bd51dff.onreadystatechange=function() {
+                        if (padAjax7860fa073e20698ec4af9a1f6bd51dff.readyState === 4) {
+                        if (padAjax7860fa073e20698ec4af9a1f6bd51dff.status === 200) {
+                        document.getElementById("padAjax7860fa073e20698ec4af9a1f6bd51dff").innerHTML=padAjax7860fa073e20698ec4af9a1f6bd51dff.responseText;
+                        } else {
+                        document.getElementById("padAjax7860fa073e20698ec4af9a1f6bd51dff").innerHTML=padAjax7860fa073e20698ec4af9a1f6bd51dff.statusText;
+                        }
+                        }
+                        }
+                        padAjax7860fa073e20698ec4af9a1f6bd51dff.open("GET","http://localhost/pad/regression/errors/?syntax/a_break_offset_past_the_page_root_is_reported&padInclude",true);
+                        padAjax7860fa073e20698ec4af9a1f6bd51dff.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_callback_needs_its_file<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_callback_needs_its_file.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>u<font color="black">'</font></font>}</b>[1,2]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">u </font><font color="red">callback=<font color="black">'</font>nosuch.php<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>u</font>}</b><b>{/<font color="blue">u</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax50ca0b55afdb0ffc63c56b3e789213a3"></div>
+                        <script>
+                        padAjax50ca0b55afdb0ffc63c56b3e789213a3 = new XMLHttpRequest();
+                        padAjax50ca0b55afdb0ffc63c56b3e789213a3.onreadystatechange=function() {
+                        if (padAjax50ca0b55afdb0ffc63c56b3e789213a3.readyState === 4) {
+                        if (padAjax50ca0b55afdb0ffc63c56b3e789213a3.status === 200) {
+                        document.getElementById("padAjax50ca0b55afdb0ffc63c56b3e789213a3").innerHTML=padAjax50ca0b55afdb0ffc63c56b3e789213a3.responseText;
+                        } else {
+                        document.getElementById("padAjax50ca0b55afdb0ffc63c56b3e789213a3").innerHTML=padAjax50ca0b55afdb0ffc63c56b3e789213a3.statusText;
+                        }
+                        }
+                        }
+                        padAjax50ca0b55afdb0ffc63c56b3e789213a3.open("GET","http://localhost/pad/regression/errors/?syntax/a_callback_needs_its_file&padInclude",true);
+                        padAjax50ca0b55afdb0ffc63c56b3e789213a3.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_loop_offset_stays_inside_the_page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_loop_offset_stays_inside_the_page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>u<font color="black">'</font></font>}</b>[1,2,3]<b>{/<font color="blue">data</font><font color="red"></font>}</b>[<b>{<font color="blue">u</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>u</font>}</b><b>{<font color="blue">cease </font><font color="red">-9</font>}</b><b>{/<font color="blue">u</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax0fd5c31b7fabbaebaf0622875f7ba213"></div>
+                        <script>
+                        padAjax0fd5c31b7fabbaebaf0622875f7ba213 = new XMLHttpRequest();
+                        padAjax0fd5c31b7fabbaebaf0622875f7ba213.onreadystatechange=function() {
+                        if (padAjax0fd5c31b7fabbaebaf0622875f7ba213.readyState === 4) {
+                        if (padAjax0fd5c31b7fabbaebaf0622875f7ba213.status === 200) {
+                        document.getElementById("padAjax0fd5c31b7fabbaebaf0622875f7ba213").innerHTML=padAjax0fd5c31b7fabbaebaf0622875f7ba213.responseText;
+                        } else {
+                        document.getElementById("padAjax0fd5c31b7fabbaebaf0622875f7ba213").innerHTML=padAjax0fd5c31b7fabbaebaf0622875f7ba213.statusText;
+                        }
+                        }
+                        }
+                        padAjax0fd5c31b7fabbaebaf0622875f7ba213.open("GET","http://localhost/pad/regression/errors/?syntax/a_loop_offset_stays_inside_the_page&padInclude",true);
+                        padAjax0fd5c31b7fabbaebaf0622875f7ba213.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_property_needs_its_level<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_property_needs_its_level.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>u<font color="black">'</font></font>}</b>[1]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">u</font><font color="red"></font>}</b><b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>typo</font><font color="red"></font>}</b>[<b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>typo</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>u</font>}</b><b>{/<font color="blue">u</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax57bc55051fa82b5e187012d57c3f4bb9"></div>
+                        <script>
+                        padAjax57bc55051fa82b5e187012d57c3f4bb9 = new XMLHttpRequest();
+                        padAjax57bc55051fa82b5e187012d57c3f4bb9.onreadystatechange=function() {
+                        if (padAjax57bc55051fa82b5e187012d57c3f4bb9.readyState === 4) {
+                        if (padAjax57bc55051fa82b5e187012d57c3f4bb9.status === 200) {
+                        document.getElementById("padAjax57bc55051fa82b5e187012d57c3f4bb9").innerHTML=padAjax57bc55051fa82b5e187012d57c3f4bb9.responseText;
+                        } else {
+                        document.getElementById("padAjax57bc55051fa82b5e187012d57c3f4bb9").innerHTML=padAjax57bc55051fa82b5e187012d57c3f4bb9.statusText;
+                        }
+                        }
+                        }
+                        padAjax57bc55051fa82b5e187012d57c3f4bb9.open("GET","http://localhost/pad/regression/errors/?syntax/a_property_needs_its_level&padInclude",true);
+                        padAjax57bc55051fa82b5e187012d57c3f4bb9.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_property_typo_names_the_property<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_property_typo_names_the_property.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>u<font color="black">'</font></font>}</b>[1,2]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">u</font><font color="red"></font>}</b><b>{<font color="blue">frist<font color="black"><b><font color="red">@</font></b></font>u</font><font color="red"></font>}</b>[<b>{/<font color="blue">frist<font color="black"><b><font color="red">@</font></b></font>u</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>u</font>}</b><b>{/<font color="blue">u</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax45ef664bae1bed32c68f5991c354fe7a"></div>
+                        <script>
+                        padAjax45ef664bae1bed32c68f5991c354fe7a = new XMLHttpRequest();
+                        padAjax45ef664bae1bed32c68f5991c354fe7a.onreadystatechange=function() {
+                        if (padAjax45ef664bae1bed32c68f5991c354fe7a.readyState === 4) {
+                        if (padAjax45ef664bae1bed32c68f5991c354fe7a.status === 200) {
+                        document.getElementById("padAjax45ef664bae1bed32c68f5991c354fe7a").innerHTML=padAjax45ef664bae1bed32c68f5991c354fe7a.responseText;
+                        } else {
+                        document.getElementById("padAjax45ef664bae1bed32c68f5991c354fe7a").innerHTML=padAjax45ef664bae1bed32c68f5991c354fe7a.statusText;
+                        }
+                        }
+                        }
+                        padAjax45ef664bae1bed32c68f5991c354fe7a.open("GET","http://localhost/pad/regression/errors/?syntax/a_property_typo_names_the_property&padInclude",true);
+                        padAjax45ef664bae1bed32c68f5991c354fe7a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_start_needs_its_end<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_start_needs_its_end.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>u<font color="black">'</font></font>}</b>[1,2]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">u</font><font color="red"></font>}</b>pre <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b> <b>{<font color="green"><font color="red">$</font>u</font>}</b><b>{/<font color="blue">u</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax183dcf1db8aa142f5a2378157b23d2ad"></div>
+                        <script>
+                        padAjax183dcf1db8aa142f5a2378157b23d2ad = new XMLHttpRequest();
+                        padAjax183dcf1db8aa142f5a2378157b23d2ad.onreadystatechange=function() {
+                        if (padAjax183dcf1db8aa142f5a2378157b23d2ad.readyState === 4) {
+                        if (padAjax183dcf1db8aa142f5a2378157b23d2ad.status === 200) {
+                        document.getElementById("padAjax183dcf1db8aa142f5a2378157b23d2ad").innerHTML=padAjax183dcf1db8aa142f5a2378157b23d2ad.responseText;
+                        } else {
+                        document.getElementById("padAjax183dcf1db8aa142f5a2378157b23d2ad").innerHTML=padAjax183dcf1db8aa142f5a2378157b23d2ad.statusText;
+                        }
+                        }
+                        }
+                        padAjax183dcf1db8aa142f5a2378157b23d2ad.open("GET","http://localhost/pad/regression/errors/?syntax/a_start_needs_its_end&padInclude",true);
+                        padAjax183dcf1db8aa142f5a2378157b23d2ad.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_switch_needs_values<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_switch_needs_values.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>u<font color="black">'</font></font>}</b>[1,2]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">u</font><font color="red"></font>}</b>[<b>{<font color="blue">switch</font><font color="red"></font>}</b>]<b>{/<font color="blue">u</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxf6bf5bd21d301bf51a20720898ea96a3"></div>
+                        <script>
+                        padAjaxf6bf5bd21d301bf51a20720898ea96a3 = new XMLHttpRequest();
+                        padAjaxf6bf5bd21d301bf51a20720898ea96a3.onreadystatechange=function() {
+                        if (padAjaxf6bf5bd21d301bf51a20720898ea96a3.readyState === 4) {
+                        if (padAjaxf6bf5bd21d301bf51a20720898ea96a3.status === 200) {
+                        document.getElementById("padAjaxf6bf5bd21d301bf51a20720898ea96a3").innerHTML=padAjaxf6bf5bd21d301bf51a20720898ea96a3.responseText;
+                        } else {
+                        document.getElementById("padAjaxf6bf5bd21d301bf51a20720898ea96a3").innerHTML=padAjaxf6bf5bd21d301bf51a20720898ea96a3.statusText;
+                        }
+                        }
+                        }
+                        padAjaxf6bf5bd21d301bf51a20720898ea96a3.open("GET","http://localhost/pad/regression/errors/?syntax/a_switch_needs_values&padInclude",true);
+                        padAjaxf6bf5bd21d301bf51a20720898ea96a3.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/an_end_needs_its_start<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/an_end_needs_its_start.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>u<font color="black">'</font></font>}</b>[1,2]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">u</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>u</font>}</b> <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b> done<b>{/<font color="blue">u</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5fe102e615fbbf295b3896d566a2af2d"></div>
+                        <script>
+                        padAjax5fe102e615fbbf295b3896d566a2af2d = new XMLHttpRequest();
+                        padAjax5fe102e615fbbf295b3896d566a2af2d.onreadystatechange=function() {
+                        if (padAjax5fe102e615fbbf295b3896d566a2af2d.readyState === 4) {
+                        if (padAjax5fe102e615fbbf295b3896d566a2af2d.status === 200) {
+                        document.getElementById("padAjax5fe102e615fbbf295b3896d566a2af2d").innerHTML=padAjax5fe102e615fbbf295b3896d566a2af2d.responseText;
+                        } else {
+                        document.getElementById("padAjax5fe102e615fbbf295b3896d566a2af2d").innerHTML=padAjax5fe102e615fbbf295b3896d566a2af2d.statusText;
+                        }
+                        }
+                        }
+                        padAjax5fe102e615fbbf295b3896d566a2af2d.open("GET","http://localhost/pad/regression/errors/?syntax/an_end_needs_its_start&padInclude",true);
+                        padAjax5fe102e615fbbf295b3896d566a2af2d.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/the_sections_stand_in_order<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/the_sections_stand_in_order.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>u<font color="black">'</font></font>}</b>[1,2]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">u</font><font color="red"></font>}</b>a <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b> b <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b> c<b>{/<font color="blue">u</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax2dfb62085dad3f15affb20d48090b72f"></div>
+                        <script>
+                        padAjax2dfb62085dad3f15affb20d48090b72f = new XMLHttpRequest();
+                        padAjax2dfb62085dad3f15affb20d48090b72f.onreadystatechange=function() {
+                        if (padAjax2dfb62085dad3f15affb20d48090b72f.readyState === 4) {
+                        if (padAjax2dfb62085dad3f15affb20d48090b72f.status === 200) {
+                        document.getElementById("padAjax2dfb62085dad3f15affb20d48090b72f").innerHTML=padAjax2dfb62085dad3f15affb20d48090b72f.responseText;
+                        } else {
+                        document.getElementById("padAjax2dfb62085dad3f15affb20d48090b72f").innerHTML=padAjax2dfb62085dad3f15affb20d48090b72f.statusText;
+                        }
+                        }
+                        }
+                        padAjax2dfb62085dad3f15affb20d48090b72f.open("GET","http://localhost/pad/regression/errors/?syntax/the_sections_stand_in_order&padInclude",true);
+                        padAjax2dfb62085dad3f15affb20d48090b72f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: data/a_json_list_of_objects<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">data/a_json_list_of_objects.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>u<font color="black">'</font></font>}</b><br>  [{"n":"bob"},{"n":"amy"}]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">u</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>n</font>}</b>,<br><b>{/<font color="blue">u</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxfb9d129d0e094755336c444cba2c4434"></div>
+                        <script>
+                        padAjaxfb9d129d0e094755336c444cba2c4434 = new XMLHttpRequest();
+                        padAjaxfb9d129d0e094755336c444cba2c4434.onreadystatechange=function() {
+                        if (padAjaxfb9d129d0e094755336c444cba2c4434.readyState === 4) {
+                        if (padAjaxfb9d129d0e094755336c444cba2c4434.status === 200) {
+                        document.getElementById("padAjaxfb9d129d0e094755336c444cba2c4434").innerHTML=padAjaxfb9d129d0e094755336c444cba2c4434.responseText;
+                        } else {
+                        document.getElementById("padAjaxfb9d129d0e094755336c444cba2c4434").innerHTML=padAjaxfb9d129d0e094755336c444cba2c4434.statusText;
+                        }
+                        }
+                        }
+                        padAjaxfb9d129d0e094755336c444cba2c4434.open("GET","http://localhost/pad/regression/framework/?data/a_json_list_of_objects&padInclude",true);
+                        padAjaxfb9d129d0e094755336c444cba2c4434.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: data/a_nested_object_still_gives_its_own_fields<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">data/a_nested_object_still_gives_its_own_fields.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>u<font color="black">'</font></font>}</b><br>  [{"n":"bob","t":{"x":9}}]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">u</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>n</font>}</b>,<br><b>{/<font color="blue">u</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb01f1d1f1955752e10c3a895958bde5a"></div>
+                        <script>
+                        padAjaxb01f1d1f1955752e10c3a895958bde5a = new XMLHttpRequest();
+                        padAjaxb01f1d1f1955752e10c3a895958bde5a.onreadystatechange=function() {
+                        if (padAjaxb01f1d1f1955752e10c3a895958bde5a.readyState === 4) {
+                        if (padAjaxb01f1d1f1955752e10c3a895958bde5a.status === 200) {
+                        document.getElementById("padAjaxb01f1d1f1955752e10c3a895958bde5a").innerHTML=padAjaxb01f1d1f1955752e10c3a895958bde5a.responseText;
+                        } else {
+                        document.getElementById("padAjaxb01f1d1f1955752e10c3a895958bde5a").innerHTML=padAjaxb01f1d1f1955752e10c3a895958bde5a.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb01f1d1f1955752e10c3a895958bde5a.open("GET","http://localhost/pad/regression/framework/?data/a_nested_object_still_gives_its_own_fields&padInclude",true);
+                        padAjaxb01f1d1f1955752e10c3a895958bde5a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: lenient/a_bare_switch_alternates_nothing<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">lenient/a_bare_switch_alternates_nothing.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">lenient/a_bare_switch_alternates_nothing.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The lenient walk under test: with the syntax check off, what cannot run passes the<br>  // value through or yields empty, and the walk carries on.<br><br>  </span><span style="color: #0000BB">$padCheckSyntax </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>u<font color="black">'</font></font>}</b>[1,2]<b>{/<font color="blue">data</font><font color="red"></font>}</b>[<b>{<font color="blue">u</font><font color="red"></font>}</b>.<b>{<font color="blue">switch</font><font color="red"></font>}</b><b>{/<font color="blue">u</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5ee49acf75247ba52d82945d94c97119"></div>
+                        <script>
+                        padAjax5ee49acf75247ba52d82945d94c97119 = new XMLHttpRequest();
+                        padAjax5ee49acf75247ba52d82945d94c97119.onreadystatechange=function() {
+                        if (padAjax5ee49acf75247ba52d82945d94c97119.readyState === 4) {
+                        if (padAjax5ee49acf75247ba52d82945d94c97119.status === 200) {
+                        document.getElementById("padAjax5ee49acf75247ba52d82945d94c97119").innerHTML=padAjax5ee49acf75247ba52d82945d94c97119.responseText;
+                        } else {
+                        document.getElementById("padAjax5ee49acf75247ba52d82945d94c97119").innerHTML=padAjax5ee49acf75247ba52d82945d94c97119.statusText;
+                        }
+                        }
+                        }
+                        padAjax5ee49acf75247ba52d82945d94c97119.open("GET","http://localhost/pad/regression/framework/?lenient/a_bare_switch_alternates_nothing&padInclude",true);
+                        padAjax5ee49acf75247ba52d82945d94c97119.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: lenient/a_break_name_missing_falls_to_the_nearest_loop<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">lenient/a_break_name_missing_falls_to_the_nearest_loop.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">lenient/a_break_name_missing_falls_to_the_nearest_loop.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The lenient walk under test: with the syntax check off, what nothing claims stays in<br>  // the output as written.<br><br>  </span><span style="color: #0000BB">$padCheckSyntax </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>u<font color="black">'</font></font>}</b>[1,2,3]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">u</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>u</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>u eq 2</font>}</b><b>{<font color="blue">break </font><font color="red"><font color="black">'</font>nosuch<font color="black">'</font></font>/}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">u</font><font color="red"></font>}</b>after</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax7459b0c10e7c9a3c36b2cb5b4aaf4c30"></div>
+                        <script>
+                        padAjax7459b0c10e7c9a3c36b2cb5b4aaf4c30 = new XMLHttpRequest();
+                        padAjax7459b0c10e7c9a3c36b2cb5b4aaf4c30.onreadystatechange=function() {
+                        if (padAjax7459b0c10e7c9a3c36b2cb5b4aaf4c30.readyState === 4) {
+                        if (padAjax7459b0c10e7c9a3c36b2cb5b4aaf4c30.status === 200) {
+                        document.getElementById("padAjax7459b0c10e7c9a3c36b2cb5b4aaf4c30").innerHTML=padAjax7459b0c10e7c9a3c36b2cb5b4aaf4c30.responseText;
+                        } else {
+                        document.getElementById("padAjax7459b0c10e7c9a3c36b2cb5b4aaf4c30").innerHTML=padAjax7459b0c10e7c9a3c36b2cb5b4aaf4c30.statusText;
+                        }
+                        }
+                        }
+                        padAjax7459b0c10e7c9a3c36b2cb5b4aaf4c30.open("GET","http://localhost/pad/regression/framework/?lenient/a_break_name_missing_falls_to_the_nearest_loop&padInclude",true);
+                        padAjax7459b0c10e7c9a3c36b2cb5b4aaf4c30.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: lenient/a_break_offset_past_the_root_falls_to_the_nearest_loop<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">lenient/a_break_offset_past_the_root_falls_to_the_nearest_loop.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">lenient/a_break_offset_past_the_root_falls_to_the_nearest_loop.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The lenient walk under test: with the syntax check off, loop control aimed past the page<br>  // root takes the nearest loop, as a name that matches nothing does.<br><br>  </span><span style="color: #0000BB">$padCheckSyntax </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>u<font color="black">'</font></font>}</b>[1,2,3]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">u</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>u</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>u eq 2</font>}</b><b>{<font color="blue">break </font><font color="red">-10</font>/}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">u</font><font color="red"></font>}</b>after</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8cbdd2520bc353a765ebe06181d2d9d9"></div>
+                        <script>
+                        padAjax8cbdd2520bc353a765ebe06181d2d9d9 = new XMLHttpRequest();
+                        padAjax8cbdd2520bc353a765ebe06181d2d9d9.onreadystatechange=function() {
+                        if (padAjax8cbdd2520bc353a765ebe06181d2d9d9.readyState === 4) {
+                        if (padAjax8cbdd2520bc353a765ebe06181d2d9d9.status === 200) {
+                        document.getElementById("padAjax8cbdd2520bc353a765ebe06181d2d9d9").innerHTML=padAjax8cbdd2520bc353a765ebe06181d2d9d9.responseText;
+                        } else {
+                        document.getElementById("padAjax8cbdd2520bc353a765ebe06181d2d9d9").innerHTML=padAjax8cbdd2520bc353a765ebe06181d2d9d9.statusText;
+                        }
+                        }
+                        }
+                        padAjax8cbdd2520bc353a765ebe06181d2d9d9.open("GET","http://localhost/pad/regression/framework/?lenient/a_break_offset_past_the_root_falls_to_the_nearest_loop&padInclude",true);
+                        padAjax8cbdd2520bc353a765ebe06181d2d9d9.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

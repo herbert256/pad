@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag options - cache
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag options - cache
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: tags/a_cache_hit_does_not_report_the_options_only_the_tag_reads<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_cache_hit_does_not_report_the_options_only_the_tag_reads.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_cache_hit_does_not_report_the_options_only_the_tag_reads.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The two trees are one entry of the option form, so the second is a hit: its handler<br>  // does not run and never reads children=. vary= keeps a run off an earlier run's copy.<br><br>  </span><span style="color: #0000BB">$token </span><span style="color: #007700">= </span><span style="color: #0000BB">uniqid </span><span style="color: #007700">( </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>menu<font color="black">'</font></font>}</b>[{"name":"a","kids":[{"name":"b"}]}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>menu<font color="black">'</font><font color="black">,</font> children=<font color="black">'</font>kids<font color="black">'</font><font color="black">,</font> cache=60<font color="black">,</font> vary=<font color="red">$</font>token</font>}</b>[<b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{<font color="blue">recurse</font><font color="red"></font>}</b>]<b>{/<font color="blue">tree</font><font color="red"></font>}</b>|<b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>menu<font color="black">'</font><font color="black">,</font> children=<font color="black">'</font>kids<font color="black">'</font><font color="black">,</font> cache=60<font color="black">,</font> vary=<font color="red">$</font>token</font>}</b>[<b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{<font color="blue">recurse</font><font color="red"></font>}</b>]<b>{/<font color="blue">tree</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd442b2d8c209239a732b7b98e0eee92e"></div>
+                        <script>
+                        padAjaxd442b2d8c209239a732b7b98e0eee92e = new XMLHttpRequest();
+                        padAjaxd442b2d8c209239a732b7b98e0eee92e.onreadystatechange=function() {
+                        if (padAjaxd442b2d8c209239a732b7b98e0eee92e.readyState === 4) {
+                        if (padAjaxd442b2d8c209239a732b7b98e0eee92e.status === 200) {
+                        document.getElementById("padAjaxd442b2d8c209239a732b7b98e0eee92e").innerHTML=padAjaxd442b2d8c209239a732b7b98e0eee92e.responseText;
+                        } else {
+                        document.getElementById("padAjaxd442b2d8c209239a732b7b98e0eee92e").innerHTML=padAjaxd442b2d8c209239a732b7b98e0eee92e.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd442b2d8c209239a732b7b98e0eee92e.open("GET","http://localhost/pad/regression/framework/?tags/a_cache_hit_does_not_report_the_options_only_the_tag_reads&padInclude",true);
+                        padAjaxd442b2d8c209239a732b7b98e0eee92e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_pager_after_a_cached_paged_tag_pages_its_rows<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_pager_after_a_cached_paged_tag_pages_its_rows.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_pager_after_a_cached_paged_tag_pages_its_rows.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The two paged tags are one entry of the option form: the second is a hit, which runs<br>  // no handling of its own rows. vary= keeps a run off an earlier run's copy.<br><br>  </span><span style="color: #0000BB">$items </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">4 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5 </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$token </span><span style="color: #007700">= </span><span style="color: #0000BB">uniqid </span><span style="color: #007700">( </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">items </font><font color="red">page=2<font color="black">,</font> rows=2<font color="black">,</font> cache=60<font color="black">,</font> vary=<font color="red">$</font>token</font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b> <b>{/<font color="blue">items</font><font color="red"></font>}</b>|<b>{<font color="blue">items </font><font color="red">page=2<font color="black">,</font> rows=2<font color="black">,</font> cache=60<font color="black">,</font> vary=<font color="red">$</font>token</font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b> <b>{/<font color="blue">items</font><font color="red"></font>}</b>|<b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>items<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax786bf5cf99d6400a4985040b8441ba73"></div>
+                        <script>
+                        padAjax786bf5cf99d6400a4985040b8441ba73 = new XMLHttpRequest();
+                        padAjax786bf5cf99d6400a4985040b8441ba73.onreadystatechange=function() {
+                        if (padAjax786bf5cf99d6400a4985040b8441ba73.readyState === 4) {
+                        if (padAjax786bf5cf99d6400a4985040b8441ba73.status === 200) {
+                        document.getElementById("padAjax786bf5cf99d6400a4985040b8441ba73").innerHTML=padAjax786bf5cf99d6400a4985040b8441ba73.responseText;
+                        } else {
+                        document.getElementById("padAjax786bf5cf99d6400a4985040b8441ba73").innerHTML=padAjax786bf5cf99d6400a4985040b8441ba73.statusText;
+                        }
+                        }
+                        }
+                        padAjax786bf5cf99d6400a4985040b8441ba73.open("GET","http://localhost/pad/regression/framework/?tags/a_pager_after_a_cached_paged_tag_pages_its_rows&padInclude",true);
+                        padAjax786bf5cf99d6400a4985040b8441ba73.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/the_cache_option_skips_the_tag_on_a_hit<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/the_cache_option_skips_the_tag_on_a_hit.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/the_cache_option_skips_the_tag_on_a_hit.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The option form keys on the page and the tag as written, so the two tags below are one<br>  // entry: the second is a hit, and its handler - which counts - never runs. vary= makes the<br>  // entry this request's own, so a run never meets an earlier run's copy.<br><br>  </span><span style="color: #0000BB">$calls </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$token </span><span style="color: #007700">= </span><span style="color: #0000BB">uniqid </span><span style="color: #007700">( </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br>  function </span><span style="color: #0000BB">fwStaffRows </span><span style="color: #007700">() {<br>    global </span><span style="color: #0000BB">$calls</span><span style="color: #007700">;<br>    </span><span style="color: #0000BB">$calls</span><span style="color: #007700">++;<br>    return [ [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'joe' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'jim' </span><span style="color: #007700">] ];<br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>fwStaffRows </font><font color="red">cache=60<font color="black">,</font> vary=<font color="red">$</font>token</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>fwStaffRows</font><font color="red"></font>}</b>|<b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>fwStaffRows </font><font color="red">cache=60<font color="black">,</font> vary=<font color="red">$</font>token</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>fwStaffRows</font><font color="red"></font>}</b>|<b>{<font color="green"><font color="red">$</font>calls</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax574842280c6b4c79ed4e8125008f6bac"></div>
+                        <script>
+                        padAjax574842280c6b4c79ed4e8125008f6bac = new XMLHttpRequest();
+                        padAjax574842280c6b4c79ed4e8125008f6bac.onreadystatechange=function() {
+                        if (padAjax574842280c6b4c79ed4e8125008f6bac.readyState === 4) {
+                        if (padAjax574842280c6b4c79ed4e8125008f6bac.status === 200) {
+                        document.getElementById("padAjax574842280c6b4c79ed4e8125008f6bac").innerHTML=padAjax574842280c6b4c79ed4e8125008f6bac.responseText;
+                        } else {
+                        document.getElementById("padAjax574842280c6b4c79ed4e8125008f6bac").innerHTML=padAjax574842280c6b4c79ed4e8125008f6bac.statusText;
+                        }
+                        }
+                        }
+                        padAjax574842280c6b4c79ed4e8125008f6bac.open("GET","http://localhost/pad/regression/framework/?tags/the_cache_option_skips_the_tag_on_a_hit&padInclude",true);
+                        padAjax574842280c6b4c79ed4e8125008f6bac.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

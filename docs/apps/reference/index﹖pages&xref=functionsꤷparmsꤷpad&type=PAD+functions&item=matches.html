@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - PAD functions - matches
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - PAD functions - matches
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: fragments/conditions_6<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/conditions_6.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/conditions_6.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $count   </span><span style="color: #007700">= </span><span style="color: #0000BB">3</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$heading </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$code    </span><span style="color: #007700">= </span><span style="color: #DD0000">'NL1234'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$state   </span><span style="color: #007700">= </span><span style="color: #DD0000">'pending'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>count eq 1 ? <font color="black">'</font>item<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>items<font color="black">'</font></font>}</b>&lt;/p&gt;<br>&lt;p&gt;Title: <b>{<font color="green">$heading</font> <font color="black">|</font> <font color="blue">?? 'Untitled'</font>}</b> - subtitle: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>subtitle ?? <font color="black">'</font>none<font color="black">'</font></font>}</b>&lt;/p&gt;<br>&lt;p&gt;Code <b>{<font color="green"><font color="red">$</font>code</font>}</b> <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>code matches <font color="black">'</font>/^[A-Z][A-Z][0-9]+<font color="red">$</font>/<font color="black">'</font></font>}</b>is<b>{<font color="blue">else</font><font color="red"></font>}</b>is not<b>{/<font color="blue">if</font><font color="red"></font>}</b> well formed&lt;/p&gt;<br>&lt;p&gt;State <b>{<font color="green"><font color="red">$</font>state</font>}</b> <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>state in (<font color="black">'</font>active<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pending<font color="black">'</font>)</font>}</b>is open<b>{<font color="blue">else</font><font color="red"></font>}</b>is closed<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3ef145d934346635c698862e999dc0d4"></div>
+                        <script>
+                        padAjax3ef145d934346635c698862e999dc0d4 = new XMLHttpRequest();
+                        padAjax3ef145d934346635c698862e999dc0d4.onreadystatechange=function() {
+                        if (padAjax3ef145d934346635c698862e999dc0d4.readyState === 4) {
+                        if (padAjax3ef145d934346635c698862e999dc0d4.status === 200) {
+                        document.getElementById("padAjax3ef145d934346635c698862e999dc0d4").innerHTML=padAjax3ef145d934346635c698862e999dc0d4.responseText;
+                        } else {
+                        document.getElementById("padAjax3ef145d934346635c698862e999dc0d4").innerHTML=padAjax3ef145d934346635c698862e999dc0d4.statusText;
+                        }
+                        }
+                        }
+                        padAjax3ef145d934346635c698862e999dc0d4.open("GET","http://localhost/pad/manual/?fragments/conditions_6&padInclude",true);
+                        padAjax3ef145d934346635c698862e999dc0d4.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: eval/matches_needs_a_regular_expression<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">eval/matches_needs_a_regular_expression.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>x<font color="black">'</font> <font color="black">|</font> matches(<font color="black">'</font>/(/<font color="black">'</font>)</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxff36ed2d2c983cca6646f928c0d3cf3c"></div>
+                        <script>
+                        padAjaxff36ed2d2c983cca6646f928c0d3cf3c = new XMLHttpRequest();
+                        padAjaxff36ed2d2c983cca6646f928c0d3cf3c.onreadystatechange=function() {
+                        if (padAjaxff36ed2d2c983cca6646f928c0d3cf3c.readyState === 4) {
+                        if (padAjaxff36ed2d2c983cca6646f928c0d3cf3c.status === 200) {
+                        document.getElementById("padAjaxff36ed2d2c983cca6646f928c0d3cf3c").innerHTML=padAjaxff36ed2d2c983cca6646f928c0d3cf3c.responseText;
+                        } else {
+                        document.getElementById("padAjaxff36ed2d2c983cca6646f928c0d3cf3c").innerHTML=padAjaxff36ed2d2c983cca6646f928c0d3cf3c.statusText;
+                        }
+                        }
+                        }
+                        padAjaxff36ed2d2c983cca6646f928c0d3cf3c.open("GET","http://localhost/pad/regression/errors/?eval/matches_needs_a_regular_expression&padInclude",true);
+                        padAjaxff36ed2d2c983cca6646f928c0d3cf3c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: expressions/matches_tests_a_regular_expression<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">expressions/matches_tests_a_regular_expression.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">expressions/matches_tests_a_regular_expression.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $x </span><span style="color: #007700">= </span><span style="color: #DD0000">"aaa"</span><span style="color: #007700">; </span><span style="color: #0000BB">$n </span><span style="color: #007700">= </span><span style="color: #0000BB">5</span><span style="color: #007700">; </span><span style="color: #0000BB">$empty </span><span style="color: #007700">= </span><span style="color: #DD0000">""</span><span style="color: #007700">; </span><span style="color: #0000BB">$zero </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>x matches <font color="black">'</font>/^a+<font color="red">$</font>/<font color="black">'</font></font>}</b>yes<b>{<font color="blue">else</font><font color="red"></font>}</b>no<b>{/<font color="blue">if</font><font color="red"></font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>x.y<font color="black">'</font> <font color="black">|</font> matches(<font color="black">'</font>/x\\.y/<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>xzy<font color="black">'</font> <font color="black">|</font> matches(<font color="black">'</font>/x\\.y/<font color="black">'</font>)</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxfc1791e1dcceb57955bb7bb84908a52a"></div>
+                        <script>
+                        padAjaxfc1791e1dcceb57955bb7bb84908a52a = new XMLHttpRequest();
+                        padAjaxfc1791e1dcceb57955bb7bb84908a52a.onreadystatechange=function() {
+                        if (padAjaxfc1791e1dcceb57955bb7bb84908a52a.readyState === 4) {
+                        if (padAjaxfc1791e1dcceb57955bb7bb84908a52a.status === 200) {
+                        document.getElementById("padAjaxfc1791e1dcceb57955bb7bb84908a52a").innerHTML=padAjaxfc1791e1dcceb57955bb7bb84908a52a.responseText;
+                        } else {
+                        document.getElementById("padAjaxfc1791e1dcceb57955bb7bb84908a52a").innerHTML=padAjaxfc1791e1dcceb57955bb7bb84908a52a.statusText;
+                        }
+                        }
+                        }
+                        padAjaxfc1791e1dcceb57955bb7bb84908a52a.open("GET","http://localhost/pad/regression/framework/?expressions/matches_tests_a_regular_expression&padInclude",true);
+                        padAjaxfc1791e1dcceb57955bb7bb84908a52a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

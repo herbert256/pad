@@ -1,6 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<!DOCTYPE html>
+<html>
+  <head>
     <title>
       PAD - Reference - Tag types - myCsv
     </title>
@@ -11,14 +11,14 @@
         PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
       </h1>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table><br>
+      </table><br>
       <hr width="75%">
     </center>
     <blockquote>
@@ -27,64 +27,31 @@
           <h1>
             Reference - Tag types - myCsv
           </h1>
-          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tbody><tr>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
               <td>
                 <center>
                   <hr>
                   App: manual - Page: data/3<br>
-                  <div id="padAjaxZeBXNOST"><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myJson<font color="black">'</font></font>}</b><br>  [ { "name": "bob",   "phone": "555-5555" },<br>    { "name": "jim",   "phone": "555-6666" },<br>    { "name": "joe",   "phone": "555-7777" },      <br>    { "name": "jerry", "phone": "555-8888" } ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data</font><font color="red"></font>}</b><br>  name,phone<br>  <b>{<font color="blue">myJson</font><font color="red"></font>}</b><br>    <b>{<font color="green"><font color="red">$</font>name</font>}</b>, <b>{<font color="green"><font color="red">$</font>phone</font>}</b><br>  <b>{/<font color="blue">myJson</font><font color="red"></font>}</b><br><b>{/<font color="blue">data </font><font color="red"><font color="black">'</font>myCsv<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">data</font><font color="red"></font>}</b><br>  &lt;records&gt;<br>    <b>{<font color="blue">myCsv</font><font color="red"></font>}</b><br>      &lt;record name="<b>{<font color="green"><font color="red">$</font>name</font>}</b>" phone="<b>{<font color="green"><font color="red">$</font>phone</font>}</b>"/&gt;<br>    <b>{/<font color="blue">myCsv</font><font color="red"></font>}</b><br>  &lt;/records&gt;<br><b>{/<font color="blue">data </font><font color="red"><font color="black">'</font>myXml<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">data</font><font color="red"></font>}</b><br>  ---<br>    <b>{<font color="blue">myXml</font><font color="red"></font>}</b> <br>    - name: <b>{<font color="green"><font color="red">$</font>name</font>}</b><br>      phone: <b>{<font color="green"><font color="red">$</font>phone</font>}</b><br>    <b>{/<font color="blue">myXml</font><font color="red"></font>}</b><br><b>{/<font color="blue">data </font><font color="red"><font color="black">'</font>myYaml<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border="1"&gt;<br>  <b>{<font color="blue">myYaml</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt; <br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">myYaml</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
-  
-    <tbody><tr>
-      <td>bob</td> 
-      <td>555-5555</td>
-    </tr>
-  
-    <tr>
-      <td>jim</td> 
-      <td>555-6666</td>
-    </tr>
-  
-    <tr>
-      <td>joe</td> 
-      <td>555-7777</td>
-    </tr>
-  
-    <tr>
-      <td>jerry</td> 
-      <td>555-8888</td>
-    </tr>
-  
-</tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
-  </tbody></table>
-</p></div>
+                  <div id="padAjax3df612cafbd378a287ae00d84480a2de"></div>
                   <script>
-                  padAjaxZeBXNOST = new XMLHttpRequest();
-                  padAjaxZeBXNOST.onreadystatechange=function() {
-                  if (padAjaxZeBXNOST.readyState === 4) {
-                  if (padAjaxZeBXNOST.status === 200) {
-                  document.getElementById("padAjaxZeBXNOST").innerHTML=padAjaxZeBXNOST.responseText;
+                  padAjax3df612cafbd378a287ae00d84480a2de = new XMLHttpRequest();
+                  padAjax3df612cafbd378a287ae00d84480a2de.onreadystatechange=function() {
+                  if (padAjax3df612cafbd378a287ae00d84480a2de.readyState === 4) {
+                  if (padAjax3df612cafbd378a287ae00d84480a2de.status === 200) {
+                  document.getElementById("padAjax3df612cafbd378a287ae00d84480a2de").innerHTML=padAjax3df612cafbd378a287ae00d84480a2de.responseText;
                   } else {
-                  document.getElementById("padAjaxZeBXNOST").innerHTML=padAjaxZeBXNOST.statusText;
+                  document.getElementById("padAjax3df612cafbd378a287ae00d84480a2de").innerHTML=padAjax3df612cafbd378a287ae00d84480a2de.statusText;
                   }
                   }
                   }
-                  padAjaxZeBXNOST.open("GET","http://localhost/manual/?data/3&padInclude&padSesID=DiM2hOlW&padReqID=4c5hmyBz",true);
-                  padAjaxZeBXNOST.send();
+                  padAjax3df612cafbd378a287ae00d84480a2de.open("GET","http://localhost/pad/manual/?data/3&padInclude",true);
+                  padAjax3df612cafbd378a287ae00d84480a2de.send();
                   </script><br>
                   <hr>
                   App: manual - Page: lvl_occ/10<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2"></font>
@@ -100,77 +67,31 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myCsv<font color="black">'</font></font>}</b><br>AA,BB,CC,DD,EE<br>11,12,13,14,15<br>21,22,23,24,35<br>31,32,33,34,35<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br>&lt;table border='1'&gt;<br>  <b>{<font color="blue">myCsv</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">fields</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/td&gt;<br>      <b>{/<font color="blue">fields</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">myCsv</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myCsv<font color="black">'</font></font>}</b><br>AA,BB,CC,DD,EE<br>11,12,13,14,15<br>21,22,23,24,25<br>31,32,33,34,35<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br>&lt;table border='1'&gt;<br>  <b>{<font color="blue">myCsv</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">fields</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/td&gt;<br>      <b>{/<font color="blue">fields</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">myCsv</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxdROeqxoS">
-
-<table border="1">
-  
-    <tbody><tr>
-      
-        <td>11</td>
-      
-        <td>12</td>
-      
-        <td>13</td>
-      
-        <td>14</td>
-      
-        <td>15</td>
-      
-    </tr>
-  
-    <tr>
-      
-        <td>21</td>
-      
-        <td>22</td>
-      
-        <td>23</td>
-      
-        <td>24</td>
-      
-        <td>35</td>
-      
-    </tr>
-  
-    <tr>
-      
-        <td>31</td>
-      
-        <td>32</td>
-      
-        <td>33</td>
-      
-        <td>34</td>
-      
-        <td>35</td>
-      
-    </tr>
-  
-</tbody></table></div>
+                        <div id="padAjax736d7d68bde0eb1a859045c399f0e49b"></div>
                         <script>
-                        padAjaxdROeqxoS = new XMLHttpRequest();
-                        padAjaxdROeqxoS.onreadystatechange=function() {
-                        if (padAjaxdROeqxoS.readyState === 4) {
-                        if (padAjaxdROeqxoS.status === 200) {
-                        document.getElementById("padAjaxdROeqxoS").innerHTML=padAjaxdROeqxoS.responseText;
+                        padAjax736d7d68bde0eb1a859045c399f0e49b = new XMLHttpRequest();
+                        padAjax736d7d68bde0eb1a859045c399f0e49b.onreadystatechange=function() {
+                        if (padAjax736d7d68bde0eb1a859045c399f0e49b.readyState === 4) {
+                        if (padAjax736d7d68bde0eb1a859045c399f0e49b.status === 200) {
+                        document.getElementById("padAjax736d7d68bde0eb1a859045c399f0e49b").innerHTML=padAjax736d7d68bde0eb1a859045c399f0e49b.responseText;
                         } else {
-                        document.getElementById("padAjaxdROeqxoS").innerHTML=padAjaxdROeqxoS.statusText;
+                        document.getElementById("padAjax736d7d68bde0eb1a859045c399f0e49b").innerHTML=padAjax736d7d68bde0eb1a859045c399f0e49b.statusText;
                         }
                         }
                         }
-                        padAjaxdROeqxoS.open("GET","http://localhost/manual/?lvl_occ/10&padInclude&padSesID=DiM2hOlW&padReqID=4c5hmyBz",true);
-                        padAjaxdROeqxoS.send();
+                        padAjax736d7d68bde0eb1a859045c399f0e49b.open("GET","http://localhost/pad/manual/?lvl_occ/10&padInclude",true);
+                        padAjax736d7d68bde0eb1a859045c399f0e49b.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
                 </center>
               </td>
             </tr>
-          </tbody></table>
+          </table>
         </blockquote>
       </center>
     </blockquote>
@@ -178,17 +99,17 @@
       <hr width="75%">
       <br>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table>
+      </table>
       <p>
         <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
       </p>
     </center>
-  
-</body></html>
+  </body>
+</html>

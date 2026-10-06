@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: edit
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: edit
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=_api.html">_api/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=_bin.html">_bin/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=_config.html">_config/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=_lib.html">_lib/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=_templates.html">_templates/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=_tests.html">_tests/</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=&amp;file=_guard.php.html">_guard.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=&amp;file=api.php.html">api.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=&amp;file=index.pad.html">index.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=&amp;file=index.php.html">index.php</a>
+                  </li>
+                  <li class="current">login.pad
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=&amp;file=login.php.html">login.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=edit&amp;dir=&amp;file=logout.php.html">logout.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  login.pad
+                </h3>
+                <pre><code style="color: #000000">&lt;!DOCTYPE html&gt;<br>&lt;html lang="en"&gt;<br>&lt;head&gt;<br>  &lt;meta charset="utf-8"&gt;<br>  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;<br>  &lt;meta name="robots" content="noindex"&gt;<br>  &lt;title&gt;PAD edit&lt;/title&gt;<br>  &lt;link rel="stylesheet" href="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>edit/edit.css"&gt;<br>&lt;/head&gt;<br>&lt;body class="login-page"&gt;<br><br>  &lt;main class="login-box"&gt;<br><br>    &lt;h1&gt;&lt;span class="login-logo" aria-hidden="true"&gt;&amp;#123;&amp;#125;&lt;/span&gt; PAD edit&lt;/h1&gt;<br><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>loginSetup eq 1</font>}</b><br>      &lt;p class="login-intro"&gt;Nobody can log in yet. Make the first user - more can be added in the editor later.&lt;/p&gt;<br>    <b>{<font color="blue">else</font><font color="red"></font>}</b><br>      &lt;p class="login-intro"&gt;The editor for the PAD applications on this server.&lt;/p&gt;<br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>loginHint eq 1</font>}</b><br>      &lt;p class="login-error" role="alert"&gt;The first user can only be made from this machine.&lt;/p&gt;<br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>loginError ne <font color="black">'</font><font color="black">'</font></font>}</b><br>      &lt;p class="login-error" role="alert"&gt;<b>{<font color="green"><font color="red">$</font>loginError</font>}</b>&lt;/p&gt;<br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>    <b>{<font color="blue">form </font><font color="red"><font color="black">'</font>login<font color="black">'</font></font>}</b><br>      &lt;p&gt;<b>{<font color="blue">input </font><font color="red"><font color="black">'</font>name<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Name<font color="black">'</font><font color="black">,</font> autocomplete=<font color="black">'</font>username<font color="black">'</font><font color="black">,</font> required<font color="black">,</font> autofocus</font>}</b>&lt;/p&gt;<br>      <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>loginSetup eq 1</font>}</b><br>        &lt;p&gt;<b>{<font color="blue">input </font><font color="red"><font color="black">'</font>password<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>password<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Password<font color="black">'</font><font color="black">,</font> autocomplete=<font color="black">'</font>new-password<font color="black">'</font><font color="black">,</font> required<font color="black">,</font> minlength=8</font>}</b>&lt;/p&gt;<br>        &lt;p&gt;<b>{<font color="blue">input </font><font color="red"><font color="black">'</font>again<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>password<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Password again<font color="black">'</font><font color="black">,</font> autocomplete=<font color="black">'</font>new-password<font color="black">'</font><font color="black">,</font> required<font color="black">,</font> minlength=8</font>}</b>&lt;/p&gt;<br>        &lt;p&gt;&lt;button type="submit"&gt;Make the user and log in&lt;/button&gt;&lt;/p&gt;<br>      <b>{<font color="blue">else</font><font color="red"></font>}</b><br>        &lt;p&gt;<b>{<font color="blue">input </font><font color="red"><font color="black">'</font>password<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>password<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Password<font color="black">'</font><font color="black">,</font> autocomplete=<font color="black">'</font>current-password<font color="black">'</font><font color="black">,</font> required</font>}</b>&lt;/p&gt;<br>        &lt;p&gt;&lt;button type="submit"&gt;Log in&lt;/button&gt;&lt;/p&gt;<br>      <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    <b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br>  &lt;/main&gt;<br><br>&lt;/body&gt;<br>&lt;/html&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

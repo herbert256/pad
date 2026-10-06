@@ -1,0 +1,35 @@
+
+
+<p>With <code>$padReload = 'local'</code> in an application's <code>_config/config.php</code>,
+every page of a local request carries a small script that asks the server once a second
+whether a file behind the page has changed - and reloads the page when one has. Save a
+template, a page's PHP or a stylesheet, and the browser shows it.</p>
+
+
+<pre><code>&lt;?php
+
+  // _config/config.php
+  $padReload = 'local';
+
+?&gt;</code></pre>
+
+
+<h2>What it watches</h2>
+
+<ul>
+  <li><code>'local'</code> (or <code>TRUE</code>) - the application's directory, its entry point directory in <code>www/</code> (stylesheets, scripts, images), and <code>_common</code> when the application uses it.</li>
+  <li><code>'engine'</code> - <code>pad/</code> as well, for work on the engine itself.</li>
+</ul>
+
+<p>The script asks <code>?page&amp;padReload</code>, which the engine answers with the
+newest file time before it runs any page. Together with <code>pad serve</code> (see
+<a href="index%EF%B9%96pages%EA%A4%B7pad_command.html">Pad command</a>) no other tool is needed.</p>
+
+<h2>Where it never goes</h2>
+
+<p>Only a local request gets it - the command line, or this machine asking itself with
+nothing forwarded - whatever the setting. It is left out of a bare fragment
+(<code>&amp;padInclude</code>), of anything that is not an HTML page answering 200, of the
+page cache, which stores the page before the script is added, and of a <code>pad export</code>.
+Set it in the configuration rather than in a page's PHP: the poll is answered before any
+page runs.</p>

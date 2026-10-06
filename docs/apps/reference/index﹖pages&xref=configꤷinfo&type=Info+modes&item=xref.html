@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Info modes - xref
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Info modes - xref
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/info - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">index.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Fetches the probe - a loop, a pipe and a sequence, rendered with all five info modes on<br>  // and every option of each - and asserts that every mode recorded something for that very<br>  // request: not that artifacts exist, but that this fetch grew them.<br>  //<br>  // The xml report is the exception: each request writes it afresh. A stale tree is left<br>  // in its place before the fetch, so afterwards the file has to be one well-formed tree<br>  // without it - an engine that stops clearing the report appends to the stale tree and<br>  // the two roots no longer parse.<br><br>  </span><span style="color: #0000BB">$traceBefore </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">glob </span><span style="color: #007700">( </span><span style="color: #0000BB">DATA </span><span style="color: #007700">. </span><span style="color: #DD0000">'trace/probe/*' </span><span style="color: #007700">) ?: [] );<br>  </span><span style="color: #0000BB">$trackBefore </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">glob </span><span style="color: #007700">( </span><span style="color: #0000BB">DATA </span><span style="color: #007700">. </span><span style="color: #DD0000">'track/requests/*' </span><span style="color: #007700">) ?: [] );<br>  </span><span style="color: #0000BB">$xmlFile     </span><span style="color: #007700">= </span><span style="color: #0000BB">DATA </span><span style="color: #007700">. </span><span style="color: #DD0000">'_xml/compact/include/probe.xml'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$dbBefore    </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padDb </span><span style="color: #007700">( </span><span style="color: #DD0000">"field count(*) from track_request" </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">padFilePut </span><span style="color: #007700">( </span><span style="color: #0000BB">$xmlFile</span><span style="color: #007700">, </span><span style="color: #DD0000">"&lt;stale /&gt;" </span><span style="color: #007700">);<br><br>  </span><span style="color: #FF8000">// The xref recorder adds a page to an item's list once and skips it ever after, and the<br>  // list is a standing store builds never wipe - so finding the entry proved nothing about<br>  // this fetch. It is taken out first, has to come back, and the store is then put back<br>  // byte for byte, since git tracks it.<br><br>  </span><span style="color: #0000BB">$xrefFile </span><span style="color: #007700">= </span><span style="color: #0000BB">DATA </span><span style="color: #007700">. </span><span style="color: #DD0000">'reference/tag/pad/sequence.txt'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$xrefKeep </span><span style="color: #007700">= </span><span style="color: #0000BB">file_get_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">$xrefFile </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">file_put_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">$xrefFile</span><span style="color: #007700">, </span><span style="color: #0000BB">str_replace </span><span style="color: #007700">( </span><span style="color: #DD0000">"regression/info;probe\n"</span><span style="color: #007700">, </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #0000BB">$xrefKeep </span><span style="color: #007700">) );<br><br>  </span><span style="color: #0000BB">libxml_use_internal_errors </span><span style="color: #007700">( </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$r </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/info/?probe&amp;padInclude' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$stats </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #0000BB">$r </span><span style="color: #007700">[</span><span style="color: #DD0000">'headers'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'PAD-Stats'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br>  </span><span style="color: #FF8000">// The recorders finish after the probe's response has already been flushed back, so the<br>  // growth is given a moment to land before it is read.<br><br>  </span><span style="color: #007700">for ( </span><span style="color: #0000BB">$settle </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">; </span><span style="color: #0000BB">$settle </span><span style="color: #007700">&lt; </span><span style="color: #0000BB">20</span><span style="color: #007700">; </span><span style="color: #0000BB">$settle</span><span style="color: #007700">++ ) {<br><br>    </span><span style="color: #0000BB">clearstatcache </span><span style="color: #007700">();<br><br>    </span><span style="color: #0000BB">$traceAfter </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">glob </span><span style="color: #007700">( </span><span style="color: #0000BB">DATA </span><span style="color: #007700">. </span><span style="color: #DD0000">'trace/probe/*' </span><span style="color: #007700">) ?: [] );<br>    </span><span style="color: #0000BB">$trackAfter </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">glob </span><span style="color: #007700">( </span><span style="color: #0000BB">DATA </span><span style="color: #007700">. </span><span style="color: #DD0000">'track/requests/*' </span><span style="color: #007700">) ?: [] );<br>    </span><span style="color: #0000BB">$xmlText    </span><span style="color: #007700">= </span><span style="color: #0000BB">file_exists </span><span style="color: #007700">( </span><span style="color: #0000BB">$xmlFile </span><span style="color: #007700">) ? </span><span style="color: #0000BB">file_get_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">$xmlFile </span><span style="color: #007700">) : </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>    </span><span style="color: #0000BB">$xmlOne     </span><span style="color: #007700">= ! </span><span style="color: #0000BB">str_contains </span><span style="color: #007700">( </span><span style="color: #0000BB">$xmlText</span><span style="color: #007700">, </span><span style="color: #DD0000">'&lt;stale' </span><span style="color: #007700">)<br>                  and </span><span style="color: #0000BB">simplexml_load_string </span><span style="color: #007700">( </span><span style="color: #0000BB">$xmlText </span><span style="color: #007700">) !== </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br>    </span><span style="color: #0000BB">$dbAfter    </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padDb </span><span style="color: #007700">( </span><span style="color: #DD0000">"field count(*) from track_request" </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$xref       </span><span style="color: #007700">= </span><span style="color: #0000BB">file_get_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">$xrefFile </span><span style="color: #007700">);<br><br>    if ( </span><span style="color: #0000BB">$traceAfter </span><span style="color: #007700">&gt; </span><span style="color: #0000BB">$traceBefore </span><span style="color: #007700">and </span><span style="color: #0000BB">$trackAfter </span><span style="color: #007700">&gt; </span><span style="color: #0000BB">$trackBefore<br>         </span><span style="color: #007700">and </span><span style="color: #0000BB">$xmlOne </span><span style="color: #007700">and </span><span style="color: #0000BB">$dbAfter </span><span style="color: #007700">&gt; </span><span style="color: #0000BB">$dbBefore </span><span style="color: #007700">and </span><span style="color: #0000BB">str_contains </span><span style="color: #007700">( </span><span style="color: #0000BB">$xref</span><span style="color: #007700">, </span><span style="color: #DD0000">'regression/info;probe' </span><span style="color: #007700">) )<br>      break;<br><br>    </span><span style="color: #0000BB">usleep </span><span style="color: #007700">( </span><span style="color: #0000BB">100000 </span><span style="color: #007700">);<br><br>  }<br><br>  </span><span style="color: #0000BB">file_put_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">$xrefFile</span><span style="color: #007700">, </span><span style="color: #0000BB">$xrefKeep </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$vStats </span><span style="color: #007700">= ( </span><span style="color: #0000BB">is_array </span><span style="color: #007700">( </span><span style="color: #0000BB">$stats </span><span style="color: #007700">) and isset ( </span><span style="color: #0000BB">$stats </span><span style="color: #007700">[</span><span style="color: #DD0000">'total'</span><span style="color: #007700">] ) )      ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'NO'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$vTrace </span><span style="color: #007700">= ( </span><span style="color: #0000BB">$traceAfter </span><span style="color: #007700">&gt; </span><span style="color: #0000BB">$traceBefore </span><span style="color: #007700">)                              ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'NO'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$vTrack </span><span style="color: #007700">= ( </span><span style="color: #0000BB">$trackAfter </span><span style="color: #007700">&gt; </span><span style="color: #0000BB">$trackBefore </span><span style="color: #007700">and </span><span style="color: #0000BB">$dbAfter </span><span style="color: #007700">&gt; </span><span style="color: #0000BB">$dbBefore </span><span style="color: #007700">)     ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'NO'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$vXml   </span><span style="color: #007700">= ( </span><span style="color: #0000BB">$xmlOne </span><span style="color: #007700">)                                                 ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'NO'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$vXref  </span><span style="color: #007700">= ( </span><span style="color: #0000BB">str_contains </span><span style="color: #007700">( </span><span style="color: #0000BB">$xref</span><span style="color: #007700">, </span><span style="color: #DD0000">'regression/info;probe' </span><span style="color: #007700">) )         ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'NO'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;stats put its timings in the header: &lt;b&gt;<b>{<font color="green"><font color="red">$</font>vStats</font>}</b>&lt;/b&gt;&lt;/p&gt;<br>&lt;p&gt;trace grew its tree for this request: &lt;b&gt;<b>{<font color="green"><font color="red">$</font>vTrace</font>}</b>&lt;/b&gt;&lt;/p&gt;<br>&lt;p&gt;track filed the request, on disk and in the database: &lt;b&gt;<b>{<font color="green"><font color="red">$</font>vTrack</font>}</b>&lt;/b&gt;&lt;/p&gt;<br>&lt;p&gt;xml wrote one level tree for this request: &lt;b&gt;<b>{<font color="green"><font color="red">$</font>vXml</font>}</b>&lt;/b&gt;&lt;/p&gt;<br>&lt;p&gt;xref has the probe on record: &lt;b&gt;<b>{<font color="green"><font color="red">$</font>vXref</font>}</b>&lt;/b&gt;&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc5d02c77f74f960246ac22a14f8fb48e"></div>
+                        <script>
+                        padAjaxc5d02c77f74f960246ac22a14f8fb48e = new XMLHttpRequest();
+                        padAjaxc5d02c77f74f960246ac22a14f8fb48e.onreadystatechange=function() {
+                        if (padAjaxc5d02c77f74f960246ac22a14f8fb48e.readyState === 4) {
+                        if (padAjaxc5d02c77f74f960246ac22a14f8fb48e.status === 200) {
+                        document.getElementById("padAjaxc5d02c77f74f960246ac22a14f8fb48e").innerHTML=padAjaxc5d02c77f74f960246ac22a14f8fb48e.responseText;
+                        } else {
+                        document.getElementById("padAjaxc5d02c77f74f960246ac22a14f8fb48e").innerHTML=padAjaxc5d02c77f74f960246ac22a14f8fb48e.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc5d02c77f74f960246ac22a14f8fb48e.open("GET","http://localhost/pad/regression/info/?index&padInclude",true);
+                        padAjaxc5d02c77f74f960246ac22a14f8fb48e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/info - Page: probe<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">probe.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">probe.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $rows </span><span style="color: #007700">= [ [</span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'one'</span><span style="color: #007700">], [</span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'two'</span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">rows</font><font color="red"></font>}</b>&lt;p&gt;<b>{<font color="green">$n</font> <font color="black">|</font> <font color="blue">upper</font>}</b>&lt;/p&gt;<b>{/<font color="blue">rows</font><font color="red"></font>}</b><br>&lt;p&gt;<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5eb060e4e35474016f2ef3caea16a13b"></div>
+                        <script>
+                        padAjax5eb060e4e35474016f2ef3caea16a13b = new XMLHttpRequest();
+                        padAjax5eb060e4e35474016f2ef3caea16a13b.onreadystatechange=function() {
+                        if (padAjax5eb060e4e35474016f2ef3caea16a13b.readyState === 4) {
+                        if (padAjax5eb060e4e35474016f2ef3caea16a13b.status === 200) {
+                        document.getElementById("padAjax5eb060e4e35474016f2ef3caea16a13b").innerHTML=padAjax5eb060e4e35474016f2ef3caea16a13b.responseText;
+                        } else {
+                        document.getElementById("padAjax5eb060e4e35474016f2ef3caea16a13b").innerHTML=padAjax5eb060e4e35474016f2ef3caea16a13b.statusText;
+                        }
+                        }
+                        }
+                        padAjax5eb060e4e35474016f2ef3caea16a13b.open("GET","http://localhost/pad/regression/info/?probe&padInclude",true);
+                        padAjax5eb060e4e35474016f2ef3caea16a13b.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

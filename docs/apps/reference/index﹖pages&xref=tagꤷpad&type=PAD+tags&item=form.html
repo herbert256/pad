@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - PAD tags - form
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - PAD tags - form
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: demo - Page: contact<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">contact.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">contact.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title    </span><span style="color: #007700">= </span><span style="color: #DD0000">'Contact Form'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$dataFile </span><span style="color: #007700">= </span><span style="color: #DD0000">'demo/messages.json'</span><span style="color: #007700">;   </span><span style="color: #FF8000">// under DATA/, for padFileGet and padFilePut<br><br>  // The rules of a valid message stand on the fields in contact.pad - rules='required|email' -<br>  // and are checked before this file runs: padPosted ( 'contact' ) is TRUE only for a post<br>  // that keeps them. A post that breaks one never gets here; the form comes back refilled<br>  // with what was typed, each message beside its field.<br><br>  </span><span style="color: #007700">if ( </span><span style="color: #0000BB">padPosted </span><span style="color: #007700">( </span><span style="color: #DD0000">'contact' </span><span style="color: #007700">) ) {<br><br>    </span><span style="color: #0000BB">$messages </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #0000BB">padFileGet </span><span style="color: #007700">( </span><span style="color: #0000BB">$dataFile </span><span style="color: #007700">), </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) ?: [];<br><br>    </span><span style="color: #0000BB">$entry          </span><span style="color: #007700">= </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( </span><span style="color: #DD0000">'htmlspecialchars'</span><span style="color: #007700">, </span><span style="color: #0000BB">padRequestOnly </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'email'</span><span style="color: #007700">, </span><span style="color: #DD0000">'subject'</span><span style="color: #007700">, </span><span style="color: #DD0000">'message' </span><span style="color: #007700">] ) );<br>    </span><span style="color: #0000BB">$entry </span><span style="color: #007700">[</span><span style="color: #DD0000">'date'</span><span style="color: #007700">] = </span><span style="color: #0000BB">padNow </span><span style="color: #007700">( </span><span style="color: #DD0000">'Y-m-d H:i:s' </span><span style="color: #007700">);<br><br>    </span><span style="color: #0000BB">$messages </span><span style="color: #007700">[] = </span><span style="color: #0000BB">$entry</span><span style="color: #007700">;<br><br>    </span><span style="color: #0000BB">padFilePut </span><span style="color: #007700">( </span><span style="color: #0000BB">$dataFile</span><span style="color: #007700">, </span><span style="color: #0000BB">json_encode </span><span style="color: #007700">( </span><span style="color: #0000BB">$messages</span><span style="color: #007700">, </span><span style="color: #0000BB">JSON_PRETTY_PRINT </span><span style="color: #007700">) );<br><br>    </span><span style="color: #FF8000">// Post, redirect, get: the browser is sent on to a plain GET of this page, so a refresh<br>    // shows the empty form instead of sending the message a second time - the thanks go<br>    // along as a flash message.<br><br>    </span><span style="color: #0000BB">padFlash </span><span style="color: #007700">( </span><span style="color: #DD0000">'Thank you for your message! We will get back to you soon.' </span><span style="color: #007700">);<br><br>    </span><span style="color: #0000BB">padRedirect </span><span style="color: #007700">( </span><span style="color: #DD0000">'contact' </span><span style="color: #007700">);<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;Have a question or feedback? Send us a message!&lt;/p&gt;<br><br><b>{<font color="blue">flash</font><font color="red"></font>}</b><br>  &lt;div class="message"&gt;<b>{<font color="green"><font color="red">$</font>message</font>}</b>&lt;/div&gt;<br><b>{/<font color="blue">flash</font><font color="red"></font>}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>contact<font color="black">'</font><font color="black">,</font> error=<font color="black">'</font>Please correct the errors below.<font color="black">'</font></font>}</b><br><br>  &lt;p&gt;<b>{<font color="blue">input </font><font color="red"><font color="black">'</font>name<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your Name<font color="black">:</font> *<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>max<font color="black">:</font>100<font color="black">'</font></font>}</b>&lt;/p&gt;<br><br>  &lt;p&gt;<b>{<font color="blue">input </font><font color="red"><font color="black">'</font>email<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>email<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your Email<font color="black">:</font> *<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>email<font color="black">'</font></font>}</b>&lt;/p&gt;<br><br>  &lt;p&gt;<b>{<font color="blue">input </font><font color="red"><font color="black">'</font>subject<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Subject<font color="black">:</font> *<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>max<font color="black">:</font>200<font color="black">'</font></font>}</b>&lt;/p&gt;<br><br>  &lt;p&gt;<b>{<font color="blue">textarea </font><font color="red"><font color="black">'</font>message<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Message<font color="black">:</font> *<font color="black">'</font><font color="black">,</font> rows=6<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>max<font color="black">:</font>2000<font color="black">'</font></font>}</b>&lt;/p&gt;<br><br>  &lt;p&gt;<br>    &lt;input type="submit" value="Send Message"&gt;<br>  &lt;/p&gt;<br><br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br>&lt;p style="color: #999; font-size: 12px;"&gt;* Required fields&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax6db7b6bef232405341bca8882c09b885"></div>
+                        <script>
+                        padAjax6db7b6bef232405341bca8882c09b885 = new XMLHttpRequest();
+                        padAjax6db7b6bef232405341bca8882c09b885.onreadystatechange=function() {
+                        if (padAjax6db7b6bef232405341bca8882c09b885.readyState === 4) {
+                        if (padAjax6db7b6bef232405341bca8882c09b885.status === 200) {
+                        document.getElementById("padAjax6db7b6bef232405341bca8882c09b885").innerHTML=padAjax6db7b6bef232405341bca8882c09b885.responseText;
+                        } else {
+                        document.getElementById("padAjax6db7b6bef232405341bca8882c09b885").innerHTML=padAjax6db7b6bef232405341bca8882c09b885.statusText;
+                        }
+                        }
+                        }
+                        padAjax6db7b6bef232405341bca8882c09b885.open("GET","http://localhost/pad/demo/?contact&padInclude",true);
+                        padAjax6db7b6bef232405341bca8882c09b885.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: fragments/file_uploads_1<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/file_uploads_1.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/file_uploads_1.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $avatar </span><span style="color: #007700">= </span><span style="color: #0000BB">padUpload </span><span style="color: #007700">( </span><span style="color: #DD0000">'avatar'</span><span style="color: #007700">, </span><span style="color: #0000BB">types</span><span style="color: #007700">: [ </span><span style="color: #DD0000">'image/png'</span><span style="color: #007700">, </span><span style="color: #DD0000">'image/jpeg' </span><span style="color: #007700">], </span><span style="color: #0000BB">max</span><span style="color: #007700">: </span><span style="color: #DD0000">'2M' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$said </span><span style="color: #007700">= </span><span style="color: #0000BB">$avatar </span><span style="color: #007700">? </span><span style="color: #DD0000">'Stored as ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$avatar </span><span style="color: #007700">[</span><span style="color: #DD0000">'file'</span><span style="color: #007700">] : </span><span style="color: #DD0000">'No picture was sent yet.'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>said</font>}</b>&lt;/p&gt;<br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>picture<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">input </font><font color="red"><font color="black">'</font>avatar<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>file<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your picture<font color="black">'</font></font>}</b><br>  &lt;button&gt;Upload&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd2fdac6c6b1bd535e8c7554b8f76ff44"></div>
+                        <script>
+                        padAjaxd2fdac6c6b1bd535e8c7554b8f76ff44 = new XMLHttpRequest();
+                        padAjaxd2fdac6c6b1bd535e8c7554b8f76ff44.onreadystatechange=function() {
+                        if (padAjaxd2fdac6c6b1bd535e8c7554b8f76ff44.readyState === 4) {
+                        if (padAjaxd2fdac6c6b1bd535e8c7554b8f76ff44.status === 200) {
+                        document.getElementById("padAjaxd2fdac6c6b1bd535e8c7554b8f76ff44").innerHTML=padAjaxd2fdac6c6b1bd535e8c7554b8f76ff44.responseText;
+                        } else {
+                        document.getElementById("padAjaxd2fdac6c6b1bd535e8c7554b8f76ff44").innerHTML=padAjaxd2fdac6c6b1bd535e8c7554b8f76ff44.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd2fdac6c6b1bd535e8c7554b8f76ff44.open("GET","http://localhost/pad/manual/?fragments/file_uploads_1&padInclude",true);
+                        padAjaxd2fdac6c6b1bd535e8c7554b8f76ff44.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: fragments/forms_1<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/forms_1.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>contact<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">input </font><font color="red"><font color="black">'</font>email<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>email<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>E-mail<font color="black">'</font><font color="black">,</font> required</font>}</b><br>  <b>{<font color="blue">textarea </font><font color="red"><font color="black">'</font>message<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Message<font color="black">'</font><font color="black">,</font> rows=3</font>}</b><br>  &lt;button&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax9bf12aacfdede8d71a7dc79858c4d784"></div>
+                        <script>
+                        padAjax9bf12aacfdede8d71a7dc79858c4d784 = new XMLHttpRequest();
+                        padAjax9bf12aacfdede8d71a7dc79858c4d784.onreadystatechange=function() {
+                        if (padAjax9bf12aacfdede8d71a7dc79858c4d784.readyState === 4) {
+                        if (padAjax9bf12aacfdede8d71a7dc79858c4d784.status === 200) {
+                        document.getElementById("padAjax9bf12aacfdede8d71a7dc79858c4d784").innerHTML=padAjax9bf12aacfdede8d71a7dc79858c4d784.responseText;
+                        } else {
+                        document.getElementById("padAjax9bf12aacfdede8d71a7dc79858c4d784").innerHTML=padAjax9bf12aacfdede8d71a7dc79858c4d784.statusText;
+                        }
+                        }
+                        }
+                        padAjax9bf12aacfdede8d71a7dc79858c4d784.open("GET","http://localhost/pad/manual/?fragments/forms_1&padInclude",true);
+                        padAjax9bf12aacfdede8d71a7dc79858c4d784.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_form_must_close<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_form_must_close.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>x<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxbb6e7b8f8316054b5aee7405369a15ed"></div>
+                        <script>
+                        padAjaxbb6e7b8f8316054b5aee7405369a15ed = new XMLHttpRequest();
+                        padAjaxbb6e7b8f8316054b5aee7405369a15ed.onreadystatechange=function() {
+                        if (padAjaxbb6e7b8f8316054b5aee7405369a15ed.readyState === 4) {
+                        if (padAjaxbb6e7b8f8316054b5aee7405369a15ed.status === 200) {
+                        document.getElementById("padAjaxbb6e7b8f8316054b5aee7405369a15ed").innerHTML=padAjaxbb6e7b8f8316054b5aee7405369a15ed.responseText;
+                        } else {
+                        document.getElementById("padAjaxbb6e7b8f8316054b5aee7405369a15ed").innerHTML=padAjaxbb6e7b8f8316054b5aee7405369a15ed.statusText;
+                        }
+                        }
+                        }
+                        padAjaxbb6e7b8f8316054b5aee7405369a15ed.open("GET","http://localhost/pad/regression/errors/?syntax/a_form_must_close&padInclude",true);
+                        padAjaxbb6e7b8f8316054b5aee7405369a15ed.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_field_refills_only_when_its_own_form_came_back<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_field_refills_only_when_its_own_form_came_back.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_field_refills_only_when_its_own_form_came_back.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $_SERVER </span><span style="color: #007700">[</span><span style="color: #DD0000">'REQUEST_METHOD'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'POST'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$_POST </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'padForm' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'b'</span><span style="color: #007700">, </span><span style="color: #DD0000">'q' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'hi' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>a<font color="black">'</font></font>}</b><b>{<font color="blue">input </font><font color="red"><font color="black">'</font>q<font color="black">'</font></font>}</b><b>{/<font color="blue">form</font><font color="red"></font>}</b><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>b<font color="black">'</font></font>}</b><b>{<font color="blue">input </font><font color="red"><font color="black">'</font>q<font color="black">'</font></font>}</b><b>{/<font color="blue">form</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa127686381e76bf441642c0e9e26e900"></div>
+                        <script>
+                        padAjaxa127686381e76bf441642c0e9e26e900 = new XMLHttpRequest();
+                        padAjaxa127686381e76bf441642c0e9e26e900.onreadystatechange=function() {
+                        if (padAjaxa127686381e76bf441642c0e9e26e900.readyState === 4) {
+                        if (padAjaxa127686381e76bf441642c0e9e26e900.status === 200) {
+                        document.getElementById("padAjaxa127686381e76bf441642c0e9e26e900").innerHTML=padAjaxa127686381e76bf441642c0e9e26e900.responseText;
+                        } else {
+                        document.getElementById("padAjaxa127686381e76bf441642c0e9e26e900").innerHTML=padAjaxa127686381e76bf441642c0e9e26e900.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa127686381e76bf441642c0e9e26e900.open("GET","http://localhost/pad/regression/framework/?tags/a_field_refills_only_when_its_own_form_came_back&padInclude",true);
+                        padAjaxa127686381e76bf441642c0e9e26e900.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/form_carries_the_token_and_its_name_when_it_posts<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/form_carries_the_token_and_its_name_when_it_posts.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>contact<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>c<font color="black">'</font><font color="black">,</font> action=<font color="black">'</font>?send<font color="black">'</font></font>}</b>x<b>{/<font color="blue">form</font><font color="red"></font>}</b><b>{<font color="blue">form </font><font color="red">method=<font color="black">'</font>get<font color="black">'</font></font>}</b>y<b>{/<font color="blue">form</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax0a9eb06987c542f4799d5254ce845448"></div>
+                        <script>
+                        padAjax0a9eb06987c542f4799d5254ce845448 = new XMLHttpRequest();
+                        padAjax0a9eb06987c542f4799d5254ce845448.onreadystatechange=function() {
+                        if (padAjax0a9eb06987c542f4799d5254ce845448.readyState === 4) {
+                        if (padAjax0a9eb06987c542f4799d5254ce845448.status === 200) {
+                        document.getElementById("padAjax0a9eb06987c542f4799d5254ce845448").innerHTML=padAjax0a9eb06987c542f4799d5254ce845448.responseText;
+                        } else {
+                        document.getElementById("padAjax0a9eb06987c542f4799d5254ce845448").innerHTML=padAjax0a9eb06987c542f4799d5254ce845448.statusText;
+                        }
+                        }
+                        }
+                        padAjax0a9eb06987c542f4799d5254ce845448.open("GET","http://localhost/pad/regression/framework/?tags/form_carries_the_token_and_its_name_when_it_posts&padInclude",true);
+                        padAjax0a9eb06987c542f4799d5254ce845448.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/form_with_a_file_field_posts_multipart<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/form_with_a_file_field_posts_multipart.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>p<font color="black">'</font></font>}</b><b>{<font color="blue">input </font><font color="red"><font color="black">'</font>avatar<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>file<font color="black">'</font></font>}</b><b>{/<font color="blue">form</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax51a4377a1dbf69023a399ec040076204"></div>
+                        <script>
+                        padAjax51a4377a1dbf69023a399ec040076204 = new XMLHttpRequest();
+                        padAjax51a4377a1dbf69023a399ec040076204.onreadystatechange=function() {
+                        if (padAjax51a4377a1dbf69023a399ec040076204.readyState === 4) {
+                        if (padAjax51a4377a1dbf69023a399ec040076204.status === 200) {
+                        document.getElementById("padAjax51a4377a1dbf69023a399ec040076204").innerHTML=padAjax51a4377a1dbf69023a399ec040076204.responseText;
+                        } else {
+                        document.getElementById("padAjax51a4377a1dbf69023a399ec040076204").innerHTML=padAjax51a4377a1dbf69023a399ec040076204.statusText;
+                        }
+                        }
+                        }
+                        padAjax51a4377a1dbf69023a399ec040076204.open("GET","http://localhost/pad/regression/framework/?tags/form_with_a_file_field_posts_multipart&padInclude",true);
+                        padAjax51a4377a1dbf69023a399ec040076204.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: routes/search<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">routes/search.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">form </font><font color="red">method=<font color="black">'</font>get<font color="black">'</font></font>}</b><b>{<font color="blue">input </font><font color="red"><font color="black">'</font>q<font color="black">'</font></font>}</b><b>{/<font color="blue">form</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax55024fd648d1cf8b6009100a9431c065"></div>
+                        <script>
+                        padAjax55024fd648d1cf8b6009100a9431c065 = new XMLHttpRequest();
+                        padAjax55024fd648d1cf8b6009100a9431c065.onreadystatechange=function() {
+                        if (padAjax55024fd648d1cf8b6009100a9431c065.readyState === 4) {
+                        if (padAjax55024fd648d1cf8b6009100a9431c065.status === 200) {
+                        document.getElementById("padAjax55024fd648d1cf8b6009100a9431c065").innerHTML=padAjax55024fd648d1cf8b6009100a9431c065.responseText;
+                        } else {
+                        document.getElementById("padAjax55024fd648d1cf8b6009100a9431c065").innerHTML=padAjax55024fd648d1cf8b6009100a9431c065.statusText;
+                        }
+                        }
+                        }
+                        padAjax55024fd648d1cf8b6009100a9431c065.open("GET","http://localhost/pad/regression/pages/?routes/search&padInclude",true);
+                        padAjax55024fd648d1cf8b6009100a9431c065.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

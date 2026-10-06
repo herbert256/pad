@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - At - tag properties - depth
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - At - tag properties - depth
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: fragments/trees_2<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/trees_2.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/trees_2.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $menu </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Home' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Shop'</span><span style="color: #007700">, </span><span style="color: #DD0000">'items' </span><span style="color: #007700">=&gt; [<br>        [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Shoes'</span><span style="color: #007700">, </span><span style="color: #DD0000">'items' </span><span style="color: #007700">=&gt; [ [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Boots' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Sandals' </span><span style="color: #007700">] ] ],<br>        [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Hats' </span><span style="color: #007700">] ] ],<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'About' </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>menu<font color="black">'</font><font color="black">,</font> children=<font color="black">'</font>items<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>title<font color="black">'</font></font>}</b><br>  &lt;p style="margin: 0 0 0 <b>{<font color="blue">echo </font><font color="red">depth<font color="black">@</font>tree <font color="black">|</font> * 20</font>}</b>px"&gt;<br>    <b>{<font color="blue">branch</font><font color="red"></font>}</b>&amp;#9662;@else@&amp;middot;<b>{/<font color="blue">branch</font><font color="red"></font>}</b><br>    <b>{<font color="green"><font color="red">$</font>title</font>}</b> &lt;small&gt;(<b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>tree</font><font color="red"></font>}</b> of <b>{<font color="blue">count<font color="black"><b><font color="red">@</font></b></font>tree</font><font color="red"></font>}</b>)&lt;/small&gt;<br>  &lt;/p&gt;<br>  <b>{<font color="blue">branch</font><font color="red"></font>}</b><b>{<font color="blue">recurse</font><font color="red"></font>}</b><b>{/<font color="blue">branch</font><font color="red"></font>}</b><br><b>{/<font color="blue">tree</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8c4b9affa864dac29f1cbbcfda684b90"></div>
+                        <script>
+                        padAjax8c4b9affa864dac29f1cbbcfda684b90 = new XMLHttpRequest();
+                        padAjax8c4b9affa864dac29f1cbbcfda684b90.onreadystatechange=function() {
+                        if (padAjax8c4b9affa864dac29f1cbbcfda684b90.readyState === 4) {
+                        if (padAjax8c4b9affa864dac29f1cbbcfda684b90.status === 200) {
+                        document.getElementById("padAjax8c4b9affa864dac29f1cbbcfda684b90").innerHTML=padAjax8c4b9affa864dac29f1cbbcfda684b90.responseText;
+                        } else {
+                        document.getElementById("padAjax8c4b9affa864dac29f1cbbcfda684b90").innerHTML=padAjax8c4b9affa864dac29f1cbbcfda684b90.statusText;
+                        }
+                        }
+                        }
+                        padAjax8c4b9affa864dac29f1cbbcfda684b90.open("GET","http://localhost/pad/manual/?fragments/trees_2&padInclude",true);
+                        padAjax8c4b9affa864dac29f1cbbcfda684b90.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: properties/depth_of_a_level_that_is_no_tree_counts_the_levels_of_its_name<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">properties/depth_of_a_level_that_is_no_tree_counts_the_levels_of_its_name.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>a<font color="black">'</font></font>}</b>[1,2]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">a</font><font color="red"></font>}</b>[<b>{<font color="blue">depth<font color="black"><b><font color="red">@</font></b></font>a</font><font color="red"></font>}</b><b>{<font color="blue">a </font><font color="red">name=<font color="black">'</font>a<font color="black">'</font></font>}</b><b>{<font color="blue">depth<font color="black"><b><font color="red">@</font></b></font>a</font><font color="red"></font>}</b><b>{/<font color="blue">a</font><font color="red"></font>}</b>]<b>{/<font color="blue">a</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxe951989048574f458b60469304ff4e0c"></div>
+                        <script>
+                        padAjaxe951989048574f458b60469304ff4e0c = new XMLHttpRequest();
+                        padAjaxe951989048574f458b60469304ff4e0c.onreadystatechange=function() {
+                        if (padAjaxe951989048574f458b60469304ff4e0c.readyState === 4) {
+                        if (padAjaxe951989048574f458b60469304ff4e0c.status === 200) {
+                        document.getElementById("padAjaxe951989048574f458b60469304ff4e0c").innerHTML=padAjaxe951989048574f458b60469304ff4e0c.responseText;
+                        } else {
+                        document.getElementById("padAjaxe951989048574f458b60469304ff4e0c").innerHTML=padAjaxe951989048574f458b60469304ff4e0c.statusText;
+                        }
+                        }
+                        }
+                        padAjaxe951989048574f458b60469304ff4e0c.open("GET","http://localhost/pad/regression/framework/?properties/depth_of_a_level_that_is_no_tree_counts_the_levels_of_its_name&padInclude",true);
+                        padAjaxe951989048574f458b60469304ff4e0c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/tree_depth_counts_the_levels_from_one_and_the_other_properties_follow_the_list<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/tree_depth_counts_the_levels_from_one_and_the_other_properties_follow_the_list.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/tree_depth_counts_the_levels_from_one_and_the_other_properties_follow_the_list.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $menu </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">"title" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"home" </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">"title" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"products"</span><span style="color: #007700">, </span><span style="color: #DD0000">"items" </span><span style="color: #007700">=&gt; [<br>        [ </span><span style="color: #DD0000">"title" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"shoes"</span><span style="color: #007700">, </span><span style="color: #DD0000">"items" </span><span style="color: #007700">=&gt; [ [ </span><span style="color: #DD0000">"title" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"boots" </span><span style="color: #007700">], [ </span><span style="color: #DD0000">"title" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"sandals" </span><span style="color: #007700">] ] ],<br>        [ </span><span style="color: #DD0000">"title" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"hats" </span><span style="color: #007700">] ] ],<br>    [ </span><span style="color: #DD0000">"title" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"about"</span><span style="color: #007700">, </span><span style="color: #DD0000">"items" </span><span style="color: #007700">=&gt; [] ]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>menu<font color="black">'</font><font color="black">,</font> children=<font color="black">'</font>items<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>title</font>}</b>:<b>{<font color="blue">depth<font color="black"><b><font color="red">@</font></b></font>tree</font><font color="red"></font>}</b>/<b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>tree</font><font color="red"></font>}</b>/<b>{<font color="blue">count<font color="black"><b><font color="red">@</font></b></font>tree</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">depth<font color="black">@</font>tree gt 2</font>}</b>!<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="blue">branch</font><font color="red"></font>}</b>(<b>{<font color="blue">recurse</font><font color="red"></font>}</b>)<b>{/<font color="blue">branch</font><font color="red"></font>}</b> <b>{/<font color="blue">tree</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd243ade0bb66073e2a1f6e24e625981c"></div>
+                        <script>
+                        padAjaxd243ade0bb66073e2a1f6e24e625981c = new XMLHttpRequest();
+                        padAjaxd243ade0bb66073e2a1f6e24e625981c.onreadystatechange=function() {
+                        if (padAjaxd243ade0bb66073e2a1f6e24e625981c.readyState === 4) {
+                        if (padAjaxd243ade0bb66073e2a1f6e24e625981c.status === 200) {
+                        document.getElementById("padAjaxd243ade0bb66073e2a1f6e24e625981c").innerHTML=padAjaxd243ade0bb66073e2a1f6e24e625981c.responseText;
+                        } else {
+                        document.getElementById("padAjaxd243ade0bb66073e2a1f6e24e625981c").innerHTML=padAjaxd243ade0bb66073e2a1f6e24e625981c.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd243ade0bb66073e2a1f6e24e625981c.open("GET","http://localhost/pad/regression/framework/?tags/tree_depth_counts_the_levels_from_one_and_the_other_properties_follow_the_list&padInclude",true);
+                        padAjaxd243ade0bb66073e2a1f6e24e625981c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

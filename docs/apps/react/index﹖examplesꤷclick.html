@@ -1,43 +1,19 @@
-<html lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
-
-    <title>PAD - click</title>
-  
-  <script>"use strict";
-
-function ClickExample() {
-  var handleClick = function handleClick() {
-    alert('Button clicked! React is working!');
-  };
-  return /*#__PURE__*/React.createElement("div", {
-    className: "react-component"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "react-component-label"
-  }, "\u269B\uFE0F CLICK HANDLER"), /*#__PURE__*/React.createElement("button", {
-    onClick: handleClick
-  }, "Click Me!"));
-}
-ReactDOM.createRoot(document.getElementById('example1')).render(/*#__PURE__*/React.createElement(ClickExample, null));
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJDbGlja0V4YW1wbGUiLCJoYW5kbGVDbGljayIsImFsZXJ0IiwiUmVhY3QiLCJjcmVhdGVFbGVtZW50IiwiY2xhc3NOYW1lIiwib25DbGljayIsIlJlYWN0RE9NIiwiY3JlYXRlUm9vdCIsImRvY3VtZW50IiwiZ2V0RWxlbWVudEJ5SWQiLCJyZW5kZXIiXSwic291cmNlcyI6WyJodHRwOi8vbG9jYWxob3N0L3JlYWN0L2V4YW1wbGVzL2NsaWNrLmpzIl0sInNvdXJjZXNDb250ZW50IjpbImZ1bmN0aW9uIENsaWNrRXhhbXBsZSgpIHtcbiAgY29uc3QgaGFuZGxlQ2xpY2sgPSAoKSA9PiB7XG4gICAgYWxlcnQoJ0J1dHRvbiBjbGlja2VkISBSZWFjdCBpcyB3b3JraW5nIScpO1xuICB9O1xuXG4gIHJldHVybiAoXG4gICAgPGRpdiBjbGFzc05hbWU9XCJyZWFjdC1jb21wb25lbnRcIj5cbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwicmVhY3QtY29tcG9uZW50LWxhYmVsXCI+4pqb77iPIENMSUNLIEhBTkRMRVI8L2Rpdj5cbiAgICAgIDxidXR0b24gb25DbGljaz17aGFuZGxlQ2xpY2t9PkNsaWNrIE1lITwvYnV0dG9uPlxuICAgIDwvZGl2PlxuICApO1xufVxuXG5SZWFjdERPTS5jcmVhdGVSb290KGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdleGFtcGxlMScpKS5yZW5kZXIoPENsaWNrRXhhbXBsZSAvPik7XG4iXSwibWFwcGluZ3MiOiI7O0FBQUEsU0FBU0EsWUFBWUEsQ0FBQSxFQUFHO0VBQ3RCLElBQU1DLFdBQVcsR0FBRyxTQUFkQSxXQUFXQSxDQUFBLEVBQVM7SUFDeEJDLEtBQUssQ0FBQyxtQ0FBbUMsQ0FBQztFQUM1QyxDQUFDO0VBRUQsb0JBQ0VDLEtBQUEsQ0FBQUMsYUFBQTtJQUFLQyxTQUFTLEVBQUM7RUFBaUIsZ0JBQzlCRixLQUFBLENBQUFDLGFBQUE7SUFBS0MsU0FBUyxFQUFDO0VBQXVCLEdBQUMsNEJBQXFCLENBQUMsZUFDN0RGLEtBQUEsQ0FBQUMsYUFBQTtJQUFRRSxPQUFPLEVBQUVMO0VBQVksR0FBQyxXQUFpQixDQUM1QyxDQUFDO0FBRVY7QUFFQU0sUUFBUSxDQUFDQyxVQUFVLENBQUNDLFFBQVEsQ0FBQ0MsY0FBYyxDQUFDLFVBQVUsQ0FBQyxDQUFDLENBQUNDLE1BQU0sY0FBQ1IsS0FBQSxDQUFBQyxhQUFBLENBQUNKLFlBQVksTUFBRSxDQUFDLENBQUMiLCJpZ25vcmVMaXN0IjpbXX0=</script></head>
-  
-  <body>
-
-    
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>click</title>
+  <title>PAD + React</title>
 
   <!-- React and ReactDOM from CDN (Development mode) -->
-  <script src="../../unpkg.com/react@18.3.1/umd/react.development.js"></script>
-  <script src="../../unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
   <!-- Babel Standalone for JSX transformation in browser (Development only) -->
-  <script src="../../unpkg.com/@babel/standalone@7.28.6/babel.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-  <style>* {
+  <style>
+    * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -160,18 +136,18 @@ ReactDOM.createRoot(document.getElementById('example1')).render(/*#__PURE__*/Rea
       color: #856404;
     }
   </style>
-
-
+</head>
+<body>
   <header>
     <div class="container">
       <h1>PAD + React Application</h1>
       <nav>
         
-          <a href="index%EF%B9%96index.html">🏠 Home</a>
+          <a href="index%EF%B9%96index.html" >🏠 Home</a>
         
-          <a href="index%EF%B9%96examples%EA%A4%B7index.html">📚 Examples</a>
+          <a href="index%EF%B9%96examples%EA%A4%B7index.html" >📚 Examples</a>
         
-          <a href="index%EF%B9%96components.html">🧩 Components</a>
+          <a href="index%EF%B9%96components.html" >🧩 Components</a>
         
       </nav>
     </div>
@@ -183,12 +159,13 @@ ReactDOM.createRoot(document.getElementById('example1')).render(/*#__PURE__*/Rea
 
 <p>Basic React component with state and event handling.</p>
 
-<div id="example1"><div class="react-component"><div class="react-component-label">⚛️ CLICK HANDLER</div><button>Click Me!</button></div></div>
+<div id="example1"></div>
 <script type="text/babel" src="examples/click.js"></script>
 
 <div style="margin-top: 30px;">
   <a href="index%EF%B9%96examples%EA%A4%B7index.html" class="btn">← Back to Examples</a>
 </div>
+
     </div>
   </div>
 
@@ -200,9 +177,5 @@ ReactDOM.createRoot(document.getElementById('example1')).render(/*#__PURE__*/Rea
       </p>
     </div>
   </footer>
-
- 
-
-  
-
-</body></html>
+</body>
+</html>

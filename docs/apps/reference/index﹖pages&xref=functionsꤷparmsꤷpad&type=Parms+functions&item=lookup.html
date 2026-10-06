@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Parms functions - lookup
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Parms functions - lookup
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: fragments/lookup_1<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/lookup_1.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/lookup_1.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $customers </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'NL' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'BE' </span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #0000BB">$orders </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">101</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer_id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">102</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer_id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">103</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer_id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">7 </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">orders</font><font color="red"></font>}</b><br>  &lt;p&gt;Order <b>{<font color="green"><font color="red">$</font>number</font>}</b>: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>customer_id <font color="black">|</font> lookup(<font color="black">'</font>customers<font color="black">'</font><font color="black">,</font> <font color="black">'</font>id<font color="black">'</font><font color="black">,</font> <font color="black">'</font>name<font color="black">'</font>) <font color="black">|</font> ?? <font color="black">'</font>unknown customer<font color="black">'</font></font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">orders</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax86d7d1e898bc952ad13ac1337db79230"></div>
+                        <script>
+                        padAjax86d7d1e898bc952ad13ac1337db79230 = new XMLHttpRequest();
+                        padAjax86d7d1e898bc952ad13ac1337db79230.onreadystatechange=function() {
+                        if (padAjax86d7d1e898bc952ad13ac1337db79230.readyState === 4) {
+                        if (padAjax86d7d1e898bc952ad13ac1337db79230.status === 200) {
+                        document.getElementById("padAjax86d7d1e898bc952ad13ac1337db79230").innerHTML=padAjax86d7d1e898bc952ad13ac1337db79230.responseText;
+                        } else {
+                        document.getElementById("padAjax86d7d1e898bc952ad13ac1337db79230").innerHTML=padAjax86d7d1e898bc952ad13ac1337db79230.statusText;
+                        }
+                        }
+                        }
+                        padAjax86d7d1e898bc952ad13ac1337db79230.open("GET","http://localhost/pad/manual/?fragments/lookup_1&padInclude",true);
+                        padAjax86d7d1e898bc952ad13ac1337db79230.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: fragments/lookup_2<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/lookup_2.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/lookup_2.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $customers </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'NL' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'BE' </span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #0000BB">$orders </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">101</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer_id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">102</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer_id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">103</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer_id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">7 </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>countries<font color="black">'</font></font>}</b><br>  [ {"code": "NL", "label": "Netherlands"}, {"code": "BE", "label": "Belgium"} ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">customers</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b> lives in <b>{<font color="green">$country</font> <font color="black">|</font> <font color="blue">lookup('countries', 'code', 'label')</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">customers</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax93f340b8a9208fcf52d3119bdbc02453"></div>
+                        <script>
+                        padAjax93f340b8a9208fcf52d3119bdbc02453 = new XMLHttpRequest();
+                        padAjax93f340b8a9208fcf52d3119bdbc02453.onreadystatechange=function() {
+                        if (padAjax93f340b8a9208fcf52d3119bdbc02453.readyState === 4) {
+                        if (padAjax93f340b8a9208fcf52d3119bdbc02453.status === 200) {
+                        document.getElementById("padAjax93f340b8a9208fcf52d3119bdbc02453").innerHTML=padAjax93f340b8a9208fcf52d3119bdbc02453.responseText;
+                        } else {
+                        document.getElementById("padAjax93f340b8a9208fcf52d3119bdbc02453").innerHTML=padAjax93f340b8a9208fcf52d3119bdbc02453.statusText;
+                        }
+                        }
+                        }
+                        padAjax93f340b8a9208fcf52d3119bdbc02453.open("GET","http://localhost/pad/manual/?fragments/lookup_2&padInclude",true);
+                        padAjax93f340b8a9208fcf52d3119bdbc02453.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_lookup_names_a_data_set_that_is_there<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_lookup_names_a_data_set_that_is_there.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1 <font color="black">|</font> lookup(<font color="black">'</font>nothing<font color="black">'</font><font color="black">,</font> <font color="black">'</font>id<font color="black">'</font><font color="black">,</font> <font color="black">'</font>name<font color="black">'</font>)</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax15ea1d926e5841219394527d3ba3aae4"></div>
+                        <script>
+                        padAjax15ea1d926e5841219394527d3ba3aae4 = new XMLHttpRequest();
+                        padAjax15ea1d926e5841219394527d3ba3aae4.onreadystatechange=function() {
+                        if (padAjax15ea1d926e5841219394527d3ba3aae4.readyState === 4) {
+                        if (padAjax15ea1d926e5841219394527d3ba3aae4.status === 200) {
+                        document.getElementById("padAjax15ea1d926e5841219394527d3ba3aae4").innerHTML=padAjax15ea1d926e5841219394527d3ba3aae4.responseText;
+                        } else {
+                        document.getElementById("padAjax15ea1d926e5841219394527d3ba3aae4").innerHTML=padAjax15ea1d926e5841219394527d3ba3aae4.statusText;
+                        }
+                        }
+                        }
+                        padAjax15ea1d926e5841219394527d3ba3aae4.open("GET","http://localhost/pad/regression/errors/?syntax/a_lookup_names_a_data_set_that_is_there&padInclude",true);
+                        padAjax15ea1d926e5841219394527d3ba3aae4.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_lookup_needs_its_data_set<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_lookup_needs_its_data_set.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1 <font color="black">|</font> lookup</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax62ae70f95adebb232b96e40e9d1e00b6"></div>
+                        <script>
+                        padAjax62ae70f95adebb232b96e40e9d1e00b6 = new XMLHttpRequest();
+                        padAjax62ae70f95adebb232b96e40e9d1e00b6.onreadystatechange=function() {
+                        if (padAjax62ae70f95adebb232b96e40e9d1e00b6.readyState === 4) {
+                        if (padAjax62ae70f95adebb232b96e40e9d1e00b6.status === 200) {
+                        document.getElementById("padAjax62ae70f95adebb232b96e40e9d1e00b6").innerHTML=padAjax62ae70f95adebb232b96e40e9d1e00b6.responseText;
+                        } else {
+                        document.getElementById("padAjax62ae70f95adebb232b96e40e9d1e00b6").innerHTML=padAjax62ae70f95adebb232b96e40e9d1e00b6.statusText;
+                        }
+                        }
+                        }
+                        padAjax62ae70f95adebb232b96e40e9d1e00b6.open("GET","http://localhost/pad/regression/errors/?syntax/a_lookup_needs_its_data_set&padInclude",true);
+                        padAjax62ae70f95adebb232b96e40e9d1e00b6.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: functions/lookup_finds_a_field_of_the_row_in_another_set_whose_key_equals_the_value<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">functions/lookup_finds_a_field_of_the_row_in_another_set_whose_key_equals_the_value.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">functions/lookup_finds_a_field_of_the_row_in_another_set_whose_key_equals_the_value.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $customers </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">"id" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">"name" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"ann"</span><span style="color: #007700">, </span><span style="color: #DD0000">"country" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"nl" </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">"id" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">"name" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"bob"</span><span style="color: #007700">, </span><span style="color: #DD0000">"country" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"be" </span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #0000BB">$orders </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">"number" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">101</span><span style="color: #007700">, </span><span style="color: #DD0000">"customer_id" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">"number" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">102</span><span style="color: #007700">, </span><span style="color: #DD0000">"customer_id" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">"number" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">103</span><span style="color: #007700">, </span><span style="color: #DD0000">"customer_id" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">9 </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">orders</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>number</font>}</b>:<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>customer_id <font color="black">|</font> lookup(<font color="black">'</font>customers<font color="black">'</font><font color="black">,</font> <font color="black">'</font>id<font color="black">'</font><font color="black">,</font> <font color="black">'</font>name<font color="black">'</font>)</font>}</b>/<b>{<font color="green">$customer_id</font> <font color="black">|</font> <font color="blue">lookup('customers')</font>}</b> <b>{/<font color="blue">orders</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax65db63daa0d9bfb23670680f6d731269"></div>
+                        <script>
+                        padAjax65db63daa0d9bfb23670680f6d731269 = new XMLHttpRequest();
+                        padAjax65db63daa0d9bfb23670680f6d731269.onreadystatechange=function() {
+                        if (padAjax65db63daa0d9bfb23670680f6d731269.readyState === 4) {
+                        if (padAjax65db63daa0d9bfb23670680f6d731269.status === 200) {
+                        document.getElementById("padAjax65db63daa0d9bfb23670680f6d731269").innerHTML=padAjax65db63daa0d9bfb23670680f6d731269.responseText;
+                        } else {
+                        document.getElementById("padAjax65db63daa0d9bfb23670680f6d731269").innerHTML=padAjax65db63daa0d9bfb23670680f6d731269.statusText;
+                        }
+                        }
+                        }
+                        padAjax65db63daa0d9bfb23670680f6d731269.open("GET","http://localhost/pad/regression/framework/?functions/lookup_finds_a_field_of_the_row_in_another_set_whose_key_equals_the_value&padInclude",true);
+                        padAjax65db63daa0d9bfb23670680f6d731269.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: functions/lookup_reads_a_data_block_and_a_data_file_and_a_miss_is_empty<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">functions/lookup_reads_a_data_block_and_a_data_file_and_a_miss_is_empty.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">functions/lookup_reads_a_data_block_and_a_data_file_and_a_miss_is_empty.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $customers </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">"id" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">"name" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"ann"</span><span style="color: #007700">, </span><span style="color: #DD0000">"country" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"nl" </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">"id" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">"name" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"bob"</span><span style="color: #007700">, </span><span style="color: #DD0000">"country" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"be" </span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #0000BB">$orders </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">"number" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">101</span><span style="color: #007700">, </span><span style="color: #DD0000">"customer_id" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">"number" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">102</span><span style="color: #007700">, </span><span style="color: #DD0000">"customer_id" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">"number" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">103</span><span style="color: #007700">, </span><span style="color: #DD0000">"customer_id" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">9 </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>countries<font color="black">'</font></font>}</b>[{"code":"nl","label":"Netherlands"},{"code":"be","label":"Belgium"}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">orders</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>customer_id <font color="black">|</font> lookup(<font color="black">'</font>customers<font color="black">'</font><font color="black">,</font> <font color="black">'</font>id<font color="black">'</font><font color="black">,</font> <font color="black">'</font>country<font color="black">'</font>) <font color="black">|</font> lookup(<font color="black">'</font>countries<font color="black">'</font><font color="black">,</font> <font color="black">'</font>code<font color="black">'</font><font color="black">,</font> <font color="black">'</font>label<font color="black">'</font>) <font color="black">|</font> ?? <font color="black">'</font>unknown<font color="black">'</font></font>}</b> <b>{/<font color="blue">orders</font><font color="red"></font>}</b>|<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>jim<font color="black">'</font> <font color="black">|</font> lookup(<font color="black">'</font>staff<font color="black">'</font><font color="black">,</font> <font color="black">'</font>name<font color="black">'</font><font color="black">,</font> <font color="black">'</font>salary<font color="black">'</font>)</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5e44d8f54f54a18f9ff7b178356abb69"></div>
+                        <script>
+                        padAjax5e44d8f54f54a18f9ff7b178356abb69 = new XMLHttpRequest();
+                        padAjax5e44d8f54f54a18f9ff7b178356abb69.onreadystatechange=function() {
+                        if (padAjax5e44d8f54f54a18f9ff7b178356abb69.readyState === 4) {
+                        if (padAjax5e44d8f54f54a18f9ff7b178356abb69.status === 200) {
+                        document.getElementById("padAjax5e44d8f54f54a18f9ff7b178356abb69").innerHTML=padAjax5e44d8f54f54a18f9ff7b178356abb69.responseText;
+                        } else {
+                        document.getElementById("padAjax5e44d8f54f54a18f9ff7b178356abb69").innerHTML=padAjax5e44d8f54f54a18f9ff7b178356abb69.statusText;
+                        }
+                        }
+                        }
+                        padAjax5e44d8f54f54a18f9ff7b178356abb69.open("GET","http://localhost/pad/regression/framework/?functions/lookup_reads_a_data_block_and_a_data_file_and_a_miss_is_empty&padInclude",true);
+                        padAjax5e44d8f54f54a18f9ff7b178356abb69.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: functions/lookup_sees_a_set_that_was_defined_again<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">functions/lookup_sees_a_set_that_was_defined_again.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>c<font color="black">'</font></font>}</b>[{"id":1,"name":"old"}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red">1 <font color="black">|</font> lookup(<font color="black">'</font>c<font color="black">'</font><font color="black">,</font> <font color="black">'</font>id<font color="black">'</font><font color="black">,</font> <font color="black">'</font>name<font color="black">'</font>)</font>}</b><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>c<font color="black">'</font></font>}</b>[{"id":1,"name":"new"}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red">1 <font color="black">|</font> lookup(<font color="black">'</font>c<font color="black">'</font><font color="black">,</font> <font color="black">'</font>id<font color="black">'</font><font color="black">,</font> <font color="black">'</font>name<font color="black">'</font>)</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax1ddf7e3559d43950de2daef46b3be992"></div>
+                        <script>
+                        padAjax1ddf7e3559d43950de2daef46b3be992 = new XMLHttpRequest();
+                        padAjax1ddf7e3559d43950de2daef46b3be992.onreadystatechange=function() {
+                        if (padAjax1ddf7e3559d43950de2daef46b3be992.readyState === 4) {
+                        if (padAjax1ddf7e3559d43950de2daef46b3be992.status === 200) {
+                        document.getElementById("padAjax1ddf7e3559d43950de2daef46b3be992").innerHTML=padAjax1ddf7e3559d43950de2daef46b3be992.responseText;
+                        } else {
+                        document.getElementById("padAjax1ddf7e3559d43950de2daef46b3be992").innerHTML=padAjax1ddf7e3559d43950de2daef46b3be992.statusText;
+                        }
+                        }
+                        }
+                        padAjax1ddf7e3559d43950de2daef46b3be992.open("GET","http://localhost/pad/regression/framework/?functions/lookup_sees_a_set_that_was_defined_again&padInclude",true);
+                        padAjax1ddf7e3559d43950de2daef46b3be992.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

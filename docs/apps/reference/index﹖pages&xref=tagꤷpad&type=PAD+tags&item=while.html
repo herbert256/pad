@@ -1,6 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<!DOCTYPE html>
+<html>
+  <head>
     <title>
       PAD - Reference - PAD tags - while
     </title>
@@ -11,14 +11,14 @@
         PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
       </h1>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table><br>
+      </table><br>
       <hr width="75%">
     </center>
     <blockquote>
@@ -27,14 +27,54 @@
           <h1>
             Reference - PAD tags - while
           </h1>
-          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tbody><tr>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
               <td>
                 <center>
                   <hr>
+                  App: manual - Page: fragments/loops_1<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/loops_1.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>i = 1</font>/}</b><br><b>{<font color="blue">while </font><font color="red"><font color="red">$</font>i le 5</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>i</font>}</b><br>  <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>i</font>/}</b><br><b>{/<font color="blue">while</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxfc7a0638b82e3feacb33fe320f78fa6a"></div>
+                        <script>
+                        padAjaxfc7a0638b82e3feacb33fe320f78fa6a = new XMLHttpRequest();
+                        padAjaxfc7a0638b82e3feacb33fe320f78fa6a.onreadystatechange=function() {
+                        if (padAjaxfc7a0638b82e3feacb33fe320f78fa6a.readyState === 4) {
+                        if (padAjaxfc7a0638b82e3feacb33fe320f78fa6a.status === 200) {
+                        document.getElementById("padAjaxfc7a0638b82e3feacb33fe320f78fa6a").innerHTML=padAjaxfc7a0638b82e3feacb33fe320f78fa6a.responseText;
+                        } else {
+                        document.getElementById("padAjaxfc7a0638b82e3feacb33fe320f78fa6a").innerHTML=padAjaxfc7a0638b82e3feacb33fe320f78fa6a.statusText;
+                        }
+                        }
+                        }
+                        padAjaxfc7a0638b82e3feacb33fe320f78fa6a.open("GET","http://localhost/pad/manual/?fragments/loops_1&padInclude",true);
+                        padAjaxfc7a0638b82e3feacb33fe320f78fa6a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: manual - Page: lvl_occ/7<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2"></font>
@@ -53,94 +93,62 @@
                         <pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>row = 10</font>}</b><br>  <b>{<font color="blue">while </font><font color="red"><font color="red">$</font>row &lt;= 30</font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>column = 1</font>}</b><br>      <b>{<font color="blue">while </font><font color="red"><font color="red">$</font>column &lt;= 5</font>}</b><br>        &lt;td&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>row + <font color="red">$</font>column</font>}</b>&lt;/td&gt;  <br>        <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>column</font>}</b><br>      <b>{/<font color="blue">while</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>    <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>row = <font color="red">$</font>row + 10</font>}</b><br>  <b>{/<font color="blue">while</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxtgYG5tSr"><table border="1">
-  
-  
-    <tbody><tr>
-      
-      
-        <td>11</td>  
-        
-      
-        <td>12</td>  
-        
-      
-        <td>13</td>  
-        
-      
-        <td>14</td>  
-        
-      
-        <td>15</td>  
-        
-      
-    </tr>
-    
-  
-    <tr>
-      
-      
-        <td>21</td>  
-        
-      
-        <td>22</td>  
-        
-      
-        <td>23</td>  
-        
-      
-        <td>24</td>  
-        
-      
-        <td>25</td>  
-        
-      
-    </tr>
-    
-  
-    <tr>
-      
-      
-        <td>31</td>  
-        
-      
-        <td>32</td>  
-        
-      
-        <td>33</td>  
-        
-      
-        <td>34</td>  
-        
-      
-        <td>35</td>  
-        
-      
-    </tr>
-    
-  
-</tbody></table></div>
+                        <div id="padAjax99bcb08cb2c6744f2706f8fe4fc94af5"></div>
                         <script>
-                        padAjaxtgYG5tSr = new XMLHttpRequest();
-                        padAjaxtgYG5tSr.onreadystatechange=function() {
-                        if (padAjaxtgYG5tSr.readyState === 4) {
-                        if (padAjaxtgYG5tSr.status === 200) {
-                        document.getElementById("padAjaxtgYG5tSr").innerHTML=padAjaxtgYG5tSr.responseText;
+                        padAjax99bcb08cb2c6744f2706f8fe4fc94af5 = new XMLHttpRequest();
+                        padAjax99bcb08cb2c6744f2706f8fe4fc94af5.onreadystatechange=function() {
+                        if (padAjax99bcb08cb2c6744f2706f8fe4fc94af5.readyState === 4) {
+                        if (padAjax99bcb08cb2c6744f2706f8fe4fc94af5.status === 200) {
+                        document.getElementById("padAjax99bcb08cb2c6744f2706f8fe4fc94af5").innerHTML=padAjax99bcb08cb2c6744f2706f8fe4fc94af5.responseText;
                         } else {
-                        document.getElementById("padAjaxtgYG5tSr").innerHTML=padAjaxtgYG5tSr.statusText;
+                        document.getElementById("padAjax99bcb08cb2c6744f2706f8fe4fc94af5").innerHTML=padAjax99bcb08cb2c6744f2706f8fe4fc94af5.statusText;
                         }
                         }
                         }
-                        padAjaxtgYG5tSr.open("GET","http://localhost/manual/?lvl_occ/7&padInclude&padSesID=DiM2hOlW&padReqID=7vTofwNG",true);
-                        padAjaxtgYG5tSr.send();
+                        padAjax99bcb08cb2c6744f2706f8fe4fc94af5.open("GET","http://localhost/pad/manual/?lvl_occ/7&padInclude",true);
+                        padAjax99bcb08cb2c6744f2706f8fe4fc94af5.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
                   <hr>
-                  App: check - Page: tableFun/fun_8<br>
+                  App: manual - Page: walk/2<br>
+                  <div id="padAjaxe40764dfbe130f89ac12111481a9988e"></div>
+                  <script>
+                  padAjaxe40764dfbe130f89ac12111481a9988e = new XMLHttpRequest();
+                  padAjaxe40764dfbe130f89ac12111481a9988e.onreadystatechange=function() {
+                  if (padAjaxe40764dfbe130f89ac12111481a9988e.readyState === 4) {
+                  if (padAjaxe40764dfbe130f89ac12111481a9988e.status === 200) {
+                  document.getElementById("padAjaxe40764dfbe130f89ac12111481a9988e").innerHTML=padAjaxe40764dfbe130f89ac12111481a9988e.responseText;
+                  } else {
+                  document.getElementById("padAjaxe40764dfbe130f89ac12111481a9988e").innerHTML=padAjaxe40764dfbe130f89ac12111481a9988e.statusText;
+                  }
+                  }
+                  }
+                  padAjaxe40764dfbe130f89ac12111481a9988e.open("GET","http://localhost/pad/manual/?walk/2&padInclude",true);
+                  padAjaxe40764dfbe130f89ac12111481a9988e.send();
+                  </script><br>
+                  <hr>
+                  App: manual - Page: walk/3<br>
+                  <div id="padAjaxdec5a1accf660315eb153f671a166d75"></div>
+                  <script>
+                  padAjaxdec5a1accf660315eb153f671a166d75 = new XMLHttpRequest();
+                  padAjaxdec5a1accf660315eb153f671a166d75.onreadystatechange=function() {
+                  if (padAjaxdec5a1accf660315eb153f671a166d75.readyState === 4) {
+                  if (padAjaxdec5a1accf660315eb153f671a166d75.status === 200) {
+                  document.getElementById("padAjaxdec5a1accf660315eb153f671a166d75").innerHTML=padAjaxdec5a1accf660315eb153f671a166d75.responseText;
+                  } else {
+                  document.getElementById("padAjaxdec5a1accf660315eb153f671a166d75").innerHTML=padAjaxdec5a1accf660315eb153f671a166d75.statusText;
+                  }
+                  }
+                  }
+                  padAjaxdec5a1accf660315eb153f671a166d75.open("GET","http://localhost/pad/manual/?walk/3&padInclude",true);
+                  padAjaxdec5a1accf660315eb153f671a166d75.send();
+                  </script><br>
+                  <hr>
+                  App: regression/common - Page: tableFun/fun_8<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2"></font>
@@ -159,154 +167,28 @@
                         <pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>row = 10</font>}</b><br>  <b>{<font color="blue">while </font><font color="red"><font color="red">$</font>row LE 30</font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>col = 1</font>}</b><br>      <b>{<font color="blue">while </font><font color="red"><font color="red">$</font>col LE 5</font>}</b><br>        <b>{<font color="blue">cell </font><font color="red"><font color="red">$</font>row + <font color="red">$</font>col</font>}</b><br>        <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>col</font>}</b><br>      <b>{/<font color="blue">while</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>    <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>row = <font color="red">$</font>row + 10</font>}</b><br>  <b>{/<font color="blue">while</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxV9N63Ntc"><table border="1">
-  
-  
-    <tbody><tr>
-      
-      
-         
-  <td>
-    11
-  </td>
-
-        
-      
-         
-  <td>
-    12
-  </td>
-
-        
-      
-         
-  <td>
-    13
-  </td>
-
-        
-      
-         
-  <td>
-    14
-  </td>
-
-        
-      
-         
-  <td>
-    15
-  </td>
-
-        
-      
-    </tr>
-    
-  
-    <tr>
-      
-      
-         
-  <td>
-    21
-  </td>
-
-        
-      
-         
-  <td>
-    22
-  </td>
-
-        
-      
-         
-  <td bgcolor="red">
-    23
-  </td>
-
-        
-      
-         
-  <td>
-    24
-  </td>
-
-        
-      
-         
-  <td>
-    25
-  </td>
-
-        
-      
-    </tr>
-    
-  
-    <tr>
-      
-      
-         
-  <td>
-    31
-  </td>
-
-        
-      
-         
-  <td>
-    32
-  </td>
-
-        
-      
-         
-  <td>
-    33
-  </td>
-
-        
-      
-         
-  <td>
-    34
-  </td>
-
-        
-      
-         
-  <td>
-    35
-  </td>
-
-        
-      
-    </tr>
-    
-  
-</tbody></table></div>
+                        <div id="padAjaxea8e76a2f452adef4d9114ef2d7537e8"></div>
                         <script>
-                        padAjaxV9N63Ntc = new XMLHttpRequest();
-                        padAjaxV9N63Ntc.onreadystatechange=function() {
-                        if (padAjaxV9N63Ntc.readyState === 4) {
-                        if (padAjaxV9N63Ntc.status === 200) {
-                        document.getElementById("padAjaxV9N63Ntc").innerHTML=padAjaxV9N63Ntc.responseText;
+                        padAjaxea8e76a2f452adef4d9114ef2d7537e8 = new XMLHttpRequest();
+                        padAjaxea8e76a2f452adef4d9114ef2d7537e8.onreadystatechange=function() {
+                        if (padAjaxea8e76a2f452adef4d9114ef2d7537e8.readyState === 4) {
+                        if (padAjaxea8e76a2f452adef4d9114ef2d7537e8.status === 200) {
+                        document.getElementById("padAjaxea8e76a2f452adef4d9114ef2d7537e8").innerHTML=padAjaxea8e76a2f452adef4d9114ef2d7537e8.responseText;
                         } else {
-                        document.getElementById("padAjaxV9N63Ntc").innerHTML=padAjaxV9N63Ntc.statusText;
+                        document.getElementById("padAjaxea8e76a2f452adef4d9114ef2d7537e8").innerHTML=padAjaxea8e76a2f452adef4d9114ef2d7537e8.statusText;
                         }
                         }
                         }
-                        padAjaxV9N63Ntc.open("GET","http://localhost/check/?tableFun/fun_8&padInclude&padSesID=DiM2hOlW&padReqID=7vTofwNG",true);
-                        padAjaxV9N63Ntc.send();
+                        padAjaxea8e76a2f452adef4d9114ef2d7537e8.open("GET","http://localhost/pad/regression/common/?tableFun/fun_8&padInclude",true);
+                        padAjaxea8e76a2f452adef4d9114ef2d7537e8.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
                   <hr>
-                  App: check - Page: tableFun/fun_9<br>
+                  App: regression/common - Page: tableFun/fun_9<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2">tableFun/fun_9.php</font>
@@ -321,163 +203,161 @@
                     </tr>
                     <tr>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $row </span><span style="color: #007700">= [</span><span style="color: #0000BB">10</span><span style="color: #007700">,</span><span style="color: #0000BB">20</span><span style="color: #007700">,</span><span style="color: #0000BB">30</span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $row </span><span style="color: #007700">= [</span><span style="color: #0000BB">10</span><span style="color: #007700">,</span><span style="color: #0000BB">20</span><span style="color: #007700">,</span><span style="color: #0000BB">30</span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                       </td>
                       <td style="vertical-align:top">
                         <pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">row</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>col = 1</font>}</b><br>      <b>{<font color="blue">while </font><font color="red"><font color="red">$</font>col LE 5</font>}</b><br>        <b>{<font color="blue">cell </font><font color="red"><font color="red">$</font>row + <font color="red">$</font>col</font>}</b><br>        <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>col</font>}</b><br>      <b>{/<font color="blue">while</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">row</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxxAeqo9SV"><table border="1">
-  
-    <tbody><tr>
-      
-      
-         
-  <td>
-    11
-  </td>
-
-        
-      
-         
-  <td>
-    12
-  </td>
-
-        
-      
-         
-  <td>
-    13
-  </td>
-
-        
-      
-         
-  <td>
-    14
-  </td>
-
-        
-      
-         
-  <td>
-    15
-  </td>
-
-        
-      
-    </tr>
-  
-    <tr>
-      
-      
-         
-  <td>
-    21
-  </td>
-
-        
-      
-         
-  <td>
-    22
-  </td>
-
-        
-      
-         
-  <td bgcolor="red">
-    23
-  </td>
-
-        
-      
-         
-  <td>
-    24
-  </td>
-
-        
-      
-         
-  <td>
-    25
-  </td>
-
-        
-      
-    </tr>
-  
-    <tr>
-      
-      
-         
-  <td>
-    31
-  </td>
-
-        
-      
-         
-  <td>
-    32
-  </td>
-
-        
-      
-         
-  <td>
-    33
-  </td>
-
-        
-      
-         
-  <td>
-    34
-  </td>
-
-        
-      
-         
-  <td>
-    35
-  </td>
-
-        
-      
-    </tr>
-  
-</tbody></table></div>
+                        <div id="padAjaxfbbd6e24b7cfaf3c9721f043c50ae0c4"></div>
                         <script>
-                        padAjaxxAeqo9SV = new XMLHttpRequest();
-                        padAjaxxAeqo9SV.onreadystatechange=function() {
-                        if (padAjaxxAeqo9SV.readyState === 4) {
-                        if (padAjaxxAeqo9SV.status === 200) {
-                        document.getElementById("padAjaxxAeqo9SV").innerHTML=padAjaxxAeqo9SV.responseText;
+                        padAjaxfbbd6e24b7cfaf3c9721f043c50ae0c4 = new XMLHttpRequest();
+                        padAjaxfbbd6e24b7cfaf3c9721f043c50ae0c4.onreadystatechange=function() {
+                        if (padAjaxfbbd6e24b7cfaf3c9721f043c50ae0c4.readyState === 4) {
+                        if (padAjaxfbbd6e24b7cfaf3c9721f043c50ae0c4.status === 200) {
+                        document.getElementById("padAjaxfbbd6e24b7cfaf3c9721f043c50ae0c4").innerHTML=padAjaxfbbd6e24b7cfaf3c9721f043c50ae0c4.responseText;
                         } else {
-                        document.getElementById("padAjaxxAeqo9SV").innerHTML=padAjaxxAeqo9SV.statusText;
+                        document.getElementById("padAjaxfbbd6e24b7cfaf3c9721f043c50ae0c4").innerHTML=padAjaxfbbd6e24b7cfaf3c9721f043c50ae0c4.statusText;
                         }
                         }
                         }
-                        padAjaxxAeqo9SV.open("GET","http://localhost/check/?tableFun/fun_9&padInclude&padSesID=DiM2hOlW&padReqID=7vTofwNG",true);
-                        padAjaxxAeqo9SV.send();
+                        padAjaxfbbd6e24b7cfaf3c9721f043c50ae0c4.open("GET","http://localhost/pad/regression/common/?tableFun/fun_9&padInclude",true);
+                        padAjaxfbbd6e24b7cfaf3c9721f043c50ae0c4.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
                   <hr>
-                  App: check - Page: tags/while_after<br>
+                  App: regression/errors - Page: syntax/a_loop_stops_at_the_ceiling<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2"></font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">tags/while_after.pad</font>
+                        <font size="-2">syntax/a_loop_stops_at_the_ceiling.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>i = 1</font>/}</b><b>{<font color="blue">while </font><font color="red"><font color="red">$</font>i gt 0</font>}</b>x<b>{/<font color="blue">while</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax1644530afe5ced8a7464747325b4ab54"></div>
+                        <script>
+                        padAjax1644530afe5ced8a7464747325b4ab54 = new XMLHttpRequest();
+                        padAjax1644530afe5ced8a7464747325b4ab54.onreadystatechange=function() {
+                        if (padAjax1644530afe5ced8a7464747325b4ab54.readyState === 4) {
+                        if (padAjax1644530afe5ced8a7464747325b4ab54.status === 200) {
+                        document.getElementById("padAjax1644530afe5ced8a7464747325b4ab54").innerHTML=padAjax1644530afe5ced8a7464747325b4ab54.responseText;
+                        } else {
+                        document.getElementById("padAjax1644530afe5ced8a7464747325b4ab54").innerHTML=padAjax1644530afe5ced8a7464747325b4ab54.statusText;
+                        }
+                        }
+                        }
+                        padAjax1644530afe5ced8a7464747325b4ab54.open("GET","http://localhost/pad/regression/errors/?syntax/a_loop_stops_at_the_ceiling&padInclude",true);
+                        padAjax1644530afe5ced8a7464747325b4ab54.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_while_needs_a_condition<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_while_needs_a_condition.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">while</font><font color="red"></font>}</b>x<b>{/<font color="blue">while</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3b4d8db604e5bd39e967f238d1b83bf2"></div>
+                        <script>
+                        padAjax3b4d8db604e5bd39e967f238d1b83bf2 = new XMLHttpRequest();
+                        padAjax3b4d8db604e5bd39e967f238d1b83bf2.onreadystatechange=function() {
+                        if (padAjax3b4d8db604e5bd39e967f238d1b83bf2.readyState === 4) {
+                        if (padAjax3b4d8db604e5bd39e967f238d1b83bf2.status === 200) {
+                        document.getElementById("padAjax3b4d8db604e5bd39e967f238d1b83bf2").innerHTML=padAjax3b4d8db604e5bd39e967f238d1b83bf2.responseText;
+                        } else {
+                        document.getElementById("padAjax3b4d8db604e5bd39e967f238d1b83bf2").innerHTML=padAjax3b4d8db604e5bd39e967f238d1b83bf2.statusText;
+                        }
+                        }
+                        }
+                        padAjax3b4d8db604e5bd39e967f238d1b83bf2.open("GET","http://localhost/pad/regression/errors/?syntax/a_while_needs_a_condition&padInclude",true);
+                        padAjax3b4d8db604e5bd39e967f238d1b83bf2.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_while_never_closes<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_while_never_closes.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>i = 1</font>/}</b><b>{<font color="blue">while </font><font color="red"><font color="red">$</font>i lt 3</font>}</b>x<b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>i</font>/}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8c47c0deb245da8ba4b260dab3048bfe"></div>
+                        <script>
+                        padAjax8c47c0deb245da8ba4b260dab3048bfe = new XMLHttpRequest();
+                        padAjax8c47c0deb245da8ba4b260dab3048bfe.onreadystatechange=function() {
+                        if (padAjax8c47c0deb245da8ba4b260dab3048bfe.readyState === 4) {
+                        if (padAjax8c47c0deb245da8ba4b260dab3048bfe.status === 200) {
+                        document.getElementById("padAjax8c47c0deb245da8ba4b260dab3048bfe").innerHTML=padAjax8c47c0deb245da8ba4b260dab3048bfe.responseText;
+                        } else {
+                        document.getElementById("padAjax8c47c0deb245da8ba4b260dab3048bfe").innerHTML=padAjax8c47c0deb245da8ba4b260dab3048bfe.statusText;
+                        }
+                        }
+                        }
+                        padAjax8c47c0deb245da8ba4b260dab3048bfe.open("GET","http://localhost/pad/regression/errors/?syntax/a_while_never_closes&padInclude",true);
+                        padAjax8c47c0deb245da8ba4b260dab3048bfe.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: check/tags_while_after<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">check/tags_while_after.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -489,39 +369,35 @@
                         <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = 11</font>}</b><br><b>{<font color="blue">while</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>  <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = <font color="red">$</font>abc + 1</font>}</b><br><b>{/<font color="blue">while </font><font color="red"><font color="red">$</font>abc LE 10</font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxEsR36uiN">
-
-  11
-  
-</div>
+                        <div id="padAjaxae5f835f4abf3e3e36dc9b1421380e8d"></div>
                         <script>
-                        padAjaxEsR36uiN = new XMLHttpRequest();
-                        padAjaxEsR36uiN.onreadystatechange=function() {
-                        if (padAjaxEsR36uiN.readyState === 4) {
-                        if (padAjaxEsR36uiN.status === 200) {
-                        document.getElementById("padAjaxEsR36uiN").innerHTML=padAjaxEsR36uiN.responseText;
+                        padAjaxae5f835f4abf3e3e36dc9b1421380e8d = new XMLHttpRequest();
+                        padAjaxae5f835f4abf3e3e36dc9b1421380e8d.onreadystatechange=function() {
+                        if (padAjaxae5f835f4abf3e3e36dc9b1421380e8d.readyState === 4) {
+                        if (padAjaxae5f835f4abf3e3e36dc9b1421380e8d.status === 200) {
+                        document.getElementById("padAjaxae5f835f4abf3e3e36dc9b1421380e8d").innerHTML=padAjaxae5f835f4abf3e3e36dc9b1421380e8d.responseText;
                         } else {
-                        document.getElementById("padAjaxEsR36uiN").innerHTML=padAjaxEsR36uiN.statusText;
+                        document.getElementById("padAjaxae5f835f4abf3e3e36dc9b1421380e8d").innerHTML=padAjaxae5f835f4abf3e3e36dc9b1421380e8d.statusText;
                         }
                         }
                         }
-                        padAjaxEsR36uiN.open("GET","http://localhost/check/?tags/while_after&padInclude&padSesID=DiM2hOlW&padReqID=7vTofwNG",true);
-                        padAjaxEsR36uiN.send();
+                        padAjaxae5f835f4abf3e3e36dc9b1421380e8d.open("GET","http://localhost/pad/regression/framework/?check/tags_while_after&padInclude",true);
+                        padAjaxae5f835f4abf3e3e36dc9b1421380e8d.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
                   <hr>
-                  App: check - Page: tags/while_before<br>
+                  App: regression/framework - Page: check/tags_while_before<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2"></font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">tags/while_before.pad</font>
+                        <font size="-2">check/tags_while_before.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -533,247 +409,192 @@
                         <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = 1</font>}</b><br><b>{<font color="blue">while </font><font color="red"><font color="red">$</font>abc LE 10</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>  <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = <font color="red">$</font>abc + 1</font>}</b><br><b>{/<font color="blue">while</font><font color="red"></font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxwAsDxaMs">
-
-  1
-  
-
-  2
-  
-
-  3
-  
-
-  4
-  
-
-  5
-  
-
-  6
-  
-
-  7
-  
-
-  8
-  
-
-  9
-  
-
-  10
-  
-</div>
+                        <div id="padAjax0f9fe86c3bf3ad84667ef34d60f0f15f"></div>
                         <script>
-                        padAjaxwAsDxaMs = new XMLHttpRequest();
-                        padAjaxwAsDxaMs.onreadystatechange=function() {
-                        if (padAjaxwAsDxaMs.readyState === 4) {
-                        if (padAjaxwAsDxaMs.status === 200) {
-                        document.getElementById("padAjaxwAsDxaMs").innerHTML=padAjaxwAsDxaMs.responseText;
+                        padAjax0f9fe86c3bf3ad84667ef34d60f0f15f = new XMLHttpRequest();
+                        padAjax0f9fe86c3bf3ad84667ef34d60f0f15f.onreadystatechange=function() {
+                        if (padAjax0f9fe86c3bf3ad84667ef34d60f0f15f.readyState === 4) {
+                        if (padAjax0f9fe86c3bf3ad84667ef34d60f0f15f.status === 200) {
+                        document.getElementById("padAjax0f9fe86c3bf3ad84667ef34d60f0f15f").innerHTML=padAjax0f9fe86c3bf3ad84667ef34d60f0f15f.responseText;
                         } else {
-                        document.getElementById("padAjaxwAsDxaMs").innerHTML=padAjaxwAsDxaMs.statusText;
+                        document.getElementById("padAjax0f9fe86c3bf3ad84667ef34d60f0f15f").innerHTML=padAjax0f9fe86c3bf3ad84667ef34d60f0f15f.statusText;
                         }
                         }
                         }
-                        padAjaxwAsDxaMs.open("GET","http://localhost/check/?tags/while_before&padInclude&padSesID=DiM2hOlW&padReqID=7vTofwNG",true);
-                        padAjaxwAsDxaMs.send();
+                        padAjax0f9fe86c3bf3ad84667ef34d60f0f15f.open("GET","http://localhost/pad/regression/framework/?check/tags_while_before&padInclude",true);
+                        padAjax0f9fe86c3bf3ad84667ef34d60f0f15f.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
                   <hr>
-                  App: manual - Page: walk/2<br>
-                  <div id="padAjaxNcjaWtzo"><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myTable</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>loop = 1</font>}</b><br><br>  <b>{<font color="blue">while </font><font color="red"><font color="red">$</font>loop LE 5</font>}</b><br><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="blue">first</font><font color="red"></font>}</b>  X <b>{/<font color="blue">first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">middle</font><font color="red"></font>}</b> X <b>{/<font color="blue">middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">last</font><font color="red"></font>}</b>   X <b>{/<font color="blue">last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">border</font><font color="red"></font>}</b> X <b>{/<font color="blue">border</font><font color="red"></font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br><br>    <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>loop</font>}</b><br><br>  <b>{/<font color="blue">while</font><font color="red"></font>}</b><br><br><b>{/<font color="blue">myTable</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
-
-    <tbody><tr>
-      <th> first  </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> border </th>
-     </tr>
-
-    
-
-  
-
-  
-
-    <tr>
-      <td>   X   </td>
-      <td>  </td>
-      <td>    X    </td>
-      <td>  X  </td>
-    </tr>
-
-    
-
-  
-
-    <tr>
-      <td>   </td>
-      <td>  </td>
-      <td>    X    </td>
-      <td>  X  </td>
-    </tr>
-
-    
-
-  
-
-    <tr>
-      <td>   </td>
-      <td>  </td>
-      <td>    X    </td>
-      <td>  X  </td>
-    </tr>
-
-    
-
-  
-
-    <tr>
-      <td>   </td>
-      <td>  </td>
-      <td>    X    </td>
-      <td>  X  </td>
-    </tr>
-
-    
-
-  
-
-    <tr>
-      <td>   </td>
-      <td>  </td>
-      <td>    X    </td>
-      <td>  X  </td>
-    </tr>
-
-    
-
-  
-
-
-
-  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p></div>
-                  <script>
-                  padAjaxNcjaWtzo = new XMLHttpRequest();
-                  padAjaxNcjaWtzo.onreadystatechange=function() {
-                  if (padAjaxNcjaWtzo.readyState === 4) {
-                  if (padAjaxNcjaWtzo.status === 200) {
-                  document.getElementById("padAjaxNcjaWtzo").innerHTML=padAjaxNcjaWtzo.responseText;
-                  } else {
-                  document.getElementById("padAjaxNcjaWtzo").innerHTML=padAjaxNcjaWtzo.statusText;
-                  }
-                  }
-                  }
-                  padAjaxNcjaWtzo.open("GET","http://localhost/manual/?walk/2&padInclude&padSesID=DiM2hOlW&padReqID=7vTofwNG",true);
-                  padAjaxNcjaWtzo.send();
-                  </script><br>
+                  App: regression/framework - Page: lenient/a_while_without_condition_does_not_run<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">lenient/a_while_without_condition_does_not_run.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">lenient/a_while_without_condition_does_not_run.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The lenient walk under test: with the syntax check off, what nothing claims stays in<br>  // the output as written.<br><br>  </span><span style="color: #0000BB">$padCheckSyntax </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">while</font><font color="red"></font>}</b>x<b>{/<font color="blue">while</font><font color="red"></font>}</b>.</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc6215c14aecb77a7c2a9fa71490ff5bf"></div>
+                        <script>
+                        padAjaxc6215c14aecb77a7c2a9fa71490ff5bf = new XMLHttpRequest();
+                        padAjaxc6215c14aecb77a7c2a9fa71490ff5bf.onreadystatechange=function() {
+                        if (padAjaxc6215c14aecb77a7c2a9fa71490ff5bf.readyState === 4) {
+                        if (padAjaxc6215c14aecb77a7c2a9fa71490ff5bf.status === 200) {
+                        document.getElementById("padAjaxc6215c14aecb77a7c2a9fa71490ff5bf").innerHTML=padAjaxc6215c14aecb77a7c2a9fa71490ff5bf.responseText;
+                        } else {
+                        document.getElementById("padAjaxc6215c14aecb77a7c2a9fa71490ff5bf").innerHTML=padAjaxc6215c14aecb77a7c2a9fa71490ff5bf.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc6215c14aecb77a7c2a9fa71490ff5bf.open("GET","http://localhost/pad/regression/framework/?lenient/a_while_without_condition_does_not_run&padInclude",true);
+                        padAjaxc6215c14aecb77a7c2a9fa71490ff5bf.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
-                  App: manual - Page: walk/3<br>
-                  <div id="padAjaxKKNz71vK"><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>loop = 1</font>}</b><br><br><b>{<font color="blue">while </font><font color="red"><font color="red">$</font>loop LE 5<font color="black">,</font> toData=<font color="black">'</font>abc<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>loop</font>}</b><br><b>{/<font color="blue">while</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myTable</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">abc</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="blue">first</font><font color="red"></font>}</b>  X <b>{/<font color="blue">first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">middle</font><font color="red"></font>}</b> X <b>{/<font color="blue">middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">last</font><font color="red"></font>}</b>   X <b>{/<font color="blue">last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">border</font><font color="red"></font>}</b> X <b>{/<font color="blue">border</font><font color="red"></font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">abc</font><font color="red"></font>}</b><br><br><b>{/<font color="blue">myTable</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
-
-    <tbody><tr>
-      <th> first  </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> border </th>
-     </tr>
-
-    
-
-  
-    <tr>
-      <td>   X   </td>
-      <td>  </td>
-      <td>    </td>
-      <td>  X  </td>
-    </tr>
-  
-    <tr>
-      <td>   </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>  </td>
-    </tr>
-  
-    <tr>
-      <td>   </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>  </td>
-    </tr>
-  
-    <tr>
-      <td>   </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>  </td>
-    </tr>
-  
-    <tr>
-      <td>   </td>
-      <td>  </td>
-      <td>    X    </td>
-      <td>  X  </td>
-    </tr>
-  
-
-
-
-  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p></div>
-                  <script>
-                  padAjaxKKNz71vK = new XMLHttpRequest();
-                  padAjaxKKNz71vK.onreadystatechange=function() {
-                  if (padAjaxKKNz71vK.readyState === 4) {
-                  if (padAjaxKKNz71vK.status === 200) {
-                  document.getElementById("padAjaxKKNz71vK").innerHTML=padAjaxKKNz71vK.responseText;
-                  } else {
-                  document.getElementById("padAjaxKKNz71vK").innerHTML=padAjaxKKNz71vK.statusText;
-                  }
-                  }
-                  }
-                  padAjaxKKNz71vK.open("GET","http://localhost/manual/?walk/3&padInclude&padSesID=DiM2hOlW&padReqID=7vTofwNG",true);
-                  padAjaxKKNz71vK.send();
-                  </script><br>
+                  App: regression/framework - Page: options/demand_is_met_by_a_loop_that_ran_and_by_a_wrapper_around_a_miss<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/demand_is_met_by_a_loop_that_ran_and_by_a_wrapper_around_a_miss.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>i = 0</font>}</b><br><b>{<font color="blue">while </font><font color="red"><font color="red">$</font>i lt 3<font color="black">,</font> demand</font>}</b><br>  <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>i</font>}</b>[<b>{<font color="green"><font color="red">$</font>i</font>}</b>]<br><b>{/<font color="blue">while</font><font color="red"></font>}</b><br><b>{<font color="blue">spaceless </font><font color="red">demand</font>}</b><br>  &lt;b&gt;a&lt;/b&gt; <b>{<font color="blue">if </font><font color="red">1 eq 2</font>}</b>x<b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;b&gt;b&lt;/b&gt;<br><b>{/<font color="blue">spaceless</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa55004d24b9ecd03e32d765d9906b5a2"></div>
+                        <script>
+                        padAjaxa55004d24b9ecd03e32d765d9906b5a2 = new XMLHttpRequest();
+                        padAjaxa55004d24b9ecd03e32d765d9906b5a2.onreadystatechange=function() {
+                        if (padAjaxa55004d24b9ecd03e32d765d9906b5a2.readyState === 4) {
+                        if (padAjaxa55004d24b9ecd03e32d765d9906b5a2.status === 200) {
+                        document.getElementById("padAjaxa55004d24b9ecd03e32d765d9906b5a2").innerHTML=padAjaxa55004d24b9ecd03e32d765d9906b5a2.responseText;
+                        } else {
+                        document.getElementById("padAjaxa55004d24b9ecd03e32d765d9906b5a2").innerHTML=padAjaxa55004d24b9ecd03e32d765d9906b5a2.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa55004d24b9ecd03e32d765d9906b5a2.open("GET","http://localhost/pad/regression/framework/?options/demand_is_met_by_a_loop_that_ran_and_by_a_wrapper_around_a_miss&padInclude",true);
+                        padAjaxa55004d24b9ecd03e32d765d9906b5a2.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: options/toBool_on_a_loop_or_a_wrapper_reads_what_it_rendered_not_how_its_walk_ended<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/toBool_on_a_loop_or_a_wrapper_reads_what_it_rendered_not_how_its_walk_ended.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>i = 0</font>}</b><br><b>{<font color="blue">while </font><font color="red"><font color="red">$</font>i lt 2<font color="black">,</font> toBool=<font color="black">'</font>looped<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>i</font>}</b><b>{<font color="green"><font color="red">$</font>i</font>}</b><br><b>{/<font color="blue">while</font><font color="red"></font>}</b><br><b>{<font color="blue">spaceless </font><font color="red">toBool=<font color="black">'</font>wrapped<font color="black">'</font></font>}</b><br>  a <b>{<font color="blue">if </font><font color="red">1 eq 2</font>}</b>x<b>{/<font color="blue">if</font><font color="red"></font>}</b> b<br><b>{/<font color="blue">spaceless</font><font color="red"></font>}</b><br>[<b>{<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>looped</font><font color="red"></font>}</b>yes<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>no<b>{/<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>looped</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>wrapped</font><font color="red"></font>}</b>yes<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>no<b>{/<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>wrapped</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxbfc0d02ca673408d35f004bb2cb92a73"></div>
+                        <script>
+                        padAjaxbfc0d02ca673408d35f004bb2cb92a73 = new XMLHttpRequest();
+                        padAjaxbfc0d02ca673408d35f004bb2cb92a73.onreadystatechange=function() {
+                        if (padAjaxbfc0d02ca673408d35f004bb2cb92a73.readyState === 4) {
+                        if (padAjaxbfc0d02ca673408d35f004bb2cb92a73.status === 200) {
+                        document.getElementById("padAjaxbfc0d02ca673408d35f004bb2cb92a73").innerHTML=padAjaxbfc0d02ca673408d35f004bb2cb92a73.responseText;
+                        } else {
+                        document.getElementById("padAjaxbfc0d02ca673408d35f004bb2cb92a73").innerHTML=padAjaxbfc0d02ca673408d35f004bb2cb92a73.statusText;
+                        }
+                        }
+                        }
+                        padAjaxbfc0d02ca673408d35f004bb2cb92a73.open("GET","http://localhost/pad/regression/framework/?options/toBool_on_a_loop_or_a_wrapper_reads_what_it_rendered_not_how_its_walk_ended&padInclude",true);
+                        padAjaxbfc0d02ca673408d35f004bb2cb92a73.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_property_tag_inside_a_while_keeps_the_while_walking<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_property_tag_inside_a_while_keeps_the_while_walking.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_property_tag_inside_a_while_keeps_the_while_walking.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $i </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">while </font><font color="red"><font color="red">$</font>i lt 3</font>}</b><b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>while</font><font color="red"></font>}</b>F<b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>while</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>i</font>}</b><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>i</font>}</b><b>{/<font color="blue">while</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax2786698cefd61cff534ffd46a20234dc"></div>
+                        <script>
+                        padAjax2786698cefd61cff534ffd46a20234dc = new XMLHttpRequest();
+                        padAjax2786698cefd61cff534ffd46a20234dc.onreadystatechange=function() {
+                        if (padAjax2786698cefd61cff534ffd46a20234dc.readyState === 4) {
+                        if (padAjax2786698cefd61cff534ffd46a20234dc.status === 200) {
+                        document.getElementById("padAjax2786698cefd61cff534ffd46a20234dc").innerHTML=padAjax2786698cefd61cff534ffd46a20234dc.responseText;
+                        } else {
+                        document.getElementById("padAjax2786698cefd61cff534ffd46a20234dc").innerHTML=padAjax2786698cefd61cff534ffd46a20234dc.statusText;
+                        }
+                        }
+                        }
+                        padAjax2786698cefd61cff534ffd46a20234dc.open("GET","http://localhost/pad/regression/framework/?tags/a_property_tag_inside_a_while_keeps_the_while_walking&padInclude",true);
+                        padAjax2786698cefd61cff534ffd46a20234dc.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
-          </tbody></table>
+          </table>
         </blockquote>
       </center>
     </blockquote>
@@ -781,17 +602,17 @@
       <hr width="75%">
       <br>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table>
+      </table>
       <p>
         <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
       </p>
     </center>
-  
-</body></html>
+  </body>
+</html>

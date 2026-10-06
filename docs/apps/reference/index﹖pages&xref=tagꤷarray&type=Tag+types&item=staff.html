@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - staff
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - staff
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/pages - Page: sample/orders<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">sample/orders.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">sample/orders.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The real page: its rows come from the database.<br><br>  </span><span style="color: #0000BB">$title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Staff'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$staff </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">'array name from staff order by name limit 2' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;h1&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h1&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>who</font>}</b>&lt;/p&gt;<br>&lt;ul&gt;<b>{<font color="blue">staff</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/li&gt;<b>{/<font color="blue">staff</font><font color="red"></font>}</b>&lt;/ul&gt;<br>&lt;p&gt;<b>{<font color="blue">field </font><font color="red">"count(*) from staff"<font color="black">,</font> name=<font color="black">'</font>staffCount<font color="black">'</font></font>}</b> on the staff&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax87334c5066ca1f7f4cf1cbe3d2af91e7"></div>
+                        <script>
+                        padAjax87334c5066ca1f7f4cf1cbe3d2af91e7 = new XMLHttpRequest();
+                        padAjax87334c5066ca1f7f4cf1cbe3d2af91e7.onreadystatechange=function() {
+                        if (padAjax87334c5066ca1f7f4cf1cbe3d2af91e7.readyState === 4) {
+                        if (padAjax87334c5066ca1f7f4cf1cbe3d2af91e7.status === 200) {
+                        document.getElementById("padAjax87334c5066ca1f7f4cf1cbe3d2af91e7").innerHTML=padAjax87334c5066ca1f7f4cf1cbe3d2af91e7.responseText;
+                        } else {
+                        document.getElementById("padAjax87334c5066ca1f7f4cf1cbe3d2af91e7").innerHTML=padAjax87334c5066ca1f7f4cf1cbe3d2af91e7.statusText;
+                        }
+                        }
+                        }
+                        padAjax87334c5066ca1f7f4cf1cbe3d2af91e7.open("GET","http://localhost/pad/regression/pages/?sample/orders&padInclude",true);
+                        padAjax87334c5066ca1f7f4cf1cbe3d2af91e7.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/sqlite - Page: verbs<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">verbs.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">verbs.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// db()'s reading verbs on SQLite, answering in the shapes they have on MySQL.<br><br>  </span><span style="color: #0000BB">$field  </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"field phone from staff where name = 'jim'" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$joe    </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"record name, salary from staff where name = 'joe'" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$staff  </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"array name, phone from staff order by name" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$found  </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"check staff where name = 'bob'" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$none   </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"check staff where name = 'nobody'" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$count  </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"field count(*) from staff" </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$types  </span><span style="color: #007700">= </span><span style="color: #0000BB">gettype </span><span style="color: #007700">( </span><span style="color: #0000BB">$count </span><span style="color: #007700">) . </span><span style="color: #DD0000">' ' </span><span style="color: #007700">. </span><span style="color: #0000BB">gettype </span><span style="color: #007700">( </span><span style="color: #0000BB">$joe </span><span style="color: #007700">[</span><span style="color: #DD0000">'salary'</span><span style="color: #007700">] );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">field:  <b>{<font color="green"><font color="red">$</font>field</font>}</b><br>record: <b>{<font color="blue">joe</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{<font color="green"><font color="red">$</font>salary</font>}</b><b>{/<font color="blue">joe</font><font color="red"></font>}</b><br>array:  <b>{<font color="blue">staff</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b>:<b>{<font color="green"><font color="red">$</font>phone</font>}</b> <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>check:  <b>{<font color="green"><font color="red">$</font>found</font>}</b> <b>{<font color="green"><font color="red">$</font>none</font>}</b><br>count:  <b>{<font color="green"><font color="red">$</font>count</font>}</b><br>types:  <b>{<font color="green"><font color="red">$</font>types</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax10a9361810a9141ef1144b4b968a7fad"></div>
+                        <script>
+                        padAjax10a9361810a9141ef1144b4b968a7fad = new XMLHttpRequest();
+                        padAjax10a9361810a9141ef1144b4b968a7fad.onreadystatechange=function() {
+                        if (padAjax10a9361810a9141ef1144b4b968a7fad.readyState === 4) {
+                        if (padAjax10a9361810a9141ef1144b4b968a7fad.status === 200) {
+                        document.getElementById("padAjax10a9361810a9141ef1144b4b968a7fad").innerHTML=padAjax10a9361810a9141ef1144b4b968a7fad.responseText;
+                        } else {
+                        document.getElementById("padAjax10a9361810a9141ef1144b4b968a7fad").innerHTML=padAjax10a9361810a9141ef1144b4b968a7fad.statusText;
+                        }
+                        }
+                        }
+                        padAjax10a9361810a9141ef1144b4b968a7fad.open("GET","http://localhost/pad/regression/sqlite/?verbs&padInclude",true);
+                        padAjax10a9361810a9141ef1144b4b968a7fad.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

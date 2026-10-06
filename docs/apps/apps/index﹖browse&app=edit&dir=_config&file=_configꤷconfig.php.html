@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: edit/_config
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: edit/ config
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=edit.html">..</a>
+                  </li>
+                  <li class="current">config.php
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  _config/config.php
+                </h3>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The editor writes the files of every application - .php files among them - so it is<br>  // code execution on this machine by design, and is kept as close as the engine allows:<br>  //<br>  // - a login, always: _guard.php lets nobody past who has no session of a user that still<br>  //   exists in DATA/edit/users.json, with the stamp that user had when they logged in<br>  // - this machine only, unless $editRemote says otherwise: the request must come from the<br>  //   loopback address with nothing forwarded (padLoopback), and name this machine in its<br>  //   Host header - a page on another site that rebinds its own name to 127.0.0.1 reaches<br>  //   the loopback address too, but not with Host: localhost<br>  // - the CSRF token on every post, the JSON calls included (X-CSRF-Token)<br>  // - no request value turned into a variable: the calls read their JSON body themselves,<br>  //   untrimmed, since a file's leading and trailing whitespace is part of it<br>  //<br>  // This file is read twice per request (inits/config.php): assignments only.<br><br>  </span><span style="color: #0000BB">$padCommon      </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padCsrf        </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padRequestVars </span><span style="color: #007700">= [];<br>  </span><span style="color: #0000BB">$padTidy        </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padSessionVars </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'editUser'</span><span style="color: #007700">, </span><span style="color: #DD0000">'editStamp' </span><span style="color: #007700">];<br><br>  </span><span style="color: #FF8000">// TRUE lets a request from another machine log in; $editHosts adds host names, besides<br>  // localhost, 127.0.0.1 and [::1], that a request may name in its Host header.<br><br>  </span><span style="color: #0000BB">$editRemote </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$editHosts  </span><span style="color: #007700">= [];<br><br>  </span><span style="color: #FF8000">// The editor component: Monaco's AMD build. A copy of its min/vs directory under www/<br>  // works as well - '/pad/edit/monaco/vs', say - for a machine without internet access.<br><br>  </span><span style="color: #0000BB">$editMonaco </span><span style="color: #007700">= </span><span style="color: #DD0000">'https://cdn.jsdelivr.net/npm/monaco-editor@0.57.0/min/vs'</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// How many earlier versions of a file the history keeps, and how many days a deleted<br>  // file stays in the trash.<br><br>  </span><span style="color: #0000BB">$editHistoryKeep </span><span style="color: #007700">= </span><span style="color: #0000BB">50</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$editTrashDays   </span><span style="color: #007700">= </span><span style="color: #0000BB">30</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// The largest file the editor opens as text.<br><br>  </span><span style="color: #0000BB">$editMaxText </span><span style="color: #007700">= </span><span style="color: #0000BB">2 </span><span style="color: #007700">* </span><span style="color: #0000BB">1024 </span><span style="color: #007700">* </span><span style="color: #0000BB">1024</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// The terminal in the editor's bottom panel runs commands in a shell as the web server's<br>  // user. FALSE switches it off; $editShell names the shell, '' takes bash, zsh or sh.<br><br>  </span><span style="color: #0000BB">$editTerminal </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$editShell    </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// The step debugger: Xdebug in the request being debugged connects to a debugger<br>  // process the editor starts, on xdebug.client_port (9003). FALSE switches it off.<br><br>  </span><span style="color: #0000BB">$editDebug </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// The framework itself, pad/, in the tree beside the application's files - to read it, set<br>  // breakpoints in it, and change it. FALSE leaves it out.<br><br>  </span><span style="color: #0000BB">$editEngine </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+
+
+<p>PAD has two comment forms. Both are taken out of the template before it is scanned, so a tag written inside one never runs and nothing of it reaches the output.</p>
+
+<ul>
+  <li><code>{# ... #}</code> - the original form</li>
+  <li><code>{-- ... --}</code> - the form the editor kits highlight and toggle</li>
+</ul>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/comments_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>total = 3</font>}</b><br><b>{<font color="green"><font color="red">#</font> <b>{<font color="blue">set </font><font color="red"><font color="red"><font color="red">$</font></font>total = 99</font>}</b> - the tag inside a comment never runs <font color="red">#</font></font>}</b><br>{-- the second form, the one the editor kits toggle --}<br>&lt;p&gt;Total: <b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+
+
+<p>Total: 3</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Rules</h2>
+
+<ul>
+  <li>A comment closes at the first <code>#}</code> or <code>--}</code> after it, and may span lines.</li>
+  <li><code>{--</code> must be followed by whitespace: a CSS custom property inside an <b>{ignore}</b> block, <code>:root{--gap:4px}</code>, is CSS and stays as it is.</li>
+  <li><code>{#name}</code> is not a comment but the option sigil - the value of the tag option <code>name</code>.</li>
+</ul>
+
+<h2>See Also</h2>
+
+<ul>
+  <li><a href="index%EF%B9%96pages%EA%A4%B7ignore.html">Ignore</a> - keep PAD from parsing braces</li>
+</ul>

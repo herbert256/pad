@@ -1,0 +1,72 @@
+
+
+<p>The <a href="http://localhost/pad/playground/">playground</a> is an application for trying templates:
+type a template and its data - a JSON object whose keys become variables - and the result
+shows beside it. The address bar always holds both, so a link shares the example.</p>
+
+<p>It renders the way a page's PHP can render any PAD source, with <code>padCode()</code>:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/playground_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/playground_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $data </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #DD0000">'{ "name": "Ann", "tags": [ "red", "blue" ] }'</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$name </span><span style="color: #007700">= </span><span style="color: #0000BB">$data </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$tags </span><span style="color: #007700">= </span><span style="color: #0000BB">$data </span><span style="color: #007700">[</span><span style="color: #DD0000">'tags'</span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$html </span><span style="color: #007700">= </span><span style="color: #0000BB">padCode </span><span style="color: #007700">( </span><span style="color: #DD0000">'&lt;b&gt;{$name}&lt;/b&gt;: {tags}{$tags}{notLast@tags}, {/notLast@tags}{/tags}' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">!</font>html</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p><b>Ann</b>: red, blue</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<p>Because it runs what it is given, the playground answers this machine only, and a template
+there may not call PHP functions, sees no request values and no database, and gets five
+seconds, 64 KB of source and 256 KB of output. The output shows in a sandboxed frame, where
+the rendered page's scripts do not run. Tags that read files or fetch URLs still work - on
+this machine, for its own user.</p>

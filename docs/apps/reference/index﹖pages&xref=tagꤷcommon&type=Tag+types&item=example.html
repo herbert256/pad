@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - example
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - example
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: classicModels - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;center&gt;<br><br>&lt;p&gt;<br>  Some PAD pages based on the Classic Models database, as found on<br>  &lt;a href="https://www.mysqltutorial.org/getting-started-with-mysql/mysql-sample-database/"&gt;www.mysqltutorial.org&lt;/a&gt;<br>&lt;/p&gt;<br><br>&lt;p&gt;To demonstrate the PAD Table functionality&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red">php=<font color="black">'</font>_inits.php<font color="black">'</font><font color="black">,</font> skipPad<font color="black">,</font> skipResult<font color="black">,</font> withTitle<font color="black">,</font> title=<font color="black">'</font>Configuration<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>offices<font color="black">'</font><font color="black">,</font>     withTitle</font>}</b><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>employees_1<font color="black">'</font><font color="black">,</font> withTitle</font>}</b><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>employees_2<font color="black">'</font><font color="black">,</font> withTitle</font>}</b><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>orders<font color="black">'</font><font color="black">,</font>      withTitle</font>}</b><br><br>&lt;/center&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax9b2cab3351f60cc0bcbf68cd2b68c34c"></div>
+                        <script>
+                        padAjax9b2cab3351f60cc0bcbf68cd2b68c34c = new XMLHttpRequest();
+                        padAjax9b2cab3351f60cc0bcbf68cd2b68c34c.onreadystatechange=function() {
+                        if (padAjax9b2cab3351f60cc0bcbf68cd2b68c34c.readyState === 4) {
+                        if (padAjax9b2cab3351f60cc0bcbf68cd2b68c34c.status === 200) {
+                        document.getElementById("padAjax9b2cab3351f60cc0bcbf68cd2b68c34c").innerHTML=padAjax9b2cab3351f60cc0bcbf68cd2b68c34c.responseText;
+                        } else {
+                        document.getElementById("padAjax9b2cab3351f60cc0bcbf68cd2b68c34c").innerHTML=padAjax9b2cab3351f60cc0bcbf68cd2b68c34c.statusText;
+                        }
+                        }
+                        }
+                        padAjax9b2cab3351f60cc0bcbf68cd2b68c34c.open("GET","http://localhost/pad/classicModels/?index&padInclude",true);
+                        padAjax9b2cab3351f60cc0bcbf68cd2b68c34c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/app_tests<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/app_tests.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Application tests<font color="black">'</font></font>}</b><br><br>&lt;p&gt;An application keeps its own tests in &lt;code&gt;_tests/&lt;/code&gt;. A test is a page there -<br>&lt;code&gt;cart.pad&lt;/code&gt;, with &lt;code&gt;cart.php&lt;/code&gt; when it needs data - next to its answer,<br>&lt;code&gt;cart.txt&lt;/code&gt;. &lt;code&gt;pad test shop&lt;/code&gt; renders every test page and compares:&lt;/p&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b><br>&lt;code&gt;$ pad test shop<br>shop<br>  ok    cart<br>  FAIL  checkout<br>        want: &lt;p&gt;Total 42&lt;/p&gt;<br>        got:  HTTP 500 - assert failed: $total eq 42<br>              apps/shop/_tests/checkout.pad:1:1  <b>{<font color="blue">assert </font><font color="red"><font color="red">$</font>total eq 42</font>}</b><br>  2 tests, 1 failed&lt;/code&gt;<br><b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br><br>&lt;h2&gt;The answer&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;the exact output of the page, trimmed;&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;/a pattern/&lt;/code&gt; matched over it - for output that changes, a date or a count;&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;HTTP 500&lt;/code&gt;, with an optional &lt;code&gt;/pattern/&lt;/code&gt; on the next line, for a test that is meant to fail.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;p&gt;A test without an answer counts against the run; &lt;code&gt;pad test shop --record&lt;/code&gt; writes<br>the missing answers from what the pages render now, and never overwrites one.<br>&lt;code&gt;pad test --all&lt;/code&gt; runs every application that has tests, and &lt;code&gt;./ci.sh&lt;/code&gt;<br>does that as its &lt;code&gt;apptests&lt;/code&gt; line.&lt;/p&gt;<br><br>&lt;h2&gt;Asserts&lt;/h2&gt;<br><br>&lt;p&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>assert<font color="black">'</font></font>}</b> holds a page to a condition during a test run: false, and the test fails<br>with the condition and the message as its report. Anywhere else it is silent - the<br>condition is not even evaluated - so it can stay in the application's own pages. The switch<br>is &lt;code&gt;$padAssert&lt;/code&gt;, which &lt;code&gt;pad test&lt;/code&gt; turns on; this example turns it on in<br>its PHP:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/app_tests_1<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;A test page&lt;/h2&gt;<br><br>&lt;p&gt;It is a page like any other, rendered bare - without the application's wrappers - and no<br>URL reaches it. It can bring in a real page with &lt;code&gt;<b>{<font color="blue">page </font><font color="red"><font color="black">'</font>cart<font color="black">'</font></font>}</b>&lt;/code&gt;, or<br>include the page's own PHP and check the data it sets:&lt;/p&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b><br>&lt;code&gt;_tests/cart.php    <span style="color: #0000BB">&lt;?php </span><span style="color: #007700">include </span><span style="color: #0000BB">APP </span><span style="color: #007700">. </span><span style="color: #DD0000">'cart.php'</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br></span>_tests/cart.pad    <b>{<font color="blue">assert </font><font color="red"><font color="red">$</font>total eq 42<font color="black">,</font> <font color="black">'</font>the cart total<font color="black">'</font></font>}</b><br>                   &lt;p&gt;Total <b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/p&gt;<br>_tests/cart.txt    &lt;p&gt;Total 42&lt;/p&gt;&lt;/code&gt;<br><b>{/<font color="blue">ignore</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8a2837b6dce737af4042f92647aab288"></div>
+                        <script>
+                        padAjax8a2837b6dce737af4042f92647aab288 = new XMLHttpRequest();
+                        padAjax8a2837b6dce737af4042f92647aab288.onreadystatechange=function() {
+                        if (padAjax8a2837b6dce737af4042f92647aab288.readyState === 4) {
+                        if (padAjax8a2837b6dce737af4042f92647aab288.status === 200) {
+                        document.getElementById("padAjax8a2837b6dce737af4042f92647aab288").innerHTML=padAjax8a2837b6dce737af4042f92647aab288.responseText;
+                        } else {
+                        document.getElementById("padAjax8a2837b6dce737af4042f92647aab288").innerHTML=padAjax8a2837b6dce737af4042f92647aab288.statusText;
+                        }
+                        }
+                        }
+                        padAjax8a2837b6dce737af4042f92647aab288.open("GET","http://localhost/pad/manual/?pages/app_tests&padInclude",true);
+                        padAjax8a2837b6dce737af4042f92647aab288.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/application_options<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/application_options.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Options of your own<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A file in the application's &lt;code&gt;_options/&lt;/code&gt; directory makes its name an option<br>of every tag - written bare, &lt;code&gt;<b>{<font color="blue">staff </font><font color="red">words</font>}</b>&lt;/code&gt;, or with a value,<br>&lt;code&gt;<b>{<font color="blue">staff </font><font color="red">wrap=<font color="black">'</font>em<font color="black">'</font></font>}</b>&lt;/code&gt;. Where the file stands decides when it runs:&lt;/p&gt;<br><br>&lt;table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;"&gt;<br>  &lt;tr&gt;&lt;th&gt;file&lt;/th&gt;&lt;th&gt;runs&lt;/th&gt;&lt;th&gt;&lt;code&gt;$padContent&lt;/code&gt; is&lt;/th&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;_options/name.php&lt;/code&gt;&lt;/td&gt;&lt;td&gt;before the tag renders&lt;/td&gt;&lt;td&gt;the template between the tags&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;_options/end/name.php&lt;/code&gt;&lt;/td&gt;&lt;td&gt;after the tag rendered&lt;/td&gt;&lt;td&gt;the result - every occurrence, joined&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;p&gt;&amp;nbsp;&lt;/p&gt;<br><br>&lt;p&gt;The handler changes &lt;code&gt;$padContent&lt;/code&gt;, and the option's value is in<br>&lt;code&gt;$padGetName&lt;/code&gt; - TRUE when the option is written bare. An end option sees the<br>fields filled in, so it can count, mark or tidy what the tag produced. Here<br>&lt;code&gt;fragments/options/_options/end/words.php&lt;/code&gt; appends a word count:&lt;/p&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b><br>&lt;code&gt;<span style="color: #0000BB">&lt;?php                                   </span><span style="color: #FF8000">// _options/end/words.php<br><br>  </span><span style="color: #0000BB">$padContent </span><span style="color: #007700">.= </span><span style="color: #DD0000">'(' </span><span style="color: #007700">. </span><span style="color: #0000BB">str_word_count </span><span style="color: #007700">( </span><span style="color: #0000BB">strip_tags </span><span style="color: #007700">( </span><span style="color: #0000BB">$padContent </span><span style="color: #007700">) ) . </span><span style="color: #DD0000">' words)'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span>&lt;/code&gt;<br><b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/options/options_1<font color="black">'</font></font>}</b><br><br>&lt;p&gt;With a value - &lt;code&gt;_options/end/wrap.php&lt;/code&gt; puts the result in the element it is<br>given:&lt;/p&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b><br>&lt;code&gt;<span style="color: #0000BB">&lt;?php                                   </span><span style="color: #FF8000">// _options/end/wrap.php<br><br>  </span><span style="color: #0000BB">$padContent </span><span style="color: #007700">= </span><span style="color: #DD0000">"&lt;</span><span style="color: #0000BB">$padGetName</span><span style="color: #DD0000">&gt;" </span><span style="color: #007700">. </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$padContent </span><span style="color: #007700">) . </span><span style="color: #DD0000">"&lt;/</span><span style="color: #0000BB">$padGetName</span><span style="color: #DD0000">&gt;"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span>&lt;/code&gt;<br><b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/options/options_2<font color="black">'</font></font>}</b><br><br>&lt;p&gt;An option may have both files: the first works on the template, the second on what it<br>became. The end options run before the built-in &lt;code&gt;toContent&lt;/code&gt;, &lt;code&gt;toData&lt;/code&gt;<br>and &lt;code&gt;tidy&lt;/code&gt; - those store or tidy what the end option made - and before the closing<br>tag's pipe. Like tags and callbacks they are looked up from the page's directory up to the<br>application root.&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax7704f86deb4d8fdb39326fa676205654"></div>
+                        <script>
+                        padAjax7704f86deb4d8fdb39326fa676205654 = new XMLHttpRequest();
+                        padAjax7704f86deb4d8fdb39326fa676205654.onreadystatechange=function() {
+                        if (padAjax7704f86deb4d8fdb39326fa676205654.readyState === 4) {
+                        if (padAjax7704f86deb4d8fdb39326fa676205654.status === 200) {
+                        document.getElementById("padAjax7704f86deb4d8fdb39326fa676205654").innerHTML=padAjax7704f86deb4d8fdb39326fa676205654.responseText;
+                        } else {
+                        document.getElementById("padAjax7704f86deb4d8fdb39326fa676205654").innerHTML=padAjax7704f86deb4d8fdb39326fa676205654.statusText;
+                        }
+                        }
+                        }
+                        padAjax7704f86deb4d8fdb39326fa676205654.open("GET","http://localhost/pad/manual/?pages/application_options&padInclude",true);
+                        padAjax7704f86deb4d8fdb39326fa676205654.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/arrays<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/arrays.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Array helpers<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A page's PHP file mostly works on arrays: a row from the database, a list of rows, a<br>decoded JSON answer, nested settings. The array helpers do the everyday work on them - read<br>a value deep inside, take one field of every row, keep the rows that pass, group, sort and<br>sum - so the PHP stays a few lines and the template gets data ready to show. They are plain<br>functions with a &lt;code&gt;padArr&lt;/code&gt; name, loaded on every request like the rest of<br>&lt;code&gt;pad/lib/&lt;/code&gt;, and they work on objects too: an &lt;code&gt;ArrayAccess&lt;/code&gt; object<br>through its offsets, any other object through its public properties.&lt;/p&gt;<br><br>&lt;h2&gt;Dot paths&lt;/h2&gt;<br><br>&lt;p&gt;A dot path names a value inside nested arrays: &lt;code&gt;'customer.address.city'&lt;/code&gt;, with<br>an integer key as a segment - &lt;code&gt;'lines.0.sku'&lt;/code&gt;. A &lt;code&gt;*&lt;/code&gt; segment reads every<br>item of that level and answers a list: &lt;code&gt;'lines.*.sku'&lt;/code&gt; is every product.<br>&lt;code&gt;padArrGet&lt;/code&gt; answers the default when the path is not there - a Closure as the<br>default is called only then - and &lt;code&gt;padArrSet&lt;/code&gt; makes the levels on the way.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/arrays_1<font color="black">'</font></font>}</b><br><br>&lt;p&gt;&lt;code&gt;padArrHas&lt;/code&gt; is true when every path given exists, also when its value is NULL<br>- where &lt;code&gt;isset()&lt;/code&gt; says no. &lt;code&gt;padArrSet&lt;/code&gt; and &lt;code&gt;padArrForget&lt;/code&gt;<br>change the array they are given and answer it as well.&lt;/p&gt;<br><br>&lt;h2&gt;Picking keys&lt;/h2&gt;<br><br>&lt;p&gt;&lt;code&gt;padArrOnly&lt;/code&gt; keeps the top-level keys given, in the order they are given;<br>&lt;code&gt;padArrExcept&lt;/code&gt; drops them, and takes dot paths. Keys are an array or a<br>comma-separated string.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/arrays_2<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Working with rows&lt;/h2&gt;<br><br>&lt;p&gt;&lt;code&gt;padArrPluck&lt;/code&gt; takes one field of every row, keyed by another field when one is<br>given - the id and name pairs of a select box. &lt;code&gt;padArrKeyBy&lt;/code&gt; keys the rows<br>themselves, to find one without a loop.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/arrays_3<font color="black">'</font></font>}</b><br><br>&lt;p&gt;&lt;code&gt;padArrWhere&lt;/code&gt; keeps the rows that pass, with their keys: a field equal to a<br>value, a field compared with an operator, or a callback. The operators are<br>&lt;code&gt;= == === != &lt;&gt; !== &lt; &gt; &lt;= &gt;=&lt;/code&gt; (and PAD's own &lt;code&gt;eq ne lt gt<br>le ge&lt;/code&gt;), &lt;code&gt;in&lt;/code&gt; and &lt;code&gt;not in&lt;/code&gt; with a list, and &lt;code&gt;like&lt;/code&gt; with<br>SQL's &lt;code&gt;%&lt;/code&gt; and &lt;code&gt;_&lt;/code&gt;, ignoring case. Equality is PHP's loose<br>&lt;code&gt;==&lt;/code&gt;, so the string &lt;code&gt;'5'&lt;/code&gt; a database answers equals a 5 written in PHP.<br>&lt;code&gt;padArrSortBy&lt;/code&gt; sorts by a field, stable, ascending or with &lt;code&gt;TRUE&lt;/code&gt; or<br>&lt;code&gt;'desc'&lt;/code&gt; descending; &lt;code&gt;padArrFirst&lt;/code&gt; and &lt;code&gt;padArrLast&lt;/code&gt; answer the<br>first and last row a callback passes.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/arrays_4<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Groups and numbers&lt;/h2&gt;<br><br>&lt;p&gt;&lt;code&gt;padArrGroupBy&lt;/code&gt; answers the rows in groups - the groups in the order their<br>first row came, each group a list. &lt;code&gt;padArrSum&lt;/code&gt;, &lt;code&gt;padArrAvg&lt;/code&gt;,<br>&lt;code&gt;padArrMin&lt;/code&gt; and &lt;code&gt;padArrMax&lt;/code&gt; work on the numbers among the values, or<br>among a field of every row: a NULL or a text that is no number is left out rather than<br>counted as 0. The sum of no numbers is 0, the others answer NULL.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/arrays_5<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Reshaping&lt;/h2&gt;<br><br>&lt;p&gt;&lt;code&gt;padArrDot&lt;/code&gt; makes a nested array one level with dot path keys, and<br>&lt;code&gt;padArrUndot&lt;/code&gt; makes it nested again. &lt;code&gt;padArrFlatten&lt;/code&gt; answers the values<br>of nested arrays as one list, to a depth when one is given; &lt;code&gt;padArrWrap&lt;/code&gt; makes any<br>value an array - NULL none, an array itself, anything else one item.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/arrays_6<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;The functions&lt;/h2&gt;<br><br>&lt;table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;"&gt;<br>  &lt;tr&gt;&lt;th&gt;function&lt;/th&gt;&lt;th&gt;what it answers&lt;/th&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padArrGet ( $target, $key, $default = NULL )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the value at a dot path, or the default; a NULL key is the target itself&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padArrSet ( &amp;amp;$array, $key, $value )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;sets the value at a dot path, making the levels on the way; the array&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padArrHas ( $array, $keys )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;whether every dot path given exists - a NULL value exists&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padArrForget ( &amp;amp;$array, $keys )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;removes one or several dot paths; the array&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padArrOnly ( $array, $keys )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the top-level keys given, in the order given&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padArrExcept ( $array, $keys )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the array without the keys given - dot paths too&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padArrPluck ( $rows, $value, $key = NULL )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;one field of every row, keyed by another field when given&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padArrWhere ( $rows, $key, $operator, $value )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the rows that pass, keys kept&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padArrFirst ( $array, $callback = NULL, $default = NULL )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the first value, or the first a callback passes, or the default&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padArrLast ( $array, $callback = NULL, $default = NULL )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the same from the end&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padArrGroupBy ( $rows, $key )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the rows in groups by a field, each group a list&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padArrKeyBy ( $rows, $key )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the rows keyed by a field, a later row winning&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padArrSortBy ( $rows, $key, $descending = FALSE )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the rows sorted by a field, stable, keys kept&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padArrFlatten ( $array, $depth = INF )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the values, nested arrays opened up&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padArrDot ( $array, $prepend = '' )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;a nested array as one level with dot path keys&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padArrUndot ( $array )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;dot path keys made nested arrays again&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padArrWrap ( $value )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the value as an array&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padArrSum / Avg / Min / Max ( $rows, $key = NULL )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the sum, average, smallest, largest of the numbers&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;p&gt;A field to work on - &lt;code&gt;$key&lt;/code&gt;, &lt;code&gt;$value&lt;/code&gt; - is a dot path or a callback<br>(a Closure, given the row and its key); a string is always a dot path. Where a list is<br>expected, NULL, an empty string or any other plain value is an empty list, so the answer of a<br>query that found nothing goes through without a check. A wrong argument - an unknown<br>operator, a negative depth, a key that is no key - is reported as a PAD error naming the<br>function.&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax62b56198462526cfea49925b57ed6843"></div>
+                        <script>
+                        padAjax62b56198462526cfea49925b57ed6843 = new XMLHttpRequest();
+                        padAjax62b56198462526cfea49925b57ed6843.onreadystatechange=function() {
+                        if (padAjax62b56198462526cfea49925b57ed6843.readyState === 4) {
+                        if (padAjax62b56198462526cfea49925b57ed6843.status === 200) {
+                        document.getElementById("padAjax62b56198462526cfea49925b57ed6843").innerHTML=padAjax62b56198462526cfea49925b57ed6843.responseText;
+                        } else {
+                        document.getElementById("padAjax62b56198462526cfea49925b57ed6843").innerHTML=padAjax62b56198462526cfea49925b57ed6843.statusText;
+                        }
+                        }
+                        }
+                        padAjax62b56198462526cfea49925b57ed6843.open("GET","http://localhost/pad/manual/?pages/arrays&padInclude",true);
+                        padAjax62b56198462526cfea49925b57ed6843.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/callback<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/callback.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">block</font><font color="red"></font>}</b><br>&lt;p&gt;<br>It's possible to put a PHP file in the directory '_callbacks' that is called back at the processing of a pad tag.&lt;br&gt;<br>- With option 'before' the callback happens for every occurrence before the processing of the ocurrences.&lt;br&gt;<br>- Without 'before' the callback happens during the processing of the occurrences, as each one is processed.<br><br>&lt;/p&gt;<br><b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>callback/before<font color="black">'</font><font color="black">,</font> php=<font color="black">'</font>_callbacks/before.php<font color="black">'</font><font color="black">,</font> skipClose</font>}</b>          <br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>callback/demand<font color="black">'</font><font color="black">,</font> php=<font color="black">'</font>_callbacks/demand.php<font color="black">'</font><font color="black">,</font> skipOpen</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxde3845636cdb708bd6ea0cf18c953283"></div>
+                        <script>
+                        padAjaxde3845636cdb708bd6ea0cf18c953283 = new XMLHttpRequest();
+                        padAjaxde3845636cdb708bd6ea0cf18c953283.onreadystatechange=function() {
+                        if (padAjaxde3845636cdb708bd6ea0cf18c953283.readyState === 4) {
+                        if (padAjaxde3845636cdb708bd6ea0cf18c953283.status === 200) {
+                        document.getElementById("padAjaxde3845636cdb708bd6ea0cf18c953283").innerHTML=padAjaxde3845636cdb708bd6ea0cf18c953283.responseText;
+                        } else {
+                        document.getElementById("padAjaxde3845636cdb708bd6ea0cf18c953283").innerHTML=padAjaxde3845636cdb708bd6ea0cf18c953283.statusText;
+                        }
+                        }
+                        }
+                        padAjaxde3845636cdb708bd6ea0cf18c953283.open("GET","http://localhost/pad/manual/?pages/callback&padInclude",true);
+                        padAjaxde3845636cdb708bd6ea0cf18c953283.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/charts<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/charts.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Charts<font color="black">'</font></font>}</b><br><br>&lt;p&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>chart<font color="black">'</font></font>}</b> draws a chart as inline SVG on the server. There is no JavaScript, so the<br>chart prints, works where scripts do not run, and caches like any other output. A<br>&lt;code&gt;bar&lt;/code&gt; chart puts columns on a zero baseline; a &lt;code&gt;line&lt;/code&gt; chart draws a line<br>over a light wash with the last point marked.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/charts_1<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Where the numbers come from&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;data='sales'&lt;/code&gt; - a <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>data<font color="black">'</font></font>}</b> store, a sequence store, an array of the page's PHP, or a &lt;code&gt;_data&lt;/code&gt; file of that name.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;value=&lt;/code&gt; names the field with the number, &lt;code&gt;label=&lt;/code&gt; the field for the axis. Without them the first numeric field is the value and the first other field the label.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;sequence='fibonacci', rows=12&lt;/code&gt; - the first terms of a sequence, for demo data straight away.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Sparklines&lt;/h2&gt;<br><br>&lt;p&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>sparkline<font color="black">'</font></font>}</b> is a line chart the size of a word, without axes, to stand in a sentence<br>or a table cell.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/charts_2<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Accessible and themeable&lt;/h2&gt;<br><br>&lt;p&gt;Every chart is an image to a screen reader (&lt;code&gt;role="img"&lt;/code&gt;), named by its<br>&lt;code&gt;title=&lt;/code&gt; and described by a list of its values. Each bar and point carries its own<br>tooltip. The colours are CSS custom properties - &lt;code&gt;--pad-chart-series&lt;/code&gt;,<br>&lt;code&gt;--pad-chart-text&lt;/code&gt;, &lt;code&gt;--pad-chart-grid&lt;/code&gt;, &lt;code&gt;--pad-chart-surface&lt;/code&gt; -<br>set on &lt;code&gt;.pad-chart&lt;/code&gt;, and their defaults follow the page's<br>&lt;code&gt;color-scheme&lt;/code&gt;, light or dark.&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax9135b734d863eea934d737fca509a1d1"></div>
+                        <script>
+                        padAjax9135b734d863eea934d737fca509a1d1 = new XMLHttpRequest();
+                        padAjax9135b734d863eea934d737fca509a1d1.onreadystatechange=function() {
+                        if (padAjax9135b734d863eea934d737fca509a1d1.readyState === 4) {
+                        if (padAjax9135b734d863eea934d737fca509a1d1.status === 200) {
+                        document.getElementById("padAjax9135b734d863eea934d737fca509a1d1").innerHTML=padAjax9135b734d863eea934d737fca509a1d1.responseText;
+                        } else {
+                        document.getElementById("padAjax9135b734d863eea934d737fca509a1d1").innerHTML=padAjax9135b734d863eea934d737fca509a1d1.statusText;
+                        }
+                        }
+                        }
+                        padAjax9135b734d863eea934d737fca509a1d1.open("GET","http://localhost/pad/manual/?pages/charts&padInclude",true);
+                        padAjax9135b734d863eea934d737fca509a1d1.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/clean_urls<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/clean_urls.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Clean URLs<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A page is named in the query string - &lt;code&gt;/shop/?products/42&lt;/code&gt; - or by the path<br>behind the application: &lt;code&gt;/shop/products/42&lt;/code&gt;. The path is mapped onto the files,<br>and a file or directory whose name is a bracketed variable name stands for any one segment.<br>The segment becomes that variable before the page's PHP runs:&lt;/p&gt;<br><br>&lt;table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;"&gt;<br>  &lt;tr&gt;&lt;th&gt;url&lt;/th&gt;&lt;th&gt;file&lt;/th&gt;&lt;th&gt;variables&lt;/th&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;/shop/products/42&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;products/[id].pad&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;$id&lt;/code&gt; is 42&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;/shop/products/new&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;products/new.pad&lt;/code&gt;&lt;/td&gt;&lt;td&gt;a name of its own wins over a bracket&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;/shop/blog/2026/hello-pad&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;blog/[year]/[slug].pad&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;$year&lt;/code&gt; and &lt;code&gt;$slug&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;/shop/docs/a/b&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;docs/[path+].pad&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;$path&lt;/code&gt; is the rest, a/b&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;p&gt;The same names resolve wherever a page is named - here through<br>&lt;code&gt;<b>{<font color="blue">page</font><font color="red"></font>}</b>&lt;/code&gt;, with &lt;code&gt;shop/products/[id].pad&lt;/code&gt; and<br>&lt;code&gt;shop/blog/[year]/[slug].pad&lt;/code&gt; beside the fragment:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/clean_urls_1<font color="black">'</font></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;?products/42&lt;/code&gt; resolves the same way, so the application runs on a server<br>      that routes no paths, and &lt;code&gt;/shop/index.php/products/42&lt;/code&gt; works everywhere.<br>      A bracketed file is never reached by its own name.&lt;/li&gt;<br>  &lt;li&gt;Every &lt;code&gt;?page&lt;/code&gt; link keeps working: on a clean URL, a query string that starts<br>      with a bare page name - the relative &lt;code&gt;href="?about"&lt;/code&gt; - names that page.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;$padCleanUrls = TRUE&lt;/code&gt; in &lt;code&gt;_config/config.php&lt;/code&gt; makes<br>      &lt;code&gt;$padGo&lt;/code&gt; write &lt;code&gt;/shop/products/42&lt;/code&gt;. Apache needs one line,<br>      &lt;code&gt;FallbackResource /shop/index.php&lt;/code&gt;; &lt;code&gt;php -S&lt;/code&gt; needs nothing.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxe9032694537489d3c56599ce5b87e8c0"></div>
+                        <script>
+                        padAjaxe9032694537489d3c56599ce5b87e8c0 = new XMLHttpRequest();
+                        padAjaxe9032694537489d3c56599ce5b87e8c0.onreadystatechange=function() {
+                        if (padAjaxe9032694537489d3c56599ce5b87e8c0.readyState === 4) {
+                        if (padAjaxe9032694537489d3c56599ce5b87e8c0.status === 200) {
+                        document.getElementById("padAjaxe9032694537489d3c56599ce5b87e8c0").innerHTML=padAjaxe9032694537489d3c56599ce5b87e8c0.responseText;
+                        } else {
+                        document.getElementById("padAjaxe9032694537489d3c56599ce5b87e8c0").innerHTML=padAjaxe9032694537489d3c56599ce5b87e8c0.statusText;
+                        }
+                        }
+                        }
+                        padAjaxe9032694537489d3c56599ce5b87e8c0.open("GET","http://localhost/pad/manual/?pages/clean_urls&padInclude",true);
+                        padAjaxe9032694537489d3c56599ce5b87e8c0.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/collections<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/collections.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Markdown collections<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A folder of Markdown files is a data source - a small flat-file CMS. The files live in<br>&lt;code&gt;_content/&lt;name&gt;/&lt;/code&gt;, and <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>collection<font color="black">'</font></font>}</b> iterates them: each file is a<br>row, the keys of its front matter (YAML between two &lt;code&gt;---&lt;/code&gt; lines) are its fields,<br>and three are added - &lt;code&gt;slug&lt;/code&gt;, the file name without &lt;code&gt;.md&lt;/code&gt;;<br>&lt;code&gt;body&lt;/code&gt;, the Markdown written as HTML; and &lt;code&gt;source&lt;/code&gt;, the Markdown as it<br>was.&lt;/p&gt;<br><br>&lt;p&gt;This manual has a folder &lt;code&gt;_content/news/&lt;/code&gt; with two files. The newest first:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/collections_1<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;One post&lt;/h2&gt;<br><br>&lt;p&gt;A list links to the page of a post with its slug - &lt;code&gt;?news/post&amp;amp;slug=<b>{<font color="green"><font color="red">$</font>slug</font>}</b>&lt;/code&gt; -<br>and that page names it with the &lt;code&gt;slug&lt;/code&gt; option. A slug that names no file gives no<br>rows, so the &lt;code&gt;<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>&lt;/code&gt; part answers.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/collections_2<font color="black">'</font></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;body&lt;/code&gt; is HTML; print it raw with &lt;code&gt;<b>{<font color="green"><font color="red">!</font>body</font>}</b>&lt;/code&gt;. Raw HTML in a file is escaped unless the tag has the &lt;code&gt;html&lt;/code&gt; option.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;sort&lt;/code&gt;, &lt;code&gt;first&lt;/code&gt;, &lt;code&gt;where&lt;/code&gt; and the other handling options work on the rows as on any data.&lt;/li&gt;<br>  &lt;li&gt;The folder is looked up like a &lt;code&gt;_data&lt;/code&gt; file: the page's directory, its parents, then &lt;code&gt;_common&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;In PHP, &lt;code&gt;padCollection('news')&lt;/code&gt; gives the same rows.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax85793968e31469c16e870763297dce26"></div>
+                        <script>
+                        padAjax85793968e31469c16e870763297dce26 = new XMLHttpRequest();
+                        padAjax85793968e31469c16e870763297dce26.onreadystatechange=function() {
+                        if (padAjax85793968e31469c16e870763297dce26.readyState === 4) {
+                        if (padAjax85793968e31469c16e870763297dce26.status === 200) {
+                        document.getElementById("padAjax85793968e31469c16e870763297dce26").innerHTML=padAjax85793968e31469c16e870763297dce26.responseText;
+                        } else {
+                        document.getElementById("padAjax85793968e31469c16e870763297dce26").innerHTML=padAjax85793968e31469c16e870763297dce26.statusText;
+                        }
+                        }
+                        }
+                        padAjax85793968e31469c16e870763297dce26.open("GET","http://localhost/pad/manual/?pages/collections&padInclude",true);
+                        padAjax85793968e31469c16e870763297dce26.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/comments<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/comments.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Comments<font color="black">'</font></font>}</b><br><br>&lt;p&gt;PAD has two comment forms. Both are taken out of the template before it is scanned, so a tag written inside one never runs and nothing of it reaches the output.&lt;/p&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;<b>{<font color="green"><font color="red">#</font> ... <font color="red">#</font></font>}</b>&lt;/code&gt; - the original form&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;{-- ... --}&lt;/code&gt; - the form the editor kits highlight and toggle&lt;/li&gt;<br>&lt;/ul&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/comments_1<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Rules&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;A comment closes at the first &lt;code&gt;#}&lt;/code&gt; or &lt;code&gt;--}&lt;/code&gt; after it, and may span lines.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;{--&lt;/code&gt; must be followed by whitespace: a CSS custom property inside an <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>ignore<font color="black">'</font></font>}</b> block, &lt;code&gt;:root{--gap:4px}&lt;/code&gt;, is CSS and stays as it is.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;<b>{<font color="green"><font color="red">#</font>name</font>}</b>&lt;/code&gt; is not a comment but the option sigil - the value of the tag option &lt;code&gt;name&lt;/code&gt;.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;See Also&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;<b>{<font color="blue">manual </font><font color="red"><font color="black">'</font>ignore<font color="black">'</font></font>}</b> - keep PAD from parsing braces&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxdd7eff139246279556d88d8af9efa22b"></div>
+                        <script>
+                        padAjaxdd7eff139246279556d88d8af9efa22b = new XMLHttpRequest();
+                        padAjaxdd7eff139246279556d88d8af9efa22b.onreadystatechange=function() {
+                        if (padAjaxdd7eff139246279556d88d8af9efa22b.readyState === 4) {
+                        if (padAjaxdd7eff139246279556d88d8af9efa22b.status === 200) {
+                        document.getElementById("padAjaxdd7eff139246279556d88d8af9efa22b").innerHTML=padAjaxdd7eff139246279556d88d8af9efa22b.responseText;
+                        } else {
+                        document.getElementById("padAjaxdd7eff139246279556d88d8af9efa22b").innerHTML=padAjaxdd7eff139246279556d88d8af9efa22b.statusText;
+                        }
+                        }
+                        }
+                        padAjaxdd7eff139246279556d88d8af9efa22b.open("GET","http://localhost/pad/manual/?pages/comments&padInclude",true);
+                        padAjaxdd7eff139246279556d88d8af9efa22b.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/components<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/components.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Components<font color="black">:</font> slots and declared parameters<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A tag of your own with a &lt;code&gt;.pad&lt;/code&gt; template is a component: the caller's content goes where the template writes <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>content<font color="black">'</font></font>}</b>. Named slots give it more than one place for content, and &lt;code&gt;<b>{<font color="blue">parms</font><font color="red"></font>}</b>&lt;/code&gt; says which parameters it takes. The card below is &lt;code&gt;_tags/card.pad&lt;/code&gt;:&lt;/p&gt;<br><br><b>{<font color="blue">source </font><font color="red"><font color="black">'</font>_tags/card.pad<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/components_1<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Slots&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;A &lt;code&gt;<b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>footer<font color="black">'</font></font>}</b>...<b>{/<font color="blue">slot</font><font color="red"></font>}</b>&lt;/code&gt; pair standing directly in the content of the tag is a fill: it is taken out of the content and goes where the template has its &lt;code&gt;<b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>footer<font color="black">'</font></font>}</b>&lt;/code&gt;. The rest of the content goes to <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>content<font color="black">'</font></font>}</b>.&lt;/li&gt;<br>  &lt;li&gt;In the template, the content of a &lt;code&gt;<b>{<font color="blue">slot</font><font color="red"></font>}</b>&lt;/code&gt; is its default, rendered when the caller gave no fill. &lt;code&gt;<b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>header<font color="black">'</font></font>/}</b>&lt;/code&gt; in the caller's content is an empty fill.&lt;/li&gt;<br>  &lt;li&gt;A default holding <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>content<font color="black">'</font></font>}</b> is a frame: &lt;code&gt;<b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>footer<font color="black">'</font></font>}</b>&lt;small&gt;&amp;#64;content&amp;#64;&lt;/small&gt;<b>{/<font color="blue">slot</font><font color="red"></font>}</b>&lt;/code&gt; renders the frame round the fill, and nothing - or its <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>else<font color="black">'</font></font>}</b> part - when there is no fill.&lt;/li&gt;<br>  &lt;li&gt;A fill is the caller's text: it renders with the caller's variables, and a &lt;code&gt;<b>{<font color="green"><font color="red">#</font>name</font>}</b>&lt;/code&gt; or a &lt;code&gt;<b>{<font color="blue">slot</font><font color="red"></font>}</b>&lt;/code&gt; inside it belongs to the caller's tag - which is how a template passes a slot of its own on to a tag it uses.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Every use has its own&lt;/h2&gt;<br><br>&lt;p&gt;The fills belong to one use of the tag, so a card inside a card keeps its own footer:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/components_2<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Declared parameters&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;<b>{<font color="blue">parms </font><font color="red">title<font color="black">,</font> tone=<font color="black">'</font>plain<font color="black">'</font></font>}</b>&lt;/code&gt; at the top of the template declares the parameters: a name alone is required, &lt;code&gt;name=default&lt;/code&gt; fills in what the caller left out. Both read as &lt;code&gt;<b>{<font color="green"><font color="red">#</font>title</font>}</b>&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;A required parameter left out is an error, and so - under the strict check - is a parameter the tag does not declare: &lt;code&gt;<b>{<font color="blue">card </font><font color="red">titel=<font color="black">'</font>x<font color="black">'</font></font>}</b>&lt;/code&gt; is reported by name.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax9517814ba2f06ae79791a85fe3038659"></div>
+                        <script>
+                        padAjax9517814ba2f06ae79791a85fe3038659 = new XMLHttpRequest();
+                        padAjax9517814ba2f06ae79791a85fe3038659.onreadystatechange=function() {
+                        if (padAjax9517814ba2f06ae79791a85fe3038659.readyState === 4) {
+                        if (padAjax9517814ba2f06ae79791a85fe3038659.status === 200) {
+                        document.getElementById("padAjax9517814ba2f06ae79791a85fe3038659").innerHTML=padAjax9517814ba2f06ae79791a85fe3038659.responseText;
+                        } else {
+                        document.getElementById("padAjax9517814ba2f06ae79791a85fe3038659").innerHTML=padAjax9517814ba2f06ae79791a85fe3038659.statusText;
+                        }
+                        }
+                        }
+                        padAjax9517814ba2f06ae79791a85fe3038659.open("GET","http://localhost/pad/manual/?pages/components&padInclude",true);
+                        padAjax9517814ba2f06ae79791a85fe3038659.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/conditions<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/conditions.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Conditions and Branching<font color="black">'</font></font>}</b><br><br>&lt;p&gt;The &lt;code&gt;<b>{<font color="blue">if</font><font color="red"></font>}</b>&lt;/code&gt; pair renders its content when its expression holds, with<br>as many &lt;code&gt;<b>{<font color="blue">elseif</font><font color="red"></font>}</b>&lt;/code&gt; branches as needed and an<br>&lt;code&gt;<b>{<font color="blue">else</font><font color="red"></font>}</b>&lt;/code&gt; for when none did:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/conditions_1<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;The comparison operators&lt;/h2&gt;<br><br>&lt;table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;"&gt;<br>  &lt;tr&gt;&lt;th&gt;operator&lt;/th&gt;&lt;th&gt;meaning&lt;/th&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;eq&lt;/code&gt; or &lt;code&gt;==&lt;/code&gt;&lt;/td&gt;&lt;td&gt;equal&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;ne&lt;/code&gt; or &lt;code&gt;!=&lt;/code&gt;&lt;/td&gt;&lt;td&gt;not equal&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;gt&lt;/code&gt; / &lt;code&gt;lt&lt;/code&gt;&lt;/td&gt;&lt;td&gt;greater / less than&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;ge&lt;/code&gt; / &lt;code&gt;le&lt;/code&gt;&lt;/td&gt;&lt;td&gt;greater / less or equal&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;and&lt;/code&gt; / &lt;code&gt;or&lt;/code&gt;&lt;/td&gt;&lt;td&gt;both hold / either holds&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;range (a, b)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the value lies between a and b, ends included&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;p&gt;&amp;nbsp;&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/conditions_2<font color="black">'</font></font>}</b><br><br>&lt;p&gt;&lt;b&gt;A condition needs a comparison.&lt;/b&gt; &lt;code&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>flag</font>}</b>&lt;/code&gt; is not a<br>shorthand for testing truth - write what is being compared:<br>&lt;code&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>flag eq 1</font>}</b>&lt;/code&gt;.&lt;/p&gt;<br><br>&lt;h2&gt;Case and when&lt;/h2&gt;<br><br>&lt;p&gt;When one value decides between several branches, &lt;code&gt;<b>{<font color="blue">case</font><font color="red"></font>}</b>&lt;/code&gt; reads<br>better than a chain of elseifs. Each &lt;code&gt;<b>{<font color="blue">when</font><font color="red"></font>}</b>&lt;/code&gt; names a value, and<br>&lt;code&gt;<b>{<font color="blue">else</font><font color="red"></font>}</b>&lt;/code&gt; catches the rest:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/conditions_3<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A &lt;code&gt;<b>{<font color="blue">when</font><font color="red"></font>}</b>&lt;/code&gt; may list several values, separated by commas; it answers<br>when any of them matches:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/conditions_7<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;The ternary&lt;/h2&gt;<br><br>&lt;p&gt;Inside an expression tag, &lt;code&gt;?&lt;/code&gt; and &lt;code&gt;:&lt;/code&gt; pick one of two values - the<br>usual way to give alternating rows their class, together with the<br>&lt;a href="?pages/properties"&gt;iteration properties&lt;/a&gt;:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/conditions_4<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Inside an expression&lt;/h2&gt;<br><br>&lt;p&gt;An expression has a ternary of its own, &lt;code&gt;cond ? then : else&lt;/code&gt;, the weakest<br>binding there is. &lt;code&gt;a ?? b&lt;/code&gt; answers &lt;code&gt;a&lt;/code&gt; unless it is empty or a field<br>that is not there - so it gives a field its default - and the tests &lt;code&gt;in&lt;/code&gt;,<br>&lt;code&gt;like&lt;/code&gt;, &lt;code&gt;matches&lt;/code&gt; and &lt;code&gt;range&lt;/code&gt; read infix:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/conditions_6<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Properties in conditions&lt;/h2&gt;<br><br>&lt;p&gt;The &lt;a href="?pages/properties"&gt;iteration properties&lt;/a&gt; read as values inside an<br>expression, so they stand in conditions - alone for the boolean ones, with an operator for<br>the counting ones:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/conditions_5<font color="black">'</font></font>}</b><br><br>&lt;p&gt;Every tag also carries the &lt;a href="?pages/else"&gt;else construct&lt;/a&gt;: the part after the<br>divider renders when the tag itself produced nothing.&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa00f191833214ee4e071cc46d3b17cb8"></div>
+                        <script>
+                        padAjaxa00f191833214ee4e071cc46d3b17cb8 = new XMLHttpRequest();
+                        padAjaxa00f191833214ee4e071cc46d3b17cb8.onreadystatechange=function() {
+                        if (padAjaxa00f191833214ee4e071cc46d3b17cb8.readyState === 4) {
+                        if (padAjaxa00f191833214ee4e071cc46d3b17cb8.status === 200) {
+                        document.getElementById("padAjaxa00f191833214ee4e071cc46d3b17cb8").innerHTML=padAjaxa00f191833214ee4e071cc46d3b17cb8.responseText;
+                        } else {
+                        document.getElementById("padAjaxa00f191833214ee4e071cc46d3b17cb8").innerHTML=padAjaxa00f191833214ee4e071cc46d3b17cb8.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa00f191833214ee4e071cc46d3b17cb8.open("GET","http://localhost/pad/manual/?pages/conditions&padInclude",true);
+                        padAjaxa00f191833214ee4e071cc46d3b17cb8.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/content<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/content.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>The Content Construct<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A content store is a named block of template, defined once and usable anywhere after it.<br>&lt;a href="?pages/the_content_tag"&gt;The content tag&lt;/a&gt; page covers defining one and the ways<br>two blocks merge; this page is about what the construct does for a whole page: one block,<br>many tags, each deciding how to wear it.&lt;/p&gt;<br><br>&lt;h2&gt;A store used by name&lt;/h2&gt;<br><br>&lt;p&gt;Writing the store's name as a tag renders it. The tag may bring content of its own -<br>without &lt;code&gt;merge=&lt;/code&gt; the store comes first, and &lt;code&gt;merge='bottom'&lt;/code&gt; or<br>&lt;code&gt;merge='replace'&lt;/code&gt; say otherwise:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/content_1<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;The <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>content<font color="black">'</font></font>}</b> placeholder&lt;/h2&gt;<br><br>&lt;p&gt;Instead of joining end to end, either side may carry <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>content<font color="black">'</font></font>}</b>: whichever<br>side has it, the other is dropped into that spot. A store shaped like a frame turns every<br>usage into its filling:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/content_2<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;content= on any tag, and a store with two halves&lt;/h2&gt;<br><br>&lt;p&gt;Every tag takes a &lt;code&gt;content=&lt;/code&gt; option naming a store, with the same<br>&lt;code&gt;merge=&lt;/code&gt; choices. And a store may carry an <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>else<font color="black">'</font></font>}</b> of its own: which<br>half is used is decided by the tag wearing it - the same store gives its first half to a tag<br>that produced something and its second half to one that came up empty:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/content_3<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax84fbf70933326c7a4fa775f9e1ae3845"></div>
+                        <script>
+                        padAjax84fbf70933326c7a4fa775f9e1ae3845 = new XMLHttpRequest();
+                        padAjax84fbf70933326c7a4fa775f9e1ae3845.onreadystatechange=function() {
+                        if (padAjax84fbf70933326c7a4fa775f9e1ae3845.readyState === 4) {
+                        if (padAjax84fbf70933326c7a4fa775f9e1ae3845.status === 200) {
+                        document.getElementById("padAjax84fbf70933326c7a4fa775f9e1ae3845").innerHTML=padAjax84fbf70933326c7a4fa775f9e1ae3845.responseText;
+                        } else {
+                        document.getElementById("padAjax84fbf70933326c7a4fa775f9e1ae3845").innerHTML=padAjax84fbf70933326c7a4fa775f9e1ae3845.statusText;
+                        }
+                        }
+                        }
+                        padAjax84fbf70933326c7a4fa775f9e1ae3845.open("GET","http://localhost/pad/manual/?pages/content&padInclude",true);
+                        padAjax84fbf70933326c7a4fa775f9e1ae3845.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/coverage<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/coverage.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Template coverage<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A test suite says what it checks; coverage says what it reaches. With coverage on, every<br>local request notes which templates it read, which of their tags ran, and which branch each<br><b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>if<font color="black">'</font></font>}</b> and <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>case<font color="black">'</font></font>}</b> took. The report then shows each template with the parts that<br>never ran marked.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/coverage_1<font color="black">'</font></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;$padCoverage = TRUE&lt;/code&gt; in &lt;code&gt;_config/config.php&lt;/code&gt; records into the run<br>      &lt;code&gt;default&lt;/code&gt;; a name instead of TRUE records into a run of that name, and<br>      &lt;code&gt;?page&amp;amp;padCoverage=name&lt;/code&gt; records one request.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;develop/?coverage&amp;amp;start=suites&lt;/code&gt; records every local request of every<br>      application until &lt;code&gt;develop/?coverage&amp;amp;stop&lt;/code&gt; - start it, run the suites,<br>      stop it, and &lt;code&gt;develop/?coverage&amp;amp;run=suites&lt;/code&gt; lists every template with the<br>      share of its tags and branches that ran, and the files no request read at all.&lt;/li&gt;<br>  &lt;li&gt;A run is a file of JSON lines, &lt;code&gt;DATA/coverage/&lt;run&gt;.jsonl&lt;/code&gt;, one line per<br>      request. Only local requests are recorded.&lt;/li&gt;<br>  &lt;li&gt;An <b>{<font color="blue">if</font><font color="red"></font>}</b> without an <b>{<font color="blue">else</font><font color="red"></font>}</b> has one branch more: the run in which<br>      its condition was false. It is marked on the <b>{/<font color="blue">if</font><font color="red"></font>}</b>.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxab404f7fac361f1cd85688a892e7c405"></div>
+                        <script>
+                        padAjaxab404f7fac361f1cd85688a892e7c405 = new XMLHttpRequest();
+                        padAjaxab404f7fac361f1cd85688a892e7c405.onreadystatechange=function() {
+                        if (padAjaxab404f7fac361f1cd85688a892e7c405.readyState === 4) {
+                        if (padAjaxab404f7fac361f1cd85688a892e7c405.status === 200) {
+                        document.getElementById("padAjaxab404f7fac361f1cd85688a892e7c405").innerHTML=padAjaxab404f7fac361f1cd85688a892e7c405.responseText;
+                        } else {
+                        document.getElementById("padAjaxab404f7fac361f1cd85688a892e7c405").innerHTML=padAjaxab404f7fac361f1cd85688a892e7c405.statusText;
+                        }
+                        }
+                        }
+                        padAjaxab404f7fac361f1cd85688a892e7c405.open("GET","http://localhost/pad/manual/?pages/coverage&padInclude",true);
+                        padAjaxab404f7fac361f1cd85688a892e7c405.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/csrf_protection<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/csrf_protection.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>CSRF protection<font color="black">'</font></font>}</b><br><br>&lt;p&gt;Another site can make a visitor's browser post to your application - a hidden form that<br>submits itself - and the browser sends your session cookie along. A CSRF token tells those<br>posts apart from the ones your own forms send: a random value kept in the visitor's session<br>and written into your form, which another site can make the browser send but cannot read.&lt;/p&gt;<br><br>&lt;h2&gt;One setting&lt;/h2&gt;<br><br>&lt;p&gt;With &lt;code&gt;$padCsrf = TRUE&lt;/code&gt; in &lt;code&gt;_config/config.php&lt;/code&gt; every<br>&lt;code&gt;&lt;form method="post"&gt;&lt;/code&gt; of a page gets a hidden &lt;code&gt;padCsrfToken&lt;/code&gt; field<br>holding the token, and every POST - and PUT, PATCH and DELETE - that does not bring the token<br>back is answered &lt;code&gt;403&lt;/code&gt; before any of the application runs. The forms an<br>application already has are protected without a change to them. A form that posts to another<br>site gets no token, and neither does a GET form, whose fields end up in the url.&lt;/p&gt;<br><br>&lt;h2&gt;The <b>{<font color="blue">csrf</font><font color="red"></font>}</b> tag&lt;/h2&gt;<br><br>&lt;p&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>csrf<font color="black">'</font></font>}</b> writes the field itself, for a form the page builds some other way, or for<br>an application that leaves &lt;code&gt;$padCsrf&lt;/code&gt; off and checks a post by hand with<br>&lt;code&gt;padCsrfValid ()&lt;/code&gt;. &lt;code&gt;<b>{<font color="blue">csrf </font><font color="red">token</font>}</b>&lt;/code&gt; is the bare token, for a<br>script that sends it in an &lt;code&gt;X-CSRF-Token&lt;/code&gt; header:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/csrf_protection_1<font color="black">'</font></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;The token is one per session, so two open tabs and the back button keep working. The<br>  session starts the first time a token is needed.&lt;/li&gt;<br>  &lt;li&gt;A page carrying a token is never stored in the page cache - it would hand one visitor's<br>  token to the next.&lt;/li&gt;<br>  &lt;li&gt;An application that accepts posts from elsewhere on some pages - a webhook - switches<br>  &lt;code&gt;$padCsrf&lt;/code&gt; off for those pages in its &lt;code&gt;_config/config.php&lt;/code&gt;, which<br>  knows &lt;code&gt;$padPage&lt;/code&gt;.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax0e8e19d536720d1826e36fc9a4758ece"></div>
+                        <script>
+                        padAjax0e8e19d536720d1826e36fc9a4758ece = new XMLHttpRequest();
+                        padAjax0e8e19d536720d1826e36fc9a4758ece.onreadystatechange=function() {
+                        if (padAjax0e8e19d536720d1826e36fc9a4758ece.readyState === 4) {
+                        if (padAjax0e8e19d536720d1826e36fc9a4758ece.status === 200) {
+                        document.getElementById("padAjax0e8e19d536720d1826e36fc9a4758ece").innerHTML=padAjax0e8e19d536720d1826e36fc9a4758ece.responseText;
+                        } else {
+                        document.getElementById("padAjax0e8e19d536720d1826e36fc9a4758ece").innerHTML=padAjax0e8e19d536720d1826e36fc9a4758ece.statusText;
+                        }
+                        }
+                        }
+                        padAjax0e8e19d536720d1826e36fc9a4758ece.open("GET","http://localhost/pad/manual/?pages/csrf_protection&padInclude",true);
+                        padAjax0e8e19d536720d1826e36fc9a4758ece.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/data_answers<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/data_answers.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>JSON and CSV from the same page<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A page's PHP already produces its data, so the same page can answer with that data instead<br>of rendering its template. The PHP names what may leave the server in<br>&lt;code&gt;$padExpose&lt;/code&gt; - nothing else ever does, and an engine variable never does:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/data_answers_1<font color="black">'</font></font>}</b><br><br>&lt;p&gt;Asked with &lt;code&gt;&amp;amp;padFormat=json&lt;/code&gt; - or by a client sending<br>&lt;code&gt;Accept: application/json&lt;/code&gt; - that page answers the named variables as one JSON<br>object. &lt;code&gt;&amp;amp;padFormat=csv&lt;/code&gt;, or &lt;code&gt;Accept: text/csv&lt;/code&gt;, answers the first<br>list among them as a table with a header row. The template does not run for either:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/data_answers_2<font color="black">'</font></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;A page that exposes nothing renders its HTML as always. Asked outright with<br>      &lt;code&gt;padFormat=&lt;/code&gt;, it answers 406 Not Acceptable - as does a format that does not<br>      exist, or CSV from a page with no list.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;$padOutputType = 'json'&lt;/code&gt; (or &lt;code&gt;'csv'&lt;/code&gt;) in<br>      &lt;code&gt;_config/config.php&lt;/code&gt; makes every page of an application answer its data;<br>      &lt;code&gt;<b>{<font color="blue">output </font><font color="red"><font color="black">'</font>json<font color="black">'</font></font>}</b>&lt;/code&gt; does it from a template.&lt;/li&gt;<br>  &lt;li&gt;A script or a React component fetches from the ordinary page:<br>      &lt;code&gt;fetch('?orders&amp;amp;padFormat=json')&lt;/code&gt;.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax51e9e787f114c5e3c3ca61b54cf506b1"></div>
+                        <script>
+                        padAjax51e9e787f114c5e3c3ca61b54cf506b1 = new XMLHttpRequest();
+                        padAjax51e9e787f114c5e3c3ca61b54cf506b1.onreadystatechange=function() {
+                        if (padAjax51e9e787f114c5e3c3ca61b54cf506b1.readyState === 4) {
+                        if (padAjax51e9e787f114c5e3c3ca61b54cf506b1.status === 200) {
+                        document.getElementById("padAjax51e9e787f114c5e3c3ca61b54cf506b1").innerHTML=padAjax51e9e787f114c5e3c3ca61b54cf506b1.responseText;
+                        } else {
+                        document.getElementById("padAjax51e9e787f114c5e3c3ca61b54cf506b1").innerHTML=padAjax51e9e787f114c5e3c3ca61b54cf506b1.statusText;
+                        }
+                        }
+                        }
+                        padAjax51e9e787f114c5e3c3ca61b54cf506b1.open("GET","http://localhost/pad/manual/?pages/data_answers&padInclude",true);
+                        padAjax51e9e787f114c5e3c3ca61b54cf506b1.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

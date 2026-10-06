@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - checks
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - checks
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: fragments/strings_4<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/strings_4.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/strings_4.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $allowed </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'admin/*'</span><span style="color: #007700">, </span><span style="color: #DD0000">'reports/*.pdf' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$paths </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'admin/users'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'reports/may.pdf'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'reports/may.csv' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$checks </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$paths </span><span style="color: #007700">as </span><span style="color: #0000BB">$path </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$checks </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'path'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$path</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'allowed' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrIs </span><span style="color: #007700">( </span><span style="color: #0000BB">$allowed</span><span style="color: #007700">, </span><span style="color: #0000BB">$path </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no'<br>    </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$card  </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrMask </span><span style="color: #007700">( </span><span style="color: #DD0000">'4111 1111 1111 1234'</span><span style="color: #007700">, </span><span style="color: #DD0000">'*'</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, -</span><span style="color: #0000BB">4 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$email </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrMask </span><span style="color: #007700">( </span><span style="color: #DD0000">'ann.smith@example.com'</span><span style="color: #007700">, </span><span style="color: #DD0000">'*'</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">8 </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">checks</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>path</font>}</b>: <b>{<font color="green"><font color="red">$</font>allowed</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">checks</font><font color="red"></font>}</b><br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>card</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>email</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax1a6936b8710b68ca2ea68a28ee5234df"></div>
+                        <script>
+                        padAjax1a6936b8710b68ca2ea68a28ee5234df = new XMLHttpRequest();
+                        padAjax1a6936b8710b68ca2ea68a28ee5234df.onreadystatechange=function() {
+                        if (padAjax1a6936b8710b68ca2ea68a28ee5234df.readyState === 4) {
+                        if (padAjax1a6936b8710b68ca2ea68a28ee5234df.status === 200) {
+                        document.getElementById("padAjax1a6936b8710b68ca2ea68a28ee5234df").innerHTML=padAjax1a6936b8710b68ca2ea68a28ee5234df.responseText;
+                        } else {
+                        document.getElementById("padAjax1a6936b8710b68ca2ea68a28ee5234df").innerHTML=padAjax1a6936b8710b68ca2ea68a28ee5234df.statusText;
+                        }
+                        }
+                        }
+                        padAjax1a6936b8710b68ca2ea68a28ee5234df.open("GET","http://localhost/pad/manual/?fragments/strings_4&padInclude",true);
+                        padAjax1a6936b8710b68ca2ea68a28ee5234df.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

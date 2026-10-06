@@ -1,6 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<!DOCTYPE html>
+<html>
+  <head>
     <title>
       PAD - Reference - Tag types - staff
     </title>
@@ -11,14 +11,14 @@
         PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
       </h1>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table><br>
+      </table><br>
       <hr width="75%">
     </center>
     <blockquote>
@@ -27,14 +27,14 @@
           <h1>
             Reference - Tag types - staff
           </h1>
-          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tbody><tr>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
               <td>
                 <center>
                   <hr>
                   App: manual - Page: callback/before<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2"></font>
@@ -53,101 +53,28 @@
                         <pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue">staff </font><font color="red">callback=<font color="black">'</font>before.php<font color="black">'</font><font color="black">,</font> before</font>}</b><br><br>    <b>{<font color="blue">first</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;Totals&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$salaryTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$bonusTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$totalTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">first</font><font color="red"></font>}</b><br><br>    &lt;tr align="right" bgcolor="<b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>yellow<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pink<font color="black">'</font></font>}</b>"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br> <br>&lt;/table&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxy6BGhAP3"><table border="1">
-
-  <tbody><tr>
-    <th>Name</th>
-    <th>Salary</th>
-    <th>Bonus</th>
-    <th>Total</th>
-  </tr>
-  
-  
-
-    
-      <tr>
-        <td>Totals</td>
-        <td>15000.00</td>
-        <td>1500.00</td>
-        <td>16500.00</td>
-      </tr>
-    
-
-    <tr align="right" bgcolor="yellow">
-      <td align="left">Joe</td>
-      <td>1000.00</td>
-      <td>500.00</td>
-      <td>1500.00</td>
-    </tr>
-
-  
-
-    
-
-    <tr align="right" bgcolor="pink">
-      <td align="left">Jim</td>
-      <td>2000.00</td>
-      <td>400.00</td>
-      <td>2400.00</td>
-    </tr>
-
-  
-
-    
-
-    <tr align="right" bgcolor="yellow">
-      <td align="left">John</td>
-      <td>3000.00</td>
-      <td>300.00</td>
-      <td>3300.00</td>
-    </tr>
-
-  
-
-    
-
-    <tr align="right" bgcolor="pink">
-      <td align="left">Jack</td>
-      <td>4000.00</td>
-      <td>200.00</td>
-      <td>4200.00</td>
-    </tr>
-
-  
-
-    
-
-    <tr align="right" bgcolor="yellow">
-      <td align="left">Jerry</td>
-      <td>5000.00</td>
-      <td>100.00</td>
-      <td>5100.00</td>
-    </tr>
-
-  
- 
-</tbody></table></div>
+                        <div id="padAjaxebec0e178956420939e5ca936ab2b330"></div>
                         <script>
-                        padAjaxy6BGhAP3 = new XMLHttpRequest();
-                        padAjaxy6BGhAP3.onreadystatechange=function() {
-                        if (padAjaxy6BGhAP3.readyState === 4) {
-                        if (padAjaxy6BGhAP3.status === 200) {
-                        document.getElementById("padAjaxy6BGhAP3").innerHTML=padAjaxy6BGhAP3.responseText;
+                        padAjaxebec0e178956420939e5ca936ab2b330 = new XMLHttpRequest();
+                        padAjaxebec0e178956420939e5ca936ab2b330.onreadystatechange=function() {
+                        if (padAjaxebec0e178956420939e5ca936ab2b330.readyState === 4) {
+                        if (padAjaxebec0e178956420939e5ca936ab2b330.status === 200) {
+                        document.getElementById("padAjaxebec0e178956420939e5ca936ab2b330").innerHTML=padAjaxebec0e178956420939e5ca936ab2b330.responseText;
                         } else {
-                        document.getElementById("padAjaxy6BGhAP3").innerHTML=padAjaxy6BGhAP3.statusText;
+                        document.getElementById("padAjaxebec0e178956420939e5ca936ab2b330").innerHTML=padAjaxebec0e178956420939e5ca936ab2b330.statusText;
                         }
                         }
                         }
-                        padAjaxy6BGhAP3.open("GET","http://localhost/manual/?callback/before&padInclude&padSesID=DiM2hOlW&padReqID=I6mPr8ub",true);
-                        padAjaxy6BGhAP3.send();
+                        padAjaxebec0e178956420939e5ca936ab2b330.open("GET","http://localhost/pad/manual/?callback/before&padInclude",true);
+                        padAjaxebec0e178956420939e5ca936ab2b330.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
                   <hr>
                   App: manual - Page: callback/demand<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2"></font>
@@ -163,101 +90,38 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue">staff </font><font color="red">callback=<font color="black">'</font>demand.php<font color="black">'</font><font color="black">,</font> demand</font>}</b><br><br>    &lt;tr align="right" <br>        bgcolor="<b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>yellow<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pink<font color="black">'</font></font>}</b>"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><br>  &lt;tr&gt;<br>    &lt;td&gt;Totals&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$salaryTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$bonusTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$totalTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br> <br>&lt;/table&gt;</code></pre>
+                        <pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue">staff </font><font color="red">callback=<font color="black">'</font>demand.php<font color="black">'</font></font>}</b><br><br>    &lt;tr align="right" <br>        bgcolor="<b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>yellow<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pink<font color="black">'</font></font>}</b>"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><br>  &lt;tr&gt;<br>    &lt;td&gt;Totals&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$salaryTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$bonusTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$totalTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br> <br>&lt;/table&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxfShfztOm"><table border="1">
-
-  <tbody><tr>
-    <th>Name</th>
-    <th>Salary</th>
-    <th>Bonus</th>
-    <th>Total</th>
-  </tr>
-  
-  
-
-    <tr align="right" bgcolor="yellow">
-      <td align="left">Joe</td>
-      <td>1000.00</td>
-      <td>500.00</td>
-      <td>1500.00</td>
-    </tr>
-
-  
-
-    <tr align="right" bgcolor="pink">
-      <td align="left">Jim</td>
-      <td>2000.00</td>
-      <td>400.00</td>
-      <td>2400.00</td>
-    </tr>
-
-  
-
-    <tr align="right" bgcolor="yellow">
-      <td align="left">John</td>
-      <td>3000.00</td>
-      <td>300.00</td>
-      <td>3300.00</td>
-    </tr>
-
-  
-
-    <tr align="right" bgcolor="pink">
-      <td align="left">Jack</td>
-      <td>4000.00</td>
-      <td>200.00</td>
-      <td>4200.00</td>
-    </tr>
-
-  
-
-    <tr align="right" bgcolor="yellow">
-      <td align="left">Jerry</td>
-      <td>5000.00</td>
-      <td>100.00</td>
-      <td>5100.00</td>
-    </tr>
-
-  
-
-  <tr>
-    <td>Totals</td>
-    <td>15000.00</td>
-    <td>1500.00</td>
-    <td>16500.00</td>
-  </tr>
- 
-</tbody></table></div>
+                        <div id="padAjax597307190bf318317ac5f9be4588b643"></div>
                         <script>
-                        padAjaxfShfztOm = new XMLHttpRequest();
-                        padAjaxfShfztOm.onreadystatechange=function() {
-                        if (padAjaxfShfztOm.readyState === 4) {
-                        if (padAjaxfShfztOm.status === 200) {
-                        document.getElementById("padAjaxfShfztOm").innerHTML=padAjaxfShfztOm.responseText;
+                        padAjax597307190bf318317ac5f9be4588b643 = new XMLHttpRequest();
+                        padAjax597307190bf318317ac5f9be4588b643.onreadystatechange=function() {
+                        if (padAjax597307190bf318317ac5f9be4588b643.readyState === 4) {
+                        if (padAjax597307190bf318317ac5f9be4588b643.status === 200) {
+                        document.getElementById("padAjax597307190bf318317ac5f9be4588b643").innerHTML=padAjax597307190bf318317ac5f9be4588b643.responseText;
                         } else {
-                        document.getElementById("padAjaxfShfztOm").innerHTML=padAjaxfShfztOm.statusText;
+                        document.getElementById("padAjax597307190bf318317ac5f9be4588b643").innerHTML=padAjax597307190bf318317ac5f9be4588b643.statusText;
                         }
                         }
                         }
-                        padAjaxfShfztOm.open("GET","http://localhost/manual/?callback/demand&padInclude&padSesID=DiM2hOlW&padReqID=I6mPr8ub",true);
-                        padAjaxfShfztOm.send();
+                        padAjax597307190bf318317ac5f9be4588b643.open("GET","http://localhost/pad/manual/?callback/demand&padInclude",true);
+                        padAjax597307190bf318317ac5f9be4588b643.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
                   <hr>
-                  App: check - Page: control/break<br>
+                  App: manual - Page: fragments/options/options_1<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2"></font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">control/break.pad</font>
+                        <font size="-2">fragments/options/options_1.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -266,137 +130,38 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;hr&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">break</font><font color="red"></font>}</b><br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;hr&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">break </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b><br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;hr&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">break </font><font color="red">-2</font>}</b><br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                        <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">staff </font><font color="red">words</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staff</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxogNEyyAp"><table border="1">
-  
-    <tbody><tr>
-      <td> joe </td>
-      <td> 555-1111 </td>
-    </tr>
-  
-    <tr>
-      <td> jim </td>
-      <td> 555-2222 </td>
-    </tr>
-  
-    <tr>
-      <td> john </td>
-      <td> 555-3333 </td>
-    </tr>
-  
-    <tr>
-      <td> jack </td>
-      <td> 555-4444 </td>
-    </tr>
-  
-    <tr>
-      <td> jerry </td>
-      <td> 555-5555 </td>
-    </tr>
-  
-</tbody></table>
-
-<hr>
-
-<table border="1">
-  
-    
-    <tbody><tr>
-      <td> joe </td>
-      <td> 555-1111 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> jim </td>
-      <td> 555-2222 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> john </td>
-      <td> 555-3333 </td>
-    </tr>
-  
-</tbody></table>
-
-<hr>
-
-<table border="1">
-  
-    
-    <tbody><tr>
-      <td> joe </td>
-      <td> 555-1111 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> jim </td>
-      <td> 555-2222 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> john </td>
-      <td> 555-3333 </td>
-    </tr>
-  
-</tbody></table>
-
-<hr>
-
-<table border="1">
-  
-    
-    <tbody><tr>
-      <td> joe </td>
-      <td> 555-1111 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> jim </td>
-      <td> 555-2222 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> john </td>
-      <td> 555-3333 </td>
-    </tr>
-  
-</tbody></table></div>
+                        <div id="padAjaxadf724d0ba191fae80b2f025cb8f7779"></div>
                         <script>
-                        padAjaxogNEyyAp = new XMLHttpRequest();
-                        padAjaxogNEyyAp.onreadystatechange=function() {
-                        if (padAjaxogNEyyAp.readyState === 4) {
-                        if (padAjaxogNEyyAp.status === 200) {
-                        document.getElementById("padAjaxogNEyyAp").innerHTML=padAjaxogNEyyAp.responseText;
+                        padAjaxadf724d0ba191fae80b2f025cb8f7779 = new XMLHttpRequest();
+                        padAjaxadf724d0ba191fae80b2f025cb8f7779.onreadystatechange=function() {
+                        if (padAjaxadf724d0ba191fae80b2f025cb8f7779.readyState === 4) {
+                        if (padAjaxadf724d0ba191fae80b2f025cb8f7779.status === 200) {
+                        document.getElementById("padAjaxadf724d0ba191fae80b2f025cb8f7779").innerHTML=padAjaxadf724d0ba191fae80b2f025cb8f7779.responseText;
                         } else {
-                        document.getElementById("padAjaxogNEyyAp").innerHTML=padAjaxogNEyyAp.statusText;
+                        document.getElementById("padAjaxadf724d0ba191fae80b2f025cb8f7779").innerHTML=padAjaxadf724d0ba191fae80b2f025cb8f7779.statusText;
                         }
                         }
                         }
-                        padAjaxogNEyyAp.open("GET","http://localhost/check/?control/break&padInclude&padSesID=DiM2hOlW&padReqID=I6mPr8ub",true);
-                        padAjaxogNEyyAp.send();
+                        padAjaxadf724d0ba191fae80b2f025cb8f7779.open("GET","http://localhost/pad/manual/?fragments/options/options_1&padInclude",true);
+                        padAjaxadf724d0ba191fae80b2f025cb8f7779.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
                   <hr>
-                  App: check - Page: control/cease<br>
+                  App: manual - Page: fragments/options/options_2<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2"></font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">control/cease.pad</font>
+                        <font size="-2">fragments/options/options_2.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -405,1444 +170,99 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;hr&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">cease</font><font color="red"></font>}</b><br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;hr&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">cease </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b><br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;hr&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">cease </font><font color="red">-2</font>}</b><br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                        <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">staff </font><font color="red">wrap=<font color="black">'</font>em<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staff</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxmp5WFoK9"><table border="1">
-  
-    <tbody><tr>
-      <td> joe </td>
-      <td> 555-1111 </td>
-    </tr>
-  
-    <tr>
-      <td> jim </td>
-      <td> 555-2222 </td>
-    </tr>
-  
-    <tr>
-      <td> john </td>
-      <td> 555-3333 </td>
-    </tr>
-  
-    <tr>
-      <td> jack </td>
-      <td> 555-4444 </td>
-    </tr>
-  
-    <tr>
-      <td> jerry </td>
-      <td> 555-5555 </td>
-    </tr>
-  
-</tbody></table>
-
-<hr>
-
-<table border="1">
-  
-    
-    <tbody><tr>
-      <td> joe </td>
-      <td> 555-1111 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> jim </td>
-      <td> 555-2222 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> john </td>
-      <td> 555-3333 </td>
-    </tr>
-  
-    
-      
-    
-    <tr>
-      <td> jack </td>
-      <td> 555-4444 </td>
-    </tr>
-  
-</tbody></table>
-
-<hr>
-
-<table border="1">
-  
-    
-    <tbody><tr>
-      <td> joe </td>
-      <td> 555-1111 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> jim </td>
-      <td> 555-2222 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> john </td>
-      <td> 555-3333 </td>
-    </tr>
-  
-    
-      
-    
-    <tr>
-      <td> jack </td>
-      <td> 555-4444 </td>
-    </tr>
-  
-</tbody></table>
-
-<hr>
-
-<table border="1">
-  
-    
-    <tbody><tr>
-      <td> joe </td>
-      <td> 555-1111 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> jim </td>
-      <td> 555-2222 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> john </td>
-      <td> 555-3333 </td>
-    </tr>
-  
-    
-      
-    
-    <tr>
-      <td> jack </td>
-      <td> 555-4444 </td>
-    </tr>
-  
-</tbody></table></div>
+                        <div id="padAjax1a15c1e21f34cd589e66914748590fec"></div>
                         <script>
-                        padAjaxmp5WFoK9 = new XMLHttpRequest();
-                        padAjaxmp5WFoK9.onreadystatechange=function() {
-                        if (padAjaxmp5WFoK9.readyState === 4) {
-                        if (padAjaxmp5WFoK9.status === 200) {
-                        document.getElementById("padAjaxmp5WFoK9").innerHTML=padAjaxmp5WFoK9.responseText;
+                        padAjax1a15c1e21f34cd589e66914748590fec = new XMLHttpRequest();
+                        padAjax1a15c1e21f34cd589e66914748590fec.onreadystatechange=function() {
+                        if (padAjax1a15c1e21f34cd589e66914748590fec.readyState === 4) {
+                        if (padAjax1a15c1e21f34cd589e66914748590fec.status === 200) {
+                        document.getElementById("padAjax1a15c1e21f34cd589e66914748590fec").innerHTML=padAjax1a15c1e21f34cd589e66914748590fec.responseText;
                         } else {
-                        document.getElementById("padAjaxmp5WFoK9").innerHTML=padAjaxmp5WFoK9.statusText;
+                        document.getElementById("padAjax1a15c1e21f34cd589e66914748590fec").innerHTML=padAjax1a15c1e21f34cd589e66914748590fec.statusText;
                         }
                         }
                         }
-                        padAjaxmp5WFoK9.open("GET","http://localhost/check/?control/cease&padInclude&padSesID=DiM2hOlW&padReqID=I6mPr8ub",true);
-                        padAjaxmp5WFoK9.send();
+                        padAjax1a15c1e21f34cd589e66914748590fec.open("GET","http://localhost/pad/manual/?fragments/options/options_2&padInclude",true);
+                        padAjax1a15c1e21f34cd589e66914748590fec.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
-                  <hr>
-                  App: check - Page: control/continue<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">control/continue.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;hr&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">continue</font><font color="red"></font>}</b><br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;hr&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">continue </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b><br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;hr&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">continue </font><font color="red">-2</font>}</b><br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxsVraQaJY"><table border="1">
-  
-    <tbody><tr>
-      <td> joe </td>
-      <td> 555-1111 </td>
-    </tr>
-  
-    <tr>
-      <td> jim </td>
-      <td> 555-2222 </td>
-    </tr>
-  
-    <tr>
-      <td> john </td>
-      <td> 555-3333 </td>
-    </tr>
-  
-    <tr>
-      <td> jack </td>
-      <td> 555-4444 </td>
-    </tr>
-  
-    <tr>
-      <td> jerry </td>
-      <td> 555-5555 </td>
-    </tr>
-  
-</tbody></table>
-
-<hr>
-
-<table border="1">
-  
-    
-    <tbody><tr>
-      <td> joe </td>
-      <td> 555-1111 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> jim </td>
-      <td> 555-2222 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> john </td>
-      <td> 555-3333 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> jerry </td>
-      <td> 555-5555 </td>
-    </tr>
-  
-</tbody></table>
-
-<hr>
-
-<table border="1">
-  
-    
-    <tbody><tr>
-      <td> joe </td>
-      <td> 555-1111 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> jim </td>
-      <td> 555-2222 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> john </td>
-      <td> 555-3333 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> jerry </td>
-      <td> 555-5555 </td>
-    </tr>
-  
-</tbody></table>
-
-<hr>
-
-<table border="1">
-  
-    
-    <tbody><tr>
-      <td> joe </td>
-      <td> 555-1111 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> jim </td>
-      <td> 555-2222 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> john </td>
-      <td> 555-3333 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> jerry </td>
-      <td> 555-5555 </td>
-    </tr>
-  
-</tbody></table></div>
-                        <script>
-                        padAjaxsVraQaJY = new XMLHttpRequest();
-                        padAjaxsVraQaJY.onreadystatechange=function() {
-                        if (padAjaxsVraQaJY.readyState === 4) {
-                        if (padAjaxsVraQaJY.status === 200) {
-                        document.getElementById("padAjaxsVraQaJY").innerHTML=padAjaxsVraQaJY.responseText;
-                        } else {
-                        document.getElementById("padAjaxsVraQaJY").innerHTML=padAjaxsVraQaJY.statusText;
-                        }
-                        }
-                        }
-                        padAjaxsVraQaJY.open("GET","http://localhost/check/?control/continue&padInclude&padSesID=DiM2hOlW&padReqID=I6mPr8ub",true);
-                        padAjaxsVraQaJY.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </tbody></table><br>
-                  <hr>
-                  App: check - Page: control/index<br>
-                  <div id="padAjaxB6CXhAEr"><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">staff</font><font color="red"></font>}</b><br><br>  <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;br&gt;<br><br><b>{/<font color="blue">staff</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->joe <br>
-
-
-
-  jim <br>
-
-
-
-  john <br>
-
-
-
-  jack <br>
-
-
-
-  jerry <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">staff</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>    <b>{<font color="blue">continue </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b><br>  <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>  <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;br&gt;<br><br><b>{/<font color="blue">staff</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->joe <br>
-
-
-
-  
-
-  jim <br>
-
-
-
-  
-
-  john <br>
-
-
-
-  
-
-  jerry <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">staff</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>    <b>{<font color="blue">cease </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b><br>  <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>  <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;br&gt;<br><br><b>{/<font color="blue">staff</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->joe <br>
-
-
-
-  
-
-  jim <br>
-
-
-
-  
-
-  john <br>
-
-
-
-  
-    
-  
-
-  jack <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">staff</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>    <b>{<font color="blue">break </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b><br>  <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>  <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;br&gt;<br><br><b>{/<font color="blue">staff</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->joe <br>
-
-
-
-  
-
-  jim <br>
-
-
-
-  
-
-  john <br><!-- END DEMO RESULT --></span></code></td></tr>
-  </tbody></table>
-</p></div>
-                  <script>
-                  padAjaxB6CXhAEr = new XMLHttpRequest();
-                  padAjaxB6CXhAEr.onreadystatechange=function() {
-                  if (padAjaxB6CXhAEr.readyState === 4) {
-                  if (padAjaxB6CXhAEr.status === 200) {
-                  document.getElementById("padAjaxB6CXhAEr").innerHTML=padAjaxB6CXhAEr.responseText;
-                  } else {
-                  document.getElementById("padAjaxB6CXhAEr").innerHTML=padAjaxB6CXhAEr.statusText;
-                  }
-                  }
-                  }
-                  padAjaxB6CXhAEr.open("GET","http://localhost/check/?control/index&padInclude&padSesID=DiM2hOlW&padReqID=I6mPr8ub",true);
-                  padAjaxB6CXhAEr.send();
-                  </script><br>
+                  </table><br>
                   <hr>
                   App: manual - Page: miscellaneous/level_and_occurrence_variables<br>
-                  <div id="padAjaxH1pyZANQ"><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>range = 10</font>}</b><br><br>&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Level&lt;/th&gt;<br>    &lt;th&gt;Occurence&lt;/th&gt;<br>  &lt;/tr&gt;<br><br>  <b>{<font color="blue">sequence </font><font color="red">range=<font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> <font color="red">$</font>abc=<font color="red">$</font>range<font color="black">,</font> <font color="black">%</font>xyz=<font color="red">$</font>range</font>}</b> <br>        &lt;tr&gt;<br>          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>abc</font>}</b>&lt;/td&gt;<br>          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>xyz</font>}</b>&lt;/td&gt;<br>        &lt;/tr&gt;<br>  <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br><br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
-
-  <tbody><tr>
-    <th>Level</th>
-    <th>Occurence</th>
-  </tr>
-
-   
-        <tr>
-          <td>10</td>
-          <td>1</td>
-        </tr>
-   
-        <tr>
-          <td>10</td>
-          <td>2</td>
-        </tr>
-   
-        <tr>
-          <td>10</td>
-          <td>3</td>
-        </tr>
-   
-        <tr>
-          <td>10</td>
-          <td>4</td>
-        </tr>
-   
-        <tr>
-          <td>10</td>
-          <td>5</td>
-        </tr>
-  
-
-</tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue">staff </font><font color="red"><font color="black">%</font>total = <font color="red">$</font>salary + <font color="red">$</font>bonus</font>}</b><br><br>    &lt;tr align="right"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br> <br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
-
-  <tbody><tr>
-    <th>Name</th>
-    <th>Salary</th>
-    <th>Bonus</th>
-    <th>Total</th>
-  </tr>
-  
-  
-
-    <tr align="right">
-      <td align="left">joe</td>
-      <td>1000.00</td>
-      <td>500.00</td>
-      <td>1500.00</td>
-    </tr>
-
-  
-
-    <tr align="right">
-      <td align="left">jim</td>
-      <td>2000.00</td>
-      <td>400.00</td>
-      <td>2400.00</td>
-    </tr>
-
-  
-
-    <tr align="right">
-      <td align="left">john</td>
-      <td>3000.00</td>
-      <td>300.00</td>
-      <td>3300.00</td>
-    </tr>
-
-  
-
-    <tr align="right">
-      <td align="left">jack</td>
-      <td>4000.00</td>
-      <td>200.00</td>
-      <td>4200.00</td>
-    </tr>
-
-  
-
-    <tr align="right">
-      <td align="left">jerry</td>
-      <td>5000.00</td>
-      <td>100.00</td>
-      <td>5100.00</td>
-    </tr>
-
-  
- 
-</tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
-  </tbody></table>
-</p></div>
+                  <div id="padAjaxc91b3df939b12e075d519dfe7042407c"></div>
                   <script>
-                  padAjaxH1pyZANQ = new XMLHttpRequest();
-                  padAjaxH1pyZANQ.onreadystatechange=function() {
-                  if (padAjaxH1pyZANQ.readyState === 4) {
-                  if (padAjaxH1pyZANQ.status === 200) {
-                  document.getElementById("padAjaxH1pyZANQ").innerHTML=padAjaxH1pyZANQ.responseText;
+                  padAjaxc91b3df939b12e075d519dfe7042407c = new XMLHttpRequest();
+                  padAjaxc91b3df939b12e075d519dfe7042407c.onreadystatechange=function() {
+                  if (padAjaxc91b3df939b12e075d519dfe7042407c.readyState === 4) {
+                  if (padAjaxc91b3df939b12e075d519dfe7042407c.status === 200) {
+                  document.getElementById("padAjaxc91b3df939b12e075d519dfe7042407c").innerHTML=padAjaxc91b3df939b12e075d519dfe7042407c.responseText;
                   } else {
-                  document.getElementById("padAjaxH1pyZANQ").innerHTML=padAjaxH1pyZANQ.statusText;
+                  document.getElementById("padAjaxc91b3df939b12e075d519dfe7042407c").innerHTML=padAjaxc91b3df939b12e075d519dfe7042407c.statusText;
                   }
                   }
                   }
-                  padAjaxH1pyZANQ.open("GET","http://localhost/manual/?miscellaneous/level_and_occurrence_variables&padInclude&padSesID=DiM2hOlW&padReqID=I6mPr8ub",true);
-                  padAjaxH1pyZANQ.send();
+                  padAjaxc91b3df939b12e075d519dfe7042407c.open("GET","http://localhost/pad/manual/?miscellaneous/level_and_occurrence_variables&padInclude",true);
+                  padAjaxc91b3df939b12e075d519dfe7042407c.send();
                   </script><br>
                   <hr>
                   App: manual - Page: properties/doc1<br>
-                  <div id="padAjaxgVrZjflu">
-
-<p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent1</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>              &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">first</font><font color="red"></font>}</b>  X <b>{/<font color="blue">first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">border</font><font color="red"></font>}</b> X <b>{/<font color="blue">border</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">middle</font><font color="red"></font>}</b> X <b>{/<font color="blue">middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">last</font><font color="red"></font>}</b>   X <b>{/<font color="blue">last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">even</font><font color="red"></font>}</b>   X <b>{/<font color="blue">even</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">odd</font><font color="red"></font>}</b>    X <b>{/<font color="blue">odd</font><font color="red"></font>}</b>    &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1" valign="center">
-    <tbody><tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
-    </tr>
-    
-  
-    <tr>
-      <td> joe              </td>
-      <td>   X   </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    </td>
-      <td>    </td>
-      <td>     X     </td>
-    </tr>
-  
-    <tr>
-      <td> jim              </td>
-      <td>   </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>    X    </td>
-      <td>     </td>
-    </tr>
-  
-    <tr>
-      <td> john              </td>
-      <td>   </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>    </td>
-      <td>     X     </td>
-    </tr>
-  
-    <tr>
-      <td> jack              </td>
-      <td>   </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>    X    </td>
-      <td>     </td>
-    </tr>
-  
-    <tr>
-      <td> jerry              </td>
-      <td>   </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    X    </td>
-      <td>    </td>
-      <td>     X     </td>
-    </tr>
-  
-
-  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent1</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>              &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;first</font>}</b>  X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;border</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;middle</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;last</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;even</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;odd</font>}</b>    X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1" valign="center">
-    <tbody><tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
-    </tr>
-    
-  
-    <tr>
-      <td> joe              </td>
-      <td>   X  </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>  </td>
-      <td>  </td>
-      <td>     X  </td>
-    </tr>
-  
-    <tr>
-      <td> jim              </td>
-      <td>  </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    X  </td>
-      <td>  </td>
-    </tr>
-  
-    <tr>
-      <td> john              </td>
-      <td>  </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>  </td>
-      <td>     X  </td>
-    </tr>
-  
-    <tr>
-      <td> jack              </td>
-      <td>  </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    X  </td>
-      <td>  </td>
-    </tr>
-  
-    <tr>
-      <td> jerry              </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    X  </td>
-      <td>  </td>
-      <td>     X  </td>
-    </tr>
-  
-
-  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p></div>
+                  <div id="padAjax58fce6794d229755aa9956081216c617"></div>
                   <script>
-                  padAjaxgVrZjflu = new XMLHttpRequest();
-                  padAjaxgVrZjflu.onreadystatechange=function() {
-                  if (padAjaxgVrZjflu.readyState === 4) {
-                  if (padAjaxgVrZjflu.status === 200) {
-                  document.getElementById("padAjaxgVrZjflu").innerHTML=padAjaxgVrZjflu.responseText;
+                  padAjax58fce6794d229755aa9956081216c617 = new XMLHttpRequest();
+                  padAjax58fce6794d229755aa9956081216c617.onreadystatechange=function() {
+                  if (padAjax58fce6794d229755aa9956081216c617.readyState === 4) {
+                  if (padAjax58fce6794d229755aa9956081216c617.status === 200) {
+                  document.getElementById("padAjax58fce6794d229755aa9956081216c617").innerHTML=padAjax58fce6794d229755aa9956081216c617.responseText;
                   } else {
-                  document.getElementById("padAjaxgVrZjflu").innerHTML=padAjaxgVrZjflu.statusText;
+                  document.getElementById("padAjax58fce6794d229755aa9956081216c617").innerHTML=padAjax58fce6794d229755aa9956081216c617.statusText;
                   }
                   }
                   }
-                  padAjaxgVrZjflu.open("GET","http://localhost/manual/?properties/doc1&padInclude&padSesID=DiM2hOlW&padReqID=I6mPr8ub",true);
-                  padAjaxgVrZjflu.send();
+                  padAjax58fce6794d229755aa9956081216c617.open("GET","http://localhost/pad/manual/?properties/doc1&padInclude",true);
+                  padAjax58fce6794d229755aa9956081216c617.send();
                   </script><br>
                   <hr>
                   App: manual - Page: properties/doc2<br>
-                  <div id="padAjax0UnUC04t">
-
-<p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent1</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                      &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">first </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>  X <b>{/<font color="blue">first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">border </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b> X <b>{/<font color="blue">border</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">middle </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b> X <b>{/<font color="blue">middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">last </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>   X <b>{/<font color="blue">last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">even </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>   X <b>{/<font color="blue">even</font><font color="red"></font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">odd </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>    X <b>{/<font color="blue">odd</font><font color="red"></font>}</b>    &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1" valign="center">
-    <tbody><tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
-    </tr>
-    
-  
-    
-      <tr>
-        <td> joe                      </td>
-        <td>   X   </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    </td>
-        <td>    </td>
-        <td>     X     </td>
-      </tr>
-    
-  
-    
-      <tr>
-        <td> jim                      </td>
-        <td>   </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>    </td>
-        <td>    X    </td>
-        <td>     </td>
-      </tr>
-    
-  
-    
-      <tr>
-        <td> john                      </td>
-        <td>   </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>    </td>
-        <td>    </td>
-        <td>     X     </td>
-      </tr>
-    
-  
-    
-      <tr>
-        <td> jack                      </td>
-        <td>   </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>    </td>
-        <td>    X    </td>
-        <td>     </td>
-      </tr>
-    
-  
-    
-      <tr>
-        <td> jerry                      </td>
-        <td>   </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X    </td>
-        <td>    </td>
-        <td>     X     </td>
-      </tr>
-    
-  
-
-  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent1</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                    &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff<font color="black">:</font>first</font>}</b>  X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff<font color="black">:</font>border</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff<font color="black">:</font>middle</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff<font color="black">:</font>last</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff<font color="black">:</font>even</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff<font color="black">:</font>odd</font>}</b>    X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1" valign="center">
-    <tbody><tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
-    </tr>
-    
-  
-    
-      <tr>
-        <td> joe                    </td>
-        <td>   X  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>     X  </td>
-      </tr>
-    
-  
-    
-      <tr>
-        <td> jim                    </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X  </td>
-        <td>  </td>
-      </tr>
-    
-  
-    
-      <tr>
-        <td> john                    </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>     X  </td>
-      </tr>
-    
-  
-    
-      <tr>
-        <td> jack                    </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X  </td>
-        <td>  </td>
-      </tr>
-    
-  
-    
-      <tr>
-        <td> jerry                    </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X  </td>
-        <td>  </td>
-        <td>     X  </td>
-      </tr>
-    
-  
-
-  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent1</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>     <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      &lt;tr&gt; <br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                 &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">first </font><font color="red">-2</font>}</b>  X <b>{/<font color="blue">first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">border </font><font color="red">-2</font>}</b> X <b>{/<font color="blue">border</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">middle </font><font color="red">-2</font>}</b> X <b>{/<font color="blue">middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">last </font><font color="red">-2</font>}</b>   X <b>{/<font color="blue">last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">even </font><font color="red">-2</font>}</b>   X <b>{/<font color="blue">even</font><font color="red"></font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">odd </font><font color="red">-2</font>}</b>    X <b>{/<font color="blue">odd</font><font color="red"></font>}</b>    &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1" valign="center">
-    <tbody><tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
-    </tr>
-    
-  
-     
-      <tr> 
-        <td> joe                 </td>
-        <td>   X   </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    </td>
-        <td>    </td>
-        <td>     X     </td>
-      </tr>
-    
-  
-     
-      <tr> 
-        <td> jim                 </td>
-        <td>   </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>    </td>
-        <td>    X    </td>
-        <td>     </td>
-      </tr>
-    
-  
-     
-      <tr> 
-        <td> john                 </td>
-        <td>   </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>    </td>
-        <td>    </td>
-        <td>     X     </td>
-      </tr>
-    
-  
-     
-      <tr> 
-        <td> jack                 </td>
-        <td>   </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>    </td>
-        <td>    X    </td>
-        <td>     </td>
-      </tr>
-    
-  
-     
-      <tr> 
-        <td> jerry                 </td>
-        <td>   </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X    </td>
-        <td>    </td>
-        <td>     X     </td>
-      </tr>
-    
-  
-
-  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent1</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>     <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                 &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2<font color="black">:</font>first</font>}</b>  X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2<font color="black">:</font>border</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2<font color="black">:</font>middle</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2<font color="black">:</font>last</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2<font color="black">:</font>even</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2<font color="black">:</font>odd</font>}</b>    X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1" valign="center">
-    <tbody><tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
-    </tr>
-    
-  
-     
-      <tr>
-        <td> joe                 </td>
-        <td>   X  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>     X  </td>
-      </tr>
-    
-  
-     
-      <tr>
-        <td> jim                 </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X  </td>
-        <td>  </td>
-      </tr>
-    
-  
-     
-      <tr>
-        <td> john                 </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>     X  </td>
-      </tr>
-    
-  
-     
-      <tr>
-        <td> jack                 </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X  </td>
-        <td>  </td>
-      </tr>
-    
-  
-     
-      <tr>
-        <td> jerry                 </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X  </td>
-        <td>  </td>
-        <td>     X  </td>
-      </tr>
-    
-  
-
-  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
-  </tbody></table>
-</p></div>
+                  <div id="padAjax6ebd3126352758ce64184cdca4b6a3b0"></div>
                   <script>
-                  padAjax0UnUC04t = new XMLHttpRequest();
-                  padAjax0UnUC04t.onreadystatechange=function() {
-                  if (padAjax0UnUC04t.readyState === 4) {
-                  if (padAjax0UnUC04t.status === 200) {
-                  document.getElementById("padAjax0UnUC04t").innerHTML=padAjax0UnUC04t.responseText;
+                  padAjax6ebd3126352758ce64184cdca4b6a3b0 = new XMLHttpRequest();
+                  padAjax6ebd3126352758ce64184cdca4b6a3b0.onreadystatechange=function() {
+                  if (padAjax6ebd3126352758ce64184cdca4b6a3b0.readyState === 4) {
+                  if (padAjax6ebd3126352758ce64184cdca4b6a3b0.status === 200) {
+                  document.getElementById("padAjax6ebd3126352758ce64184cdca4b6a3b0").innerHTML=padAjax6ebd3126352758ce64184cdca4b6a3b0.responseText;
                   } else {
-                  document.getElementById("padAjax0UnUC04t").innerHTML=padAjax0UnUC04t.statusText;
+                  document.getElementById("padAjax6ebd3126352758ce64184cdca4b6a3b0").innerHTML=padAjax6ebd3126352758ce64184cdca4b6a3b0.statusText;
                   }
                   }
                   }
-                  padAjax0UnUC04t.open("GET","http://localhost/manual/?properties/doc2&padInclude&padSesID=DiM2hOlW&padReqID=I6mPr8ub",true);
-                  padAjax0UnUC04t.send();
-                  </script><br>
-                  <hr>
-                  App: manual - Page: properties/doc3<br>
-                  <div id="padAjaxKtjabbZE">
-
-<p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent1</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>     <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      &lt;tr&gt; <br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                 &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">first </font><font color="red">-2</font>}</b>  X <b>{/<font color="blue">first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">border </font><font color="red">-2</font>}</b> X <b>{/<font color="blue">border</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">middle </font><font color="red">-2</font>}</b> X <b>{/<font color="blue">middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">last </font><font color="red">-2</font>}</b>   X <b>{/<font color="blue">last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">even </font><font color="red">-2</font>}</b>   X <b>{/<font color="blue">even</font><font color="red"></font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">odd </font><font color="red">-2</font>}</b>    X <b>{/<font color="blue">odd</font><font color="red"></font>}</b>    &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1" valign="center">
-    <tbody><tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
-    </tr>
-    
-  
-     
-      <tr> 
-        <td> joe                 </td>
-        <td>   X   </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    </td>
-        <td>    </td>
-        <td>     X     </td>
-      </tr>
-    
-  
-     
-      <tr> 
-        <td> jim                 </td>
-        <td>   </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>    </td>
-        <td>    X    </td>
-        <td>     </td>
-      </tr>
-    
-  
-     
-      <tr> 
-        <td> john                 </td>
-        <td>   </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>    </td>
-        <td>    </td>
-        <td>     X     </td>
-      </tr>
-    
-  
-     
-      <tr> 
-        <td> jack                 </td>
-        <td>   </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>    </td>
-        <td>    X    </td>
-        <td>     </td>
-      </tr>
-    
-  
-     
-      <tr> 
-        <td> jerry                 </td>
-        <td>   </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X    </td>
-        <td>    </td>
-        <td>     X     </td>
-      </tr>
-    
-  
-
-  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent1</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>     <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                 &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2<font color="black">:</font>first</font>}</b>  X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2<font color="black">:</font>border</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2<font color="black">:</font>middle</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2<font color="black">:</font>last</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2<font color="black">:</font>even</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2<font color="black">:</font>odd</font>}</b>    X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1" valign="center">
-    <tbody><tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
-    </tr>
-    
-  
-     
-      <tr>
-        <td> joe                 </td>
-        <td>   X  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>     X  </td>
-      </tr>
-    
-  
-     
-      <tr>
-        <td> jim                 </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X  </td>
-        <td>  </td>
-      </tr>
-    
-  
-     
-      <tr>
-        <td> john                 </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>     X  </td>
-      </tr>
-    
-  
-     
-      <tr>
-        <td> jack                 </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X  </td>
-        <td>  </td>
-      </tr>
-    
-  
-     
-      <tr>
-        <td> jerry                 </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X  </td>
-        <td>  </td>
-        <td>     X  </td>
-      </tr>
-    
-  
-
-  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
-  </tbody></table>
-</p></div>
-                  <script>
-                  padAjaxKtjabbZE = new XMLHttpRequest();
-                  padAjaxKtjabbZE.onreadystatechange=function() {
-                  if (padAjaxKtjabbZE.readyState === 4) {
-                  if (padAjaxKtjabbZE.status === 200) {
-                  document.getElementById("padAjaxKtjabbZE").innerHTML=padAjaxKtjabbZE.responseText;
-                  } else {
-                  document.getElementById("padAjaxKtjabbZE").innerHTML=padAjaxKtjabbZE.statusText;
-                  }
-                  }
-                  }
-                  padAjaxKtjabbZE.open("GET","http://localhost/manual/?properties/doc3&padInclude&padSesID=DiM2hOlW&padReqID=I6mPr8ub",true);
-                  padAjaxKtjabbZE.send();
+                  padAjax6ebd3126352758ce64184cdca4b6a3b0.open("GET","http://localhost/pad/manual/?properties/doc2&padInclude",true);
+                  padAjax6ebd3126352758ce64184cdca4b6a3b0.send();
                   </script><br>
                   <hr>
                   App: manual - Page: properties/doc4<br>
-                  <div id="padAjaxt4Pfb3pp">
-
-<p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent2</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>      &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&amp;</font>name</font>}</b>      &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&amp;</font>count</font>}</b>     &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&amp;</font>key</font>}</b>       &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&amp;</font>current</font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&amp;</font>done</font>}</b>      &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&amp;</font>remaining</font>}</b> &lt;/td&gt;   <br>      &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent2</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
-      <tbody><tr>
-        <th>         </th>
-        <th> name    </th>
-        <th> count   </th>
-        <th> key     </th>
-        <th> current </th>
-        <th> done    </th>
-        <th> remain  </th>
-      </tr>
-    
-  
-      <tr>
-        <td> joe      </td>
-        <td> staff      </td>
-        <td> 5     </td>
-        <td> 0       </td>
-        <td> 1   </td>
-        <td> 0      </td>
-        <td> 4 </td>   
-      </tr>
-  
-      <tr>
-        <td> jim      </td>
-        <td> staff      </td>
-        <td> 5     </td>
-        <td> 1       </td>
-        <td> 2   </td>
-        <td> 1      </td>
-        <td> 3 </td>   
-      </tr>
-  
-      <tr>
-        <td> john      </td>
-        <td> staff      </td>
-        <td> 5     </td>
-        <td> 2       </td>
-        <td> 3   </td>
-        <td> 2      </td>
-        <td> 2 </td>   
-      </tr>
-  
-      <tr>
-        <td> jack      </td>
-        <td> staff      </td>
-        <td> 5     </td>
-        <td> 3       </td>
-        <td> 4   </td>
-        <td> 3      </td>
-        <td> 1 </td>   
-      </tr>
-  
-      <tr>
-        <td> jerry      </td>
-        <td> staff      </td>
-        <td> 5     </td>
-        <td> 4       </td>
-        <td> 5   </td>
-        <td> 4      </td>
-        <td> 0 </td>   
-      </tr>
-  
-
-  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent2</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      <b>{<font color="blue">true</font><font color="red"></font>}</b><br>        &lt;tr&gt;<br>          &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>         &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>name</font>}</b>      &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>count</font>}</b>     &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>key</font>}</b>       &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>current</font>}</b>   &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>done</font>}</b>      &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>remaining</font>}</b> &lt;/td&gt; <br>        &lt;/tr&gt;<br>      <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent2</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
-      <tbody><tr>
-        <th>         </th>
-        <th> name    </th>
-        <th> count   </th>
-        <th> key     </th>
-        <th> current </th>
-        <th> done    </th>
-        <th> remain  </th>
-      </tr>
-    
-  
-    
-      
-        <tr>
-          <td> joe         </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 0       </td>
-          <td> 1   </td>
-          <td> 0      </td>
-          <td> 4 </td> 
-        </tr>
-      
-    
-  
-    
-      
-        <tr>
-          <td> jim         </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 1       </td>
-          <td> 2   </td>
-          <td> 1      </td>
-          <td> 3 </td> 
-        </tr>
-      
-    
-  
-    
-      
-        <tr>
-          <td> john         </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 2       </td>
-          <td> 3   </td>
-          <td> 2      </td>
-          <td> 2 </td> 
-        </tr>
-      
-    
-  
-    
-      
-        <tr>
-          <td> jack         </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 3       </td>
-          <td> 4   </td>
-          <td> 3      </td>
-          <td> 1 </td> 
-        </tr>
-      
-    
-  
-    
-      
-        <tr>
-          <td> jerry         </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 4       </td>
-          <td> 5   </td>
-          <td> 4      </td>
-          <td> 0 </td> 
-        </tr>
-      
-    
-  
-
-  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent2</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      <b>{<font color="blue">true</font><font color="red"></font>}</b><br>        &lt;tr&gt;<br>          &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>            &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>name</font>}</b>      &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>count</font>}</b>     &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>key</font>}</b>       &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>current</font>}</b>   &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>done</font>}</b>      &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&amp;</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>remaining</font>}</b> &lt;/td&gt;   <br>        &lt;/tr&gt;<br>      <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent2</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
-      <tbody><tr>
-        <th>         </th>
-        <th> name    </th>
-        <th> count   </th>
-        <th> key     </th>
-        <th> current </th>
-        <th> done    </th>
-        <th> remain  </th>
-      </tr>
-    
-  
-    
-      
-        <tr>
-          <td> joe            </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 0       </td>
-          <td> 1   </td>
-          <td> 0      </td>
-          <td> 4 </td>   
-        </tr>
-      
-    
-  
-    
-      
-        <tr>
-          <td> jim            </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 1       </td>
-          <td> 2   </td>
-          <td> 1      </td>
-          <td> 3 </td>   
-        </tr>
-      
-    
-  
-    
-      
-        <tr>
-          <td> john            </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 2       </td>
-          <td> 3   </td>
-          <td> 2      </td>
-          <td> 2 </td>   
-        </tr>
-      
-    
-  
-    
-      
-        <tr>
-          <td> jack            </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 3       </td>
-          <td> 4   </td>
-          <td> 3      </td>
-          <td> 1 </td>   
-        </tr>
-      
-    
-  
-    
-      
-        <tr>
-          <td> jerry            </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 4       </td>
-          <td> 5   </td>
-          <td> 4      </td>
-          <td> 0 </td>   
-        </tr>
-      
-    
-  
-
-  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p></div>
+                  <div id="padAjaxd364e0855dce9ff68e798544aba8323e"></div>
                   <script>
-                  padAjaxt4Pfb3pp = new XMLHttpRequest();
-                  padAjaxt4Pfb3pp.onreadystatechange=function() {
-                  if (padAjaxt4Pfb3pp.readyState === 4) {
-                  if (padAjaxt4Pfb3pp.status === 200) {
-                  document.getElementById("padAjaxt4Pfb3pp").innerHTML=padAjaxt4Pfb3pp.responseText;
+                  padAjaxd364e0855dce9ff68e798544aba8323e = new XMLHttpRequest();
+                  padAjaxd364e0855dce9ff68e798544aba8323e.onreadystatechange=function() {
+                  if (padAjaxd364e0855dce9ff68e798544aba8323e.readyState === 4) {
+                  if (padAjaxd364e0855dce9ff68e798544aba8323e.status === 200) {
+                  document.getElementById("padAjaxd364e0855dce9ff68e798544aba8323e").innerHTML=padAjaxd364e0855dce9ff68e798544aba8323e.responseText;
                   } else {
-                  document.getElementById("padAjaxt4Pfb3pp").innerHTML=padAjaxt4Pfb3pp.statusText;
+                  document.getElementById("padAjaxd364e0855dce9ff68e798544aba8323e").innerHTML=padAjaxd364e0855dce9ff68e798544aba8323e.statusText;
                   }
                   }
                   }
-                  padAjaxt4Pfb3pp.open("GET","http://localhost/manual/?properties/doc4&padInclude&padSesID=DiM2hOlW&padReqID=I6mPr8ub",true);
-                  padAjaxt4Pfb3pp.send();
+                  padAjaxd364e0855dce9ff68e798544aba8323e.open("GET","http://localhost/pad/manual/?properties/doc4&padInclude",true);
+                  padAjaxd364e0855dce9ff68e798544aba8323e.send();
                   </script><br>
                   <hr>
                   App: manual - Page: staff/staff2<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2"></font>
@@ -1861,531 +281,245 @@
                         <pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax8vtf5xfO"><table border="1">
-  
-    <tbody><tr>
-      <td> joe </td>
-      <td> 555-1111 </td>
-    </tr>
-  
-    <tr>
-      <td> jim </td>
-      <td> 555-2222 </td>
-    </tr>
-  
-    <tr>
-      <td> john </td>
-      <td> 555-3333 </td>
-    </tr>
-  
-    <tr>
-      <td> jack </td>
-      <td> 555-4444 </td>
-    </tr>
-  
-    <tr>
-      <td> jerry </td>
-      <td> 555-5555 </td>
-    </tr>
-  
-</tbody></table></div>
+                        <div id="padAjax92e5924a2557c4e5b1206efb24a1d3ab"></div>
                         <script>
-                        padAjax8vtf5xfO = new XMLHttpRequest();
-                        padAjax8vtf5xfO.onreadystatechange=function() {
-                        if (padAjax8vtf5xfO.readyState === 4) {
-                        if (padAjax8vtf5xfO.status === 200) {
-                        document.getElementById("padAjax8vtf5xfO").innerHTML=padAjax8vtf5xfO.responseText;
+                        padAjax92e5924a2557c4e5b1206efb24a1d3ab = new XMLHttpRequest();
+                        padAjax92e5924a2557c4e5b1206efb24a1d3ab.onreadystatechange=function() {
+                        if (padAjax92e5924a2557c4e5b1206efb24a1d3ab.readyState === 4) {
+                        if (padAjax92e5924a2557c4e5b1206efb24a1d3ab.status === 200) {
+                        document.getElementById("padAjax92e5924a2557c4e5b1206efb24a1d3ab").innerHTML=padAjax92e5924a2557c4e5b1206efb24a1d3ab.responseText;
                         } else {
-                        document.getElementById("padAjax8vtf5xfO").innerHTML=padAjax8vtf5xfO.statusText;
+                        document.getElementById("padAjax92e5924a2557c4e5b1206efb24a1d3ab").innerHTML=padAjax92e5924a2557c4e5b1206efb24a1d3ab.statusText;
                         }
                         }
                         }
-                        padAjax8vtf5xfO.open("GET","http://localhost/manual/?staff/staff2&padInclude&padSesID=DiM2hOlW&padReqID=I6mPr8ub",true);
-                        padAjax8vtf5xfO.send();
+                        padAjax92e5924a2557c4e5b1206efb24a1d3ab.open("GET","http://localhost/pad/manual/?staff/staff2&padInclude",true);
+                        padAjax92e5924a2557c4e5b1206efb24a1d3ab.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
                   <hr>
-                  App: check - Page: vars/at/10<br>
-                  <div id="padAjaxh4WUqxBu">
-
-<p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                          &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>  X <b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>  &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">border<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b> X <b>{/<font color="blue">border<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b> X <b>{/<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>   X <b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">even<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>   X <b>{/<font color="blue">even<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>    X <b>{/<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>    &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1" valign="center">
-    <tbody><tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
-    </tr>
-    
-  
-    <tr>
-      <td> joe                          </td>
-      <td>   X   </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    </td>
-      <td>    </td>
-      <td>     X     </td>
-    </tr>
-  
-    <tr>
-      <td> jim                          </td>
-      <td>   </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>    X    </td>
-      <td>     </td>
-    </tr>
-  
-    <tr>
-      <td> john                          </td>
-      <td>   </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>    </td>
-      <td>     X     </td>
-    </tr>
-  
-    <tr>
-      <td> jack                          </td>
-      <td>   </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>    X    </td>
-      <td>     </td>
-    </tr>
-  
-    <tr>
-      <td> jerry                          </td>
-      <td>   </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    X    </td>
-      <td>    </td>
-      <td>     X     </td>
-    </tr>
-  
-
-  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>      <b>{<font color="blue">true</font><font color="red"></font>}</b><br>        &lt;tr&gt;<br>          &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                     &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>  X <b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>  &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue">border<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b> X <b>{/<font color="blue">border<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b> &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b> X <b>{/<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b> &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>   X <b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>   &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue">even<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>   X <b>{/<font color="blue">even<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>   &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>    X <b>{/<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>    &lt;/td&gt;<br>        &lt;/tr&gt;<br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1" valign="center">
-    <tbody><tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
-    </tr>
-    
-  
-  	
-	    <tr>
-	      <td> joe                     </td>
-	      <td>   X   </td>
-	      <td>  X  </td>
-	      <td>  </td>
-	      <td>    X    </td>
-	      <td>    </td>
-	      <td>     X     </td>
-	    </tr>
-    
-  
-  	
-	    <tr>
-	      <td> jim                     </td>
-	      <td>   X   </td>
-	      <td>  X  </td>
-	      <td>  </td>
-	      <td>    X    </td>
-	      <td>    </td>
-	      <td>     X     </td>
-	    </tr>
-    
-  
-  	
-	    <tr>
-	      <td> john                     </td>
-	      <td>   X   </td>
-	      <td>  X  </td>
-	      <td>  </td>
-	      <td>    X    </td>
-	      <td>    </td>
-	      <td>     X     </td>
-	    </tr>
-    
-  
-  	
-	    <tr>
-	      <td> jack                     </td>
-	      <td>   X   </td>
-	      <td>  X  </td>
-	      <td>  </td>
-	      <td>    X    </td>
-	      <td>    </td>
-	      <td>     X     </td>
-	    </tr>
-    
-  
-  	
-	    <tr>
-	      <td> jerry                     </td>
-	      <td>   X   </td>
-	      <td>  X  </td>
-	      <td>  </td>
-	      <td>    X    </td>
-	      <td>    </td>
-	      <td>     X     </td>
-	    </tr>
-    
-  
-
-  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>  X <b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>  &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">border<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b> X <b>{/<font color="blue">border<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b> X <b>{/<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>   X <b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">even<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>   X <b>{/<font color="blue">even<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>    X <b>{/<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>    &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1" valign="center">
-    <tbody><tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
-    </tr>
-    
-  
-  	<tr>
-      <td> joe                </td>
-      <td>   X   </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    </td>
-      <td>    </td>
-      <td>     X     </td>
-    </tr>
-  
-  	<tr>
-      <td> jim                </td>
-      <td>   </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>    X    </td>
-      <td>     </td>
-    </tr>
-  
-  	<tr>
-      <td> john                </td>
-      <td>   </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>    </td>
-      <td>     X     </td>
-    </tr>
-  
-  	<tr>
-      <td> jack                </td>
-      <td>   </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>    X    </td>
-      <td>     </td>
-    </tr>
-  
-  	<tr>
-      <td> jerry                </td>
-      <td>   </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    X    </td>
-      <td>    </td>
-      <td>     X     </td>
-    </tr>
-  
-
-  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
-  </tbody></table>
-</p></div>
+                  App: regression/common - Page: manual/doc3<br>
+                  <div id="padAjax460c48c8d440981d60cf34f5af4d4bd8"></div>
                   <script>
-                  padAjaxh4WUqxBu = new XMLHttpRequest();
-                  padAjaxh4WUqxBu.onreadystatechange=function() {
-                  if (padAjaxh4WUqxBu.readyState === 4) {
-                  if (padAjaxh4WUqxBu.status === 200) {
-                  document.getElementById("padAjaxh4WUqxBu").innerHTML=padAjaxh4WUqxBu.responseText;
+                  padAjax460c48c8d440981d60cf34f5af4d4bd8 = new XMLHttpRequest();
+                  padAjax460c48c8d440981d60cf34f5af4d4bd8.onreadystatechange=function() {
+                  if (padAjax460c48c8d440981d60cf34f5af4d4bd8.readyState === 4) {
+                  if (padAjax460c48c8d440981d60cf34f5af4d4bd8.status === 200) {
+                  document.getElementById("padAjax460c48c8d440981d60cf34f5af4d4bd8").innerHTML=padAjax460c48c8d440981d60cf34f5af4d4bd8.responseText;
                   } else {
-                  document.getElementById("padAjaxh4WUqxBu").innerHTML=padAjaxh4WUqxBu.statusText;
+                  document.getElementById("padAjax460c48c8d440981d60cf34f5af4d4bd8").innerHTML=padAjax460c48c8d440981d60cf34f5af4d4bd8.statusText;
                   }
                   }
                   }
-                  padAjaxh4WUqxBu.open("GET","http://localhost/check/?vars/at/10&padInclude&padSesID=DiM2hOlW&padReqID=I6mPr8ub",true);
-                  padAjaxh4WUqxBu.send();
+                  padAjax460c48c8d440981d60cf34f5af4d4bd8.open("GET","http://localhost/pad/regression/common/?manual/doc3&padInclude",true);
+                  padAjax460c48c8d440981d60cf34f5af4d4bd8.send();
                   </script><br>
                   <hr>
-                  App: check - Page: vars/at/6<br>
-                  <div id="padAjaxHmOYyCFD"><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        <b>{<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b><br>          &lt;th&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/th&gt;<br>        <b>{/<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b><br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b><br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b> &lt;/td&gt;<br>      <b>{/<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
-  
-    
-      <tbody><tr>
-        
-          <th> name </th>
-        
-          <th> salary </th>
-        
-          <th> bonus </th>
-        
-          <th> phone </th>
-        
-      </tr>
-    
-    <tr>
-      
-        <td> joe </td>
-      
-        <td> 1000 </td>
-      
-        <td> 500 </td>
-      
-        <td> 555-1111 </td>
-      
-    </tr>
-  
-    
-    <tr>
-      
-        <td> jim </td>
-      
-        <td> 2000 </td>
-      
-        <td> 400 </td>
-      
-        <td> 555-2222 </td>
-      
-    </tr>
-  
-    
-    <tr>
-      
-        <td> john </td>
-      
-        <td> 3000 </td>
-      
-        <td> 300 </td>
-      
-        <td> 555-3333 </td>
-      
-    </tr>
-  
-    
-    <tr>
-      
-        <td> jack </td>
-      
-        <td> 4000 </td>
-      
-        <td> 200 </td>
-      
-        <td> 555-4444 </td>
-      
-    </tr>
-  
-    
-    <tr>
-      
-        <td> jerry </td>
-      
-        <td> 5000 </td>
-      
-        <td> 100 </td>
-      
-        <td> 555-5555 </td>
-      
-    </tr>
-  
-</tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      <b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b> <br>        &lt;tr&gt;<br>          <b>{<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>-3</font><font color="red"></font>}</b><br>            &lt;th&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/th&gt;<br>          <b>{/<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>-3</font><font color="red"></font>}</b><br>        &lt;/tr&gt;<br>      <b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        <b>{<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b><br>          &lt;td&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b> &lt;/td&gt;<br>        <b>{/<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b><br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
-  
-    
-       
-        <tbody><tr>
-          
-        </tr>
-      
-      <tr>
-        
-      </tr>
-    
-  
-    
-       
-        <tr>
-          
-        </tr>
-      
-      <tr>
-        
-      </tr>
-    
-  
-    
-       
-        <tr>
-          
-        </tr>
-      
-      <tr>
-        
-      </tr>
-    
-  
-    
-       
-        <tr>
-          
-        </tr>
-      
-      <tr>
-        
-      </tr>
-    
-  
-    
-       
-        <tr>
-          
-        </tr>
-      
-      <tr>
-        
-      </tr>
-    
-  
-</tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>3</font><font color="red"></font>}</b> <br>      &lt;tr&gt;<br>        <b>{<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>3</font><font color="red"></font>}</b><br>          &lt;th&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/th&gt;<br>        <b>{/<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>3</font><font color="red"></font>}</b><br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>3</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>3</font><font color="red"></font>}</b><br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b> &lt;/td&gt;<br>      <b>{/<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>3</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;p&gt;Level 3 because this part is wrapped in the <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>table<font color="black">'</font></font>}</b> and <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>demo<font color="black">'</font></font>}</b> tags</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
-  
-     
-      <tbody><tr>
-        
-          <th> name </th>
-        
-          <th> salary </th>
-        
-          <th> bonus </th>
-        
-          <th> phone </th>
-        
-      </tr>
-    
-    <tr>
-      
-        <td> joe </td>
-      
-        <td> 1000 </td>
-      
-        <td> 500 </td>
-      
-        <td> 555-1111 </td>
-      
-    </tr>
-  
-    
-    <tr>
-      
-        <td> jim </td>
-      
-        <td> 2000 </td>
-      
-        <td> 400 </td>
-      
-        <td> 555-2222 </td>
-      
-    </tr>
-  
-    
-    <tr>
-      
-        <td> john </td>
-      
-        <td> 3000 </td>
-      
-        <td> 300 </td>
-      
-        <td> 555-3333 </td>
-      
-    </tr>
-  
-    
-    <tr>
-      
-        <td> jack </td>
-      
-        <td> 4000 </td>
-      
-        <td> 200 </td>
-      
-        <td> 555-4444 </td>
-      
-    </tr>
-  
-    
-    <tr>
-      
-        <td> jerry </td>
-      
-        <td> 5000 </td>
-      
-        <td> 100 </td>
-      
-        <td> 555-5555 </td>
-      
-    </tr>
-  
-</tbody></table>
-
-</span></code><p><code>Level 3 because this part is wrapped in the <b>{table}</b> and <b>{demo}</b> tags<!-- END DEMO RESULT --></code></p></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p></div>
-                  <script>
-                  padAjaxHmOYyCFD = new XMLHttpRequest();
-                  padAjaxHmOYyCFD.onreadystatechange=function() {
-                  if (padAjaxHmOYyCFD.readyState === 4) {
-                  if (padAjaxHmOYyCFD.status === 200) {
-                  document.getElementById("padAjaxHmOYyCFD").innerHTML=padAjaxHmOYyCFD.responseText;
-                  } else {
-                  document.getElementById("padAjaxHmOYyCFD").innerHTML=padAjaxHmOYyCFD.statusText;
-                  }
-                  }
-                  }
-                  padAjaxHmOYyCFD.open("GET","http://localhost/check/?vars/at/6&padInclude&padSesID=DiM2hOlW&padReqID=I6mPr8ub",true);
-                  padAjaxHmOYyCFD.send();
-                  </script><br>
+                  App: regression/framework - Page: check/control_break<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">check/control_break.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;hr&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">break</font><font color="red"></font>}</b><br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;hr&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">break </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b><br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;hr&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">break </font><font color="red">-2</font>}</b><br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax7d2ae6a61ed116b54f3820187268a60d"></div>
+                        <script>
+                        padAjax7d2ae6a61ed116b54f3820187268a60d = new XMLHttpRequest();
+                        padAjax7d2ae6a61ed116b54f3820187268a60d.onreadystatechange=function() {
+                        if (padAjax7d2ae6a61ed116b54f3820187268a60d.readyState === 4) {
+                        if (padAjax7d2ae6a61ed116b54f3820187268a60d.status === 200) {
+                        document.getElementById("padAjax7d2ae6a61ed116b54f3820187268a60d").innerHTML=padAjax7d2ae6a61ed116b54f3820187268a60d.responseText;
+                        } else {
+                        document.getElementById("padAjax7d2ae6a61ed116b54f3820187268a60d").innerHTML=padAjax7d2ae6a61ed116b54f3820187268a60d.statusText;
+                        }
+                        }
+                        }
+                        padAjax7d2ae6a61ed116b54f3820187268a60d.open("GET","http://localhost/pad/regression/framework/?check/control_break&padInclude",true);
+                        padAjax7d2ae6a61ed116b54f3820187268a60d.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: check/control_cease<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">check/control_cease.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;hr&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">cease</font><font color="red"></font>}</b><br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;hr&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">cease </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b><br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;hr&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">cease </font><font color="red">-2</font>}</b><br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax557e7744ab20da50f19058937a470d95"></div>
+                        <script>
+                        padAjax557e7744ab20da50f19058937a470d95 = new XMLHttpRequest();
+                        padAjax557e7744ab20da50f19058937a470d95.onreadystatechange=function() {
+                        if (padAjax557e7744ab20da50f19058937a470d95.readyState === 4) {
+                        if (padAjax557e7744ab20da50f19058937a470d95.status === 200) {
+                        document.getElementById("padAjax557e7744ab20da50f19058937a470d95").innerHTML=padAjax557e7744ab20da50f19058937a470d95.responseText;
+                        } else {
+                        document.getElementById("padAjax557e7744ab20da50f19058937a470d95").innerHTML=padAjax557e7744ab20da50f19058937a470d95.statusText;
+                        }
+                        }
+                        }
+                        padAjax557e7744ab20da50f19058937a470d95.open("GET","http://localhost/pad/regression/framework/?check/control_cease&padInclude",true);
+                        padAjax557e7744ab20da50f19058937a470d95.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: check/control_continue<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">check/control_continue.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;hr&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">continue</font><font color="red"></font>}</b><br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;hr&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">continue </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b><br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;hr&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">continue </font><font color="red">-2</font>}</b><br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxfdd735d1730896dd51fa4ffaba26256e"></div>
+                        <script>
+                        padAjaxfdd735d1730896dd51fa4ffaba26256e = new XMLHttpRequest();
+                        padAjaxfdd735d1730896dd51fa4ffaba26256e.onreadystatechange=function() {
+                        if (padAjaxfdd735d1730896dd51fa4ffaba26256e.readyState === 4) {
+                        if (padAjaxfdd735d1730896dd51fa4ffaba26256e.status === 200) {
+                        document.getElementById("padAjaxfdd735d1730896dd51fa4ffaba26256e").innerHTML=padAjaxfdd735d1730896dd51fa4ffaba26256e.responseText;
+                        } else {
+                        document.getElementById("padAjaxfdd735d1730896dd51fa4ffaba26256e").innerHTML=padAjaxfdd735d1730896dd51fa4ffaba26256e.statusText;
+                        }
+                        }
+                        }
+                        padAjaxfdd735d1730896dd51fa4ffaba26256e.open("GET","http://localhost/pad/regression/framework/?check/control_continue&padInclude",true);
+                        padAjaxfdd735d1730896dd51fa4ffaba26256e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: check/control_index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">check/control_index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">staff</font><font color="red"></font>}</b><br><br>  <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;br&gt;<br><br><b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><br><b>{<font color="blue">staff</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>    <b>{<font color="blue">continue </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b><br>  <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>  <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;br&gt;<br><br><b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><br><b>{<font color="blue">staff</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>    <b>{<font color="blue">cease </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b><br>  <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>  <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;br&gt;<br><br><b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><br><b>{<font color="blue">staff</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>jack<font color="black">'</font></font>}</b><br>    <b>{<font color="blue">break </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b><br>  <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>  <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;br&gt;<br><br><b>{/<font color="blue">staff</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxf1acc57a49dcf52e4e7cd0db0d982287"></div>
+                        <script>
+                        padAjaxf1acc57a49dcf52e4e7cd0db0d982287 = new XMLHttpRequest();
+                        padAjaxf1acc57a49dcf52e4e7cd0db0d982287.onreadystatechange=function() {
+                        if (padAjaxf1acc57a49dcf52e4e7cd0db0d982287.readyState === 4) {
+                        if (padAjaxf1acc57a49dcf52e4e7cd0db0d982287.status === 200) {
+                        document.getElementById("padAjaxf1acc57a49dcf52e4e7cd0db0d982287").innerHTML=padAjaxf1acc57a49dcf52e4e7cd0db0d982287.responseText;
+                        } else {
+                        document.getElementById("padAjaxf1acc57a49dcf52e4e7cd0db0d982287").innerHTML=padAjaxf1acc57a49dcf52e4e7cd0db0d982287.statusText;
+                        }
+                        }
+                        }
+                        padAjaxf1acc57a49dcf52e4e7cd0db0d982287.open("GET","http://localhost/pad/regression/framework/?check/control_index&padInclude",true);
+                        padAjaxf1acc57a49dcf52e4e7cd0db0d982287.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: check/vars_at_10<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">check/vars_at_10.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  &lt;table border=1 valign=center&gt;<br>    &lt;tr&gt;<br>      &lt;th&gt;        &lt;/th&gt;<br>      &lt;th&gt; first  &lt;/th&gt;<br>      &lt;th&gt; border &lt;/th&gt;<br>      &lt;th&gt; middle &lt;/th&gt;<br>      &lt;th&gt; last   &lt;/th&gt;<br>      &lt;th&gt; even   &lt;/th&gt;<br>      &lt;th&gt; odd    &lt;/th&gt;<br>    &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b><br>  &lt;/table&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                          &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>  X <b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>  &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">border<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b> X <b>{/<font color="blue">border<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b> X <b>{/<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>   X <b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">even<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>   X <b>{/<font color="blue">even<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>    X <b>{/<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>    &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>      <b>{<font color="blue">true</font><font color="red"></font>}</b><br>        &lt;tr&gt;<br>          &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                     &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>  X <b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>  &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue">border<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b> X <b>{/<font color="blue">border<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b> &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b> X <b>{/<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b> &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>   X <b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>   &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue">even<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>   X <b>{/<font color="blue">even<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>   &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>    X <b>{/<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>    &lt;/td&gt;<br>        &lt;/tr&gt;<br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>  X <b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>  &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">border<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b> X <b>{/<font color="blue">border<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b> X <b>{/<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>   X <b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">even<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>   X <b>{/<font color="blue">even<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>    X <b>{/<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>    &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax984b81de91fe1f4e17491ecfa4c66800"></div>
+                        <script>
+                        padAjax984b81de91fe1f4e17491ecfa4c66800 = new XMLHttpRequest();
+                        padAjax984b81de91fe1f4e17491ecfa4c66800.onreadystatechange=function() {
+                        if (padAjax984b81de91fe1f4e17491ecfa4c66800.readyState === 4) {
+                        if (padAjax984b81de91fe1f4e17491ecfa4c66800.status === 200) {
+                        document.getElementById("padAjax984b81de91fe1f4e17491ecfa4c66800").innerHTML=padAjax984b81de91fe1f4e17491ecfa4c66800.responseText;
+                        } else {
+                        document.getElementById("padAjax984b81de91fe1f4e17491ecfa4c66800").innerHTML=padAjax984b81de91fe1f4e17491ecfa4c66800.statusText;
+                        }
+                        }
+                        }
+                        padAjax984b81de91fe1f4e17491ecfa4c66800.open("GET","http://localhost/pad/regression/framework/?check/vars_at_10&padInclude",true);
+                        padAjax984b81de91fe1f4e17491ecfa4c66800.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
-          </tbody></table>
+          </table>
         </blockquote>
       </center>
     </blockquote>
@@ -2393,17 +527,17 @@
       <hr width="75%">
       <br>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table>
+      </table>
       <p>
         <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
       </p>
     </center>
-  
-</body></html>
+  </body>
+</html>

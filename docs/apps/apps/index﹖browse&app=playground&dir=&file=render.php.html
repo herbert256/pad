@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: playground
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: playground
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=playground&amp;dir=_config.html">_config/</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=playground&amp;dir=&amp;file=_inits.php.html">_inits.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=playground&amp;dir=&amp;file=index.pad.html">index.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=playground&amp;dir=&amp;file=index.php.html">index.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=playground&amp;dir=&amp;file=render.pad.html">render.pad</a>
+                  </li>
+                  <li class="current">render.php
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  render.php
+                </h3>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Renders the template the playground posts, with the JSON object posted beside it as its<br>  // data: each top-level key a variable of the template, as a page's .php would set it. The<br>  // template runs in a nested pass of this request (padCode) under the application's limits -<br>  // no PHP functions, no request values - plus three of its own: five seconds, 64 KB of<br>  // template and 256 KB of output. ?render&amp;view=source answers the rendered HTML as text.<br>  //<br>  // A template error ends the request with PAD's own error report, which the playground<br>  // shows in the output frame like any other answer. The render page's own variables are<br>  // gone before the template runs, so all it sees is its data.<br><br>  </span><span style="color: #0000BB">set_time_limit </span><span style="color: #007700">( </span><span style="color: #0000BB">5 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$playSource </span><span style="color: #007700">= (string) ( </span><span style="color: #0000BB">$_POST </span><span style="color: #007700">[</span><span style="color: #DD0000">'source'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$playJson   </span><span style="color: #007700">= </span><span style="color: #0000BB">trim </span><span style="color: #007700">( (string) ( </span><span style="color: #0000BB">$_POST </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'' </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$playView   </span><span style="color: #007700">= ( ( </span><span style="color: #0000BB">$_GET </span><span style="color: #007700">[</span><span style="color: #DD0000">'view'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'' </span><span style="color: #007700">) == </span><span style="color: #DD0000">'source' </span><span style="color: #007700">);<br><br>  if ( </span><span style="color: #0000BB">strlen </span><span style="color: #007700">( </span><span style="color: #0000BB">$playSource </span><span style="color: #007700">) &gt; </span><span style="color: #0000BB">65536 </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">padError </span><span style="color: #007700">( </span><span style="color: #DD0000">'the template is longer than the playground takes: 64 KB' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$playData </span><span style="color: #007700">= ( </span><span style="color: #0000BB">$playJson </span><span style="color: #007700">=== </span><span style="color: #DD0000">'' </span><span style="color: #007700">) ? [] : </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #0000BB">$playJson</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br>  if ( ! </span><span style="color: #0000BB">is_array </span><span style="color: #007700">( </span><span style="color: #0000BB">$playData </span><span style="color: #007700">) or </span><span style="color: #0000BB">array_is_list </span><span style="color: #007700">( </span><span style="color: #0000BB">$playData </span><span style="color: #007700">) and </span><span style="color: #0000BB">$playData </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">padError </span><span style="color: #007700">( </span><span style="color: #DD0000">'the data is not a JSON object: ' </span><span style="color: #007700">. ( </span><span style="color: #0000BB">json_last_error </span><span style="color: #007700">() ? </span><span style="color: #0000BB">json_last_error_msg </span><span style="color: #007700">() : </span><span style="color: #DD0000">'give it as { "name": value }' </span><span style="color: #007700">) );<br><br>  foreach ( </span><span style="color: #0000BB">$playData </span><span style="color: #007700">as </span><span style="color: #0000BB">$playKey </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$playValue </span><span style="color: #007700">)<br>    if ( </span><span style="color: #0000BB">preg_match </span><span style="color: #007700">( </span><span style="color: #DD0000">'/^[A-Za-z_][A-Za-z0-9_]*$/'</span><span style="color: #007700">, </span><span style="color: #0000BB">$playKey </span><span style="color: #007700">) and </span><span style="color: #0000BB">padValidStore </span><span style="color: #007700">( </span><span style="color: #0000BB">$playKey </span><span style="color: #007700">) and ! </span><span style="color: #0000BB">str_starts_with </span><span style="color: #007700">( </span><span style="color: #0000BB">$playKey</span><span style="color: #007700">, </span><span style="color: #DD0000">'play' </span><span style="color: #007700">) )<br>      </span><span style="color: #0000BB">$GLOBALS </span><span style="color: #007700">[</span><span style="color: #0000BB">$playKey</span><span style="color: #007700">] = </span><span style="color: #0000BB">$playValue</span><span style="color: #007700">;<br><br>  unset ( </span><span style="color: #0000BB">$playJson</span><span style="color: #007700">, </span><span style="color: #0000BB">$playData</span><span style="color: #007700">, </span><span style="color: #0000BB">$playKey</span><span style="color: #007700">, </span><span style="color: #0000BB">$playValue </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$playOutput </span><span style="color: #007700">= (string) </span><span style="color: #0000BB">padCode </span><span style="color: #007700">( </span><span style="color: #0000BB">$playSource </span><span style="color: #007700">);<br><br>  if ( </span><span style="color: #0000BB">strlen </span><span style="color: #007700">( </span><span style="color: #0000BB">$playOutput </span><span style="color: #007700">) &gt; </span><span style="color: #0000BB">262144 </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$playOutput </span><span style="color: #007700">= </span><span style="color: #0000BB">substr </span><span style="color: #007700">( </span><span style="color: #0000BB">$playOutput</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">262144 </span><span style="color: #007700">) . </span><span style="color: #DD0000">"\n... the output stops here: the playground shows 256 KB"</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// The source view shows the HTML exactly as the page would get it - the escapes of the pass<br>  // put back first, as exits/exits.php does - entities and all: an &amp;lt; the template wrote<br>  // is shown as &amp;lt;, not as the &lt; a browser would make of it.<br><br>  </span><span style="color: #0000BB">$playShown </span><span style="color: #007700">= </span><span style="color: #0000BB">htmlspecialchars </span><span style="color: #007700">( </span><span style="color: #0000BB">padUnprotect </span><span style="color: #007700">( </span><span style="color: #0000BB">padUnescape </span><span style="color: #007700">( </span><span style="color: #0000BB">$playOutput </span><span style="color: #007700">) ), </span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">, </span><span style="color: #DD0000">'UTF-8'</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

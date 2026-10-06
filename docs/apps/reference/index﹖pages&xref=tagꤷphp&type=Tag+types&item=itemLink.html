@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - itemLink
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - itemLink
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/common - Page: reference<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">reference.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">reference.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The globals the Xref link builders read; parts() answers an empty list these days, and<br>  // the count asserts exactly that.<br><br>  </span><span style="color: #0000BB">$first  </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$for    </span><span style="color: #007700">= </span><span style="color: #DD0000">'demo'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$xitem  </span><span style="color: #007700">= </span><span style="color: #DD0000">'clock'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$second </span><span style="color: #007700">= </span><span style="color: #DD0000">'x'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$go     </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$partsCount </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">parts </span><span style="color: #007700">() );<br><br>  return </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;h3&gt;getReference over the type handlers&lt;/h3&gt;<br><br>&lt;p&gt;<b>{<font color="blue">getReference </font><font color="red"><font color="black">'</font>types<font color="black">'</font><font color="black">,</font> <font color="black">'</font>tag<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>item</font>}</b> <b>{/<font color="blue">getReference</font><font color="red"></font>}</b>&lt;/p&gt;<br><br>&lt;h3&gt;The Xref link builders&lt;/h3&gt;<br><br>&lt;p&gt;parts: <b>{<font color="green"><font color="red">$</font>partsCount</font>}</b>&lt;/p&gt;<br>&lt;p&gt;forLink: <b>{<font color="blue">forLink</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;itemLink: <b>{<font color="blue">itemLink</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;secondLink: <b>{<font color="blue">secondLink</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxe7f770ac5741f7555ef430551ab2dfe9"></div>
+                        <script>
+                        padAjaxe7f770ac5741f7555ef430551ab2dfe9 = new XMLHttpRequest();
+                        padAjaxe7f770ac5741f7555ef430551ab2dfe9.onreadystatechange=function() {
+                        if (padAjaxe7f770ac5741f7555ef430551ab2dfe9.readyState === 4) {
+                        if (padAjaxe7f770ac5741f7555ef430551ab2dfe9.status === 200) {
+                        document.getElementById("padAjaxe7f770ac5741f7555ef430551ab2dfe9").innerHTML=padAjaxe7f770ac5741f7555ef430551ab2dfe9.responseText;
+                        } else {
+                        document.getElementById("padAjaxe7f770ac5741f7555ef430551ab2dfe9").innerHTML=padAjaxe7f770ac5741f7555ef430551ab2dfe9.statusText;
+                        }
+                        }
+                        }
+                        padAjaxe7f770ac5741f7555ef430551ab2dfe9.open("GET","http://localhost/pad/regression/common/?reference&padInclude",true);
+                        padAjaxe7f770ac5741f7555ef430551ab2dfe9.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

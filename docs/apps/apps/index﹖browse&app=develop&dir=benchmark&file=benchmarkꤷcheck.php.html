@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: develop/benchmark
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: develop/benchmark
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=develop.html">..</a>
+                  </li>
+                  <li class="current">check.php
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=develop&amp;dir=benchmark&amp;file=benchmark%EA%A4%B7history.pad.html">history.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=develop&amp;dir=benchmark&amp;file=benchmark%EA%A4%B7history.php.html">history.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=develop&amp;dir=benchmark&amp;file=benchmark%EA%A4%B7index.pad.html">index.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=develop&amp;dir=benchmark&amp;file=benchmark%EA%A4%B7index.php.html">index.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  benchmark/check.php
+                </h3>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The benchmark as a gate, for ./ci.sh: one run, kept, held against the runs before it.<br>  // Answers plain text - the first line "benchmark ok" or "benchmark slower", then one line<br>  // per finding - which the gate prints and judges. threshold= is the percentage a page or<br>  // the total may be slower than its usual time (25), floor= the milliseconds a page must<br>  // have lost as well before it counts (5), window= how many pages are fetched at once (4).<br><br>  </span><span style="color: #0000BB">set_time_limit </span><span style="color: #007700">( </span><span style="color: #0000BB">300 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$benchThreshold </span><span style="color: #007700">= </span><span style="color: #0000BB">max </span><span style="color: #007700">( </span><span style="color: #0000BB">1</span><span style="color: #007700">, (int)   </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'threshold'</span><span style="color: #007700">, </span><span style="color: #0000BB">25 </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$benchFloor     </span><span style="color: #007700">= </span><span style="color: #0000BB">max </span><span style="color: #007700">( </span><span style="color: #0000BB">0</span><span style="color: #007700">, (float) </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'floor'</span><span style="color: #007700">,     </span><span style="color: #0000BB">5  </span><span style="color: #007700">) );<br><br>  </span><span style="color: #0000BB">$benchUrls    </span><span style="color: #007700">= </span><span style="color: #0000BB">benchUrls </span><span style="color: #007700">();<br>  </span><span style="color: #0000BB">$benchHistory </span><span style="color: #007700">= </span><span style="color: #0000BB">padBenchHistory </span><span style="color: #007700">();<br>  </span><span style="color: #0000BB">$benchTimes   </span><span style="color: #007700">= </span><span style="color: #0000BB">padBenchTimes </span><span style="color: #007700">( </span><span style="color: #0000BB">$benchUrls</span><span style="color: #007700">, </span><span style="color: #0000BB">benchWindow </span><span style="color: #007700">() );<br><br>  list ( </span><span style="color: #0000BB">$benchTimes</span><span style="color: #007700">, </span><span style="color: #0000BB">$benchSlower </span><span style="color: #007700">)<br>    = </span><span style="color: #0000BB">padBenchConfirm </span><span style="color: #007700">( </span><span style="color: #0000BB">$benchUrls</span><span style="color: #007700">, </span><span style="color: #0000BB">$benchTimes</span><span style="color: #007700">, </span><span style="color: #0000BB">$benchHistory</span><span style="color: #007700">, </span><span style="color: #0000BB">$benchThreshold</span><span style="color: #007700">, </span><span style="color: #0000BB">$benchFloor </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$benchRun     </span><span style="color: #007700">= </span><span style="color: #0000BB">padBenchSave </span><span style="color: #007700">( </span><span style="color: #0000BB">$benchTimes </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$benchLines </span><span style="color: #007700">= [];<br><br>  if ( ! </span><span style="color: #0000BB">$benchHistory </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$benchLines </span><span style="color: #007700">[] = </span><span style="color: #DD0000">'the first kept run - nothing to compare with yet'</span><span style="color: #007700">;<br><br>  if ( </span><span style="color: #0000BB">$benchSlower </span><span style="color: #007700">[</span><span style="color: #DD0000">'total'</span><span style="color: #007700">] )<br>    </span><span style="color: #0000BB">$benchLines </span><span style="color: #007700">[] = </span><span style="color: #0000BB">vsprintf </span><span style="color: #007700">( </span><span style="color: #DD0000">'total %s ms, usually %s ms: %s%% slower'</span><span style="color: #007700">, </span><span style="color: #0000BB">$benchSlower </span><span style="color: #007700">[</span><span style="color: #DD0000">'total'</span><span style="color: #007700">] );<br><br>  foreach ( </span><span style="color: #0000BB">$benchSlower </span><span style="color: #007700">[</span><span style="color: #DD0000">'pages'</span><span style="color: #007700">] as </span><span style="color: #0000BB">$benchPage </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$benchOne </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$benchLines </span><span style="color: #007700">[] = </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$benchPage</span><span style="color: #DD0000"> " </span><span style="color: #007700">. </span><span style="color: #0000BB">vsprintf </span><span style="color: #007700">( </span><span style="color: #DD0000">'%s ms, usually %s ms: %s%% slower'</span><span style="color: #007700">, </span><span style="color: #0000BB">$benchOne </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$benchVerdict </span><span style="color: #007700">= ( </span><span style="color: #0000BB">$benchSlower </span><span style="color: #007700">[</span><span style="color: #DD0000">'total'</span><span style="color: #007700">] or </span><span style="color: #0000BB">$benchSlower </span><span style="color: #007700">[</span><span style="color: #DD0000">'pages'</span><span style="color: #007700">] ) ? </span><span style="color: #DD0000">'benchmark slower' </span><span style="color: #007700">: </span><span style="color: #DD0000">'benchmark ok'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$padContentType </span><span style="color: #007700">= </span><span style="color: #DD0000">'text/plain'</span><span style="color: #007700">;<br><br>  echo </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$benchVerdict</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;<br>  echo </span><span style="color: #0000BB">$benchRun </span><span style="color: #007700">[</span><span style="color: #DD0000">'pages'</span><span style="color: #007700">] . </span><span style="color: #DD0000">' pages, ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$benchRun </span><span style="color: #007700">[</span><span style="color: #DD0000">'total'</span><span style="color: #007700">] . </span><span style="color: #DD0000">" ms, commit " </span><span style="color: #007700">. </span><span style="color: #0000BB">$benchRun </span><span style="color: #007700">[</span><span style="color: #DD0000">'commit'</span><span style="color: #007700">] . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br><br>  foreach ( </span><span style="color: #0000BB">$benchLines </span><span style="color: #007700">as </span><span style="color: #0000BB">$benchLine </span><span style="color: #007700">)<br>    echo </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$benchLine</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - PAD functions - bytes
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - PAD functions - bytes
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: fragments/pipes_5<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/pipes_5.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/pipes_5.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $intro </span><span style="color: #007700">= </span><span style="color: #DD0000">'The quick brown fox jumps over the lazy dog, twice before breakfast'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Crème Brûlée & Co.'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$size  </span><span style="color: #007700">= </span><span style="color: #0000BB">3221225472</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$quote </span><span style="color: #007700">= </span><span style="color: #DD0000">'it\'s &lt;/script&gt;'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green">$intro</font> <font color="black">|</font> <font color="blue">truncate(30)</font>}</b>&lt;/p&gt;<br>&lt;p&gt;?page=<b>{<font color="green">$title</font> <font color="black">|</font> <font color="blue">slug</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$size</font> <font color="black">|</font> <font color="blue">bytes</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$quote</font> <font color="black">|</font> <font color="blue">escape('js')</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc249a64332367cd621f31545f8e64c0c"></div>
+                        <script>
+                        padAjaxc249a64332367cd621f31545f8e64c0c = new XMLHttpRequest();
+                        padAjaxc249a64332367cd621f31545f8e64c0c.onreadystatechange=function() {
+                        if (padAjaxc249a64332367cd621f31545f8e64c0c.readyState === 4) {
+                        if (padAjaxc249a64332367cd621f31545f8e64c0c.status === 200) {
+                        document.getElementById("padAjaxc249a64332367cd621f31545f8e64c0c").innerHTML=padAjaxc249a64332367cd621f31545f8e64c0c.responseText;
+                        } else {
+                        document.getElementById("padAjaxc249a64332367cd621f31545f8e64c0c").innerHTML=padAjaxc249a64332367cd621f31545f8e64c0c.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc249a64332367cd621f31545f8e64c0c.open("GET","http://localhost/pad/manual/?fragments/pipes_5&padInclude",true);
+                        padAjaxc249a64332367cd621f31545f8e64c0c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: functions/bytes_rounds_before_it_chooses_the_unit<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">functions/bytes_rounds_before_it_chooses_the_unit.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1048575 <font color="black">|</font> bytes(0)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">1048575 <font color="black">|</font> bytes</font>}</b>][<b>{<font color="blue">echo </font><font color="red">1023.996 <font color="black">|</font> bytes(1)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">1536 <font color="black">|</font> bytes</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax1d23668b0f9d4a82fe70969105b7f204"></div>
+                        <script>
+                        padAjax1d23668b0f9d4a82fe70969105b7f204 = new XMLHttpRequest();
+                        padAjax1d23668b0f9d4a82fe70969105b7f204.onreadystatechange=function() {
+                        if (padAjax1d23668b0f9d4a82fe70969105b7f204.readyState === 4) {
+                        if (padAjax1d23668b0f9d4a82fe70969105b7f204.status === 200) {
+                        document.getElementById("padAjax1d23668b0f9d4a82fe70969105b7f204").innerHTML=padAjax1d23668b0f9d4a82fe70969105b7f204.responseText;
+                        } else {
+                        document.getElementById("padAjax1d23668b0f9d4a82fe70969105b7f204").innerHTML=padAjax1d23668b0f9d4a82fe70969105b7f204.statusText;
+                        }
+                        }
+                        }
+                        padAjax1d23668b0f9d4a82fe70969105b7f204.open("GET","http://localhost/pad/regression/framework/?functions/bytes_rounds_before_it_chooses_the_unit&padInclude",true);
+                        padAjax1d23668b0f9d4a82fe70969105b7f204.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: functions/bytes_writes_a_size_for_people<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">functions/bytes_writes_a_size_for_people.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1536 <font color="black">|</font> bytes</font>}</b>][<b>{<font color="blue">echo </font><font color="red">3221225472 <font color="black">|</font> bytes</font>}</b>][<b>{<font color="blue">echo </font><font color="red">500 <font color="black">|</font> bytes</font>}</b>][<b>{<font color="blue">echo </font><font color="red">123456789 <font color="black">|</font> bytes(1)</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd401c1fd290bbef63898ee5f222dce82"></div>
+                        <script>
+                        padAjaxd401c1fd290bbef63898ee5f222dce82 = new XMLHttpRequest();
+                        padAjaxd401c1fd290bbef63898ee5f222dce82.onreadystatechange=function() {
+                        if (padAjaxd401c1fd290bbef63898ee5f222dce82.readyState === 4) {
+                        if (padAjaxd401c1fd290bbef63898ee5f222dce82.status === 200) {
+                        document.getElementById("padAjaxd401c1fd290bbef63898ee5f222dce82").innerHTML=padAjaxd401c1fd290bbef63898ee5f222dce82.responseText;
+                        } else {
+                        document.getElementById("padAjaxd401c1fd290bbef63898ee5f222dce82").innerHTML=padAjaxd401c1fd290bbef63898ee5f222dce82.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd401c1fd290bbef63898ee5f222dce82.open("GET","http://localhost/pad/regression/framework/?functions/bytes_writes_a_size_for_people&padInclude",true);
+                        padAjaxd401c1fd290bbef63898ee5f222dce82.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: helpers/numbers_file_size_is_the_bytes_pipe_s_answer<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">helpers/numbers_file_size_is_the_bytes_pipe_s_answer.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">helpers/numbers_file_size_is_the_bytes_pipe_s_answer.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// padNumberFileSize: units of 1024, the unit chosen on the size as it will be written,<br>  // at most precision decimals - 0 unless given, where the bytes pipe has 2.<br><br>  </span><span style="color: #0000BB">$r </span><span style="color: #007700">= </span><span style="color: #0000BB">json_encode </span><span style="color: #007700">( [<br>    </span><span style="color: #0000BB">padNumberFileSize </span><span style="color: #007700">( </span><span style="color: #0000BB">1536 </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padNumberFileSize </span><span style="color: #007700">( </span><span style="color: #0000BB">1536</span><span style="color: #007700">, </span><span style="color: #0000BB">1 </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padNumberFileSize </span><span style="color: #007700">( </span><span style="color: #0000BB">1536</span><span style="color: #007700">, </span><span style="color: #0000BB">2 </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padNumberFileSize </span><span style="color: #007700">( </span><span style="color: #0000BB">1048575 </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padNumberFileSize </span><span style="color: #007700">( </span><span style="color: #0000BB">1023.996</span><span style="color: #007700">, </span><span style="color: #0000BB">1 </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padNumberFileSize </span><span style="color: #007700">( </span><span style="color: #0000BB">3221225472 </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padNumberFileSize </span><span style="color: #007700">( </span><span style="color: #0000BB">123456789</span><span style="color: #007700">, </span><span style="color: #0000BB">1 </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padNumberFileSize </span><span style="color: #007700">( </span><span style="color: #0000BB">500 </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padNumberFileSize </span><span style="color: #007700">( </span><span style="color: #0000BB">0 </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padNumberFileSize </span><span style="color: #007700">( </span><span style="color: #DD0000">'2048' </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padNumberFileSize </span><span style="color: #007700">( </span><span style="color: #0000BB">NULL </span><span style="color: #007700">)<br>  ] );<br><br>  </span><span style="color: #0000BB">$size </span><span style="color: #007700">= </span><span style="color: #0000BB">123456789</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="green"><font color="red">!</font>r</font>}</b> <b>{<font color="green">$size</font> <font color="black">|</font> <font color="blue">bytes(1)</font>}</b> <b>{<font color="green">$size</font> <font color="black">|</font> <font color="blue">bytes</font>}</b> <b>{<font color="blue">echo </font><font color="red">1536 <font color="black">|</font> bytes</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3dc4f8a432a885f51d2cfe62e941ab31"></div>
+                        <script>
+                        padAjax3dc4f8a432a885f51d2cfe62e941ab31 = new XMLHttpRequest();
+                        padAjax3dc4f8a432a885f51d2cfe62e941ab31.onreadystatechange=function() {
+                        if (padAjax3dc4f8a432a885f51d2cfe62e941ab31.readyState === 4) {
+                        if (padAjax3dc4f8a432a885f51d2cfe62e941ab31.status === 200) {
+                        document.getElementById("padAjax3dc4f8a432a885f51d2cfe62e941ab31").innerHTML=padAjax3dc4f8a432a885f51d2cfe62e941ab31.responseText;
+                        } else {
+                        document.getElementById("padAjax3dc4f8a432a885f51d2cfe62e941ab31").innerHTML=padAjax3dc4f8a432a885f51d2cfe62e941ab31.statusText;
+                        }
+                        }
+                        }
+                        padAjax3dc4f8a432a885f51d2cfe62e941ab31.open("GET","http://localhost/pad/regression/framework/?helpers/numbers_file_size_is_the_bytes_pipe_s_answer&padInclude",true);
+                        padAjax3dc4f8a432a885f51d2cfe62e941ab31.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -1,10 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<!DOCTYPE html>
+<html>
+  <head>
     <title>
       PAD - Browse: demo
     </title>
-    <style>.browse-page { text-align: left; display: inline-block; }
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
     .browse-container { display: flex; gap: 20px; }
     .file-list { min-width: 150px; }
     .file-list ul { list-style: none; padding: 0; margin: 0; }
@@ -26,14 +27,14 @@
         PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
       </h1>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table><br>
+      </table><br>
       <hr width="75%">
     </center>
     <blockquote>
@@ -46,6 +47,9 @@
             <div class="browse-container">
               <div class="file-list">
                 <ul>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=_config.html">_config/</a>
+                  </li>
                   <li class="dir">
                     <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=_data.html">_data/</a>
                   </li>
@@ -76,9 +80,6 @@
                     <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=counter.php.html">counter.php</a>
                   </li>
                   <li>
-                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=else.php.html">else.php</a>
-                  </li>
-                  <li>
                     <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=guestbook.pad.html">guestbook.pad</a>
                   </li>
                   <li>
@@ -105,7 +106,7 @@
                 <h3>
                   contact.pad
                 </h3>
-                <pre><code style="color: #000000">&lt;p&gt;Have a question or feedback? Send us a message!&lt;/p&gt;<br><br><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>successMsg</font>}</b><br>  &lt;div class="message"&gt;<b>{<font color="green"><font color="red">$</font>successMsg</font>}</b>&lt;/div&gt;<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>error</font>}</b><br>  &lt;div class="message error"&gt;<b>{<font color="green"><font color="red">$</font>error</font>}</b>&lt;/div&gt;<br>  &lt;ul style="color: #c00;"&gt;<br>    <b>{<font color="blue">errors</font><font color="red"></font>}</b><br>      &lt;li&gt;<b>{<font color="green"><font color="red">$</font>field</font>}</b>&lt;/li&gt;<br>    <b>{/<font color="blue">errors</font><font color="red"></font>}</b><br>  &lt;/ul&gt;<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>&lt;form method="post"&gt;<br>  &lt;input type="hidden" name="action" value="send"&gt;<br><br>  &lt;p&gt;<br>    &lt;label&gt;Your Name: *&lt;/label&gt;&lt;br&gt;<br>    &lt;input type="text" name="name" value="<b>{<font color="green"><font color="red">$</font>formName</font>}</b>"&gt;<br>  &lt;/p&gt;<br><br>  &lt;p&gt;<br>    &lt;label&gt;Your Email: *&lt;/label&gt;&lt;br&gt;<br>    &lt;input type="email" name="email" value="<b>{<font color="green"><font color="red">$</font>formEmail</font>}</b>"&gt;<br>  &lt;/p&gt;<br><br>  &lt;p&gt;<br>    &lt;label&gt;Subject: *&lt;/label&gt;&lt;br&gt;<br>    &lt;input type="text" name="subject" value="<b>{<font color="green"><font color="red">$</font>formSubject</font>}</b>"&gt;<br>  &lt;/p&gt;<br><br>  &lt;p&gt;<br>    &lt;label&gt;Message: *&lt;/label&gt;&lt;br&gt;<br>    &lt;textarea name="message" rows="6"&gt;<b>{<font color="green"><font color="red">$</font>formMessage</font>}</b>&lt;/textarea&gt;<br>  &lt;/p&gt;<br><br>  &lt;p&gt;<br>    &lt;input type="submit" value="Send Message"&gt;<br>  &lt;/p&gt;<br>&lt;/form&gt;<br><br>&lt;p style="color: #999; font-size: 12px;"&gt;* Required fields&lt;/p&gt;</code></pre>
+                <pre><code style="color: #000000">&lt;p&gt;Have a question or feedback? Send us a message!&lt;/p&gt;<br><br><b>{<font color="blue">flash</font><font color="red"></font>}</b><br>  &lt;div class="message"&gt;<b>{<font color="green"><font color="red">$</font>message</font>}</b>&lt;/div&gt;<br><b>{/<font color="blue">flash</font><font color="red"></font>}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>contact<font color="black">'</font><font color="black">,</font> error=<font color="black">'</font>Please correct the errors below.<font color="black">'</font></font>}</b><br><br>  &lt;p&gt;<b>{<font color="blue">input </font><font color="red"><font color="black">'</font>name<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your Name<font color="black">:</font> *<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>max<font color="black">:</font>100<font color="black">'</font></font>}</b>&lt;/p&gt;<br><br>  &lt;p&gt;<b>{<font color="blue">input </font><font color="red"><font color="black">'</font>email<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>email<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your Email<font color="black">:</font> *<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>email<font color="black">'</font></font>}</b>&lt;/p&gt;<br><br>  &lt;p&gt;<b>{<font color="blue">input </font><font color="red"><font color="black">'</font>subject<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Subject<font color="black">:</font> *<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>max<font color="black">:</font>200<font color="black">'</font></font>}</b>&lt;/p&gt;<br><br>  &lt;p&gt;<b>{<font color="blue">textarea </font><font color="red"><font color="black">'</font>message<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Message<font color="black">:</font> *<font color="black">'</font><font color="black">,</font> rows=6<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>max<font color="black">:</font>2000<font color="black">'</font></font>}</b>&lt;/p&gt;<br><br>  &lt;p&gt;<br>    &lt;input type="submit" value="Send Message"&gt;<br>  &lt;/p&gt;<br><br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br>&lt;p style="color: #999; font-size: 12px;"&gt;* Required fields&lt;/p&gt;</code></pre>
               </div>
             </div>
           </div>
@@ -116,17 +117,17 @@
       <hr width="75%">
       <br>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table>
+      </table>
       <p>
         <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
       </p>
     </center>
-  
-</body></html>
+  </body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - staffSel
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - staffSel
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_select_order_binds_column_names_only<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">syntax/a_select_order_binds_column_names_only.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_select_order_binds_column_names_only.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$sort </span><span style="color: #007700">= </span><span style="color: #DD0000">"name; drop table staff"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">staffSel </font><font color="red">order="<font color="red">$</font>sort"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{/<font color="blue">staffSel</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax4b884de0877d43dd991edc18bea32306"></div>
+                        <script>
+                        padAjax4b884de0877d43dd991edc18bea32306 = new XMLHttpRequest();
+                        padAjax4b884de0877d43dd991edc18bea32306.onreadystatechange=function() {
+                        if (padAjax4b884de0877d43dd991edc18bea32306.readyState === 4) {
+                        if (padAjax4b884de0877d43dd991edc18bea32306.status === 200) {
+                        document.getElementById("padAjax4b884de0877d43dd991edc18bea32306").innerHTML=padAjax4b884de0877d43dd991edc18bea32306.responseText;
+                        } else {
+                        document.getElementById("padAjax4b884de0877d43dd991edc18bea32306").innerHTML=padAjax4b884de0877d43dd991edc18bea32306.statusText;
+                        }
+                        }
+                        }
+                        padAjax4b884de0877d43dd991edc18bea32306.open("GET","http://localhost/pad/regression/errors/?syntax/a_select_order_binds_column_names_only&padInclude",true);
+                        padAjax4b884de0877d43dd991edc18bea32306.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_select_output_mode_is_a_known_shape<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">syntax/a_select_output_mode_is_a_known_shape.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_select_output_mode_is_a_known_shape.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">staffSel </font><font color="red">htmlAttrJson=<font color="black">'</font>drop table staff;<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa5e601a8609b7382f65704df13ef4257"></div>
+                        <script>
+                        padAjaxa5e601a8609b7382f65704df13ef4257 = new XMLHttpRequest();
+                        padAjaxa5e601a8609b7382f65704df13ef4257.onreadystatechange=function() {
+                        if (padAjaxa5e601a8609b7382f65704df13ef4257.readyState === 4) {
+                        if (padAjaxa5e601a8609b7382f65704df13ef4257.status === 200) {
+                        document.getElementById("padAjaxa5e601a8609b7382f65704df13ef4257").innerHTML=padAjaxa5e601a8609b7382f65704df13ef4257.responseText;
+                        } else {
+                        document.getElementById("padAjaxa5e601a8609b7382f65704df13ef4257").innerHTML=padAjaxa5e601a8609b7382f65704df13ef4257.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa5e601a8609b7382f65704df13ef4257.open("GET","http://localhost/pad/regression/errors/?syntax/a_select_output_mode_is_a_known_shape&padInclude",true);
+                        padAjaxa5e601a8609b7382f65704df13ef4257.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_select_where_is_written_in_the_template<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">syntax/a_select_where_is_written_in_the_template.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_select_where_is_written_in_the_template.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$cond </span><span style="color: #007700">= </span><span style="color: #DD0000">"1 = 1"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">staffSel </font><font color="red">where=<font color="red">$</font>cond</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{/<font color="blue">staffSel</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxfadbcc7b3ca8cfac9250fc9ed771eaff"></div>
+                        <script>
+                        padAjaxfadbcc7b3ca8cfac9250fc9ed771eaff = new XMLHttpRequest();
+                        padAjaxfadbcc7b3ca8cfac9250fc9ed771eaff.onreadystatechange=function() {
+                        if (padAjaxfadbcc7b3ca8cfac9250fc9ed771eaff.readyState === 4) {
+                        if (padAjaxfadbcc7b3ca8cfac9250fc9ed771eaff.status === 200) {
+                        document.getElementById("padAjaxfadbcc7b3ca8cfac9250fc9ed771eaff").innerHTML=padAjaxfadbcc7b3ca8cfac9250fc9ed771eaff.responseText;
+                        } else {
+                        document.getElementById("padAjaxfadbcc7b3ca8cfac9250fc9ed771eaff").innerHTML=padAjaxfadbcc7b3ca8cfac9250fc9ed771eaff.statusText;
+                        }
+                        }
+                        }
+                        padAjaxfadbcc7b3ca8cfac9250fc9ed771eaff.open("GET","http://localhost/pad/regression/errors/?syntax/a_select_where_is_written_in_the_template&padInclude",true);
+                        padAjaxfadbcc7b3ca8cfac9250fc9ed771eaff.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: select/demo/options<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">select/demo/options.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">select/demo/options.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The options a declared select table takes on the tag itself: each section of the .pad<br>  // half names one, over the four-row staff table of the demo database.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'elsewhere'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffJim'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'where' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"name = 'jim'" </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffRaw'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">where: [<b>{<font color="blue">staffSel </font><font color="red">where="salary &gt;= 2000"<font color="black">,</font> order="salary"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>order: [<b>{<font color="blue">staffSel </font><font color="red">order="salary desc"<font color="black">,</font> fields="name"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>fields: [<b>{<font color="blue">staffSel </font><font color="red">fields="name<font color="black">,</font> bonus"<font color="black">,</font> where="name = <font color="black">'</font>bob<font color="black">'</font>"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b>/<b>{<font color="green"><font color="red">$</font>bonus</font>}</b><b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>group: [<b>{<font color="blue">staffSel </font><font color="red">fields="count(*) as heads"<font color="black">,</font> group="floor(salary / 2000)"<font color="black">,</font> order="heads"</font>}</b><b>{<font color="green"><font color="red">$</font>heads</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>having: [<b>{<font color="blue">staffSel </font><font color="red">fields="salary + bonus as total"<font color="black">,</font> group="total"<font color="black">,</font> having="total &gt; 2500"<font color="black">,</font> order="total"</font>}</b><b>{<font color="green"><font color="red">$</font>total</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>rollup: [<b>{<font color="blue">staffRaw </font><font color="red">fields="sum(salary) as pay"<font color="black">,</font> group="name"<font color="black">,</font> rollup</font>}</b><b>{<font color="green"><font color="red">$</font>pay</font>}</b> <b>{/<font color="blue">staffRaw</font><font color="red"></font>}</b>]<br>distinctrow: [<b>{<font color="blue">staffSel </font><font color="red">fields="floor(salary / 2000) as band"<font color="black">,</font> distinctrow<font color="black">,</font> order="band"</font>}</b><b>{<font color="green"><font color="red">$</font>band</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>db: [<b>{<font color="blue">elsewhere </font><font color="red">db=<font color="black">'</font>staff<font color="black">'</font><font color="black">,</font> where="name = <font color="black">'</font>jim<font color="black">'</font>"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b>/<b>{<font color="green"><font color="red">$</font>phone</font>}</b><b>{/<font color="blue">elsewhere</font><font color="red"></font>}</b>]<br>union: [<b>{<font color="blue">staffSel </font><font color="red">where="name = <font color="black">'</font>bob<font color="black">'</font>"<font color="black">,</font> union=<font color="black">'</font>staffJim<font color="black">'</font><font color="black">,</font> order="name"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax6043d454a172616c6f019d4755028ba8"></div>
+                        <script>
+                        padAjax6043d454a172616c6f019d4755028ba8 = new XMLHttpRequest();
+                        padAjax6043d454a172616c6f019d4755028ba8.onreadystatechange=function() {
+                        if (padAjax6043d454a172616c6f019d4755028ba8.readyState === 4) {
+                        if (padAjax6043d454a172616c6f019d4755028ba8.status === 200) {
+                        document.getElementById("padAjax6043d454a172616c6f019d4755028ba8").innerHTML=padAjax6043d454a172616c6f019d4755028ba8.responseText;
+                        } else {
+                        document.getElementById("padAjax6043d454a172616c6f019d4755028ba8").innerHTML=padAjax6043d454a172616c6f019d4755028ba8.statusText;
+                        }
+                        }
+                        }
+                        padAjax6043d454a172616c6f019d4755028ba8.open("GET","http://localhost/pad/regression/pages/?select/demo/options&padInclude",true);
+                        padAjax6043d454a172616c6f019d4755028ba8.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: select/demo/paging<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">select/demo/paging.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">select/demo/paging.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Paging a declared select table: the page is cut once, by the SQL limit, so page 2 holds<br>  // the third and fourth rows; a row count in the declaration is a row count, not the<br>  // query's command word; and a joined table declared without fields joins, adding none.<br>  // Over the four-row staff table and the join tables of the demo database.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffTwo'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'rows' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'bare'</span><span style="color: #007700">]     = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'table2'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'key' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'joined'</span><span style="color: #007700">]   = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'table1'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'table1.text'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'table1.key'</span><span style="color: #007700">,<br>                              </span><span style="color: #DD0000">'join' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'inner' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'bare'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'table1.key' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">page 1: [<b>{<font color="blue">staffSel </font><font color="red">page=1<font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>page 2: [<b>{<font color="blue">staffSel </font><font color="red">page=2<font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>declared rows: [<b>{<font color="blue">staffTwo</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffTwo</font><font color="red"></font>}</b>]<br>join without fields: [<b>{<font color="blue">joined</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>text</font>}</b> <b>{/<font color="blue">joined</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax9ec71675e6241cccfab44c5bf61245af"></div>
+                        <script>
+                        padAjax9ec71675e6241cccfab44c5bf61245af = new XMLHttpRequest();
+                        padAjax9ec71675e6241cccfab44c5bf61245af.onreadystatechange=function() {
+                        if (padAjax9ec71675e6241cccfab44c5bf61245af.readyState === 4) {
+                        if (padAjax9ec71675e6241cccfab44c5bf61245af.status === 200) {
+                        document.getElementById("padAjax9ec71675e6241cccfab44c5bf61245af").innerHTML=padAjax9ec71675e6241cccfab44c5bf61245af.responseText;
+                        } else {
+                        document.getElementById("padAjax9ec71675e6241cccfab44c5bf61245af").innerHTML=padAjax9ec71675e6241cccfab44c5bf61245af.statusText;
+                        }
+                        }
+                        }
+                        padAjax9ec71675e6241cccfab44c5bf61245af.open("GET","http://localhost/pad/regression/pages/?select/demo/paging&padInclude",true);
+                        padAjax9ec71675e6241cccfab44c5bf61245af.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/sqlite - Page: select<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">select.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">select.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The Select subsystem over the same staff table: the statement it builds - backquoted<br>  // names, a quoted key, limit offset,count - is one SQLite reads as MySQL does.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br><br>  </span><span style="color: #FF8000">// A value bound into where= is escaped as SQLite wants it: the quote stays in the string.<br><br>  </span><span style="color: #0000BB">$who </span><span style="color: #007700">= </span><span style="color: #DD0000">"x' or name &gt; '"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">where: [<b>{<font color="blue">staffSel </font><font color="red">where="salary &gt;= 2000"<font color="black">,</font> order="salary"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>order: [<b>{<font color="blue">staffSel </font><font color="red">order="salary desc"<font color="black">,</font> fields="name"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>first: [<b>{<font color="blue">staffSel </font><font color="red">order="name"<font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>bound: [<b>{<font color="blue">staffSel </font><font color="red">where="name = <font color="red">$</font>who"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxe9ac1f94341e72a4ee6bce80f01d64ea"></div>
+                        <script>
+                        padAjaxe9ac1f94341e72a4ee6bce80f01d64ea = new XMLHttpRequest();
+                        padAjaxe9ac1f94341e72a4ee6bce80f01d64ea.onreadystatechange=function() {
+                        if (padAjaxe9ac1f94341e72a4ee6bce80f01d64ea.readyState === 4) {
+                        if (padAjaxe9ac1f94341e72a4ee6bce80f01d64ea.status === 200) {
+                        document.getElementById("padAjaxe9ac1f94341e72a4ee6bce80f01d64ea").innerHTML=padAjaxe9ac1f94341e72a4ee6bce80f01d64ea.responseText;
+                        } else {
+                        document.getElementById("padAjaxe9ac1f94341e72a4ee6bce80f01d64ea").innerHTML=padAjaxe9ac1f94341e72a4ee6bce80f01d64ea.statusText;
+                        }
+                        }
+                        }
+                        padAjaxe9ac1f94341e72a4ee6bce80f01d64ea.open("GET","http://localhost/pad/regression/sqlite/?select&padInclude",true);
+                        padAjaxe9ac1f94341e72a4ee6bce80f01d64ea.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

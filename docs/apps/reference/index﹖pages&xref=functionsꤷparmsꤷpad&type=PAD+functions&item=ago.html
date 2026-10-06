@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - PAD functions - ago
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - PAD functions - ago
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: fragments/dates_and_logging_2<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/dates_and_logging_2.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/dates_and_logging_2.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  padNowFreeze </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-10-05 14:30:00' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$comments </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'author' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-05 14:29:55' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'author' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-05 14:12:00' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'author' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Cleo'</span><span style="color: #007700">, </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-04 09:00:00' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'author' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Dirk'</span><span style="color: #007700">, </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-09-20 18:00:00' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'author' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Eve'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2025-06-01' </span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #0000BB">$deadline </span><span style="color: #007700">= </span><span style="color: #0000BB">padAgo </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-10-08 12:00' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;ul&gt;<br><b>{<font color="blue">comments</font><font color="red"></font>}</b><br>  &lt;li&gt;<b>{<font color="green"><font color="red">$</font>author</font>}</b> - <b>{<font color="green">$posted</font> <font color="black">|</font> <font color="blue">ago</font>}</b>&lt;/li&gt;<br><b>{/<font color="blue">comments</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br>&lt;p&gt;The deadline is <b>{<font color="green"><font color="red">$</font>deadline</font>}</b>.&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax66a8e04b84520dccd7700cf27fdde78f"></div>
+                        <script>
+                        padAjax66a8e04b84520dccd7700cf27fdde78f = new XMLHttpRequest();
+                        padAjax66a8e04b84520dccd7700cf27fdde78f.onreadystatechange=function() {
+                        if (padAjax66a8e04b84520dccd7700cf27fdde78f.readyState === 4) {
+                        if (padAjax66a8e04b84520dccd7700cf27fdde78f.status === 200) {
+                        document.getElementById("padAjax66a8e04b84520dccd7700cf27fdde78f").innerHTML=padAjax66a8e04b84520dccd7700cf27fdde78f.responseText;
+                        } else {
+                        document.getElementById("padAjax66a8e04b84520dccd7700cf27fdde78f").innerHTML=padAjax66a8e04b84520dccd7700cf27fdde78f.statusText;
+                        }
+                        }
+                        }
+                        padAjax66a8e04b84520dccd7700cf27fdde78f.open("GET","http://localhost/pad/manual/?fragments/dates_and_logging_2&padInclude",true);
+                        padAjax66a8e04b84520dccd7700cf27fdde78f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: helpers/dates_ago_pipe_names_what_is_no_date<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">helpers/dates_ago_pipe_names_what_is_no_date.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>whenever<font color="black">'</font> <font color="black">|</font> ago</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax67539c6c2fb015f91f045c5ffdbc1e71"></div>
+                        <script>
+                        padAjax67539c6c2fb015f91f045c5ffdbc1e71 = new XMLHttpRequest();
+                        padAjax67539c6c2fb015f91f045c5ffdbc1e71.onreadystatechange=function() {
+                        if (padAjax67539c6c2fb015f91f045c5ffdbc1e71.readyState === 4) {
+                        if (padAjax67539c6c2fb015f91f045c5ffdbc1e71.status === 200) {
+                        document.getElementById("padAjax67539c6c2fb015f91f045c5ffdbc1e71").innerHTML=padAjax67539c6c2fb015f91f045c5ffdbc1e71.responseText;
+                        } else {
+                        document.getElementById("padAjax67539c6c2fb015f91f045c5ffdbc1e71").innerHTML=padAjax67539c6c2fb015f91f045c5ffdbc1e71.statusText;
+                        }
+                        }
+                        }
+                        padAjax67539c6c2fb015f91f045c5ffdbc1e71.open("GET","http://localhost/pad/regression/errors/?helpers/dates_ago_pipe_names_what_is_no_date&padInclude",true);
+                        padAjax67539c6c2fb015f91f045c5ffdbc1e71.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: helpers/dates_ago_pipe_writes_a_field_in_words<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">helpers/dates_ago_pipe_writes_a_field_in_words.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">helpers/dates_ago_pipe_writes_a_field_in_words.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// {$created | ago} is padAgo in a template: a timestamp, a date in text, now frozen or<br>  // not; ago($end) counts from another moment, and an empty field has no age.<br><br>  </span><span style="color: #0000BB">$padTimezone </span><span style="color: #007700">= </span><span style="color: #DD0000">'UTC'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">padNowFreeze </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-01-15 10:00:00' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$created </span><span style="color: #007700">= </span><span style="color: #DD0000">'2026-01-15 09:55:00'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$stamp   </span><span style="color: #007700">= </span><span style="color: #0000BB">padNow </span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">getTimestamp </span><span style="color: #007700">() - </span><span style="color: #0000BB">7200</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$start   </span><span style="color: #007700">= </span><span style="color: #DD0000">'2026-01-01'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$end     </span><span style="color: #007700">= </span><span style="color: #DD0000">'2026-01-02'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$empty   </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="green">$created</font> <font color="black">|</font> <font color="blue">ago</font>}</b> / <b>{<font color="green">$stamp</font> <font color="black">|</font> <font color="blue">ago</font>}</b> / <b>{<font color="green">$start</font> <font color="black">|</font> <font color="blue">ago($end)</font>}</b> / [<b>{<font color="green">$empty</font> <font color="black">|</font> <font color="blue">ago</font>}</b>] / <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2026-01-17<font color="black">'</font> <font color="black">|</font> ago</font>}</b> / <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>tomorrow 08<font color="black">:</font>00<font color="black">'</font> <font color="black">|</font> ago</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd9fd776ee3891dd15ac6d9562221fca8"></div>
+                        <script>
+                        padAjaxd9fd776ee3891dd15ac6d9562221fca8 = new XMLHttpRequest();
+                        padAjaxd9fd776ee3891dd15ac6d9562221fca8.onreadystatechange=function() {
+                        if (padAjaxd9fd776ee3891dd15ac6d9562221fca8.readyState === 4) {
+                        if (padAjaxd9fd776ee3891dd15ac6d9562221fca8.status === 200) {
+                        document.getElementById("padAjaxd9fd776ee3891dd15ac6d9562221fca8").innerHTML=padAjaxd9fd776ee3891dd15ac6d9562221fca8.responseText;
+                        } else {
+                        document.getElementById("padAjaxd9fd776ee3891dd15ac6d9562221fca8").innerHTML=padAjaxd9fd776ee3891dd15ac6d9562221fca8.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd9fd776ee3891dd15ac6d9562221fca8.open("GET","http://localhost/pad/regression/framework/?helpers/dates_ago_pipe_writes_a_field_in_words&padInclude",true);
+                        padAjaxd9fd776ee3891dd15ac6d9562221fca8.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - tries
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - tries
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: fragments/environment_and_cache_3<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/environment_and_cache_3.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/environment_and_cache_3.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Five login attempts a minute. A page of your own keys it on<br>  // the visitor - 'login:' . $_SERVER ['REMOTE_ADDR'] - this<br>  // example on a key of its own, so every reader of this page<br>  // starts from nothing.<br><br>  </span><span style="color: #0000BB">$key   </span><span style="color: #007700">= </span><span style="color: #DD0000">'login:' </span><span style="color: #007700">. </span><span style="color: #0000BB">padRandomString </span><span style="color: #007700">( </span><span style="color: #0000BB">8 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$tries </span><span style="color: #007700">= [];<br><br>  for ( </span><span style="color: #0000BB">$try </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">; </span><span style="color: #0000BB">$try </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">7</span><span style="color: #007700">; </span><span style="color: #0000BB">$try</span><span style="color: #007700">++ ) {<br>    </span><span style="color: #0000BB">$allowed  </span><span style="color: #007700">= </span><span style="color: #0000BB">padRateLimit </span><span style="color: #007700">( </span><span style="color: #0000BB">$key</span><span style="color: #007700">, </span><span style="color: #0000BB">5</span><span style="color: #007700">, </span><span style="color: #0000BB">60 </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$tries </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'try'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$try</span><span style="color: #007700">,<br>                  </span><span style="color: #DD0000">'answer' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$allowed </span><span style="color: #007700">? </span><span style="color: #DD0000">'allowed' </span><span style="color: #007700">: </span><span style="color: #DD0000">'too many' </span><span style="color: #007700">];<br>  }<br><br>  </span><span style="color: #0000BB">$left    </span><span style="color: #007700">= </span><span style="color: #0000BB">padRateLimitRemaining </span><span style="color: #007700">( </span><span style="color: #0000BB">$key</span><span style="color: #007700">, </span><span style="color: #0000BB">5 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$minutes </span><span style="color: #007700">= </span><span style="color: #0000BB">ceil </span><span style="color: #007700">( </span><span style="color: #0000BB">padRateLimitAvailableIn </span><span style="color: #007700">( </span><span style="color: #0000BB">$key </span><span style="color: #007700">) / </span><span style="color: #0000BB">60 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">padRateLimitClear </span><span style="color: #007700">( </span><span style="color: #0000BB">$key </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue">tries</font><font color="red"></font>}</b>&lt;li&gt;Attempt <b>{<font color="green"><font color="red">$</font>try</font>}</b>: <b>{<font color="green"><font color="red">$</font>answer</font>}</b>&lt;/li&gt;<b>{/<font color="blue">tries</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>left</font>}</b> attempts left - try again in <b>{<font color="green"><font color="red">$</font>minutes</font>}</b> minute.&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc3e50b575dd8cbba943ed8a4e36f6722"></div>
+                        <script>
+                        padAjaxc3e50b575dd8cbba943ed8a4e36f6722 = new XMLHttpRequest();
+                        padAjaxc3e50b575dd8cbba943ed8a4e36f6722.onreadystatechange=function() {
+                        if (padAjaxc3e50b575dd8cbba943ed8a4e36f6722.readyState === 4) {
+                        if (padAjaxc3e50b575dd8cbba943ed8a4e36f6722.status === 200) {
+                        document.getElementById("padAjaxc3e50b575dd8cbba943ed8a4e36f6722").innerHTML=padAjaxc3e50b575dd8cbba943ed8a4e36f6722.responseText;
+                        } else {
+                        document.getElementById("padAjaxc3e50b575dd8cbba943ed8a4e36f6722").innerHTML=padAjaxc3e50b575dd8cbba943ed8a4e36f6722.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc3e50b575dd8cbba943ed8a4e36f6722.open("GET","http://localhost/pad/manual/?fragments/environment_and_cache_3&padInclude",true);
+                        padAjaxc3e50b575dd8cbba943ed8a4e36f6722.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

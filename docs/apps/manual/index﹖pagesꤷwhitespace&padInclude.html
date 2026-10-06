@@ -1,0 +1,85 @@
+
+
+<p>A template is laid out for people, with line breaks and indentation, and PAD keeps that
+layout in what it writes. Usually that does not matter - HTML folds whitespace - but in
+plain-text mail, CSV, JSON, console output and inline layouts it does.</p>
+
+<h2>The ~ marker</h2>
+
+<p>A <code>~</code> just inside a brace takes the whitespace on that side of it, newlines
+included:</p>
+
+<ul>
+  <li><code>{~tag}</code> - the whitespace before the tag</li>
+  <li><code>{tag~}</code> - the whitespace after it, which for an opening tag is the start of its content</li>
+  <li><code>{~/tag~}</code> - both sides of the closing tag</li>
+</ul>
+
+<p>Only a brace that opens a tag counts: a <code>~</code> in text, in CSS or in a quoted
+parameter stays as it is.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/whitespace_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>xs<font color="black">'</font></font>}</b>["a","b","c"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br>&lt;p&gt;<br>  {~xs~}<br>    <b>{<font color="green"><font color="red">$</font>xs</font>}</b><br>  {~/xs~}<br>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">spaceless</font><font color="red"></font>}</b><br>  &lt;b&gt;one&lt;/b&gt;<br>  &lt;i&gt;two&lt;/i&gt;<br><b>{/<font color="blue">spaceless</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+<p>abc</p>
+<p><b>one</b><i>two</i></p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>spaceless</h2>
+
+<p><b>{spaceless}</b> takes the whitespace between HTML tags out of everything it wraps, and
+at both ends; text inside a tag keeps its spaces. For the whole page there is <b>{tidy}</b>.</p>

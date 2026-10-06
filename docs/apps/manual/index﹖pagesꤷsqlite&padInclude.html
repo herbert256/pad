@@ -1,0 +1,94 @@
+
+
+<p>The application database is MySQL by default. One setting makes it SQLite: a single file,
+no server to install, which is all a small application or a test needs.</p>
+
+
+<pre><code>&lt;?php                                   // _config/config.php
+
+  $padSqlDriver   = 'sqlite';
+  $padSqlDatabase = 'myapp/myapp.sqlite';     // under DATA/
+  $padSqlSetup    = '_install/schema.sql';    // builds it the first time
+
+?&gt;</code></pre>
+
+
+<p><code>$padSqlDatabase</code> is the file - a relative name lives under <code>DATA/</code>.
+<code>$padSqlSetup</code> is optional: a <code>.sql</code> file in the application that is run
+once, when the database file does not exist yet, so the first request builds the database
+from text kept with the application.</p>
+
+<p>Nothing else changes. The page below is one of the <a href="index%EF%B9%96pages%EA%A4%B7database.html">database</a>
+examples, which this manual runs on MySQL - with the settings above it runs unchanged on
+SQLite:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/database_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/database_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $phone </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"field phone from staff where name = 'jim'" </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;Jim's phone number is <b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>Jim's phone number is 555-4364</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<ul>
+  <li>The <code>db()</code> verbs answer in the same shapes - <code>field</code>, <code>record</code>,
+      <code>array</code>, <code>check</code>, <code>insert</code> with the new id,
+      <code>update</code> and <code>delete</code> with the rows they touched.</li>
+  <li>The <code>{0}</code> placeholders escape the way SQLite needs: a quote is doubled,
+      so a value never ends its literal early.</li>
+  <li>The database tags, named <code>_data/*.sql</code> queries and the Select subsystem work as
+      they do on MySQL.</li>
+  <li>The SQL is SQLite's own: <code>||</code> joins strings, a key is
+      <code>integer PRIMARY KEY AUTOINCREMENT</code>.</li>
+</ul>

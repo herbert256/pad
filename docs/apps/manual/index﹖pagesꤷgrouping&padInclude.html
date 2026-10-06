@@ -1,0 +1,185 @@
+
+
+<p>The <code>group</code> option folds the rows of any data tag into one occurrence per
+distinct value of a field. Each group holds that value, <code>$count</code> - the number of
+rows in the group - and <code>rows</code>, the group's own rows as nested data. Inside
+<code>{rows}</code> a field is the row's own value again.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/grouping_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>orders<font color="black">'</font></font>}</b><br>  [ {"customer":"Ann","number":101,"total":40}, {"customer":"Bob","number":102,"total":15},<br>    {"customer":"Ann","number":103,"total":25}, {"customer":"Cleo","number":104,"total":60},<br>    {"customer":"Bob","number":105,"total":35} ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">orders </font><font color="red">group=<font color="black">'</font>customer<font color="black">'</font><font color="black">,</font> sum=<font color="black">'</font>total<font color="black">'</font></font>}</b><br>  &lt;h4&gt;<b>{<font color="green"><font color="red">$</font>customer</font>}</b>: <b>{<font color="green"><font color="red">$</font>count</font>}</b> orders, <b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/h4&gt;<br>  <b>{<font color="blue">rows</font><font color="red"></font>}</b><br>    &lt;p&gt;Order <b>{<font color="green"><font color="red">$</font>number</font>}</b>: <b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/p&gt;<br>  <b>{/<font color="blue">rows</font><font color="red"></font>}</b><br><b>{/<font color="blue">orders</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+
+
+  <h4>Ann: 2 orders, 65</h4>
+  
+    <p>Order 101: 40</p>
+  
+    <p>Order 103: 25</p>
+  
+
+  <h4>Bob: 2 orders, 50</h4>
+  
+    <p>Order 102: 15</p>
+  
+    <p>Order 105: 35</p>
+  
+
+  <h4>Cleo: 1 orders, 60</h4>
+  
+    <p>Order 104: 60</p>
+  
+
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Aggregates</h2>
+
+<p><code>sum</code>, <code>avg</code>, <code>min</code> and <code>max</code> name the fields to
+aggregate over each group's rows. The aggregate is stored under the field's own name -
+<code>{$total}</code> above is the sum - and under the aggregate joined to it -
+<code>{$sum_total}</code>, <code>{$avg_total}</code> - so one field can be
+summed and averaged at once. A field list such as <code>sum='total, quantity'</code>
+aggregates each of them.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/grouping_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>orders<font color="black">'</font></font>}</b><br>  [ {"customer":"Ann","number":101,"total":40}, {"customer":"Bob","number":102,"total":15},<br>    {"customer":"Ann","number":103,"total":25}, {"customer":"Cleo","number":104,"total":60},<br>    {"customer":"Bob","number":105,"total":35} ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br>&lt;table&gt;<br>  &lt;tr&gt;&lt;th&gt;Customer&lt;/th&gt;&lt;th&gt;Orders&lt;/th&gt;&lt;th&gt;Total&lt;/th&gt;&lt;th&gt;Average&lt;/th&gt;&lt;th&gt;Smallest&lt;/th&gt;&lt;th&gt;Largest&lt;/th&gt;&lt;/tr&gt;<br>  <b>{<font color="blue">orders </font><font color="red">group=<font color="black">'</font>customer<font color="black">'</font><font color="black">,</font> sum=<font color="black">'</font>total<font color="black">'</font><font color="black">,</font> avg=<font color="black">'</font>total<font color="black">'</font><font color="black">,</font> min=<font color="black">'</font>total<font color="black">'</font><font color="black">,</font> max=<font color="black">'</font>total<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>total DESC<font color="black">'</font></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>customer</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>avg_total</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>min_total</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>max_total</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">orders</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+
+<table>
+  <tr><th>Customer</th><th>Orders</th><th>Total</th><th>Average</th><th>Smallest</th><th>Largest</th></tr>
+  
+    <tr>
+      <td>Ann</td><td>2</td><td>65</td>
+      <td>32.5</td><td>25</td><td>40</td>
+    </tr>
+  
+    <tr>
+      <td>Cleo</td><td>1</td><td>60</td>
+      <td>60</td><td>60</td><td>60</td>
+    </tr>
+  
+    <tr>
+      <td>Bob</td><td>2</td><td>50</td>
+      <td>25</td><td>15</td><td>35</td>
+    </tr>
+  
+</table>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>In order with the other options</h2>
+
+<p>Handling options run in the order they are written. Groups come in the order their first
+row appears: a <code>sort</code> written before the group orders the groups and the rows
+inside them, a <code>sort</code> written after it orders the groups - also on an aggregate,
+as above. <code>first</code>, <code>page</code> and <code>where</code> written after the group
+count groups: <code>{orders group='customer', where='$count gt 1'}</code> keeps the
+customers with more than one order. Several fields - <code>group='year, month'</code> - group
+on the combination, and <code>{rows group='month'}</code> groups again inside a
+group.</p>

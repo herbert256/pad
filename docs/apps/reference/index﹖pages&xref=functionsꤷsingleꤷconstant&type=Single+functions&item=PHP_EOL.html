@@ -1,6 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<!DOCTYPE html>
+<html>
+  <head>
     <title>
       PAD - Reference - Single functions - PHP_EOL
     </title>
@@ -11,14 +11,14 @@
         PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
       </h1>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table><br>
+      </table><br>
       <hr width="75%">
     </center>
     <blockquote>
@@ -27,21 +27,21 @@
           <h1>
             Reference - Single functions - PHP EOL
           </h1>
-          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tbody><tr>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
               <td>
                 <center>
                   <hr>
-                  App: check - Page: miscellaneous/other<br>
+                  App: regression/framework - Page: check/miscellaneous_other<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2"></font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">miscellaneous/other.pad</font>
+                        <font size="-2">check/miscellaneous_other.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -50,102 +50,31 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;h3&gt;part 1&lt;/h3&gt;  <br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = (15 gt 33) </font>}</b> eq <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><br><br>&lt;h3&gt;part 3&lt;/h3&gt;<br><br><b>{<font color="blue">if </font><font color="red">( PHP_EOL EQ "\n" ) and ( PHP_EOL EQ 0x0a) </font>}</b><br>  ok<br><font color="black"><b><font color="black"><b>@</b></font></b></font>else<font color="black"><b><font color="black"><b>@</b></font></b></font><br>  NOK<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>&lt;h3&gt;part 4&lt;/h3&gt;<br><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = <font color="black">'</font><font color="black">'</font></font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>klm = 0</font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>xyz = <font color="black">'</font>ok<font color="black">'</font></font>}</b><br><br>&lt;h3&gt;part 6&lt;/h3&gt;<br><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = <font color="black">'</font>abc<font color="black">'</font></font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>xyz = <font color="black">'</font>xyz<font color="black">'</font></font>}</b><br><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">mid (2,1)</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">mid ( 2 , 1 )</font>}</b><br><br>&lt;h3&gt;part 10&lt;/h3&gt;<br><br><b>{<font color="blue">if </font><font color="red">5 gt 3</font>}</b><br>  ok<br><font color="black"><b><font color="black"><b>@</b></font></b></font>else<font color="black"><b><font color="black"><b>@</b></font></b></font><br>  NOK<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br><b>{<font color="blue">if </font><font color="red">3 gt 5</font>}</b><br>  NOK<br><font color="black"><b><font color="black"><b>@</b></font></b></font>else<font color="black"><b><font color="black"><b>@</b></font></b></font><br>  ok<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br><b>{<font color="blue">if </font><font color="red">5 gt 3 and 7 gt 6</font>}</b><br>  ok<br><font color="black"><b><font color="black"><b>@</b></font></b></font>else<font color="black"><b><font color="black"><b>@</b></font></b></font><br>  NOK<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br><br><b>{<font color="blue">if </font><font color="red">3 gt 5 or 6 gt 7</font>}</b><br>  NOK<br><font color="black"><b><font color="black"><b>@</b></font></b></font>else<font color="black"><b><font color="black"><b>@</b></font></b></font><br>  ok<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br><br><b>{<font color="blue">if </font><font color="red">1 gt 1 and  1 gt 1 and 1 gt 1 and 1 gt 1 and 1 gt 1 </font>}</b><br>  NOK<br><font color="black"><b><font color="black"><b>@</b></font></b></font>else<font color="black"><b><font color="black"><b>@</b></font></b></font><br>  ok<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br><b>{<font color="blue">if </font><font color="red">1 gt 1 and  1 gt 1 and 1 gt 1 and 1 gt 1 or 5 gt 4 </font>}</b><br>  ok<br><font color="black"><b><font color="black"><b>@</b></font></b></font>else<font color="black"><b><font color="black"><b>@</b></font></b></font><br>  NOK<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br><br><b>{<font color="blue">if </font><font color="red">(1 gt 1) or ( 1 gt 1 or ( 1 gt 1 or (1 gt 1 or (5 gt 4) )  )  ) </font>}</b><br>  ok<br><font color="black"><b><font color="black"><b>@</b></font></b></font>else<font color="black"><b><font color="black"><b>@</b></font></b></font><br>  NOK<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br><b>{<font color="blue">if </font><font color="red">(1 gt 1) or ( 1 gt 1 or ( 1 gt 1 or (1 gt 1 or (5 gt 6) )  )  ) </font>}</b><br>  NOK<br><font color="black"><b><font color="black"><b>@</b></font></b></font>else<font color="black"><b><font color="black"><b>@</b></font></b></font><br>  ok<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>&lt;h3&gt;part 11c&lt;/h3&gt;<br><br><b>{<font color="blue">if </font><font color="red">3 gt 5 or 6 gt 7</font>}</b><br>  NOK<br><font color="black"><b><font color="black"><b>@</b></font></b></font>else<font color="black"><b><font color="black"><b>@</b></font></b></font><br>  ok<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">if </font><font color="red">3 gt 5 or 6 gt 7</font>}</b><br>  NOK<br><font color="black"><b><font color="black"><b>@</b></font></b></font>else<font color="black"><b><font color="black"><b>@</b></font></b></font><br>  ok<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">if </font><font color="red">3 gt 5 or 6 gt 7</font>}</b><br>  NOK<br><font color="black"><b><font color="black"><b>@</b></font></b></font>else<font color="black"><b><font color="black"><b>@</b></font></b></font><br>  ok<br><b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre>
+                        <pre><code style="color: #000000">&lt;h3&gt;part 1&lt;/h3&gt;  <br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = (15 gt 33) </font>}</b> eq <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><br><br>&lt;h3&gt;part 3&lt;/h3&gt;<br><br><b>{<font color="blue">if </font><font color="red">( PHP_EOL EQ "\n" ) and ( PHP_EOL EQ 0x0a) </font>}</b><br>  ok<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  NOK<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>&lt;h3&gt;part 4&lt;/h3&gt;<br><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = <font color="black">'</font><font color="black">'</font></font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>klm = 0</font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>xyz = <font color="black">'</font>ok<font color="black">'</font></font>}</b><br><br>&lt;h3&gt;part 6&lt;/h3&gt;<br><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = <font color="black">'</font>abc<font color="black">'</font></font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>xyz = <font color="black">'</font>xyz<font color="black">'</font></font>}</b><br><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">mid (2,1)</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">mid ( 2 , 1 )</font>}</b><br><br>&lt;h3&gt;part 10&lt;/h3&gt;<br><br><b>{<font color="blue">if </font><font color="red">5 gt 3</font>}</b><br>  ok<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  NOK<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br><b>{<font color="blue">if </font><font color="red">3 gt 5</font>}</b><br>  NOK<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  ok<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br><b>{<font color="blue">if </font><font color="red">5 gt 3 and 7 gt 6</font>}</b><br>  ok<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  NOK<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br><br><b>{<font color="blue">if </font><font color="red">3 gt 5 or 6 gt 7</font>}</b><br>  NOK<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  ok<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br><br><b>{<font color="blue">if </font><font color="red">1 gt 1 and  1 gt 1 and 1 gt 1 and 1 gt 1 and 1 gt 1 </font>}</b><br>  NOK<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  ok<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br><b>{<font color="blue">if </font><font color="red">1 gt 1 and  1 gt 1 and 1 gt 1 and 1 gt 1 or 5 gt 4 </font>}</b><br>  ok<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  NOK<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br><br><b>{<font color="blue">if </font><font color="red">(1 gt 1) or ( 1 gt 1 or ( 1 gt 1 or (1 gt 1 or (5 gt 4) )  )  ) </font>}</b><br>  ok<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  NOK<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br><b>{<font color="blue">if </font><font color="red">(1 gt 1) or ( 1 gt 1 or ( 1 gt 1 or (1 gt 1 or (5 gt 6) )  )  ) </font>}</b><br>  NOK<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  ok<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>&lt;h3&gt;part 11c&lt;/h3&gt;<br><br><b>{<font color="blue">if </font><font color="red">3 gt 5 or 6 gt 7</font>}</b><br>  NOK<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  ok<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">if </font><font color="red">3 gt 5 or 6 gt 7</font>}</b><br>  NOK<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  ok<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">if </font><font color="red">3 gt 5 or 6 gt 7</font>}</b><br>  NOK<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  ok<br><b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxbUPgbJRi"><h3>part 1</h3>  
- eq 
-
-
-<h3>part 3</h3>
-
-
-  ok
-
-
-<h3>part 4</h3>
-
-
-
-
-
-<h3>part 6</h3>
-
-
-
-
-b
-b
-
-<h3>part 10</h3>
-
-
-  ok
-
-
-
-  ok
-
-
-
-  ok
-
-
-
-
-  ok
-
-
-
-
-  ok
-
-
-
-  ok
-
-
-
-
-  ok
-
-
-
-  ok
-
-
-<h3>part 11c</h3>
-
-
-  ok
-
-
-  ok
-
-
-  ok
-</div>
+                        <div id="padAjax766d07734161ba9cd849ffa8bcde721b"></div>
                         <script>
-                        padAjaxbUPgbJRi = new XMLHttpRequest();
-                        padAjaxbUPgbJRi.onreadystatechange=function() {
-                        if (padAjaxbUPgbJRi.readyState === 4) {
-                        if (padAjaxbUPgbJRi.status === 200) {
-                        document.getElementById("padAjaxbUPgbJRi").innerHTML=padAjaxbUPgbJRi.responseText;
+                        padAjax766d07734161ba9cd849ffa8bcde721b = new XMLHttpRequest();
+                        padAjax766d07734161ba9cd849ffa8bcde721b.onreadystatechange=function() {
+                        if (padAjax766d07734161ba9cd849ffa8bcde721b.readyState === 4) {
+                        if (padAjax766d07734161ba9cd849ffa8bcde721b.status === 200) {
+                        document.getElementById("padAjax766d07734161ba9cd849ffa8bcde721b").innerHTML=padAjax766d07734161ba9cd849ffa8bcde721b.responseText;
                         } else {
-                        document.getElementById("padAjaxbUPgbJRi").innerHTML=padAjaxbUPgbJRi.statusText;
+                        document.getElementById("padAjax766d07734161ba9cd849ffa8bcde721b").innerHTML=padAjax766d07734161ba9cd849ffa8bcde721b.statusText;
                         }
                         }
                         }
-                        padAjaxbUPgbJRi.open("GET","http://localhost/check/?miscellaneous/other&padInclude&padSesID=DiM2hOlW&padReqID=qEnl5c0v",true);
-                        padAjaxbUPgbJRi.send();
+                        padAjax766d07734161ba9cd849ffa8bcde721b.open("GET","http://localhost/pad/regression/framework/?check/miscellaneous_other&padInclude",true);
+                        padAjax766d07734161ba9cd849ffa8bcde721b.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
                 </center>
               </td>
             </tr>
-          </tbody></table>
+          </table>
         </blockquote>
       </center>
     </blockquote>
@@ -153,17 +82,17 @@ b
       <hr width="75%">
       <br>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table>
+      </table>
       <p>
         <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
       </p>
     </center>
-  
-</body></html>
+  </body>
+</html>

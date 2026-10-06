@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - PAD functions - ordinal
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - PAD functions - ordinal
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: fragments/numbers_4<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/numbers_4.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/numbers_4.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The PHP hands over plain numbers; the template writes them<br>  // for people.<br><br>  </span><span style="color: #0000BB">$runners </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">, </span><span style="color: #DD0000">'place' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'views' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1534200 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'</span><span style="color: #007700">, </span><span style="color: #DD0000">'place' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'views' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">48210   </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Cee'</span><span style="color: #007700">, </span><span style="color: #DD0000">'place' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">'views' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">950     </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">runners</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="green">$place</font> <font color="black">|</font> <font color="blue">ordinal</font>}</b>: <b>{<font color="green"><font color="red">$</font>name</font>}</b>,<br>     <b>{<font color="green">$views</font> <font color="black">|</font> <font color="blue">abbreviate(1)</font>}</b> views&lt;/p&gt;<br><b>{/<font color="blue">runners</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb17bee0da18f8889b3590b656b79e800"></div>
+                        <script>
+                        padAjaxb17bee0da18f8889b3590b656b79e800 = new XMLHttpRequest();
+                        padAjaxb17bee0da18f8889b3590b656b79e800.onreadystatechange=function() {
+                        if (padAjaxb17bee0da18f8889b3590b656b79e800.readyState === 4) {
+                        if (padAjaxb17bee0da18f8889b3590b656b79e800.status === 200) {
+                        document.getElementById("padAjaxb17bee0da18f8889b3590b656b79e800").innerHTML=padAjaxb17bee0da18f8889b3590b656b79e800.responseText;
+                        } else {
+                        document.getElementById("padAjaxb17bee0da18f8889b3590b656b79e800").innerHTML=padAjaxb17bee0da18f8889b3590b656b79e800.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb17bee0da18f8889b3590b656b79e800.open("GET","http://localhost/pad/manual/?fragments/numbers_4&padInclude",true);
+                        padAjaxb17bee0da18f8889b3590b656b79e800.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/numbers_an_ordinal_wants_a_whole_number<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/numbers_an_ordinal_wants_a_whole_number.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1.5 <font color="black">|</font> ordinal</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax6e4bae846f52441276cc33480771c804"></div>
+                        <script>
+                        padAjax6e4bae846f52441276cc33480771c804 = new XMLHttpRequest();
+                        padAjax6e4bae846f52441276cc33480771c804.onreadystatechange=function() {
+                        if (padAjax6e4bae846f52441276cc33480771c804.readyState === 4) {
+                        if (padAjax6e4bae846f52441276cc33480771c804.status === 200) {
+                        document.getElementById("padAjax6e4bae846f52441276cc33480771c804").innerHTML=padAjax6e4bae846f52441276cc33480771c804.responseText;
+                        } else {
+                        document.getElementById("padAjax6e4bae846f52441276cc33480771c804").innerHTML=padAjax6e4bae846f52441276cc33480771c804.statusText;
+                        }
+                        }
+                        }
+                        padAjax6e4bae846f52441276cc33480771c804.open("GET","http://localhost/pad/regression/errors/?syntax/numbers_an_ordinal_wants_a_whole_number&padInclude",true);
+                        padAjax6e4bae846f52441276cc33480771c804.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: helpers/numbers_ordinal_pipe_names_the_place_in_a_template<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">helpers/numbers_ordinal_pipe_names_the_place_in_a_template.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">helpers/numbers_ordinal_pipe_names_the_place_in_a_template.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $runners </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">, </span><span style="color: #DD0000">'place' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'</span><span style="color: #007700">, </span><span style="color: #DD0000">'place' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">],<br>               [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Cee'</span><span style="color: #007700">, </span><span style="color: #DD0000">'place' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Dan'</span><span style="color: #007700">, </span><span style="color: #DD0000">'place' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">11 </span><span style="color: #007700">],<br>               [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Eve'</span><span style="color: #007700">, </span><span style="color: #DD0000">'place' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">22 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">runners</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{<font color="green">$place</font> <font color="black">|</font> <font color="blue">ordinal</font>}</b>, <b>{/<font color="blue">runners</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red">101 <font color="black">|</font> ordinal</font>}</b> <b>{<font color="blue">echo </font><font color="red">112 <font color="black">|</font> ordinal</font>}</b> [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>last<font color="black">'</font> <font color="black">|</font> ordinal</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8beca99a16cdbbf7d46df79fe42865e5"></div>
+                        <script>
+                        padAjax8beca99a16cdbbf7d46df79fe42865e5 = new XMLHttpRequest();
+                        padAjax8beca99a16cdbbf7d46df79fe42865e5.onreadystatechange=function() {
+                        if (padAjax8beca99a16cdbbf7d46df79fe42865e5.readyState === 4) {
+                        if (padAjax8beca99a16cdbbf7d46df79fe42865e5.status === 200) {
+                        document.getElementById("padAjax8beca99a16cdbbf7d46df79fe42865e5").innerHTML=padAjax8beca99a16cdbbf7d46df79fe42865e5.responseText;
+                        } else {
+                        document.getElementById("padAjax8beca99a16cdbbf7d46df79fe42865e5").innerHTML=padAjax8beca99a16cdbbf7d46df79fe42865e5.statusText;
+                        }
+                        }
+                        }
+                        padAjax8beca99a16cdbbf7d46df79fe42865e5.open("GET","http://localhost/pad/regression/framework/?helpers/numbers_ordinal_pipe_names_the_place_in_a_template&padInclude",true);
+                        padAjax8beca99a16cdbbf7d46df79fe42865e5.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Error actions - dump
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Error actions - dump
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/error_dump - Page: boom<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">boom.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">boom.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Raises two engine-level PHP warnings - reading undefined variables - which<br>  // $padErrorLevel promotes to PAD errors handled by this application's error action.<br>  // Two, because the action promises a dump per error, not only for the first.<br><br>  </span><span style="color: #0000BB">$boom  </span><span style="color: #007700">= </span><span style="color: #0000BB">$neverSetAnywhere</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$boom2 </span><span style="color: #007700">= </span><span style="color: #0000BB">$neverSetAnywhereEither</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;before&lt;/p&gt;<br>&lt;p&gt;after&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax555a30eb37a54ebb75908c8ae3916701"></div>
+                        <script>
+                        padAjax555a30eb37a54ebb75908c8ae3916701 = new XMLHttpRequest();
+                        padAjax555a30eb37a54ebb75908c8ae3916701.onreadystatechange=function() {
+                        if (padAjax555a30eb37a54ebb75908c8ae3916701.readyState === 4) {
+                        if (padAjax555a30eb37a54ebb75908c8ae3916701.status === 200) {
+                        document.getElementById("padAjax555a30eb37a54ebb75908c8ae3916701").innerHTML=padAjax555a30eb37a54ebb75908c8ae3916701.responseText;
+                        } else {
+                        document.getElementById("padAjax555a30eb37a54ebb75908c8ae3916701").innerHTML=padAjax555a30eb37a54ebb75908c8ae3916701.statusText;
+                        }
+                        }
+                        }
+                        padAjax555a30eb37a54ebb75908c8ae3916701.open("GET","http://localhost/pad/regression/error_dump/?boom&padInclude",true);
+                        padAjax555a30eb37a54ebb75908c8ae3916701.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/error_dump - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">index.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Test fetches the boom page - two undefined variables its .php reads - and asserts what<br>  // the 'dump' error action is supposed to do with them: a full dump tree per error lands<br>  // under DATA and the page finishes. A plain load only offers the link, so a crawl raises<br>  // nothing.<br>  //<br>  // The dumps are the boom request's own: a report directory is named after the request<br>  // id, which the response carries in its PAD header as session-request, and a full one<br>  // holds a stack.html. Only the first error of a request used to get one.<br><br>  </span><span style="color: #0000BB">$tested </span><span style="color: #007700">= isset ( </span><span style="color: #0000BB">$test </span><span style="color: #007700">) ? </span><span style="color: #0000BB">1 </span><span style="color: #007700">: </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>  if ( </span><span style="color: #0000BB">$tested </span><span style="color: #007700">) {<br><br>    </span><span style="color: #0000BB">$r    </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/error_dump/?boom&amp;padInclude' </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$code </span><span style="color: #007700">= </span><span style="color: #0000BB">$r </span><span style="color: #007700">[</span><span style="color: #DD0000">'result'</span><span style="color: #007700">];<br>    </span><span style="color: #0000BB">$body </span><span style="color: #007700">= </span><span style="color: #0000BB">$r </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">];<br>    </span><span style="color: #0000BB">$req  </span><span style="color: #007700">= </span><span style="color: #0000BB">substr </span><span style="color: #007700">( </span><span style="color: #0000BB">strrchr </span><span style="color: #007700">( </span><span style="color: #0000BB">$r </span><span style="color: #007700">[</span><span style="color: #DD0000">'headers'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'PAD'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #DD0000">'-' </span><span style="color: #007700">), </span><span style="color: #0000BB">1 </span><span style="color: #007700">);<br><br>    </span><span style="color: #0000BB">$dumped  </span><span style="color: #007700">= </span><span style="color: #0000BB">$req </span><span style="color: #007700">? </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">glob </span><span style="color: #007700">( </span><span style="color: #0000BB">DATA </span><span style="color: #007700">. </span><span style="color: #DD0000">"dumps/regression/error_dump/boom/</span><span style="color: #0000BB">$req</span><span style="color: #DD0000">-*/stack.html" </span><span style="color: #007700">) ?: [] ) : </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>    </span><span style="color: #0000BB">$verdict </span><span style="color: #007700">= ( </span><span style="color: #0000BB">$code </span><span style="color: #007700">== </span><span style="color: #0000BB">200 </span><span style="color: #007700">and </span><span style="color: #0000BB">str_contains </span><span style="color: #007700">( </span><span style="color: #0000BB">$body</span><span style="color: #007700">, </span><span style="color: #DD0000">"after" </span><span style="color: #007700">) and </span><span style="color: #0000BB">$dumped </span><span style="color: #007700">== </span><span style="color: #0000BB">2 </span><span style="color: #007700">) ? </span><span style="color: #DD0000">"yes" </span><span style="color: #007700">: </span><span style="color: #DD0000">"NO"</span><span style="color: #007700">;<br><br>  }<br><br>  </span><span style="color: #0000BB">$action </span><span style="color: #007700">= </span><span style="color: #0000BB">$padErrorAction</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;action: <b>{<font color="green"><font color="red">$</font>action</font>}</b>&lt;/p&gt;<br><br><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>tested eq 1</font>}</b><br>  &lt;p&gt;the boom page behaved as this action promises: &lt;b&gt;<b>{<font color="green"><font color="red">$</font>verdict</font>}</b>&lt;/b&gt;&lt;/p&gt;<br><b>{<font color="blue">else</font><font color="red"></font>}</b><br>  &lt;p&gt;&lt;a href="?index&amp;test"&gt;Test&lt;/a&gt; the boom page&lt;/p&gt;<br><b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8c7687e53f29a713140b3201c2b32710"></div>
+                        <script>
+                        padAjax8c7687e53f29a713140b3201c2b32710 = new XMLHttpRequest();
+                        padAjax8c7687e53f29a713140b3201c2b32710.onreadystatechange=function() {
+                        if (padAjax8c7687e53f29a713140b3201c2b32710.readyState === 4) {
+                        if (padAjax8c7687e53f29a713140b3201c2b32710.status === 200) {
+                        document.getElementById("padAjax8c7687e53f29a713140b3201c2b32710").innerHTML=padAjax8c7687e53f29a713140b3201c2b32710.responseText;
+                        } else {
+                        document.getElementById("padAjax8c7687e53f29a713140b3201c2b32710").innerHTML=padAjax8c7687e53f29a713140b3201c2b32710.statusText;
+                        }
+                        }
+                        }
+                        padAjax8c7687e53f29a713140b3201c2b32710.open("GET","http://localhost/pad/regression/error_dump/?index&padInclude",true);
+                        padAjax8c7687e53f29a713140b3201c2b32710.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/error_dump - Page: verdict<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">verdict.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">verdict.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The check the index runs when asked with &amp;test, run every time. The crawl fetches this<br>  // page and compares it with its stored answer, so every suite run holds the action to<br>  // its promise - the index alone only offers a Test link, which no run follows.<br><br>  </span><span style="color: #0000BB">$test </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br>  include </span><span style="color: #0000BB">APP </span><span style="color: #007700">. </span><span style="color: #DD0000">'index.php'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>verdict</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5d5d567e71849ecf219b0769d1303905"></div>
+                        <script>
+                        padAjax5d5d567e71849ecf219b0769d1303905 = new XMLHttpRequest();
+                        padAjax5d5d567e71849ecf219b0769d1303905.onreadystatechange=function() {
+                        if (padAjax5d5d567e71849ecf219b0769d1303905.readyState === 4) {
+                        if (padAjax5d5d567e71849ecf219b0769d1303905.status === 200) {
+                        document.getElementById("padAjax5d5d567e71849ecf219b0769d1303905").innerHTML=padAjax5d5d567e71849ecf219b0769d1303905.responseText;
+                        } else {
+                        document.getElementById("padAjax5d5d567e71849ecf219b0769d1303905").innerHTML=padAjax5d5d567e71849ecf219b0769d1303905.statusText;
+                        }
+                        }
+                        }
+                        padAjax5d5d567e71849ecf219b0769d1303905.open("GET","http://localhost/pad/regression/error_dump/?verdict&padInclude",true);
+                        padAjax5d5d567e71849ecf219b0769d1303905.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

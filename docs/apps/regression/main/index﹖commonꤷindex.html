@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Common suite - 25 pages, 25 tests, 0 failed
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../../pad/index.html">home</a> | <a href="../../manual/index.html">manual</a> | <a href="../../reference/index.html">reference</a> | <a href="../../examples/index.html">examples</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../../sequence/index.html">sequence</a> | <a href="../../develop/index.html">develop</a> | <a href="../../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td>
+                <hr style="margin:2; border: 1px solid black; width:100%">
+                <a href="index%EF%B9%96index.html">Index</a> &nbsp; <a href="index%EF%B9%96pages%EA%A4%B7index.html">Pages</a> &nbsp; <b>Common</b> &nbsp; <a href="index%EF%B9%96errors%EA%A4%B7index.html">Errors</a> &nbsp; <a href="index%EF%B9%96framework%EA%A4%B7index.html">Framework</a> &nbsp; <a href="index%EF%B9%96regression%EA%A4%B7index.html">Regression</a> &nbsp; <a href="index%EF%B9%96sequence%EA%A4%B7index.html">Sequence</a> &nbsp; <a href="index%EF%B9%96manual%EA%A4%B7index.html">Manual</a> &nbsp; <a href="index%EF%B9%96other%EA%A4%B7index.html">Other</a> &nbsp; | &nbsp; <a href="?common/index&amp;test">Test</a> &nbsp; | &nbsp; <a href="?build">Build</a>
+                <hr style="margin:2; border: 1px solid black; width:100%">
+              </td>
+            </tr>
+          </table>
+          <h1>
+            Common suite - 25 pages, 25 tests, 0 failed
+          </h1>
+          <p>
+            <b>25 pages, 25 tests, 0 failed</b> - all ok
+          </p>
+          <p>
+            Every test here is an ordinary page, fetched over HTTP with <code>&amp;padInclude</code> so it renders bare, and compared with the outcome written beside it, exactly as in the <a href="index%EF%B9%96pages%EA%A4%B7index.html">Pages</a> suite. The difference is what the page is allowed to reach: these tests live in <code>apps/regression/common/</code>, where <code>_common</code> is on, because they use it - <code>{example}</code>, <code>{demo}</code>, <code>{table}</code>, the <code>{block}</code> snippet, the colouring functions in <code>_common/_lib/</code>.
+          </p>
+          <table border="1" cellpadding="4" cellspacing="0">
+            <tr>
+              <th>
+                page
+              </th>
+              <th>
+                what it checks
+              </th>
+              <th>
+                status
+              </th>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?catalog/common&amp;padInclude">catalog/common</a>
+              </td>
+              <td>
+                The common: prefix reaching the shared application by name - the one catalogue line that needs _common
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?deep/index&amp;padInclude">deep/index</a>
+              </td>
+              <td>
+                A page rendering a page rendering a page, each level with its own _lib and _include
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?hello/index&amp;padInclude">hello/index</a>
+              </td>
+              <td>
+                The smallest page pair there is, and the one redirect and restart land on
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?index">index</a>
+              </td>
+              <td>
+                The one test fetched without padInclude: the _common wrapper, padOpen and padClose with the menu, and the title shown through showTitle
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?manual/3_ways_to_make_a_table&amp;padInclude">manual/3_ways_to_make_a_table</a>
+              </td>
+              <td>
+                The start, end and else constructs over one table
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?manual/doc3&amp;padInclude">manual/doc3</a>
+              </td>
+              <td>
+                Tag properties read through a content store
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?manual/name&amp;padInclude">manual/name</a>
+              </td>
+              <td>
+                How PAD names a tag, and the name option that overrides it
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?manual/table_fun&amp;padInclude">manual/table_fun</a>
+              </td>
+              <td>
+                Ten ways of showing one table, each embedding one of the tableFun pages
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?manual/variable_kinds&amp;padInclude">manual/variable_kinds</a>
+              </td>
+              <td>
+                The variable prefixes, as far as the manual page got
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?menu&amp;padInclude">menu</a>
+              </td>
+              <td>
+                The {menu} include - lines.pad around it, menu.json behind it, a link per application
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?misc/db&amp;padInclude">misc/db</a>
+              </td>
+              <td>
+                The demo database through the credentials _common supplies - the one test that queries it
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?misc/eval&amp;padInclude">misc/eval</a>
+              </td>
+              <td>
+                The evaluator over the forms the manual shows - precedence, the @ placeholder, pipes
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?reference&amp;padInclude">reference</a>
+              </td>
+              <td>
+                The _common _lib helpers a page calls directly - getReference() over the type handlers, and the Xref link builders
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?tableFun/fun_0&amp;padInclude">tableFun/fun_0</a>
+              </td>
+              <td>
+                The {content} definition the other nine print their cells through - it renders nothing itself
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?tableFun/fun_1_a&amp;padInclude">tableFun/fun_1_a</a>
+              </td>
+              <td>
+                One of the ten ways of showing the same table, embedded by manual/table_fun
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?tableFun/fun_1_b&amp;padInclude">tableFun/fun_1_b</a>
+              </td>
+              <td>
+                One of the ten ways of showing the same table, embedded by manual/table_fun
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?tableFun/fun_2_a&amp;padInclude">tableFun/fun_2_a</a>
+              </td>
+              <td>
+                One of the ten ways of showing the same table, embedded by manual/table_fun
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?tableFun/fun_3_a&amp;padInclude">tableFun/fun_3_a</a>
+              </td>
+              <td>
+                One of the ten ways of showing the same table, embedded by manual/table_fun
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?tableFun/fun_3_b&amp;padInclude">tableFun/fun_3_b</a>
+              </td>
+              <td>
+                One of the ten ways of showing the same table, embedded by manual/table_fun
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?tableFun/fun_5_a&amp;padInclude">tableFun/fun_5_a</a>
+              </td>
+              <td>
+                One of the ten ways of showing the same table, embedded by manual/table_fun
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?tableFun/fun_5_b&amp;padInclude">tableFun/fun_5_b</a>
+              </td>
+              <td>
+                One of the ten ways of showing the same table, embedded by manual/table_fun
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?tableFun/fun_8&amp;padInclude">tableFun/fun_8</a>
+              </td>
+              <td>
+                One of the ten ways of showing the same table, embedded by manual/table_fun
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?tableFun/fun_9&amp;padInclude">tableFun/fun_9</a>
+              </td>
+              <td>
+                One of the ten ways of showing the same table, embedded by manual/table_fun
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?tags/redirect&amp;padInclude">tags/redirect</a>
+              </td>
+              <td>
+                The {redirect} tag, and the variable it hands the page it lands on
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://localhost/pad/regression/common/?tags/restart&amp;padInclude">tags/restart</a>
+              </td>
+              <td>
+                The {restart} tag, which re-runs the request on another page carrying a variable
+              </td>
+              <td>
+                ok
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../../pad/index.html">home</a> | <a href="../../manual/index.html">manual</a> | <a href="../../reference/index.html">reference</a> | <a href="../../examples/index.html">examples</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../../sequence/index.html">sequence</a> | <a href="../../develop/index.html">develop</a> | <a href="../../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

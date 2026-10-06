@@ -1,6 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<!DOCTYPE html>
+<html>
+  <head>
     <title>
       PAD - Reference - Tag types - count
     </title>
@@ -11,14 +11,14 @@
         PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
       </h1>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table><br>
+      </table><br>
       <hr width="75%">
     </center>
     <blockquote>
@@ -27,122 +27,233 @@
           <h1>
             Reference - Tag types - count
           </h1>
-          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tbody><tr>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
               <td>
                 <center>
                   <hr>
-                  App: manual - Page: pages/3_ways_to_make_a_table<br>
-                  <div id="padAjaxlC7ztnRj"><table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-  <tbody><tr>
-    <td>
-<p>The <b>@</b><b>start</b><b>@</b> / <b>@</b><b>end</b><b>@</b> &amp; <b>@</b><b>else</b><b>@</b>  constructs act on the number of occurences.</p>
-<p>The <b>{first}</b> &amp; <b>{last}</b> tags are part of the special <a href="../manual/index%EF%B9%96pages%EA%A4%B7properties.html">Properties</a> tags.</p>
-<p></p>
-</td>
-  </tr>
-</tbody></table>
-
-<p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myArray<font color="black">'</font></font>}</b><br>  [1,2,3]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b><br><br>  &lt;table border="1"&gt;<br>    &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br>    &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>  &lt;/table&gt;<br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
-    <tbody><tr> <td> Before the first occurrence </td> </tr>
-    
-      <tr> <td> For every occurence </td> </tr>
-    
-      <tr> <td> For every occurence </td> </tr>
-    
-      <tr> <td> For every occurence </td> </tr>
-    
-    <tr> <td> After the last occurrence </td> </tr>
-  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">first</font><font color="red"></font>}</b><br>    &lt;table border="1"&gt;<br>      &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{/<font color="blue">first</font><font color="red"></font>}</b><br>      &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{<font color="blue">last</font><font color="red"></font>}</b><br>      &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>    &lt;/table&gt;<br>  <b>{/<font color="blue">last</font><font color="red"></font>}</b><br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
-      <tbody><tr> <td> Before the first occurrence </td> </tr>
-  
-      <tr> <td> For every occurence </td> </tr>
-  
-
-
-
-  
-      <tr> <td> For every occurence </td> </tr>
-  
-
-
-
-  
-      <tr> <td> For every occurence </td> </tr>
-  
-      <tr> <td> After the last occurrence </td> </tr>
-    </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">count </font><font color="red"><font color="black">'</font>myArray<font color="black">'</font></font>}</b><br><br>  &lt;table border="1"&gt;<br>    &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{<font color="blue">myArray</font><font color="red"></font>}</b><br>    &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{/<font color="blue">myArray</font><font color="red"></font>}</b><br>    &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>  &lt;/table&gt;<br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">count</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
-    <tbody><tr> <td> Before the first occurrence </td> </tr>
-  
-    <tr> <td> For every occurence </td> </tr>
-  
-    <tr> <td> For every occurence </td> </tr>
-  
-    <tr> <td> For every occurence </td> </tr>
-  
-    <tr> <td> After the last occurrence </td> </tr>
-  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p>
-
-<br><hr><br>
-
-<table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-  <tbody><tr>
-    <td>
-<p>Now the same code with an empty array</p>
-<p>The {else} construct comes active when there are zero occurences for a PAD tag.</p>
-</td>
-  </tr>
-</tbody></table>
-
-<p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myArray<font color="black">'</font></font>}</b><br> []<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b><br><br>  &lt;table border="1"&gt;<br>    &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br>    &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>  &lt;/table&gt;<br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><p> No occurences at all </p><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">first</font><font color="red"></font>}</b><br>    &lt;table border="1"&gt;<br>      &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{/<font color="blue">first</font><font color="red"></font>}</b><br>      &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{<font color="blue">last</font><font color="red"></font>}</b><br>      &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>    &lt;/table&gt;<br>  <b>{/<font color="blue">last</font><font color="red"></font>}</b><br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><p> No occurences at all </p><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">count </font><font color="red"><font color="black">'</font>myArray<font color="black">'</font></font>}</b><br><br>  &lt;table border="1"&gt;<br>    &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{<font color="blue">myArray</font><font color="red"></font>}</b><br>    &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{/<font color="blue">myArray</font><font color="red"></font>}</b><br>    &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>  &lt;/table&gt;<br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">count</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><p> No occurences at all </p><!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p></div>
+                  App: regression/common - Page: manual/3_ways_to_make_a_table<br>
+                  <div id="padAjax03a43398ee4a90652a60c8317e68cd53"></div>
                   <script>
-                  padAjaxlC7ztnRj = new XMLHttpRequest();
-                  padAjaxlC7ztnRj.onreadystatechange=function() {
-                  if (padAjaxlC7ztnRj.readyState === 4) {
-                  if (padAjaxlC7ztnRj.status === 200) {
-                  document.getElementById("padAjaxlC7ztnRj").innerHTML=padAjaxlC7ztnRj.responseText;
+                  padAjax03a43398ee4a90652a60c8317e68cd53 = new XMLHttpRequest();
+                  padAjax03a43398ee4a90652a60c8317e68cd53.onreadystatechange=function() {
+                  if (padAjax03a43398ee4a90652a60c8317e68cd53.readyState === 4) {
+                  if (padAjax03a43398ee4a90652a60c8317e68cd53.status === 200) {
+                  document.getElementById("padAjax03a43398ee4a90652a60c8317e68cd53").innerHTML=padAjax03a43398ee4a90652a60c8317e68cd53.responseText;
                   } else {
-                  document.getElementById("padAjaxlC7ztnRj").innerHTML=padAjaxlC7ztnRj.statusText;
+                  document.getElementById("padAjax03a43398ee4a90652a60c8317e68cd53").innerHTML=padAjax03a43398ee4a90652a60c8317e68cd53.statusText;
                   }
                   }
                   }
-                  padAjaxlC7ztnRj.open("GET","http://localhost/manual/?pages/3_ways_to_make_a_table&padInclude&padSesID=DiM2hOlW&padReqID=wHuQzIlL",true);
-                  padAjaxlC7ztnRj.send();
+                  padAjax03a43398ee4a90652a60c8317e68cd53.open("GET","http://localhost/pad/regression/common/?manual/3_ways_to_make_a_table&padInclude",true);
+                  padAjax03a43398ee4a90652a60c8317e68cd53.send();
                   </script><br>
+                  <hr>
+                  App: regression/framework - Page: data/count_on_an_empty_list_is_false<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">data/count_on_an_empty_list_is_false.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>e<font color="black">'</font></font>}</b><br>  []<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">count </font><font color="red"><font color="black">'</font>e<font color="black">'</font></font>}</b><br>  has<br><b>{/<font color="blue">count</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxaee18643bf76de90bd7a8d7788e64a5b"></div>
+                        <script>
+                        padAjaxaee18643bf76de90bd7a8d7788e64a5b = new XMLHttpRequest();
+                        padAjaxaee18643bf76de90bd7a8d7788e64a5b.onreadystatechange=function() {
+                        if (padAjaxaee18643bf76de90bd7a8d7788e64a5b.readyState === 4) {
+                        if (padAjaxaee18643bf76de90bd7a8d7788e64a5b.status === 200) {
+                        document.getElementById("padAjaxaee18643bf76de90bd7a8d7788e64a5b").innerHTML=padAjaxaee18643bf76de90bd7a8d7788e64a5b.responseText;
+                        } else {
+                        document.getElementById("padAjaxaee18643bf76de90bd7a8d7788e64a5b").innerHTML=padAjaxaee18643bf76de90bd7a8d7788e64a5b.statusText;
+                        }
+                        }
+                        }
+                        padAjaxaee18643bf76de90bd7a8d7788e64a5b.open("GET","http://localhost/pad/regression/framework/?data/count_on_an_empty_list_is_false&padInclude",true);
+                        padAjaxaee18643bf76de90bd7a8d7788e64a5b.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: data/count_tests_for_elements<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">data/count_tests_for_elements.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>xs<font color="black">'</font></font>}</b><br>  [1,2,3]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">count </font><font color="red"><font color="black">'</font>xs<font color="black">'</font></font>}</b><br>  has<br><b>{/<font color="blue">count</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax48a90ed5bd57f0024c7e511b402a0e5b"></div>
+                        <script>
+                        padAjax48a90ed5bd57f0024c7e511b402a0e5b = new XMLHttpRequest();
+                        padAjax48a90ed5bd57f0024c7e511b402a0e5b.onreadystatechange=function() {
+                        if (padAjax48a90ed5bd57f0024c7e511b402a0e5b.readyState === 4) {
+                        if (padAjax48a90ed5bd57f0024c7e511b402a0e5b.status === 200) {
+                        document.getElementById("padAjax48a90ed5bd57f0024c7e511b402a0e5b").innerHTML=padAjax48a90ed5bd57f0024c7e511b402a0e5b.responseText;
+                        } else {
+                        document.getElementById("padAjax48a90ed5bd57f0024c7e511b402a0e5b").innerHTML=padAjax48a90ed5bd57f0024c7e511b402a0e5b.statusText;
+                        }
+                        }
+                        }
+                        padAjax48a90ed5bd57f0024c7e511b402a0e5b.open("GET","http://localhost/pad/regression/framework/?data/count_tests_for_elements&padInclude",true);
+                        padAjax48a90ed5bd57f0024c7e511b402a0e5b.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/and_answers_no_for_an_empty_set<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/and_answers_no_for_an_empty_set.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>x<font color="black">'</font></font>}</b><br>  []<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">count </font><font color="red"><font color="black">'</font>x<font color="black">'</font></font>}</b><br>  some<br><b>{/<font color="blue">count</font><font color="red"></font>}</b><br>no</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxe5aaeac2fbb9a4ec1e1a31b513148fc0"></div>
+                        <script>
+                        padAjaxe5aaeac2fbb9a4ec1e1a31b513148fc0 = new XMLHttpRequest();
+                        padAjaxe5aaeac2fbb9a4ec1e1a31b513148fc0.onreadystatechange=function() {
+                        if (padAjaxe5aaeac2fbb9a4ec1e1a31b513148fc0.readyState === 4) {
+                        if (padAjaxe5aaeac2fbb9a4ec1e1a31b513148fc0.status === 200) {
+                        document.getElementById("padAjaxe5aaeac2fbb9a4ec1e1a31b513148fc0").innerHTML=padAjaxe5aaeac2fbb9a4ec1e1a31b513148fc0.responseText;
+                        } else {
+                        document.getElementById("padAjaxe5aaeac2fbb9a4ec1e1a31b513148fc0").innerHTML=padAjaxe5aaeac2fbb9a4ec1e1a31b513148fc0.statusText;
+                        }
+                        }
+                        }
+                        padAjaxe5aaeac2fbb9a4ec1e1a31b513148fc0.open("GET","http://localhost/pad/regression/framework/?tags/and_answers_no_for_an_empty_set&padInclude",true);
+                        padAjaxe5aaeac2fbb9a4ec1e1a31b513148fc0.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/count_is_a_test_for_anything_at_all<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/count_is_a_test_for_anything_at_all.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>x<font color="black">'</font></font>}</b><br>  ["b","a"]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">count </font><font color="red"><font color="black">'</font>x<font color="black">'</font></font>}</b><br>  some<br><b>{/<font color="blue">count</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxe3a275e70b52fd8edd2680da29e627e2"></div>
+                        <script>
+                        padAjaxe3a275e70b52fd8edd2680da29e627e2 = new XMLHttpRequest();
+                        padAjaxe3a275e70b52fd8edd2680da29e627e2.onreadystatechange=function() {
+                        if (padAjaxe3a275e70b52fd8edd2680da29e627e2.readyState === 4) {
+                        if (padAjaxe3a275e70b52fd8edd2680da29e627e2.status === 200) {
+                        document.getElementById("padAjaxe3a275e70b52fd8edd2680da29e627e2").innerHTML=padAjaxe3a275e70b52fd8edd2680da29e627e2.responseText;
+                        } else {
+                        document.getElementById("padAjaxe3a275e70b52fd8edd2680da29e627e2").innerHTML=padAjaxe3a275e70b52fd8edd2680da29e627e2.statusText;
+                        }
+                        }
+                        }
+                        padAjaxe3a275e70b52fd8edd2680da29e627e2.open("GET","http://localhost/pad/regression/framework/?tags/count_is_a_test_for_anything_at_all&padInclude",true);
+                        padAjaxe3a275e70b52fd8edd2680da29e627e2.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/count_takes_a_plain_value_and_a_missing_one<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/count_takes_a_plain_value_and_a_missing_one.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/count_takes_a_plain_value_and_a_missing_one.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $countScalar </span><span style="color: #007700">= </span><span style="color: #DD0000">'abc'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$countEmpty  </span><span style="color: #007700">= [];<br>  </span><span style="color: #0000BB">$countFull   </span><span style="color: #007700">= [ </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">2 </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">count </font><font color="red"><font color="black">'</font>countScalar<font color="black">'</font></font>}</b>yes<b>{/<font color="blue">count</font><font color="red"></font>}</b>] [<b>{<font color="blue">count </font><font color="red"><font color="black">'</font>countMissing<font color="black">'</font></font>}</b>yes<b>{/<font color="blue">count</font><font color="red"></font>}</b>] [<b>{<font color="blue">count </font><font color="red"><font color="black">'</font>countEmpty<font color="black">'</font></font>}</b>yes<b>{/<font color="blue">count</font><font color="red"></font>}</b>] [<b>{<font color="blue">count </font><font color="red"><font color="black">'</font>countFull<font color="black">'</font></font>}</b>yes<b>{/<font color="blue">count</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax974d200db5fbe336211283859ab02e35"></div>
+                        <script>
+                        padAjax974d200db5fbe336211283859ab02e35 = new XMLHttpRequest();
+                        padAjax974d200db5fbe336211283859ab02e35.onreadystatechange=function() {
+                        if (padAjax974d200db5fbe336211283859ab02e35.readyState === 4) {
+                        if (padAjax974d200db5fbe336211283859ab02e35.status === 200) {
+                        document.getElementById("padAjax974d200db5fbe336211283859ab02e35").innerHTML=padAjax974d200db5fbe336211283859ab02e35.responseText;
+                        } else {
+                        document.getElementById("padAjax974d200db5fbe336211283859ab02e35").innerHTML=padAjax974d200db5fbe336211283859ab02e35.statusText;
+                        }
+                        }
+                        }
+                        padAjax974d200db5fbe336211283859ab02e35.open("GET","http://localhost/pad/regression/framework/?tags/count_takes_a_plain_value_and_a_missing_one&padInclude",true);
+                        padAjax974d200db5fbe336211283859ab02e35.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
-          </tbody></table>
+          </table>
         </blockquote>
       </center>
     </blockquote>
@@ -150,17 +261,17 @@
       <hr width="75%">
       <br>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table>
+      </table>
       <p>
         <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
       </p>
     </center>
-  
-</body></html>
+  </body>
+</html>

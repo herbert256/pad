@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Environment, cache and rate limits
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Environment, cache and rate limits
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <div style="display: inline-block; text-align: left;">
+                    <p>
+                      Some values differ per machine and must not stand in the code: the database password, an API key, a debug switch. <code>padEnv</code> reads them from the server's environment or from a <code>.env</code> file beside the code, so the same application runs unchanged on a laptop and on the production server, and the secrets never reach git. The cache keeps what is slow to make from one request to the next, and a rate limit counts how often a visitor tries.
+                    </p>
+                    <h2>
+                      Environment values
+                    </h2>
+                    <p>
+                      <code>padEnv ( 'KEY', $default )</code> looks in three places and answers the first that has the key: the real environment of the server (<code>getenv</code>, <code>$_ENV</code>, <code>$_SERVER</code> - what Apache's <code>SetEnv</code> or PHP-FPM's <code>env[...]</code> sets), then the application's <code>_config/.env</code>, then <code>.env</code> in the PAD home. Without the key it answers the default - a closure as the default is called. This manual has a <code>_config/.env</code> of its own:
+                    </p>
+                    <pre><code>MANUAL_SITE_NAME="PAD manual"
+MANUAL_PAGE_SIZE=20
+MANUAL_DEBUG=false</code></pre>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/environment_and_cache_1.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/environment_and_cache_1.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// apps/manual/_config/.env holds MANUAL_SITE_NAME,<br>  // MANUAL_PAGE_SIZE and MANUAL_DEBUG.<br><br>  </span><span style="color: #0000BB">$site  </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_SITE_NAME'</span><span style="color: #007700">, </span><span style="color: #DD0000">'My site' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$rows  </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_PAGE_SIZE'</span><span style="color: #007700">, </span><span style="color: #0000BB">25 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$debug </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_DEBUG'</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'on' </span><span style="color: #007700">: </span><span style="color: #DD0000">'off'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$maps  </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_MAPS_KEY'</span><span style="color: #007700">, </span><span style="color: #DD0000">'not set' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;ul&gt;<br>  &lt;li&gt;Site: <b>{<font color="green"><font color="red">$</font>site</font>}</b>&lt;/li&gt;<br>  &lt;li&gt;Rows a page: <b>{<font color="green"><font color="red">$</font>rows</font>}</b>&lt;/li&gt;<br>  &lt;li&gt;Debugging: <b>{<font color="green"><font color="red">$</font>debug</font>}</b>&lt;/li&gt;<br>  &lt;li&gt;Maps key: <b>{<font color="green"><font color="red">$</font>maps</font>}</b>&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <ul>
+                            <li>Site: PAD manual
+                            </li>
+                            <li>Rows a page: 20
+                            </li>
+                            <li>Debugging: off
+                            </li>
+                            <li>Maps key: not set
+                            </li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </table>
+                    <p>
+                      The engine loads its library before it reads any configuration, so the place a secret is needed first can ask for it - <code>_config/config.php</code>:
+                    </p>
+                    <pre><code>$padSqlPassword = padEnv ( 'DB_PASSWORD' );
+$padSqlUser     = padEnv ( 'DB_USER', 'shop' );</code></pre>
+                    <h2>
+                      The .env file
+                    </h2>
+                    <pre><code># a comment
+APP_NAME=Shop                     a bare value, trimmed - # after a space starts a comment
+export DB_HOST=localhost          export in front, as a shell script writes it
+GREETING="Hello\nWorld"           double quotes: \n \r \t \" \\ \$ and ${OTHER}
+PATTERN='${not} \n expanded'      single quotes: the text exactly as written
+DEBUG=false                       true, false, null and empty are TRUE, FALSE, NULL and ''
+NOTE="two
+lines"                            a quoted value may run over several lines</code></pre>
+                    <ul>
+                      <li>A quoted value is always text: <code>"false"</code> is the word, not FALSE.
+                      </li>
+                      <li>
+                        <code>${OTHER}</code> is OTHER from the real environment, else as set earlier in the same file, else empty; it works in bare values too.
+                      </li>
+                      <li>A key written twice: the later line wins, as in a shell.
+                      </li>
+                      <li>A line that is none of these is an error naming the file and the line number - never the line itself, which may hold the secret.
+                      </li>
+                      <li>A key that starts with <code>HTTP_</code> is never read from the real environment: those are the headers of the request, which the client sends.
+                      </li>
+                      <li>No URL reaches <code>apps/</code> - the web server serves <code>www/</code> only - so an application's <code>_config/.env</code> is not served. The repository's <code>.gitignore</code> keeps the <code>.env</code> of the PAD home out of git; keep an application's out the same way when it holds a real secret.
+                      </li>
+                      <li>Each file is read once per request, the first time a key is asked for.
+                      </li>
+                    </ul>
+                    <h2>
+                      The cache
+                    </h2>
+                    <p>
+                      A slow query, a remote service, a computed report: <code>padRemember ( $key, $ttl, $callback )</code> answers what is kept under the key, or runs the callback, keeps its answer for <code>$ttl</code> seconds and answers that. <code>padCachePut</code>, <code>padCacheGet</code>, <code>padCacheHas</code> and <code>padCacheForget</code> do the same by hand.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/environment_and_cache_2.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/environment_and_cache_2.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The first request of the next ten minutes runs the callback;<br>  // the others get what it left in the cache, without asking the<br>  // source again.<br><br>  </span><span style="color: #0000BB">$rates </span><span style="color: #007700">= </span><span style="color: #0000BB">padRemember </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-rates'</span><span style="color: #007700">, </span><span style="color: #0000BB">600</span><span style="color: #007700">, function () {<br>    return [ [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'EUR'</span><span style="color: #007700">, </span><span style="color: #DD0000">'rate' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'1.00' </span><span style="color: #007700">],<br>             [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'USD'</span><span style="color: #007700">, </span><span style="color: #DD0000">'rate' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'1.08' </span><span style="color: #007700">],<br>             [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'GBP'</span><span style="color: #007700">, </span><span style="color: #DD0000">'rate' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'0.86' </span><span style="color: #007700">] ];<br>  } );<br><br>  </span><span style="color: #0000BB">padCachePut </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-notice'</span><span style="color: #007700">,<br>                </span><span style="color: #DD0000">'Maintenance on Sunday night'</span><span style="color: #007700">,<br>                </span><span style="color: #0000BB">3600 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$notice  </span><span style="color: #007700">= </span><span style="color: #0000BB">padCacheGet </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-notice'</span><span style="color: #007700">, </span><span style="color: #DD0000">'No notice' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$nothing </span><span style="color: #007700">= </span><span style="color: #0000BB">padCacheGet </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-nothing-kept'</span><span style="color: #007700">,<br>                           </span><span style="color: #DD0000">'Nothing kept under this key' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue">rates</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>code</font>}</b>: <b>{<font color="green"><font color="red">$</font>rate</font>}</b>&lt;/li&gt;<b>{/<font color="blue">rates</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>notice</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>nothing</font>}</b>&lt;/p&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <ul>
+                            <li>EUR: 1.00
+                            </li>
+                            <li>USD: 1.08
+                            </li>
+                            <li>GBP: 0.86
+                            </li>
+                          </ul>
+                          <p>
+                            Maintenance on Sunday night
+                          </p>
+                          <p>
+                            Nothing kept under this key
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <ul>
+                      <li>The ttl is a number of seconds - 3600 when <code>padCachePut</code> is not told - or <code>NULL</code> for ever, a <code>DateTimeInterface</code> (until then) or a <code>DateInterval</code>. A ttl of 0 or less keeps nothing.
+                      </li>
+                      <li>The cache keeps arrays and scalars - strings, numbers, TRUE, FALSE, NULL - nested as deep as they go. A value that holds an object is an error: it would not come back as it went in.
+                      </li>
+                      <li>A kept <code>NULL</code> counts: a callback that found nothing is not asked again until the entry expires. A closure as the default of <code>padCacheGet</code> is called.
+                      </li>
+                      <li>Each application has its own entries, files under <code>DATA/cache/app/&lt;application&gt;/</code>, one per key; <code>padCacheFlush ()</code> removes them all. A file is written beside its place and then renamed over it, so a request reads the old value or the new one, never half of one.
+                      </li>
+                      <li>When what a key holds changes - a product saved, a price updated - the page that changes it calls <code>padCacheForget</code>, and the next request makes it again.
+                      </li>
+                    </ul>
+                    <h2>
+                      Rate limits
+                    </h2>
+                    <p>
+                      <code>padRateLimit ( $key, $maxAttempts, $decaySeconds )</code> counts a hit and answers TRUE while the key stays within the limit - five attempts a minute - and FALSE over it. The first hit starts a window of <code>$decaySeconds</code>; when it ends, the key starts from nothing again. A login form, a contact form, an expensive search: key it on the visitor, or on the account that is tried.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/environment_and_cache_3.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/environment_and_cache_3.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Five login attempts a minute. A page of your own keys it on<br>  // the visitor - 'login:' . $_SERVER ['REMOTE_ADDR'] - this<br>  // example on a key of its own, so every reader of this page<br>  // starts from nothing.<br><br>  </span><span style="color: #0000BB">$key   </span><span style="color: #007700">= </span><span style="color: #DD0000">'login:' </span><span style="color: #007700">. </span><span style="color: #0000BB">padRandomString </span><span style="color: #007700">( </span><span style="color: #0000BB">8 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$tries </span><span style="color: #007700">= [];<br><br>  for ( </span><span style="color: #0000BB">$try </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">; </span><span style="color: #0000BB">$try </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">7</span><span style="color: #007700">; </span><span style="color: #0000BB">$try</span><span style="color: #007700">++ ) {<br>    </span><span style="color: #0000BB">$allowed  </span><span style="color: #007700">= </span><span style="color: #0000BB">padRateLimit </span><span style="color: #007700">( </span><span style="color: #0000BB">$key</span><span style="color: #007700">, </span><span style="color: #0000BB">5</span><span style="color: #007700">, </span><span style="color: #0000BB">60 </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$tries </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'try'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$try</span><span style="color: #007700">,<br>                  </span><span style="color: #DD0000">'answer' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$allowed </span><span style="color: #007700">? </span><span style="color: #DD0000">'allowed' </span><span style="color: #007700">: </span><span style="color: #DD0000">'too many' </span><span style="color: #007700">];<br>  }<br><br>  </span><span style="color: #0000BB">$left    </span><span style="color: #007700">= </span><span style="color: #0000BB">padRateLimitRemaining </span><span style="color: #007700">( </span><span style="color: #0000BB">$key</span><span style="color: #007700">, </span><span style="color: #0000BB">5 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$minutes </span><span style="color: #007700">= </span><span style="color: #0000BB">ceil </span><span style="color: #007700">( </span><span style="color: #0000BB">padRateLimitAvailableIn </span><span style="color: #007700">( </span><span style="color: #0000BB">$key </span><span style="color: #007700">) / </span><span style="color: #0000BB">60 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">padRateLimitClear </span><span style="color: #007700">( </span><span style="color: #0000BB">$key </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue">tries</font><font color="red"></font>}</b>&lt;li&gt;Attempt <b>{<font color="green"><font color="red">$</font>try</font>}</b>: <b>{<font color="green"><font color="red">$</font>answer</font>}</b>&lt;/li&gt;<b>{/<font color="blue">tries</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>left</font>}</b> attempts left - try again in <b>{<font color="green"><font color="red">$</font>minutes</font>}</b> minute.&lt;/p&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <ul>
+                            <li>Attempt 1: allowed
+                            </li>
+                            <li>Attempt 2: allowed
+                            </li>
+                            <li>Attempt 3: allowed
+                            </li>
+                            <li>Attempt 4: allowed
+                            </li>
+                            <li>Attempt 5: allowed
+                            </li>
+                            <li>Attempt 6: too many
+                            </li>
+                            <li>Attempt 7: too many
+                            </li>
+                          </ul>
+                          <p>
+                            0 attempts left - try again in 1 minute.
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <ul>
+                      <li>
+                        <code>padRateLimitRemaining ( $key, $maxAttempts )</code> - the hits left in the window; <code>padRateLimitAvailableIn ( $key )</code> - the seconds until it ends, 0 when no window runs; <code>padRateLimitClear ( $key )</code> - after a login that succeeded.
+                      </li>
+                      <li>A hit over the limit is not counted; the window ends when it would have anyway.
+                      </li>
+                      <li>Requests that come at once are each counted: they take turns on a lock while they count.
+                      </li>
+                      <li>Rate limits are kept with the cache - <code>padCacheFlush ()</code> clears them too - and a rate limit and a cache key of the same name are two entries.
+                      </li>
+                    </ul>
+                    <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+                      <tr>
+                        <th>
+                          function
+                        </th>
+                        <th>
+                          what it does
+                        </th>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padEnv ( $key, $default = NULL )</code>
+                        </td>
+                        <td>
+                          the value of an environment key - the real environment, then <code>_config/.env</code>, then the PAD home's <code>.env</code>, else the default
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padCacheGet ( $key, $default = NULL )</code>
+                        </td>
+                        <td>
+                          the value kept under the key, else the default
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padCachePut ( $key, $value, $ttl = 3600 )</code>
+                        </td>
+                        <td>
+                          keeps the value for <code>$ttl</code> seconds - <code>NULL</code> for ever; TRUE when it is kept
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padCacheHas ( $key )</code>
+                        </td>
+                        <td>
+                          whether the key holds a value that has not expired
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padCacheForget ( $key )</code>
+                        </td>
+                        <td>
+                          removes the key; TRUE when it held a value
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padCacheFlush ()</code>
+                        </td>
+                        <td>
+                          removes every entry of this application, rate limits included
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padRemember ( $key, $ttl, $callback )</code>
+                        </td>
+                        <td>
+                          the kept value, or the callback's answer - kept for <code>$ttl</code> seconds
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padRateLimit ( $key, $maxAttempts, $decaySeconds = 60 )</code>
+                        </td>
+                        <td>
+                          counts a hit: TRUE within the limit, FALSE over it
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padRateLimitRemaining ( $key, $maxAttempts )</code>
+                        </td>
+                        <td>
+                          the hits left in the current window
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padRateLimitAvailableIn ( $key )</code>
+                        </td>
+                        <td>
+                          the seconds until the current window ends
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padRateLimitClear ( $key )</code>
+                        </td>
+                        <td>
+                          ends the window - the key starts from nothing
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </center>
+              </td>
+            </tr>
+          </table>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <hr>
+                <table valign="top" align="center">
+                  <tr>
+                    <td valign="top">
+                      <h3 align="center">
+                        Basic concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tags.html">Tags</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7conditions.html">Conditions</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7loops.html">Loops</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7trees.html">Trees</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7examples_used_in_this_manual.html">Examples used in this manual</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7parse.html">Parse</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7levels_and_occurrences.html">Levels and occurrences</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_content_tag.html">The content tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_data_tag.html">The data tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7php_and_html.html">Php and html</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7properties.html">Properties</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7field_sigils.html">Field sigils</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Constructs
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7else.html">Else</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7start_end.html">Start end</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7content.html">Content</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page.html">Page</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Text and markup
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7comments.html">Comments</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7whitespace.html">Whitespace</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ignore.html">Ignore</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7escaping_special_PAD_chars.html">Escaping special PAD chars</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Advanced concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7prefix.html">Prefix</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7options_variables_parameters.html">Options variables parameters</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7callback.html">Callback</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tag_return_values.html">Tag return values</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7level_and_occurrence_variables.html">Level and occurrence variables</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7walking.html">Walking</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ending_the_request.html">Ending the request</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sequences.html">Sequences</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Data
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7data_handling.html">Data handling</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7grouping.html">Grouping</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pager.html">Pager</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7lookup.html">Lookup</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7database.html">Database</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sqlite.html">Sqlite</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7collections.html">Collections</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7remote_data.html">Remote data</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7parallel_fetching.html">Parallel fetching</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7data_answers.html">Data answers</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        PHP helpers
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7arrays.html">Arrays</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7strings.html">Strings</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7values.html">Values</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7numbers.html">Numbers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_sessions.html">Requests and sessions</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7environment_and_cache.html">Environment and cache</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7dates_and_logging.html">Dates and logging</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7hashing_and_encryption.html">Hashing and encryption</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Output
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7html_helpers.html">Html helpers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7markdown.html">Markdown</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7charts.html">Charts</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7locale.html">Locale</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7fragment_cache.html">Fragment cache</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7flush.html">Flush</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7live.html">Live</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Layouts and components
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7layouts.html">Layouts</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page_meta.html">Page meta</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7components.html">Components</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7stacks.html">Stacks</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7response_fragments.html">Response fragments</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        The application
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7application_structure.html">Application structure</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7extending.html">Extending</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7events.html">Events</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7application_options.html">Application options</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_urls.html">Requests and urls</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7clean_urls.html">Clean urls</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sitemap.html">Sitemap</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7mail.html">Mail</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Forms and security
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7forms.html">Forms</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7csrf_protection.html">Csrf protection</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7flash_messages.html">Flash messages</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7directory_guards.html">Directory guards</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7security_headers.html">Security headers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7file_uploads.html">File uploads</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Development tools
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7debug.html">Debug</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7template_errors.html">Template errors</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7toolbar.html">Toolbar</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7output_checks.html">Output checks</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7coverage.html">Coverage</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7replay.html">Replay</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7live_reload.html">Live reload</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7samples.html">Samples</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7app_tests.html">App tests</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pad_command.html">Pad command</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7static_export.html">Static export</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7playground.html">Playground</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7editor_support.html">Editor support</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pad_in_the_browser.html">Pad in the browser</a>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

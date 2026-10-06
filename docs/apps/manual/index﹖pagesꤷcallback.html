@@ -1,6 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<!DOCTYPE html>
+<html>
+  <head>
     <title>
       PAD - callback
     </title>
@@ -11,14 +11,14 @@
         PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
       </h1>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table><br>
+      </table><br>
       <hr width="75%">
     </center>
     <blockquote>
@@ -27,286 +27,297 @@
           <h1>
             Callback
           </h1>
-          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tbody><tr>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
               <td>
                 <center>
-                  <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-                    <tbody><tr>
-                      <td>
-                        <p>
-                          It's possible to put a PHP file in the directory '_callbacks' that is called back at the processing of a pad tag.<br>
-                          - With option 'before' the callback happens for every occurrence before the processing of the ocurrences.<br>
-                          - With option 'demand' the callback happens during the processing of the occurrences.
-                        </p>
-                      </td>
-                    </tr>
-                  </tbody></table>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">_callbacks/before.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">callback/before.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">switch (</span><span style="color: #0000BB">$padCallback</span><span style="color: #007700">) {<br><br>    case </span><span style="color: #DD0000">'init'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>        </span><span style="color: #0000BB">$bonusTotal  </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>        break;<br><br>    case </span><span style="color: #DD0000">'row'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'total'</span><span style="color: #007700">] = </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'salary'</span><span style="color: #007700">] + </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'bonus'</span><span style="color: #007700">];<br><br>        </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">+= </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'salary'</span><span style="color: #007700">];<br>        </span><span style="color: #0000BB">$bonusTotal  </span><span style="color: #007700">+= </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'bonus'</span><span style="color: #007700">];<br><br>        break;<br><br>    case </span><span style="color: #DD0000">'exit'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$totalTotal </span><span style="color: #007700">= </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">+ </span><span style="color: #0000BB">$bonusTotal </span><span style="color: #007700">;<br><br>        break;<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue">staff </font><font color="red">callback=<font color="black">'</font>before.php<font color="black">'</font><font color="black">,</font> before</font>}</b><br><br>    <b>{<font color="blue">first</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;Totals&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$salaryTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$bonusTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$totalTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">first</font><font color="red"></font>}</b><br><br>    &lt;tr align="right" bgcolor="<b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>yellow<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pink<font color="black">'</font></font>}</b>"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br> <br>&lt;/table&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <table border="1">
-                          <tbody><tr>
-                            <th>
-                              Name
-                            </th>
-                            <th>
-                              Salary
-                            </th>
-                            <th>
-                              Bonus
-                            </th>
-                            <th>
-                              Total
-                            </th>
-                          </tr>
-                          <tr>
-                            <td>
-                              Totals
-                            </td>
-                            <td>
-                              15000.00
-                            </td>
-                            <td>
-                              1500.00
-                            </td>
-                            <td>
-                              16500.00
-                            </td>
-                          </tr>
-                          <tr align="right" bgcolor="yellow">
-                            <td align="left">
-                              Joe
-                            </td>
-                            <td>
-                              1000.00
-                            </td>
-                            <td>
-                              500.00
-                            </td>
-                            <td>
-                              1500.00
-                            </td>
-                          </tr>
-                          <tr align="right" bgcolor="pink">
-                            <td align="left">
-                              Jim
-                            </td>
-                            <td>
-                              2000.00
-                            </td>
-                            <td>
-                              400.00
-                            </td>
-                            <td>
-                              2400.00
-                            </td>
-                          </tr>
-                          <tr align="right" bgcolor="yellow">
-                            <td align="left">
-                              John
-                            </td>
-                            <td>
-                              3000.00
-                            </td>
-                            <td>
-                              300.00
-                            </td>
-                            <td>
-                              3300.00
-                            </td>
-                          </tr>
-                          <tr align="right" bgcolor="pink">
-                            <td align="left">
-                              Jack
-                            </td>
-                            <td>
-                              4000.00
-                            </td>
-                            <td>
-                              200.00
-                            </td>
-                            <td>
-                              4200.00
-                            </td>
-                          </tr>
-                          <tr align="right" bgcolor="yellow">
-                            <td align="left">
-                              Jerry
-                            </td>
-                            <td>
-                              5000.00
-                            </td>
-                            <td>
-                              100.00
-                            </td>
-                            <td>
-                              5100.00
-                            </td>
-                          </tr>
-                        </tbody></table>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">_callbacks/demand.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">callback/demand.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">switch (</span><span style="color: #0000BB">$padCallback</span><span style="color: #007700">) {<br><br>    case </span><span style="color: #DD0000">'init'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>        </span><span style="color: #0000BB">$bonusTotal  </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>        break;<br><br>    case </span><span style="color: #DD0000">'row'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">$salary </span><span style="color: #007700">+ </span><span style="color: #0000BB">$bonus</span><span style="color: #007700">;<br><br>        </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">+= </span><span style="color: #0000BB">$salary</span><span style="color: #007700">;<br>        </span><span style="color: #0000BB">$bonusTotal  </span><span style="color: #007700">+= </span><span style="color: #0000BB">$bonus</span><span style="color: #007700">;<br><br>        break;<br><br>    case </span><span style="color: #DD0000">'exit'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$totalTotal </span><span style="color: #007700">= </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">+ </span><span style="color: #0000BB">$bonusTotal </span><span style="color: #007700">;<br><br>        break;<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue">staff </font><font color="red">callback=<font color="black">'</font>demand.php<font color="black">'</font><font color="black">,</font> demand</font>}</b><br><br>    &lt;tr align="right" <br>        bgcolor="<b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>yellow<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pink<font color="black">'</font></font>}</b>"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><br>  &lt;tr&gt;<br>    &lt;td&gt;Totals&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$salaryTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$bonusTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$totalTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br> <br>&lt;/table&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <table border="1">
-                          <tbody><tr>
-                            <th>
-                              Name
-                            </th>
-                            <th>
-                              Salary
-                            </th>
-                            <th>
-                              Bonus
-                            </th>
-                            <th>
-                              Total
-                            </th>
-                          </tr>
-                          <tr align="right" bgcolor="pink">
-                            <td align="left">
-                              Joe
-                            </td>
-                            <td>
-                              1000.00
-                            </td>
-                            <td>
-                              500.00
-                            </td>
-                            <td>
-                              1500.00
-                            </td>
-                          </tr>
-                          <tr align="right" bgcolor="yellow">
-                            <td align="left">
-                              Jim
-                            </td>
-                            <td>
-                              2000.00
-                            </td>
-                            <td>
-                              400.00
-                            </td>
-                            <td>
-                              2400.00
-                            </td>
-                          </tr>
-                          <tr align="right" bgcolor="pink">
-                            <td align="left">
-                              John
-                            </td>
-                            <td>
-                              3000.00
-                            </td>
-                            <td>
-                              300.00
-                            </td>
-                            <td>
-                              3300.00
-                            </td>
-                          </tr>
-                          <tr align="right" bgcolor="yellow">
-                            <td align="left">
-                              Jack
-                            </td>
-                            <td>
-                              4000.00
-                            </td>
-                            <td>
-                              200.00
-                            </td>
-                            <td>
-                              4200.00
-                            </td>
-                          </tr>
-                          <tr align="right" bgcolor="pink">
-                            <td align="left">
-                              Jerry
-                            </td>
-                            <td>
-                              5000.00
-                            </td>
-                            <td>
-                              100.00
-                            </td>
-                            <td>
-                              5100.00
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              Totals
-                            </td>
-                            <td>
-                              15000.00
-                            </td>
-                            <td>
-                              1500.00
-                            </td>
-                            <td>
-                              16500.00
-                            </td>
-                          </tr>
-                        </tbody></table>
-                      </td>
-                    </tr>
-                  </tbody></table>
+                  <div style="display: inline-block; text-align: left;">
+                    <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td>
+                          <p>
+                            It's possible to put a PHP file in the directory '_callbacks' that is called back at the processing of a pad tag.<br>
+                            - With option 'before' the callback happens for every occurrence before the processing of the ocurrences.<br>
+                            - Without 'before' the callback happens during the processing of the occurrences, as each one is processed.
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">_callbacks/before.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">callback/before.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">switch (</span><span style="color: #0000BB">$padCallback</span><span style="color: #007700">) {<br><br>    case </span><span style="color: #DD0000">'init'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>        </span><span style="color: #0000BB">$bonusTotal  </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>        break;<br><br>    case </span><span style="color: #DD0000">'row'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'total'</span><span style="color: #007700">] = </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'salary'</span><span style="color: #007700">] + </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'bonus'</span><span style="color: #007700">];<br><br>        </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">+= </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'salary'</span><span style="color: #007700">];<br>        </span><span style="color: #0000BB">$bonusTotal  </span><span style="color: #007700">+= </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'bonus'</span><span style="color: #007700">];<br><br>        break;<br><br>    case </span><span style="color: #DD0000">'exit'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$totalTotal </span><span style="color: #007700">= </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">+ </span><span style="color: #0000BB">$bonusTotal </span><span style="color: #007700">;<br><br>        break;<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue">staff </font><font color="red">callback=<font color="black">'</font>before.php<font color="black">'</font><font color="black">,</font> before</font>}</b><br><br>    <b>{<font color="blue">first</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;Totals&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$salaryTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$bonusTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$totalTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">first</font><font color="red"></font>}</b><br><br>    &lt;tr align="right" bgcolor="<b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>yellow<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pink<font color="black">'</font></font>}</b>"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br> <br>&lt;/table&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <table border="1">
+                            <tr>
+                              <th>
+                                Name
+                              </th>
+                              <th>
+                                Salary
+                              </th>
+                              <th>
+                                Bonus
+                              </th>
+                              <th>
+                                Total
+                              </th>
+                            </tr>
+                            <tr>
+                              <td>
+                                Totals
+                              </td>
+                              <td>
+                                15000.00
+                              </td>
+                              <td>
+                                1500.00
+                              </td>
+                              <td>
+                                16500.00
+                              </td>
+                            </tr>
+                            <tr align="right" bgcolor="yellow">
+                              <td align="left">
+                                Joe
+                              </td>
+                              <td>
+                                1000.00
+                              </td>
+                              <td>
+                                500.00
+                              </td>
+                              <td>
+                                1500.00
+                              </td>
+                            </tr>
+                            <tr align="right" bgcolor="pink">
+                              <td align="left">
+                                Jim
+                              </td>
+                              <td>
+                                2000.00
+                              </td>
+                              <td>
+                                400.00
+                              </td>
+                              <td>
+                                2400.00
+                              </td>
+                            </tr>
+                            <tr align="right" bgcolor="yellow">
+                              <td align="left">
+                                John
+                              </td>
+                              <td>
+                                3000.00
+                              </td>
+                              <td>
+                                300.00
+                              </td>
+                              <td>
+                                3300.00
+                              </td>
+                            </tr>
+                            <tr align="right" bgcolor="pink">
+                              <td align="left">
+                                Jack
+                              </td>
+                              <td>
+                                4000.00
+                              </td>
+                              <td>
+                                200.00
+                              </td>
+                              <td>
+                                4200.00
+                              </td>
+                            </tr>
+                            <tr align="right" bgcolor="yellow">
+                              <td align="left">
+                                Jerry
+                              </td>
+                              <td>
+                                5000.00
+                              </td>
+                              <td>
+                                100.00
+                              </td>
+                              <td>
+                                5100.00
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">_callbacks/demand.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">callback/demand.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">switch (</span><span style="color: #0000BB">$padCallback</span><span style="color: #007700">) {<br><br>    case </span><span style="color: #DD0000">'init'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>        </span><span style="color: #0000BB">$bonusTotal  </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>        break;<br><br>    case </span><span style="color: #DD0000">'row'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">$salary </span><span style="color: #007700">+ </span><span style="color: #0000BB">$bonus</span><span style="color: #007700">;<br><br>        </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">+= </span><span style="color: #0000BB">$salary</span><span style="color: #007700">;<br>        </span><span style="color: #0000BB">$bonusTotal  </span><span style="color: #007700">+= </span><span style="color: #0000BB">$bonus</span><span style="color: #007700">;<br><br>        break;<br><br>    case </span><span style="color: #DD0000">'exit'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$totalTotal </span><span style="color: #007700">= </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">+ </span><span style="color: #0000BB">$bonusTotal </span><span style="color: #007700">;<br><br>        break;<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue">staff </font><font color="red">callback=<font color="black">'</font>demand.php<font color="black">'</font></font>}</b><br><br>    &lt;tr align="right" <br>        bgcolor="<b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>yellow<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pink<font color="black">'</font></font>}</b>"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><br>  &lt;tr&gt;<br>    &lt;td&gt;Totals&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$salaryTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$bonusTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$totalTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br> <br>&lt;/table&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <table border="1">
+                            <tr>
+                              <th>
+                                Name
+                              </th>
+                              <th>
+                                Salary
+                              </th>
+                              <th>
+                                Bonus
+                              </th>
+                              <th>
+                                Total
+                              </th>
+                            </tr>
+                            <tr align="right" bgcolor="yellow">
+                              <td align="left">
+                                Joe
+                              </td>
+                              <td>
+                                1000.00
+                              </td>
+                              <td>
+                                500.00
+                              </td>
+                              <td>
+                                1500.00
+                              </td>
+                            </tr>
+                            <tr align="right" bgcolor="pink">
+                              <td align="left">
+                                Jim
+                              </td>
+                              <td>
+                                2000.00
+                              </td>
+                              <td>
+                                400.00
+                              </td>
+                              <td>
+                                2400.00
+                              </td>
+                            </tr>
+                            <tr align="right" bgcolor="yellow">
+                              <td align="left">
+                                John
+                              </td>
+                              <td>
+                                3000.00
+                              </td>
+                              <td>
+                                300.00
+                              </td>
+                              <td>
+                                3300.00
+                              </td>
+                            </tr>
+                            <tr align="right" bgcolor="pink">
+                              <td align="left">
+                                Jack
+                              </td>
+                              <td>
+                                4000.00
+                              </td>
+                              <td>
+                                200.00
+                              </td>
+                              <td>
+                                4200.00
+                              </td>
+                            </tr>
+                            <tr align="right" bgcolor="yellow">
+                              <td align="left">
+                                Jerry
+                              </td>
+                              <td>
+                                5000.00
+                              </td>
+                              <td>
+                                100.00
+                              </td>
+                              <td>
+                                5100.00
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                Totals
+                              </td>
+                              <td>
+                                15000.00
+                              </td>
+                              <td>
+                                1500.00
+                              </td>
+                              <td>
+                                16500.00
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
                 </center>
               </td>
             </tr>
-          </tbody></table>
-          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tbody><tr>
+          </table>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
               <td>
                 <hr>
                 <table valign="top" align="center">
-                  <tbody><tr>
+                  <tr>
                     <td valign="top">
                       <h3 align="center">
-                        Basic Concepts
+                        Basic concepts
                       </h3>
                       <ul>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7tags.html">Tags</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7conditions.html">Conditions</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7loops.html">Loops</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7trees.html">Trees</a>
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7examples_used_in_this_manual.html">Examples used in this manual</a>
@@ -329,6 +340,43 @@
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7properties.html">Properties</a>
                         </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7field_sigils.html">Field sigils</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Constructs
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7else.html">Else</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7start_end.html">Start end</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7content.html">Content</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page.html">Page</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Text and markup
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7comments.html">Comments</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7whitespace.html">Whitespace</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ignore.html">Ignore</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7escaping_special_PAD_chars.html">Escaping special PAD chars</a>
+                        </li>
                       </ul>
                     </td>
                     <td>
@@ -349,9 +397,6 @@
                           <a href="index%EF%B9%96pages%EA%A4%B7callback.html">Callback</a>
                         </li>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7escaping_special_PAD_chars.html">Escaping special PAD chars</a>
-                        </li>
-                        <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7tag_return_values.html">Tag return values</a>
                         </li>
                         <li>
@@ -361,7 +406,77 @@
                           <a href="index%EF%B9%96pages%EA%A4%B7walking.html">Walking</a>
                         </li>
                         <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ending_the_request.html">Ending the request</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sequences.html">Sequences</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Data
+                      </h3>
+                      <ul>
+                        <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7data_handling.html">Data handling</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7grouping.html">Grouping</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pager.html">Pager</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7lookup.html">Lookup</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7database.html">Database</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sqlite.html">Sqlite</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7collections.html">Collections</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7remote_data.html">Remote data</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7parallel_fetching.html">Parallel fetching</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7data_answers.html">Data answers</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        PHP helpers
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7arrays.html">Arrays</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7strings.html">Strings</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7values.html">Values</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7numbers.html">Numbers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_sessions.html">Requests and sessions</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7environment_and_cache.html">Environment and cache</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7dates_and_logging.html">Dates and logging</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7hashing_and_encryption.html">Hashing and encryption</a>
                         </li>
                       </ul>
                     </td>
@@ -370,39 +485,161 @@
                     </td>
                     <td valign="top">
                       <h3 align="center">
-                        Constructs
+                        Output
                       </h3>
                       <ul>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7else.html">Else</a>
+                          <a href="index%EF%B9%96pages%EA%A4%B7html_helpers.html">Html helpers</a>
                         </li>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7start_end.html">Start end</a>
+                          <a href="index%EF%B9%96pages%EA%A4%B7markdown.html">Markdown</a>
                         </li>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7content.html">Content</a>
+                          <a href="index%EF%B9%96pages%EA%A4%B7charts.html">Charts</a>
                         </li>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7page.html">Page</a>
+                          <a href="index%EF%B9%96pages%EA%A4%B7locale.html">Locale</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7fragment_cache.html">Fragment cache</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7flush.html">Flush</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7live.html">Live</a>
                         </li>
                       </ul>
                       <h3 align="center">
-                        Miscellaneous
+                        Layouts and components
                       </h3>
                       <ul>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7ignore.html">Ignore</a>
+                          <a href="index%EF%B9%96pages%EA%A4%B7layouts.html">Layouts</a>
                         </li>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page_meta.html">Page meta</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7components.html">Components</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7stacks.html">Stacks</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7response_fragments.html">Response fragments</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        The application
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7application_structure.html">Application structure</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7extending.html">Extending</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7events.html">Events</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7application_options.html">Application options</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_urls.html">Requests and urls</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7clean_urls.html">Clean urls</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sitemap.html">Sitemap</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7mail.html">Mail</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Forms and security
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7forms.html">Forms</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7csrf_protection.html">Csrf protection</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7flash_messages.html">Flash messages</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7directory_guards.html">Directory guards</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7security_headers.html">Security headers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7file_uploads.html">File uploads</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Development tools
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7debug.html">Debug</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7template_errors.html">Template errors</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7toolbar.html">Toolbar</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7output_checks.html">Output checks</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7coverage.html">Coverage</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7replay.html">Replay</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7live_reload.html">Live reload</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7samples.html">Samples</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7app_tests.html">App tests</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pad_command.html">Pad command</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7static_export.html">Static export</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7playground.html">Playground</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7editor_support.html">Editor support</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pad_in_the_browser.html">Pad in the browser</a>
                         </li>
                       </ul>
                     </td>
                   </tr>
-                </tbody></table>
+                </table>
               </td>
             </tr>
-          </tbody></table>
+          </table>
         </blockquote>
       </center>
     </blockquote>
@@ -410,17 +647,17 @@
       <hr width="75%">
       <br>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table>
+      </table>
       <p>
         <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
       </p>
     </center>
-  
-</body></html>
+  </body>
+</html>

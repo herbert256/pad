@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Parms functions - padStrAfterLast
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Parms functions - padStrAfterLast
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: helpers/strings_after_before_and_between_cut_as_the_pipes_do<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">helpers/strings_after_before_and_between_cut_as_the_pipes_do.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">helpers/strings_after_before_and_between_cut_as_the_pipes_do.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $cuts </span><span style="color: #007700">= [];<br><br>  foreach ( [ [ </span><span style="color: #DD0000">'a/b/c'</span><span style="color: #007700">, </span><span style="color: #DD0000">'/' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'a::b::c'</span><span style="color: #007700">, </span><span style="color: #DD0000">'::' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'a/b/c'</span><span style="color: #007700">, </span><span style="color: #DD0000">'x' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'abc'</span><span style="color: #007700">, </span><span style="color: #DD0000">'' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'één/twee/drie'</span><span style="color: #007700">, </span><span style="color: #DD0000">'/' </span><span style="color: #007700">],<br>              [ </span><span style="color: #0000BB">NULL</span><span style="color: #007700">, </span><span style="color: #DD0000">'x' </span><span style="color: #007700">], [ </span><span style="color: #0000BB">12345</span><span style="color: #007700">, </span><span style="color: #0000BB">3 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'0'</span><span style="color: #007700">, </span><span style="color: #DD0000">'0' </span><span style="color: #007700">] ] as [ </span><span style="color: #0000BB">$text</span><span style="color: #007700">, </span><span style="color: #0000BB">$search </span><span style="color: #007700">] )<br>    </span><span style="color: #0000BB">$cuts </span><span style="color: #007700">[] = [ </span><span style="color: #0000BB">padStrAfter </span><span style="color: #007700">( </span><span style="color: #0000BB">$text</span><span style="color: #007700">, </span><span style="color: #0000BB">$search </span><span style="color: #007700">), </span><span style="color: #0000BB">padStrAfterLast </span><span style="color: #007700">( </span><span style="color: #0000BB">$text</span><span style="color: #007700">, </span><span style="color: #0000BB">$search </span><span style="color: #007700">),<br>                 </span><span style="color: #0000BB">padStrBefore </span><span style="color: #007700">( </span><span style="color: #0000BB">$text</span><span style="color: #007700">, </span><span style="color: #0000BB">$search </span><span style="color: #007700">), </span><span style="color: #0000BB">padStrBeforeLast </span><span style="color: #007700">( </span><span style="color: #0000BB">$text</span><span style="color: #007700">, </span><span style="color: #0000BB">$search </span><span style="color: #007700">) ];<br><br>  </span><span style="color: #0000BB">$r </span><span style="color: #007700">= </span><span style="color: #0000BB">json_encode </span><span style="color: #007700">( </span><span style="color: #0000BB">$cuts</span><span style="color: #007700">, </span><span style="color: #0000BB">JSON_UNESCAPED_UNICODE </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$b </span><span style="color: #007700">= </span><span style="color: #0000BB">json_encode </span><span style="color: #007700">( [<br>    </span><span style="color: #0000BB">padStrBetween </span><span style="color: #007700">( </span><span style="color: #DD0000">'This is my name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'This'</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padStrBetween </span><span style="color: #007700">( </span><span style="color: #DD0000">'[a] and [b]'</span><span style="color: #007700">, </span><span style="color: #DD0000">'['</span><span style="color: #007700">, </span><span style="color: #DD0000">']' </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padStrBefore </span><span style="color: #007700">( </span><span style="color: #0000BB">padStrAfter </span><span style="color: #007700">( </span><span style="color: #DD0000">'[a] and [b]'</span><span style="color: #007700">, </span><span style="color: #DD0000">'[' </span><span style="color: #007700">), </span><span style="color: #DD0000">']' </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padStrBetween </span><span style="color: #007700">( </span><span style="color: #DD0000">'abc'</span><span style="color: #007700">, </span><span style="color: #DD0000">'x'</span><span style="color: #007700">, </span><span style="color: #DD0000">'y' </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padStrBetween </span><span style="color: #007700">( </span><span style="color: #DD0000">'abc'</span><span style="color: #007700">, </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'y' </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padStrBetween </span><span style="color: #007700">( </span><span style="color: #DD0000">'abc'</span><span style="color: #007700">, </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #DD0000">'' </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padStrBetween </span><span style="color: #007700">( </span><span style="color: #0000BB">NULL</span><span style="color: #007700">, </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'b' </span><span style="color: #007700">)<br>  ], </span><span style="color: #0000BB">JSON_UNESCAPED_UNICODE </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$path </span><span style="color: #007700">= </span><span style="color: #DD0000">'shop/orders/list.pad'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="green"><font color="red">!</font>r</font>}</b><br><b>{<font color="green"><font color="red">!</font>b</font>}</b><br>[<b>{<font color="green">$path</font> <font color="black">|</font> <font color="blue">after('/')</font>}</b>|<b>{<font color="green">$path</font> <font color="black">|</font> <font color="blue">afterLast('/')</font>}</b>|<b>{<font color="green">$path</font> <font color="black">|</font> <font color="blue">before('/')</font>}</b>|<b>{<font color="green">$path</font> <font color="black">|</font> <font color="blue">beforeLast('/')</font>}</b>]<br>[<b>{<font color="blue">echo </font><font color="red">padStrAfter ( <font color="red">$</font>path<font color="black">,</font> <font color="black">'</font>/<font color="black">'</font> )</font>}</b>|<b>{<font color="blue">echo </font><font color="red">padStrAfterLast ( <font color="red">$</font>path<font color="black">,</font> <font color="black">'</font>/<font color="black">'</font> )</font>}</b>|<b>{<font color="blue">echo </font><font color="red">padStrBefore ( <font color="red">$</font>path<font color="black">,</font> <font color="black">'</font>/<font color="black">'</font> )</font>}</b>|<b>{<font color="blue">echo </font><font color="red">padStrBeforeLast ( <font color="red">$</font>path<font color="black">,</font> <font color="black">'</font>/<font color="black">'</font> )</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax4569d42e168c192b2ba4a922a7fb569f"></div>
+                        <script>
+                        padAjax4569d42e168c192b2ba4a922a7fb569f = new XMLHttpRequest();
+                        padAjax4569d42e168c192b2ba4a922a7fb569f.onreadystatechange=function() {
+                        if (padAjax4569d42e168c192b2ba4a922a7fb569f.readyState === 4) {
+                        if (padAjax4569d42e168c192b2ba4a922a7fb569f.status === 200) {
+                        document.getElementById("padAjax4569d42e168c192b2ba4a922a7fb569f").innerHTML=padAjax4569d42e168c192b2ba4a922a7fb569f.responseText;
+                        } else {
+                        document.getElementById("padAjax4569d42e168c192b2ba4a922a7fb569f").innerHTML=padAjax4569d42e168c192b2ba4a922a7fb569f.statusText;
+                        }
+                        }
+                        }
+                        padAjax4569d42e168c192b2ba4a922a7fb569f.open("GET","http://localhost/pad/regression/framework/?helpers/strings_after_before_and_between_cut_as_the_pipes_do&padInclude",true);
+                        padAjax4569d42e168c192b2ba4a922a7fb569f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

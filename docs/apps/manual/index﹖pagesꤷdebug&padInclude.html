@@ -1,0 +1,70 @@
+
+
+<p><b>{debug}</b> shows a value as a collapsible tree in the page, where the template uses
+it, and the rendering goes on - unlike <b>{dump}</b>, which stops the request.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/debug_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/debug_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $order </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1042</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">, </span><span style="color: #DD0000">'lines' </span><span style="color: #007700">=&gt; [ [ </span><span style="color: #DD0000">'sku' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A1'</span><span style="color: #007700">, </span><span style="color: #DD0000">'qty' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">] ] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;The order as the template sees it:&lt;/p&gt;<br><b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>order</font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>The order as the template sees it:</p>
+
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<ul>
+  <li><code>{debug $name}</code> - one value; an array is a tree to unfold, a missing name says so.</li>
+  <li><code>{debug}</code> - every field visible where it stands: the rows of the enclosing levels, innermost first, and the application's variables.</li>
+  <li>Only a local request sees it: the command line, or this machine asking itself with nothing forwarded. Anyone else gets nothing, and <code>$padDiagnostics = FALSE</code> switches it off for everyone.</li>
+</ul>

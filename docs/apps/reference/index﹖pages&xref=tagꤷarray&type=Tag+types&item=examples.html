@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - examples
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - examples
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: demo - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">index.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Welcome to PAD Demo'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$examples </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Guestbook'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'desc' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A simple guestbook where visitors can leave messages'</span><span style="color: #007700">, </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?guestbook' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Todo List'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'desc' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A task manager to add, complete, and delete tasks'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?todo'      </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Contact Form'</span><span style="color: #007700">, </span><span style="color: #DD0000">'desc' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A contact form with validation'</span><span style="color: #007700">,                       </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?contact'   </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Page Counter'</span><span style="color: #007700">, </span><span style="color: #DD0000">'desc' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A visitor counter that tracks page views'</span><span style="color: #007700">,             </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?counter'   </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Clock'</span><span style="color: #007700">,        </span><span style="color: #DD0000">'desc' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Display current date and time'</span><span style="color: #007700">,                        </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?clock'     </span><span style="color: #007700">],<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;Welcome to the PAD Demo Application! This application demonstrates various features of the PAD template engine.&lt;/p&gt;<br><br>&lt;h2&gt;Available Examples&lt;/h2&gt;<br><br>&lt;table&gt;<br>  &lt;tr&gt;<br>    &lt;th&gt;Example&lt;/th&gt;<br>    &lt;th&gt;Description&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <b>{<font color="blue">examples</font><font color="red"></font>}</b><br>  &lt;tr&gt;<br>    &lt;td&gt;&lt;a href="<b>{<font color="green"><font color="red">$</font>link</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/a&gt;&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green"><font color="red">$</font>desc</font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  <b>{/<font color="blue">examples</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;h2&gt;About PAD&lt;/h2&gt;<br><br>&lt;p&gt;PAD (PHP Application Driver) is an Inversion of Control template engine where templates drive application flow. Instead of PHP code including templates, PAD templates orchestrate everything from data retrieval to output generation.&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8d748d80aa7bc65d76f8fb63ffcbffc7"></div>
+                        <script>
+                        padAjax8d748d80aa7bc65d76f8fb63ffcbffc7 = new XMLHttpRequest();
+                        padAjax8d748d80aa7bc65d76f8fb63ffcbffc7.onreadystatechange=function() {
+                        if (padAjax8d748d80aa7bc65d76f8fb63ffcbffc7.readyState === 4) {
+                        if (padAjax8d748d80aa7bc65d76f8fb63ffcbffc7.status === 200) {
+                        document.getElementById("padAjax8d748d80aa7bc65d76f8fb63ffcbffc7").innerHTML=padAjax8d748d80aa7bc65d76f8fb63ffcbffc7.responseText;
+                        } else {
+                        document.getElementById("padAjax8d748d80aa7bc65d76f8fb63ffcbffc7").innerHTML=padAjax8d748d80aa7bc65d76f8fb63ffcbffc7.statusText;
+                        }
+                        }
+                        }
+                        padAjax8d748d80aa7bc65d76f8fb63ffcbffc7.open("GET","http://localhost/pad/demo/?index&padInclude",true);
+                        padAjax8d748d80aa7bc65d76f8fb63ffcbffc7.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

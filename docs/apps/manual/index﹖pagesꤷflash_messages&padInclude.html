@@ -1,0 +1,71 @@
+
+
+<p>A page that takes a post redirects the browser to a plain page, so a refresh cannot post
+twice - and then the page the browser lands on has to say what happened. A flash message
+carries that: <code>padFlash ( 'Thanks, your message was sent.' )</code> before the
+<code>padRedirect ()</code>, and <b>{flash}</b> on the page it leads to.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/flash_messages_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/flash_messages_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  padFlash </span><span style="color: #007700">( </span><span style="color: #DD0000">'Your message was sent.'</span><span style="color: #007700">, </span><span style="color: #DD0000">'success' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">flash</font><font color="red"></font>}</b><br>  &lt;p class="notice <b>{<font color="green"><font color="red">$</font>type</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>message</font>}</b>&lt;/p&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;p&gt;Nothing to report.&lt;/p&gt;<br><b>{/<font color="blue">flash</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+  <p class="notice success">Your message was sent.</p>
+
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<ul>
+  <li><b>{flash}</b> renders its content once per message, with <code>{$message}</code>
+  and <code>{$type}</code>; without a message the <code>

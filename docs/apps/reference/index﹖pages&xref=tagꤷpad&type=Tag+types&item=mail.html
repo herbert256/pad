@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - mail
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - mail
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: fragments/mail_2<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/mail_2.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/mail_2.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $name </span><span style="color: #007700">= </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">mail </font><font color="red">to=<font color="black">'</font>ann<font color="black">@</font>example.com<font color="black">'</font><font color="black">,</font> subject=<font color="black">'</font>Your order<font color="black">'</font></font>}</b><br>  &lt;p&gt;Thank you for your order, <b>{<font color="green"><font color="red">$</font>name</font>}</b>.&lt;/p&gt;<br><b>{/<font color="blue">mail</font><font color="red"></font>}</b><br>&lt;p&gt;Sent: <b>{<font color="green"><font color="red">$</font>padMailLast.subject</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8976aa9d968ebe8d52e99cf8247214e9"></div>
+                        <script>
+                        padAjax8976aa9d968ebe8d52e99cf8247214e9 = new XMLHttpRequest();
+                        padAjax8976aa9d968ebe8d52e99cf8247214e9.onreadystatechange=function() {
+                        if (padAjax8976aa9d968ebe8d52e99cf8247214e9.readyState === 4) {
+                        if (padAjax8976aa9d968ebe8d52e99cf8247214e9.status === 200) {
+                        document.getElementById("padAjax8976aa9d968ebe8d52e99cf8247214e9").innerHTML=padAjax8976aa9d968ebe8d52e99cf8247214e9.responseText;
+                        } else {
+                        document.getElementById("padAjax8976aa9d968ebe8d52e99cf8247214e9").innerHTML=padAjax8976aa9d968ebe8d52e99cf8247214e9.statusText;
+                        }
+                        }
+                        }
+                        padAjax8976aa9d968ebe8d52e99cf8247214e9.open("GET","http://localhost/pad/manual/?fragments/mail_2&padInclude",true);
+                        padAjax8976aa9d968ebe8d52e99cf8247214e9.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_mail_goes_to_an_address<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_mail_goes_to_an_address.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">mail </font><font color="red">to=<font color="black">'</font>nobody<font color="black">'</font><font color="black">,</font> subject=<font color="black">'</font>x<font color="black">'</font></font>}</b>&lt;p&gt;x&lt;/p&gt;<b>{/<font color="blue">mail</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxac7e94a3db649375120b09d2e752b39f"></div>
+                        <script>
+                        padAjaxac7e94a3db649375120b09d2e752b39f = new XMLHttpRequest();
+                        padAjaxac7e94a3db649375120b09d2e752b39f.onreadystatechange=function() {
+                        if (padAjaxac7e94a3db649375120b09d2e752b39f.readyState === 4) {
+                        if (padAjaxac7e94a3db649375120b09d2e752b39f.status === 200) {
+                        document.getElementById("padAjaxac7e94a3db649375120b09d2e752b39f").innerHTML=padAjaxac7e94a3db649375120b09d2e752b39f.responseText;
+                        } else {
+                        document.getElementById("padAjaxac7e94a3db649375120b09d2e752b39f").innerHTML=padAjaxac7e94a3db649375120b09d2e752b39f.statusText;
+                        }
+                        }
+                        }
+                        padAjaxac7e94a3db649375120b09d2e752b39f.open("GET","http://localhost/pad/regression/errors/?syntax/a_mail_goes_to_an_address&padInclude",true);
+                        padAjaxac7e94a3db649375120b09d2e752b39f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_mail_header_may_not_hold_a_line_break<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">syntax/a_mail_header_may_not_hold_a_line_break.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_mail_header_may_not_hold_a_line_break.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $to </span><span style="color: #007700">= </span><span style="color: #DD0000">"a@example.com\r\nBcc: all@example.com"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">mail </font><font color="red">to=<font color="red">$</font>to<font color="black">,</font> subject=<font color="black">'</font>x<font color="black">'</font></font>}</b>&lt;p&gt;x&lt;/p&gt;<b>{/<font color="blue">mail</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax9d68a88f61a8279529a589e8e08ab047"></div>
+                        <script>
+                        padAjax9d68a88f61a8279529a589e8e08ab047 = new XMLHttpRequest();
+                        padAjax9d68a88f61a8279529a589e8e08ab047.onreadystatechange=function() {
+                        if (padAjax9d68a88f61a8279529a589e8e08ab047.readyState === 4) {
+                        if (padAjax9d68a88f61a8279529a589e8e08ab047.status === 200) {
+                        document.getElementById("padAjax9d68a88f61a8279529a589e8e08ab047").innerHTML=padAjax9d68a88f61a8279529a589e8e08ab047.responseText;
+                        } else {
+                        document.getElementById("padAjax9d68a88f61a8279529a589e8e08ab047").innerHTML=padAjax9d68a88f61a8279529a589e8e08ab047.statusText;
+                        }
+                        }
+                        }
+                        padAjax9d68a88f61a8279529a589e8e08ab047.open("GET","http://localhost/pad/regression/errors/?syntax/a_mail_header_may_not_hold_a_line_break&padInclude",true);
+                        padAjax9d68a88f61a8279529a589e8e08ab047.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_mail_needs_a_subject<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_mail_needs_a_subject.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">mail </font><font color="red">to=<font color="black">'</font>a<font color="black">@</font>example.com<font color="black">'</font></font>}</b>&lt;p&gt;x&lt;/p&gt;<b>{/<font color="blue">mail</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax876bc9adc7514f61925f01d7d2770b84"></div>
+                        <script>
+                        padAjax876bc9adc7514f61925f01d7d2770b84 = new XMLHttpRequest();
+                        padAjax876bc9adc7514f61925f01d7d2770b84.onreadystatechange=function() {
+                        if (padAjax876bc9adc7514f61925f01d7d2770b84.readyState === 4) {
+                        if (padAjax876bc9adc7514f61925f01d7d2770b84.status === 200) {
+                        document.getElementById("padAjax876bc9adc7514f61925f01d7d2770b84").innerHTML=padAjax876bc9adc7514f61925f01d7d2770b84.responseText;
+                        } else {
+                        document.getElementById("padAjax876bc9adc7514f61925f01d7d2770b84").innerHTML=padAjax876bc9adc7514f61925f01d7d2770b84.statusText;
+                        }
+                        }
+                        }
+                        padAjax876bc9adc7514f61925f01d7d2770b84.open("GET","http://localhost/pad/regression/errors/?syntax/a_mail_needs_a_subject&padInclude",true);
+                        padAjax876bc9adc7514f61925f01d7d2770b84.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_mail_template_must_exist<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_mail_template_must_exist.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">mail </font><font color="red">to=<font color="black">'</font>a<font color="black">@</font>example.com<font color="black">'</font><font color="black">,</font> template=<font color="black">'</font>nowhere<font color="black">'</font><font color="black">,</font> subject=<font color="black">'</font>x<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5f4706d167b80b4b1f91f1f3b1b4966b"></div>
+                        <script>
+                        padAjax5f4706d167b80b4b1f91f1f3b1b4966b = new XMLHttpRequest();
+                        padAjax5f4706d167b80b4b1f91f1f3b1b4966b.onreadystatechange=function() {
+                        if (padAjax5f4706d167b80b4b1f91f1f3b1b4966b.readyState === 4) {
+                        if (padAjax5f4706d167b80b4b1f91f1f3b1b4966b.status === 200) {
+                        document.getElementById("padAjax5f4706d167b80b4b1f91f1f3b1b4966b").innerHTML=padAjax5f4706d167b80b4b1f91f1f3b1b4966b.responseText;
+                        } else {
+                        document.getElementById("padAjax5f4706d167b80b4b1f91f1f3b1b4966b").innerHTML=padAjax5f4706d167b80b4b1f91f1f3b1b4966b.statusText;
+                        }
+                        }
+                        }
+                        padAjax5f4706d167b80b4b1f91f1f3b1b4966b.open("GET","http://localhost/pad/regression/errors/?syntax/a_mail_template_must_exist&padInclude",true);
+                        padAjax5f4706d167b80b4b1f91f1f3b1b4966b.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_mail_transport_must_exist<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">syntax/a_mail_transport_must_exist.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_mail_transport_must_exist.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padMailTransport </span><span style="color: #007700">= </span><span style="color: #DD0000">'nowhere'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">mail </font><font color="red">to=<font color="black">'</font>a<font color="black">@</font>example.com<font color="black">'</font><font color="black">,</font> subject=<font color="black">'</font>x<font color="black">'</font></font>}</b>&lt;p&gt;x&lt;/p&gt;<b>{/<font color="blue">mail</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax4e1ff7ae8284b1ce03f64711241a0d40"></div>
+                        <script>
+                        padAjax4e1ff7ae8284b1ce03f64711241a0d40 = new XMLHttpRequest();
+                        padAjax4e1ff7ae8284b1ce03f64711241a0d40.onreadystatechange=function() {
+                        if (padAjax4e1ff7ae8284b1ce03f64711241a0d40.readyState === 4) {
+                        if (padAjax4e1ff7ae8284b1ce03f64711241a0d40.status === 200) {
+                        document.getElementById("padAjax4e1ff7ae8284b1ce03f64711241a0d40").innerHTML=padAjax4e1ff7ae8284b1ce03f64711241a0d40.responseText;
+                        } else {
+                        document.getElementById("padAjax4e1ff7ae8284b1ce03f64711241a0d40").innerHTML=padAjax4e1ff7ae8284b1ce03f64711241a0d40.statusText;
+                        }
+                        }
+                        }
+                        padAjax4e1ff7ae8284b1ce03f64711241a0d40.open("GET","http://localhost/pad/regression/errors/?syntax/a_mail_transport_must_exist&padInclude",true);
+                        padAjax4e1ff7ae8284b1ce03f64711241a0d40.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: mail/tags<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">mail/tags.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">mail/tags.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The {mail} tag, with a transport of the application's own: a function that gets each<br>  // message - here it keeps them for the template to show. template= looks _mail/ up from<br>  // this page's directory to the application's, which has welcome and the layout around<br>  // it; the pair form's content is the HTML part, rendered where it stands - in the loop,<br>  // with the fields of the row.<br><br>  </span><span style="color: #007700">function </span><span style="color: #0000BB">mailTagsKeep </span><span style="color: #007700">( </span><span style="color: #0000BB">$message </span><span style="color: #007700">) {<br><br>    </span><span style="color: #0000BB">$GLOBALS </span><span style="color: #007700">[</span><span style="color: #DD0000">'mails'</span><span style="color: #007700">] [] = [ </span><span style="color: #DD0000">'to' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$message </span><span style="color: #007700">[</span><span style="color: #DD0000">'to'</span><span style="color: #007700">], </span><span style="color: #DD0000">'subject' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$message </span><span style="color: #007700">[</span><span style="color: #DD0000">'subject'</span><span style="color: #007700">],<br>                              </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">str_replace </span><span style="color: #007700">( </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">, </span><span style="color: #DD0000">' / '</span><span style="color: #007700">, </span><span style="color: #0000BB">$message </span><span style="color: #007700">[</span><span style="color: #DD0000">'text'</span><span style="color: #007700">] ), </span><span style="color: #DD0000">'html' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$message </span><span style="color: #007700">[</span><span style="color: #DD0000">'html'</span><span style="color: #007700">] ];<br><br>    return </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br>  }<br><br>  </span><span style="color: #0000BB">$padMailTransport </span><span style="color: #007700">= </span><span style="color: #DD0000">'mailTagsKeep'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padMailFrom      </span><span style="color: #007700">= </span><span style="color: #DD0000">'shop@example.com'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$name    </span><span style="color: #007700">= </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$people  </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'bob@example.com'</span><span style="color: #007700">, </span><span style="color: #DD0000">'first' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'cy@example.com'</span><span style="color: #007700">, </span><span style="color: #DD0000">'first' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Cy' </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$mails   </span><span style="color: #007700">= [];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">before<b>{<font color="blue">mail </font><font color="red">to=<font color="black">'</font>ann<font color="black">@</font>example.com<font color="black">'</font><font color="black">,</font> template=<font color="black">'</font>welcome<font color="black">'</font><font color="black">,</font> subject=<font color="black">'</font>Welcome<font color="black">,</font> <font color="black">'</font> . <font color="red">$</font>name</font>}</b><b>{<font color="blue">people</font><font color="red"></font>}</b><b>{<font color="blue">mail </font><font color="red">to=<font color="red">$</font>email<font color="black">,</font> subject=<font color="black">'</font>Hi <font color="black">'</font> . <font color="red">$</font>first</font>}</b>&lt;p&gt;Hi &lt;b&gt;<b>{<font color="green"><font color="red">$</font>first</font>}</b>&lt;/b&gt;&lt;/p&gt;<b>{/<font color="blue">mail</font><font color="red"></font>}</b><b>{/<font color="blue">people</font><font color="red"></font>}</b>after<br><b>{<font color="blue">mails</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>to</font>}</b> | <b>{<font color="green"><font color="red">$</font>subject</font>}</b> | <b>{<font color="green"><font color="red">$</font>text</font>}</b> | <b>{<font color="green"><font color="red">!</font>html</font>}</b><br><b>{/<font color="blue">mails</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax6e70c211a92b0b68473ec3828ab6812b"></div>
+                        <script>
+                        padAjax6e70c211a92b0b68473ec3828ab6812b = new XMLHttpRequest();
+                        padAjax6e70c211a92b0b68473ec3828ab6812b.onreadystatechange=function() {
+                        if (padAjax6e70c211a92b0b68473ec3828ab6812b.readyState === 4) {
+                        if (padAjax6e70c211a92b0b68473ec3828ab6812b.status === 200) {
+                        document.getElementById("padAjax6e70c211a92b0b68473ec3828ab6812b").innerHTML=padAjax6e70c211a92b0b68473ec3828ab6812b.responseText;
+                        } else {
+                        document.getElementById("padAjax6e70c211a92b0b68473ec3828ab6812b").innerHTML=padAjax6e70c211a92b0b68473ec3828ab6812b.statusText;
+                        }
+                        }
+                        }
+                        padAjax6e70c211a92b0b68473ec3828ab6812b.open("GET","http://localhost/pad/regression/pages/?mail/tags&padInclude",true);
+                        padAjax6e70c211a92b0b68473ec3828ab6812b.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

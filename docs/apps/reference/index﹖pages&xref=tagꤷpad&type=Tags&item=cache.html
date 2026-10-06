@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tags - cache
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tags - cache
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: fragments/cache_1<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/cache_1.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/cache_1.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Start the example from an empty entry, so it shows a miss and then a hit.<br><br>  </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-cache' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$built </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>manual-cache<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><br>  <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>built = <font color="red">$</font>built + 1</font>}</b><br>  &lt;p&gt;Rendered while building: built <b>{<font color="green"><font color="red">$</font>built</font>}</b> time(s)&lt;/p&gt;<br><b>{/<font color="blue">cache</font><font color="red"></font>}</b><br><br><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>manual-cache<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><br>  <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>built = <font color="red">$</font>built + 1</font>}</b><br>  &lt;p&gt;Rendered while building: built <b>{<font color="green"><font color="red">$</font>built</font>}</b> time(s)&lt;/p&gt;<br><b>{/<font color="blue">cache</font><font color="red"></font>}</b><br><br>&lt;p&gt;The section was built <b>{<font color="green"><font color="red">$</font>built</font>}</b> time: the second one came from the cache.&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax68a3bf651f2dc741efa6afd234abee3a"></div>
+                        <script>
+                        padAjax68a3bf651f2dc741efa6afd234abee3a = new XMLHttpRequest();
+                        padAjax68a3bf651f2dc741efa6afd234abee3a.onreadystatechange=function() {
+                        if (padAjax68a3bf651f2dc741efa6afd234abee3a.readyState === 4) {
+                        if (padAjax68a3bf651f2dc741efa6afd234abee3a.status === 200) {
+                        document.getElementById("padAjax68a3bf651f2dc741efa6afd234abee3a").innerHTML=padAjax68a3bf651f2dc741efa6afd234abee3a.responseText;
+                        } else {
+                        document.getElementById("padAjax68a3bf651f2dc741efa6afd234abee3a").innerHTML=padAjax68a3bf651f2dc741efa6afd234abee3a.statusText;
+                        }
+                        }
+                        }
+                        padAjax68a3bf651f2dc741efa6afd234abee3a.open("GET","http://localhost/pad/manual/?fragments/cache_1&padInclude",true);
+                        padAjax68a3bf651f2dc741efa6afd234abee3a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_cache_needs_a_name<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_cache_needs_a_name.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">cache</font><font color="red"></font>}</b>x<b>{/<font color="blue">cache</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxedfc940a9adcf7f1251fd92ff9e11f6c"></div>
+                        <script>
+                        padAjaxedfc940a9adcf7f1251fd92ff9e11f6c = new XMLHttpRequest();
+                        padAjaxedfc940a9adcf7f1251fd92ff9e11f6c.onreadystatechange=function() {
+                        if (padAjaxedfc940a9adcf7f1251fd92ff9e11f6c.readyState === 4) {
+                        if (padAjaxedfc940a9adcf7f1251fd92ff9e11f6c.status === 200) {
+                        document.getElementById("padAjaxedfc940a9adcf7f1251fd92ff9e11f6c").innerHTML=padAjaxedfc940a9adcf7f1251fd92ff9e11f6c.responseText;
+                        } else {
+                        document.getElementById("padAjaxedfc940a9adcf7f1251fd92ff9e11f6c").innerHTML=padAjaxedfc940a9adcf7f1251fd92ff9e11f6c.statusText;
+                        }
+                        }
+                        }
+                        padAjaxedfc940a9adcf7f1251fd92ff9e11f6c.open("GET","http://localhost/pad/regression/errors/?syntax/a_cache_needs_a_name&padInclude",true);
+                        padAjaxedfc940a9adcf7f1251fd92ff9e11f6c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_cache_never_closes<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_cache_never_closes.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>x<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc208fab80a2feeb7cd2210077f115e0a"></div>
+                        <script>
+                        padAjaxc208fab80a2feeb7cd2210077f115e0a = new XMLHttpRequest();
+                        padAjaxc208fab80a2feeb7cd2210077f115e0a.onreadystatechange=function() {
+                        if (padAjaxc208fab80a2feeb7cd2210077f115e0a.readyState === 4) {
+                        if (padAjaxc208fab80a2feeb7cd2210077f115e0a.status === 200) {
+                        document.getElementById("padAjaxc208fab80a2feeb7cd2210077f115e0a").innerHTML=padAjaxc208fab80a2feeb7cd2210077f115e0a.responseText;
+                        } else {
+                        document.getElementById("padAjaxc208fab80a2feeb7cd2210077f115e0a").innerHTML=padAjaxc208fab80a2feeb7cd2210077f115e0a.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc208fab80a2feeb7cd2210077f115e0a.open("GET","http://localhost/pad/regression/errors/?syntax/a_cache_never_closes&padInclude",true);
+                        padAjaxc208fab80a2feeb7cd2210077f115e0a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_cached_section_is_rendered_once_and_then_served<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_cached_section_is_rendered_once_and_then_served.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_cached_section_is_rendered_once_and_then_served.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'fw-twice' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$runs </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fw-twice<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>runs = <font color="red">$</font>runs + 1</font>}</b>run <b>{<font color="green"><font color="red">$</font>runs</font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b>|<b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fw-twice<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>runs = <font color="red">$</font>runs + 1</font>}</b>run <b>{<font color="green"><font color="red">$</font>runs</font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b>|<b>{<font color="green"><font color="red">$</font>runs</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax0ca01e691139bd3330ed4d0afc671045"></div>
+                        <script>
+                        padAjax0ca01e691139bd3330ed4d0afc671045 = new XMLHttpRequest();
+                        padAjax0ca01e691139bd3330ed4d0afc671045.onreadystatechange=function() {
+                        if (padAjax0ca01e691139bd3330ed4d0afc671045.readyState === 4) {
+                        if (padAjax0ca01e691139bd3330ed4d0afc671045.status === 200) {
+                        document.getElementById("padAjax0ca01e691139bd3330ed4d0afc671045").innerHTML=padAjax0ca01e691139bd3330ed4d0afc671045.responseText;
+                        } else {
+                        document.getElementById("padAjax0ca01e691139bd3330ed4d0afc671045").innerHTML=padAjax0ca01e691139bd3330ed4d0afc671045.statusText;
+                        }
+                        }
+                        }
+                        padAjax0ca01e691139bd3330ed4d0afc671045.open("GET","http://localhost/pad/regression/framework/?tags/a_cached_section_is_rendered_once_and_then_served&padInclude",true);
+                        padAjax0ca01e691139bd3330ed4d0afc671045.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_cached_section_keeps_one_copy_per_vary_value<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_cached_section_keeps_one_copy_per_vary_value.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_cached_section_keeps_one_copy_per_vary_value.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'fw-vary'</span><span style="color: #007700">, </span><span style="color: #DD0000">'a' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'fw-vary'</span><span style="color: #007700">, </span><span style="color: #DD0000">'b' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>who = <font color="black">'</font>a<font color="black">'</font></font>}</b><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fw-vary<font color="black">'</font><font color="black">,</font> vary=<font color="red">$</font>who</font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>who</font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>who = <font color="black">'</font>b<font color="black">'</font></font>}</b><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fw-vary<font color="black">'</font><font color="black">,</font> vary=<font color="red">$</font>who</font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>who</font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>who = <font color="black">'</font>a<font color="black">'</font></font>}</b><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fw-vary<font color="black">'</font><font color="black">,</font> vary=<font color="red">$</font>who</font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>changed<font color="black">'</font></font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax71617813ea6e30418ca6bc7b0fbf0136"></div>
+                        <script>
+                        padAjax71617813ea6e30418ca6bc7b0fbf0136 = new XMLHttpRequest();
+                        padAjax71617813ea6e30418ca6bc7b0fbf0136.onreadystatechange=function() {
+                        if (padAjax71617813ea6e30418ca6bc7b0fbf0136.readyState === 4) {
+                        if (padAjax71617813ea6e30418ca6bc7b0fbf0136.status === 200) {
+                        document.getElementById("padAjax71617813ea6e30418ca6bc7b0fbf0136").innerHTML=padAjax71617813ea6e30418ca6bc7b0fbf0136.responseText;
+                        } else {
+                        document.getElementById("padAjax71617813ea6e30418ca6bc7b0fbf0136").innerHTML=padAjax71617813ea6e30418ca6bc7b0fbf0136.statusText;
+                        }
+                        }
+                        }
+                        padAjax71617813ea6e30418ca6bc7b0fbf0136.open("GET","http://localhost/pad/regression/framework/?tags/a_cached_section_keeps_one_copy_per_vary_value&padInclude",true);
+                        padAjax71617813ea6e30418ca6bc7b0fbf0136.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_cached_section_with_a_live_counter<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_cached_section_with_a_live_counter.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_cached_section_with_a_live_counter.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $count </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padLiveValue </span><span style="color: #007700">();<br><br>  if ( </span><span style="color: #0000BB">padLiveEvent </span><span style="color: #007700">() == </span><span style="color: #DD0000">'add' </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$count</span><span style="color: #007700">++;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;h1&gt;Counter&lt;/h1&gt;<b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fwLiveCounter<font color="black">'</font></font>}</b><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>counter<font color="black">'</font></font>}</b>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b>&lt;/p&gt;&lt;button pad-click="add" pad-value="<b>{<font color="green"><font color="red">$</font>count</font>}</b>"&gt;+1&lt;/button&gt;<b>{/<font color="blue">live</font><font color="red"></font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b>&lt;p&gt;after&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4"></div>
+                        <script>
+                        padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4 = new XMLHttpRequest();
+                        padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4.onreadystatechange=function() {
+                        if (padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4.readyState === 4) {
+                        if (padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4.status === 200) {
+                        document.getElementById("padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4").innerHTML=padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4.responseText;
+                        } else {
+                        document.getElementById("padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4").innerHTML=padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4.open("GET","http://localhost/pad/regression/framework/?tags/a_cached_section_with_a_live_counter&padInclude",true);
+                        padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_cached_section_with_the_cache_off_renders_every_time<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_cached_section_with_the_cache_off_renders_every_time.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_cached_section_with_the_cache_off_renders_every_time.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padFragmentCache </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$runs </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fw-off<font color="black">'</font></font>}</b><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>runs = <font color="red">$</font>runs + 1</font>}</b>run <b>{<font color="green"><font color="red">$</font>runs</font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b>|<b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fw-off<font color="black">'</font></font>}</b><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>runs = <font color="red">$</font>runs + 1</font>}</b>run <b>{<font color="green"><font color="red">$</font>runs</font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa79fe14befb5200a6a068160aaa9c1a4"></div>
+                        <script>
+                        padAjaxa79fe14befb5200a6a068160aaa9c1a4 = new XMLHttpRequest();
+                        padAjaxa79fe14befb5200a6a068160aaa9c1a4.onreadystatechange=function() {
+                        if (padAjaxa79fe14befb5200a6a068160aaa9c1a4.readyState === 4) {
+                        if (padAjaxa79fe14befb5200a6a068160aaa9c1a4.status === 200) {
+                        document.getElementById("padAjaxa79fe14befb5200a6a068160aaa9c1a4").innerHTML=padAjaxa79fe14befb5200a6a068160aaa9c1a4.responseText;
+                        } else {
+                        document.getElementById("padAjaxa79fe14befb5200a6a068160aaa9c1a4").innerHTML=padAjaxa79fe14befb5200a6a068160aaa9c1a4.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa79fe14befb5200a6a068160aaa9c1a4.open("GET","http://localhost/pad/regression/framework/?tags/a_cached_section_with_the_cache_off_renders_every_time&padInclude",true);
+                        padAjaxa79fe14befb5200a6a068160aaa9c1a4.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_chart_from_the_fragment_cache_and_a_chart_drawn_now_have_their_own_ids<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_chart_from_the_fragment_cache_and_a_chart_drawn_now_have_their_own_ids.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_chart_from_the_fragment_cache_and_a_chart_drawn_now_have_their_own_ids.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// An earlier request stores the named section with the bar chart, under the ids that<br>  // request gave it; this request serves the bar from the cache and draws the line itself.<br><br>  </span><span style="color: #007700">if ( ! isset ( </span><span style="color: #0000BB">$warm </span><span style="color: #007700">) ) {<br>    </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'fwChartIds' </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">"regression/framework/?tags/a_chart_from_the_fragment_cache_and_a_chart_drawn_now_have_their_own_ids&amp;padInclude&amp;warm=1" </span><span style="color: #007700">] );<br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>sales<font color="black">'</font></font>}</b>[{"month":"Jan","amount":120},{"month":"Feb","amount":90}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fwChartIds<font color="black">'</font></font>}</b><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font> width=300<font color="black">,</font> height=150</font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b><br><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>line<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font> width=300<font color="black">,</font> height=150</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax966dea167adc0244df33ddddde81a0a7"></div>
+                        <script>
+                        padAjax966dea167adc0244df33ddddde81a0a7 = new XMLHttpRequest();
+                        padAjax966dea167adc0244df33ddddde81a0a7.onreadystatechange=function() {
+                        if (padAjax966dea167adc0244df33ddddde81a0a7.readyState === 4) {
+                        if (padAjax966dea167adc0244df33ddddde81a0a7.status === 200) {
+                        document.getElementById("padAjax966dea167adc0244df33ddddde81a0a7").innerHTML=padAjax966dea167adc0244df33ddddde81a0a7.responseText;
+                        } else {
+                        document.getElementById("padAjax966dea167adc0244df33ddddde81a0a7").innerHTML=padAjax966dea167adc0244df33ddddde81a0a7.statusText;
+                        }
+                        }
+                        }
+                        padAjax966dea167adc0244df33ddddde81a0a7.open("GET","http://localhost/pad/regression/framework/?tags/a_chart_from_the_fragment_cache_and_a_chart_drawn_now_have_their_own_ids&padInclude",true);
+                        padAjax966dea167adc0244df33ddddde81a0a7.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_closing_pipe_runs_on_a_cache_hit_too<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_closing_pipe_runs_on_a_cache_hit_too.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_closing_pipe_runs_on_a_cache_hit_too.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'fw-pipe' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fw-pipe<font color="black">'</font></font>}</b>abc<b>{/<font color="blue">cache </font><font color="red"><font color="black">|</font> upper</font>}</b>|<b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fw-pipe<font color="black">'</font></font>}</b>xyz<b>{/<font color="blue">cache </font><font color="red"><font color="black">|</font> upper</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax73da988d997ec509889cffa5b39bd312"></div>
+                        <script>
+                        padAjax73da988d997ec509889cffa5b39bd312 = new XMLHttpRequest();
+                        padAjax73da988d997ec509889cffa5b39bd312.onreadystatechange=function() {
+                        if (padAjax73da988d997ec509889cffa5b39bd312.readyState === 4) {
+                        if (padAjax73da988d997ec509889cffa5b39bd312.status === 200) {
+                        document.getElementById("padAjax73da988d997ec509889cffa5b39bd312").innerHTML=padAjax73da988d997ec509889cffa5b39bd312.responseText;
+                        } else {
+                        document.getElementById("padAjax73da988d997ec509889cffa5b39bd312").innerHTML=padAjax73da988d997ec509889cffa5b39bd312.statusText;
+                        }
+                        }
+                        }
+                        padAjax73da988d997ec509889cffa5b39bd312.open("GET","http://localhost/pad/regression/framework/?tags/a_closing_pipe_runs_on_a_cache_hit_too&padInclude",true);
+                        padAjax73da988d997ec509889cffa5b39bd312.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_pager_after_a_cached_section_finds_the_paged_tag_in_it<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_pager_after_a_cached_section_finds_the_paged_tag_in_it.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_pager_after_a_cached_section_finds_the_paged_tag_in_it.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// An earlier request renders the named section and stores it; in this one the section is<br>  // a hit, and the paged tag inside it never runs.<br><br>  </span><span style="color: #0000BB">$items </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">4 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5 </span><span style="color: #007700">] ];<br><br>  if ( ! isset ( </span><span style="color: #0000BB">$warm </span><span style="color: #007700">) ) {<br>    </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'fwPagedSection' </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/framework/?tags/a_pager_after_a_cached_section_finds_the_paged_tag_in_it&amp;padInclude&amp;warm=1' </span><span style="color: #007700">] );<br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fwPagedSection<font color="black">'</font></font>}</b><b>{<font color="blue">items </font><font color="red">page=2<font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b> <b>{/<font color="blue">items</font><font color="red"></font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b>|<b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>items<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax245cf0c0fa53230d15444ff5062552c5"></div>
+                        <script>
+                        padAjax245cf0c0fa53230d15444ff5062552c5 = new XMLHttpRequest();
+                        padAjax245cf0c0fa53230d15444ff5062552c5.onreadystatechange=function() {
+                        if (padAjax245cf0c0fa53230d15444ff5062552c5.readyState === 4) {
+                        if (padAjax245cf0c0fa53230d15444ff5062552c5.status === 200) {
+                        document.getElementById("padAjax245cf0c0fa53230d15444ff5062552c5").innerHTML=padAjax245cf0c0fa53230d15444ff5062552c5.responseText;
+                        } else {
+                        document.getElementById("padAjax245cf0c0fa53230d15444ff5062552c5").innerHTML=padAjax245cf0c0fa53230d15444ff5062552c5.statusText;
+                        }
+                        }
+                        }
+                        padAjax245cf0c0fa53230d15444ff5062552c5.open("GET","http://localhost/pad/regression/framework/?tags/a_pager_after_a_cached_section_finds_the_paged_tag_in_it&padInclude",true);
+                        padAjax245cf0c0fa53230d15444ff5062552c5.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_push_inside_a_cached_section_is_made_again_on_a_hit<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_push_inside_a_cached_section_is_made_again_on_a_hit.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_push_inside_a_cached_section_is_made_again_on_a_hit.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'fw-push' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fw-push<font color="black">'</font></font>}</b><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>&lt;a&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b>A<b>{/<font color="blue">cache</font><font color="red"></font>}</b><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fw-push<font color="black">'</font></font>}</b><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>&lt;b&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b>B<b>{/<font color="blue">cache</font><font color="red"></font>}</b>[<b>{<font color="blue">stack </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb9888e3f90da1332da1a2cfc40da2c8a"></div>
+                        <script>
+                        padAjaxb9888e3f90da1332da1a2cfc40da2c8a = new XMLHttpRequest();
+                        padAjaxb9888e3f90da1332da1a2cfc40da2c8a.onreadystatechange=function() {
+                        if (padAjaxb9888e3f90da1332da1a2cfc40da2c8a.readyState === 4) {
+                        if (padAjaxb9888e3f90da1332da1a2cfc40da2c8a.status === 200) {
+                        document.getElementById("padAjaxb9888e3f90da1332da1a2cfc40da2c8a").innerHTML=padAjaxb9888e3f90da1332da1a2cfc40da2c8a.responseText;
+                        } else {
+                        document.getElementById("padAjaxb9888e3f90da1332da1a2cfc40da2c8a").innerHTML=padAjaxb9888e3f90da1332da1a2cfc40da2c8a.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb9888e3f90da1332da1a2cfc40da2c8a.open("GET","http://localhost/pad/regression/framework/?tags/a_push_inside_a_cached_section_is_made_again_on_a_hit&padInclude",true);
+                        padAjaxb9888e3f90da1332da1a2cfc40da2c8a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: fragments/cached<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/cached.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/cached.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The section is kept per caller, so the test that fetches this page and this page as a<br>  // test of its own never share an entry.<br><br>  </span><span style="color: #0000BB">$from </span><span style="color: #007700">= </span><span style="color: #0000BB">$from </span><span style="color: #007700">?? </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">top <b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>pagesFragmentsCached<font color="black">'</font><font color="black">,</font> vary=<font color="red">$</font>from</font>}</b>&lt;div&gt;<b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>rows<font color="black">'</font></font>}</b>&lt;li&gt;a&lt;/li&gt;<b>{/<font color="blue">fragment</font><font color="red"></font>}</b>&lt;/div&gt;<b>{/<font color="blue">cache</font><font color="red"></font>}</b> bottom</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd95cc5da493cd93aef0d0c8863137ff8"></div>
+                        <script>
+                        padAjaxd95cc5da493cd93aef0d0c8863137ff8 = new XMLHttpRequest();
+                        padAjaxd95cc5da493cd93aef0d0c8863137ff8.onreadystatechange=function() {
+                        if (padAjaxd95cc5da493cd93aef0d0c8863137ff8.readyState === 4) {
+                        if (padAjaxd95cc5da493cd93aef0d0c8863137ff8.status === 200) {
+                        document.getElementById("padAjaxd95cc5da493cd93aef0d0c8863137ff8").innerHTML=padAjaxd95cc5da493cd93aef0d0c8863137ff8.responseText;
+                        } else {
+                        document.getElementById("padAjaxd95cc5da493cd93aef0d0c8863137ff8").innerHTML=padAjaxd95cc5da493cd93aef0d0c8863137ff8.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd95cc5da493cd93aef0d0c8863137ff8.open("GET","http://localhost/pad/regression/pages/?fragments/cached&padInclude",true);
+                        padAjaxd95cc5da493cd93aef0d0c8863137ff8.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

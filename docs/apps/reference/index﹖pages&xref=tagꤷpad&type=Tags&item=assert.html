@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tags - assert
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tags - assert
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: fragments/app_tests_1<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/app_tests_1.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/app_tests_1.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padAssert </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">42</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">assert </font><font color="red"><font color="red">$</font>total eq 42<font color="black">,</font> <font color="black">'</font>the cart total<font color="black">'</font></font>}</b><br>&lt;p&gt;Total <b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3a0100b337bbf0e189c842e48556a2bd"></div>
+                        <script>
+                        padAjax3a0100b337bbf0e189c842e48556a2bd = new XMLHttpRequest();
+                        padAjax3a0100b337bbf0e189c842e48556a2bd.onreadystatechange=function() {
+                        if (padAjax3a0100b337bbf0e189c842e48556a2bd.readyState === 4) {
+                        if (padAjax3a0100b337bbf0e189c842e48556a2bd.status === 200) {
+                        document.getElementById("padAjax3a0100b337bbf0e189c842e48556a2bd").innerHTML=padAjax3a0100b337bbf0e189c842e48556a2bd.responseText;
+                        } else {
+                        document.getElementById("padAjax3a0100b337bbf0e189c842e48556a2bd").innerHTML=padAjax3a0100b337bbf0e189c842e48556a2bd.statusText;
+                        }
+                        }
+                        }
+                        padAjax3a0100b337bbf0e189c842e48556a2bd.open("GET","http://localhost/pad/manual/?fragments/app_tests_1&padInclude",true);
+                        padAjax3a0100b337bbf0e189c842e48556a2bd.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/an_assert_needs_a_condition<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">syntax/an_assert_needs_a_condition.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/an_assert_needs_a_condition.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padAssert </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">assert</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8ecb9822389145d50da1d82ac67d09a0"></div>
+                        <script>
+                        padAjax8ecb9822389145d50da1d82ac67d09a0 = new XMLHttpRequest();
+                        padAjax8ecb9822389145d50da1d82ac67d09a0.onreadystatechange=function() {
+                        if (padAjax8ecb9822389145d50da1d82ac67d09a0.readyState === 4) {
+                        if (padAjax8ecb9822389145d50da1d82ac67d09a0.status === 200) {
+                        document.getElementById("padAjax8ecb9822389145d50da1d82ac67d09a0").innerHTML=padAjax8ecb9822389145d50da1d82ac67d09a0.responseText;
+                        } else {
+                        document.getElementById("padAjax8ecb9822389145d50da1d82ac67d09a0").innerHTML=padAjax8ecb9822389145d50da1d82ac67d09a0.statusText;
+                        }
+                        }
+                        }
+                        padAjax8ecb9822389145d50da1d82ac67d09a0.open("GET","http://localhost/pad/regression/errors/?syntax/an_assert_needs_a_condition&padInclude",true);
+                        padAjax8ecb9822389145d50da1d82ac67d09a0.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/an_assert_that_fails_names_its_condition<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">syntax/an_assert_that_fails_names_its_condition.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/an_assert_that_fails_names_its_condition.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padAssert </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$total     </span><span style="color: #007700">= </span><span style="color: #0000BB">41</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">assert </font><font color="red"><font color="red">$</font>total eq 42<font color="black">,</font> <font color="black">'</font>the cart total<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax4ceed58c959a4cd684d7e24da857cc68"></div>
+                        <script>
+                        padAjax4ceed58c959a4cd684d7e24da857cc68 = new XMLHttpRequest();
+                        padAjax4ceed58c959a4cd684d7e24da857cc68.onreadystatechange=function() {
+                        if (padAjax4ceed58c959a4cd684d7e24da857cc68.readyState === 4) {
+                        if (padAjax4ceed58c959a4cd684d7e24da857cc68.status === 200) {
+                        document.getElementById("padAjax4ceed58c959a4cd684d7e24da857cc68").innerHTML=padAjax4ceed58c959a4cd684d7e24da857cc68.responseText;
+                        } else {
+                        document.getElementById("padAjax4ceed58c959a4cd684d7e24da857cc68").innerHTML=padAjax4ceed58c959a4cd684d7e24da857cc68.statusText;
+                        }
+                        }
+                        }
+                        padAjax4ceed58c959a4cd684d7e24da857cc68.open("GET","http://localhost/pad/regression/errors/?syntax/an_assert_that_fails_names_its_condition&padInclude",true);
+                        padAjax4ceed58c959a4cd684d7e24da857cc68.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/assert_is_silent_when_asserts_are_off<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/assert_is_silent_when_asserts_are_off.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">assert </font><font color="red"><font color="red">$</font>nothere eq 1</font>}</b>ok</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax6e014d69bec0478197ef05f7ef6ab023"></div>
+                        <script>
+                        padAjax6e014d69bec0478197ef05f7ef6ab023 = new XMLHttpRequest();
+                        padAjax6e014d69bec0478197ef05f7ef6ab023.onreadystatechange=function() {
+                        if (padAjax6e014d69bec0478197ef05f7ef6ab023.readyState === 4) {
+                        if (padAjax6e014d69bec0478197ef05f7ef6ab023.status === 200) {
+                        document.getElementById("padAjax6e014d69bec0478197ef05f7ef6ab023").innerHTML=padAjax6e014d69bec0478197ef05f7ef6ab023.responseText;
+                        } else {
+                        document.getElementById("padAjax6e014d69bec0478197ef05f7ef6ab023").innerHTML=padAjax6e014d69bec0478197ef05f7ef6ab023.statusText;
+                        }
+                        }
+                        }
+                        padAjax6e014d69bec0478197ef05f7ef6ab023.open("GET","http://localhost/pad/regression/framework/?tags/assert_is_silent_when_asserts_are_off&padInclude",true);
+                        padAjax6e014d69bec0478197ef05f7ef6ab023.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/assert_passes_quietly_when_its_condition_holds<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/assert_passes_quietly_when_its_condition_holds.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/assert_passes_quietly_when_its_condition_holds.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padAssert </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$total     </span><span style="color: #007700">= </span><span style="color: #0000BB">42</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">assert </font><font color="red"><font color="red">$</font>total eq 42<font color="black">,</font> <font color="black">'</font>the cart total<font color="black">'</font></font>}</b>ok</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax6f36af08e8759c9b6313408990c47e25"></div>
+                        <script>
+                        padAjax6f36af08e8759c9b6313408990c47e25 = new XMLHttpRequest();
+                        padAjax6f36af08e8759c9b6313408990c47e25.onreadystatechange=function() {
+                        if (padAjax6f36af08e8759c9b6313408990c47e25.readyState === 4) {
+                        if (padAjax6f36af08e8759c9b6313408990c47e25.status === 200) {
+                        document.getElementById("padAjax6f36af08e8759c9b6313408990c47e25").innerHTML=padAjax6f36af08e8759c9b6313408990c47e25.responseText;
+                        } else {
+                        document.getElementById("padAjax6f36af08e8759c9b6313408990c47e25").innerHTML=padAjax6f36af08e8759c9b6313408990c47e25.statusText;
+                        }
+                        }
+                        }
+                        padAjax6f36af08e8759c9b6313408990c47e25.open("GET","http://localhost/pad/regression/framework/?tags/assert_passes_quietly_when_its_condition_holds&padInclude",true);
+                        padAjax6f36af08e8759c9b6313408990c47e25.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

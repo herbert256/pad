@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Value helpers
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Value helpers
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <div style="display: inline-block; text-align: left;">
+                    <p>
+                      A page's PHP spends much of its time asking whether a value is there, picking a default when it is not, and guarding the parts that may fail. These helpers say each of those in one call - the functions Laravel knows as <code>blank()</code>, <code>filled()</code>, <code>value()</code>, <code>transform()</code>, <code>tap()</code>, <code>retry()</code>, <code>rescue()</code> and <code>once()</code>. They are loaded on every request, like the rest of <code>pad/lib/</code>.
+                    </p>
+                    <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+                      <tr>
+                        <th>
+                          function
+                        </th>
+                        <th>
+                          what it does
+                        </th>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padBlank ( $value )</code>
+                        </td>
+                        <td>
+                          TRUE for NULL, <code>''</code> or only whitespace, an empty array, an empty Countable - FALSE for <code>0</code>, <code>'0'</code>, FALSE and every other value
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padFilled ( $value )</code>
+                        </td>
+                        <td>
+                          the opposite of padBlank
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padValue ( $value, ...$args )</code>
+                        </td>
+                        <td>
+                          a Closure called with the arguments, anything else answered as it is
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padTransform ( $value, $callback, $default )</code>
+                        </td>
+                        <td>
+                          the callback's answer for a filled value, the default for a blank one
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padTap ( $value, $callback )</code>
+                        </td>
+                        <td>
+                          hands the value to the callback and answers the value itself
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padRetry ( $times, $callback, $sleepMilliseconds, $when )</code>
+                        </td>
+                        <td>
+                          calls the callback until it stops throwing, at most <code>$times</code> times
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padRescue ( $callback, $rescue, $report )</code>
+                        </td>
+                        <td>
+                          the callback's answer, or the rescue value when it throws
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padOnce ( $callback )</code>
+                        </td>
+                        <td>
+                          runs the callback once per request for the line that calls it
+                        </td>
+                      </tr>
+                    </table>
+                    <h2>
+                      Blank and filled
+                    </h2>
+                    <p>
+                      PHP's <code>empty()</code> calls a quantity of <code>'0'</code> empty and a remark of a few spaces filled. <code>padBlank</code> is the test a page means: nothing there is NULL, text of nothing but whitespace (a non-breaking space too), an empty array and an empty Countable. A number and a boolean are always values.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/values_1.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/values_1.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A form came back: which fields did the visitor fill in?<br>  // PHP's empty() calls the zero quantity empty and the spaces<br>  // filled - padBlank calls them the other way round.<br><br>  </span><span style="color: #0000BB">$posted </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name'     </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'quantity' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'0'</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'remarks'  </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'   '</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'coupon'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">NULL</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'tags'     </span><span style="color: #007700">=&gt; [] ];<br><br>  </span><span style="color: #0000BB">$answers </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$posted </span><span style="color: #007700">as </span><span style="color: #0000BB">$name </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$value </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$answers </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'name'  </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$name</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'value' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">json_encode </span><span style="color: #007700">( </span><span style="color: #0000BB">$value </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'blank' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padBlank </span><span style="color: #007700">( </span><span style="color: #0000BB">$value </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'blank' </span><span style="color: #007700">: </span><span style="color: #DD0000">'filled'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'empty' </span><span style="color: #007700">=&gt; empty ( </span><span style="color: #0000BB">$value </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'empty' </span><span style="color: #007700">: </span><span style="color: #DD0000">'not empty'<br>    </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;table border="1" cellpadding="4" cellspacing="0"&gt;<br>  &lt;tr&gt;&lt;th&gt;field&lt;/th&gt;&lt;th&gt;value&lt;/th&gt;<br>      &lt;th&gt;padBlank&lt;/th&gt;&lt;th&gt;empty()&lt;/th&gt;&lt;/tr&gt;<br><b>{<font color="blue">answers</font><font color="red"></font>}</b><br>  &lt;tr&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>blank</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>empty</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br><b>{/<font color="blue">answers</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <table border="1" cellpadding="4" cellspacing="0">
+                            <tr>
+                              <th>
+                                field
+                              </th>
+                              <th>
+                                value
+                              </th>
+                              <th>
+                                padBlank
+                              </th>
+                              <th>
+                                empty()
+                              </th>
+                            </tr>
+                            <tr>
+                              <td>
+                                name
+                              </td>
+                              <td>
+                                <code>"Ann"</code>
+                              </td>
+                              <td>
+                                filled
+                              </td>
+                              <td>
+                                not empty
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                quantity
+                              </td>
+                              <td>
+                                <code>"0"</code>
+                              </td>
+                              <td>
+                                filled
+                              </td>
+                              <td>
+                                empty
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                remarks
+                              </td>
+                              <td>
+                                <code>" "</code>
+                              </td>
+                              <td>
+                                blank
+                              </td>
+                              <td>
+                                not empty
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                coupon
+                              </td>
+                              <td>
+                                <code>null</code>
+                              </td>
+                              <td>
+                                blank
+                              </td>
+                              <td>
+                                empty
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                tags
+                              </td>
+                              <td>
+                                <code>[]</code>
+                              </td>
+                              <td>
+                                blank
+                              </td>
+                              <td>
+                                empty
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                    <h2>
+                      Defaults and callbacks
+                    </h2>
+                    <ul>
+                      <li>
+                        <code>padTransform</code> runs the callback for a filled value only, so the callback never has to test for nothing; a blank value gets the default.
+                      </li>
+                      <li>
+                        <code>padValue</code> answers a value, or calls a Closure for it: a default that is costly to make is written as a Closure and made only when it is needed. A string such as <code>'date'</code> is a value, never the name of a function to call.
+                      </li>
+                      <li>
+                        <code>padTap</code> hands a value to a callback - to note it, to check it - and goes on with the value itself, whatever the callback answers.
+                      </li>
+                    </ul>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/values_2.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/values_2.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $user </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name'     </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'ann smith'</span><span style="color: #007700">,<br>            </span><span style="color: #DD0000">'nickname' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">''</span><span style="color: #007700">,<br>            </span><span style="color: #DD0000">'city'     </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">NULL </span><span style="color: #007700">];<br><br>  </span><span style="color: #FF8000">// The callback runs for a filled value only; a blank one gets<br>  // the default.<br><br>  </span><span style="color: #0000BB">$name     </span><span style="color: #007700">= </span><span style="color: #0000BB">padTransform </span><span style="color: #007700">( </span><span style="color: #0000BB">$user </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">],<br>                             fn ( </span><span style="color: #0000BB">$n </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">ucwords </span><span style="color: #007700">( </span><span style="color: #0000BB">$n </span><span style="color: #007700">),<br>                             </span><span style="color: #DD0000">'Guest' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$nickname </span><span style="color: #007700">= </span><span style="color: #0000BB">padTransform </span><span style="color: #007700">( </span><span style="color: #0000BB">$user </span><span style="color: #007700">[</span><span style="color: #DD0000">'nickname'</span><span style="color: #007700">],<br>                             fn ( </span><span style="color: #0000BB">$n </span><span style="color: #007700">) =&gt; </span><span style="color: #DD0000">"\"</span><span style="color: #0000BB">$n</span><span style="color: #DD0000">\""</span><span style="color: #007700">,<br>                             </span><span style="color: #DD0000">'no nickname' </span><span style="color: #007700">);<br><br>  </span><span style="color: #FF8000">// A default given as a Closure is made only when it is needed.<br><br>  </span><span style="color: #0000BB">$unknown </span><span style="color: #007700">= fn () =&gt; </span><span style="color: #DD0000">'somewhere'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$city    </span><span style="color: #007700">= </span><span style="color: #0000BB">padValue </span><span style="color: #007700">( </span><span style="color: #0000BB">$user </span><span style="color: #007700">[</span><span style="color: #DD0000">'city'</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">$unknown </span><span style="color: #007700">);<br><br>  </span><span style="color: #FF8000">// padTap looks at a value in passing and hands it on unchanged.<br><br>  </span><span style="color: #0000BB">$noted </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$note  </span><span style="color: #007700">= function ( </span><span style="color: #0000BB">$sum </span><span style="color: #007700">) use ( &</span><span style="color: #0000BB">$noted </span><span style="color: #007700">) {<br>    </span><span style="color: #0000BB">$noted </span><span style="color: #007700">= </span><span style="color: #DD0000">"noted </span><span style="color: #0000BB">$sum</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br>  };<br><br>  </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">padTap </span><span style="color: #007700">( </span><span style="color: #0000BB">array_sum </span><span style="color: #007700">( [ </span><span style="color: #0000BB">12.5</span><span style="color: #007700">, </span><span style="color: #0000BB">30</span><span style="color: #007700">, </span><span style="color: #0000BB">7.5 </span><span style="color: #007700">] ), </span><span style="color: #0000BB">$note </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b> - <b>{<font color="green"><font color="red">$</font>nickname</font>}</b> - <b>{<font color="green"><font color="red">$</font>city</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Total <b>{<font color="green"><font color="red">$</font>total</font>}</b> (<b>{<font color="green"><font color="red">$</font>noted</font>}</b>)&lt;/p&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <p>
+                            Ann Smith - no nickname - somewhere
+                          </p>
+                          <p>
+                            Total 50 (noted 50)
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <h2>
+                      Retry and rescue
+                    </h2>
+                    <p>
+                      <code>padRetry</code> calls the callback with the number of the attempt until it answers without throwing. Between two attempts it waits <code>$sleepMilliseconds</code> - one number, or a list with a wait per attempt whose last one repeats. <code>$when</code>, a callable given the exception, decides whether another attempt is worth it; when it says no, or after the last attempt, the exception is thrown on.
+                    </p>
+                    <p>
+                      <code>padRescue</code> lets a part of a page fail alone: when the callback throws - an Exception or an Error - the answer is the rescue value, a Closure given the exception. With <code>$report</code> (on unless it is FALSE) the failure is written to PHP's error log, so a rescued fault is not lost.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/values_3.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/values_3.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A service that fails twice before it answers, as a busy<br>  // remote one might: three attempts, 10 milliseconds apart.<br><br>  </span><span style="color: #0000BB">$attempts </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$service </span><span style="color: #007700">= function ( </span><span style="color: #0000BB">$attempt </span><span style="color: #007700">) use ( &</span><span style="color: #0000BB">$attempts </span><span style="color: #007700">) {<br>    </span><span style="color: #0000BB">$attempts </span><span style="color: #007700">= </span><span style="color: #0000BB">$attempt</span><span style="color: #007700">;<br>    if ( </span><span style="color: #0000BB">$attempt </span><span style="color: #007700">&lt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">)<br>      throw new </span><span style="color: #0000BB">RuntimeException </span><span style="color: #007700">( </span><span style="color: #DD0000">'timeout' </span><span style="color: #007700">);<br>    return </span><span style="color: #DD0000">'EUR 1 = USD 1.17'</span><span style="color: #007700">;<br>  };<br><br>  </span><span style="color: #0000BB">$rate </span><span style="color: #007700">= </span><span style="color: #0000BB">padRetry </span><span style="color: #007700">( </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #0000BB">$service</span><span style="color: #007700">, </span><span style="color: #0000BB">10 </span><span style="color: #007700">);<br><br>  </span><span style="color: #FF8000">// A part of the page that may fail fails alone: the page shows<br>  // a fallback instead.<br><br>  </span><span style="color: #0000BB">$weather </span><span style="color: #007700">= function () {<br>    throw new </span><span style="color: #0000BB">RuntimeException </span><span style="color: #007700">( </span><span style="color: #DD0000">'the weather service is down' </span><span style="color: #007700">);<br>  };<br><br>  </span><span style="color: #0000BB">$forecast </span><span style="color: #007700">= </span><span style="color: #0000BB">padRescue </span><span style="color: #007700">(<br>    </span><span style="color: #0000BB">$weather</span><span style="color: #007700">,<br>    fn ( </span><span style="color: #0000BB">$e </span><span style="color: #007700">) =&gt; </span><span style="color: #DD0000">'No forecast today - ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage </span><span style="color: #007700">(),<br>    </span><span style="color: #0000BB">FALSE<br>  </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>rate</font>}</b>, on attempt <b>{<font color="green"><font color="red">$</font>attempts</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>forecast</font>}</b>&lt;/p&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <p>
+                            EUR 1 = USD 1.17, on attempt 3
+                          </p>
+                          <p>
+                            No forecast today - the weather service is down
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <h2>
+                      Once per request
+                    </h2>
+                    <p>
+                      <code>padOnce</code> runs its callback the first time its line is reached in a request, and answers that first result each later time - in a loop, or in a function several parts of the page call. A callback that throws gave no result, so the next call runs it again. The place is the file and line of the call: two padOnce calls on one line share their result.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/values_4.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/values_4.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A function the page calls for every row reads its settings<br>  // once: padOnce answers the first result each later time its<br>  // line is reached.<br><br>  </span><span style="color: #0000BB">$reads </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$currency </span><span style="color: #007700">= function () use ( &</span><span style="color: #0000BB">$reads </span><span style="color: #007700">) {<br>    return </span><span style="color: #0000BB">padOnce </span><span style="color: #007700">( function () use ( &</span><span style="color: #0000BB">$reads </span><span style="color: #007700">) {<br>      </span><span style="color: #0000BB">$reads</span><span style="color: #007700">++;<br>      return </span><span style="color: #DD0000">'EUR'</span><span style="color: #007700">;<br>    } );<br>  };<br><br>  </span><span style="color: #0000BB">$orders </span><span style="color: #007700">= [];<br><br>  foreach ( [ </span><span style="color: #0000BB">120</span><span style="color: #007700">, </span><span style="color: #0000BB">75</span><span style="color: #007700">, </span><span style="color: #0000BB">310 </span><span style="color: #007700">] as </span><span style="color: #0000BB">$amount </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$orders </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'amount'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$amount</span><span style="color: #007700">,<br>                   </span><span style="color: #DD0000">'currency' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$currency </span><span style="color: #007700">() ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><b>{<font color="blue">orders</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>currency</font>}</b> <b>{<font color="green"><font color="red">$</font>amount</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">orders</font><font color="red"></font>}</b><br>&lt;p&gt;The settings were read <b>{<font color="green"><font color="red">$</font>reads</font>}</b> time.&lt;/p&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <p>
+                            EUR 120
+                          </p>
+                          <p>
+                            EUR 75
+                          </p>
+                          <p>
+                            EUR 310
+                          </p>
+                          <p>
+                            The settings were read 1 time.
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <h2>
+                      Mistakes
+                    </h2>
+                    <p>
+                      A callback that is no function - a misspelled name - and a number of attempts below 1 are reported as errors that name the function; the function then answers NULL.
+                    </p>
+                  </div>
+                </center>
+              </td>
+            </tr>
+          </table>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <hr>
+                <table valign="top" align="center">
+                  <tr>
+                    <td valign="top">
+                      <h3 align="center">
+                        Basic concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tags.html">Tags</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7conditions.html">Conditions</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7loops.html">Loops</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7trees.html">Trees</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7examples_used_in_this_manual.html">Examples used in this manual</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7parse.html">Parse</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7levels_and_occurrences.html">Levels and occurrences</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_content_tag.html">The content tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_data_tag.html">The data tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7php_and_html.html">Php and html</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7properties.html">Properties</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7field_sigils.html">Field sigils</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Constructs
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7else.html">Else</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7start_end.html">Start end</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7content.html">Content</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page.html">Page</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Text and markup
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7comments.html">Comments</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7whitespace.html">Whitespace</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ignore.html">Ignore</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7escaping_special_PAD_chars.html">Escaping special PAD chars</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Advanced concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7prefix.html">Prefix</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7options_variables_parameters.html">Options variables parameters</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7callback.html">Callback</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tag_return_values.html">Tag return values</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7level_and_occurrence_variables.html">Level and occurrence variables</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7walking.html">Walking</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ending_the_request.html">Ending the request</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sequences.html">Sequences</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Data
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7data_handling.html">Data handling</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7grouping.html">Grouping</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pager.html">Pager</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7lookup.html">Lookup</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7database.html">Database</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sqlite.html">Sqlite</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7collections.html">Collections</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7remote_data.html">Remote data</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7parallel_fetching.html">Parallel fetching</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7data_answers.html">Data answers</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        PHP helpers
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7arrays.html">Arrays</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7strings.html">Strings</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7values.html">Values</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7numbers.html">Numbers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_sessions.html">Requests and sessions</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7environment_and_cache.html">Environment and cache</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7dates_and_logging.html">Dates and logging</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7hashing_and_encryption.html">Hashing and encryption</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Output
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7html_helpers.html">Html helpers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7markdown.html">Markdown</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7charts.html">Charts</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7locale.html">Locale</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7fragment_cache.html">Fragment cache</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7flush.html">Flush</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7live.html">Live</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Layouts and components
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7layouts.html">Layouts</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page_meta.html">Page meta</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7components.html">Components</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7stacks.html">Stacks</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7response_fragments.html">Response fragments</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        The application
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7application_structure.html">Application structure</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7extending.html">Extending</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7events.html">Events</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7application_options.html">Application options</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_urls.html">Requests and urls</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7clean_urls.html">Clean urls</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sitemap.html">Sitemap</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7mail.html">Mail</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Forms and security
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7forms.html">Forms</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7csrf_protection.html">Csrf protection</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7flash_messages.html">Flash messages</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7directory_guards.html">Directory guards</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7security_headers.html">Security headers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7file_uploads.html">File uploads</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Development tools
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7debug.html">Debug</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7template_errors.html">Template errors</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7toolbar.html">Toolbar</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7output_checks.html">Output checks</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7coverage.html">Coverage</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7replay.html">Replay</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7live_reload.html">Live reload</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7samples.html">Samples</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7app_tests.html">App tests</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pad_command.html">Pad command</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7static_export.html">Static export</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7playground.html">Playground</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7editor_support.html">Editor support</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pad_in_the_browser.html">Pad in the browser</a>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

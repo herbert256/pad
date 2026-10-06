@@ -1,6 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<!DOCTYPE html>
+<html>
+  <head>
     <title>
       PAD - Reference - Parms functions - trim
     </title>
@@ -11,14 +11,14 @@
         PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
       </h1>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table><br>
+      </table><br>
       <hr width="75%">
     </center>
     <blockquote>
@@ -27,14 +27,14 @@
           <h1>
             Reference - Parms functions - trim
           </h1>
-          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tbody><tr>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
               <td>
                 <center>
                   <hr>
-                  App: check - Page: fragments/pipes_3<br>
+                  App: manual - Page: fragments/pipes_3<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2">fragments/pipes_3.php</font>
@@ -49,41 +49,438 @@
                     </tr>
                     <tr>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $rawText </span><span style="color: #007700">= </span><span style="color: #DD0000">'  hello world  '</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$message </span><span style="color: #007700">= </span><span style="color: #DD0000">'the quick brown fox'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $rawText </span><span style="color: #007700">= </span><span style="color: #DD0000">'  hello world  '</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$message </span><span style="color: #007700">= </span><span style="color: #DD0000">'the quick brown fox'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                       </td>
                       <td style="vertical-align:top">
                         <pre><code style="color: #000000">&lt;p&gt;Chain multiple pipes together:&lt;/p&gt;<br><br>&lt;p&gt;Original: [<b>{<font color="green"><font color="red">$</font>rawText</font>}</b>]&lt;/p&gt;<br>&lt;p&gt;Trimmed and uppercase: [<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>rawText <font color="black">|</font> trim <font color="black">|</font> upper</font>}</b>]&lt;/p&gt;<br><br>&lt;p&gt;Original: <b>{<font color="green"><font color="red">$</font>message</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Uppercase first letter of each word: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>message <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Replace and uppercase: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>message <font color="black">|</font> replace(<font color="black">'</font>fox<font color="black">'</font><font color="black">,</font> <font color="black">'</font>dog<font color="black">'</font>) <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxz4h1i5Jz"><p>Chain multiple pipes together:</p>
-
-<p>Original: [  hello world  ]</p>
-<p>Trimmed and uppercase: [HELLO WORLD]</p>
-
-<p>Original: the quick brown fox</p>
-<p>Uppercase first letter of each word: The Quick Brown Fox</p>
-<p>Replace and uppercase: The Quick Brown Dog</p></div>
+                        <div id="padAjax243d7394b2dbf942256edb7508c1d1ab"></div>
                         <script>
-                        padAjaxz4h1i5Jz = new XMLHttpRequest();
-                        padAjaxz4h1i5Jz.onreadystatechange=function() {
-                        if (padAjaxz4h1i5Jz.readyState === 4) {
-                        if (padAjaxz4h1i5Jz.status === 200) {
-                        document.getElementById("padAjaxz4h1i5Jz").innerHTML=padAjaxz4h1i5Jz.responseText;
+                        padAjax243d7394b2dbf942256edb7508c1d1ab = new XMLHttpRequest();
+                        padAjax243d7394b2dbf942256edb7508c1d1ab.onreadystatechange=function() {
+                        if (padAjax243d7394b2dbf942256edb7508c1d1ab.readyState === 4) {
+                        if (padAjax243d7394b2dbf942256edb7508c1d1ab.status === 200) {
+                        document.getElementById("padAjax243d7394b2dbf942256edb7508c1d1ab").innerHTML=padAjax243d7394b2dbf942256edb7508c1d1ab.responseText;
                         } else {
-                        document.getElementById("padAjaxz4h1i5Jz").innerHTML=padAjaxz4h1i5Jz.statusText;
+                        document.getElementById("padAjax243d7394b2dbf942256edb7508c1d1ab").innerHTML=padAjax243d7394b2dbf942256edb7508c1d1ab.statusText;
                         }
                         }
                         }
-                        padAjaxz4h1i5Jz.open("GET","http://localhost/check/?fragments/pipes_3&padInclude&padSesID=DiM2hOlW&padReqID=NRr3nTMW",true);
-                        padAjaxz4h1i5Jz.send();
+                        padAjax243d7394b2dbf942256edb7508c1d1ab.open("GET","http://localhost/pad/manual/?fragments/pipes_3&padInclude",true);
+                        padAjax243d7394b2dbf942256edb7508c1d1ab.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: check/fragments_pipes_3<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">check/fragments_pipes_3.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">check/fragments_pipes_3.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $rawText </span><span style="color: #007700">= </span><span style="color: #DD0000">'  hello world  '</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$message </span><span style="color: #007700">= </span><span style="color: #DD0000">'the quick brown fox'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;Chain multiple pipes together:&lt;/p&gt;<br><br>&lt;p&gt;Original: [<b>{<font color="green"><font color="red">$</font>rawText</font>}</b>]&lt;/p&gt;<br>&lt;p&gt;Trimmed and uppercase: [<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>rawText <font color="black">|</font> trim <font color="black">|</font> upper</font>}</b>]&lt;/p&gt;<br><br>&lt;p&gt;Original: <b>{<font color="green"><font color="red">$</font>message</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Uppercase first letter of each word: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>message <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Replace and uppercase: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>message <font color="black">|</font> replace(<font color="black">'</font>fox<font color="black">'</font><font color="black">,</font> <font color="black">'</font>dog<font color="black">'</font>) <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax13929dd1114d14d86e96105cf41e82cc"></div>
+                        <script>
+                        padAjax13929dd1114d14d86e96105cf41e82cc = new XMLHttpRequest();
+                        padAjax13929dd1114d14d86e96105cf41e82cc.onreadystatechange=function() {
+                        if (padAjax13929dd1114d14d86e96105cf41e82cc.readyState === 4) {
+                        if (padAjax13929dd1114d14d86e96105cf41e82cc.status === 200) {
+                        document.getElementById("padAjax13929dd1114d14d86e96105cf41e82cc").innerHTML=padAjax13929dd1114d14d86e96105cf41e82cc.responseText;
+                        } else {
+                        document.getElementById("padAjax13929dd1114d14d86e96105cf41e82cc").innerHTML=padAjax13929dd1114d14d86e96105cf41e82cc.statusText;
+                        }
+                        }
+                        }
+                        padAjax13929dd1114d14d86e96105cf41e82cc.open("GET","http://localhost/pad/regression/framework/?check/fragments_pipes_3&padInclude",true);
+                        padAjax13929dd1114d14d86e96105cf41e82cc.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: functions/chained_functions_run_left_to_right<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">functions/chained_functions_run_left_to_right.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>  Hello  <font color="black">'</font> <font color="black">|</font> trim <font color="black">|</font> upper</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb7d03749de3a7065e314c65f8d4a87ee"></div>
+                        <script>
+                        padAjaxb7d03749de3a7065e314c65f8d4a87ee = new XMLHttpRequest();
+                        padAjaxb7d03749de3a7065e314c65f8d4a87ee.onreadystatechange=function() {
+                        if (padAjaxb7d03749de3a7065e314c65f8d4a87ee.readyState === 4) {
+                        if (padAjaxb7d03749de3a7065e314c65f8d4a87ee.status === 200) {
+                        document.getElementById("padAjaxb7d03749de3a7065e314c65f8d4a87ee").innerHTML=padAjaxb7d03749de3a7065e314c65f8d4a87ee.responseText;
+                        } else {
+                        document.getElementById("padAjaxb7d03749de3a7065e314c65f8d4a87ee").innerHTML=padAjaxb7d03749de3a7065e314c65f8d4a87ee.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb7d03749de3a7065e314c65f8d4a87ee.open("GET","http://localhost/pad/regression/framework/?functions/chained_functions_run_left_to_right&padInclude",true);
+                        padAjaxb7d03749de3a7065e314c65f8d4a87ee.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: functions/three_in_a_chain<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">functions/three_in_a_chain.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>  hello world  <font color="black">'</font> <font color="black">|</font> trim <font color="black">|</font> capitalize <font color="black">|</font> cut(<font color="black">'</font> <font color="black">'</font>)</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3dbac408ab333fd12d43d1fe22b28c02"></div>
+                        <script>
+                        padAjax3dbac408ab333fd12d43d1fe22b28c02 = new XMLHttpRequest();
+                        padAjax3dbac408ab333fd12d43d1fe22b28c02.onreadystatechange=function() {
+                        if (padAjax3dbac408ab333fd12d43d1fe22b28c02.readyState === 4) {
+                        if (padAjax3dbac408ab333fd12d43d1fe22b28c02.status === 200) {
+                        document.getElementById("padAjax3dbac408ab333fd12d43d1fe22b28c02").innerHTML=padAjax3dbac408ab333fd12d43d1fe22b28c02.responseText;
+                        } else {
+                        document.getElementById("padAjax3dbac408ab333fd12d43d1fe22b28c02").innerHTML=padAjax3dbac408ab333fd12d43d1fe22b28c02.statusText;
+                        }
+                        }
+                        }
+                        padAjax3dbac408ab333fd12d43d1fe22b28c02.open("GET","http://localhost/pad/regression/framework/?functions/three_in_a_chain&padInclude",true);
+                        padAjax3dbac408ab333fd12d43d1fe22b28c02.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: functions/trim<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">functions/trim.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>  hello  <font color="black">'</font> <font color="black">|</font> trim</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax7739a7dde151edd1766eea13bdc5f900"></div>
+                        <script>
+                        padAjax7739a7dde151edd1766eea13bdc5f900 = new XMLHttpRequest();
+                        padAjax7739a7dde151edd1766eea13bdc5f900.onreadystatechange=function() {
+                        if (padAjax7739a7dde151edd1766eea13bdc5f900.readyState === 4) {
+                        if (padAjax7739a7dde151edd1766eea13bdc5f900.status === 200) {
+                        document.getElementById("padAjax7739a7dde151edd1766eea13bdc5f900").innerHTML=padAjax7739a7dde151edd1766eea13bdc5f900.responseText;
+                        } else {
+                        document.getElementById("padAjax7739a7dde151edd1766eea13bdc5f900").innerHTML=padAjax7739a7dde151edd1766eea13bdc5f900.statusText;
+                        }
+                        }
+                        }
+                        padAjax7739a7dde151edd1766eea13bdc5f900.open("GET","http://localhost/pad/regression/framework/?functions/trim&padInclude",true);
+                        padAjax7739a7dde151edd1766eea13bdc5f900.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: functions/trim_leaves_the_inside_alone<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">functions/trim_leaves_the_inside_alone.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>  a b  <font color="black">'</font> <font color="black">|</font> trim</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxe18411f7bf5e6e3c9e91c159485ba9d9"></div>
+                        <script>
+                        padAjaxe18411f7bf5e6e3c9e91c159485ba9d9 = new XMLHttpRequest();
+                        padAjaxe18411f7bf5e6e3c9e91c159485ba9d9.onreadystatechange=function() {
+                        if (padAjaxe18411f7bf5e6e3c9e91c159485ba9d9.readyState === 4) {
+                        if (padAjaxe18411f7bf5e6e3c9e91c159485ba9d9.status === 200) {
+                        document.getElementById("padAjaxe18411f7bf5e6e3c9e91c159485ba9d9").innerHTML=padAjaxe18411f7bf5e6e3c9e91c159485ba9d9.responseText;
+                        } else {
+                        document.getElementById("padAjaxe18411f7bf5e6e3c9e91c159485ba9d9").innerHTML=padAjaxe18411f7bf5e6e3c9e91c159485ba9d9.statusText;
+                        }
+                        }
+                        }
+                        padAjaxe18411f7bf5e6e3c9e91c159485ba9d9.open("GET","http://localhost/pad/regression/framework/?functions/trim_leaves_the_inside_alone&padInclude",true);
+                        padAjaxe18411f7bf5e6e3c9e91c159485ba9d9.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_closing_pipe_over_a_tag_that_renders_once<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_closing_pipe_over_a_tag_that_renders_once.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font> ab <font color="black">'</font></font>}</b><br><b>{/<font color="blue">echo </font><font color="red"><font color="black">|</font> trim <font color="black">|</font> upper</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5a3d739be22460e4047d046950b044db"></div>
+                        <script>
+                        padAjax5a3d739be22460e4047d046950b044db = new XMLHttpRequest();
+                        padAjax5a3d739be22460e4047d046950b044db.onreadystatechange=function() {
+                        if (padAjax5a3d739be22460e4047d046950b044db.readyState === 4) {
+                        if (padAjax5a3d739be22460e4047d046950b044db.status === 200) {
+                        document.getElementById("padAjax5a3d739be22460e4047d046950b044db").innerHTML=padAjax5a3d739be22460e4047d046950b044db.responseText;
+                        } else {
+                        document.getElementById("padAjax5a3d739be22460e4047d046950b044db").innerHTML=padAjax5a3d739be22460e4047d046950b044db.statusText;
+                        }
+                        }
+                        }
+                        padAjax5a3d739be22460e4047d046950b044db.open("GET","http://localhost/pad/regression/framework/?tags/a_closing_pipe_over_a_tag_that_renders_once&padInclude",true);
+                        padAjax5a3d739be22460e4047d046950b044db.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_pipe_function_used_as_a_tag_wins_over_php<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_pipe_function_used_as_a_tag_wins_over_php.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">substr </font><font color="red">0<font color="black">,</font> 2</font>}</b>abcdef<b>{/<font color="blue">substr</font><font color="red"></font>}</b>][<b>{<font color="blue">trim</font><font color="red"></font>}</b>  x  <b>{/<font color="blue">trim</font><font color="red"></font>}</b>][<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>substr(<font color="black">'</font>abc<font color="black">'</font><font color="black">,</font> 1)</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax91dc4f0c0b95b94ceaf191829776ba5a"></div>
+                        <script>
+                        padAjax91dc4f0c0b95b94ceaf191829776ba5a = new XMLHttpRequest();
+                        padAjax91dc4f0c0b95b94ceaf191829776ba5a.onreadystatechange=function() {
+                        if (padAjax91dc4f0c0b95b94ceaf191829776ba5a.readyState === 4) {
+                        if (padAjax91dc4f0c0b95b94ceaf191829776ba5a.status === 200) {
+                        document.getElementById("padAjax91dc4f0c0b95b94ceaf191829776ba5a").innerHTML=padAjax91dc4f0c0b95b94ceaf191829776ba5a.responseText;
+                        } else {
+                        document.getElementById("padAjax91dc4f0c0b95b94ceaf191829776ba5a").innerHTML=padAjax91dc4f0c0b95b94ceaf191829776ba5a.statusText;
+                        }
+                        }
+                        }
+                        padAjax91dc4f0c0b95b94ceaf191829776ba5a.open("GET","http://localhost/pad/regression/framework/?tags/a_pipe_function_used_as_a_tag_wins_over_php&padInclude",true);
+                        padAjax91dc4f0c0b95b94ceaf191829776ba5a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/both_ends_at_once_each_on_its_own_text<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/both_ends_at_once_each_on_its_own_text.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>x<font color="black">'</font></font>}</b><br>  ["b","a"]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">x </font><font color="red"><font color="black">|</font> trim</font>}</b><br>  y,<br><b>{/<font color="blue">x </font><font color="red"><font color="black">|</font> upper</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxf74a969e36fc10786f8c6b005d9d92af"></div>
+                        <script>
+                        padAjaxf74a969e36fc10786f8c6b005d9d92af = new XMLHttpRequest();
+                        padAjaxf74a969e36fc10786f8c6b005d9d92af.onreadystatechange=function() {
+                        if (padAjaxf74a969e36fc10786f8c6b005d9d92af.readyState === 4) {
+                        if (padAjaxf74a969e36fc10786f8c6b005d9d92af.status === 200) {
+                        document.getElementById("padAjaxf74a969e36fc10786f8c6b005d9d92af").innerHTML=padAjaxf74a969e36fc10786f8c6b005d9d92af.responseText;
+                        } else {
+                        document.getElementById("padAjaxf74a969e36fc10786f8c6b005d9d92af").innerHTML=padAjaxf74a969e36fc10786f8c6b005d9d92af.statusText;
+                        }
+                        }
+                        }
+                        padAjaxf74a969e36fc10786f8c6b005d9d92af.open("GET","http://localhost/pad/regression/framework/?tags/both_ends_at_once_each_on_its_own_text&padInclude",true);
+                        padAjaxf74a969e36fc10786f8c6b005d9d92af.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: variables/a_pipe_applies_to_a_variable<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">variables/a_pipe_applies_to_a_variable.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>a = <font color="black">'</font> q <font color="black">'</font></font>/}</b><br><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>a <font color="black">|</font> trim <font color="black">|</font> upper</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax56dcf0bf6c4bd7c05d51ef791a5730d6"></div>
+                        <script>
+                        padAjax56dcf0bf6c4bd7c05d51ef791a5730d6 = new XMLHttpRequest();
+                        padAjax56dcf0bf6c4bd7c05d51ef791a5730d6.onreadystatechange=function() {
+                        if (padAjax56dcf0bf6c4bd7c05d51ef791a5730d6.readyState === 4) {
+                        if (padAjax56dcf0bf6c4bd7c05d51ef791a5730d6.status === 200) {
+                        document.getElementById("padAjax56dcf0bf6c4bd7c05d51ef791a5730d6").innerHTML=padAjax56dcf0bf6c4bd7c05d51ef791a5730d6.responseText;
+                        } else {
+                        document.getElementById("padAjax56dcf0bf6c4bd7c05d51ef791a5730d6").innerHTML=padAjax56dcf0bf6c4bd7c05d51ef791a5730d6.statusText;
+                        }
+                        }
+                        }
+                        padAjax56dcf0bf6c4bd7c05d51ef791a5730d6.open("GET","http://localhost/pad/regression/framework/?variables/a_pipe_applies_to_a_variable&padInclude",true);
+                        padAjax56dcf0bf6c4bd7c05d51ef791a5730d6.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: catalog/functions<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">catalog/functions.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">catalog/functions.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The value the stripLow line cleans: printable letters around two control characters.<br><br>  </span><span style="color: #0000BB">$catLow </span><span style="color: #007700">= </span><span style="color: #DD0000">"a\x01b\x02c"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">after:      <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a/b<font color="black">'</font> <font color="black">|</font> after(<font color="black">'</font>/<font color="black">'</font>)</font>}</b><br>afterLast:  <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a/b/c<font color="black">'</font> <font color="black">|</font> afterLast(<font color="black">'</font>/<font color="black">'</font>)</font>}</b><br>before:     <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a/b<font color="black">'</font> <font color="black">|</font> before(<font color="black">'</font>/<font color="black">'</font>)</font>}</b><br>beforeLast: <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a.b.c<font color="black">'</font> <font color="black">|</font> beforeLast(<font color="black">'</font>.<font color="black">'</font>)</font>}</b><br>between:    <b>{<font color="blue">echo </font><font color="red">17 <font color="black">|</font> between(10<font color="black">,</font> 66)</font>}</b>.<br>bold:       <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>important<font color="black">'</font> <font color="black">|</font> bold</font>}</b><br>close:      <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>items<font color="black">'</font> <font color="black">|</font> close <font color="black">|</font> ignore</font>}</b><br>contains:   <b>{<font color="blue">echo </font><font color="red">12345 <font color="black">|</font> contains(<font color="black">'</font>34<font color="black">'</font>)</font>}</b>.<br>cut:        <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>banana<font color="black">'</font> <font color="black">|</font> cut(<font color="black">'</font>an<font color="black">'</font>)</font>}</b><br>encodeHigh: <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>café<font color="black">'</font> <font color="black">|</font> encodeHigh</font>}</b><br>exists:     <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>hello/index.pad<font color="black">'</font> <font color="black">|</font> exists</font>}</b>.<br>html:       <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>&lt;b&gt;<font color="black">'</font> <font color="black">|</font> html</font>}</b><br>in:         <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a<font color="black">'</font> <font color="black">|</font> in(<font color="black">'</font>a<font color="black">'</font>)</font>}</b>.<br>left:       <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> left(2)</font>}</b><br>like:       <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> like(<font color="black">'</font>a<font color="black">%</font><font color="black">'</font>)</font>}</b>.<br>max_len:    <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> max_len(4)</font>}</b><br>mid:        <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> mid(2<font color="black">,</font> 3)</font>}</b><br>nbsp:       <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>hello world<font color="black">'</font> <font color="black">|</font> nbsp</font>}</b><br>open:       <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>items<font color="black">'</font> <font color="black">|</font> open <font color="black">|</font> ignore</font>}</b><br>optional:   <b>{<font color="green">$catNoSuch</font> <font color="black">|</font> <font color="blue">optional</font>}</b>ok<br>range:      <b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> range(0<font color="black">,</font> 100)</font>}</b>.<br>replace:    <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> replace(<font color="black">'</font>b<font color="black">'</font><font color="black">,</font> <font color="black">'</font>x<font color="black">'</font>)</font>}</b><br>right:      <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> right(2)</font>}</b><br>sanitize:   <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>&lt;b&gt;x&lt;/b&gt;<font color="black">'</font> <font color="black">|</font> sanitize</font>}</b><br>slashes:    <b>{<font color="blue">echo </font><font color="red">"it<font color="black">'</font>s" <font color="black">|</font> slashes</font>}</b><br>stripLow:   <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>catLow <font color="black">|</font> stripLow</font>}</b><br>stripslashes: <b>{<font color="blue">echo </font><font color="red">"it<font color="black">'</font>s" <font color="black">|</font> slashes <font color="black">|</font> stripslashes</font>}</b><br>tag:        <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>items<font color="black">'</font> <font color="black">|</font> tag <font color="black">|</font> ignore</font>}</b><br>time:       <b>{<font color="blue">echo </font><font color="red">1702483200 <font color="black">|</font> time(<font color="black">'</font>Y<font color="black">'</font>)</font>}</b><br>timestamp:  <b>{<font color="blue">echo </font><font color="red">1702483200 <font color="black">|</font> timestamp(<font color="black">'</font>Y<font color="black">'</font>)</font>}</b><br>trim:       <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>  a b  <font color="black">'</font> <font color="black">|</font> trim</font>}</b><br>ucwords:    <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>hello world<font color="black">'</font> <font color="black">|</font> ucwords</font>}</b><br>white:      <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a       b<font color="black">'</font> <font color="black">|</font> white</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax12fb4e8bbfec5ccb52f69bf2165aa981"></div>
+                        <script>
+                        padAjax12fb4e8bbfec5ccb52f69bf2165aa981 = new XMLHttpRequest();
+                        padAjax12fb4e8bbfec5ccb52f69bf2165aa981.onreadystatechange=function() {
+                        if (padAjax12fb4e8bbfec5ccb52f69bf2165aa981.readyState === 4) {
+                        if (padAjax12fb4e8bbfec5ccb52f69bf2165aa981.status === 200) {
+                        document.getElementById("padAjax12fb4e8bbfec5ccb52f69bf2165aa981").innerHTML=padAjax12fb4e8bbfec5ccb52f69bf2165aa981.responseText;
+                        } else {
+                        document.getElementById("padAjax12fb4e8bbfec5ccb52f69bf2165aa981").innerHTML=padAjax12fb4e8bbfec5ccb52f69bf2165aa981.statusText;
+                        }
+                        }
+                        }
+                        padAjax12fb4e8bbfec5ccb52f69bf2165aa981.open("GET","http://localhost/pad/regression/pages/?catalog/functions&padInclude",true);
+                        padAjax12fb4e8bbfec5ccb52f69bf2165aa981.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
-          </tbody></table>
+          </table>
         </blockquote>
       </center>
     </blockquote>
@@ -91,17 +488,17 @@
       <hr width="75%">
       <br>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table>
+      </table>
       <p>
         <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
       </p>
     </center>
-  
-</body></html>
+  </body>
+</html>

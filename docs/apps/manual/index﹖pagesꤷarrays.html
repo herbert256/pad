@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Array helpers
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Array helpers
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <div style="display: inline-block; text-align: left;">
+                    <p>
+                      A page's PHP file mostly works on arrays: a row from the database, a list of rows, a decoded JSON answer, nested settings. The array helpers do the everyday work on them - read a value deep inside, take one field of every row, keep the rows that pass, group, sort and sum - so the PHP stays a few lines and the template gets data ready to show. They are plain functions with a <code>padArr</code> name, loaded on every request like the rest of <code>pad/lib/</code>, and they work on objects too: an <code>ArrayAccess</code> object through its offsets, any other object through its public properties.
+                    </p>
+                    <h2>
+                      Dot paths
+                    </h2>
+                    <p>
+                      A dot path names a value inside nested arrays: <code>'customer.address.city'</code>, with an integer key as a segment - <code>'lines.0.sku'</code>. A <code>*</code> segment reads every item of that level and answers a list: <code>'lines.*.sku'</code> is every product. <code>padArrGet</code> answers the default when the path is not there - a Closure as the default is called only then - and <code>padArrSet</code> makes the levels on the way.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/arrays_1.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/arrays_1.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $order </span><span style="color: #007700">= [<br>    </span><span style="color: #DD0000">'number'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1042</span><span style="color: #007700">,<br>    </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'name'    </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">,<br>                    </span><span style="color: #DD0000">'address' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Leiden' </span><span style="color: #007700">] ],<br>    </span><span style="color: #DD0000">'lines'    </span><span style="color: #007700">=&gt; [ [ </span><span style="color: #DD0000">'sku' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'TEA'</span><span style="color: #007700">, </span><span style="color: #DD0000">'qty' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">],<br>                    [ </span><span style="color: #DD0000">'sku' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'MUG'</span><span style="color: #007700">, </span><span style="color: #DD0000">'qty' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">] ]<br>  ];<br><br>  </span><span style="color: #0000BB">$city </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrGet </span><span style="color: #007700">( </span><span style="color: #0000BB">$order</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer.address.city' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$zip  </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrGet </span><span style="color: #007700">( </span><span style="color: #0000BB">$order</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer.address.zip'</span><span style="color: #007700">,<br>                      </span><span style="color: #DD0000">'not known' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$skus </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrGet </span><span style="color: #007700">( </span><span style="color: #0000BB">$order</span><span style="color: #007700">, </span><span style="color: #DD0000">'lines.*.sku' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$products </span><span style="color: #007700">= </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">', '</span><span style="color: #007700">, </span><span style="color: #0000BB">$skus </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">padArrSet    </span><span style="color: #007700">( </span><span style="color: #0000BB">$order</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer.address.zip'</span><span style="color: #007700">, </span><span style="color: #DD0000">'2311 AB' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">padArrForget </span><span style="color: #007700">( </span><span style="color: #0000BB">$order</span><span style="color: #007700">, </span><span style="color: #DD0000">'lines.1' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$hasZip   </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrHas </span><span style="color: #007700">( </span><span style="color: #0000BB">$order</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer.address.zip' </span><span style="color: #007700">)<br>            ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$zipNow   </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrGet </span><span style="color: #007700">( </span><span style="color: #0000BB">$order</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer.address.zip' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$lineLeft </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrGet </span><span style="color: #007700">( </span><span style="color: #0000BB">$order</span><span style="color: #007700">, </span><span style="color: #DD0000">'lines.0.sku' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;p&gt;City: <b>{<font color="green"><font color="red">$</font>city</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Zip code: <b>{<font color="green"><font color="red">$</font>zip</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Products: <b>{<font color="green"><font color="red">$</font>products</font>}</b>&lt;/p&gt;<br>&lt;p&gt;After the set: zip there? <b>{<font color="green"><font color="red">$</font>hasZip</font>}</b> - <b>{<font color="green"><font color="red">$</font>zipNow</font>}</b>&lt;/p&gt;<br>&lt;p&gt;After the forget: <b>{<font color="green"><font color="red">$</font>lineLeft</font>}</b> is the only line&lt;/p&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <p>
+                            City: Leiden
+                          </p>
+                          <p>
+                            Zip code: not known
+                          </p>
+                          <p>
+                            Products: TEA, MUG
+                          </p>
+                          <p>
+                            After the set: zip there? yes - 2311 AB
+                          </p>
+                          <p>
+                            After the forget: TEA is the only line
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <p>
+                      <code>padArrHas</code> is true when every path given exists, also when its value is NULL - where <code>isset()</code> says no. <code>padArrSet</code> and <code>padArrForget</code> change the array they are given and answer it as well.
+                    </p>
+                    <h2>
+                      Picking keys
+                    </h2>
+                    <p>
+                      <code>padArrOnly</code> keeps the top-level keys given, in the order they are given; <code>padArrExcept</code> drops them, and takes dot paths. Keys are an array or a comma-separated string.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/arrays_2.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/arrays_2.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $user </span><span style="color: #007700">= [<br>    </span><span style="color: #DD0000">'id'       </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">7</span><span style="color: #007700">,<br>    </span><span style="color: #DD0000">'name'     </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">,<br>    </span><span style="color: #DD0000">'email'    </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'ann@example.com'</span><span style="color: #007700">,<br>    </span><span style="color: #DD0000">'password'</span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'*REDACTED*'</span><span style="color: #007700">,<br>    </span><span style="color: #DD0000">'login'    </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'ip'      </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'10.0.0.1'</span><span style="color: #007700">,<br>                    </span><span style="color: #DD0000">'browser' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Firefox' </span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #0000BB">$contact </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrOnly   </span><span style="color: #007700">( </span><span style="color: #0000BB">$user</span><span style="color: #007700">, </span><span style="color: #DD0000">'email, name' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$public  </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrExcept </span><span style="color: #007700">( </span><span style="color: #0000BB">$user</span><span style="color: #007700">, </span><span style="color: #DD0000">'password, login.ip' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$shown   </span><span style="color: #007700">= </span><span style="color: #0000BB">json_encode </span><span style="color: #007700">( </span><span style="color: #0000BB">$public </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;p&gt;{contact~}<br>  <b>{<font color="blue">key<font color="black"><b><font color="red">@</font></b></font>contact</font><font color="red"></font>}</b>: <b>{<font color="green"><font color="red">$</font>contact</font>}</b><br>  <b>{<font color="blue">~notLast<font color="black"><b><font color="red">@</font></b></font>contact</font><font color="red"></font>}</b>, <b>{/<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>contact</font><font color="red"></font>}</b><br>{~/contact}&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>shown</font>}</b>&lt;/p&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <p>
+                            email: ann@example.com, name: Ann
+                          </p>
+                          <p>
+                            {"id":7,"name":"Ann","email":"ann@example.com","login":{"browser":"Firefox"}}
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <h2>
+                      Working with rows
+                    </h2>
+                    <p>
+                      <code>padArrPluck</code> takes one field of every row, keyed by another field when one is given - the id and name pairs of a select box. <code>padArrKeyBy</code> keys the rows themselves, to find one without a loop.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/arrays_3.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/arrays_3.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $customers </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Cleo'</span><span style="color: #007700">, </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'NL' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'BE' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'NL' </span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #0000BB">$names   </span><span style="color: #007700">= </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">', '</span><span style="color: #007700">, </span><span style="color: #0000BB">padArrPluck </span><span style="color: #007700">( </span><span style="color: #0000BB">$customers</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">) );<br><br>  </span><span style="color: #0000BB">$sorted  </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrSortBy </span><span style="color: #007700">( </span><span style="color: #0000BB">$customers</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$choices </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrPluck  </span><span style="color: #007700">( </span><span style="color: #0000BB">$sorted</span><span style="color: #007700">, </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'id' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$byId    </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrKeyBy </span><span style="color: #007700">( </span><span style="color: #0000BB">$customers</span><span style="color: #007700">, </span><span style="color: #DD0000">'id' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$two     </span><span style="color: #007700">= </span><span style="color: #0000BB">$byId </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>names</font>}</b>&lt;/p&gt;<br>&lt;select name="customer"&gt;<br>  {choices~}<br>    &lt;option value="<b>{<font color="blue">key<font color="black"><b><font color="red">@</font></b></font>choices</font><font color="red"></font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>choices</font>}</b>&lt;/option&gt;<br>  {~/choices}<br>&lt;/select&gt;<br>&lt;p&gt;Customer 2 is <b>{<font color="green"><font color="red">$</font>two</font>}</b>&lt;/p&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <p>
+                            Cleo, Ann, Bob
+                          </p><select name="customer">
+                            <option value="1">
+                              Ann
+                            </option>
+                            <option value="2">
+                              Bob
+                            </option>
+                            <option value="3">
+                              Cleo
+                            </option>
+                          </select>
+                          <p>
+                            Customer 2 is Bob
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <p>
+                      <code>padArrWhere</code> keeps the rows that pass, with their keys: a field equal to a value, a field compared with an operator, or a callback. The operators are <code>= == === != &lt;&gt; !== &lt; &gt; &lt;= &gt;=</code> (and PAD's own <code>eq ne lt gt le ge</code>), <code>in</code> and <code>not in</code> with a list, and <code>like</code> with SQL's <code>%</code> and <code>_</code>, ignoring case. Equality is PHP's loose <code>==</code>, so the string <code>'5'</code> a database answers equals a 5 written in PHP. <code>padArrSortBy</code> sorts by a field, stable, ascending or with <code>TRUE</code> or <code>'desc'</code> descending; <code>padArrFirst</code> and <code>padArrLast</code> answer the first and last row a callback passes.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/arrays_4.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/arrays_4.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $orders </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">101</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'status' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'paid'</span><span style="color: #007700">, </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'120.00' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">102</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'status' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'open'</span><span style="color: #007700">, </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'35.50' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">103</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Cleo'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'status' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'paid'</span><span style="color: #007700">, </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'89.90' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">104</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Carl'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'status' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'open'</span><span style="color: #007700">, </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'15.00' </span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #0000BB">$large  </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrWhere  </span><span style="color: #007700">( </span><span style="color: #0000BB">$orders</span><span style="color: #007700">, </span><span style="color: #DD0000">'total'</span><span style="color: #007700">, </span><span style="color: #DD0000">'&gt;='</span><span style="color: #007700">, </span><span style="color: #0000BB">50 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$large  </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrSortBy </span><span style="color: #007700">( </span><span style="color: #0000BB">$large</span><span style="color: #007700">, </span><span style="color: #DD0000">'total'</span><span style="color: #007700">, </span><span style="color: #DD0000">'desc' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$withC  </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrWhere  </span><span style="color: #007700">( </span><span style="color: #0000BB">$orders</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer'</span><span style="color: #007700">, </span><span style="color: #DD0000">'like'</span><span style="color: #007700">, </span><span style="color: #DD0000">'c%' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$unpaid </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrWhere  </span><span style="color: #007700">( </span><span style="color: #0000BB">$orders</span><span style="color: #007700">, </span><span style="color: #DD0000">'status'</span><span style="color: #007700">, </span><span style="color: #DD0000">'open' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$isOpen </span><span style="color: #007700">= fn ( </span><span style="color: #0000BB">$order </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$order </span><span style="color: #007700">[</span><span style="color: #DD0000">'status'</span><span style="color: #007700">] == </span><span style="color: #DD0000">'open'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$isPaid </span><span style="color: #007700">= fn ( </span><span style="color: #0000BB">$order </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$order </span><span style="color: #007700">[</span><span style="color: #DD0000">'status'</span><span style="color: #007700">] == </span><span style="color: #DD0000">'paid'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$first </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrFirst </span><span style="color: #007700">( </span><span style="color: #0000BB">$orders</span><span style="color: #007700">, </span><span style="color: #0000BB">$isOpen </span><span style="color: #007700">) [</span><span style="color: #DD0000">'number'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$last  </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrLast  </span><span style="color: #007700">( </span><span style="color: #0000BB">$orders</span><span style="color: #007700">, </span><span style="color: #0000BB">$isPaid </span><span style="color: #007700">) [</span><span style="color: #DD0000">'number'</span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;p&gt;50 or more, largest first:<br>  {large~}<br>    <b>{<font color="green"><font color="red">$</font>number</font>}</b> (<b>{<font color="green"><font color="red">$</font>total</font>}</b>)<b>{<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>large</font><font color="red"></font>}</b>, <b>{/<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>large</font><font color="red"></font>}</b><br>  {~/large}&lt;/p&gt;<br>&lt;p&gt;A customer starting with C: {withC~}<br>  <b>{<font color="green"><font color="red">$</font>customer</font>}</b><b>{<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>withC</font><font color="red"></font>}</b>, <b>{/<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>withC</font><font color="red"></font>}</b><br>{~/withC}&lt;/p&gt;<br>&lt;p&gt;Not paid yet: {unpaid~}<br>  <b>{<font color="green"><font color="red">$</font>number</font>}</b><b>{<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>unpaid</font><font color="red"></font>}</b>, <b>{/<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>unpaid</font><font color="red"></font>}</b><br>{~/unpaid}&lt;/p&gt;<br>&lt;p&gt;First open order: <b>{<font color="green"><font color="red">$</font>first</font>}</b>, last paid order: <b>{<font color="green"><font color="red">$</font>last</font>}</b>&lt;/p&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <p>
+                            50 or more, largest first: 101 (120.00), 103 (89.90)
+                          </p>
+                          <p>
+                            A customer starting with C: Cleo, Carl
+                          </p>
+                          <p>
+                            Not paid yet: 102, 104
+                          </p>
+                          <p>
+                            First open order: 102, last paid order: 103
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <h2>
+                      Groups and numbers
+                    </h2>
+                    <p>
+                      <code>padArrGroupBy</code> answers the rows in groups - the groups in the order their first row came, each group a list. <code>padArrSum</code>, <code>padArrAvg</code>, <code>padArrMin</code> and <code>padArrMax</code> work on the numbers among the values, or among a field of every row: a NULL or a text that is no number is left out rather than counted as 0. The sum of no numbers is 0, the others answer NULL.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/arrays_5.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/arrays_5.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $sales </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'region' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'North'</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'120' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'region' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'South'</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'80'  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'region' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'North'</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'200' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'region' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'East'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">NULL  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'region' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'South'</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'40'  </span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #0000BB">$groups  </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrGroupBy </span><span style="color: #007700">( </span><span style="color: #0000BB">$sales</span><span style="color: #007700">, </span><span style="color: #DD0000">'region' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$regions </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$groups </span><span style="color: #007700">as </span><span style="color: #0000BB">$region </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$rows </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$regions </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'region' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$region</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'sales'  </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$rows </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'total'  </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padArrSum </span><span style="color: #007700">( </span><span style="color: #0000BB">$rows</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'best'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padArrMax </span><span style="color: #007700">( </span><span style="color: #0000BB">$rows</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">) ?? </span><span style="color: #DD0000">'-'<br>    </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$sum </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrSum </span><span style="color: #007700">( </span><span style="color: #0000BB">$sales</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$avg </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrAvg </span><span style="color: #007700">( </span><span style="color: #0000BB">$sales</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$min </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrMin </span><span style="color: #007700">( </span><span style="color: #0000BB">$sales</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><b>{<font color="blue">regions</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>region</font>}</b>: <b>{<font color="green"><font color="red">$</font>sales</font>}</b> sales, <b>{<font color="green"><font color="red">$</font>total</font>}</b> in all, best <b>{<font color="green"><font color="red">$</font>best</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">regions</font><font color="red"></font>}</b><br>&lt;p&gt;All regions: <b>{<font color="green"><font color="red">$</font>sum</font>}</b>, on average <b>{<font color="green"><font color="red">$</font>avg</font>}</b>, the smallest <b>{<font color="green"><font color="red">$</font>min</font>}</b>&lt;/p&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <p>
+                            North: 2 sales, 320 in all, best 200
+                          </p>
+                          <p>
+                            South: 2 sales, 120 in all, best 80
+                          </p>
+                          <p>
+                            East: 1 sales, 0 in all, best -
+                          </p>
+                          <p>
+                            All regions: 440, on average 110, the smallest 40
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <h2>
+                      Reshaping
+                    </h2>
+                    <p>
+                      <code>padArrDot</code> makes a nested array one level with dot path keys, and <code>padArrUndot</code> makes it nested again. <code>padArrFlatten</code> answers the values of nested arrays as one list, to a depth when one is given; <code>padArrWrap</code> makes any value an array - NULL none, an array itself, anything else one item.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/arrays_6.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/arrays_6.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $settings </span><span style="color: #007700">= [<br>    </span><span style="color: #DD0000">'mail'  </span><span style="color: #007700">=&gt; [<br>      </span><span style="color: #DD0000">'from' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'shop@example.com'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'smtp' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'host' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'localhost'</span><span style="color: #007700">, </span><span style="color: #DD0000">'port' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">25 </span><span style="color: #007700">]<br>    ],<br>    </span><span style="color: #DD0000">'theme' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'dark'<br>  </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$flat </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrDot </span><span style="color: #007700">( </span><span style="color: #0000BB">$settings </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$changes </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrUndot </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'mail.smtp.port' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">587</span><span style="color: #007700">,<br>                             </span><span style="color: #DD0000">'theme'          </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'light' </span><span style="color: #007700">] );<br>  </span><span style="color: #0000BB">$port    </span><span style="color: #007700">= </span><span style="color: #0000BB">$changes </span><span style="color: #007700">[</span><span style="color: #DD0000">'mail'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'smtp'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'port'</span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$nested  </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'php'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'pad'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'templates'</span><span style="color: #007700">, </span><span style="color: #DD0000">'helpers' </span><span style="color: #007700">] ] ];<br>  </span><span style="color: #0000BB">$tags    </span><span style="color: #007700">= </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">', '</span><span style="color: #007700">, </span><span style="color: #0000BB">padArrFlatten </span><span style="color: #007700">( </span><span style="color: #0000BB">$nested </span><span style="color: #007700">) );<br><br>  </span><span style="color: #0000BB">$wrapped </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">padArrWrap </span><span style="color: #007700">( </span><span style="color: #DD0000">'one recipient' </span><span style="color: #007700">) ) . </span><span style="color: #DD0000">' / '<br>           </span><span style="color: #007700">. </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">padArrWrap </span><span style="color: #007700">( </span><span style="color: #0000BB">NULL </span><span style="color: #007700">) );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><b>{<font color="blue">flat</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="blue">key<font color="black"><b><font color="red">@</font></b></font>flat</font><font color="red"></font>}</b> = <b>{<font color="green"><font color="red">$</font>flat</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">flat</font><font color="red"></font>}</b><br>&lt;p&gt;Undot: the port is <b>{<font color="green"><font color="red">$</font>port</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Flatten: <b>{<font color="green"><font color="red">$</font>tags</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Wrap: <b>{<font color="green"><font color="red">$</font>wrapped</font>}</b>&lt;/p&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <p>
+                            mail.from = shop@example.com
+                          </p>
+                          <p>
+                            mail.smtp.host = localhost
+                          </p>
+                          <p>
+                            mail.smtp.port = 25
+                          </p>
+                          <p>
+                            theme = dark
+                          </p>
+                          <p>
+                            Undot: the port is 587
+                          </p>
+                          <p>
+                            Flatten: php, pad, templates, helpers
+                          </p>
+                          <p>
+                            Wrap: 1 / 0
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <h2>
+                      The functions
+                    </h2>
+                    <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+                      <tr>
+                        <th>
+                          function
+                        </th>
+                        <th>
+                          what it answers
+                        </th>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padArrGet ( $target, $key, $default = NULL )</code>
+                        </td>
+                        <td>
+                          the value at a dot path, or the default; a NULL key is the target itself
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padArrSet ( &amp;$array, $key, $value )</code>
+                        </td>
+                        <td>
+                          sets the value at a dot path, making the levels on the way; the array
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padArrHas ( $array, $keys )</code>
+                        </td>
+                        <td>
+                          whether every dot path given exists - a NULL value exists
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padArrForget ( &amp;$array, $keys )</code>
+                        </td>
+                        <td>
+                          removes one or several dot paths; the array
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padArrOnly ( $array, $keys )</code>
+                        </td>
+                        <td>
+                          the top-level keys given, in the order given
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padArrExcept ( $array, $keys )</code>
+                        </td>
+                        <td>
+                          the array without the keys given - dot paths too
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padArrPluck ( $rows, $value, $key = NULL )</code>
+                        </td>
+                        <td>
+                          one field of every row, keyed by another field when given
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padArrWhere ( $rows, $key, $operator, $value )</code>
+                        </td>
+                        <td>
+                          the rows that pass, keys kept
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padArrFirst ( $array, $callback = NULL, $default = NULL )</code>
+                        </td>
+                        <td>
+                          the first value, or the first a callback passes, or the default
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padArrLast ( $array, $callback = NULL, $default = NULL )</code>
+                        </td>
+                        <td>
+                          the same from the end
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padArrGroupBy ( $rows, $key )</code>
+                        </td>
+                        <td>
+                          the rows in groups by a field, each group a list
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padArrKeyBy ( $rows, $key )</code>
+                        </td>
+                        <td>
+                          the rows keyed by a field, a later row winning
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padArrSortBy ( $rows, $key, $descending = FALSE )</code>
+                        </td>
+                        <td>
+                          the rows sorted by a field, stable, keys kept
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padArrFlatten ( $array, $depth = INF )</code>
+                        </td>
+                        <td>
+                          the values, nested arrays opened up
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padArrDot ( $array, $prepend = '' )</code>
+                        </td>
+                        <td>
+                          a nested array as one level with dot path keys
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padArrUndot ( $array )</code>
+                        </td>
+                        <td>
+                          dot path keys made nested arrays again
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padArrWrap ( $value )</code>
+                        </td>
+                        <td>
+                          the value as an array
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>padArrSum / Avg / Min / Max ( $rows, $key = NULL )</code>
+                        </td>
+                        <td>
+                          the sum, average, smallest, largest of the numbers
+                        </td>
+                      </tr>
+                    </table>
+                    <p>
+                      A field to work on - <code>$key</code>, <code>$value</code> - is a dot path or a callback (a Closure, given the row and its key); a string is always a dot path. Where a list is expected, NULL, an empty string or any other plain value is an empty list, so the answer of a query that found nothing goes through without a check. A wrong argument - an unknown operator, a negative depth, a key that is no key - is reported as a PAD error naming the function.
+                    </p>
+                  </div>
+                </center>
+              </td>
+            </tr>
+          </table>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <hr>
+                <table valign="top" align="center">
+                  <tr>
+                    <td valign="top">
+                      <h3 align="center">
+                        Basic concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tags.html">Tags</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7conditions.html">Conditions</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7loops.html">Loops</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7trees.html">Trees</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7examples_used_in_this_manual.html">Examples used in this manual</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7parse.html">Parse</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7levels_and_occurrences.html">Levels and occurrences</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_content_tag.html">The content tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_data_tag.html">The data tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7php_and_html.html">Php and html</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7properties.html">Properties</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7field_sigils.html">Field sigils</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Constructs
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7else.html">Else</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7start_end.html">Start end</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7content.html">Content</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page.html">Page</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Text and markup
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7comments.html">Comments</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7whitespace.html">Whitespace</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ignore.html">Ignore</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7escaping_special_PAD_chars.html">Escaping special PAD chars</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Advanced concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7prefix.html">Prefix</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7options_variables_parameters.html">Options variables parameters</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7callback.html">Callback</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tag_return_values.html">Tag return values</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7level_and_occurrence_variables.html">Level and occurrence variables</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7walking.html">Walking</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ending_the_request.html">Ending the request</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sequences.html">Sequences</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Data
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7data_handling.html">Data handling</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7grouping.html">Grouping</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pager.html">Pager</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7lookup.html">Lookup</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7database.html">Database</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sqlite.html">Sqlite</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7collections.html">Collections</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7remote_data.html">Remote data</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7parallel_fetching.html">Parallel fetching</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7data_answers.html">Data answers</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        PHP helpers
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7arrays.html">Arrays</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7strings.html">Strings</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7values.html">Values</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7numbers.html">Numbers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_sessions.html">Requests and sessions</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7environment_and_cache.html">Environment and cache</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7dates_and_logging.html">Dates and logging</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7hashing_and_encryption.html">Hashing and encryption</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Output
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7html_helpers.html">Html helpers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7markdown.html">Markdown</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7charts.html">Charts</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7locale.html">Locale</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7fragment_cache.html">Fragment cache</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7flush.html">Flush</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7live.html">Live</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Layouts and components
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7layouts.html">Layouts</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page_meta.html">Page meta</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7components.html">Components</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7stacks.html">Stacks</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7response_fragments.html">Response fragments</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        The application
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7application_structure.html">Application structure</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7extending.html">Extending</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7events.html">Events</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7application_options.html">Application options</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_urls.html">Requests and urls</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7clean_urls.html">Clean urls</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sitemap.html">Sitemap</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7mail.html">Mail</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Forms and security
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7forms.html">Forms</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7csrf_protection.html">Csrf protection</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7flash_messages.html">Flash messages</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7directory_guards.html">Directory guards</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7security_headers.html">Security headers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7file_uploads.html">File uploads</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Development tools
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7debug.html">Debug</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7template_errors.html">Template errors</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7toolbar.html">Toolbar</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7output_checks.html">Output checks</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7coverage.html">Coverage</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7replay.html">Replay</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7live_reload.html">Live reload</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7samples.html">Samples</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7app_tests.html">App tests</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pad_command.html">Pad command</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7static_export.html">Static export</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7playground.html">Playground</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7editor_support.html">Editor support</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pad_in_the_browser.html">Pad in the browser</a>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

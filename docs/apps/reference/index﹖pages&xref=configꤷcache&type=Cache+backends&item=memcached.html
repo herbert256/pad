@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Cache backends - memcached
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Cache backends - memcached
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/cache_memcached - Page: delete<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">delete.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">delete.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A deleted entry takes the URL's entry with it: cache/inits.php answers a client's<br>  // If-None-Match with 304 from the ETag the URL names, so a URL still naming a deleted<br>  // ETag answered 304 for a page that was no longer stored. The backend is asked directly,<br>  // under a key of its own, so the answer does not depend on what the crawl left behind.<br><br>  </span><span style="color: #0000BB">$deleteUrl  </span><span style="color: #007700">= </span><span style="color: #0000BB">padMD5 </span><span style="color: #007700">( </span><span style="color: #DD0000">'delete ' </span><span style="color: #007700">. </span><span style="color: #0000BB">hrtime </span><span style="color: #007700">( </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$deleteEtag </span><span style="color: #007700">= </span><span style="color: #0000BB">padMD5 </span><span style="color: #007700">( </span><span style="color: #DD0000">'delete etag ' </span><span style="color: #007700">. </span><span style="color: #0000BB">hrtime </span><span style="color: #007700">( </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) );<br><br>  </span><span style="color: #0000BB">padCacheStore </span><span style="color: #007700">( </span><span style="color: #0000BB">$deleteUrl</span><span style="color: #007700">, </span><span style="color: #0000BB">$deleteEtag</span><span style="color: #007700">, </span><span style="color: #DD0000">'the body' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$deleteBefore </span><span style="color: #007700">= </span><span style="color: #0000BB">padCacheUrl </span><span style="color: #007700">( </span><span style="color: #0000BB">$deleteUrl </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">padCacheDelete </span><span style="color: #007700">( </span><span style="color: #0000BB">$deleteUrl</span><span style="color: #007700">, </span><span style="color: #0000BB">$deleteEtag </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$deleteAfter </span><span style="color: #007700">= </span><span style="color: #0000BB">padCacheUrl </span><span style="color: #007700">( </span><span style="color: #0000BB">$deleteUrl </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$deleteNamed </span><span style="color: #007700">= ( ( </span><span style="color: #0000BB">$deleteBefore </span><span style="color: #007700">[</span><span style="color: #DD0000">'etag'</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">$deleteBefore </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'' </span><span style="color: #007700">) === </span><span style="color: #0000BB">$deleteEtag </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'NO'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$deleteGone  </span><span style="color: #007700">= ( ( </span><span style="color: #0000BB">$deleteAfter  </span><span style="color: #007700">[</span><span style="color: #DD0000">'etag'</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">$deleteAfter  </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'' </span><span style="color: #007700">) === </span><span style="color: #DD0000">''          </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'NO'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;stored, the url names its etag: &lt;b&gt;<b>{<font color="green"><font color="red">$</font>deleteNamed</font>}</b>&lt;/b&gt;&lt;/p&gt;<br>&lt;p&gt;deleted, the url names none: &lt;b&gt;<b>{<font color="green"><font color="red">$</font>deleteGone</font>}</b>&lt;/b&gt;&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax461c2cb6caa6094d987148fbfdd6d2bf"></div>
+                        <script>
+                        padAjax461c2cb6caa6094d987148fbfdd6d2bf = new XMLHttpRequest();
+                        padAjax461c2cb6caa6094d987148fbfdd6d2bf.onreadystatechange=function() {
+                        if (padAjax461c2cb6caa6094d987148fbfdd6d2bf.readyState === 4) {
+                        if (padAjax461c2cb6caa6094d987148fbfdd6d2bf.status === 200) {
+                        document.getElementById("padAjax461c2cb6caa6094d987148fbfdd6d2bf").innerHTML=padAjax461c2cb6caa6094d987148fbfdd6d2bf.responseText;
+                        } else {
+                        document.getElementById("padAjax461c2cb6caa6094d987148fbfdd6d2bf").innerHTML=padAjax461c2cb6caa6094d987148fbfdd6d2bf.statusText;
+                        }
+                        }
+                        }
+                        padAjax461c2cb6caa6094d987148fbfdd6d2bf.open("GET","http://localhost/pad/regression/cache_memcached/?delete&padInclude",true);
+                        padAjax461c2cb6caa6094d987148fbfdd6d2bf.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/cache_memcached - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">index.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Fetches the probe twice. The probe's body embeds its build moment in nanoseconds, so<br>  // two equal bodies mean the second fetch was answered from the memcached cache.<br><br>  </span><span style="color: #0000BB">$one </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/cache_memcached/?probe&amp;padInclude' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$two </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/cache_memcached/?probe&amp;padInclude' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$verdict </span><span style="color: #007700">= ( </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] ) != </span><span style="color: #DD0000">'' </span><span style="color: #007700">and </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] === </span><span style="color: #0000BB">$two </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] ) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'NO'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$backend </span><span style="color: #007700">= </span><span style="color: #0000BB">$padCacheServerType</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;backend: <b>{<font color="green"><font color="red">$</font>backend</font>}</b>&lt;/p&gt;<br>&lt;p&gt;two fetches of the probe answer with one body: &lt;b&gt;<b>{<font color="green"><font color="red">$</font>verdict</font>}</b>&lt;/b&gt;&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax86dac1a93ba6606c756928bce4d18577"></div>
+                        <script>
+                        padAjax86dac1a93ba6606c756928bce4d18577 = new XMLHttpRequest();
+                        padAjax86dac1a93ba6606c756928bce4d18577.onreadystatechange=function() {
+                        if (padAjax86dac1a93ba6606c756928bce4d18577.readyState === 4) {
+                        if (padAjax86dac1a93ba6606c756928bce4d18577.status === 200) {
+                        document.getElementById("padAjax86dac1a93ba6606c756928bce4d18577").innerHTML=padAjax86dac1a93ba6606c756928bce4d18577.responseText;
+                        } else {
+                        document.getElementById("padAjax86dac1a93ba6606c756928bce4d18577").innerHTML=padAjax86dac1a93ba6606c756928bce4d18577.statusText;
+                        }
+                        }
+                        }
+                        padAjax86dac1a93ba6606c756928bce4d18577.open("GET","http://localhost/pad/regression/cache_memcached/?index&padInclude",true);
+                        padAjax86dac1a93ba6606c756928bce4d18577.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/cache_memcached - Page: nodata<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">nodata.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">nodata.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// With $padCacheServerNoData the backend keeps no body, but the URL still has to name the<br>  // ETag stored for it: cache/inits.php finds the ETag it answers a client's If-None-Match<br>  // with 304 for through the URL alone. The backend is asked directly, under a key of its<br>  // own, so the answer does not depend on what the crawl's page fetches left behind.<br><br>  </span><span style="color: #0000BB">$noDataKeep </span><span style="color: #007700">= </span><span style="color: #0000BB">$padCacheServerNoData</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$noDataUrl  </span><span style="color: #007700">= </span><span style="color: #0000BB">padMD5 </span><span style="color: #007700">( </span><span style="color: #DD0000">'nodata ' </span><span style="color: #007700">. </span><span style="color: #0000BB">hrtime </span><span style="color: #007700">( </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$noDataEtag </span><span style="color: #007700">= </span><span style="color: #0000BB">padMD5 </span><span style="color: #007700">( </span><span style="color: #DD0000">'nodata etag ' </span><span style="color: #007700">. </span><span style="color: #0000BB">hrtime </span><span style="color: #007700">( </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) );<br><br>  </span><span style="color: #0000BB">$padCacheServerNoData </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">padCacheStore </span><span style="color: #007700">( </span><span style="color: #0000BB">$noDataUrl</span><span style="color: #007700">, </span><span style="color: #0000BB">$noDataEtag</span><span style="color: #007700">, </span><span style="color: #DD0000">'the body' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$noDataRow  </span><span style="color: #007700">= </span><span style="color: #0000BB">padCacheUrl </span><span style="color: #007700">( </span><span style="color: #0000BB">$noDataUrl </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$noDataBody </span><span style="color: #007700">= </span><span style="color: #0000BB">padCacheBody </span><span style="color: #007700">( </span><span style="color: #0000BB">$noDataEtag </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">padCacheDelete </span><span style="color: #007700">( </span><span style="color: #0000BB">$noDataUrl</span><span style="color: #007700">, </span><span style="color: #0000BB">$noDataEtag </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$padCacheServerNoData </span><span style="color: #007700">= </span><span style="color: #0000BB">$noDataKeep</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$noDataNamed </span><span style="color: #007700">= ( </span><span style="color: #0000BB">is_array </span><span style="color: #007700">( </span><span style="color: #0000BB">$noDataRow </span><span style="color: #007700">) and ( </span><span style="color: #0000BB">$noDataRow </span><span style="color: #007700">[</span><span style="color: #DD0000">'etag'</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">$noDataRow </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'' </span><span style="color: #007700">) === </span><span style="color: #0000BB">$noDataEtag </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'NO'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$noDataKept  </span><span style="color: #007700">= </span><span style="color: #0000BB">$noDataBody </span><span style="color: #007700">? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;without data the url names its etag: &lt;b&gt;<b>{<font color="green"><font color="red">$</font>noDataNamed</font>}</b>&lt;/b&gt;&lt;/p&gt;<br>&lt;p&gt;a body is kept: <b>{<font color="green"><font color="red">$</font>noDataKept</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax82095b0f2a5a8c817a84259dac5951ba"></div>
+                        <script>
+                        padAjax82095b0f2a5a8c817a84259dac5951ba = new XMLHttpRequest();
+                        padAjax82095b0f2a5a8c817a84259dac5951ba.onreadystatechange=function() {
+                        if (padAjax82095b0f2a5a8c817a84259dac5951ba.readyState === 4) {
+                        if (padAjax82095b0f2a5a8c817a84259dac5951ba.status === 200) {
+                        document.getElementById("padAjax82095b0f2a5a8c817a84259dac5951ba").innerHTML=padAjax82095b0f2a5a8c817a84259dac5951ba.responseText;
+                        } else {
+                        document.getElementById("padAjax82095b0f2a5a8c817a84259dac5951ba").innerHTML=padAjax82095b0f2a5a8c817a84259dac5951ba.statusText;
+                        }
+                        }
+                        }
+                        padAjax82095b0f2a5a8c817a84259dac5951ba.open("GET","http://localhost/pad/regression/cache_memcached/?nodata&padInclude",true);
+                        padAjax82095b0f2a5a8c817a84259dac5951ba.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/cache_memcached - Page: probe<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">probe.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">probe.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A body that is different on every build: nanoseconds. Two fetches answering with the<br>  // same body therefore prove the second came from the cache, not from a build.<br><br>  </span><span style="color: #0000BB">$stamp </span><span style="color: #007700">= </span><span style="color: #0000BB">hrtime </span><span style="color: #007700">( </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="purple"><font color="red">#</font> The probe prints a different number on every build - but the cache serves the same body<br>   twice, which defeats the crawl's random-word double-draw check<font color="black"></font><b><font color="black">:</font></b><font color="green"></font> its two draws agree and<br>   differ from the stored copy. So the crawl marks this page uncomparable by name instead,<br>   in getRegressionGo's list. <font color="red">#</font></font>}</b><br><b>{<font color="green"><font color="red">$</font>stamp</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax80636766ba5c5b17bf0682fd989114b3"></div>
+                        <script>
+                        padAjax80636766ba5c5b17bf0682fd989114b3 = new XMLHttpRequest();
+                        padAjax80636766ba5c5b17bf0682fd989114b3.onreadystatechange=function() {
+                        if (padAjax80636766ba5c5b17bf0682fd989114b3.readyState === 4) {
+                        if (padAjax80636766ba5c5b17bf0682fd989114b3.status === 200) {
+                        document.getElementById("padAjax80636766ba5c5b17bf0682fd989114b3").innerHTML=padAjax80636766ba5c5b17bf0682fd989114b3.responseText;
+                        } else {
+                        document.getElementById("padAjax80636766ba5c5b17bf0682fd989114b3").innerHTML=padAjax80636766ba5c5b17bf0682fd989114b3.statusText;
+                        }
+                        }
+                        }
+                        padAjax80636766ba5c5b17bf0682fd989114b3.open("GET","http://localhost/pad/regression/cache_memcached/?probe&padInclude",true);
+                        padAjax80636766ba5c5b17bf0682fd989114b3.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

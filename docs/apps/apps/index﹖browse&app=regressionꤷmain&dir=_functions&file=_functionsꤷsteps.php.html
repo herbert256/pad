@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: regression/main/_functions
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: regression/main/ functions
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=regression%EA%A4%B7main.html">..</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=regression%EA%A4%B7main&amp;dir=_functions&amp;file=_functions%EA%A4%B7draws.php.html">draws.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=regression%EA%A4%B7main&amp;dir=_functions&amp;file=_functions%EA%A4%B7exclaim.php.html">exclaim.php</a>
+                  </li>
+                  <li class="current">steps.php
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  _functions/steps.php
+                </h3>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Predicate oracle for sequences built from a per-term random draw: steps(mode, min, max,<br>  // count), with mode 'add', 'multiply', 'ceil' or 'divide'.<br>  //<br>  // The value is the rendered output - comma-terminated terms - and 'ok' means there are<br>  // count terms and each is one a real draw can produce. The types combine each candidate<br>  // with a fresh draw from [min, max]:<br>  //<br>  //   add       term n is n plus the draw - the draw is term minus position<br>  //   multiply  term n is n times the draw - the draw is term divided by position<br>  //   ceil      term n is n rounded up to the next multiple of the draw, so the term must<br>  //             equal ceil(n/b)*b for some b in [min, max]; only sound when min is at<br>  //             least 1, because a drawn zero skips its candidate and shifts the positions<br>  //   divide    term is candidate/draw, and a drawn zero skips its candidate - so the<br>  //             positions are unknowable, and what remains checkable is that some draw d<br>  //             of at least 1 makes term*d a whole candidate number<br>  //<br>  // The digit-shape patterns these cases used before accepted any numbers at all; this<br>  // accepts only what the documented build rules can emit.<br><br>  </span><span style="color: #0000BB">$stepsMode  </span><span style="color: #007700">= </span><span style="color: #0000BB">$parm </span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$stepsMin   </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">$parm </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$stepsMax   </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">$parm </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$stepsCount </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">$parm </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$steps </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( </span><span style="color: #DD0000">'trim'</span><span style="color: #007700">, </span><span style="color: #0000BB">explode </span><span style="color: #007700">( </span><span style="color: #DD0000">','</span><span style="color: #007700">, </span><span style="color: #0000BB">$value </span><span style="color: #007700">) ), </span><span style="color: #DD0000">'strlen' </span><span style="color: #007700">) );<br><br>  if ( </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$steps </span><span style="color: #007700">) != </span><span style="color: #0000BB">$stepsCount </span><span style="color: #007700">)<br>    return </span><span style="color: #DD0000">'counted ' </span><span style="color: #007700">. </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$steps </span><span style="color: #007700">) . </span><span style="color: #DD0000">" terms, expected </span><span style="color: #0000BB">$stepsCount</span><span style="color: #DD0000">: </span><span style="color: #0000BB">$value</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br><br>  foreach ( </span><span style="color: #0000BB">$steps </span><span style="color: #007700">as </span><span style="color: #0000BB">$stepsIdx </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$step </span><span style="color: #007700">) {<br><br>    </span><span style="color: #0000BB">$stepsPos </span><span style="color: #007700">= </span><span style="color: #0000BB">$stepsIdx </span><span style="color: #007700">+ </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br><br>    if ( </span><span style="color: #0000BB">$stepsMode </span><span style="color: #007700">== </span><span style="color: #DD0000">'divide' </span><span style="color: #007700">) {<br><br>      if ( ! </span><span style="color: #0000BB">is_numeric </span><span style="color: #007700">( </span><span style="color: #0000BB">$step </span><span style="color: #007700">) or </span><span style="color: #0000BB">$step </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">0 </span><span style="color: #007700">)<br>        return </span><span style="color: #DD0000">"not a positive number: </span><span style="color: #0000BB">$step</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br><br>      for ( </span><span style="color: #0000BB">$stepsDraw </span><span style="color: #007700">= </span><span style="color: #0000BB">max </span><span style="color: #007700">( </span><span style="color: #0000BB">$stepsMin</span><span style="color: #007700">, </span><span style="color: #0000BB">1 </span><span style="color: #007700">); </span><span style="color: #0000BB">$stepsDraw </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">$stepsMax</span><span style="color: #007700">; </span><span style="color: #0000BB">$stepsDraw</span><span style="color: #007700">++ )<br>        if ( </span><span style="color: #0000BB">abs </span><span style="color: #007700">( </span><span style="color: #0000BB">$step </span><span style="color: #007700">* </span><span style="color: #0000BB">$stepsDraw </span><span style="color: #007700">- </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">$step </span><span style="color: #007700">* </span><span style="color: #0000BB">$stepsDraw </span><span style="color: #007700">) ) &lt; </span><span style="color: #0000BB">1e-6 </span><span style="color: #007700">and </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">$step </span><span style="color: #007700">* </span><span style="color: #0000BB">$stepsDraw </span><span style="color: #007700">) &gt;= </span><span style="color: #0000BB">1 </span><span style="color: #007700">)<br>          continue </span><span style="color: #0000BB">2</span><span style="color: #007700">;<br><br>      return </span><span style="color: #DD0000">"term </span><span style="color: #0000BB">$step</span><span style="color: #DD0000"> is not any candidate divided by a draw from 1..</span><span style="color: #0000BB">$stepsMax</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br><br>    }<br><br>    if ( ! </span><span style="color: #0000BB">ctype_digit </span><span style="color: #007700">( </span><span style="color: #0000BB">$step </span><span style="color: #007700">) )<br>      return </span><span style="color: #DD0000">"not an integer: </span><span style="color: #0000BB">$step</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br><br>    if ( </span><span style="color: #0000BB">$stepsMode </span><span style="color: #007700">== </span><span style="color: #DD0000">'ceil' </span><span style="color: #007700">) {<br><br>      for ( </span><span style="color: #0000BB">$stepsDraw </span><span style="color: #007700">= </span><span style="color: #0000BB">$stepsMin</span><span style="color: #007700">; </span><span style="color: #0000BB">$stepsDraw </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">$stepsMax</span><span style="color: #007700">; </span><span style="color: #0000BB">$stepsDraw</span><span style="color: #007700">++ )<br>        if ( </span><span style="color: #0000BB">$stepsDraw </span><span style="color: #007700">and </span><span style="color: #0000BB">ceil </span><span style="color: #007700">( </span><span style="color: #0000BB">$stepsPos </span><span style="color: #007700">/ </span><span style="color: #0000BB">$stepsDraw </span><span style="color: #007700">) * </span><span style="color: #0000BB">$stepsDraw </span><span style="color: #007700">== </span><span style="color: #0000BB">$step </span><span style="color: #007700">)<br>          continue </span><span style="color: #0000BB">2</span><span style="color: #007700">;<br><br>      return </span><span style="color: #DD0000">"term </span><span style="color: #0000BB">$step</span><span style="color: #DD0000"> at position </span><span style="color: #0000BB">$stepsPos</span><span style="color: #DD0000"> is not its position rounded up to a multiple of </span><span style="color: #0000BB">$stepsMin</span><span style="color: #DD0000">..</span><span style="color: #0000BB">$stepsMax</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br><br>    }<br><br>    if ( </span><span style="color: #0000BB">$stepsMode </span><span style="color: #007700">== </span><span style="color: #DD0000">'add' </span><span style="color: #007700">)<br>      </span><span style="color: #0000BB">$stepsDraw </span><span style="color: #007700">= </span><span style="color: #0000BB">$step </span><span style="color: #007700">- </span><span style="color: #0000BB">$stepsPos</span><span style="color: #007700">;<br>    else {<br>      if ( </span><span style="color: #0000BB">$step </span><span style="color: #007700">% </span><span style="color: #0000BB">$stepsPos </span><span style="color: #007700">)<br>        return </span><span style="color: #DD0000">"term </span><span style="color: #0000BB">$step</span><span style="color: #DD0000"> is not a multiple of its position </span><span style="color: #0000BB">$stepsPos</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br>      </span><span style="color: #0000BB">$stepsDraw </span><span style="color: #007700">= </span><span style="color: #0000BB">$step </span><span style="color: #007700">/ </span><span style="color: #0000BB">$stepsPos</span><span style="color: #007700">;<br>    }<br><br>    if ( </span><span style="color: #0000BB">$stepsDraw </span><span style="color: #007700">&lt; </span><span style="color: #0000BB">$stepsMin </span><span style="color: #007700">or </span><span style="color: #0000BB">$stepsDraw </span><span style="color: #007700">&gt; </span><span style="color: #0000BB">$stepsMax </span><span style="color: #007700">)<br>      return </span><span style="color: #DD0000">"term </span><span style="color: #0000BB">$step</span><span style="color: #DD0000"> at position </span><span style="color: #0000BB">$stepsPos</span><span style="color: #DD0000"> means a draw of </span><span style="color: #0000BB">$stepsDraw</span><span style="color: #DD0000">, outside </span><span style="color: #0000BB">$stepsMin</span><span style="color: #DD0000">..</span><span style="color: #0000BB">$stepsMax</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br><br>  }<br><br>  return </span><span style="color: #DD0000">'ok'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - one
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - one
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: properties/border_fires_once_on_a_single_row_which_is_both_ends<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">properties/border_fires_once_on_a_single_row_which_is_both_ends.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>one<font color="black">'</font></font>}</b><br>  [7]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">one</font><font color="red"></font>}</b><br>  <b>{<font color="blue">border<font color="black"><b><font color="red">@</font></b></font>one</font><font color="red"></font>}</b>|<b>{/<font color="blue">border<font color="black"><b><font color="red">@</font></b></font>one</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>one</font>}</b><br><b>{/<font color="blue">one</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax52315675ef97a536e9842603451a2e0a"></div>
+                        <script>
+                        padAjax52315675ef97a536e9842603451a2e0a = new XMLHttpRequest();
+                        padAjax52315675ef97a536e9842603451a2e0a.onreadystatechange=function() {
+                        if (padAjax52315675ef97a536e9842603451a2e0a.readyState === 4) {
+                        if (padAjax52315675ef97a536e9842603451a2e0a.status === 200) {
+                        document.getElementById("padAjax52315675ef97a536e9842603451a2e0a").innerHTML=padAjax52315675ef97a536e9842603451a2e0a.responseText;
+                        } else {
+                        document.getElementById("padAjax52315675ef97a536e9842603451a2e0a").innerHTML=padAjax52315675ef97a536e9842603451a2e0a.statusText;
+                        }
+                        }
+                        }
+                        padAjax52315675ef97a536e9842603451a2e0a.open("GET","http://localhost/pad/regression/framework/?properties/border_fires_once_on_a_single_row_which_is_both_ends&padInclude",true);
+                        padAjax52315675ef97a536e9842603451a2e0a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/remote - Page: prefetch<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">prefetch.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">prefetch.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Two slow sources asked for at once: each lands in the data store under its name, and<br>  // the two were served at the same time - one after the other, the second would have<br>  // started only when the first had ended. This suite runs one page at a time, so the<br>  // server has the workers to serve both together.<br><br>  </span><span style="color: #0000BB">$sets </span><span style="color: #007700">= </span><span style="color: #0000BB">padPrefetch </span><span style="color: #007700">( [<br>    </span><span style="color: #DD0000">'one' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'SELF://regression/remote/?slow&amp;padInclude&amp;n=1'</span><span style="color: #007700">,<br>    </span><span style="color: #DD0000">'two' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'SELF://regression/remote/?slow&amp;padInclude&amp;n=2'</span><span style="color: #007700">,<br>  ] );<br><br>  </span><span style="color: #0000BB">$first  </span><span style="color: #007700">= </span><span style="color: #0000BB">reset </span><span style="color: #007700">( </span><span style="color: #0000BB">$sets </span><span style="color: #007700">[</span><span style="color: #DD0000">'one'</span><span style="color: #007700">] );<br>  </span><span style="color: #0000BB">$second </span><span style="color: #007700">= </span><span style="color: #0000BB">reset </span><span style="color: #007700">( </span><span style="color: #0000BB">$sets </span><span style="color: #007700">[</span><span style="color: #DD0000">'two'</span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">$together </span><span style="color: #007700">= ( </span><span style="color: #0000BB">max </span><span style="color: #007700">( </span><span style="color: #0000BB">$first </span><span style="color: #007700">[</span><span style="color: #DD0000">'start'</span><span style="color: #007700">], </span><span style="color: #0000BB">$second </span><span style="color: #007700">[</span><span style="color: #DD0000">'start'</span><span style="color: #007700">] ) &lt; </span><span style="color: #0000BB">min </span><span style="color: #007700">( </span><span style="color: #0000BB">$first </span><span style="color: #007700">[</span><span style="color: #DD0000">'end'</span><span style="color: #007700">], </span><span style="color: #0000BB">$second </span><span style="color: #007700">[</span><span style="color: #DD0000">'end'</span><span style="color: #007700">] ) )<br>            ? </span><span style="color: #DD0000">'together' </span><span style="color: #007700">: </span><span style="color: #DD0000">'one after the other'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">one</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">one</font><font color="red"></font>}</b> <b>{<font color="blue">two</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">two</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>together</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb628e4cba689734690a41be2336ffd6b"></div>
+                        <script>
+                        padAjaxb628e4cba689734690a41be2336ffd6b = new XMLHttpRequest();
+                        padAjaxb628e4cba689734690a41be2336ffd6b.onreadystatechange=function() {
+                        if (padAjaxb628e4cba689734690a41be2336ffd6b.readyState === 4) {
+                        if (padAjaxb628e4cba689734690a41be2336ffd6b.status === 200) {
+                        document.getElementById("padAjaxb628e4cba689734690a41be2336ffd6b").innerHTML=padAjaxb628e4cba689734690a41be2336ffd6b.responseText;
+                        } else {
+                        document.getElementById("padAjaxb628e4cba689734690a41be2336ffd6b").innerHTML=padAjaxb628e4cba689734690a41be2336ffd6b.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb628e4cba689734690a41be2336ffd6b.open("GET","http://localhost/pad/regression/remote/?prefetch&padInclude",true);
+                        padAjaxb628e4cba689734690a41be2336ffd6b.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

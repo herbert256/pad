@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Parms functions - slug
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Parms functions - slug
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: fragments/pipes_5<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/pipes_5.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/pipes_5.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $intro </span><span style="color: #007700">= </span><span style="color: #DD0000">'The quick brown fox jumps over the lazy dog, twice before breakfast'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Crème Brûlée & Co.'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$size  </span><span style="color: #007700">= </span><span style="color: #0000BB">3221225472</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$quote </span><span style="color: #007700">= </span><span style="color: #DD0000">'it\'s &lt;/script&gt;'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green">$intro</font> <font color="black">|</font> <font color="blue">truncate(30)</font>}</b>&lt;/p&gt;<br>&lt;p&gt;?page=<b>{<font color="green">$title</font> <font color="black">|</font> <font color="blue">slug</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$size</font> <font color="black">|</font> <font color="blue">bytes</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$quote</font> <font color="black">|</font> <font color="blue">escape('js')</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc249a64332367cd621f31545f8e64c0c"></div>
+                        <script>
+                        padAjaxc249a64332367cd621f31545f8e64c0c = new XMLHttpRequest();
+                        padAjaxc249a64332367cd621f31545f8e64c0c.onreadystatechange=function() {
+                        if (padAjaxc249a64332367cd621f31545f8e64c0c.readyState === 4) {
+                        if (padAjaxc249a64332367cd621f31545f8e64c0c.status === 200) {
+                        document.getElementById("padAjaxc249a64332367cd621f31545f8e64c0c").innerHTML=padAjaxc249a64332367cd621f31545f8e64c0c.responseText;
+                        } else {
+                        document.getElementById("padAjaxc249a64332367cd621f31545f8e64c0c").innerHTML=padAjaxc249a64332367cd621f31545f8e64c0c.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc249a64332367cd621f31545f8e64c0c.open("GET","http://localhost/pad/manual/?fragments/pipes_5&padInclude",true);
+                        padAjaxc249a64332367cd621f31545f8e64c0c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: fragments/strings_3<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/strings_3.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/strings_3.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $post </span><span style="color: #007700">= </span><span style="color: #DD0000">'Crème Brûlée & Co. - a recipe'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$slug </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrSlug </span><span style="color: #007700">( </span><span style="color: #0000BB">$post </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$file   </span><span style="color: #007700">= </span><span style="color: #DD0000">'shop/orders/list.pad'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$top    </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrBefore     </span><span style="color: #007700">( </span><span style="color: #0000BB">$file</span><span style="color: #007700">, </span><span style="color: #DD0000">'/' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$folder </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrBeforeLast </span><span style="color: #007700">( </span><span style="color: #0000BB">$file</span><span style="color: #007700">, </span><span style="color: #DD0000">'/' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$base   </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrAfterLast  </span><span style="color: #007700">( </span><span style="color: #0000BB">$file</span><span style="color: #007700">, </span><span style="color: #DD0000">'/' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$html    </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;title&gt;Orders&lt;/title&gt;'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$heading </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrBetween </span><span style="color: #007700">( </span><span style="color: #0000BB">$html</span><span style="color: #007700">, </span><span style="color: #DD0000">'&lt;title&gt;'</span><span style="color: #007700">, </span><span style="color: #DD0000">'&lt;/title&gt;' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>slug</font>}</b> - the pipe: <b>{<font color="green">$post</font> <font color="black">|</font> <font color="blue">slug</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>top</font>}</b> | <b>{<font color="green"><font color="red">$</font>folder</font>}</b> | <b>{<font color="green"><font color="red">$</font>base</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>heading</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax2de4bd62430ce213ea17e111285b68b3"></div>
+                        <script>
+                        padAjax2de4bd62430ce213ea17e111285b68b3 = new XMLHttpRequest();
+                        padAjax2de4bd62430ce213ea17e111285b68b3.onreadystatechange=function() {
+                        if (padAjax2de4bd62430ce213ea17e111285b68b3.readyState === 4) {
+                        if (padAjax2de4bd62430ce213ea17e111285b68b3.status === 200) {
+                        document.getElementById("padAjax2de4bd62430ce213ea17e111285b68b3").innerHTML=padAjax2de4bd62430ce213ea17e111285b68b3.responseText;
+                        } else {
+                        document.getElementById("padAjax2de4bd62430ce213ea17e111285b68b3").innerHTML=padAjax2de4bd62430ce213ea17e111285b68b3.statusText;
+                        }
+                        }
+                        }
+                        padAjax2de4bd62430ce213ea17e111285b68b3.open("GET","http://localhost/pad/manual/?fragments/strings_3&padInclude",true);
+                        padAjax2de4bd62430ce213ea17e111285b68b3.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: functions/slug_makes_a_readable_url_part<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">functions/slug_makes_a_readable_url_part.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Crème Brûlée & Co.<font color="black">'</font> <font color="black">|</font> slug</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font> Hello<font color="black">,</font> World! <font color="black">'</font> <font color="black">|</font> slug(<font color="black">'</font>_<font color="black">'</font>)</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxaced3b205e60b875ca42ab1c40d91da8"></div>
+                        <script>
+                        padAjaxaced3b205e60b875ca42ab1c40d91da8 = new XMLHttpRequest();
+                        padAjaxaced3b205e60b875ca42ab1c40d91da8.onreadystatechange=function() {
+                        if (padAjaxaced3b205e60b875ca42ab1c40d91da8.readyState === 4) {
+                        if (padAjaxaced3b205e60b875ca42ab1c40d91da8.status === 200) {
+                        document.getElementById("padAjaxaced3b205e60b875ca42ab1c40d91da8").innerHTML=padAjaxaced3b205e60b875ca42ab1c40d91da8.responseText;
+                        } else {
+                        document.getElementById("padAjaxaced3b205e60b875ca42ab1c40d91da8").innerHTML=padAjaxaced3b205e60b875ca42ab1c40d91da8.statusText;
+                        }
+                        }
+                        }
+                        padAjaxaced3b205e60b875ca42ab1c40d91da8.open("GET","http://localhost/pad/regression/framework/?functions/slug_makes_a_readable_url_part&padInclude",true);
+                        padAjaxaced3b205e60b875ca42ab1c40d91da8.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: functions/slug_uses_its_separator_as_it_is_written<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">functions/slug_uses_its_separator_as_it_is_written.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a b c<font color="black">'</font> <font color="black">|</font> slug(<font color="black">'</font><font color="red">$</font>0<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a b<font color="black">'</font> <font color="black">|</font> slug(<font color="black">'</font>..<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>xavier max<font color="black">'</font> <font color="black">|</font> slug(<font color="black">'</font>x<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font> -a b- <font color="black">'</font> <font color="black">|</font> slug(<font color="black">'</font>--<font color="black">'</font>)</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax9e515801dc68647bf561eb368ce09775"></div>
+                        <script>
+                        padAjax9e515801dc68647bf561eb368ce09775 = new XMLHttpRequest();
+                        padAjax9e515801dc68647bf561eb368ce09775.onreadystatechange=function() {
+                        if (padAjax9e515801dc68647bf561eb368ce09775.readyState === 4) {
+                        if (padAjax9e515801dc68647bf561eb368ce09775.status === 200) {
+                        document.getElementById("padAjax9e515801dc68647bf561eb368ce09775").innerHTML=padAjax9e515801dc68647bf561eb368ce09775.responseText;
+                        } else {
+                        document.getElementById("padAjax9e515801dc68647bf561eb368ce09775").innerHTML=padAjax9e515801dc68647bf561eb368ce09775.statusText;
+                        }
+                        }
+                        }
+                        padAjax9e515801dc68647bf561eb368ce09775.open("GET","http://localhost/pad/regression/framework/?functions/slug_uses_its_separator_as_it_is_written&padInclude",true);
+                        padAjax9e515801dc68647bf561eb368ce09775.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: helpers/strings_slug_in_php_is_the_slug_pipe<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">helpers/strings_slug_in_php_is_the_slug_pipe.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">helpers/strings_slug_in_php_is_the_slug_pipe.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $texts </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'Crème Brûlée & Co.'</span><span style="color: #007700">, </span><span style="color: #DD0000">' Hello, World! '</span><span style="color: #007700">, </span><span style="color: #DD0000">'ÆØÅ æøå ß'</span><span style="color: #007700">, </span><span style="color: #DD0000">'--a--b--'</span><span style="color: #007700">, </span><span style="color: #DD0000">'' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$slugs </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$texts </span><span style="color: #007700">as </span><span style="color: #0000BB">$text </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$slugs </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$text</span><span style="color: #007700">, </span><span style="color: #DD0000">'dash' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrSlug </span><span style="color: #007700">( </span><span style="color: #0000BB">$text </span><span style="color: #007700">), </span><span style="color: #DD0000">'under' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrSlug </span><span style="color: #007700">( </span><span style="color: #0000BB">$text</span><span style="color: #007700">, </span><span style="color: #DD0000">'_' </span><span style="color: #007700">) ];<br><br>  </span><span style="color: #0000BB">$r </span><span style="color: #007700">= </span><span style="color: #0000BB">json_encode </span><span style="color: #007700">( [ </span><span style="color: #0000BB">padStrSlug </span><span style="color: #007700">( </span><span style="color: #0000BB">NULL </span><span style="color: #007700">), </span><span style="color: #0000BB">padStrSlug </span><span style="color: #007700">( </span><span style="color: #0000BB">0 </span><span style="color: #007700">), </span><span style="color: #0000BB">padStrSlug </span><span style="color: #007700">( </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">), </span><span style="color: #0000BB">padStrSlug </span><span style="color: #007700">( </span><span style="color: #0000BB">12.5 </span><span style="color: #007700">), </span><span style="color: #0000BB">padStrSlug </span><span style="color: #007700">( </span><span style="color: #DD0000">'a b c'</span><span style="color: #007700">, </span><span style="color: #DD0000">'$0' </span><span style="color: #007700">), </span><span style="color: #0000BB">padStrSlug </span><span style="color: #007700">( </span><span style="color: #DD0000">'xavier max'</span><span style="color: #007700">, </span><span style="color: #DD0000">'x' </span><span style="color: #007700">) ] );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">slugs</font><font color="red"></font>}</b><br>  [<b>{<font color="green"><font color="red">$</font>dash</font>}</b>=<b>{<font color="green">$text</font> <font color="black">|</font> <font color="blue">slug</font>}</b>|<b>{<font color="green"><font color="red">$</font>under</font>}</b>=<b>{<font color="green">$text</font> <font color="black">|</font> <font color="blue">slug('_')</font>}</b>]<br><b>{/<font color="blue">slugs</font><font color="red"></font>}</b><br><b>{<font color="green"><font color="red">!</font>r</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxe4b6aa3b53654c799c47249109a4b909"></div>
+                        <script>
+                        padAjaxe4b6aa3b53654c799c47249109a4b909 = new XMLHttpRequest();
+                        padAjaxe4b6aa3b53654c799c47249109a4b909.onreadystatechange=function() {
+                        if (padAjaxe4b6aa3b53654c799c47249109a4b909.readyState === 4) {
+                        if (padAjaxe4b6aa3b53654c799c47249109a4b909.status === 200) {
+                        document.getElementById("padAjaxe4b6aa3b53654c799c47249109a4b909").innerHTML=padAjaxe4b6aa3b53654c799c47249109a4b909.responseText;
+                        } else {
+                        document.getElementById("padAjaxe4b6aa3b53654c799c47249109a4b909").innerHTML=padAjaxe4b6aa3b53654c799c47249109a4b909.statusText;
+                        }
+                        }
+                        }
+                        padAjaxe4b6aa3b53654c799c47249109a4b909.open("GET","http://localhost/pad/regression/framework/?helpers/strings_slug_in_php_is_the_slug_pipe&padInclude",true);
+                        padAjaxe4b6aa3b53654c799c47249109a4b909.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: helpers/strings_the_slug_after_and_before_pipes_answer_as_they_did<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">helpers/strings_the_slug_after_and_before_pipes_answer_as_they_did.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">helpers/strings_the_slug_after_and_before_pipes_answer_as_they_did.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $texts </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'Crème Brûlée & Co.'</span><span style="color: #007700">, </span><span style="color: #DD0000">' Hello, World! '</span><span style="color: #007700">, </span><span style="color: #DD0000">'a/b::c/d'</span><span style="color: #007700">, </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #DD0000">'0'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Ελληνικά & Ӄириллица'</span><span style="color: #007700">, </span><span style="color: #DD0000">"tab\there"</span><span style="color: #007700">, </span><span style="color: #DD0000">'ÆØÅ æøå ß'</span><span style="color: #007700">, </span><span style="color: #DD0000">'--a--b--'</span><span style="color: #007700">, </span><span style="color: #DD0000">'x/y' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">texts</font><font color="red"></font>}</b><br>  [<b>{<font color="green">$texts</font> <font color="black">|</font> <font color="blue">slug</font>}</b>|<b>{<font color="green">$texts</font> <font color="black">|</font> <font color="blue">slug('_')</font>}</b>|<b>{<font color="green">$texts</font> <font color="black">|</font> <font color="blue">slug('')</font>}</b>|<b>{<font color="green">$texts</font> <font color="black">|</font> <font color="blue">after('/')</font>}</b>|<b>{<font color="green">$texts</font> <font color="black">|</font> <font color="blue">afterLast('/')</font>}</b>|<b>{<font color="green">$texts</font> <font color="black">|</font> <font color="blue">before('/')</font>}</b>|<b>{<font color="green">$texts</font> <font color="black">|</font> <font color="blue">beforeLast('/')</font>}</b>|<b>{<font color="green">$texts</font> <font color="black">|</font> <font color="purple">after('</font><font color="black">:</font><font color="blue">:')</font>}</b>|<b>{<font color="green">$texts</font> <font color="black">|</font> <font color="blue">beforeLast('zz')</font>}</b>]<br><b>{/<font color="blue">texts</font><font color="red"></font>}</b><br>[<b>{<font color="blue">echo </font><font color="red">12345 <font color="black">|</font> after(3)</font>}</b>|<b>{<font color="blue">echo </font><font color="red">12345 <font color="black">|</font> before(3)</font>}</b>|<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> after(<font color="black">'</font><font color="black">'</font>)</font>}</b>|<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> afterLast(<font color="black">'</font><font color="black">'</font>)</font>}</b>|<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> before(<font color="black">'</font><font color="black">'</font>)</font>}</b>|<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> beforeLast(<font color="black">'</font><font color="black">'</font>)</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc2a96139e3dfa499f2bc900e3c6ee911"></div>
+                        <script>
+                        padAjaxc2a96139e3dfa499f2bc900e3c6ee911 = new XMLHttpRequest();
+                        padAjaxc2a96139e3dfa499f2bc900e3c6ee911.onreadystatechange=function() {
+                        if (padAjaxc2a96139e3dfa499f2bc900e3c6ee911.readyState === 4) {
+                        if (padAjaxc2a96139e3dfa499f2bc900e3c6ee911.status === 200) {
+                        document.getElementById("padAjaxc2a96139e3dfa499f2bc900e3c6ee911").innerHTML=padAjaxc2a96139e3dfa499f2bc900e3c6ee911.responseText;
+                        } else {
+                        document.getElementById("padAjaxc2a96139e3dfa499f2bc900e3c6ee911").innerHTML=padAjaxc2a96139e3dfa499f2bc900e3c6ee911.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc2a96139e3dfa499f2bc900e3c6ee911.open("GET","http://localhost/pad/regression/framework/?helpers/strings_the_slug_after_and_before_pipes_answer_as_they_did&padInclude",true);
+                        padAjaxc2a96139e3dfa499f2bc900e3c6ee911.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

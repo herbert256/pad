@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: cli/_commands
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: cli/ commands
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=cli.html">..</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7export.php.html">export.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7help.php.html">help.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7lib.php.html">lib.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7lint.php.html">lint.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7new.php.html">new.php</a>
+                  </li>
+                  <li class="current">render.php
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7serve.php.html">serve.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7test.php.html">test.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  _commands/render.php
+                </h3>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// pad render &lt;app&gt; [page] [name=value ...]: one page of any application, rendered here<br>  // and written to stdout - the engine run in this process, as the cli application is, with<br>  // the page and its request values set the way a URL would set them.<br>  //<br>  // A failed page answers what every command-line request answers: the JSON error report<br>  // (with its template position) and exit status 1. PAD_HOST, when set, is the server the<br>  // page's own links and fetches point at ($padHostBase, and $padRoot its mount). PAD_LINT, set<br>  // by pad lint, puts the strict check on whatever the application chose; PAD_EXPORT, set by<br>  // pad export, asks for the page exactly as the web gets it; PAD_TEST, set by pad test,<br>  // runs a test page.<br><br>  </span><span style="color: #0000BB">$padRenderApp  </span><span style="color: #007700">= </span><span style="color: #0000BB">$argv </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padRenderPage </span><span style="color: #007700">= </span><span style="color: #0000BB">$argv </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'index'</span><span style="color: #007700">;<br><br>  if ( ! </span><span style="color: #0000BB">cliApp </span><span style="color: #007700">( </span><span style="color: #0000BB">$padRenderApp </span><span style="color: #007700">) )<br>    return </span><span style="color: #0000BB">cliFail </span><span style="color: #007700">( </span><span style="color: #DD0000">"there is no application named '</span><span style="color: #0000BB">$padRenderApp</span><span style="color: #DD0000">' - pad render &lt;app&gt; [page]" </span><span style="color: #007700">);<br><br>  if ( </span><span style="color: #0000BB">str_contains </span><span style="color: #007700">( </span><span style="color: #0000BB">$padRenderPage</span><span style="color: #007700">, </span><span style="color: #DD0000">'=' </span><span style="color: #007700">) ) {<br>    </span><span style="color: #0000BB">$padRenderArgs </span><span style="color: #007700">= </span><span style="color: #0000BB">array_slice </span><span style="color: #007700">( </span><span style="color: #0000BB">$argv</span><span style="color: #007700">, </span><span style="color: #0000BB">3 </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$padRenderPage </span><span style="color: #007700">= </span><span style="color: #DD0000">'index'</span><span style="color: #007700">;<br>  } else<br>    </span><span style="color: #0000BB">$padRenderArgs </span><span style="color: #007700">= </span><span style="color: #0000BB">array_slice </span><span style="color: #007700">( </span><span style="color: #0000BB">$argv</span><span style="color: #007700">, </span><span style="color: #0000BB">4 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$_GET </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$padRenderArgs </span><span style="color: #007700">as </span><span style="color: #0000BB">$padRenderArg </span><span style="color: #007700">) {<br>    list ( </span><span style="color: #0000BB">$padRenderKey</span><span style="color: #007700">, </span><span style="color: #0000BB">$padRenderValue </span><span style="color: #007700">) = </span><span style="color: #0000BB">array_pad </span><span style="color: #007700">( </span><span style="color: #0000BB">explode </span><span style="color: #007700">( </span><span style="color: #DD0000">'='</span><span style="color: #007700">, </span><span style="color: #0000BB">$padRenderArg</span><span style="color: #007700">, </span><span style="color: #0000BB">2 </span><span style="color: #007700">), </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'' </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$_GET </span><span style="color: #007700">[</span><span style="color: #0000BB">$padRenderKey</span><span style="color: #007700">] = </span><span style="color: #0000BB">$padRenderValue</span><span style="color: #007700">;<br>  }<br><br>  </span><span style="color: #0000BB">$_REQUEST </span><span style="color: #007700">= </span><span style="color: #0000BB">$_GET</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// A GET, as the URL would have been - pages that test the method find one.<br><br>  </span><span style="color: #0000BB">$_SERVER </span><span style="color: #007700">[</span><span style="color: #DD0000">'REQUEST_METHOD'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'GET'</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// inits/page.php reads the first argument as the page when nothing else names one; the<br>  // page is named here, so the arguments go.<br><br>  </span><span style="color: #0000BB">$_SERVER </span><span style="color: #007700">[</span><span style="color: #DD0000">'argv'</span><span style="color: #007700">] = [ </span><span style="color: #0000BB">$_SERVER </span><span style="color: #007700">[</span><span style="color: #DD0000">'argv'</span><span style="color: #007700">] [</span><span style="color: #0000BB">0</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'pad' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$_SERVER </span><span style="color: #007700">[</span><span style="color: #DD0000">'argc'</span><span style="color: #007700">] = </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// The settings below go through the queue inits/configSet.php applies after the config<br>  // files, each added to it: a plain global set here is overwritten by config/config.php,<br>  // which is how PAD_HOST was ignored - its $padHostBase came back '' and every SELF://<br>  // fetch went to http://localhost/.<br><br>  </span><span style="color: #0000BB">$padSetConfig </span><span style="color: #007700">= [];<br><br>  </span><span style="color: #FF8000">// Its path is the mount, $padRoot - what $padGo, a page's own ?page links, are built on,<br>  // the way editors/render.php reads its --host. Without it a page rendered for a server<br>  // mounted under /pad/ linked to /&lt;app&gt;/?page, and pad export left those links unrewritten.<br><br>  </span><span style="color: #007700">if ( </span><span style="color: #0000BB">getenv </span><span style="color: #007700">( </span><span style="color: #DD0000">'PAD_HOST' </span><span style="color: #007700">) ) {<br>    </span><span style="color: #0000BB">$padSetConfig </span><span style="color: #007700">[</span><span style="color: #DD0000">'HostBase'</span><span style="color: #007700">] = </span><span style="color: #0000BB">getenv </span><span style="color: #007700">( </span><span style="color: #DD0000">'PAD_HOST' </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$padRoot </span><span style="color: #007700">= </span><span style="color: #0000BB">rtrim </span><span style="color: #007700">( </span><span style="color: #DD0000">'/' </span><span style="color: #007700">. </span><span style="color: #0000BB">trim </span><span style="color: #007700">( (string) </span><span style="color: #0000BB">parse_url </span><span style="color: #007700">( </span><span style="color: #0000BB">getenv </span><span style="color: #007700">( </span><span style="color: #DD0000">'PAD_HOST' </span><span style="color: #007700">), </span><span style="color: #0000BB">PHP_URL_PATH </span><span style="color: #007700">), </span><span style="color: #DD0000">'/' </span><span style="color: #007700">), </span><span style="color: #DD0000">'/' </span><span style="color: #007700">) . </span><span style="color: #DD0000">'/'</span><span style="color: #007700">;<br>  }<br><br>  if ( </span><span style="color: #0000BB">getenv </span><span style="color: #007700">( </span><span style="color: #DD0000">'PAD_LINT' </span><span style="color: #007700">) )<br>    </span><span style="color: #0000BB">$padSetConfig </span><span style="color: #007700">[</span><span style="color: #DD0000">'CheckSyntax'</span><span style="color: #007700">] = </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// pad export wants the page as the web gets it - the web output type, tidy and all, where<br>  // the command line otherwise writes it as console text - and nothing a developer's own<br>  // machine adds to a page: no toolbar, no live reload.<br><br>  </span><span style="color: #007700">if ( </span><span style="color: #0000BB">getenv </span><span style="color: #007700">( </span><span style="color: #DD0000">'PAD_EXPORT' </span><span style="color: #007700">) )<br>    </span><span style="color: #0000BB">$padSetConfig </span><span style="color: #007700">= </span><span style="color: #0000BB">array_merge </span><span style="color: #007700">( </span><span style="color: #0000BB">$padSetConfig</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'OutputType' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'web'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Toolbar' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">, </span><span style="color: #DD0000">'Reload' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">] );<br><br>  </span><span style="color: #FF8000">// pad test renders the application's _tests/ pages, bare like the suites' pages, with<br>  // every {assert} checked, and reads the status the request ended with from stderr - the<br>  // process status says only whether it went well.<br><br>  </span><span style="color: #007700">if ( </span><span style="color: #0000BB">getenv </span><span style="color: #007700">( </span><span style="color: #DD0000">'PAD_TEST' </span><span style="color: #007700">) ) {<br><br>    </span><span style="color: #0000BB">$padTestRun           </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br>    </span><span style="color: #0000BB">$padSetConfig         </span><span style="color: #007700">= </span><span style="color: #0000BB">array_merge </span><span style="color: #007700">( </span><span style="color: #0000BB">$padSetConfig</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'Assert' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">, </span><span style="color: #DD0000">'Toolbar' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">, </span><span style="color: #DD0000">'Reload' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">] );<br>    </span><span style="color: #0000BB">$_GET </span><span style="color: #007700">[</span><span style="color: #DD0000">'padInclude'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>    </span><span style="color: #0000BB">$_REQUEST             </span><span style="color: #007700">= </span><span style="color: #0000BB">$_GET</span><span style="color: #007700">;<br><br>    </span><span style="color: #0000BB">register_shutdown_function </span><span style="color: #007700">( function () {<br>      </span><span style="color: #0000BB">fwrite </span><span style="color: #007700">( </span><span style="color: #0000BB">STDERR</span><span style="color: #007700">, </span><span style="color: #DD0000">"\nPAD-STATUS " </span><span style="color: #007700">. ( </span><span style="color: #0000BB">$GLOBALS </span><span style="color: #007700">[</span><span style="color: #DD0000">'padExitStop'</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">500 </span><span style="color: #007700">) . </span><span style="color: #DD0000">"\n" </span><span style="color: #007700">);<br>    } );<br><br>  }<br><br>  </span><span style="color: #0000BB">$padApp  </span><span style="color: #007700">= </span><span style="color: #0000BB">$padRenderApp</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padPage </span><span style="color: #007700">= </span><span style="color: #0000BB">$padRenderPage</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padApps </span><span style="color: #007700">= </span><span style="color: #0000BB">cliHome </span><span style="color: #007700">() . </span><span style="color: #DD0000">'/apps/'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padData </span><span style="color: #007700">= </span><span style="color: #0000BB">cliHome </span><span style="color: #007700">() . </span><span style="color: #DD0000">'/DATA/'</span><span style="color: #007700">;<br><br>  unset ( </span><span style="color: #0000BB">$padRenderApp</span><span style="color: #007700">, </span><span style="color: #0000BB">$padRenderPage</span><span style="color: #007700">, </span><span style="color: #0000BB">$padRenderArgs</span><span style="color: #007700">, </span><span style="color: #0000BB">$padRenderArg</span><span style="color: #007700">, </span><span style="color: #0000BB">$padRenderKey</span><span style="color: #007700">, </span><span style="color: #0000BB">$padRenderValue </span><span style="color: #007700">);<br><br>  include </span><span style="color: #0000BB">cliHome </span><span style="color: #007700">() . </span><span style="color: #DD0000">'/pad/pad.php'</span><span style="color: #007700">;<br><br>  return </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

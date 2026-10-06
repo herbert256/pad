@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - colors
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - colors
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: fragments/toolbar_1<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/toolbar_1.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/toolbar_1.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padToolbar </span><span style="color: #007700">= </span><span style="color: #DD0000">'local'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$colors </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'color' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'red' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'color' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'green' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">colors</font><font color="red"></font>}</b>&lt;span&gt;<b>{<font color="green"><font color="red">$</font>color</font>}</b>&lt;/span&gt; <b>{/<font color="blue">colors</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxdfede2cfe8389e3b7dc3647792ee163c"></div>
+                        <script>
+                        padAjaxdfede2cfe8389e3b7dc3647792ee163c = new XMLHttpRequest();
+                        padAjaxdfede2cfe8389e3b7dc3647792ee163c.onreadystatechange=function() {
+                        if (padAjaxdfede2cfe8389e3b7dc3647792ee163c.readyState === 4) {
+                        if (padAjaxdfede2cfe8389e3b7dc3647792ee163c.status === 200) {
+                        document.getElementById("padAjaxdfede2cfe8389e3b7dc3647792ee163c").innerHTML=padAjaxdfede2cfe8389e3b7dc3647792ee163c.responseText;
+                        } else {
+                        document.getElementById("padAjaxdfede2cfe8389e3b7dc3647792ee163c").innerHTML=padAjaxdfede2cfe8389e3b7dc3647792ee163c.statusText;
+                        }
+                        }
+                        }
+                        padAjaxdfede2cfe8389e3b7dc3647792ee163c.open("GET","http://localhost/pad/manual/?fragments/toolbar_1&padInclude",true);
+                        padAjaxdfede2cfe8389e3b7dc3647792ee163c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: db/record_twice<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">db/record_twice.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">db/record_twice.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Two RECORD reads in one PHP file, the first iterated twice, and a plain list after them:<br>  // each record is one occurrence wherever and however often it is used, and the list one<br>  // occurrence per value.<br><br>  </span><span style="color: #0000BB">$jim    </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"record name, phone from staff where name = 'jim'" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$joe    </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"record name, phone from staff where name = 'joe'" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$colors </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'red'</span><span style="color: #007700">, </span><span style="color: #DD0000">'green'</span><span style="color: #007700">, </span><span style="color: #DD0000">'blue' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">jim</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b>/<b>{<font color="green"><font color="red">$</font>phone</font>}</b>;<b>{/<font color="blue">jim</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue">joe</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b>/<b>{<font color="green"><font color="red">$</font>phone</font>}</b>;<b>{/<font color="blue">joe</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue">jim</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b>;<b>{/<font color="blue">jim</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue">colors</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>colors</font>}</b>;<b>{/<font color="blue">colors</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax433ffb5fb3b239b0aaf913e519afc2a3"></div>
+                        <script>
+                        padAjax433ffb5fb3b239b0aaf913e519afc2a3 = new XMLHttpRequest();
+                        padAjax433ffb5fb3b239b0aaf913e519afc2a3.onreadystatechange=function() {
+                        if (padAjax433ffb5fb3b239b0aaf913e519afc2a3.readyState === 4) {
+                        if (padAjax433ffb5fb3b239b0aaf913e519afc2a3.status === 200) {
+                        document.getElementById("padAjax433ffb5fb3b239b0aaf913e519afc2a3").innerHTML=padAjax433ffb5fb3b239b0aaf913e519afc2a3.responseText;
+                        } else {
+                        document.getElementById("padAjax433ffb5fb3b239b0aaf913e519afc2a3").innerHTML=padAjax433ffb5fb3b239b0aaf913e519afc2a3.statusText;
+                        }
+                        }
+                        }
+                        padAjax433ffb5fb3b239b0aaf913e519afc2a3.open("GET","http://localhost/pad/regression/pages/?db/record_twice&padInclude",true);
+                        padAjax433ffb5fb3b239b0aaf913e519afc2a3.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/toolbar - Page: sample<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">sample.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">sample.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The page the toolbar is tested on. It switches the toolbar on itself rather than in the<br>  // application's config, so the index and the verdict - which the suite compares as they<br>  // render - carry no bar with its ever-changing timings.<br><br>  </span><span style="color: #0000BB">$padToolbar </span><span style="color: #007700">= </span><span style="color: #DD0000">'local'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$answer </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"field 6 * 7" </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$colors </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'color' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'red' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'color' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'green' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;html&gt;<br>&lt;body&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>answer</font>}</b>&lt;/p&gt;<br><b>{<font color="blue">colors</font><font color="red"></font>}</b>&lt;span&gt;<b>{<font color="green"><font color="red">$</font>color</font>}</b>&lt;/span&gt;<b>{/<font color="blue">colors</font><font color="red"></font>}</b><br>&lt;/body&gt;<br>&lt;/html&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3ad83ac63f0eb3ae97073659314e3124"></div>
+                        <script>
+                        padAjax3ad83ac63f0eb3ae97073659314e3124 = new XMLHttpRequest();
+                        padAjax3ad83ac63f0eb3ae97073659314e3124.onreadystatechange=function() {
+                        if (padAjax3ad83ac63f0eb3ae97073659314e3124.readyState === 4) {
+                        if (padAjax3ad83ac63f0eb3ae97073659314e3124.status === 200) {
+                        document.getElementById("padAjax3ad83ac63f0eb3ae97073659314e3124").innerHTML=padAjax3ad83ac63f0eb3ae97073659314e3124.responseText;
+                        } else {
+                        document.getElementById("padAjax3ad83ac63f0eb3ae97073659314e3124").innerHTML=padAjax3ad83ac63f0eb3ae97073659314e3124.statusText;
+                        }
+                        }
+                        }
+                        padAjax3ad83ac63f0eb3ae97073659314e3124.open("GET","http://localhost/pad/regression/toolbar/?sample&padInclude",true);
+                        padAjax3ad83ac63f0eb3ae97073659314e3124.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

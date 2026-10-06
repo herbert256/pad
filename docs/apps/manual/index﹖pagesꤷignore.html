@@ -1,9 +1,23 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<!DOCTYPE html>
+<html>
+  <head>
     <title>
-      PAD - ignore
+      PAD - Ignore - Preventing PAD from Parsing Curly Braces
     </title>
+    <style>
+    .example-box {
+    border: 2px solid #4CAF50;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 8px;
+    background: #f0f8ff;
+    }
+
+    .example-box h4 {
+    margin: 0 0 10px 0;
+    color: #4CAF50;
+    }
+    </style>
   </head>
   <body>
     <center>
@@ -11,380 +25,436 @@
         PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
       </h1>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table><br>
+      </table><br>
       <hr width="75%">
     </center>
     <blockquote>
       <center>
         <blockquote>
           <h1>
-            Ignore
+            Ignore - Preventing PAD from Parsing Curly Braces
           </h1>
-          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tbody><tr>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
               <td>
                 <center>
-                  <h1>
-                    Ignore - Preventing PAD from Parsing Curly Braces
-                  </h1>
-                  <p>
-                    The <b>{ignore}</b> feature tells PAD not to parse curly braces <code>{}</code> as PAD tags within specific content. This is essential when working with JavaScript, JSON data, CSS, or any content that uses curly braces for its own syntax.
-                  </p>
-                  <h2>
-                    Why Use Ignore?
-                  </h2>
-                  <p>
-                    PAD normally parses all <code>{}</code> pairs as potential PAD tags. When your content contains curly braces that should be treated as literal text (like JavaScript code or JSON data), you need to tell PAD to ignore them.
-                  </p>
-                  <h2>
-                    Three Ways to Use Ignore
-                  </h2>
-                  <h3>
-                    1. As a Tag Pair: <code>{ignore}...{/ignore}</code>
-                  </h3>
-                  <p>
-                    Wrap content in ignore tags to prevent PAD from parsing any curly braces within that block. This is commonly used for inline JavaScript or CSS.
-                  </p>
-                  <h4>
-                    Example 1: JavaScript with Object Literals
-                  </h4>
-                  <p>
-                    Without <b>{ignore}</b>, PAD would try to parse the JavaScript object literal as PAD tags:
-                  </p>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top"></td>
-                    </tr>
-                  </tbody></table>
-                  <h4>
-                    Example 2: Inline CSS with Selector Blocks
-                  </h4>
-                  <p>
-                    CSS uses curly braces for selector blocks. Wrap in <b>{ignore}</b> to prevent PAD from parsing them:
-                  </p>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top"></td>
-                    </tr>
-                  </tbody></table>
-                  <h3>
-                    2. As a Pipe Function: <code>| ignore</code>
-                  </h3>
-                  <p>
-                    Apply ignore to the output of an expression to prevent PAD from parsing curly braces in that output. This is useful when passing JSON data to JavaScript.
-                  </p>
-                  <h4>
-                    Example 3: JSON Data in Attributes
-                  </h4>
-                  <p>
-                    When a variable contains JSON data, use the <b>{ignore}</b> pipe function to prevent PAD from parsing the curly braces:
-                  </p>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top"></td>
-                    </tr>
-                  </tbody></table>
-                  <p>
-                    The JSON data was passed from PAD/PHP through a data attribute using <code>{echo $usersJson | ignore}</code>.
-                  </p>
-                  <h3>
-                    3. As an Option: <code>ignore</code>
-                  </h3>
-                  <p>
-                    Add the ignore option to a tag to prevent PAD from parsing curly braces in its content.
-                  </p>
-                  <h4>
-                    Example 4: Data Tag with JSON
-                  </h4>
-                  <p>
-                    Use the <b>{ignore}</b> option on a tag to prevent PAD from parsing curly braces in its content:
-                  </p>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top"></td>
-                    </tr>
-                  </tbody></table>
-                  <p>
-                    Without the ignore option, PAD would try to parse <code>{"theme": "dark"}</code> as PAD tags, causing errors.
-                  </p>
-                  <h2>
-                    Best Practices
-                  </h2>
-                  <ul>
-                    <li>
-                      <strong>Always use <b>{ignore}</b> for JavaScript blocks</strong> - Any <code>&lt;script&gt;</code> tag with JavaScript should be wrapped
-                    </li>
-                    <li>
-                      <strong>Use <code>| ignore</code> for dynamic JSON</strong> - When expressions output JSON, pipe through ignore
-                    </li>
-                    <li>
-                      <strong>Keep CSS in external files</strong> - But if inline CSS is needed, wrap in <b>{ignore}</b>
-                    </li>
-                    <li>
-                      <strong>Minimal scope</strong> - Only wrap what needs to be ignored, not entire templates
-                    </li>
-                    <li>
-                      <strong>Not needed for HTML</strong> - Regular HTML doesn't use curly braces, no ignore needed
-                    </li>
-                  </ul>
-                  <h2>
-                    What Gets Ignored?
-                  </h2>
-                  <p>
-                    When ignore is active, PAD will NOT parse:
-                  </p>
-                  <ul>
-                    <li>
-                      <code>{variableName}</code> - Not treated as a variable reference
-                    </li>
-                    <li>
-                      <code>{tagName}</code> - Not treated as a PAD tag
-                    </li>
-                    <li>
-                      <code>{if condition}...{/if}</code> - Not treated as conditional
-                    </li>
-                    <li>
-                      <code>{echo $expr}</code> - Not treated as expression
-                    </li>
-                  </ul>
-                  <p>
-                    Everything within ignored content is treated as <strong>literal text</strong>.
-                  </p>
-                  <h2>
-                    Common Use Cases
-                  </h2>
-                  <table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;">
-                    <tbody><tr style="background: #f0f0f0;">
-                      <th>
-                        Scenario
-                      </th>
-                      <th>
-                        Method
-                      </th>
-                      <th>
-                        Example
-                      </th>
-                    </tr>
-                    <tr>
-                      <td>
-                        Inline JavaScript
-                      </td>
-                      <td>
-                        Tag Pair
-                      </td>
-                      <td>
-                        <code>{ignore}&lt;script&gt;...{/ignore}</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        Inline CSS
-                      </td>
-                      <td>
-                        Tag Pair
-                      </td>
-                      <td>
-                        <code>{ignore}&lt;style&gt;...{/ignore}</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        React/JSX Code
-                      </td>
-                      <td>
-                        Tag Pair
-                      </td>
-                      <td>
-                        <code>{ignore}&lt;script type="text/babel"&gt;...{/ignore}</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        JSON in Attributes
-                      </td>
-                      <td>
-                        Pipe Function
-                      </td>
-                      <td>
-                        <code>data-json="{$jsonVar | ignore}"</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        JSON in Data Block
-                      </td>
-                      <td>
-                        Option
-                      </td>
-                      <td>
-                        <code>{data 'name' ignore}</code>
-                      </td>
-                    </tr>
-                  </tbody></table>
-                  <h2>
-                    Important Notes
-                  </h2>
-                  <ul>
-                    <li>
-                      <strong>Cannot nest</strong> - Once inside an ignore block, all content is literal until <code>{/ignore}</code>
-                    </li>
-                    <li>
-                      <strong>Use sparingly</strong> - Only use where necessary to avoid confusion
-                    </li>
-                    <li>
-                      <strong>External files preferred</strong> - For large JavaScript or CSS, use external files instead of inline code
-                    </li>
-                  </ul>
-                  <h2>
-                    Summary
-                  </h2>
-                  <table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;">
-                    <tbody><tr style="background: #f0f0f0;">
-                      <th>
-                        Method
-                      </th>
-                      <th>
-                        Syntax
-                      </th>
-                      <th>
-                        Use Case
-                      </th>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>Tag Pair</strong>
-                      </td>
-                      <td>
-                        <code>{ignore}...{/ignore}</code>
-                      </td>
-                      <td>
-                        Inline JavaScript, CSS, large blocks of code
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>Pipe Function</strong>
-                      </td>
-                      <td>
-                        <code>{expression | ignore}</code>
-                      </td>
-                      <td>
-                        Expression output contains JSON or curly braces
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>Option</strong>
-                      </td>
-                      <td>
-                        <code>{tag ignore}</code>
-                      </td>
-                      <td>
-                        Tag content should not be parsed
-                      </td>
-                    </tr>
-                  </tbody></table>
-                  <h2>
-                    See Also
-                  </h2>
-                  <ul>
-                    <li>
-                      <b>{open}</b> - Output opening brace <code>{</code>
-                    </li>
-                    <li>
-                      <b>{close}</b> - Output closing brace <code>}</code>
-                    </li>
-                    <li>
-                      <b>{echo}</b> - Evaluate expressions
-                    </li>
-                    <li>
-                      <b>{data}</b> - Define inline data
-                    </li>
-                  </ul>
+                  <div style="display: inline-block; text-align: left;">
+                    <p>
+                      The <b>{ignore}</b> feature tells PAD not to parse curly braces <code>{}</code> as PAD tags within specific content. This is essential when working with JavaScript, JSON data, CSS, or any content that uses curly braces for its own syntax.
+                    </p>
+                    <h2>
+                      Why Use Ignore?
+                    </h2>
+                    <p>
+                      PAD normally parses all <code>{}</code> pairs as potential PAD tags. When your content contains curly braces that should be treated as literal text (like JavaScript code or JSON data), you need to tell PAD to ignore them.
+                    </p>
+                    <h2>
+                      Three Ways to Use Ignore
+                    </h2>
+                    <h3>
+                      1. As a Tag Pair: <code>{ignore}...{/ignore}</code>
+                    </h3>
+                    <p>
+                      Wrap content in ignore tags to prevent PAD from parsing any curly braces within that block. This is commonly used for inline JavaScript or CSS.
+                    </p>
+                    <h4>
+                      Example 1: JavaScript with Object Literals
+                    </h4>
+                    <p>
+                      Without <b>{ignore}</b>, PAD would try to parse the JavaScript object literal as PAD tags:
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2"></font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/ignore_1.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top"></td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><b>{<font color="blue">ignore</font><font color="red"></font>}</b><br>  &lt;script&gt;<br>    const user = {<br>      name: 'Alice',<br>      role: 'Developer',<br>      active: true<br>    };<br><br>    if (user.active) {<br>      console.log('User: ' + user.name + ' (' + user.role + ')');<br>    }<br>  &lt;/script&gt;<br><b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br><br>&lt;p&gt;JavaScript executed. Check browser console for output.&lt;/p&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <script>
+                          const user = {
+                          name: 'Alice',
+                          role: 'Developer',
+                          active: true
+                          };
+
+                          if (user.active) {
+                          console.log('User: ' + user.name + ' (' + user.role + ')');
+                          }
+                          </script>
+                          <p>
+                            JavaScript executed. Check browser console for output.
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <h4>
+                      Example 2: Inline CSS with Selector Blocks
+                    </h4>
+                    <p>
+                      CSS uses curly braces for selector blocks. Wrap in <b>{ignore}</b> to prevent PAD from parsing them:
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2"></font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/ignore_2.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top"></td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><b>{<font color="blue">ignore</font><font color="red"></font>}</b>&lt;style&gt;<br>  .example-box {<br>    border: 2px solid #4CAF50;<br>    padding: 20px;<br>    margin: 10px 0;<br>    border-radius: 8px;<br>    background: #f0f8ff;<br>  }<br><br>  .example-box h4 {<br>    margin: 0 0 10px 0;<br>    color: #4CAF50;<br>  }<br>&lt;/style&gt;<b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br><br>&lt;div class="example-box"&gt;<br>  &lt;h4&gt;Styled Box&lt;/h4&gt;<br>  &lt;p&gt;This box uses the CSS defined above.&lt;/p&gt;<br>&lt;/div&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <div class="example-box">
+                            <h4>
+                              Styled Box
+                            </h4>
+                            <p>
+                              This box uses the CSS defined above.
+                            </p>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                    <h3>
+                      2. As a Pipe Function: <code>| ignore</code>
+                    </h3>
+                    <p>
+                      Apply ignore to the output of an expression to prevent PAD from parsing curly braces in that output. This is useful when passing JSON data to JavaScript.
+                    </p>
+                    <h4>
+                      Example 3: JSON Data in Attributes
+                    </h4>
+                    <p>
+                      When a variable contains JSON data, use the <b>{ignore}</b> pipe function to prevent PAD from parsing the curly braces:
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/ignore_4.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/ignore_4.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Sample data for JSON example<br>  </span><span style="color: #0000BB">$userData </span><span style="color: #007700">= [<br>    [</span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Alice'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Developer'</span><span style="color: #007700">],<br>    [</span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Designer'</span><span style="color: #007700">],<br>    [</span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Charlie'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Manager'</span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #FF8000">// Encode to JSON with HTML escaping<br>  </span><span style="color: #0000BB">$usersJson </span><span style="color: #007700">= </span><span style="color: #0000BB">htmlspecialchars</span><span style="color: #007700">(</span><span style="color: #0000BB">json_encode</span><span style="color: #007700">(</span><span style="color: #0000BB">$userData</span><span style="color: #007700">), </span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">, </span><span style="color: #DD0000">'UTF-8'</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;div id="ignore-example-4" data-users="<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>usersJson <font color="black">|</font> ignore</font>}</b>"&gt;&lt;/div&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b>&lt;script&gt;<br>  const element = document.getElementById('ignore-example-4');<br>  const users = JSON.parse(element.dataset.users);<br><br>  const html = '&lt;ul&gt;' + users.map(user =&gt;<br>    '&lt;li&gt;&lt;strong&gt;' + user.name + '&lt;/strong&gt; - ' + user.role + '&lt;/li&gt;'<br>  ).join('') + '&lt;/ul&gt;';<br><br>  element.innerHTML = html;<br>&lt;/script&gt;<b>{/<font color="blue">ignore</font><font color="red"></font>}</b></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <div id="ignore-example-4" data-users="[{&quot;id&quot;:1,&quot;name&quot;:&quot;Alice&quot;,&quot;role&quot;:&quot;Developer&quot;},{&quot;id&quot;:2,&quot;name&quot;:&quot;Bob&quot;,&quot;role&quot;:&quot;Designer&quot;},{&quot;id&quot;:3,&quot;name&quot;:&quot;Charlie&quot;,&quot;role&quot;:&quot;Manager&quot;}]"></div>
+                          <script>
+                          const element = document.getElementById('ignore-example-4');
+                          const users = JSON.parse(element.dataset.users);
+
+                          const html = '<ul>' + users.map(user =>
+                          '<li><strong>' + user.name + '</strong> - ' + user.role + '</li>'
+                          ).join('') + '</ul>';
+
+                          element.innerHTML = html;
+                          </script>
+                        </td>
+                      </tr>
+                    </table>
+                    <p>
+                      The JSON data was passed from PAD/PHP through a data attribute using <code>{echo $usersJson | ignore}</code>.
+                    </p>
+                    <h3>
+                      3. As an Option: <code>ignore</code>
+                    </h3>
+                    <p>
+                      Add the ignore option to a tag to prevent PAD from parsing curly braces in its content.
+                    </p>
+                    <h4>
+                      Example 4: A Tag with JSON in it
+                    </h4>
+                    <p>
+                      Use the <b>{ignore}</b> option on a tag to prevent PAD from parsing curly braces in its content:
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2"></font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/ignore_5.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top"></td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">ignore</font>}</b>{"theme": "dark", "settings": {"notifications": true}}<b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre>{"theme": "dark", "settings": {"notifications": true}}</pre>
+                        </td>
+                      </tr>
+                    </table>
+                    <p>
+                      Without the ignore option, PAD would try to parse <code>{"theme": "dark"}</code> as PAD tags, causing errors.
+                    </p>
+                    <h2>
+                      Best Practices
+                    </h2>
+                    <ul>
+                      <li>
+                        <strong>Always use <b>{ignore}</b> for JavaScript blocks</strong> - Any <code>&lt;script&gt;</code> tag with JavaScript should be wrapped
+                      </li>
+                      <li>
+                        <strong>Use <code>| ignore</code> for dynamic JSON</strong> - When expressions output JSON, pipe through ignore
+                      </li>
+                      <li>
+                        <strong>Keep CSS in external files</strong> - But if inline CSS is needed, wrap in <b>{ignore}</b>
+                      </li>
+                      <li>
+                        <strong>Minimal scope</strong> - Only wrap what needs to be ignored, not entire templates
+                      </li>
+                      <li>
+                        <strong>Not needed for HTML</strong> - Regular HTML doesn't use curly braces, no ignore needed
+                      </li>
+                    </ul>
+                    <h2>
+                      What Gets Ignored?
+                    </h2>
+                    <p>
+                      When ignore is active, PAD will NOT parse:
+                    </p>
+                    <ul>
+                      <li>
+                        <code>{variableName}</code> - Not treated as a variable reference
+                      </li>
+                      <li>
+                        <code>{tagName}</code> - Not treated as a PAD tag
+                      </li>
+                      <li>
+                        <code>{if condition}...{/if}</code> - Not treated as conditional
+                      </li>
+                      <li>
+                        <code>{echo $expr}</code> - Not treated as expression
+                      </li>
+                    </ul>
+                    <p>
+                      Everything within ignored content is treated as <strong>literal text</strong>.
+                    </p>
+                    <h2>
+                      Common Use Cases
+                    </h2>
+                    <table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+                      <tr style="background: #f0f0f0;">
+                        <th>
+                          Scenario
+                        </th>
+                        <th>
+                          Method
+                        </th>
+                        <th>
+                          Example
+                        </th>
+                      </tr>
+                      <tr>
+                        <td>
+                          Inline JavaScript
+                        </td>
+                        <td>
+                          Tag Pair
+                        </td>
+                        <td>
+                          <code>{ignore}&lt;script&gt;...{/ignore}</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Inline CSS
+                        </td>
+                        <td>
+                          Tag Pair
+                        </td>
+                        <td>
+                          <code>{ignore}&lt;style&gt;...{/ignore}</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          React/JSX Code
+                        </td>
+                        <td>
+                          Tag Pair
+                        </td>
+                        <td>
+                          <code>{ignore}&lt;script type="text/babel"&gt;...{/ignore}</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          JSON in Attributes
+                        </td>
+                        <td>
+                          Pipe Function
+                        </td>
+                        <td>
+                          <code>data-json="{$jsonVar | ignore}"</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          JSON in a tag's content
+                        </td>
+                        <td>
+                          Option
+                        </td>
+                        <td>
+                          <code>{pad ignore}</code>
+                        </td>
+                      </tr>
+                    </table>
+                    <h2>
+                      Important Notes
+                    </h2>
+                    <ul>
+                      <li>
+                        <strong>Cannot nest</strong> - Once inside an ignore block, all content is literal until <code>{/ignore}</code>
+                      </li>
+                      <li>
+                        <strong>Use sparingly</strong> - Only use where necessary to avoid confusion
+                      </li>
+                      <li>
+                        <strong>External files preferred</strong> - For large JavaScript or CSS, use external files instead of inline code
+                      </li>
+                    </ul>
+                    <h2>
+                      Summary
+                    </h2>
+                    <table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+                      <tr style="background: #f0f0f0;">
+                        <th>
+                          Method
+                        </th>
+                        <th>
+                          Syntax
+                        </th>
+                        <th>
+                          Use Case
+                        </th>
+                      </tr>
+                      <tr>
+                        <td>
+                          <strong>Tag Pair</strong>
+                        </td>
+                        <td>
+                          <code>{ignore}...{/ignore}</code>
+                        </td>
+                        <td>
+                          Inline JavaScript, CSS, large blocks of code
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <strong>Pipe Function</strong>
+                        </td>
+                        <td>
+                          <code>{expression | ignore}</code>
+                        </td>
+                        <td>
+                          Expression output contains JSON or curly braces
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <strong>Option</strong>
+                        </td>
+                        <td>
+                          <code>{tag ignore}</code>
+                        </td>
+                        <td>
+                          Tag content should not be parsed
+                        </td>
+                      </tr>
+                    </table>
+                    <h2>
+                      See Also
+                    </h2>
+                    <ul>
+                      <li>
+                        <b>{open}</b> - Output opening brace <code>{</code>
+                      </li>
+                      <li>
+                        <b>{close}</b> - Output closing brace <code>}</code>
+                      </li>
+                      <li>
+                        <b>{echo}</b> - Evaluate expressions
+                      </li>
+                      <li>
+                        <b>{data}</b> - Define inline data
+                      </li>
+                    </ul>
+                  </div>
                 </center>
               </td>
             </tr>
-          </tbody></table>
-          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tbody><tr>
+          </table>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
               <td>
                 <hr>
                 <table valign="top" align="center">
-                  <tbody><tr>
+                  <tr>
                     <td valign="top">
                       <h3 align="center">
-                        Basic Concepts
+                        Basic concepts
                       </h3>
                       <ul>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7tags.html">Tags</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7conditions.html">Conditions</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7loops.html">Loops</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7trees.html">Trees</a>
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7examples_used_in_this_manual.html">Examples used in this manual</a>
@@ -407,6 +477,43 @@
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7properties.html">Properties</a>
                         </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7field_sigils.html">Field sigils</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Constructs
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7else.html">Else</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7start_end.html">Start end</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7content.html">Content</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page.html">Page</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Text and markup
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7comments.html">Comments</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7whitespace.html">Whitespace</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ignore.html">Ignore</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7escaping_special_PAD_chars.html">Escaping special PAD chars</a>
+                        </li>
                       </ul>
                     </td>
                     <td>
@@ -427,9 +534,6 @@
                           <a href="index%EF%B9%96pages%EA%A4%B7callback.html">Callback</a>
                         </li>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7escaping_special_PAD_chars.html">Escaping special PAD chars</a>
-                        </li>
-                        <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7tag_return_values.html">Tag return values</a>
                         </li>
                         <li>
@@ -439,7 +543,77 @@
                           <a href="index%EF%B9%96pages%EA%A4%B7walking.html">Walking</a>
                         </li>
                         <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ending_the_request.html">Ending the request</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sequences.html">Sequences</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Data
+                      </h3>
+                      <ul>
+                        <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7data_handling.html">Data handling</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7grouping.html">Grouping</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pager.html">Pager</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7lookup.html">Lookup</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7database.html">Database</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sqlite.html">Sqlite</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7collections.html">Collections</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7remote_data.html">Remote data</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7parallel_fetching.html">Parallel fetching</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7data_answers.html">Data answers</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        PHP helpers
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7arrays.html">Arrays</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7strings.html">Strings</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7values.html">Values</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7numbers.html">Numbers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_sessions.html">Requests and sessions</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7environment_and_cache.html">Environment and cache</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7dates_and_logging.html">Dates and logging</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7hashing_and_encryption.html">Hashing and encryption</a>
                         </li>
                       </ul>
                     </td>
@@ -448,39 +622,161 @@
                     </td>
                     <td valign="top">
                       <h3 align="center">
-                        Constructs
+                        Output
                       </h3>
                       <ul>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7else.html">Else</a>
+                          <a href="index%EF%B9%96pages%EA%A4%B7html_helpers.html">Html helpers</a>
                         </li>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7start_end.html">Start end</a>
+                          <a href="index%EF%B9%96pages%EA%A4%B7markdown.html">Markdown</a>
                         </li>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7content.html">Content</a>
+                          <a href="index%EF%B9%96pages%EA%A4%B7charts.html">Charts</a>
                         </li>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7page.html">Page</a>
+                          <a href="index%EF%B9%96pages%EA%A4%B7locale.html">Locale</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7fragment_cache.html">Fragment cache</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7flush.html">Flush</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7live.html">Live</a>
                         </li>
                       </ul>
                       <h3 align="center">
-                        Miscellaneous
+                        Layouts and components
                       </h3>
                       <ul>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7ignore.html">Ignore</a>
+                          <a href="index%EF%B9%96pages%EA%A4%B7layouts.html">Layouts</a>
                         </li>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page_meta.html">Page meta</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7components.html">Components</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7stacks.html">Stacks</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7response_fragments.html">Response fragments</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        The application
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7application_structure.html">Application structure</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7extending.html">Extending</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7events.html">Events</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7application_options.html">Application options</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_urls.html">Requests and urls</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7clean_urls.html">Clean urls</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sitemap.html">Sitemap</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7mail.html">Mail</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Forms and security
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7forms.html">Forms</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7csrf_protection.html">Csrf protection</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7flash_messages.html">Flash messages</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7directory_guards.html">Directory guards</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7security_headers.html">Security headers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7file_uploads.html">File uploads</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Development tools
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7debug.html">Debug</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7template_errors.html">Template errors</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7toolbar.html">Toolbar</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7output_checks.html">Output checks</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7coverage.html">Coverage</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7replay.html">Replay</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7live_reload.html">Live reload</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7samples.html">Samples</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7app_tests.html">App tests</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pad_command.html">Pad command</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7static_export.html">Static export</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7playground.html">Playground</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7editor_support.html">Editor support</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pad_in_the_browser.html">Pad in the browser</a>
                         </li>
                       </ul>
                     </td>
                   </tr>
-                </tbody></table>
+                </table>
               </td>
             </tr>
-          </tbody></table>
+          </table>
         </blockquote>
       </center>
     </blockquote>
@@ -488,17 +784,17 @@
       <hr width="75%">
       <br>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table>
+      </table>
       <p>
         <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
       </p>
     </center>
-  
-</body></html>
+  </body>
+</html>

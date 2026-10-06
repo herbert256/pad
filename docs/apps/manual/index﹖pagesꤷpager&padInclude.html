@@ -1,0 +1,191 @@
+
+
+<p>The <code>page</code> and <code>rows</code> options cut one page out of a tag's rows. The
+<code>{pager}</code> tag writes the links to the other pages: the first and the last
+page, a window of pages on each side of the current one, a gap where pages are left out, and
+previous and next. The current page is marked <code>aria-current="page"</code>.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/pager_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/pager_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $products </span><span style="color: #007700">= </span><span style="color: #0000BB">range </span><span style="color: #007700">( </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">47 </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">products </font><font color="red">page=<font color="red">$</font>pg ?? 1<font color="black">,</font> rows=5</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>products</font>}</b><br><b>{/<font color="blue">products</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>products<font color="black">'</font><font color="black">,</font> window=1</font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+  1
+
+  2
+
+  3
+
+  4
+
+  5
+
+
+<nav class="pager" aria-label="Pagination"><span class="prev" aria-disabled="true" aria-label="Previous page">‹</span> <a href="index%EF%B9%96pages%EA%A4%B7pager&amp;pg=1.html" aria-current="page">1</a> <a href="index%EF%B9%96pages%EA%A4%B7pager&amp;pg=2.html">2</a> <span class="gap">…</span> <a href="index%EF%B9%96pages%EA%A4%B7pager&amp;pg=10.html">10</a> <a href="index%EF%B9%96pages%EA%A4%B7pager&amp;pg=2.html" rel="next" aria-label="Next page">›</a></nav>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<p>The pager reads what the paged tag left, so it comes after it, and names it - without a
+name it follows the last paged tag of the page. It counts the rows that the options written
+before <code>page</code> left, so a <code>where</code> in front of the page pages the rows that
+pass. <code>window</code> is the number of pages on each side of the current one, 2 when not
+given.</p>
+
+<h2>The links</h2>
+
+<p>Each link is built from the application's own address, so a mount prefix keeps working, and
+keeps the other values of the request - a search field stays on every page. The value it
+sets is the variable <code>page=</code> was written with: <code>page=$pg</code> links with
+<code>pg=</code>, and <code>query='p'</code> on the pager names another. On a first visit the
+value is not there yet, hence <code>$pg ?? 1</code>.</p>
+
+<h2>Markup of your own</h2>
+
+<p>Written as a pair, the pager hands the links over as rows instead: <code>$kind</code> is
+<code>prev</code>, <code>next</code>, <code>page</code>, <code>current</code> or
+<code>gap</code>, with <code>$page</code>, <code>$label</code> and <code>$href</code> - empty for
+a gap, and for a previous or next that does not exist. With a single page there are no rows,
+and the pair shows its <b>@</b><b>else</b><b>@</b>.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/pager_2.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/pager_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $products </span><span style="color: #007700">= </span><span style="color: #0000BB">range </span><span style="color: #007700">( </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">47 </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">products </font><font color="red">page=<font color="red">$</font>p ?? 1<font color="black">,</font> rows=10</font>}</b><b>{/<font color="blue">products</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>products<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>href eq <font color="black">'</font><font color="black">'</font></font>}</b><br>    &lt;span&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/span&gt;<br>  <b>{<font color="blue">elseif </font><font color="red"><font color="red">$</font>kind eq <font color="black">'</font>current<font color="black">'</font></font>}</b><br>    &lt;strong&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/strong&gt;<br>  <b>{<font color="blue">else</font><font color="red"></font>}</b><br>    &lt;a href="<b>{<font color="green"><font color="red">$</font>href</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/a&gt;<br>  <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{/<font color="blue">pager</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+
+
+  
+    <span>&lsaquo;</span>
+  
+
+  
+    <strong>1</strong>
+  
+
+  
+    <a href="index%EF%B9%96pages%EA%A4%B7pager&amp;p=2.html">2</a>
+  
+
+  
+    <a href="index%EF%B9%96pages%EA%A4%B7pager&amp;p=3.html">3</a>
+  
+
+  
+    <a href="index%EF%B9%96pages%EA%A4%B7pager&amp;p=4.html">4</a>
+  
+
+  
+    <a href="index%EF%B9%96pages%EA%A4%B7pager&amp;p=5.html">5</a>
+  
+
+  
+    <a href="index%EF%B9%96pages%EA%A4%B7pager&amp;p=2.html">&rsaquo;</a>
+  
+
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<p>A Select table is paged by its SQL limit, so the rows do not hold the total: the pager then
+counts with one more query, and only when it is there.</p>

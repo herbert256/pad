@@ -1,6 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<!DOCTYPE html>
+<html>
+  <head>
     <title>
       PAD - Reference - Tag types - forum_topics
     </title>
@@ -11,14 +11,14 @@
         PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
       </h1>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table><br>
+      </table><br>
       <hr width="75%">
     </center>
     <blockquote>
@@ -27,17 +27,17 @@
           <h1>
             Reference - Tag types - forum topics
           </h1>
-          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tbody><tr>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
               <td>
                 <center>
                   <hr>
-                  App: check - Page: select/support/json<br>
+                  App: regression/pages - Page: select/support/json<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
-                        <font size="-2"></font>
+                        <font size="-2">select/support/json.php</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
@@ -48,43 +48,77 @@
                       </th>
                     </tr>
                     <tr>
-                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The lenient walk under test: what nothing claims stays in the output as written.<br><br>  </span><span style="color: #0000BB">$padCheckSyntax </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
                       <td style="vertical-align:top">
                         <pre><code style="color: #000000">if react needs 2 data objects, is it enough dat only the id is different and that the attribute is always the same, like below:<br><br>&lt;div id="id1" data="html_encoded_json"&gt;&lt;/div&gt;<br>&lt;div id="id2" data="html_encoded_json"&gt;&lt;/div&gt;<br><br>&lt;div id="id2" data="<b>{<font color="blue">forum_topics </font><font color="red"><font color="red">$</font>id=1<font color="black">,</font> htmlAttrJson=<font color="black">'</font>record<font color="black">'</font></font>}</b>"&gt;&lt;/div&gt;<br>&lt;div id="id2" data="<b>{<font color="blue">forum_topics </font><font color="red"><font color="red">$</font>id=1<font color="black">,</font> htmlAttrJson=<font color="black">'</font>record<font color="black">'</font></font>}</b>"&gt;&lt;/div&gt;<br><br><b>{<font color="blue">react </font><font color="red">id=<font color="black">'</font><font color="black">'</font><font color="black">,</font> query=<font color="black">'</font>name in _recact library<font color="black">'</font><font color="black">,</font> <font color="red">$</font>parm1=&lt;expression&gt;<font color="black">,</font> <font color="red">$</font>parm2=&lt;expression&gt;</font>}</b><br><br>you are in a Linux container on a chromebook, what for you localhost is is for me penguin.linux.test, so above link should be http://penguin.linux.test/support/?forum/topic&amp;id=1</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxmoLQe1OV">if react needs 2 data objects, is it enough dat only the id is different and that the attribute is always the same, like below:
-
-<div id="id1" data="html_encoded_json"></div>
-<div id="id2" data="html_encoded_json"></div>
-
-<div id="id2" data="{&quot;id&quot;:1,&quot;board_id&quot;:2,&quot;user_id&quot;:1,&quot;title&quot;:&quot;Topic Title&quot;,&quot;created_at&quot;:&quot;2025-12-19 16:40:15&quot;,&quot;updated_at&quot;:&quot;2025-12-20 01:36:38&quot;,&quot;views&quot;:13,&quot;is_pinned&quot;:0,&quot;is_locked&quot;:0}"></div>
-<div id="id2" data="{&quot;id&quot;:1,&quot;board_id&quot;:2,&quot;user_id&quot;:1,&quot;title&quot;:&quot;Topic Title&quot;,&quot;created_at&quot;:&quot;2025-12-19 16:40:15&quot;,&quot;updated_at&quot;:&quot;2025-12-20 01:36:38&quot;,&quot;views&quot;:13,&quot;is_pinned&quot;:0,&quot;is_locked&quot;:0}"></div>
-
-{react id='', query='name in _recact library', $parm1=<expression>, $parm2=<expression>}
-
-you are in a Linux container on a chromebook, what for you localhost is is for me penguin.linux.test, so above link should be http://penguin.linux.test/support/?forum/topic&amp;id=1</expression></expression></div>
+                        <div id="padAjax43f9d2d2b73bc2072e95cf2a0bccf9b0"></div>
                         <script>
-                        padAjaxmoLQe1OV = new XMLHttpRequest();
-                        padAjaxmoLQe1OV.onreadystatechange=function() {
-                        if (padAjaxmoLQe1OV.readyState === 4) {
-                        if (padAjaxmoLQe1OV.status === 200) {
-                        document.getElementById("padAjaxmoLQe1OV").innerHTML=padAjaxmoLQe1OV.responseText;
+                        padAjax43f9d2d2b73bc2072e95cf2a0bccf9b0 = new XMLHttpRequest();
+                        padAjax43f9d2d2b73bc2072e95cf2a0bccf9b0.onreadystatechange=function() {
+                        if (padAjax43f9d2d2b73bc2072e95cf2a0bccf9b0.readyState === 4) {
+                        if (padAjax43f9d2d2b73bc2072e95cf2a0bccf9b0.status === 200) {
+                        document.getElementById("padAjax43f9d2d2b73bc2072e95cf2a0bccf9b0").innerHTML=padAjax43f9d2d2b73bc2072e95cf2a0bccf9b0.responseText;
                         } else {
-                        document.getElementById("padAjaxmoLQe1OV").innerHTML=padAjaxmoLQe1OV.statusText;
+                        document.getElementById("padAjax43f9d2d2b73bc2072e95cf2a0bccf9b0").innerHTML=padAjax43f9d2d2b73bc2072e95cf2a0bccf9b0.statusText;
                         }
                         }
                         }
-                        padAjaxmoLQe1OV.open("GET","http://localhost/check/?select/support/json&padInclude&padSesID=DiM2hOlW&padReqID=iBIcFc2z",true);
-                        padAjaxmoLQe1OV.send();
+                        padAjax43f9d2d2b73bc2072e95cf2a0bccf9b0.open("GET","http://localhost/pad/regression/pages/?select/support/json&padInclude",true);
+                        padAjax43f9d2d2b73bc2072e95cf2a0bccf9b0.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
                   <hr>
-                  App: check - Page: select/support/topic<br>
+                  App: regression/pages - Page: select/support/relation_key<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">select/support/relation_key.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">select/support/relation_key.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A relation in the form DATABASE.md gives - [ 'key' =&gt; 'user_id' ] - names the field of<br>  // the first table that holds the declared key of the second. It was read as a field named<br>  // key, and the nested selects ended the request on an undefined array key.<br><br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">= [];<br><br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'forum_topics'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'users'</span><span style="color: #007700">]        = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'user_id'  </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'forum_posts'</span><span style="color: #007700">]  [</span><span style="color: #DD0000">'forum_topics'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'topic_id' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'forum_posts'</span><span style="color: #007700">]  [</span><span style="color: #DD0000">'users'</span><span style="color: #007700">]        = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'user_id'  </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">forum_topics</font><font color="red"></font>}</b>[<b>{<font color="green"><font color="red">$</font>title</font>}</b> by <b>{<font color="blue">users</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>username</font>}</b><b>{/<font color="blue">users</font><font color="red"></font>}</b>: <b>{<font color="blue">forum_posts</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>id</font>}</b> by <b>{<font color="blue">users</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>username</font>}</b><b>{/<font color="blue">users</font><font color="red"></font>}</b>; <b>{/<font color="blue">forum_posts</font><font color="red"></font>}</b>]<b>{/<font color="blue">forum_topics</font><font color="red"></font>}</b><br><b>{<font color="blue">users</font><font color="red"></font>}</b>[<b>{<font color="green"><font color="red">$</font>username</font>}</b>: <b>{<font color="blue">forum_topics</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>title</font>}</b><b>{/<font color="blue">forum_topics</font><font color="red"></font>}</b>]<b>{/<font color="blue">users</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb97b1f0a766e43c14040286501510cff"></div>
+                        <script>
+                        padAjaxb97b1f0a766e43c14040286501510cff = new XMLHttpRequest();
+                        padAjaxb97b1f0a766e43c14040286501510cff.onreadystatechange=function() {
+                        if (padAjaxb97b1f0a766e43c14040286501510cff.readyState === 4) {
+                        if (padAjaxb97b1f0a766e43c14040286501510cff.status === 200) {
+                        document.getElementById("padAjaxb97b1f0a766e43c14040286501510cff").innerHTML=padAjaxb97b1f0a766e43c14040286501510cff.responseText;
+                        } else {
+                        document.getElementById("padAjaxb97b1f0a766e43c14040286501510cff").innerHTML=padAjaxb97b1f0a766e43c14040286501510cff.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb97b1f0a766e43c14040286501510cff.open("GET","http://localhost/pad/regression/pages/?select/support/relation_key&padInclude",true);
+                        padAjaxb97b1f0a766e43c14040286501510cff.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: select/support/topic<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2"></font>
@@ -100,76 +134,31 @@ you are in a Linux container on a chromebook, what for you localhost is is for m
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>who<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">users</font><font color="red"></font>}</b><br>    &lt;p&gt;<font color="black"><b>@</b></font>content<font color="black"><b>@</b></font> by <b>{<font color="green"><font color="red">$</font>username</font>}</b><br>  <b>{/<font color="blue">users</font><font color="red"></font>}</b><br>  on <b>{<font color="green">$created_at</font> <font color="black">|</font> <font color="blue">substr (0, 16)</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b><br><br><b>{<font color="blue">forum_topics </font><font color="red"><font color="red">$</font>id=1</font>}</b><br><br>  <b>{<font color="blue">forum_boards</font><font color="red"></font>}</b><br>    &lt;h1&gt;Board: <b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/h1&gt;<br>  <b>{/<font color="blue">forum_boards</font><font color="red"></font>}</b><br><br>  &lt;h2&gt;Topic: <b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br><br>  <b>{<font color="blue">who</font><font color="red"></font>}</b>Started<b>{/<font color="blue">who</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">forum_posts</font><font color="red"></font>}</b><br><br>    &lt;hr&gt;<br><br>    <b>{<font color="blue">who</font><font color="red"></font>}</b>Posted<b>{/<font color="blue">who</font><font color="red"></font>}</b><br><br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>content</font>}</b>&lt;/p&gt;<br>  <br>  <font color="black"><b>@</b></font>else<font color="black"><b>@</b></font><br>  <br>    &lt;p&gt;No posts yet&lt;/p&gt;<br>  <br>  <b>{/<font color="blue">forum_posts</font><font color="red"></font>}</b><br><br><b>{/<font color="blue">forum_topics</font><font color="red"></font>}</b></code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>who<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">users</font><font color="red"></font>}</b><br>    &lt;p&gt;<b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b> by <b>{<font color="green"><font color="red">$</font>username</font>}</b><br>  <b>{/<font color="blue">users</font><font color="red"></font>}</b><br>  on <b>{<font color="green">$created_at</font> <font color="black">|</font> <font color="blue">substr (0, 16)</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b><br><br><b>{<font color="blue">forum_topics </font><font color="red"><font color="red">$</font>id=1</font>}</b><br><br>  <b>{<font color="blue">forum_boards</font><font color="red"></font>}</b><br>    &lt;h1&gt;Board: <b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/h1&gt;<br>  <b>{/<font color="blue">forum_boards</font><font color="red"></font>}</b><br><br>  &lt;h2&gt;Topic: <b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br><br>  <b>{<font color="blue">who</font><font color="red"></font>}</b>Started<b>{/<font color="blue">who</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">forum_posts</font><font color="red"></font>}</b><br><br>    &lt;hr&gt;<br><br>    <b>{<font color="blue">who</font><font color="red"></font>}</b>Posted<b>{/<font color="blue">who</font><font color="red"></font>}</b><br><br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>content</font>}</b>&lt;/p&gt;<br>  <br>  <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  <br>    &lt;p&gt;No posts yet&lt;/p&gt;<br>  <br>  <b>{/<font color="blue">forum_posts</font><font color="red"></font>}</b><br><br><b>{/<font color="blue">forum_topics</font><font color="red"></font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxw7V1Ctpf">
-
-
-
-  
-    <h1>Board: PAD Tags &amp; Templates</h1>
-  
-
-  <h2>Topic: Topic Title</h2>
-
-  
-  
-    <p>Started by admin
-  
-  on 2025-12-19 16:40</p>
-
-
-  
-
-    <hr>
-
-    
-  
-    <p>Posted by herbert
-  
-  on 2025-12-19 16:41</p>
-
-
-    <p>My first posting</p>
-  
-  
-
-    <hr>
-
-    
-  
-    <p>Posted by herbert
-  
-  on 2025-12-19 18:35</p>
-
-
-    <p>My second posting</p>
-  
-  
-
-</div>
+                        <div id="padAjaxbdb58f8012dbd6cdbb4f2f971dd978d7"></div>
                         <script>
-                        padAjaxw7V1Ctpf = new XMLHttpRequest();
-                        padAjaxw7V1Ctpf.onreadystatechange=function() {
-                        if (padAjaxw7V1Ctpf.readyState === 4) {
-                        if (padAjaxw7V1Ctpf.status === 200) {
-                        document.getElementById("padAjaxw7V1Ctpf").innerHTML=padAjaxw7V1Ctpf.responseText;
+                        padAjaxbdb58f8012dbd6cdbb4f2f971dd978d7 = new XMLHttpRequest();
+                        padAjaxbdb58f8012dbd6cdbb4f2f971dd978d7.onreadystatechange=function() {
+                        if (padAjaxbdb58f8012dbd6cdbb4f2f971dd978d7.readyState === 4) {
+                        if (padAjaxbdb58f8012dbd6cdbb4f2f971dd978d7.status === 200) {
+                        document.getElementById("padAjaxbdb58f8012dbd6cdbb4f2f971dd978d7").innerHTML=padAjaxbdb58f8012dbd6cdbb4f2f971dd978d7.responseText;
                         } else {
-                        document.getElementById("padAjaxw7V1Ctpf").innerHTML=padAjaxw7V1Ctpf.statusText;
+                        document.getElementById("padAjaxbdb58f8012dbd6cdbb4f2f971dd978d7").innerHTML=padAjaxbdb58f8012dbd6cdbb4f2f971dd978d7.statusText;
                         }
                         }
                         }
-                        padAjaxw7V1Ctpf.open("GET","http://localhost/check/?select/support/topic&padInclude&padSesID=DiM2hOlW&padReqID=iBIcFc2z",true);
-                        padAjaxw7V1Ctpf.send();
+                        padAjaxbdb58f8012dbd6cdbb4f2f971dd978d7.open("GET","http://localhost/pad/regression/pages/?select/support/topic&padInclude",true);
+                        padAjaxbdb58f8012dbd6cdbb4f2f971dd978d7.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
                 </center>
               </td>
             </tr>
-          </tbody></table>
+          </table>
         </blockquote>
       </center>
     </blockquote>
@@ -177,17 +166,17 @@ you are in a Linux container on a chromebook, what for you localhost is is for m
       <hr width="75%">
       <br>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table>
+      </table>
       <p>
         <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
       </p>
     </center>
-  
-</body></html>
+  </body>
+</html>

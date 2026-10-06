@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Output types - download
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Output types - download
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/output_download - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">index.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The download writer's promise: the page arrives as a file attachment - a<br>  // Content-Disposition naming a file, the body intact behind it.<br><br>  </span><span style="color: #0000BB">$r </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/output_download/?payload&amp;padInclude' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$disposition </span><span style="color: #007700">= </span><span style="color: #0000BB">$r </span><span style="color: #007700">[</span><span style="color: #DD0000">'headers'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'Content-Disposition'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$verdict </span><span style="color: #007700">= ( </span><span style="color: #0000BB">str_starts_with </span><span style="color: #007700">( </span><span style="color: #0000BB">$r </span><span style="color: #007700">[</span><span style="color: #DD0000">'result'</span><span style="color: #007700">], </span><span style="color: #DD0000">'2' </span><span style="color: #007700">)<br>               and </span><span style="color: #0000BB">str_contains </span><span style="color: #007700">( </span><span style="color: #0000BB">$disposition</span><span style="color: #007700">, </span><span style="color: #DD0000">'attachment' </span><span style="color: #007700">)<br>               and </span><span style="color: #0000BB">str_contains </span><span style="color: #007700">( </span><span style="color: #0000BB">$r </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">], </span><span style="color: #DD0000">'CARRIED ALL THE WAY' </span><span style="color: #007700">) ) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'NO'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$output </span><span style="color: #007700">= </span><span style="color: #DD0000">'download'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;output type: <b>{<font color="green"><font color="red">$</font>output</font>}</b>&lt;/p&gt;<br>&lt;p&gt;the payload arrived as this type promises: &lt;b&gt;<b>{<font color="green"><font color="red">$</font>verdict</font>}</b>&lt;/b&gt;&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax0b757028a794db771689c1e136f67564"></div>
+                        <script>
+                        padAjax0b757028a794db771689c1e136f67564 = new XMLHttpRequest();
+                        padAjax0b757028a794db771689c1e136f67564.onreadystatechange=function() {
+                        if (padAjax0b757028a794db771689c1e136f67564.readyState === 4) {
+                        if (padAjax0b757028a794db771689c1e136f67564.status === 200) {
+                        document.getElementById("padAjax0b757028a794db771689c1e136f67564").innerHTML=padAjax0b757028a794db771689c1e136f67564.responseText;
+                        } else {
+                        document.getElementById("padAjax0b757028a794db771689c1e136f67564").innerHTML=padAjax0b757028a794db771689c1e136f67564.statusText;
+                        }
+                        }
+                        }
+                        padAjax0b757028a794db771689c1e136f67564.open("GET","http://localhost/pad/regression/output_download/?index&padInclude",true);
+                        padAjax0b757028a794db771689c1e136f67564.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/output_download - Page: payload<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">payload.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">payload.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $greet </span><span style="color: #007700">= </span><span style="color: #DD0000">'carried all the way'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green">$greet</font> <font color="black">|</font> <font color="blue">upper</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax50dc044159006173bac39be3ce705a3e"></div>
+                        <script>
+                        padAjax50dc044159006173bac39be3ce705a3e = new XMLHttpRequest();
+                        padAjax50dc044159006173bac39be3ce705a3e.onreadystatechange=function() {
+                        if (padAjax50dc044159006173bac39be3ce705a3e.readyState === 4) {
+                        if (padAjax50dc044159006173bac39be3ce705a3e.status === 200) {
+                        document.getElementById("padAjax50dc044159006173bac39be3ce705a3e").innerHTML=padAjax50dc044159006173bac39be3ce705a3e.responseText;
+                        } else {
+                        document.getElementById("padAjax50dc044159006173bac39be3ce705a3e").innerHTML=padAjax50dc044159006173bac39be3ce705a3e.statusText;
+                        }
+                        }
+                        }
+                        padAjax50dc044159006173bac39be3ce705a3e.open("GET","http://localhost/pad/regression/output_download/?payload&padInclude",true);
+                        padAjax50dc044159006173bac39be3ce705a3e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

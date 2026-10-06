@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: classicModels
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: classicModels
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=classicModels&amp;dir=_install.html">_install/</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=classicModels&amp;dir=&amp;file=_inits.pad.html">_inits.pad</a>
+                  </li>
+                  <li class="current">_inits.php
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=classicModels&amp;dir=&amp;file=employees_1.pad.html">employees_1.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=classicModels&amp;dir=&amp;file=employees_2.pad.html">employees_2.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=classicModels&amp;dir=&amp;file=index.pad.html">index.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=classicModels&amp;dir=&amp;file=offices.pad.html">offices.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=classicModels&amp;dir=&amp;file=options.pad.html">options.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=classicModels&amp;dir=&amp;file=orders.pad.html">orders.pad</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  _inits.php
+                </h3>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The whole of this application is this file: the tables, what identifies a row of each, and<br>  // how they reach one another. Every page beside it is a template that walks those relations<br>  // without writing a join.<br>  //<br>  // Recovered from commit ac148cccd, where it declared its tables in $padTables and gave each<br>  // relation an empty array. The select subsystem reads $padSelect now, and a relation names<br>  // the field it is followed by, so it is written in that form here.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customers'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber'</span><span style="color: #007700">,          </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerName'      </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'employees'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employees'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employeeNumber'</span><span style="color: #007700">,          </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'lastName,firstName'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'offices'</span><span style="color: #007700">]   = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'offices'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'officeCode'                                              </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'details'</span><span style="color: #007700">]   = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderdetails'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderNumber,productCode'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderLineNumber'   </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'orders'</span><span style="color: #007700">]    = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orders'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderNumber'                                             </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'payments'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'payments'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber,checkNumber'                              </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'lines'</span><span style="color: #007700">]     = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'productlines'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'productLine'                                             </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'products'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'products'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'productCode'                                             </span><span style="color: #007700">];<br><br>  </span><span style="color: #FF8000">// A relation is the field of the base table that holds the key of the other one.<br><br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'products'</span><span style="color: #007700">]  [</span><span style="color: #DD0000">'lines'</span><span style="color: #007700">]     = </span><span style="color: #DD0000">'productLine'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'payments'</span><span style="color: #007700">]  [</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'customerNumber'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'orders'</span><span style="color: #007700">]    [</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'customerNumber'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'details'</span><span style="color: #007700">]   [</span><span style="color: #DD0000">'orders'</span><span style="color: #007700">]    = </span><span style="color: #DD0000">'orderNumber'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'details'</span><span style="color: #007700">]   [</span><span style="color: #DD0000">'products'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'productCode'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'employees'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'offices'</span><span style="color: #007700">]   = </span><span style="color: #DD0000">'officeCode'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'employees'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'salesRepEmployeeNumber'</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// Virtual tables: the employees table under another name, so that an employee has a manager<br>  // and a manager has a boss without any of them being a table of its own. Each is declared<br>  // like any other table, over the same db, and related by the field that holds the other's<br>  // key - an employee's reportsTo holds their manager's employeeNumber.<br>  //<br>  // The declaration used to read [ 'table' =&gt; 'employees', 'key' =&gt; 'reportsTo' ], which the<br>  // select subsystem no longer understands: it wants the table in $padSelect and the relation<br>  // as base field =&gt; related field. Written the old way the relation was silently ignored and<br>  // every employee came out as their own manager.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'sales'</span><span style="color: #007700">]    = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employees'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employeeNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'lastName,firstName' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'managers'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employees'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employeeNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'lastName,firstName' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'bosses'</span><span style="color: #007700">]   = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employees'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employeeNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'lastName,firstName' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'sales'</span><span style="color: #007700">]    = [ </span><span style="color: #DD0000">'salesRepEmployeeNumber' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employeeNumber' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'employees'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'managers'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'reportsTo'              </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employeeNumber' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'managers'</span><span style="color: #007700">]  [</span><span style="color: #DD0000">'bosses'</span><span style="color: #007700">]   = [ </span><span style="color: #DD0000">'reportsTo'              </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employeeNumber' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

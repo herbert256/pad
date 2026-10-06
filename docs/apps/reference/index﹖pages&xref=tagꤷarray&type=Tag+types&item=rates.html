@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - rates
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - rates
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: fragments/environment_and_cache_2<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/environment_and_cache_2.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/environment_and_cache_2.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The first request of the next ten minutes runs the callback;<br>  // the others get what it left in the cache, without asking the<br>  // source again.<br><br>  </span><span style="color: #0000BB">$rates </span><span style="color: #007700">= </span><span style="color: #0000BB">padRemember </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-rates'</span><span style="color: #007700">, </span><span style="color: #0000BB">600</span><span style="color: #007700">, function () {<br>    return [ [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'EUR'</span><span style="color: #007700">, </span><span style="color: #DD0000">'rate' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'1.00' </span><span style="color: #007700">],<br>             [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'USD'</span><span style="color: #007700">, </span><span style="color: #DD0000">'rate' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'1.08' </span><span style="color: #007700">],<br>             [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'GBP'</span><span style="color: #007700">, </span><span style="color: #DD0000">'rate' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'0.86' </span><span style="color: #007700">] ];<br>  } );<br><br>  </span><span style="color: #0000BB">padCachePut </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-notice'</span><span style="color: #007700">,<br>                </span><span style="color: #DD0000">'Maintenance on Sunday night'</span><span style="color: #007700">,<br>                </span><span style="color: #0000BB">3600 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$notice  </span><span style="color: #007700">= </span><span style="color: #0000BB">padCacheGet </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-notice'</span><span style="color: #007700">, </span><span style="color: #DD0000">'No notice' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$nothing </span><span style="color: #007700">= </span><span style="color: #0000BB">padCacheGet </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-nothing-kept'</span><span style="color: #007700">,<br>                           </span><span style="color: #DD0000">'Nothing kept under this key' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue">rates</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>code</font>}</b>: <b>{<font color="green"><font color="red">$</font>rate</font>}</b>&lt;/li&gt;<b>{/<font color="blue">rates</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>notice</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>nothing</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxf8f3c7dba111a3faf353203344133c3d"></div>
+                        <script>
+                        padAjaxf8f3c7dba111a3faf353203344133c3d = new XMLHttpRequest();
+                        padAjaxf8f3c7dba111a3faf353203344133c3d.onreadystatechange=function() {
+                        if (padAjaxf8f3c7dba111a3faf353203344133c3d.readyState === 4) {
+                        if (padAjaxf8f3c7dba111a3faf353203344133c3d.status === 200) {
+                        document.getElementById("padAjaxf8f3c7dba111a3faf353203344133c3d").innerHTML=padAjaxf8f3c7dba111a3faf353203344133c3d.responseText;
+                        } else {
+                        document.getElementById("padAjaxf8f3c7dba111a3faf353203344133c3d").innerHTML=padAjaxf8f3c7dba111a3faf353203344133c3d.statusText;
+                        }
+                        }
+                        }
+                        padAjaxf8f3c7dba111a3faf353203344133c3d.open("GET","http://localhost/pad/manual/?fragments/environment_and_cache_2&padInclude",true);
+                        padAjaxf8f3c7dba111a3faf353203344133c3d.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

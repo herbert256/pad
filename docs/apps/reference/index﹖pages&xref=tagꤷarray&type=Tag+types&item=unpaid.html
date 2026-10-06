@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - unpaid
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - unpaid
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: fragments/arrays_4<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/arrays_4.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/arrays_4.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $orders </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">101</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'status' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'paid'</span><span style="color: #007700">, </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'120.00' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">102</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'status' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'open'</span><span style="color: #007700">, </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'35.50' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">103</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Cleo'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'status' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'paid'</span><span style="color: #007700">, </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'89.90' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">104</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Carl'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'status' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'open'</span><span style="color: #007700">, </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'15.00' </span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #0000BB">$large  </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrWhere  </span><span style="color: #007700">( </span><span style="color: #0000BB">$orders</span><span style="color: #007700">, </span><span style="color: #DD0000">'total'</span><span style="color: #007700">, </span><span style="color: #DD0000">'&gt;='</span><span style="color: #007700">, </span><span style="color: #0000BB">50 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$large  </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrSortBy </span><span style="color: #007700">( </span><span style="color: #0000BB">$large</span><span style="color: #007700">, </span><span style="color: #DD0000">'total'</span><span style="color: #007700">, </span><span style="color: #DD0000">'desc' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$withC  </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrWhere  </span><span style="color: #007700">( </span><span style="color: #0000BB">$orders</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer'</span><span style="color: #007700">, </span><span style="color: #DD0000">'like'</span><span style="color: #007700">, </span><span style="color: #DD0000">'c%' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$unpaid </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrWhere  </span><span style="color: #007700">( </span><span style="color: #0000BB">$orders</span><span style="color: #007700">, </span><span style="color: #DD0000">'status'</span><span style="color: #007700">, </span><span style="color: #DD0000">'open' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$isOpen </span><span style="color: #007700">= fn ( </span><span style="color: #0000BB">$order </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$order </span><span style="color: #007700">[</span><span style="color: #DD0000">'status'</span><span style="color: #007700">] == </span><span style="color: #DD0000">'open'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$isPaid </span><span style="color: #007700">= fn ( </span><span style="color: #0000BB">$order </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$order </span><span style="color: #007700">[</span><span style="color: #DD0000">'status'</span><span style="color: #007700">] == </span><span style="color: #DD0000">'paid'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$first </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrFirst </span><span style="color: #007700">( </span><span style="color: #0000BB">$orders</span><span style="color: #007700">, </span><span style="color: #0000BB">$isOpen </span><span style="color: #007700">) [</span><span style="color: #DD0000">'number'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$last  </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrLast  </span><span style="color: #007700">( </span><span style="color: #0000BB">$orders</span><span style="color: #007700">, </span><span style="color: #0000BB">$isPaid </span><span style="color: #007700">) [</span><span style="color: #DD0000">'number'</span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;50 or more, largest first:<br>  {large~}<br>    <b>{<font color="green"><font color="red">$</font>number</font>}</b> (<b>{<font color="green"><font color="red">$</font>total</font>}</b>)<b>{<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>large</font><font color="red"></font>}</b>, <b>{/<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>large</font><font color="red"></font>}</b><br>  {~/large}&lt;/p&gt;<br>&lt;p&gt;A customer starting with C: {withC~}<br>  <b>{<font color="green"><font color="red">$</font>customer</font>}</b><b>{<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>withC</font><font color="red"></font>}</b>, <b>{/<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>withC</font><font color="red"></font>}</b><br>{~/withC}&lt;/p&gt;<br>&lt;p&gt;Not paid yet: {unpaid~}<br>  <b>{<font color="green"><font color="red">$</font>number</font>}</b><b>{<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>unpaid</font><font color="red"></font>}</b>, <b>{/<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>unpaid</font><font color="red"></font>}</b><br>{~/unpaid}&lt;/p&gt;<br>&lt;p&gt;First open order: <b>{<font color="green"><font color="red">$</font>first</font>}</b>, last paid order: <b>{<font color="green"><font color="red">$</font>last</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5672502868bfab4e7b3091951870cfa4"></div>
+                        <script>
+                        padAjax5672502868bfab4e7b3091951870cfa4 = new XMLHttpRequest();
+                        padAjax5672502868bfab4e7b3091951870cfa4.onreadystatechange=function() {
+                        if (padAjax5672502868bfab4e7b3091951870cfa4.readyState === 4) {
+                        if (padAjax5672502868bfab4e7b3091951870cfa4.status === 200) {
+                        document.getElementById("padAjax5672502868bfab4e7b3091951870cfa4").innerHTML=padAjax5672502868bfab4e7b3091951870cfa4.responseText;
+                        } else {
+                        document.getElementById("padAjax5672502868bfab4e7b3091951870cfa4").innerHTML=padAjax5672502868bfab4e7b3091951870cfa4.statusText;
+                        }
+                        }
+                        }
+                        padAjax5672502868bfab4e7b3091951870cfa4.open("GET","http://localhost/pad/manual/?fragments/arrays_4&padInclude",true);
+                        padAjax5672502868bfab4e7b3091951870cfa4.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

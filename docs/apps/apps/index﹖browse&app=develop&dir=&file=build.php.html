@@ -1,10 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<!DOCTYPE html>
+<html>
+  <head>
     <title>
       PAD - Browse: develop
     </title>
-    <style>.browse-page { text-align: left; display: inline-block; }
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
     .browse-container { display: flex; gap: 20px; }
     .file-list { min-width: 150px; }
     .file-list ul { list-style: none; padding: 0; margin: 0; }
@@ -26,14 +27,14 @@
         PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
       </h1>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table><br>
+      </table><br>
       <hr width="75%">
     </center>
     <blockquote>
@@ -67,13 +68,16 @@
                     <a href="index%EF%B9%96browse&amp;app=develop&amp;dir=&amp;file=clean.php.html">clean.php</a>
                   </li>
                   <li>
+                    <a href="index%EF%B9%96browse&amp;app=develop&amp;dir=&amp;file=coverage.pad.html">coverage.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=develop&amp;dir=&amp;file=coverage.php.html">coverage.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=develop&amp;dir=&amp;file=errors.pad.html">errors.pad</a>
+                  </li>
+                  <li>
                     <a href="index%EF%B9%96browse&amp;app=develop&amp;dir=&amp;file=errors.php.html">errors.php</a>
-                  </li>
-                  <li>
-                    <a href="index%EF%B9%96browse&amp;app=develop&amp;dir=&amp;file=errors2.pad.html">errors2.pad</a>
-                  </li>
-                  <li>
-                    <a href="index%EF%B9%96browse&amp;app=develop&amp;dir=&amp;file=errors2.php.html">errors2.php</a>
                   </li>
                   <li>
                     <a href="index%EF%B9%96browse&amp;app=develop&amp;dir=&amp;file=examples.php.html">examples.php</a>
@@ -83,6 +87,12 @@
                   </li>
                   <li>
                     <a href="index%EF%B9%96browse&amp;app=develop&amp;dir=&amp;file=index.php.html">index.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=develop&amp;dir=&amp;file=links.pad.html">links.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=develop&amp;dir=&amp;file=links.php.html">links.php</a>
                   </li>
                   <li>
                     <a href="index%EF%B9%96browse&amp;app=develop&amp;dir=&amp;file=nuts.pad.html">nuts.pad</a>
@@ -96,13 +106,19 @@
                   <li>
                     <a href="index%EF%B9%96browse&amp;app=develop&amp;dir=&amp;file=regression.php.html">regression.php</a>
                   </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=develop&amp;dir=&amp;file=replay.pad.html">replay.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=develop&amp;dir=&amp;file=replay.php.html">replay.php</a>
+                  </li>
                 </ul>
               </div>
               <div class="source-view">
                 <h3>
                   build.php
                 </h3>
-                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">include </span><span style="color: #0000BB">APP </span><span style="color: #007700">. </span><span style="color: #DD0000">'clean.php'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">padDeleteDataDir </span><span style="color: #007700">( </span><span style="color: #0000BB">DAT </span><span style="color: #007700">. </span><span style="color: #DD0000">'reference'  </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">padDeleteDataDir </span><span style="color: #007700">( </span><span style="color: #0000BB">DAT </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">padDeleteDataDir </span><span style="color: #007700">( </span><span style="color: #0000BB">DAT </span><span style="color: #007700">. </span><span style="color: #DD0000">'dumps'      </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">padDeleteDataDir </span><span style="color: #007700">( </span><span style="color: #0000BB">DAT </span><span style="color: #007700">. </span><span style="color: #DD0000">'temp'       </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">padDeleteDataDir </span><span style="color: #007700">( </span><span style="color: #0000BB">DAT </span><span style="color: #007700">. </span><span style="color: #DD0000">'examples'   </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">getRegression </span><span style="color: #007700">( </span><span style="color: #DD0000">'&amp;padExamples&amp;padReference' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">padRestart </span><span style="color: #007700">( </span><span style="color: #DD0000">'errors2' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">if ( ! isset ( </span><span style="color: #0000BB">$goBuild </span><span style="color: #007700">) )<br>    return;<br><br>  include </span><span style="color: #0000BB">APP </span><span style="color: #007700">. </span><span style="color: #DD0000">'clean.php'</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// The reference and the examples are develop's own: the harvest pages beside this one<br>  // gather them, and they stand between builds. The inner build wipes only what it owns -<br>  // the suite results and the dumps - and tests against the standing stores.<br><br>  // The inner build is thousands of fetches and runs for minutes. This request waits for<br>  // it, so the script limit and the fetch limit are widened to match - without that, PHP's<br>  // execution limit terminated this page thirty seconds in and padCurl would have cut the<br>  // build at its default 120, while the inner request ground on detached, which is what<br>  // made the build look hung with nothing to show.<br><br>  </span><span style="color: #0000BB">set_time_limit </span><span style="color: #007700">( </span><span style="color: #0000BB">0 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">"regression/main/?build&amp;go=1"</span><span style="color: #007700">, </span><span style="color: #DD0000">'options' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'TIMEOUT' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3600 </span><span style="color: #007700">] ] );<br>  </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">"examples/?build&amp;go=1"</span><span style="color: #007700">,        </span><span style="color: #DD0000">'options' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'TIMEOUT' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3600 </span><span style="color: #007700">] ] );<br>  </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">"reference/?build&amp;go=1"</span><span style="color: #007700">,       </span><span style="color: #DD0000">'options' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'TIMEOUT' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3600 </span><span style="color: #007700">] ] );<br><br>  </span><span style="color: #0000BB">padRestart </span><span style="color: #007700">( </span><span style="color: #DD0000">'errors' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
               </div>
             </div>
           </div>
@@ -113,17 +129,17 @@
       <hr width="75%">
       <br>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table>
+      </table>
       <p>
         <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
       </p>
     </center>
-  
-</body></html>
+  </body>
+</html>

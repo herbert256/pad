@@ -1,12 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<!DOCTYPE html>
+<html>
+  <head>
     <title>
-      PAD - Guestbook
+      PAD Demo - Guestbook
     </title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <link rel="stylesheet" href="style.css">
     <div class="container">
       <nav class="menu">
         <a href="index%EF%B9%96index.html">Home</a> <a href="index%EF%B9%96guestbook.html" class="active">Guestbook</a> <a href="index%EF%B9%96todo.html">Todo List</a> <a href="index%EF%B9%96contact.html">Contact</a> <a href="index%EF%B9%96counter.html">Counter</a> <a href="index%EF%B9%96clock.html">Clock</a>
@@ -21,14 +21,14 @@
         Sign the Guestbook
       </h2>
       <form method="post">
-        <input type="hidden" name="action" value="add">
+        <input type="hidden" name="padCsrfToken" value="c620d7bf325f1056c33b5a50f4a0e14a01f53c8df464592cb2f80e207fa93d32"> <input type="hidden" name="action" value="add">
         <p>
-          <label>Your Name:</label><br>
-          <input type="text" name="name" required="">
+          <label for="guestbook-name">Your Name:</label><br>
+          <input type="text" id="guestbook-name" name="name" required="">
         </p>
         <p>
-          <label>Your Message:</label><br>
-          <textarea name="comment" rows="4" required=""></textarea>
+          <label for="guestbook-comment">Your Message:</label><br>
+          <textarea id="guestbook-comment" name="comment" rows="4" required=""></textarea>
         </p>
         <p>
           <input type="submit" value="Sign Guestbook">
@@ -44,5 +44,5 @@
         © 2025 PAD Demo Application. Powered by PAD - PHP Application Driver.
       </div>
     </div>
-  
-</body></html>
+  </body>
+</html>

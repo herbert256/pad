@@ -1,0 +1,91 @@
+
+
+<p>One setting, <code>$padLocale</code>, says which language and conventions a request is
+written in. The <b>{trans}</b> tag and the <code>trans</code>, <code>currency</code> and
+<code>localDate</code> functions all read it.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/locale_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/locale_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The page picks Dutch; an application listing $padLocales lets the visitor's<br>  // Accept-Language or ?lang= choose instead.<br><br>  </span><span style="color: #0000BB">$padLocale </span><span style="color: #007700">= </span><span style="color: #DD0000">'nl'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$count </span><span style="color: #007700">= </span><span style="color: #0000BB">3</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$user  </span><span style="color: #007700">= </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">1234.5</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$when  </span><span style="color: #007700">= </span><span style="color: #DD0000">'2026-10-05'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;h4&gt;<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b>&lt;/h4&gt;<br>&lt;p&gt;<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.items<font color="black">'</font><font color="black">,</font> count=<font color="red">$</font>count</font>}</b> - <b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.owner<font color="black">'</font><font color="black">,</font> name=<font color="red">$</font>user</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">currency('EUR', 'nl_NL')</font>}</b> - <b>{<font color="green">$when</font> <font color="black">|</font> <font color="blue">localDate('d MMMM y')</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <h4>Je winkelwagen</h4>
+<p>3 artikelen - Bewaard voor Ann</p>
+<p>&euro;&nbsp;1.234,50 - 5 oktober 2026</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Catalogs</h2>
+
+<p>The texts live in <code>_lang/&lt;locale&gt;.json</code>, one flat object of keys:</p>
+
+<pre>{
+  "cart.title": "Je winkelwagen",
+  "cart.items": "%d artikel|%d artikelen",
+  "cart.owner": "Bewaard voor :name"
+}</pre>
+
+<ul>
+  <li><code>count=</code> picks the plural form and replaces <code>%d</code>: two forms are one and other, three are zero, one and other.</li>
+  <li>Every other <code>name=</code> replaces <code>:name</code>.</li>
+  <li>A catalog is looked up like a <code>_data</code> file: from the page's directory up to the application root, then <code>_common</code>, the most specific winning. For <code>nl_NL</code> the files <code>nl_NL.json</code>, <code>nl-NL.json</code> and <code>nl.json</code> all count.</li>
+  <li>A key no catalog knows is written as itself.</li>
+</ul>
+
+<h2>Choosing the locale</h2>
+
+<ul>
+  <li><code>$padLocale</code> - the locale, <code>'en'</code> unless the configuration or the page says otherwise.</li>
+  <li><code>$padLocales</code> - the locales the application speaks. When it lists any, a <code>?lang=nl</code> link chooses one and the <code>padLang</code> cookie keeps it; without a choice the visitor's <code>Accept-Language</code> picks the best match.</li>
+  <li><code>$padTimezone</code> - the timezone dates are shown in.</li>
+</ul>

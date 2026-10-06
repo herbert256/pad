@@ -1,6 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<!DOCTYPE html>
+<html>
+  <head>
     <title>
       PAD - Reference - Tag properties - notFirst
     </title>
@@ -11,14 +11,14 @@
         PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
       </h1>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table><br>
+      </table><br>
       <hr width="75%">
     </center>
     <blockquote>
@@ -27,14 +27,14 @@
           <h1>
             Reference - Tag properties - notFirst
           </h1>
-          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tbody><tr>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
               <td>
                 <center>
                   <hr>
                   App: manual - Page: pages/levels_and_occurrences<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2"></font>
@@ -53,1075 +53,272 @@
                         <pre><code style="color: #000000">&lt;p&gt;<br>  <b>{<font color="blue">block</font><font color="red"></font>}</b><br>    PAD is data driven, the PAD data concepts are named Level and Occurence<br>    &lt;br&gt;&lt;br&gt;<br>    Below example: &lt;br&gt;<br>    - Is two levels deep &lt;br&gt;<br>    - The level 'row' has 3 occurences&lt;br&gt;<br>    - The level 'column' has 5 occurences&lt;br&gt;&lt;br&gt;<br>  <b>{/<font color="blue">block</font><font color="red"></font>}</b><br>  <b>{<font color="blue">example </font><font color="red"><font color="black">'</font>lvl_occ/1<font color="black">'</font><font color="black">,</font> skipNames<font color="black">,</font> center</font>}</b><br>&lt;/p&gt;<br><br><b>{<font color="blue">block</font><font color="red"></font>}</b><br>  If not specifield for a PAD tag then default it has 1 occurence.<br>  &lt;br&gt;&lt;br&gt;&lt;hr&gt;&lt;br&gt;<br>  Just for fun, below the above example implemented in a few different ways.<br>  &lt;br&gt;<br>  Hopefully all this magic will be explained in this manual.<br><b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br>&lt;p&gt; <br><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>2..12<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>xxx<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">example </font><font color="red"><font color="black">'</font>lvl_occ/<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>xxx</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> skipNames<b><font color="black">{</font><font color="blue">notFirst</font><font color="red"></font><font color="black">}</font></b><font color="black">,</font>skipOpen<font color="black">,</font>skipHeader<b><font color="black">{</font>/<font color="blue">notFirst</font><font color="red"></font><font color="black">}</font></b><b><font color="black">{</font><font color="blue">notLast</font><font color="red"></font><font color="black">}</font></b><font color="black">,</font>skipClose<b><font color="black">{</font>/<font color="blue">notLast</font><font color="red"></font><font color="black">}</font></b></font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br>&lt;/p&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxjjqlx70d"><p>
-  <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-  <tbody><tr>
-    <td>
-    PAD is data driven, the PAD data concepts are named Level and Occurence
-    <br><br>
-    Below example: <br>
-    - Is two levels deep <br>
-    - The level 'row' has 3 occurences<br>
-    - The level 'column' has 5 occurences<br><br>
-  </td>
-  </tr>
-</tbody></table>
-  
-  </p><center>
-
-
- 
-
-
-
-   
-    <table border="1" cellpadding="10" cellspacing="0">
-  
-
-  
-
-      
-          <tbody><tr>
-          
-            <th bgcolor="#dddddd">
-              PHP 
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML 
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
-      <tr>
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $row </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">11</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">12</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">13</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">4</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">14</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">5</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">15</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">21</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">22</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">23</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">4</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">24</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">5</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">25</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">31</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">32</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">33</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">4</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">34</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">5</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">35</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
-        
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">row</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">column</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>cell</font>}</b>&lt;/td&gt;<br>      <b>{/<font color="blue">column</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">row</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
-        
-        
-          <td style="vertical-align:top">
-  <table border="1">
-  
-    <tbody><tr>
-      
-        <td>11</td>
-      
-        <td>12</td>
-      
-        <td>13</td>
-      
-        <td>14</td>
-      
-        <td>15</td>
-      
-    </tr>
-  
-    <tr>
-      
-        <td>21</td>
-      
-        <td>22</td>
-      
-        <td>23</td>
-      
-        <td>24</td>
-      
-        <td>25</td>
-      
-    </tr>
-  
-    <tr>
-      
-        <td>31</td>
-      
-        <td>32</td>
-      
-        <td>33</td>
-      
-        <td>34</td>
-      
-        <td>35</td>
-      
-    </tr>
-  
-</tbody></table>
-</td>
-        
-      </tr>
-
-    
-
-  
-    </tbody></table>
-  
-
-
-
-
-  </center>
-
-<p></p>
-
-<table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-  <tbody><tr>
-    <td>
-  If not specifield for a PAD tag then default it has 1 occurence.
-  <br><br><hr><br>
-  Just for fun, below the above example implemented in a few different ways.
-  <br>
-  Hopefully all this magic will be explained in this manual.
-</td>
-  </tr>
-</tbody></table>
-
-<p> 
-
-  
-
- 
-
-
-
-   
-    <table border="1" cellpadding="10" cellspacing="0">
-  
-
-  
-
-      
-          <tbody><tr>
-          
-            <th bgcolor="#dddddd">
-              PHP 
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML 
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
-      <tr>
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $row    </span><span style="color: #007700">= [</span><span style="color: #0000BB">1</span><span style="color: #007700">,</span><span style="color: #0000BB">2</span><span style="color: #007700">,</span><span style="color: #0000BB">3</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$column </span><span style="color: #007700">= [</span><span style="color: #0000BB">1</span><span style="color: #007700">,</span><span style="color: #0000BB">2</span><span style="color: #007700">,</span><span style="color: #0000BB">3</span><span style="color: #007700">,</span><span style="color: #0000BB">4</span><span style="color: #007700">,</span><span style="color: #0000BB">5</span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
-        
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">row</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">column</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="green">$row</font> <font color="black">|</font> <font color="blue">* 10</font> <font color="black">|</font> <font color="blue">+ $column</font>}</b>&lt;/td&gt; <br>      <b>{/<font color="blue">column</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">row</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
-        
-        
-          <td style="vertical-align:top">
-  <table border="1">
-  
-    <tbody><tr>
-      
-        <td>11</td> 
-      
-        <td>12</td> 
-      
-        <td>13</td> 
-      
-        <td>14</td> 
-      
-        <td>15</td> 
-      
-    </tr>
-  
-    <tr>
-      
-        <td>21</td> 
-      
-        <td>22</td> 
-      
-        <td>23</td> 
-      
-        <td>24</td> 
-      
-        <td>25</td> 
-      
-    </tr>
-  
-    <tr>
-      
-        <td>31</td> 
-      
-        <td>32</td> 
-      
-        <td>33</td> 
-      
-        <td>34</td> 
-      
-        <td>35</td> 
-      
-    </tr>
-  
-</tbody></table>
-</td>
-        
-      </tr>
-
-    
-
-  
-
-
-
-
-
-  
-
- 
-
-
-
-  
-
-  
-
-      
-
-      <tr>
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $short </span><span style="color: #007700">= [ [ </span><span style="color: #0000BB">11</span><span style="color: #007700">,</span><span style="color: #0000BB">12</span><span style="color: #007700">,</span><span style="color: #0000BB">13</span><span style="color: #007700">,</span><span style="color: #0000BB">14</span><span style="color: #007700">,</span><span style="color: #0000BB">15 </span><span style="color: #007700">],<br>             [ </span><span style="color: #0000BB">21</span><span style="color: #007700">,</span><span style="color: #0000BB">22</span><span style="color: #007700">,</span><span style="color: #0000BB">23</span><span style="color: #007700">,</span><span style="color: #0000BB">24</span><span style="color: #007700">,</span><span style="color: #0000BB">25 </span><span style="color: #007700">],<br>             [ </span><span style="color: #0000BB">31</span><span style="color: #007700">,</span><span style="color: #0000BB">32</span><span style="color: #007700">,</span><span style="color: #0000BB">33</span><span style="color: #007700">,</span><span style="color: #0000BB">34</span><span style="color: #007700">,</span><span style="color: #0000BB">35 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
-        
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table border='1'&gt; <br>  <b>{<font color="blue">short</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">short</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>short</font>}</b>&lt;/td&gt;<br>      <b>{/<font color="blue">short</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">short</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
-        
-        
-          <td style="vertical-align:top">
-  <table border="1"> 
-  
-    <tbody><tr>
-      
-        <td>11</td>
-      
-        <td>12</td>
-      
-        <td>13</td>
-      
-        <td>14</td>
-      
-        <td>15</td>
-      
-    </tr>
-  
-    <tr>
-      
-        <td>21</td>
-      
-        <td>22</td>
-      
-        <td>23</td>
-      
-        <td>24</td>
-      
-        <td>25</td>
-      
-    </tr>
-  
-    <tr>
-      
-        <td>31</td>
-      
-        <td>32</td>
-      
-        <td>33</td>
-      
-        <td>34</td>
-      
-        <td>35</td>
-      
-    </tr>
-  
-</tbody></table>
-</td>
-        
-      </tr>
-
-    
-
-  
-
-
-
-
-
-  
-
- 
-
-
-
-  
-
-  
-
-      
-
-      <tr>
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">for (</span><span style="color: #0000BB">$row </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">; </span><span style="color: #0000BB">$row </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">3</span><span style="color: #007700">; </span><span style="color: #0000BB">$row</span><span style="color: #007700">++)<br>    for (</span><span style="color: #0000BB">$col </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">; </span><span style="color: #0000BB">$col </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">5</span><span style="color: #007700">; </span><span style="color: #0000BB">$col</span><span style="color: #007700">++)<br>      </span><span style="color: #0000BB">$rows </span><span style="color: #007700">[</span><span style="color: #0000BB">$row</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cols'</span><span style="color: #007700">] [</span><span style="color: #0000BB">$col</span><span style="color: #007700">] = </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
-        
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">rows</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">cols</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="blue">echo </font><font color="red">(&amp;rows<font color="black">:</font>key*10) + &amp;cols<font color="black">:</font>key</font>}</b>&lt;/td&gt;  <br>      <b>{/<font color="blue">cols</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">rows</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
-        
-        
-          <td style="vertical-align:top">
-  <table border="1">
-  
-    <tbody><tr>
-      
-        <td>11</td>  
-      
-        <td>12</td>  
-      
-        <td>13</td>  
-      
-        <td>14</td>  
-      
-        <td>15</td>  
-      
-    </tr>
-  
-    <tr>
-      
-        <td>21</td>  
-      
-        <td>22</td>  
-      
-        <td>23</td>  
-      
-        <td>24</td>  
-      
-        <td>25</td>  
-      
-    </tr>
-  
-    <tr>
-      
-        <td>31</td>  
-      
-        <td>32</td>  
-      
-        <td>33</td>  
-      
-        <td>34</td>  
-      
-        <td>35</td>  
-      
-    </tr>
-  
-</tbody></table>
-</td>
-        
-      </tr>
-
-    
-
-  
-
-
-
-
-
-  
-
- 
-
-
-
-  
-
-  
-
-      
-
-      <tr>
-        
-          <td style="vertical-align:top"> </td>
-        
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>10..30<font color="black">'</font><font color="black">,</font> increment=10<font color="black">,</font> name=<font color="black">'</font>row<font color="black">'</font></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>column<font color="black">'</font></font>}</b><br>        &lt;td&gt;<b>{<font color="green">$row</font> <font color="black">|</font> <font color="blue">+ $column</font>}</b>&lt;/td&gt;      <br>      <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
-        
-        
-          <td style="vertical-align:top">
-  <table border="1">
-  
-    <tbody><tr>
-      
-        <td>11</td>      
-      
-        <td>12</td>      
-      
-        <td>13</td>      
-      
-        <td>14</td>      
-      
-        <td>15</td>      
-      
-    </tr>
-  
-    <tr>
-      
-        <td>21</td>      
-      
-        <td>22</td>      
-      
-        <td>23</td>      
-      
-        <td>24</td>      
-      
-        <td>25</td>      
-      
-    </tr>
-  
-    <tr>
-      
-        <td>31</td>      
-      
-        <td>32</td>      
-      
-        <td>33</td>      
-      
-        <td>34</td>      
-      
-        <td>35</td>      
-      
-    </tr>
-  
-</tbody></table>
-</td>
-        
-      </tr>
-
-    
-
-  
-
-
-
-
-
-  
-
- 
-
-
-
-  
-
-  
-
-      
-
-      <tr>
-        
-          <td style="vertical-align:top"> </td>
-        
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">sequence </font><font color="red">3</font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">sequence </font><font color="red">5</font>}</b><br>        &lt;td&gt;<b>{<font color="blue">echo </font><font color="red">(<font color="red">$</font>-2 * 10) + <font color="red">$</font>-1</font>}</b>&lt;/td&gt;      <br>      <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
-        
-        
-          <td style="vertical-align:top">
-  <table border="1">
-  
-    <tbody><tr>
-      
-        <td>11</td>      
-      
-        <td>12</td>      
-      
-        <td>13</td>      
-      
-        <td>14</td>      
-      
-        <td>15</td>      
-      
-    </tr>
-  
-    <tr>
-      
-        <td>21</td>      
-      
-        <td>22</td>      
-      
-        <td>23</td>      
-      
-        <td>24</td>      
-      
-        <td>25</td>      
-      
-    </tr>
-  
-    <tr>
-      
-        <td>31</td>      
-      
-        <td>32</td>      
-      
-        <td>33</td>      
-      
-        <td>34</td>      
-      
-        <td>35</td>      
-      
-    </tr>
-  
-</tbody></table>
-</td>
-        
-      </tr>
-
-    
-
-  
-
-
-
-
-
-  
-
- 
-
-
-
-  
-
-  
-
-      
-
-      <tr>
-        
-          <td style="vertical-align:top"> </td>
-        
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>row = 10</font>}</b><br>  <b>{<font color="blue">while </font><font color="red"><font color="red">$</font>row &lt;= 30</font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>column = 1</font>}</b><br>      <b>{<font color="blue">while </font><font color="red"><font color="red">$</font>column &lt;= 5</font>}</b><br>        &lt;td&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>row + <font color="red">$</font>column</font>}</b>&lt;/td&gt;  <br>        <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>column</font>}</b><br>      <b>{/<font color="blue">while</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>    <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>row = <font color="red">$</font>row + 10</font>}</b><br>  <b>{/<font color="blue">while</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
-        
-        
-          <td style="vertical-align:top">
-  <table border="1">
-  
-  
-    <tbody><tr>
-      
-      
-        <td>11</td>  
-        
-      
-        <td>12</td>  
-        
-      
-        <td>13</td>  
-        
-      
-        <td>14</td>  
-        
-      
-        <td>15</td>  
-        
-      
-    </tr>
-    
-  
-    <tr>
-      
-      
-        <td>21</td>  
-        
-      
-        <td>22</td>  
-        
-      
-        <td>23</td>  
-        
-      
-        <td>24</td>  
-        
-      
-        <td>25</td>  
-        
-      
-    </tr>
-    
-  
-    <tr>
-      
-      
-        <td>31</td>  
-        
-      
-        <td>32</td>  
-        
-      
-        <td>33</td>  
-        
-      
-        <td>34</td>  
-        
-      
-        <td>35</td>  
-        
-      
-    </tr>
-    
-  
-</tbody></table>
-</td>
-        
-      </tr>
-
-    
-
-  
-
-
-
-
-
-  
-
- 
-
-
-
-  
-
-  
-
-      
-
-      <tr>
-        
-          <td style="vertical-align:top"> </td>
-        
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>row<font color="black">'</font>   </font>}</b> (1,2,3)     <b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>column<font color="black">'</font></font>}</b> (1,2,3,4,5) <b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br>&lt;table border='1'&gt;<br>  <b>{<font color="blue">row</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">column</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="green">$row</font> <font color="black">|</font> <font color="blue">* 10</font> <font color="black">|</font> <font color="blue">+ $column</font>}</b>&lt;/td&gt;      <br>      <b>{/<font color="blue">column</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">row</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
-        
-        
-          <td style="vertical-align:top">
-  
-
-
-<table border="1">
-  
-    <tbody><tr>
-      
-        <td>11</td>      
-      
-        <td>12</td>      
-      
-        <td>13</td>      
-      
-        <td>14</td>      
-      
-        <td>15</td>      
-      
-    </tr>
-  
-    <tr>
-      
-        <td>21</td>      
-      
-        <td>22</td>      
-      
-        <td>23</td>      
-      
-        <td>24</td>      
-      
-        <td>25</td>      
-      
-    </tr>
-  
-    <tr>
-      
-        <td>31</td>      
-      
-        <td>32</td>      
-      
-        <td>33</td>      
-      
-        <td>34</td>      
-      
-        <td>35</td>      
-      
-    </tr>
-  
-</tbody></table>
-</td>
-        
-      </tr>
-
-    
-
-  
-
-
-
-
-
-  
-
- 
-
-
-
-  
-
-  
-
-      
-
-      <tr>
-        
-          <td style="vertical-align:top"> </td>
-        
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myJson<font color="black">'</font></font>}</b><br>[<br>  { "column": [ 11, 12, 13, 14, 15 ] },<br>  { "column": [ 21, 22, 23, 24, 35 ] },<br>  { "column": [ 31, 32, 33, 34, 35 ] }<br>]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>myJson<font color="black">'</font></font>}</b><br>  &lt;table border='1'&gt;<br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt;<br>        <b>{<font color="blue">column</font><font color="red"></font>}</b><br>          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>column</font>}</b>&lt;/td&gt;<br>        <b>{/<font color="blue">column</font><font color="red"></font>}</b><br>      &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br>  &lt;/table&gt;<br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre></td>
-        
-        
-          <td style="vertical-align:top">
-  
-
-
-  <table border="1">
-    
-      <tbody><tr>
-        
-          <td>11</td>
-        
-          <td>12</td>
-        
-          <td>13</td>
-        
-          <td>14</td>
-        
-          <td>15</td>
-        
-      </tr>
-    
-      <tr>
-        
-          <td>21</td>
-        
-          <td>22</td>
-        
-          <td>23</td>
-        
-          <td>24</td>
-        
-          <td>35</td>
-        
-      </tr>
-    
-      <tr>
-        
-          <td>31</td>
-        
-          <td>32</td>
-        
-          <td>33</td>
-        
-          <td>34</td>
-        
-          <td>35</td>
-        
-      </tr>
-    
-  </tbody></table>
-
-</td>
-        
-      </tr>
-
-    
-
-  
-
-
-
-
-
-  
-
- 
-
-
-
-  
-
-  
-
-      
-
-      <tr>
-        
-          <td style="vertical-align:top"> </td>
-        
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myCsv<font color="black">'</font></font>}</b><br>AA,BB,CC,DD,EE<br>11,12,13,14,15<br>21,22,23,24,35<br>31,32,33,34,35<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br>&lt;table border='1'&gt;<br>  <b>{<font color="blue">myCsv</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">fields</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/td&gt;<br>      <b>{/<font color="blue">fields</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">myCsv</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
-        
-        
-          <td style="vertical-align:top">
-  
-
-<table border="1">
-  
-    <tbody><tr>
-      
-        <td>11</td>
-      
-        <td>12</td>
-      
-        <td>13</td>
-      
-        <td>14</td>
-      
-        <td>15</td>
-      
-    </tr>
-  
-    <tr>
-      
-        <td>21</td>
-      
-        <td>22</td>
-      
-        <td>23</td>
-      
-        <td>24</td>
-      
-        <td>35</td>
-      
-    </tr>
-  
-    <tr>
-      
-        <td>31</td>
-      
-        <td>32</td>
-      
-        <td>33</td>
-      
-        <td>34</td>
-      
-        <td>35</td>
-      
-    </tr>
-  
-</tbody></table>
-</td>
-        
-      </tr>
-
-    
-
-  
-
-
-
-
-
-  
-
- 
-
-
-
-  
-
-  
-
-      
-
-      <tr>
-        
-          <td style="vertical-align:top"> </td>
-        
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myYaml<font color="black">'</font><font color="black">,</font> <font color="black">'</font>http<font color="black">:</font>//localhost/pad/level_demo.yaml<font color="black">'</font></font>}</b><br><br>&lt;table border='1'&gt;<br>  <b>{<font color="blue">myYaml</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">column</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>column</font>}</b>&lt;/td&gt;<br>      <b>{/<font color="blue">column</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">myYaml</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
-        
-        
-          <td style="vertical-align:top">
-  
-
-<table border="1">
-  
-    <tbody><tr>
-      
-        <td>11</td>
-      
-        <td>12</td>
-      
-        <td>13</td>
-      
-        <td>14</td>
-      
-        <td>15</td>
-      
-    </tr>
-  
-    <tr>
-      
-        <td>21</td>
-      
-        <td>22</td>
-      
-        <td>23</td>
-      
-        <td>24</td>
-      
-        <td>35</td>
-      
-    </tr>
-  
-    <tr>
-      
-        <td>31</td>
-      
-        <td>32</td>
-      
-        <td>33</td>
-      
-        <td>34</td>
-      
-        <td>35</td>
-      
-    </tr>
-  
-</tbody></table>
-</td>
-        
-      </tr>
-
-    
-
-  
-
-
-
-
-
-  
-
- 
-
-
-
-  
-
-  
-
-      
-
-      <tr>
-        
-          <td style="vertical-align:top"> </td>
-        
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myXml<font color="black">'</font><font color="black">,</font> <font color="black">'</font>level_demo.xml<font color="black">'</font></font>}</b><br><br>&lt;table border='1'&gt;<br>  <b>{<font color="blue">myXml</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">column</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>column</font>}</b>&lt;/td&gt;<br>      <b>{/<font color="blue">column</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">myXml</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
-        
-        
-          <td style="vertical-align:top">
-  
-
-<table border="1">
-  
-    <tbody><tr>
-      
-        <td>11</td>
-      
-        <td>12</td>
-      
-        <td>13</td>
-      
-        <td>14</td>
-      
-        <td>15</td>
-      
-    </tr>
-  
-    <tr>
-      
-        <td>21</td>
-      
-        <td>22</td>
-      
-        <td>23</td>
-      
-        <td>24</td>
-      
-        <td>35</td>
-      
-    </tr>
-  
-    <tr>
-      
-        <td>31</td>
-      
-        <td>32</td>
-      
-        <td>33</td>
-      
-        <td>34</td>
-      
-        <td>35</td>
-      
-    </tr>
-  
-</tbody></table>
-</td>
-        
-      </tr>
-
-    
-
-  
-    </tbody></table>
-  
-
-
-
-
-
-</p></div>
+                        <div id="padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d"></div>
                         <script>
-                        padAjaxjjqlx70d = new XMLHttpRequest();
-                        padAjaxjjqlx70d.onreadystatechange=function() {
-                        if (padAjaxjjqlx70d.readyState === 4) {
-                        if (padAjaxjjqlx70d.status === 200) {
-                        document.getElementById("padAjaxjjqlx70d").innerHTML=padAjaxjjqlx70d.responseText;
+                        padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d = new XMLHttpRequest();
+                        padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d.onreadystatechange=function() {
+                        if (padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d.readyState === 4) {
+                        if (padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d.status === 200) {
+                        document.getElementById("padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d").innerHTML=padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d.responseText;
                         } else {
-                        document.getElementById("padAjaxjjqlx70d").innerHTML=padAjaxjjqlx70d.statusText;
+                        document.getElementById("padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d").innerHTML=padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d.statusText;
                         }
                         }
                         }
-                        padAjaxjjqlx70d.open("GET","http://localhost/manual/?pages/levels_and_occurrences&padInclude&padSesID=DiM2hOlW&padReqID=rLDXVee6",true);
-                        padAjaxjjqlx70d.send();
+                        padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d.open("GET","http://localhost/pad/manual/?pages/levels_and_occurrences&padInclude",true);
+                        padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: expressions/a_property_and_a_field_in_one_condition<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">expressions/a_property_and_a_field_in_one_condition.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cf<font color="black">'</font></font>}</b>["a","b","c"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">cf</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>cf eq <font color="black">'</font>b<font color="black">'</font> and notFirst<font color="black">@</font>cf</font>}</b>Y<b>{<font color="blue">else</font><font color="red"></font>}</b>.<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">cf</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax605831de8053664f982008d232ef1f89"></div>
+                        <script>
+                        padAjax605831de8053664f982008d232ef1f89 = new XMLHttpRequest();
+                        padAjax605831de8053664f982008d232ef1f89.onreadystatechange=function() {
+                        if (padAjax605831de8053664f982008d232ef1f89.readyState === 4) {
+                        if (padAjax605831de8053664f982008d232ef1f89.status === 200) {
+                        document.getElementById("padAjax605831de8053664f982008d232ef1f89").innerHTML=padAjax605831de8053664f982008d232ef1f89.responseText;
+                        } else {
+                        document.getElementById("padAjax605831de8053664f982008d232ef1f89").innerHTML=padAjax605831de8053664f982008d232ef1f89.statusText;
+                        }
+                        }
+                        }
+                        padAjax605831de8053664f982008d232ef1f89.open("GET","http://localhost/pad/regression/framework/?expressions/a_property_and_a_field_in_one_condition&padInclude",true);
+                        padAjax605831de8053664f982008d232ef1f89.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: expressions/notFirst_writes_the_comma_list<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">expressions/notFirst_writes_the_comma_list.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cy<font color="black">'</font></font>}</b>["a","b","c"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">cy</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">notFirst<font color="black">@</font>cy</font>}</b>, <b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cy</font>}</b><b>{/<font color="blue">cy</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxfdbfe715c541cf410fd6755b88caf59a"></div>
+                        <script>
+                        padAjaxfdbfe715c541cf410fd6755b88caf59a = new XMLHttpRequest();
+                        padAjaxfdbfe715c541cf410fd6755b88caf59a.onreadystatechange=function() {
+                        if (padAjaxfdbfe715c541cf410fd6755b88caf59a.readyState === 4) {
+                        if (padAjaxfdbfe715c541cf410fd6755b88caf59a.status === 200) {
+                        document.getElementById("padAjaxfdbfe715c541cf410fd6755b88caf59a").innerHTML=padAjaxfdbfe715c541cf410fd6755b88caf59a.responseText;
+                        } else {
+                        document.getElementById("padAjaxfdbfe715c541cf410fd6755b88caf59a").innerHTML=padAjaxfdbfe715c541cf410fd6755b88caf59a.statusText;
+                        }
+                        }
+                        }
+                        padAjaxfdbfe715c541cf410fd6755b88caf59a.open("GET","http://localhost/pad/regression/framework/?expressions/notFirst_writes_the_comma_list&padInclude",true);
+                        padAjaxfdbfe715c541cf410fd6755b88caf59a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: expressions/two_properties_joined_with_and<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">expressions/two_properties_joined_with_and.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>ca<font color="black">'</font></font>}</b>["a","b","c"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">ca</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">notFirst<font color="black">@</font>ca and notLast<font color="black">@</font>ca</font>}</b>M<b>{<font color="blue">else</font><font color="red"></font>}</b>.<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">ca</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax6bcbae5e1571c74b0ed75fb47603ccfa"></div>
+                        <script>
+                        padAjax6bcbae5e1571c74b0ed75fb47603ccfa = new XMLHttpRequest();
+                        padAjax6bcbae5e1571c74b0ed75fb47603ccfa.onreadystatechange=function() {
+                        if (padAjax6bcbae5e1571c74b0ed75fb47603ccfa.readyState === 4) {
+                        if (padAjax6bcbae5e1571c74b0ed75fb47603ccfa.status === 200) {
+                        document.getElementById("padAjax6bcbae5e1571c74b0ed75fb47603ccfa").innerHTML=padAjax6bcbae5e1571c74b0ed75fb47603ccfa.responseText;
+                        } else {
+                        document.getElementById("padAjax6bcbae5e1571c74b0ed75fb47603ccfa").innerHTML=padAjax6bcbae5e1571c74b0ed75fb47603ccfa.statusText;
+                        }
+                        }
+                        }
+                        padAjax6bcbae5e1571c74b0ed75fb47603ccfa.open("GET","http://localhost/pad/regression/framework/?expressions/two_properties_joined_with_and&padInclude",true);
+                        padAjax6bcbae5e1571c74b0ed75fb47603ccfa.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: properties/notFirst_makes_a_separator<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">properties/notFirst_makes_a_separator.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>xs<font color="black">'</font></font>}</b><br>  [7,8]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">xs</font><font color="red"></font>}</b><br>  <b>{<font color="blue">notFirst<font color="black"><b><font color="red">@</font></b></font>xs</font><font color="red"></font>}</b>-<b>{/<font color="blue">notFirst<font color="black"><b><font color="red">@</font></b></font>xs</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>xs</font>}</b><br><b>{/<font color="blue">xs</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax0c8772e53c236320feb103bc8d06e047"></div>
+                        <script>
+                        padAjax0c8772e53c236320feb103bc8d06e047 = new XMLHttpRequest();
+                        padAjax0c8772e53c236320feb103bc8d06e047.onreadystatechange=function() {
+                        if (padAjax0c8772e53c236320feb103bc8d06e047.readyState === 4) {
+                        if (padAjax0c8772e53c236320feb103bc8d06e047.status === 200) {
+                        document.getElementById("padAjax0c8772e53c236320feb103bc8d06e047").innerHTML=padAjax0c8772e53c236320feb103bc8d06e047.responseText;
+                        } else {
+                        document.getElementById("padAjax0c8772e53c236320feb103bc8d06e047").innerHTML=padAjax0c8772e53c236320feb103bc8d06e047.statusText;
+                        }
+                        }
+                        }
+                        padAjax0c8772e53c236320feb103bc8d06e047.open("GET","http://localhost/pad/regression/framework/?properties/notFirst_makes_a_separator&padInclude",true);
+                        padAjax0c8772e53c236320feb103bc8d06e047.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: catalog/properties<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">catalog/properties.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">catalog/properties.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// What the at-type lines read: a global for @all, and one for the saved group to shadow.<br>  // The function line runs the catsum callback from _callbacks/, whose row phase totals the<br>  // rows into $t.<br><br>  </span><span style="color: #0000BB">$catAll   </span><span style="color: #007700">= </span><span style="color: #DD0000">'found'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$catSaved </span><span style="color: #007700">= </span><span style="color: #DD0000">'outer'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">current:  <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cXs<font color="black">'</font></font>}</b>[7,8]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>,<b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>done:     <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">done<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>,<b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>key:      <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">key<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>,<b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>remaining: <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">remaining<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>,<b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>count:    <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">count<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>,<b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>nameProp: <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">name<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>,<b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>first:    <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>[<b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cXs</font>}</b>,<b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>last:     <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cXs</font>}</b>,<b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>]<b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b><b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>notFirst: <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">notFirst<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>-<b>{/<font color="blue">notFirst<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cXs</font>}</b><b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>notLast:  <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cXs</font>}</b><b>{<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>,<b>{/<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b><b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>even:     <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">even<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>E<b>{/<font color="blue">even<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b><b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>odd:      <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>O<b>{/<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b><b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>border:   <b>{<font color="blue">cXs</font><font color="red"></font>}</b><b>{<font color="blue">border<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b>|<b>{/<font color="blue">border<font color="black"><b><font color="red">@</font></b></font>cXs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cXs</font>}</b><b>{/<font color="blue">cXs</font><font color="red"></font>}</b><br>middle:   <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cYs<font color="black">'</font></font>}</b>[1,2,3]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">cYs</font><font color="red"></font>}</b><b>{<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font>cYs</font><font color="red"></font>}</b>M<b>{/<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font>cYs</font><font color="red"></font>}</b><b>{/<font color="blue">cYs</font><font color="red"></font>}</b><br>fields:   <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cU<font color="black">'</font></font>}</b>[{"a":1,"b":2}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">cU</font><font color="red"></font>}</b><b>{<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>cU</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b>=<b>{<font color="green"><font color="red">$</font>value</font>}</b>,<b>{/<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>cU</font><font color="red"></font>}</b><b>{/<font color="blue">cU</font><font color="red"></font>}</b><br>firstFieldName:  <b>{<font color="blue">cU</font><font color="red"></font>}</b><b>{<font color="blue">firstFieldName<font color="black"><b><font color="red">@</font></b></font>cU</font><font color="red"></font>}</b>,<b>{/<font color="blue">cU</font><font color="red"></font>}</b><br>firstFieldValue: <b>{<font color="blue">cU</font><font color="red"></font>}</b><b>{<font color="blue">firstFieldValue<font color="black"><b><font color="red">@</font></b></font>cU</font><font color="red"></font>}</b>,<b>{/<font color="blue">cU</font><font color="red"></font>}</b><br>keys:     <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cKv<font color="black">'</font> ignore</font>}</b>{"a":1,"b":2}<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">cKv</font><font color="red"></font>}</b><b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>cKv</font><font color="red"></font>}</b><b>{<font color="blue">keys<font color="black"><b><font color="red">@</font></b></font>cKv</font><font color="red"></font>}</b>[<b>{<font color="green"><font color="red">$</font>name</font>}</b>]<b>{/<font color="blue">keys<font color="black"><b><font color="red">@</font></b></font>cKv</font><font color="red"></font>}</b><b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>cKv</font><font color="red"></font>}</b><b>{/<font color="blue">cKv</font><font color="red"></font>}</b><br>parameter: <b>{<font color="blue">true </font><font color="red"><font color="black">'</font>p1<font color="black">'</font><font color="black">,</font> <font color="black">'</font>p2<font color="black">'</font></font>}</b><b>{<font color="blue">parameter.1<font color="black"><b><font color="red">@</font></b></font>true</font><font color="red"></font>}</b>/<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>parameter.2<font color="black">@</font>true</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>variable:  <b>{<font color="blue">true </font><font color="red"><font color="red">$</font>t=<font color="black">'</font>9<font color="black">'</font></font>}</b><b>{<font color="blue">variable.t<font color="black"><b><font color="red">@</font></b></font>true</font><font color="red"></font>}</b>/<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>variable.t<font color="black">@</font>true</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>option:    <b>{<font color="blue">true </font><font color="red">opt=<font color="black">'</font>v<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>option.opt<font color="black">@</font>true</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>any:       <b>{<font color="blue">true </font><font color="red"><font color="red">$</font>cAny=<font color="black">'</font>9<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>cAny<font color="black">@</font>any</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>options:   <b>{<font color="blue">true </font><font color="red">opt=<font color="black">'</font>w<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>opt<font color="black">@</font>options</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>parameters: <b>{<font color="blue">true </font><font color="red"><font color="black">'</font>q1<font color="black">'</font><font color="black">,</font> <font color="black">'</font>q2<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>2<font color="black">@</font>parameters</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>saved:     <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cSv<font color="black">'</font></font>}</b>["x"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">cSv </font><font color="red"><font color="black">%</font>catSaved=<font color="black">'</font>inner<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>catSaved</font>}</b>/<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>catSaved<font color="black">@</font>saved</font>}</b><b>{/<font color="blue">cSv</font><font color="red"></font>}</b><br>variables: <b>{<font color="blue">true </font><font color="red"><font color="red">$</font>cV=<font color="black">'</font>n<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>cV<font color="black">@</font>variables</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>all:       <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>catAll<font color="black">@</font>all</font>}</b><br>sequences: <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>cSeq<font color="black">'</font></font>/}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>cSeq.3<font color="black">@</font>sequences</font>}</b><br>tags:      <b>{<font color="blue">true </font><font color="red"><font color="red">$</font>cT=<font color="black">'</font>7<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>cT<font color="black">@</font>tags</font>}</b><b>{/<font color="blue">true</font><font color="red"></font>}</b><br>level:     <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cLv<font color="black">'</font></font>}</b>["x","y"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">cLv</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>0.cLv<font color="black">@</font>level</font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>1.cLv<font color="black">@</font>level</font>}</b>,<b>{/<font color="blue">cLv</font><font color="red"></font>}</b><br>dataAt:    <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cAd<font color="black">'</font></font>}</b>{"cKey":9}<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>cKey.cAd<font color="black">@</font>data</font>}</b><br>function:  <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cFn<font color="black">'</font></font>}</b>[1,2]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">cFn </font><font color="red">callback=<font color="black">'</font>catsum.php<font color="black">'</font><font color="black">,</font> before</font>}</b><b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>cFn</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>t<font color="black">@</font>function</font>}</b><b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>cFn</font><font color="red"></font>}</b><b>{/<font color="blue">cFn</font><font color="red"></font>}</b><br>dataProp:  <b>{<font color="blue">cLv</font><font color="red"></font>}</b><b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>cLv</font><font color="red"></font>}</b>[<b>{<font color="blue">data<font color="black"><b><font color="red">@</font></b></font>cLv</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cLv</font>}</b>,<b>{/<font color="blue">data<font color="black"><b><font color="red">@</font></b></font>cLv</font><font color="red"></font>}</b>]<b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>cLv</font><font color="red"></font>}</b><b>{/<font color="blue">cLv</font><font color="red"></font>}</b><br>condition: <b>{<font color="blue">cLv</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">first<font color="black">@</font>cLv</font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cLv</font>}</b><b>{<font color="blue">if </font><font color="red">notLast<font color="black">@</font>cLv</font>}</b>-<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">cLv</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax94a827465d52b76028bd5039c8f5f6cd"></div>
+                        <script>
+                        padAjax94a827465d52b76028bd5039c8f5f6cd = new XMLHttpRequest();
+                        padAjax94a827465d52b76028bd5039c8f5f6cd.onreadystatechange=function() {
+                        if (padAjax94a827465d52b76028bd5039c8f5f6cd.readyState === 4) {
+                        if (padAjax94a827465d52b76028bd5039c8f5f6cd.status === 200) {
+                        document.getElementById("padAjax94a827465d52b76028bd5039c8f5f6cd").innerHTML=padAjax94a827465d52b76028bd5039c8f5f6cd.responseText;
+                        } else {
+                        document.getElementById("padAjax94a827465d52b76028bd5039c8f5f6cd").innerHTML=padAjax94a827465d52b76028bd5039c8f5f6cd.statusText;
+                        }
+                        }
+                        }
+                        padAjax94a827465d52b76028bd5039c8f5f6cd.open("GET","http://localhost/pad/regression/pages/?catalog/properties&padInclude",true);
+                        padAjax94a827465d52b76028bd5039c8f5f6cd.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: sequence - Page: listen<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">listen.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">listen.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Listen: a sequence played as notes. Each of the first 32 terms becomes a note - the<br>  // term modulo 60, five octaves up from C2, the way the OEIS 'listen' button folds a term<br>  // into the keyboard - and the notes are written as a WAV file into the page itself<br>  // (seqFunWav in _lib/fun.php), so an &lt;audio&gt; element plays them without JavaScript.<br>  // Recamán's sequence, which jumps back and forth, is the famous one to listen to.<br>  //<br>  // type arrives from the query string and is used only when it names a type the gallery<br>  // draws.<br><br>  </span><span style="color: #0000BB">$choices </span><span style="color: #007700">= </span><span style="color: #0000BB">seqFunTypes </span><span style="color: #007700">();<br><br>  if ( ! isset ( </span><span style="color: #0000BB">$type </span><span style="color: #007700">) or ! </span><span style="color: #0000BB">is_string </span><span style="color: #007700">( </span><span style="color: #0000BB">$type </span><span style="color: #007700">) or ! </span><span style="color: #0000BB">in_array </span><span style="color: #007700">( </span><span style="color: #0000BB">$type</span><span style="color: #007700">, </span><span style="color: #0000BB">$choices </span><span style="color: #007700">) )<br>    </span><span style="color: #0000BB">$type </span><span style="color: #007700">= </span><span style="color: #DD0000">'recaman'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$terms </span><span style="color: #007700">= </span><span style="color: #0000BB">seqFunTerms </span><span style="color: #007700">( </span><span style="color: #0000BB">$type</span><span style="color: #007700">, </span><span style="color: #0000BB">32 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$oeis  </span><span style="color: #007700">= </span><span style="color: #0000BB">seqFunOeis </span><span style="color: #007700">( </span><span style="color: #0000BB">$terms </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$oeis  </span><span style="color: #007700">= </span><span style="color: #0000BB">$oeis </span><span style="color: #007700">? </span><span style="color: #0000BB">sprintf </span><span style="color: #007700">( </span><span style="color: #DD0000">'A%06d'</span><span style="color: #007700">, </span><span style="color: #0000BB">$oeis </span><span style="color: #007700">) : </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$list  </span><span style="color: #007700">= </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">', '</span><span style="color: #007700">, </span><span style="color: #0000BB">$terms </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$notes </span><span style="color: #007700">= </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">' '</span><span style="color: #007700">, </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( </span><span style="color: #DD0000">'seqFunNoteName'</span><span style="color: #007700">, </span><span style="color: #0000BB">seqFunNotes </span><span style="color: #007700">( </span><span style="color: #0000BB">$terms </span><span style="color: #007700">) ) );<br>  </span><span style="color: #0000BB">$audio </span><span style="color: #007700">= </span><span style="color: #0000BB">seqFunWav </span><span style="color: #007700">( </span><span style="color: #0000BB">$terms </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">choices</font><font color="red"></font>}</b><b>{<font color="blue">notFirst</font><font color="red"></font>}</b> | <b>{/<font color="blue">notFirst</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>choices eq <font color="red">$</font>type</font>}</b>&lt;b&gt;<b>{<font color="green"><font color="red">$</font>choices</font>}</b>&lt;/b&gt;<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>&lt;a href="?listen&amp;type=<b>{<font color="green"><font color="red">$</font>choices</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>choices</font>}</b>&lt;/a&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">choices</font><font color="red"></font>}</b>&lt;/p&gt;<br><br>&lt;h3&gt;<b>{<font color="green">$type</font> <font color="black">|</font> <font color="blue">ucfirst</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>oeis ne <font color="black">'</font><font color="black">'</font></font>}</b> - &lt;a href="https://oeis.org/<b>{<font color="green"><font color="red">$</font>oeis</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>oeis</font>}</b>&lt;/a&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/h3&gt;<br><br><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>line<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>terms<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red">$</font>type</font> <font color="black"><font color="black">|</font></font> <font color="blue">ucfirst</font><font color="black">}</font></b><font color="black">,</font> the first 32 terms<font color="black">'</font><font color="black">,</font> width=640<font color="black">,</font> height=220</font>}</b><br><br>&lt;p&gt;&lt;audio controls preload="none" src="<b>{<font color="green"><font color="red">$</font>audio</font>}</b>"&gt;&lt;/audio&gt;&lt;/p&gt;<br><br>&lt;p&gt;Each term is a note: the term modulo 60, counted in semitones up from C2.&lt;/p&gt;<br><br>&lt;p&gt;&lt;small&gt;<b>{<font color="green"><font color="red">$</font>list</font>}</b>&lt;/small&gt;&lt;/p&gt;<br><br>&lt;p&gt;&lt;small&gt;<b>{<font color="green"><font color="red">$</font>notes</font>}</b>&lt;/small&gt;&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax97ba38becd0eb0a23a71b513c855af36"></div>
+                        <script>
+                        padAjax97ba38becd0eb0a23a71b513c855af36 = new XMLHttpRequest();
+                        padAjax97ba38becd0eb0a23a71b513c855af36.onreadystatechange=function() {
+                        if (padAjax97ba38becd0eb0a23a71b513c855af36.readyState === 4) {
+                        if (padAjax97ba38becd0eb0a23a71b513c855af36.status === 200) {
+                        document.getElementById("padAjax97ba38becd0eb0a23a71b513c855af36").innerHTML=padAjax97ba38becd0eb0a23a71b513c855af36.responseText;
+                        } else {
+                        document.getElementById("padAjax97ba38becd0eb0a23a71b513c855af36").innerHTML=padAjax97ba38becd0eb0a23a71b513c855af36.statusText;
+                        }
+                        }
+                        }
+                        padAjax97ba38becd0eb0a23a71b513c855af36.open("GET","http://localhost/pad/sequence/?listen&padInclude",true);
+                        padAjax97ba38becd0eb0a23a71b513c855af36.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
-          </tbody></table>
+          </table>
         </blockquote>
       </center>
     </blockquote>
@@ -1129,17 +326,17 @@
       <hr width="75%">
       <br>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table>
+      </table>
       <p>
         <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
       </p>
     </center>
-  
-</body></html>
+  </body>
+</html>

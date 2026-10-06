@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Output types - csv
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Output types - csv
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_csv_answer_needs_an_exposed_list<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">syntax/a_csv_answer_needs_an_exposed_list.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_csv_answer_needs_an_exposed_list.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $answer    </span><span style="color: #007700">= </span><span style="color: #0000BB">42</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padExpose </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'answer' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">output </font><font color="red"><font color="black">'</font>csv<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax175eadeaafd2a4f959c955b8f92f039e"></div>
+                        <script>
+                        padAjax175eadeaafd2a4f959c955b8f92f039e = new XMLHttpRequest();
+                        padAjax175eadeaafd2a4f959c955b8f92f039e.onreadystatechange=function() {
+                        if (padAjax175eadeaafd2a4f959c955b8f92f039e.readyState === 4) {
+                        if (padAjax175eadeaafd2a4f959c955b8f92f039e.status === 200) {
+                        document.getElementById("padAjax175eadeaafd2a4f959c955b8f92f039e").innerHTML=padAjax175eadeaafd2a4f959c955b8f92f039e.responseText;
+                        } else {
+                        document.getElementById("padAjax175eadeaafd2a4f959c955b8f92f039e").innerHTML=padAjax175eadeaafd2a4f959c955b8f92f039e.statusText;
+                        }
+                        }
+                        }
+                        padAjax175eadeaafd2a4f959c955b8f92f039e.open("GET","http://localhost/pad/regression/errors/?syntax/a_csv_answer_needs_an_exposed_list&padInclude",true);
+                        padAjax175eadeaafd2a4f959c955b8f92f039e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: format/output<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">format/output.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">format/output.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $rows      </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'a' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'a' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'b' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'x' </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$padExpose </span><span style="color: #007700">= </span><span style="color: #DD0000">'rows'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">output </font><font color="red">"csv"</font>}</b>not this</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax485be6f69c017bf1f479553db861ab8e"></div>
+                        <script>
+                        padAjax485be6f69c017bf1f479553db861ab8e = new XMLHttpRequest();
+                        padAjax485be6f69c017bf1f479553db861ab8e.onreadystatechange=function() {
+                        if (padAjax485be6f69c017bf1f479553db861ab8e.readyState === 4) {
+                        if (padAjax485be6f69c017bf1f479553db861ab8e.status === 200) {
+                        document.getElementById("padAjax485be6f69c017bf1f479553db861ab8e").innerHTML=padAjax485be6f69c017bf1f479553db861ab8e.responseText;
+                        } else {
+                        document.getElementById("padAjax485be6f69c017bf1f479553db861ab8e").innerHTML=padAjax485be6f69c017bf1f479553db861ab8e.statusText;
+                        }
+                        }
+                        }
+                        padAjax485be6f69c017bf1f479553db861ab8e.open("GET","http://localhost/pad/regression/pages/?format/output&padInclude",true);
+                        padAjax485be6f69c017bf1f479553db861ab8e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - PAD functions - currency
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - PAD functions - currency
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: fragments/locale_1<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/locale_1.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/locale_1.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The page picks Dutch; an application listing $padLocales lets the visitor's<br>  // Accept-Language or ?lang= choose instead.<br><br>  </span><span style="color: #0000BB">$padLocale </span><span style="color: #007700">= </span><span style="color: #DD0000">'nl'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$count </span><span style="color: #007700">= </span><span style="color: #0000BB">3</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$user  </span><span style="color: #007700">= </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">1234.5</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$when  </span><span style="color: #007700">= </span><span style="color: #DD0000">'2026-10-05'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;h4&gt;<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b>&lt;/h4&gt;<br>&lt;p&gt;<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.items<font color="black">'</font><font color="black">,</font> count=<font color="red">$</font>count</font>}</b> - <b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.owner<font color="black">'</font><font color="black">,</font> name=<font color="red">$</font>user</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">currency('EUR', 'nl_NL')</font>}</b> - <b>{<font color="green">$when</font> <font color="black">|</font> <font color="blue">localDate('d MMMM y')</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb846913dff488ddc294b52db7fe0d477"></div>
+                        <script>
+                        padAjaxb846913dff488ddc294b52db7fe0d477 = new XMLHttpRequest();
+                        padAjaxb846913dff488ddc294b52db7fe0d477.onreadystatechange=function() {
+                        if (padAjaxb846913dff488ddc294b52db7fe0d477.readyState === 4) {
+                        if (padAjaxb846913dff488ddc294b52db7fe0d477.status === 200) {
+                        document.getElementById("padAjaxb846913dff488ddc294b52db7fe0d477").innerHTML=padAjaxb846913dff488ddc294b52db7fe0d477.responseText;
+                        } else {
+                        document.getElementById("padAjaxb846913dff488ddc294b52db7fe0d477").innerHTML=padAjaxb846913dff488ddc294b52db7fe0d477.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb846913dff488ddc294b52db7fe0d477.open("GET","http://localhost/pad/manual/?fragments/locale_1&padInclude",true);
+                        padAjaxb846913dff488ddc294b52db7fe0d477.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_currency_locale_intl_does_not_know<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_currency_locale_intl_does_not_know.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">5 <font color="black">|</font> currency(<font color="black">'</font>EUR<font color="black">'</font><font color="black">,</font> <font color="black">'</font>xx_YY<font color="black">'</font>)</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8117efe47ba1fc45799a98e785139a58"></div>
+                        <script>
+                        padAjax8117efe47ba1fc45799a98e785139a58 = new XMLHttpRequest();
+                        padAjax8117efe47ba1fc45799a98e785139a58.onreadystatechange=function() {
+                        if (padAjax8117efe47ba1fc45799a98e785139a58.readyState === 4) {
+                        if (padAjax8117efe47ba1fc45799a98e785139a58.status === 200) {
+                        document.getElementById("padAjax8117efe47ba1fc45799a98e785139a58").innerHTML=padAjax8117efe47ba1fc45799a98e785139a58.responseText;
+                        } else {
+                        document.getElementById("padAjax8117efe47ba1fc45799a98e785139a58").innerHTML=padAjax8117efe47ba1fc45799a98e785139a58.statusText;
+                        }
+                        }
+                        }
+                        padAjax8117efe47ba1fc45799a98e785139a58.open("GET","http://localhost/pad/regression/errors/?syntax/a_currency_locale_intl_does_not_know&padInclude",true);
+                        padAjax8117efe47ba1fc45799a98e785139a58.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: functions/currency_writes_an_amount_the_locale_s_way<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">functions/currency_writes_an_amount_the_locale_s_way.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1234.5 <font color="black">|</font> currency(<font color="black">'</font>USD<font color="black">'</font><font color="black">,</font> <font color="black">'</font>en_US<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">99 <font color="black">|</font> currency(<font color="black">'</font>EUR<font color="black">'</font><font color="black">,</font> <font color="black">'</font>en<font color="black">'</font>)</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax58a4752a819af3d6d195a17ad86f5c6f"></div>
+                        <script>
+                        padAjax58a4752a819af3d6d195a17ad86f5c6f = new XMLHttpRequest();
+                        padAjax58a4752a819af3d6d195a17ad86f5c6f.onreadystatechange=function() {
+                        if (padAjax58a4752a819af3d6d195a17ad86f5c6f.readyState === 4) {
+                        if (padAjax58a4752a819af3d6d195a17ad86f5c6f.status === 200) {
+                        document.getElementById("padAjax58a4752a819af3d6d195a17ad86f5c6f").innerHTML=padAjax58a4752a819af3d6d195a17ad86f5c6f.responseText;
+                        } else {
+                        document.getElementById("padAjax58a4752a819af3d6d195a17ad86f5c6f").innerHTML=padAjax58a4752a819af3d6d195a17ad86f5c6f.statusText;
+                        }
+                        }
+                        }
+                        padAjax58a4752a819af3d6d195a17ad86f5c6f.open("GET","http://localhost/pad/regression/framework/?functions/currency_writes_an_amount_the_locale_s_way&padInclude",true);
+                        padAjax58a4752a819af3d6d195a17ad86f5c6f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: lenient/a_locale_intl_does_not_know_falls_back_to_the_plain_form<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">lenient/a_locale_intl_does_not_know_falls_back_to_the_plain_form.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">lenient/a_locale_intl_does_not_know_falls_back_to_the_plain_form.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The lenient walk under test: with the syntax check off, what cannot run passes the<br>  // value through or yields empty, and the walk carries on.<br><br>  </span><span style="color: #0000BB">$padCheckSyntax </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1234.5 <font color="black">|</font> currency(<font color="black">'</font>EUR<font color="black">'</font><font color="black">,</font> <font color="black">'</font>xx_YY<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2026-10-05<font color="black">'</font> <font color="black">|</font> localDate(<font color="black">'</font>long<font color="black">'</font><font color="black">,</font> <font color="black">'</font>none<font color="black">'</font><font color="black">,</font> <font color="black">'</font>zz<font color="black">'</font>)</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax87ac697131c8b32a682a5c720a562239"></div>
+                        <script>
+                        padAjax87ac697131c8b32a682a5c720a562239 = new XMLHttpRequest();
+                        padAjax87ac697131c8b32a682a5c720a562239.onreadystatechange=function() {
+                        if (padAjax87ac697131c8b32a682a5c720a562239.readyState === 4) {
+                        if (padAjax87ac697131c8b32a682a5c720a562239.status === 200) {
+                        document.getElementById("padAjax87ac697131c8b32a682a5c720a562239").innerHTML=padAjax87ac697131c8b32a682a5c720a562239.responseText;
+                        } else {
+                        document.getElementById("padAjax87ac697131c8b32a682a5c720a562239").innerHTML=padAjax87ac697131c8b32a682a5c720a562239.statusText;
+                        }
+                        }
+                        }
+                        padAjax87ac697131c8b32a682a5c720a562239.open("GET","http://localhost/pad/regression/framework/?lenient/a_locale_intl_does_not_know_falls_back_to_the_plain_form&padInclude",true);
+                        padAjax87ac697131c8b32a682a5c720a562239.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

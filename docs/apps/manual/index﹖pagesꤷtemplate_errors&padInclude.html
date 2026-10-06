@@ -1,0 +1,65 @@
+
+
+<p>An error names the place in the template where it stands - the file, the line and the
+column, the lines around it with a marker under the spot - next to the engine's own PHP file
+and line. This page, <code>fragments/template_errors_typo.pad</code>, misspells the
+<code>$total</code> its PHP sets:</p>
+
+
+<pre><code>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;td&gt;{$totl | upper}&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+
+
+<p>and its error report says where:</p>
+
+
+
+ 
+
+ 
+
+  
+  <p><b>apps/manual/fragments/template_errors_typo.pad</b> line 3, column 10</p>
+<pre>  1 │ &lt;table&gt;
+  2 │   &lt;tr&gt;
+  3 │     &lt;td&gt;{$totl | upper}&lt;/td&gt;
+    │          ^^^^^
+  4 │   &lt;/tr&gt;
+  5 │ &lt;/table&gt;
+</pre>
+<p>did you mean $total?</p>
+
+
+
+
+
+
+
+
+
+<h2>What the report holds</h2>
+
+<ul>
+  <li><b>The spot</b> - the template file from the application root, its line and column, and the tag as written. The marker stands under what the message names: the field of <code>{$totl | upper}</code>, the function of <code>{echo $x | uppr}</code>.</li>
+  <li><b>Did you mean</b> - for a field, a pipe function or a tag that does not exist, the nearest name there is: the fields visible where the error stands, the functions and tags of the engine, the application and <code>_common</code>.</li>
+  <li><b>Included by</b> - an error in an <code>_include</code> snippet or in a page built by <code>{page}</code> also names the tag that brought it in.</li>
+  <li><b>Wrapped by</b> - the <code>_inits.pad</code> files the page sits in.</li>
+  <li><b>An editor link</b> - <code>vscode://file/...:line:column</code> opens the spot.</li>
+</ul>
+
+<h2>Where it shows</h2>
+
+<p>On the error page of a local request, in the JSON body a local tool gets (as <code>template</code>:
+<code>file</code>, <code>line</code>, <code>column</code>, <code>tag</code>, <code>excerpt</code>,
+<code>suggest</code>, <code>included</code>, <code>wrapped</code>, <code>link</code>), on the
+console, and at the end of the log line as <code>file:line:column</code>. A visitor from
+elsewhere still sees only the request id.</p>
+
+<p>The build joins the <code>_lib</code> snippets, the <code>_inits.pad</code> and
+<code>_exits.pad</code> of every directory and the page into one text, and keeps a map of
+which part came from which file. When a spot cannot be traced back for certain - text a
+page's PHP printed, a tag's output read again as template - the report leaves the position
+out rather than guess.</p>

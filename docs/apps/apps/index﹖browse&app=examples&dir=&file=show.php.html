@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: examples
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: examples
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=examples&amp;dir=_lib.html">_lib/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=examples&amp;dir=_tests.html">_tests/</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=examples&amp;dir=&amp;file=_inits.pad.html">_inits.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=examples&amp;dir=&amp;file=build.php.html">build.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=examples&amp;dir=&amp;file=index.pad.html">index.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=examples&amp;dir=&amp;file=index.php.html">index.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=examples&amp;dir=&amp;file=show.pad.html">show.pad</a>
+                  </li>
+                  <li class="current">show.php
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  show.php
+                </h3>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// One example, three panels: the .php and .pad sources coloured by the _common colours<br>  // library, the .html as what it is - the example's rendered output. The name is taken<br>  // from the query, so it is held to the shape a harvest writes and to the store itself.<br><br>  </span><span style="color: #0000BB">$exDir </span><span style="color: #007700">= </span><span style="color: #0000BB">DATA </span><span style="color: #007700">. </span><span style="color: #DD0000">'examples/'</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// The query travels along on every link, so "back to the search" lands on the results<br>  // the visitor came from - the index runs the same search for a GET as for the form.<br><br>  </span><span style="color: #0000BB">$q     </span><span style="color: #007700">= </span><span style="color: #0000BB">padMakeSafe </span><span style="color: #007700">( </span><span style="color: #0000BB">$q </span><span style="color: #007700">?? </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #0000BB">200 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$item  </span><span style="color: #007700">= </span><span style="color: #0000BB">padMakeSafe </span><span style="color: #007700">( </span><span style="color: #0000BB">$item </span><span style="color: #007700">?? </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #0000BB">200 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$show  </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br><br>  if ( </span><span style="color: #0000BB">$item </span><span style="color: #007700">and </span><span style="color: #0000BB">preg_match </span><span style="color: #007700">( </span><span style="color: #DD0000">'#^[a-zA-Z0-9_/-]+$#'</span><span style="color: #007700">, </span><span style="color: #0000BB">$item </span><span style="color: #007700">) ) {<br><br>    </span><span style="color: #0000BB">$exHtml </span><span style="color: #007700">= </span><span style="color: #0000BB">realpath </span><span style="color: #007700">( </span><span style="color: #0000BB">$exDir </span><span style="color: #007700">. </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$item</span><span style="color: #DD0000">.html" </span><span style="color: #007700">);<br><br>    if ( </span><span style="color: #0000BB">$exHtml </span><span style="color: #007700">and </span><span style="color: #0000BB">str_starts_with </span><span style="color: #007700">( </span><span style="color: #0000BB">$exHtml</span><span style="color: #007700">, </span><span style="color: #0000BB">realpath </span><span style="color: #007700">( </span><span style="color: #0000BB">$exDir </span><span style="color: #007700">) . </span><span style="color: #DD0000">'/' </span><span style="color: #007700">) )<br>      </span><span style="color: #0000BB">$show </span><span style="color: #007700">= </span><span style="color: #0000BB">$item</span><span style="color: #007700">;<br><br>  }<br><br>  </span><span style="color: #0000BB">$hasPhp </span><span style="color: #007700">= ( </span><span style="color: #0000BB">$show </span><span style="color: #007700">and </span><span style="color: #0000BB">file_exists </span><span style="color: #007700">( </span><span style="color: #0000BB">$exDir </span><span style="color: #007700">. </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$show</span><span style="color: #DD0000">.php" </span><span style="color: #007700">) ) ? </span><span style="color: #0000BB">1 </span><span style="color: #007700">: </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$hasPad </span><span style="color: #007700">= ( </span><span style="color: #0000BB">$show </span><span style="color: #007700">and </span><span style="color: #0000BB">file_exists </span><span style="color: #007700">( </span><span style="color: #0000BB">$exDir </span><span style="color: #007700">. </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$show</span><span style="color: #DD0000">.pad" </span><span style="color: #007700">) ) ? </span><span style="color: #0000BB">1 </span><span style="color: #007700">: </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$srcPhp </span><span style="color: #007700">= ( </span><span style="color: #0000BB">$hasPhp </span><span style="color: #007700">) ? </span><span style="color: #0000BB">padColorsFile </span><span style="color: #007700">( </span><span style="color: #0000BB">$exDir </span><span style="color: #007700">. </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$show</span><span style="color: #DD0000">.php" </span><span style="color: #007700">) : </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$srcPad </span><span style="color: #007700">= ( </span><span style="color: #0000BB">$hasPad </span><span style="color: #007700">) ? </span><span style="color: #0000BB">padColorsFile </span><span style="color: #007700">( </span><span style="color: #0000BB">$exDir </span><span style="color: #007700">. </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$show</span><span style="color: #DD0000">.pad" </span><span style="color: #007700">) : </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// The stored render is output as-is, so its braces are escaped the way the colours<br>  // library escapes its own - the exit unescapes them, the level loop never sees them.<br><br>  </span><span style="color: #0000BB">$result </span><span style="color: #007700">= ( </span><span style="color: #0000BB">$show </span><span style="color: #007700">) ? </span><span style="color: #0000BB">padEscape </span><span style="color: #007700">( </span><span style="color: #0000BB">padFileGet </span><span style="color: #007700">( </span><span style="color: #0000BB">$exDir </span><span style="color: #007700">. </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$show</span><span style="color: #DD0000">.html" </span><span style="color: #007700">) ) : </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// The example's name is the title, exactly as it is - the common header would space its<br>  // underscores and capitalise it, so the page writes its own.<br><br>  </span><span style="color: #007700">if ( </span><span style="color: #0000BB">$show </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$skipTitle </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$title  </span><span style="color: #007700">= ( </span><span style="color: #0000BB">$show </span><span style="color: #007700">) ? </span><span style="color: #0000BB">$show </span><span style="color: #007700">: </span><span style="color: #DD0000">'Examples'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

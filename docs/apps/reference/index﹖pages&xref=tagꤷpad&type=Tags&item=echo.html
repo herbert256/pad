@@ -1,6 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<!DOCTYPE html>
+<html>
+  <head>
     <title>
       PAD - Reference - Tags - echo
     </title>
@@ -11,14 +11,14 @@
         PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
       </h1>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table><br>
+      </table><br>
       <hr width="75%">
     </center>
     <blockquote>
@@ -27,14 +27,14 @@
           <h1>
             Reference - Tags - echo
           </h1>
-          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tbody><tr>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
               <td>
                 <center>
                   <hr>
                   App: demo - Page: clock<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2"></font>
@@ -50,112 +50,113 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;p&gt;Current date and time information.&lt;/p&gt;<br><br>&lt;h2&gt;Current Time&lt;/h2&gt;<br><br>&lt;div class="counter" style="font-size: 36px;"&gt;<br>  <b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>l<font color="black">,</font> F j<font color="black">,</font> Y<font color="black">'</font></font>}</b>&lt;br&gt;<br>  <b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>g<font color="black">:</font>i<font color="black">:</font>s A<font color="black">'</font></font>}</b><br>&lt;/div&gt;<br><br>&lt;h2&gt;Time Formats&lt;/h2&gt;<br><br>&lt;table&gt;<br>  &lt;tr&gt;<br>    &lt;th&gt;Format&lt;/th&gt;<br>    &lt;th&gt;Value&lt;/th&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;12-hour format&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>g<font color="black">:</font>i<font color="black">:</font>s A<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;24-hour format&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>H<font color="black">:</font>i<font color="black">:</font>s<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;ISO 8601&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>c<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;RFC 2822&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>r<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Unix Timestamp&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>U<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;h2&gt;Calendar Information&lt;/h2&gt;<br><br>&lt;table&gt;<br>  &lt;tr&gt;<br>    &lt;th&gt;Property&lt;/th&gt;<br>    &lt;th&gt;Value&lt;/th&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Day of Week&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>l<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Month&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>F<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Year&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>Y<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Day of Year&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>z<font color="black">'</font> <font color="black">|</font> + 1</font>}</b> of <b>{<font color="blue">if </font><font color="red"><b><font color="black">{</font><font color="blue">clock </font><font color="red"><font color="black"><font color="black">'</font></font>L<font color="black"><font color="black">'</font></font></font><font color="black">}</font></b> eq 1</font>}</b>366<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>365<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Week of Year&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>W<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Days in This Month&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>t<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Days Remaining in Year&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">if </font><font color="red"><b><font color="black">{</font><font color="blue">clock </font><font color="red"><font color="black"><font color="black">'</font></font>L<font color="black"><font color="black">'</font></font></font><font color="black">}</font></b> eq 1</font>}</b><b>{<font color="blue">echo </font><font color="red">365 - <b><font color="black">{</font><font color="blue">clock </font><font color="red"><font color="black"><font color="black">'</font></font>z<font color="black"><font color="black">'</font></font></font><font color="black">}</font></b></font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><b>{<font color="blue">echo </font><font color="red">364 - <b><font color="black">{</font><font color="blue">clock </font><font color="red"><font color="black"><font color="black">'</font></font>z<font color="black"><font color="black">'</font></font></font><font color="black">}</font></b></font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Leap Year&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">if </font><font color="red"><b><font color="black">{</font><font color="blue">clock </font><font color="red"><font color="black"><font color="black">'</font></font>L<font color="black"><font color="black">'</font></font></font><font color="black">}</font></b> eq 1</font>}</b>Yes<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>No<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Timezone&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">date_default_timezone_get</font><font color="red"></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>&lt;/table&gt;</code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="purple"><font color="red">#</font> This page prints the clock, so it says something different every second and can never<br>   match a stored copy - and not only in its digits<font color="black"></font><b><font color="black">:</font></b><font color="green"></font> AM turns to PM and the weekday changes<br>   name, which digit masking cannot cover. The crawl marks this page uncomparable by name<br>   and only checks that it still answers. <font color="red">#</font></font>}</b><br>&lt;p&gt;Current date and time information.&lt;/p&gt;<br><br>&lt;h2&gt;Current Time&lt;/h2&gt;<br><br>&lt;div class="counter" style="font-size: 36px;"&gt;<br>  <b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>l<font color="black">,</font> F j<font color="black">,</font> Y<font color="black">'</font></font>}</b>&lt;br&gt;<br>  <b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>g<font color="black">:</font>i<font color="black">:</font>s A<font color="black">'</font></font>}</b><br>&lt;/div&gt;<br><br>&lt;h2&gt;Time Formats&lt;/h2&gt;<br><br>&lt;table&gt;<br>  &lt;tr&gt;<br>    &lt;th&gt;Format&lt;/th&gt;<br>    &lt;th&gt;Value&lt;/th&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;12-hour format&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>g<font color="black">:</font>i<font color="black">:</font>s A<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;24-hour format&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>H<font color="black">:</font>i<font color="black">:</font>s<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;ISO 8601&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>c<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;RFC 2822&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>r<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Unix Timestamp&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>U<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;h2&gt;Calendar Information&lt;/h2&gt;<br><br>&lt;table&gt;<br>  &lt;tr&gt;<br>    &lt;th&gt;Property&lt;/th&gt;<br>    &lt;th&gt;Value&lt;/th&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Day of Week&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>l<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Month&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>F<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Year&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>Y<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Day of Year&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>z<font color="black">'</font> <font color="black">|</font> + 1</font>}</b> of <b>{<font color="blue">if </font><font color="red"><b><font color="black">{</font><font color="blue">clock </font><font color="red"><font color="black"><font color="black">'</font></font>L<font color="black"><font color="black">'</font></font></font><font color="black">}</font></b> eq 1</font>}</b>366<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>365<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Week of Year&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>W<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Days in This Month&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>t<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Days Remaining in Year&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">if </font><font color="red"><b><font color="black">{</font><font color="blue">clock </font><font color="red"><font color="black"><font color="black">'</font></font>L<font color="black"><font color="black">'</font></font></font><font color="black">}</font></b> eq 1</font>}</b><b>{<font color="blue">echo </font><font color="red">365 - <b><font color="black">{</font><font color="blue">clock </font><font color="red"><font color="black"><font color="black">'</font></font>z<font color="black"><font color="black">'</font></font></font><font color="black">}</font></b></font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><b>{<font color="blue">echo </font><font color="red">364 - <b><font color="black">{</font><font color="blue">clock </font><font color="red"><font color="black"><font color="black">'</font></font>z<font color="black"><font color="black">'</font></font></font><font color="black">}</font></b></font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Leap Year&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">if </font><font color="red"><b><font color="black">{</font><font color="blue">clock </font><font color="red"><font color="black"><font color="black">'</font></font>L<font color="black"><font color="black">'</font></font></font><font color="black">}</font></b> eq 1</font>}</b>Yes<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>No<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Timezone&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">date_default_timezone_get</font><font color="red"></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>&lt;/table&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxs614ylFA"><p>Current date and time information.</p>
-
-<h2>Current Time</h2>
-
-<div class="counter" style="font-size: 36px;">
-  Sunday, January 18, 2026<br>
-  9:05:48 AM
-</div>
-
-<h2>Time Formats</h2>
-
-<table>
-  <tbody><tr>
-    <th>Format</th>
-    <th>Value</th>
-  </tr>
-  <tr>
-    <td>12-hour format</td>
-    <td>9:05:48 AM</td>
-  </tr>
-  <tr>
-    <td>24-hour format</td>
-    <td>09:05:48</td>
-  </tr>
-  <tr>
-    <td>ISO 8601</td>
-    <td>2026-01-18T09:05:48+00:00</td>
-  </tr>
-  <tr>
-    <td>RFC 2822</td>
-    <td>Sun, 18 Jan 2026 09:05:48 +0000</td>
-  </tr>
-  <tr>
-    <td>Unix Timestamp</td>
-    <td>1768727148</td>
-  </tr>
-</tbody></table>
-
-<h2>Calendar Information</h2>
-
-<table>
-  <tbody><tr>
-    <th>Property</th>
-    <th>Value</th>
-  </tr>
-  <tr>
-    <td>Day of Week</td>
-    <td>Sunday</td>
-  </tr>
-  <tr>
-    <td>Month</td>
-    <td>January</td>
-  </tr>
-  <tr>
-    <td>Year</td>
-    <td>2026</td>
-  </tr>
-  <tr>
-    <td>Day of Year</td>
-    <td>18 of 365</td>
-  </tr>
-  <tr>
-    <td>Week of Year</td>
-    <td>03</td>
-  </tr>
-  <tr>
-    <td>Days in This Month</td>
-    <td>31</td>
-  </tr>
-  <tr>
-    <td>Days Remaining in Year</td>
-    <td>347</td>
-  </tr>
-  <tr>
-    <td>Leap Year</td>
-    <td>No</td>
-  </tr>
-  <tr>
-    <td>Timezone</td>
-    <td>UTC</td>
-  </tr>
-</tbody></table></div>
+                        <div id="padAjaxd3c0c73e066783a8e2a3aafeb9ed97dd"></div>
                         <script>
-                        padAjaxs614ylFA = new XMLHttpRequest();
-                        padAjaxs614ylFA.onreadystatechange=function() {
-                        if (padAjaxs614ylFA.readyState === 4) {
-                        if (padAjaxs614ylFA.status === 200) {
-                        document.getElementById("padAjaxs614ylFA").innerHTML=padAjaxs614ylFA.responseText;
+                        padAjaxd3c0c73e066783a8e2a3aafeb9ed97dd = new XMLHttpRequest();
+                        padAjaxd3c0c73e066783a8e2a3aafeb9ed97dd.onreadystatechange=function() {
+                        if (padAjaxd3c0c73e066783a8e2a3aafeb9ed97dd.readyState === 4) {
+                        if (padAjaxd3c0c73e066783a8e2a3aafeb9ed97dd.status === 200) {
+                        document.getElementById("padAjaxd3c0c73e066783a8e2a3aafeb9ed97dd").innerHTML=padAjaxd3c0c73e066783a8e2a3aafeb9ed97dd.responseText;
                         } else {
-                        document.getElementById("padAjaxs614ylFA").innerHTML=padAjaxs614ylFA.statusText;
+                        document.getElementById("padAjaxd3c0c73e066783a8e2a3aafeb9ed97dd").innerHTML=padAjaxd3c0c73e066783a8e2a3aafeb9ed97dd.statusText;
                         }
                         }
                         }
-                        padAjaxs614ylFA.open("GET","http://localhost/demo/?clock&padInclude&padSesID=DiM2hOlW&padReqID=8fIp8GWG",true);
-                        padAjaxs614ylFA.send();
+                        padAjaxd3c0c73e066783a8e2a3aafeb9ed97dd.open("GET","http://localhost/pad/demo/?clock&padInclude",true);
+                        padAjaxd3c0c73e066783a8e2a3aafeb9ed97dd.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
                   <hr>
-                  App: check - Page: fragments/ignore_4<br>
+                  App: manual - Page: fragments/conditions_6<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/conditions_6.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/conditions_6.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $count   </span><span style="color: #007700">= </span><span style="color: #0000BB">3</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$heading </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$code    </span><span style="color: #007700">= </span><span style="color: #DD0000">'NL1234'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$state   </span><span style="color: #007700">= </span><span style="color: #DD0000">'pending'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>count eq 1 ? <font color="black">'</font>item<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>items<font color="black">'</font></font>}</b>&lt;/p&gt;<br>&lt;p&gt;Title: <b>{<font color="green">$heading</font> <font color="black">|</font> <font color="blue">?? 'Untitled'</font>}</b> - subtitle: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>subtitle ?? <font color="black">'</font>none<font color="black">'</font></font>}</b>&lt;/p&gt;<br>&lt;p&gt;Code <b>{<font color="green"><font color="red">$</font>code</font>}</b> <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>code matches <font color="black">'</font>/^[A-Z][A-Z][0-9]+<font color="red">$</font>/<font color="black">'</font></font>}</b>is<b>{<font color="blue">else</font><font color="red"></font>}</b>is not<b>{/<font color="blue">if</font><font color="red"></font>}</b> well formed&lt;/p&gt;<br>&lt;p&gt;State <b>{<font color="green"><font color="red">$</font>state</font>}</b> <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>state in (<font color="black">'</font>active<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pending<font color="black">'</font>)</font>}</b>is open<b>{<font color="blue">else</font><font color="red"></font>}</b>is closed<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3ef145d934346635c698862e999dc0d4"></div>
+                        <script>
+                        padAjax3ef145d934346635c698862e999dc0d4 = new XMLHttpRequest();
+                        padAjax3ef145d934346635c698862e999dc0d4.onreadystatechange=function() {
+                        if (padAjax3ef145d934346635c698862e999dc0d4.readyState === 4) {
+                        if (padAjax3ef145d934346635c698862e999dc0d4.status === 200) {
+                        document.getElementById("padAjax3ef145d934346635c698862e999dc0d4").innerHTML=padAjax3ef145d934346635c698862e999dc0d4.responseText;
+                        } else {
+                        document.getElementById("padAjax3ef145d934346635c698862e999dc0d4").innerHTML=padAjax3ef145d934346635c698862e999dc0d4.statusText;
+                        }
+                        }
+                        }
+                        padAjax3ef145d934346635c698862e999dc0d4.open("GET","http://localhost/pad/manual/?fragments/conditions_6&padInclude",true);
+                        padAjax3ef145d934346635c698862e999dc0d4.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: fragments/extending_2<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/extending_2.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>well done<font color="black">'</font> <font color="black">|</font> stars</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>well done<font color="black">'</font> <font color="black">|</font> upper <font color="black">|</font> stars</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax285880032440e2e47ba81011bae50449"></div>
+                        <script>
+                        padAjax285880032440e2e47ba81011bae50449 = new XMLHttpRequest();
+                        padAjax285880032440e2e47ba81011bae50449.onreadystatechange=function() {
+                        if (padAjax285880032440e2e47ba81011bae50449.readyState === 4) {
+                        if (padAjax285880032440e2e47ba81011bae50449.status === 200) {
+                        document.getElementById("padAjax285880032440e2e47ba81011bae50449").innerHTML=padAjax285880032440e2e47ba81011bae50449.responseText;
+                        } else {
+                        document.getElementById("padAjax285880032440e2e47ba81011bae50449").innerHTML=padAjax285880032440e2e47ba81011bae50449.statusText;
+                        }
+                        }
+                        }
+                        padAjax285880032440e2e47ba81011bae50449.open("GET","http://localhost/pad/manual/?fragments/extending_2&padInclude",true);
+                        padAjax285880032440e2e47ba81011bae50449.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: fragments/ignore_4<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2">fragments/ignore_4.php</font>
@@ -170,45 +171,76 @@
                     </tr>
                     <tr>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Sample data for JSON example<br>  </span><span style="color: #0000BB">$userData </span><span style="color: #007700">= [<br>    [</span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Alice'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Developer'</span><span style="color: #007700">],<br>    [</span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Designer'</span><span style="color: #007700">],<br>    [</span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Charlie'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Manager'</span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #FF8000">// Encode to JSON with HTML escaping<br>  </span><span style="color: #0000BB">$usersJson </span><span style="color: #007700">= </span><span style="color: #0000BB">htmlspecialchars</span><span style="color: #007700">(</span><span style="color: #0000BB">json_encode</span><span style="color: #007700">(</span><span style="color: #0000BB">$userData</span><span style="color: #007700">), </span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">, </span><span style="color: #DD0000">'UTF-8'</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Sample data for JSON example<br>  </span><span style="color: #0000BB">$userData </span><span style="color: #007700">= [<br>    [</span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Alice'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Developer'</span><span style="color: #007700">],<br>    [</span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Designer'</span><span style="color: #007700">],<br>    [</span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Charlie'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Manager'</span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #FF8000">// Encode to JSON with HTML escaping<br>  </span><span style="color: #0000BB">$usersJson </span><span style="color: #007700">= </span><span style="color: #0000BB">htmlspecialchars</span><span style="color: #007700">(</span><span style="color: #0000BB">json_encode</span><span style="color: #007700">(</span><span style="color: #0000BB">$userData</span><span style="color: #007700">), </span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">, </span><span style="color: #DD0000">'UTF-8'</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                       </td>
                       <td style="vertical-align:top">
                         <pre><code style="color: #000000">&lt;div id="ignore-example-4" data-users="<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>usersJson <font color="black">|</font> ignore</font>}</b>"&gt;&lt;/div&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b>&lt;script&gt;<br>  const element = document.getElementById('ignore-example-4');<br>  const users = JSON.parse(element.dataset.users);<br><br>  const html = '&lt;ul&gt;' + users.map(user =&gt;<br>    '&lt;li&gt;&lt;strong&gt;' + user.name + '&lt;/strong&gt; - ' + user.role + '&lt;/li&gt;'<br>  ).join('') + '&lt;/ul&gt;';<br><br>  element.innerHTML = html;<br>&lt;/script&gt;<b>{/<font color="blue">ignore</font><font color="red"></font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxBwMWWXtA"><div id="ignore-example-4" data-users="[{&quot;id&quot;:1,&quot;name&quot;:&quot;Alice&quot;,&quot;role&quot;:&quot;Developer&quot;},{&quot;id&quot;:2,&quot;name&quot;:&quot;Bob&quot;,&quot;role&quot;:&quot;Designer&quot;},{&quot;id&quot;:3,&quot;name&quot;:&quot;Charlie&quot;,&quot;role&quot;:&quot;Manager&quot;}]"></div>
-
-<script>
-  const element = document.getElementById('ignore-example-4');
-  const users = JSON.parse(element.dataset.users);
-
-  const html = '<ul>' + users.map(user =>
-    '<li><strong>' + user.name + '</strong> - ' + user.role + '</li>'
-  ).join('') + '</ul>';
-
-  element.innerHTML = html;
-</script></div>
+                        <div id="padAjaxa5eaa8108c511e01f00eddd89def89cc"></div>
                         <script>
-                        padAjaxBwMWWXtA = new XMLHttpRequest();
-                        padAjaxBwMWWXtA.onreadystatechange=function() {
-                        if (padAjaxBwMWWXtA.readyState === 4) {
-                        if (padAjaxBwMWWXtA.status === 200) {
-                        document.getElementById("padAjaxBwMWWXtA").innerHTML=padAjaxBwMWWXtA.responseText;
+                        padAjaxa5eaa8108c511e01f00eddd89def89cc = new XMLHttpRequest();
+                        padAjaxa5eaa8108c511e01f00eddd89def89cc.onreadystatechange=function() {
+                        if (padAjaxa5eaa8108c511e01f00eddd89def89cc.readyState === 4) {
+                        if (padAjaxa5eaa8108c511e01f00eddd89def89cc.status === 200) {
+                        document.getElementById("padAjaxa5eaa8108c511e01f00eddd89def89cc").innerHTML=padAjaxa5eaa8108c511e01f00eddd89def89cc.responseText;
                         } else {
-                        document.getElementById("padAjaxBwMWWXtA").innerHTML=padAjaxBwMWWXtA.statusText;
+                        document.getElementById("padAjaxa5eaa8108c511e01f00eddd89def89cc").innerHTML=padAjaxa5eaa8108c511e01f00eddd89def89cc.statusText;
                         }
                         }
                         }
-                        padAjaxBwMWWXtA.open("GET","http://localhost/check/?fragments/ignore_4&padInclude&padSesID=DiM2hOlW&padReqID=8fIp8GWG",true);
-                        padAjaxBwMWWXtA.send();
+                        padAjaxa5eaa8108c511e01f00eddd89def89cc.open("GET","http://localhost/pad/manual/?fragments/ignore_4&padInclude",true);
+                        padAjaxa5eaa8108c511e01f00eddd89def89cc.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
                   <hr>
-                  App: check - Page: fragments/pipes_1<br>
+                  App: manual - Page: fragments/lookup_1<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/lookup_1.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/lookup_1.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $customers </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'NL' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'BE' </span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #0000BB">$orders </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">101</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer_id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">102</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer_id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">103</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer_id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">7 </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">orders</font><font color="red"></font>}</b><br>  &lt;p&gt;Order <b>{<font color="green"><font color="red">$</font>number</font>}</b>: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>customer_id <font color="black">|</font> lookup(<font color="black">'</font>customers<font color="black">'</font><font color="black">,</font> <font color="black">'</font>id<font color="black">'</font><font color="black">,</font> <font color="black">'</font>name<font color="black">'</font>) <font color="black">|</font> ?? <font color="black">'</font>unknown customer<font color="black">'</font></font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">orders</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax86d7d1e898bc952ad13ac1337db79230"></div>
+                        <script>
+                        padAjax86d7d1e898bc952ad13ac1337db79230 = new XMLHttpRequest();
+                        padAjax86d7d1e898bc952ad13ac1337db79230.onreadystatechange=function() {
+                        if (padAjax86d7d1e898bc952ad13ac1337db79230.readyState === 4) {
+                        if (padAjax86d7d1e898bc952ad13ac1337db79230.status === 200) {
+                        document.getElementById("padAjax86d7d1e898bc952ad13ac1337db79230").innerHTML=padAjax86d7d1e898bc952ad13ac1337db79230.responseText;
+                        } else {
+                        document.getElementById("padAjax86d7d1e898bc952ad13ac1337db79230").innerHTML=padAjax86d7d1e898bc952ad13ac1337db79230.statusText;
+                        }
+                        }
+                        }
+                        padAjax86d7d1e898bc952ad13ac1337db79230.open("GET","http://localhost/pad/manual/?fragments/lookup_1&padInclude",true);
+                        padAjax86d7d1e898bc952ad13ac1337db79230.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: fragments/pipes_1<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2">fragments/pipes_1.php</font>
@@ -223,42 +255,34 @@
                     </tr>
                     <tr>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $name </span><span style="color: #007700">= </span><span style="color: #DD0000">'john doe'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$email </span><span style="color: #007700">= </span><span style="color: #DD0000">'ALICE@EXAMPLE.COM'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$price </span><span style="color: #007700">= </span><span style="color: #0000BB">1234.56</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $name </span><span style="color: #007700">= </span><span style="color: #DD0000">'john doe'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$email </span><span style="color: #007700">= </span><span style="color: #DD0000">'ALICE@EXAMPLE.COM'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$price </span><span style="color: #007700">= </span><span style="color: #0000BB">1234.56</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;p&gt;Original: <b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Uppercase: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>name <font color="black">|</font> upper</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Capitalize: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>name <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;<br><br>&lt;p&gt;Original: <b>{<font color="green"><font color="red">$</font>email</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Lowercase: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>email <font color="black">|</font> lower</font>}</b>&lt;/p&gt;<br><br>&lt;p&gt;Original: <b>{<font color="green"><font color="red">$</font>price</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Formatted: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>price <font color="black">|</font> number_format(2)</font>}</b>&lt;/p&gt;</code></pre>
+                        <pre><code style="color: #000000">&lt;p&gt;Original: <b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Uppercase: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>name <font color="black">|</font> upper</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Capitalize: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>name <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;<br><br>&lt;p&gt;Original: <b>{<font color="green"><font color="red">$</font>email</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Lowercase: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>email <font color="black">|</font> lower</font>}</b>&lt;/p&gt;<br><br>&lt;p&gt;Original: <b>{<font color="green"><font color="red">$</font>price</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Formatted: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>price <font color="black">|</font> number_format(<font color="black">@</font><font color="black">,</font> 2)</font>}</b>&lt;/p&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxn3b1mHFd"><p>Original: john doe</p>
-<p>Uppercase: JOHN DOE</p>
-<p>Capitalize: John Doe</p>
-
-<p>Original: ALICE@EXAMPLE.COM</p>
-<p>Lowercase: alice@example.com</p>
-
-<p>Original: 1234.56</p>
-<p>Formatted: 2</p></div>
+                        <div id="padAjax5c5429cf80156740d4d8f4c17f40695b"></div>
                         <script>
-                        padAjaxn3b1mHFd = new XMLHttpRequest();
-                        padAjaxn3b1mHFd.onreadystatechange=function() {
-                        if (padAjaxn3b1mHFd.readyState === 4) {
-                        if (padAjaxn3b1mHFd.status === 200) {
-                        document.getElementById("padAjaxn3b1mHFd").innerHTML=padAjaxn3b1mHFd.responseText;
+                        padAjax5c5429cf80156740d4d8f4c17f40695b = new XMLHttpRequest();
+                        padAjax5c5429cf80156740d4d8f4c17f40695b.onreadystatechange=function() {
+                        if (padAjax5c5429cf80156740d4d8f4c17f40695b.readyState === 4) {
+                        if (padAjax5c5429cf80156740d4d8f4c17f40695b.status === 200) {
+                        document.getElementById("padAjax5c5429cf80156740d4d8f4c17f40695b").innerHTML=padAjax5c5429cf80156740d4d8f4c17f40695b.responseText;
                         } else {
-                        document.getElementById("padAjaxn3b1mHFd").innerHTML=padAjaxn3b1mHFd.statusText;
+                        document.getElementById("padAjax5c5429cf80156740d4d8f4c17f40695b").innerHTML=padAjax5c5429cf80156740d4d8f4c17f40695b.statusText;
                         }
                         }
                         }
-                        padAjaxn3b1mHFd.open("GET","http://localhost/check/?fragments/pipes_1&padInclude&padSesID=DiM2hOlW&padReqID=8fIp8GWG",true);
-                        padAjaxn3b1mHFd.send();
+                        padAjax5c5429cf80156740d4d8f4c17f40695b.open("GET","http://localhost/pad/manual/?fragments/pipes_1&padInclude",true);
+                        padAjax5c5429cf80156740d4d8f4c17f40695b.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
                   <hr>
-                  App: check - Page: fragments/pipes_3<br>
+                  App: manual - Page: fragments/pipes_3<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2">fragments/pipes_3.php</font>
@@ -273,86 +297,76 @@
                     </tr>
                     <tr>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $rawText </span><span style="color: #007700">= </span><span style="color: #DD0000">'  hello world  '</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$message </span><span style="color: #007700">= </span><span style="color: #DD0000">'the quick brown fox'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $rawText </span><span style="color: #007700">= </span><span style="color: #DD0000">'  hello world  '</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$message </span><span style="color: #007700">= </span><span style="color: #DD0000">'the quick brown fox'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                       </td>
                       <td style="vertical-align:top">
                         <pre><code style="color: #000000">&lt;p&gt;Chain multiple pipes together:&lt;/p&gt;<br><br>&lt;p&gt;Original: [<b>{<font color="green"><font color="red">$</font>rawText</font>}</b>]&lt;/p&gt;<br>&lt;p&gt;Trimmed and uppercase: [<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>rawText <font color="black">|</font> trim <font color="black">|</font> upper</font>}</b>]&lt;/p&gt;<br><br>&lt;p&gt;Original: <b>{<font color="green"><font color="red">$</font>message</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Uppercase first letter of each word: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>message <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Replace and uppercase: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>message <font color="black">|</font> replace(<font color="black">'</font>fox<font color="black">'</font><font color="black">,</font> <font color="black">'</font>dog<font color="black">'</font>) <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxQPnOJth2"><p>Chain multiple pipes together:</p>
-
-<p>Original: [  hello world  ]</p>
-<p>Trimmed and uppercase: [HELLO WORLD]</p>
-
-<p>Original: the quick brown fox</p>
-<p>Uppercase first letter of each word: The Quick Brown Fox</p>
-<p>Replace and uppercase: The Quick Brown Dog</p></div>
+                        <div id="padAjax243d7394b2dbf942256edb7508c1d1ab"></div>
                         <script>
-                        padAjaxQPnOJth2 = new XMLHttpRequest();
-                        padAjaxQPnOJth2.onreadystatechange=function() {
-                        if (padAjaxQPnOJth2.readyState === 4) {
-                        if (padAjaxQPnOJth2.status === 200) {
-                        document.getElementById("padAjaxQPnOJth2").innerHTML=padAjaxQPnOJth2.responseText;
+                        padAjax243d7394b2dbf942256edb7508c1d1ab = new XMLHttpRequest();
+                        padAjax243d7394b2dbf942256edb7508c1d1ab.onreadystatechange=function() {
+                        if (padAjax243d7394b2dbf942256edb7508c1d1ab.readyState === 4) {
+                        if (padAjax243d7394b2dbf942256edb7508c1d1ab.status === 200) {
+                        document.getElementById("padAjax243d7394b2dbf942256edb7508c1d1ab").innerHTML=padAjax243d7394b2dbf942256edb7508c1d1ab.responseText;
                         } else {
-                        document.getElementById("padAjaxQPnOJth2").innerHTML=padAjaxQPnOJth2.statusText;
+                        document.getElementById("padAjax243d7394b2dbf942256edb7508c1d1ab").innerHTML=padAjax243d7394b2dbf942256edb7508c1d1ab.statusText;
                         }
                         }
                         }
-                        padAjaxQPnOJth2.open("GET","http://localhost/check/?fragments/pipes_3&padInclude&padSesID=DiM2hOlW&padReqID=8fIp8GWG",true);
-                        padAjaxQPnOJth2.send();
+                        padAjax243d7394b2dbf942256edb7508c1d1ab.open("GET","http://localhost/pad/manual/?fragments/pipes_3&padInclude",true);
+                        padAjax243d7394b2dbf942256edb7508c1d1ab.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
                   <hr>
-                  App: check - Page: functions/date<br>
+                  App: manual - Page: fragments/trees_2<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
-                        <font size="-2"></font>
+                        <font size="-2">fragments/trees_2.php</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">functions/date.pad</font>
+                        <font size="-2">fragments/trees_2.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
                       </th>
                     </tr>
                     <tr>
-                      <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">date</font>}</b> &lt;br&gt;<br><b>{<font color="blue">echo </font><font color="red">772345654 <font color="black">|</font> date </font>}</b> &lt;br&gt;<br><b>{<font color="blue">echo </font><font color="red">date (<font color="black">'</font>Y-m-d H<font color="black">:</font>i<font color="black">:</font>s<font color="black">'</font>)</font>}</b> &lt;br&gt;<br><b>{<font color="blue">echo </font><font color="red">772345654 <font color="black">|</font> date (<font color="black">'</font>Y-m-d H<font color="black">:</font>i<font color="black">:</font>s<font color="black">'</font>)</font>}</b> &lt;br&gt;<br><b>{<font color="blue">echo </font><font color="red">date (<font color="black">'</font>Y-m-d<font color="black">'</font><font color="black">,</font> <font color="black">'</font>tomorrow<font color="black">'</font>)</font>}</b> &lt;br&gt;<br><b>{<font color="blue">echo </font><font color="red">date (<font color="black">'</font>Y-m-d<font color="black">'</font><font color="black">,</font> <font color="black">'</font>yesterday<font color="black">'</font>)</font>}</b> &lt;br&gt;</code></pre>
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $menu </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Home' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Shop'</span><span style="color: #007700">, </span><span style="color: #DD0000">'items' </span><span style="color: #007700">=&gt; [<br>        [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Shoes'</span><span style="color: #007700">, </span><span style="color: #DD0000">'items' </span><span style="color: #007700">=&gt; [ [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Boots' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Sandals' </span><span style="color: #007700">] ] ],<br>        [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Hats' </span><span style="color: #007700">] ] ],<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'About' </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxLzSqfju5">2026-01-18 <br>
-1994-06-23 <br>
-2026-01-18 09:05:48 <br>
-1994-06-23 04:27:34 <br>
-2026-01-19 <br>
-2026-01-17 <br></div>
+                        <pre><code style="color: #000000"><b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>menu<font color="black">'</font><font color="black">,</font> children=<font color="black">'</font>items<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>title<font color="black">'</font></font>}</b><br>  &lt;p style="margin: 0 0 0 <b>{<font color="blue">echo </font><font color="red">depth<font color="black">@</font>tree <font color="black">|</font> * 20</font>}</b>px"&gt;<br>    <b>{<font color="blue">branch</font><font color="red"></font>}</b>&amp;#9662;@else@&amp;middot;<b>{/<font color="blue">branch</font><font color="red"></font>}</b><br>    <b>{<font color="green"><font color="red">$</font>title</font>}</b> &lt;small&gt;(<b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>tree</font><font color="red"></font>}</b> of <b>{<font color="blue">count<font color="black"><b><font color="red">@</font></b></font>tree</font><font color="red"></font>}</b>)&lt;/small&gt;<br>  &lt;/p&gt;<br>  <b>{<font color="blue">branch</font><font color="red"></font>}</b><b>{<font color="blue">recurse</font><font color="red"></font>}</b><b>{/<font color="blue">branch</font><font color="red"></font>}</b><br><b>{/<font color="blue">tree</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8c4b9affa864dac29f1cbbcfda684b90"></div>
                         <script>
-                        padAjaxLzSqfju5 = new XMLHttpRequest();
-                        padAjaxLzSqfju5.onreadystatechange=function() {
-                        if (padAjaxLzSqfju5.readyState === 4) {
-                        if (padAjaxLzSqfju5.status === 200) {
-                        document.getElementById("padAjaxLzSqfju5").innerHTML=padAjaxLzSqfju5.responseText;
+                        padAjax8c4b9affa864dac29f1cbbcfda684b90 = new XMLHttpRequest();
+                        padAjax8c4b9affa864dac29f1cbbcfda684b90.onreadystatechange=function() {
+                        if (padAjax8c4b9affa864dac29f1cbbcfda684b90.readyState === 4) {
+                        if (padAjax8c4b9affa864dac29f1cbbcfda684b90.status === 200) {
+                        document.getElementById("padAjax8c4b9affa864dac29f1cbbcfda684b90").innerHTML=padAjax8c4b9affa864dac29f1cbbcfda684b90.responseText;
                         } else {
-                        document.getElementById("padAjaxLzSqfju5").innerHTML=padAjaxLzSqfju5.statusText;
+                        document.getElementById("padAjax8c4b9affa864dac29f1cbbcfda684b90").innerHTML=padAjax8c4b9affa864dac29f1cbbcfda684b90.statusText;
                         }
                         }
                         }
-                        padAjaxLzSqfju5.open("GET","http://localhost/check/?functions/date&padInclude&padSesID=DiM2hOlW&padReqID=8fIp8GWG",true);
-                        padAjaxLzSqfju5.send();
+                        padAjax8c4b9affa864dac29f1cbbcfda684b90.open("GET","http://localhost/pad/manual/?fragments/trees_2&padInclude",true);
+                        padAjax8c4b9affa864dac29f1cbbcfda684b90.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
                   <hr>
                   App: manual - Page: lvl_occ/4<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2">lvl_occ/4.php</font>
@@ -367,78 +381,34 @@
                     </tr>
                     <tr>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">for (</span><span style="color: #0000BB">$row </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">; </span><span style="color: #0000BB">$row </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">3</span><span style="color: #007700">; </span><span style="color: #0000BB">$row</span><span style="color: #007700">++)<br>    for (</span><span style="color: #0000BB">$col </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">; </span><span style="color: #0000BB">$col </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">5</span><span style="color: #007700">; </span><span style="color: #0000BB">$col</span><span style="color: #007700">++)<br>      </span><span style="color: #0000BB">$rows </span><span style="color: #007700">[</span><span style="color: #0000BB">$row</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cols'</span><span style="color: #007700">] [</span><span style="color: #0000BB">$col</span><span style="color: #007700">] = </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">for (</span><span style="color: #0000BB">$row </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">; </span><span style="color: #0000BB">$row </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">3</span><span style="color: #007700">; </span><span style="color: #0000BB">$row</span><span style="color: #007700">++)<br>    for (</span><span style="color: #0000BB">$col </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">; </span><span style="color: #0000BB">$col </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">5</span><span style="color: #007700">; </span><span style="color: #0000BB">$col</span><span style="color: #007700">++)<br>      </span><span style="color: #0000BB">$rows </span><span style="color: #007700">[</span><span style="color: #0000BB">$row</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cols'</span><span style="color: #007700">] [</span><span style="color: #0000BB">$col</span><span style="color: #007700">] = </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                       </td>
                       <td style="vertical-align:top">
                         <pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">rows</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">cols</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="blue">echo </font><font color="red">(&amp;rows<font color="black">:</font>key*10) + &amp;cols<font color="black">:</font>key</font>}</b>&lt;/td&gt;  <br>      <b>{/<font color="blue">cols</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">rows</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxGSQlVxBQ"><table border="1">
-  
-    <tbody><tr>
-      
-        <td>11</td>  
-      
-        <td>12</td>  
-      
-        <td>13</td>  
-      
-        <td>14</td>  
-      
-        <td>15</td>  
-      
-    </tr>
-  
-    <tr>
-      
-        <td>21</td>  
-      
-        <td>22</td>  
-      
-        <td>23</td>  
-      
-        <td>24</td>  
-      
-        <td>25</td>  
-      
-    </tr>
-  
-    <tr>
-      
-        <td>31</td>  
-      
-        <td>32</td>  
-      
-        <td>33</td>  
-      
-        <td>34</td>  
-      
-        <td>35</td>  
-      
-    </tr>
-  
-</tbody></table></div>
+                        <div id="padAjax2c1e8590cf9a32f9261f999f1ff6b633"></div>
                         <script>
-                        padAjaxGSQlVxBQ = new XMLHttpRequest();
-                        padAjaxGSQlVxBQ.onreadystatechange=function() {
-                        if (padAjaxGSQlVxBQ.readyState === 4) {
-                        if (padAjaxGSQlVxBQ.status === 200) {
-                        document.getElementById("padAjaxGSQlVxBQ").innerHTML=padAjaxGSQlVxBQ.responseText;
+                        padAjax2c1e8590cf9a32f9261f999f1ff6b633 = new XMLHttpRequest();
+                        padAjax2c1e8590cf9a32f9261f999f1ff6b633.onreadystatechange=function() {
+                        if (padAjax2c1e8590cf9a32f9261f999f1ff6b633.readyState === 4) {
+                        if (padAjax2c1e8590cf9a32f9261f999f1ff6b633.status === 200) {
+                        document.getElementById("padAjax2c1e8590cf9a32f9261f999f1ff6b633").innerHTML=padAjax2c1e8590cf9a32f9261f999f1ff6b633.responseText;
                         } else {
-                        document.getElementById("padAjaxGSQlVxBQ").innerHTML=padAjaxGSQlVxBQ.statusText;
+                        document.getElementById("padAjax2c1e8590cf9a32f9261f999f1ff6b633").innerHTML=padAjax2c1e8590cf9a32f9261f999f1ff6b633.statusText;
                         }
                         }
                         }
-                        padAjaxGSQlVxBQ.open("GET","http://localhost/manual/?lvl_occ/4&padInclude&padSesID=DiM2hOlW&padReqID=8fIp8GWG",true);
-                        padAjaxGSQlVxBQ.send();
+                        padAjax2c1e8590cf9a32f9261f999f1ff6b633.open("GET","http://localhost/pad/manual/?lvl_occ/4&padInclude",true);
+                        padAjax2c1e8590cf9a32f9261f999f1ff6b633.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
                   <hr>
                   App: manual - Page: lvl_occ/6<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2"></font>
@@ -457,72 +427,28 @@
                         <pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">sequence </font><font color="red">3</font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">sequence </font><font color="red">5</font>}</b><br>        &lt;td&gt;<b>{<font color="blue">echo </font><font color="red">(<font color="red">$</font>-2 * 10) + <font color="red">$</font>-1</font>}</b>&lt;/td&gt;      <br>      <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxGLnF363x"><table border="1">
-  
-    <tbody><tr>
-      
-        <td>11</td>      
-      
-        <td>12</td>      
-      
-        <td>13</td>      
-      
-        <td>14</td>      
-      
-        <td>15</td>      
-      
-    </tr>
-  
-    <tr>
-      
-        <td>21</td>      
-      
-        <td>22</td>      
-      
-        <td>23</td>      
-      
-        <td>24</td>      
-      
-        <td>25</td>      
-      
-    </tr>
-  
-    <tr>
-      
-        <td>31</td>      
-      
-        <td>32</td>      
-      
-        <td>33</td>      
-      
-        <td>34</td>      
-      
-        <td>35</td>      
-      
-    </tr>
-  
-</tbody></table></div>
+                        <div id="padAjaxb321f91759eac4359b7eefd9a38f4584"></div>
                         <script>
-                        padAjaxGLnF363x = new XMLHttpRequest();
-                        padAjaxGLnF363x.onreadystatechange=function() {
-                        if (padAjaxGLnF363x.readyState === 4) {
-                        if (padAjaxGLnF363x.status === 200) {
-                        document.getElementById("padAjaxGLnF363x").innerHTML=padAjaxGLnF363x.responseText;
+                        padAjaxb321f91759eac4359b7eefd9a38f4584 = new XMLHttpRequest();
+                        padAjaxb321f91759eac4359b7eefd9a38f4584.onreadystatechange=function() {
+                        if (padAjaxb321f91759eac4359b7eefd9a38f4584.readyState === 4) {
+                        if (padAjaxb321f91759eac4359b7eefd9a38f4584.status === 200) {
+                        document.getElementById("padAjaxb321f91759eac4359b7eefd9a38f4584").innerHTML=padAjaxb321f91759eac4359b7eefd9a38f4584.responseText;
                         } else {
-                        document.getElementById("padAjaxGLnF363x").innerHTML=padAjaxGLnF363x.statusText;
+                        document.getElementById("padAjaxb321f91759eac4359b7eefd9a38f4584").innerHTML=padAjaxb321f91759eac4359b7eefd9a38f4584.statusText;
                         }
                         }
                         }
-                        padAjaxGLnF363x.open("GET","http://localhost/manual/?lvl_occ/6&padInclude&padSesID=DiM2hOlW&padReqID=8fIp8GWG",true);
-                        padAjaxGLnF363x.send();
+                        padAjaxb321f91759eac4359b7eefd9a38f4584.open("GET","http://localhost/pad/manual/?lvl_occ/6&padInclude",true);
+                        padAjaxb321f91759eac4359b7eefd9a38f4584.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
                   <hr>
                   App: manual - Page: lvl_occ/7<br>
                   <table border="1" cellpadding="10" cellspacing="0">
-                    <tbody><tr>
+                    <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
                         <font size="-2"></font>
@@ -541,174 +467,165 @@
                         <pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>row = 10</font>}</b><br>  <b>{<font color="blue">while </font><font color="red"><font color="red">$</font>row &lt;= 30</font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>column = 1</font>}</b><br>      <b>{<font color="blue">while </font><font color="red"><font color="red">$</font>column &lt;= 5</font>}</b><br>        &lt;td&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>row + <font color="red">$</font>column</font>}</b>&lt;/td&gt;  <br>        <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>column</font>}</b><br>      <b>{/<font color="blue">while</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>    <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>row = <font color="red">$</font>row + 10</font>}</b><br>  <b>{/<font color="blue">while</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxUtLCwXuF"><table border="1">
-  
-  
-    <tbody><tr>
-      
-      
-        <td>11</td>  
-        
-      
-        <td>12</td>  
-        
-      
-        <td>13</td>  
-        
-      
-        <td>14</td>  
-        
-      
-        <td>15</td>  
-        
-      
-    </tr>
-    
-  
-    <tr>
-      
-      
-        <td>21</td>  
-        
-      
-        <td>22</td>  
-        
-      
-        <td>23</td>  
-        
-      
-        <td>24</td>  
-        
-      
-        <td>25</td>  
-        
-      
-    </tr>
-    
-  
-    <tr>
-      
-      
-        <td>31</td>  
-        
-      
-        <td>32</td>  
-        
-      
-        <td>33</td>  
-        
-      
-        <td>34</td>  
-        
-      
-        <td>35</td>  
-        
-      
-    </tr>
-    
-  
-</tbody></table></div>
+                        <div id="padAjax99bcb08cb2c6744f2706f8fe4fc94af5"></div>
                         <script>
-                        padAjaxUtLCwXuF = new XMLHttpRequest();
-                        padAjaxUtLCwXuF.onreadystatechange=function() {
-                        if (padAjaxUtLCwXuF.readyState === 4) {
-                        if (padAjaxUtLCwXuF.status === 200) {
-                        document.getElementById("padAjaxUtLCwXuF").innerHTML=padAjaxUtLCwXuF.responseText;
+                        padAjax99bcb08cb2c6744f2706f8fe4fc94af5 = new XMLHttpRequest();
+                        padAjax99bcb08cb2c6744f2706f8fe4fc94af5.onreadystatechange=function() {
+                        if (padAjax99bcb08cb2c6744f2706f8fe4fc94af5.readyState === 4) {
+                        if (padAjax99bcb08cb2c6744f2706f8fe4fc94af5.status === 200) {
+                        document.getElementById("padAjax99bcb08cb2c6744f2706f8fe4fc94af5").innerHTML=padAjax99bcb08cb2c6744f2706f8fe4fc94af5.responseText;
                         } else {
-                        document.getElementById("padAjaxUtLCwXuF").innerHTML=padAjaxUtLCwXuF.statusText;
+                        document.getElementById("padAjax99bcb08cb2c6744f2706f8fe4fc94af5").innerHTML=padAjax99bcb08cb2c6744f2706f8fe4fc94af5.statusText;
                         }
                         }
                         }
-                        padAjaxUtLCwXuF.open("GET","http://localhost/manual/?lvl_occ/7&padInclude&padSesID=DiM2hOlW&padReqID=8fIp8GWG",true);
-                        padAjaxUtLCwXuF.send();
+                        padAjax99bcb08cb2c6744f2706f8fe4fc94af5.open("GET","http://localhost/pad/manual/?lvl_occ/7&padInclude",true);
+                        padAjax99bcb08cb2c6744f2706f8fe4fc94af5.send();
                         </script>
                       </td>
                     </tr>
-                  </tbody></table><br>
+                  </table><br>
                   <hr>
-                  App: check - Page: miscellaneous/eval<br>
-                  <div id="padAjaxEeJ3px1O"><p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tbody><tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">50 * 4 * 2</font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> * 4 <font color="black">|</font> * 2</font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> <font color="black">@</font> * 4 <font color="black">|</font> <font color="black">@</font> * 2</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><pre>400
-400
-400</pre><!-- END DEMO RESULT --></span></code></td></tr>
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> <font color="black">'</font>"<font color="black">'</font> . </font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> . <font color="black">'</font>"<font color="black">'</font> </font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> <font color="black">'</font>"<font color="black">'</font> . <font color="black">@</font> . <font color="black">'</font>"<font color="black">'</font> </font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> <font color="black">'</font>"<font color="black">'</font> . <font color="red">$</font><font color="red">$</font> . <font color="black">'</font>"<font color="black">'</font> </font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><pre>"50
-50"
-"50"
-"50"</pre><!-- END DEMO RESULT --></span></code></td></tr>
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> <font color="black">'</font>"<font color="black">'</font> . <font color="black">'</font>"<font color="black">'</font> </font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> <font color="black">'</font>"<font color="black">'</font> . . <font color="black">'</font>"<font color="black">'</font> </font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> . <font color="black">@</font> . </font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> . </font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> . . </font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><pre>""
-"5050"
-505050
-5050
-505050</pre><!-- END DEMO RESULT --></span></code></td></tr>
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = 50</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">* 4</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">4 * 4</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">* / 4</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">* 4 / 2 + 10</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">* 4</font> <font color="black">|</font> <font color="blue">/ 2</font> <font color="black">|</font> <font color="blue">+ 10</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><pre>200
-16
-625
-110
-110</pre><!-- END DEMO RESULT --></span></code></td></tr>
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = <font color="black">'</font>abc<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">crc32</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="purple">app</font><font color="black">:</font><font color="blue">substr (1, 1)</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="purple">pad</font><font color="black">:</font><font color="blue">substr (1, 1)</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="purple">php</font><font color="black">:</font><font color="blue">substr (<font color="black"><b><font color="black"><b><font color="black"><b><font color="black"><b>@</b></font></b></font></b></font></b></font>, 1, 1)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><pre>891568578
-b
-b
-b</pre><!-- END DEMO RESULT --></span></code></td></tr>
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>line = <font color="black">'</font>a &lt;test&gt; LiNe<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>line</font>}</b> <br><b>{<font color="green"><font color="red"><font color="red">!</font></font>line</font>}</b> <br><b>{<font color="green">$line</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b> <br><b>{<font color="green">$line</font> <font color="black">|</font> <font color="blue">upper</font>}</b> <br><b>{<font color="green">$line</font> <font color="black">|</font> <font color="blue">lower</font>}</b> <br><b>{<font color="green">$line</font> <font color="black">|</font> <font color="blue">url</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><pre>a &lt;test&gt; LiNe 
-a <test> LiNe 
-A &lt;test&gt; LiNe 
-A &lt;TEST&gt; LINE 
-a &lt;test&gt; line 
-a+%3Ctest%3E+LiNe</test></pre><!-- END DEMO RESULT --></span></code></td></tr>
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>nbr = 12345.678</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="green">$nbr</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b> <br><b>{<font color="green">$nbr</font> <font color="black">|</font> <font color="blue">%.5f</font>}</b> <br><b>{<font color="green">$nbr</font> <font color="black">|</font> <font color="blue">%'.09d</font>}</b> <br><b>{<font color="green">$nbr</font> <font color="black">|</font> <font color="blue">%d</font>}</b> <br><b>{<font color="green">$nbr</font> <font color="black">|</font> <font color="blue">%e</font>}</b> <br><b>{<font color="green">$nbr</font> <font color="black">|</font> <font color="blue">%f</font>}</b> <br><b>{<font color="green">$nbr</font> <font color="black">|</font> <font color="blue">%g</font>}</b> <br><b>{<font color="green">$nbr</font> <font color="black">|</font> <font color="blue">%o</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><pre>12345.68 
-12345.67800 
-000012345 
-12345 
-1.234568e+4 
-12345.678000 
-12345.7 
-30071</pre><!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </tbody></table>
-</p></div>
+                  App: regression/common - Page: misc/eval<br>
+                  <div id="padAjax550458d603cb17b4d44878fa2a9a617a"></div>
                   <script>
-                  padAjaxEeJ3px1O = new XMLHttpRequest();
-                  padAjaxEeJ3px1O.onreadystatechange=function() {
-                  if (padAjaxEeJ3px1O.readyState === 4) {
-                  if (padAjaxEeJ3px1O.status === 200) {
-                  document.getElementById("padAjaxEeJ3px1O").innerHTML=padAjaxEeJ3px1O.responseText;
+                  padAjax550458d603cb17b4d44878fa2a9a617a = new XMLHttpRequest();
+                  padAjax550458d603cb17b4d44878fa2a9a617a.onreadystatechange=function() {
+                  if (padAjax550458d603cb17b4d44878fa2a9a617a.readyState === 4) {
+                  if (padAjax550458d603cb17b4d44878fa2a9a617a.status === 200) {
+                  document.getElementById("padAjax550458d603cb17b4d44878fa2a9a617a").innerHTML=padAjax550458d603cb17b4d44878fa2a9a617a.responseText;
                   } else {
-                  document.getElementById("padAjaxEeJ3px1O").innerHTML=padAjaxEeJ3px1O.statusText;
+                  document.getElementById("padAjax550458d603cb17b4d44878fa2a9a617a").innerHTML=padAjax550458d603cb17b4d44878fa2a9a617a.statusText;
                   }
                   }
                   }
-                  padAjaxEeJ3px1O.open("GET","http://localhost/check/?miscellaneous/eval&padInclude&padSesID=DiM2hOlW&padReqID=8fIp8GWG",true);
-                  padAjaxEeJ3px1O.send();
+                  padAjax550458d603cb17b4d44878fa2a9a617a.open("GET","http://localhost/pad/regression/common/?misc/eval&padInclude",true);
+                  padAjax550458d603cb17b4d44878fa2a9a617a.send();
                   </script><br>
+                  <hr>
+                  App: regression/error_ignore - Page: strict<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">strict.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">nosuchtag</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue">files </font><font color="red"><font color="black">'</font>nosuchdir<font color="black">'</font></font>}</b>f<b>{/<font color="blue">files</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue">if</font><font color="red"></font>}</b>yes<b>{/<font color="blue">if</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue">echo</font><font color="red"></font>}</b>]<br>&lt;p&gt;the page renders on&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax261baf7fcfa5b74eb820d6d357d79ced"></div>
+                        <script>
+                        padAjax261baf7fcfa5b74eb820d6d357d79ced = new XMLHttpRequest();
+                        padAjax261baf7fcfa5b74eb820d6d357d79ced.onreadystatechange=function() {
+                        if (padAjax261baf7fcfa5b74eb820d6d357d79ced.readyState === 4) {
+                        if (padAjax261baf7fcfa5b74eb820d6d357d79ced.status === 200) {
+                        document.getElementById("padAjax261baf7fcfa5b74eb820d6d357d79ced").innerHTML=padAjax261baf7fcfa5b74eb820d6d357d79ced.responseText;
+                        } else {
+                        document.getElementById("padAjax261baf7fcfa5b74eb820d6d357d79ced").innerHTML=padAjax261baf7fcfa5b74eb820d6d357d79ced.statusText;
+                        }
+                        }
+                        }
+                        padAjax261baf7fcfa5b74eb820d6d357d79ced.open("GET","http://localhost/pad/regression/error_ignore/?strict&padInclude",true);
+                        padAjax261baf7fcfa5b74eb820d6d357d79ced.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/error_log - Page: strict<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">strict.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">nosuchtag</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue">files </font><font color="red"><font color="black">'</font>nosuchdir<font color="black">'</font></font>}</b>f<b>{/<font color="blue">files</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue">if</font><font color="red"></font>}</b>yes<b>{/<font color="blue">if</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue">echo</font><font color="red"></font>}</b>]<br>&lt;p&gt;the page renders on&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc58b35f505bfc802a315d445e9992b63"></div>
+                        <script>
+                        padAjaxc58b35f505bfc802a315d445e9992b63 = new XMLHttpRequest();
+                        padAjaxc58b35f505bfc802a315d445e9992b63.onreadystatechange=function() {
+                        if (padAjaxc58b35f505bfc802a315d445e9992b63.readyState === 4) {
+                        if (padAjaxc58b35f505bfc802a315d445e9992b63.status === 200) {
+                        document.getElementById("padAjaxc58b35f505bfc802a315d445e9992b63").innerHTML=padAjaxc58b35f505bfc802a315d445e9992b63.responseText;
+                        } else {
+                        document.getElementById("padAjaxc58b35f505bfc802a315d445e9992b63").innerHTML=padAjaxc58b35f505bfc802a315d445e9992b63.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc58b35f505bfc802a315d445e9992b63.open("GET","http://localhost/pad/regression/error_log/?strict&padInclude",true);
+                        padAjaxc58b35f505bfc802a315d445e9992b63.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: eval/a_format_needing_more_than_one_value<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">eval/a_format_needing_more_than_one_value.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">5 <font color="black">|</font> <font color="black">%</font>s and <font color="black">%</font>s</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax1bf8c27eb99cdf71c45b5b81cbbfd01c"></div>
+                        <script>
+                        padAjax1bf8c27eb99cdf71c45b5b81cbbfd01c = new XMLHttpRequest();
+                        padAjax1bf8c27eb99cdf71c45b5b81cbbfd01c.onreadystatechange=function() {
+                        if (padAjax1bf8c27eb99cdf71c45b5b81cbbfd01c.readyState === 4) {
+                        if (padAjax1bf8c27eb99cdf71c45b5b81cbbfd01c.status === 200) {
+                        document.getElementById("padAjax1bf8c27eb99cdf71c45b5b81cbbfd01c").innerHTML=padAjax1bf8c27eb99cdf71c45b5b81cbbfd01c.responseText;
+                        } else {
+                        document.getElementById("padAjax1bf8c27eb99cdf71c45b5b81cbbfd01c").innerHTML=padAjax1bf8c27eb99cdf71c45b5b81cbbfd01c.statusText;
+                        }
+                        }
+                        }
+                        padAjax1bf8c27eb99cdf71c45b5b81cbbfd01c.open("GET","http://localhost/pad/regression/errors/?eval/a_format_needing_more_than_one_value&padInclude",true);
+                        padAjax1bf8c27eb99cdf71c45b5b81cbbfd01c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
-          </tbody></table>
+          </table>
         </blockquote>
       </center>
     </blockquote>
@@ -716,17 +633,17 @@ a+%3Ctest%3E+LiNe</test></pre><!-- END DEMO RESULT --></span></code></td></tr>
       <hr width="75%">
       <br>
       <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr>
+        <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
-      </tbody></table>
+      </table>
       <p>
         <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
       </p>
     </center>
-  
-</body></html>
+  </body>
+</html>
