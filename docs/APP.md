@@ -567,7 +567,7 @@ operator:
 {items}
   {first@items}First item{/first@items}
   {last@items}Last item{/last@items}
-  {even@items ? Even row : Odd row}
+  {even@items ? 'Even row' : 'Odd row'}
   Count: {count@items}
   Index: {current@items}
 {/items}
@@ -586,8 +586,8 @@ operator:
 ### Tags with Options
 ```
 {tagname option="value"}
-{data $var=value}
-{items sort="name" rows="10"}
+{items $var=5}                     # a level variable for the tag's content
+{items sort="name", rows=10}       # options are separated by commas
 ```
 
 ### Variable Assignment with {set}
@@ -595,7 +595,7 @@ operator:
 {set $name = 'Alice'}              # Assign string
 {set $count = 0}                   # Assign number
 {set $total = $price * $qty}       # Assign expression
-{set $upper | upper}               # Assign with pipe (uses previous value)
+{set $upper = {echo $upper | upper}}   # Assign through a pipe
 ```
 
 ### Level vs Occurrence Variables
@@ -681,7 +681,7 @@ To evaluate arithmetic expressions, use `{echo expression}`:
 ```
 {echo 365 - {clock 'z'}}                # Evaluates: 365 - 347 = 18
 {echo $total * 1.1}                      # Evaluates multiplication
-{365 - {clock 'z'}}                      # Wrong - outputs literal "{365 - 347}"
+{365 - {clock 'z'}}                      # Wrong - an error: {365 ...} is read as a tag named 365
 ```
 
 ### Calling PHP Functions
@@ -1063,7 +1063,7 @@ Both pipe from a field tag or through `{echo}`:
 ### Parameter Evaluation
 Parameters are evaluated before being passed to tags. Use quotes to pass literal strings:
 ```
-{count items}              # Wrong - passes the array itself
+{count items}              # Wrong - items is read as an option, an error
 {count 'items'}            # Correct - passes the string "items"
 
 {get $message}             # Wrong - evaluates $message first
@@ -1496,7 +1496,7 @@ Days remaining: {if {clock 'L'} eq 1}{echo 365 - {clock 'z'}}{else}{echo 364 - {
 ### Alternating Row Colors
 ```
 {items}
-  <div style="background: {even@items ? #e0e0e0 : #f0f0f0}">
+  <div style="background: {even@items ? '#e0e0e0' : '#f0f0f0'}">
     {$name}
   </div>
 {/items}
@@ -1520,9 +1520,7 @@ Or using the `{switch}` tag:
 
 ### Comma-Separated List
 ```
-{items}
-  {notFirst@items}, {/notFirst@items}{$name}
-{/items}
+{items}{notFirst@items}, {/notFirst@items}{$name}{/items}
 ```
 Output: `Alice, Bob, Charlie`
 
