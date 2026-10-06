@@ -208,13 +208,13 @@
 
   function padCsrfFormAttrs ( $attrs ) {
 
-    if ( strtolower ( html_entity_decode ( $attrs ['method'] ?? '', ENT_QUOTES | ENT_HTML5, 'UTF-8' ) ) !== 'post' )
+    if ( strtolower ( padCsrfDecode ( $attrs ['method'] ?? '' ) ) !== 'post' )
       return FALSE;
 
     if ( ! array_key_exists ( 'action', $attrs ) )
       return TRUE;
 
-    $action = html_entity_decode ( trim ( $attrs ['action'] ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+    $action = padCsrfDecode ( $attrs ['action'] );
 
     // Read as a browser reads it (the URL standard): the controls and spaces at its ends
     // and every tab and line break within are dropped, and on a web page a backslash is a
@@ -229,6 +229,27 @@
       return ! preg_match ( '/^[a-z][a-z0-9+.-]*:/i', $action );
 
     return padCsrfSameOrigin ( $action );
+
+  }
+
+  // The character references of an attribute value decoded as a browser decodes them, in
+  // one pass: a numeric one to any code point, its semicolon optional - &#13; a carriage
+  // return, &#47 a slash, &#1; a control - and a named one as HTML5 names it. PHP's HTML5
+  // decoding leaves &#13; and &#1; as they are and wants the semicolon, so
+  // /&#13;/elsewhere.example/ and &#47&#47elsewhere.example/ were read as paths here.
+
+  function padCsrfDecode ( $value ) {
+
+    return preg_replace_callback ( '/&(?:#[xX]([0-9a-fA-F]+);?|#([0-9]+);?|[A-Za-z][A-Za-z0-9]*;)/', function ( $match ) {
+
+      if ( ( $match [1] ?? '' ) === '' and ( $match [2] ?? '' ) === '' )
+        return html_entity_decode ( $match [0], ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+
+      $code = ( $match [1] !== '' ) ? hexdec ( $match [1] ) : (float) $match [2];
+
+      return ( $code > 0 and $code <= 0x10FFFF and ( $code < 0xD800 or $code > 0xDFFF ) ) ? mb_chr ( (int) $code, 'UTF-8' ) : "\u{FFFD}";
+
+    }, $value );
 
   }
 
