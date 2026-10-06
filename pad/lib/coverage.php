@@ -49,9 +49,12 @@
 
   }
 
+  // A name from the query string can be an array - ?page&padCoverage[]=1 - and a cast of
+  // it was a warning that answered the request 500: no name, then, and the default run.
+
   function padCoverageName ( $name ) {
 
-    $name = preg_replace ( '/[^A-Za-z0-9_-]/', '', (string) $name );
+    $name = preg_replace ( '/[^A-Za-z0-9_-]/', '', is_scalar ( $name ) ? (string) $name : '' );
 
     return ( $name === '' ) ? 'default' : substr ( $name, 0, 40 );
 
