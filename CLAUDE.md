@@ -343,7 +343,7 @@ up to the root). The event's values are the hook's local variables; page variabl
 {$variable}                    # Output variable
 {$user.name}                   # Object/array property
 {$items[0]}                    # Array index
-{$$name}                       # Indirection - the name comes from another variable
+{$$name}                       # Indirection - the name comes from another variable (an application one, never pad*)
 {!text}                        # The same field, raw - it skips the sanitize chain {$x} runs
 {?text}                        # The field as a url query fragment: &text=url+encoded
 {#name}                        # A parameter or option of the tag

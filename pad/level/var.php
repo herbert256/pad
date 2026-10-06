@@ -35,10 +35,28 @@
   if ( $padFirst == '#' and $padCheckSyntax and ! padValidVar ( $padFld ) )
     padError ( "the comment {# ... does not close with #}" );
 
-  if ( substr($padFld, 0, 1) == '$' )
+  // {$$x} takes the name of the field from a value, and a value may come from the request -
+  // the name was used unchecked, so a value naming one of the engine's own globals read it
+  // out. The name a value gives is an application variable or a dotted path into one, as
+  // padValidVar has it; any other name is refused, and reads as a field that is not there.
+
+  $padFldRefused = FALSE;
+
+  if ( substr($padFld, 0, 1) == '$' ) {
+
     $padFld = padFieldValue ( substr($padFld, 1) );
 
-  if     ( $padFirst == '$' ) $padFldChk = padFieldCheck ( $padFld );
+    if ( ! is_scalar ( $padFld ) or is_bool ( $padFld ) )
+      $padFld = '';
+
+    $padFld        = (string) $padFld;
+    $padFldRefused = ( ! preg_match ( '/^[A-Za-z][A-Za-z0-9_]*(\.[A-Za-z0-9_]+)*$/', $padFld )
+                       or ! padValidVar ( strtok ( $padFld, '.' ) ) );
+
+  }
+
+  if     ( $padFldRefused   ) $padFldChk = FALSE;
+  elseif ( $padFirst == '$' ) $padFldChk = padFieldCheck ( $padFld );
   elseif ( $padFirst == '?' ) $padFldChk = padFieldCheck ( $padFld );
   elseif ( $padFirst == '!' ) $padFldChk = padFieldCheck ( $padFld );
   elseif ( $padFirst == '#' ) $padFldChk = padOptCheck   ( $padFld );
@@ -53,10 +71,14 @@
 
   $padVarFallback = preg_match ( '/^(optional|default\b|\?\?)/', $padVarOpts );
 
-  if ( ! $padFldChk and ! $padVarFallback and $padCheckSyntax )
+  if ( $padFldRefused and ! $padVarFallback and $padCheckSyntax )
+    padError ( "the name '$padFld' that {" . $padBetween . "} takes from a value is no application variable" );
+
+  if ( ! $padFldRefused and ! $padFldChk and ! $padVarFallback and $padCheckSyntax )
     padError ( "Field '$padFirst$padFld' not found" );
 
-  if     ( $padFirst == '$' ) $padVal = padFieldValue ($padFld);
+  if     ( $padFldRefused   ) $padVal = '';
+  elseif ( $padFirst == '$' ) $padVal = padFieldValue ($padFld);
   elseif ( $padFirst == '?' ) $padVal = padUrlValue   ($padFld);
   elseif ( $padFirst == '!' ) $padVal = padRawValue   ($padFld);
   elseif ( $padFirst == '#' ) $padVal = padOptValue   ($padFld);
