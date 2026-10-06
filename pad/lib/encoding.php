@@ -109,6 +109,18 @@
 
   }
 
+  // The stand-ins of the two quotes and the backslash in a value about to be escaped, as the
+  // characters they stand for. exits.php restores a stand-in only after every escaper has
+  // run, so one that came in with the request - %EE%80%A2 is U+E022 - passed htmlentities
+  // untouched and came out a live quote: title="{$name}" with ?name=x%EE%80%A2%20onclick=...
+  // closed the attribute. An escaper reads it as the quote it will be, and escapes that.
+
+  function padUnprotectQuotes ( $string ) {
+
+    return str_replace ( [ "\u{E022}", "\u{E027}", "\u{E05C}" ], [ '"', "'", '\\' ], $string );
+
+  }
+
   // The tag kinds whose answer is template source rather than a value, which level/go.php
   // leaves unprotected: the include: type returns an _include/ snippet's text, the content:
   // type a stored {content} block (or a snippet or page it falls back to), and the common:

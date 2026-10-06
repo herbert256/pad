@@ -8,10 +8,13 @@
   // same answer for every valid string. The difference is invalid UTF-8: the filter answered
   // the empty string for the whole value, so one broken byte blanked the field; ENT_SUBSTITUTE
   // replaces just that byte with U+FFFD. Arrays and objects keep the filter's answer.
+  //
+  // A quote's stand-in is that quote here (padUnprotectQuotes): one that came in with the
+  // request passed the escaping untouched and was a live quote once the page was written.
 
   if ( is_array ( $value ) or is_object ( $value ) )
     return filter_var ( $value, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 
-  return htmlentities ( (string) $value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', FALSE );
+  return htmlentities ( padUnprotectQuotes ( (string) $value ), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', FALSE );
 
 ?>

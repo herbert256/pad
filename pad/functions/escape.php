@@ -12,9 +12,11 @@
   //
   // The sanitize chain a {$field} ends with encodes without encoding an entity twice, and
   // the js, css and url forms leave nothing it would change, so the two do not stack.
+  // The stand-ins of the quotes and the backslash are escaped as the characters they stand
+  // for (padUnprotectQuotes) - left alone, html let them through to become live quotes.
 
   $strategy = strtolower ( (string) ( $parm [0] ?? 'html' ) );
-  $text     = is_scalar ( $value ) ? (string) $value : '';
+  $text     = is_scalar ( $value ) ? padUnprotectQuotes ( (string) $value ) : '';
 
   if ( $strategy == 'html' )
     return htmlspecialchars ( $text, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' );

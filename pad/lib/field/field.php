@@ -145,6 +145,10 @@
   // to encode the name it was handed, and the tag never reached it anyway: level.php did
   // not dispatch the ^ sigil. With $padProtectValues off the braces of the JSON are
   // escaped here, or the walk would read an object as a tag.
+  //
+  // JSON leaves a quote's or the backslash's stand-in as it is, inside a string or a key,
+  // and the page's write-out made it the character: a stand-in from the request closed the
+  // JSON string and the attribute. It is written as the JSON escape of that character.
 
   function padJsonCheck ( $parm ) {
 
@@ -156,6 +160,7 @@
 
     $value = padArrayCheck ( $parm ) ? padArrayValue ( $parm ) : padFieldValue ( $parm );
     $json  = json_encode ( $value, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PARTIAL_OUTPUT_ON_ERROR );
+    $json  = str_replace ( [ "\u{E022}", "\u{E027}", "\u{E05C}" ], [ '\u0022', '\u0027', '\u005c' ], $json );
     $json  = htmlspecialchars ( $json, ENT_QUOTES, 'UTF-8' );
 
     if ( ! $GLOBALS ['padProtectValues'] )
