@@ -418,15 +418,19 @@ Execute a sequence action, over a stored sequence.
 ---
 
 ### ajax
-Handle AJAX request.
+Embed another page of the application, fetched by the browser after the page has loaded: the
+tag writes a `<div>` and a script that requests the page with `&padInclude` and puts its
+answer in the div.
 
 ```html
-{ajax 'handler'}
+{ajax 'orders'}
 {ajax 'orders', fragment='order-list'}
 ```
 
 **Parameters:**
-- First parameter: AJAX handler name
+- First parameter: the page to fetch
+- `app` - a page of another application
+- `$name = value` assignments go on the query string
 - `fragment` - fetch only that response fragment of the page (see `fragment`)
 
 ---
@@ -484,16 +488,17 @@ Generic PAD include tag.
 ## Navigation Tags
 
 ### redirect
-Redirect to another URL.
+Redirect to another page of the application.
 
 ```html
-{redirect 'url'}
+{redirect 'page'}
 ```
 
 **Parameters:**
-- First parameter: URL to redirect to
+- First parameter: the page to redirect to - a page name, also in its `?page` form
+- `$name = value` assignments are added to the query string
 
-**Behavior:** Performs HTTP redirect
+**Behavior:** Performs HTTP redirect (302) through `padRedirect()` and ends the request
 
 ---
 
@@ -501,12 +506,13 @@ Redirect to another URL.
 Restart PAD processing with new page.
 
 ```html
-{restart 'pagename', param1='value1'}
+{restart 'pagename', $param1 = 'value1'}
 ```
 
 **Parameters:**
 - First parameter: Page name
-- Additional parameters: Passed to new page
+- `$name = value` assignments become variables of the new page - a plain named parameter is
+  not passed
 
 ---
 
@@ -630,7 +636,7 @@ field with rules in an `_include` snippet, a custom tag, a `{page}` or an `{exte
 rules from a variable, rules outside a named form, in a form with `action=` or
 `method='get'`, on a file field, a rule that does not exist and one field given two sets of
 rules are errors, strict check or not - each would be rules nothing checks. A rule with
-braces writes them as `&open;` and `&close;`: `rules='regex:/^\d&open;4&close;$/'`. Custom
+braces writes them as `&open;` and `&close;`, and a backslash as `\\`: `rules='regex:/^\\d&open;4&close;$/'`. Custom
 messages stay with `padValidate`'s third argument.
 
 ---
@@ -728,7 +734,9 @@ List files in a directory with filtering options.
 - `recursive`: Include subdirectories
 - `exclude`: Exclusion pattern
 - `includeHidden`: Include hidden files
-- `base`: Base path (`app`, `data`, `pad`, or absolute)
+- `base`: what the directory is relative to - `app` (the application), `data` (DATA/), `pad`
+  (the path as given); otherwise the filesystem root. Whatever the base, the directory must
+  lie inside the applications, the engine or DATA
 - `group`: Group results by item name
 
 **Returns:** Array with `path`, `file`, `ext`, `item`, `dir` for each entry
@@ -843,16 +851,16 @@ Return closing brace character.
 Make HTTP request.
 
 ```html
-{curl 'http://example.com', method='POST', data='payload'}
+{curl 'https://example.com/api', $q = 'x'}
 ```
 
 **Parameters:**
 - `url` / first param: URL to request
-- Additional parameters added as query string
+- `$name = value` assignments are added to the query string (the tag makes a GET request)
 - `SELF://` prefix replaced with current host
 - `ttl=600`: keep the answer that many seconds (see below)
 
-**Behavior:** Makes HTTP request, throws error if result is not 200
+**Behavior:** Makes HTTP request; a result other than 200 is a PAD error
 
 **Returns:** Response data
 
