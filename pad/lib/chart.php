@@ -180,7 +180,10 @@
 
   }
 
-  // Round tick values, about $count of them, that take in min and max.
+  // Round tick values, about $count of them, that take in min and max. A tick is rounded
+  // to ten digits past its step, not ten decimals: values of 1e-11 made every tick 0, and
+  // the plot divided by the span between the first and the last. The step is no smaller
+  // than the smallest normal float, which a span of a denormal value would underflow.
 
   function padChartTicks ( $min, $max, $count = 5 ) {
 
@@ -191,7 +194,7 @@
     }
 
     $span = $max - $min;
-    $step = 10 ** floor ( log10 ( $span / $count ) );
+    $step = max ( PHP_FLOAT_MIN, 10 ** floor ( log10 ( $span / $count ) ) );
 
     foreach ( [ 1, 2, 2.5, 5, 10 ] as $times )
       if ( $span / ( $step * $times ) <= $count ) {
@@ -199,12 +202,13 @@
         break;
       }
 
-    $low   = floor ( $min / $step ) * $step;
-    $high  = ceil  ( $max / $step ) * $step;
-    $ticks = [];
+    $low    = floor ( $min / $step ) * $step;
+    $high   = ceil  ( $max / $step ) * $step;
+    $digits = max ( 10, 10 - (int) floor ( log10 ( $step ) ) );
+    $ticks  = [];
 
     for ( $tick = $low; $tick <= $high + $step / 2; $tick += $step )
-      $ticks [] = round ( $tick, 10 );
+      $ticks [] = round ( $tick, $digits );
 
     return $ticks;
 
