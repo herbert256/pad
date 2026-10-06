@@ -4,33 +4,36 @@
   // starts at 0 and at step i steps back by i when that lands on a new non-negative value
   // and forward by i otherwise - 0, 1, 3, 6, 2, 7, 13, 20, 12, 21, 11, 22, 10, ...
   //
-  // Nothing is kept between calls, so each term rebuilds the whole history and searches it
-  // with in_array; generating m terms costs on the order of m^3. Membership tests take the
-  // cheaper route through the precomputed table in generated.php.
+  // The terms made so far are kept between calls, with the values they took as keys, so a
+  // term is one step on from the last one kept and the "is it new" question is an isset.
+  // Each term rebuilt the whole history and searched it with in_array, on the order of m^3
+  // for m terms: {sequence recaman, rows=6000} took 16 seconds and sequence:recaman(6000) ran
+  // into the time limit. Membership tests take the route through the precomputed table in
+  // generated.php. A position between two whole ones has no term.
 
 function pqRecaman($n)
 {
+  static $terms = [ 0 ], $seen = [ 0 => TRUE ];
+
+  if ( ! pqBoolWhole ( $n ) )
+    return FALSE;
+
   if($n <= 1)
     return 0;
 
-  $s = array();
-  array_push($s, 0);
+  for ( $i = count ( $terms ); $i < $n; $i++ ) {
 
-  $padrev = 0;
-  for ($i = 1; $i < $n; $i++)
-  {
-    $curr = $padrev - $i;
+    $curr = $terms [$i - 1] - $i;
 
-    if($curr < 0 or in_array($curr, $s))
-      $curr = $padrev + $i;
+    if ( $curr < 0 or isset ( $seen [$curr] ) )
+      $curr = $terms [$i - 1] + $i;
 
-    array_push($s, $curr);
+    $terms []      = $curr;
+    $seen  [$curr] = TRUE;
 
-    $padrev = $curr;
   }
 
-  return $curr;
-
+  return $terms [$n - 1];
 }
 
 ?>
