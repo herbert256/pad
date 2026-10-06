@@ -535,6 +535,27 @@ function diagnosticFrom(out, errText, text, file, loc, page) {
     if (where && where === path.resolve(file) && json.line > 0)
         return { range: fullLine(text, json.line - 1), severity: 1, source: 'pad', message };
 
+    // The engine places the error itself when it can: template names the file the tag stands
+    // in, its line, and its column counted in characters (code points). In this document the
+    // mark goes there - the quoted text below is only found at its first spot, which put "the
+    // pair {if 1 eq 1} never closes" on an earlier {if 1 eq 1} that closes fine. The column is
+    // turned into the UTF-16 units LSP counts, and the mark covers the tag or the name it opens on.
+    const t = json.template;
+    if (t && typeof t.path === 'string' && path.resolve(t.path) === path.resolve(file) && t.line > 0 && t.column > 0) {
+        const lineText = text.split('\n')[t.line - 1];
+        if (lineText !== undefined) {
+            const points = [...lineText];
+            let character = 0;
+            for (let i = 0; i < t.column - 1 && i < points.length; i++) character += points[i].length;
+            const rest = lineText.slice(character);
+            const tag = typeof t.tag === 'string' ? t.tag : '';
+            const word = rest.match(/^[$!#&?^]?[A-Za-z_][\w:.@-]*/);
+            const width = tag && rest.startsWith(tag) ? tag.length : word ? word[0].length : 1;
+            return { range: { start: { line: t.line - 1, character }, end: { line: t.line - 1, character: character + width } },
+                     severity: 1, source: 'pad', message };
+        }
+    }
+
     const candidates = [];
     for (const m of message.matchAll(/\{[^{}\n]+\}/g)) candidates.push(m[0]);
     const g = json.pad || {};

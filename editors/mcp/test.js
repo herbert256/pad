@@ -145,7 +145,7 @@ async function main() {
         r = await call('pad_check', { app: 'shop', page: 'broken' });
         expect('pad_check places an error on its line in the page', r.text.includes('never closes') && r.text.includes('line 3'), r);
         r = await call('pad_check', { app: 'shop' });
-        expect('pad_check of an application checks every page', r.text.startsWith('5 pages of shop checked: 2 with an error') && r.text.includes('broken') && r.text.includes('undefined'), r);
+        expect('pad_check of an application checks every page', r.text.startsWith('6 pages of shop checked: 3 with an error') && r.text.includes('broken') && r.text.includes('undefined'), r);
         expect('pad_check of an application leaves the bracketed route products/[id] out', !r.error && !r.text.includes('[id]'), r);
 
         r = await call('pad_trace', { app: 'shop', page: 'orders' });
@@ -154,7 +154,7 @@ async function main() {
         r = await call('pad_apps', {});
         expect('pad_apps lists the applications', r.text.split('\n').includes('shop'), r);
         r = await call('pad_pages', { app: 'shop' });
-        expect('pad_pages lists the pages', r.text.includes('pages: admin/report, broken, index, orders, undefined'), r);
+        expect('pad_pages lists the pages', r.text.includes('pages: admin/report, broken, index, orders, twice, undefined'), r);
         expect('pad_pages lists the application\'s own tags by directory', r.text.includes('_tags: badge') && r.text.includes('admin/_tags: badge') && r.text.includes('_functions: money'), r);
 
         r = await call('pad_builtins', { kind: 'tags' });
