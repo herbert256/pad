@@ -39,7 +39,11 @@
 
     $_REQUEST ['padSample'] = 'capture';
 
-  } elseif ( preg_match ( '/^[a-z]+$/', $padCommand ) and file_exists ( __DIR__ . "/_commands/$padCommand.php" ) ) {
+  } elseif ( preg_match ( '/^[a-z]+$/', $padCommand ) and $padCommand !== 'lib' and file_exists ( __DIR__ . "/_commands/$padCommand.php" ) ) {
+
+    // lib.php in _commands/ is what the commands share, not one of them: pad lib included
+    // it a second time and ended on "Cannot redeclare function cliHome()" - lib is the cli
+    // application's page now, as any other word that names no command.
 
     include __DIR__ . '/_commands/lib.php';
 
