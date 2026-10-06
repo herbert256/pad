@@ -166,11 +166,13 @@
       $first  = $tokens [0];
       $last   = $tokens [ count ( $tokens ) - 1 ];
 
+      // Named as the template wrote it: $x >= named the operator GE.
+
       if ( padEvalComparison ( $first ) )
-        return padEvalValidateError ( "the operator '{$first[0]}' has nothing on its left", $eval );
+        return padEvalValidateError ( "the operator '" . ( $first [2] ?? $first [0] ) . "' has nothing on its left", $eval );
 
       if ( count ( $tokens ) > 1 and padEvalComparison ( $last ) )
-        return padEvalValidateError ( "the operator '{$last[0]}' has nothing on its right", $eval );
+        return padEvalValidateError ( "the operator '" . ( $last [2] ?? $last [0] ) . "' has nothing on its right", $eval );
 
     }
 

@@ -580,7 +580,8 @@
 
       // < > and = are operators wherever they stand. Written without spaces they ran into
       // the word beside them: $x<=3 became the text 5<=3, always true, and $x<3 a field
-      // named x<3. Spelled as padEval_alt has them, the two-character forms first.
+      // named x<3. Spelled as padEval_alt has them, the two-character forms first; [2]
+      // keeps the spelling the template wrote, for the strict check to name (validate.php).
 
       if ( in_array ( $one, [ '<', '>', '=' ] ) ) {
 
@@ -589,6 +590,7 @@
         $i += 100;
         $result [$i] [0] = padEval_alt [ $pair ? $one.$next : $one ];
         $result [$i] [1] = 'OPR';
+        $result [$i] [2] = $pair ? $one.$next : $one;
 
         $is_other = FALSE;
         $skip     = $pair ? 1 : 0;
@@ -602,6 +604,7 @@
         $i += 100;
         $result [$i] [0] = 'NE';
         $result [$i] [1] = 'OPR';
+        $result [$i] [2] = '!=';
 
         $is_other = FALSE;
         $skip = 1;
