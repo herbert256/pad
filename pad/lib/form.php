@@ -91,10 +91,10 @@
   }
 
   // The rules of a field are a string split on | or an array of them; a rule takes its
-  // argument after a colon. A field that is empty is checked for 'required' only - any
-  // other rule speaks about a value that is there. The first rule a field fails gives its
-  // message, which $messages can replace per field ('email') or per field and rule
-  // ('email.required'); :label is the field's name made readable, :n the rule's argument.
+  // argument after a colon. A field that is empty is checked for 'required' and 'accepted'
+  // only - any other rule speaks about a value that is there. The first rule a field fails
+  // gives its message, which $messages can replace per field ('email') or per field and
+  // rule ('email.required'); :label is the field's name made readable, :n the rule's argument.
   //
   // The errors it answers are those of its own fields. The fields show those together with
   // what an earlier check left for other fields - the rules of the template, checked before
