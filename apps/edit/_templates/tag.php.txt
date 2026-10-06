@@ -1,0 +1,10 @@
+<?php
+
+  // {__NAME__ 'text', class='...'} - what the tag returns is what it shows.
+
+  $text  = padTagParm ( 'text', $padParm ?? '' );
+  $class = padTagParm ( 'class', '__NAME__' );
+
+  return '<span class="' . htmlspecialchars ( $class ) . '">' . htmlspecialchars ( $text ) . '</span>';
+
+?>

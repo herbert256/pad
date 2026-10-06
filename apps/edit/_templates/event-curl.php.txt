@@ -1,0 +1,8 @@
+<?php
+
+  // Runs after every remote fetch, a failed one too: $url, $result, $error, $ms.
+
+  if ( $error )
+    padLog ( "fetch of $url failed: $error", 'warning' );
+
+?>

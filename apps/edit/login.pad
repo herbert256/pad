@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>PAD edit</title>
+  <link rel="stylesheet" href="{$padRoot}edit/edit.css">
+</head>
+<body class="login-page">
+
+  <main class="login-box">
+
+    <h1><span class="login-logo" aria-hidden="true">&#123;&#125;</span> PAD edit</h1>
+
+    {if $loginSetup eq 1}
+      <p class="login-intro">Nobody can log in yet. Make the first user - more can be added in the editor later.</p>
+    {else}
+      <p class="login-intro">The editor for the PAD applications on this server.</p>
+    {/if}
+
+    {if $loginHint eq 1}
+      <p class="login-error" role="alert">The first user can only be made from this machine.</p>
+    {/if}
+
+    {if $loginError ne ''}
+      <p class="login-error" role="alert">{$loginError}</p>
+    {/if}
+
+    {form 'login'}
+      <p>{input 'name', label='Name', autocomplete='username', required, autofocus}</p>
+      {if $loginSetup eq 1}
+        <p>{input 'password', type='password', label='Password', autocomplete='new-password', required, minlength=8}</p>
+        <p>{input 'again', type='password', label='Password again', autocomplete='new-password', required, minlength=8}</p>
+        <p><button type="submit">Make the user and log in</button></p>
+      {else}
+        <p>{input 'password', type='password', label='Password', autocomplete='current-password', required}</p>
+        <p><button type="submit">Log in</button></p>
+      {/if}
+    {/form}
+
+  </main>
+
+</body>
+</html>

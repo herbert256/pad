@@ -1,0 +1,8 @@
+<?php
+
+  // Runs after every statement db() ran: $sql, $input, $vars, $result, $rows, $ms.
+
+  if ( is_float ( $ms ) and $ms > 200 )
+    padLog ( "slow query ($ms ms): $sql", 'warning' );
+
+?>

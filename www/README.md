@@ -47,6 +47,7 @@ The app name and the mount prefix (`$padRoot`) are derived in `pad.php` from `SC
 | `cli/` | CLI app (web entry) | - |
 | `demo/` | Demo application | style.css |
 | `develop/` | Development tools | - |
+| `edit/` | The editor application | edit.js, pad-mode.js, php-mode.js, edit.css |
 | `hello/` | Hello World example | - |
 | `manual/` | Interactive documentation | - |
 | `nono/` | Plain PHP (non-PAD) | - |

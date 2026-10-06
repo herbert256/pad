@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="csrf-token" content="{csrf token}">
+  <title>PAD edit</title>
+  <link rel="stylesheet" href="{$padRoot}edit/edit.css">
+</head>
+<body class="editor-page" data-boot="{^editBoot}">
+
+  <header class="top">
+    <div class="brand"><span class="logo" aria-hidden="true">&#123;&#125;</span> <span>PAD edit</span></div>
+    <button type="button" class="app-button" id="appButton" title="Switch application (Alt+A)">
+      <span class="muted">app</span> <strong id="appName">…</strong> <span aria-hidden="true">&#9662;</span>
+    </button>
+    <button type="button" class="quick-button" id="quickButton" title="Go to file">
+      <span>Go to file…</span> <kbd id="quickKeys"></kbd>
+    </button>
+    <div class="top-actions">
+      <button type="button" class="btn ghost" id="saveButton" title="Save" aria-label="Save"></button>
+      <button type="button" class="btn ghost" id="previewButton" title="Preview (Alt+P)" aria-label="Preview"></button>
+      <button type="button" class="btn ghost" id="panelButton" title="Bottom panel" aria-label="Bottom panel"></button>
+      <button type="button" class="btn ghost" id="menuButton" title="More" aria-label="More" aria-haspopup="menu"></button>
+    </div>
+    <form method="post" action="?logout" id="logoutForm" hidden></form>
+  </header>
+
+  <div class="main">
+
+    <aside class="side" aria-label="Files">
+      <div class="side-tools" id="sideTools"></div>
+      <input type="search" class="tree-filter" id="treeFilter" placeholder="Filter files" aria-label="Filter files" spellcheck="false">
+      <div class="tree" id="tree" role="tree" aria-label="Files of the application"></div>
+      <input type="file" id="uploadInput" multiple hidden>
+    </aside>
+
+    <div class="gutter gutter-x" id="sideGutter" title="Drag to resize, double-click to reset"></div>
+
+    <section class="work">
+
+      <div class="tabs" id="tabs" role="tablist" aria-label="Open files"></div>
+
+      <div class="center">
+        <div class="editor-area">
+          <div class="editor-host" id="editorHost"></div>
+          <div class="welcome" id="welcome"></div>
+          <div class="viewer" id="viewer" hidden></div>
+        </div>
+        <div class="gutter gutter-x" id="previewGutter" hidden></div>
+        <section class="preview" id="preview" aria-label="Preview" hidden>
+          <div class="preview-bar">
+            <input type="text" id="previewUrl" class="preview-url" aria-label="Previewed address" spellcheck="false">
+            <button type="button" class="btn ghost device" id="devicePhone" title="Phone width" aria-label="Phone width"></button>
+            <button type="button" class="btn ghost device" id="deviceTablet" title="Tablet width" aria-label="Tablet width"></button>
+            <button type="button" class="btn ghost device on" id="deviceDesktop" title="Full width" aria-label="Full width"></button>
+            <button type="button" class="btn ghost" id="previewReload" title="Reload" aria-label="Reload"></button>
+            <a class="btn ghost" id="previewOpen" href="#" target="_blank" rel="noopener" title="Open in a new tab" aria-label="Open in a new tab"></a>
+            <button type="button" class="btn ghost" id="previewClose" title="Close the preview" aria-label="Close the preview"></button>
+          </div>
+          <div class="preview-stage"><iframe id="previewFrame" title="Preview" sandbox="allow-scripts allow-forms allow-popups allow-modals allow-downloads"></iframe></div>
+        </section>
+      </div>
+
+      <div class="gutter gutter-y" id="panelGutter" title="Drag to resize, double-click to reset"></div>
+
+      <section class="panel" aria-label="Panel">
+        <div class="panel-tabs" role="tablist">
+          <button type="button" class="ptab active" id="ptab-problems" role="tab" aria-selected="true">Problems <span class="count" id="problemsCount"></span></button>
+          <button type="button" class="ptab" id="ptab-search" role="tab" aria-selected="false">Search</button>
+          <button type="button" class="ptab" id="ptab-history" role="tab" aria-selected="false">History</button>
+          <button type="button" class="btn ghost panel-close" id="panelClose" title="Close the panel" aria-label="Close the panel"></button>
+        </div>
+        <div class="panel-body" id="panel-problems" role="tabpanel"><div id="problemsList"></div></div>
+        <div class="panel-body" id="panel-search" role="tabpanel" hidden>
+          <form class="search-form" id="searchForm">
+            <input type="search" id="searchInput" placeholder="Search in the application" aria-label="Search" spellcheck="false">
+            <label class="toggle" title="Regular expression"><input type="checkbox" id="searchRegex"><span>.*</span></label>
+            <label class="toggle" title="Match case"><input type="checkbox" id="searchCase"><span>Aa</span></label>
+            <label class="toggle" title="Whole word"><input type="checkbox" id="searchWord"><span>ab</span></label>
+            <button type="submit" class="btn primary small">Search</button>
+          </form>
+          <div id="searchResults"></div>
+        </div>
+        <div class="panel-body" id="panel-history" role="tabpanel" hidden><div id="historyList"></div></div>
+      </section>
+
+    </section>
+
+  </div>
+
+  <footer class="status" id="status">
+    <div class="status-left" id="statusLeft"></div>
+    <div class="status-right" id="statusRight"></div>
+  </footer>
+
+  <div id="layer"></div>
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+  <script src="{$padRoot}edit/pad-mode.js"></script>
+  <script src="{$padRoot}edit/php-mode.js"></script>
+  <script src="{$padRoot}edit/edit.js"></script>
+
+</body>
+</html>

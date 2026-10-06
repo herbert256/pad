@@ -1,0 +1,24 @@
+[index.pad] ok
+[_lib/x.php] ok
+[a..b.pad] ok
+[new/dir/file.pad] ok
+[] ok
+[../demo/index.php] refused
+[a/../../b] refused
+[/etc/passwd] refused
+[a//b] refused
+[x\000y] refused
+[a\\b] refused
+[.git/config] refused
+[sub/.GIT/x] refused
+
+name [page.pad] ok
+name [.htaccess] ok
+name [a/b] refused
+name [..] refused
+name [] refused
+name [.git] refused
+
+apps: demo=yes regression/main=yes _common=yes regression=no nothere=no
+roots: app www / app
+../pad: refused

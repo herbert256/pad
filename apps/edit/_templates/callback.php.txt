@@ -1,0 +1,26 @@
+<?php
+
+  // callback='__NAME__' - runs before the rows (init), for every row (row) and after them
+  // (exit); a row's fields are variables here.
+
+  switch ( $padCallback ) {
+
+    case 'init':
+
+      $__NAME__Count = 0;
+
+      break;
+
+    case 'row':
+
+      $__NAME__Count++;
+
+      break;
+
+    case 'exit':
+
+      break;
+
+  }
+
+?>

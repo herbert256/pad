@@ -1,0 +1,11 @@
+<?php
+
+  // Decides access to every page in this directory and below - before any _inits.php.
+  // FALSE (or nothing true) answers 403 Forbidden; padRedirect sends the visitor elsewhere.
+
+  if ( ! padSession ( 'user' ) )
+    padRedirect ( 'login' );
+
+  return TRUE;
+
+?>
