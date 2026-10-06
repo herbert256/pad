@@ -78,28 +78,40 @@
   // opening tag. A GET form gets nothing - its fields end up in the URL, and a token there
   // leaks through history and Referer. Neither does a form posting to another site: the
   // token would be handed to it.
+  //
+  // The opening tags are found, and each form's end is looked for from its tag on, rather
+  // than one regular expression taking in the content of every form: that ran out of
+  // PCRE's backtrack limit on a form of about a megabyte - an admin list with a checkbox on
+  // each of its thousands of rows - and answered NULL, which ended the page.
 
   function padCsrfForms ( $html ) {
 
     if ( stripos ( $html, '<form' ) === FALSE )
       return $html;
 
-    return preg_replace_callback (
+    preg_match_all ( '/<form\b[^>]*>/i', $html, $opens, PREG_OFFSET_CAPTURE );
 
-      '/(<form\b[^>]*>)(.*?)(?=<\/form\s*>|<form\b|\z)/is',
+    $out  = '';
+    $done = 0;
 
-      function ( $match ) {
+    foreach ( $opens [0] as $index => [ $open, $at ] ) {
 
-        if ( ! padCsrfFormPosts ( $match [1] ) or str_contains ( $match [2], 'name="' . padCsrfName . '"' ) )
-          return $match [0];
+      $start = $at + strlen ( $open );
+      $inner = substr ( $html, $start, ( $opens [0] [$index + 1] [1] ?? strlen ( $html ) ) - $start );
 
-        return $match [1] . padCsrfField () . $match [2];
+      if ( preg_match ( '/<\/form\s*>/i', $inner, $close, PREG_OFFSET_CAPTURE ) )
+        $inner = substr ( $inner, 0, $close [0] [1] );
 
-      },
+      if ( ! padCsrfFormPosts ( $open ) or str_contains ( $inner, 'name="' . padCsrfName . '"' ) )
+        continue;
 
-      $html
+      $out .= substr ( $html, $done, $start - $done ) . padCsrfField ();
 
-    );
+      $done = $start;
+
+    }
+
+    return $out . substr ( $html, $done );
 
   }
 
