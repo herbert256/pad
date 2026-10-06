@@ -40,9 +40,26 @@
     $left  = padEvalNumber ( $left,  $opr );
     $right = padEvalNumber ( $right, $opr );
 
-    if ( in_array ( $opr, [ '/', '%' ] ) and $right == 0 ) {
+    // % works on whole numbers, each operand cast to an int: a divisor that casts to 0 -
+    // 5 % 0.5 - divides by zero as 5 % 0 does, where the test of the operand itself let it
+    // through to an uncaught "Modulo by zero"; and a float beyond PHP's int range has no int
+    // - 1e20 % 3 - the cast warned and ended the request. 0 ** -2 divides by zero too, which
+    // PHP deprecates, and that ended the request as well.
 
-      global $padCheckSyntax;
+    global $padCheckSyntax;
+
+    $padEvalBig = fn ( $n ) => is_float ( $n ) and ! ( $n >= PHP_INT_MIN and $n < PHP_INT_MAX );
+
+    if ( $opr == '%' and ( $padEvalBig ( $left ) or $padEvalBig ( $right ) ) ) {
+
+      if ( $padCheckSyntax )
+        padError ( "'" . ( $padEvalBig ( $left ) ? $left : $right ) . "' is too large for %" );
+
+      $now = '';
+
+    }
+    elseif ( ( $opr == '/' and $right == 0 ) or ( $opr == '%' and (int) $right == 0 )
+             or ( $opr == '**' and $left == 0 and $right < 0 ) ) {
 
       if ( $padCheckSyntax )
         padError ( "a division by zero in $opr" );
