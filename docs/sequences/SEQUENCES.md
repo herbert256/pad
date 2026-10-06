@@ -8,7 +8,7 @@ This document describes the sequence types available in PAD and how to generate 
 {fibonacci rows=10}{$fibonacci} {/fibonacci}      # Fibonacci numbers
 {prime rows=15}{$prime} {/prime}                  # Prime numbers
 {sequence '1..10', name='n'}{$n} {/sequence}      # Range 1-10
-{random minimal=1, maximal=100, rows=5}           # Random numbers
+{random minimal=1, maximal=100, rows=5}{$random} {/random}   # Random numbers
 {list '5;2;8;1;9'}{$list} {/list}                 # Custom list
 ```
 
@@ -51,8 +51,8 @@ It used to be answered with a plain 1, 2, 3, ... counter, which looked enough li
 sequence to be mistaken for one, so a typo went unnoticed:
 
 ```
-{sequence prime, rows=5}     # the primes
-{sequence prmie, rows=5}     # error: 'prmie' is not a sequence type, a store or an action
+{sequence prime, rows=5}{$sequence} {/sequence}     # the primes
+{sequence prmie, rows=5}{$sequence} {/sequence}     # error: 'prmie' is not a sequence type, a store or an action
 ```
 
 ## Sequence Types (80+)
@@ -68,8 +68,8 @@ sequence to be mistaken for one, so a typo went unnoticed:
 - `perrin` - Perrin numbers (3, 0, 2, 3, 2, 5, ...)
 
 Where a sequence is conventionally listed with a leading term for n = 0, PAD starts at
-n = 1 and does not produce it: `lucas` begins at 1 rather than 2, `pell`, `catalan` and
-`bell` omit their leading 1, `caterer` its leading 1 and `moserdebruijn` its leading 0,
+n = 1 and does not produce it: `lucas` begins at 1 rather than 2, `pell` omits its leading 0,
+`catalan` and `bell` their leading 1, `caterer` its leading 1 and `moserdebruijn` its leading 0,
 and `gould` is shifted the same way. `fibonacci`, `tribonacci`, `perrin` and `recaman` do
 include their n = 0 term. Every value produced is a genuine member either way - only where
 the listing starts differs.
@@ -81,7 +81,7 @@ the listing starts differs.
 - `perfect` - Perfect numbers (6, 28, 496, ...)
 - `mersenne` - Mersenne primes, the 2^p - 1 that are themselves prime (3, 7, 31, 127, 8191, ...) - not the Mersenne numbers, which include 1, 15, 63 and the rest
 - `emirp` - Emirp primes (primes that are different primes when reversed)
-- `strong` - Strong numbers / factorions, equal to the sum of the factorials of their own digits (1, 2, 145, 40585) - not the strong primes
+- `strong` - Strong numbers / factorions, equal to the sum of the factorials of their own digits (1, 2, 145, 40585) - not the strong primes; 40585 lies beyond the default 10,000 candidates, `try=100000` reaches it
 - `semiprime` - Semiprimes (products of exactly two primes)
 
 ### Figurate Numbers
@@ -172,7 +172,7 @@ complement their result run negative.
 - `loop` - Loop iteration
 - `random` - Random numbers
 - `repeat` - Repeat a value
-- `oeis` - Fetch from Online Encyclopedia of Integer Sequences
+- `oeis` - An OEIS sequence by its A-number, from the local table (`oeis=81`)
 - `identity` - Identity sequence (returns input)
 - `step` - Step sequence
 - `chance` - Chance/probability sequence
@@ -205,14 +205,14 @@ The sequence tags (`resume`, `pull`, `keep`, `remove`, `flag`, `make`) operate o
 
 ## Sequence Variable Access
 
-Use named sequences instead of level-based `$-1` syntax:
+Use named sequences instead of level-based access:
 ```
 {sequence 5, name='n'}
   {$n}                    # Correct - use named variable
 {/sequence}
 
 {sequence 5}
-  {$-1}                   # Avoid - level-based access can be fragile
+  {$sequence@-1}          # Avoid - level-based access can be fragile ({$-1} is no field)
 {/sequence}
 ```
 
@@ -242,7 +242,8 @@ Always prefer named sequences for clarity:
 ```
 
 The action half of the same prefix - `sequence:sum([1,2,3])` - answers with a list instead,
-because a list is what an action produces.
+because a list is what an action produces; `{echo '' | sequence:sum([1,2,3]) . ''}` prints it
+(6), where a pipe that ends on the list itself is an error.
 
 **Some sequences need `sequence:` prefix:**
 ```
@@ -252,7 +253,7 @@ because a list is what an action produces.
 
 **Chance sequence needs a numeric parameter:**
 ```
-{chance 4, rows=15}    # 1-in-4 chance (not {chance rows=15})
+{chance 4, rows=15}{$chance}{/chance}    # 1-in-4 chance (not {chance rows=15})
 ```
 
 ## See Also

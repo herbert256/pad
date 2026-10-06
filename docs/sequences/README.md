@@ -8,7 +8,7 @@ The PAD sequence subsystem is a powerful mathematical sequence generation and ma
 {fibonacci rows=10}{$fibonacci} {/fibonacci}
 ```
 
-Output: `1 1 2 3 5 8 13 21 34 55`
+Output: `0 1 1 2 3 5 8 13 21 34`
 
 ## Documents
 
@@ -27,7 +27,7 @@ Output: `1 1 2 3 5 8 13 21 34 55`
 - **Selection:** `first`, `last`, `slice`, `shift`, `pop`
 - **Aggregations:** `sum`, `average`, `minimum`, `maximum`, `count`
 - **Multi-sequence:** `append`, `merge`, `intersection`, `difference`
-- **OEIS Integration:** Fetch any sequence from the Online Encyclopedia of Integer Sequences
+- **OEIS Integration:** Look up an OEIS sequence by A-number in a local copy of the OEIS table
 - **Charts:** `{chart 'line', sequence='recaman', rows=32}` and `{sparkline sequence='prime', rows=20}` draw the terms as inline SVG; the sequence application's Gallery, Listen and Guess pages draw, play and quiz every type
 
 ## Getting Started
