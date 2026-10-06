@@ -162,12 +162,13 @@ Create custom template tags.
   $label = padTagParm ( 'label', 'Click' );
   $href  = padTagParm ( 'href', '#' );
   $padContent = "<a href=\"$href\" class=\"button\">$label</a>";
+  return TRUE;
 ?>
 ```
 
 Use in templates:
 ```
-{button label="Submit" href="?submit"}
+{button label="Submit", href="?submit"}
 ```
 
 A tag can be a template instead - `_tags/card.pad` - with named slots for the caller to fill

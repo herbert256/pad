@@ -288,10 +288,11 @@ Files in `_lib/` are automatically included.
   $label = padTagParm('label', 'Click');
   $href  = padTagParm('href', '#');
   $padContent = "<a href=\"$href\" class=\"button\">$label</a>";
+  return TRUE;
 ?>
 ```
 
-Use in templates: `{button label="Submit" href="?submit"}`
+Use in templates: `{button label="Submit", href="?submit"}`
 
 **_tags/json.php** (for React integration):
 ```php
