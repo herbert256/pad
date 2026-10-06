@@ -112,17 +112,24 @@ padEvalMulti  ( $result );          // Handle multiple expressions
 
 ### Operator Precedence (`lib/eval/const.php`)
 
-Operators are evaluated in this order (highest to lowest):
+Operators bind in these groups, strongest first. The operators of one group bind equally
+and are applied left to right - `10 - 2 + 3` is 11, `12 / 2 * 3` is 18 - except `**`,
+which binds right to left: `2 ** 3 ** 2` is `2 ** 9`, 512:
 
 ```php
-const padEval_precedence = [
-  '!',                              // NOT (unary)
-  '**', '*', '/', '%', '+', '-',    // Arithmetic
-  '.',                              // String concatenation
-  'LT', 'LE', 'GT', 'GE', 'EQ', 'NE', // Comparison
-  'AND', 'XOR', 'OR',               // Logical
-  'NOT',                            // NOT (word form)
-  '??',                             // empty-coalescing
+const padEval_groups = [
+  [ '!' ],                          // NOT (unary)
+  [ '**' ],                         // Power
+  [ '*', '/', '%' ],                // Multiplication
+  [ '+', '-' ],                     // Addition
+  [ '.' ],                          // String concatenation
+  [ 'LT', 'LE', 'GT', 'GE' ],       // Ordering
+  [ 'EQ', 'NE' ],                   // Equality
+  [ 'NOT' ],                        // NOT (word form) - not $a eq $b denies the comparison
+  [ 'AND' ],
+  [ 'XOR' ],
+  [ 'OR' ],
+  [ '??' ],                         // empty-coalescing
 ];
 ```
 
@@ -360,9 +367,10 @@ Expression: `$price * 1.1 | round`
 
 ## Boolean Handling
 
-PAD uses string-based booleans:
-- **True**: `'1'` or any non-empty string
-- **False**: `''` (empty string)
+The comparison and logical operators answer `1` for true and `''` for false. A value is
+tested for truth as PHP tests it:
+- **False**: `''`, `'0'`, `0`, NULL, FALSE and an empty array
+- **True**: everything else - an array when it has elements
 
 This allows natural use in string contexts while maintaining logical operations.
 

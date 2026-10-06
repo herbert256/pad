@@ -398,7 +398,7 @@ Evaluation pipeline:
 3. **Split** → Separate by pipe operators
 4. **Execute** → Apply operators, call functions
 
-Operator precedence: `!` → `**` `*` `/` `%` `+` `-` → `.` → comparisons → `AND` `XOR` `OR`
+Operator precedence: `!` → `**` → `*` `/` `%` → `+` `-` → `.` → `lt` `le` `gt` `ge` → `eq` `ne` → `not` → `and` → `xor` → `or` → `??`, the ternary weakest; one group applies left to right, `**` right to left
 
 ### 7. Output Generation
 
