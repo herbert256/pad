@@ -1,35 +1,46 @@
 <?php
 
-  // Membership predicate for power: pqBoolPower($x, $y) is TRUE when x is a whole power of
-  // y, decided by dividing y out of x and asking whether 1 is left.
+  // Membership predicate for power: pqBoolPower($x, $y) is TRUE when x is y raised to a whole
+  // k of 1 or more - the terms loop.php makes, $y ** $k. Membership only: generation goes
+  // through loop.php, which pqBuild() prefers.
   //
   // $y is the sequence parameter, so {keep power=2} keeps 2, 4, 8, 16, ... - x = 1 is left
-  // out to match loop.php, which starts at the first power rather than at y^0. Membership
-  // only: generation goes through loop.php, which pqBuild() prefers.
+  // out to match loop.php, which starts at the first power rather than at y^0. The k that
+  // could give x is the logarithm of x to the base y, so the whole numbers next to it are
+  // tried with the same ** loop.php uses. Dividing y out of x until 1 was left knew only
+  // whole positive bases: a base of -2 makes -2, 4, -8, 16, and -2 and -8 were answered no,
+  // and a base of 2.5 ended the request on PHP's deprecation of the fraction inside %.
   //
-  // A base of 0, 1 or -1 has no repeated division to do and would spin forever or divide by
-  // zero, so those are answered directly, as is a missing or non-numeric parameter. An x of
-  // 0 is a fixed point of the division for the same reason and no power is ever 0, so it and
-  // anything below it are answered too.
+  // A base of 1, -1 or 0 makes the same one or two values over and over, and a parameter
+  // that is no number - a bare power is the TRUE read as 1 - is compared as it stands.
 
   function pqBoolPower ( $x, $y ) {
 
-    if ( ! is_numeric ( $y ) or abs ( $y ) < 2 )
+    if ( $y === TRUE )
+      $y = 1;
+
+    if ( ! is_numeric ( $y ) )
       return ( $x == $y );
 
-    if ( $x == 1 and $y != 1 )
+    if ( ! is_numeric ( $x ) )
       return FALSE;
 
-    if ( ! pqBoolWhole ( $x ) or $x < 1 )
+    if ( $y == 0 or $y == 1 )
+      return ( $x == $y );
+
+    if ( $y == -1 )
+      return ( $x == 1 or $x == -1 );
+
+    if ( $x == 0 )
       return FALSE;
 
-    while ($x % $y == 0)
-        $x = $x / $y;
+    $k = (int) round ( log ( abs ( $x ) ) / log ( abs ( $y ) ) );
 
-    if ($x == 1)
-      return TRUE;
-    else
-      return FALSE;
+    for ( $i = max ( 1, $k - 1 ); $i <= $k + 1; $i++ )
+      if ( $y ** $i == $x )
+        return TRUE;
+
+    return FALSE;
 
   }
 
