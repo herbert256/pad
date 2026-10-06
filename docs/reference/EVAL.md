@@ -4,7 +4,7 @@ This document explains in detail how the PAD expression evaluation subsystem wor
 
 ## Overview
 
-The eval subsystem is responsible for parsing and evaluating expressions in PAD templates. When you write `{$variable + 5 | trim}` in a PAD template, this subsystem handles the parsing, variable resolution, operator execution, and pipe processing.
+The eval subsystem is responsible for parsing and evaluating expressions in PAD templates. When you write `{echo $variable + 5 | trim}` in a PAD template, this subsystem handles the parsing, variable resolution, operator execution, and pipe processing.
 
 ## Entry Point
 
@@ -376,9 +376,18 @@ This allows natural use in string contexts while maintaining logical operations.
 
 ## Error Handling
 
-Errors are reported via `padError()`:
-- "No result back" - Expression produced no value
-- "More than one result back" - Expression incomplete
-- "Result is not a value" - Unexpected token type
+Under `$padCheckSyntax` (the default) errors are reported via `padError()`; with the check
+off, what cannot be evaluated answers `''`. Before anything runs, `lib/eval/validate.php`
+reads the expression and names the fault and its position - `Expression error: ...`:
+- a `(` or `[` that is never closed, a `)` or `]` that closes nothing, a string never closed
+- a pipe function that does not exist
+- an operator with nothing on its left or its right
+- a pipe operator written without its space - `| +1` for `| + 1`
+
+While it runs:
+- "there is no field named '$x'" - a missing field (`lib/eval/after.php`)
+- "'a' is not a number for +", "a division by zero in /" - arithmetic on what is no number
+- "the ? of an inline ternary has no :", "a branch of an inline ternary is empty" (`lib/eval/ternary.php`)
+- "No result back", "More than one result back", "Result is not a value" - an expression that reduced to no single value
 - "Unsupported \\ char" - Invalid escape sequence
 - "Escape \\ char only allowed inside a string"
