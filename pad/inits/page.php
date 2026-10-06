@@ -73,12 +73,18 @@
   // to answer when the application has no page of that name (lib/sitemap.php). Whether it
   // answers them is a setting, and the configuration is read after this file, so the
   // question waits in $padSitemapAsk for inits/sitemap.php, on a stand-in page.
+  //
+  // A bracketed route is no page of that name: a [slug].pad at the root binds any segment,
+  // and took sitemap.xml and robots.txt as two more slugs, so an application of clean URLs
+  // with $padSitemap on never answered either. The route stays the page for an application
+  // that has the sitemap off.
 
   $padSitemapAsk = '';
 
-  if ( ! $padRouteFound and in_array ( $padPage, [ 'sitemap.xml', 'sitemap_xml', 'robots.txt', 'robots_txt' ], TRUE ) ) {
+  if ( in_array ( $padPage, [ 'sitemap.xml', 'sitemap_xml', 'robots.txt', 'robots_txt' ], TRUE )
+       and ( ! $padRouteFound or str_contains ( $padRouteFound ['page'], '[' ) ) ) {
     $padSitemapAsk = str_replace ( '_', '.', $padPage );
-    $padRouteFound = [ 'page' => $padSitemapAsk, 'vars' => [] ];
+    $padRouteFound = $padRouteFound ?: [ 'page' => $padSitemapAsk, 'vars' => [] ];
   }
 
   if ( ! $padRouteFound ) {
