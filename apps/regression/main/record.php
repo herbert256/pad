@@ -46,7 +46,7 @@
 
   list ( $recApp, $recItem ) = padAppBoundary ( $recEntry ['strip'] . $recName );
 
-  $recCurl = padCurl ( getSuiteUrl ( $recApp, $recItem ) );
+  $recCurl = padCurl ( getSuiteFetchInput ( getSuiteUrl ( $recApp, $recItem ) ) );
 
   if ( ! str_starts_with ( $recCurl ['result'], '2' ) )
     return padError ( "'$recName' answers HTTP " . $recCurl ['result'] . " - a failing page records nothing" );

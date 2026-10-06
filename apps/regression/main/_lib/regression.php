@@ -156,6 +156,20 @@
   }
 
 
+  // Every page a run fetches is asked for the same way, whoever started the run. padCurl
+  // passes on the user agent of the request it stands in, and the answers were written
+  // against ./ci.sh, which starts the run with curl - so an error page answers the JSON
+  // report a local tool gets (padClaudeCheck). Started from a browser - a Test link,
+  // develop's build - the same pages answered the HTML dump, where a quote is &#039; and
+  // there is no JSON to read: 62 tests across three suites failed on the agent alone.
+
+  function getSuiteFetchInput ( $url ) {
+
+    return [ 'url' => $url, 'options' => [ 'USERAGENT' => 'PAD regression (curl)' ] ];
+
+  }
+
+
   // The fetches for a run: windows of independent GETs through padCurlMulti for a suite
   // whose pages are stateless - the crawl always fetched them twelve-wide - and one
   // request at a time where the registry says solo.
@@ -170,7 +184,7 @@
 
         set_time_limit ( 60 );
 
-        $fetched [$i] = padCurl ( $one ['url'] );
+        $fetched [$i] = padCurl ( getSuiteFetchInput ( $one ['url'] ) );
 
       }
 
@@ -185,7 +199,7 @@
       $urls = [];
 
       foreach ( $chunk as $i => $one )
-        $urls [$i] = $one ['url'];
+        $urls [$i] = getSuiteFetchInput ( $one ['url'] );
 
       foreach ( padCurlMulti ( $urls ) as $i => $curl )
         $fetched [$i] = $curl;
@@ -429,7 +443,7 @@
 
   function getSuiteOne ( $app, $name, $url, $want, $fetched=NULL ) {
 
-    $curl = $fetched ?? padCurl ( $url );
+    $curl = $fetched ?? padCurl ( getSuiteFetchInput ( $url ) );
 
     $got  = trim ( $curl ['data'] );
     $code = $curl ['result'];
@@ -850,7 +864,7 @@
       foreach ( $chunk as $i => $name )
         $urls [$i] = getFrameworkUrl ( $name );
 
-      $fetched = padCurlMulti ( $urls );
+      $fetched = padCurlMulti ( array_map ( 'getSuiteFetchInput', $urls ) );
 
       foreach ( $chunk as $i => $name ) {
 
