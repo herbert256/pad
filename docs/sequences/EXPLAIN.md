@@ -8,23 +8,21 @@ The sequence subsystem generates mathematical sequences like prime numbers, Fibo
 
 ## Entry Point
 
-The main entry point is `sequence/sequence.php`:
+A sequence tag enters through `sequence/tag.php`:
 
 ```php
-include PQ . 'inits/direct.php';     // Set entry mode and globals
-include PQ . 'inits/clear.php';      // Clear previous state
-include PQ . 'inits/vars.php';       // Initialize variables
-include PQ . 'actions/set.php';      // Set up actions
-include PQ . 'plays/inits.php';      // Initialize plays (filters)
-include PQ . 'actions/inits.php';    // Initialize actions
-include PQ . 'inits/limits.php';     // Set iteration limits
+include PQ . 'inits/tag.php';        // The tag's name, parameters and options
+include PQ . 'inits/inits.php';      // Variables, plays, actions, limits
 include PQ . 'build/build.php';      // Generate the sequence
-include PQ . 'exits/actions.php';    // Execute post-actions
-include PQ . 'exits/done.php';       // Mark options as done
-include PQ . 'exits/info.php';       // Generate debug info
+include PQ . 'exits/exits.php';      // Post-actions, storing, info
 
-return array_values ( $pqResult );   // Return the sequence
+return include PQ . 'exits/return.php';   // The rows for the tag
 ```
+
+The expression form `sequence:<type>(n)` enters through `sequence/sequence.php`, which runs
+the same build for one term (`inits/direct.php`, `inits/eval.php`, `build/inits.php`,
+`inits/init.php`, ..., `build/build.php`, `exits/actions.php`) and returns that term,
+`end ( $pqEvalResult )`, not a list.
 
 ## Constants
 
@@ -141,7 +139,7 @@ if ( $pqTries > $pqTry ) return FALSE;  // Max attempts reached
 if     ( pqStore($pqBuild) )    $pq = $pqLoop;
 elseif ( $pqBuild == 'bool' )   $pq = pqBoolXxx($pqLoop, $pqParm);
 elseif ( $pqBuild == 'function') $pq = pqXxx($pqLoop);
-elseif ( $pqBuild == 'check' )  $pq = include PQ . "build/check.php";
+elseif ( $pqBuild == 'check' )  $pq = include PQ . "build/mode.php";
 elseif ( $pqBuild == 'loop' )   $pq = include PT . "$pqSeq/loop.php";
 elseif ( $pqBuild == 'make' )   $pq = include PT . "$pqSeq/make.php";
 elseif ( $pqBuild == 'order' )  $pq = include PT . "$pqSeq/order.php";
@@ -357,7 +355,7 @@ Actions transform the final result array (`actions/types/`):
 
 ### Filtering
 - `dedup` - Remove duplicates
-- `distinct` - Distinct values only
+- `distinct` - How many different values there are (a count)
 - `trim` - Trim values
 - `onlyNow` - Only current values
 - `onlyStore` - Only stored values
@@ -374,9 +372,9 @@ The subsystem supports randomization at multiple levels:
 
 Parameters can include ranges with `..`:
 ```
-from=1..100      # Random from 1-100
-increment=1..5   # Random increment 1-5
-rows=5..10       # Random 5-10 rows
+from='1..100'      # Random from 1-100
+increment='1..5'   # Random increment 1-5
+rows='5..10'       # Random 5-10 rows
 ```
 
 ### Random Selection
@@ -385,7 +383,8 @@ With `randomly` option, values are selected randomly from the valid range instea
 
 ### Random Increment
 
-With `increment=1...5` (three dots), the increment changes randomly each iteration.
+With `increment='1...5'` (three dots, quoted), the increment changes randomly each
+iteration. Unquoted, `1...5` is read as the number 1.5 and the step is that fraction.
 
 ## Pre-computed Values
 
@@ -404,7 +403,8 @@ These enable fast lookups for common sequences.
 ```
 sequence/
 ├── sequence/
-│   └── sequence.php     # Main entry point
+│   ├── tag.php          # Entry point of a sequence tag
+│   └── sequence.php     # Entry point of sequence:<type>(n)
 │
 ├── inits/               # Initialization
 │   ├── clear.php        # Clear state
@@ -466,7 +466,6 @@ sequence/
 │   ├── exits.php        # Exit processing
 │   ├── info.php         # Debug info
 │   ├── return.php       # Return handling
-│   ├── start.php        # Start processing
 │   ├── extra/           # Extra processing
 │   ├── info/            # Info generation
 │   ├── return/          # Return handlers
