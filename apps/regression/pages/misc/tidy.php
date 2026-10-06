@@ -7,7 +7,8 @@
   // "two" and a refilled form posted something else than it showed; a <template> keeps its
   // markup, where a bare <li> got a <ul> round it - a template inside a template too, which
   // was held up to the inner </template> only, so the outer one lost its close and the rest
-  // of the page went into it.
+  // of the page went into it. A custom element keeps its content as it was: one holding a
+  // <div> and a <p> came out as three copies of itself, one round each part.
 
   $tidyPage = padCurl ( $padGoExt . 'misc/tidied' ) ['data'];
   $tidyBody = trim ( preg_replace ( '#^.*<body>|</body>.*$#s', '', $tidyPage ) );
@@ -17,7 +18,10 @@
     'textarea: '        . ( str_contains ( $tidyBody, "<textarea name=\"t\">  two\n three</textarea>" ) ? 'kept' : 'CHANGED' ),
     'template: '        . ( str_contains ( $tidyBody, '<template><li>item</li></template>' ) ? 'kept' : 'CHANGED' ),
     'nested template: ' . ( ( str_contains ( $tidyBody, '<template x-if="open"><ul><template x-for="i in items"><li x-text="i"></li></template></ul></template>' )
-                              and preg_match ( '#</template>\s*</div>\s*<p>\s*after the component\s*</p>#', $tidyBody ) ) ? 'kept' : 'CHANGED' )
+                              and preg_match ( '#</template>\s*</div>\s*<p>\s*after the component\s*</p>#', $tidyBody ) ) ? 'kept' : 'CHANGED' ),
+    'custom blocks: '   . ( ( str_contains ( $tidyBody, '<my-panel><div class="a">block</div><p>para</p></my-panel>' )
+                              and substr_count ( $tidyBody, '<my-panel>' ) == 1
+                              and preg_match ( '#before <x-icon></x-icon> after#', $tidyBody ) ) ? 'kept' : 'CHANGED' )
   ] );
 
 ?>

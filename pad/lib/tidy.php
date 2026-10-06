@@ -7,8 +7,9 @@
   //                 actually produced something
   // padTidy         the general pass over page output using $padTidyConfig; for a
   //                 fragment or an included page it emits the body only
-  // padTidyHold     holds the content of a <textarea> or a <template> out of that pass
-  // padTidyClose    where such an element closes, a template by its depth
+  // padTidyHold     holds the content of a <textarea>, a <template> or a custom element
+  //                 out of that pass
+  // padTidyClose    where such an element closes, a template or a custom one by its depth
   // padTidySmall    an aggressive minifier - drops comments and empty elements, then
   //                 strips newlines, runs of spaces and whitespace between tags
   //
@@ -70,9 +71,10 @@
 
     // What Tidy must not rewrite is held out of the pass and put back after it: the content
     // of a <textarea> is a form value, and Tidy dropped its leading whitespace - "  two" came
-    // back as "two", so a refilled form posted something else than it showed - and the
-    // content of a <template> is markup for a script, into which Tidy put a <ul> round a
-    // bare <li>. Each is replaced by a mark of this request's own, no page text.
+    // back as "two", so a refilled form posted something else than it showed - the content
+    // of a <template> is markup for a script, into which Tidy put a <ul> round a bare <li>,
+    // and a custom element's is its component's (padTidyHold). Each is replaced by a mark of
+    // this request's own, no page text.
 
     $held = [];
     $mark = 'padTidyHeld' . bin2hex ( random_bytes ( 8 ) ) . 'x';
@@ -95,14 +97,17 @@
   // number. A <textarea> holds text and ends at its own close; a <template> is matched by
   // depth - held up to the first </template>, a template inside a template left the outer
   // one's </ul></template> to Tidy, which dropped them, and the rest of the page went into
-  // the template. An element that never closes is left to Tidy.
+  // the template. So is a custom element, a name with a - in it (<my-app>, <x-icon>): Tidy
+  // keeps the element itself (custom-tags, config/tidy.php) but took one holding a <div> and
+  // a <p> apart into three copies of itself, one round each part. An element that never
+  // closes is left to Tidy.
 
   function padTidyHold ( $data, &$held, $mark ) {
 
     $out = '';
     $at  = 0;
 
-    while ( preg_match ( '#<(textarea|template)(?=[\s/>])[^>]*>#i', $data, $open, PREG_OFFSET_CAPTURE, $at ) ) {
+    while ( preg_match ( '#<(textarea|template|[a-z][a-z0-9]*-[a-z0-9._-]*)(?=[\s/>])[^>]*>#i', $data, $open, PREG_OFFSET_CAPTURE, $at ) ) {
 
       $from  = $open [0] [1] + strlen ( $open [0] [0] );
       $close = padTidyClose ( $data, strtolower ( $open [1] [0] ), $from );
