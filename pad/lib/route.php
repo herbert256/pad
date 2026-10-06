@@ -77,6 +77,11 @@
   // even on a clean URL: that is the link a template writes as href="?about", and on
   // /shop/products/42 the browser makes it /shop/products/42?about. A first value with a
   // value, ?sort=price, is a parameter of the page the path names.
+  //
+  // A bare name only a bracket at the root takes - [slug].pad binds any word - is no page
+  // name but a value: with such a route ?padInclude, ?back or ?expand on a clean URL
+  // rendered [slug] in place of the page the path names. A key the path's own &name tail
+  // moved into the request values (padRequestPath) is a value whatever it is.
 
   function padRouteQuery () {
 
@@ -85,7 +90,12 @@
     if ( $first === NULL or ( $_GET [$first] ?? NULL ) !== '' )
       return FALSE;
 
-    return padPageRoute ( padRouteQueryName ( (string) $first ) ) !== FALSE;
+    if ( (string) ( $_SERVER ['QUERY_STRING'] ?? '' ) === '' )
+      return FALSE;
+
+    $route = padPageRoute ( padRouteQueryName ( (string) $first ) );
+
+    return $route !== FALSE and ! str_starts_with ( $route ['page'], '[' );
 
   }
 

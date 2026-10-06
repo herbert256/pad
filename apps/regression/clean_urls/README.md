@@ -21,4 +21,6 @@ of the request would write its old value back over the session.
 | `members/[member].php/pad` | A route named like a session variable - shows the session's value |
 | `helpers.php/pad` | `padUrl` in the clean form, and the session helpers on a session variable |
 | `helpers_put.php/pad`, `helpers_forget.php/pad` | Its fixtures: `member` put into the session, and taken out |
+| `[slug].pad` | A route at the root, which binds any name the application has no page for |
+| `rootroute.php/pad` | A bare query key on a clean URL stays a value of the path's page beside the root route |
 | `_config/config.php` | Switches `$padCleanUrls` on, declares the session variable `member`, `_common` off |
