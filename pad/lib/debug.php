@@ -27,13 +27,13 @@
       for ( $i = $pad - 1; $i > 0; $i-- )
         foreach ( (array) ( $padCurrent [$i] ?? [] ) as $key => $value )
           if ( ! array_key_exists ( $key, $fields ) )
-            $fields [$key] = $value;
+            $fields [$key] = padRedact ( $value, $key );
 
       $app = [];
 
       foreach ( $GLOBALS as $key => $value )
         if ( ! preg_match ( '/^(pad|pq|_|GLOBALS$|argv$|argc$)/', $key ) and ! is_object ( $value ) )
-          $app [$key] = $value;
+          $app [$key] = padRedact ( $value, $key );
 
       ksort ( $app );
 
@@ -44,6 +44,7 @@
     foreach ( $items as [ $name, $expr ] ) {
 
       $label = ( $name !== '' ) ? $name : $expr;
+      $field = '';
 
       if ( preg_match ( '/^\$([A-Za-z_][A-Za-z0-9_.:@]*)$/', trim ( $expr ), $match ) ) {
         $field = $match [1];
@@ -55,6 +56,11 @@
         }
       } else
         $value = padEval ( $expr );
+
+      // A credential shows redacted, as in the toolbar and the error report: the page a
+      // developer looks at goes on a screen, into a screenshot, into a bug report.
+
+      $value = padRedact ( $value, $field );
 
       $out .= padDebugBox ( $label, $value, is_array ( $value ) );
 
