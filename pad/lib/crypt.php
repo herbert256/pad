@@ -225,9 +225,14 @@
 
     $vars ['padSignature'] = $signature;
 
-    $query = http_build_query ( $vars, '', '&', PHP_QUERY_RFC3986 );
+    // The page's segments are URL-encoded, as padUrl writes them: a route segment with a
+    // space - products/Café au lait - stood in the link as it is, and a mail client ends a
+    // link at its first space. The signature is over the page as it is asked, decoded.
 
-    return $padHost . "$padApp/" . ( $padCleanUrls ? "$page?" : "?$page&" ) . $query;
+    $query = http_build_query ( $vars, '', '&', PHP_QUERY_RFC3986 );
+    $link  = implode ( '/', array_map ( 'rawurlencode', explode ( '/', $page ) ) );
+
+    return $padHost . "$padApp/" . ( $padCleanUrls ? "$link?" : "?$link&" ) . $query;
 
   }
 
