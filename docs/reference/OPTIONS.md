@@ -74,6 +74,30 @@ Retrieves content from the content store.
 {div content="savedHeader"}
 ```
 
+### merge
+
+How the content `content=` brings joins the tag's own content.
+
+```
+{tagName content="contentName", merge="bottom"}
+```
+
+**Values:**
+- `top` - the merged content above the tag's own (the default)
+- `bottom` - below it
+- `replace` - instead of it
+
+An `@content@` in either one decides the place instead. Any other value is an error under the
+strict check.
+
+**Example:**
+```
+{content 'h'}H{/content}
+{pad content='h', merge='top'}X{/pad}      →  HX
+{pad content='h', merge='bottom'}X{/pad}   →  XH
+{pad content='h', merge='replace'}X{/pad}  →  H
+```
+
 ---
 
 ## Data Storage Options
@@ -544,6 +568,7 @@ Enables direct output printing with formatting options.
 |--------|-----------|-------------|
 | `data` | Input | Get data from source |
 | `content` | Input | Get content from store |
+| `merge` | Input | Where `content` joins the tag's own: top, bottom, replace |
 | `toData` | Output | Store data to variable |
 | `toContent` | Output | Store content to variable |
 | `toBool` | Output | Store boolean flag |
