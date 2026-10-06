@@ -20,6 +20,20 @@
     return '';
   }
 
+  // The catalog's text is the application's own, markup and all; what replaces a :name is
+  // data, and goes in as {$name} would write it - through the data chain, sanitize by
+  // default - and so does a key no catalog knows, which is answered as itself: {trans
+  // 'greeting', name=$user} put a visitor's name into the page as live HTML.
+
+  foreach ( $padTransVars as $padTransName => $padTransValue )
+    if ( is_string ( $padTransValue ) )
+      foreach ( $padDataDefaultEnd as $padTransOne )
+        $padTransVars [$padTransName] = padEval ( $padTransOne, $padTransVars [$padTransName] );
+
+  if ( ! array_key_exists ( (string) $padTransKey, padTransCatalog () ) )
+    foreach ( $padDataDefaultEnd as $padTransOne )
+      $padTransKey = padEval ( $padTransOne, (string) $padTransKey );
+
   return padTrans ( (string) $padTransKey, $padTransVars );
 
 ?>

@@ -1163,6 +1163,9 @@ directory up to the application root and then `_common`, the most specific winni
 separated by `|`: two forms are one and other, three are zero, one and other. A key no
 catalog knows is answered as itself.
 
+**Escaping:** the catalog's text is written as it stands, markup included; a substitution,
+and a key no catalog knows, is data and is written as `{$x}` writes a field - sanitized.
+
 ---
 
 ### cache
