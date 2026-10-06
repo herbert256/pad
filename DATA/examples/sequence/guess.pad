@@ -1,0 +1,26 @@
+{if $answered eq 1}
+
+  {if $right eq 1}
+    <p><b>Right!</b> The next term is {$next}.</p>
+  @else@
+    <p>Not this time - you said {$guess}, the next term is <b>{$next}</b>.</p>
+  {/if}
+
+  <p>It is <b>{$type}</b>{if $oeis ne ''}, <a href="https://oeis.org/{$oeis}">{$oeis}</a> in the OEIS{/if}:</p>
+  <p>{$shown}, <b>{$next}</b>, {$rest} {sparkline sequence=$type, rows=14}</p>
+
+  <p><a href="?guess">Another one</a> - or <a href="?listen&type={$type}">listen to it</a>.</p>
+
+@else@
+
+  <p>What comes next?</p>
+
+  <h3>{$shown}, ?</h3>
+
+  <form method="post" action="?guess">
+    <input type="hidden" name="pick" value="{$pick}">
+    <input name="guess" size="12" inputmode="numeric" autocomplete="off" autofocus>
+    <button>Guess</button>
+  </form>
+
+{/if}

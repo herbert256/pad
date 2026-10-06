@@ -1,18 +1,13 @@
 <?php
 
   $title    = 'Todo List';
-  $dataFile = DATA . 'demo/todos.json';
-  $message  = '';
+  $dataFile = 'demo/todos.json';   // under DATA/, for padFileGet and padFilePut
+  $message  = $message ?? '';      // todoPost sets it, then restarts this page
 
-  $todos = [];
-
-  if ( file_exists ( $dataFile ) ) {
-    $json  = file_get_contents ( $dataFile );
-    $todos = json_decode ( $json, TRUE ) ?: [];
-  }
+  $todos = json_decode ( padFileGet ( $dataFile ), TRUE ) ?: [];
 
   $hasTodos     = count ( $todos ) > 0;
-  $doneCount    = count ( array_filter ( $todos, fn($t) => $t ['done'] ) );
+  $doneCount    = count ( padArrWhere ( $todos, 'done' ) );
   $pendingCount = count ( $todos ) - $doneCount;
 
 ?>

@@ -1,0 +1,1 @@
+{data 'countries'}[{"code":"nl","label":"Netherlands"},{"code":"be","label":"Belgium"}]{/data}{orders}{echo $customer_id | lookup('customers', 'id', 'country') | lookup('countries', 'code', 'label') | ?? 'unknown'} {/orders}|{echo 'jim' | lookup('staff', 'name', 'salary')}

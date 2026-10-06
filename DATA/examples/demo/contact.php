@@ -1,64 +1,43 @@
 <?php
 
-  $title = 'Contact Form';
-  $dataFile = DATA . 'demo/messages.json';
-  $successMsg = '';
-  $error = '';
-  $errors = [];
+  $title    = 'Contact Form';
+  $dataFile = 'demo/messages.json';   // under DATA/, for padFileGet and padFilePut
+  $errors   = [];
 
-  if ( ! is_dir ( DATA . 'demo' ) )
-    @mkdir ( DATA . 'demo', 0755, TRUE );
+  // The rules say what a valid message is; padValidate answers one message per field that
+  // breaks them, and the {input} and {textarea} of contact.pad show each beside its field,
+  // refilled with what was typed.
 
-  $formName    = $name    ?? '';
-  $formEmail   = $email   ?? '';
-  $formSubject = $subject ?? '';
-  $formMessage = $message ?? '';
+  if ( padPosted ( 'contact' ) ) {
 
-  if ( $_SERVER['REQUEST_METHOD'] == 'POST' && $action == 'send' ) {
+    $errors = padValidate ( [
+      'name'    => 'required|max:100',
+      'email'   => 'required|email',
+      'subject' => 'required|max:200',
+      'message' => 'required|max:2000',
+    ] );
 
-    $formName    = trim ( $formName );
-    $formEmail   = trim ( $formEmail );
-    $formSubject = trim ( $formSubject );
-    $formMessage = trim ( $formMessage );
+    if ( ! $errors ) {
 
-    if ( ! $formName )
-      $errors [] = [ 'field' => 'Name is required' ];
+      $messages = json_decode ( padFileGet ( $dataFile ), TRUE ) ?: [];
 
-    if ( ! $formEmail )
-      $errors [] = [ 'field' => 'Email is required' ];
-    elseif ( ! filter_var ( $formEmail, FILTER_VALIDATE_EMAIL ) )
-      $errors [] = [ 'field' => 'Please enter a valid email address' ];
+      $entry          = array_map ( 'htmlspecialchars', padRequestOnly ( [ 'name', 'email', 'subject', 'message' ] ) );
+      $entry ['date'] = padNow ( 'Y-m-d H:i:s' );
 
-    if ( ! $formSubject )
-      $errors [] = [ 'field' => 'Subject is required' ];
+      $messages [] = $entry;
 
-    if ( ! $formMessage )
-      $errors [] = [ 'field' => 'Message is required' ];
+      padFilePut ( $dataFile, json_encode ( $messages, JSON_PRETTY_PRINT ) );
 
-    if ( empty ( $errors ) ) {
+      // Post, redirect, get: the browser is sent on to a plain GET of this page, so a
+      // refresh shows the empty form instead of sending the message a second time - the
+      // thanks go along as a flash message. A form with errors is answered in place,
+      // keeping what was typed.
 
-      $messages = [];
-      if ( file_exists ( $dataFile ) ) {
-        $json = file_get_contents ( $dataFile );
-        $messages = json_decode ( $json, TRUE ) ?: [];
-      }
+      padFlash ( 'Thank you for your message! We will get back to you soon.' );
 
-      $messages [] = [
-        'name'    => htmlspecialchars ( $formName ),
-        'email'   => htmlspecialchars ( $formEmail ),
-        'subject' => htmlspecialchars ( $formSubject ),
-        'message' => htmlspecialchars ( $formMessage ),
-        'date'    => date ( 'Y-m-d H:i:s' )
-      ];
-
-      file_put_contents ( $dataFile, json_encode ( $messages, JSON_PRETTY_PRINT ) );
-
-      $successMsg = 'Thank you for your message! We will get back to you soon.';
-
-      $formName = $formEmail = $formSubject = $formMessage = '';
+      padRedirect ( 'contact' );
     }
-    else
-      $error = 'Please correct the errors below.';
+
   }
 
   $hasErrors = count ( $errors ) > 0;

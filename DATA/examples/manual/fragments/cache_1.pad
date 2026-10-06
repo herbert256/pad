@@ -1,0 +1,11 @@
+{cache 'manual-cache', ttl=60}
+  {set $built = $built + 1}
+  <p>Rendered while building: built {$built} time(s)</p>
+{/cache}
+
+{cache 'manual-cache', ttl=60}
+  {set $built = $built + 1}
+  <p>Rendered while building: built {$built} time(s)</p>
+{/cache}
+
+<p>The section was built {$built} time: the second one came from the cache.</p>

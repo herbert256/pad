@@ -1,0 +1,1 @@
+<?php $busy = TRUE; $idle = FALSE; $help = "Say \"hi\" <now>"; $no = "false"; $id = 7; ?>

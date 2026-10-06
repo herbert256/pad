@@ -1,0 +1,7 @@
+{tree 'menu', children='items', sort='title'}
+  <p style="margin: 0 0 0 {echo depth@tree | * 20}px">
+    {branch}&#9662;@else@&middot;{/branch}
+    {$title} <small>({current@tree} of {count@tree})</small>
+  </p>
+  {branch}{recurse}{/branch}
+{/tree}

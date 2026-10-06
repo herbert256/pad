@@ -1,0 +1,1 @@
+<?php $padLocales = [ "en", "nl", "de" ]; $_SERVER ["HTTP_ACCEPT_LANGUAGE"] = "fr-CH, nl-BE;q=0.8, en;q=0.5"; $chosen = padLocaleChoose (); $padLocales = []; ?>

@@ -1,32 +1,31 @@
 <?php
 
-  $title = 'Guestbook';
-  $dataFile = DATA . 'demo/guestbook.json';
-  $message = '';
-  $error = '';
+  $title    = 'Guestbook';
+  $dataFile = 'demo/guestbook.json';   // under DATA/, for padFileGet and padFilePut
+  $error    = '';
 
-  if ( ! is_dir ( DATA . 'demo' ) )
-    @mkdir ( DATA . 'demo', 0755, TRUE );
+  $entries = json_decode ( padFileGet ( $dataFile ), TRUE ) ?: [];
 
-  $entries = [];
-  if ( file_exists ( $dataFile ) ) {
-    $json = file_get_contents ( $dataFile );
-    $entries = json_decode ( $json, TRUE ) ?: [];
-  }
+  if ( padRequestIs ( 'POST' ) and padRequest ( 'action' ) == 'add' ) {
+    $name    = padRequest ( 'name',    '' );
+    $comment = padRequest ( 'comment', '' );
 
-  if ( $_SERVER['REQUEST_METHOD'] == 'POST' && $action == 'add' ) {
-    $name    = trim ( $name    ?? '' );
-    $comment = trim ( $comment ?? '' );
-
-    if ( $name && $comment ) {
+    if ( padFilled ( $name ) and padFilled ( $comment ) ) {
       $entry = [
         'name'    => htmlspecialchars ( $name ),
         'comment' => htmlspecialchars ( $comment ),
-        'date'    => date ( 'Y-m-d H:i:s' )
+        'date'    => padNow ( 'Y-m-d H:i:s' )
       ];
       array_unshift ( $entries, $entry );
-      file_put_contents ( $dataFile, json_encode ( $entries, JSON_PRETTY_PRINT ) );
-      $message = 'Thank you for signing the guestbook!';
+      padFilePut ( $dataFile, json_encode ( $entries, JSON_PRETTY_PRINT ) );
+
+      // Post, redirect, get: the browser is sent on to a plain GET of this page, so a
+      // refresh shows the guestbook again instead of signing it a second time. The thanks
+      // travel as a flash message, shown on that page once.
+
+      padFlash ( 'Thank you for signing the guestbook!' );
+
+      padRedirect ( 'guestbook' );
     }
     else
       $error = 'Please fill in both name and message.';

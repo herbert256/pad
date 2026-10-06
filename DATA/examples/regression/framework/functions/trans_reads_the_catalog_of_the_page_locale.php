@@ -1,0 +1,1 @@
+<?php $padLocale = "nl"; ?>

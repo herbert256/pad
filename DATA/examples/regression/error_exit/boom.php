@@ -1,8 +1,0 @@
-<?php
-
-  // Raises an engine-level PHP warning - reading an undefined variable - which
-  // $padErrorLevel promotes to a PAD error handled by this application's error action.
-
-  $boom = $neverSetAnywhere;
-
-?>

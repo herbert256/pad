@@ -1,0 +1,1 @@
+{set $who = 'a'}{cache 'fw-vary', vary=$who}{echo $who}{/cache}{set $who = 'b'}{cache 'fw-vary', vary=$who}{echo $who}{/cache}{set $who = 'a'}{cache 'fw-vary', vary=$who}{echo 'changed'}{/cache}

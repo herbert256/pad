@@ -1,0 +1,8 @@
+<?php
+
+  $orders    = [ [ 'id' => 1, 'customer' => 'Ann', 'amount' => 12.5 ],
+                 [ 'id' => 2, 'customer' => 'Bob', 'amount' => 7    ] ];
+  $total     = 19.5;
+  $padExpose = [ 'orders', 'total' ];
+
+?>

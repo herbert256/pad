@@ -1,0 +1,9 @@
+<p>Stylesheets this page needs:</p>
+<ul>{stack 'styles'}</ul>
+
+{sequence '1..3', name='n'}
+  {push 'styles', once='badge'}<li>badge.css</li>{/push}
+  <span class="badge">badge {$n}</span>
+{/sequence}
+
+{push 'styles'}<li>footer.css</li>{/push}

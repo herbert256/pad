@@ -1,0 +1,12 @@
+{data 'orders'}
+  [ {"customer":"Ann","number":101,"total":40}, {"customer":"Bob","number":102,"total":15},
+    {"customer":"Ann","number":103,"total":25}, {"customer":"Cleo","number":104,"total":60},
+    {"customer":"Bob","number":105,"total":35} ]
+{/data}
+
+{orders group='customer', sum='total'}
+  <h4>{$customer}: {$count} orders, {$total}</h4>
+  {rows}
+    <p>Order {$number}: {$total}</p>
+  {/rows}
+{/orders}

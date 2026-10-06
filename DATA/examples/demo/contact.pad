@@ -1,44 +1,27 @@
 <p>Have a question or feedback? Send us a message!</p>
 
-{if $successMsg}
-  <div class="message">{$successMsg}</div>
+{flash}
+  <div class="message">{$message}</div>
+{/flash}
+
+{if $hasErrors}
+  <div class="message error">Please correct the errors below.</div>
 {/if}
 
-{if $error}
-  <div class="message error">{$error}</div>
-  <ul style="color: #c00;">
-    {errors}
-      <li>{$field}</li>
-    {/errors}
-  </ul>
-{/if}
+{form 'contact'}
 
-<form method="post">
-  <input type="hidden" name="action" value="send">
+  <p>{input 'name', label='Your Name: *'}</p>
 
-  <p>
-    <label>Your Name: *</label><br>
-    <input type="text" name="name" value="{$formName}">
-  </p>
+  <p>{input 'email', type='email', label='Your Email: *'}</p>
 
-  <p>
-    <label>Your Email: *</label><br>
-    <input type="email" name="email" value="{$formEmail}">
-  </p>
+  <p>{input 'subject', label='Subject: *'}</p>
 
-  <p>
-    <label>Subject: *</label><br>
-    <input type="text" name="subject" value="{$formSubject}">
-  </p>
-
-  <p>
-    <label>Message: *</label><br>
-    <textarea name="message" rows="6">{$formMessage}</textarea>
-  </p>
+  <p>{textarea 'message', label='Message: *', rows=6}</p>
 
   <p>
     <input type="submit" value="Send Message">
   </p>
-</form>
+
+{/form}
 
 <p style="color: #999; font-size: 12px;">* Required fields</p>

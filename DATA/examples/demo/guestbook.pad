@@ -1,8 +1,8 @@
 <p>Sign our guestbook and leave a message for other visitors!</p>
 
-{if $message}
+{flash}
   <div class="message">{$message}</div>
-{/if}
+{/flash}
 
 {if $error}
   <div class="message error">{$error}</div>
@@ -13,12 +13,12 @@
 <form method="post">
   <input type="hidden" name="action" value="add">
   <p>
-    <label>Your Name:</label><br>
-    <input type="text" name="name" required>
+    <label for="guestbook-name">Your Name:</label><br>
+    <input type="text" id="guestbook-name" name="name" required>
   </p>
   <p>
-    <label>Your Message:</label><br>
-    <textarea name="comment" rows="4" required></textarea>
+    <label for="guestbook-comment">Your Message:</label><br>
+    <textarea id="guestbook-comment" name="comment" rows="4" required></textarea>
   </p>
   <p>
     <input type="submit" value="Sign Guestbook">

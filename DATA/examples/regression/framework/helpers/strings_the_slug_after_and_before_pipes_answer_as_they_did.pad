@@ -1,0 +1,4 @@
+{texts}
+  [{$texts | slug}|{$texts | slug('_')}|{$texts | slug('')}|{$texts | after('/')}|{$texts | afterLast('/')}|{$texts | before('/')}|{$texts | beforeLast('/')}|{$texts | after('::')}|{$texts | beforeLast('zz')}]
+{/texts}
+[{echo 12345 | after(3)}|{echo 12345 | before(3)}|{echo 'abc' | after('')}|{echo 'abc' | afterLast('')}|{echo 'abc' | before('')}|{echo 'abc' | beforeLast('')}]

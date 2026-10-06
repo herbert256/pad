@@ -13,7 +13,7 @@
       'password', 'passwd', 'pwd', 'pass',
       'secret',
       'token',
-      'apikey', 'api_key', 'key',
+      'apikey', 'api_key',
       'credential', 'cred',
       'auth',
       'private',
@@ -56,9 +56,9 @@
   $appsDir = dirname(APP) . '/';
 
   // Get requested app, directory and file from query string
-  $app = $_GET['app'] ?? '';
-  $dir = $_GET['dir'] ?? '';
-  $file = $_GET['file'] ?? '';
+  $app  = padRequest ( 'app',  '' );
+  $dir  = padRequest ( 'dir',  '' );
+  $file = padRequest ( 'file', '' );
 
   $appPath = '';
   $appDirs = [];
@@ -67,8 +67,10 @@
   $currentFile = '';
   $parentDir = '';
 
-  // Validate app name (security: prevent directory traversal)
-  if ($app && preg_match('/^[a-zA-Z0-9_-]+$/', $app)) {
+  // Validate app name (security: prevent directory traversal). A nested application -
+  // regression/main, which the index links - is name segments joined by /, still with no
+  // dot and no empty segment, so it can not climb out.
+  if ($app && preg_match('/^[a-zA-Z0-9_-]+(\/[a-zA-Z0-9_-]+)*$/', $app)) {
 
     $appPath = $appsDir . $app . '/';
 
@@ -125,12 +127,8 @@
       }
 
       // Sort directories and files by name
-      usort($appDirs, function($a, $b) {
-        return strcasecmp($a['name'], $b['name']);
-      });
-      usort($appFiles, function($a, $b) {
-        return strcasecmp($a['name'], $b['name']);
-      });
+      $appDirs  = padArrSortBy ( $appDirs,  fn ( $one ) => strtolower ( $one ['name'] ) );
+      $appFiles = padArrSortBy ( $appFiles, fn ( $one ) => strtolower ( $one ['name'] ) );
 
       // If a file is requested, load its source
       if ($file && preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $file)) {

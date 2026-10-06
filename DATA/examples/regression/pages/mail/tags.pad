@@ -1,0 +1,3 @@
+before{mail to='ann@example.com', template='welcome', subject='Welcome, ' . $name}{people}{mail to=$email, subject='Hi ' . $first}<p>Hi <b>{$first}</b></p>{/mail}{/people}after
+{mails}{$to} | {$subject} | {$text} | {!html}
+{/mails}
