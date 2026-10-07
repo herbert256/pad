@@ -630,6 +630,14 @@ function send(msg) {
     process.stdout.write(body);
 }
 
+// The text of an open document, kept only when it is one: a didOpen without text, or with
+// text null, left a non-string standing for the document, and the check's callback - outside
+// the try round handle() - died taking it apart. Without text the file on disk is read.
+function keep(uri, text) {
+    if (typeof text === 'string') documents.set(uri, text);
+    else documents.delete(uri);
+}
+
 function handle(msg) {
     const { id, method, params } = msg;
     if (method === 'initialize') {
@@ -649,10 +657,10 @@ function handle(msg) {
     } else if (method === 'initialized') {
         // notification, nothing to do
     } else if (method === 'textDocument/didOpen') {
-        documents.set(params.textDocument.uri, params.textDocument.text);
+        keep(params.textDocument.uri, params.textDocument.text);
         check(params.textDocument.uri);
     } else if (method === 'textDocument/didChange') {
-        documents.set(params.textDocument.uri, params.contentChanges[params.contentChanges.length - 1].text);
+        keep(params.textDocument.uri, params.contentChanges[params.contentChanges.length - 1].text);
     } else if (method === 'textDocument/didSave') {
         check(params.textDocument.uri);
     } else if (method === 'textDocument/didClose') {

@@ -214,6 +214,17 @@ async function main() {
     g = await diagnosticsFor(uri('orders.pad'));
     expect('a save checks the page again', g && g.length === 0, g);
 
+    // a didOpen without text, or with text null, is checked from the file on disk - the
+    // render of a broken page read the missing text and the server died
+    for (const missing of [{}, { text: null }]) {
+        diagnostics.delete(uri('broken.pad'));
+        notify('textDocument/didOpen', { textDocument: Object.assign({ uri: uri('broken.pad'), languageId: 'pad', version: 2 }, missing) });
+        g = await diagnosticsFor(uri('broken.pad'));
+        const after = await request('textDocument/hover', { textDocument: { uri: uri('orders.pad') }, position: { line: 0, character: 0 } });
+        if (after.exited !== undefined) throw new Error('the language server died on a didOpen with ' + JSON.stringify(missing) + ' (exit ' + after.exited + ')');
+        expect('a didOpen with ' + JSON.stringify(missing) + ' is checked from the file on disk', g && g[0] && g[0].message.includes('never closes') && g[0].range.start.line === 2, g);
+    }
+
     await request('shutdown', null);
     notify('exit', null);
 
