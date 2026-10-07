@@ -9,6 +9,10 @@
   // hole, the whole thing becomes $padBase [$pad], and occurrence/occurrence.php starts the
   // first pass over it.
 
+  // The page renders once: its own @start@ and @end@ come out (occurrence/init.php).
+
+  $padSectionsOnce [$pad] = TRUE;
+
   include PAD . 'build/dirs.php';
 
   $padBuildLib  = include PAD . 'build/libs.php';

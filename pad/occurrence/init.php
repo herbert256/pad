@@ -18,12 +18,13 @@
   $padScan    [$pad] = 0;
 
   // A level no tag opened - the page itself when its PHP answered no list (build/page.php
-  // wraps a list in a {padBuild} tag), or a padCode pass - never went through
+  // wraps a list in a {padBuild} tag), or a {code} pass - never went through
   // level/start.php, so its own @start@ and @end@ reached the page as written: z99 printed
   // "@start@ bb @end@". It renders once, so its prelude, body and coda render once each:
-  // padSectionsOnce takes its own markers out.
+  // padSectionsOnce takes its own markers out. Only for the passes start/pad/pad.php names
+  // - a _data file the engine runs through padCode() keeps a marker in its text.
 
-  if ( $padTag [$pad] == 'internal' and str_contains ( $padOut [$pad], '@' ) )
+  if ( $padTag [$pad] == 'internal' and ( $padSectionsOnce [$pad] ?? FALSE ) and str_contains ( $padOut [$pad], '@' ) )
     $padOut [$pad] = padSectionsOnce ( $padOut [$pad] );
   $padKey     [$pad] = key($padData [$pad]);
   $padCurrent [$pad] = $padData [$pad] [$padKey [$pad]];

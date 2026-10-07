@@ -10,8 +10,19 @@
   // loop until that level closes again, and start/pad/end.php puts the saved state back.
   // The nested level's output, $padOut[$pad+1], is the value returned to the include.
 
+  // A pass whose text is a template written to render once - an explicit {code} or
+  // {sandbox}, as a tag or as a pipe, and a page build (build/build.php says so for its
+  // level) - has its @start@ and @end@ taken out by occurrence/init.php. Text the engine
+  // itself runs through padCode() - a _data file, a snippet, an option - is no such
+  // template, and a marker in it is its own text: decided here, while $pad is still the
+  // level that asked for the pass.
+
+  $padSectionsPass = in_array ( $padTag [$pad] ?? '', [ 'code', 'sandbox' ], TRUE );
+
   include PAD . 'start/pad/start.php';
   include PAD . 'inits/level.php';
+
+  $padSectionsOnce [$pad] = $padSectionsPass;
   include PAD . "start/pad/$padStrBld.php";
   include PAD . 'start/pad/level.php';
 
