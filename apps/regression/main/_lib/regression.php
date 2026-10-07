@@ -36,24 +36,36 @@
   }
 
 
-  // Whether this request is this machine's own, for the runner's actions - the rule develop
-  // applies (developLocal): the command line, or a local request (loopback, nothing
-  // forwarded) that names this machine in its Host header and that no other site sent. An
+  // Whether this request is this machine's own, for the runner's actions: the command line,
+  // or loopback with nothing forwarded (padLoopback), sent by no other site, and naming this
+  // machine in its Host header - localhost (or a name under .localhost), a loopback address,
+  // or a name $padHosts lists as this server's own, which is what a local vhost is. An
   // <img src> on a page of another site comes from this machine's own browser and is
   // loopback, but the browser marks it cross-site; a site rebound to 127.0.0.1 is loopback
-  // too, but names itself in Host. loopback alone let both through.
+  // too, but names itself in Host.
+  //
+  // The rule was develop's (developLocal), whose padLocal () also asks $padDiagnostics -
+  // whether error reports show, nothing about who asks - so with it off the runner refused
+  // its own machine, and a vhost such as pad.test was refused whatever $padHosts said: ./ci.sh
+  // against either exited 2.
 
   function getSuiteLocal () {
+
+    global $padHosts;
 
     if ( PHP_SAPI === 'cli' )
       return TRUE;
 
-    $host = strtolower ( preg_replace ( '/:\d+$/', '', trim ( (string) ( $_SERVER ['HTTP_HOST'] ?? '' ) ) ) );
+    $host = strtolower ( trim ( (string) ( $_SERVER ['HTTP_HOST'] ?? '' ) ) );
+    $name = preg_replace ( '/:\d+$/', '', $host );
     $site = strtolower ( trim ( (string) ( $_SERVER ['HTTP_SEC_FETCH_SITE'] ?? '' ) ) );
+    $own  = array_map ( 'strtolower', (array) ( $padHosts ?? [] ) );
 
-    return padLocal ()
-       and in_array ( $host, [ 'localhost', '127.0.0.1', '[::1]' ], TRUE )
-       and $site !== 'cross-site' and $site !== 'same-site';
+    $mine = ( $name === 'localhost' or str_ends_with ( $name, '.localhost' )
+              or $name === '[::1]' or preg_match ( '/^127(\.\d{1,3}){3}$/', $name )
+              or in_array ( $name, $own, TRUE ) or in_array ( $host, $own, TRUE ) );
+
+    return padLoopback () and $mine and $site !== 'cross-site' and $site !== 'same-site';
 
   }
 
