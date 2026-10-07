@@ -93,8 +93,13 @@
 
     global $padCurlStale;
 
+    // An answer that carries a {debug} box was rendered for a local request alone - a
+    // self-fetch made for one - and is not kept: kept for the ttl, every visitor after it
+    // was served the box, as the page cache and the fragment cache refuse to (padCacheLocalOnly).
+
     if ( str_starts_with ( (string) $output ['result'], '2' ) ) {
-      padCurlCachePut ( $key, $output, $ttl );
+      if ( ! is_string ( $output ['data'] ) or ! padCacheLocalOnly ( $output ['data'] ) )
+        padCurlCachePut ( $key, $output, $ttl );
       return $output + [ 'cache' => 'miss' ];
     }
 
