@@ -88,12 +88,20 @@
   }
 
   // A run parameter that has to be a number - from=, to=, rows= and the rest - and is none:
-  // the strict check names it, and the lenient walk carries on with its default.
+  // the strict check names it, and the lenient walk carries on with its default. One that is
+  // empty is one not given and takes its default under both: rows=$rows from a form field
+  // left blank - ?page&rows= - rendered the default rows, and the strict check had made it
+  // the error "rows= takes a number, not ''".
 
   function pqNumber ( $name, &$value, $default ) {
 
     if ( is_numeric ( $value ) or $value === $default )
       return;
+
+    if ( $value === '' or $value === NULL ) {
+      $value = $default;
+      return;
+    }
 
     if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
       padError ( "$name= takes a number, not '"
