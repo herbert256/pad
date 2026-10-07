@@ -443,11 +443,16 @@
         continue;
       }
 
+      // An array value adds its keys as attributes, judged as {attrs} judges them: a key that
+      // is no attribute name, an event handler, a srcdoc or a URL that runs script is left
+      // out - written as they stood, a key x" onmouseover="alert(7) closed the quoting.
+
       if ( $key === '' ) {
         $value = padEval ( $expr );
         if ( is_array ( $value ) )
           foreach ( $value as $one => $val )
-            padAttrsOne ( $attrs, (string) $one, $val );
+            if ( padAttrsBare ( (string) $one ) and padAttrsSafe ( (string) $one, $val ) )
+              padAttrsOne ( $attrs, (string) $one, $val );
         continue;
       }
 
