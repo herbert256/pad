@@ -36,6 +36,28 @@
   }
 
 
+  // Whether this request is this machine's own, for the runner's actions - the rule develop
+  // applies (developLocal): the command line, or a local request (loopback, nothing
+  // forwarded) that names this machine in its Host header and that no other site sent. An
+  // <img src> on a page of another site comes from this machine's own browser and is
+  // loopback, but the browser marks it cross-site; a site rebound to 127.0.0.1 is loopback
+  // too, but names itself in Host. loopback alone let both through.
+
+  function getSuiteLocal () {
+
+    if ( PHP_SAPI === 'cli' )
+      return TRUE;
+
+    $host = strtolower ( preg_replace ( '/:\d+$/', '', trim ( (string) ( $_SERVER ['HTTP_HOST'] ?? '' ) ) ) );
+    $site = strtolower ( trim ( (string) ( $_SERVER ['HTTP_SEC_FETCH_SITE'] ?? '' ) ) );
+
+    return padLocal ()
+       and in_array ( $host, [ 'localhost', '127.0.0.1', '[::1]' ], TRUE )
+       and $site !== 'cross-site' and $site !== 'same-site';
+
+  }
+
+
   // Runs every suite, in registry order. Asked for over HTTP from anywhere but this
   // application - the walks and the stores are APP-relative, so a suite runs where it
   // lives; develop's build page reaches the same machinery through ?build&go=1.
