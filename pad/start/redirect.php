@@ -26,10 +26,16 @@
 
   if ( preg_match ( '#^https?://#i', (string) $padParm ) ) {
 
-    $padRedirectUrl = (string) $padParm;
+    // The values go into the query, in front of a #fragment: behind it they were part of
+    // the fragment, which the browser keeps to itself.
+
+    list ( $padRedirectUrl, $padRedirectHash ) = array_pad ( explode ( '#', (string) $padParm, 2 ), 2, NULL );
 
     foreach ( $padSetLvl [$pad] as $padK => $padV )
       $padRedirectUrl = padAddGet ( $padRedirectUrl, $padK, $padV );
+
+    if ( $padRedirectHash !== NULL )
+      $padRedirectUrl .= "#$padRedirectHash";
 
     padHeader ( "Location: $padRedirectUrl" );
     padExit ( 302 );
