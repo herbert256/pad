@@ -129,10 +129,13 @@ PAD Select allows templates to access database tables directly without writing P
 ```php
 // Define tables with primary key
 $padSelect ['users']         = [ 'key' => 'id' ];
+$padSelect ['forum_boards']  = [ 'key' => 'id' ];
 $padSelect ['forum_topics']  = [ 'key' => 'id' ];
 $padSelect ['forum_posts']   = [ 'key' => 'id', 'order' => 'created_at' ];
+$padSelect ['news']          = [ 'key' => 'id' ];
 
 // Define relations (foreign keys)
+$padRelations ['forum_topics'] ['forum_boards'] = [ 'key' => 'board_id' ];
 $padRelations ['forum_topics'] ['users']        = [ 'key' => 'user_id'  ];
 $padRelations ['forum_posts']  ['forum_topics'] = [ 'key' => 'topic_id' ];
 $padRelations ['forum_posts']  ['users']        = [ 'key' => 'user_id'  ];
