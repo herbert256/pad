@@ -64,7 +64,7 @@
 
     if ( $expires < 0 ) {
       if ( is_file ( $file ) and ! padReplaying () )
-        @unlink ( $file );
+        padCacheAppLocked ( fn () => @unlink ( $file ) );
       return FALSE;
     }
 
@@ -92,7 +92,7 @@
     $held = ( padCacheAppRead ( $file ) !== NULL );
 
     if ( ! padReplaying () )
-      @unlink ( $file );
+      padCacheAppLocked ( fn () => @unlink ( $file ) );
 
     return $held;
 
@@ -103,11 +103,13 @@
 
   function padCacheFlush () {
 
-    if ( padReplaying () )
+    if ( padReplaying () or ! is_dir ( padCacheAppDir () ) )
       return TRUE;
 
-    foreach ( glob ( padCacheAppDir () . '*.cache' ) ?: [] as $file )
-      @unlink ( $file );
+    padCacheAppLocked ( function () {
+      foreach ( glob ( padCacheAppDir () . '*.cache' ) ?: [] as $file )
+        @unlink ( $file );
+    } );
 
     return TRUE;
 
@@ -212,7 +214,7 @@
       return FALSE;
 
     if ( is_file ( $file ) and ! padReplaying () )
-      @unlink ( $file );
+      padCacheAppLocked ( fn () => @unlink ( $file ) );
 
     return TRUE;
 
@@ -330,7 +332,10 @@
     if ( padReplaying () )
       return TRUE;
 
-    if ( padFilePut ( $file, "$expires\n" . serialize ( $value ) ) === FALSE )
+    // Under the application's lock, shared: writes go on side by side, but never while an
+    // entry is removed (padCacheAppSweep).
+
+    if ( padCacheAppLocked ( fn () => padFilePut ( $file, "$expires\n" . serialize ( $value ) ), LOCK_SH ) === FALSE )
       return FALSE;
 
     padCacheAppSweep ( dirname ( $file ) . '/' );
@@ -412,6 +417,13 @@
 
   // Once an hour - the .swept file's time says when the last sweep ran - the entries whose
   // time is over are removed. Reading the first line is enough to know.
+  //
+  // An entry is removed only when the path still holds the file that was read: every write
+  // is a new file renamed over the old one (padFilePut), so a request that put a fresh value
+  // between the read and the removal has put a file of its own there, and keeps it. The
+  // look and the removal go under the application's lock, which every write takes shared, so
+  // no write lands between them. The sweep removed whatever stood there by then - a value
+  // put a moment before was gone, and a padCacheHas right after its own put answered FALSE.
 
   function padCacheAppSweep ( $dir ) {
 
@@ -430,12 +442,24 @@
       if ( ! $handle )
         continue;
 
+      $read    = fstat ( $handle );
       $expires = trim ( (string) fgets ( $handle ) );
 
       fclose ( $handle );
 
-      if ( ctype_digit ( $expires ) and $expires > 0 and $expires <= $now )
-        @unlink ( $file );
+      if ( ! ctype_digit ( $expires ) or $expires == 0 or $expires > $now )
+        continue;
+
+      padCacheAppLocked ( function () use ( $file, $read ) {
+
+        clearstatcache ( TRUE, $file );
+
+        $there = @stat ( $file );
+
+        if ( $there and $read and $there ['ino'] == $read ['ino'] and $there ['dev'] == $read ['dev'] )
+          @unlink ( $file );
+
+      } );
 
     }
 
@@ -444,11 +468,19 @@
   // A rate limit reads, adds one and writes: two requests doing that at once would both
   // read 4 and both write 5. The application's lock file makes them take turns; it is held
   // for the few file operations of one hit. Without a lock - a directory that cannot be
-  // written - the hit is counted all the same.
+  // written - the hit is counted all the same. Writes take it shared and removals
+  // exclusive (padCacheAppWrite, padCacheAppSweep). A request that holds it already - a
+  // hit writes and sweeps inside it - goes on: a second handle of the same lock file would
+  // wait for the first.
 
-  function padCacheAppLocked ( $callback ) {
+  function padCacheAppLocked ( $callback, $mode = LOCK_EX ) {
 
     global $padDirMode;
+
+    static $held = FALSE;
+
+    if ( $held )
+      return $callback ();
 
     $dir = padCacheAppDir ();
 
@@ -458,11 +490,14 @@
     $lock = @fopen ( $dir . '.lock', 'c' );
 
     if ( $lock )
-      flock ( $lock, LOCK_EX );
+      flock ( $lock, $mode );
+
+    $held = TRUE;
 
     try {
       return $callback ();
     } finally {
+      $held = FALSE;
       if ( $lock ) {
         flock  ( $lock, LOCK_UN );
         fclose ( $lock );
