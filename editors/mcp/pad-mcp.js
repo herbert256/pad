@@ -246,7 +246,14 @@ const TOOLS = [
             const worker = async () => {
                 while (next < shown.length) {
                     const p = shown[next++];
-                    const r = await render({ app: a.app, page: p, query: a.query });
+                    // A template whose name is no page name - a backup orders.old.pad, a
+                    // space, a dot in a directory - is that page's failure, as pad lint has
+                    // it: thrown here it ended the whole check on it, every other page unread.
+                    let r;
+                    try { r = await render({ app: a.app, page: p, query: a.query }); } catch (e) {
+                        failures.push(p + '\n  ' + String(e && e.message || e).replace(/ - \?orders, \?admin\/users$/, ''));
+                        continue;
+                    }
                     if (r.code !== 0) failures.push(p + '\n  ' + describe(r, pageSource(a.app, p)).split('\n').join('\n  '));
                 }
             };

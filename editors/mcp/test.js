@@ -147,7 +147,8 @@ async function main() {
         r = await call('pad_check', { app: 'shop', page: 'twice' });
         expect('pad_check names the line the engine places the error on, not an earlier tag of the same text', r.text.includes('tag: {if 1 eq 1}, line 3 of editors/fixture/apps/shop/twice.pad'), r);
         r = await call('pad_check', { app: 'shop' });
-        expect('pad_check of an application checks every page', r.text.startsWith('7 pages of shop checked: 4 with an error') && r.text.includes('broken') && r.text.includes('undefined'), r);
+        expect('pad_check of an application checks every page', r.text.startsWith('8 pages of shop checked: 5 with an error') && r.text.includes('broken') && r.text.includes('undefined'), r);
+        expect('pad_check of an application names a template that is no page name and checks the rest', r.text.includes("orders.old\n  'orders.old' is not a page name") && r.text.includes('refuse refuses'), r);
         expect('pad_check of an application leaves the bracketed route products/[id] out', !r.error && !r.text.includes('[id]'), r);
 
         r = await call('pad_trace', { app: 'shop', page: 'orders' });
@@ -156,7 +157,7 @@ async function main() {
         r = await call('pad_apps', {});
         expect('pad_apps lists the applications', r.text.split('\n').includes('shop'), r);
         r = await call('pad_pages', { app: 'shop' });
-        expect('pad_pages lists the pages', r.text.includes('pages: admin/report, broken, index, orders, refused, twice, undefined'), r);
+        expect('pad_pages lists the pages', r.text.includes('pages: admin/report, broken, index, orders.old, orders, refused, twice, undefined'), r);
         expect('pad_pages lists the application\'s own tags by directory', r.text.includes('_tags: badge') && r.text.includes('admin/_tags: badge') && r.text.includes('_functions: money'), r);
 
         r = await call('pad_builtins', { kind: 'tags' });
