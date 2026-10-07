@@ -407,16 +407,21 @@
     $n    = count ( $points );
     $pad  = 5;
 
-    // Halved before they are subtracted, so 1e308 beside -1e308 spans a finite number; equal
-    // values draw a flat line through the middle - widening them by one was lost on a value
-    // past 2^53, and the scale divided by zero.
+    // Scaled by the span itself when it is a finite number other than 0; by the halves only
+    // when it overflows - 1e308 beside -1e308 - since halving a span of one denormal, 5e-324
+    // beside 0, made it 0 and the scale divided by it; and a span that is 0 - equal values,
+    // which widening by one lost past 2^53 - draws a flat line through the middle.
 
-    $x = fn ( $i ) => $n == 1 ? $width / 2 : $pad + $i * ( $width - 2 * $pad ) / ( $n - 1 );
+    $x    = fn ( $i ) => $n == 1 ? $width / 2 : $pad + $i * ( $width - 2 * $pad ) / ( $n - 1 );
+    $span = $max - $min;
+    $half = $max / 2 - $min / 2;
 
-    if ( $max == $min )
-      $y = fn ( $v ) => $height / 2;
+    if ( is_finite ( $span ) and $span != 0 )
+      $y = fn ( $v ) => $pad + ( $max - $v ) / $span * ( $height - 2 * $pad );
+    elseif ( ! is_finite ( $span ) and $half != 0 )
+      $y = fn ( $v ) => $pad + ( $max / 2 - $v / 2 ) / $half * ( $height - 2 * $pad );
     else
-      $y = fn ( $v ) => $pad + ( $max / 2 - $v / 2 ) / ( $max / 2 - $min / 2 ) * ( $height - 2 * $pad );
+      $y = fn ( $v ) => $height / 2;
 
     $line = '';
     foreach ( $points as $i => $point )
