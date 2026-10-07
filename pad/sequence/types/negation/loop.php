@@ -8,6 +8,9 @@
   if ( ! is_numeric ( $pqLoop ) )
     return FALSE;
 
-  return - $pqLoop;
+  // The + 0 turns the float -0 into 0: printed, it read -0. It comes of a float 0 - a listed
+  // 0.0, or a value that rounds to 0 - and a negative sign: - 0.0.
+
+  return - $pqLoop + 0;
 
 ?>

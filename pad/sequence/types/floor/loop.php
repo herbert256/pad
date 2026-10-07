@@ -13,6 +13,9 @@
   if ( ! $pqParm )
     $pqParm = 1;
 
-  return floor ( $pqLoop / $pqParm ) * $pqParm;
+  // The + 0 turns the float -0 into 0: printed, it read -0. It comes of a float 0 - a listed
+  // 0.0, or a value that rounds to 0 - and a negative sign: floor ( 0 / -3 ) * -3.
+
+  return floor ( $pqLoop / $pqParm ) * $pqParm + 0;
 
 ?>
