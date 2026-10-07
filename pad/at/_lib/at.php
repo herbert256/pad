@@ -243,12 +243,13 @@
 
   function padAtGlobals2 ( $array, $names, $search ) {
 
-    // The named array is not one of PHP's own superglobals: {$HTTP_HOST@_SERVER} would read
-    // the header straight out of the superglobal the direct access below reaches by name.
-    // Only the _ arrays and GLOBALS are kept out - an engine array such as $padMailLast is
-    // read as the field search reads it.
+    // The named array is no engine name: {$HTTP_HOST@_SERVER} would read the header straight
+    // out of the superglobal the direct access below reaches by name, and
+    // {$input.password@padCurlLast} the password of the engine's last fetch. Kept out as the
+    // field search keeps them out (lib/field/field.php) - pad*, pq* and the superglobals -
+    // with $padMailLast, the engine array TAGS.md hands to templates, read as there.
 
-    if ( ! str_starts_with ( (string) $array, '_' ) and $array !== 'GLOBALS'
+    if ( ( ! padEngineName ( (string) $array ) or $array === 'padMailLast' )
          and isset ( $search [$array] ) and is_array ( $search [$array] ) ) {
       $check = padAtSearch ( $search [$array], $names, 1 );
       if ( $check !== INF )
