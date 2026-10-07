@@ -452,13 +452,25 @@
   // staff's count" - opened one, so every placeholder after it counted as quoted and got its
   // value escaped but not quoted, and a bare id = {0} took '0 or 1=1' as SQL again. MySQL
   // wants white space after -- and knows #; SQLite takes -- as it is and has no #.
+  //
+  // The same pass knows where a bare placeholder stands where MySQL wants a number, for
+  // padDbLiteral: right after LIMIT, OFFSET and FETCH FIRST / NEXT, after the comma of
+  // LIMIT n, and as an item of an ORDER BY or GROUP BY list - first, or after a comma of
+  // that list at its own bracket depth. It follows the statement's words and brackets: a
+  // regex over the last 128 bytes took the select list of a UNION after a GROUP BY for that
+  // list ('007' became 7), missed an item after a bracketed one - order by field(...), {0}
+  // - and any list longer than its window.
 
   function padDbPlaceholders ( $connect, $sql, $vars ) {
 
-    $out   = '';
-    $len   = strlen ( $sql );
-    $quote = '';
-    $slash = ! ( $connect instanceof PDO );
+    $out    = '';
+    $len    = strlen ( $sql );
+    $quote  = '';
+    $slash  = ! ( $connect instanceof PDO );
+    $depth  = 0;
+    $clause = [ 0 => '' ];
+    $expect = FALSE;
+    $word   = '';
 
     for ( $i = 0; $i < $len; $i++ ) {
 
@@ -480,9 +492,13 @@
         if ( $char == $quote )
           $quote = '';
 
-      } elseif ( $char == "'" or $char == '"' or $char == '`' )
+      } elseif ( $char == "'" or $char == '"' or $char == '`' ) {
 
-        $quote = $char;
+        $quote  = $char;
+        $expect = FALSE;
+        $word   = '';
+
+      }
 
       if ( $char == '{' and preg_match ( '/\G\{([A-Za-z0-9_]+)(?::(\d+))?\}/', $sql, $match, 0, $i ) ) {
 
@@ -501,7 +517,7 @@
         if     ( $key [0] == 'x'    ) $add = is_array ( $value ) ? implode ( ',', $value ) : (string) $value;
         elseif ( $quote == '`'      ) $add = str_replace ( '`', '``', (string) $value );
         elseif ( $quote             ) $add = padDbEscape ( $connect, $value, $quote );
-        else                          $add = padDbLiteral ( $connect, $value, padDbNumberSlot ( $connect, $out ) );
+        else                          $add = padDbLiteral ( $connect, $value, $expect );
 
         // A bare negative number right after a minus - "10-{0}" with -5 - would join into
         // "10--5", which SQLite reads as "10" followed by a -- line comment that swallows
@@ -515,8 +531,47 @@
 
         $out .= $add;
 
+        if ( ! $quote ) {
+          $expect = FALSE;
+          $word   = '';
+        }
+
         $i += strlen ( $match [0] ) - 1;
         continue;
+
+      }
+
+      // Outside quotes the words and brackets move the clause along. A word is read whole.
+
+      if ( ! $quote and $char != "'" and $char != '"' and $char != '`' ) {
+
+        if ( ctype_alpha ( $char ) or $char == '_' ) {
+
+          preg_match ( '/\G[A-Za-z_][A-Za-z0-9_$]*/', $sql, $match, 0, $i );
+
+          $one = strtolower ( $match [0] );
+
+          if     ( $one == 'by' and ( $word == 'order' or $word == 'group' ) )   { $clause [$depth] = 'by';    $expect = TRUE; }
+          elseif ( $one == 'limit' or $one == 'offset' )                         { $clause [$depth] = 'limit'; $expect = TRUE; }
+          elseif ( ( $one == 'first' or $one == 'next' ) and $word == 'fetch' ) { $clause [$depth] = 'limit'; $expect = TRUE; }
+          else {
+            $expect = FALSE;
+            if ( in_array ( $one, [ 'select', 'union', 'intersect', 'except', 'from', 'where', 'having',
+                                    'window', 'rows', 'row', 'for', 'into', 'lock', 'returning' ] ) )
+              $clause [$depth] = '';
+          }
+
+          $word = $one;
+          $out .= $match [0];
+          $i   += strlen ( $match [0] ) - 1;
+          continue;
+
+        }
+
+        if     ( $char == '(' )         { $clause [++$depth] = ''; $expect = FALSE; $word = ''; }
+        elseif ( $char == ')' )         { $depth = max ( 0, $depth - 1 ); $expect = FALSE; $word = ''; }
+        elseif ( $char == ',' )         { $expect = in_array ( $clause [$depth] ?? '', [ 'by', 'limit' ] ); $word = ''; }
+        elseif ( ! ctype_space ( $char ) ) { $expect = FALSE; $word = ''; }
 
       }
 
@@ -571,33 +626,14 @@
 
   }
 
-  // Whether a bare placeholder stands where MySQL wants a number - right after LIMIT or
-  // OFFSET, or after "LIMIT n," - read from the end of the statement filled so far. Only
-  // that end is looked at: the whole statement was matched for every placeholder, so a
-  // list of 40000 of them in IN ( ... ) took seconds, the time growing with the square of
-  // the list. SQLite keeps numeric text a number anyway (padDbLiteral), so it is not asked.
-  //
-  // A column position after ORDER BY or GROUP BY - first in the list, or after a comma of
-  // it - and the count of FETCH FIRST / NEXT are numbers too: quoted, ORDER BY {0} DESC with
-  // '2' sorted on the constant '2', and FETCH NEXT '2' ROWS ONLY was a syntax error.
-
-  function padDbNumberSlot ( $connect, $out ) {
-
-    if ( $connect instanceof PDO )
-      return FALSE;
-
-    return (bool) preg_match ( '/\b(limit|offset)\s*$|\blimit\s+[0-9]+\s*,\s*$|\bfetch\s+(first|next)\s*$'
-                             . '|\b(order|group)\s+by\s*$|\b(order|group)\s+by\s+[^()]*,\s*$/i',
-                               $out, $match, 0, max ( 0, strlen ( $out ) - 128 ) );
-
-  }
-
   // A number is a number. Text that looks like one - every request value arrives as text -
   // is a quoted literal on MySQL, which compares a text column with a number as a number:
   // the documented name = {0} with '0' matched every name that does not start with a digit,
-  // and '01234' lost its zero. In a limit or offset ($number) MySQL takes no quoted literal,
-  // so there numeric text stays the count it says. SQLite compares a text column with a
-  // number as text, and a quoted '3' against count(*) is never equal, so it keeps the number.
+  // and '01234' lost its zero. Where MySQL wants a number ($number, padDbPlaceholders) -
+  // a count after LIMIT, OFFSET or FETCH, a column position in an ORDER BY or GROUP BY list
+  // - it takes no quoted literal, so there numeric text is the number it says. SQLite
+  // compares a text column with a number as text, and a quoted '3' against count(*) is
+  // never equal, so it keeps the number.
 
   function padDbLiteral ( $connect, $value, $number = FALSE ) {
 
