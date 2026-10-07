@@ -20,6 +20,8 @@
   //                  PATH_INFO unset - with an &name=value tail moved into the request
   //                  values, so a link written {$padGo}page&x=1 works in either form
   // padRequestPathRaw  that path as the request URI writes it, still encoded
+  // padRequestPathEnd  the raw end of the request URI that decodes to PATH_INFO, for a URI
+  //                  that does not show the entry point's directory
   // padRouteQuery    whether the query string names the page instead: ?about on a clean
   //                  URL - the relative link every existing template writes - goes to about
   // padRouteQueryName  that name as the query string sent it, the dots and spaces PHP made _
@@ -44,6 +46,13 @@
 
     $info = trim ( (string) ( $_SERVER ['PATH_INFO'] ?? '' ), '/' );
     $raw  = padRequestPathRaw ();
+
+    // A request URI that does not show the entry point's directory - an Alias, a rewrite, a
+    // proxy's prefix - still ends with the path as the client wrote it: the raw end that
+    // decodes to PATH_INFO is taken.
+
+    if ( $info !== '' and ( $raw === NULL or trim ( rawurldecode ( $raw ), '/' ) !== $info ) )
+      $raw = padRequestPathEnd ( $info );
 
     if ( $raw !== NULL and ( $info === '' or trim ( rawurldecode ( $raw ), '/' ) === $info ) ) {
 
@@ -109,6 +118,23 @@
       array_shift ( $rest );
 
     return implode ( '/', $rest );
+
+  }
+
+  // The raw end of the request URI's path that decodes to $info, segment by segment from
+  // the end, or NULL when no end of it does.
+
+  function padRequestPathEnd ( $info ) {
+
+    $have = explode ( '/', trim ( explode ( '?', (string) ( $_SERVER ['REQUEST_URI'] ?? '' ), 2 ) [0], '/' ) );
+
+    for ( $k = 1; $k <= count ( $have ); $k++ ) {
+      $end = implode ( '/', array_slice ( $have, -$k ) );
+      if ( trim ( rawurldecode ( $end ), '/' ) === $info )
+        return $end;
+    }
+
+    return NULL;
 
   }
 
