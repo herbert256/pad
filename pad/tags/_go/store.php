@@ -68,7 +68,14 @@
 
   } elseif ( $padTag [$pad] == 'data' ) {
 
+    // Judged as padData will read it: with a leading UTF-8 byte order mark taken off, which
+    // padData strips before it sniffs the type - a list behind a BOM passed this check and
+    // then ran.
+
     $padStoreList = $padStoreSource;
+
+    if ( is_string ( $padStoreList ) and str_starts_with ( $padStoreList, "\xEF\xBB\xBF" ) )
+      $padStoreList = substr ( $padStoreList, 3 );
 
     if ( ! padIsDefaultData ( $padData [$pad] ) )
       $padStoreData = $padData [$pad];

@@ -65,11 +65,27 @@
       return [];
     }
 
-    if ( $GLOBALS ['padProtectValues'] and is_string ( $curl ['data'] ) )
-      if ( ( $curl ['type'] ?: padContentType ( $curl ['data'] ) ) == 'list' ) {
+    // Judged as padData will read it, a leading UTF-8 byte order mark taken off first and the
+    // type sniffed afresh from the stripped body: padData strips the BOM before it sniffs,
+    // and padContentType reads a ( ... ) behind a BOM as json by its trailing ), so a list
+    // behind one both carried a pre-set type past this check and was not seen as a list.
+
+    if ( $GLOBALS ['padProtectValues'] and is_string ( $curl ['data'] ) ) {
+
+      $list = $curl ['data'];
+      $type = $curl ['type'];
+
+      if ( str_starts_with ( $list, "\xEF\xBB\xBF" ) ) {
+        $list = substr ( $list, 3 );
+        $type = '';
+      }
+
+      if ( ( $type ?: padContentType ( $list ) ) == 'list' ) {
         padError ( "the document fetched from " . $curl ['url'] . " reads as a PAD list, whose elements would run as expressions" );
         return [];
       }
+
+    }
 
     // Nor is a fetched body a reference to something on this server: a body that reads as
     // the name of a _data file ('file') was that file - a .php among them included and run

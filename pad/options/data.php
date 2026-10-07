@@ -21,7 +21,10 @@
 
   if ( $padProtectValues and is_string ( $padCheck ) ) {
 
-    $padDataList = $padCheck;
+    // Judged as padData will read it, a leading UTF-8 byte order mark taken off first: padData
+    // strips it before it sniffs the type, so a list behind one passed this check and ran.
+
+    $padDataList = str_starts_with ( $padCheck, "\xEF\xBB\xBF" ) ? substr ( $padCheck, 3 ) : $padCheck;
 
     if ( padContentType ( $padDataList ) == 'list' )
       return padError ( "the data= value reads as a PAD list, whose elements would run as expressions" );
