@@ -25,6 +25,8 @@
       'select/demo/where_comment' => 'A comment with an apostrophe in where= does not stop the $name after it from binding',
       'select/demo/numeric_text'  => 'A $name holding numeric text is text in where= on MySQL, so name = $zero with 0 matches no name',
       'select/demo/fields_is_written_in_the_template' => 'fields= is SQL the template writes, like where=: a column list from a variable is refused',
+      'select/demo/a_joined_fields_is_no_literal' => 'fields= must be one quoted literal: an expression that starts with one and joins a variable is refused',
+      'select/demo/a_joined_where_is_no_literal' => 'where= must be one quoted literal: a condition joined from a variable is refused',
       'select/demo/a_bound_array_is_a_list' => 'An array bound into where= as $name is a list of literals, as in a bare db() placeholder',
       'catalog/tags'              => 'One line per built-in tag no other page reaches - the catalogue half of the reference coverage',
       'catalog/prefixes'          => 'One line per type prefix, each in its literal spelling',

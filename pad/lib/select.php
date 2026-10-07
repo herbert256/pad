@@ -391,7 +391,11 @@
           $org = trim ( str_contains ( $org, '=' ) ? substr ( $org, strpos ( $org, '=' ) + 1 ) : $org );
         }
 
-      if ( $org !== '' and ! is_numeric ( $org ) and $org [0] != "'" and $org [0] != '"' )
+      // One quoted literal and nothing else: the test was that the value starts with a quote,
+      // so where='name = 1 or ' . $cond joined a condition from a variable into the SQL and
+      // answered every row (padMetaLiteral gives a string for a single literal only).
+
+      if ( $org !== '' and ! is_numeric ( $org ) and ! is_string ( padMetaLiteral ( $org ) ) )
         return padError ( "$part= is SQL the template writes: give it as a quoted string, and put a value in it as \$name" );
 
       $prm [$part] = padSelectBind ( $prm [$part], in_array ( $part, [ 'order', 'group' ] ) );
@@ -420,7 +424,7 @@
           $org = trim ( str_contains ( $org, '=' ) ? substr ( $org, strpos ( $org, '=' ) + 1 ) : $org );
         }
 
-      if ( $org !== '' and ! is_numeric ( $org ) and $org [0] != "'" and $org [0] != '"' )
+      if ( $org !== '' and ! is_numeric ( $org ) and ! is_string ( padMetaLiteral ( $org ) ) )
         return padError ( "$part= is SQL the template writes: give it as a quoted string" );
 
     }
