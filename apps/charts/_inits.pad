@@ -30,8 +30,8 @@
       <ul>
         {families}
         <li class="menu-item{if $active} is-active{/if}">
-          <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false">
-            {$label}
+          <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="{$label}">
+            {$short}
             <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg>
           </button>
           <div class="drop">
@@ -65,9 +65,9 @@
     <p class="lead">{$exampleText}</p>
   </div>
 
-  <div class="stage{if $tagPair} is-pair{/if}">
+  <div class="stage{if $oneCell} is-pair{/if}">
 
-    {if not $tagPair}
+    {if not $oneCell}
     <section class="cell cell-data" aria-label="The data">
       <header class="cell-head">
         <span class="cell-num">1</span>
@@ -82,7 +82,7 @@
 
     <section class="cell cell-tag" aria-label="The chart tag">
       <header class="cell-head">
-        <span class="cell-num">{if $tagPair}1{else}2{/if}</span>
+        <span class="cell-num">{if $oneCell}1{else}2{/if}</span>
         <span class="cell-name">{if $tagPair}The chart tag and its data{elseif $tagOnly}The chart tag{else}The template{/if}</span>
         <span class="cell-file">{$tagFile}</span>
         <span class="badge badge-pad">pad</span>
@@ -93,7 +93,7 @@
 
     <section class="cell cell-chart" aria-label="The chart">
       <header class="cell-head">
-        <span class="cell-num">{if $tagPair}2{else}3{/if}</span>
+        <span class="cell-num">{if $oneCell}2{else}3{/if}</span>
         <span class="cell-name">The result</span>
         <span class="cell-file">inline SVG · no JavaScript</span>
       </header>

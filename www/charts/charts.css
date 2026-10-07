@@ -115,7 +115,7 @@ code, pre, .cell-file { font-family: "JetBrains Mono", ui-monospace, SFMono-Regu
 
 .topbar-inner {
   max-width: 1320px; margin: 0 auto; padding: 10px 24px;
-  display: flex; align-items: center; gap: 20px;
+  display: flex; align-items: center; gap: 16px;
 }
 
 .brand {
@@ -135,7 +135,7 @@ code, pre, .cell-file { font-family: "JetBrains Mono", ui-monospace, SFMono-Regu
 
 .menu-button {
   display: flex; align-items: center; gap: 5px;
-  padding: 7px 11px; border: 0; border-radius: 9px; background: none;
+  padding: 7px 9px; border: 0; border-radius: 9px; background: none;
   color: var(--ink-soft); font: inherit; font-size: 14px; font-weight: 500; cursor: pointer;
   white-space: nowrap; transition: background .15s, color .15s;
 }
@@ -411,3 +411,7 @@ h1 { margin: 6px 0 8px; font-size: clamp(28px, 4vw, 42px); line-height: 1.1; let
   .pager { grid-template-columns: 1fr; }
   .quotes th, .quotes td { padding-left: 8px; padding-right: 8px; }
 }
+
+/* a gauge per row, side by side */
+.gauges { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.canvas > .gauges { position: static; }

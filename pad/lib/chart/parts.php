@@ -10,6 +10,12 @@
   //   sankey.php     sankey
   //   network.php    network
   //   hierarchy.php  treemap and sunburst
+  //   gauge.php      gauge
+  //   radar.php      radar
+  //   waterfall.php  waterfall
+  //   distribution.php  histogram and boxplot
+  //   calendar.php   calendar
+  //   gantt.php      gantt
   //
   // A field option names a field of the rows; left out, the kind takes the first field of
   // the first row that fits - a numeric one for a number, another one for a name.

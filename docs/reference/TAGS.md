@@ -1101,6 +1101,13 @@ Draw a chart as inline SVG - no JavaScript, so it works in print and caches like
 {chart 'sankey', data='energy', source='from', target='to', value='amount'}
 {chart 'network', data='friends', source='from', target='to', layout='radial'}
 {chart 'treemap', data='spend', levels='dept', label='post', value='amount'}
+{chart 'gauge', value=72, label='Disk in use', unit='%', bands='60, 85', target=80}
+{chart 'radar', data='phones', label='model', value='battery, camera, screen, speed'}
+{chart 'waterfall', data='result', label='step', value='amount', total='Profit'}
+{chart 'histogram', data='people', value='height', bins=12}
+{chart 'boxplot', data='salaries', label='team', value='salary'}
+{chart 'calendar', data='commits', date='day', value='count', year=2026}
+{chart 'gantt', data='plan', label='task', from='begin', to='until', progress='done'}
 ```
 
 **Kinds:**
@@ -1118,6 +1125,13 @@ Draw a chart as inline SVG - no JavaScript, so it works in print and caches like
 | `network` | Nodes and the links between them; `layout='force'` (default, the same picture for the same data) or `'radial'`, `arrows` for the direction, `value` for thicker links | `source`, `target`, `value`, `layout`, `arrows` |
 | `treemap` | Nested rectangles (squarified), `levels` the fields above the parts, outermost first | `label`, `value`, `levels` |
 | `sunburst` | The same hierarchy as rings around the total | `label`, `value`, `levels` |
+| `gauge` | One number on a half ring from `from` (0) to `to` (100); `bands` - one or two thresholds - colour the track green, amber, red; `target` marks a value; `unit` follows the number. `value` is the number itself, or the field of the first row - so a gauge needs no data | `value`, `from`, `to`, `bands`, `target`, `label`, `unit` |
+| `radar` | A spoke per measure of `value` (three or more), a polygon per row named by `label` (eight at most), rings from 0 to `to` - else round numbers past the highest value | `label`, `value`, `to` |
+| `waterfall` | Each row a step up (green) or down (red) floating from where the step before ended, a closing bar named by `total` ('Total'; `total=''` none), dashed lines carrying the level, the change above each bar | `label`, `value`, `total` |
+| `histogram` | The numbers of `value` counted in about `bins` (10) bins of one round width - a whole width for whole numbers; a value on an edge in the bin above | `value`, `bins` |
+| `boxplot` | A box per group of `label` - all values in one without it - from the first to the third quartile, the median across, whiskers to the furthest values within 1.5 box heights, the values past them as dots | `label`, `value` |
+| `calendar` | A square per day, a column per week (Monday first), the day's sum of `value` - else a count of its rows - in seven steps, an empty day in the grid colour; from the Monday before the first `date` to the last, or the whole `year` | `date`, `value`, `year` |
+| `gantt` | A row per task (`label`), a bar from `from` to `to` - dates, or plain numbers when all are; `color` colours by a field with a legend, `progress` (0-100) draws the part done full and the rest light, `mark` a dashed line at a date | `label`, `from`, `to`, `color`, `progress`, `mark` |
 | `sparkline` | See below | `label`, `value` |
 
 **As a pair** the content between the tags is the data, when neither `data` nor `sequence`
@@ -1150,7 +1164,7 @@ is one that nothing reads under the strict check. The handling options (`row`, `
 | `value` | The field that holds the number - by default the first numeric field; a comma list draws a series each (eight at most) |
 | `label` | The field for the category axis - by default the first other field, else the row number |
 | `title` | The accessible name; by default made from value and label |
-| `width`, `height` | The size, default 600 x 300 (pie, donut, sunburst 480 x 280; sankey, network, treemap 600 x 400); `.pad-chart { max-width: 100%; height: auto }` in the page's CSS makes it shrink with its container |
+| `width`, `height` | The size, default 600 x 300 (pie, donut, sunburst 480 x 280; sankey, network, treemap, radar 600 x 400; gauge 320 x 200; calendar 720 x 150); `.pad-chart { max-width: 100%; height: auto }` in the page's CSS makes it shrink with its container |
 
 **Accessibility:** `role="img"`, labelled by a `<title>` and a `<desc>` that lists the values;
 each bar, point, slice, cell, flow and node has its own `<title>`, the tooltip on hover - a
@@ -1879,7 +1893,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `tidy` | Output | Format HTML |
 | `spaceless` | Output | Remove whitespace between HTML tags |
 | `markdown` | Output | Markdown written as HTML, raw HTML escaped |
-| `chart` | Output | Bar, line or sparkline chart as inline SVG |
+| `chart` | Output | A chart as inline SVG - 21 kinds, from bar and line to gauge, calendar and gantt |
 | `sparkline` | Output | Word-sized line chart as inline SVG |
 | `qr` | Output | QR code as inline SVG |
 | `barcode` | Output | EAN-13, EAN-8, UPC-A or Code 128 barcode as inline SVG |

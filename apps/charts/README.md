@@ -31,7 +31,10 @@ The stylesheet and the small script - copy buttons, the theme switch, pulldowns 
 ## Adding an example
 
 1. Write `family/name.pad` with the `{chart}` tag.
-2. Give it data: `family/name.php`, or `_data/<data>.json` / `.yaml` named by `data='<data>'`.
-3. Add `'family/name' => [ 'Title', 'One line about it.' ]` to `_lib/catalog.php`.
+2. Give it data: `family/name.php`, `_data/<data>.json` / `.yaml` named by `data='<data>'`, or
+   the data between `{chart ...}` and `{/chart}` - or none, for a gauge of one number.
+3. Add `'family/name' => [ 'Title', 'One line about it.' ]` to `_lib/catalog.php`. A family is
+   `[ name, tagline, examples ]`, with a short name for the menu before the examples when the
+   name is long.
 
 The YAML examples need PHP's yaml extension, as every YAML data file in PAD does.

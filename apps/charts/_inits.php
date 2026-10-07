@@ -16,7 +16,12 @@
   $flat      = [];
   $isExample = FALSE;
 
-  foreach ( $catalog as $family => list ( $label, $tagline, $examples ) ) {
+  foreach ( $catalog as $family => $entry ) {
+
+    list ( $label, $tagline ) = $entry;
+
+    $examples = end ( $entry );
+    $short    = is_string ( $entry [2] ) ? $entry [2] : $label;
 
     $rows = [];
 
@@ -25,7 +30,7 @@
       $flat [] = [ $page, $oneTitle, $label ];
     }
 
-    $families [] = [ 'family' => $family, 'label' => $label, 'tagline' => $tagline,
+    $families [] = [ 'family' => $family, 'label' => $label, 'short' => $short, 'tagline' => $tagline,
                      'active' => isset ( $examples [$padPage] ), 'examples' => $rows,
                      'count'  => count ( $rows ) ];
 
@@ -71,6 +76,10 @@
     if ( $dataFile !== '' )
       $dataSource = trim ( file_get_contents ( APP . $dataFile ) );
 
+    // One source cell when there is no data apart from the tag: a pair, or a gauge of one
+    // number.
+
+    $oneCell   = $dataFile === '';
     $dataHtml  = chartsHighlight ( $dataSource, $dataLang );
     $dataLines = substr_count ( $dataSource, "\n" ) + 1;
 

@@ -739,6 +739,12 @@ through; `padCollection('blog')` gives the rows to PHP.
 {chart 'network', data='friends', source='a', target='b', layout='radial', arrows}
 {chart 'treemap', data='spend', levels='dept', label='post', value='amount'}  # also sunburst
 {sparkline sequence='fibonacci', rows=12}                    # word-sized; sequence terms as data
+{chart 'gauge', value=72, unit='%', bands='60, 85', target=80}   # one number - no data needed
+{chart 'radar', data='phones', label='model', value='battery, camera, screen'}
+{chart 'waterfall', data='result', label='step', value='amount', total='Profit'}
+{chart 'histogram', data='people', value='height', bins=12}  # also boxplot (label= groups)
+{chart 'calendar', data='commits', date='day', value='count', year=2026}
+{chart 'gantt', data='plan', label='task', from='begin', to='until', progress='done', mark='2026-10-07'}
 {chart 'bar', label='month', value='amount'}                 # a pair: the content is the data -
   month,amount                                               #   JSON, YAML, XML or CSV, told
   Jan,12400                                                  #   apart on sight (type= names it)
@@ -1594,7 +1600,7 @@ strict syntax check - `pad_check` with only an app checks every page), `pad_trac
 |-----|------|-------------|
 | `_common` | Shared | Shared resources and utilities for all applications |
 | `apps` | Standard | Lists all PAD applications with descriptions from README files |
-| `charts` | Standard | A showcase of the `{chart}` tag - a pulldown per chart family, every example a page of three cells: the data, the tag, the chart |
+| `charts` | Standard | A showcase of the `{chart}` tag - a pulldown per chart family (21 kinds), every example a page of three cells: the data, the tag, the chart |
 | `classicModels` | Standard | PAD Select over the Classic Models sample database |
 | `cli` | CLI | The `pad` command (`apps/cli/pad`): new, serve, render, lint, export, test - and the cli application |
 | `demo` | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
