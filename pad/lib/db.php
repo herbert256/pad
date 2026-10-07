@@ -501,8 +501,7 @@
         if     ( $key [0] == 'x'    ) $add = is_array ( $value ) ? implode ( ',', $value ) : (string) $value;
         elseif ( $quote == '`'      ) $add = str_replace ( '`', '``', (string) $value );
         elseif ( $quote             ) $add = padDbEscape ( $connect, $value, $quote );
-        else                          $add = padDbLiteral ( $connect, $value,
-                                             preg_match ( '/\b(limit|offset)\s*$|\blimit\s+[0-9]+\s*,\s*$/i', $out ) );
+        else                          $add = padDbLiteral ( $connect, $value, padDbNumberSlot ( $connect, $out ) );
 
         // A bare negative number right after a minus - "10-{0}" with -5 - would join into
         // "10--5", which SQLite reads as "10" followed by a -- line comment that swallows
@@ -569,6 +568,21 @@
       return str_replace ( [ "\0", $quote ], [ '', $quote . $quote ], $value );
 
     return mysqli_real_escape_string ( $connect, $value );
+
+  }
+
+  // Whether a bare placeholder stands where MySQL wants a number - right after LIMIT or
+  // OFFSET, or after "LIMIT n," - read from the end of the statement filled so far. Only
+  // that end is looked at: the whole statement was matched for every placeholder, so a
+  // list of 40000 of them in IN ( ... ) took seconds, the time growing with the square of
+  // the list. SQLite keeps numeric text a number anyway (padDbLiteral), so it is not asked.
+
+  function padDbNumberSlot ( $connect, $out ) {
+
+    if ( $connect instanceof PDO )
+      return FALSE;
+
+    return (bool) preg_match ( '/\b(limit|offset)\s*$|\blimit\s+[0-9]+\s*,\s*$/i', $out, $match, 0, max ( 0, strlen ( $out ) - 64 ) );
 
   }
 
