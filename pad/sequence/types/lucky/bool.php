@@ -30,22 +30,35 @@
     if ( ! pqBoolWhole ( $n ) or $n < 1 )
       return FALSE;
 
+    // The number, not the text it came as: the sieve keeps its survivors under integer keys,
+    // and '07' - from='07', a request value - was looked up as the key "07" and was not lucky.
+
+    $n = (int) $n;
+
     if ( ! isset ( $pqLuckyLimit ) )
       pqLuckySieve ( 100 );
 
     if ( $n <= $pqLuckyLimit )
       return isset ( $pqLuckyList [$n] );
 
-    $n = (int) $n;
-
     if ( $n % 2 == 0 )
       return FALSE;
 
     // A number past twice $padSeqMaxTries is not followed: the steps it needs outgrow any
-    // sieve a request can run, and near PHP_INT_MAX n + 1 was a float intdiv() refused.
+    // sieve a request can run, and near PHP_INT_MAX n + 1 was a float intdiv() refused. No
+    // run walks that far from a start below the ceiling, so it is a listed or stored value,
+    // and the strict check names it rather than answer "not lucky" for a lucky 2000029.
 
-    if ( $n > 2 * ( $GLOBALS ['padSeqMaxTries'] ?? 1000000 ) )
+    $pqLuckyMax = 2 * ( $GLOBALS ['padSeqMaxTries'] ?? 1000000 );
+
+    if ( $n > $pqLuckyMax ) {
+
+      if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
+        padError ( "whether $n is lucky is not known: lucky numbers are followed up to $pqLuckyMax" );
+
       return FALSE;
+
+    }
 
     $position = intdiv ( $n, 2 ) + 1;
 
