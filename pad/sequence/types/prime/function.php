@@ -18,6 +18,14 @@
     if ( $number < 1 )
       return FALSE;
 
+    // A position past $padSeqMaxTries, the ceiling a run walks to, is not searched for: it
+    // answers a float past the integer range, which ends the run as an overflowed term does,
+    // as recaman does. Searched for, {sequence '9223372036854775807;1', make, prime} grew the
+    // list of primes until the request was killed.
+
+    if ( $number > ( $GLOBALS ['padSeqMaxTries'] ?? 1000000 ) )
+      return (float) PHP_INT_MAX * 2;
+
     if ( $primes === NULL )
       $primes = defined ( 'PADprime' ) ? PADprime : [ 2 ];
 
