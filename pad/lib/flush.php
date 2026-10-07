@@ -87,6 +87,8 @@
 
     if ( $padCsrf )
       $chunk = padCsrfForms ( $chunk );
+    else
+      padCsrfBaseKeep ( $chunk );
 
     padFlushSend ( $chunk );
 

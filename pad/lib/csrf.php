@@ -100,13 +100,15 @@
 
   function padCsrfForms ( $html, $add = TRUE ) {
 
+    padCsrfBaseKeep ( $html );
+
     if ( stripos ( $html, '<form' ) === FALSE )
       return $html;
 
     $forms    = [];
     $ids      = [];
     $controls = [];
-    $base     = NULL;
+    $base     = $GLOBALS ['padCsrfBase'] ?? NULL;
     $open     = NULL;
 
     foreach ( padCsrfWalk ( $html ) as [ $kind, $name, $at, $end, $attrs ] )
@@ -120,8 +122,6 @@
         $open = NULL;
       } elseif ( $kind == 'start' and ( $name == 'button' or $name == 'input' ) )
         $controls [] = [ $attrs, $open ];
-      elseif ( $kind == 'start' and $name == 'base' and $base === NULL and array_key_exists ( 'href', $attrs ) )
-        $base = $attrs ['href'];
 
     foreach ( $controls as [ $attrs, $inside ] ) {
 
@@ -166,6 +166,23 @@
       }
 
     return $out . substr ( $html, $done );
+
+  }
+
+  // The page's <base href> - the first one - kept for the request: a page sent in parts by
+  // {flush} has it in the part that went first (lib/flush.php asks here too), and the pass
+  // over the rest knew no base - action="save" under a base on another site got the token.
+
+  function padCsrfBaseKeep ( $html ) {
+
+    if ( isset ( $GLOBALS ['padCsrfBase'] ) or stripos ( $html, '<base' ) === FALSE )
+      return;
+
+    foreach ( padCsrfWalk ( $html ) as [ $kind, $name, , , $attrs ] )
+      if ( $kind == 'start' and $name == 'base' and array_key_exists ( 'href', $attrs ) ) {
+        $GLOBALS ['padCsrfBase'] = $attrs ['href'];
+        return;
+      }
 
   }
 
