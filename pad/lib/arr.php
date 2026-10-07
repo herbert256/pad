@@ -855,11 +855,19 @@
   // SplFixedArray handed a text key - from a TypeError of the object's own code: PHP's is
   // raised where this file asked for the key, the other in the application's file. A
   // subclass that hands the key on to parent:: gets PHP's refusal in its own file, so the
-  // refusal is also told by PHP's words for it: "Cannot access offset of type ...".
+  // refusal is also told by PHP's words for it - "Cannot access offset of type ..." -
+  // raised in an SplFixedArray method: the same words out of the application's own
+  // offsetGet (a text indexed with a text) are its bug, and were taken for a refusal.
 
   function padArrRefused ( $error ) {
 
-    return $error -> getFile () === __FILE__ or str_starts_with ( $error -> getMessage (), 'Cannot access offset of type ' );
+    if ( $error -> getFile () === __FILE__ )
+      return TRUE;
+
+    $frame = $error -> getTrace () [0] ?? [];
+
+    return str_starts_with ( $error -> getMessage (), 'Cannot access offset of type ' )
+       and is_a ( $frame ['class'] ?? '', 'SplFixedArray', TRUE );
 
   }
 
