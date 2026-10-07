@@ -4,7 +4,7 @@
 
 PAD is a PHP template engine that inverts the traditional web application architecture. Instead of PHP code including templates, PAD templates drive the execution flow, seamlessly integrating data access, control structures, and presentation in a unified template syntax.
 
-**Requirements:** PHP 8.1+
+**Requirements:** PHP 8.3+ (`padCurl` sets `CURLOPT_PROTOCOLS_STR`, which PHP added in 8.3)
 
 ## Philosophy
 

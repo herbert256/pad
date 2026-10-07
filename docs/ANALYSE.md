@@ -3,7 +3,7 @@
 Code analysis for improvements, refactoring, and modernization opportunities.
 
 > A proposal written early on, kept as it was. Where it describes the code as it stood, the
-> engine has moved since: it needs PHP 8.1 (`array_is_list`), it is tested by eight regression
+> engine has moved since: it needs PHP 8.3 (`array_is_list`, and `CURLOPT_PROTOCOLS_STR` in `padCurl`), it is tested by eight regression
 > suites, `./ci.sh`, `pad test` and `{assert}`, `db()` placeholders are quoted and escaped by
 > a quote-aware scanner and SQLite runs through PDO, `padEnv` reads environment
 > configuration, and `padValidFile` in the test sketch is a function that does not exist.
@@ -15,7 +15,7 @@ Code analysis for improvements, refactoring, and modernization opportunities.
 ### Strengths
 
 - **Working Production Code**: 15+ years of real-world usage proves stability
-- **PHP 8.1**: Uses `str_starts_with()`, `str_ends_with()`, `Throwable` - and `array_is_list()`, which needs 8.1
+- **PHP 8.3**: Uses `str_starts_with()`, `str_ends_with()`, `Throwable`, `array_is_list()` (8.1) and `CURLOPT_PROTOCOLS_STR` (8.3)
 - **Consistent Naming**: Clear `pad` prefix convention throughout
 - **Modular File Structure**: Logical directory organization
 - **Comprehensive Error Handling**: Multi-level error strategy with environment awareness
@@ -32,7 +32,7 @@ Code analysis for improvements, refactoring, and modernization opportunities.
 
 ## 1. PHP Version Modernization
 
-### Current: PHP 8.1+
+### Current: PHP 8.3+
 
 Already using modern features:
 - `str_starts_with()`, `str_ends_with()`, `str_contains()`
@@ -832,7 +832,7 @@ parameters:
 
 | Area | Current | Recommended | Priority |
 |------|---------|-------------|----------|
-| PHP Version | 8.1 | 8.1+ | Low |
+| PHP Version | 8.3 | 8.3+ | Low |
 | Global State | Heavy | Context object | High |
 | Autoloading | None | PSR-4 | High |
 | Database | mysqli + custom escape | PDO + prepared | High |
