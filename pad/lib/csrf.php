@@ -380,11 +380,15 @@
   }
 
   // An action - or a formaction - on this site; a relative one under a <base href> is where
-  // the base is, and an empty one the page's own address.
+  // the base is, and only one written empty the page's own address: one of spaces is a
+  // relative address like any, and was trimmed to empty and taken for the page itself.
 
   function padCsrfActionHere ( $action, $base = NULL ) {
 
     $action = padCsrfDecode ( $action );
+
+    if ( $action === '' )
+      return TRUE;
 
     // Read as a browser reads it (the URL standard): the controls and spaces at its ends
     // and every tab and line break within are dropped, and on a web page a backslash is a
@@ -395,7 +399,7 @@
 
     $action = str_replace ( [ "\t", "\n", "\r", '\\' ], [ '', '', '', '/' ], trim ( $action, "\x00..\x20" ) );
 
-    if ( $action !== '' and $base !== NULL and ! preg_match ( '/^[a-z][a-z0-9+.-]*:/i', $action ) and ! str_starts_with ( $action, '//' ) )
+    if ( $base !== NULL and ! preg_match ( '/^[a-z][a-z0-9+.-]*:/i', $action ) and ! str_starts_with ( $action, '//' ) )
       return padCsrfActionHere ( $base );
 
     if ( ! preg_match ( '#^([a-z][a-z0-9+.-]*:)?//#i', $action ) )
