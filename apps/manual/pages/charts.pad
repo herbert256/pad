@@ -7,6 +7,24 @@ over a light wash with the last point marked.</p>
 
 {example 'fragments/charts_1'}
 
+<p>The first word picks the kind of chart, after the job the data has to do:</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+  <tr><th>Kind</th><th>Shows</th><th>Options</th></tr>
+  <tr><td><code>line</code></td><td>change over time</td><td><code>label</code>, <code>value</code></td></tr>
+  <tr><td><code>bar</code> (or <code>column</code>), <code>hbar</code></td><td>categories compared</td><td><code>label</code>, <code>value</code>, <code>stacked</code></td></tr>
+  <tr><td><code>pie</code>, <code>donut</code></td><td>parts of a whole</td><td><code>label</code>, <code>value</code></td></tr>
+  <tr><td><code>scatter</code>, <code>bubble</code></td><td>how two numbers relate</td><td><code>x</code>, <code>y</code>, <code>size</code>, <code>label</code>, <code>color</code>, <code>trend</code></td></tr>
+  <tr><td><code>heatmap</code></td><td>patterns in a grid of two categories</td><td><code>x</code>, <code>y</code>, <code>value</code></td></tr>
+  <tr><td><code>sankey</code></td><td>flows from one stage to the next</td><td><code>source</code>, <code>target</code>, <code>value</code></td></tr>
+  <tr><td><code>network</code></td><td>connections</td><td><code>source</code>, <code>target</code>, <code>value</code>, <code>layout</code>, <code>arrows</code></td></tr>
+  <tr><td><code>treemap</code>, <code>sunburst</code></td><td>a hierarchy, each part's share</td><td><code>label</code>, <code>value</code>, <code>levels</code></td></tr>
+  <tr><td><code>sparkline</code></td><td>a shape the size of a word</td><td><code>label</code>, <code>value</code></td></tr>
+</table>
+
+<p>An option left out takes the first field that fits: a numeric one for a number, another one
+for a name.</p>
+
 <h2>Where the numbers come from</h2>
 
 <ul>
@@ -14,6 +32,67 @@ over a light wash with the last point marked.</p>
   <li><code>value=</code> names the field with the number, <code>label=</code> the field for the axis. Without them the first numeric field is the value and the first other field the label.</li>
   <li><code>sequence='fibonacci', rows=12</code> - the first terms of a sequence, for demo data straight away.</li>
 </ul>
+
+<h2>Several series</h2>
+
+<p>A list of fields in <code>value=</code> draws a series each - bars side by side, or on top of
+each other with <code>stacked</code>, or a line each, named at its end. A legend above the plot
+names them in the fixed order of the colours; eight series at most.</p>
+
+{example 'fragments/charts_3'}
+
+<h2>Horizontal bars</h2>
+
+<p><code>hbar</code> lays the bars down, the names on the left - for long names or many
+categories.</p>
+
+{example 'fragments/charts_4'}
+
+<h2>Pie and donut</h2>
+
+<p>Parts of a whole: only positive values count, clockwise from twelve o'clock, a legend with
+each value and its share. Past eight parts the smallest are folded into one grey
+<em>Other</em>. A donut shows the total in its middle.</p>
+
+{example 'fragments/charts_5'}
+
+<h2>Scatter and bubble</h2>
+
+<p>A dot per row on two numeric axes, <code>x=</code> and <code>y=</code>. <code>color=</code>
+colours the dots by a field, <code>trend</code> draws the least-squares line. A bubble's
+<code>size=</code> sets its area.</p>
+
+{example 'fragments/charts_6'}
+
+<h2>Heatmap</h2>
+
+<p>Two categories as columns (<code>x=</code>) and rows (<code>y=</code>), each cell coloured by
+its value in seven steps of one hue, with the scale underneath.</p>
+
+{example 'fragments/charts_7'}
+
+<h2>Sankey</h2>
+
+<p>A row is a flow from <code>source=</code> to <code>target=</code>, as wide as its
+<code>value=</code>. The columns follow the flows; flows that go round in a circle are an
+error.</p>
+
+{example 'fragments/charts_8'}
+
+<h2>Network</h2>
+
+<p>A row is a link between two nodes. The default <code>layout='force'</code> pulls linked nodes
+together - the same data always draws the same picture - and <code>layout='radial'</code> sets
+them on a circle; <code>arrows</code> shows the direction.</p>
+
+{example 'fragments/charts_9'}
+
+<h2>Treemap and sunburst</h2>
+
+<p><code>levels=</code> lists the fields above the parts, the outermost first. A treemap nests
+rectangles, a sunburst rings; the colour is that of the outermost level.</p>
+
+{example 'fragments/charts_10'}
 
 <h2>Sparklines</h2>
 
@@ -25,8 +104,10 @@ or a table cell.</p>
 <h2>Accessible and themeable</h2>
 
 <p>Every chart is an image to a screen reader (<code>role="img"</code>), named by its
-<code>title=</code> and described by a list of its values. Each bar and point of a bar or line
-chart carries its own tooltip; a sparkline has none. The colours are CSS custom properties - <code>--pad-chart-series</code>,
-<code>--pad-chart-text</code>, <code>--pad-chart-grid</code>, <code>--pad-chart-surface</code> -
-set on <code>.pad-chart</code>, and their defaults follow the page's
-<code>color-scheme</code>, light or dark.</p>
+<code>title=</code> and described by a list of its values. Every bar, point, slice, cell, flow
+and node carries its own tooltip; a sparkline has none. The colours are CSS custom properties - <code>--pad-chart-series</code>,
+<code>--pad-chart-text</code>, <code>--pad-chart-grid</code>, <code>--pad-chart-surface</code>,
+the categorical <code>--pad-chart-1</code> to <code>--pad-chart-8</code>,
+<code>--pad-chart-other</code> and the heatmap's <code>--pad-chart-heat-0</code> to
+<code>--pad-chart-heat-6</code> - set on <code>.pad-chart</code>, and their defaults follow the
+page's <code>color-scheme</code>, light or dark.</p>

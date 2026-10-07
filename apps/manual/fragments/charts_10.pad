@@ -1,0 +1,12 @@
+{data 'spend'}
+  dept,post,amount
+  IT,Laptops,500
+  IT,Cloud,800
+  IT,Licences,300
+  HR,Training,400
+  HR,Recruiting,250
+  Sales,Travel,600
+  Sales,Events,350
+{/data}
+{chart 'treemap', data='spend', levels='dept', label='post', value='amount', width=480, height=260}
+{chart 'sunburst', data='spend', levels='dept', label='post', value='amount', width=300, height=300}

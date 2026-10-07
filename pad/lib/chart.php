@@ -16,7 +16,11 @@
   //                    the first numeric one), label= the field for the axis (else the first
   //                    other one, else the row number); a row without a finite number is
   //                    left out
-  // padChart           the SVG: bar, line or sparkline
+  // padChart           the SVG: bar, line or sparkline of one series
+  //
+  // The other kinds - several series, hbar, pie, donut, scatter, bubble, heatmap, sankey,
+  // network, treemap, sunburst - are drawn by the files of lib/chart/, on the same opening,
+  // style and number format.
   //
   // Accessible: the svg has role="img" and is labelled by its <title> and a <desc> that
   // lists the values, so a screen reader hears the data; each bar and point carries a
@@ -78,32 +82,71 @@
   }
 
   // The shared body of {chart} and {sparkline}: the options read, the rows gathered and
-  // turned into points, and the level's data put back to its one default occurrence.
+  // turned into points, and the level's data put back to its one default occurrence. A
+  // kind reads only the options it draws with, so an option of another kind - stacked on
+  // a line chart - is one that nothing reads, which the strict check reports.
 
   function padChartTag ( $kind ) {
 
     global $pad, $padData;
 
+    if ( $kind == 'column' )
+      $kind = 'bar';
+
     $sequence = padTagParm ( 'sequence' );
-    $label    = (string) padTagParm ( 'label' );
-    $value    = (string) padTagParm ( 'value' );
     $rows     = padChartRows ();
 
     $padData [$pad] = padDefaultData ();
 
+    $wide  = ( $kind == 'sparkline' );
+    $round = in_array ( $kind, [ 'pie', 'donut', 'sunburst' ] );
+    $tall  = in_array ( $kind, [ 'sankey', 'network', 'treemap' ] );
+
+    $width  = max ( 20, (int) padTagParm ( 'width',  $wide ? 120 : ( $round ? 480 : 600 ) ) );
+    $height = max ( 10, (int) padTagParm ( 'height', $wide ? 32  : ( $round ? 280 : ( $tall ? 400 : 300 ) ) ) );
+
     if ( $sequence !== '' and $sequence !== TRUE )
-      $name = ucfirst ( (string) $sequence ) . ', the first ' . count ( $rows ) . ' terms';
+      $seqName = ucfirst ( (string) $sequence ) . ', the first ' . count ( $rows ) . ' terms';
+    else
+      $seqName = '';
+
+    switch ( $kind ) {
+
+      case 'scatter':
+      case 'bubble':   return padChartScatter  ( $kind, $rows, $seqName, $width, $height );
+      case 'heatmap':  return padChartHeatmap  ( $rows, $width, $height );
+      case 'sankey':   return padChartSankey   ( $rows, $width, $height );
+      case 'network':  return padChartNetwork  ( $rows, $width, $height );
+      case 'treemap':
+      case 'sunburst': return padChartHierarchy ( $kind, $rows, $width, $height );
+
+    }
+
+    $label = (string) padTagParm ( 'label' );
+    $value = (string) padTagParm ( 'value' );
+
+    if ( $seqName !== '' )
+      $name = $seqName;
     elseif ( $value !== '' )
-      $name = ucfirst ( $value ) . ( $label !== '' ? " by $label" : '' );
+      $name = implode ( ' and ', array_map ( 'ucfirst', padChartFields ( $value ) ) ) . ( $label !== '' ? " by $label" : '' );
     else
       $name = ucfirst ( $kind ) . ' chart';
 
-    $wide = ( $kind == 'sparkline' );
+    $title = (string) padTagParm ( 'title', $name );
 
-    return padChart ( $kind, padChartPoints ( $rows, $label, $value, ! $wide ),
-                      (string) padTagParm ( 'title', $name ),
-                      max ( 20, (int) padTagParm ( 'width',  $wide ? 120 : 600 ) ),
-                      max ( 10, (int) padTagParm ( 'height', $wide ? 32  : 300 ) ) );
+    if ( $kind == 'pie' or $kind == 'donut' )
+      return padChartPie ( $kind, padChartPoints ( $rows, $label, $value ), $title, $width, $height );
+
+    $fields  = padChartFields ( $value );
+    $stacked = ( $kind == 'bar' or $kind == 'hbar' ) ? padTagParm ( 'stacked', FALSE ) : FALSE;
+    $stacked = ( $stacked !== FALSE and $stacked !== '' and $stacked !== 0 and $stacked !== '0' );
+
+    if ( $kind == 'hbar' or ( ! $wide and count ( $fields ) > 1 ) ) {
+      list ( $labels, $series ) = padChartTable ( $rows, $label, $fields );
+      return padChartSeries ( $kind, $labels, $series, $title, $width, $height, $stacked );
+    }
+
+    return padChart ( $kind, padChartPoints ( $rows, $label, $value, ! $wide ), $title, $width, $height );
 
   }
 
@@ -233,13 +276,30 @@
   // pale text on a white page. A browser without light-dark() keeps the light steps. The
   // size stays the width and height given: a max-width of 100% - the responsive rule a
   // page can add on .pad-chart - shrank a chart in a table cell to nothing.
+  //
+  // The kinds beyond one series of bar, line or sparkline - $more - add the categorical
+  // slots --pad-chart-1 to --pad-chart-8 - in this fixed order, the first being
+  // --pad-chart-series - a grey
+  // --pad-chart-other for what is folded together past the eighth, and the sequential
+  // ramp --pad-chart-heat-0 to --pad-chart-heat-6 of the heatmap, stepped for each
+  // surface: on a dark one the low end lies near the surface too.
 
-  function padChartStyle () {
+  function padChartStyle ( $more = FALSE ) {
 
     $roles = [ 'series'  => [ '#2a78d6', '#3987e5' ],
                'text'    => [ '#52514e', '#c3c2b7' ],
                'grid'    => [ '#e4e3df', '#3a3a37' ],
                'surface' => [ '#fcfcfb', '#1a1a19' ] ];
+
+    if ( $more )
+      $roles += [ '2' => [ '#eb6834', '#d95926' ], '3' => [ '#1baf7a', '#199e70' ],
+                  '4' => [ '#eda100', '#c98500' ], '5' => [ '#e87ba4', '#d55181' ],
+                  '6' => [ '#008300', '#008300' ], '7' => [ '#4a3aa7', '#9085e9' ],
+                  '8' => [ '#e34948', '#e66767' ], 'other' => [ '#898781', '#898781' ],
+                  'heat-0' => [ '#cde2fb', '#0d366b' ], 'heat-1' => [ '#9ec5f4', '#104281' ],
+                  'heat-2' => [ '#6da7ec', '#184f95' ], 'heat-3' => [ '#3987e5', '#1c5cab' ],
+                  'heat-4' => [ '#256abf', '#2a78d6' ], 'heat-5' => [ '#184f95', '#5598e7' ],
+                  'heat-6' => [ '#0d366b', '#9ec5f4' ] ];
 
     $light = $both = '';
 
@@ -260,47 +320,97 @@
          . '.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}'
          . '.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}'
          . '.pad-chart .pc-hit{fill:transparent}'
+         . ( $more ? padChartStyleMore () : '' )
          . '</style>';
 
   }
 
-  // The SVG of one chart. $kind is bar, line or sparkline; $title names it, and the
-  // points become its <desc>. The ids are made from the chart itself, so two charts on a
+  // The rules of the kinds beyond one series of bar, line or sparkline: a fill and a 2px
+  // line per slot, the 2px surface gap between fills that touch, the ring around marks that
+  // overlap,
+  // the heatmap steps, the sankey's bands, the network's links and the light label written
+  // on a fill.
+
+  function padChartStyleMore () {
+
+    $css = ':where(.pad-chart){--pad-chart-1:var(--pad-chart-series)}';
+
+    for ( $slot = 1; $slot <= 8; $slot++ )
+      $css .= ".pad-chart .pc-c$slot{fill:var(--pad-chart-$slot)}"
+            . ".pad-chart .pc-l$slot{fill:none;stroke:var(--pad-chart-$slot);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}";
+
+    for ( $step = 0; $step <= 6; $step++ )
+      $css .= ".pad-chart .pc-h$step{fill:var(--pad-chart-heat-$step)}";
+
+    return $css
+         . '.pad-chart .pc-co{fill:var(--pad-chart-other)}'
+         . '.pad-chart .pc-mark:hover{opacity:.8}'
+         . '.pad-chart .pc-gap{stroke:var(--pad-chart-surface);stroke-width:2}'
+         . '.pad-chart .pc-seg{stroke:var(--pad-chart-surface);stroke-width:1}'
+         . '.pad-chart .pc-ring{stroke:var(--pad-chart-surface);stroke-width:2}'
+         . '.pad-chart .pc-frame{fill:none;stroke:var(--pad-chart-surface);stroke-width:4}'
+         . '.pad-chart .pc-bubble{fill-opacity:.75}'
+         . '.pad-chart .pc-dp1{opacity:.75}.pad-chart .pc-dp2{opacity:.55}.pad-chart .pc-dp3{opacity:.4}'
+         . '.pad-chart .pc-link{fill:var(--pad-chart-series);opacity:.3}'
+         . '.pad-chart .pc-link:hover{opacity:.55}'
+         . '.pad-chart .pc-edge{stroke:var(--pad-chart-text);stroke-opacity:.35;fill:none}'
+         . '.pad-chart .pc-arrow{fill:var(--pad-chart-text);fill-opacity:.5}'
+         . '.pad-chart .pc-trend{fill:none;stroke:var(--pad-chart-text);stroke-width:1.5;stroke-dasharray:4 3}'
+         . '.pad-chart .pc-in{fill:#fff;stroke:rgba(0,0,0,.55);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}'
+         . '.pad-chart .pc-big{font-size:16px;font-weight:600}';
+
+  }
+
+  // The opening of one chart's SVG: the svg element named by $title, a <desc> of the
+  // entries in $desc - the first 60 - and the style; $hash is the data the id is made
+  // from, and the id comes back beside the text for the parts that refer to it. The ids are made from the chart itself, so two charts on a
   // page do not share a title: a count per request gave a chart served from the fragment
   // cache and a chart rendered next to it the same pad-chart-1, and so did the charts of
   // two nested passes - two {example}s - each counting from one again. The same chart
   // drawn twice in a request is told apart by a number behind the second, kept in a
   // static for the nested passes.
 
-  function padChart ( $kind, $points, $title, $width, $height ) {
+  function padChartOpen ( $kind, $hash, $desc, $title, $width, $height, $more = TRUE ) {
 
     static $drawn = [];
 
-    if ( ! $points )
-      return '';
-
-    $id = 'pad-chart-' . substr ( md5 ( serialize ( [ $kind, $points, $title, $width, $height ] ) ), 0, 8 );
+    $id = 'pad-chart-' . substr ( md5 ( serialize ( [ $kind, $hash, $title, $width, $height ] ) ), 0, 8 );
 
     $drawn [$id] = ( $drawn [$id] ?? 0 ) + 1;
 
     if ( $drawn [$id] > 1 )
       $id .= '-' . $drawn [$id];
 
-    $n    = count ( $points );
-    $vals = array_column ( $points, 1 );
-    $desc = [];
+    $count = count ( $desc );
 
-    foreach ( array_slice ( $points, 0, 60 ) as $point )
-      $desc [] = $point [0] . ': ' . padChartNumber ( $point [1] );
-
-    if ( $n > 60 )
-      $desc [] = 'and ' . ( $n - 60 ) . ' more';
+    if ( $count > 60 )
+      $desc = array_merge ( array_slice ( $desc, 0, 60 ), [ 'and ' . ( $count - 60 ) . ' more' ] );
 
     $svg = '<svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-' . $kind . '" role="img"'
          . " aria-labelledby=\"$id-title $id-desc\" width=\"$width\" height=\"$height\" viewBox=\"0 0 $width $height\">"
          . "<title id=\"$id-title\">" . padChartAttr ( $title ) . '</title>'
          . "<desc id=\"$id-desc\">" . padChartAttr ( implode ( '; ', $desc ) ) . '</desc>'
-         . padChartStyle ();
+         . padChartStyle ( $more );
+
+    return [ $id, $svg ];
+
+  }
+
+  // The SVG of a bar, line or sparkline chart.
+
+  function padChart ( $kind, $points, $title, $width, $height ) {
+
+    if ( ! $points )
+      return '';
+
+    $n    = count ( $points );
+    $vals = array_column ( $points, 1 );
+    $desc = [];
+
+    foreach ( $points as $point )
+      $desc [] = $point [0] . ': ' . padChartNumber ( $point [1] );
+
+    list ( $id, $svg ) = padChartOpen ( $kind, $points, $desc, $title, $width, $height, FALSE );
 
     if ( $kind == 'sparkline' )
       return $svg . padChartSparkline ( $points, $width, $height ) . '</svg>';
