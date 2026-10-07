@@ -167,17 +167,32 @@
 
   // A query - a form body, the query of a URL in a text - with the value of each field
   // whose name is a secret's redacted, read pair by pair as it stands. No parse_str, which
-  // stops at max_input_vars with a warning. A value is redacted whole: in a body up to the
-  // next & as parse_str splits it, in a text up to the &, space, quote or # that ends a
-  // URL's value there - it ended at a ; or a space, and password=se;cret kept ;cret.
+  // stops at max_input_vars with a warning. A secret's value is redacted whole: in a body up
+  // to the next & as parse_str splits it, in a text up to the &, space, quote or # that ends
+  // a URL's value there - it ended at a ; or a space, and password=se;cret kept ;cret. Any
+  // other value in a text ends at a ; as well: run on to the &, it swallowed the secret
+  // after it - a=1;token=abc, a PDO DSN's ...;user=app;password=hunter2 - in clear. Walked
+  // pair by pair, each value's end decided by its own name.
 
   function padRedactQuery ( $query, $body = TRUE ) {
 
-    $pattern = $body ? '/(^|&)([^=&]++)=([^&]*+)/' : '/(^|[?&;])([^=&#?;\s"\'<>]++)=([^&\s"\'<>#]*+)/';
+    $name = $body ? '/(?:^|&)([^=&]++)=/' : '/(?:^|[?&;])([^=&#?;\s"\'<>]++)=/';
+    $ends = $body ? '&' : "&\"'<># \t\r\n\f\v";
+    $out  = '';
+    $pos  = 0;
 
-    return preg_replace_callback ( $pattern,
-      fn ( $m ) => padRedactQueryName ( $m [2] ) ? $m [1] . $m [2] . '=' . urlencode ( '*** redacted ***' ) : $m [0],
-      $query ) ?? $query;
+    while ( preg_match ( $name, $query, $match, PREG_OFFSET_CAPTURE, $pos ) ) {
+
+      $at     = $match [0] [1] + strlen ( $match [0] [0] );
+      $secret = padRedactQueryName ( $match [1] [0] );
+      $end    = $at + strcspn ( $query, ( $secret or $body ) ? $ends : "$ends;", $at );
+
+      $out .= substr ( $query, $pos, $at - $pos ) . ( $secret ? urlencode ( '*** redacted ***' ) : substr ( $query, $at, $end - $at ) );
+      $pos  = $end;
+
+    }
+
+    return $out . substr ( $query, $pos );
 
   }
 
