@@ -34,13 +34,14 @@
   // evaluator, crashes (first=2 sort='n' hands sort= to PHP's sort(), which wants a
   // reference). An option's value is an expression and never carries a bare name= assignment
   // of its own, so one outside any quotes is the missing comma; quoted spans are set aside
-  // first so title='a=b' and where='$s = 1' are not mistaken for it, and == != >= <= are left
-  // alone. Strict mode names it, as parameter.php does for a parameter; the lenient walk
-  // evaluates as before.
+  // first so title='a=b' and where='$s = 1' are not mistaken for it - a backslash-escaped
+  // quote inside one, where='$n eq \'x y=1\'', as the evaluator reads it - and == != >= <=
+  // are left alone. Strict mode names it, as parameter.php does for a parameter; the lenient
+  // walk evaluates as before.
 
   if ( $padCheckSyntax
        and preg_match ( '/\s[a-zA-Z_][a-zA-Z0-9_]*\s*=(?!=)/',
-                        preg_replace ( '/\'[^\']*\'|"[^"]*"/', '', (string) $padPrmValue ) ) )
+                        preg_replace ( '/\'(?:[^\'\\\\]|\\\\.)*\'|"(?:[^"\\\\]|\\\\.)*"/s', '', (string) $padPrmValue ) ) )
     padError ( "a comma is missing between options: " . trim ( $padPrmOne ) );
 
   $padPrm [$pad] [$padPrmName] = ( $padPrmValue === '' ) ? TRUE : padEval ( $padPrmValue );
