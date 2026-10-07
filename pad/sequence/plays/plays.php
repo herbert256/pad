@@ -46,8 +46,8 @@
       break;
     }
 
-    // A value past the integer range - a listed 1e20 - or one that is no number at all is no
-    // term of any type, so the play answers FALSE for it without being run: handed over, the
+    // A value past the integer range - a listed 1e20, or the digits of 2^63 and the text 1e400
+    // a list keeps as written - or one that is no number at all is no term of any type, so the play answers FALSE for it without being run: handed over, the
     // integer predicates of and, or and xor and the generate-and-search of round, ceil and
     // the like ended the request on "The float 1.0E+20 is not representable as an int".
     //
@@ -55,7 +55,9 @@
     // a NAN - the square root of a negative value - is no term, and an overflow ends the run,
     // where a later flag turned 2^70 or the NAN into a 0 that counted as a term.
 
-    if ( is_float ( $pqLoop ) and ( is_nan ( $pqLoop ) or $pqLoop < PHP_INT_MIN or $pqLoop >= PHP_INT_MAX ) )
+    $pqPlayValue = is_numeric ( $pqLoop ) ? $pqLoop + 0 : $pqLoop;
+
+    if ( is_float ( $pqPlayValue ) and ( is_nan ( $pqPlayValue ) or $pqPlayValue < PHP_INT_MIN or $pqPlayValue >= PHP_INT_MAX ) )
       $pq = FALSE;
     else
       $pq = include PQ . "plays/play/$pqBuild.php";

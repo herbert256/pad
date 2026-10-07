@@ -354,16 +354,28 @@
   // and clamped an integer too long for PHP's int, so {sequence '1;2.5;4'} gave 1 2 4 and
   // '9223372036854775808' became 9223372036854775807. An integer that fits is an int, an
   // integer that does not stays the digits it is, any other number - 2.5, 1e3 - is a float.
+  //
+  // It is decided by the number, not by the spelling: '07' is 7, where the integer filter
+  // turned leading zeros down and {sequence '00;07'} printed 00 07. And a number past what a
+  // float holds stays the text written, as an over-long integer does: 1e400 became INF, a
+  // value no field could be resolved to, and {sequence '3;1e400'} ended the request on
+  // "Field '$sequence' not found".
 
   function padGetList ( $list ) {
 
     $list = explode ( ';', $list );
 
     foreach ( $list as $key => $value)
-      if ( is_numeric ($value) )
-        if     ( filter_var ( $value, FILTER_VALIDATE_INT ) !== FALSE ) $list [$key] = (int) trim ( $value );
-        elseif ( preg_match ( '/^\s*[+-]?[0-9]+\s*$/', $value )      ) $list [$key] = trim ( $value );
-        else                                                           $list [$key] = (float) $value;
+      if ( is_numeric ($value) ) {
+
+        $number = trim ( $value ) + 0;
+
+        if     ( is_int ( $number )                             ) $list [$key] = $number;
+        elseif ( preg_match ( '/^\s*[+-]?[0-9]+\s*$/', $value ) ) $list [$key] = trim ( $value );
+        elseif ( is_finite ( $number )                          ) $list [$key] = $number;
+        else                                                       $list [$key] = trim ( $value );
+
+      }
 
     return $list;
 
