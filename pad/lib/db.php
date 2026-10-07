@@ -508,9 +508,10 @@
         // "10--5", which SQLite reads as "10" followed by a -- line comment that swallows
         // the rest of the statement (MySQL wants white space after --, so it computed
         // 10 - -5 = 15): the drivers disagreed and SQLite gave the wrong answer or an
-        // "incomplete input" error. A space keeps the two minuses apart.
+        // "incomplete input" error. A space keeps the two minuses apart - outside quotes
+        // only: inside a quoted literal the value is text, and 'A-{0}' with -1 is A--1.
 
-        if ( $add !== '' and $add [0] === '-' and $out !== '' and $out [ strlen ( $out ) - 1 ] === '-' )
+        if ( $quote === '' and $add !== '' and $add [0] === '-' and $out !== '' and $out [ strlen ( $out ) - 1 ] === '-' )
           $add = " $add";
 
         $out .= $add;

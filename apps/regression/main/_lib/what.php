@@ -74,6 +74,7 @@
       'db/record2'                => 'The same through the {record} tag',
       'db/placeholders'           => 'db() placeholders - a bare one quotes a value that is not a number, a quoted one escapes, an array becomes a list, and nothing is filled twice',
       'db/placeholder_numeric_text' => 'A bare placeholder holding numeric text is text on MySQL - name = {0} with 0 matches no name - and a count in a limit',
+      'db/placeholder_minus_inside_quotes' => 'The space that keeps a bare negative number from a -- comment goes outside quotes only - A-{0} quoted stays A--1',
       'deep/index'                => 'A page rendering a page rendering a page, each level with its own _lib and _include',
       'handlers/index'            => 'The menu of the handler family; each of those is a test of its own',
       'handlers/error_1'          => 'An engine-raised PHP warning from a tag - an undefined variable - which $padErrorLevel promotes to an ended request',
