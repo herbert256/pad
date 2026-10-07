@@ -9,7 +9,18 @@
   // and the Test links of a local browser are this machine; reading the overviews stays
   // open to everyone, the static copy pages.sh makes among them.
 
-  if ( isset ( $test ) or isset ( $go ) or $padPage == 'record' )
-    return getSuiteLocal ();
+  if ( getSuiteLocal () )
+    return TRUE;
+
+  // Everyone else reads the overviews - the index, the build page, a suite's index - and
+  // nothing more: no Test, no go, no record. A list of what may be read, where the guard
+  // named what may not: on a filesystem that ignores case ?Record reached record.php as
+  // 'Record', and that name was not 'record'.
+
+  if ( isset ( $test ) or isset ( $go ) )
+    return FALSE;
+
+  return $padPage == 'index' or $padPage == 'build'
+      or ( str_ends_with ( $padPage, '/index' ) and isset ( getSuites () [ substr ( $padPage, 0, -6 ) ] ) );
 
 ?>
