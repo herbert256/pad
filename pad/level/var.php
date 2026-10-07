@@ -37,12 +37,12 @@
 
   // {$$x} takes the name of the field from a value, and a value may come from the request -
   // the name was used unchecked, so a value naming one of the engine's own globals read it
-  // out. A value-chosen name is refused when its head (the part before the first . @ : or [)
-  // is an engine name - pad*, pq*, a superglobal - so the password and the config are not
-  // read out, and when it holds markup: a quote or an angle bracket would close the attribute
-  // it is written into, as {?$sel} with 'a"><b>' did. Every ordinary field name stands,
-  // which the ASCII-identifier check this replaced wrongly refused - a row field named
-  // first-name, _id, café or name@rows that the direct form reads.
+  // out. A value-chosen name must be an application field or a path into one (padValueName,
+  // lib/level.php): every part is checked, not only the head, since a wildcard, an ordinal,
+  // a prefix or a condition in the path reaches a global the head does not name -
+  // *.HTTP_COOKIE read the Cookie header, x:padSqlUser the database user - and markup is
+  // refused, as {?$sel} with 'a"><b>' closed its attribute. Every ordinary field name
+  // stands - a row field named first-name, _id, café or name@rows that the direct form reads.
 
   $padFldRefused = FALSE;
 
@@ -54,9 +54,7 @@
       $padFld = '';
 
     $padFld        = (string) $padFld;
-    $padFldRefused = ( $padFld === ''
-                       or padEngineName ( preg_split ( '/[.@:\[]/', $padFld, 2 ) [0] )
-                       or preg_match ( '/[\s"\'<>`\\\\\x00-\x1F]/u', $padFld ) );
+    $padFldRefused = ! padValueName ( $padFld );
 
   }
 

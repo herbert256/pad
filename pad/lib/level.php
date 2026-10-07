@@ -153,6 +153,29 @@ function padSplitOnUnquotedColon ( $str ) {
   // The enclosing tag is the last { before the splice: the scanner resolves the innermost
   // tag first and left to right, so every complete tag before this point is gone already.
 
+  // Whether a field name taken from a value - {$$x}, {!$x}, {?$x}, {^$x} - may be read: an
+  // application field or a path into one, and nothing the @ resolver would carry further.
+  // A part is letters, digits, _ and - (first-name, _id, café), the parts joined by . (a key)
+  // or @ (a tag or level); the head starts with no digit, which is an ordinal into the
+  // globals, and no part is an engine name - pad*, pq*, a superglobal. Everything else the
+  // resolver reads in a path picks a global the head does not name: * and ? (any key, a
+  // random one when last), : (the prefix form searches the globals for what follows it), a
+  // condition operator and [ - and a quote, angle bracket, space or control character would
+  // close the attribute the value is written into.
+
+  function padValueName ( $name ) {
+
+    if ( ! preg_match ( '/^[\p{L}_][\p{L}\p{M}\p{N}_-]*([.@][\p{L}\p{M}\p{N}_-]+)*$/u', $name ) )
+      return FALSE;
+
+    foreach ( preg_split ( '/[.@]/', $name ) as $part )
+      if ( padEngineName ( $part ) )
+        return FALSE;
+
+    return TRUE;
+
+  }
+
   // The } that closes the { at $from, by brace depth - so an inner tag's braces are stepped
   // over. Used to turn a whole {...} into literal text when a value would otherwise re-enter
   // the scan as a tag or a glued reference. FALSE when the brace never closes.
