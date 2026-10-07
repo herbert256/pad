@@ -90,10 +90,13 @@
 
   //
   // A button belongs to the form its form= names, wherever it stands, and sends that form
-  // where its formaction= says, by the method its formmethod= says; a relative action is
-  // resolved against the page's <base href>. A form one of whose buttons posts to another
-  // site, or sends it by GET, gets no token - and loses the one a {form} wrote: exits.php
-  // runs this pass, adding nothing, also with $padCsrf off when a token went into the page.
+  // where its formaction= says; a relative action is resolved against the page's <base
+  // href>. A form one of whose buttons posts to another site gets no token - and loses the
+  // one a {form} wrote: exits.php runs this pass, adding nothing, also with $padCsrf off
+  // when a token went into the page. A button that sends the form by GET - formmethod=, in
+  // any spelling a browser reads as GET - to this site leaves the token: it reaches this
+  // site's own logs and history only, and a form with a Save and a Preview button could
+  // not post at all without it.
 
   function padCsrfForms ( $html, $add = TRUE ) {
 
@@ -108,7 +111,7 @@
 
     foreach ( padCsrfWalk ( $html ) as [ $kind, $name, $at, $end, $attrs ] )
       if ( $kind == 'start' and $name == 'form' and $open === NULL ) {
-        $forms [] = [ 'start' => $end, 'end' => strlen ( $html ), 'attrs' => $attrs, 'controls' => [], 'token' => FALSE ];
+        $forms [] = [ 'at' => $at, 'start' => $end, 'end' => strlen ( $html ), 'attrs' => $attrs, 'controls' => [], 'token' => FALSE ];
         $open     = array_key_last ( $forms );
         if ( array_key_exists ( 'id', $attrs ) )
           $ids [ padCsrfDecode ( $attrs ['id'] ) ] ??= $open;
@@ -148,13 +151,17 @@
 
       } elseif ( $form ['token'] and isset ( $GLOBALS ['padCsrfIssued'] ) ) {
 
-        $field = '<input type="hidden" name="' . padCsrfName . '" value="' . $GLOBALS ['padCsrfIssued'] . '">';
-        $inner = substr ( $html, $form ['start'], $form ['end'] - $form ['start'] );
+        // Only the token a {form} wrote goes (lib/form.php keeps its opening text), never a
+        // {csrf} the template wrote itself: that one was put there on purpose.
 
-        if ( str_contains ( $inner, $field ) ) {
-          $out .= substr ( $html, $done, $form ['start'] - $done ) . str_replace ( $field, '', $inner );
-          $done = $form ['end'];
-        }
+        $field = '<input type="hidden" name="' . padCsrfName . '" value="' . $GLOBALS ['padCsrfIssued'] . '">';
+
+        foreach ( $GLOBALS ['padFormTokened'] ?? [] as $open )
+          if ( substr ( $html, $form ['at'], strlen ( $open ) ) === $open ) {
+            $out .= substr ( $html, $done, $form ['at'] - $done ) . str_replace ( $field, '', $open );
+            $done = $form ['at'] + strlen ( $open );
+            break;
+          }
 
       }
 
@@ -327,13 +334,12 @@
 
   }
 
-  // A submit button's formaction= sends the form where it says, its formmethod= by the
-  // method it says: a form holding one that points to another site handed the token along
-  // with every click on that button, and one that sends it by GET put it into the URL.
+  // A submit button's formaction= sends the form where it says: a form holding one that
+  // points to another site handed the token along with every click on that button.
 
   function padCsrfControlsHere ( $html ) {
 
-    if ( stripos ( $html, 'formaction' ) === FALSE and stripos ( $html, 'formmethod' ) === FALSE )
+    if ( stripos ( $html, 'formaction' ) === FALSE )
       return TRUE;
 
     $controls = [];
@@ -349,8 +355,7 @@
   function padCsrfControlsAttrs ( $controls, $base = NULL ) {
 
     foreach ( $controls as $attrs )
-      if ( ( array_key_exists ( 'formaction', $attrs ) and ! padCsrfActionHere ( $attrs ['formaction'], $base ) )
-           or strtolower ( padCsrfDecode ( $attrs ['formmethod'] ?? '' ) ) === 'get' )
+      if ( array_key_exists ( 'formaction', $attrs ) and ! padCsrfActionHere ( $attrs ['formaction'], $base ) )
         return FALSE;
 
     return TRUE;

@@ -643,6 +643,12 @@
     if ( ! padCsrfControlsHere ( padUnprotect ( $content ) ) )
       $open = str_replace ( padCsrfField (), '', $open );
 
+    // The opening text of a {form} holding the token it wrote: the page pass may take that
+    // token out again - a button elsewhere in the page, a <base> - and only that one.
+
+    if ( isset ( $GLOBALS ['padCsrfIssued'] ) and str_contains ( $open, padCsrfField () ) )
+      $GLOBALS ['padFormTokened'] [] = $open;
+
     return padProtect ( $open ) . $content . padProtect ( '</form>' );
 
   }
