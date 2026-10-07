@@ -38,10 +38,15 @@
   // quote inside one, where='$n eq \'x y=1\'', as the evaluator reads it - and == != >= <=
   // are left alone. Strict mode names it, as parameter.php does for a parameter; the lenient
   // walk evaluates as before.
+  //
+  // The spans are matched unrolled and possessive, so a long value - a component handed a
+  // post's body - does not exhaust PCRE's JIT stack, which made preg_replace answer NULL
+  // and the check a 500; a NULL answer counts as no missing comma.
 
   if ( $padCheckSyntax
-       and preg_match ( '/\s[a-zA-Z_][a-zA-Z0-9_]*\s*=(?!=)/',
-                        preg_replace ( '/\'(?:[^\'\\\\]|\\\\.)*\'|"(?:[^"\\\\]|\\\\.)*"/s', '', (string) $padPrmValue ) ) )
+       and is_string ( $padOptionBare = preg_replace ( '/\'[^\'\\\\]*+(?:\\\\.[^\'\\\\]*+)*+\'|"[^"\\\\]*+(?:\\\\.[^"\\\\]*+)*+"/s',
+                                                     '', (string) $padPrmValue ) )
+       and preg_match ( '/\s[a-zA-Z_][a-zA-Z0-9_]*\s*=(?!=)/', $padOptionBare ) )
     padError ( "a comma is missing between options: " . trim ( $padPrmOne ) );
 
   $padPrm [$pad] [$padPrmName] = ( $padPrmValue === '' ) ? TRUE : padEval ( $padPrmValue );
