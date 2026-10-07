@@ -30,16 +30,7 @@
     elseif ( is_resource ( $input)     ) $data = padToArray ( $input );
     elseif ( ! $input                  ) $data = [];
     elseif ( strlen(trim($input)) == 0 ) $data = [];
-    else                                 $data = trim ( $input );
-
-    // A UTF-8 byte order mark leads a string that an editor or a download saved as UTF-8:
-    // it is no whitespace, so trim leaves it, and it made the first CSV column "\xEF\xBB\xBFname"
-    // and pushed an XML document's <?xml off the start - "XML declaration allowed only at
-    // the start" - while a JSON or XML string behind it was not recognised on sight and read
-    // as CSV. It is stripped here, once, before the type is sniffed and the reader runs.
-
-    if ( is_string ( $data ) and str_starts_with ( $data, "\xEF\xBB\xBF" ) )
-      $data = ltrim ( substr ( $data, 3 ) );
+    else                                 $data = padDataText ( $input );
 
     if ( ! is_array ( $data ) ) {
 
@@ -115,6 +106,25 @@
 
   // Whether a value is a row db() answered for RECORD: named fields holding at least the
   // columns of one of them.
+
+  // The text of a string as padData reads it: trimmed, and a UTF-8 byte order mark that leads
+  // it taken off with the white space behind it. A BOM leads a string that an editor or a
+  // download saved as UTF-8: it is no whitespace, so trim leaves it, and it made the first
+  // CSV column "\xEF\xBB\xBFname" and pushed an XML document's <?xml off the start, while a
+  // JSON or XML string behind it was not recognised on sight and read as CSV. The guards that
+  // refuse a value reading as a PAD list - {data 'd', $v}, data=$v, a fetched body - judge
+  // this same text, so white space before the BOM cannot hide the list from them.
+
+  function padDataText ( $text ) {
+
+    $text = trim ( (string) $text );
+
+    if ( str_starts_with ( $text, "\xEF\xBB\xBF" ) )
+      $text = ltrim ( substr ( $text, 3 ) );
+
+    return $text;
+
+  }
 
   function padDataIsRecord ( $input ) {
 

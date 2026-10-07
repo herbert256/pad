@@ -65,20 +65,19 @@
       return [];
     }
 
-    // Judged as padData will read it, a leading UTF-8 byte order mark taken off first and the
-    // type sniffed afresh from the stripped body: padData strips the BOM before it sniffs,
-    // and padContentType reads a ( ... ) behind a BOM as json by its trailing ), so a list
-    // behind one both carried a pre-set type past this check and was not seen as a list.
+    // Judged as padData will read it (padDataText), trimmed and a leading UTF-8 byte order
+    // mark taken off, and the type sniffed afresh from the stripped body: padData strips the
+    // BOM before it sniffs, and padContentType reads a ( ... ) behind a BOM as json by its
+    // trailing ), so a list behind one both carried a pre-set type past this check and was
+    // not seen as a list.
 
     if ( $GLOBALS ['padProtectValues'] and is_string ( $curl ['data'] ) ) {
 
-      $list = $curl ['data'];
+      $list = padDataText ( $curl ['data'] );
       $type = $curl ['type'];
 
-      if ( str_starts_with ( $list, "\xEF\xBB\xBF" ) ) {
-        $list = substr ( $list, 3 );
+      if ( str_starts_with ( trim ( $curl ['data'] ), "\xEF\xBB\xBF" ) )
         $type = '';
-      }
 
       if ( ( $type ?: padContentType ( $list ) ) == 'list' ) {
         padError ( "the document fetched from " . $curl ['url'] . " reads as a PAD list, whose elements would run as expressions" );
