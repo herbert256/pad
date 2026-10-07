@@ -35,7 +35,7 @@
             PAD Applications
           </h1>
           <p>
-            18 applications
+            19 applications
           </p>
           <table class="apps-list">
             <tr>
@@ -179,6 +179,17 @@
               </td>
               <td>
                 <a href="/pad/edit/?index&amp;app=playground">edit</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="/pad/poc/">poc</a>
+              </td>
+              <td>
+                A copy of the demo application, used to prove that a whole PAD application runs in a browser opened from the disk - `file://`, no web server, no network. `wasm/app.mjs` packs PHP compiled to WebAssembly, the PAD engine and this application into one directory; open its `index.html` and every page, link and form works as on a server: the guestbook, the todo list, the contact form with its rules and CSRF token, the flash messages after a redirect. ```bash npm install --prefix /tmp/pad-wasm @php-wasm/universal @php-wasm/web-8-4 @php-wasm/node esbuild NODE_PATH=/tmp/pad-wasm/node_modules node wasm/app.mjs poc # DATA/wasm/poc/ NODE_PATH=/tmp/pad-wasm/node_modules node wasm/verify-app.mjs # the same requests in Node ``` What the application writes under `DATA/` is kept in the browser's localStorage. On a server it is the demo, writing to `DATA/poc/` instead of `DATA/demo/`. See `wasm/README.md`.
+              </td>
+              <td>
+                <a href="/pad/edit/?index&amp;app=poc">edit</a>
               </td>
             </tr>
             <tr>
