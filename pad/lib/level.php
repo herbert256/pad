@@ -157,17 +157,19 @@ function padSplitOnUnquotedColon ( $str ) {
 
   // Whether a field name taken from a value - {$$x}, {!$x}, {?$x}, {^$x} - may be read: an
   // application field or a path into one, and nothing the @ resolver would carry further.
-  // A part is letters, digits, _ and - (first-name, _id, café), the parts joined by . (a key)
-  // or @ (a tag or level); the head starts with no digit, which is an ordinal into the
-  // globals, and no part is an engine name - pad*, pq*, a superglobal. Everything else the
-  // resolver reads in a path picks a global the head does not name: * and ? (any key, a
-  // random one when last), : (the prefix form searches the globals for what follows it), a
-  // condition operator and [ - and a quote, angle bracket, space or control character would
-  // close the attribute the value is written into.
+  // The head is letters, digits, _ and - (first-name, _id, café) and starts with no digit,
+  // which is an ordinal into the globals; the parts after it, joined by . (a key) or @ (a tag
+  // or level), take what a key of a dotted path takes (at/_lib/check.php) - x#y, p%q, a+b -
+  // and no part is an engine name - pad*, pq*, a superglobal. Refused everywhere is what the
+  // resolver reads as more than a name and so picks a global the head does not name: * and ?
+  // (any key, a random one when last), : (the prefix form searches the globals for what
+  // follows it), a condition operator, [ ] and / \ - and a quote, angle bracket, space,
+  // control character, brace or pipe, which would close the attribute the value is written
+  // into or open a tag.
 
   function padValueName ( $name ) {
 
-    if ( ! preg_match ( '/^[\p{L}_][\p{L}\p{M}\p{N}_-]*([.@][\p{L}\p{M}\p{N}_-]+)*$/u', $name ) )
+    if ( ! preg_match ( '/^[\p{L}_][\p{L}\p{M}\p{N}_-]*([.@][^.@*?:\[\]=<>\/\\\\\'"`\s\x00-\x1F\x7F{}|]+)*$/u', $name ) )
       return FALSE;
 
     foreach ( preg_split ( '/[.@]/', $name ) as $part )
