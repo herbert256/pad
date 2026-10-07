@@ -72,7 +72,14 @@
 
     if ( $tail !== NULL ) {
 
-      parse_str ( $tail, $values );
+      // As many pairs as max_input_vars allows, as PHP reads a query string: parse_str over
+      // the whole tail warned past that limit, and any visitor's index.php/page&a0=1&...
+      // &a1099=1 was a 500. The pairs kept are read together, so a list - x[]=1&x[]=2 -
+      // stays one.
+
+      $max = (int) ini_get ( 'max_input_vars' ) ?: 1000;
+
+      parse_str ( implode ( '&', array_slice ( explode ( '&', $tail ), 0, $max ) ), $values );
 
       foreach ( $values as $key => $value ) {
         if ( ! isset ( $_GET     [$key] ) ) $_GET     [$key] = $value;
