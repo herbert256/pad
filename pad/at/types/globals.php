@@ -17,7 +17,7 @@
   if ( isset ( $GLOBALS ['padMailLast'] ) )
     $padGlobalsApp ['padMailLast'] = $GLOBALS ['padMailLast'];
 
-  $check = padAtSearch ( $padGlobalsApp, $names );
+  $check = padAtSearch ( $padGlobalsApp, $names, $padAtNoDeep ?? 0 );
   if ( $check !== INF )
     return $check;
 

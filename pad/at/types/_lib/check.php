@@ -16,7 +16,7 @@
   }
 
   foreach ( $padDataStore as $value) {
-    $check = padAtSearch ( $value, $names );
+    $check = padAtSearch ( $value, $names, $padAtNoDeep ?? 0 );
     if ( $check !== INF )
       return $check;
   }

@@ -13,7 +13,7 @@
       return INF;
 
   if ( is_array ( $pqStore ) )
-    return padAtSearch ( $pqStore, $names );
+    return padAtSearch ( $pqStore, $names, $padAtNoDeep ?? 0 );
 
   return INF;
 
