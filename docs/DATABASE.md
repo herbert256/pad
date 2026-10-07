@@ -163,8 +163,8 @@ $padSelect ['openBugs'] = [
   {$name}
 {/forum_boards}
 
-<!-- With options, separated by commas -->
-{news sort="created_at desc", rows=10}
+<!-- The ten newest: order= sorts in the SQL, before rows= - its LIMIT - takes the ten -->
+{news order="created_at desc", rows=10}
   {$title}
 {/news}
 
@@ -173,6 +173,10 @@ $padSelect ['openBugs'] = [
   {$customerName}
 {/customers}
 ```
+
+On a select, `rows=` (and `page=`) is the SQL `LIMIT`, applied before any handling option:
+`sort=` re-sorts the rows that came back, so `{news sort="created_at desc", rows=10}` is the
+first ten rows of the table, sorted - `order=` is what sorts before the limit.
 
 `where=`, `having=`, `order=` and `group=` written on a tag are SQL, so they must be quoted
 strings in the template; `where=$cond` is refused, and so is a `fields=`, `db=`, `join=` or
