@@ -275,6 +275,7 @@ h1 { margin: 6px 0 8px; font-size: clamp(28px, 4vw, 42px); line-height: 1.1; let
   grid-template-areas: "data chart" "tag chart";
   grid-template-rows: minmax(0, 1fr) auto;
 }
+.stage.is-pair { grid-template-areas: "tag chart" "tag chart"; }
 
 .cell {
   min-width: 0; display: flex; flex-direction: column;
@@ -364,8 +365,29 @@ h1 { margin: 6px 0 8px; font-size: clamp(28px, 4vw, 42px); line-height: 1.1; let
 .pager-dir { display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); }
 .pager-title { font-weight: 600; }
 
-.foot { max-width: 1320px; margin: 32px auto 0; padding: 28px 24px 40px; border-top: 1px solid var(--line); color: var(--ink-mute); font-size: 13.5px; }
-.foot code { color: var(--ink-soft); }
+/* an example fits the window: the cells share what the intro and the pager leave, in two
+   rows of a fixed share - the tag's row high enough for every option of the longest tag -
+   so the cells - and the pager below them - stand in the same place
+   on every example; code that does not fit scrolls inside its cell */
+
+@media (min-width: 981px) and (min-height: 560px) {
+  body.is-example { height: 100vh; height: 100dvh; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+  body.is-example .topbar { flex: none; }
+  .page.example { flex: 1; min-height: 0; width: 100%; display: flex; flex-direction: column; padding: 16px 24px 18px; }
+  .example .intro { flex: none; margin-bottom: 14px; }
+  .example h1 { font-size: 26px; margin: 2px 0 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .example .lead { max-width: none; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .example .stage { flex: 1; min-height: 0; grid-template-rows: minmax(0, 1fr) min(290px, 64%); }
+  .example .stage.is-pair { grid-template-rows: minmax(0, 1fr) minmax(0, 1fr); }
+  .example .cell-tag .code { padding: 12px 18px; line-height: 1.55; }
+  .example .cell { min-height: 0; }
+  .example .code { min-height: 0; }
+  .example .cell-data .code { max-height: none; }
+  .example .canvas { position: relative; min-height: 0; padding: 0; }
+  .example .canvas > svg.pad-chart { position: absolute; inset: 18px; width: calc(100% - 36px); height: calc(100% - 36px); max-height: none; }
+  .example .pager { flex: none; margin-top: 16px; }
+  .example .pager-link { padding: 10px 18px; }
+}
 
 /* ---------------------------------------------------------------- narrow screens */
 
@@ -373,6 +395,7 @@ h1 { margin: 6px 0 8px; font-size: clamp(28px, 4vw, 42px); line-height: 1.1; let
   .hero { grid-template-columns: 1fr; gap: 28px; }
   .hero-card { transform: none; }
   .stage { grid-template-columns: minmax(0, 1fr); grid-template-areas: "data" "tag" "chart"; grid-template-rows: auto; }
+  .stage.is-pair { grid-template-areas: "tag" "chart"; }
   .cell-data .code { max-height: 320px; }
 }
 

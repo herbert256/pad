@@ -1120,6 +1120,23 @@ Draw a chart as inline SVG - no JavaScript, so it works in print and caches like
 | `sunburst` | The same hierarchy as rings around the total | `label`, `value`, `levels` |
 | `sparkline` | See below | `label`, `value` |
 
+**As a pair** the content between the tags is the data, when neither `data` nor `sequence`
+names it - JSON, YAML, XML or CSV, recognised on sight as `{data}` recognises it (`type=`
+names it outright). The content is read before the level walks it, so the braces of JSON need
+no `{ignore}`, and the indent it shares under the tag is taken off:
+
+```html
+{chart 'bar', label='month', value='amount'}
+  month,amount
+  Jan,12400
+  Feb,9500
+{/chart}
+
+{sparkline}
+  [ 3, 1, 4, 1, 5, 9 ]
+{/sparkline}
+```
+
 A field option left out takes the first field of the first row that fits - a numeric one for
 a number, another for a name. A kind reads only its own options, so an option of another kind
 is one that nothing reads under the strict check. The handling options (`row`, `group`, `sort`,
@@ -1127,7 +1144,8 @@ is one that nothing reads under the strict check. The handling options (`row`, `
 
 | Option | Description |
 |--------|-------------|
-| `data` | The rows: a `{data}` store, a sequence store, the page's array or a `_data` file of that name, or a literal (`data='[3,1,4]'`) |
+| `data` | The rows: a `{data}` store, a sequence store, the page's array or a `_data` file of that name, or a literal (`data='[3,1,4]'`); without it, the content of a pair |
+| `type` | For a pair: the format of its content - `json`, `yaml`, `xml`, `csv` - when it is not to be recognised on sight |
 | `sequence` | Plot the first `rows` terms (default 10) of a sequence type instead |
 | `value` | The field that holds the number - by default the first numeric field; a comma list draws a series each (eight at most) |
 | `label` | The field for the category axis - by default the first other field, else the row number |

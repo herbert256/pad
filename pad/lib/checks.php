@@ -197,6 +197,18 @@
       or str_starts_with ( $content, 'SELF://' ) )
       return 'curl';
 
+    // YAML without its --- start: a block of lines opening - past its # comments - with a
+    // list item ('- name: a') or a mapping key ('name: a', 'rows:') read as CSV, one column
+    // named after the whole first line. A CSV header has its commas, a key line none.
+
+    if ( str_contains ( $content, "\n" ) ) {
+      $line = trim ( preg_replace ( '/^(\s*#[^\n]*\n)+/', '', $content ) );
+      $line = strtok ( $line, "\n" );
+      if ( preg_match ( '/^-(\s|$)/', $line )
+        or ( ! str_contains ( $line, ',' ) and preg_match ( '/^[\w"\'][^:]*:(\s|$)/', $line ) ) )
+        return 'yaml';
+    }
+
     if ( padDataFileName ( $content ) )
       return 'file';
 

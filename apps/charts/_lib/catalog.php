@@ -2,24 +2,25 @@
 
   // The showcase: the chart families, each a pulldown of the menu and a section of the
   // home page, and their examples. An example is a page of its own - family/name.pad holds
-  // the {chart} tag, and its data is either the paired family/name.php or the _data file
-  // the tag names - so what the three cells show is the page's own source, never a copy.
+  // the {chart} tag, and its data is the paired family/name.php, the _data file the tag
+  // names, or the content of a {chart}...{/chart} pair - so what the cells show is the
+  // page's own source, never a copy.
 
   function chartsCatalog () {
 
     return [
 
       'line' => [ 'Line', 'Change over time', [
-        'line/visits'       => [ 'Website visits',            'One series: a line over a light wash, the last point marked.' ],
+        'line/visits'       => [ 'Website visits',            'One series, the last point marked - the data JSON, between the tags.' ],
         'line/temperatures' => [ 'Temperatures in three cities', 'A list of fields in value= draws a line each, named at its end.' ],
         'line/shares'       => [ 'A share price over a year', 'Twelve months of a stock, from a YAML file.' ] ] ],
 
       'bars' => [ 'Bars', 'Categories compared', [
-        'bars/sales'     => [ 'Sales per month',          'Columns from a zero baseline, a tooltip on every bar.' ],
+        'bars/sales'     => [ 'Sales per month',          'Columns from a zero baseline - the data CSV, between the tags.' ],
         'bars/channels'  => [ 'Online against the shop',  'Several series side by side, a legend above.' ],
         'bars/energy'    => [ 'The energy mix per year',  'stacked puts the series on top of each other.' ],
         'bars/profit'    => [ 'Profit and loss',          'Negative values hang below the baseline.' ],
-        'bars/languages' => [ 'The most spoken languages', 'hbar lays the bars down - for long names.' ],
+        'bars/languages' => [ 'The most spoken languages', 'hbar lays the bars down - the data XML, between the tags.' ],
         'bars/survey'    => [ 'A survey, answer by answer', 'Horizontal and stacked: every answer a part of the bar.' ] ] ],
 
       'pie' => [ 'Pie & donut', 'Parts of a whole', [
@@ -38,7 +39,7 @@
 
       'sankey' => [ 'Sankey', 'Flows from stage to stage', [
         'sankey/energy'  => [ 'Where energy goes',  'Sources, conversion and use - each band as wide as its flow.' ],
-        'sankey/funnel'  => [ 'A web shop funnel',  'Visitors on their way to an order, and where they leave.' ],
+        'sankey/funnel'  => [ 'A web shop funnel',  'Visitors on their way to an order - the data YAML, between the tags.' ],
         'sankey/salary'  => [ 'A salary, spent',    'One income split over posts, then over sub-posts.' ] ] ],
 
       'network' => [ 'Network', 'Connections', [

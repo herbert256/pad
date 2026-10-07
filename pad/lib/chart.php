@@ -11,7 +11,10 @@
   //
   // padChartRows       the rows behind a chart: a {data} store or a sequence store by name,
   //                    the page's own array of that name, a _data file, or the data= literal
-  //                    the data option already read - or the first rows terms of a sequence
+  //                    the data option already read - or the first rows terms of a sequence,
+  //                    or the content of a pair, {chart 'bar'}...{/chart}, read as {data}
+  //                    reads its own: JSON, YAML, XML or CSV, told apart on sight (type=
+  //                    names it)
   // padChartPoints     the rows as [ label, value ] points: value= names the field (else
   //                    the first numeric one), label= the field for the axis (else the first
   //                    other one, else the row number); a row without a finite number is
@@ -28,7 +31,7 @@
   // properties with light and dark defaults - --pad-chart-series, --pad-chart-text,
   // --pad-chart-grid and --pad-chart-surface - which a page overrides on .pad-chart.
 
-  function padChartRows () {
+  function padChartRows ( $source = '' ) {
 
     global $pad, $padPrm, $padData, $padDataStore, $pqStore, $padCheckSyntax;
 
@@ -48,9 +51,12 @@
 
     }
 
+    if ( ! isset ( $padPrm [$pad] ['data'] ) and trim ( (string) $source ) !== '' )
+      return padData ( padChartDedent ( $source ), padTagParm ( 'type' ) );
+
     if ( ! isset ( $padPrm [$pad] ['data'] ) ) {
       if ( $padCheckSyntax )
-        padError ( "the chart has no data - data='name' or sequence='name'" );
+        padError ( "the chart has no data - data='name', sequence='name' or the data between {chart} and {/chart}" );
       return [];
     }
 
@@ -81,12 +87,35 @@
 
   }
 
+  // The content of a pair is written indented under its tag: the indent all its lines share
+  // is taken off, else the trim of padData would leave YAML's first line out of step with
+  // the rest.
+
+  function padChartDedent ( $source ) {
+
+    $lines  = explode ( "\n", str_replace ( "\r\n", "\n", trim ( $source, "\n\r" ) ) );
+    $indent = PHP_INT_MAX;
+
+    foreach ( $lines as $line )
+      if ( trim ( $line ) !== '' )
+        $indent = min ( $indent, strlen ( $line ) - strlen ( ltrim ( $line, " \t" ) ) );
+
+    if ( $indent == PHP_INT_MAX or $indent == 0 )
+      return $source;
+
+    foreach ( $lines as $key => $line )
+      $lines [$key] = substr ( $line, min ( $indent, strlen ( $line ) - strlen ( ltrim ( $line, " \t" ) ) ) );
+
+    return implode ( "\n", $lines );
+
+  }
+
   // The shared body of {chart} and {sparkline}: the options read, the rows gathered and
   // turned into points, and the level's data put back to its one default occurrence. A
   // kind reads only the options it draws with, so an option of another kind - stacked on
   // a line chart - is one that nothing reads, which the strict check reports.
 
-  function padChartTag ( $kind ) {
+  function padChartTag ( $kind, $source = '' ) {
 
     global $pad, $padData;
 
@@ -94,7 +123,7 @@
       $kind = 'bar';
 
     $sequence = padTagParm ( 'sequence' );
-    $rows     = padChartRows ();
+    $rows     = padChartRows ( $source );
 
     $padData [$pad] = padDefaultData ();
 

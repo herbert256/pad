@@ -6,7 +6,10 @@ A showcase of the `{chart}` tag: every kind of chart it draws, each with a few w
 The menu has a pulldown per chart family; the home page shows every example as a card with its
 chart drawn live. An example page has three cells - the data (JSON, YAML or PHP), the `{chart}`
 tag that draws it, and the result - and both source cells are read from the page's own files,
-so what is shown is exactly what runs.
+so what is shown is exactly what runs. An example written as a pair, `{chart ...}` with its
+data (CSV, JSON, YAML or XML) between the tags, has one source cell for both. The page fits
+the window: the cells keep the same size on every example, so the previous and next links
+stay in one place.
 
 ## Files
 
@@ -18,7 +21,7 @@ so what is shown is exactly what runs.
 | `_lib/catalog.php` | The chart families and their examples - title and line of text per page |
 | `_lib/highlight.php` | The colouring of JSON, YAML, PHP and PAD in the source cells |
 | `_data/*.json`, `_data/*.yaml` | The data of the examples that read a data file |
-| `<family>/<example>.pad` | An example: the `{chart}` tag (a template for the sparkline table) |
+| `<family>/<example>.pad` | An example: the `{chart}` tag, one option per line - or a pair with the data between the tags (a template for the sparkline table) |
 | `<family>/<example>.php` | The data of the examples that build it in PHP |
 | `_config/config.php` | Switches `_common` off: the application has a design of its own |
 

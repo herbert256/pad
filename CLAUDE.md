@@ -739,6 +739,10 @@ through; `padCollection('blog')` gives the rows to PHP.
 {chart 'network', data='friends', source='a', target='b', layout='radial', arrows}
 {chart 'treemap', data='spend', levels='dept', label='post', value='amount'}  # also sunburst
 {sparkline sequence='fibonacci', rows=12}                    # word-sized; sequence terms as data
+{chart 'bar', label='month', value='amount'}                 # a pair: the content is the data -
+  month,amount                                               #   JSON, YAML, XML or CSV, told
+  Jan,12400                                                  #   apart on sight (type= names it)
+{/chart}
 ```
 `role="img"` with `<title>`/`<desc>`; colours are `--pad-chart-*` custom properties on
 `.pad-chart`, following the page's `color-scheme`. A field option left out takes the first

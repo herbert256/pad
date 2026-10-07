@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="charts.css">
   <script src="charts.js"></script>
 </head>
-<body>
+<body{if $isExample} class="is-example"{/if}>
 
 <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
 
@@ -65,8 +65,9 @@
     <p class="lead">{$exampleText}</p>
   </div>
 
-  <div class="stage">
+  <div class="stage{if $tagPair} is-pair{/if}">
 
+    {if not $tagPair}
     <section class="cell cell-data" aria-label="The data">
       <header class="cell-head">
         <span class="cell-num">1</span>
@@ -77,11 +78,12 @@
       </header>
       <pre class="code" id="data-src"><code>{!dataHtml}</code></pre>
     </section>
+    {/if}
 
     <section class="cell cell-tag" aria-label="The chart tag">
       <header class="cell-head">
-        <span class="cell-num">2</span>
-        <span class="cell-name">{if $tagOnly}The chart tag{else}The template{/if}</span>
+        <span class="cell-num">{if $tagPair}1{else}2{/if}</span>
+        <span class="cell-name">{if $tagPair}The chart tag and its data{elseif $tagOnly}The chart tag{else}The template{/if}</span>
         <span class="cell-file">{$tagFile}</span>
         <span class="badge badge-pad">pad</span>
         <button type="button" class="copy" data-copy="tag-src" aria-label="Copy the tag">Copy</button>
@@ -91,7 +93,7 @@
 
     <section class="cell cell-chart" aria-label="The chart">
       <header class="cell-head">
-        <span class="cell-num">3</span>
+        <span class="cell-num">{if $tagPair}2{else}3{/if}</span>
         <span class="cell-name">The result</span>
         <span class="cell-file">inline SVG · no JavaScript</span>
       </header>
@@ -111,10 +113,6 @@
 
 </main>
 {/if}
-
-<footer class="foot">
-  Drawn on the server by <code>{ignore}{chart}{/ignore}</code> of <a href="https://github.com/herbert256/pad">PAD</a> - inline SVG that prints, caches and works without scripts.
-</footer>
 
 </body>
 </html>

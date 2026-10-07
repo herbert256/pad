@@ -48,13 +48,17 @@
     $tagFile   = "$padPage.pad";
     $tagSource = trim ( file_get_contents ( APP . $tagFile ) );
     $tagHtml   = chartsHighlight ( $tagSource, 'pad' );
-    $tagOnly   = ! str_contains ( $tagSource, '<' );
+    $tagPair   = (bool) preg_match ( '#\{/(chart|sparkline)\b#', $tagSource );
+    $tagOnly   = $tagPair || ! str_contains ( $tagSource, '<' );
 
-    // Cell 1: the paired PHP when there is one, else the _data file the tag names.
+    // Cell 1: the paired PHP when there is one, else the _data file the tag names - and
+    // none for a {chart}...{/chart} pair, whose data stands in the tag cell, between the tags.
 
     $dataFile = $dataLang = $dataSource = '';
 
-    if ( file_exists ( APP . "$padPage.php" ) ) {
+    if ( $tagPair )
+      ;
+    elseif ( file_exists ( APP . "$padPage.php" ) ) {
       $dataFile = "$padPage.php";
       $dataLang = 'php';
     } elseif ( preg_match ( "/data='(\w+)'/", $tagSource, $found ) )
