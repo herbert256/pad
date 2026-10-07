@@ -38,13 +38,16 @@ There is no PAD code in the application PHP code at all !
 </html>
 ```
 
-The data that is send to the browser - with Tidy on, as it is by default, the page is also
-completed and indented:
+The data that is send to the browser - with the defaults, `_common`'s wrapper gives the page
+its title and Tidy completes and indents the document (an application with `$padCommon = FALSE`
+gets an empty `<title>`):
 ```html
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
+    <title>
+      PAD - hello
+    </title>
   </head>
   <body>
     <h1>
