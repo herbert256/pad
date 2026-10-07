@@ -125,7 +125,7 @@ async function main() {
     if (alive.exited !== undefined) throw new Error('the language server died on a message that is no object (exit ' + alive.exited + ')');
     expect('a message that is no object leaves the server answering', 'result' in alive, alive);
 
-    for (const f of ['orders.pad', 'admin/report.pad', 'broken.pad', 'undefined.pad', '_include/footer.pad', 'products/[id].pad', 'twice.pad']) open(f);
+    for (const f of ['orders.pad', 'admin/report.pad', 'broken.pad', 'undefined.pad', '_include/footer.pad', 'products/[id].pad', 'twice.pad', 'refused.pad']) open(f);
 
     // completion, as before
     let r = await request('textDocument/completion', { textDocument: { uri: uri('orders.pad') }, position: at('orders.pad', '{badge}', 2) });
@@ -202,6 +202,9 @@ async function main() {
     expect('a snippet is not rendered on its own', g && g.length === 0, g);
     g = await diagnosticsFor(uri('products/[id].pad'));
     expect('a bracketed route is not rendered by its own name', g && g.length === 0, g);
+    g = await diagnosticsFor(uri('refused.pad'));
+    expect('an error an application tag raised is placed on the tag and names the tag file and line',
+        g && g[0] && g[0].message === 'refuse refuses - _tags/refuse.php:3' && g[0].range.start.line === 1, g);
     g = await diagnosticsFor(uri('twice.pad'));
     expect('the error sits where the engine places it, not on an earlier tag of the same text, its column in UTF-16 units past an emoji',
         g && g[0] && g[0].message.includes('never closes') && g[0].range.start.line === 2 && g[0].range.start.character === 10 && g[0].range.end.character === 21, g);

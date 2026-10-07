@@ -537,6 +537,12 @@ function diagnosticFrom(out, errText, text, file, loc, page) {
     if (where && where === path.resolve(file) && json.line > 0)
         return { range: fullLine(text, json.line - 1), severity: 1, source: 'pad', message };
 
+    // Raised in a PHP file of this application - a tag's, a pipe function's - the message
+    // names that file and line, wherever the mark goes; set before the engine's placing
+    // below, which returned without it.
+    if (where && loc.appDir && where.startsWith(loc.appDir + path.sep) && where !== path.resolve(file))
+        message += ' - ' + path.relative(loc.appDir, where).split(path.sep).join('/') + ':' + json.line;
+
     // The engine places the error itself when it can: template names the file the tag stands
     // in, its line, and its column counted in characters (code points). In this document the
     // mark goes there - the quoted text below is only found at its first spot, which put "the
@@ -571,8 +577,6 @@ function diagnosticFrom(out, errText, text, file, loc, page) {
         if (at >= 0) { range = { start: positionAt(text, at), end: positionAt(text, at + c.length) }; break; }
     }
 
-    if (where && loc.appDir && where.startsWith(loc.appDir + path.sep) && where !== path.resolve(file))
-        message += ' - ' + path.relative(loc.appDir, where).split(path.sep).join('/') + ':' + json.line;
     if (!range && /^_(inits|exits)\./.test(path.basename(file)))
         message += ' - rendering ?' + page;
 

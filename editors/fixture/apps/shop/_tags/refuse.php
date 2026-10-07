@@ -1,0 +1,5 @@
+<?php
+
+  padError ( 'refuse refuses' );
+
+?>
