@@ -98,10 +98,12 @@
 
   $pad--;
 
-  // A tag that answered a value lands in the parent's text as a field does: in a tag's own
-  // place - {{echo $x}}, {php:{echo $x}} - it never becomes a tag (padSpliceQuote).
+  // What a tag rendered lands in the parent's text as a field does: in a tag's own place -
+  // {{echo $x}}, {php:{echo $x}} - it never becomes a tag (padSpliceQuote). Every level, not
+  // only a value answer: a value wrapped in a content tag, {{if 1}{$t}{/if}} or
+  // {php:{if 1}{$fn}{/if} 'abc'}, landed there just the same.
 
-  if ( $pad >= 0 and $padProtectValues and $padBaseValue [$pad+1] )
+  if ( $pad >= 0 and $padProtectValues )
     $padResult [$pad+1] = padSpliceQuote ( $padResult [$pad+1], FALSE );
 
   if ( $pad >= 0 )
