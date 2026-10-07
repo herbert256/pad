@@ -14,7 +14,7 @@
   //                  turn (xml, json, yaml, csv, php, curl, sql) up the padDirs chain and
   //                  finally in the _common application; returns '' when nothing matches
   // padDataFileData  loads such a file through types/_go/local.php
-  // padAddGet        appends one urlencoded key=value, picking ? or & as needed
+  // padAddGet        appends one urlencoded key=value, picking ? or & as needed, before a #
   // padAddIds        appends the session and request ids, so links keep the request chain
   // padSelfConnect   where a fetch of this site connects: the server's own socket
 
@@ -148,11 +148,17 @@
 
   }
 
+  // The pair goes into the query, in front of a #fragment: behind it, padRedirect ( 'index#top',
+  // [ 'x' => 1 ] ) sent ?index#top&x=1, the value - and padAddIds' ids - part of the
+  // fragment, which never reaches the server.
+
   function padAddGet ($url, $key, $val ) {
+
+    list ( $url, $hash ) = array_pad ( explode ( '#', (string) $url, 2 ), 2, NULL );
 
     $str = ( strpos ($url, '?' ) === FALSE ) ? '?' : '&';
 
-    return $url . $str . $key . '=' . urlencode($val);
+    return $url . $str . $key . '=' . urlencode($val) . ( $hash === NULL ? '' : "#$hash" );
 
   }
 
