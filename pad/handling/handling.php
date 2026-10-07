@@ -125,7 +125,14 @@
 
       include PAD . "options/$padHandRecover.php";
 
+      // The stand-in content goes through the opening tag's pipe, as it does for a tag
+      // that came back empty: level/pipes/before.php ran before the handling, on content
+      // the level no longer shows, so {xs where='...', else='none' | upper} printed the
+      // content as it was.
+
       $padBase [$pad] = $padContent;
+
+      include PAD . 'level/pipes/before.php';
 
     } elseif ( $padFalse !== '' ) {
 
