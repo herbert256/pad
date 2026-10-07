@@ -115,11 +115,12 @@
   if ( $padVarOpts )
     $padVal = padEval ( $padVarOpts, $padVal, TRUE );
 
-  // The markdown pipe answers HTML that is safe by construction - it escaped the raw HTML
-  // of the value - so a field whose last pipe it is skips the end chain, whose sanitize
-  // would escape the markup just made: {$post.body | markdown} shows the post.
+  // The markdown and highlight pipes answer HTML that is safe by construction - they
+  // escaped the raw HTML of the value - so a field whose last pipe is one of them skips the
+  // end chain, whose sanitize would escape the markup just made: {$post.body | markdown}
+  // shows the post, {$query | highlight('sql')} the query.
 
-  if ( in_array ( $padFirst, [ '$', '#' ], TRUE ) and ! preg_match ( '/(^|\|)\s*markdown\s*(\(\s*\))?\s*$/', $padVarOpts ) )
+  if ( in_array ( $padFirst, [ '$', '#' ], TRUE ) and ! preg_match ( '/(^|\|)\s*(markdown\s*(\(\s*\))?|highlight\s*(\(\s*([\'"])\w+\5\s*\))?)\s*$/', $padVarOpts ) )
     foreach ( $padDataDefaultEnd as $padOptOne )
       $padVal = padEval ( $padOptOne, $padVal );
 

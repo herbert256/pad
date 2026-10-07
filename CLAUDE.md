@@ -763,6 +763,13 @@ Code: `pad/lib/chart.php` (bar, line, sparkline) and `pad/lib/chart/` (the other
 {/calendar}
 ```
 
+### Syntax highlighting
+```
+{highlight 'php', lines, mark='3'}<?php echo $x; ?>{/highlight}   # pad php html css js json yaml sql bash
+{highlight file='_data/products.json'}                           # a file of the app, language from its extension
+{$query | highlight('sql')}                                       # a value - escaped, so no sanitize on top
+```
+
 ### QR codes and barcodes
 ```
 {qr 'https://example.com/order/42'}            # inline SVG, encoded on the server (lib/qr.php)

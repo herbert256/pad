@@ -1282,6 +1282,37 @@ field of that name - `{level:events}` reaches it then.
 
 ---
 
+### highlight
+Source code coloured on the server (`lib/highlight.php`) - no JavaScript library.
+
+```html
+{highlight 'php', lines, mark='3, 5-7'}
+  <?php echo padArrSum ( $orders, 'total' ); ?>
+{/highlight}
+{highlight file='_data/products.json'}
+{echo $query | highlight('sql')}
+```
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The language: `pad`, `php`, `html` (`xml`, `svg`), `css`, `js` (`ts`, `json5`), `json`, `yaml`, `sql`, `bash` (`sh`), or `text` |
+| `file` | A file of the application to show instead of the content - never one outside it, under `_config/` or a dotfile; the language defaults to its extension |
+| `lines` | Number the lines |
+| `mark` | Lines to set apart: `'4'`, `'3, 5-7'` |
+
+**Behavior:** the content is taken as it stands, before the level walks it - the braces of
+PHP, CSS, JSON or PAD itself need no `{ignore}` - with the indent its lines share taken off.
+A `{# comment #}` is gone before any tag sees it, so a PAD sample keeps none. Every piece is
+HTML-escaped and wrapped in `<span class="hl-...">` - `com`, `str`, `num`, `lit`, `kwd`,
+`key`, `var`, `tag`, `att`, `opt`, `brc`, `htm`, `fn`, `pun`, `def` - inside
+`<pre class="pad-highlight" data-lang="..."><code>`. The default colours follow the page's
+`color-scheme` (light-dark()) under `:where()`, so the page's CSS wins. The `highlight`
+pipe does the same for a value, and like `markdown` it skips the sanitize chain of a field
+tag, since its output is escaped already. `padHighlightTokens ( $text, $lang )` gives PHP
+the coloured text alone.
+
+---
+
 ### ignore
 Escape PAD syntax in content.
 
@@ -1931,6 +1962,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `qr` | Output | QR code as inline SVG |
 | `barcode` | Output | EAN-13, EAN-8, UPC-A or Code 128 barcode as inline SVG |
 | `calendar` | Output | A month as a table with its events, or its weeks and days as rows |
+| `highlight` | Output | Source code coloured on the server - nine languages |
 | `ignore` | Output | Escape content |
 | `reactData` | Output | React mount point with provider data |
 | `cache` | Output | Keep a section rendered (fragment cache) |

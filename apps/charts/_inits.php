@@ -52,7 +52,7 @@
 
     $tagFile   = "$padPage.pad";
     $tagSource = trim ( file_get_contents ( APP . $tagFile ) );
-    $tagHtml   = chartsHighlight ( $tagSource, 'pad' );
+    $tagHtml   = padHighlightTokens ( $tagSource, 'pad' );
     $tagPair   = (bool) preg_match ( '#\{/(chart|sparkline)\b#', $tagSource );
     $tagOnly   = $tagPair || ! str_contains ( $tagSource, '<' );
 
@@ -80,7 +80,7 @@
     // number.
 
     $oneCell   = $dataFile === '';
-    $dataHtml  = chartsHighlight ( $dataSource, $dataLang );
+    $dataHtml  = padHighlightTokens ( $dataSource, $dataLang );
     $dataLines = substr_count ( $dataSource, "\n" ) + 1;
 
     // The neighbours, for the pager under the cells.
