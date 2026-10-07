@@ -1836,8 +1836,8 @@ Resolve naming conflicts with explicit prefixes:
 ## Options Reference
 
 Options modify tag behavior. Add them to any tag, separated by commas: `{data 'x', ignore}`.
-An option directly after a single parameter may leave the comma out - `{data 'x' ignore}`
-is the same tag. That holds for the options below and an application's own `_options/`; any
+An option name without a value directly after a single parameter may leave the comma out -
+`{data 'x' ignore}` is the same tag; one with a value, `{pad 'x' toContent='c'}`, is lost. That holds for the options below and an application's own `_options/`; any
 other word after a value is a pipe, `{echo 'abc' upper}` gives `ABC`.
 
 ### Data Flow Options

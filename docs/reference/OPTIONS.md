@@ -11,8 +11,9 @@ Options are specified on PAD tags, separated by commas:
 ```
 
 A space does not separate two options: `{staff sort="name" first=1}` gives `sort` the value
-`"name" first=1`, and `first` is never read. Only an option directly after a single parameter
-may leave its comma out - `{data 'x' ignore}`. Multiple options can be combined:
+`"name" first=1`, and `first` is never read. Only a bare option name - one without a value -
+directly after a single parameter may leave its comma out - `{data 'x' ignore}`; with a value,
+`{pad 'x' toContent='c'}` loses the option silently. Multiple options can be combined:
 
 ```
 {staff print, toContent="list", quote="'", glue=", ", open="[", close="]"}
@@ -161,7 +162,7 @@ Stores a boolean result based on the output state.
 
 **Example:**
 ```
-{users where='$admin eq 1', toBool="hasAdmins"}
+{users where='$admin eq 1', toBool="hasAdmins"}{$name}{/users}
 {if bool="hasAdmins"}...{/if}
 ```
 
