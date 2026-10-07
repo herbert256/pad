@@ -13,4 +13,5 @@ yes to NO.
 |------|-------------|
 | `index.php/pad` | Fetches the payload and states the verdict |
 | `payload.php/pad` | A page with a recognisable body |
+| `late.php/pad`, `lateread.php/pad` | A download that fails after it went out, and the check that it ends at its Content-Length |
 | `_config/config.php` | Chooses the 'download' output type, `_common` off |
