@@ -1735,7 +1735,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `code` | Execution | Run content as PAD |
 | `sandbox` | Execution | Run content as PAD, isolated |
 | `action` | Execution | Execute action |
-| `ajax` | Execution | AJAX handler |
+| `ajax` | Execution | Embed a page the browser fetches after load (`&padInclude`) |
 | `live` | Execution | A region that re-renders on the server when clicked, submitted or changed |
 | `pad` | Execution | Generic level for data=, content=, name= |
 | `redirect` | Navigation | HTTP redirect |
