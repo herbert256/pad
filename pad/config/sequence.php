@@ -19,7 +19,9 @@
   // ran out of candidates does, with the terms it found. A million candidates is a few
   // seconds for a cheap test and minutes for a costly one, and such a run ended on PHP's
   // 30-second limit with a 500 instead of on its cap. Showing what a run found is the page's
-  // own cost: a million rows take their time to render.
+  // own cost: a million rows take their time to render. 0 or less, INF, or anything that is
+  // no finite number is no limit; a pulled store and a fixed or given list, which end with
+  // their data, are never cut by time.
 
   $padSeqMaxSeconds   = 5;
 

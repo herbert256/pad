@@ -18,7 +18,15 @@
 
   $pqTries      = 0;
   $pqTriesOut   = FALSE;
-  $pqTriesUntil = hrtime ( TRUE ) + (int) ( ( $GLOBALS ['padSeqMaxSeconds'] ?? 5 ) * 1e9 );
+  $pqTriesUntil = $GLOBALS ['padSeqMaxSeconds'] ?? 5;
+
+  // The deadline of $padSeqMaxSeconds, a float: cast to an integer, INF or 1e10 seconds
+  // ended every sequence tag on "not representable as an int". 0 or less - PHP's own word
+  // for no limit - and anything not a finite number is no deadline at all.
+
+  $pqTriesUntil = ( is_numeric ( $pqTriesUntil ) and is_finite ( (float) $pqTriesUntil ) and $pqTriesUntil > 0 )
+                ? hrtime ( TRUE ) + $pqTriesUntil * 1e9
+                : INF;
   $pqPosition   = FALSE;
   $pqLoop       = 0;
 
