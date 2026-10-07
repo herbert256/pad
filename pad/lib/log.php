@@ -78,11 +78,14 @@
     // \e[1A\e[2K, or the one character CSI (U+009B) - wipes the line above it from the screen
     // of whoever reads the log with tail. Every control character but the tab - the C1 ones
     // too - is written as an escape, over the whole line: the JSON of the context writes
-    // NEL and CSI as they are, and a context value forged a line of its own.
+    // NEL and CSI as they are, and a context value forged a line of its own. A DEL, which
+    // the JSON leaves as it is too, is \u007F - a JSON escape, where \x7F made the context
+    // no JSON at all.
 
     $line = preg_replace_callback ( '/[\x00-\x08\x0A-\x1F\x7F]|\xC2[\x80-\x9F]|\xE2\x80[\xA8\xA9]/', fn ( $match ) => match ( $match [0] ) {
               "\r"    => '\r',
               "\n"    => '\n',
+              "\x7F"  => '\u007F',
               default => ( strlen ( $match [0] ) == 1 ) ? sprintf ( '\x%02X', ord ( $match [0] ) )
                                                         : sprintf ( '\u%04X', mb_ord ( $match [0], 'UTF-8' ) )
             }, $line );

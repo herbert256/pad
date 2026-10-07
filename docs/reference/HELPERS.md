@@ -716,9 +716,10 @@ Edge rules:
   has not. The whole context follows as JSON - a `Throwable` in it as class, message, file
   and line, a date as `Y-m-d H:i:s`; an empty context writes nothing after the message. CR
   and LF in the line - the message and the context alike - are written `\r` and `\n`, every
-  other control character but the tab `\xNN` (an ESC `\x1B`), the C1 controls `\u0080` to
-  `\u009F` (NEL `\u0085`, CSI `\u009B`) and the Unicode line and paragraph separators
-  `\u2028`, `\u2029`: one call is one line, for every reader of the log.
+  other control character but the tab `\xNN` (an ESC `\x1B`), a DEL `\u007F` (the context
+  stays JSON), the C1 controls `\u0080` to `\u009F` (NEL `\u0085`, CSI `\u009B`) and the
+  Unicode line and paragraph separators `\u2028`, `\u2029`: one call is one line, for every
+  reader of the log.
 - **Log file.** Made on first use with `$padFileMode`, its directory with `$padDirMode`;
   appended under a lock. A disk that refuses the write answers `FALSE` - a log line never
   ends a page. A replayed request (`develop/?replay`) writes nothing and answers `TRUE`.
