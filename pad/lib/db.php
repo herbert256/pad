@@ -576,13 +576,19 @@
   // that end is looked at: the whole statement was matched for every placeholder, so a
   // list of 40000 of them in IN ( ... ) took seconds, the time growing with the square of
   // the list. SQLite keeps numeric text a number anyway (padDbLiteral), so it is not asked.
+  //
+  // A column position after ORDER BY or GROUP BY - first in the list, or after a comma of
+  // it - and the count of FETCH FIRST / NEXT are numbers too: quoted, ORDER BY {0} DESC with
+  // '2' sorted on the constant '2', and FETCH NEXT '2' ROWS ONLY was a syntax error.
 
   function padDbNumberSlot ( $connect, $out ) {
 
     if ( $connect instanceof PDO )
       return FALSE;
 
-    return (bool) preg_match ( '/\b(limit|offset)\s*$|\blimit\s+[0-9]+\s*,\s*$/i', $out, $match, 0, max ( 0, strlen ( $out ) - 64 ) );
+    return (bool) preg_match ( '/\b(limit|offset)\s*$|\blimit\s+[0-9]+\s*,\s*$|\bfetch\s+(first|next)\s*$'
+                             . '|\b(order|group)\s+by\s*$|\b(order|group)\s+by\s+[^()]*,\s*$/i',
+                               $out, $match, 0, max ( 0, strlen ( $out ) - 128 ) );
 
   }
 

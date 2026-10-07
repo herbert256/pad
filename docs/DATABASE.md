@@ -32,8 +32,9 @@ db("UPDATE users SET name='{0}' WHERE id={1}", [$name, $id]);
 bare gets a number as a number and anything else as a quoted, escaped literal, so a bare
 `id={0}` cannot take `5 or 1=1` as SQL. On MySQL text that looks like a number - every request
 value - is text too, as MySQL would compare a text column with the number (`name={0}` with `'0'`
-matched every name), except in a `LIMIT` or `OFFSET`, where it is the count it says; SQLite
-keeps it a number. An array written bare becomes a list. Placeholders are
+matched every name), except where MySQL wants a number - after `LIMIT`, `OFFSET` and
+`FETCH FIRST`/`NEXT`, and as a column position in `ORDER BY` or `GROUP BY`; SQLite keeps it a
+number. An array written bare becomes a list. Placeholders are
 filled in one pass, so a value holding `{1}` stays as written. Keys starting with `x` are
 inserted raw - a deliberate escape hatch for SQL the code builds itself, never for input.
 ```php
