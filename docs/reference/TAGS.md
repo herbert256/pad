@@ -1202,8 +1202,9 @@ Write HTML attributes - quoted, escaped, the false ones left out.
 
 **Items:** `name=expression`, a bare `name` (written as a bare attribute), or an expression
 whose array value adds its keys as attributes - the keys are data, so one that is no
-attribute name, an event handler (`on...`, `@click`, `:bind`, `x-on:`, `v-on:`, `hx-on:`), an
-iframe's `srcdoc`, and a URL attribute (`href`, `src`, `action` ...) whose value - an array
+attribute name, an event handler (`on...`), a script library's directive in any spelling
+(`@`, `:`, `x-`, `v-`, `hx-`, `data-hx-`, `ng-`, `ng:`, `data-ng-`, `wire:`, `_`, `script`,
+`data-script`, `data-bind`), an iframe's `srcdoc`, and a URL attribute (`href`, `src`, `action` ...) whose value - an array
 joined - names a scheme that runs script (`javascript:`, `vbscript:`, `data:` other than
 `data:image/`) are left out; `sms:`, `tel:`, a `data:image/` source and the like are kept.
 Names are HTML attribute names, dashes included (`data-id`, `aria-label`); `content=` or

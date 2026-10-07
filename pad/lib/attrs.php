@@ -84,17 +84,19 @@
 
   // Whether an attribute an array brought may be written: the array's keys and values are
   // data - often a visitor's, decoded from JSON. An event handler is left out - on... of
-  // HTML, @click and :bind of Alpine and Vue, x-on:/v-on:/hx-on: of the libraries - and so
-  // is an iframe's srcdoc, whose HTML the browser runs same-origin; a URL attribute is
-  // judged by padAttrsUrlSafe. The names written in the template are the author's and are
-  // not judged.
+  // HTML - and so is every directive a script library runs as script, in each spelling it
+  // reads: @ and : of Alpine and Vue, x-... (x-on, x-bind, x-init, x-data, x-html ...) and
+  // v-... of them, hx-... and data-hx-... of htmx (hx-on, hx-vals="js:..."), ng-, ng:,
+  // data-ng- of Angular, wire: of Livewire, _, script and data-script of hyperscript and
+  // data-bind of Knockout. So is an iframe's srcdoc, whose HTML the browser runs
+  // same-origin; a URL attribute is judged by padAttrsUrlSafe. The names written in the
+  // template are the author's and are not judged.
 
   function padAttrsSafe ( $name, $value ) {
 
     $name = strtolower ( $name );
 
-    if ( str_starts_with ( $name, 'on' ) or str_starts_with ( $name, '@' ) or str_starts_with ( $name, ':' )
-         or preg_match ( '/^(hx|x|v)-on/', $name ) or $name == 'srcdoc' )
+    if ( preg_match ( '/^(on|[@:_]|(data-)?(x|v|hx|ng)[-:_]|wire:)|^((data-)?script|data-bind|srcdoc)$/', $name ) )
       return FALSE;
 
     if ( in_array ( $name, [ 'href', 'src', 'action', 'formaction', 'xlink:href', 'poster',
