@@ -77,26 +77,43 @@
 
   function padEscape ( $string ) {
 
-    return str_replace ( [ '{',     '}',      '|',      '=',    ',',     '@',    "\u{E0F4}", "\u{E0F5}" ],
-                         [ '&open;','&close;','&pipe;', '&eq;','&comma;','&at;', '&open;',   '&close;'   ],
+    list ( $open, $close ) = padPipeMarks ();
+
+    return str_replace ( [ '{',     '}',      '|',      '=',    ',',     '@',    $open,    $close    ],
+                         [ '&open;','&close;','&pipe;', '&eq;','&comma;','&at;', '&open;', '&close;' ],
                          $string ?? '' );
   }
 
-  // The content's own braces as private-use markers while an opening pipe runs over it, and
-  // back: what the pipe adds can then be told from what the author wrote. A marker already in
-  // the content - it can come in with a value - is made U+FFFD first, so none turns into a
-  // live brace on the way back.
+  // The content's own braces as markers while an opening pipe runs over it, and back: what
+  // the pipe adds can then be told from what the author wrote. A marker is a private-use
+  // character followed by a nonce of six more drawn at random once per request, so a value
+  // the pipe adds cannot bring one along: with a fixed marker, ?v=%EE%83%B4php:getcwd%EE%83%B5
+  // in {n | @ . $v} came back a live tag and ran. No case or trim function changes them.
+
+  function padPipeMarks () {
+
+    static $marks = NULL;
+
+    if ( $marks === NULL ) {
+      $nonce = '';
+      for ( $i = 0; $i < 6; $i++ )
+        $nonce .= mb_chr ( random_int ( 0xF000, 0xF8FF ), 'UTF-8' );
+      $marks = [ "\u{E0F4}$nonce", "\u{E0F5}$nonce" ];
+    }
+
+    return $marks;
+
+  }
 
   function padPipeMask ( $string ) {
 
-    return str_replace ( [ "\u{E0F4}", "\u{E0F5}", '{',         '}'         ],
-                         [ "\u{FFFD}", "\u{FFFD}", "\u{E0F4}", "\u{E0F5}" ], $string );
+    return str_replace ( [ '{', '}' ], padPipeMarks (), $string );
 
   }
 
   function padPipeUnmask ( $string ) {
 
-    return str_replace ( [ "\u{E0F4}", "\u{E0F5}" ], [ '{', '}' ], $string );
+    return str_replace ( padPipeMarks (), [ '{', '}' ], $string );
 
   }
 
