@@ -56,8 +56,14 @@
   // an int". 2^63 is out of range too, though as a float it compares equal to PHP_INT_MAX -
   // tested with >, {sequence power=2, rows=70} ended on 9.2233720368548E+18. A play can make
   // such a value as well, so the same test follows the plays.
+  //
+  // A value a list, a store or an action's array hands over is given, not computed: it is
+  // passed on as it was written, where 1e20 in a list ended the run there - only a play
+  // over it computes a term.
 
-  if ( is_float ( $pq ) and ( $pq < PHP_INT_MIN or $pq >= PHP_INT_MAX ) ) return FALSE;
+  $pqGiven = in_array ( $pqBuild, [ 'build', 'pull', 'given' ] );
+
+  if ( ! $pqGiven and is_float ( $pq ) and ( $pq < PHP_INT_MIN or $pq >= PHP_INT_MAX ) ) return FALSE;
 
   // A term that is no number at all - the square root exponentiation=0.5 takes of a negative
   // value - is no term: printed, PHP ended the request on the NAN coerced to a string. Not a
@@ -81,10 +87,15 @@
       return ! $pqPlaysOut;
   }
 
-  if ( is_float ($pq)   and ( $pq < PHP_INT_MIN or $pq >= PHP_INT_MAX ) ) return FALSE;
+  // minimal=, maximal= and stop= count only when given: their defaults, PHP_INT_MIN and
+  // PHP_INT_MAX, stand for none, and tested as bounds they turned down a listed value past
+  // them - 100000000000000000000 - and ended the list on 9223372036854775807 or 2^63, so
+  // {sequence '9223372036854775808;1'} showed its first value alone.
+
+  if ( ( ! $pqGiven or count ( $pqPlays ) ) and is_float ($pq) and ( $pq < PHP_INT_MIN or $pq >= PHP_INT_MAX ) ) return FALSE;
   if ( is_float ($pq)   and is_nan ( $pq )   ) return TRUE;
-  if ( is_numeric ($pq) and $pq < $pqMin       ) return TRUE;
-  if ( is_numeric ($pq) and $pq > $pqMax       ) return TRUE;
+  if ( $pqMin !== PHP_INT_MIN and is_numeric ($pq) and $pq < $pqMin ) return TRUE;
+  if ( $pqMax !== PHP_INT_MAX and is_numeric ($pq) and $pq > $pqMax ) return TRUE;
   if ( $pqUnique and in_array ($pq, $pqResult) ) return TRUE;
   if ( $pqSkip and $pqTries <= $pqSkip )         return TRUE;
 
@@ -97,7 +108,7 @@
   if ( count ( $pqPlays ) )
     $pqPlaysHit [] = $pqPlaysSet;
 
-  if ( is_numeric ($pq) and $pq >= $pqStop     ) return FALSE;
+  if ( $pqStop !== PHP_INT_MAX and is_numeric ($pq) and $pq >= $pqStop ) return FALSE;
   if ( count($pqResult) >= $pqRows )              return FALSE;
 
   return TRUE;
