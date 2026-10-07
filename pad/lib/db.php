@@ -420,7 +420,7 @@
         elseif ( padArrayCheck ( $name ) ) $vars [$key] = padArrayValue ( $name );
         elseif ( padFieldCheck ( $name ) ) $vars [$key] = padFieldValue ( $name );
         else {
-          if ( $padCheckSyntax )
+          if ( $padCheckSyntax and ! padStrHidden ( $name ) )
             padError ( "the named query " . basename ( $file ) . " reads {\$$name}, and there is no field named '$name'" );
           $vars [$key] = '';
         }
