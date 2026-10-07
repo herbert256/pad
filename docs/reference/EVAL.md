@@ -395,12 +395,15 @@ This allows natural use in string contexts while maintaining logical operations.
 
 ## Error Handling
 
-Under `$padCheckSyntax` (the default) errors are reported via `padError()`; with the check
-off, what cannot be evaluated answers `''`. Before anything runs, `lib/eval/validate.php`
-reads the expression and names the fault and its position - `Expression error: ...`:
-- a `(` or `[` that is never closed, a `)` or `]` that closes nothing, a string never closed
+Under `$padCheckSyntax` (the default) errors are reported via `padError()`. Before anything
+runs, `lib/eval/validate.php` reads the expression and names the fault and its position -
+`Expression error: ...`:
+- a `(` or `[` that is never closed, a string never closed - a `)` or `]` that closes nothing
+  in a tag's parameters is named before that, by the parameter split: "Closing ) without an
+  opening ("
 - a pipe function that does not exist
-- an operator with nothing on its left or its right
+- a comparison or logical operator with nothing on its left or its right - an arithmetic one
+  is not named: `{echo 5 *}` answers 0, `{if 5 + eq 1}` holds
 - a pipe operator written without its space - `| +1` for `| + 1`
 
 While it runs:
@@ -410,3 +413,9 @@ While it runs:
 - "No result back", "More than one result back", "Result is not a value" - an expression that reduced to no single value
 - "Unsupported \\ char" - Invalid escape sequence
 - "Escape \\ char only allowed inside a string"
+
+With the check off nothing is reported, and the evaluator answers what it can: a value that is
+no number counts as 0 (`'a' + 1` is 1), a missing field is empty (`$nope + 1` is 1), an unknown
+escape loses its backslash (`'a\qb'` is `aqb`), a ternary without its `:` keeps what it has
+(`1 ? 'a'` is `1a`), and an expression that cannot be reduced - an unclosed bracket, a
+division by zero - answers `''`.

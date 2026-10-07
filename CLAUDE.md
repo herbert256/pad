@@ -1073,7 +1073,8 @@ expression in the source's own terms, naming the exact fault and its position:
   `{if $x eq}` → *the operator 'eq' has nothing on its right*
 - an undefined field — `{if $typo eq 1}` → *there is no field named '$typo'*
 
-With the check off, what cannot be evaluated yields empty instead.
+With the check off nothing is reported: a value that is no number counts as 0 (`'a' + 1` is 1),
+a missing field is empty, and what cannot be reduced at all - an unclosed bracket - is empty.
 
 ### Errors point into the template
 
