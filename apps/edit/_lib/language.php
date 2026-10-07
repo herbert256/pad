@@ -33,7 +33,7 @@
                            'make', 'keep', 'remove', 'action', 'debug', 'attrs', 'classes',
                            'trans', 'nonce', 'csrf', 'stack', 'recurse', 'parent', 'extends',
                            'meta', 'parms', 'assert', 'flush', 'sparkline', 'chart', 'input',
-                           'textarea', 'pager', 'sitemap' ];
+                           'textarea', 'pager', 'sitemap', 'qr' ];
 
   const editBranchTags = [ 'else', 'elseif', 'when' ];
 

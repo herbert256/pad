@@ -8,6 +8,7 @@
     [ 'name' => 'Contact Form', 'desc' => 'A contact form with validation',                       'link' => '?contact'   ],
     [ 'name' => 'Page Counter', 'desc' => 'A visitor counter that tracks page views',             'link' => '?counter'   ],
     [ 'name' => 'Clock',        'desc' => 'Display current date and time',                        'link' => '?clock'     ],
+    [ 'name' => 'QR Codes',     'desc' => 'Any text as a QR code in inline SVG - type it, scan it', 'link' => '?qr'        ],
   ];
 
 ?>

@@ -1180,6 +1180,32 @@ default, scaled to its own minimum and maximum.
 
 ---
 
+### qr
+A QR code as inline SVG - encoded on the server (`lib/qr.php`), no image library, no remote
+service, no JavaScript.
+
+```html
+{qr 'https://example.com/order/42'}
+{qr $url, size=200, level='H', title='Open the order on your phone'}
+{qr 'WIFI:T:WPA;S:Office;P:secret;;', color='#2e7d32'}
+```
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The text to encode |
+| `size` | Width and height in pixels, default 160 - the quiet zone of four modules included |
+| `level` | Error correction: `L` (7% of the symbol may be lost), `M` (15%, default), `Q` (25%), `H` (30%) |
+| `title` | The accessible name, by default the text itself |
+| `color`, `background` | The dark and the light colour, default `#000` on `#fff` - fixed, whatever the page's colour scheme, since a reader needs the contrast |
+
+**Behavior:** the text is encoded in one mode - numeric for digits only, alphanumeric for
+upper case, digits and ` $%*+-./:`, else the bytes of its UTF-8 - in the smallest of the 40
+versions that holds it at the level asked, under the mask with the lowest penalty. A text
+too long for version 40 (2,953 bytes at `L`) or an unknown level is an error under the strict
+check, and writes nothing.
+
+---
+
 ### ignore
 Escape PAD syntax in content.
 
@@ -1826,6 +1852,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `markdown` | Output | Markdown written as HTML, raw HTML escaped |
 | `chart` | Output | Bar, line or sparkline chart as inline SVG |
 | `sparkline` | Output | Word-sized line chart as inline SVG |
+| `qr` | Output | QR code as inline SVG |
 | `ignore` | Output | Escape content |
 | `reactData` | Output | React mount point with provider data |
 | `cache` | Output | Keep a section rendered (fragment cache) |
