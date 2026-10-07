@@ -51,7 +51,7 @@ When no explicit type is given, PAD checks in this order (see `padTypeTag()` and
 11. **field** - Field of the current data row
 12. **array** - Array value
 13. **parm** - Parameter value
-14. **level** - Level variable
+14. **level** - Array field of an enclosing row
 15. **constant** - PHP constant
 16. **local** - Local data file
 17. **script** - External script
@@ -235,7 +235,9 @@ Retrieves array values by name.
 
 ### parm
 
-Retrieves a parameter or option of the nearest enclosing tag that has one.
+Retrieves a parameter or option of the tag directly around it - an `{if}` or `{case}` in
+between is skipped, any other tag is not: inside `{users mode="fast"}{orders}` the `{orders}` is
+asked, and has no `mode`.
 
 ```
 {users mode="fast"}{parm:mode}{/users}
