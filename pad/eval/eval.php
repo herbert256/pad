@@ -41,7 +41,8 @@
   if ( ! padEvalCheckPipes ( $result, $eval, $pipe ) )
     return '';
 
-  padEvalAfter ( $result );         padEvalTrace ( 'after', $result ); $_eval_after [] = $result;
+  padEvalAfter ( $result );         
+  padEvalTrace ( 'after', $result ); $_eval_after [] = $result;
   padEvalPipes ( $result, $pipes );
 
   foreach ( $pipes as $one )
