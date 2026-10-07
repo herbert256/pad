@@ -1206,6 +1206,35 @@ check, and writes nothing.
 
 ---
 
+### barcode
+A barcode as inline SVG - EAN-13, EAN-8, UPC-A or Code 128, encoded on the server
+(`lib/barcode.php`).
+
+```html
+{barcode '871234567890'}                          <!-- EAN-13, the check digit added -->
+{barcode $parcel, type='code128', height=70}
+{barcode '03600029145', type='upca'}
+{barcode 'PAD', scale=3, plain, color='#2e7d32'}
+```
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The number or text |
+| `type` | `ean13`, `ean8`, `upca` or `code128`; left out, twelve or thirteen digits are an EAN-13 and anything else Code 128 |
+| `height` | The height of the bars in pixels, default 60 |
+| `scale` | The width of one module (the thinnest bar) in pixels, default 2 |
+| `title` | The accessible name, by default the code |
+| `plain` | Bars only - no digits under them |
+| `color`, `background` | Default `#000` on `#fff` |
+
+**Behavior:** an EAN or UPC number is given with or without its check digit - left off, it
+is added; given, it is checked. EAN and UPC draw their guard bars longer and set the digits
+in their groups. Code 128 takes printable ASCII and packs a run of four digits or more two to
+a symbol (set C). A wrong check digit, a wrong length, a character Code 128 cannot hold or an
+unknown type is an error under the strict check, and writes nothing.
+
+---
+
 ### ignore
 Escape PAD syntax in content.
 
@@ -1853,6 +1882,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `chart` | Output | Bar, line or sparkline chart as inline SVG |
 | `sparkline` | Output | Word-sized line chart as inline SVG |
 | `qr` | Output | QR code as inline SVG |
+| `barcode` | Output | EAN-13, EAN-8, UPC-A or Code 128 barcode as inline SVG |
 | `ignore` | Output | Escape content |
 | `reactData` | Output | React mount point with provider data |
 | `cache` | Output | Keep a section rendered (fragment cache) |

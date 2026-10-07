@@ -749,10 +749,12 @@ through; `padCollection('blog')` gives the rows to PHP.
 field that fits; the chart's options keep clear of the handling options (`row`, `group`).
 Code: `pad/lib/chart.php` (bar, line, sparkline) and `pad/lib/chart/` (the other kinds).
 
-### QR codes
+### QR codes and barcodes
 ```
 {qr 'https://example.com/order/42'}            # inline SVG, encoded on the server (lib/qr.php)
 {qr $url, size=200, level='H', title='Scan'}   # level L, M (default), Q, H; color=, background=
+{barcode '871234567890'}                       # EAN-13 (check digit added); type= ean8, upca, code128
+{barcode $parcel, type='code128', height=70}   # scale= module width, plain = no digits under the bars
 ```
 
 ### Variable Assignment

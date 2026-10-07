@@ -9,6 +9,7 @@
     [ 'name' => 'Page Counter', 'desc' => 'A visitor counter that tracks page views',             'link' => '?counter'   ],
     [ 'name' => 'Clock',        'desc' => 'Display current date and time',                        'link' => '?clock'     ],
     [ 'name' => 'QR Codes',     'desc' => 'Any text as a QR code in inline SVG - type it, scan it', 'link' => '?qr'        ],
+    [ 'name' => 'Barcodes',     'desc' => 'EAN-13, EAN-8, UPC-A and Code 128 as inline SVG',       'link' => '?barcode'   ],
   ];
 
 ?>

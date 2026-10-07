@@ -14,6 +14,7 @@ Interactive demo showcasing PAD framework features with practical examples.
 | Page Counter | A visitor counter that tracks page views |
 | Clock | Display current date and time using a custom tag |
 | QR Codes | `{qr}` - a text typed in a form as a QR code, the four error correction levels, a Wi-Fi code |
+| Barcodes | `{barcode}` - EAN-13 for a product list, Code 128 on a shipping label, EAN-8 and UPC-A |
 
 ## Structure
 
@@ -27,6 +28,7 @@ demo/
 ├── counter.php / .pad        # Page counter example
 ├── clock.pad                 # Clock display
 ├── qr.php / .pad             # QR codes
+├── barcode.php / .pad        # Barcodes
 ├── _config/config.php        # Switches _common off, CSRF protection on
 ├── _inits.php / .pad         # Global layout wrapper
 ├── _include/todo.pad         # Todo list snippet
