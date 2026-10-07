@@ -173,17 +173,26 @@
             ? trim ( $parts [1] )
             : padEval ( $parts [1] );
 
-    foreach ( $current as $key => $value ) {
+    // A row may be an object - a decoded JSON record, a database row fetched as one - and is
+    // read as the path's other steps read it, by its properties: indexed as an array it
+    // ended the request on "Cannot use object of type stdClass as array".
 
-      if ( ! isset ( $current [$key] [$before] ) )
+    foreach ( $current as $key => $row ) {
+
+      if ( is_object ( $row ) or is_resource ( $row ) )
+        $row = (array) $row;
+
+      if ( ! isset ( $row [$before] ) )
         continue;
 
-      if     ( str_contains($name, '<>') ) { if ( $current [$key] [$before] != $after ) return $key; }
-      elseif ( str_contains($name, '<=') ) { if ( $current [$key] [$before] <= $after ) return $key; }
-      elseif ( str_contains($name, '>=') ) { if ( $current [$key] [$before] >= $after ) return $key; }
-      elseif ( str_contains($name, '<')  ) { if ( $current [$key] [$before] <  $after ) return $key; }
-      elseif ( str_contains($name, '>')  ) { if ( $current [$key] [$before] >  $after ) return $key; }
-      elseif ( str_contains($name, '=')  ) { if ( $current [$key] [$before] == $after ) return $key; }
+      $have = $row [$before];
+
+      if     ( str_contains($name, '<>') ) { if ( $have != $after ) return $key; }
+      elseif ( str_contains($name, '<=') ) { if ( $have <= $after ) return $key; }
+      elseif ( str_contains($name, '>=') ) { if ( $have >= $after ) return $key; }
+      elseif ( str_contains($name, '<')  ) { if ( $have <  $after ) return $key; }
+      elseif ( str_contains($name, '>')  ) { if ( $have >  $after ) return $key; }
+      elseif ( str_contains($name, '=')  ) { if ( $have == $after ) return $key; }
 
     }
 
