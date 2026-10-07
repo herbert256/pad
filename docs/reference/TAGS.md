@@ -1154,9 +1154,12 @@ Write HTML attributes - quoted, escaped, the false ones left out.
 
 **Items:** `name=expression`, a bare `name` (written as a bare attribute), or an expression
 whose array value adds its keys as attributes - the keys are data, so one that is no
-attribute name, an event handler (`on...`) and a URL attribute (`href`, `src`, `action` ...)
-whose value runs script (`javascript:`) are left out. Names are HTML attribute names, dashes
-included (`data-id`, `aria-label`); `content=` or `print=` are attributes here, not options.
+attribute name, an event handler (`on...`, `@click`, `:bind`, `x-on:`, `v-on:`, `hx-on:`), an
+iframe's `srcdoc`, and a URL attribute (`href`, `src`, `action` ...) whose value - an array
+joined - names a scheme that runs script (`javascript:`, `vbscript:`, `data:` other than
+`data:image/`) are left out; `sms:`, `tel:`, a `data:image/` source and the like are kept.
+Names are HTML attribute names, dashes included (`data-id`, `aria-label`); `content=` or
+`print=` are attributes here, not options.
 
 **Behavior:** A boolean HTML attribute (`disabled`, `checked`, `selected`, `required`,
 `hidden`, ...) is written bare when its value is true and left out otherwise. Any other

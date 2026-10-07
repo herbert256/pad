@@ -82,22 +82,57 @@
 
   }
 
-  // Whether an attribute an array brought may be written: the array's keys are data -
-  // often a visitor's, decoded from JSON - so an event handler (on...) is left out, and so
-  // is a URL attribute whose value names a scheme that runs script (padMarkdownUrl's test:
-  // javascript:, data:, a control character hidden in a reference ...). The names written
-  // in the template are the author's and are not judged.
+  // Whether an attribute an array brought may be written: the array's keys and values are
+  // data - often a visitor's, decoded from JSON. An event handler is left out - on... of
+  // HTML, @click and :bind of Alpine and Vue, x-on:/v-on:/hx-on: of the libraries - and so
+  // is an iframe's srcdoc, whose HTML the browser runs same-origin; a URL attribute is
+  // judged by padAttrsUrlSafe. The names written in the template are the author's and are
+  // not judged.
 
   function padAttrsSafe ( $name, $value ) {
 
     $name = strtolower ( $name );
 
-    if ( str_starts_with ( $name, 'on' ) )
+    if ( str_starts_with ( $name, 'on' ) or str_starts_with ( $name, '@' ) or str_starts_with ( $name, ':' )
+         or preg_match ( '/^(hx|x|v)-on/', $name ) or $name == 'srcdoc' )
       return FALSE;
 
-    if ( in_array ( $name, [ 'href', 'src', 'action', 'formaction', 'xlink:href', 'poster', 'cite', 'background', 'data' ] )
-         and is_scalar ( $value ) and ! is_bool ( $value ) )
-      return padMarkdownUrl ( (string) $value ) !== FALSE;
+    if ( in_array ( $name, [ 'href', 'src', 'action', 'formaction', 'xlink:href', 'poster',
+                             'cite', 'background', 'data', 'ping', 'longdesc', 'manifest' ] ) )
+      return padAttrsUrlSafe ( $value );
+
+    return TRUE;
+
+  }
+
+  // Whether a URL attribute's value names no scheme that runs script. The value is judged as
+  // padAttrsOne writes it - an array joined with spaces - and its control characters taken
+  // out (a browser drops them, so java\tscript: is javascript:); the deny list is the
+  // schemes that run - javascript:, vbscript:, and data: unless it is a data:image/ - rather
+  // than an allow list, which dropped a real data:image/ source and an sms: link. The & of
+  // an entity is escaped when the value is written, so a reference stays inert text and is
+  // not decoded here.
+
+  function padAttrsUrlSafe ( $value ) {
+
+    if ( is_array ( $value ) )
+      $value = implode ( ' ', array_filter ( array_map ( 'strval', $value ), 'strlen' ) );
+    elseif ( ! is_scalar ( $value ) or is_bool ( $value ) )
+      return TRUE;
+
+    $plain = preg_replace ( '/[\x00-\x20]/', '', (string) $value );
+
+    if ( preg_match ( '/^([a-zA-Z][a-zA-Z0-9+.\-]*):/', $plain, $m ) ) {
+
+      $scheme = strtolower ( $m [1] );
+
+      if ( in_array ( $scheme, [ 'javascript', 'vbscript' ], TRUE ) )
+        return FALSE;
+
+      if ( $scheme == 'data' and ! preg_match ( '#^data:image/#i', $plain ) )
+        return FALSE;
+
+    }
 
     return TRUE;
 
