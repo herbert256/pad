@@ -134,8 +134,9 @@ End marker: what stands after it is a coda, rendered once after all rows.
 
 **Behavior:**
 - Detected by `padOpenCloseOk()` (see `level/start.php`, `level/start_end/`)
-- The content after `@end@` renders once, after the last row (`count@` and the other
-  properties of the level are there)
+- The content after `@end@` renders once, after the last row: `count@` gives the number of
+  rows there, while the position properties no longer stand on a row - `current@` reads one
+  past the last
 - Without its `@start@` the strict check refuses it ("an @end@ needs its @start@ before it")
 
 **Use Cases:**
@@ -209,8 +210,8 @@ Tidy marker that triggers HTML output formatting.
 |-----------|---------|---------------|
 | `@page@` | Main content placeholder | Page content |
 | `@content@` | Content merge point | Child content |
-| `@start@` | Deferred section start | Split marker |
-| `@end@` | Pre-closure section | Split marker |
+| `@start@` | End of the prelude, start of the per-row body | Split marker |
+| `@end@` | End of the per-row body, start of the coda | Split marker |
 | `@else@` | True/false branch separator | Split marker |
 | `@tidy@` | HTML formatting trigger | Removed (triggers tidy) |
 
