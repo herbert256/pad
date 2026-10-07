@@ -7,7 +7,7 @@
   // handed ended the request on the arithmetic, and a fraction on PHP's deprecation of it
   // as an integer.
 
-  if ( ! pqBoolWhole ( $pqLoop ) )
+  if ( ! pqBoolWhole ( $pqLoop ) or pqPastInt ( $pqParm ) )
     return FALSE;
 
   return $pqLoop | (int) $pqParm;

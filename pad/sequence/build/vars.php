@@ -21,6 +21,9 @@
 
   $pqOrgName = $pqSeq;
 
-  $pqParmStore = ( $pqParm and isset ( $pqStore [$pqParm] ) ) ? $pqParm : '';
+  // A store is named by a name: a parameter that is a number - a stored 1e20 - is no key to
+  // look up, and as one ended the request on "The float 1.0E+20 is not representable as an int".
+
+  $pqParmStore = ( is_string ( $pqParm ) and $pqParm and isset ( $pqStore [$pqParm] ) ) ? $pqParm : '';
 
 ?>

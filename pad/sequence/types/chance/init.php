@@ -13,7 +13,7 @@
   if ( str_contains ( $pqParm, '%' ) or str_contains ( $pqParm, '..' ) )
     return;
 
-  if ( isset ( $pqStore [$pqParm] ) )
+  if ( is_string ( $pqParm ) and isset ( $pqStore [$pqParm] ) )
     return;
 
   if ( ! is_numeric ( $pqParm ) )

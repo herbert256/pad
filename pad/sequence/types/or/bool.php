@@ -10,7 +10,7 @@
 
   function pqBoolOr ( $x, $p ) {
 
-    if ( ! is_numeric ( $x ) or $x != (int) $x )
+    if ( ! pqBoolWhole ( $x ) or pqPastInt ( $p ) )
       return FALSE;
 
     $x = (int) $x;

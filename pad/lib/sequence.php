@@ -351,6 +351,21 @@
 
   }
 
+  // Whether a parameter is a number past the integer range - a stored 1e20 handed to and=,
+  // or= or xor= - which a bitwise type cannot cast: (int) ended the request on "The float
+  // 1.0E+20 is not representable as an int". Such a parameter makes no term.
+
+  function pqPastInt ( $value ) {
+
+    if ( ! is_numeric ( $value ) )
+      return FALSE;
+
+    $value = $value + 0;
+
+    return is_float ( $value ) and ( is_nan ( $value ) or $value < PHP_INT_MIN or $value >= PHP_INT_MAX );
+
+  }
+
   // Whether $x is a whole number an integer predicate can work with: a number, without a
   // fraction, inside the integer range. The membership tests of the integer sequences -
   // prime, even, happy and the rest - answer no for anything else before doing arithmetic on
