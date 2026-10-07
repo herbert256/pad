@@ -20,18 +20,26 @@
 
   // The recorder finishes after the response has been flushed back, and last of the five
   // info modes this application runs - after a trace with every option on, which writes
-  // hundreds of files. With the suite fetching a dozen pages at once, the xml case twelve
-  // probes among them, that took more than ten seconds.
+  // hundreds of files. It is done when the request file is there and the entry file it was
+  // made from is gone: the file alone was looked at the moment it appeared, and its mode
+  // then was not always its last. Within the 30 seconds PHP gives this page.
 
-  for ( $settle = 0; $settle < 300 and ! file_exists ( $file ); $settle++ ) {
+  $entry = DATA . "track/requests/$request-entry.json";
+
+  for ( $settle = 0; $settle < 250 and ( ! file_exists ( $file ) or file_exists ( $entry ) ); $settle++ ) {
     usleep ( 100000 );
     clearstatcache ();
   }
 
   $text = file_exists ( $file ) ? file_get_contents ( $file ) : '';
 
+  // Owner only from the first moment: the files of the track directory were written 0644
+  // and made 0600 after - and padFilePut's temporary file beside each is the umask's - so
+  // for that moment any local user could read them. The directory itself is 0700 now.
+
   $vFiled   = ( $text !== '' )                                                   ? 'yes' : 'NO';
   $vSecrets = ( ! array_filter ( $secrets, fn ( $s ) => str_contains ( $text, $s ) ) ) ? 'none' : 'SOME';
-  $vMode    = ( $text !== '' and ( fileperms ( $file ) & 0777 ) == 0600 )        ? 'yes' : 'NO';
+  $vMode    = ( $text !== '' and ( fileperms ( $file ) & 0777 ) == 0600
+                and ( fileperms ( DATA . 'track' ) & 0777 ) == 0700 )            ? 'yes' : 'NO';
 
 ?>

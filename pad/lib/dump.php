@@ -722,12 +722,28 @@
 
     global $padApp;
 
+    padDumpPrivate ( DATA . "dumps/$padApp" );
+
     padFilePut ( "dumps/$padApp/$file", $data );
 
     $path = DATA . "dumps/$padApp/$file";
 
     @chmod ( $path,            0600 );
     @chmod ( dirname ( $path ), 0700 );
+
+  }
+
+  // The modes come after the write, and padFilePut writes a temporary file beside its target
+  // first, as the umask makes it: for that moment a report was any local user's to read.
+  // The directory above them is made 0700 before anything is written into it - nothing in
+  // it can be reached by another user then, whatever the files' own modes are for a moment.
+
+  function padDumpPrivate ( $dir ) {
+
+    if ( ! is_dir ( $dir ) )
+      @mkdir ( $dir, 0700, TRUE );
+
+    @chmod ( $dir, 0700 );
 
   }
 

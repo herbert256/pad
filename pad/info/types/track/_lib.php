@@ -88,9 +88,11 @@
 
   }
 
-  // Owner only, as the error reports are (padDumpFilePut).
+  // Owner only, as the error reports are (padDumpFilePut): the directory before the write.
 
   function padInfoTrackPut ( $file, $data ) {
+
+    padDumpPrivate ( DATA . 'track' );
 
     padFilePut ( $file, $data );
 
