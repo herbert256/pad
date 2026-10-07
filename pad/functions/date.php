@@ -54,16 +54,17 @@
     //
     // A modifier that names a date and no time - '1 jan', '2024-02-03' - starts that day, as
     // strtotime has it; modify keeps the time of day, and date('Y-m-d H:i', '1 jan') wrote
-    // 22:13 where it wrote 00:00.
+    // 22:13 where it wrote 00:00. The day starts before the modifier is read, so a relative
+    // time in it still counts: '1 jan +5 hours' is 05:00, where setting 00:00 afterwards
+    // wiped the hours, and moved the day too when they crossed midnight.
 
     try {
-      $padDateShift = ( new DateTimeImmutable ( "@$value" ) ) -> setTimezone ( $padDateZone )
-                                                             -> modify ( (string) $parm [1] );
+      $padDateShift = ( new DateTimeImmutable ( "@$value" ) ) -> setTimezone ( $padDateZone );
       $padDateParts = date_parse ( (string) $parm [1] );
       if ( $padDateParts ['hour'] === FALSE and ( $padDateParts ['year'] !== FALSE
            or $padDateParts ['month'] !== FALSE or $padDateParts ['day'] !== FALSE ) )
         $padDateShift = $padDateShift -> setTime ( 0, 0 );
-      $padDateShift = $padDateShift -> getTimestamp ();
+      $padDateShift = $padDateShift -> modify ( (string) $parm [1] ) -> getTimestamp ();
     } catch ( Exception $padDateError ) {
       $padDateShift = FALSE;
     }
