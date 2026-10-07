@@ -2,44 +2,37 @@
 
   $title    = 'Contact Form';
   $dataFile = 'demo/messages.json';   // under DATA/, for padFileGet and padFilePut
-  $errors   = [];
 
-  // The rules say what a valid message is; padValidate answers one message per field that
-  // breaks them, and the {input} and {textarea} of contact.pad show each beside its field,
-  // refilled with what was typed.
+  // The rules of a valid message stand on the fields in contact.pad - rules='required|email' -
+  // and are checked before this file runs: padPosted ( 'contact' ) is TRUE only for a post
+  // that keeps them. A post that breaks one never gets here; the form comes back refilled
+  // with what was typed, each message beside its field.
 
-  if ( padPosted ( 'contact' ) ) {
+  // The rules let a field posted as a list - name[]=x - through, so a message whose fields
+  // are not all text is not stored: htmlspecialchars() was handed the array and the post
+  // ended on a 500. The form comes back as it was sent.
 
-    $errors = padValidate ( [
-      'name'    => 'required|max:100',
-      'email'   => 'required|email',
-      'subject' => 'required|max:200',
-      'message' => 'required|max:2000',
-    ] );
+  $sent = padRequestOnly ( [ 'name', 'email', 'subject', 'message' ] );
 
-    if ( ! $errors ) {
+  if ( padPosted ( 'contact' ) and count ( array_filter ( $sent, 'is_string' ) ) == count ( $sent ) ) {
 
-      $messages = json_decode ( padFileGet ( $dataFile ), TRUE ) ?: [];
+    $messages = json_decode ( padFileGet ( $dataFile ), TRUE ) ?: [];
 
-      $entry          = array_map ( 'htmlspecialchars', padRequestOnly ( [ 'name', 'email', 'subject', 'message' ] ) );
-      $entry ['date'] = padNow ( 'Y-m-d H:i:s' );
+    $entry          = array_map ( 'htmlspecialchars', $sent );
+    $entry ['date'] = padNow ( 'Y-m-d H:i:s' );
 
-      $messages [] = $entry;
+    $messages [] = $entry;
 
-      padFilePut ( $dataFile, json_encode ( $messages, JSON_PRETTY_PRINT ) );
+    padFilePut ( $dataFile, json_encode ( $messages, JSON_PRETTY_PRINT ) );
 
-      // Post, redirect, get: the browser is sent on to a plain GET of this page, so a
-      // refresh shows the empty form instead of sending the message a second time - the
-      // thanks go along as a flash message. A form with errors is answered in place,
-      // keeping what was typed.
+    // Post, redirect, get: the browser is sent on to a plain GET of this page, so a refresh
+    // shows the empty form instead of sending the message a second time - the thanks go
+    // along as a flash message.
 
-      padFlash ( 'Thank you for your message! We will get back to you soon.' );
+    padFlash ( 'Thank you for your message! We will get back to you soon.' );
 
-      padRedirect ( 'contact' );
-    }
+    padRedirect ( 'contact' );
 
   }
-
-  $hasErrors = count ( $errors ) > 0;
 
 ?>

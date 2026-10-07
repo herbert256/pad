@@ -12,4 +12,9 @@
   $twice   = db ( "field '{0}' || '|' || {1}",                     [ '{1}', 'b' ] );
   $irish   = db ( "field {0} || ''",                               [ "O'Brien" ] );
 
+  // A bare negative number after a minus keeps its distance: "10-{0}" with -5 is 15, not a
+  // -- comment that leaves SQLite with "10" alone.
+
+  $minus   = db ( "field 10-{0}",                                  [ -5 ] );
+
 ?>

@@ -1,0 +1,21 @@
+{chart 'bar', label='month', value='amount', width=300, height=150}
+  month,amount
+  Jan,120
+  Feb,90
+{/chart}
+{chart 'bar', width=300, height=150}
+  [ { "m": "Jan", "v": 3 }, { "m": "Feb", "v": 5 } ]
+{/chart}
+{chart 'bar', label='m', value='v', width=300, height=150}
+  # two months
+  - m: Mar
+    v: 7
+  - m: Apr
+    v: 2
+{/chart}
+{chart 'bar', label='m', value='v', width=300, height=150}
+  <rows><row m="May" v="4"/><row m="Jun" v="6"/></rows>
+{/chart}
+{sparkline}
+  [ 3, 1, 4, 1, 5 ]
+{/sparkline}

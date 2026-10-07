@@ -1,6 +1,9 @@
 <?php
 
-  if ( ! isset ( $type ) ) $type = 'Tags';
+  // A list from the query string - type[]=x - is no type: the title made of it ended the
+  // page on "Array to string conversion".
+
+  if ( ! isset ( $type ) or ! is_string ( $type ) ) $type = 'Tags';
   if ( ! isset ( $xref ) ) $xref = 'tag';
   if ( ! isset ( $item ) ) $item = 'pad';
 

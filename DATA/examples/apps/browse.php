@@ -14,6 +14,7 @@
       'secret',
       'token',
       'apikey', 'api_key',
+      'appkey', 'app_key',
       'credential', 'cred',
       'auth',
       'private',
@@ -60,9 +61,16 @@
   $dir  = padRequest ( 'dir',  '' );
   $file = padRequest ( 'file', '' );
 
+  // A list from the query string - app[]=x - names nothing: preg_match got the array and
+  // the page ended on a TypeError, a 500.
+  $app  = is_string ( $app )  ? $app  : '';
+  $dir  = is_string ( $dir )  ? $dir  : '';
+  $file = is_string ( $file ) ? $file : '';
+
   $appPath = '';
   $appDirs = [];
   $appFiles = [];
+  $appExts = ['php', 'pad', 'json', 'xml', 'html', 'js', 'css'];
   $source = '';
   $currentFile = '';
   $parentDir = '';
@@ -116,7 +124,7 @@
         } else {
           $ext = pathinfo($item, PATHINFO_EXTENSION);
           // Only show source files
-          if (in_array($ext, ['php', 'pad', 'json', 'xml', 'html', 'js', 'css'])) {
+          if (in_array($ext, $appExts)) {
             $appFiles[] = [
               'path' => $relativePath,
               'name' => $item,
@@ -130,8 +138,12 @@
       $appDirs  = padArrSortBy ( $appDirs,  fn ( $one ) => strtolower ( $one ['name'] ) );
       $appFiles = padArrSortBy ( $appFiles, fn ( $one ) => strtolower ( $one ['name'] ) );
 
-      // If a file is requested, load its source
-      if ($file && preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $file)) {
+      // If a file is requested, load its source - a file the listing shows, and no other:
+      // a name with a part that starts with a dot is never listed, yet _config/.env - where
+      // padEnv finds an application's passwords and keys - was shown in full to anyone who
+      // typed it, as was a file of any other kind.
+      if ($file && preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $file) && !preg_match('#(^|/)\.#', $file)
+          && in_array(pathinfo($file, PATHINFO_EXTENSION), $appExts)) {
         $filePath = $appPath . $file;
 
         if (file_exists($filePath) && strpos(realpath($filePath), realpath($appPath)) === 0) {
