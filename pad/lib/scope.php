@@ -170,33 +170,24 @@
 
   }
 
+  // The value as the caller gave it. A tag's PHP reads it for logic - ===, explode,
+  // urlencode, a db() lookup - and escapes it for its own output with htmlspecialchars, so it
+  // has to be the real text: handing the quotes back as protection stand-ins let them through
+  // htmlspecialchars unescaped and turned the documented _tags/button.php into an injection.
+  // What keeps a parameter from running as template code is where it goes: into the tag's
+  // return value, which is a value and stays text (level/go.php), never into $padContent,
+  // which is template source - as CLAUDE.md and APP.md say.
+
   function padTagParm ($parm, $default='') {
 
-    global $pad, $padPrm, $padProtectValues, $padType;
+    global $pad, $padPrm;
 
     padDone ($parm);
 
-    if ( ! isset ( $padPrm [$pad] [$parm] ) )
+    if ( isset ( $padPrm [$pad] [$parm] ) )
+      return $padPrm [$pad] [$parm];
+    else
       return $default;
-
-    $value = $padPrm [$pad] [$parm];
-
-    // A parameter of a custom tag is the caller's data, and the documented _tags pattern
-    // builds the tag's $padContent from it - {button label=$label} with $padContent =
-    // "...$label..." - which the engine then scans as template, so a value like
-    // {php:getcwd} handed to a component ran as PHP. The value is protected before a custom
-    // tag's PHP sees it: its { } | = , @ and quotes travel as inert stand-ins that print as
-    // themselves (exits/exits.php restores them), so the value is shown, never run - the
-    // {#label} sigil form already protects the same way. Only an application or _common tag
-    // ('app'/'common'); a built-in tag reads its own options as data - mail's to=, curl's
-    // url= - and must keep them whole, and an option read for logic (a store name, a count)
-    // carries no such character anyway. Off under $padProtectValues = FALSE.
-
-    if ( $padProtectValues and is_string ( $value )
-         and in_array ( $padType [$pad] ?? '', [ 'app', 'common' ], TRUE ) )
-      $value = padProtect ( $value );
-
-    return $value;
 
   }
 
