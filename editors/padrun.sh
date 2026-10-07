@@ -8,13 +8,15 @@
 
 f="$1"
 
-# The checkout is the nearest directory above the file that holds pad/pad.php, as the
-# language server finds it - cut at the first /apps/ of the path, a checkout that itself
-# stands below a directory named apps (~/apps/pad) took that one for its own and found no
-# entry point.
+# The checkout is the nearest directory above the file that holds pad/pad.php with www/ and
+# apps/ beside it, as the language server finds it - cut at the first /apps/ of the path, a
+# checkout that itself stands below a directory named apps (~/apps/pad) took that one for its
+# own and found no entry point, and pad/pad.php alone took apps/ itself for the checkout when
+# the application pad has a page named pad (apps/pad/pad.php).
 
 root=$(dirname "$f")
-while [ "$root" != "/" ] && [ "$root" != "." ] && [ ! -f "$root/pad/pad.php" ]; do
+while [ "$root" != "/" ] && [ "$root" != "." ] \
+      && ! { [ -f "$root/pad/pad.php" ] && [ -d "$root/www" ] && [ -d "$root/apps" ]; }; do
   root=$(dirname "$root")
 done
 

@@ -150,8 +150,11 @@ function isDir(dir) {
 // _xxx directory, so _include/footer.pad looks where the page beside _include/ would.
 function locate(file) {
     let home = null;
+    // pad/pad.php with www/ and apps/ beside it: apps/pad/pad.php - a page named pad of the
+    // application pad - is no checkout, and taken for one the engine and the reference were
+    // looked for under apps/ and nothing was found
     for (let d = path.dirname(file); ; d = path.dirname(d)) {
-        if (isFile(path.join(d, 'pad', 'pad.php'))) { home = d; break; }
+        if (isFile(path.join(d, 'pad', 'pad.php')) && isDir(path.join(d, 'www')) && isDir(path.join(d, 'apps'))) { home = d; break; }
         if (path.dirname(d) === d) break;
     }
     if (!home) {
