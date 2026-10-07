@@ -145,9 +145,11 @@ function padSplitOnUnquotedColon ( $str ) {
   // {$v} of {echo {$v}} - becomes part of that tag's expression, and a value of php:getcwd
   // there was a call. Under $padProtectValues level/var.php splices it as a quoted string
   // instead, unless it is a plain number; its own quotes are protected, so it cannot close
-  // the quote. A value inside quotes, in text no tag encloses, or glued to the tag's own
-  // word - the name built by {${$hi}} - is left as it is. A tag's rendered answer is not
-  // passed through here: written inside another tag it is template text by design, the
+  // the quote. A value inside quotes or in text no tag encloses is left as it is, and so is
+  // a value glued to a sigil that builds an application field name - {${$hi}}. A value in
+  // the tag's own place - bare, {{$x}}, or completing the tag's word, {php:{$x}} - is never
+  // a tag. A tag's rendered answer comes through here only for that place ($field FALSE,
+  // level/end.php): written in another tag's parameters it is template text by design, the
   // way the manual builds an option list from {notFirst},skipOpen{/notFirst}.
   //
   // The enclosing tag is the last { before the splice: the scanner resolves the innermost
@@ -193,7 +195,7 @@ function padSplitOnUnquotedColon ( $str ) {
 
   }
 
-  function padSpliceQuote ( $value ) {
+  function padSpliceQuote ( $value, $field = TRUE ) {
 
     global $pad, $padOut, $padStart, $padEnd;
 
@@ -219,23 +221,28 @@ function padSplitOnUnquotedColon ( $str ) {
 
     $inside = ( $open >= $window - 1 ) ? '' : substr ( $before, $open + 1 );
 
-    // A value spliced right after a { re-enters the scan in a tag's own place - {{$x}} would
-    // run the value as a tag, PHP calls and all - and a value glued to a sigil - {${$x}},
-    // {!{$x}} - builds a field reference from it, which {$$x} already refuses to read out of
-    // an engine global. "Values are text": the value never becomes a tag, and a value-built
-    // field name is an application variable or nothing. In both cases the enclosing { is
-    // turned into its &open; stand-in, so the whole {...} prints as the literal text it
-    // wraps - the value kept out of tag position, an engine name shown rather than read -
-    // and the inner tag's own span, which the escape lengthens the buffer before, moves
-    // along by that growth. The documented {${$hi}} indirection to an application variable
-    // still resolves: a safe name is left glued as it was.
+    // A value spliced in the tag's own place re-enters the scan as a tag - {{$x}} ran the
+    // value as one, PHP calls and all, {php:{$x}} let it pick the PHP function and
+    // {{echo $x}} did the same with a tag's answer - and a value glued to a sigil builds a
+    // field reference from it, {${$k}}. "Values are text": the value never becomes a tag
+    // or part of a tag's word, and a field name built with it passes the check a name {$$k}
+    // takes from a value passes (padValueName), so the two spellings read the same names -
+    // first-name and _id included, x:padPage, an engine name or a wildcard never. Refused,
+    // the enclosing { is turned into its &open; stand-in, so the whole {...} prints as the
+    // literal text it wraps, and the inner tag's own span, which the escape lengthens the
+    // buffer before, moves along by that growth. Glued means nothing between the { and the
+    // value that ends a tag's word - no space, no quote, no } - so literal JSON stays text.
 
-    $padSpliceBare = ( $inside === '' );
-    $padSpliceName = ( ! $padSpliceBare and ! preg_match ( '/\s/', $inside )
-                       and preg_match ( '/^[$!?^#&]+$/', $inside )
-                       and ! padValidVar ( strtok ( $value, '.' ) ) );
+    if ( $inside === '' )
+      $padSpliceTag = TRUE;
+    elseif ( preg_match ( '/[\s"\'}]/', $inside ) )
+      $padSpliceTag = FALSE;
+    elseif ( $sigils = strspn ( $inside, '$!?^#&' ) )
+      $padSpliceTag = ! padValueName ( substr ( $inside, $sigils ) . $value );
+    else
+      $padSpliceTag = TRUE;
 
-    if ( $padSpliceBare or $padSpliceName ) {
+    if ( $padSpliceTag ) {
 
       $bracePos = $start - $window + $open;
       $closePos = padSpliceMatch ( $padOut [$pad], $bracePos );
@@ -260,9 +267,9 @@ function padSplitOnUnquotedColon ( $str ) {
 
     // A { followed by whitespace or a double quote opens no tag (padWhiteCheck), so the
     // value stands in text: literal JSON, {"id": {$id}}, had quotes put round it; a value
-    // glued to a safe application name stands as it was too.
+    // glued as above stands as it was too. A tag's answer is quoted nowhere.
 
-    if ( ctype_space ( $inside [0] ) or $inside [0] == '"' or str_contains ( $inside, '}' ) or ! preg_match ( '/\s/', $inside ) )
+    if ( ! $field or ctype_space ( $inside [0] ) or $inside [0] == '"' or str_contains ( $inside, '}' ) or ! preg_match ( '/\s/', $inside ) )
       return $value;
 
     $quote = '';

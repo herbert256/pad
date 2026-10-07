@@ -98,6 +98,12 @@
 
   $pad--;
 
+  // A tag that answered a value lands in the parent's text as a field does: in a tag's own
+  // place - {{echo $x}}, {php:{echo $x}} - it never becomes a tag (padSpliceQuote).
+
+  if ( $pad >= 0 and $padProtectValues and $padBaseValue [$pad+1] )
+    $padResult [$pad+1] = padSpliceQuote ( $padResult [$pad+1], FALSE );
+
   if ( $pad >= 0 )
     padLevel ( $padResult [$pad+1] );
 
