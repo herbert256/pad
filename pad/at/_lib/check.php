@@ -97,7 +97,12 @@
     if ( padAtCheckCondition ( $part, '<'  ) ) return TRUE;
     if ( padAtCheckCondition ( $part, '='  ) ) return TRUE;
 
-    if ( padAtValid ( $part ) ) return TRUE;
+    // Any other part is a key, and a key of the data may be any text - first-name, e-mail,
+    // content-type, a+b - so only what would make the part a path or a glob is refused: a
+    // slash or backslash, * ? [, whitespace and NUL. A '..' cannot survive the split on '.'.
+    // The identifier test of padAtValid that stood here refused every key with a - inside it.
+
+    if ( $part !== '' and ! preg_match ( '/[\/\\\\*?\[\s\x00]/', $part ) ) return TRUE;
 
     return FALSE;
 
@@ -109,7 +114,7 @@
     // in the part, the part is not that form - so the answer is "no", not "yes": returning
     // TRUE here let every check pass and made padAtCheckNamePart accept any part at all, so
     // padValid('a/../../etc/x@y') and padValid('x*?[@q') were TRUE. With a plain no, the part
-    // falls to the padAtValid test below, which a path or a glob character fails.
+    // falls to the key test below, which a path or a glob character fails.
 
     if ( ! str_contains ( $part, $condition ) )
       return FALSE;
