@@ -128,9 +128,15 @@
     // A wait is a finite number: INF and NAN were cast to an int for usleep, which PHP 8.5
     // answers with "the float INF is not representable as an int".
 
+    // And one usleep can make: a wait whose microseconds lie past every whole number PHP has
+    // - 1e300 milliseconds - raised the same warning, being finite.
+
     foreach ( $waits as $wait )
       if ( ! is_numeric ( $wait ) or ! is_finite ( (float) $wait ) or $wait < 0 ) {
         padError ( "padRetry: a wait of " . padValueShow ( $wait ) . " milliseconds is not a finite number of 0 or more" );
+        return NULL;
+      } elseif ( round ( $wait * 1000 ) >= PHP_INT_MAX ) {
+        padError ( "padRetry: a wait of " . padValueShow ( $wait ) . " milliseconds is too long to wait" );
         return NULL;
       }
 
