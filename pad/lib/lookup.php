@@ -54,7 +54,7 @@
 
     if ( ! is_array ( $rows ) ) {
 
-      if ( $padCheckSyntax )
+      if ( $padCheckSyntax and ! padStrHidden ( $set ) )
         padError ( "lookup has no data named '" . padMakeSafe ( (string) $set, 40 ) . "' to look in" );
 
       return '';

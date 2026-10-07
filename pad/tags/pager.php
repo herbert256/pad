@@ -22,7 +22,7 @@
 
   if ( ! isset ( $padPager [$padPagerName] ) ) {
 
-    if ( $padCheckSyntax )
+    if ( $padCheckSyntax and ! padStrHidden ( $padPagerName ) )
       padError ( "there is no paged tag named '" . padMakeSafe ( $padPagerName, 40 ) . "' before this {pager} - the tag with page= comes first" );
 
     return $padPair [$pad] ? [] : '';

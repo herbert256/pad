@@ -66,7 +66,7 @@
       if ( $file = padDataFileName ( $name ) )
         return padDataFileData ( $file );
 
-      if ( $padCheckSyntax )
+      if ( $padCheckSyntax and ! padStrHidden ( $name ) )
         padError ( "there is no data named '$name' for the chart" );
 
       return [];

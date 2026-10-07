@@ -30,7 +30,7 @@
 
   if ( $padTreeRows === NULL ) {
 
-    if ( $padCheckSyntax )
+    if ( $padCheckSyntax and ! padStrHidden ( $padTreeName ) )
       padError ( "there are no rows named '" . padMakeSafe ( (string) $padTreeName, 40 ) . "' for the {tree}" );
 
     return FALSE;

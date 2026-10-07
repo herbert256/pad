@@ -1,0 +1,1 @@
+{data 'sbxSet'}[{"id":1,"name":"Ann"}]{/data}{sandbox}[{echo 1 | lookup('sbxSet', 'id', 'name')}][{echo 1 | lookup('sbxRows', 'id', 'name')}][{tree 'sbxRows'}x{/tree}][{tree 'sbxSet'}x{/tree}][{chart 'bar', data='sbxRows'}][{sparkline data='sbxSet'}][{sbxRows page=1, rows=1}r{/sbxRows}{pager 'sbxRows'}]{/sandbox}

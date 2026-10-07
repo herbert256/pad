@@ -44,6 +44,7 @@
   // Whether a name was hidden by an enclosing sandboxed pass - an application variable or a
   // store entry the pass started without. A miss of such a name is the isolation working,
   // and the strict check lets it through; a name that exists nowhere is reported as ever.
+  // Asked for a field, a tag, and the rows named by lookup(), {tree}, {chart} and {pager}.
   // The head of a dotted, @ or prefixed name - $row.x, count@rows, data:rows - is what is
   // looked up.
 
