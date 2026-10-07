@@ -25,6 +25,13 @@
       $pqPlay = $padPrmName;
       padSplit ( '|', $padPrmValue, $padPrmName, $padPrmValue );
 
+      // A type named without a |parameter plays as its bare option does, with TRUE: left at
+      // '', make='multiply' did its arithmetic with the empty text and ended the request on
+      // "Unsupported operand types: int * string", where {sequence 3, make, multiply} gives 1 2 3.
+
+      if ( $padPrmValue === '' )
+        $padPrmValue = TRUE;
+
       // The name in the value has to be a sequence type, as an option's name has to be: it
       // goes into the include paths of the type's files, and unchecked make='../../x' reached
       // an init.php, bool.php or function.php anywhere on disk - a template writing
