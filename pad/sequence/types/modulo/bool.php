@@ -30,6 +30,20 @@
     if ( pqBoolWhole ( $x ) and $x >= 1 )
       return TRUE;
 
+    // Below 1 the positions x + k * p for k up to $padSeqDefaultTries reach no further than
+    // position $padSeqDefaultTries * p, and a term made by a run from=9000 of modulo=0.7 was
+    // no term: the positions 1 to $padSeqDefaultTries are asked, as a run reaches by default.
+
+    if ( $p < 1 ) {
+
+      for ( $n = 1; $n <= $tries; $n++ )
+        if ( fmod ( $n, $p ) == $x )
+          return TRUE;
+
+      return FALSE;
+
+    }
+
     for ( $k = 0; $k <= $tries; $k++ ) {
 
       $n = round ( $x + $k * $p );
