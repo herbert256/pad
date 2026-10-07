@@ -17,9 +17,8 @@ stay in one place.
 |------|-------------|
 | `index.pad` | The home page: a hero and a card per example, each drawn through `{page}` |
 | `_inits.pad` | The frame: the top bar with the pulldowns and the light/dark switch, and on an example page the three cells around `@page@` |
-| `_inits.php` | The menu from the catalog and, for an example, its data source and template, coloured |
+| `_inits.php` | The menu from the catalog and, for an example, its data source and template, coloured by the engine's `padHighlightTokens` (lib/highlight.php) |
 | `_lib/catalog.php` | The chart families and their examples - title and line of text per page |
-| `_lib/highlight.php` | The colouring of JSON, YAML, PHP and PAD in the source cells |
 | `_data/*.json`, `_data/*.yaml` | The data of the examples that read a data file |
 | `<family>/<example>.pad` | An example: the `{chart}` tag, one option per line - or a pair with the data between the tags (a template for the sparkline table) |
 | `<family>/<example>.php` | The data of the examples that build it in PHP |
@@ -31,7 +30,10 @@ The stylesheet and the small script - copy buttons, the theme switch, pulldowns 
 ## Adding an example
 
 1. Write `family/name.pad` with the `{chart}` tag.
-2. Give it data: `family/name.php`, or `_data/<data>.json` / `.yaml` named by `data='<data>'`.
-3. Add `'family/name' => [ 'Title', 'One line about it.' ]` to `_lib/catalog.php`.
+2. Give it data: `family/name.php`, `_data/<data>.json` / `.yaml` named by `data='<data>'`, or
+   the data between `{chart ...}` and `{/chart}` - or none, for a gauge of one number.
+3. Add `'family/name' => [ 'Title', 'One line about it.' ]` to `_lib/catalog.php`. A family is
+   `[ name, tagline, examples ]`, with a short name for the menu before the examples when the
+   name is long.
 
 The YAML examples need PHP's yaml extension, as every YAML data file in PAD does.

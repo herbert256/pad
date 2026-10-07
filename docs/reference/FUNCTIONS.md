@@ -198,6 +198,13 @@ sanitize chain, which would otherwise escape the markup just made. The same subs
 `{markdown}` tag (TAGS.md); the tag's `html` option, which lets raw HTML through, is for the
 template's own text and has no pipe form. A value stays text: `{php:getcwd}` in a post is shown.
 
+### highlight
+
+`{$query | highlight('sql')}` shows a value as source code, coloured - `pad`, `php`, `html`,
+`css`, `js`, `json`, `yaml`, `sql`, `bash` or `text`. Every piece of the value is escaped, so a
+field whose **last** pipe is `highlight` skips the sanitize chain, as one ending in `markdown`
+does. The same block as the `{highlight}` tag (TAGS.md), without its `lines` and `mark`.
+
 ---
 
 ## Length Control

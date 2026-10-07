@@ -1,0 +1,50 @@
+<p>The <code>{ignore}{barcode}{/ignore}</code> tag writes EAN-13, EAN-8, UPC-A and Code 128 barcodes
+as inline SVG - sharp at any size and on paper, no font, no image library. A scanner or a
+phone reads them straight from the screen.</p>
+
+<h2>Products - EAN-13</h2>
+
+<table>
+  <tr><th>Product</th><th>Barcode</th></tr>
+  {products}
+  <tr>
+    <td>{$name}</td>
+    <td>{barcode $ean, height=50}</td>
+  </tr>
+  {/products}
+</table>
+
+<p><code>{ignore}{barcode $ean, height=50}{/ignore}</code> - twelve or thirteen digits are an EAN-13;
+given without its check digit, the tag adds it.</p>
+
+<h2>A shipping label - Code 128</h2>
+
+<div class="label">
+  <strong>PAD Demo Shop</strong><br>
+  Parcel {$parcel}<br>
+  {barcode $parcel, height=70}
+</div>
+
+<p><code>{ignore}{barcode $parcel, height=70}{/ignore}</code> - letters, digits and punctuation;
+runs of digits are packed two to a symbol.</p>
+
+<h2>The other types</h2>
+
+<table>
+  <tr><th>Type</th><th>Barcode</th><th>Tag</th></tr>
+  <tr>
+    <td>EAN-8</td>
+    <td>{barcode '9638507', type='ean8'}</td>
+    <td><code>{ignore}{barcode '9638507', type='ean8'}{/ignore}</code></td>
+  </tr>
+  <tr>
+    <td>UPC-A</td>
+    <td>{barcode '03600029145', type='upca'}</td>
+    <td><code>{ignore}{barcode '03600029145', type='upca'}{/ignore}</code></td>
+  </tr>
+  <tr>
+    <td>Bars only, in colour</td>
+    <td>{barcode 'PAD', height=30, scale=3, plain, color='#2e7d32'}</td>
+    <td><code>{ignore}{barcode 'PAD', height=30, scale=3, plain, color='#2e7d32'}{/ignore}</code></td>
+  </tr>
+</table>

@@ -1102,6 +1102,13 @@ Draw a chart as inline SVG - no JavaScript, so it works in print and caches like
 {chart 'sankey', data='energy', source='from', target='to', value='amount'}
 {chart 'network', data='friends', source='from', target='to', layout='radial'}
 {chart 'treemap', data='spend', levels='dept', label='post', value='amount'}
+{chart 'gauge', value=72, label='Disk in use', unit='%', bands='60, 85', target=80}
+{chart 'radar', data='phones', label='model', value='battery, camera, screen, speed'}
+{chart 'waterfall', data='result', label='step', value='amount', total='Profit'}
+{chart 'histogram', data='people', value='height', bins=12}
+{chart 'boxplot', data='salaries', label='team', value='salary'}
+{chart 'calendar', data='commits', date='day', value='count', year=2026}
+{chart 'gantt', data='plan', label='task', from='begin', to='until', progress='done'}
 ```
 
 **Kinds:**
@@ -1119,6 +1126,13 @@ Draw a chart as inline SVG - no JavaScript, so it works in print and caches like
 | `network` | Nodes and the links between them; `layout='force'` (default, the same picture for the same data) or `'radial'`, `arrows` for the direction, `value` for thicker links | `source`, `target`, `value`, `layout`, `arrows` |
 | `treemap` | Nested rectangles (squarified), `levels` the fields above the parts, outermost first | `label`, `value`, `levels` |
 | `sunburst` | The same hierarchy as rings around the total | `label`, `value`, `levels` |
+| `gauge` | One number on a half ring from `from` (0) to `to` (100); `bands` - one or two thresholds - colour the track green, amber, red; `target` marks a value; `unit` follows the number. `value` is the number itself, or the field of the first row - so a gauge needs no data | `value`, `from`, `to`, `bands`, `target`, `label`, `unit` |
+| `radar` | A spoke per measure of `value` (three or more), a polygon per row named by `label` (eight at most), rings from 0 to `to` - else round numbers past the highest value | `label`, `value`, `to` |
+| `waterfall` | Each row a step up (green) or down (red) floating from where the step before ended, a closing bar named by `total` ('Total'; `total=''` none), dashed lines carrying the level, the change above each bar | `label`, `value`, `total` |
+| `histogram` | The numbers of `value` counted in about `bins` (10) bins of one round width - a whole width for whole numbers; a value on an edge in the bin above | `value`, `bins` |
+| `boxplot` | A box per group of `label` - all values in one without it - from the first to the third quartile, the median across, whiskers to the furthest values within 1.5 box heights, the values past them as dots | `label`, `value` |
+| `calendar` | A square per day, a column per week (Monday first), the day's sum of `value` - else a count of its rows - in seven steps, an empty day in the grid colour; from the Monday before the first `date` to the last, or the whole `year` | `date`, `value`, `year` |
+| `gantt` | A row per task (`label`), a bar from `from` to `to` - dates, or plain numbers when all are; `color` colours by a field with a legend, `progress` (0-100) draws the part done full and the rest light, `mark` a dashed line at a date | `label`, `from`, `to`, `color`, `progress`, `mark` |
 | `sparkline` | See below | `label`, `value` |
 
 **As a pair** the content between the tags is the data, when neither `data` nor `sequence`
@@ -1151,7 +1165,7 @@ is one that nothing reads under the strict check. The handling options (`row`, `
 | `value` | The field that holds the number - by default the first numeric field; a comma list draws a series each (eight at most) |
 | `label` | The field for the category axis - by default the first other field, else the row number |
 | `title` | The accessible name; by default made from value and label |
-| `width`, `height` | The size, default 600 x 300 (pie, donut, sunburst 480 x 280; sankey, network, treemap 600 x 400); `.pad-chart { max-width: 100%; height: auto }` in the page's CSS makes it shrink with its container |
+| `width`, `height` | The size, default 600 x 300 (pie, donut, sunburst 480 x 280; sankey, network, treemap, radar 600 x 400; gauge 320 x 200; calendar 720 x 150); `.pad-chart { max-width: 100%; height: auto }` in the page's CSS makes it shrink with its container |
 
 **Accessibility:** `role="img"`, labelled by a `<title>` and a `<desc>` that lists the values;
 each bar, point, slice, cell, flow and node has its own `<title>`, the tooltip on hover - a
@@ -1178,6 +1192,125 @@ Visits {sparkline data='visits', value='count'}
 
 **Behavior:** `{chart 'sparkline', ...}` by another name, with the same options; 120 x 32 by
 default, scaled to its own minimum and maximum.
+
+---
+
+### qr
+A QR code as inline SVG - encoded on the server (`lib/qr.php`), no image library, no remote
+service, no JavaScript.
+
+```html
+{qr 'https://example.com/order/42'}
+{qr $url, size=200, level='H', title='Open the order on your phone'}
+{qr 'WIFI:T:WPA;S:Office;P:secret;;', color='#2e7d32'}
+```
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The text to encode |
+| `size` | Width and height in pixels, default 160 - the quiet zone of four modules included |
+| `level` | Error correction: `L` (7% of the symbol may be lost), `M` (15%, default), `Q` (25%), `H` (30%) |
+| `title` | The accessible name, by default the text itself |
+| `color`, `background` | The dark and the light colour, default `#000` on `#fff` - fixed, whatever the page's colour scheme, since a reader needs the contrast |
+
+**Behavior:** the text is encoded in one mode - numeric for digits only, alphanumeric for
+upper case, digits and ` $%*+-./:`, else the bytes of its UTF-8 - in the smallest of the 40
+versions that holds it at the level asked, under the mask with the lowest penalty. A text
+too long for version 40 (2,953 bytes at `L`) or an unknown level is an error under the strict
+check, and writes nothing.
+
+---
+
+### barcode
+A barcode as inline SVG - EAN-13, EAN-8, UPC-A or Code 128, encoded on the server
+(`lib/barcode.php`).
+
+```html
+{barcode '871234567890'}                          <!-- EAN-13, the check digit added -->
+{barcode $parcel, type='code128', height=70}
+{barcode '03600029145', type='upca'}
+{barcode 'PAD', scale=3, plain, color='#2e7d32'}
+```
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The number or text |
+| `type` | `ean13`, `ean8`, `upca` or `code128`; left out, twelve or thirteen digits are an EAN-13 and anything else Code 128 |
+| `height` | The height of the bars in pixels, default 60 |
+| `scale` | The width of one module (the thinnest bar) in pixels, default 2 |
+| `title` | The accessible name, by default the code |
+| `plain` | Bars only - no digits under them |
+| `color`, `background` | Default `#000` on `#fff` |
+
+**Behavior:** an EAN or UPC number is given with or without its check digit - left off, it
+is added; given, it is checked. EAN and UPC draw their guard bars longer and set the digits
+in their groups. Code 128 takes printable ASCII and packs a run of four digits or more two to
+a symbol (set C). A wrong check digit, a wrong length, a character Code 128 cannot hold or an
+unknown type is an error under the strict check, and writes nothing.
+
+---
+
+### calendar
+A month as a calendar, with its events (`lib/calendar.php`).
+
+```html
+{calendar}                                                   <!-- this month -->
+{calendar '2026-10', data='agenda', date='when', title='what', link='url'}
+{calendar data='agenda'}
+  <tr>{days}<td class="{$class}">{$day}{events}<b>{$what}</b>{/events}</td>{/days}</tr>
+{/calendar}
+```
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The month, `2026-10`; else the request value named by `query`, else this month (`padNow`, so `padNowFreeze` holds it) |
+| `data` | The events: a `{data}` store, a page array or a `_data` file, as for `{chart}` |
+| `date` | The field with an event's date - by default the first field that reads as one |
+| `title` | The field with an event's text - by default the first other text field |
+| `link` | A field with a link for the event - http(s), a page or an anchor; never `javascript:` or `data:` |
+| `query` | The request value the links to the months around set, default `month` |
+| `sunday` | Weeks start on Sunday instead of Monday |
+
+**Behavior:** as a single tag it answers a table - the month in its caption between links to
+the month before and after (keeping the other request values, as `{pager}` does), a column
+per weekday, a cell per day with its `<time>` and its events as a list; today has
+`aria-current="date"`. A small default look rides along under `:where()`, so the page's CSS
+wins. As a pair it hands over the weeks as rows - `$week` (ISO number) and `days` - and
+every day is a row too: `$date`, `$day`, `$weekday`, `$month`, `$other` (outside the
+month), `$today`, `$weekend`, `$count`, `$class` (`other today weekend events`, as they
+apply) and `events`, the data rows of that date. A store named `events` hides the day's
+field of that name - `{level:events}` reaches it then.
+
+---
+
+### highlight
+Source code coloured on the server (`lib/highlight.php`) - no JavaScript library.
+
+```html
+{highlight 'php', lines, mark='3, 5-7'}
+  <?php echo padArrSum ( $orders, 'total' ); ?>
+{/highlight}
+{highlight file='_data/products.json'}
+{echo $query | highlight('sql')}
+```
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The language: `pad`, `php`, `html` (`xml`, `svg`), `css`, `js` (`ts`, `json5`), `json`, `yaml`, `sql`, `bash` (`sh`), or `text` |
+| `file` | A file of the application to show instead of the content - never one outside it, under `_config/` or a dotfile; the language defaults to its extension |
+| `lines` | Number the lines |
+| `mark` | Lines to set apart: `'4'`, `'3, 5-7'` |
+
+**Behavior:** the content is taken as it stands, before the level walks it - the braces of
+PHP, CSS, JSON or PAD itself need no `{ignore}` - with the indent its lines share taken off.
+A `{# comment #}` is gone before any tag sees it, so a PAD sample keeps none. Every piece is
+HTML-escaped and wrapped in `<span class="hl-...">` - `com`, `str`, `num`, `lit`, `kwd`,
+`key`, `var`, `tag`, `att`, `opt`, `brc`, `htm`, `fn`, `pun`, `def` - inside
+`<pre class="pad-highlight" data-lang="..."><code>`. The default colours follow the page's
+`color-scheme` (light-dark()) under `:where()`, so the page's CSS wins. The `highlight`
+pipe does the same for a value, and like `markdown` it skips the sanitize chain of a field
+tag, since its output is escaped already. `padHighlightTokens ( $text, $lang )` gives PHP
+the coloured text alone.
 
 ---
 
@@ -1826,8 +1959,12 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `tidy` | Output | Format HTML |
 | `spaceless` | Output | Remove whitespace between HTML tags |
 | `markdown` | Output | Markdown written as HTML, raw HTML escaped |
-| `chart` | Output | Bar, line or sparkline chart as inline SVG |
+| `chart` | Output | A chart as inline SVG - 21 kinds, from bar and line to gauge, calendar and gantt |
 | `sparkline` | Output | Word-sized line chart as inline SVG |
+| `qr` | Output | QR code as inline SVG |
+| `barcode` | Output | EAN-13, EAN-8, UPC-A or Code 128 barcode as inline SVG |
+| `calendar` | Output | A month as a table with its events, or its weeks and days as rows |
+| `highlight` | Output | Source code coloured on the server - nine languages |
 | `ignore` | Output | Escape content |
 | `reactData` | Output | React mount point with provider data |
 | `cache` | Output | Keep a section rendered (fragment cache) |

@@ -31,7 +31,7 @@
   // properties with light and dark defaults - --pad-chart-series, --pad-chart-text,
   // --pad-chart-grid and --pad-chart-surface - which a page overrides on .pad-chart.
 
-  function padChartRows ( $source = '' ) {
+  function padChartRows ( $source = '', $what = 'chart' ) {
 
     global $pad, $padPrm, $padData, $padDataStore, $pqStore, $padCheckSyntax;
 
@@ -43,7 +43,7 @@
 
       if ( ! preg_match ( '/^[a-zA-Z][a-zA-Z0-9]*$/', (string) $sequence ) or ! pqSeq ( $sequence ) ) {
         if ( $padCheckSyntax )
-          padError ( "there is no sequence named '" . padMakeSafe ( $sequence, 30 ) . "' for the chart" );
+          padError ( "there is no sequence named '" . padMakeSafe ( $sequence, 30 ) . "' for the $what" );
         return [];
       }
 
@@ -77,7 +77,7 @@
         return padDataFileData ( $file );
 
       if ( $padCheckSyntax and ! padStrHidden ( $name ) )
-        padError ( "there is no data named '$name' for the chart" );
+        padError ( "there is no data named '$name' for the $what" );
 
       return [];
 
@@ -122,17 +122,27 @@
     if ( $kind == 'column' )
       $kind = 'bar';
 
+    global $padPrm;
+
     $sequence = padTagParm ( 'sequence' );
-    $rows     = padChartRows ( $source );
+
+    // A gauge of one number needs no rows: {chart 'gauge', value=72}.
+
+    if ( $kind == 'gauge' and ! isset ( $padPrm [$pad] ['data'] ) and ( $sequence === '' or $sequence === TRUE )
+         and trim ( (string) $source ) === '' and is_numeric ( padTagParm ( 'value' ) ) )
+      $rows = [];
+    else
+      $rows = padChartRows ( $source );
 
     $padData [$pad] = padDefaultData ();
 
     $wide  = ( $kind == 'sparkline' );
     $round = in_array ( $kind, [ 'pie', 'donut', 'sunburst' ] );
-    $tall  = in_array ( $kind, [ 'sankey', 'network', 'treemap' ] );
+    $tall  = in_array ( $kind, [ 'sankey', 'network', 'treemap', 'radar' ] );
+    $size  = [ 'gauge' => [ 320, 200 ], 'calendar' => [ 720, 150 ] ] [$kind] ?? NULL;
 
-    $width  = max ( 20, (int) padTagParm ( 'width',  $wide ? 120 : ( $round ? 480 : 600 ) ) );
-    $height = max ( 10, (int) padTagParm ( 'height', $wide ? 32  : ( $round ? 280 : ( $tall ? 400 : 300 ) ) ) );
+    $width  = max ( 20, (int) padTagParm ( 'width',  $size [0] ?? ( $wide ? 120 : ( $round ? 480 : 600 ) ) ) );
+    $height = max ( 10, (int) padTagParm ( 'height', $size [1] ?? ( $wide ? 32  : ( $round ? 280 : ( $tall ? 400 : 300 ) ) ) ) );
 
     if ( $sequence !== '' and $sequence !== TRUE )
       $seqName = ucfirst ( (string) $sequence ) . ', the first ' . count ( $rows ) . ' terms';
@@ -148,6 +158,13 @@
       case 'network':  return padChartNetwork  ( $rows, $width, $height );
       case 'treemap':
       case 'sunburst': return padChartHierarchy ( $kind, $rows, $width, $height );
+      case 'gauge':     return padChartGauge     ( $rows, $width, $height );
+      case 'radar':     return padChartRadar     ( $rows, $width, $height );
+      case 'waterfall': return padChartWaterfall ( $rows, $width, $height );
+      case 'histogram': return padChartHistogram ( $rows, $width, $height );
+      case 'boxplot':   return padChartBoxplot   ( $rows, $width, $height );
+      case 'calendar':  return padChartCalendar  ( $rows, $width, $height );
+      case 'gantt':     return padChartGantt     ( $rows, $width, $height );
 
     }
 
@@ -313,7 +330,7 @@
   // ramp --pad-chart-heat-0 to --pad-chart-heat-6 of the heatmap, stepped for each
   // surface: on a dark one the low end lies near the surface too.
 
-  function padChartStyle ( $more = FALSE ) {
+  function padChartStyle ( $more = FALSE, $kind = '' ) {
 
     $roles = [ 'series'  => [ '#2a78d6', '#3987e5' ],
                'text'    => [ '#52514e', '#c3c2b7' ],
@@ -349,7 +366,7 @@
          . '.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}'
          . '.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}'
          . '.pad-chart .pc-hit{fill:transparent}'
-         . ( $more ? padChartStyleMore () : '' )
+         . ( $more ? padChartStyleMore () . padChartStyleParts ( $kind ) : '' )
          . '</style>';
 
   }
@@ -390,6 +407,23 @@
 
   }
 
+  // The rules only the gauge, radar, box plot, calendar and gantt draw with - written into
+  // those charts alone, so the others carry no rule they do not use.
+
+  function padChartStyleParts ( $kind ) {
+
+    $rules = [ 'gauge'     => '.pad-chart .pc-track{fill:var(--pad-chart-grid)}.pad-chart .pc-band{opacity:.3}'
+                            . '.pad-chart .pc-target{stroke:var(--pad-chart-text);stroke-width:2.5}',
+               'radar'     => '.pad-chart .pc-area-fill{fill-opacity:.15}.pad-chart .pc-tick{font-size:9px;opacity:.75}',
+               'boxplot'   => '.pad-chart .pc-whisker{stroke:var(--pad-chart-text);stroke-width:1.5}.pad-chart .pc-box{fill-opacity:.35}'
+                            . '.pad-chart .pc-median{stroke:var(--pad-chart-text);stroke-width:2.5}',
+               'calendar'  => '.pad-chart .pc-none{fill:var(--pad-chart-grid)}',
+               'gantt'     => '.pad-chart .pc-todo{opacity:.3}.pad-chart .pc-target{stroke:var(--pad-chart-text);stroke-width:2.5}' ];
+
+    return $rules [$kind] ?? '';
+
+  }
+
   // The opening of one chart's SVG: the svg element named by $title, a <desc> of the
   // entries in $desc - the first 60 - and the style; $hash is the data the id is made
   // from, and the id comes back beside the text for the parts that refer to it. The ids are made from the chart itself, so two charts on a
@@ -419,7 +453,7 @@
          . " aria-labelledby=\"$id-title $id-desc\" width=\"$width\" height=\"$height\" viewBox=\"0 0 $width $height\">"
          . "<title id=\"$id-title\">" . padChartAttr ( $title ) . '</title>'
          . "<desc id=\"$id-desc\">" . padChartAttr ( implode ( '; ', $desc ) ) . '</desc>'
-         . padChartStyle ( $more );
+         . padChartStyle ( $more, $kind );
 
     return [ $id, $svg ];
 

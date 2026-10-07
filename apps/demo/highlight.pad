@@ -1,0 +1,58 @@
+<p>The <code>{ignore}{highlight}{/ignore}</code> tag colours source code on the server - PAD, PHP, HTML,
+CSS, JavaScript, JSON, YAML, SQL and Bash. No JavaScript library, and the braces inside need no
+<code>&#123;ignore&#125;</code>.</p>
+
+<h2>PHP, with line numbers and a marked line</h2>
+
+{highlight 'php', lines, mark='4'}
+  <?php
+
+    $orders = db ( "ARRAY * FROM orders WHERE status = 'open'" );
+    $total  = padArrSum ( $orders, 'amount' );
+
+    if ( ! $orders )
+      padRedirect ( 'empty' );
+
+  ?>
+{/highlight}
+
+<p><code>{ignore}{highlight 'php', lines, mark='4'}...{/highlight}{/ignore}</code></p>
+
+<h2>PAD itself</h2>
+
+{highlight 'pad'}
+  {orders sort='date', first=10}
+    <li class="{even@orders ? 'even' : 'odd'}">
+      {$number}: {$total | money}
+    </li>
+  @else@
+    <li>No orders yet</li>
+  {/orders}
+{/highlight}
+
+<h2>CSS and JavaScript</h2>
+
+{highlight 'css'}
+  .card { padding: 12px 16px; border-radius: 8px; color: #333; }
+  @media (prefers-color-scheme: dark) { .card { color: #eee; } }
+{/highlight}
+
+{highlight 'js'}
+  // Counts the clicks on every button with a data-count attribute
+  document.querySelectorAll('[data-count]').forEach(button => {
+    let clicks = 0;
+    button.addEventListener('click', () => button.textContent = `Clicked ${++clicks} times`);
+  });
+{/highlight}
+
+<h2>A file of this application</h2>
+
+{highlight file='qr.php'}
+
+<p><code>{ignore}{highlight file='qr.php'}{/ignore}</code> - the language follows the extension.</p>
+
+<h2>A value, through the pipe</h2>
+
+{$query | highlight('sql')}
+
+<p><code>{ignore}{$query | highlight('sql')}{/ignore}</code> - a query kept in a database or a log.</p>

@@ -16,7 +16,12 @@
   $flat      = [];
   $isExample = FALSE;
 
-  foreach ( $catalog as $family => list ( $label, $tagline, $examples ) ) {
+  foreach ( $catalog as $family => $entry ) {
+
+    list ( $label, $tagline ) = $entry;
+
+    $examples = end ( $entry );
+    $short    = is_string ( $entry [2] ) ? $entry [2] : $label;
 
     $rows = [];
 
@@ -25,7 +30,7 @@
       $flat [] = [ $page, $oneTitle, $label ];
     }
 
-    $families [] = [ 'family' => $family, 'label' => $label, 'tagline' => $tagline,
+    $families [] = [ 'family' => $family, 'label' => $label, 'short' => $short, 'tagline' => $tagline,
                      'active' => isset ( $examples [$padPage] ), 'examples' => $rows,
                      'count'  => count ( $rows ) ];
 
@@ -47,7 +52,7 @@
 
     $tagFile   = "$padPage.pad";
     $tagSource = trim ( file_get_contents ( APP . $tagFile ) );
-    $tagHtml   = chartsHighlight ( $tagSource, 'pad' );
+    $tagHtml   = padHighlightTokens ( $tagSource, 'pad' );
     $tagPair   = (bool) preg_match ( '#\{/(chart|sparkline)\b#', $tagSource );
     $tagOnly   = $tagPair || ! str_contains ( $tagSource, '<' );
 
@@ -71,7 +76,11 @@
     if ( $dataFile !== '' )
       $dataSource = trim ( file_get_contents ( APP . $dataFile ) );
 
-    $dataHtml  = chartsHighlight ( $dataSource, $dataLang );
+    // One source cell when there is no data apart from the tag: a pair, or a gauge of one
+    // number.
+
+    $oneCell   = $dataFile === '';
+    $dataHtml  = padHighlightTokens ( $dataSource, $dataLang );
     $dataLines = substr_count ( $dataSource, "\n" ) + 1;
 
     // The neighbours, for the pager under the cells.

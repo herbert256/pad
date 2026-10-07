@@ -1,0 +1,33 @@
+<p>The <code>{ignore}{qr}{/ignore}</code> tag encodes a text as a QR code and writes it as inline SVG -
+no image library, no remote service, no JavaScript. Type a text and scan the result with your phone.</p>
+
+{form 'qr', error='Please correct the errors below.'}
+  <p>{input 'text', label='Text or address:', value=$text, rules='required|max:1000'}</p>
+  <p><input type="submit" value="Make the QR code"></p>
+{/form}
+
+<div class="qr-big">{qr $text, size=220}</div>
+
+<p><code>{ignore}{qr $text, size=220}{/ignore}</code></p>
+
+<h2>Error correction</h2>
+
+<p>The higher the level, the more of the symbol may be damaged or covered - a logo in the
+middle - and the more modules it takes.</p>
+
+<table>
+  <tr>
+    {levels}<th>level='{$level}' - restores {$restores}</th>{/levels}
+  </tr>
+  <tr>
+    {levels}<td>{qr $text, level=$level, size=150}</td>{/levels}
+  </tr>
+</table>
+
+<h2>Not only addresses</h2>
+
+<p>A phone joins a Wi-Fi network from this one:</p>
+
+<p>{qr $wifi, size=150, title='Join the PAD Demo network', color='#2e7d32'}</p>
+
+<p><code>{ignore}{qr 'WIFI:T:WPA;S:PAD Demo;P:inversion-of-control;;', color='#2e7d32'}{/ignore}</code></p>
