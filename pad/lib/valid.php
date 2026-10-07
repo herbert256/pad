@@ -134,8 +134,36 @@
   // preg_replace_callback_array's patterns and of the yaml functions' callbacks. A call
   // that forwards - call_user_func, call_user_func_array, forward_static_call(_array) - is
   // held to the list for the call it makes, so call_user_func('array_map', 'strrev', ...)
-  // is strrev called by array_map; and a forwarding function is never itself a callback,
-  // since array_map('call_user_func', ['strrev'], ...) would call what its data names.
+  // is strrev called by array_map; and a function that calls what it is handed is never
+  // itself a callback (padPhpTakesCallables), since array_map('call_user_func', ['strrev'],
+  // ...) or array_map('array_map', ['strrev'], ...) would call what its data names. With
+  // FILTER_CALLBACK the filter functions call their 'options'.
+
+  // Whether a PHP function calls a callable it is handed - by its declared parameter types,
+  // or as one of those PHP declares without the type. Handed as the callback of another
+  // function, any of them forwards to whatever the arguments name: array_map given to
+  // array_map as its callback, with ['strrev'] for data, ran strrev though only array_map
+  // was listed - not call_user_func and its kin alone.
+
+  function padPhpTakesCallables ( $name ) {
+
+    $lower = strtolower ( (string) $name );
+
+    if ( ! function_exists ( $lower ) )
+      return FALSE;
+
+    if ( in_array ( $lower, [ 'ob_start', 'pcntl_signal', 'preg_replace_callback_array', 'filter_var',
+                              'filter_input', 'filter_var_array', 'filter_input_array' ], TRUE )
+         or preg_match ( '/^array_(u(diff|intersect)|(diff|intersect)_u)/', $lower ) )
+      return TRUE;
+
+    foreach ( ( new ReflectionFunction ( $lower ) ) -> getParameters () as $param )
+      if ( str_contains ( (string) $param -> getType (), 'callable' ) or $param -> getName () == 'callbacks' )
+        return TRUE;
+
+    return FALSE;
+
+  }
 
   function padPhpCallables ( $name, $args ) {
 
@@ -177,6 +205,19 @@
       if ( $param -> getName () == 'callbacks' and is_array ( $args [$at] ?? NULL ) )
         $calls = array_merge ( $calls, array_values ( $args [$at] ) );
 
+    // FILTER_CALLBACK makes the filter functions call the 'options' they are given:
+    // php:filter_var('ab', FILTER_CALLBACK, [ 'options' => 'strrev' ]) called strrev.
+
+    $filterAt = [ 'filter_var' => 1, 'filter_input' => 2 ] [$lower] ?? NULL;
+
+    if ( $filterAt !== NULL and (int) ( $args [$filterAt] ?? 0 ) === FILTER_CALLBACK )
+      $calls [] = is_array ( $args [$filterAt+1] ?? NULL ) ? ( $args [$filterAt+1] ['options'] ?? NULL ) : ( $args [$filterAt+1] ?? NULL );
+
+    if ( in_array ( $lower, [ 'filter_var_array', 'filter_input_array' ], TRUE ) and is_array ( $args [1] ?? NULL ) )
+      foreach ( $args [1] as $definition )
+        if ( is_array ( $definition ) and (int) ( $definition ['filter'] ?? 0 ) === FILTER_CALLBACK )
+          $calls [] = $definition ['options'] ?? NULL;
+
     foreach ( $calls as $call ) {
 
       if ( $call === NULL )
@@ -188,7 +229,9 @@
       if ( ! padPhpAllowed ( $call ) )
         return "the PHP function '" . padMakeSafe ( $call, 40 ) . "' is not allowed by \$padPhpFunctions";
 
-      if ( in_array ( strtolower ( $call ), $forward, TRUE ) )
+      // A forwarder's own callable is no callback but the call it makes, checked below.
+
+      if ( ! in_array ( $lower, $forward, TRUE ) and padPhpTakesCallables ( $call ) )
         return "the PHP function '" . strtolower ( $call ) . "' calls whatever it is handed - under \$padPhpFunctions it is handed to no other function";
 
     }
