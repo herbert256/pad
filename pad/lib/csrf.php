@@ -164,24 +164,34 @@
 
   // The tags of a page as a browser's tokenizer meets them: [ 'start' or 'end', name,
   // offset of the < , offset after the > , attributes ]. Comments and <! ... > / <? ... >
-  // are passed over, and so is the content of the elements whose text holds no tags.
+  // are passed over, and so is the content of the elements whose text holds no tags. A
+  // comment ends as the tokenizer ends it - <!--> and <!---> are empty ones, and --!> ends
+  // one as --> does - and inside an <svg> or a <math> a <style> or a <script> is an element
+  // of its own, which the drawing's end closes: read on to the next --> or </style>, the
+  // walk missed the button after them that posts the form to another site.
 
   const padCsrfRawText = [ 'script', 'style', 'textarea', 'title', 'xmp', 'iframe', 'noembed', 'noframes' ];
 
   function padCsrfWalk ( $html ) {
 
-    $tags = [];
-    $at   = 0;
+    $tags    = [];
+    $at      = 0;
+    $foreign = 0;
 
     while ( ( $at = strpos ( $html, '<', $at ) ) !== FALSE ) {
 
       $next = $html [$at + 1] ?? '';
 
       if ( $next == '!' and substr ( $html, $at, 4 ) == '<!--' ) {
+        if ( substr ( $html, $at + 4, 1 ) == '>' or substr ( $html, $at + 4, 2 ) == '->' ) {
+          $at = strpos ( $html, '>', $at + 4 ) + 1;
+          continue;
+        }
         $close = strpos ( $html, '-->', $at + 4 );
-        if ( $close === FALSE )
+        $bang  = strpos ( $html, '--!>', $at + 4 );
+        if ( $close === FALSE and $bang === FALSE )
           break;
-        $at = $close + 3;
+        $at = ( $bang !== FALSE and ( $close === FALSE or $bang < $close ) ) ? $bang + 4 : $close + 3;
         continue;
       }
 
@@ -199,6 +209,8 @@
           break;
         $tags [] = [ 'end', strtolower ( substr ( $html, $at + 2, strcspn ( $html, " \t\n\f\r/>", $at + 2 ) ) ), $at, $close + 1, [] ];
         $at = $close + 1;
+        if ( in_array ( end ( $tags ) [1], [ 'svg', 'math' ], TRUE ) and $foreign > 0 )
+          $foreign--;
         continue;
       }
 
@@ -216,7 +228,10 @@
       $tags[] = [ 'start', $name, $at, $tag [0], $tag [1] ];
       $at     = $tag [0];
 
-      if ( in_array ( $name, padCsrfRawText, TRUE ) ) {
+      if ( ( $name == 'svg' or $name == 'math' ) and $html [$tag [0] - 2] != '/' )
+        $foreign++;
+
+      if ( ! $foreign and in_array ( $name, padCsrfRawText, TRUE ) ) {
         if ( ! preg_match ( '/<\/' . $name . '[\s\/>]/i', $html, $close, PREG_OFFSET_CAPTURE, $at ) )
           break;
         $at = $close [0] [1];
