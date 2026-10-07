@@ -215,8 +215,9 @@ Marks a tag as required: it must produce something.
 ```
 
 **Behavior:**
-- A tag that answers NULL, FALSE, `''` or an empty array - after `notOk`, `null` and `else`
-  had their turn - is a PAD error: "Tag 'x' carries demand and produced nothing"
+- A tag that answers NULL, FALSE, `''` or an empty array, or whose rows the handling options
+  all took away - after `notOk`, `null` and `else` had their turn - is a PAD error: "Tag 'x'
+  carries demand and produced nothing"
 
 ---
 
@@ -263,9 +264,9 @@ Shows the named content when the tag answers an empty or false result.
 - Result is `FALSE`
 - Result is empty string `''`
 
-What the tag answered decides, before the handling options run: rows that `where=` or
-`first=` take away leave the level to its `@else@` branch instead
-([HANDLING.md](HANDLING.md#emptied-by-handling)).
+Rows that the handling options take away count too: when the tag found rows and `where=` or
+`first=` left none, `else=` stands in as for an empty answer, and without it the level shows its
+`@else@` branch ([HANDLING.md](HANDLING.md#emptied-by-handling)).
 
 **Example:**
 ```
@@ -276,9 +277,9 @@ What the tag answered decides, before the handling options run: rows that `where
 ### notOk
 
 Shows the named content when the tag produced nothing - NULL, FALSE, `''` or an empty array,
-taking precedence over `null` and `else` - or when a built-in tag's handler threw a PHP
-exception, as a `php:` call can. A PAD error, and an exception from an application's `_tags/`
-file, are still reported.
+or the handling options left no row - taking precedence over `null` and `else`, or when the
+tag's handler or PHP threw an exception (a `php:` call, an application's `_tags/` file). A PAD
+error is still reported.
 
 ```
 {tagName notOk="contentName"}
@@ -581,7 +582,7 @@ Enables direct output printing with formatting options.
 | `demand` | An error when the tag produced nothing |
 | `null` | Named content for NULL |
 | `else` | Named content for empty/false |
-| `notOk` | Named content for any miss, or a thrown `php:` call |
+| `notOk` | Named content for any miss, or when the tag's handler or PHP throws |
 | `error` | Alias for notOk |
 
 ### Formatting

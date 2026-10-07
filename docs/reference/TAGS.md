@@ -1859,7 +1859,7 @@ other word after a value is a pipe, `{echo 'abc' upper}` gives `ABC`.
 | `demand` | An error when the tag produced nothing |
 | `null` | Content (a `{content}` name, snippet or page) shown for NULL |
 | `else` | Content shown for an empty or false answer |
-| `notOk` / `error` | Content shown for any miss, or when a `php:` call throws |
+| `notOk` / `error` | Content shown for any miss - handling that left no row too - or when the tag's handler or PHP throws |
 
 ### Formatting Options
 
