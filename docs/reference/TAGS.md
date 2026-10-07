@@ -1094,27 +1094,56 @@ Draw a chart as inline SVG - no JavaScript, so it works in print and caches like
 {chart 'bar', data='sales', label='month', value='amount'}
 {chart 'line', data='visits', value='count', title='Visits this week'}
 {chart 'bar', sequence='fibonacci', rows=12}
+{chart 'bar', data='sales', label='month', value='online, shop', stacked}
+{chart 'pie', data='budget', label='post', value='amount'}
+{chart 'scatter', data='cars', x='weight', y='mpg', color='origin', trend}
+{chart 'heatmap', data='visits', x='hour', y='day', value='count'}
+{chart 'sankey', data='energy', source='from', target='to', value='amount'}
+{chart 'network', data='friends', source='from', target='to', layout='radial'}
+{chart 'treemap', data='spend', levels='dept', label='post', value='amount'}
 ```
 
-**Kinds:** `bar` (columns from a zero baseline), `line` (a line over a light wash, the last
-point marked), `sparkline` (see below).
+**Kinds:**
+
+| Kind | Draws | Its options |
+|------|-------|-------------|
+| `bar`, `column` | Columns from a zero baseline; several `value` fields side by side, or one on the other with `stacked` | `label`, `value`, `stacked` |
+| `hbar` | The same, lying down, the names on the left | `label`, `value`, `stacked` |
+| `line` | A line over a light wash, the last point marked; several `value` fields a line each, named at the end | `label`, `value` |
+| `pie`, `donut` | Parts of a whole - positive values only, past eight the smallest folded into a grey 'Other', a legend with value and share; a donut shows the total in its middle | `label`, `value` |
+| `scatter` | A dot per row on two numeric axes; `color` colours by a field (eight groups, the rest grey), `trend` adds the least-squares line | `x`, `y`, `label`, `color`, `trend` |
+| `bubble` | A scatter whose dots have the area of `size` | `x`, `y`, `size`, `label`, `color`, `trend` |
+| `heatmap` | A grid of the categories `x` (columns) and `y` (rows), each cell one of seven steps of one hue; rows with the same cell add up | `x`, `y`, `value` |
+| `sankey` | Flows from `source` to `target` as wide as `value`, in columns along the longest path; flows that go round in a circle are an error | `source`, `target`, `value` |
+| `network` | Nodes and the links between them; `layout='force'` (default, the same picture for the same data) or `'radial'`, `arrows` for the direction, `value` for thicker links | `source`, `target`, `value`, `layout`, `arrows` |
+| `treemap` | Nested rectangles (squarified), `levels` the fields above the parts, outermost first | `label`, `value`, `levels` |
+| `sunburst` | The same hierarchy as rings around the total | `label`, `value`, `levels` |
+| `sparkline` | See below | `label`, `value` |
+
+A field option left out takes the first field of the first row that fits - a numeric one for
+a number, another for a name. A kind reads only its own options, so an option of another kind
+is one that nothing reads under the strict check. The handling options (`row`, `group`, `sort`,
+...) act on every tag's data, so the chart's own options are named apart from them.
 
 | Option | Description |
 |--------|-------------|
 | `data` | The rows: a `{data}` store, a sequence store, the page's array or a `_data` file of that name, or a literal (`data='[3,1,4]'`) |
 | `sequence` | Plot the first `rows` terms (default 10) of a sequence type instead |
-| `value` | The field that holds the number - by default the first numeric field |
+| `value` | The field that holds the number - by default the first numeric field; a comma list draws a series each (eight at most) |
 | `label` | The field for the category axis - by default the first other field, else the row number |
 | `title` | The accessible name; by default made from value and label |
-| `width`, `height` | The size, default 600 x 300; `.pad-chart { max-width: 100%; height: auto }` in the page's CSS makes it shrink with its container |
+| `width`, `height` | The size, default 600 x 300 (pie, donut, sunburst 480 x 280; sankey, network, treemap 600 x 400); `.pad-chart { max-width: 100%; height: auto }` in the page's CSS makes it shrink with its container |
 
 **Accessibility:** `role="img"`, labelled by a `<title>` and a `<desc>` that lists the values;
-each bar and point of a bar or line chart has its own `<title>`, the tooltip on hover - a
+each bar, point, slice, cell, flow and node has its own `<title>`, the tooltip on hover - a
 sparkline has the chart's one `<title>` only. A row without a number is
 left out; a chart without points writes nothing.
 
 **Colours:** CSS custom properties `--pad-chart-series`, `--pad-chart-text`,
-`--pad-chart-grid` and `--pad-chart-surface`, overridden on `.pad-chart`. The defaults follow
+`--pad-chart-grid` and `--pad-chart-surface`, overridden on `.pad-chart`; the kinds with
+several colours add the categorical slots `--pad-chart-1` (the series colour) to
+`--pad-chart-8` in a fixed order, `--pad-chart-other` for what is folded past them, and the
+heatmap's ramp `--pad-chart-heat-0` to `--pad-chart-heat-6`. The defaults follow
 the page's `color-scheme` (light-dark()), so a page that declares `color-scheme: light dark`
 gets the dark steps in dark mode.
 
