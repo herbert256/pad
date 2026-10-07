@@ -12,7 +12,8 @@
   //
   // The sequence starts at a(1): a position below it, or between two, has no term and
   // answers FALSE, which drops the candidate - a(0) asked for a(a(-1)) down to the end of
-  // the stack.
+  // the stack. A whole position written 3.0 or '+3' is the integer 3, the key its term is kept
+  // under.
 
 function pqNewmanConway ($n) {
 
@@ -20,6 +21,8 @@ function pqNewmanConway ($n) {
 
   if ( ! pqBoolWhole ( $n ) or $n < 1 or $n > ( $GLOBALS ['padSeqMaxTries'] ?? 1000000 ) )
     return FALSE;
+
+  $n = (int) $n;
 
   for ( $i = count ( $terms ) + 1; $i <= $n; $i++ )
     $terms [$i] = $terms [ $terms [$i - 1] ] + $terms [ $i - $terms [$i - 1] ];
