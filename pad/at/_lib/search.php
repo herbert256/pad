@@ -117,9 +117,10 @@
 
   // The * picks among the keys a name could reach: an engine secret is no answer by any
   // route (padAtSearchGo), and an engine name - pad*, pq*, a superglobal - is the engine's
-  // state, never a row of the data, when the array walked is the symbol table. The random
-  // answer of a last * returned a secret's value unchecked - {$*@globals} answered the
-  // database password one time in a few hundred.
+  // state, never a row of the data, when the array walked is the symbol table, which holds
+  // $_SERVER. The random answer of a last * returned a secret's value unchecked -
+  // {$*@globals} answered the database password one time in a few hundred. An application
+  // array's own key is no engine name however it is spelled: $css ['padding'] stays a pick.
 
   function padAtSearchAny ( $key, $current, $names ) {
 
@@ -128,9 +129,11 @@
       if ( $key2 > $key)
         $rest [] = $name2;
 
+    $symbols = array_key_exists ( '_SERVER', $current );
+
     $keys = [];
     foreach ( array_keys ( $current ) as $one )
-      if ( ! padEngineName ( (string) $one ) and ! padEngineSecret ( $one ) )
+      if ( ! padEngineSecret ( $one ) and ! ( $symbols and padEngineName ( (string) $one ) ) )
         $keys [] = $one;
 
     if ( ! count ($keys) )
