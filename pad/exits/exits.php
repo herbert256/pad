@@ -37,10 +37,12 @@
 
   // With $padCsrf on, each form of the page that posts back here carries the session's
   // token without the template having to ask (lib/csrf.php) - the forms an application
-  // already had are protected by the one setting.
+  // already had are protected by the one setting. A token that went into the page with
+  // $padCsrf off - a {form} writes one - is taken out of a form whose button sends it to
+  // another site, or by GET.
 
-  if ( $padCsrf and $padOutputType == 'web' )
-    $padOutput = padCsrfForms ( $padOutput );
+  if ( ( $padCsrf or isset ( $padCsrfIssued ) ) and $padOutputType == 'web' )
+    $padOutput = padCsrfForms ( $padOutput, $padCsrf );
 
   // A live request - a {live} region posting an event - is answered with that region's
   // content alone, without tidy, which would make a page of it (lib/live.php).

@@ -88,33 +88,74 @@
   // one regular expression over every form's content ran out of PCRE's backtrack limit on a
   // form of a megabyte and ended the page.
 
-  function padCsrfForms ( $html ) {
+  //
+  // A button belongs to the form its form= names, wherever it stands, and sends that form
+  // where its formaction= says, by the method its formmethod= says; a relative action is
+  // resolved against the page's <base href>. A form one of whose buttons posts to another
+  // site, or sends it by GET, gets no token - and loses the one a {form} wrote: exits.php
+  // runs this pass, adding nothing, also with $padCsrf off when a token went into the page.
+
+  function padCsrfForms ( $html, $add = TRUE ) {
 
     if ( stripos ( $html, '<form' ) === FALSE )
       return $html;
 
-    $forms = [];
-    $open  = NULL;
+    $forms    = [];
+    $ids      = [];
+    $controls = [];
+    $base     = NULL;
+    $open     = NULL;
 
     foreach ( padCsrfWalk ( $html ) as [ $kind, $name, $at, $end, $attrs ] )
       if ( $kind == 'start' and $name == 'form' and $open === NULL ) {
-        $forms [] = [ 'start' => $end, 'attrs' => $attrs, 'controls' => [], 'token' => FALSE ];
+        $forms [] = [ 'start' => $end, 'end' => strlen ( $html ), 'attrs' => $attrs, 'controls' => [], 'token' => FALSE ];
         $open     = array_key_last ( $forms );
-      } elseif ( $kind == 'end' and $name == 'form' )
+        if ( array_key_exists ( 'id', $attrs ) )
+          $ids [ padCsrfDecode ( $attrs ['id'] ) ] ??= $open;
+      } elseif ( $kind == 'end' and $name == 'form' and $open !== NULL ) {
+        $forms [$open] ['end'] = $at;
         $open = NULL;
-      elseif ( $kind == 'start' and ( $name == 'button' or $name == 'input' ) and $open !== NULL ) {
-        $forms [$open] ['controls'] [] = $attrs;
-        if ( ( $attrs ['name'] ?? '' ) === padCsrfName )
-          $forms [$open] ['token'] = TRUE;
-      }
+      } elseif ( $kind == 'start' and ( $name == 'button' or $name == 'input' ) )
+        $controls [] = [ $attrs, $open ];
+      elseif ( $kind == 'start' and $name == 'base' and $base === NULL and array_key_exists ( 'href', $attrs ) )
+        $base = $attrs ['href'];
+
+    foreach ( $controls as [ $attrs, $inside ] ) {
+
+      $owner = array_key_exists ( 'form', $attrs ) ? ( $ids [ padCsrfDecode ( $attrs ['form'] ) ] ?? NULL ) : $inside;
+
+      if ( $owner === NULL )
+        continue;
+
+      $forms [$owner] ['controls'] [] = $attrs;
+
+      if ( ( $attrs ['name'] ?? '' ) === padCsrfName )
+        $forms [$owner] ['token'] = TRUE;
+
+    }
 
     $out  = '';
     $done = 0;
 
     foreach ( $forms as $form )
-      if ( ! $form ['token'] and padCsrfFormAttrs ( $form ['attrs'] ) and padCsrfControlsAttrs ( $form ['controls'] ) ) {
-        $out .= substr ( $html, $done, $form ['start'] - $done ) . padCsrfField ();
-        $done = $form ['start'];
+
+      if ( padCsrfFormAttrs ( $form ['attrs'], $base ) and padCsrfControlsAttrs ( $form ['controls'], $base ) ) {
+
+        if ( $add and ! $form ['token'] ) {
+          $out .= substr ( $html, $done, $form ['start'] - $done ) . padCsrfField ();
+          $done = $form ['start'];
+        }
+
+      } elseif ( $form ['token'] and isset ( $GLOBALS ['padCsrfIssued'] ) ) {
+
+        $field = '<input type="hidden" name="' . padCsrfName . '" value="' . $GLOBALS ['padCsrfIssued'] . '">';
+        $inner = substr ( $html, $form ['start'], $form ['end'] - $form ['start'] );
+
+        if ( str_contains ( $inner, $field ) ) {
+          $out .= substr ( $html, $done, $form ['start'] - $done ) . str_replace ( $field, '', $inner );
+          $done = $form ['end'];
+        }
+
       }
 
     return $out . substr ( $html, $done );
@@ -262,21 +303,22 @@
   // The method is post exactly, any case - method=" post" is a GET form to a browser, which
   // put the token into its URL - and the action, when there is one, is on this site.
 
-  function padCsrfFormAttrs ( $attrs ) {
+  function padCsrfFormAttrs ( $attrs, $base = NULL ) {
 
     if ( strtolower ( padCsrfDecode ( $attrs ['method'] ?? '' ) ) !== 'post' )
       return FALSE;
 
-    return ! array_key_exists ( 'action', $attrs ) or padCsrfActionHere ( $attrs ['action'] );
+    return ! array_key_exists ( 'action', $attrs ) or padCsrfActionHere ( $attrs ['action'], $base );
 
   }
 
-  // A submit button's formaction= sends the form where it says: a form holding one that
-  // points to another site handed the token along with every click on that button.
+  // A submit button's formaction= sends the form where it says, its formmethod= by the
+  // method it says: a form holding one that points to another site handed the token along
+  // with every click on that button, and one that sends it by GET put it into the URL.
 
   function padCsrfControlsHere ( $html ) {
 
-    if ( stripos ( $html, 'formaction' ) === FALSE )
+    if ( stripos ( $html, 'formaction' ) === FALSE and stripos ( $html, 'formmethod' ) === FALSE )
       return TRUE;
 
     $controls = [];
@@ -289,19 +331,21 @@
 
   }
 
-  function padCsrfControlsAttrs ( $controls ) {
+  function padCsrfControlsAttrs ( $controls, $base = NULL ) {
 
     foreach ( $controls as $attrs )
-      if ( array_key_exists ( 'formaction', $attrs ) and ! padCsrfActionHere ( $attrs ['formaction'] ) )
+      if ( ( array_key_exists ( 'formaction', $attrs ) and ! padCsrfActionHere ( $attrs ['formaction'], $base ) )
+           or strtolower ( padCsrfDecode ( $attrs ['formmethod'] ?? '' ) ) === 'get' )
         return FALSE;
 
     return TRUE;
 
   }
 
-  // An action - or a formaction - on this site.
+  // An action - or a formaction - on this site; a relative one under a <base href> is where
+  // the base is, and an empty one the page's own address.
 
-  function padCsrfActionHere ( $action ) {
+  function padCsrfActionHere ( $action, $base = NULL ) {
 
     $action = padCsrfDecode ( $action );
 
@@ -313,6 +357,9 @@
     // were still read as paths here.
 
     $action = str_replace ( [ "\t", "\n", "\r", '\\' ], [ '', '', '', '/' ], trim ( $action, "\x00..\x20" ) );
+
+    if ( $action !== '' and $base !== NULL and ! preg_match ( '/^[a-z][a-z0-9+.-]*:/i', $action ) and ! str_starts_with ( $action, '//' ) )
+      return padCsrfActionHere ( $base );
 
     if ( ! preg_match ( '#^([a-z][a-z0-9+.-]*:)?//#i', $action ) )
       return ! preg_match ( '/^[a-z][a-z0-9+.-]*:/i', $action );
