@@ -96,7 +96,7 @@
   // them - 100000000000000000000 - and ended the list on 9223372036854775807 or 2^63, so
   // {sequence '9223372036854775808;1'} showed its first value alone.
 
-  if ( ( ! $pqGiven or count ( $pqPlays ) ) and is_float ($pq) and ( $pq < PHP_INT_MIN or $pq >= PHP_INT_MAX ) ) return FALSE;
+  if ( ( ! $pqGiven or $pq !== $pqOrgSet ) and is_float ($pq) and ( $pq < PHP_INT_MIN or $pq >= PHP_INT_MAX ) ) return FALSE;
   if ( is_float ($pq)   and is_nan ( $pq )   ) return TRUE;
   if ( $pqMin !== PHP_INT_MIN and is_numeric ($pq) and $pq < $pqMin ) return TRUE;
   if ( $pqMax !== PHP_INT_MAX and is_numeric ($pq) and $pq > $pqMax ) return TRUE;

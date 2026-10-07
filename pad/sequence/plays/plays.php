@@ -46,7 +46,28 @@
       break;
     }
 
-    $pq     = include PQ . "plays/play/$pqBuild.php";
+    // A value past the integer range - a listed 1e20 - or one that is no number at all is no
+    // term of any type, so the play answers FALSE for it without being run: handed over, the
+    // integer predicates of and, or and xor and the generate-and-search of round, ceil and
+    // the like ended the request on "The float 1.0E+20 is not representable as an int".
+    //
+    // And a make play's own answer is tested as a term is, before the next play is handed it:
+    // a NAN - the square root of a negative value - is no term, and an overflow ends the run,
+    // where a later flag turned 2^70 or the NAN into a 0 that counted as a term.
+
+    if ( is_float ( $pqLoop ) and ( is_nan ( $pqLoop ) or $pqLoop < PHP_INT_MIN or $pqLoop >= PHP_INT_MAX ) )
+      $pq = FALSE;
+    else
+      $pq = include PQ . "plays/play/$pqBuild.php";
+
+    if ( $pqPlay == 'make' and is_float ( $pq ) and is_nan ( $pq ) )
+      $pq = FALSE;
+
+    if ( $pqPlay == 'make' and is_float ( $pq ) and ( $pq < PHP_INT_MIN or $pq >= PHP_INT_MAX ) ) {
+      $pq         = FALSE;
+      $pqPlaysOut = TRUE;
+      break;
+    }
 
     if     ( $pqPlay == 'make'   and $pq === TRUE   ) $pq = $pqLoop;
 
