@@ -9,6 +9,20 @@
 
   if ( $padPipeBefore [$pad] ) {
 
+    // The result becomes the content the level scans, so a value the pipe writes into it -
+    // {tag | @ . $v} with $v a tag or a PHP call - would run as template code, where the
+    // closing pipe's result (level/pipes/after.php) and a tag's {echo} answer are kept as
+    // text. The content's own braces travel through the pipe as markers (padPipeMask), every
+    // brace left in the result is then one the pipe added and becomes its &open;/&close;
+    // stand-in, which prints as itself, and the markers turn back into the author's braces:
+    // {items | trim}<li>{$name}</li>{/items} still renders the rows. A base that is the
+    // tag's answer alone is protected whole below, so it needs no mask.
+
+    $padPipeMasked = ( $padProtectValues and ! $padBaseValue [$pad] and is_string ( $padBase [$pad] ) );
+
+    if ( $padPipeMasked )
+      $padBase [$pad] = padPipeMask ( $padBase [$pad] );
+
     $padBase [$pad] = padEval ( $padPipeBefore [$pad], $padBase [$pad], TRUE );
 
     // The result is the content the level scans and the @start@/@end@ check searches, so it
@@ -19,16 +33,8 @@
     if ( ! is_string ( $padBase [$pad] ) )
       $padBase [$pad] = is_scalar ( $padBase [$pad] ) ? (string) $padBase [$pad] : '';
 
-    // The result becomes the content the level scans, so a value the pipe wrote into it -
-    // {tag | @ . $v} with $v a tag or a PHP call - ran as template code, where the closing
-    // pipe's result (level/pipes/after.php) and a tag's {echo} answer are kept as text. Its
-    // braces travel as the &open;/&close; stand-ins, which print as themselves; the content
-    // the author wrote is turned to text the same way, as an opening pipe is documented to
-    // treat what it is handed - "a field written inside would be transformed and then not
-    // resolve".
-
-    if ( $padProtectValues and is_string ( $padBase [$pad] ) )
-      $padBase [$pad] = str_replace ( [ '{', '}' ], [ '&open;', '&close;' ], $padBase [$pad] );
+    if ( $padPipeMasked )
+      $padBase [$pad] = padPipeUnmask ( str_replace ( [ '{', '}' ], [ '&open;', '&close;' ], $padBase [$pad] ) );
 
   }
 

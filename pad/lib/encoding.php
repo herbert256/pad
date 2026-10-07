@@ -71,11 +71,33 @@
                          $string ?? '' );
   }
 
+  // A brace the opening pipe masked (level/pipes/before.php, padPipeMask) is a brace of the
+  // content all the same, so {json 'products' | ignore} still turns the content's braces to
+  // text.
+
   function padEscape ( $string ) {
 
-    return str_replace ( [ '{',     '}',      '|',      '=',    ',',     '@'    ],
-                         [ '&open;','&close;','&pipe;', '&eq;','&comma;','&at;' ],
+    return str_replace ( [ '{',     '}',      '|',      '=',    ',',     '@',    "\u{E0F4}", "\u{E0F5}" ],
+                         [ '&open;','&close;','&pipe;', '&eq;','&comma;','&at;', '&open;',   '&close;'   ],
                          $string ?? '' );
+  }
+
+  // The content's own braces as private-use markers while an opening pipe runs over it, and
+  // back: what the pipe adds can then be told from what the author wrote. A marker already in
+  // the content - it can come in with a value - is made U+FFFD first, so none turns into a
+  // live brace on the way back.
+
+  function padPipeMask ( $string ) {
+
+    return str_replace ( [ "\u{E0F4}", "\u{E0F5}", '{',         '}'         ],
+                         [ "\u{FFFD}", "\u{FFFD}", "\u{E0F4}", "\u{E0F5}" ], $string );
+
+  }
+
+  function padPipeUnmask ( $string ) {
+
+    return str_replace ( [ "\u{E0F4}", "\u{E0F5}" ], [ '{', '}' ], $string );
+
   }
 
   // The stand-ins come from the Unicode private use area, U+E000 plus the character's own
