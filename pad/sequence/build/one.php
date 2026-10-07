@@ -16,7 +16,11 @@
 
   $pqTries++;
 
-  if ( $pqTries > $pqTry ) {
+  // Out of candidates, or out of time: $padSeqMaxSeconds (config/sequence.php) ends a run
+  // still looking as the candidate cap does - a costly test reached a million candidates in
+  // minutes, past PHP's time limit, and the page died with a 500 instead.
+
+  if ( $pqTries > $pqTry or hrtime ( TRUE ) > $pqTriesUntil ) {
     $pqTriesOut = TRUE;
     return FALSE;
   }

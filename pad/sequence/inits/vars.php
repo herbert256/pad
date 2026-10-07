@@ -18,6 +18,7 @@
 
   $pqTries      = 0;
   $pqTriesOut   = FALSE;
+  $pqTriesUntil = hrtime ( TRUE ) + (int) ( ( $GLOBALS ['padSeqMaxSeconds'] ?? 5 ) * 1e9 );
   $pqPosition   = FALSE;
   $pqLoop       = 0;
 
