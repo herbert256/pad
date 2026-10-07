@@ -151,7 +151,21 @@
       foreach ( $route [1] as $name )
         $what .= " $name=" . serialize ( $GLOBALS [$name] ?? '' );
 
-    return md5 ( "$padApp $what " . serialize ( $vary ) );
+    return md5 ( "$padApp $what " . serialize ( padFragmentVary ( $vary ) ) );
+
+  }
+
+  // A vary= value as the key holds it: a single value as its text, so a section rendered
+  // with vary=$userId - the integer 42 - is forgotten by padFragmentForget ( 'basket', '42' ),
+  // the same user as the request or a row spells it; serialized with its type the two were
+  // different keys, and the forget missed. A list stays a list.
+
+  function padFragmentVary ( $vary ) {
+
+    if ( $vary === NULL )
+      return '';
+
+    return is_scalar ( $vary ) ? (string) $vary : $vary;
 
   }
 
@@ -277,7 +291,7 @@
 
     if ( $name !== NULL ) {
 
-      $key = md5 ( "$padApp name $name " . serialize ( $vary ) );
+      $key = md5 ( "$padApp name $name " . serialize ( padFragmentVary ( $vary ) ) );
 
       if ( $padFragmentCache == 'apcu' and function_exists ( 'apcu_delete' ) )
         return apcu_delete ( "padFragment:$key" );
