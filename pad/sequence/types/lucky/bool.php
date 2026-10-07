@@ -45,15 +45,16 @@
       return FALSE;
 
     // A number past twice $padSeqMaxTries is not followed: the steps it needs outgrow any
-    // sieve a request can run, and near PHP_INT_MAX n + 1 was a float intdiv() refused. No
-    // run walks that far from a start below the ceiling, so it is a listed or stored value,
-    // and the strict check names it rather than answer "not lucky" for a lucky 2000029.
+    // sieve a request can run, and near PHP_INT_MAX n + 1 was a float intdiv() refused. A
+    // listed or stored value there is named by the strict check rather than answered "not
+    // lucky" for a lucky 2000029; a run that walks there - from=1999990 - has no more lucky
+    // numbers to make and ends quietly, as a run past the integer range does.
 
     $pqLuckyMax = 2 * ( $GLOBALS ['padSeqMaxTries'] ?? 1000000 );
 
     if ( $n > $pqLuckyMax ) {
 
-      if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
+      if ( ( $GLOBALS ['padCheckSyntax'] ?? FALSE ) and ( $GLOBALS ['pqPlayGiven'] ?? FALSE ) )
         padError ( "whether $n is lucky is not known: lucky numbers are followed up to $pqLuckyMax" );
 
       return FALSE;

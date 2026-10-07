@@ -57,6 +57,12 @@
 
     $pqPlayValue = is_numeric ( $pqLoop ) ? $pqLoop + 0 : $pqLoop;
 
+    // Whether the play is handed a value as it was given - listed or pulled, and not yet
+    // changed by a make play - rather than one a run made: a type that cannot answer for every
+    // number, lucky past its sieve, names a given one, and a made one ends quietly.
+
+    $GLOBALS ['pqPlayGiven'] = ( $pqGiven and $pqLoop === $pqOrgSet );
+
     if ( is_float ( $pqPlayValue ) and ( is_nan ( $pqPlayValue ) or $pqPlayValue < PHP_INT_MIN or $pqPlayValue >= PHP_INT_MAX ) )
       $pq = FALSE;
     else
@@ -91,6 +97,8 @@
       break;
 
   }
+
+  $GLOBALS ['pqPlayGiven'] = FALSE;
 
   $pqSeq   = $pqSeqSave;
   $pqBuild = $pqBuildSave;
