@@ -9,7 +9,7 @@
   //                 fragment or an included page it emits the body only
   // padTidyHold     holds the content of a <textarea>, a <template> or a custom element
   //                 out of that pass
-  // padTidyClose    where such an element closes, a template or a custom one by its depth
+  // padTidyPairs    every open tag of one name paired with its close, in one pass
   // padTidySmall    an aggressive minifier - drops comments and empty elements, then
   //                 strips newlines, runs of spaces and whitespace between tags
   //
@@ -104,16 +104,26 @@
 
   function padTidyHold ( $data, &$held, $mark ) {
 
-    $out = '';
-    $at  = 0;
+    $out   = '';
+    $at    = 0;
+    $pairs = [];
 
     while ( preg_match ( '#<(textarea|template|[a-z][a-z0-9]*-[a-z0-9._-]*)(?=[\s/>])[^>]*>#i', $data, $open, PREG_OFFSET_CAPTURE, $at ) ) {
 
-      $from  = $open [0] [1] + strlen ( $open [0] [0] );
-      $close = padTidyClose ( $data, strtolower ( $open [1] [0] ), $from );
+      $name = strtolower ( $open [1] [0] );
+      $from = $open [0] [1] + strlen ( $open [0] [0] );
 
       $out .= substr ( $data, $at, $from - $at );
       $at   = $from;
+
+      // A tag written self-closing - <x-icon name="a"/> - holds nothing.
+
+      if ( str_ends_with ( $open [0] [0], '/>' ) )
+        continue;
+
+      $pairs [$name] ??= padTidyPairs ( $data, $name );
+
+      $close = $pairs [$name] [$from] ?? NULL;
 
       if ( $close === NULL )
         continue;
@@ -128,27 +138,39 @@
 
   }
 
-  // Where the element opened before $from closes: the next close of a <textarea>, the close
-  // at depth 0 of anything else, or NULL.
+  // Every open tag of one name paired with its close, in one pass over the page: the end of
+  // the open tag => the start of its close. A <textarea> closes at the next </textarea>;
+  // anything else at the close of its own depth, a tag written self-closing counting for
+  // none. An open tag left out never closes. Each open tag searched the rest of the page
+  // for its own close before, so a page of self-closing or never-closed custom elements -
+  // <x-icon name="a"/> in every row - took a time growing with its square: 8000 of them,
+  // seconds.
 
-  function padTidyClose ( $data, $name, $from ) {
+  function padTidyPairs ( $data, $name ) {
 
-    $depth = 1;
-    $tags  = '#<(/?)' . preg_quote ( $name, '#' ) . '(?=[\s/>])[^>]*>#i';
+    $pairs = [];
+    $stack = [];
 
-    while ( preg_match ( $tags, $data, $tag, PREG_OFFSET_CAPTURE, $from ) ) {
+    preg_match_all ( '#<(/?)' . preg_quote ( $name, '#' ) . '(?=[\s/>])[^>]*>#i', $data, $tags, PREG_SET_ORDER | PREG_OFFSET_CAPTURE );
+
+    foreach ( $tags as $tag ) {
 
       if ( $tag [1] [0] == '/' ) {
-        if ( --$depth == 0 )
-          return $tag [0] [1];
-      } elseif ( $name != 'textarea' and ! str_ends_with ( $tag [0] [0], '/>' ) )
-        $depth++;
 
-      $from = $tag [0] [1] + strlen ( $tag [0] [0] );
+        if ( $name == 'textarea' ) {
+          foreach ( $stack as $one )
+            $pairs [$one] = $tag [0] [1];
+          $stack = [];
+        } elseif ( $stack )
+          $pairs [ array_pop ( $stack ) ] = $tag [0] [1];
+
+      } elseif ( ! str_ends_with ( $tag [0] [0], '/>' ) )
+
+        $stack [] = $tag [0] [1] + strlen ( $tag [0] [0] );
 
     }
 
-    return NULL;
+    return $pairs;
 
   }
 
