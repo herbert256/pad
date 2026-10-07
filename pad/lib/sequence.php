@@ -118,11 +118,13 @@
   }
 
   // A type is a directory of PT named by a plain name: with ../ in it the name reached any
-  // directory on disk, and the type's files were included from there.
+  // directory on disk, and the type's files were included from there. A letter, then letters
+  // and digits, as every type is named: '.' passed padValidName, and PT . '.' is the types
+  // directory itself, so keep='.' ended the request on the missing build/types/unknown.php.
 
   function pqSeq ( $seq  ) {
 
-    if ( $seq and padValidName ( $seq ) and file_exists ( PT . "$seq" ) )
+    if ( is_string ( $seq ) and preg_match ( '/^[A-Za-z][A-Za-z0-9]*$/', $seq ) and is_dir ( PT . $seq ) )
       return TRUE;
     else
       return FALSE;
