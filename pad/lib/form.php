@@ -131,15 +131,22 @@
       $number = (bool) array_intersect ( array_map ( 'strtolower', $list ), [ 'numeric', 'integer' ] );
       $empty  = ( $value === '' or $value === NULL or $value === [] );
 
-      // A list belongs to a field named for one - tags[] - and a field of one value posted
-      // as a list breaks every rule it has: name[]=x passed required and color[]=red passed
-      // in:, and the page went on with a list where its form has one text.
-
-      $single = ( is_array ( $value ) and ! str_ends_with ( (string) $field, '[]' ) );
-
       foreach ( $list as $rule )
         if ( ! in_array ( strtolower ( explode ( ':', $rule, 2 ) [0] ), padValidateRules, TRUE ) )
           padValidateUnknown ( $rule );
+
+      // A list belongs to a field named for one - tags[] - and a field of one value posted
+      // as a list is refused whatever its rules: name[]=x passed required and color[]=red
+      // passed in:, and the page went on with a list where its form has one text. The key
+      // decides, since padValidate in a page's PHP has nothing else to tell a multiple
+      // choice from a single field by; the message says what is wrong, where the field's
+      // first rule answered - two good choices under 'tags' read "Tags is required".
+
+      if ( $list and is_array ( $value ) and ! str_ends_with ( (string) $field, '[]' ) ) {
+        $padFormErrorParts [$field] = padValidateMessage ( $field, 'single', '', $number, $messages );
+        $errors [$field]            = padValidateText ( $padFormErrorParts [$field], padValidateName ( $field ) );
+        continue;
+      }
 
       foreach ( $list as $rule ) {
 
@@ -150,7 +157,7 @@
         if ( $empty and $name != 'required' and $name != 'accepted' )
           continue;
 
-        if ( ! $single and padValidateRule ( $name, $arg, $value, $data, $number ) )
+        if ( padValidateRule ( $name, $arg, $value, $data, $number ) )
           continue;
 
         $padFormErrorParts [$field] = padValidateMessage ( $field, $name, $arg, $number, $messages );
@@ -245,6 +252,7 @@
       'in'       => ':label must be one of :n',
       'same'     => ':label must be the same as :n',
       'date'     => ':label must be a date',
+      'single'   => ':label must be a single value',
       default    => ':label is not valid'
     };
 
@@ -263,12 +271,17 @@
 
   }
 
-  // A field name made readable - first_name is First name - and a label made fit to stand
-  // in a sentence: 'Your name: *' is Your name.
+  // A field name made readable - first_name is First name, tags[] is Tags - and a label made
+  // fit to stand in a sentence: 'Your name: *' is Your name.
 
   function padValidateName ( $field ) {
 
-    return ucfirst ( trim ( str_replace ( [ '_', '-' ], ' ', (string) $field ) ) );
+    $field = (string) $field;
+
+    if ( str_ends_with ( $field, '[]' ) )
+      $field = substr ( $field, 0, -2 );
+
+    return ucfirst ( trim ( str_replace ( [ '_', '-' ], ' ', $field ) ) );
 
   }
 

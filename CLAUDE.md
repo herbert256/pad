@@ -565,7 +565,8 @@ The fields refill from the post when their form came back and show the message
 `if ( padPosted ( 'contact' ) ) $errors = padValidate ( [ 'email' => 'required|email' ] );`
 Rules: required, email, url, numeric, integer, min:n, max:n, in:a,b, regex:/x/, same:field,
 accepted, date. A list passes `required` and `in:` (every item) only, and only on a field
-named for one (`tags[]`); on a field of one value it breaks every rule.
+named for one (`tags[]`, in the rules too); on a field of one value it is refused - "must be a
+single value".
 
 The rules can stand on the fields instead - checked before any PHP runs:
 ```
