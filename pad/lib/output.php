@@ -60,6 +60,12 @@
 
     flush ();
 
+    // Once the body is out nothing more may be written: PHP's own report of an error -
+    // under the php error action an application's exception or warning in a shutdown
+    // function - landed behind the body, past the Content-Length just sent (padAnswerSent).
+
+    ini_set ( 'display_errors', '0' );
+
     ignore_user_abort (true);
 
     if ( function_exists ( 'fastcgi_finish_request') )
