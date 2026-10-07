@@ -853,11 +853,13 @@
 
   // padArrRefused tells PHP refusing the type of a key on an ArrayAccess object - an
   // SplFixedArray handed a text key - from a TypeError of the object's own code: PHP's is
-  // raised where this file asked for the key, the other in the application's file.
+  // raised where this file asked for the key, the other in the application's file. A
+  // subclass that hands the key on to parent:: gets PHP's refusal in its own file, so the
+  // refusal is also told by PHP's words for it: "Cannot access offset of type ...".
 
   function padArrRefused ( $error ) {
 
-    return $error -> getFile () === __FILE__;
+    return $error -> getFile () === __FILE__ or str_starts_with ( $error -> getMessage (), 'Cannot access offset of type ' );
 
   }
 
