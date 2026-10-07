@@ -31,6 +31,7 @@
   // padMailPhp       a mail's PHP, run where the page's variables are
   // padMailText      the text part made from the HTML part
   // padMailAddress   one header's addresses checked and written: a list, Name <addr>
+  // padMailSplit     an address list split on the commas between its addresses
   // padMailHeader    a header value refused when it could start a header of its own
   // padMailMessage   the MIME message: multipart/alternative, quoted-printable UTF-8
   // padMailKeep      the file transport's outbox trimmed to its newest messages
@@ -264,21 +265,19 @@
 
     $out = [];
 
-    // The commas between the addresses, not one inside a quoted name: "Doe, John" <john@...>
-    // is one address, and its half "Doe was no address, the mail stopping on that error.
-
-    preg_match_all ( '/(?:"(?:[^"\\\\]|\\\\.)*"|[^,"])+/', $list, $parts );
-
-    foreach ( $parts [0] as $one ) {
+    foreach ( padMailSplit ( $list ) as $one ) {
 
       $one = trim ( $one );
 
       if ( $one === '' )
         continue;
 
-      if ( preg_match ( '/^(.*?)\s*<([^<>]+)>$/', $one, $match ) ) {
-        $name = trim ( $match [1], " \t\"" );
-        $addr = trim ( $match [2] );
+      $open = strrpos ( $one, '<' );
+
+      if ( str_ends_with ( $one, '>' ) and $open !== FALSE and $open < strlen ( $one ) - 2
+           and ! str_contains ( substr ( $one, $open + 1, -1 ), '>' ) ) {
+        $name = trim ( substr ( $one, 0, $open ), " \t\"" );
+        $addr = trim ( substr ( $one, $open + 1, -1 ) );
       } else {
         $name = '';
         $addr = $one;
@@ -299,6 +298,54 @@
     }
 
     return implode ( ', ', $out );
+
+  }
+
+  // The addresses of a list, split on the commas between them by walking the text: a comma
+  // inside a quoted name - "Doe, John" <john@...> - is the name's, a quote with no partner
+  // after it is a character of the name, as it was before quoted names were read, and in
+  // quotes a backslash escapes the character after it. One regular expression did the split:
+  // a stray quote - "Ann "Ace Lee" <ann@...> - cut the address and stopped the mail, and a
+  // quoted name of ten thousand characters ran out of PCRE's JIT stack, losing every address.
+
+  function padMailSplit ( $list ) {
+
+    $parts  = [];
+    $from   = 0;
+    $length = strlen ( $list );
+
+    for ( $at = 0; $at < $length; $at++ )
+      if ( $list [$at] == ',' ) {
+        $parts [] = substr ( $list, $from, $at - $from );
+        $from     = $at + 1;
+      } elseif ( $list [$at] == '"' and ( $close = padMailQuoteEnd ( $list, $at + 1 ) ) !== FALSE )
+        $at = $close;
+
+    $parts [] = substr ( $list, $from );
+
+    return $parts;
+
+  }
+
+  // The quote that closes the one before $at, FALSE when none does.
+
+  function padMailQuoteEnd ( $list, $at ) {
+
+    $length = strlen ( $list );
+
+    while ( ( $at += strcspn ( $list, '"\\', $at ) ) < $length ) {
+
+      if ( $list [$at] == '"' )
+        return $at;
+
+      $at += 2;
+
+      if ( $at >= $length )
+        return FALSE;
+
+    }
+
+    return FALSE;
 
   }
 
