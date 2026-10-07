@@ -637,8 +637,8 @@ Both have access to:
 - `$padGetName` - Option parameter value (TRUE for the bare form)
 - All global PAD variables
 
-The end-phase handlers run before the built-in end options (`toContent`, `toData`, `tidy`,
-`dump`), so those store or tidy what the application option made, and before the closing
+The end-phase handlers run before the built-in end options (`toBool`, `toContent`, `toData`,
+`tidy`), so those store or tidy what the application option made, and before the closing
 tag's pipe. Both are looked up from the page's directory up to the application root, and
 count as readers for the strict unread-option check.
 
