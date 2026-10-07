@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>__APP__ - PAD in the browser</title>
+  <!--
+    A whole PAD application running in this browser tab, opened straight from the disk: PHP
+    compiled to WebAssembly (php.js + php-wasm.js), the PAD engine and the application
+    (pad-bundle.js), and the runtime that answers its requests (pad-app.js). Written by
+    wasm/app.mjs - no server and no network are needed.
+
+    The application's pages are shown in the frame below. A link or a form in them is a
+    request to PHP here; the bar above shows the address the application thinks it has.
+  -->
+  <style>
+    :root { --bar: #f3f4f6; --line: #d1d5db; --text: #111827; --dim: #6b7280; color-scheme: light dark; }
+    @media (prefers-color-scheme: dark) { :root { --bar: #1f2937; --line: #374151; --text: #f9fafb; --dim: #9ca3af; } }
+    html, body { margin: 0; height: 100%; background: var(--bar); color: var(--text); font: 14px system-ui, sans-serif; }
+    body { display: flex; flex-direction: column; }
+    header { display: flex; gap: 6px; align-items: center; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+    header button { font: inherit; padding: 3px 9px; }
+    #address { flex: 1; min-width: 0; font: 13px ui-monospace, monospace; padding: 4px 8px; border: 1px solid var(--line); border-radius: 4px; background: Canvas; color: CanvasText; }
+    #status { color: var(--dim); white-space: nowrap; font-size: 12px; }
+    iframe { flex: 1; border: 0; width: 100%; background: #fff; }
+    #loading { padding: 24px; color: var(--dim); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <button id="back" title="Back">&larr;</button>
+    <button id="reload" title="Reload">&#x21bb;</button>
+    <input id="address" spellcheck="false" aria-label="Address">
+    <span id="status">loading</span>
+    <button id="reset" title="Forget the data this application saved in the browser">Reset</button>
+  </header>
+  <div id="loading">Starting PHP (WebAssembly) and the PAD engine...</div>
+  <iframe id="page" title="__APP__" hidden></iframe>
+
+  <script src="php.js"></script>
+  <script src="php-wasm.js"></script>
+  <script src="pad-bundle.js"></script>
+  <script src="pad-app.js"></script>
+
+  <script>
+    (async function () {
+
+      const frame   = document.getElementById('page');
+      const address = document.getElementById('address');
+      const status  = document.getElementById('status');
+      const blobs   = {};
+      let pad, current, busy = false;
+
+      // The PHP binary is carried gzipped and base64-encoded in php-wasm.js.
+
+      async function wasmBinary() {
+        const gzipped = Uint8Array.from(atob(window.PAD_PHP_WASM), c => c.charCodeAt(0));
+        const stream = new Blob([gzipped]).stream().pipeThrough(new DecompressionStream('gzip'));
+        return new Uint8Array(await new Response(stream).arrayBuffer());
+      }
+
+      // A file of the application's www/ directory as a blob: URL - a stylesheet has its own
+      // url(...) references rewritten the same way.
+
+      function blobFor(url, from) {
+        const file = pad.asset(url, from);
+        if (!file) return null;
+        if (blobs[file.name]) return blobs[file.name];
+        let content = file.bytes || file.text;
+        const type = MIME[file.name.split('.').pop().toLowerCase()] || 'application/octet-stream';
+        if (type === 'text/css') {
+          const at = 'http://localhost/' + file.name.substring(4);
+          content = content.replace(/url\(\s*(['"]?)([^'")]+)\1\s*\)/g, (all, q, ref) => {
+            const blob = /^(data:|#)/.test(ref) ? null : blobFor(ref, at);
+            return blob ? 'url("' + blob + '")' : all;
+          });
+        }
+        return blobs[file.name] = URL.createObjectURL(new Blob([content], { type }));
+      }
+
+      const MIME = { css: 'text/css', js: 'text/javascript', mjs: 'text/javascript', json: 'application/json',
+                     png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg', gif: 'image/gif', svg: 'image/svg+xml',
+                     webp: 'image/webp', ico: 'image/x-icon', woff: 'font/woff', woff2: 'font/woff2', ttf: 'font/ttf',
+                     txt: 'text/plain', html: 'text/html', pdf: 'application/pdf' };
+
+      // The page's references to the application's files - stylesheets, scripts, images -
+      // point to blobs before the page is written into the frame.
+
+      function rewrite(html, url) {
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        for (const [selector, attribute] of [['link[href]', 'href'], ['script[src]', 'src'], ['img[src]', 'src'],
+                                             ['source[src]', 'src'], ['video[src]', 'src'], ['audio[src]', 'src'],
+                                             ['input[type=image][src]', 'src'], ['[style*="url("]', 'style']]) {
+          for (const node of doc.querySelectorAll(selector)) {
+            const value = node.getAttribute(attribute);
+            if (attribute === 'style') {
+              node.setAttribute('style', value.replace(/url\(\s*(['"]?)([^'")]+)\1\s*\)/g, (all, q, ref) => {
+                const blob = blobFor(ref, url);
+                return blob ? 'url("' + blob + '")' : all;
+              }));
+            } else {
+              const blob = blobFor(value, url);
+              if (blob) node.setAttribute(attribute, blob);
+            }
+          }
+        }
+        return (doc.doctype ? '<!DOCTYPE html>\n' : '') + doc.documentElement.outerHTML;
+      }
+
+      function show(answer) {
+        current = answer.url;
+        address.value = answer.url;
+        const page = frame.contentDocument;
+        page.open();
+        page.write(rewrite(answer.html, answer.url));
+        page.close();
+        page.addEventListener('click', click);
+        page.addEventListener('submit', submit);
+        frame.contentWindow.scrollTo(0, 0);
+      }
+
+      async function go(method, url, form, push) {
+        if (busy) return;
+        busy = true;
+        status.textContent = '...';
+        const started = performance.now();
+        try {
+          const answer = await pad.request(method, url, form);
+          show(answer);
+          status.textContent = 'HTTP ' + answer.status + ', ' + Math.round(performance.now() - started) + ' ms';
+          const hash = '#' + answer.url.substring(('http://localhost/' + pad.app + '/').length);
+          if (push) history.pushState({ url: answer.url }, '', hash);
+          else history.replaceState({ url: answer.url }, '', hash);
+        } catch (error) {
+          status.textContent = 'failed: ' + error.message;
+          console.error(error);
+        }
+        busy = false;
+      }
+
+      // A link to one of the application's pages is a request here; a link elsewhere opens
+      // in a new tab; a link to a place on the page itself is left to the browser.
+
+      function click(event) {
+        const link = event.target.closest && event.target.closest('a[href]');
+        if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey) return;
+        const href = link.getAttribute('href');
+        if (href.startsWith('#') || /^(javascript|mailto|tel):/i.test(href)) return;
+        event.preventDefault();
+        if (!pad.isMine(href, current)) { window.open(new URL(href, current).href, '_blank', 'noopener'); return; }
+        const file = blobFor(href, current);
+        if (file) { window.open(file, '_blank'); return; }
+        go('GET', new URL(href, current).href, null, true);
+      }
+
+      function submit(event) {
+        if (event.defaultPrevented) return;
+        const form = event.target;
+        const action = new URL(form.getAttribute('action') || current, current);
+        if (!pad.isMine(action.href)) return;
+        event.preventDefault();
+        const values = new URLSearchParams(new FormData(form, event.submitter || undefined)).toString();
+        if ((form.getAttribute('method') || 'get').toLowerCase() === 'post')
+          go('POST', action.href, values, true);
+        else {
+          action.search = '?' + values;
+          go('GET', action.href, null, true);
+        }
+      }
+
+      function fromHash() {
+        return 'http://localhost/' + pad.app + '/' + location.hash.substring(1);
+      }
+
+      document.getElementById('back').onclick = () => history.back();
+      document.getElementById('reload').onclick = () => go('GET', current, null, false);
+      document.getElementById('reset').onclick = () => {
+        if (!confirm('Forget what this application saved in the browser and start over?')) return;
+        pad.forget();
+        location.hash = '';
+        location.reload();
+      };
+      address.addEventListener('keydown', event => {
+        if (event.key === 'Enter') go('GET', address.value, null, true);
+      });
+      window.addEventListener('popstate', event => go('GET', (event.state && event.state.url) || fromHash(), null, false));
+
+      try {
+        const started = performance.now();
+        const runtime = window.PadPHP;
+        pad = await PadApp.start(window.PAD_BUNDLE, runtime.PHP, runtime.loadPHPRuntime, runtime.loader, await wasmBinary());
+        console.log('PAD ' + PAD_BUNDLE.built + ' (' + PAD_BUNDLE.commit + ') started in ' + Math.round(performance.now() - started) + ' ms');
+        document.getElementById('loading').hidden = true;
+        frame.hidden = false;
+        await go('GET', fromHash(), null, false);
+      } catch (error) {
+        document.getElementById('loading').textContent = 'PAD could not start here: ' + error.message;
+        status.textContent = 'failed';
+        console.error(error);
+      }
+
+    })();
+  </script>
+
+</body>
+</html>
