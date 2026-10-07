@@ -170,24 +170,31 @@
 
   }
 
-  // The value as the caller gave it. A tag's PHP reads it for logic - ===, explode,
-  // urlencode, a db() lookup - and escapes it for its own output with htmlspecialchars, so it
-  // has to be the real text: handing the quotes back as protection stand-ins let them through
-  // htmlspecialchars unescaped and turned the documented _tags/button.php into an injection.
-  // What keeps a parameter from running as template code is where it goes: into the tag's
-  // return value, which is a value and stays text (level/go.php), never into $padContent,
-  // which is template source - as CLAUDE.md and APP.md say.
+  // The value as the caller gave it, but for the characters that open a tag. A tag's PHP
+  // reads a parameter for logic - ===, explode, urlencode, a db() lookup - and escapes it for
+  // its own output with htmlspecialchars, so its quotes and backslash stay real: handed back
+  // as protection stand-ins they went through htmlspecialchars unescaped and turned the
+  // documented _tags/button.php into an injection. Its { } and | do not: what an application
+  // or _common tag echoes, or builds $padContent from, is template source, so a value with
+  // {php:...} in it ran - as stand-ins they print as themselves (exits/exits.php) and open
+  // nothing. A built-in tag reads its own options whole. Off under $padProtectValues = FALSE.
 
   function padTagParm ($parm, $default='') {
 
-    global $pad, $padPrm;
+    global $pad, $padPrm, $padProtectValues, $padType;
 
     padDone ($parm);
 
-    if ( isset ( $padPrm [$pad] [$parm] ) )
-      return $padPrm [$pad] [$parm];
-    else
+    if ( ! isset ( $padPrm [$pad] [$parm] ) )
       return $default;
+
+    $value = $padPrm [$pad] [$parm];
+
+    if ( $padProtectValues and is_string ( $value )
+         and in_array ( $padType [$pad] ?? '', [ 'app', 'common' ], TRUE ) )
+      $value = strtr ( $value, array_intersect_key ( padProtectMap (), [ '{' => 1, '}' => 1, '|' => 1 ] ) );
+
+    return $value;
 
   }
 

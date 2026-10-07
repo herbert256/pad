@@ -167,7 +167,9 @@ Create custom template tags.
 
 What a tag returns is a value: its braces stay text. `$padContent` is template source - the
 content the level goes on to process - so text built from a parameter belongs in the return
-value, never in `$padContent`, where a visitor's `{php:...}` in the parameter would run.
+value. `padTagParm()` hands an application tag its parameter with `{ }` and `|` as inert
+stand-ins (quotes stay real, for `htmlspecialchars`), so a visitor's `{php:...}` echoed or put
+in `$padContent` prints rather than runs.
 
 Use in templates:
 ```

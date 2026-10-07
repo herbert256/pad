@@ -300,8 +300,9 @@ Use in templates: `{button label="Submit", href="?submit"}`
 
 What a tag returns is a value: its braces stay text, as every value's do. `$padContent` is
 template source instead - the content the level goes on to process - so text built from a
-parameter belongs in the return value, never in `$padContent`, where a visitor's
-`{php:...}` in the parameter would run.
+parameter belongs in the return value. `padTagParm()` hands an application tag its
+parameter with `{ }` and `|` as inert stand-ins (quotes stay real, for `htmlspecialchars`),
+so a visitor's `{php:...}` echoed or put in `$padContent` prints rather than runs.
 
 **_tags/json.php** (for React integration):
 ```php
