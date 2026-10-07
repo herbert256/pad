@@ -73,61 +73,117 @@
 
   }
 
-  // Each <form> is looked at up to its </form> (or the next <form>): a form that posts, to
-  // an address on this site, and does not already hold the field gets it right after its
-  // opening tag. A GET form gets nothing - its fields end up in the URL, and a token there
-  // leaks through history and Referer. Neither does a form posting to another site: the
-  // token would be handed to it.
+  // Each <form> is looked at up to its </form>: a form that posts, to an address on this
+  // site, and does not already hold the field gets it right after its opening tag. A GET
+  // form gets nothing - its fields end up in the URL, and a token there leaks through
+  // history and Referer. Neither does a form posting to another site, or holding a button
+  // that does: the token would be handed to it.
   //
-  // The opening tags are found, and each form's end is looked for from its tag on, rather
-  // than one regular expression taking in the content of every form: that ran out of
-  // PCRE's backtrack limit on a form of about a megabyte - an admin list with a checkbox on
-  // each of its thousands of rows - and answered NULL, which ended the page. A tag is read
-  // to its real end (padCsrfTag): a > inside a quoted value - title=">" - is no end, and
-  // the token went into the title.
+  // The forms are found as a browser finds them, tag after tag (padCsrfWalk) - what stands
+  // in a script, a style, a textarea or a comment is no tag, nor is the text of an attribute
+  // value, and a form inside a form is none. Found by searching the text, a quote left open
+  // in '<form title="' inside a script read on through the real form after it, which got no
+  // token; a </form> in a value or a <form> in a comment ended a form early, hiding the
+  // button that posts elsewhere; a form in a comment or a textarea got a token. Before that,
+  // one regular expression over every form's content ran out of PCRE's backtrack limit on a
+  // form of a megabyte and ended the page.
 
   function padCsrfForms ( $html ) {
 
     if ( stripos ( $html, '<form' ) === FALSE )
       return $html;
 
-    preg_match_all ( '/<form(?=[\s\/>])/i', $html, $found, PREG_OFFSET_CAPTURE );
+    $forms = [];
+    $open  = NULL;
 
-    $starts = array_column ( $found [0], 1 );
-    $out    = '';
-    $done   = 0;
-    $next   = 0;
+    foreach ( padCsrfWalk ( $html ) as [ $kind, $name, $at, $end, $attrs ] )
+      if ( $kind == 'start' and $name == 'form' and $open === NULL ) {
+        $forms [] = [ 'start' => $end, 'attrs' => $attrs, 'controls' => [], 'token' => FALSE ];
+        $open     = array_key_last ( $forms );
+      } elseif ( $kind == 'end' and $name == 'form' )
+        $open = NULL;
+      elseif ( $kind == 'start' and ( $name == 'button' or $name == 'input' ) and $open !== NULL ) {
+        $forms [$open] ['controls'] [] = $attrs;
+        if ( ( $attrs ['name'] ?? '' ) === padCsrfName )
+          $forms [$open] ['token'] = TRUE;
+      }
 
-    foreach ( $starts as $at ) {
+    $out  = '';
+    $done = 0;
 
-      if ( $at < $done )
+    foreach ( $forms as $form )
+      if ( ! $form ['token'] and padCsrfFormAttrs ( $form ['attrs'] ) and padCsrfControlsAttrs ( $form ['controls'] ) ) {
+        $out .= substr ( $html, $done, $form ['start'] - $done ) . padCsrfField ();
+        $done = $form ['start'];
+      }
+
+    return $out . substr ( $html, $done );
+
+  }
+
+  // The tags of a page as a browser's tokenizer meets them: [ 'start' or 'end', name,
+  // offset of the < , offset after the > , attributes ]. Comments and <! ... > / <? ... >
+  // are passed over, and so is the content of the elements whose text holds no tags.
+
+  const padCsrfRawText = [ 'script', 'style', 'textarea', 'title', 'xmp', 'iframe', 'noembed', 'noframes' ];
+
+  function padCsrfWalk ( $html ) {
+
+    $tags = [];
+    $at   = 0;
+
+    while ( ( $at = strpos ( $html, '<', $at ) ) !== FALSE ) {
+
+      $next = $html [$at + 1] ?? '';
+
+      if ( $next == '!' and substr ( $html, $at, 4 ) == '<!--' ) {
+        $close = strpos ( $html, '-->', $at + 4 );
+        if ( $close === FALSE )
+          break;
+        $at = $close + 3;
         continue;
+      }
+
+      if ( $next == '!' or $next == '?' ) {
+        $close = strpos ( $html, '>', $at );
+        if ( $close === FALSE )
+          break;
+        $at = $close + 1;
+        continue;
+      }
+
+      if ( $next == '/' and ctype_alpha ( $html [$at + 2] ?? '' ) ) {
+        $close = strpos ( $html, '>', $at );
+        if ( $close === FALSE )
+          break;
+        $tags [] = [ 'end', strtolower ( substr ( $html, $at + 2, strcspn ( $html, " \t\n\f\r/>", $at + 2 ) ) ), $at, $close + 1, [] ];
+        $at = $close + 1;
+        continue;
+      }
+
+      if ( ! ctype_alpha ( $next ) ) {
+        $at++;
+        continue;
+      }
 
       $tag = padCsrfTag ( $html, $at );
 
       if ( $tag === NULL )
         break;
 
-      [ $start, $attrs ] = $tag;
+      $name   = strtolower ( substr ( $html, $at + 1, strcspn ( $html, " \t\n\f\r/>", $at + 1 ) ) );
+      $tags[] = [ 'start', $name, $at, $tag [0], $tag [1] ];
+      $at     = $tag [0];
 
-      while ( $next < count ( $starts ) and $starts [$next] < $start )
-        $next++;
-
-      $inner = substr ( $html, $start, ( $starts [$next] ?? strlen ( $html ) ) - $start );
-
-      if ( preg_match ( '/<\/form\s*>/i', $inner, $close, PREG_OFFSET_CAPTURE ) )
-        $inner = substr ( $inner, 0, $close [0] [1] );
-
-      if ( padCsrfFormAttrs ( $attrs ) and padCsrfControlsHere ( $inner ) and ! str_contains ( $inner, 'name="' . padCsrfName . '"' ) )
-        $out .= substr ( $html, $done, $start - $done ) . padCsrfField ();
-      else
-        $out .= substr ( $html, $done, $start - $done );
-
-      $done = $start;
+      if ( in_array ( $name, padCsrfRawText, TRUE ) ) {
+        if ( ! preg_match ( '/<\/' . $name . '[\s\/>]/i', $html, $close, PREG_OFFSET_CAPTURE, $at ) )
+          break;
+        $at = $close [0] [1];
+      }
 
     }
 
-    return $out . substr ( $html, $done );
+    return $tags;
 
   }
 
@@ -223,16 +279,21 @@
     if ( stripos ( $html, 'formaction' ) === FALSE )
       return TRUE;
 
-    preg_match_all ( '/<(?:button|input)(?=[\s\/>])/i', $html, $found, PREG_OFFSET_CAPTURE );
+    $controls = [];
 
-    foreach ( $found [0] as [ , $at ] ) {
+    foreach ( padCsrfWalk ( $html ) as [ $kind, $name, , , $attrs ] )
+      if ( $kind == 'start' and ( $name == 'button' or $name == 'input' ) )
+        $controls [] = $attrs;
 
-      $tag = padCsrfTag ( $html, $at );
+    return padCsrfControlsAttrs ( $controls );
 
-      if ( $tag !== NULL and array_key_exists ( 'formaction', $tag [1] ) and ! padCsrfActionHere ( $tag [1] ['formaction'] ) )
+  }
+
+  function padCsrfControlsAttrs ( $controls ) {
+
+    foreach ( $controls as $attrs )
+      if ( array_key_exists ( 'formaction', $attrs ) and ! padCsrfActionHere ( $attrs ['formaction'] ) )
         return FALSE;
-
-    }
 
     return TRUE;
 
