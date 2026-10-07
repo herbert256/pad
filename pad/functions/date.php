@@ -51,10 +51,19 @@
     $format = $parm [0];
 
     // A modifier strtotime cannot read answered FALSE, which date() took for 0: 1970.
+    //
+    // A modifier that names a date and no time - '1 jan', '2024-02-03' - starts that day, as
+    // strtotime has it; modify keeps the time of day, and date('Y-m-d H:i', '1 jan') wrote
+    // 22:13 where it wrote 00:00.
 
     try {
       $padDateShift = ( new DateTimeImmutable ( "@$value" ) ) -> setTimezone ( $padDateZone )
-                                                             -> modify ( (string) $parm [1] ) -> getTimestamp ();
+                                                             -> modify ( (string) $parm [1] );
+      $padDateParts = date_parse ( (string) $parm [1] );
+      if ( $padDateParts ['hour'] === FALSE and ( $padDateParts ['year'] !== FALSE
+           or $padDateParts ['month'] !== FALSE or $padDateParts ['day'] !== FALSE ) )
+        $padDateShift = $padDateShift -> setTime ( 0, 0 );
+      $padDateShift = $padDateShift -> getTimestamp ();
     } catch ( Exception $padDateError ) {
       $padDateShift = FALSE;
     }
