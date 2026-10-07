@@ -6,9 +6,11 @@
   // it first comes at position p - so 0 was no term of modulo=3, nor 0.5 of modulo=2.5.
   //
   // For a whole p the terms are the whole numbers from 0 up to p - 1. For a fractional one
-  // they are what fmod makes, so the first $padSeqDefaultTries positions are asked, the
-  // reach a generated run has by default. A parameter of nothing or 0 is the 1 loop.php
-  // reads it as.
+  // they are what fmod makes: a whole x below p is the term at position x, and any other x
+  // can only come from a position x + k * p, so those are asked for k up to
+  // $padSeqDefaultTries. Asking the positions 1 to $padSeqDefaultTries instead missed every
+  // term made further out - 20000 is the 20000th term of modulo=1000000.5 - and 0.5, which
+  // first comes at position 1000001. A parameter of nothing or 0 is the 1 loop.php reads it as.
 
   function pqBoolModulo ( $x, $p=0 ) {
 
@@ -25,9 +27,20 @@
 
     $tries = $GLOBALS ['padSeqDefaultTries'] ?? 10000;
 
-    for ( $n = 1; $n <= $tries; $n++ )
-      if ( fmod ( $n, $p ) == $x )
+    if ( pqBoolWhole ( $x ) and $x >= 1 )
+      return TRUE;
+
+    for ( $k = 0; $k <= $tries; $k++ ) {
+
+      $n = round ( $x + $k * $p );
+
+      if ( $n >= PHP_INT_MAX )
+        break;
+
+      if ( $n >= 1 and fmod ( $n, $p ) == $x )
         return TRUE;
+
+    }
 
     return FALSE;
 
