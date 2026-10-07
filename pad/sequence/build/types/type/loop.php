@@ -11,8 +11,18 @@
   // An increment below 1 never advances the counter - 0 leaves it where it is and a
   // negative one walks away from the from <= to condition - so the walk would not end.
   // The run returns FALSE instead of starting it, and the tag takes its else branch.
+  //
+  // A random increment is drawn again after every candidate, so it is the largest it can be
+  // drawn that decides: '0...2' advances, though a draw of 0 offers the same candidate again.
+  // Its first draw decided instead, and one run in three of increment='0...2' answered nothing.
 
-  if ( $pqInc < 1 )
+  if ( $pqRandomInc ) {
+    padSplit ( '...', $pqRandomInc, $pqIncLow, $pqIncHigh );
+    $pqIncTop = max ( (int) $pqIncLow, (int) $pqIncHigh );
+  } else
+    $pqIncTop = $pqInc;
+
+  if ( $pqIncTop < 1 )
     return FALSE;
 
   include PQ . 'build/randomly/init.php';
@@ -32,9 +42,11 @@
     // Out past the integer range a float no longer moves when the step is added - -1e19 + 1
     // is -1e19 - and the walk offered the same candidate again until the try limit, so
     // {sequence modulo=7, from=-10000000000000000000, rows=3} answered -3 -3 -3. A walk that
-    // does not advance has nothing more to offer.
+    // does not advance has nothing more to offer. A random increment drawn as 0 stands still
+    // by intent, and is no such walk: ended there, increment='0...2' answered a term or two
+    // where it asked for eight.
 
-    if ( $pqGo + $pqInc <= $pqGo )
+    if ( $pqInc >= 1 and $pqGo + $pqInc <= $pqGo )
       break;
 
     $pqGo = $pqGo + $pqInc;
