@@ -165,26 +165,41 @@
   // SERVER_ADDR and SERVER_PORT (php -S says its address as SERVER_NAME), as curl's
   // CONNECT_TO. A $padHostBase is an address the configuration gives - a proxy in front, a
   // port the request does not show - and is fetched as it says; so is a request with no
-  // server address, the command line. The port is as good as the server makes it: Apache
-  // with UseCanonicalName Off (its default) fills SERVER_PORT from a port the Host header
-  // names, so such a request still picks the port of this machine the fetch goes to -
-  // UseCanonicalPhysicalPort On, or a $padHostBase, pins it.
+  // server address, the command line.
+  //
+  // The port: php -S's SERVER_PORT is the port it listens on. Apache with UseCanonicalName
+  // Off, its default, fills SERVER_PORT from a port the Host header names, so Host: x:22
+  // sent the fetch to port 22 of this machine - any service on it, its answer spliced into
+  // the page. A port in the Host header therefore counts only when it is the scheme's own,
+  // 80 or 443, or $padHosts lists the host with that port ('localhost:8080'); any other
+  // connects to the scheme's port. A Host without a port leaves SERVER_PORT, the server's
+  // own then. $sapi is the SAPI the request runs under - a test hands in another.
 
-  function padSelfConnect () {
+  function padSelfConnect ( $sapi = PHP_SAPI ) {
 
-    global $padHost, $padHostBase;
+    global $padHost, $padHostBase, $padHosts;
 
-    if ( ( $padHostBase ?? '' ) !== '' or PHP_SAPI == 'cli' )
+    if ( ( $padHostBase ?? '' ) !== '' or $sapi == 'cli' )
       return [];
 
-    $addr = (string) ( $_SERVER ['SERVER_ADDR'] ?? ( PHP_SAPI == 'cli-server' ? ( $_SERVER ['SERVER_NAME'] ?? '' ) : '' ) );
+    $addr = (string) ( $_SERVER ['SERVER_ADDR'] ?? ( $sapi == 'cli-server' ? ( $_SERVER ['SERVER_NAME'] ?? '' ) : '' ) );
     $port = (string) ( $_SERVER ['SERVER_PORT'] ?? '' );
     $url  = parse_url ( (string) $padHost );
 
     if ( $addr === '' or ! ctype_digit ( $port ) or ! is_array ( $url ) or ( $url ['host'] ?? '' ) === '' )
       return [];
 
-    $at = $url ['port'] ?? ( strtolower ( $url ['scheme'] ?? '' ) == 'https' ? 443 : 80 );
+    $own = ( strtolower ( $url ['scheme'] ?? '' ) == 'https' ) ? 443 : 80;
+    $at  = $url ['port'] ?? $own;
+
+    if ( $sapi != 'cli-server' and preg_match ( '/:([0-9]+)$/', (string) ( $_SERVER ['HTTP_HOST'] ?? '' ), $asked ) ) {
+
+      $listed = in_array ( strtolower ( (string) $_SERVER ['HTTP_HOST'] ), array_map ( 'strtolower', (array) ( $padHosts ?? [] ) ), TRUE );
+
+      if ( (int) $asked [1] != $own and ! $listed )
+        $port = (string) $own;
+
+    }
 
     if ( str_contains ( $addr, ':' ) and ! str_starts_with ( $addr, '[' ) )
       $addr = "[$addr]";

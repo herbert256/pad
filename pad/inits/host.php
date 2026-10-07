@@ -28,7 +28,13 @@
   if ( ! preg_match ( '/^([A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?)*|\[[0-9A-Fa-f:.]+\])(:[0-9]{1,5})?$/', $padHttpHost ) )
     $padHttpHost = 'localhost';
 
-  if ( count ( $padHosts ?? [] ) and ! in_array ( strtolower ( preg_replace ( '/:[0-9]+$/', '', $padHttpHost ) ), array_map ( 'strtolower', $padHosts ), TRUE ) )
+  // A listed name matches with any port, a listed name:port - the port a server on a port
+  // of its own is asked on, which the self-fetches then connect to (padSelfConnect) - as it
+  // stands.
+
+  if ( count ( $padHosts ?? [] )
+       and ! in_array ( strtolower ( preg_replace ( '/:[0-9]+$/', '', $padHttpHost ) ), array_map ( 'strtolower', $padHosts ), TRUE )
+       and ! in_array ( strtolower ( $padHttpHost ), array_map ( 'strtolower', $padHosts ), TRUE ) )
     $padHttpHost = reset ( $padHosts );
 
   if (strpos ( $padHttpHost, ':') === FALSE or str_ends_with ( $padHttpHost, ']' ) )
