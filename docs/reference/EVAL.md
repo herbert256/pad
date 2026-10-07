@@ -398,9 +398,10 @@ This allows natural use in string contexts while maintaining logical operations.
 Under `$padCheckSyntax` (the default) errors are reported via `padError()`. Before anything
 runs, `lib/eval/validate.php` reads the expression and names the fault and its position -
 `Expression error: ...`:
-- a `(` or `[` that is never closed, a string never closed - a `)` or `]` that closes nothing
-  in a tag's parameters is named before that, by the parameter split: "Closing ) without an
-  opening ("
+- a `(` or `[` that is never closed, a `)` or `]` that closes nothing, a string never closed -
+  inside a quoted expression `{users where='$admin eq 1)'}` gives "the ) at position 12 closes
+  nothing that was opened"; written bare in a tag's parameters, `{echo 1 + 2)}`, the parameter
+  split reports it first: "Closing ) without an opening ("
 - a pipe function that does not exist
 - a comparison or logical operator with nothing on its left or its right - an arithmetic one
   is not named: `{echo 5 *}` answers 0, `{if 5 + eq 1}` holds
