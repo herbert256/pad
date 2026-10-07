@@ -731,10 +731,19 @@ through; `padCollection('blog')` gives the rows to PHP.
 ```
 {chart 'bar', data='sales', label='month', value='amount'}   # inline SVG, no JavaScript
 {chart 'line', data='visits', title='Visits this week'}      # data: store, page array, _data file
+{chart 'bar', data='sales', value='online, shop', stacked}   # several series; 'hbar' lies down
+{chart 'pie', data='budget'}                                 # also donut
+{chart 'scatter', data='cars', x='weight', y='mpg', color='origin', trend}   # bubble: size=
+{chart 'heatmap', data='visits', x='hour', y='day', value='count'}
+{chart 'sankey', data='energy', source='from', target='to', value='amount'}
+{chart 'network', data='friends', source='a', target='b', layout='radial', arrows}
+{chart 'treemap', data='spend', levels='dept', label='post', value='amount'}  # also sunburst
 {sparkline sequence='fibonacci', rows=12}                    # word-sized; sequence terms as data
 ```
 `role="img"` with `<title>`/`<desc>`; colours are `--pad-chart-*` custom properties on
-`.pad-chart`, following the page's `color-scheme`.
+`.pad-chart`, following the page's `color-scheme`. A field option left out takes the first
+field that fits; the chart's options keep clear of the handling options (`row`, `group`).
+Code: `pad/lib/chart.php` (bar, line, sparkline) and `pad/lib/chart/` (the other kinds).
 
 ### Variable Assignment
 ```
@@ -1573,6 +1582,7 @@ strict syntax check - `pad_check` with only an app checks every page), `pad_trac
 |-----|------|-------------|
 | `_common` | Shared | Shared resources and utilities for all applications |
 | `apps` | Standard | Lists all PAD applications with descriptions from README files |
+| `charts` | Standard | A showcase of the `{chart}` tag - a pulldown per chart family, every example a page of three cells: the data, the tag, the chart |
 | `classicModels` | Standard | PAD Select over the Classic Models sample database |
 | `cli` | CLI | The `pad` command (`apps/cli/pad`): new, serve, render, lint, export, test - and the cli application |
 | `demo` | Standard | Interactive demo with guestbook, todo, contact, counter, clock |

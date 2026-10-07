@@ -1,0 +1,41 @@
+<main class="page home">
+
+  <section class="hero">
+    <div class="hero-text">
+      <span class="kicker">PAD · {ignore}{chart}{/ignore}</span>
+      <h1>Every chart,<br><span class="shine">drawn on the server.</span></h1>
+      <p class="lead">One tag turns rows of JSON, YAML or PHP into an accessible SVG chart - lines,
+      bars, pies, scatters, heatmaps, sankeys, networks, treemaps and sunbursts. No JavaScript,
+      so it prints, caches and shows up in an e-mail.</p>
+      <ul class="stats">
+        <li><b>14</b> kinds</li>
+        <li><b>{$exampleCount}</b> examples</li>
+        <li><b>0</b> lines of JavaScript</li>
+      </ul>
+    </div>
+    <a class="hero-card" href="?sankey/energy" aria-label="Open the energy sankey">
+      {page 'sankey/energy'}
+    </a>
+  </section>
+
+  {families}
+  <section class="family" id="{$family}">
+    <header class="family-head">
+      <h2>{$label}</h2>
+      <span class="family-line">{$tagline}</span>
+    </header>
+    <div class="cards">
+      {examples}
+      <a class="card" href="?{$page}">
+        <span class="card-chart">{page $page}</span>
+        <span class="card-body">
+          <span class="card-title">{$title}</span>
+          <span class="card-text">{$text}</span>
+        </span>
+      </a>
+      {/examples}
+    </div>
+  </section>
+  {/families}
+
+</main>
