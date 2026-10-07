@@ -16,6 +16,15 @@
 
   $padOut     [$pad] = padTildeStrip ( padCommentStrip ( $padBase [$pad] ) );
   $padScan    [$pad] = 0;
+
+  // A level no tag opened - the page itself when its PHP answered no list (build/page.php
+  // wraps a list in a {padBuild} tag), or a padCode pass - never went through
+  // level/start.php, so its own @start@ and @end@ reached the page as written: z99 printed
+  // "@start@ bb @end@". It renders once, so its prelude, body and coda render once each:
+  // padSectionsOnce takes its own markers out.
+
+  if ( $padTag [$pad] == 'internal' and str_contains ( $padOut [$pad], '@' ) )
+    $padOut [$pad] = padSectionsOnce ( $padOut [$pad] );
   $padKey     [$pad] = key($padData [$pad]);
   $padCurrent [$pad] = $padData [$pad] [$padKey [$pad]];
 

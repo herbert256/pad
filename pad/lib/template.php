@@ -53,6 +53,48 @@
 
   }
 
+  // The @start@ and @end@ of a text that renders exactly once - a level no tag opened: the
+  // page itself when its PHP answered no list, or a padCode pass. level/start.php cuts a
+  // tag's level at its own markers into a prelude, a body walked per row and a coda; here
+  // all three render once and in order, which is the text with its own markers taken out.
+  // Only the markers that belong to this text are taken (padOpenClosePos), never a nested
+  // tag's, and strict mode holds them to the order level/start.php does.
+
+  function padSectionsOnce ( $text ) {
+
+    $start = padOpenClosePos ( $text, '@start@' );
+    $end   = padOpenClosePos ( $text, '@end@'   );
+
+    if ( $start === FALSE and $end === FALSE )
+      return $text;
+
+    if ( $GLOBALS ['padCheckSyntax'] ) {
+
+      if ( $start !== FALSE and $end === FALSE )
+        padError ( "an @start@ needs its @end@ behind it" );
+
+      if ( $end !== FALSE and $start === FALSE )
+        padError ( "an @end@ needs its @start@ before it" );
+
+      if ( $start !== FALSE and $end !== FALSE and $end < $start )
+        padError ( "the @start@ stands before the @end@, not behind it" );
+
+    }
+
+    $cuts = [];
+
+    if ( $start !== FALSE ) $cuts [$start] = 7;
+    if ( $end   !== FALSE ) $cuts [$end]   = 5;
+
+    krsort ( $cuts );
+
+    foreach ( $cuts as $pos => $len )
+      $text = substr_replace ( $text, '', $pos, $len );
+
+    return $text;
+
+  }
+
   function padOpenCloseList ( $string ) {
 
     $tags = [];
