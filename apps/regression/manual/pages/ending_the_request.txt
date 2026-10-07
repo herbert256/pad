@@ -34,7 +34,8 @@ place of this one without a round trip to the browser.</p>
 <code>$padErrorAction</code>: <code>pad</code> renders an error page and ends the request, as
 <code>stop</code>, <code>exit</code> and <code>boot</code> end it too - with HTTP 500, and a
 command-line run exits with status 1, so a script can test the outcome without reading the
-output. <code>log</code> and <code>ignore</code> record the error and the page carries on,
+output. <code>log</code> records the error in the log and <code>ignore</code> drops it - with
+both the page carries on,
 <code>dump</code> writes a dump of the engine state under DATA and carries on - those answer
 200 - and <code>php</code> leaves it to PHP's own handling: a warning is printed in the page,
 a PAD error is an uncaught exception.</p>
