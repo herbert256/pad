@@ -19,7 +19,7 @@
   // padMakeSafe flattens any value to a single-line, control-character-free, length-capped
   //             string, for log lines and error messages
   // padGetRange turns "1..10" (or "10", or nothing) into a PHP range
-  // padGetList  splits a semicolon list, converting numeric entries to int
+  // padGetList  splits a semicolon list, numeric entries becoming the numbers they spell
 
   function padOpenCloseOk ( $string, $check) {
 
@@ -308,13 +308,20 @@
 
   }
 
+  // Each numeric entry becomes the number it spells: intval cut a decimal to its whole part
+  // and clamped an integer too long for PHP's int, so {sequence '1;2.5;4'} gave 1 2 4 and
+  // '9223372036854775808' became 9223372036854775807. An integer that fits is an int, an
+  // integer that does not stays the digits it is, any other number - 2.5, 1e3 - is a float.
+
   function padGetList ( $list ) {
 
     $list = explode ( ';', $list );
 
     foreach ( $list as $key => $value)
       if ( is_numeric ($value) )
-        $list [$key] = intval($value);
+        if     ( filter_var ( $value, FILTER_VALIDATE_INT ) !== FALSE ) $list [$key] = (int) trim ( $value );
+        elseif ( preg_match ( '/^\s*[+-]?[0-9]+\s*$/', $value )      ) $list [$key] = trim ( $value );
+        else                                                           $list [$key] = (float) $value;
 
     return $list;
 
