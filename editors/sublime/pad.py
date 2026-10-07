@@ -15,7 +15,7 @@ SINGLE_TAGS = {
     'exists', 'at', 'resume', 'switch', 'ajax', 'reactData', 'file',
     'make', 'keep', 'remove', 'action',
     'debug', 'attrs', 'classes', 'trans', 'nonce', 'csrf', 'stack', 'recurse', 'parent',
-    'extends', 'meta', 'parms', 'assert', 'flush', 'sparkline', 'chart', 'input', 'textarea', 'qr', 'barcode',
+    'extends', 'meta', 'parms', 'assert', 'flush', 'sparkline', 'chart', 'input', 'textarea', 'qr', 'barcode', 'calendar',
 }
 
 # the branch words of {if} and {case} divide a pair; they never open one of their own

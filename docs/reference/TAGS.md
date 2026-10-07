@@ -1249,6 +1249,39 @@ unknown type is an error under the strict check, and writes nothing.
 
 ---
 
+### calendar
+A month as a calendar, with its events (`lib/calendar.php`).
+
+```html
+{calendar}                                                   <!-- this month -->
+{calendar '2026-10', data='agenda', date='when', title='what', link='url'}
+{calendar data='agenda'}
+  <tr>{days}<td class="{$class}">{$day}{events}<b>{$what}</b>{/events}</td>{/days}</tr>
+{/calendar}
+```
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The month, `2026-10`; else the request value named by `query`, else this month (`padNow`, so `padNowFreeze` holds it) |
+| `data` | The events: a `{data}` store, a page array or a `_data` file, as for `{chart}` |
+| `date` | The field with an event's date - by default the first field that reads as one |
+| `title` | The field with an event's text - by default the first other text field |
+| `link` | A field with a link for the event - http(s), a page or an anchor; never `javascript:` or `data:` |
+| `query` | The request value the links to the months around set, default `month` |
+| `sunday` | Weeks start on Sunday instead of Monday |
+
+**Behavior:** as a single tag it answers a table - the month in its caption between links to
+the month before and after (keeping the other request values, as `{pager}` does), a column
+per weekday, a cell per day with its `<time>` and its events as a list; today has
+`aria-current="date"`. A small default look rides along under `:where()`, so the page's CSS
+wins. As a pair it hands over the weeks as rows - `$week` (ISO number) and `days` - and
+every day is a row too: `$date`, `$day`, `$weekday`, `$month`, `$other` (outside the
+month), `$today`, `$weekend`, `$count`, `$class` (`other today weekend events`, as they
+apply) and `events`, the data rows of that date. A store named `events` hides the day's
+field of that name - `{level:events}` reaches it then.
+
+---
+
 ### ignore
 Escape PAD syntax in content.
 
@@ -1897,6 +1930,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `sparkline` | Output | Word-sized line chart as inline SVG |
 | `qr` | Output | QR code as inline SVG |
 | `barcode` | Output | EAN-13, EAN-8, UPC-A or Code 128 barcode as inline SVG |
+| `calendar` | Output | A month as a table with its events, or its weeks and days as rows |
 | `ignore` | Output | Escape content |
 | `reactData` | Output | React mount point with provider data |
 | `cache` | Output | Keep a section rendered (fragment cache) |

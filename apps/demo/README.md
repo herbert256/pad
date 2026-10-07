@@ -15,6 +15,7 @@ Interactive demo showcasing PAD framework features with practical examples.
 | Clock | Display current date and time using a custom tag |
 | QR Codes | `{qr}` - a text typed in a form as a QR code, the four error correction levels, a Wi-Fi code |
 | Barcodes | `{barcode}` - EAN-13 for a product list, Code 128 on a shipping label, EAN-8 and UPC-A |
+| Calendar | `{calendar}` - a month with its agenda and links to the months around it, and a mini calendar from the pair form |
 
 ## Structure
 
@@ -29,6 +30,7 @@ demo/
 ├── clock.pad                 # Clock display
 ├── qr.php / .pad             # QR codes
 ├── barcode.php / .pad        # Barcodes
+├── calendar.php / .pad       # Calendar
 ├── _config/config.php        # Switches _common off, CSRF protection on
 ├── _inits.php / .pad         # Global layout wrapper
 ├── _include/todo.pad         # Todo list snippet

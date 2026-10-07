@@ -31,7 +31,7 @@
   // properties with light and dark defaults - --pad-chart-series, --pad-chart-text,
   // --pad-chart-grid and --pad-chart-surface - which a page overrides on .pad-chart.
 
-  function padChartRows ( $source = '' ) {
+  function padChartRows ( $source = '', $what = 'chart' ) {
 
     global $pad, $padPrm, $padData, $padDataStore, $pqStore, $padCheckSyntax;
 
@@ -43,7 +43,7 @@
 
       if ( ! preg_match ( '/^[a-zA-Z][a-zA-Z0-9]*$/', (string) $sequence ) or ! pqSeq ( $sequence ) ) {
         if ( $padCheckSyntax )
-          padError ( "there is no sequence named '" . padMakeSafe ( $sequence, 30 ) . "' for the chart" );
+          padError ( "there is no sequence named '" . padMakeSafe ( $sequence, 30 ) . "' for the $what" );
         return [];
       }
 
@@ -77,7 +77,7 @@
         return padDataFileData ( $file );
 
       if ( $padCheckSyntax and ! padStrHidden ( $name ) )
-        padError ( "there is no data named '$name' for the chart" );
+        padError ( "there is no data named '$name' for the $what" );
 
       return [];
 

@@ -755,6 +755,14 @@ through; `padCollection('blog')` gives the rows to PHP.
 field that fits; the chart's options keep clear of the handling options (`row`, `group`).
 Code: `pad/lib/chart.php` (bar, line, sparkline) and `pad/lib/chart/` (the other kinds).
 
+### Month calendar
+```
+{calendar data='agenda', title='what'}         # this month (or ?month=2026-11), events, links ‹ ›
+{calendar '2026-10', data='agenda'}            # as a pair: weeks as rows, days inside, events per day
+  <tr>{days}<td class="{$class}">{$day}{events}<b>{$what}</b>{/events}</td>{/days}</tr>
+{/calendar}
+```
+
 ### QR codes and barcodes
 ```
 {qr 'https://example.com/order/42'}            # inline SVG, encoded on the server (lib/qr.php)
