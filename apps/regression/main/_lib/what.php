@@ -77,6 +77,7 @@
       'db/placeholder_minus_inside_quotes' => 'The space that keeps a bare negative number from a -- comment goes outside quotes only - A-{0} quoted stays A--1',
       'db/placeholder_numeric_text_counts_and_positions' => 'Numeric text is a number where MySQL wants one - an ORDER BY position, a FETCH NEXT count - as after LIMIT',
       'db/placeholder_position_follows_the_clause' => 'An ORDER BY / GROUP BY position is read from the clauses and brackets - not in a UNION select list, still after field(...), in a list of any length',
+      'db/placeholder_after_a_non_ascii_name' => 'A statement with an unquoted name outside ASCII - naïef - fills its placeholders as any other',
       'deep/index'                => 'A page rendering a page rendering a page, each level with its own _lib and _include',
       'handlers/index'            => 'The menu of the handler family; each of those is a test of its own',
       'handlers/error_1'          => 'An engine-raised PHP warning from a tag - an undefined variable - which $padErrorLevel promotes to an ended request',

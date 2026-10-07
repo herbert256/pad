@@ -541,13 +541,15 @@
 
       }
 
-      // Outside quotes the words and brackets move the clause along. A word is read whole.
+      // Outside quotes the words and brackets move the clause along. A word is read whole,
+      // and only an ASCII letter or _ starts one: ctype_alpha follows the locale, which took
+      // the first byte of naïef for a letter, the word pattern then matched nothing, and the
+      // scan stood still - a 500 at once, and an endless loop under the ignore and log
+      // actions. Any other byte goes on as a single character.
 
       if ( ! $quote and $char != "'" and $char != '"' and $char != '`' ) {
 
-        if ( ctype_alpha ( $char ) or $char == '_' ) {
-
-          preg_match ( '/\G[A-Za-z_][A-Za-z0-9_$]*/', $sql, $match, 0, $i );
+        if ( preg_match ( '/\G[A-Za-z_][A-Za-z0-9_$]*/', $sql, $match, 0, $i ) ) {
 
           $one = strtolower ( $match [0] );
 
