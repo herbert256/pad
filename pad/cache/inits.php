@@ -37,10 +37,13 @@
   elseif ( padCacheGuarded () )
     $padCache = FALSE;
 
-  // An HTMX request is answered fresh: the page's PHP may answer it with one response
-  // fragment (lib/respond.php), and a hit gave it the whole page stored under the address.
+  // A script's request for a part of a page is answered fresh: the page's PHP may answer it
+  // with one response fragment (lib/respond.php), and a hit gave it the whole page stored
+  // under the address - HTMX's HX-Request, and the headers jQuery (X-Requested-With), Turbo
+  // (Turbo-Frame) and Unpoly (X-Up-Target) send, which went on to the stored page.
 
-  elseif ( isset ( $_SERVER ['HTTP_HX_REQUEST'] ) )
+  elseif ( isset ( $_SERVER ['HTTP_HX_REQUEST'] ) or isset ( $_SERVER ['HTTP_X_REQUESTED_WITH'] )
+           or isset ( $_SERVER ['HTTP_TURBO_FRAME'] ) or isset ( $_SERVER ['HTTP_X_UP_TARGET'] ) )
     $padCache = FALSE;
 
   if ( ! $padCache )
