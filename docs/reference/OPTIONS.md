@@ -142,7 +142,7 @@ Stores the generated content/output to a named variable.
 
 **Example:**
 ```
-{header toContent="pageHeader"}...{/header}
+{pad toContent="pageHeader"}<h1>...</h1>{/pad}
 {pad content="pageHeader"}
 ```
 
