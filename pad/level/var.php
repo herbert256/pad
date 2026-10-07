@@ -45,10 +45,12 @@
   // stands - a row field named first-name, _id, café or name@rows that the direct form reads.
 
   $padFldRefused = FALSE;
+  $padFldSource  = '';
 
   if ( substr($padFld, 0, 1) == '$' ) {
 
-    $padFld = padFieldValue ( substr($padFld, 1) );
+    $padFldSource = substr($padFld, 1);
+    $padFld       = padFieldValue ( $padFldSource );
 
     if ( ! is_scalar ( $padFld ) or is_bool ( $padFld ) )
       $padFld = '';
@@ -74,7 +76,11 @@
 
   $padVarFallback = preg_match ( '/^(optional|default\b|\?\?)/', $padVarOpts );
 
-  if ( $padFldRefused and ! $padVarFallback and $padCheckSyntax )
+  // Inside a sandbox the field that holds the name may be one the sandbox hid - it reads as
+  // empty, so the name is refused - and that miss is the isolation's, let through quietly as
+  // the not-found report below lets a hidden name through.
+
+  if ( $padFldRefused and ! $padVarFallback and $padCheckSyntax and ! padStrHidden ( $padFldSource ) )
     padError ( "the name '$padFld' that {" . $padBetween . "} takes from a value is no application variable" );
 
   // A field that holds a list, written where {$x} wants a value, is named as what it is,
