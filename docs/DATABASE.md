@@ -33,7 +33,8 @@ bare gets a number as a number and anything else as a quoted, escaped literal, s
 `id={0}` cannot take `5 or 1=1` as SQL. On MySQL text that looks like a number - every request
 value - is text too, as MySQL would compare a text column with the number (`name={0}` with `'0'`
 matched every name), except where MySQL wants a number - after `LIMIT`, `OFFSET` and
-`FETCH FIRST`/`NEXT`, and as an item of an `ORDER BY` or `GROUP BY` list, where numeric text is
+`FETCH FIRST`/`NEXT`, as a window frame's bound (`ROWS BETWEEN {0} PRECEDING`), and as an item
+of an `ORDER BY` or `GROUP BY` list written in the statement (not in a raw `{x…}` key), where numeric text is
 a column position, so a request value there must name one of the selected columns (`'9'` on a
 three-column select is an SQL error); SQLite keeps it a number. An array written bare becomes a list. Placeholders are
 filled in one pass, so a value holding `{1}` stays as written. Keys starting with `x` are

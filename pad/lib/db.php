@@ -471,6 +471,7 @@
     $clause = [ 0 => '' ];
     $expect = FALSE;
     $word   = '';
+    $dot    = FALSE;
 
     for ( $i = 0; $i < $len; $i++ ) {
 
@@ -553,16 +554,25 @@
 
           $one = strtolower ( $match [0] );
 
-          if     ( $one == 'by' and ( $word == 'order' or $word == 'group' ) )   { $clause [$depth] = 'by';    $expect = TRUE; }
+          // A word after a dot is a name - h.offset is a column - and changes no clause: it
+          // made the clause a limit, and a ', {0}' after it a number. ROWS and RANGE open a
+          // window frame, whose bounds - after ROWS / RANGE, BETWEEN and AND - are numbers
+          // too: ROWS BETWEEN '1' PRECEDING was "Integer is required for ROWS-type frame".
+
+          if     ( $dot )                                                        $expect = FALSE;
+          elseif ( $one == 'by' and ( $word == 'order' or $word == 'group' ) )   { $clause [$depth] = 'by';    $expect = TRUE; }
           elseif ( $one == 'limit' or $one == 'offset' )                         { $clause [$depth] = 'limit'; $expect = TRUE; }
           elseif ( ( $one == 'first' or $one == 'next' ) and $word == 'fetch' ) { $clause [$depth] = 'limit'; $expect = TRUE; }
+          elseif ( $one == 'rows' or $one == 'range' )                           { $clause [$depth] = 'frame'; $expect = TRUE; }
+          elseif ( ( $one == 'between' or $one == 'and' ) and ( $clause [$depth] ?? '' ) == 'frame' ) $expect = TRUE;
           else {
             $expect = FALSE;
             if ( in_array ( $one, [ 'select', 'union', 'intersect', 'except', 'from', 'where', 'having',
-                                    'window', 'rows', 'row', 'for', 'into', 'lock', 'returning' ] ) )
+                                    'window', 'row', 'for', 'into', 'lock', 'returning' ] ) )
               $clause [$depth] = '';
           }
 
+          $dot  = FALSE;
           $word = $one;
           $out .= $match [0];
           $i   += strlen ( $match [0] ) - 1;
@@ -574,6 +584,9 @@
         elseif ( $char == ')' )         { $depth = max ( 0, $depth - 1 ); $expect = FALSE; $word = ''; }
         elseif ( $char == ',' )         { $expect = in_array ( $clause [$depth] ?? '', [ 'by', 'limit' ] ); $word = ''; }
         elseif ( ! ctype_space ( $char ) ) { $expect = FALSE; $word = ''; }
+
+        if ( ! ctype_space ( $char ) )
+          $dot = ( $char == '.' );
 
       }
 
