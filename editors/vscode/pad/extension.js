@@ -52,7 +52,9 @@ function insidePadTag(document, position) {
     const open = text.lastIndexOf('{');
     if (open < 0) return false;
     if (text.indexOf('}', open) >= 0) return false;
-    return /[/A-Za-z_$%!@]/.test(text.charAt(open + 1) || '');
+    // past the ~ of whitespace control - {~ec - as past the brace itself
+    const first = text.charAt(open + 1) === '~' ? text.charAt(open + 2) : text.charAt(open + 1);
+    return /[/A-Za-z_$%!@]/.test(first || '');
 }
 
 function activate(context) {

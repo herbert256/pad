@@ -149,6 +149,9 @@ async function main() {
     r = await request('textDocument/completion', { textDocument: { uri: tildeUri }, position: { line: 3, character: 3 } });
     const tildeClosers = (r.result || []).map((c) => c.label);
     expect('close-tag completion reads the tags written with whitespace control', tildeClosers.join(',') === 'items', tildeClosers);
+    notify('textDocument/didChange', { textDocument: { uri: tildeUri, version: 2 }, contentChanges: [{ text: '<p>{~ec' }] });
+    r = await request('textDocument/completion', { textDocument: { uri: tildeUri }, position: { line: 0, character: 7 } });
+    expect('completion offers the tags after the ~ of whitespace control', (r.result || []).some((c) => c.label === 'echo'), (r.result || []).length);
 
     // hover from docs/reference, and from the application's own files
     let h = await hover('orders.pad', '{echo', 2);

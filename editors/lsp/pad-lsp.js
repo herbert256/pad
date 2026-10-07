@@ -112,7 +112,9 @@ function completion(params) {
     // only complete inside a PAD tag
     const open = before.lastIndexOf('{');
     if (open < 0 || before.indexOf('}', open) >= 0) return [];
-    if (!/[/A-Za-z_$%!@]/.test(before.charAt(open + 1) || '')) return [];
+    // past the ~ of whitespace control - {~ec - as past the brace itself
+    const first = before.charAt(open + 1) === '~' ? before.charAt(open + 2) : before.charAt(open + 1);
+    if (!/[/A-Za-z_$%!@]/.test(first || '')) return [];
 
     return COMPLETIONS.map((c) => ({
         label: c.label,
