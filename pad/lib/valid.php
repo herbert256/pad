@@ -106,10 +106,14 @@
 
   }
 
+  // A name part of an @ or dotted path: letters, digits, _ and : - a byte of a multibyte
+  // letter among the letters, as the field names the evaluator reads ({$u.émile}) are, and
+  // never a / . * ? [ or space, which would make the part a path or a glob.
+
   function padAtValid ( $part ) {
 
-    if ( trim($part) == '' )                                        return FALSE;
-    if ( ! preg_match ( '/^[a-zA-Z0-9_-][a-zA-Z0-9_:]*$/D', $part ) ) return FALSE;
+    if ( trim($part) == '' )                                                    return FALSE;
+    if ( ! preg_match ( '/^[a-zA-Z0-9_\x80-\xff-][a-zA-Z0-9_:\x80-\xff]*$/D', $part ) ) return FALSE;
 
     return TRUE;
 
