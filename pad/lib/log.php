@@ -28,7 +28,8 @@
   // context when the context has that name (PSR-3: letters, digits, _ and .), and the whole
   // context follows as JSON - a Throwable in it as its class, message, file and line, a
   // moment as its date and time. CR and LF are written \r and \n, the other line breaks and
-  // control characters as escapes too, so one call is one line however the message was made.
+  // control characters as escapes too, in the message and the context alike, so one call is
+  // one line however the message was made.
 
   function padLog ( $message, $level = 'info', $context = [] ) {
 
@@ -64,24 +65,27 @@
       elseif ( $value instanceof DateTimeInterface )
         $context [$key] = $value->format ( 'Y-m-d H:i:s' );
 
-    // CR and LF are not the only line breaks a reader of the log sees: a vertical tab, a form
-    // feed, NEL and the Unicode line and paragraph separators end a line for Python's
-    // splitlines and for editors, and the escape of a terminal's control sequence -
-    // \e[1A\e[2K - wipes the line above it from the screen of whoever reads the log with
-    // tail. Every control character but the tab is written as an escape too.
-
-    $text = preg_replace_callback ( '/[\x00-\x08\x0A-\x1F\x7F]|\xC2\x85|\xE2\x80[\xA8\xA9]/', fn ( $match ) => match ( $match [0] ) {
-              "\r"    => '\r',
-              "\n"    => '\n',
-              default => ( strlen ( $match [0] ) == 1 ) ? sprintf ( '\x%02X', ord ( $match [0] ) )
-                                                        : sprintf ( '\u%04X', mb_ord ( $match [0], 'UTF-8' ) )
-            }, $text );
     $now  = padNow ();
     $line = $now->format ( 'Y-m-d H:i:s' ) . ' ' . strtoupper ( $name ) . ' ' . $text;
 
     if ( $context )
       $line .= ' ' . json_encode ( $context, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
                                            | JSON_INVALID_UTF8_SUBSTITUTE | JSON_PARTIAL_OUTPUT_ON_ERROR );
+
+    // CR and LF are not the only line breaks a reader of the log sees: a vertical tab, a form
+    // feed, NEL and the Unicode line and paragraph separators end a line for Python's
+    // splitlines and for editors, and the escape of a terminal's control sequence -
+    // \e[1A\e[2K, or the one character CSI (U+009B) - wipes the line above it from the screen
+    // of whoever reads the log with tail. Every control character but the tab - the C1 ones
+    // too - is written as an escape, over the whole line: the JSON of the context writes
+    // NEL and CSI as they are, and a context value forged a line of its own.
+
+    $line = preg_replace_callback ( '/[\x00-\x08\x0A-\x1F\x7F]|\xC2[\x80-\x9F]|\xE2\x80[\xA8\xA9]/', fn ( $match ) => match ( $match [0] ) {
+              "\r"    => '\r',
+              "\n"    => '\n',
+              default => ( strlen ( $match [0] ) == 1 ) ? sprintf ( '\x%02X', ord ( $match [0] ) )
+                                                        : sprintf ( '\u%04X', mb_ord ( $match [0], 'UTF-8' ) )
+            }, $line );
 
     if ( padReplaying () )
       return TRUE;
