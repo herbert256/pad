@@ -52,7 +52,7 @@
                 'HTTP_X_FORWARDED_PORT', 'HTTP_X_FORWARDED_SERVER', 'HTTP_VIA',
                 'HTTP_FORWARDED_FOR', 'HTTP_X_ORIGINAL_FORWARDED_FOR', 'HTTP_X_CLIENT_IP',
                 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_CF_CONNECTING_IP', 'HTTP_TRUE_CLIENT_IP',
-                'HTTP_FASTLY_CLIENT_IP' ] as $header )
+                'HTTP_FASTLY_CLIENT_IP', 'HTTP_X_PAD_REMOTE' ] as $header )
       if ( isset ( $_SERVER [$header] ) )
         return FALSE;
 
@@ -65,47 +65,14 @@
   // when a visitor from elsewhere had caused them: the page fetched for that visitor showed
   // its {debug} boxes and its toolbar, answered its errors with the full report - or, the
   // visitor's user agent riding along, with the JSON channel - and honoured the loopback
-  // switches. A fetch made for a request that is not local says who it was made for, the
-  // way a proxy does: padLoopback then takes it for somebody else as well.
+  // switches. Every fetch made for a request that is not local says so, with a header that
+  // tells nothing about the visitor, and padLoopback takes a request carrying it for a
+  // forwarded one. Whatever the address: deciding by it missed 0.0.0.0, ::ffff:7f00:1, a
+  // name resolving to ::1 alone and a site that redirects here, and cost a DNS lookup.
 
-  function padSelfFetchHeaders ( $url = '' ) {
+  function padSelfFetchHeaders () {
 
-    if ( padLocal () or ! isset ( $_SERVER ['REMOTE_ADDR'] ) or ! padSelfTarget ( $url ) )
-      return [];
-
-    return [ 'X-Forwarded-For' => $_SERVER ['HTTP_X_FORWARDED_FOR'] ?? $_SERVER ['REMOTE_ADDR'] ];
-
-  }
-
-  // Whether a fetch goes to this machine: an address starting with $padHost, and as well
-  // any whose host is a loopback address, localhost, or the server's own address - the same
-  // site under another spelling (localhost for 127.0.0.1, an application's literal URL that
-  // never matches the Host a visitor sent) arrived from loopback with nothing forwarded and
-  // was taken for local. Nothing is said to another site: the visitor's address stays here.
-
-  function padSelfTarget ( $url ) {
-
-    $url = strtolower ( (string) $url );
-
-    if ( $url === '' or str_starts_with ( $url, strtolower ( (string) ( $GLOBALS ['padHost'] ?? "\0" ) ) ) )
-      return TRUE;
-
-    $host = trim ( (string) parse_url ( $url, PHP_URL_HOST ), '[]' );
-
-    if ( $host === '' )
-      return FALSE;
-
-    if ( $host == 'localhost' or str_ends_with ( $host, '.localhost' ) )
-      return TRUE;
-
-    $addrs = filter_var ( $host, FILTER_VALIDATE_IP ) ? [ $host ] : ( @gethostbynamel ( $host ) ?: [] );
-
-    foreach ( $addrs as $addr )
-      if ( str_starts_with ( $addr, '127.' ) or $addr == '::1' or str_starts_with ( $addr, '::ffff:127.' )
-           or $addr === ( $_SERVER ['SERVER_ADDR'] ?? NULL ) )
-        return TRUE;
-
-    return FALSE;
+    return padLocal () ? [] : [ 'X-PAD-Remote' => '1' ];
 
   }
 

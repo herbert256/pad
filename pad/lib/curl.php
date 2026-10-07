@@ -147,7 +147,7 @@
         $input ['options'] ['CONNECT_TO'] ??= $padSelfConnect;
     }
 
-    $input ['headers'] = ( $input ['headers'] ?? [] ) + padSelfFetchHeaders ( $url );
+    $input ['headers'] = ( $input ['headers'] ?? [] ) + padSelfFetchHeaders ();
 
     $options = $input ['options'] ?? [];
 
