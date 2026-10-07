@@ -195,6 +195,11 @@
         $source = $inits . $source . $exits;
     }
 
+    // A mail template renders once, as a page does: the pass takes out its own @start@ and
+    // @end@ as a page build's does (start/pad/pad.php reads the flag and clears it).
+
+    $GLOBALS ['padSectionsNext'] = TRUE;
+
     $out = trim ( padUnprotect ( padUnescape ( padCode ( $source ) ) ) );
 
     // A field's value arrives escaped for HTML - the sanitize step of every field - which
