@@ -17,7 +17,7 @@ Lets assume {source}{$myVar}{/source} has the value ABC, then the result will be
 {example 'miscellaneous/parse/2', skipResult, skipPhp, skipHeader}
 
 <p>
-Without quotes around {source}{$myVar}{/source} the result is the same: a field written into a tag's parameters is spliced in as a quoted string (a plain number as the number), so its value stays the text ABC. Only a bare word written in the template itself, as below, is read as the PHP constant of that name when one is defined, and as the text when not - a quoted value is always the text
+Without quotes around {source}{$myVar}{/source} the result is the same while <code>$padProtectValues</code> is on, the default: a field written into a tag's parameters is spliced in as a quoted string (a plain number as the number), so its value stays the text ABC - with it off, the value is read as the bare word below. Only a bare word written in the template itself, as below, is read as the PHP constant of that name when one is defined, and as the text when not - a quoted value is always the text
 </p>
 
 {example 'miscellaneous/parse/3', skipResult, skipPhp, skipHeader}
