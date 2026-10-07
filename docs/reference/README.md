@@ -30,7 +30,7 @@ This directory contains reference documentation for PAD template syntax elements
 
 | File | Description |
 |------|-------------|
-| [SEQUENCES.md](../sequences/SEQUENCES.md) | Sequence types (80+ mathematical sequences) |
+| [SEQUENCES.md](../sequences/SEQUENCES.md) | Sequence types (80 sequence types) |
 | [ACTIONS.md](../sequences/ACTIONS.md) | Sequence actions and transformations |
 
 ## Quick Reference

@@ -900,7 +900,7 @@ See the following files for complete reference documentation:
 
 - **[TAGS.md](docs/reference/TAGS.md)** - All built-in tags (control flow, data, database, file, output, navigation, execution, debug), type prefixes, options, and properties
 - **[FUNCTIONS.md](docs/reference/FUNCTIONS.md)** - All pipe functions (string, case, HTML, date, arithmetic, printf format)
-- **[sequences/](docs/sequences/)** - Sequence subsystem (80+ mathematical sequences, actions, transformations)
+- **[sequences/](docs/sequences/)** - Sequence subsystem (80 sequence types, actions, transformations)
 
 ---
 

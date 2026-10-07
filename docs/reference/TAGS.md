@@ -1108,7 +1108,8 @@ point marked), `sparkline` (see below).
 | `width`, `height` | The size, default 600 x 300; `.pad-chart { max-width: 100%; height: auto }` in the page's CSS makes it shrink with its container |
 
 **Accessibility:** `role="img"`, labelled by a `<title>` and a `<desc>` that lists the values;
-each bar and point has its own `<title>`, the tooltip on hover. A row without a number is
+each bar and point of a bar or line chart has its own `<title>`, the tooltip on hover - a
+sparkline has the chart's one `<title>` only. A row without a number is
 left out; a chart without points writes nothing.
 
 **Colours:** CSS custom properties `--pad-chart-series`, `--pad-chart-text`,
@@ -1415,8 +1416,8 @@ Add rendered text to a named stack, for a `{stack}` elsewhere in the page to pri
 
 **Behavior:** The content renders where the tag stands, with the variables of that spot, and
 prints nothing there. A push inside a `{cache}` section is stored with the section and made
-again on every hit. A `{page}` or `{code}` pass adds to the page's stacks; a sandboxed pass
-leaves no trace. From PHP: `padStackPush ( 'scripts', $html, $once )`.
+again on every hit. A plain `{page}` or `{code}` pass adds to the page's stacks; a sandbox, clean
+or reset pass keeps its pushes to itself. From PHP: `padStackPush ( 'scripts', $html, $once )`.
 
 ---
 
