@@ -1,0 +1,27 @@
+<p>The <code>{ignore}{calendar}{/ignore}</code> tag draws a month with its events - from a <code>{ignore}{data}{/ignore}</code>
+block, a page array or a <code>_data</code> file. The arrows move a month; today is marked.</p>
+
+{calendar data='agenda', title='what'}
+
+<p><code>{ignore}{calendar data='agenda', title='what'}{/ignore}</code></p>
+
+<h2>Your own markup</h2>
+
+<p>As a pair the tag hands over the weeks and their days as rows - <code>$day</code>, <code>$date</code>,
+<code>$today</code>, <code>$count</code>, <code>$class</code>, the day's <code>events</code> - so a
+mini calendar with a dot per busy day is a few lines:</p>
+
+<table class="mini">
+  <tr><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th><th>Su</th></tr>
+  {calendar data='agenda'}
+  <tr>
+    {days}<td class="{$class}" title="{$date}">{$day}{if $count gt 0}<i></i>{/if}</td>{/days}
+  </tr>
+  {/calendar}
+</table>
+
+<pre>{ignore}{calendar data='agenda'}
+  &lt;tr&gt;
+    {days}&lt;td class="{$class}"&gt;{$day}{if $count gt 0}&lt;i&gt;&lt;/i&gt;{/if}&lt;/td&gt;{/days}
+  &lt;/tr&gt;
+{/calendar}{/ignore}</pre>
