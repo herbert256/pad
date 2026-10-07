@@ -409,9 +409,14 @@
   // $x rounded up to a multiple of $p, as ceil ( $x / $p ) * $p rounds it, but in whole numbers
   // when both are whole and $p is above 0: through a float the quotient lost its last digits
   // past 2^53, and {sequence multiple=3, from=-9223372036854775808} began on the imprecise
-  // -9.2233720368548E+18 rather than on -9223372036854775806.
+  // -9.2233720368548E+18 rather than on -9223372036854775806. A bare multiple holds TRUE, the
+  // step of 1 it is read as: refused as no whole number, it went through the float too, and
+  // {sequence multiple, from=9223372036854775800, rows=3} answered nothing.
 
   function pqCeilMultiple ( $x, $p ) {
+
+    if ( $p === TRUE )
+      $p = 1;
 
     if ( ! pqBoolWhole ( $x ) or ! pqBoolWhole ( $p ) or $p <= 0 )
       return ceil ( $x / $p ) * $p;
