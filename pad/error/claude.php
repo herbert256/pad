@@ -199,15 +199,31 @@
   }
 
   // A query - a form body, the query of a URL in a text - with the value of each field
-  // whose name is a secret's redacted, read pair by pair as it stands: the name of
-  // user[password] is password. No parse_str, which stops at max_input_vars with a warning.
+  // whose name is a secret's redacted, read pair by pair as it stands. No parse_str, which
+  // stops at max_input_vars with a warning. A value is redacted whole: in a body up to the
+  // next & as parse_str splits it, in a text up to the &, space, quote or # that ends a
+  // URL's value there - it ended at a ; or a space, and password=se;cret kept ;cret.
 
-  function padRedactQuery ( $query ) {
+  function padRedactQuery ( $query, $body = TRUE ) {
 
-    return preg_replace_callback ( '/(^|[?&;])([^=&#?;\s]++)=([^&#;\s]*+)/',
-      fn ( $m ) => padRedactName ( preg_match ( '/\[([^\[\]]*+)\]$/', urldecode ( $m [2] ), $key ) ? $key [1] : urldecode ( $m [2] ) )
-                   ? $m [1] . $m [2] . '=' . urlencode ( '*** redacted ***' ) : $m [0],
+    $pattern = $body ? '/(^|&)([^=&]++)=([^&]*+)/' : '/(^|[?&;])([^=&#?;\s"\'<>]++)=([^&\s"\'<>#]*+)/';
+
+    return preg_replace_callback ( $pattern,
+      fn ( $m ) => padRedactQueryName ( $m [2] ) ? $m [1] . $m [2] . '=' . urlencode ( '*** redacted ***' ) : $m [0],
       $query ) ?? $query;
+
+  }
+
+  // Every key of a bracketed name counts: password[] and user[password][0] are a password's,
+  // where only the last key was read.
+
+  function padRedactQueryName ( $field ) {
+
+    foreach ( preg_split ( '/[\[\]]++/', urldecode ( $field ), -1, PREG_SPLIT_NO_EMPTY ) as $part )
+      if ( padRedactName ( $part ) )
+        return TRUE;
+
+    return FALSE;
 
   }
 
@@ -239,7 +255,7 @@
     // REQUEST_URI, QUERY_STRING and the referer of the next page.
 
     if ( str_contains ( $text, '=' ) )
-      $text = padRedactQuery ( $text );
+      $text = padRedactQuery ( $text, FALSE );
 
     return $text;
 
