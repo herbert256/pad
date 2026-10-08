@@ -1,0 +1,9 @@
+{meta title='A team list', about='Every member gets a circle with their initials - the colour comes from a hash of the name, the text colour from its contrast.'}
+<ul style="list-style:none; margin:0; padding:0; display:grid; gap:14px">
+  {team}
+  <li style="display:flex; align-items:center; gap:12px">
+    {avatar $name, size=44}
+    <span><strong>{$name}</strong><br><small style="opacity:.7">{$role}</small></span>
+  </li>
+  {/team}
+</ul>

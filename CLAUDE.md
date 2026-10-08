@@ -909,6 +909,12 @@ Code: `pad/lib/chart.php` (bar, line, sparkline) and `pad/lib/chart/` (the other
 {barcode $parcel, type='code128', height=70}   # scale= module width, plain = no digits under the bars
 ```
 
+### Showcase tags
+```
+{avatar 'Herbert Jebbink', size=48, shape='square'}   # initials in a circle/square, colour from a hash of the name
+```
+Every one is rendered on the server; the `showcase` application has examples of each.
+
 ### Variable Assignment
 ```
 {set $name = 'Alice'}              # Assign string

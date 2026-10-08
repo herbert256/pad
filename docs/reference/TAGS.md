@@ -1557,6 +1557,41 @@ Render a mount point `<div>` for a React component, filled with data from a prov
 
 ---
 
+## Presentation Tags
+
+Tags that draw, format and interact - the showcase application has an example of each.
+
+---
+
+### avatar
+An initials avatar as inline SVG - drawn on the server (`lib/avatar.php`), no image, no
+remote service: the same name is the same picture on every page and in every e-mail.
+
+```html
+{avatar 'Herbert Jebbink'}
+{avatar $name, size=32, shape='square'}
+{users}{avatar $email, size=40} {$name}{/users}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The name - its first and last word give the letters; an e-mail address counts by the words before its `@` (`herbert.jebbink@...` is HJ) |
+| `size` | Width and height in pixels, default 48 |
+| `shape` | `circle` (default) or `square` - with rounded corners |
+| `label` | The accessible name (`role="img"`, `aria-label`, `<title>`), by default the name |
+
+**Behavior:** the background is one of ten palette colours picked by a SHA-256 hash of the
+lower-cased name; the text on it is white or near-black, whichever has the higher WCAG
+contrast on that colour. The colours are `--pad-avatar-1` ... `--pad-avatar-10` and
+`--pad-avatar-ink-<n>` on `.pad-avatar` with `light-dark()` defaults, written once per page in
+a `<style>` (with the request's nonce when `$padCsp` asks for one); the fill attributes carry
+the light colours for a reader without the style. A name without letters is drawn as `?`.
+No name, or another shape, is an error under the strict check.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2060,6 +2095,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `cannot` | Web | Content when a gate refuses the ability; `{else}` |
 | `feature` | Web | Content while a feature flag is on; `{else}` |
 | `asset` | Web | The versioned address of a file of `www/<app>/`; `tag` writes the element |
+| `avatar` | Output | Initials avatar as inline SVG, coloured by a hash of the name |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
