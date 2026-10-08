@@ -9,7 +9,8 @@
 > `padStrSto` and `padLevelVars` are defined in `inits/const.php`, the error channel answers
 > only the command line and this machine's own unforwarded requests, and the engine has grown
 > to 1,142 PHP files. Read it as history, not as a description of the current code - the
-> audits in `docs/audit/` record what was found and fixed after it.
+> audits that recorded what was found and fixed after it stand in the git history under
+> `docs/audit/`.
 
 ---
 
