@@ -1793,6 +1793,33 @@ under the strict check.
 
 ---
 
+### sudoku
+A sudoku as a table - the givens bold, the open cells empty, or with `solve` the solution
+filled in by a backtracking solver in another colour (`lib/sudoku.php`).
+
+```html
+{sudoku '53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8..79'}
+{sudoku $puzzle, solve, title='Saturday puzzle'}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The 81 cells row by row: a digit 1-9 for a given, `.` `0` `_` or `-` for an open cell; whitespace and the bars and plus signs of a drawn grid are passed over, so nine lines will do |
+| `solve` | Fill the open cells with the solution |
+| `title` | A caption; without it the table is named by `aria-label` (`Sudoku, 30 givens`) |
+
+**Behavior:** the solver fills the cell with the fewest candidates first, a bit mask per row,
+column and box - the hardest published puzzles take well under a second. An open cell says
+`empty` to a screen reader. The colours are `--pad-sudoku-line`, `-box`, `-given`, `-solved`,
+`-cell` and `-shade` on `.pad-sudoku`, `light-dark()` defaults, written once per page, every
+rule under `:where()`. A wrong cell count, an unknown character, two equal givens in a row,
+column or box, and - with `solve` - a puzzle without a solution are errors under the strict
+check.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2304,6 +2331,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `icon` | Output | One of 79 built-in line icons as inline SVG in `currentColor` |
 | `gravatar` | Output | Gravatar `<img>` from the SHA-256 of an address, or a local avatar fallback |
 | `chess` | Output | A chess position from FEN as inline SVG - pieces, coordinates, marked squares, arrows |
+| `sudoku` | Output | A sudoku grid as a table, givens bold - solved on the server with `solve` |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |

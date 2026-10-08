@@ -919,6 +919,7 @@ Code: `pad/lib/chart.php` (bar, line, sparkline) and `pad/lib/chart/` (the other
 {icon 'arrow-right', size=20, label='Next'}   # built-in line icon in currentColor; decorative unless label=
 {gravatar $email, size=64, default='identicon'} # gravatar.com img (sha256, lazy, no referrer); fallback='avatar' stays local
 {chess $fen, flip, highlight='e2,e4', arrow='e2-e4'}   # a FEN as an SVG board, pieces described for a screen reader
+{sudoku '53..7....6..195...', solve}             # 81 cells as a table, givens bold; solve fills the solution in
 ```
 Every one is rendered on the server; the `showcase` application has examples of each.
 
