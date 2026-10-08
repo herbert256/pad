@@ -99,9 +99,14 @@
 
     $script = '';
 
+    // Under a Content-Security-Policy naming 'nonce' the script carries this request's
+    // nonce, as {asset} writes it (lib/asset.php) - without it the policy blocked it.
+
     if ( ! $store ['script'] ) {
       $store ['script'] = TRUE;
-      $script = padProtect ( '<script>' . padLiveScript () . '</script>' );
+      $nonce  = ( is_string ( $GLOBALS ['padCsp'] ?? NULL ) and str_contains ( $GLOBALS ['padCsp'], "'nonce'" ) )
+              ? ' nonce="' . htmlspecialchars ( padNonce (), ENT_QUOTES ) . '"' : '';
+      $script = padProtect ( "<script$nonce>" . padLiveScript () . '</script>' );
     }
 
     // With $padCsrf on every post must bring the session's token back (lib/csrf.php), and

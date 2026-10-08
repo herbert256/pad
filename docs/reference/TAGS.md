@@ -2097,6 +2097,39 @@ A `{copy}` without a text is an error under the strict check.
 
 ---
 
+### poll
+A vote among a few answers, once per visitor, and then the results as bars with their
+percentages - built on a `{live}` region, and a plain form without scripting (`lib/poll.php`).
+
+```html
+{poll 'favorite-language', options='PHP, Python, Ruby, Go', title='Which language do you reach for first?'}
+{poll 'favorite-language', options='PHP, Python, Ruby, Go', results}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The name - letters, digits, `_` and `-`: it names the file of the votes and the region |
+| `options` | The answers, separated by commas - two or more |
+| `title` | The question, by default the name made readable |
+| `button` | The text of the vote button, default `Vote` |
+| `results` | Show the results to everyone, also before a vote - a results page |
+
+**Behavior:** the form posts to the page itself: with scripting on, the region's script sends it
+in the background and swaps in the results; with scripting off it is an ordinary form POST and
+the page comes back with them. `$padCsrf` protects it as every form. A visitor votes once per
+poll - the answer is kept in the session, and a visitor who voted sees the results; a GET
+starts no session for a visitor without one. The votes are counted per answer in
+`DATA/poll/<app>/<name>.json` under an exclusive lock (`flock`); an answer taken out of
+`options=` keeps its count in the file and shows no more. `padPollVote ( $name, $answer )` adds
+a vote from PHP, `padPollCounts ( $name )` reads them. The colours are `--pad-poll-accent`,
+`-on`, `-text`, `-muted`, `-line`, `-track` and `-surface` on `.pad-poll`, `light-dark()`
+defaults, written once per page. A name that is no file name is an error; fewer than two
+answers is one under the strict check.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2618,6 +2651,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `modal` | Output | A `<dialog>` and its opening button - invoker commands, a small script, or a link without scripting |
 | `carousel` | Output | Slides that scroll and snap sideways, previous/next and dot links - no autoplay |
 | `copy` | Output | A text with a copy-to-clipboard button, selectable by hand without scripting |
+| `poll` | Web | A vote once per visitor, results as bars - a live region, a plain form without scripting |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
