@@ -915,6 +915,7 @@ Code: `pad/lib/chart.php` (bar, line, sparkline) and `pad/lib/chart/` (the other
 {identicon $email, size=64}                   # a symmetric 5x5 pattern from a sha256 hash, own colour
 {placeholder '600x300', text='Hero image'}    # grey SVG box with crossing lines; ratio='16:9', fluid
 {progress 72, max=100, label='Upload'}       # styled <progress> with label and %; steps for dots, color=, size=
+{rating 4.5, max=5}                           # stars as SVG, half stars clipped, aria '4.5 out of 5'; icon='heart'
 ```
 Every one is rendered on the server; the `showcase` application has examples of each.
 

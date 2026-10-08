@@ -1677,6 +1677,35 @@ an unknown colour or size is an error under the strict check.
 
 ---
 
+### rating
+A score as stars (or hearts) in inline SVG - whole ones filled, a part of one clipped to the
+score, the score said in words (`lib/rating.php`).
+
+```html
+{rating 4.5, max=5}
+{products}{$product} {rating $score, size=16}{/products}
+{rating 3.75, icon='heart'}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The score, clamped to 0 ... `max` |
+| `max` | The number of icons, a whole number from 1 to 20, default 5 |
+| `size` | The height in pixels, default 20 |
+| `icon` | `star` (default) or `heart` |
+| `label` | The accessible name, default `4.5 out of 5` |
+
+**Behavior:** a part of an icon is a nested `<svg>` as wide as the part - no `clipPath`, so no
+id two ratings on one page could share - measured over the drawn icon, so 0.5 is exactly
+half. `role="img"` with the label as `aria-label` and `<title>`. The colours are
+`--pad-rating-star`, `-heart` and `-empty` on `.pad-rating`, `light-dark()` defaults, written
+once per page; the fill attributes carry the light ones. A score that is no number, an
+unusable max or an unknown icon is an error under the strict check.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2184,6 +2213,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `identicon` | Output | Symmetric 5x5 identicon as inline SVG from a SHA-256 hash |
 | `placeholder` | Output | Grey image placeholder as inline SVG, a size or a ratio, fluid |
 | `progress` | Output | Accessible progress bar (native `<progress>`) or step dots |
+| `rating` | Output | Stars or hearts for a score as inline SVG, parts clipped, said in words |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |

@@ -1,0 +1,11 @@
+{meta title='Product reviews', about='The average score of each product as stars - a part of a star filled as far as the score goes.'}
+<table style="border-collapse:collapse; width:100%">
+  <tr><th style="text-align:left; padding:6px 12px 6px 0">Product</th><th style="text-align:left; padding:6px 12px">Score</th><th style="text-align:right; padding:6px 0">Reviews</th></tr>
+  {products}
+  <tr style="border-top:1px solid rgba(127,127,127,.25)">
+    <td style="padding:8px 12px 8px 0">{$product}</td>
+    <td style="padding:8px 12px; white-space:nowrap">{rating $score, size=18} <small>{$score}</small></td>
+    <td style="padding:8px 0; text-align:right">{$reviews}</td>
+  </tr>
+  {/products}
+</table>
