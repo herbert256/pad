@@ -2416,6 +2416,34 @@ the columns and `rows` below 1 are strict errors.
 
 ---
 
+### toc
+A table of contents of the page from its own rendered headings (`lib/toc.php`), nested and linked,
+written where `{toc}` stands once the whole page has rendered - the headings below it included.
+
+```html
+{toc}
+{toc levels='2-4', title='On this page', list='ul'}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| `levels` | The heading levels listed, `'2,3'` by default - a list or a range, `'2-4'` |
+| `title` | The label above the list, `Contents` by default; `''` for none |
+| `list` | `ol` (numbered, the default) or `ul` |
+
+**Behavior:** the tag prints a marker, as `{stack}` does, and the marker is replaced once the page
+has rendered - from `exits/exits.php` for the request's page, and when a `{page}` pass ends for a
+page it renders, so a `{toc}` lists the headings of the page that holds it. A heading without an
+id gets one - the slug of its text, `-2`, `-3` behind a repeat, never an id the page has - and a
+heading with an id keeps it. One level deeper nests one list deeper, never more than one step in.
+The nav is labelled by its title, a paragraph rather than a heading, so it lists itself nowhere.
+No heading of those levels writes nothing. Colours are `--pad-toc-*` custom properties with
+`light-dark()` defaults. Levels outside 1-6 and a list other than `ol`/`ul` are strict errors.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2945,6 +2973,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `map` | Output | A choropleth map of the world or a region as inline SVG, a colour step per value |
 | `timeline` | Output | Events on a time axis as inline SVG - cards above and below, spans as bars, or a vertical list |
 | `datatable` | Output | Rows as an accessible HTML table - aligned numbers, totals, sorting and paging links |
+| `toc` | Output | A table of contents from the page's own rendered headings, ids added |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |

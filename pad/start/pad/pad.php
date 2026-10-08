@@ -33,6 +33,12 @@
   if ( $padStrBox or $padStrCln or $padStrRes )
     $padOut [$pad+1] = padStackFill ( $padOut [$pad+1] );
 
+  // A {toc} lists the headings of the page that holds it: a page a {page} renders fills its
+  // own here, before the page around it sees it - lib/toc.php.
+
+  if ( $padStrBld == 'page' )
+    $padOut [$pad+1] = padTocFill ( $padOut [$pad+1] );
+
   include PAD . 'start/pad/end.php';
 
   return $padOut [$pad+1] ;

@@ -937,6 +937,7 @@ Code: `pad/lib/chart.php` (bar, line, sparkline) and `pad/lib/chart/` (the other
 {map 'europe', data='sales', key='country', value='amount'}   # choropleth: ISO alpha-2/3 or name, world or a region
 {timeline data='releases', date='when', label='what'}   # cards on a time axis; from=/to= spans, vertical for long lists
 {datatable data='orders', columns='number, customer, total', totals='total', sortable, rows=10}   # a whole table: totals row, server-side sort and page links
+{toc levels='2,3', title='Contents'}         # the page's own h2/h3, nested and linked - filled in after the page rendered
 ```
 Every one is rendered on the server; the `showcase` application has examples of each.
 
