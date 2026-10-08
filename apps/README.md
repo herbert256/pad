@@ -11,6 +11,7 @@ This directory contains PAD applications and examples.
 | [apps](apps/README.md) | Standard | Lists all PAD applications with descriptions from README files |
 | [charts](charts/README.md) | Standard | A showcase of the {chart} tag - a pulldown per chart family, every example with its data, its tag and the chart side by side |
 | [showcase](showcase/README.md) | Standard | A showcase of the tags that draw, format and interact - a pulldown per group, every example its template beside the result |
+| [tags](tags/README.md) | Standard | A page per built-in tag - its one line, syntax, own options, description and live examples - with indexes by name, group, form and option, a cheat sheet and a search |
 | [classicModels](classicModels/README.md) | Standard | PAD Select over the Classic Models sample database |
 | [cli](cli/README.md) | CLI | The `pad` command - new, serve, render, lint, export, test - and the command-line application |
 | [demo](demo/README.md) | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
