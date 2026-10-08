@@ -8,7 +8,7 @@
 //
 // Then open DATA/wasm/demo/index.html in the browser. What it writes:
 //
-//   index.html       the page: an address bar and a frame the application's pages show in
+//   index.html       the page: a frame filling the window that the application's pages show in
 //   pad-app.js       the runtime - requests, cookies, redirects, DATA/ kept in localStorage
 //   php.js           @php-wasm/universal and the PHP 8.4 loader, bundled into a classic script
 //   php-wasm.js      the PHP binary, gzipped and base64-encoded (a file:// page cannot fetch)
@@ -109,8 +109,8 @@ Open index.html in a browser (double-click it) - no web server and no network ar
 PHP ${binary.match(/8_4_(\d+)/)[0].replace(/_/g, '.')} compiled to WebAssembly runs in the tab, with the PAD engine and the
 application in its memory.
 
-What the application writes under DATA/ is kept in the browser's localStorage; the Reset
-button forgets it. Built ${bundle.built} from the PAD repository${commit ? ' at ' + commit : ''} with wasm/app.mjs.
+What the application writes under DATA/ is kept in the browser's localStorage; clearing
+the browser's site data forgets it. Built ${bundle.built} from the PAD repository${commit ? ' at ' + commit : ''} with wasm/app.mjs.
 `);
 
 const size = name => (statSync(join(out, name)).size / 1048576).toFixed(1) + ' MB';

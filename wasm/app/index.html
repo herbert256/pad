@@ -10,31 +10,22 @@
     (pad-bundle.js), and the runtime that answers its requests (pad-app.js). Written by
     wasm/app.mjs - no server and no network are needed.
 
-    The application's pages are shown in the frame below. A link or a form in them is a
-    request to PHP here; the bar above shows the address the application thinks it has.
+    The application's pages fill the window, as on a server - no bar of the page's own. A
+    link or a form in them is a request to PHP here; the page is kept after the # of this
+    file's address, so the browser's back button and a reload come back to it, and the
+    window's title is the page's.
   -->
   <style>
-    :root { --bar: #f3f4f6; --line: #d1d5db; --text: #111827; --dim: #6b7280; color-scheme: light dark; }
-    @media (prefers-color-scheme: dark) { :root { --bar: #1f2937; --line: #374151; --text: #f9fafb; --dim: #9ca3af; } }
-    html, body { margin: 0; height: 100%; background: var(--bar); color: var(--text); font: 14px system-ui, sans-serif; }
+    :root { --back: #f3f4f6; --text: #111827; --dim: #6b7280; color-scheme: light dark; }
+    @media (prefers-color-scheme: dark) { :root { --back: #1f2937; --text: #f9fafb; --dim: #9ca3af; } }
+    html, body { margin: 0; height: 100%; background: var(--back); color: var(--text); font: 14px system-ui, sans-serif; }
     body { display: flex; flex-direction: column; }
-    header { display: flex; gap: 6px; align-items: center; padding: 6px 8px; border-bottom: 1px solid var(--line); }
-    header button { font: inherit; padding: 3px 9px; }
-    #address { flex: 1; min-width: 0; font: 13px ui-monospace, monospace; padding: 4px 8px; border: 1px solid var(--line); border-radius: 4px; background: Canvas; color: CanvasText; }
-    #status { color: var(--dim); white-space: nowrap; font-size: 12px; }
     iframe { flex: 1; border: 0; width: 100%; background: #fff; }
     #loading { padding: 24px; color: var(--dim); }
   </style>
 </head>
 <body>
 
-  <header>
-    <button id="back" title="Back">&larr;</button>
-    <button id="reload" title="Reload">&#x21bb;</button>
-    <input id="address" spellcheck="false" aria-label="Address">
-    <span id="status">loading</span>
-    <button id="reset" title="Forget the data this application saved in the browser">Reset</button>
-  </header>
   <div id="loading">Starting PHP (WebAssembly) and the PAD engine...</div>
   <iframe id="page" title="__APP__" hidden></iframe>
 
@@ -47,8 +38,6 @@
     (async function () {
 
       const frame   = document.getElementById('page');
-      const address = document.getElementById('address');
-      const status  = document.getElementById('status');
       const blobs   = {};
       let pad, current, busy = false;
 
@@ -110,11 +99,11 @@
 
       function show(answer) {
         current = answer.url;
-        address.value = answer.url;
         const page = frame.contentDocument;
         page.open();
         page.write(rewrite(answer.html, answer.url));
         page.close();
+        document.title = page.title || '__APP__';
         page.addEventListener('click', click);
         page.addEventListener('submit', submit);
         frame.contentWindow.scrollTo(0, 0);
@@ -123,20 +112,28 @@
       async function go(method, url, form, push) {
         if (busy) return;
         busy = true;
-        status.textContent = '...';
-        const started = performance.now();
         try {
           const answer = await pad.request(method, url, form);
           show(answer);
-          status.textContent = 'HTTP ' + answer.status + ', ' + Math.round(performance.now() - started) + ' ms';
           const hash = '#' + answer.url.substring(('http://localhost/' + pad.app + '/').length);
           if (push) history.pushState({ url: answer.url }, '', hash);
           else history.replaceState({ url: answer.url }, '', hash);
         } catch (error) {
-          status.textContent = 'failed: ' + error.message;
-          console.error(error);
+          failed(error);
         }
         busy = false;
+      }
+
+      // A request PHP could not answer at all - not an error page of the application, which
+      // is a page like any other - is said in the frame.
+
+      function failed(error) {
+        console.error(error);
+        const page = frame.contentDocument;
+        page.open();
+        page.write('<!DOCTYPE html><p style="font: 14px system-ui, sans-serif; padding: 24px"></p>');
+        page.close();
+        page.querySelector('p').textContent = 'The request failed: ' + error.message;
       }
 
       // A link to one of the application's pages is a request here; a link elsewhere opens
@@ -173,17 +170,6 @@
         return 'http://localhost/' + pad.app + '/' + location.hash.substring(1);
       }
 
-      document.getElementById('back').onclick = () => history.back();
-      document.getElementById('reload').onclick = () => go('GET', current, null, false);
-      document.getElementById('reset').onclick = () => {
-        if (!confirm('Forget what this application saved in the browser and start over?')) return;
-        pad.forget();
-        location.hash = '';
-        location.reload();
-      };
-      address.addEventListener('keydown', event => {
-        if (event.key === 'Enter') go('GET', address.value, null, true);
-      });
       window.addEventListener('popstate', event => go('GET', (event.state && event.state.url) || fromHash(), null, false));
 
       try {
@@ -196,7 +182,6 @@
         await go('GET', fromHash(), null, false);
       } catch (error) {
         document.getElementById('loading').textContent = 'PAD could not start here: ' + error.message;
-        status.textContent = 'failed';
         console.error(error);
       }
 

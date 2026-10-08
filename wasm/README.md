@@ -30,7 +30,7 @@ cd DATA/wasm && zip -r demo.zip demo                                 # one file 
 | File | What it is |
 |------|------------|
 | `wasm/app.mjs` | The packer. Writes `index.html`, `pad-app.js`, `php.js` (`@php-wasm/universal` and the PHP 8.4 loader bundled by esbuild into a classic script, 0.3 MB), `php-wasm.js` (the PHP binary gzipped and base64-encoded, 10 MB) and `pad-bundle.js` (`pad/`, `apps/<app>/`, `apps/_common/`, `www/<app>/` minus PHP - the limits of `build.php`, 2.4 MB). Zipped about 8 MB |
-| `wasm/app/index.html` | The page: an address bar, back, reload, reset, and a frame the application's pages are written into |
+| `wasm/app/index.html` | The page: a frame filling the window that the application's pages are written into - no bar of its own; the page is kept after the `#`, so the browser's back button and reload work, and the window's title is the page's |
 | `wasm/app/pad-app.js` | The runtime: installs the files, runs each request the way `www/pad.php` does for `http://localhost/<app>/`, keeps the cookies (sessions, CSRF, flash), follows redirects, keeps `DATA/` in localStorage. Runs in Node too |
 | `wasm/verify-app.mjs` | Walks `demo` in Node: pages, a post with its token through the redirect to the flash message, a post without the token (403), a form breaking its rules, a 404 |
 
