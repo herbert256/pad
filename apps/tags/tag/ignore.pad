@@ -2,7 +2,8 @@
 <p>Everything between <code>&#123;ignore&#125;</code> and <code>&#123;/ignore&#125;</code> is written out as it
 stands: the characters PAD reads as syntax - <code>{ } | = , @</code> - are swapped for
 stand-ins before the engine looks at the content, and turned back into the real characters
-when the page is written. Nothing inside runs: no tag, no field, no comment.</p>
+when the page is written. Nothing inside runs: no tag, no field. A comment is the exception -
+comments are dropped before the template is scanned, so one inside the pair is gone too.</p>
 
 <p>It is what inline code with braces needs. A <code>&lt;script&gt;</code> with an object
 literal, a <code>&lt;style&gt;</code> with its selector blocks, a JSON sample in a
