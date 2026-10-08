@@ -1820,6 +1820,40 @@ check.
 
 ---
 
+### crossword
+A crossword made from a list of words: laid out across and down so they cross, numbered,
+drawn as an empty SVG grid beside the Across and Down clues (`lib/crossword.php`).
+
+```html
+{crossword}
+  ECHO: Writes a value without the sanitize chain
+  PIPE: The | that hands a value to a function
+  ARRAY: An ordered map
+{/crossword}
+
+{crossword solution, title='Week 41'}...{/crossword}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| content | A line per word, `WORD: clue` - taken as it stands, so a clue may hold braces; spaces, hyphens and apostrophes in a word are dropped, letters only |
+| `solution` | The letters in the grid and the answers behind the clues |
+| `title` | The grid's accessible name, default `Crossword` |
+
+**Behavior:** the layout is greedy and the same every time - the longest word first, across;
+then each next word, longest first, where it crosses the most letters already down on the
+smallest grid, never side by side with another word. A word that fits nowhere is left out
+and named under the clues (`Not placed: ...`) and in the grid's `<desc>`. The squares are
+numbered row by row where a word starts; each clue carries its length. The colours are
+`--pad-crossword-square`, `-line`, `-number`, `-letter` and `-answer` on `.pad-crossword`,
+`light-dark()` defaults, written once per page. The tag written alone, a line without `:`, a
+word that is no letters, a word without a clue or written twice are errors under the strict
+check.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2332,6 +2366,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `gravatar` | Output | Gravatar `<img>` from the SHA-256 of an address, or a local avatar fallback |
 | `chess` | Output | A chess position from FEN as inline SVG - pieces, coordinates, marked squares, arrows |
 | `sudoku` | Output | A sudoku grid as a table, givens bold - solved on the server with `solve` |
+| `crossword` | Output | Words and clues laid out as a numbered crossword grid (SVG) with the Across and Down lists |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
