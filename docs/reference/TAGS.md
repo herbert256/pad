@@ -2293,6 +2293,46 @@ unknown type, direction or edges value are errors under the strict check.
 
 ---
 
+### map
+A choropleth map as inline SVG - every country coloured by a value of its row, drawn on the
+server from Natural Earth's outlines (`lib/map.php`, `lib/map/world.json`) - no JavaScript,
+no tiles, no remote service.
+
+```html
+{map 'world', data='sales', key='country', value='amount'}
+{map 'europe', data='visitors', scale='quantile', title='Visitors per country'}
+{map 'south-america', key='code', value='forest', width=320}
+  code,forest
+  BRA,59.1
+{/map}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The view: `world` (default), `europe`, `africa`, `asia`, `north-america`, `south-america` or `oceania` |
+| `data` | The rows - a `{data}` store, a page array or a `_data` file, as for `{chart}`; as a pair the content is the rows (JSON, YAML, XML or CSV) |
+| `key` | The field with the country: its ISO 3166 alpha-2 or alpha-3 code or its English name, in any case - else the first field that is no number |
+| `value` | The number - else the first numeric field |
+| `scale` | `linear` (default: seven steps from the lowest value to the highest) or `quantile` (seven steps by rank) |
+| `width`, `height` | Default 720 wide; the height follows from the view unless given |
+| `title` | The accessible name, default `<Value> by country` |
+
+**Behavior:** rows of one country add up; a key no country has is named in the title
+(`not on the map: ...`), not drawn. The colours are the heatmap's seven steps
+(`--pad-chart-heat-0` to `-6`) with a scale under the map, a country without a value in
+`--pad-map-empty`, the borders `--pad-map-border` (`light-dark()` defaults on
+`.pad-chart-map`); every country has a `<title>` - `Netherlands: 1,234` - and the `<desc>`
+lists the values. The outlines: Natural Earth 1:50m admin-0 countries (public domain) through
+world-atlas@2.0.2 (ISC), codes and names from i18n-iso-countries (MIT), in the Natural Earth
+projection; a region view is a crop of the same projection at full detail, the world view
+uses paths simplified for its scale; a country too small to keep its outline is a small
+diamond. Without data the map is drawn in grey. An unknown view or scale is an error under
+the strict check.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2819,6 +2859,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `video` | Output | YouTube or Vimeo as a poster and play button, the iframe only on a click; a local file as `<video>` |
 | `pdf` | Output | The rendered content sent as a PDF, written in plain PHP - fonts, tables, JPEG pictures |
 | `diagram` | Output | A flowchart or sequence diagram from Mermaid-style lines, laid out on the server as inline SVG |
+| `map` | Output | A choropleth map of the world or a region as inline SVG, a colour step per value |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
