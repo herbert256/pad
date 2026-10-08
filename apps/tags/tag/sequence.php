@@ -12,6 +12,7 @@
 {sequence fibonacci, from=1, to=20, stop=100, skip=2} ... {/sequence}
 {sequence random, minimal=1, maximal=100, rows=5, unique, randomly} ... {/sequence}
 {sequence '1..20', keep, prime, sum} ... {/sequence}
+{sequence '1..20', keep='prime', action='first|3'} ... {/sequence}
 {sequence prime, rows=10, push='primes', toData='primeList'}
 {sequence pull='primes', reverse} ... {/sequence}
 PAD;
@@ -37,8 +38,8 @@ PAD;
     'toData'    => 'Also keep the values as a data set of this name, iterated as <code>{name}</code>.',
     'name'      => 'The field the current value is written to, instead of <code>$sequence</code>; the result is also stored under it, like <code>push</code>.',
     'negative'  => 'Bare option: invert the selection of an action - <code>first=3, negative</code> is all but the first three.',
-    'keep'      => 'Bare option, with a type: keep only the values that belong to that type - <code>keep, prime</code>. Also <code>remove</code>, <code>flag</code> and <code>make</code>; see those tags.',
-    'action'    => 'Any action name as an option, applied to the result in the order written: <code>sum</code>, <code>average</code>, <code>median</code>, <code>count</code>, <code>reverse</code>, <code>sort</code>, <code>shuffle</code>, <code>dedup</code>, <code>first=n</code>, <code>last=n</code>, <code>append=\'store\'</code>, ...' ];
+    'keep'      => 'A play: <code>keep, prime</code> (bare, followed by a type) or <code>keep=\'prime\'</code> keeps only the values that belong to that type. Also <code>remove</code>, <code>flag</code> and <code>make</code>; see those tags.',
+    'action'    => 'Names an action explicitly, its value after a <code>|</code>: <code>action=\'first|3\'</code>. Usually the action is written as an option of its own, applied to the result in the order written: <code>sum</code>, <code>average</code>, <code>median</code>, <code>count</code>, <code>reverse</code>, <code>sort</code>, <code>shuffle</code>, <code>dedup</code>, <code>first=n</code>, <code>last=n</code>, <code>append=\'store\'</code>, ...' ];
 
   $tagSee     = [ 'pull', 'keep', 'remove', 'flag', 'make', 'resume', 'action', 'sparkline', 'chart' ];
 

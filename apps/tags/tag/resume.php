@@ -14,7 +14,7 @@ PAD;
   $tagParms   = [];
 
   $tagOptions = [
-    'action' => 'Any sequence action - <code>reverse</code>, <code>sort</code>, <code>sum</code>, <code>first=3</code>, ... - or a play with a type: <code>add=10</code> (make), <code>keep, prime</code>, <code>remove, even</code>, <code>flag, odd</code>.' ];
+    'action' => 'Any sequence action, as an option of its own or named with <code>action=\'reverse\'</code> - <code>reverse</code>, <code>sort</code>, <code>sum</code>, <code>first=3</code>, ... - or a play with a type: <code>add=10</code> (make), <code>keep, prime</code>, <code>remove, even</code>, <code>flag, odd</code>.' ];
 
   $tagSee     = [ 'sequence', 'pull', 'action' ];
 
