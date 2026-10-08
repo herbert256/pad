@@ -68,6 +68,7 @@
       $padNoKinds = [
         'data'     => 'data store',        'bool'     => 'bool store',
         'content'  => 'content block',     'include'  => 'include',
+        'define'   => 'define',            'macro'    => 'macro',
         'local'    => 'file in _data',     'constant' => 'constant',
         'app'      => 'application tag',   'common'   => 'tag in _common',
         'pad'      => 'built-in tag',      'php'      => 'PHP function',

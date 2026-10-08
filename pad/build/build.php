@@ -28,11 +28,21 @@
       ? 'Forbidden: ' . str_replace ( APPS, '', $padBuildRefused ) . " refused the page '$padPage'"
       : 'Forbidden' );
 
+  // A page-cache hit of a page with {nocache} parts renders the stored page with the parts
+  // in it - cache/inits.php found it - in place of building the page: no _inits.php and no
+  // page PHP run. Only the request's own page; a {page} it includes builds as ever.
+
   if ( $padBuildRefused )
 
     $padBase [$pad] = '';
 
-  else {
+  elseif ( ( $GLOBALS ['padNocacheHit'] ?? NULL ) and ! $GLOBALS ['padNocacheBuilt'] ) {
+
+    $GLOBALS ['padNocacheBuilt'] = TRUE;
+
+    $padBase [$pad] = $padBuildLib . padNocacheTemplate ( $GLOBALS ['padNocacheHit'] [0], $GLOBALS ['padNocacheHit'] [1] );
+
+  } else {
 
     $padBuildBase = include PAD . 'build/base.php';
     $padBuildPage = include PAD . 'build/page.php';

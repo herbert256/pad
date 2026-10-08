@@ -1,0 +1,5 @@
+{meta title='A live part in a cached section', about='The section is rendered once; on the second use - a hit - only the part inside nocache renders again.'}
+{set $nocacheVisit = 1}
+{cache 'nocacheSection', ttl=600}<p>cached at visit {$nocacheVisit}, {nocache}now visit {$nocacheVisit}{/nocache}</p>{/cache}
+{set $nocacheVisit = 2}
+{cache 'nocacheSection', ttl=600}<p>cached at visit {$nocacheVisit}, {nocache}now visit {$nocacheVisit}{/nocache}</p>{/cache}

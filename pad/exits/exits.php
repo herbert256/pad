@@ -35,6 +35,13 @@
 
   $padOutput = padUnprotect ( padUnescape ( padStackFill ( $padFlushLeft ) ) );
 
+  // A page with {nocache} parts is kept by the page cache with the parts as their source -
+  // taken here, before anything below adds to the page, since a hit renders the parts and
+  // comes through here again (lib/nocache.php). The visitor's copy loses the markers.
+
+  $padNocacheBody = padNocacheCut ( $padOutput, $padNocacheKept );
+  $padOutput      = padNocacheStrip ( $padOutput );
+
   // With $padCsrf on, each form of the page that posts back here carries the session's
   // token without the template having to ask (lib/csrf.php) - the forms an application
   // already had are protected by the one setting. A token that went into the page with

@@ -1,5 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tags by name · PAD tags</title>
+  <link rel="stylesheet" href="tags.css">
+  <script src="tags.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+
+    <a class="brand" href="?index">
+      <span class="brand-mark" aria-hidden="true">&#123;&#125;</span>
+      <span>PAD <b>tags</b></span>
+    </a>
+
+    <nav class="menu" aria-label="Indexes">
+      <a class="menu-link" href="?index">Home</a><a class="menu-link is-active" href="?names" aria-current="page">A-Z</a><a class="menu-link" href="?groups">Groups</a><a class="menu-link" href="?forms">Forms</a><a class="menu-link" href="?options">Options</a><a class="menu-link" href="?cheatsheet">Cheat sheet</a>
+    </nav>
+
+    <form class="search" action="" method="get" role="search">
+      <input type="hidden" name="search" value="">
+      <label class="sr-only" for="q">Search the tags</label>
+      <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+    </form>
+
+    <button type="button" class="theme" id="theme" aria-label="Switch between light and dark">
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    </button>
+
+  </div>
+</header>
+
+<main class="page">
+
 <h1>Tags by name</h1>
-<p class="lead">All 139 built-in tags from A to Z.</p>
+<p class="lead">All 142 built-in tags from A to Z.</p>
 
 <nav class="jump" aria-label="Letters"><a href="#letter-A">A</a><a href="#letter-B">B</a><a href="#letter-C">C</a><a href="#letter-D">D</a><a href="#letter-E">E</a><a href="#letter-F">F</a><a href="#letter-G">G</a><a href="#letter-H">H</a><a href="#letter-I">I</a><a href="#letter-J">J</a><a href="#letter-K">K</a><a href="#letter-L">L</a><a href="#letter-M">M</a><a href="#letter-N">N</a><a href="#letter-O">O</a><a href="#letter-P">P</a><a href="#letter-Q">Q</a><a href="#letter-R">R</a><a href="#letter-S">S</a><a href="#letter-T">T</a><a href="#letter-U">U</a><a href="#letter-V">V</a><a href="#letter-W">W</a></nav>
 
@@ -102,7 +141,7 @@
 </section>
 
 <section class="section" id="letter-D">
-  <div class="section-head"><h2>D</h2><span>8 tags</span></div>
+  <div class="section-head"><h2>D</h2><span>9 tags</span></div>
   <ul class="list">
     
     <li><a class="name" href="?tag/data">&#123;data&#125;</a> <span class="about">Turns its content - JSON, XML, YAML, CSV, a list or a range - into a named data set for a later tag to iterate. <a class="meta" href="?groups#values">Variables and stores</a></span></li>
@@ -112,6 +151,8 @@
     <li><a class="name" href="?tag/debug">&#123;debug&#125;</a> <span class="about">Shows values as a collapsible tree in the page, for a local request only, while rendering goes on. <a class="meta" href="?groups#debug">Debugging and errors</a></span></li>
     
     <li><a class="name" href="?tag/decrement">&#123;decrement&#125;</a> <span class="about">Takes one off a variable, starting it at -1 when it does not exist yet. <a class="meta" href="?groups#values">Variables and stores</a></span></li>
+    
+    <li><a class="name" href="?tag/define">&#123;define&#125;</a> <span class="about">A custom tag written in the template itself - what an _tags/name.pad file is, without the file. <a class="meta" href="?groups#layout">Layouts and components</a></span></li>
     
     <li><a class="name" href="?tag/diagram">&#123;diagram&#125;</a> <span class="about">Draws a flowchart or a sequence diagram from Mermaid-style lines of text, laid out on the server as inline SVG. <a class="meta" href="?groups#graphics">Charts and codes</a></span></li>
     
@@ -251,8 +292,10 @@
 </section>
 
 <section class="section" id="letter-M">
-  <div class="section-head"><h2>M</h2><span>6 tags</span></div>
+  <div class="section-head"><h2>M</h2><span>7 tags</span></div>
   <ul class="list">
+    
+    <li><a class="name" href="?tag/macro">&#123;macro&#125;</a> <span class="about">A template function: declared parameters, given in order or by name, read as fields of its body. <a class="meta" href="?groups#layout">Layouts and components</a></span></li>
     
     <li><a class="name" href="?tag/mail">&#123;mail&#125;</a> <span class="about">Renders a template, or its own content, to an e-mail with an HTML and a text part, and sends it. <a class="meta" href="?groups#network">Network and mail</a></span></li>
     
@@ -270,8 +313,10 @@
 </section>
 
 <section class="section" id="letter-N">
-  <div class="section-head"><h2>N</h2><span>2 tags</span></div>
+  <div class="section-head"><h2>N</h2><span>3 tags</span></div>
   <ul class="list">
+    
+    <li><a class="name" href="?tag/nocache">&#123;nocache&#125;</a> <span class="about">A part of a cached section or page that renders on every request, the cache hit included. <a class="meta" href="?groups#output">Output control</a></span></li>
     
     <li><a class="name" href="?tag/nonce">&#123;nonce&#125;</a> <span class="about">This request&#039;s Content-Security-Policy nonce, for a script or style the policy lets run. <a class="meta" href="?groups#forms">Forms and security</a></span></li>
     
@@ -442,3 +487,13 @@
     
   </ul>
 </section>
+
+
+</main>
+
+<footer class="foot">
+  <p>142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.</p>
+</footer>
+
+</body>
+</html>

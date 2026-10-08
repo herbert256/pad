@@ -47,7 +47,7 @@
 
   function padStackPush ( $name, $text, $once = '' ) {
 
-    global $padStackStore, $padFragment, $pad;
+    global $padStackStore, $padFragment, $pad, $padTag, $padType;
 
     $name = (string) $name;
     $text = (string) $text;
@@ -67,11 +67,14 @@
     $padStackStore [$name] ['text'] [] = $text;
 
     // Every fragment-cache section that is rendering around this push records it, so a
-    // hit can make it again.
+    // hit can make it again - up to a {nocache} round the push, which makes it again itself.
 
-    for ( $i = $pad; $i >= 0; $i-- )
+    for ( $i = $pad; $i >= 0; $i-- ) {
       if ( isset ( $padFragment [$i] ) and is_array ( $padFragment [$i] ) and ! $padFragment [$i] ['hit'] )
         $padFragment [$i] ['stacks'] [] = [ $name, $text, $once ];
+      if ( ( $padTag [$i] ?? '' ) == 'nocache' and ( $padType [$i] ?? '' ) == 'pad' )
+        break;
+    }
 
     return TRUE;
 

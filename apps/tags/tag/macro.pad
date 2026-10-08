@@ -1,0 +1,13 @@
+{ignore}
+<p><code>{macro 'entry', label, type='text'}</code> ... <code>{/macro}</code> keeps its content
+as a function of the template. A use gives the values in the order the parameters are declared
+- <code>{entry 'E-mail', 'email'}</code> - or by name - <code>{entry label='Name'}</code> - or
+both; inside the body each parameter is a field, <code>{$label}</code>, and the fields around
+the use stay visible behind them. A value given to a macro is text, never template.</p>
+
+<p>The body renders at every use, in its place; <code>@content@</code> takes in the content of a
+pair, and a macro can call itself. It exists from the point it is walked: a use before it is an
+unknown tag. Under the strict syntax check a required parameter left out, more values than
+parameters, a name the macro does not declare, and a parameter named like an option every tag
+takes - <code>sort</code>, <code>first</code>, <code>content</code> - are errors.</p>
+{/ignore}

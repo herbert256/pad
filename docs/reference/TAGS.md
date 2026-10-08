@@ -1645,7 +1645,32 @@ leaves for the rest of the page is kept with it and made again on a hit: its `{p
 the page booking of a paged tag in it, for a `{pager}` further down. A request for one
 response fragment, or the post of a live region, renders the section and stores nothing. A
 rendering that holds the visitor's CSRF token (a `{form}`, `{csrf}`, a live region) or the
-request's `{nonce}` is not stored either: it renders every time.
+request's `{nonce}` is not stored either: it renders every time. A `{nocache}` part of the
+section renders on every hit.
+
+---
+
+### nocache
+A part of a cached page or section that renders on every request, the hit included.
+
+```html
+{cache 'top-products', ttl=300}
+  {topProducts}<li>{$name} {nocache}- {stock $id} left{/nocache}</li>{/topProducts}
+{/cache}
+
+<p>Served at {nocache}{php:date 'H:i:s'}{/nocache}</p>    the page cache keeps the page round it
+```
+
+**Behavior:** where nothing caches, the content renders as any content does. Inside a `{cache}`
+section (or a tag's `cache=` option) that is rendering, and on a page the page cache may keep,
+the part is stored as its source: on a hit the stored rendering comes back with the part
+rendered again, and a part inside a loop gets the fields of its rows back as they were when it
+was stored. In a section the part renders where the section stands, with the page's fields.
+A page-cache hit runs no PHP - not the page's, nor an `_inits.php` - so there a part sees what a
+request has without it: request and session values, the configuration, the `_lib` functions and
+the application's tags. The CSRF token of a `{form}` or the `{nonce}` in a part no longer keeps
+a section out of the fragment cache - the part renders for each visitor. A page-cache entry with parts is never answered with a 304 from the entry alone, nor
+does a hit renew it. `{nocache}` takes no parameter.
 
 ---
 
@@ -2791,6 +2816,58 @@ Declares the parameters of a custom tag, at the top of its template.
 in what the caller left out, readable as `{#name}` like a given one. Under the strict check
 a parameter the tag does not declare is reported: `the tag {card} has no parameter 'titel'`.
 The items are read raw, as `{attrs}` reads them.
+
+---
+
+### define
+A custom tag written in the template itself - what an `_tags/name.pad` file is, without the file.
+
+```html
+{define 'card'}
+  {parms title, tone='info'}
+  <div class="card {#tone}">
+    <h2>{#title}</h2>
+    @content@
+    {slot 'footer'}<footer>@content@</footer>{/slot}
+  </div>
+{/define}
+
+{card title='Revenue'}<strong>{$revenue}</strong>{/card}
+{card title='Orders', tone='warn'}{$count}{slot 'footer'}<a href="?orders">All</a>{/slot}{/card}
+```
+
+**Behavior:** the body is kept as written and renders at every use, where the use stands and
+with its fields - a `{define}` can use itself, for rows below the current one. Everything of a
+custom tag works: `{#name}` reads a parameter, `{parms}` declares them, `@content@` takes the
+caller's content in, `{slot}`s take fills. A define exists from the point it is walked, as a
+`{content}` or `{data}` store does - a use before it is an unknown tag. `define:card` asserts the
+kind. Under the strict check a name that is a built-in or application tag, or already a
+`{macro}`, is an error, and so is a define without a name or without its body.
+
+---
+
+### macro
+A template function: declared parameters, given in their order or by name, read as fields.
+
+```html
+{macro 'entry', label, type='text', value=''}
+  <label>{$label} <input type="{$type}" name="{$label}" value="{$value}">@content@</label>
+{/macro}
+
+{entry 'E-mail', 'email'}
+{entry label='Name', value=$name}
+{orders}{entry $number}{/orders}
+```
+
+**Behavior:** the items after the name declare the parameters: a name alone is required,
+`name=default` fills in - the default is evaluated where the macro is used. A use gives values
+in their order, by name, or both; inside the body each is a field (`{$label}`) of the macro's
+one row, and the fields around the use stay visible behind them. `@content@` takes a pair's
+content in, `{slot}`s work as in a `{define}`, and a macro can call itself. A value given to a
+macro is text, never template - as every value is. Under the strict check a required parameter
+left out, more values than parameters, a named parameter the macro does not declare, and a
+parameter named like an option every tag takes (`sort`, `first`, `content` ...) are errors.
+`macro:entry` asserts the kind.
 
 ---
 
