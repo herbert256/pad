@@ -2333,6 +2333,45 @@ the strict check.
 
 ---
 
+### timeline
+Events on a time axis as inline SVG (`lib/timeline.php`) - cards above and below the axis,
+spans as bars, or one under the other for a long list.
+
+```html
+{timeline data='releases', date='when', label='what', text='detail'}
+{timeline data='plan', from='start', to='end', date='day', label='name', color='kind'}
+{timeline date='year', label='what', vertical}
+  year,what
+  1969,Moon landing
+{/timeline}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| `data` | The rows - a `{data}` store, a page array or a `_data` file, as for `{chart}`; as a pair the content is the rows (JSON, YAML, XML or CSV) |
+| `date` | The field of a moment: a year (`1969`), a month (`2026-10`) or anything `strtotime` reads - else the first field that reads as one |
+| `from`, `to` | The fields of a span, drawn as a bar |
+| `label`, `text` | The title of an event and the line under it - else the first other text fields |
+| `color` | A field that groups the events: a colour each and a legend |
+| `format` | A PHP date format for the dates written - else by the date's precision (`1969`, `Oct 2026`, `Oct 8, 2026`) |
+| `vertical` | Dates on the left, cards on the right, one under the other |
+| `width`, `height` | Default 720 (vertical 600) wide; the height follows from the cards unless given (not in the vertical form) |
+| `title` | The accessible name, default `Timeline` |
+
+**Behavior:** the axis has round ticks - years in steps of 1 to 100, months of 1, 3 or 6, or
+days - by the span. A moment gets a dot on the axis and a card above or below it, the sides
+alternating; a card that would cover another card or a leader line moves to the other side
+or a lane further out, hanging right or left of its leader. Spans lie as bars in lanes under
+the axis, their label inside or beside. The colours are the chart's categorical slots and
+`--pad-timeline-card`, `-border`, `-line` and `-muted` on `.pad-chart-timeline`
+(`light-dark()` defaults); every event has a `<title>` and the `<desc>` lists them all. A
+timeline without events answers nothing and its `@else@` shows; rows of which none has a
+date are an error under the strict check.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2860,6 +2899,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `pdf` | Output | The rendered content sent as a PDF, written in plain PHP - fonts, tables, JPEG pictures |
 | `diagram` | Output | A flowchart or sequence diagram from Mermaid-style lines, laid out on the server as inline SVG |
 | `map` | Output | A choropleth map of the world or a region as inline SVG, a colour step per value |
+| `timeline` | Output | Events on a time axis as inline SVG - cards above and below, spans as bars, or a vertical list |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |

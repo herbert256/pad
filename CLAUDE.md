@@ -935,6 +935,7 @@ Code: `pad/lib/chart.php` (bar, line, sparkline) and `pad/lib/chart/` (the other
 {pdf file='invoice', download}...{/pdf}   # the content as a PDF (plain PHP writer) instead of the page; preview: a sheet + link
 {diagram direction='LR'}A[Order] --> B{Paid?}{/diagram}   # flowchart (or type='sequence') laid out as SVG on the server
 {map 'europe', data='sales', key='country', value='amount'}   # choropleth: ISO alpha-2/3 or name, world or a region
+{timeline data='releases', date='when', label='what'}   # cards on a time axis; from=/to= spans, vertical for long lists
 ```
 Every one is rendered on the server; the `showcase` application has examples of each.
 
