@@ -13,7 +13,12 @@ answers a page from the server it starts on a free port; `export` writes the
 `regression/site` fixture as static files, its links rewritten - from a subdirectory too -
 its assets copied; `test` runs the scratch application's `_tests` - a pass, a failing
 `{assert}`, a test without an answer that `--record` then writes - and those of
-`regression/site`, whose test pages no URL reaches. The crawl compares the verdict,
+`regression/site`, whose test pages no URL reaches; `migrate` makes a migration with
+`--new` in the scratch application, on an SQLite file under its `DATA/`, shows it with
+`--pretend`, runs it and a seeder with `--seed`, lists it with `--status`, fails a rollback
+without a down and a `--fresh` without `--force`; `seed` runs the seeder by its name
+without the `01_`; `down` takes the scratch application down for maintenance - its record
+keeps the secret's hash - lists it, and `up` brings it back. The crawl compares the verdict,
 so a command that stops behaving turns its yes into a NO.
 
 ## Files

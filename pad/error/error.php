@@ -43,7 +43,13 @@
 
   }
 
+  // While an error page renders (lib/errorPage.php) a PHP error is that page's failure,
+  // thrown back to it, never a report of its own - which would ask for an error page again.
+
   function padErrorHandler ( $type, $error, $file, $line ) {
+
+    if ( ( $GLOBALS ['padErrorPageBusy'] ?? FALSE ) and ( error_reporting() & $type ) )
+      throw new \ErrorException ( $error, 0, $type, $file, $line );
 
     if ( error_reporting() & $type )
       padErrorGo ( 'ERROR: ' . $error, $file, $line );

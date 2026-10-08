@@ -44,6 +44,7 @@
       'request/statuses'          => 'A missing page answers 404, and a status the page sets with http_response_code() stands',
       'request/gone'              => 'The fixture for request/statuses: a page that answers 410 itself',
       'request/redirect'          => 'A redirecting page, seen unfollowed - status and destination - and followed to where it lands',
+      'request/auth_intended'     => 'A guest sent from a page for the logged-in to the login page, and the login sending them back to the page and values first asked - once',
       'request/vars'              => 'The intake fixture bare: no request vars, so the defaults show',
       'request/body'              => 'The raw-body fixture bare: an empty php://input',
       'request/jar'               => 'The cookie fixture bare: an empty jar',

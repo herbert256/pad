@@ -11,8 +11,16 @@
   // Note this ends the request with exit, so nothing in exits/ runs: the page is responsible
   // for its own output and headers.
 
-  if ( ! $padNoNo )
+  // A page that is not there waits for inits/notFound.php (inits/page.php lets it, for an
+  // application that is down for maintenance) - its name is no file to run. Down for
+  // maintenance, the plain PHP is held back as every page is (lib/maintenance.php): a
+  // plain 503, as there is no template to render one with.
+
+  if ( ! $padNoNo or $padNotFound !== '' )
     return;
+
+  if ( $padMaintenanceDown = padMaintenance () )
+    padMaintenanceRefuse ( $padMaintenanceDown );
 
   $padNoNo = APP . "$padPage.php";
 

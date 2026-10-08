@@ -1,0 +1,1 @@
+{can 'edit-post', $post}edit{else}read{/can} | {posts}{$title}: {can 'edit-post', $posts}edit{else}read{/can}; {/posts}| {posts}{cannot 'edit-post', $posts}{$title} is not mine{/cannot}{/posts}

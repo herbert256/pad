@@ -14,6 +14,7 @@
   // cliRun       this script with other arguments, in a child process: [ exit code, output ]
   // cliRunPages  pad render over a list of pages, four child processes at a time
   // cliPhp       the php binary to run it with - the one running now, when that is php
+  // cliOption    the value of a --name=value argument, TRUE for a bare --name
 
   function cliHome () {
 
@@ -184,6 +185,34 @@
 
   }
 
+  // Readies the engine to run $task booted for $app - its configuration, its .env, its _lib -
+  // in place of a page (pad/inits/app.php): what pad migrate and pad seed need to reach the
+  // application's database through db (). The command then includes pad/pad.php itself, at
+  // the top level, as the engine's variables are globals. An error the task does not catch
+  // is the engine's JSON report with exit status 1; else the task's answer is the status.
+
+  function cliTask ( $app, $task ) {
+
+    global $padApp, $padPage, $padApps, $padData, $padTask, $padPageSource, $padSetConfig;
+
+    $_GET = $_REQUEST = $_POST = [];
+
+    $_SERVER ['REQUEST_METHOD'] = 'GET';
+    $_SERVER ['argv']           = [ $_SERVER ['argv'] [0] ?? 'pad' ];
+    $_SERVER ['argc']           = 1;
+
+    $padApp        = $app;
+    $padPage       = 'index';
+    $padPageSource = '';
+    $padApps       = cliHome () . '/apps/';
+    $padData       = cliHome () . '/DATA/';
+    $padTask       = $task;
+    $padSetConfig  = [ 'ErrorAction' => 'boot', 'Toolbar' => FALSE, 'Reload' => FALSE, 'Cache' => FALSE ];
+
+    return cliHome () . '/pad/pad.php';
+
+  }
+
   // Runs pad again with $args, the environment plus $env, and returns its exit code and
   // what it wrote to stdout.
 
@@ -203,6 +232,18 @@
     fclose ( $pipes [2] );
 
     return [ proc_close ( $proc ), $out ];
+
+  }
+
+  function cliOption ( $args, $name, $default = NULL ) {
+
+    foreach ( $args as $arg )
+      if ( $arg === "--$name" )
+        return TRUE;
+      elseif ( str_starts_with ( $arg, "--$name=" ) )
+        return substr ( $arg, strlen ( $name ) + 3 );
+
+    return $default;
 
   }
 

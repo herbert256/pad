@@ -706,6 +706,69 @@ that never flash do not open the session.
 
 ---
 
+### auth
+The logged-in user of this application - `padLogin()` - its row as the tag's data.
+
+```html
+{auth}Hello {$name}{else}<a href="?login">Log in</a>{/auth}
+```
+
+**Behavior:** the content renders once for a logged-in user, with the user's row as its
+data (`{$name}`, `{$email}` - the password and token fields were never kept); for a guest
+the `{else}` / `@else@` half renders. `{guest}...{/guest}` is the reverse and hands over no
+data. Both own their `{else}`: an `{if}` around them keeps its own.
+
+---
+
+### can
+Content for a user a gate allows - `padGate()`, `padCan()` (lib/gate.php).
+
+```html
+{can 'edit-post', $post}<a href="?edit&id={$id}">Edit</a>{else}Read only{/can}
+{posts}{cannot 'delete-post', $posts}locked{/cannot}{/posts}
+```
+
+**Parameters:** the ability, then the values the gate gets - an array passes whole; inside
+a loop the loop's name is its current row. `{cannot}` is the reverse.
+
+**Behavior:** `padGateBefore` hooks decide first, then the gate. A guest reaches only a gate
+whose user parameter takes NULL. An ability nobody defined is FALSE and, under the strict
+check, an error.
+
+---
+
+### feature
+Content while a feature flag of `$padFeatures` is on for this visitor.
+
+```html
+{feature 'search2'}<form action="?search2">...</form>{else}<form action="?search">...</form>{/feature}
+```
+
+**Behavior:** `padFeature($name)` decides: `TRUE`, `FALSE`, a share between 0 and 1 of the
+visitors - stable per user id, else per a long-lived `padFeatureId` cookie - or the name of
+a function called with the user. `padFeatureOverride()` fixes one for a test. An unknown flag
+is FALSE and, under the strict check, an error.
+
+---
+
+### asset
+The address of a file of `www/<app>/` with a version of its contents, for a far-future cache.
+
+```html
+<link rel="stylesheet" href="{asset 'charts.css'}">     <!-- /charts/charts.css?v=1f3a9c0b2e -->
+{asset 'app.js', tag}                                     <!-- <script src="..." defer></script> -->
+```
+
+**Parameters:** the file, relative to `www/<app>/` - it never leaves it. `tag` writes the
+element: `<link rel="stylesheet">` for `.css`, `<script defer>` for `.js`, a module for
+`.mjs`, with `nonce=` when `$padCsp` names `'nonce'`.
+
+**Behavior:** `v=` is the first ten hex digits of a hash of the contents, made once per
+request - a changed file gets a new address. A missing file is the plain address and, under
+the strict check, an error. `padAsset()` / `padAssetTag()` from PHP.
+
+---
+
 ### nonce
 This request's Content-Security-Policy nonce.
 
@@ -1991,6 +2054,12 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `input` | Web | Form field with refill, label and validation error |
 | `textarea` | Web | Text area with refill, label and validation error |
 | `flash` | Web | Flash messages that survive one redirect |
+| `auth` | Web | Content for a logged-in user, the user's row as data; `{else}` for a guest |
+| `guest` | Web | Content for a guest; `{else}` when logged in |
+| `can` | Web | Content when a gate allows the ability; `{else}` |
+| `cannot` | Web | Content when a gate refuses the ability; `{else}` |
+| `feature` | Web | Content while a feature flag is on; `{else}` |
+| `asset` | Web | The versioned address of a file of `www/<app>/`; `tag` writes the element |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |

@@ -25,6 +25,10 @@
   // number of messages the file transport keeps. $padMailLast holds the last message of the
   // request, with the file it was written to.
   //
+  // With $options ['queue'] - TRUE, or a queue's name - padMail queues the mail instead
+  // (lib/queue.php): pad work renders and sends it, in the application, with the variables
+  // handed over - the page's own are not there then.
+  //
   // padMail          builds, renders and sends one message
   // padMailTemplate  the _mail/ directory and the files of a template
   // padMailRender    a template's text rendered with the variables of the mail
@@ -40,6 +44,20 @@
   function padMail ( $to, $template, $subject, $vars = [], $options = [] ) {
 
     global $padCheckSyntax;
+
+    // Queued: the mail is a job for a worker (lib/queue.php), rendered and sent there - the
+    // request answers at once. The answer is the job's id.
+
+    if ( ! empty ( $options ['queue'] ) ) {
+
+      $queue = is_string ( $options ['queue'] ) ? $options ['queue'] : 'default';
+
+      unset ( $options ['queue'] );
+
+      return padQueue ( '@mail', [ 'to'      => $to,      'template' => (string) $template, 'subject' => $subject,
+                                   'vars'    => $vars,    'options'  => $options ], queue: $queue );
+
+    }
 
     $html = $options ['html'] ?? NULL;
     $text = $options ['text'] ?? NULL;

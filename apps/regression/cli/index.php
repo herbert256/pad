@@ -13,6 +13,16 @@
   //   test    the _tests of the scratch application - a pass, a failing {assert}, a test
   //           without an answer and --record writing it - and of regression/site, whose
   //           test pages no URL reaches
+  //   migrate a migration made by --new in the scratch application, on an SQLite file under
+  //           its DATA: --pretend shows it, --seed runs it and the seeder, --status lists it,
+  //           a rollback without a down fails, --fresh wants --force
+  //   seed    the scratch application's seeder, named without its 01_
+  //   down    maintenance of the scratch application: the record with the secret's hash,
+  //           the list of what is down, up removing it, an unknown application refused
+  //   work    a page of the scratch application queues two jobs, queue counts them, work
+  //           --once runs the one and fails the other, --failed names why
+  //   schedule the scratch application's _schedule.php listed with its next run, and run at
+  //           the minute it is due
   //
   // A plain load only offers the link; verdict.php runs it on every load.
 
@@ -117,6 +127,85 @@
               and trim ( (string) @file_get_contents ( "$tests/fresh.txt" ) ) == 'fresh'
               and $codeT3 === 0 and str_contains ( $outT3, '4 tests, 0 failed' )
               and $hidden == '404' ) ? 'yes' : 'NO';
+
+    // migrate and seed - the scratch application gets an SQLite database under the scratch
+    // DATA/, a migration made by --new, and a seeder
+
+    file_put_contents ( "$home/apps/shop/.env", "padSqlDriver=sqlite\npadSqlDatabase=shop.sqlite\n" );
+    file_put_contents ( "$home/apps/shop/_config/config.php",
+      "<?php \$padSqlDriver = padEnv ( 'padSqlDriver' ); \$padSqlDatabase = padEnv ( 'padSqlDatabase' ); ?>" );
+
+    mkdir ( "$home/apps/shop/_seeds", 0755, TRUE );
+    file_put_contents ( "$home/apps/shop/_seeds/01_notes.php",
+      "<?php padFakeSeed ( 1 ); padFactory ( 'notes', 3, fn ( \$i ) => [ 'text' => padFakeWord () ] ); ?>" );
+
+    list ( $codeM1, $outM1 ) = cliCheckRun ( [ 'migrate', 'shop', '--new=create_notes' ], $env );
+
+    $made = $home . '/' . trim ( $outM1 );
+
+    if ( $codeM1 === 0 and is_file ( $made ) )
+      file_put_contents ( $made, "create table notes (id integer primary key, text varchar(20));\n" );
+
+    list ( $codeM2, $outM2 ) = cliCheckRun ( [ 'migrate', 'shop', '--pretend' ],          $env );
+    list ( $codeM3, $outM3 ) = cliCheckRun ( [ 'migrate', 'shop', '--seed' ],             $env );
+    list ( $codeM4, $outM4 ) = cliCheckRun ( [ 'migrate', 'shop', '--status' ],           $env );
+    list ( $codeM5, $outM5 ) = cliCheckRun ( [ 'seed', 'shop', 'notes' ],                 $env );
+    list ( $codeM6, $outM6 ) = cliCheckRun ( [ 'migrate', 'shop', '--rollback' ],         $env );
+    list ( $codeM7 )         = cliCheckRun ( [ 'migrate', 'shop', '--fresh' ],            $env );
+    list ( $codeM8, $outM8 ) = cliCheckRun ( [ 'migrate', 'shop', '--fresh', '--force' ], $env );
+
+    $migrate = ( $codeM1 === 0 and preg_match ( '#^apps/shop/_migrations/\d{4}_\d{2}_\d{2}_\d{6}_create_notes\.sql$#', trim ( $outM1 ) )
+                 and $codeM2 === 0 and str_contains ( $outM2, 'create table notes (id integer primary key, text varchar(20));' )
+                 and $codeM3 === 0 and str_contains ( $outM3, '_create_notes' ) and str_contains ( $outM3, 'seeded      01_notes' )
+                 and $codeM4 === 0 and preg_match ( '/yes  1      \S+_create_notes/', $outM4 )
+                 and $codeM6 === 1
+                 and $codeM7 === 1
+                 and $codeM8 === 0 and str_contains ( $outM8, 'migrated' ) ) ? 'yes' : 'NO';
+
+    $seed = ( $codeM5 === 0 and trim ( $outM5 ) == 'seeded      01_notes' ) ? 'yes' : 'NO';
+
+    // down and up - maintenance of the scratch application, in the scratch home's DATA:
+    // down writes the record with the secret's hash, the list names it, up removes it and
+    // a second up has nothing to remove; an application that is not there is refused
+
+    list ( $codeD1, $outD1 ) = cliCheckRun ( [ 'down', 'shop', '--secret=letmein42', '--retry=5', '--message=Back soon' ], $env );
+    $downRecord = json_decode ( (string) @file_get_contents ( "$home/DATA/maintenance/shop.json" ), TRUE ) ?: [];
+    list ( $codeD2, $outD2 ) = cliCheckRun ( [ 'down' ], $env );
+    list ( $codeD3 )         = cliCheckRun ( [ 'up', 'shop' ], $env );
+    list ( $codeD4 )         = cliCheckRun ( [ 'up', 'shop' ], $env );
+    list ( $codeD5 )         = cliCheckRun ( [ 'down', 'no/such/app' ], $env );
+    list ( $codeD6, $outD6 ) = cliCheckRun ( [ 'down' ], $env );
+
+    $down = ( $codeD1 === 0 and str_contains ( $outD1, 'Let yourself through: ?letmein42' )
+              and ( $downRecord ['retry'] ?? 0 ) === 5 and ( $downRecord ['message'] ?? '' ) === 'Back soon'
+              and ( $downRecord ['secret'] ?? '' ) === hash ( 'sha256', 'letmein42' )
+              and $codeD2 === 0 and str_contains ( $outD2, 'shop' ) and str_contains ( $outD2, 'with a secret - Back soon' )
+              and $codeD3 === 0 and ! file_exists ( "$home/DATA/maintenance/shop.json" )
+              and $codeD4 === 1 and $codeD5 === 1
+              and $codeD6 === 0 and trim ( $outD6 ) == 'No application is down' ) ? 'yes' : 'NO';
+
+    // work, queue and schedule - job handlers, a page that queues, a schedule
+
+    mkdir ( "$home/apps/shop/_jobs", 0755, TRUE );
+    file_put_contents ( "$home/apps/shop/_jobs/note.php", "<?php padLog ( 'note {n}', 'info', [ 'n' => \$n ] ); ?>" );
+    file_put_contents ( "$home/apps/shop/_jobs/fail.php", "<?php return FALSE; ?>" );
+    file_put_contents ( "$home/apps/shop/enqueue.php", "<?php padQueue ( 'note', [ 'n' => 1 ] ); padQueue ( 'fail', [], tries: 1 ); ?>" );
+    file_put_contents ( "$home/apps/shop/enqueue.pad", "queued" );
+    file_put_contents ( "$home/apps/shop/_schedule.php", "<?php return [ [ 'every' => 'day at 03:00', 'job' => 'note', 'data' => [ 'n' => 2 ] ] ]; ?>" );
+
+    list ( $codeQ1 )         = cliCheckRun ( [ 'render', 'shop', 'enqueue' ], $env );
+    list ( $codeQ2, $outQ2 ) = cliCheckRun ( [ 'queue', 'shop' ], $env );
+    list ( $codeQ3, $outQ3 ) = cliCheckRun ( [ 'work', 'shop', '--once' ], $env );
+    list ( $codeQ4, $outQ4 ) = cliCheckRun ( [ 'queue', 'shop', '--failed' ], $env );
+    list ( $codeQ5, $outQ5 ) = cliCheckRun ( [ 'schedule', 'shop', '--list', '--at=2026-10-12 08:00' ], $env );
+    list ( $codeQ6, $outQ6 ) = cliCheckRun ( [ 'schedule', 'shop', '--at=2026-10-13 03:00' ], $env );
+
+    $work     = ( $codeQ1 === 0 and $codeQ2 === 0 and preg_match ( '/default\s+2\s+0\s+0/', $outQ2 )
+                  and $codeQ3 === 0 and preg_match ( '/done\s+note/', $outQ3 ) and preg_match ( '/failed\s+fail/', $outQ3 )
+                  and $codeQ4 === 0 and str_contains ( $outQ4, 'the handler returned FALSE' ) ) ? 'yes' : 'NO';
+
+    $schedule = ( $codeQ5 === 0 and str_contains ( $outQ5, '0 3 * * *' ) and str_contains ( $outQ5, '2026-10-13 03:00' )
+                  and $codeQ6 === 0 and preg_match ( '/done\s+note/', $outQ6 ) ) ? 'yes' : 'NO';
 
     padDeleteDataDir ( $home );
 

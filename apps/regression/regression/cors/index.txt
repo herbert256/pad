@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <h2>
+      listed: 200
+    </h2>
+    <pre>Access-Control-Allow-Credentials: true
+Access-Control-Allow-Origin: https://app.example.com
+Access-Control-Expose-Headers: X-Total
+Vary: Origin</pre>
+    <pre>&lt;p&gt;data for another origin&lt;/p&gt;</pre>
+    <h2>
+      other: 200
+    </h2>
+    <pre>Vary: Origin</pre>
+    <pre>&lt;p&gt;data for another origin&lt;/p&gt;</pre>
+    <h2>
+      none: 200
+    </h2>
+    <pre>Vary: Origin</pre>
+    <pre>&lt;p&gt;data for another origin&lt;/p&gt;</pre>
+    <h2>
+      preflight: 204
+    </h2>
+    <pre>Access-Control-Allow-Credentials: true
+Access-Control-Allow-Headers: Content-Type, X-Token
+Access-Control-Allow-Methods: GET, POST
+Access-Control-Allow-Origin: https://app.example.com
+Access-Control-Max-Age: 600
+Vary: Origin</pre>
+    <pre></pre>
+    <h2>
+      preflight other: 204
+    </h2>
+    <pre>Vary: Origin</pre>
+    <pre></pre>
+    <h2>
+      post: 403
+    </h2>
+    <pre>Access-Control-Allow-Credentials: true
+Access-Control-Allow-Origin: https://app.example.com
+Access-Control-Expose-Headers: X-Total
+Vary: Origin</pre>
+    <pre>Forbidden: this form was not sent from this site, or the pag...</pre>
+    <h2>
+      any: 200
+    </h2>
+    <pre>Access-Control-Allow-Origin: *</pre>
+    <pre>&lt;p&gt;data for another origin&lt;/p&gt;</pre>
+  </body>
+</html>

@@ -27,6 +27,10 @@ no Composer. They are loaded on every request, like every file in `pad/lib/`.
 | [Environment and cache](#environment-and-cache) | `padEnv`, `padRemember`, `padCacheGet`, `padRateLimit`, ... | environment_and_cache |
 | [Dates and logging](#dates-and-logging) | `padNow`, `padAgo`, `padLog`, ... | dates_and_logging |
 | [Hashing and encryption](#hashing-and-encryption) | `padHash`, `padEncrypt`, `padDecrypt`, ... | hashing_and_encryption |
+| [Authentication and authorization](#authentication-and-authorization) | `padLogin`, `padUser`, `padAttempt`, `padGate`, `padCan`, `padFeature`, ... | - |
+| [Migrations and fake data](#migrations-and-fake-data) | `padMigrate`, `padSeed`, `padFake*`, `padFactory`, ... | - |
+| [Queues, schedule and HTTP fakes](#queues-schedule-and-http-fakes) | `padQueue`, `padQueueWork`, `padCronMatch`, `padCurlFake`, ... | - |
+| [Maintenance and assets](#maintenance-and-assets) | `padMaintenanceDown`, `padAsset`, ... | - |
 
 ---
 
@@ -832,3 +836,76 @@ Edge rules:
   one - `user.id` for a signed `user[id]` (the page would read that one):
   `FALSE`. A field the body adds - a form posted to the link - leaves it valid. The signature is compared with `hash_equals`. The values are visible in the link:
   sign what must not change, seal (`padEncrypt`) what must not be read.
+
+---
+
+## Authentication and authorization
+
+`pad/lib/auth.php`, `pad/lib/gate.php`, `pad/lib/feature.php`.
+
+| Function | Answers |
+|----------|---------|
+| `padLogin ( $user, $remember = FALSE )` | Keeps the row (an `id` at least) as this application's logged-in user, without its password, secret and token fields, under a new session id; `$remember` TRUE (30 days) or seconds sets a signed remember-me cookie - `$padAuthRemember` names the function that finds the row by id |
+| `padLogout ()` | Forgets this application's user and its `$padSessionVars`, drops the cookie, new session id - other applications stay logged in |
+| `padUser ( $field = NULL )` | The row, or one field of it (dot paths); NULL for a guest |
+| `padUserId ()`, `padAuthCheck ()` | The id; whether a user is logged in |
+| `padAttempt ( $password, $hash, $user, $remember = FALSE, &$rehash = NULL )` | Checks the password and logs in; without a user it still checks against a dummy hash, so timing tells nothing; `$rehash` gets a new hash when the stored one is outdated |
+| `padAuthRequire ( $login = 'login' )` | A guest is sent to the login page, the address asked for kept (on a GET) |
+| `padRedirectIntended ( $default = 'index' )` | After the login: back to the kept address - never off the site - else the default |
+| `padPasswordToken ( $email, $passwordHash, $ttl = 3600 )` | A reset token: an expiry and an HMAC over the application, the e-mail, the expiry and the current hash - no table |
+| `padPasswordTokenCheck ( $token, $email, $passwordHash )` | Whether it holds: not expired, the same address, the password not changed since |
+| `padGate ( $ability, $callback )` | Defines an ability (in `_lib`, every request): the callback gets the user and the values |
+| `padGateBefore ( $callback )` | A hook asked first: TRUE or FALSE decides, NULL passes on |
+| `padCan ( $ability, ...$values )`, `padCannot ( ... )` | Whether the user may |
+| `padAuthorize ( $ability, ...$values )` | `padAbort ( 403 )` when not |
+| `padFeature ( $name )` | Whether the flag of `$padFeatures` is on for this visitor |
+| `padFeatureOverride ( $name, $on )` | Fixes a flag for the rest of the request - NULL undoes it |
+| `padFeatureId ( $id = NULL )` | The stable id shares are decided by - `user:<id>` or the `padFeatureId` cookie; given, it is used for the rest of the request |
+
+## Migrations and fake data
+
+`pad/lib/migrate.php`, `pad/lib/fake.php` - the `pad migrate` and `pad seed` commands.
+
+| Function | Answers |
+|----------|---------|
+| `padMigrate ( $pretend = FALSE )` | Runs the pending migrations of `_migrations/` as one batch - the names that ran; pretending, the statements per migration |
+| `padMigrateStatus ()` | Every migration: `migration`, `ran`, `batch` |
+| `padMigrateRollback ( $steps = 1, $pretend = FALSE )` | The downs of the last batches, newest first |
+| `padMigrateFresh ( TRUE )` | Every table and view dropped, then every migration - refused without TRUE |
+| `padMigrateError ()` | The last failure's message, or `''` |
+| `padSeed ( $name = '' )` | The seeders of `_seeds/` in name order, or the one named (`users` for `01_users.php`) |
+| `padFakeSeed ( $seed )` | Starts the fake sequence - the same values again for the same seed; `mt_rand` untouched |
+| `padFakeNumber`, `padFakeFloat`, `padFakeBool`, `padFakePick`, `padFakePicks` | Numbers, chances and picks |
+| `padFakeFirstName`, `padFakeLastName`, `padFakeName`, `padFakeEmail`, `padFakePhone`, `padFakeCompany`, `padFakeCity`, `padFakeCountry`, `padFakeStreet` | People and places - e-mail on example.com/org/net, phones in the 555-01xx range |
+| `padFakeWord`, `padFakeWords`, `padFakeSentence`, `padFakeParagraph` | Text |
+| `padFakeDate ( $from, $to, $format )`, `padFakeUuid ()` | A moment between two (relative ones follow `padNowFreeze`); a v4 UUID |
+| `padFakeUnique ( $key, $function, ...$args )`, `padFakeUniqueReset ( $key )` | A value never given twice under the key |
+| `padFactory ( $table, $count, $row )` | Inserts `$count` rows - `$row` an array or `fn ( $i )` - with placeholders; the rows with their ids |
+
+## Queues, schedule and HTTP fakes
+
+`pad/lib/queue.php`, `pad/lib/schedule.php`, `pad/lib/curlFake.php` - the `pad work`, `pad queue` and `pad schedule` commands.
+
+| Function | Answers |
+|----------|---------|
+| `padQueue ( $job, $data = [], delay:, queue:, tries:, backoff: )` | Stores a job for `_jobs/<job>.php` - its id |
+| `padQueueSize ( $queue )`, `padQueueQueues ()` | Jobs waiting; every queue with its due, delayed and running counts |
+| `padQueueWork ( $queue, $max = 0, $timeout = 60, $tries = NULL )` | Runs the due jobs: `[ done, retried, failed, released, jobs ]` |
+| `padQueueFailed ()`, `padQueueRetry ( $id \| 'all' )`, `padQueueFlush ( 'failed' \| $queue )` | The failed jobs; back on their queue; removed |
+| `padQueueRun ( $job, $data )` | Runs a handler once, now |
+| `padCronMatch ( $expr, $time )`, `padCronNext ( $expr, $time )` | Whether a cron expression matches a minute; the next minute it does |
+| `padCronEvery ( $words )` | `'day at 03:00'`, `'5 minutes'`, `'monday at 08:00'` ... as cron |
+| `padScheduleDue`, `padScheduleList`, `padScheduleRun` | The entries of `_schedule.php` due, listed, run |
+| `padCurlFake ( $fakes )` | Every fetch of the request answered from the fakes - pattern => answer, status or closure; `'*'` for the rest |
+| `padCurlRecorded ()`, `padCurlFakeStop ()`, `padCurlFaking ()` | The calls made; faking ended; whether it is on |
+
+## Maintenance and assets
+
+`pad/lib/maintenance.php`, `pad/lib/asset.php`.
+
+| Function | Answers |
+|----------|---------|
+| `padMaintenanceDown ( $app, $secret, $retry, $message )`, `padMaintenanceUp ( $app )` | Takes an application down - what `pad down` does - and back up |
+| `padMaintenanceRead ( $app )`, `padMaintenanceList ()` | Its record; the applications that are down |
+| `padAsset ( $file )`, `padAssetTag ( $file )` | The versioned address of a file of `www/<app>/`; the element that loads it |
+

@@ -262,6 +262,16 @@
         $stack [] = [ 'name' => $name, 'key' => $key, 'else' => FALSE ];
         $items [] = $item + ( $name == 'if' ? [ 'kind' => 'arm', 'owner' => $key, 'arm' => 'if' ]
                                             : [ 'kind' => 'tag', 'key'   => $key               ] );
+      } elseif ( in_array ( $name, [ 'auth', 'guest', 'can', 'cannot', 'feature' ] ) ) {
+
+        // The condition tags own an {else} too (padElseFree, lib/template.php): one inside
+        // them is theirs, not an arm of the {if} around them - the tag is the item.
+
+        $stack [] = [ 'name' => $name, 'key' => $key, 'else' => TRUE ];
+        $items [] = $item + [ 'kind' => 'tag', 'key' => $key ];
+      } elseif ( in_array ( $name, [ '/auth', '/guest', '/can', '/cannot', '/feature' ] ) and $stack and end ( $stack ) ['name'] == substr ( $name, 1 ) ) {
+        array_pop ( $stack );
+      } elseif ( $name == 'else' and $stack and in_array ( end ( $stack ) ['name'], [ 'auth', 'guest', 'can', 'cannot', 'feature' ] ) ) {
       } elseif ( ( $name == '/if' or $name == '/case' ) and $stack and end ( $stack ) ['name'] == substr ( $name, 1 ) ) {
         $open = array_pop ( $stack );
         if ( ! $open ['else'] )

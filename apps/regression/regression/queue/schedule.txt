@@ -1,0 +1,22 @@
+<table>
+  <tr><td>stamp</td><td>* * * * *</td><td>inline</td><td>Wed 2026-10-07 08:00</td></tr>
+  <tr><td>quarter</td><td>*/15 * * * *</td><td>inline</td><td>Wed 2026-10-07 08:00</td></tr>
+  <tr><td>night</td><td>0 3 * * *</td><td>later</td><td>Thu 2026-10-08 03:00</td></tr>
+  <tr><td>morning</td><td>0 8 * * mon-fri</td><td>inline</td><td>Wed 2026-10-07 08:00</td></tr>
+  <tr><td>broken</td><td>0 0 1 * *</td><td>inline</td><td>Sun 2026-11-01 00:00</td></tr>
+</table>
+<ul>
+  <li>2026-10-12 08:00: stamp, quarter, morning</li>
+  <li>2026-10-12 08:15: stamp, quarter</li>
+  <li>2026-10-13 03:00: stamp, quarter, night</li>
+  <li>2026-11-01 00:00: stamp, quarter, broken</li>
+</ul>
+<ul>
+  <li>round 1: stamp done</li>
+  <li>round 1: quarter done</li>
+  <li>round 1: morning done</li>
+  <li>round 2: stamp ran</li>
+  <li>round 2: quarter ran</li>
+  <li>round 2: morning ran</li>
+</ul>
+<p>heard: hello quarter, hello morning</p>

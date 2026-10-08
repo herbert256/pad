@@ -73,16 +73,15 @@
   // An {else} of our own splits what is left the way @else@ does: the part in front of it when
   // the condition holds, the part after it when it does not. padCheckTag skips an {else} that
   // belongs to a nested {if}, exactly as the {elseif} scan above does - and one that belongs
-  // to a nested {case}, the other owner of an {else}: {if}{case}...{else}...{/case}{/if} split
-  // at the case's {else}.
+  // to a nested {case} or condition tag, the other owners of an {else} (padElseFree):
+  // {if}{case}...{else}...{/case}{/if} split at the case's {else}.
   //
   // Without this the tag was never implemented - there is no tags/else.php - so {else} was
   // left in the page as a name nothing claimed and both branches rendered.
 
   $padChk = strpos ( $padContent, '{else}' );
 
-  while ( $padChk !== FALSE and ! ( padCheckTag ( 'if',   substr ( $padContent, 0, $padChk ) )
-                                and padCheckTag ( 'case', substr ( $padContent, 0, $padChk ) ) ) )
+  while ( $padChk !== FALSE and ! padElseFree ( substr ( $padContent, 0, $padChk ) ) )
     $padChk = strpos ( $padContent, '{else}', $padChk+6 );
 
   if ( $padChk !== FALSE ) {

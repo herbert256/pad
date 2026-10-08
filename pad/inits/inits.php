@@ -12,6 +12,12 @@
   // fail, and the level arrays before parms and the hand-over to the application in app.php.
   // The CSRF check stands just before parms, so a post it turns away never becomes
   // variables.
+  //
+  // Once the host is known, and before anything can answer: the CORS headers (a preflight
+  // ends there), maintenance (503 for every page, before the page cache), then the
+  // engine's own answers for a page the application does not have - sitemap.xml and
+  // robots.txt, the health check ?up - and the 404 of any other, which waited for the
+  // configuration to know whether the application renders its own error page.
 
   if ( ! isset ( $padMicro ) ) $padMicro = microtime ( TRUE );
   if ( ! isset ( $padHR    ) ) $padHR    = hrtime    ( TRUE );
@@ -30,7 +36,11 @@
   include PAD . 'inits/cookies.php';
   include PAD . 'inits/client.php';
   include PAD . 'inits/host.php';
+  include PAD . 'inits/cors.php';
+  include PAD . 'inits/maintenance.php';
   include PAD . 'inits/sitemap.php';
+  include PAD . 'inits/health.php';
+  include PAD . 'inits/notFound.php';
   include PAD . 'inits/reload.php';
   include PAD . 'inits/locale.php';
   include PAD . 'inits/sample.php';

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <h2>
+      page: 503
+    </h2>
+    <p>
+      Retry-After 30, Cache-Control no-cache, no-store, Location -
+    </p>
+    <pre>&lt;h1&gt;503 - down for maintenance&lt;/h1&gt;
+&lt;p&gt;Back in half a minute&lt;/p&gt;</pre>
+    <h2>
+      plain: 503
+    </h2>
+    <p>
+      Retry-After 30, Cache-Control no-cache, no-store, Location -
+    </p>
+    <pre>Back in half a minute</pre>
+    <h2>
+      gone: 503
+    </h2>
+    <p>
+      Retry-After 30, Cache-Control no-cache, no-store, Location -
+    </p>
+    <pre>&lt;h1&gt;503 - down for maintenance&lt;/h1&gt;
+&lt;p&gt;Back in half a minute&lt;/p&gt;</pre>
+    <h2>
+      bypass: 302
+    </h2>
+    <p>
+      Retry-After -, Cache-Control no-cache, no-store, Location HOST/regression/maintenance/
+    </p>
+    <pre></pre>
+    <h2>
+      wrong: 503
+    </h2>
+    <p>
+      Retry-After 30, Cache-Control no-cache, no-store, Location -
+    </p>
+    <pre>&lt;h1&gt;503 - down for maintenance&lt;/h1&gt;
+&lt;p&gt;Back in half a minute&lt;/p&gt;</pre>
+    <h2>
+      inside: 200
+    </h2>
+    <p>
+      Retry-After -, Cache-Control no-cache, no-store, Location -
+    </p>
+    <pre>&lt;p&gt;about this application&lt;/p&gt;</pre>
+    <h2>
+      after: 200
+    </h2>
+    <p>
+      Retry-After -, Cache-Control no-cache, no-store, Location -
+    </p>
+    <pre>&lt;p&gt;about this application&lt;/p&gt;</pre>
+    <p>
+      cookie set: yes, still down: no
+    </p>
+  </body>
+</html>

@@ -151,6 +151,117 @@ $padExpose = [ 'orders', 'total' ];    // never an engine name (pad*, pq*, _*)
 - `$padOutputType = 'json'` (or `'csv'`) in `_config/config.php` makes every page of an
   application answer data; `{output 'json'}` does it from a template.
 
+## Maintenance mode
+
+`pad down shop --secret=letmein --retry=120 --message='Back at ten'` takes an application
+down: every web request answers 503 with a Retry-After - `_errors/503.pad` when it has one,
+else the message as one line - before the page cache and before any of it runs, a page that
+is not there too; `?letmein` gives that browser a cookie that lets it through for twelve
+hours. `pad up shop` brings it back; `pad down` lists what is down. The record is
+`DATA/maintenance/<app>.json` (the secret only as a hash); the command line is never held back.
+
+## Custom error pages
+
+With `$padErrorPages` (on by default) an application's `_errors/404.pad` - or `4xx.pad`,
+`5xx.pad` for a whole class, `.html` too - answers instead of the plain line, the status
+kept: a page not found, a guard's 403, a post without its CSRF token, `padAbort(429)`,
+maintenance's 503, and under the 'pad' error action a visitor's 500 (this machine keeps the
+report). `$status`, `$message`, `$page` (and `$id` on a 500); `_errors/_inits.pad` and
+`_exits.pad` with `@page@` are its frame - not the application's `_inits`, `_lib` or guards,
+which may be what failed. A page that fails itself answers the plain line - no loop; json
+and csv output get the line as well.
+
+## Health check
+
+With `$padHealth = TRUE`, `?up` (when the application has no page `up`) answers
+`{"status":"ok","checks":{"data":"ok","database":"ok"}}` - DATA/ writable, the database
+answering `SELECT 1` when `$padSqlDatabase` is set, and what `_health.php` returns
+(`[ 'queue' => TRUE | FALSE | 'why' ]`). One failing check: 503 and `"fail"`; a database
+failure shows "fail" only, the reason goes to the log.
+
+## Cross-origin requests (CORS)
+
+`$padCors = [ 'origins' => [ 'https://app.example.com' ], 'methods' => [ 'GET', 'POST' ],
+'headers' => [ 'Content-Type' ], 'credentials' => FALSE, 'maxAge' => 600, 'expose' => [] ]`:
+a listed origin (or any, with `'*'`) gets Access-Control-Allow-Origin and the rest, with
+`Vary: Origin`; a preflight OPTIONS is answered 204 at once, before the CSRF check and the
+application. An origin not listed gets no CORS header. `[]`, the default, sends none.
+
+## Logging in, gates and feature flags
+
+`padLogin ( $row, $remember )` keeps a user row (an `id` at least; its password/token fields
+left out) as the one logged in to this application, with a new session id; `padLogout ()`,
+`padUser ( 'name' )`, `padUserId ()`, `padAuthCheck ()`. `padAttempt ( $password, $hash,
+$row, $remember, $newHash )` checks and logs in. `padAuthRequire ()` (a page or `_guard.php`)
+sends a guest to `login`, keeping the address; `padRedirectIntended ()` goes back to it after
+the login. Remember-me is a signed cookie, no table: `$padAuthRemember` names the function
+that finds a row by id. `padPasswordToken ( $email, $hash )` / `padPasswordTokenCheck` - a
+reset token that dies once the password changes, or after an hour.
+```
+{auth}Hello {$name}{else}<a href="?login">Log in</a>{/auth}     # the user's row is the data
+{guest}...{/guest}
+{can 'edit-post', $post}<a href="?edit">Edit</a>{else}read only{/can}
+{feature 'search2'}...{else}...{/feature}
+```
+In `_lib`: `padGate ( 'edit-post', fn ( $user, $post ) => $user ['id'] == $post ['user_id'] )`,
+`padGateBefore ( fn ( $user, $ability ) => $user ['role'] == 'admin' ? TRUE : NULL )`; then
+`padCan`, `padCannot`, `padAuthorize` (403), `{can}` / `{cannot}` - inside `{posts}`, `$posts` is
+the row. A guest reaches only a gate whose user is `?array`.
+`$padFeatures = [ 'search2' => 0.25, 'beta' => 'isBeta', 'dark' => TRUE ]` - a share is
+decided stably per user (or `padFeatureId` cookie); `padFeature ( 'search2' )`,
+`padFeatureOverride ( 'x', TRUE )` for tests. An unknown ability or flag is FALSE and, under
+the strict check, an error.
+
+## Asset versioning
+
+`{asset 'charts.css'}` / `padAsset ( 'charts.css' )` is `/<app>/charts.css?v=<hash of the
+contents>` of `www/<app>/charts.css` - safe behind a far-future cache header; `{asset
+'app.js', tag}` writes `<script src defer>` (`<link rel="stylesheet">` for .css, module for
+.mjs), with the nonce when `$padCsp` asks for one. A missing file is the plain address and a
+strict error; a name never leaves `www/<app>/`.
+
+## Migrations and seeders
+
+`_migrations/` holds the application's schema as changes, run in name order:
+`2026_10_01_120000_create_orders.sql` (statements split on `;` - a trigger body and a
+`DELIMITER` line respected), with `..._create_orders.down.sql` as its way back, or
+`..._add_status.php` returning `[ 'up' => "SQL" | fn, 'down' => "SQL" | fn ]`. `pad_migrations`
+in the app database records what ran, in batches. `padMigrate ()` runs the pending ones as one
+batch, each in a transaction (on MySQL a CREATE/ALTER/DROP commits by itself - one change per
+migration), stopping at the first failure with the file and statement named;
+`padMigrateStatus ()`, `padMigrateRollback ( $steps )`, `padMigrateFresh ( TRUE )` (drops every
+table). `_seeds/*.php` - plain PHP with `db ()` - run by `padSeed ( [ 'users' ] )`. Fake data,
+reproducible after `padFakeSeed ( 42 )`: `padFakeName`, `padFakeEmail`, `padFakeCity`,
+`padFakeSentence`, `padFakeNumber ( 1, 9 )`, `padFakeDate ( '-1 year', 'now' )`,
+`padFakeUnique ( 'email', 'padFakeEmail' )` ...; `padFactory ( 'customers', 25, fn ( $i ) =>
+[ 'name' => padFakeName () ] )` inserts with placeholders and returns the rows with their ids.
+`pad migrate shop [--pretend|--status|--rollback[=n]|--fresh --force|--seed|--new=name]`,
+`pad seed shop [name]`.
+
+## Queues and the scheduler
+
+`padQueue ( 'sendInvoice', [ 'order' => 42 ], delay: 60, queue: 'default', tries: 3, backoff: 10 )`
+stores a job; `_jobs/sendInvoice.php` is its handler - the data's keys are its locals, `$padJob`
+the job, the application's `_lib`, config and database at hand. Returning FALSE, throwing or a
+`padError` fails the attempt: retried after the backoff, then kept with the failed jobs
+(`padQueueFailed`, `padQueueRetry ( $id | 'all' )`, `padQueueFlush ( 'failed' )`). Jobs are files
+under `DATA/queue/<app>/<queue>/`, claimed by a rename - two workers never run one job.
+`pad work <app>` is the worker (`--once` for cron and tests); `padQueueWork ()` works a queue from
+PHP; `padMail ( ..., [ 'queue' => TRUE ] )` sends through it.
+
+`_schedule.php` returns the entries - `[ 'every' => 'day at 03:00', 'job' => 'cleanup' ]`,
+`[ 'cron' => '*/5 * * * mon-fri', 'job' => 'sync', 'queue' => TRUE, 'overlap' => FALSE ]` - and
+one cron line, `* * * * * /path/apps/cli/pad schedule --all`, runs every application's due
+entries; `pad schedule <app> --list` shows each with its next and last run. `padCronMatch`,
+`padCronNext` and `padCronEvery` from PHP.
+
+## HTTP fakes for tests
+
+`padCurlFake ( [ 'https://api.example.com/*' => [ 'status' => 200, 'data' => '{"a":1}' ], '*' => 404 ] )`
+answers every fetch of the request - `{curl}`, `data='https://...'`, padCurl, padPrefetch, a ttl
+fetch (which skips its cache) - from the fakes, a closure answering per request; a URL no fake
+matches is an error without `'*'`. `padCurlRecorded ()` lists the calls, `padCurlFakeStop ()` ends it.
+
 ---
 
 ## Application Structure
@@ -179,6 +290,12 @@ apps/myapp/
 ├── _data/                 # Data files (XML, JSON, YAML, CSV) and named .sql queries
 ├── _lang/                 # Translation catalogs: en.json, nl.json ... ({trans 'key'})
 ├── _content/              # Markdown collections: _content/blog/*.md ({collection 'blog'})
+├── _errors/               # Error pages: 404.pad, 403.pad, 5xx.pad ... (optional)
+├── _migrations/           # Schema changes, run by pad migrate
+├── _seeds/                # Seeders, run by pad seed
+├── _jobs/                 # Queue job handlers: padQueue ( 'name', $data ) → name.php
+├── _schedule.php          # The scheduled entries pad schedule runs (optional)
+├── _health.php            # Extra checks of ?up (optional)
 │
 └── subdir/                # Subdirectories can have own wrappers
     ├── _callbacks/        # Subdirectory callbacks
@@ -211,6 +328,10 @@ apps/myapp/
 | `_tests/` | Application tests | `pad test <app>` - `name.pad` + `name.txt` answer |
 | `_lang/` | Translation catalogs | `nl.json` holds the keys `{trans 'key'}` looks up in locale `nl` |
 | `_content/` | Markdown collections | `_content/blog/*.md` with front matter are the rows of `{collection 'blog'}` |
+| `_errors/` | Error pages | `404.pad`, `403.pad`, `503.pad`, `4xx.pad`, `5xx.pad` answer in place of the plain line |
+| `_migrations/` | Schema changes | `pad migrate <app>` - `.sql` (+ `.down.sql`) or `.php` with up and down |
+| `_seeds/` | Seeders | `pad seed <app>` - plain PHP with `db ()` and `padFactory` |
+| `_jobs/` | Job handlers | `padQueue ( 'name', $data )` → `name.php`, run by `pad work <app>` |
 
 ### Wrapper Files (_inits.pad / _exits.pad)
 
@@ -1120,6 +1241,22 @@ $padCsp = "frame-ancestors 'self'";
 // of running the PHP. 'local' for a local request only, TRUE everyone (a design server
 // without real data - the preview skips the PHP's login checks), FALSE never.
 $padSample = 'local';
+
+// Custom error pages from _errors/ (404.pad, 5xx.pad ...); FALSE keeps the plain lines.
+$padErrorPages = true;
+
+// ?up answers the health check as JSON - 200 when every check passes, 503 when one fails.
+$padHealth = false;
+
+// CORS: [ 'origins' => [...], 'methods' => [...], 'headers' => [...], 'credentials' => false,
+// 'maxAge' => 600 ]; [] sends no CORS header.
+$padCors = [];
+
+// Feature flags: name => TRUE, FALSE, a share 0..1 of the visitors, or a function's name.
+$padFeatures = [];
+
+// Remember-me: the name of the application function that finds a user's row by its id.
+$padAuthRemember = '';
 ```
 
 ### Designer preview with sample data
@@ -1180,6 +1317,11 @@ pad lint shop [dir]           # every page rendered under the strict check, erro
 pad export demo out/          # a static copy: page.html files with rewritten links, www/demo/ assets
 pad test shop [name]          # the app's own tests in apps/shop/_tests/ (--record, --all)
 pad sample shop orders        # the page run once, its variables kept in apps/shop/_samples/orders.json
+pad migrate shop [--status]   # the pending migrations of _migrations/; --rollback, --fresh --force, --seed
+pad seed shop [name]          # the seeders of _seeds/
+pad work shop [--once]        # the queue worker; pad queue shop [--failed] for the queues
+pad schedule --all            # what every _schedule.php has due - one cron line, every minute
+pad down shop --secret=word   # maintenance until pad up shop
 pad help
 ```
 
@@ -1692,6 +1834,12 @@ strict syntax check - `pad_check` with only an app checks every page), `pad_trac
 | `regression/reload` | Test | Regression test for live reload - script and stamp locally, none elsewhere or in an export |
 | `regression/errors` | Test | The Errors suite: the tests that fail on purpose, answered lean under the boot action - no dumps |
 | `regression/common` | Test | The pages of the suite that use `_common` - `{example}`, `{demo}`, `{table}` - fetched and compared the same way |
+| `regression/errorpages` | Test | Regression test for `$padErrorPages` - every refusal answered with the application's `_errors/` page |
+| `regression/maintenance` | Test | Regression test for maintenance mode - pad down/up, 503 with Retry-After, the secret's cookie |
+| `regression/health` | Test | Regression test for `$padHealth` - `?up` as JSON, 503 when a check fails |
+| `regression/cors` | Test | Regression test for `$padCors` - headers per origin, the preflight answered before CSRF |
+| `regression/migrate` | Test | Regression test for migrations, seeders and fake data - an SQLite database built by `_migrations/`, filled by `_seeds/` |
+| `regression/queue` | Test | Regression test for the job queue and the scheduler - jobs queued and worked in one request, the schedule at fixed moments |
 | `sequence` | Standard | Mathematical sequence subsystem demos - with a gallery of every type beside its OEIS entry, a sequence played as notes, and a guess-the-next-term game |
 | `structure` | Example | Demonstrates nested `_xxx` directories and inheritance |
 | `test` | Minimal | A scratch application for trying things out, `_common` switched off |

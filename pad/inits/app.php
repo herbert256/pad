@@ -11,6 +11,24 @@
   if ( ! defined ( 'APP2' ) )
     define ( 'APP2', substr ( APP, 0, -1) );
 
+  // A task in place of a page: the pad command's migrate and seed set $padTask, a function,
+  // before they include the engine - no request value fills a pad* name, and none is a
+  // function. It runs with the application's configuration and the _lib of its root (and of
+  // _common) loaded, but no guard, no _inits.php and no page: a task is no request. What it
+  // writes goes straight to the terminal, what it returns is the process's exit status.
+
+  if ( isset ( $padTask ) and $padTask instanceof Closure ) {
+
+    include PAD . 'build/dirs.php';
+    include PAD . 'build/libs.php';
+
+    while ( ob_get_level () )
+      ob_end_clean ();
+
+    exit ( (int) $padTask () );
+
+  }
+
   // The request's own page is the one build that may answer with its data instead
   // (build/expose.php); a {page} built in a nested pass later in the request may not.
 
