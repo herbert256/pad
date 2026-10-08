@@ -2036,6 +2036,38 @@ once per page. A modal without a valid name is an error under the strict check.
 
 ---
 
+### carousel
+Slides in a row that scrolls and snaps sideways (CSS scroll snap), with previous and next links
+on each slide and a dot per slide below - links to the slides' ids, so no JavaScript is needed
+(`lib/carousel.php`).
+
+```html
+{carousel label='Landscapes'}
+  {tab 'Sunrise over the hills'}<svg viewBox="0 0 800 400" role="img" aria-label="...">...</svg>{/tab}
+  {tab 'The open sea'}<img src="sea.jpg" alt="Waves under a pale sky">{/tab}
+{/carousel}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| `label` | The carousel's name for a screen reader, default `Carousel` |
+| `{tab 'caption'}` | One slide; its label, optional, is the caption under it |
+
+**Behavior:** the markup follows the WAI-ARIA carousel pattern - a region with
+`aria-roledescription="carousel"`, every slide a group saying 'slide 2 of 4' with its caption -
+and the row scrolls by finger, trackpad or the arrow keys when focused. The previous link of
+the first slide goes to the last, the next link of the last to the first. There is no autoplay.
+Without scripting a link scrolls the page to its slide and the dot of the targeted slide is
+marked; a small script, once per page with the CSP nonce, scrolls the row alone and marks the
+dot of the slide in view (`aria-current`), also after a swipe. The scrolling is smooth unless
+reduced motion is asked for; printed, the slides stand under each other. The colours are
+`--pad-carousel-accent`, `-text`, `-muted`, `-surface` and `-dot` on `.pad-carousel`,
+`light-dark()` defaults.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2555,6 +2587,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `tabs` | Output | Panels behind a row of tabs - radio buttons and CSS, no JavaScript; `{tab}` is one item |
 | `accordion` | Output | Items that open on a click - every `{tab}` a `<details>`, one open at a time with `single` |
 | `modal` | Output | A `<dialog>` and its opening button - invoker commands, a small script, or a link without scripting |
+| `carousel` | Output | Slides that scroll and snap sideways, previous/next and dot links - no autoplay |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |

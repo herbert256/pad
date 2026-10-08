@@ -65,40 +65,40 @@
   (#any-of? @keyword
     "accordion" "action" "ajax" "array" "assert" "asset" "at" "attrs"
     "auth" "avatar" "barcode" "block" "bool" "branch" "break" "cache"
-    "calendar" "can" "cannot" "case" "cease" "chart" "check" "chess"
-    "classes" "close" "code" "collection" "content" "continue" "count" "crossword"
-    "csrf" "curl" "data" "debug" "decrement" "diff" "dir" "dump"
-    "echo" "else" "elseif" "error" "exception" "excerpt" "exists" "exit"
-    "extends" "false" "feature" "field" "file" "files" "flag" "flash"
-    "flush" "foo" "form" "fragment" "get" "gravatar" "guest" "highlight"
-    "icon" "identicon" "if" "ifchanged" "ignore" "increment" "input" "keep"
-    "live" "lorem" "mail" "make" "markdown" "meta" "modal" "nonce"
-    "null" "open" "output" "pad" "page" "pager" "parent" "parms"
-    "placeholder" "progress" "pull" "push" "qr" "rating" "reactData" "record"
-    "recurse" "redirect" "remove" "restart" "resume" "sandbox" "sequence" "set"
-    "sitemap" "slot" "spaceless" "sparkline" "stack" "sudoku" "switch" "tab"
-    "tabs" "textarea" "tidy" "trace" "trans" "tree" "true" "until"
-    "when" "while"))
+    "calendar" "can" "cannot" "carousel" "case" "cease" "chart" "check"
+    "chess" "classes" "close" "code" "collection" "content" "continue" "count"
+    "crossword" "csrf" "curl" "data" "debug" "decrement" "diff" "dir"
+    "dump" "echo" "else" "elseif" "error" "exception" "excerpt" "exists"
+    "exit" "extends" "false" "feature" "field" "file" "files" "flag"
+    "flash" "flush" "foo" "form" "fragment" "get" "gravatar" "guest"
+    "highlight" "icon" "identicon" "if" "ifchanged" "ignore" "increment" "input"
+    "keep" "live" "lorem" "mail" "make" "markdown" "meta" "modal"
+    "nonce" "null" "open" "output" "pad" "page" "pager" "parent"
+    "parms" "placeholder" "progress" "pull" "push" "qr" "rating" "reactData"
+    "record" "recurse" "redirect" "remove" "restart" "resume" "sandbox" "sequence"
+    "set" "sitemap" "slot" "spaceless" "sparkline" "stack" "sudoku" "switch"
+    "tab" "tabs" "textarea" "tidy" "trace" "trans" "tree" "true"
+    "until" "when" "while"))
 
 (tag_name
   name: (identifier) @tag
   (#not-any-of? @tag
     "accordion" "action" "ajax" "array" "assert" "asset" "at" "attrs"
     "auth" "avatar" "barcode" "block" "bool" "branch" "break" "cache"
-    "calendar" "can" "cannot" "case" "cease" "chart" "check" "chess"
-    "classes" "close" "code" "collection" "content" "continue" "count" "crossword"
-    "csrf" "curl" "data" "debug" "decrement" "diff" "dir" "dump"
-    "echo" "else" "elseif" "error" "exception" "excerpt" "exists" "exit"
-    "extends" "false" "feature" "field" "file" "files" "flag" "flash"
-    "flush" "foo" "form" "fragment" "get" "gravatar" "guest" "highlight"
-    "icon" "identicon" "if" "ifchanged" "ignore" "increment" "input" "keep"
-    "live" "lorem" "mail" "make" "markdown" "meta" "modal" "nonce"
-    "null" "open" "output" "pad" "page" "pager" "parent" "parms"
-    "placeholder" "progress" "pull" "push" "qr" "rating" "reactData" "record"
-    "recurse" "redirect" "remove" "restart" "resume" "sandbox" "sequence" "set"
-    "sitemap" "slot" "spaceless" "sparkline" "stack" "sudoku" "switch" "tab"
-    "tabs" "textarea" "tidy" "trace" "trans" "tree" "true" "until"
-    "when" "while"))
+    "calendar" "can" "cannot" "carousel" "case" "cease" "chart" "check"
+    "chess" "classes" "close" "code" "collection" "content" "continue" "count"
+    "crossword" "csrf" "curl" "data" "debug" "decrement" "diff" "dir"
+    "dump" "echo" "else" "elseif" "error" "exception" "excerpt" "exists"
+    "exit" "extends" "false" "feature" "field" "file" "files" "flag"
+    "flash" "flush" "foo" "form" "fragment" "get" "gravatar" "guest"
+    "highlight" "icon" "identicon" "if" "ifchanged" "ignore" "increment" "input"
+    "keep" "live" "lorem" "mail" "make" "markdown" "meta" "modal"
+    "nonce" "null" "open" "output" "pad" "page" "pager" "parent"
+    "parms" "placeholder" "progress" "pull" "push" "qr" "rating" "reactData"
+    "record" "recurse" "redirect" "remove" "restart" "resume" "sandbox" "sequence"
+    "set" "sitemap" "slot" "spaceless" "sparkline" "stack" "sudoku" "switch"
+    "tab" "tabs" "textarea" "tidy" "trace" "trans" "tree" "true"
+    "until" "when" "while"))
 
 ((function_name) @function.builtin
   (#any-of? @function.builtin
