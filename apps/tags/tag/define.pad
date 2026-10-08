@@ -1,0 +1,13 @@
+{ignore}
+<p><code>{define 'card'}</code> ... <code>{/define}</code> keeps its content as a custom tag:
+from there on <code>{card}</code> renders it, as an <code>_tags/card.pad</code> file would be
+rendered. Everything of a custom tag works - <code>{#title}</code> reads a parameter of the use,
+<code>{parms}</code> declares them, <code>@content@</code> takes in the content between
+<code>{card}</code> and <code>{/card}</code>, and <code>{slot}</code>s take the fills of a use.</p>
+
+<p>The body is kept as written and renders at every use, in its place and with the fields
+there - so a define can use itself, for the rows below the current one. It exists from the
+point it is walked, as a <code>{content}</code> does: a use before it is an unknown tag.
+<code>{define:card}</code> asserts the kind. Under the strict syntax check a define without a
+name or without its body, or with the name of a tag, is an error.</p>
+{/ignore}

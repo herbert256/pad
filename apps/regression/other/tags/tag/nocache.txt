@@ -1,0 +1,14 @@
+
+<p><code>{nocache}</code> ... <code>{/nocache}</code> inside a <code>{cache}</code> section -
+or on a page the page cache keeps - renders on every request: the section is stored with the
+part as its source, and on a hit the stored rendering comes back with the part rendered again.
+A part inside a loop of the section gets the fields of its row back as they were when it was
+stored. Where nothing caches, the content renders as any content does.</p>
+
+<p>In a section the part renders where the section stands, with the page's fields. A
+page-cache hit runs no PHP - not the page's, nor an <code>_inits.php</code> - so there a part
+sees the request and session values, the <code>_lib</code> functions and the application's
+tags. The CSRF token or the <code>{nonce}</code> in a part no longer keeps a section out of the
+fragment cache. A page-cache entry with parts is never answered with a 304 from the entry
+alone, nor renewed by a hit. <code>{nocache}</code> takes no parameter.</p>
+
