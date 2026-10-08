@@ -1884,6 +1884,36 @@ once per page. A missing second text is an error under the strict check.
 
 ---
 
+### excerpt
+A long text cut to whole words with an ellipsis, centred on the first match of the search
+words when given, every match in a `<mark>` (`lib/excerpt.php`).
+
+```html
+{excerpt $post, words=40}
+{results}<p>{excerpt $body, words=24, highlight=$q}</p>{/results}
+{excerpt $page.html, words=30, html}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The text |
+| `words` | The length in words, default 40 |
+| `highlight` | Search words - a query, split at everything that is no letter or digit |
+| `html` | The text is HTML: its tags (and the content of `script` and `style`) dropped, its entities read, before it is cut |
+| `ellipsis` | What stands for the cut-off text, default `…` |
+
+**Behavior:** a search word matches at the start of a word whatever its case - `templ` finds
+`Templates` - and the whole word is marked. The window of `words` words is centred on the first
+match, moved in where it would run past an end; a text no longer than `words` stays whole.
+The text is escaped piece by piece and only the `<mark>` around a match is markup. The mark
+colours are `--pad-excerpt-mark` and `--pad-excerpt-marked` on `.pad-excerpt`, `light-dark()`
+defaults, written once per page. A `words` that is no number of 1 or more is an error under
+the strict check.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2398,6 +2428,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `sudoku` | Output | A sudoku grid as a table, givens bold - solved on the server with `solve` |
 | `crossword` | Output | Words and clues laid out as a numbered crossword grid (SVG) with the Across and Down lists |
 | `diff` | Output | The differences between two texts - words inline, or lines in one column or side by side |
+| `excerpt` | Output | A text cut to whole words around the first search match, the matches marked |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |

@@ -922,6 +922,7 @@ Code: `pad/lib/chart.php` (bar, line, sparkline) and `pad/lib/chart/` (the other
 {sudoku '53..7....6..195...', solve}             # 81 cells as a table, givens bold; solve fills the solution in
 {crossword}ECHO: Writes a value{/crossword}       # WORD: clue lines laid out, numbered SVG grid + Across/Down clues; solution
 {diff $old, $new}                              # word diff with <del>/<ins>, escaped; lines, side, from=, to=
+{excerpt $body, words=24, highlight=$q}         # whole words around the first match, <mark>ed, escaped; html
 ```
 Every one is rendered on the server; the `showcase` application has examples of each.
 
