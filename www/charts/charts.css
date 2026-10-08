@@ -328,6 +328,12 @@ h1 { margin: 6px 0 8px; font-size: clamp(28px, 4vw, 42px); line-height: 1.1; let
 }
 .cell-data .code { max-height: 460px; }
 
+/* a tag with its options flowing (chartsFlow): side by side as far as the cell is wide, a
+   wrapped line hanging under the first option - an option breaks inside itself only when it
+   is wider than the whole line */
+.flow { display: inline-block; max-width: 100%; white-space: normal; padding-left: var(--hang); text-indent: calc(-1 * var(--hang)); }
+.flow > span { display: inline-block; max-width: 100%; text-indent: 0; white-space: pre-wrap; overflow-wrap: break-word; }
+
 .hl-key, .hl-opt, .hl-att      { color: #7db8ff; }
 .hl-str                       { color: #a8e07a; }
 .hl-num, .hl-lit              { color: #ffb86b; }
@@ -365,10 +371,10 @@ h1 { margin: 6px 0 8px; font-size: clamp(28px, 4vw, 42px); line-height: 1.1; let
 .pager-dir { display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); }
 .pager-title { font-weight: 600; }
 
-/* an example fits the window: the cells share what the intro and the pager leave, in two
-   rows of a fixed share - the tag's row high enough for every option of the longest tag -
-   so the cells - and the pager below them - stand in the same place
-   on every example; code that does not fit scrolls inside its cell */
+/* an example fits the window: the cells share what the intro and the pager leave - the
+   tag's row as high as its tag needs (up to 64%), the data's row the rest - so the pager
+   below them stands in the same place on every example; code that does not fit scrolls
+   inside its cell */
 
 @media (min-width: 981px) and (min-height: 560px) {
   body.is-example { height: 100vh; height: 100dvh; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
@@ -377,7 +383,7 @@ h1 { margin: 6px 0 8px; font-size: clamp(28px, 4vw, 42px); line-height: 1.1; let
   .example .intro { flex: none; margin-bottom: 14px; }
   .example h1 { font-size: 26px; margin: 2px 0 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .example .lead { max-width: none; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .example .stage { flex: 1; min-height: 0; grid-template-rows: minmax(0, 1fr) min(290px, 64%); }
+  .example .stage { flex: 1; min-height: 0; grid-template-rows: minmax(0, 1fr) fit-content(64%); }
   .example .stage.is-pair { grid-template-rows: minmax(0, 1fr) minmax(0, 1fr); }
   .example .cell-tag .code { padding: 12px 18px; line-height: 1.55; }
   .example .cell { min-height: 0; }

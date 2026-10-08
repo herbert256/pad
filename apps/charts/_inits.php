@@ -48,11 +48,11 @@
 
   if ( $isExample ) {
 
-    // Cell 2: the template, as it stands in the file.
+    // Cell 2: the template of the file, its tag's options flowing to the cell's width.
 
     $tagFile   = "$padPage.pad";
     $tagSource = trim ( file_get_contents ( APP . $tagFile ) );
-    $tagHtml   = padHighlightTokens ( $tagSource, 'pad' );
+    $tagHtml   = chartsFlow ( $tagSource );
     $tagPair   = (bool) preg_match ( '#\{/(chart|sparkline)\b#', $tagSource );
     $tagOnly   = $tagPair || ! str_contains ( $tagSource, '<' );
 
