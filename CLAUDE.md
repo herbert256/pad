@@ -1640,7 +1640,6 @@ strict syntax check - `pad_check` with only an app checks every page), `pad_trac
 | `manual` | Standard | Interactive documentation and examples |
 | `nono` | Plain PHP | PHP application without PAD templating |
 | `pad` | Standard | PAD framework introduction and reference |
-| `poc` | Standard | A copy of demo, the proof that a whole application runs in the browser from `file://` - `node wasm/app.mjs poc` packs it (see `wasm/README.md`) |
 | `playground` | Standard | Type a template and its JSON data and see the result - local requests only, no PHP functions, shareable through the URL hash |
 | `react` | Standard | PAD + React integration examples |
 | `reference` | Standard | Cross-reference and directory utilities |

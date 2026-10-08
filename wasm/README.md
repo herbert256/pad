@@ -22,9 +22,9 @@ runs from the disk, `file://`, with no server and no network:
 
 ```bash
 npm install --prefix /tmp/pad-wasm @php-wasm/universal @php-wasm/web-8-4 @php-wasm/node esbuild
-NODE_PATH=/tmp/pad-wasm/node_modules node wasm/app.mjs poc           # DATA/wasm/poc/
+NODE_PATH=/tmp/pad-wasm/node_modules node wasm/app.mjs demo          # DATA/wasm/demo/
 NODE_PATH=/tmp/pad-wasm/node_modules node wasm/verify-app.mjs        # its requests, in Node
-cd DATA/wasm && zip -r poc.zip poc                                   # one file to hand on
+cd DATA/wasm && zip -r demo.zip demo                                 # one file to hand on
 ```
 
 | File | What it is |
@@ -32,7 +32,7 @@ cd DATA/wasm && zip -r poc.zip poc                                   # one file 
 | `wasm/app.mjs` | The packer. Writes `index.html`, `pad-app.js`, `php.js` (`@php-wasm/universal` and the PHP 8.4 loader bundled by esbuild into a classic script, 0.3 MB), `php-wasm.js` (the PHP binary gzipped and base64-encoded, 10 MB) and `pad-bundle.js` (`pad/`, `apps/<app>/`, `apps/_common/`, `www/<app>/` minus PHP - the limits of `build.php`, 2.4 MB). Zipped about 8 MB |
 | `wasm/app/index.html` | The page: an address bar, back, reload, reset, and a frame the application's pages are written into |
 | `wasm/app/pad-app.js` | The runtime: installs the files, runs each request the way `www/pad.php` does for `http://localhost/<app>/`, keeps the cookies (sessions, CSRF, flash), follows redirects, keeps `DATA/` in localStorage. Runs in Node too |
-| `wasm/verify-app.mjs` | Walks `poc` in Node: pages, a post with its token through the redirect to the flash message, a post without the token (403), a form breaking its rules, a 404 |
+| `wasm/verify-app.mjs` | Walks `demo` in Node: pages, a post with its token through the redirect to the flash message, a post without the token (403), a form breaking its rules, a 404 |
 
 Why it is built this way: a `file://` page may not import a module or `fetch()` a file beside
 it, so each part is a classic `<script>` setting a global, and the binary is handed to PHP as
@@ -44,10 +44,11 @@ become blob URLs. The address of each page is kept in the hash, so the browser's
 and a reload work; the browser's timezone becomes PHP's.
 
 Verified (October 2026, headless Chromium 141, `@php-wasm` 3.1.56, opened as `file://` from
-an unpacked zip, every non-local request blocked): all six pages of `poc` render with their
-stylesheet, the guestbook and todo posts, the contact form's rule messages and its accepted
-post with the flash message, back, reload, and the guestbook entries surviving a reload of
-the tab. PHP starts in about 1-2 seconds; a page then takes 90-350 ms.
+an unpacked zip, every non-local request blocked) on `poc`, the copy of `demo` it was first
+tried on, since removed: all six pages render with their stylesheet, the guestbook and todo
+posts, the contact form's rule messages and its accepted post with the flash message, back,
+reload, and the guestbook entries surviving a reload of the tab. PHP starts in about 1-2
+seconds; a page then takes 90-350 ms.
 
 Not supported in this form: file uploads (`multipart/form-data`), a page's own JavaScript
 calling the application (`fetch`, `{ajax}`, `{live}`), the database (no MySQL in the browser -

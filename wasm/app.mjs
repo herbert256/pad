@@ -3,10 +3,10 @@
 // with its www/ files, and the page that answers its links and forms (wasm/app/).
 //
 //   npm install --prefix /tmp/pad-wasm @php-wasm/universal @php-wasm/web-8-4 esbuild
-//   NODE_PATH=/tmp/pad-wasm/node_modules node wasm/app.mjs poc            DATA/wasm/poc/
-//   NODE_PATH=/tmp/pad-wasm/node_modules node wasm/app.mjs poc out/poc    another directory
+//   NODE_PATH=/tmp/pad-wasm/node_modules node wasm/app.mjs demo           DATA/wasm/demo/
+//   NODE_PATH=/tmp/pad-wasm/node_modules node wasm/app.mjs demo out/demo  another directory
 //
-// Then open DATA/wasm/poc/index.html in the browser. What it writes:
+// Then open DATA/wasm/demo/index.html in the browser. What it writes:
 //
 //   index.html       the page: an address bar and a frame the application's pages show in
 //   pad-app.js       the runtime - requests, cookies, redirects, DATA/ kept in localStorage

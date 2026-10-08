@@ -1,11 +1,11 @@
 // Checks the runtime of wasm/app.mjs outside a browser: loads @php-wasm/node, installs the
 // pad-bundle.js wasm/app.mjs wrote for an application with the same wasm/app/pad-app.js the
-// page uses, and walks the poc application - pages, a post with its CSRF token through the
+// page uses, and walks the demo application - pages, a post with its CSRF token through the
 // redirect to the flash message, a form that breaks its rules.
 //
-//   NODE_PATH=/tmp/pad-wasm/node_modules node wasm/app.mjs poc
+//   NODE_PATH=/tmp/pad-wasm/node_modules node wasm/app.mjs demo
 //   npm install --prefix /tmp/pad-wasm @php-wasm/node
-//   NODE_PATH=/tmp/pad-wasm/node_modules node wasm/verify-app.mjs [<directory>]   (DATA/wasm/poc/)
+//   NODE_PATH=/tmp/pad-wasm/node_modules node wasm/verify-app.mjs [<directory>]   (DATA/wasm/demo/)
 //
 // Exits 0 when every step answers as expected.
 
@@ -20,7 +20,7 @@ const require = createRequire(join(process.env.NODE_PATH || process.cwd(), 'noop
 const { PHP, loadPHPRuntime } = await import(pathToFileURL(require.resolve('@php-wasm/universal')).href);
 const { loadNodeRuntime } = await import(pathToFileURL(require.resolve('@php-wasm/node')).href);
 
-const dir = process.argv[2] || join(here, '../DATA/wasm/poc');
+const dir = process.argv[2] || join(here, '../DATA/wasm/demo');
 const sandbox = { window: {} };
 vm.runInNewContext(readFileSync(join(dir, 'pad-bundle.js'), 'utf8'), sandbox);
 const PadApp = require(join(here, 'app', 'pad-app.js'));
