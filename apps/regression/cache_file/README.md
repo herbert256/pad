@@ -24,4 +24,6 @@ compares the index, so a backend that stops caching turns the page from yes to N
 | `validators.php/pad` | The cache's validators belong to one URL: the probe's ETag gets a 304 from the probe only, and a date older than the cached copy gets the page |
 | `etaglist.php/pad` | On a cache miss the 304 reads the whole If-None-Match list: its tag second in a list, and `*`, get a 304, another tag the page |
 | `stable.pad` | A page that never changes, fetched by etaglist at a fresh address each time |
+| `nocache.php/pad` | Fetches `nocacheprobe` twice at a fresh address: the second fetch is a hit - the same build moment - while its `{nocache}` parts render again, the one in a loop with its row |
+| `nocacheprobe.php/pad` | A page whose build moment is cached and whose `{nocache}` parts are not |
 | `_config/config.php` | Switches the file cache on, 60 seconds, `_common` off |

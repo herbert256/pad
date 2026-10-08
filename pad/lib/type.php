@@ -12,9 +12,10 @@
   //                  function, shared cases, then a tag used as a function. The $goTag /
   //                  $goFunction flags stop the two from recursing into each other
   // padTypeCommon    everything both can be: a stored sequence, bool, content block,
-  //                  select, data block, _include/ snippet, tag property, field, array,
-  //                  parameter, level variable, PHP constant, _data/ file, _scripts/
-  //                  script, PHP function, sequence type, sequence action - in that order
+  //                  {define}, {macro}, select, data block, _include/ snippet, tag
+  //                  property, field, array, parameter, level variable, PHP constant,
+  //                  _data/ file, _scripts/ script, PHP function, sequence type, sequence
+  //                  action - in that order
   // padTypeTagCheck  used when the template gave an explicit prefix (app:, pad:, php: ...)
   //                  - it verifies that one type instead of searching, so the prefix both
   //                  disambiguates and asserts
@@ -52,11 +53,13 @@
 
   function padTypeCommon ( $item ) {
 
-    global $padBoolStore, $padContentStore, $padDataStore, $padSelect, $pqStore;
+    global $padBoolStore, $padContentStore, $padDataStore, $padDefineStore, $padMacroStore, $padSelect, $pqStore;
 
     if     ( isset              ( $pqStore         [$item]       ) ) return 'pull';
     elseif ( isset              ( $padBoolStore    [$item]       ) ) return 'bool';
     elseif ( isset              ( $padContentStore [$item]       ) ) return 'content';
+    elseif ( isset              ( $padDefineStore  [$item]       ) ) return 'define';
+    elseif ( isset              ( $padMacroStore   [$item]       ) ) return 'macro';
     elseif ( isset              ( $padSelect       [$item]       ) ) return 'select';
     elseif ( isset              ( $padDataStore    [$item]       ) ) return 'data';
     elseif ( padAppIncludeCheck ( $item                          ) ) return 'include';
@@ -121,7 +124,7 @@
 
   function padTypeTagCheck ( $type, $item ) {
 
-    global $padBoolStore, $padContentStore, $padDataStore, $padSelect, $pqStore;
+    global $padBoolStore, $padContentStore, $padDataStore, $padDefineStore, $padMacroStore, $padSelect, $pqStore;
 
     if ( ! padValidName ( $type ) or ! padValidName ( $item ) )
       return FALSE;
@@ -132,6 +135,8 @@
     elseif ( isset              ( $pqStore         [$item]       ) and $type == 'pull'     ) return $type;
     elseif ( isset              ( $padBoolStore    [$item]       ) and $type == 'bool'     ) return $type;
     elseif ( isset              ( $padContentStore [$item]       ) and $type == 'content'  ) return $type;
+    elseif ( isset              ( $padDefineStore  [$item]       ) and $type == 'define'   ) return $type;
+    elseif ( isset              ( $padMacroStore   [$item]       ) and $type == 'macro'    ) return $type;
     elseif ( isset              ( $padSelect       [$item]       ) and $type == 'select'   ) return $type;
     elseif ( isset              ( $padDataStore    [$item]       ) and $type == 'data'     ) return $type;
     elseif ( padAppIncludeCheck ( $item                          ) and $type == 'include'  ) return $type;

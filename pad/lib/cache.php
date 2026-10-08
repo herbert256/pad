@@ -30,7 +30,7 @@
   // session's CSRF token would hand that to everyone, whose own posts it then fails, and
   // one holding the request's CSP nonce would carry a nonce no later header names.
 
-  function padCacheStorable () {
+  function padCacheStorable ( $body = NULL ) {
 
     global $padContentType, $padCacheContentType, $padSesID, $padReqID, $padOutput, $padCsrfIssued, $padNonce,
            $padFragmentSent, $padFragmentOnly;
@@ -52,11 +52,16 @@
       if ( ! preg_match ( '/^(X-Powered-By:|Set-Cookie: pad(Ses|Req)ID=)/i', $header ) )
         return FALSE;
 
+    // What is stored is judged - for a page with {nocache} parts the text without them, the
+    // parts rendering afresh on every hit (lib/nocache.php).
+
+    $body = $body ?? $padOutput;
+
     foreach ( [ $padSesID ?? '', $padReqID ?? '', $padCsrfIssued ?? '', $padNonce ?? '' ] as $id )
-      if ( $id !== '' and str_contains ( $padOutput, $id ) )
+      if ( $id !== '' and str_contains ( $body, $id ) )
         return FALSE;
 
-    if ( padCacheLocalOnly ( $padOutput ) )
+    if ( padCacheLocalOnly ( $body ) )
       return FALSE;
 
     return TRUE;

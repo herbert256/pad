@@ -1,3 +1,5 @@
+
+
 <p>A tag of your own with a <code>.pad</code> template is a component: the caller's content goes where the template writes <b>@</b><b>content</b><b>@</b>. Named slots give it more than one place for content, and <code>{parms}</code> says which parameters it takes. The card below is <code>_tags/card.pad</code>:</p>
 
 <pre><code style="color: #000000"><b>{<font color="blue">parms </font><font color="red">title<font color="black">,</font> tone=<font color="black">'</font>plain<font color="black">'</font></font>}</b><br>&lt;div class="card <b>{<font color="green"><font color="red">#</font>tone</font>}</b>" style="border: 1px solid #999; padding: 6px; margin: 4px"&gt;<br>  &lt;b&gt;<b>{<font color="green"><font color="red">#</font>title</font>}</b>&lt;/b&gt;<br>  <b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>header<font color="black">'</font></font>}</b>&lt;i&gt;no header given&lt;/i&gt;<b>{/<font color="blue">slot</font><font color="red"></font>}</b><br>  &lt;div&gt;<b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b>&lt;/div&gt;<br>  <b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>footer<font color="black">'</font></font>}</b>&lt;small&gt;<b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b>&lt;/small&gt;<b>{/<font color="blue">slot</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
@@ -180,4 +182,150 @@
 <ul>
   <li><code>{parms title, tone='plain'}</code> at the top of the template declares the parameters: a name alone is required, <code>name=default</code> fills in what the caller left out. Both read as <code>{#title}</code>.</li>
   <li>A required parameter left out is an error, and so - under the strict check - is a parameter the tag does not declare: <code>{card title='x', titel='y'}</code> is reported by name.</li>
+</ul>
+
+<h2>Components written in the template</h2>
+
+<p>A component used on one page only needs no file of its own. <code>{define 'name'}...{/define}</code> writes it in the template: from there on <code>{name}</code> renders the body as <code>_tags/name.pad</code> would - <code>{parms}</code>, <code>{#name}</code>, <b>@</b><b>content</b><b>@</b> and slots work alike.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/components_3.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">define </font><font color="red"><font color="black">'</font>pill<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">parms </font><font color="red">label<font color="black">,</font> tone=<font color="black">'</font>info<font color="black">'</font></font>}</b><br>  &lt;span class="pill <b>{<font color="green"><font color="red">#</font>tone</font>}</b>"&gt;<b>{<font color="green"><font color="red">#</font>label</font>}</b><b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b>&lt;/span&gt;<br><b>{/<font color="blue">define</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pill </font><font color="red">label=<font color="black">'</font>New<font color="black">'</font></font>}</b><br><b>{<font color="blue">pill </font><font color="red">label=<font color="black">'</font>Sold out<font color="black">'</font><font color="black">,</font> tone=<font color="black">'</font>warn<font color="black">'</font></font>}</b>: 0 left<b>{/<font color="blue">pill</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+
+
+  
+  <span class="pill info">New</span>
+
+
+  
+  <span class="pill warn">Sold out: 0 left</span>
+
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<p>A <code>{macro}</code> is called the way a function is: its parameters are declared on it - a name alone required, <code>name=default</code> filling in - given in their order or by name, and read as fields, <code>{$label}</code>.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/components_4.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">macro </font><font color="red"><font color="black">'</font>entry<font color="black">'</font><font color="black">,</font> label<font color="black">,</font> type=<font color="black">'</font>text<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font><font color="black">'</font></font>}</b><br>  &lt;p&gt;&lt;label&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b> &lt;input type="<b>{<font color="green"><font color="red">$</font>type</font>}</b>" name="<b>{<font color="green"><font color="red">$</font>label</font>}</b>" value="<b>{<font color="green"><font color="red">$</font>value</font>}</b>"&gt;&lt;/label&gt;&lt;/p&gt;<br><b>{/<font color="blue">macro</font><font color="red"></font>}</b><br><br><b>{<font color="blue">entry </font><font color="red"><font color="black">'</font>E-mail<font color="black">'</font><font color="black">,</font> <font color="black">'</font>email<font color="black">'</font></font>}</b><br><b>{<font color="blue">entry </font><font color="red">label=<font color="black">'</font>Name<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>Alice<font color="black">'</font></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+
+
+  <p><label>E-mail <input type="email" name="E-mail" value=""></label></p>
+
+
+  <p><label>Name <input type="text" name="Name" value="Alice"></label></p>
+
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<ul>
+  <li>Both render at every use, in its place and with its fields; both can use themselves, for the rows below the current one.</li>
+  <li>A define or macro exists from the point it is walked, as a <code>{content}</code> store does: a use before it is an unknown tag.</li>
+  <li>A macro given too many values, missing a required one, or given a name it does not declare is an error.</li>
 </ul>

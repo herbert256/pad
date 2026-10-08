@@ -83,7 +83,7 @@
     // token as exits/exits.php gives it to the rest of the page - the part sent early went
     // out without it.
 
-    $chunk = padUnprotect ( padUnescape ( padStackFill ( $chunk ) ) );
+    $chunk = padNocacheStrip ( padUnprotect ( padUnescape ( padStackFill ( $chunk ) ) ) );
 
     if ( $padCsrf )
       $chunk = padCsrfForms ( $chunk );

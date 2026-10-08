@@ -26,18 +26,22 @@
   // with the rendering ('stacks') and made again on a hit - lib/stack.php records it. So is
   // the page booking of a paged tag in it ('pagers', padPagerKeep in lib/pager.php): a
   // {pager} after the section found no paged tag on a hit, or one with a single page.
+  //
+  // A {nocache} part of the section renders on a hit too: kept as its source ('nocache'),
+  // the stored rendering is then made a template again and rendered - lib/nocache.php.
 
   function padFragmentHit () {
 
     global $pad, $padFragment, $padFragmentCache, $padFragmentOnly, $padToolbarData;
 
     $fragment = [
-      'key'    => padFragmentKey (),
-      'ttl'    => padFragmentTtl (),
-      'hit'    => FALSE,
-      'body'   => '',
-      'stacks' => [],
-      'pagers' => []
+      'key'     => padFragmentKey (),
+      'ttl'     => padFragmentTtl (),
+      'hit'     => FALSE,
+      'body'    => '',
+      'stacks'  => [],
+      'pagers'  => [],
+      'nocache' => NULL
     ];
 
     // A request for one response fragment alone (lib/respond.php) renders the section: a
@@ -64,10 +68,11 @@
     if ( $entry === FALSE )
       return FALSE;
 
-    $padFragment [$pad] ['hit']    = TRUE;
-    $padFragment [$pad] ['body']   = $entry ['body'];
-    $padFragment [$pad] ['stacks'] = $entry ['stacks'];
-    $padFragment [$pad] ['pagers'] = $entry ['pagers'];
+    $padFragment [$pad] ['hit']     = TRUE;
+    $padFragment [$pad] ['body']    = $entry ['body'];
+    $padFragment [$pad] ['stacks']  = $entry ['stacks'];
+    $padFragment [$pad] ['pagers']  = $entry ['pagers'];
+    $padFragment [$pad] ['nocache'] = $entry ['nocache'];
 
     return TRUE;
 
@@ -84,7 +89,11 @@
 
     if ( $fragment ['hit'] ) {
 
-      $padResult [$pad] = $fragment ['body'];
+      // A section with {nocache} parts rendered its stored text as a template, the parts
+      // made again (level/cached.php) - that rendering is the result.
+
+      if ( ! $fragment ['nocache'] )
+        $padResult [$pad] = $fragment ['body'];
 
       foreach ( $fragment ['stacks'] as [ $name, $text, $once ] )
         padStackPush ( $name, $text, $once );
@@ -92,9 +101,17 @@
       foreach ( $fragment ['pagers'] as $name => $booking )
         padPagerBook ( $name, $booking );
 
-    } elseif ( $padFragmentCache and padFragmentStorable ( $padResult [$pad], $fragment ['stacks'] ) )
+    } elseif ( $padFragmentCache ) {
 
-      padFragmentPut ( $fragment ['key'], $padResult [$pad], $fragment ['ttl'], $fragment ['stacks'], $fragment ['pagers'] );
+      // The {nocache} parts are kept as their source (lib/nocache.php): what they rendered
+      // this time - a token of this visitor's among it - is not what is stored.
+
+      $body = padNocacheCut ( $padResult [$pad], $nocache );
+
+      if ( padFragmentStorable ( $body, $fragment ['stacks'] ) )
+        padFragmentPut ( $fragment ['key'], $body, $fragment ['ttl'], $fragment ['stacks'], $fragment ['pagers'], $nocache );
+
+    }
 
   }
 
@@ -187,10 +204,11 @@
   }
 
   // An entry is [ 'body' => the rendering, 'stacks' => the pushes it made, 'pagers' => the
-  // page bookings it made ]. A file holds the expiry time on its first line, followed -
-  // when there were pushes or bookings - by the length of the two serialized together,
-  // which then stand in front of the body. An entry written when only the pushes were kept
-  // holds their list there, and is read as such.
+  // page bookings it made, 'nocache' => the sources of its {nocache} parts or NULL ]. A file
+  // holds the expiry time on its first line, followed - when there were pushes, bookings or
+  // parts - by the length of the three serialized together, which then stand in front of
+  // the body. An entry written when only the pushes were kept holds their list there, and
+  // is read as such.
 
   function padFragmentGet ( $key ) {
 
@@ -203,7 +221,7 @@
       if ( ! $found )
         return FALSE;
 
-      return ( is_array ( $entry ) ? $entry : [ 'body' => $entry ] ) + [ 'stacks' => [], 'pagers' => [] ];
+      return ( is_array ( $entry ) ? $entry : [ 'body' => $entry ] ) + [ 'stacks' => [], 'pagers' => [], 'nocache' => NULL ];
 
     }
 
@@ -233,27 +251,28 @@
       $extra = [ 'stacks' => $extra ];
 
     return [
-      'body'   => substr ( $text, $split + 1 + $size ),
-      'stacks' => is_array ( $extra ['stacks'] ?? NULL ) ? $extra ['stacks'] : [],
-      'pagers' => is_array ( $extra ['pagers'] ?? NULL ) ? $extra ['pagers'] : []
+      'body'    => substr ( $text, $split + 1 + $size ),
+      'stacks'  => is_array ( $extra ['stacks']  ?? NULL ) ? $extra ['stacks']  : [],
+      'pagers'  => is_array ( $extra ['pagers']  ?? NULL ) ? $extra ['pagers']  : [],
+      'nocache' => is_array ( $extra ['nocache'] ?? NULL ) ? $extra ['nocache'] : NULL
     ];
 
   }
 
-  function padFragmentPut ( $key, $body, $ttl, $stacks = [], $pagers = [] ) {
+  function padFragmentPut ( $key, $body, $ttl, $stacks = [], $pagers = [], $nocache = NULL ) {
 
     global $padFragmentCache;
 
     if ( $padFragmentCache == 'apcu' and function_exists ( 'apcu_store' ) )
-      return apcu_store ( "padFragment:$key", [ 'body' => $body, 'stacks' => $stacks, 'pagers' => $pagers ], $ttl );
+      return apcu_store ( "padFragment:$key", [ 'body' => $body, 'stacks' => $stacks, 'pagers' => $pagers, 'nocache' => $nocache ], $ttl );
 
     padFragmentPurge ();
 
     $head  = time () + $ttl;
     $extra = '';
 
-    if ( $stacks or $pagers ) {
-      $extra = serialize ( [ 'stacks' => $stacks, 'pagers' => $pagers ] );
+    if ( $stacks or $pagers or $nocache ) {
+      $extra = serialize ( [ 'stacks' => $stacks, 'pagers' => $pagers, 'nocache' => $nocache ] );
       $head .= ' ' . strlen ( $extra );
     }
 
