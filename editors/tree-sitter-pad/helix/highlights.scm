@@ -78,8 +78,8 @@
     "placeholder" "poll" "progress" "pull" "push" "qr" "rating" "reactData"
     "record" "recurse" "redirect" "remove" "restart" "resume" "sandbox" "sequence"
     "set" "sitemap" "slot" "spaceless" "sparkline" "stack" "sudoku" "switch"
-    "tab" "tabs" "textarea" "tidy" "timeline" "toc" "trace" "trans"
-    "tree" "true" "until" "video" "when" "while"))
+    "tab" "tabs" "textarea" "tidy" "timeago" "timeline" "toc" "trace"
+    "trans" "tree" "true" "until" "video" "when" "while"))
 
 (tag_name
   name: (identifier) @tag
@@ -99,8 +99,8 @@
     "placeholder" "poll" "progress" "pull" "push" "qr" "rating" "reactData"
     "record" "recurse" "redirect" "remove" "restart" "resume" "sandbox" "sequence"
     "set" "sitemap" "slot" "spaceless" "sparkline" "stack" "sudoku" "switch"
-    "tab" "tabs" "textarea" "tidy" "timeline" "toc" "trace" "trans"
-    "tree" "true" "until" "video" "when" "while"))
+    "tab" "tabs" "textarea" "tidy" "timeago" "timeline" "toc" "trace"
+    "trans" "tree" "true" "until" "video" "when" "while"))
 
 ((function_name) @function.builtin
   (#any-of? @function.builtin

@@ -2472,6 +2472,29 @@ moment in milliseconds; the script counts the same way and carries this request'
 
 ---
 
+### timeago
+How long ago a moment was, in words, inside a `<time>` with the moment as its `datetime` and, in
+full, as its `title` (`lib/timeago.php`) - the `ago` pipe's words with the semantic element.
+
+```html
+{timeago $created}        <!-- <time datetime="2026-10-08T09:10:00+02:00" title="Thursday 8 October 2026, 09:10">5 minutes ago</time> -->
+{timeago $posted, format='j M Y'}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The moment - a Unix timestamp, a date in text or a date object |
+| `now` | Count from this moment instead of now |
+| `format` | The PHP date format of the `title`, default `l j F Y, H:i` |
+
+**Behavior:** the words are `padAgo`'s - just now, 5 minutes ago, yesterday, 3 weeks ago, in 2
+days - counted from `padNow`, so `padNowFreeze` holds a test still. An empty moment answers
+nothing; a moment that is no date is a strict error.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -3003,6 +3026,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `datatable` | Output | Rows as an accessible HTML table - aligned numbers, totals, sorting and paging links |
 | `toc` | Output | A table of contents from the page's own rendered headings, ids added |
 | `countdown` | Output | The time left until a moment in words, in a time element, optionally ticking |
+| `timeago` | Output | How long ago a moment was, in a time element with the exact moment |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
