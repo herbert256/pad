@@ -1,0 +1,16 @@
+/* The shadow root of <pad-rating>. The stars of the value light up by the attribute alone, so
+   the rating shows right before rating.js has run. */
+
+:host { display: grid; gap: 6px; }
+.stars { display: flex; gap: 2px; }
+button { all: unset; cursor: pointer; font-size: 26px; line-height: 1; color: color-mix(in srgb, var(--faint, #999) 55%, transparent); transition: transform .1s ease, color .15s ease; }
+button:hover { transform: scale(1.15); }
+button:focus-visible { outline: 2px solid var(--accent, #e8590c); border-radius: 4px; }
+:host([value="1"]) button:nth-child(-n+1),
+:host([value="2"]) button:nth-child(-n+2),
+:host([value="3"]) button:nth-child(-n+3),
+:host([value="4"]) button:nth-child(-n+4),
+:host([value="5"]) button:nth-child(-n+5) { color: #f5a623; }
+.stars:hover button { color: #f5a623; }
+.stars button:hover ~ button { color: color-mix(in srgb, var(--faint, #999) 55%, transparent); }
+.info { font-size: 13px; color: var(--muted, #666); }

@@ -1,0 +1,33 @@
+{meta title='Web components'}
+
+<p>Custom elements and shadow DOM are the browser's own components. A shadow root can be
+written in the HTML - <code>&lt;template shadowrootmode="open"&gt;</code> - and the browser builds it
+while it parses the page: the element shows, its styles encapsulated and its light DOM slotted,
+before any script ran. {tag 'shadow'} writes that template on the server:</p>
+
+{example 'fragments/web_components_1'}
+
+<ul>
+  <li><code>css=</code> inlines stylesheets - a file of the application, or <code>www:</code> one in its
+      <code>www/</code> directory - as the root's <code>&lt;style&gt;</code>: a shadow root takes no
+      styles from the page, and a <code>&lt;style&gt;</code> written in a template would have its braces
+      read as PAD tags. Custom properties do cross into the root, so <code>var(--accent)</code> follows
+      the page's theme.</li>
+  <li><code>mode='closed'</code> makes a closed root, <code>focus</code> delegates focus to the first
+      focusable element inside.</li>
+  <li>A module that defines the element - <code>customElements.define('pad-card', ...)</code> - finds
+      the root PAD rendered in <code>this.shadowRoot</code> and adds behaviour; the element needs none
+      to show.</li>
+</ul>
+
+<h2>As PAD components</h2>
+
+<p>A custom tag of the application ({manual 'components'}) is the natural home of an element: its
+<code>.pad</code> file writes the element and its root, its parameters become attributes, and
+<code>&#64;content&#64;</code> is the light DOM the browser slots in. Inside {tag 'shadow'}, <code>{open}#name{close}</code>
+is {tag 'shadow'}'s own parameter: <code>{open}set $value = {open}#value{close}{close}</code> before the pair carries the
+tag's into it.</p>
+
+<p>The webcomponents application has cards, tabs, a rating that posts, a form-associated stepper
+and a Lit element, each with its tag, stylesheet and module:
+<a href="{$padHost}webcomponents/">webcomponents</a>.</p>

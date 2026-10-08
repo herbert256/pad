@@ -1,0 +1,13 @@
+/* The shadow root of <pad-tabs>: the tab row and the panel area; the tabs and panels are the
+   page's light DOM, slotted in. */
+
+:host { display: block; }
+.tablist { display: flex; gap: 6px; padding: 4px; border-radius: 999px; background: var(--surface-2, #eee); width: fit-content; }
+::slotted([slot="tab"]) {
+  all: unset; cursor: pointer; padding: 8px 16px; border-radius: 999px;
+  font: 600 14px/1.2 system-ui, sans-serif; color: var(--muted, #666);
+}
+::slotted([slot="tab"][aria-selected="true"]) { background: var(--surface, #fff); color: var(--text, #111); box-shadow: 0 1px 3px rgba(0, 0, 0, .15); }
+::slotted([slot="tab"]:focus-visible) { outline: 3px solid var(--accent-soft, #fdd); }
+.panels { margin-top: 14px; padding: 16px 18px; border-radius: 14px; border: 1px solid var(--line, #ddd); background: var(--surface, #fff); }
+::slotted([slot="panel"][hidden]) { display: none; }

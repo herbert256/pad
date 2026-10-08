@@ -1378,6 +1378,37 @@ server runs, are errors.
 
 ---
 
+### shadow
+The shadow root of a custom element, rendered on the server - declarative shadow DOM.
+
+```html
+<pad-card>
+  {shadow css='www:card.css'}
+    <header><slot name="title"></slot></header>
+    <slot></slot>
+  {/shadow}
+  <h2 slot="title">{$title}</h2>
+</pad-card>
+```
+
+| Option | Description |
+|--------|-------------|
+| `css` | Stylesheets inlined as one `<style>` at the start of the root, a text with commas: a `.css` file of the application, or `www:` one in its `www/` directory |
+| `mode` | `open` (default) or `closed` |
+| `focus` | `shadowrootdelegatesfocus` |
+
+**Behavior:** writes `<template shadowrootmode="open">` round the rendered content. The browser
+builds the shadow root from it while it parses the page, so the element shows - encapsulated
+styles, slotted light DOM - before any script ran, and a module that defines the element later
+finds the root in `this.shadowRoot`. A shadow root takes no styles from the page, and a
+`<style>` written in a template would have its braces read as PAD tags: `css=` inlines the files
+instead, each read once a request, a `</style` in one written so it cannot end the element. The
+file rule of `{source}` applies; a file that is not there or is no `.css` file, and a mode that
+is neither open nor closed, are errors. Inside the pair `{#name}` is `{shadow}`'s own parameter -
+in a custom tag, `{set $value = {#value}}` before the pair carries the tag's into it.
+
+---
+
 ### source
 The files behind a page as tabs, each coloured as `{highlight}` colours it - the code shown
 is read from the files that run, so it never drifts from them.

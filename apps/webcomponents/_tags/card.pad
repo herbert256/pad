@@ -1,0 +1,10 @@
+{parms title, tone='info'}
+<pad-card tone="{#tone}">
+  {shadow css='www:elements/card.css'}
+    <header part="head"><slot name="title"></slot></header>
+    <div class="body"><slot></slot></div>
+    <footer part="foot"><slot name="footer"></slot></footer>
+  {/shadow}
+  <span slot="title">{#title}</span>
+  @content@
+</pad-card>

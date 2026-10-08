@@ -1,0 +1,11 @@
+<div class="grid">
+{products}
+  <div class="card product">
+    <span class="product-emoji">{$emoji}</span>
+    <strong>{$name}</strong>
+    {rating name=$id, value=$mine, average=$average, votes=$votes}
+  </div>
+{/products}
+</div>
+
+<script type="module" src="{$padRoot}webcomponents/elements/rating.js"></script>

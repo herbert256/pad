@@ -1,0 +1,25 @@
+<pad-tabs>
+  <template shadowrootmode="open"><style>/* The shadow root of <pad-tabs>: the tab row and the panel area; the tabs and panels are the
+   page's light DOM, slotted in. */
+
+:host { display: block; }
+.tablist { display: flex; gap: 6px; padding: 4px; border-radius: 999px; background: var(--surface-2, #eee); width: fit-content; }
+::slotted([slot="tab"]) {
+  all: unset; cursor: pointer; padding: 8px 16px; border-radius: 999px;
+  font: 600 14px/1.2 system-ui, sans-serif; color: var(--muted, #666);
+}
+::slotted([slot="tab"][aria-selected="true"]) { background: var(--surface, #fff); color: var(--text, #111); box-shadow: 0 1px 3px rgba(0, 0, 0, .15); }
+::slotted([slot="tab"]:focus-visible) { outline: 3px solid var(--accent-soft, #fdd); }
+.panels { margin-top: 14px; padding: 16px 18px; border-radius: 14px; border: 1px solid var(--line, #ddd); background: var(--surface, #fff); }
+::slotted([slot="panel"][hidden]) { display: none; }</style>
+    <div class="tablist" role="tablist" part="tablist"><slot name="tab"></slot></div>
+    <div class="panels"><slot name="panel"></slot></div>
+  </template>
+  
+  <button slot="tab" role="tab" id="tab-server" aria-controls="panel-server" aria-selected="true">On the server</button><button slot="tab" role="tab" id="tab-wire" aria-controls="panel-wire" aria-selected="false">In the HTML</button><button slot="tab" role="tab" id="tab-client" aria-controls="panel-client" aria-selected="false">In the browser</button>
+  <section slot="panel" role="tabpanel" id="panel-server" aria-labelledby="tab-server"><p>PAD renders &lt;pad-tabs&gt; with its shadow root - the tablist and the panel area - and every tab and panel as plain HTML inside it.</p></section><section slot="panel" role="tabpanel" id="panel-wire" aria-labelledby="tab-wire"><p>The browser builds the shadow root from the template while it parses the page: no script, no flash of unstyled tabs.</p></section><section slot="panel" role="tabpanel" id="panel-client" aria-labelledby="tab-client"><p>tabs.js defines the element: it finds the root already there and adds clicks and the arrow keys.</p></section>
+
+</pad-tabs>
+
+
+<script type="module" src="/pad/webcomponents/elements/tabs.js"></script>

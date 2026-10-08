@@ -1,0 +1,43 @@
+<section class="hero">
+
+  <div>
+    <span class="eyebrow"><b>●</b> The platform's own components</span>
+    <h1>Rendered by PAD,<br><span class="grad">defined by the browser.</span></h1>
+    <p class="lede">
+      A custom element with its shadow root written on the server: declarative shadow DOM shows it
+      encapsulated and slotted before any script ran, and a small module upgrades it where it needs
+      behaviour. PAD's own components - a custom tag with parameters - write them.
+    </p>
+    <div class="hero-actions">
+      <a class="btn" href="?examples/cards">Start with the cards</a>
+      <a class="btn btn-ghost" href="?guide">How it works</a>
+    </div>
+  </div>
+
+  <div class="hero-demo">
+    {card title='Rendered on the server', tone='good'}
+      <p>This card is a <code>&lt;pad-card&gt;</code> with its shadow root - and the page has no script for it.</p>
+      <a slot="footer" href="?examples/cards">See how</a>
+    {/card}
+  </div>
+
+</section>
+
+{groups}
+<div class="group-head">
+  <h2>{$title}</h2>
+  <span class="badge">{$count} examples</span>
+</div>
+<p class="group-text">{$text}</p>
+<div class="grid">
+  {examples}
+  <a class="card" href="?{$page}">
+    <span class="card-icon" aria-hidden="true">{$icon}</span>
+    <span class="card-go" aria-hidden="true">→</span>
+    <h3>{$title}</h3>
+    <p>{$lede}</p>
+    <div class="chips">{server}<code class="chip is-server">{$server}</code>{/server}{client}<code class="chip is-client">{$client}</code>{/client}</div>
+  </a>
+  {/examples}
+</div>
+{/groups}

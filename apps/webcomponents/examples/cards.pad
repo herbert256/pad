@@ -1,0 +1,15 @@
+<div class="grid">
+{cards}
+  {card title=$title, tone=$tone}
+    <p class="stat">{$value}</p>
+    <p class="muted">{$note}</p>
+    <a slot="footer" href="?examples/cards">Details →</a>
+  {/card}
+{/cards}
+</div>
+
+<p class="muted small" style="margin-top: 18px">
+  Open the developer tools: each card is <code>&lt;pad-card&gt;</code> with a <code>#shadow-root</code> PAD wrote. The page
+  loads no script for it - the browser builds the root from the <code>&lt;template shadowrootmode&gt;</code>, and the
+  styles inside it neither leak out nor let the page's in.
+</p>

@@ -69,6 +69,7 @@ This directory contains PAD applications and examples.
 | [sequence](sequence/README.md) | Standard | Mathematical sequence subsystem demos - gallery, listen and guess pages |
 | [structure](structure/README.md) | Example | Demonstrates PAD directory structure and nested `_xxx` directories |
 | [test](test/README.md) | Minimal | A scratch application for trying things out, with `_common` switched off |
+| [webcomponents](webcomponents/README.md) | Standard | Web components: custom elements PAD renders with their shadow root (`{shadow}`), upgraded by small modules - cards, tabs, a rating, a form-associated stepper, Lit |
 
 ## Application Types
 

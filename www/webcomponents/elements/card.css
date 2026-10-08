@@ -1,0 +1,21 @@
+/* The shadow root of <pad-card>, inlined into it by {shadow css=}. Nothing of the page's
+   stylesheet reaches in - but custom properties do, so the card follows the page's theme. */
+
+:host {
+  --tone: var(--accent, #e8590c);
+  display: block;
+  border-radius: 16px;
+  background: var(--surface, #fff);
+  border: 1px solid var(--line, #ddd);
+  border-top: 4px solid var(--tone);
+  box-shadow: var(--shadow, none);
+  overflow: hidden;
+}
+:host([tone="good"]) { --tone: var(--good, #108a4a); }
+:host([tone="bad"])  { --tone: var(--bad, #c93838); }
+:host([tone="info"]) { --tone: var(--accent, #e8590c); }
+
+header { padding: 14px 18px 0; font: 700 12px/1.4 system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--tone); }
+.body { padding: 4px 18px 10px; }
+footer { padding: 10px 18px; border-top: 1px solid var(--line, #ddd); font-size: 14px; }
+::slotted([slot="footer"]) { color: var(--tone); font-weight: 600; text-decoration: none; }

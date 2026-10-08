@@ -73,9 +73,9 @@
     "keep" "live" "mail" "make" "markdown" "meta" "nonce" "null"
     "open" "output" "pad" "page" "pager" "parent" "parms" "pull"
     "push" "qr" "reactData" "record" "recurse" "redirect" "remove" "restart"
-    "resume" "sandbox" "sequence" "set" "sitemap" "slot" "source" "spaceless"
-    "sparkline" "stack" "switch" "textarea" "tidy" "trace" "trans" "tree"
-    "true" "until" "validator" "vite" "when" "while"))
+    "resume" "sandbox" "sequence" "set" "shadow" "sitemap" "slot" "source"
+    "spaceless" "sparkline" "stack" "switch" "textarea" "tidy" "trace" "trans"
+    "tree" "true" "until" "validator" "vite" "when" "while"))
 
 (tag_name
   name: (identifier) @tag
@@ -90,9 +90,9 @@
     "keep" "live" "mail" "make" "markdown" "meta" "nonce" "null"
     "open" "output" "pad" "page" "pager" "parent" "parms" "pull"
     "push" "qr" "reactData" "record" "recurse" "redirect" "remove" "restart"
-    "resume" "sandbox" "sequence" "set" "sitemap" "slot" "source" "spaceless"
-    "sparkline" "stack" "switch" "textarea" "tidy" "trace" "trans" "tree"
-    "true" "until" "validator" "vite" "when" "while"))
+    "resume" "sandbox" "sequence" "set" "shadow" "sitemap" "slot" "source"
+    "spaceless" "sparkline" "stack" "switch" "textarea" "tidy" "trace" "trans"
+    "tree" "true" "until" "validator" "vite" "when" "while"))
 
 ((function_name) @function.builtin
   (#any-of? @function.builtin

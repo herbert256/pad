@@ -666,6 +666,17 @@ other `{slot}` is where a fill goes, its content the default (`@content@` in it 
 fill). `{parms}`: a bare name is required, `name=default` fills in; an undeclared parameter
 is an error under the strict check.
 
+### Web components (declarative shadow DOM)
+```
+<pad-card>                                   # in a custom tag, _tags/card.pad
+  {shadow css='www:card.css'}<header><slot name="title"></slot></header><slot></slot>{/shadow}
+  <span slot="title">{#title}</span>@content@
+</pad-card>
+```
+`{shadow}` writes `<template shadowrootmode="open">` with the stylesheets inlined (`mode='closed'`,
+`focus`): the element shows styled and slotted before any script ran, and a module that defines
+it finds `this.shadowRoot` ready.
+
 ### Stacks (push / stack)
 ```
 <head>{stack 'scripts'}</head>                # filled in after the whole page rendered
@@ -1745,6 +1756,7 @@ strict syntax check - `pad_check` with only an app checks every page), `pad_trac
 | `sequence` | Standard | Mathematical sequence subsystem demos - with a gallery of every type beside its OEIS entry, a sequence played as notes, and a guess-the-next-term game |
 | `structure` | Example | Demonstrates nested `_xxx` directories and inheritance |
 | `test` | Minimal | A scratch application for trying things out, `_common` switched off |
+| `webcomponents` | Standard | Web components: PAD custom tags write custom elements with their shadow root (`{shadow}`, declarative shadow DOM) - cards with slots, tabs upgraded by a module, a rating that posts, a form-associated stepper, a Lit element fed with PAD's JSON |
 
 See [apps/README.md](apps/README.md) for the same list with links.
 

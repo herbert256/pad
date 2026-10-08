@@ -1,0 +1,66 @@
+{
+  "groups": [
+    {
+      "key":   "server",
+      "title": "Rendered on the server",
+      "text":  "A PAD custom tag writes the custom element with its shadow root already in it - declarative shadow DOM - so it shows, styled and slotted, before any script ran."
+    },
+    {
+      "key":   "upgrade",
+      "title": "Upgraded in the browser",
+      "text":  "A small module defines the element: it finds the root PAD rendered and adds behaviour - keys, clicks, a post back, a value in a form."
+    }
+  ],
+  "examples": [
+    {
+      "page":   "examples/cards",
+      "group":  "server",
+      "icon":   "🃏",
+      "title":  "Cards with slots",
+      "lede":   "{card title='Revenue'} is a PAD custom tag that writes <pad-card> with its shadow root: encapsulated styles inlined by {shadow css=}, named slots the browser fills from the light DOM - and not a line of JavaScript.",
+      "server": [ "{shadow}", "_tags/card.pad", "{parms}" ],
+      "client": [ "shadowrootmode", "<slot>", "::slotted" ],
+      "files":  [ "_tags/card.pad", "www:elements/card.css" ]
+    },
+    {
+      "page":   "examples/tabs",
+      "group":  "upgrade",
+      "icon":   "🗂️",
+      "title":  "Tabs, upgraded",
+      "lede":   "The tabs are complete HTML when they arrive - the first panel shows. Once tabs.js defines <pad-tabs>, the element takes the root PAD rendered and adds clicks and arrow keys.",
+      "server": [ "{shadow}", "_tags/tabs.pad" ],
+      "client": [ "customElements.define", "this.shadowRoot" ],
+      "files":  [ "_tags/tabs.pad", "www:elements/tabs.js", "www:elements/tabs.css" ]
+    },
+    {
+      "page":   "examples/rating",
+      "group":  "upgrade",
+      "icon":   "⭐",
+      "title":  "A rating that posts",
+      "lede":   "<pad-rating value=\"4\"> gets its value from PAD and its stars from the server; a click posts the new rating with the session's CSRF token, and the element shows the average PAD answers.",
+      "server": [ "padSession", "$padExpose" ],
+      "client": [ "attributeChangedCallback", "fetch POST" ],
+      "files":  [ "_tags/rating.pad", "www:elements/rating.js", "www:elements/rating.css" ]
+    },
+    {
+      "page":   "examples/stepper",
+      "group":  "upgrade",
+      "icon":   "🔢",
+      "title":  "A field of a form",
+      "lede":   "<pad-stepper> is form-associated: ElementInternals gives the {form} its value, the post carries it like any field, and padValidate checks it on the server.",
+      "server": [ "{form}", "padValidate", "padPosted" ],
+      "client": [ "formAssociated", "ElementInternals" ],
+      "files":  [ "_tags/stepper.pad", "www:elements/stepper.js", "www:elements/stepper.css" ]
+    },
+    {
+      "page":   "examples/lit",
+      "group":  "upgrade",
+      "icon":   "🔥",
+      "title":  "A library: Lit",
+      "lede":   "A Lit element rendered in the browser, fed by PAD through an attribute: items=\"{^items}\" is JSON Lit reads into a property - the same data any element gets.",
+      "server": [ "{^field}" ],
+      "client": [ "LitElement", "static properties" ],
+      "files":  [ "www:elements/timeline.js" ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{parms name, value=0, average=0, votes=0}
+<pad-rating name="{#name}" value="{#value}">
+  {shadow css='www:elements/rating.css'}
+    <div class="stars" part="stars" role="radiogroup">
+      <button data-value="1" aria-label="1 star">★</button><button data-value="2" aria-label="2 stars">★</button><button data-value="3" aria-label="3 stars">★</button><button data-value="4" aria-label="4 stars">★</button><button data-value="5" aria-label="5 stars">★</button>
+    </div>
+    <span class="info"><slot></slot></span>
+  {/shadow}
+  {#average} on average, {#votes} votes
+</pad-rating>
