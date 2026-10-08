@@ -2130,6 +2130,42 @@ answers is one under the strict check.
 
 ---
 
+### img
+A picture of `www/<application>/` as a thumbnail of the size the page shows it at - resized
+once with GD (`lib/img.php`) and kept in `www/<application>/_thumbs/`, where the web server
+sends it like any asset.
+
+```html
+{img 'photos/harbour.jpg', width=400, height=300, alt='The harbour at dawn'}
+{img 'photos/dunes.jpg', width=300, height=300, fit='contain', format='webp', quality=70, alt=''}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The picture: a name below `www/<application>/` - a JPEG, PNG, GIF or WebP |
+| `width`, `height` | The box in CSS pixels; one of them keeps the picture's proportion, neither keeps its size |
+| `fit` | `cover` (default: fill the box, cut around the centre) or `contain` (all of it inside the box) |
+| `format` | `jpeg`, `png` or `webp` - default the source's, a GIF becoming a PNG |
+| `quality` | 1 to 100 for JPEG and WebP, default 80 |
+| `alt` | Required - the text for whoever cannot see the picture; `alt=''` marks it as decoration |
+
+**Behavior:** writes `<img class="pad-img">` with its `width` and `height` (no layout shift),
+`loading="lazy"`, `decoding="async"` and a `srcset` whose second picture is twice the size -
+as far as the source reaches, the density then said as it is (`1.5x`), and left out under
+1.2x. A picture is never made larger than its source. A JPEG is turned upright by its EXIF
+orientation. The file name is a hash of the picture's contents and the options, so a changed
+picture is a new address and the same page answers the same address on every machine; a
+thumbnail is made once, written under a temporary name and renamed into place. `.gitignore`
+leaves `_thumbs/` out. A missing `alt`, a file that is not there or is no picture, an
+unknown `fit` or `format` and a `quality` outside 1-100 are errors under the strict check; a
+`_thumbs/` directory the web server cannot write is an error, and the original picture is
+written instead. The colour behind a picture still loading is `--pad-img-placeholder`
+(`light-dark()`), and `.pad-img` keeps it inside its column (`max-width:100%`).
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2652,6 +2688,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `carousel` | Output | Slides that scroll and snap sideways, previous/next and dot links - no autoplay |
 | `copy` | Output | A text with a copy-to-clipboard button, selectable by hand without scripting |
 | `poll` | Web | A vote once per visitor, results as bars - a live region, a plain form without scripting |
+| `img` | Output | Resized, cached thumbnail of a picture, with a 2x srcset |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |

@@ -930,6 +930,7 @@ Code: `pad/lib/chart.php` (bar, line, sparkline) and `pad/lib/chart/` (the other
 {carousel label='Photos'}{tab 'Caption'}<img ...>{/tab}...{/carousel}   # scroll-snap slides, link arrows and dots
 {copy 'npm install pad', label='Copy'}             # the text in <pre>, a copy-to-clipboard button
 {poll 'lang', options='PHP, Go', title='Favourite?'}   # one vote per session, results as bars; DATA/poll/
+{img 'photos/harbour.jpg', width=400, height=300, alt='The harbour'}   # GD thumbnail in www/<app>/_thumbs/, 2x srcset, lazy
 ```
 Every one is rendered on the server; the `showcase` application has examples of each.
 
