@@ -1780,6 +1780,7 @@ strict syntax check - `pad_check` with only an app checks every page), `pad_trac
 | `_common` | Shared | Shared resources and utilities for all applications |
 | `apps` | Standard | Lists all PAD applications with descriptions from README files |
 | `charts` | Standard | A showcase of the `{chart}` tag - a pulldown per chart family (46 kinds), every example a page of three cells: the data, the tag, the chart |
+| `showcase` | Standard | A showcase of the tags that draw, format and interact - a pulldown per group, a section per tag, every example its template beside the result |
 | `classicModels` | Standard | PAD Select over the Classic Models sample database |
 | `cli` | CLI | The `pad` command (`apps/cli/pad`): new, serve, render, lint, export, test - and the cli application |
 | `demo` | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
