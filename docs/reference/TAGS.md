@@ -2166,6 +2166,41 @@ written instead. The colour behind a picture still loading is `--pad-img-placeho
 
 ---
 
+### video
+A YouTube or Vimeo video as its poster with a play button; the player's iframe is loaded
+only when the button is pressed (`lib/video.php`) - nothing of the video site runs before the
+visitor asks for it. A file of `www/<application>/` is a `<video>` element.
+
+```html
+{video 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'}
+{video 'https://vimeo.com/76979871#t=12s', title='The new Vimeo player', poster='photos/still.jpg'}
+{video 'clips/sunrise.webm', title='Sunrise', poster='photos/sunrise.jpg'}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | A YouTube address (`watch?v=`, `youtu.be/`, `/shorts/`, `/embed/`, `/live/`, youtube-nocookie.com), a Vimeo address (`vimeo.com/<id>`, `/channels/x/<id>`, `player.vimeo.com/video/<id>`) or a `.mp4`, `.webm`, `.ogv` or `.mov` file of `www/<application>/` |
+| `title` | Required - the button's text, the iframe's title, the video element's name |
+| `poster` | A picture of `www/<application>/` (versioned as `{asset}`) in place of the site's thumbnail |
+| `start` | The second to start at; a `t=`, `start=` or `#t=` in the address says it too (`90`, `1m30s`, `1:30`) |
+| `ratio` | The proportion, default `16:9`; a short is `9:16` and kept to a phone's width |
+
+**Behavior:** the poster of a YouTube video is its thumbnail on i.ytimg.com (an image, no
+script or cookie); a Vimeo video without `poster=` gets a quiet drawn poster. The button
+holds the embed address - youtube-nocookie.com with `autoplay=1&rel=0`, or player.vimeo.com
+with `dnt=1` - and a small script, written once per request with the CSP nonce when `$padCsp`
+asks for one, puts the iframe in the poster's place on a click and moves the focus into it.
+Without script the button is hidden (`@media (scripting:none)`) and a `<noscript>` link to the
+video on its own site stands in its place - inside `<noscript>`, so a video in a card that is
+itself a link stays valid HTML. A file is `<video controls preload="none" playsinline>` with
+its poster: nothing is loaded before play. The colours are `--pad-video-*` custom properties
+with `light-dark()` steps on `.pad-video`. An address that is no known video and a missing
+`title` are errors under the strict check.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2689,6 +2724,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `copy` | Output | A text with a copy-to-clipboard button, selectable by hand without scripting |
 | `poll` | Web | A vote once per visitor, results as bars - a live region, a plain form without scripting |
 | `img` | Output | Resized, cached thumbnail of a picture, with a 2x srcset |
+| `video` | Output | YouTube or Vimeo as a poster and play button, the iframe only on a click; a local file as `<video>` |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
