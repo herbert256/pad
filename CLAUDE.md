@@ -923,6 +923,7 @@ Code: `pad/lib/chart.php` (bar, line, sparkline) and `pad/lib/chart/` (the other
 {crossword}ECHO: Writes a value{/crossword}       # WORD: clue lines laid out, numbered SVG grid + Across/Down clues; solution
 {diff $old, $new}                              # word diff with <del>/<ins>, escaped; lines, side, from=, to=
 {excerpt $body, words=24, highlight=$q}         # whole words around the first match, <mark>ed, escaped; html
+{lorem paragraphs=3, seed=7}                    # placeholder text, classic start, reproducible; words=, sentences=, varied
 ```
 Every one is rendered on the server; the `showcase` application has examples of each.
 

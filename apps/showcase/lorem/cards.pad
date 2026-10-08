@@ -1,0 +1,9 @@
+{meta title='A seed per card', about='The same tags with another seed in every card - varied text, and the same again on every request.'}
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; max-width: 640px">
+  {sequence '1..6', name='card'}
+    <div style="border: 1px solid rgba(128,128,128,.35); border-radius: 10px; padding: 12px 14px">
+      <strong>{lorem words=2, seed=$card, varied}</strong>
+      <p style="margin: 6px 0 0; font-size: 14px; opacity: .8">{lorem words=18, seed=$card + 100, varied}</p>
+    </div>
+  {/sequence}
+</div>

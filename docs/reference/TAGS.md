@@ -1914,6 +1914,35 @@ the strict check.
 
 ---
 
+### lorem
+Placeholder text: "Lorem ipsum dolor sit amet, ..." and then Latin words, the same text on
+every request for the same seed (`lib/lorem.php`).
+
+```html
+<h2>{lorem words=4}</h2>
+<p>{lorem sentences=2}</p>
+{lorem paragraphs=3, seed=7, varied}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| `words` | So many words exactly, as sentences; fewer than five are a title, without a full stop. Default 50 when no length is given |
+| `sentences` | So many sentences of six to fourteen words; with `paragraphs` the sentences of each |
+| `paragraphs` | So many `<p>` paragraphs, of four to seven sentences unless `sentences` says |
+| `seed` | Another text, the same again for the same seed - default 0 |
+| `varied` | Leave the classic opening out - for the second text on a page |
+
+**Behavior:** the words are picked from a Latin word list by the seeded sequence of
+`lib/fake.php` (`padFakeSeed`), the same on every machine; the sequence's state is put back
+afterwards, so a page that seeds `padFake*` for its own data gets the same values with or
+without a `{lorem}`. A comma now and then, never in the opening. A length that is no number
+from 1 to 10000, or `words` beside `sentences` or `paragraphs`, is an error under the strict
+check.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2429,6 +2458,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `crossword` | Output | Words and clues laid out as a numbered crossword grid (SVG) with the Across and Down lists |
 | `diff` | Output | The differences between two texts - words inline, or lines in one column or side by side |
 | `excerpt` | Output | A text cut to whole words around the first search match, the matches marked |
+| `lorem` | Output | Lorem ipsum placeholder text - words, sentences or paragraphs, the same for the same seed |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
