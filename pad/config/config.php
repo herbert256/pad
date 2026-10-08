@@ -147,23 +147,30 @@
 
   $padAssert = FALSE;
 
-  $padSqlPadHost           = '127.0.0.1';
-  $padSqlPadDatabase       = 'pad';
-  $padSqlPadUser           = 'pad';
-  $padSqlPadPassword       = 'pad';
+  // The two database connections - the engine's own 'pad' database and the application
+  // database - are no code: their values stand in the .env of the PAD home, and an
+  // application's own .env (or _common's) overrides them, see lib/env.php. This file is
+  // read once before the engine's library is loaded, so it loads padEnv itself.
 
-  $padSqlHost               = '127.0.0.1';
-  $padSqlDatabase           = 'app';
-  $padSqlUser               = 'app';
-  $padSqlPassword           = 'app';
+  include_once PAD . 'lib/env.php';
+
+  $padSqlPadHost           = padEnv ( 'padSqlPadHost' );
+  $padSqlPadDatabase       = padEnv ( 'padSqlPadDatabase' );
+  $padSqlPadUser           = padEnv ( 'padSqlPadUser' );
+  $padSqlPadPassword       = padEnv ( 'padSqlPadPassword' );
+
+  $padSqlHost               = padEnv ( 'padSqlHost' );
+  $padSqlDatabase           = padEnv ( 'padSqlDatabase' );
+  $padSqlUser               = padEnv ( 'padSqlUser' );
+  $padSqlPassword           = padEnv ( 'padSqlPassword' );
 
   // The application database's driver, see lib/db.php: 'mysql' on the four settings above,
   // or 'sqlite', where $padSqlDatabase is the database file - a relative name lives under
   // DATA/ - and $padSqlSetup a .sql file that builds it the first time, when the file does
   // not exist yet. db(), the database tags and the select subsystem work alike on both.
 
-  $padSqlDriver             = 'mysql';
-  $padSqlSetup              = '';
+  $padSqlDriver             = padEnv ( 'padSqlDriver' );
+  $padSqlSetup              = padEnv ( 'padSqlSetup' );
 
   $padDirMode  = 0755;
   $padFileMode = 0644;

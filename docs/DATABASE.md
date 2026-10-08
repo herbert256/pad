@@ -268,14 +268,27 @@ $title = db("FIELD title FROM forum_topics WHERE id = {0}", [$id]);
 
 ## Database Configuration
 
+The values stand in `.env` files, never in code, and are read with `padEnv`
+(`pad/lib/env.php`). `pad/config/config.php` reads every `$padSql*` setting from the PAD
+home's `.env`; an application's own `.env` - or `_common`'s, for an application that runs
+with `_common` - overrides it:
+
+```
+# apps/myapp/.env
+padSqlHost=localhost
+padSqlDatabase=myapp
+padSqlUser=user
+padSqlPassword=pass
+```
+
 In `_config/config.php`:
 
 ```php
-// Database connection
-$padSqlHost     = 'localhost';
-$padSqlDatabase = 'myapp';
-$padSqlUser     = 'user';
-$padSqlPassword = 'pass';
+// Database connection - the values from the .env files
+$padSqlHost     = padEnv ( 'padSqlHost' );
+$padSqlDatabase = padEnv ( 'padSqlDatabase' );
+$padSqlUser     = padEnv ( 'padSqlUser' );
+$padSqlPassword = padEnv ( 'padSqlPassword' );
 ```
 
 ### SQLite - no database server
@@ -285,10 +298,11 @@ the settings above) or `'sqlite'` (PDO). For SQLite `$padSqlDatabase` is the dat
 a relative name lives under `DATA/` - and `$padSqlSetup` an optional `.sql` file, relative to
 the application, that builds the database the first time, when the file does not exist yet:
 
-```php
-$padSqlDriver   = 'sqlite';
-$padSqlDatabase = 'myapp/myapp.sqlite';     // DATA/myapp/myapp.sqlite
-$padSqlSetup    = '_install/schema.sql';    // CREATE TABLE ... INSERT ... - run once
+```
+# apps/myapp/.env
+padSqlDriver=sqlite
+padSqlDatabase=myapp/myapp.sqlite          # DATA/myapp/myapp.sqlite
+padSqlSetup=_install/schema.sql            # CREATE TABLE ... INSERT ... - run once
 ```
 
 Everything above works alike on both: the `db()` verbs and their result shapes (`field`,

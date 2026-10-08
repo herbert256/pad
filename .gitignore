@@ -5,8 +5,14 @@
 www/DATA
 www/wasm/pad-bundle.json
 .DS_Store
-/.env
+# A new application's .env stays out of git. The .env files of the PAD home and of the
+# repository's own applications are tracked: they hold the logins of the local test
+# databases the suites run on, the values _config/config.php held before.
 /apps/**/.env
+!/apps/_common/.env
 !/apps/manual/.env
-!/apps/regression/env/.env
+!/apps/playground/.env
+!/apps/react/.env
+!/apps/structure/.env
+!/apps/regression/*/.env
 !/apps/regression/env/_config/.env

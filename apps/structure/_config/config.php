@@ -15,15 +15,15 @@
 
   $padCache = FALSE;
 
-  $padSqlPadHost           = '127.0.0.1';
-  $padSqlPadDatabase       = 'pad';
-  $padSqlPadUser           = 'pad';
-  $padSqlPadPassword       = 'pad';
+  $padSqlPadHost           = padEnv ( 'padSqlPadHost' );
+  $padSqlPadDatabase       = padEnv ( 'padSqlPadDatabase' );
+  $padSqlPadUser           = padEnv ( 'padSqlPadUser' );
+  $padSqlPadPassword       = padEnv ( 'padSqlPadPassword' );
 
-  $padSqlHost               = '127.0.0.1';
-  $padSqlDatabase           = 'app';
-  $padSqlUser               = 'app';
-  $padSqlPassword           = 'app';
+  $padSqlHost               = padEnv ( 'padSqlHost' );
+  $padSqlDatabase           = padEnv ( 'padSqlDatabase' );
+  $padSqlUser               = padEnv ( 'padSqlUser' );
+  $padSqlPassword           = padEnv ( 'padSqlPassword' );
 
   $padDirMode  = 0755;
   $padFileMode = 0644;

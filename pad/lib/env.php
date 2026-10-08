@@ -6,15 +6,21 @@
   // a production server, and the secrets never reach git.
   //
   //   apps/shop/.env                                         the application's own file
+  //   apps/_common/.env                                      shared by the apps with _common
   //   .env                                                   the PAD home's, for every app
   //
-  //   $padSqlPassword = padEnv ( 'DB_PASSWORD' );            in _config/config.php
+  //   $padSqlPassword = padEnv ( 'padSqlPassword' );         in _config/config.php
   //   $debug          = padEnv ( 'APP_DEBUG', FALSE );       in a page's .php
   //
+  // The database settings live there: config/config.php reads every $padSql* setting with
+  // padEnv, from the PAD home's .env, and an application's own .env - or _common's - gives
+  // the application its database.
+  //
   // padEnv         the value of a key: the real environment first (getenv, $_ENV, $_SERVER),
-  //                then the .env in the application's root, then .env in the PAD home,
-  //                else the default (a Closure default is called) - a _config/.env is not
-  //                read
+  //                then the .env in the application's root, then _common's .env for an
+  //                application that runs with _common, then .env in the PAD home, else the
+  //                default (a Closure default is called) - a _config/.env is not read
+  // padEnvCommon   switches _common's .env on, as _common's configuration is read
   // padEnvReal     a key's value in the real environment of the process, or NULL
   // padEnvFile     the pairs of one .env file, read and parsed once per request
   // padEnvParse    the pairs of a .env text: KEY=VALUE lines, # comments, export in front,
@@ -47,9 +53,11 @@
     if ( $real !== NULL )
       return padEnvCast ( $real );
 
-    $home = rtrim ( $GLOBALS ['padHome'] ?? dirname ( PAD ), '/' );
+    $home  = rtrim ( $GLOBALS ['padHome'] ?? dirname ( PAD ), '/' );
+    $files = padEnvCommon () ? [ APP . '.env', COMMON . '.env', "$home/.env" ]
+                             : [ APP . '.env',                  "$home/.env" ];
 
-    foreach ( [ APP . '.env', "$home/.env" ] as $file ) {
+    foreach ( $files as $file ) {
 
       $pairs = padEnvFile ( $file );
 
@@ -59,6 +67,24 @@
     }
 
     return ( $default instanceof Closure ) ? $default () : $default;
+
+  }
+
+  // _common's .env counts from the moment inits/config.php reads _common's configuration -
+  // which happens only for an application that runs with _common - and for the rest of the
+  // request, as _common's settings sit between the framework's and the application's. Not
+  // before: config/config.php reads its database settings before the application has said
+  // whether it runs with _common, and an application that switches _common off keeps the
+  // PAD home's values, never _common's.
+
+  function padEnvCommon ( $on = NULL ) {
+
+    static $common = FALSE;
+
+    if ( $on !== NULL )
+      $common = (bool) $on;
+
+    return $common;
 
   }
 

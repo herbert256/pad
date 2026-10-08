@@ -2,13 +2,11 @@
 no server to install, which is all a small application or a test needs.</p>
 
 
-<pre><code>&lt;?php                                   // _config/config.php
+<pre><code># apps/myapp/.env - read with padEnv, as every database setting is
 
-  $padSqlDriver   = 'sqlite';
-  $padSqlDatabase = 'myapp/myapp.sqlite';     // under DATA/
-  $padSqlSetup    = '_install/schema.sql';    // builds it the first time
-
-?&gt;</code></pre>
+padSqlDriver=sqlite
+padSqlDatabase=myapp/myapp.sqlite          # under DATA/
+padSqlSetup=_install/schema.sql            # builds it the first time</code></pre>
 
 
 <p><code>$padSqlDatabase</code> is the file - a relative name lives under <code>DATA/</code>.

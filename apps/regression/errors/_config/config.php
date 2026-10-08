@@ -2,10 +2,10 @@
 
   $padCommon = FALSE;
 
-  $padSqlHost      = '127.0.0.1';
-  $padSqlDatabase  = 'demo';
-  $padSqlUser      = 'demo';
-  $padSqlPassword  = 'demo';
+  $padSqlHost      = padEnv ( 'padSqlHost' );
+  $padSqlDatabase  = padEnv ( 'padSqlDatabase' );
+  $padSqlUser      = padEnv ( 'padSqlUser' );
+  $padSqlPassword  = padEnv ( 'padSqlPassword' );
 
   // The boot action: an expected error answers its 500 as the lean JSON dump and writes
   // nothing under DATA/dumps - these cases fail on purpose dozens of times per run, and

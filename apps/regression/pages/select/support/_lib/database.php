@@ -1,8 +1,8 @@
 <?php
 
-  $padSqlHost     = '127.0.0.1';
-  $padSqlDatabase = 'support';
-  $padSqlUser     = 'support';
-  $padSqlPassword = 'support';
+  $padSqlHost     = padEnv ( 'padSqlSupportHost' );
+  $padSqlDatabase = padEnv ( 'padSqlSupportDatabase' );
+  $padSqlUser     = padEnv ( 'padSqlSupportUser' );
+  $padSqlPassword = padEnv ( 'padSqlSupportPassword' );
 
 ?>

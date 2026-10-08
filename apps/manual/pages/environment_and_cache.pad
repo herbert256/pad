@@ -12,7 +12,8 @@ to make from one request to the next, and a rate limit counts how often a visito
 has the key: the real environment of the server (<code>getenv</code>, <code>$_ENV</code>,
 <code>$_SERVER</code> - what Apache's <code>SetEnv</code> or PHP-FPM's <code>env[...]</code>
 sets), then the <code>.env</code> in the application's root - <code>apps/shop/.env</code> -
-then <code>.env</code> in the PAD home. Without the key it answers the default - a closure as
+then <code>_common</code>'s <code>.env</code> for an application that runs with
+<code>_common</code>, then <code>.env</code> in the PAD home. Without the key it answers the default - a closure as
 the default is called. This manual has a <code>.env</code> of its own:</p>
 
 <pre><code>MANUAL_SITE_NAME="PAD manual"
@@ -24,8 +25,8 @@ MANUAL_DEBUG=false</code></pre>
 <p>The engine loads its library before it reads any configuration, so the place a secret is
 needed first can ask for it - <code>_config/config.php</code>:</p>
 
-<pre><code>$padSqlPassword = padEnv ( 'DB_PASSWORD' );
-$padSqlUser     = padEnv ( 'DB_USER', 'shop' );</code></pre>
+<pre><code>$padSqlPassword = padEnv ( 'padSqlPassword' );
+$padSqlUser     = padEnv ( 'padSqlUser', 'shop' );</code></pre>
 
 <h2>The .env file</h2>
 
@@ -106,7 +107,7 @@ on the account that is tried.</p>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
   <tr><th>function</th><th>what it does</th></tr>
-  <tr><td><code>padEnv ( $key, $default = NULL )</code></td><td>the value of an environment key - the real environment, then the application's <code>.env</code>, then the PAD home's <code>.env</code>, else the default</td></tr>
+  <tr><td><code>padEnv ( $key, $default = NULL )</code></td><td>the value of an environment key - the real environment, then the application's <code>.env</code>, then <code>_common</code>'s, then the PAD home's <code>.env</code>, else the default</td></tr>
   <tr><td><code>padCacheGet ( $key, $default = NULL )</code></td><td>the value kept under the key, else the default</td></tr>
   <tr><td><code>padCachePut ( $key, $value, $ttl = 3600 )</code></td><td>keeps the value for <code>$ttl</code> seconds - <code>NULL</code> for ever; TRUE when it is kept</td></tr>
   <tr><td><code>padCacheHas ( $key )</code></td><td>whether the key holds a value that has not expired</td></tr>

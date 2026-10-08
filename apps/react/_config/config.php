@@ -19,9 +19,9 @@
   // title was _common's page name.
   $padCommon = FALSE;
 
-  $padSqlHost     = '127.0.0.1';
-  $padSqlDatabase = 'support';
-  $padSqlUser     = 'support';
-  $padSqlPassword = 'support';
+  $padSqlHost     = padEnv ( 'padSqlHost' );
+  $padSqlDatabase = padEnv ( 'padSqlDatabase' );
+  $padSqlUser     = padEnv ( 'padSqlUser' );
+  $padSqlPassword = padEnv ( 'padSqlPassword' );
   
 ?>

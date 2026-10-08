@@ -2,9 +2,9 @@
 
   $padCommon = FALSE;
 
-  $padSqlHost      = '127.0.0.1';
-  $padSqlDatabase  = 'demo';
-  $padSqlUser      = 'demo';
-  $padSqlPassword  = 'demo';
+  $padSqlHost      = padEnv ( 'padSqlHost' );
+  $padSqlDatabase  = padEnv ( 'padSqlDatabase' );
+  $padSqlUser      = padEnv ( 'padSqlUser' );
+  $padSqlPassword  = padEnv ( 'padSqlPassword' );
 
 ?>

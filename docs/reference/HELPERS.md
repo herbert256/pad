@@ -487,7 +487,7 @@ Edge rules:
 
 | Function | What it answers |
 |----------|-----------------|
-| `padEnv ( $key, $default = NULL )` | The value of an environment key: the real environment (`getenv`, `$_ENV`, `$_SERVER`) first, then the `.env` in the application's root (`apps/shop/.env`), then `.env` in the PAD home, else the default - a Closure default is called |
+| `padEnv ( $key, $default = NULL )` | The value of an environment key: the real environment (`getenv`, `$_ENV`, `$_SERVER`) first, then the `.env` in the application's root (`apps/shop/.env`), then `_common`'s `.env` for an application that runs with `_common`, then `.env` in the PAD home, else the default - a Closure default is called |
 
 `pad/lib/env.php`. Machine-specific values and secrets - a database password, an API key, a
 debug switch - stay out of the code and out of git. The engine loads `pad/lib/` before it
@@ -496,8 +496,8 @@ reads any configuration, so a configuration file can use it:
 ```php
 <?php                                         // _config/config.php
 
-  $padSqlPassword = padEnv ( 'DB_PASSWORD' );
-  $padSqlUser     = padEnv ( 'DB_USER', 'shop' );
+  $padSqlPassword = padEnv ( 'padSqlPassword' );
+  $padSqlUser     = padEnv ( 'padSqlUser', 'shop' );
   $padToolbar     = padEnv ( 'APP_DEBUG', FALSE ) ? 'local' : FALSE;
 
 ?>

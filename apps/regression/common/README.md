@@ -22,7 +22,8 @@ What lives here:
 | `index` | the one test fetched without `&padInclude`, so it asserts the frame itself: the `_common` wrapper and the title `_inits.php` derives |
 | `menu` | the `{menu}` include - `lines.pad` around it, `menu.json` behind it, the link-per-application bar |
 | `reference` | the `_common/_lib/` helpers a page calls directly: `getReference()` over the type handlers, and the Xref link builders in `menu.php` |
-| `misc/db` | the demo database through the credentials `_common/_config` supplies - the one test that queries it |
+| `misc/db` | the demo database through the credentials `_common`'s `.env` supplies - the one test that queries it |
+| `misc/env` | `padEnv` reads `_common`'s `.env` for an application that runs with `_common` |
 
 The application also has an `_inits.pad` of its own, `{padOpen}@page@{padClose}` - so the `index`
 test, the one fetched full, asserts the whole frame: the `_common` wrapper, the menu, and the

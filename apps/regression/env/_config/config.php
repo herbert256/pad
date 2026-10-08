@@ -6,6 +6,6 @@
 
   $padCommon = FALSE;
 
-  $padSqlPassword = padEnv ( 'ENVTEST_DB_PASSWORD', 'not read' );
+  $padSqlPassword = padEnv ( 'padSqlPassword', 'not read' );
 
 ?>

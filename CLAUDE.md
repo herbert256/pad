@@ -160,7 +160,7 @@ apps/myapp/
 ├── index.php              # Home page data
 ├── index.pad              # Home page template
 │
-├── .env                   # Environment values padEnv reads - passwords, keys (optional)
+├── .env                   # Environment values padEnv reads - database settings, keys (optional)
 ├── _guard.php             # Decides access to every page below - FALSE is 403 (optional)
 ├── _inits.php             # Runs BEFORE all pages (optional)
 ├── _inits.pad             # Wraps ALL pages - use @page@ placeholder (optional)
@@ -983,20 +983,32 @@ See [DATABASE.md](docs/DATABASE.md) for complete database documentation includin
 
 ## Configuration
 
+The database settings are no code: their values stand in `.env` files, read with `padEnv`.
+`pad/config/config.php` reads every `$padSql*` from the PAD home's `.env`; an application's
+own `.env` - or `_common`'s, for an application that runs with `_common` - overrides it:
+
+```
+# apps/myapp/.env
+padSqlHost=localhost
+padSqlDatabase=myapp
+padSqlUser=user
+padSqlPassword=pass
+
+# Or SQLite through PDO - no server: the file (relative = under DATA/) and a .sql file
+# (relative = in the app) that builds it on first use. db() verbs, placeholders, the
+# database tags, named queries and Select work alike on both drivers.
+# padSqlDriver=sqlite
+# padSqlDatabase=myapp/myapp.sqlite
+# padSqlSetup=_install/schema.sql
+```
+
 In `_config/config.php`:
 ```php
-// Database connection
-$padSqlHost     = 'localhost';
-$padSqlDatabase = 'myapp';
-$padSqlUser     = 'user';
-$padSqlPassword = 'pass';
-
-// Or SQLite through PDO - no server: the file (relative = under DATA/) and a .sql file
-// (relative = in the app) that builds it on first use. db() verbs, placeholders, the
-// database tags, named queries and Select work alike on both drivers.
-// $padSqlDriver   = 'sqlite';
-// $padSqlDatabase = 'myapp/myapp.sqlite';
-// $padSqlSetup    = '_install/schema.sql';
+// Database connection - the values from the .env files, as pad/config/config.php reads them
+$padSqlHost     = padEnv ( 'padSqlHost' );
+$padSqlDatabase = padEnv ( 'padSqlDatabase' );
+$padSqlUser     = padEnv ( 'padSqlUser' );
+$padSqlPassword = padEnv ( 'padSqlPassword' );
 
 // Error handling: pad, boot, php, stop, exit, ignore, log, dump
 $padErrorAction = 'pad';
@@ -1413,7 +1425,7 @@ if ( ! padRateLimit ( 'login:' . $_SERVER ['REMOTE_ADDR'], 5, 60 ) ) padAbort ( 
 | Values | `lib/helpers.php` | `padBlank`, `padFilled`, `padValue`, `padTransform`, `padTap`, `padRetry`, `padRescue`, `padOnce` |
 | Numbers | `lib/number.php` | `padNumberFormat`, `padNumberPercentage`, `padNumberAbbreviate`, `padNumberForHumans`, `padNumberOrdinal`, `padNumberClamp`, `padNumberFileSize`; pipes `abbreviate`, `ordinal` |
 | Requests and sessions | `lib/request.php` | `padRequest`, `padRequestHas`, `padRequestFilled`, `padRequestOnly`, `padRequestExcept`, `padRequestMethod`, `padRequestIs`, `padSession`, `padSessionPut`, `padSessionHas`, `padSessionPull`, `padSessionForget`, `padSessionRegenerate`, `padFlashInput`, `padOld`, `padUrl`, `padBack`, `padAbort` |
-| Environment | `lib/env.php` | `padEnv` - real environment, then the `.env` in the app's root, then `.env` in the PAD home; usable in `_config/config.php` |
+| Environment | `lib/env.php` | `padEnv` - real environment, then the `.env` in the app's root, then `_common`'s `.env` (an app with `_common`), then `.env` in the PAD home; usable in `_config/config.php` - every `$padSql*` setting is read with it |
 | Cache and rate limits | `lib/remember.php` | `padCacheGet`, `padCachePut`, `padCacheHas`, `padCacheForget`, `padCacheFlush`, `padRemember` (files under `DATA/cache/app/<app>/`), `padRateLimit`, `padRateLimitRemaining`, `padRateLimitAvailableIn`, `padRateLimitClear` |
 | Dates and logging | `lib/date.php`, `lib/log.php` | `padNow`, `padToday`, `padNowFreeze`, `padDateParse`, `padAgo` (pipe `ago`), `padLog` (PSR-3 levels, `DATA/logs/<app>/<date>.log`) |
 | Hashing and encryption | `lib/crypt.php` | `padHash`, `padHashCheck`, `padHashNeedsRehash`, `padEncrypt`, `padDecrypt` (sodium, key `$padAppKey` or `DATA/keys/<app>.key`), `padSignedUrl`, `padSignatureValid` |

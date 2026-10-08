@@ -1314,11 +1314,12 @@ is declared twice, and anything it does it does twice. Functions belong in `_lib
 
 ```php
 <?php
-  // Database connection
-  $padSqlHost     = 'localhost';
-  $padSqlDatabase = 'myapp';
-  $padSqlUser     = 'myuser';
-  $padSqlPassword = 'mypass';
+  // Database connection - the values stand in the application's .env (apps/myapp/.env:
+  // padSqlHost=localhost, padSqlDatabase=myapp ...), see lib/env.php
+  $padSqlHost     = padEnv ( 'padSqlHost' );
+  $padSqlDatabase = padEnv ( 'padSqlDatabase' );
+  $padSqlUser     = padEnv ( 'padSqlUser' );
+  $padSqlPassword = padEnv ( 'padSqlPassword' );
 
   // Error handling: pad, boot, php, stop, exit, ignore, log, dump
   $padErrorAction = 'pad';

@@ -3,7 +3,8 @@
   // Assembles this request's configuration, lowest precedence first: the framework defaults
   // in config/, then the application's own _config/config.php, then the shared _common
   // application (skipped when the application switched $padCommon off), then the $padInfo
-  // debug selectors.
+  // debug selectors. The .env files padEnv reads follow the same order: from _common's
+  // configuration on, _common's .env stands between the application's and the PAD home's.
   //
   // The application config is included twice on purpose. The first pass lets it choose
   // $padCommon and the debug and output settings; the output selector
@@ -31,8 +32,10 @@
   if ( file_exists ( APP . '_config/config.php' ) )
     include APP . '_config/config.php';
 
-  if ( $padCommon )
+  if ( $padCommon ) {
+    padEnvCommon ( TRUE );
     include COMMON . '_config/config.php';
+  }
 
   if ( $padInfo ) {
     $padInfoList = padExplode ( $padInfo, ',' );

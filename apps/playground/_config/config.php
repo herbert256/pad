@@ -19,9 +19,9 @@
   $padRequestVars  = [];
   $padTidy         = FALSE;
 
-  $padSqlHost      = '127.0.0.1';
-  $padSqlDatabase  = 'playground_none';
-  $padSqlUser      = 'playground_none';
-  $padSqlPassword  = '';
+  $padSqlHost      = padEnv ( 'padSqlHost' );
+  $padSqlDatabase  = padEnv ( 'padSqlDatabase' );
+  $padSqlUser      = padEnv ( 'padSqlUser' );
+  $padSqlPassword  = padEnv ( 'padSqlPassword' );
 
 ?>
