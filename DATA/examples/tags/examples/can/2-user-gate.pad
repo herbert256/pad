@@ -1,0 +1,7 @@
+{meta title='A gate for users only', about='edit-post takes array $user: a guest is never let through and the gate is not even asked.'}
+<h3>{$post.title}</h3>
+{can 'edit-post', $post}
+  <a href="#edit">Edit</a>
+{else}
+  <p>Read only.</p>
+{/can}

@@ -1,0 +1,17 @@
+{meta title='Tags by form'}
+<h1>Tags by form</h1>
+<p class="lead">A tag is written alone, <code>&#123;name ...&#125;</code>, around content,
+<code>&#123;name ...&#125; ... &#123;/name&#125;</code>, or either way.</p>
+
+<nav class="jump" aria-label="Forms">{forms}<a href="#{$key}">{$label}</a>{/forms}</nav>
+
+{forms}
+<section class="section" id="{$key}">
+  <div class="section-head"><h2>{$label}</h2><span>{$tagline} - {$count} {echo $count eq 1 ? 'tag' : 'tags'}</span></div>
+  <ul class="list">
+    {tags}
+    <li><a class="name" href="?tag/{$name}">&#123;{$name}&#125;</a> <span class="about">{$about} <a class="meta" href="?groups#{$group}">{$groupLabel}</a></span></li>
+    {/tags}
+  </ul>
+</section>
+{/forms}

@@ -1,0 +1,9 @@
+{meta title='Parameters and a slot', about='{parms} gives a default, and a {slot} takes a fill from the use - or shows its own default.'}
+{define 'defineNote'}
+  {parms text, tone='info'}
+  <p style="margin:6px 0">[{#tone}] {#text}
+    {slot 'more'}<em>no details</em>{/slot}</p>
+{/define}
+
+{defineNote text='Backup finished'}{/defineNote}
+{defineNote text='Disk almost full', tone='warning'}{slot 'more'}<b>92% used</b>{/slot}{/defineNote}

@@ -1,0 +1,14 @@
+{meta title='Threaded comments', about='Each reply is rendered by the same body one level deeper, indented by its depth.'}
+{data 'recurseThread'}
+[
+  { "who": "Ann", "text": "Is the shop open on Sunday?", "children": [
+      { "who": "Ben", "text": "Only in December.", "children": [
+          { "who": "Ann", "text": "Thanks!" } ] },
+      { "who": "Cy", "text": "Check the calendar page." } ] },
+  { "who": "Dee", "text": "Great service." }
+]
+{/data}
+{tree 'recurseThread'}
+  <p style="margin-left: {echo (depth@tree - 1) * 2}em"><strong>{$who}</strong>: {$text}</p>
+  {recurse}
+{/tree}

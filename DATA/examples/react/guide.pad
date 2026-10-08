@@ -1,0 +1,108 @@
+{meta title='Guide - PAD + React'}
+<header class="example-head">
+  <h1>Build your own island</h1>
+  <p class="lede">
+    Four files make a page with React in it: the data, the template, the component - and the
+    runtime every page already has. Then the same page can answer the component's questions.
+  </p>
+</header>
+
+<div class="cols-2">
+
+  <div>
+    <h2>1. The data, in PHP</h2>
+    <p>The page's PHP gathers what the component starts with - from the database, a file in
+       <code>_data/</code>, the session. Nothing about React here.</p>
+{highlight 'php', file='_guide/orders.php'}
+  </div>
+
+  <div>
+    <h2>2. The island, in the template</h2>
+    <p>An element with <code>data-island</code> names the component; <code>{open}^orders{close}</code> writes the
+       field as JSON, escaped for the attribute. What stands inside shows until React takes over.</p>
+{highlight 'pad', file='_guide/orders.pad'}
+  </div>
+
+</div>
+
+<h2>3. The component, in www/</h2>
+<p>A plain file under <code>www/react/</code>, served as it is - so its braces never meet the PAD parser.
+   <code>PadReact.island</code> mounts it on every island of that name, the JSON as its props.</p>
+{highlight 'js', file='_guide/orders.js'}
+
+<h2>4. Talking back</h2>
+<div class="cols-2">
+  <div>
+    <p>The page answers JSON when asked - but only what <code>$padExpose</code> names. The templates do not
+       run for such a request. A post needs the session's CSRF token, which <code>PadReact.post</code>
+       sends in a header when <code>$padCsrf</code> is on.</p>
+{highlight 'php'}
+// orders.php - one more line
+$padExpose = [ 'orders' ];
+
+// a post from the component
+if ( padRequestIs ( 'POST' ) ) {
+  $errors = padValidate ( [ 'qty' => 'required|integer|min:1' ] );
+  if ( ! $errors )
+    db ( "UPDATE orders SET qty={0} WHERE id={1}", [ $qty, $id ] );
+}
+{/highlight}
+  </div>
+  <div>
+    <p>From the component it is one call each - and <code>{open}fragment 'name'{close}</code> in the template
+       lets a component fetch one rendered part of a page as HTML.</p>
+{highlight 'js'}
+// ?orders&padFormat=json
+const { orders } = await PadReact.get('orders', { status: 'open' });
+
+// POST ?orders&padFormat=json, X-CSRF-Token: ...
+const answer = await PadReact.post('orders', { id: 7, qty: 2 });
+
+// ?orders&padFragment=summary - HTML
+const html = await PadReact.fragment('orders', 'summary');
+
+// as a hook: asked again whenever status changes
+const { data, loading } = PadReact.useData('orders', { status }, first);
+{/highlight}
+  </div>
+</div>
+
+<h2>The runtime</h2>
+<p><code>www/react/pad-react.js</code> - plain JavaScript, loaded by <code>_inits.pad</code> on every page.</p>
+<table class="table">
+  <thead><tr><th>Call</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td><code>PadReact.island(name, Component)</code></td><td>Renders <code>Component</code> on every <code>[data-island=name]</code>, with the JSON of <code>data-props</code> as props (a list arrives as <code>props.data</code>) and what PAD rendered inside as <code>props.serverHtml</code>.</td></tr>
+    <tr><td><code>PadReact.get(page, params)</code></td><td>The page's exposed data: <code>?page&amp;...&amp;padFormat=json</code>, parsed.</td></tr>
+    <tr><td><code>PadReact.post(page, body, {open} token {close})</code></td><td>Posts the body form-encoded with the <code>X-CSRF-Token</code> header from <code>&lt;meta name="csrf-token"&gt;</code>; <code>token: false</code> leaves it out.</td></tr>
+    <tr><td><code>PadReact.fragment(page, name, params)</code></td><td>One <code>{open}fragment{close}</code> of the page as HTML.</td></tr>
+    <tr><td><code>PadReact.useData(page, params, first)</code></td><td>A hook: <code>{open} data, loading, error {close}</code>, asked again when the params change, the request before aborted.</td></tr>
+    <tr><td><code>PadReact.useDebounced(value, ms)</code></td><td>The value once it stood still for <code>ms</code> - for a search box.</td></tr>
+  </tbody>
+</table>
+<p class="small muted">A request that does not succeed throws an error with <code>status</code> and the parsed <code>body</code>. Every request is
+   told to the page as a <code>pad:request</code> event - the request log under the examples listens to it.</p>
+
+<h2>Good to know</h2>
+<div class="grid">
+  <div class="card">
+    <h3>Keep JSX out of templates</h3>
+    <p>PAD reads every <code>{open} {close}</code> of a template. Components live in <code>www/</code>, loaded with
+       <code>&lt;script type="text/babel" src&gt;</code>; for a short inline script there is <code>{open}ignore{close}</code>.</p>
+  </div>
+  <div class="card">
+    <h3>Values are text</h3>
+    <p>A field in <code>data-props</code> is escaped for the attribute and never runs as PAD, whatever a visitor typed
+       into it - React escapes it once more when it renders.</p>
+  </div>
+  <div class="card">
+    <h3>Server first</h3>
+    <p>Give the island its first data in the props and put real HTML inside it: the page shows something before any
+       script ran, and search engines see it.</p>
+  </div>
+  <div class="card">
+    <h3>Going to production</h3>
+    <p>Babel in the browser is for learning. Compile the components with esbuild or Vite into one file, load the
+       production React builds, and drop <code>type="text/babel"</code> - the PAD side stays as it is.</p>
+  </div>
+</div>

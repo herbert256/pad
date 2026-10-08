@@ -1,0 +1,18 @@
+{ignore}
+<p>A flash message is said on one request and shown on the next: the page that took a post
+calls <code>padFlash ( 'Thanks, your message was sent.' )</code> and redirects, and the page
+the browser lands on shows it with <code>{flash}</code>. That is the post-redirect-get pattern,
+without a <code>?sent=1</code> in the address that anyone could put in a link.</p>
+
+<p><code>{flash}</code> iterates the messages of this request, one occurrence each, with
+<code>{$message}</code> and <code>{$type}</code> - <code>padFlash</code>'s second argument,
+<code>info</code> by default. <code>{flash 'error'}</code> takes only the messages of that
+type and leaves the others for a later <code>{flash}</code>. No message, and the
+<code>&#64;else&#64;</code> half renders.</p>
+
+<p>Each message is shown once: a second <code>{flash}</code> does not show it again. A message
+lives exactly one request after the one that flashed it, shown or not; one flashed during this
+very request shows at once, as in the examples here. A <code>padFlash</code> cookie tells the
+next request there is something to take, so pages of an application that never flashes do not
+open the session.</p>
+{/ignore}

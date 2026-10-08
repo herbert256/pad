@@ -1,0 +1,33 @@
+{meta title='Every PAD tag'}
+<section class="hero">
+  <h1>Every PAD tag</h1>
+  <p class="lead">A page for each built-in tag of PAD: what it does in one line, its syntax and
+  the options that belong to it, a longer description and live examples - every result
+  rendered by the tag it documents. Find a tag by name, by group, by form or by option, or
+  search for it.</p>
+  <ul class="stats">
+    <li><b>{$tagsCount}</b> tags</li>
+    <li><b>{$tagsGroupCnt}</b> groups</li>
+    <li><b>{$exampleCount}</b> examples</li>
+  </ul>
+</section>
+
+<div class="cards">
+  {indexes}
+  <a class="card" href="?{$page}">
+    <h2>{$label}</h2>
+    <p>{$text}</p>
+  </a>
+  {/indexes}
+</div>
+
+<h2>The groups</h2>
+<div class="cards">
+  {groups}
+  <section class="card">
+    <h3><a href="?groups#{$key}">{$label}</a> <span class="count">{$count}</span></h3>
+    <p>{$tagline}</p>
+    <div class="tagcloud">{tags}<a href="?tag/{$name}" title="{$about}">{$name}</a>{/tags}</div>
+  </section>
+  {/groups}
+</div>

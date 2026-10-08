@@ -1,0 +1,18 @@
+{ignore}
+<p><code>{countdown '2026-12-31 00:00'}</code> writes the time left until the moment in words -
+<code>84 days, 3 hours</code> - inside a <code>&lt;time class="pad-countdown"&gt;</code> whose
+<code>datetime</code> is the moment and whose <code>title</code> is the moment in full. The words
+start at the largest unit that is not zero and take <code>units</code> of them, a zero unit among
+them left out: <code>5 minutes, 12 seconds</code>, <code>1 day</code>. Once the moment has gone,
+the text of <code>past=</code> stands there instead - <code>ended</code> when not given.</p>
+
+<p>Now is <code>padNow ()</code>, so <code>padNowFreeze ()</code> holds a test still, and
+<code>now=</code> counts from a given moment - how the first example here stays the same on every
+request. <code>format=</code> is the PHP date format of the title.</p>
+
+<p>With <code>live</code> the element gets <code>role="timer"</code> and the moment in
+milliseconds, and a small script - written once a page, carrying the request's nonce when
+<code>$padCsp</code> asks for one - counts down every second from the browser's clock, the same
+way the server counts. Without a script the server's words stay as they are. A moment that is
+no date and <code>units</code> outside 1 to 4 are strict errors.</p>
+{/ignore}

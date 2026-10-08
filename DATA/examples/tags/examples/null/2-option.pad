@@ -1,0 +1,6 @@
+{meta title='null= and else=', about='A NULL fires the null= option and leaves else= alone.'}
+{content 'nullMissing'}<em>no such thing</em>{/content}
+{content 'nullEmpty'}<em>empty</em>{/content}
+<p>null with null=: {null null='nullMissing'}x{/null}</p>
+<p>null with else=: {null else='nullEmpty'}x{/null}</p>
+<p>false with else=: {false else='nullEmpty'}x{/false}</p>

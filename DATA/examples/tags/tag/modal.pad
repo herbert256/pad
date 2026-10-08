@@ -1,0 +1,24 @@
+{ignore}
+<p><code>{modal}</code> writes an HTML <code>&lt;dialog&gt;</code> holding its content, with
+the heading from <code>title=</code>, and a button that opens it. The content renders first;
+on the end walk the tag puts it in the dialog. The name is required and becomes the id
+<code>pad-modal-&lt;name&gt;</code>, so an address ending in <code>#pad-modal-terms</code>
+opens that dialog on arrival.</p>
+
+<p>The button opens the dialog as a modal in the first way the browser can: the HTML invoker
+commands (<code>commandfor</code>, <code>command="show-modal"</code>) where it has them;
+otherwise a small script, written once per page (with the CSP nonce when
+<code>$padCsp</code> asks for one), that calls <code>showModal()</code> and
+<code>close()</code>; and with scripting off a link to the dialog's id, shown by the CSS as an
+overlay with a close link back to the opener. Opened, the page behind is inert, the focus moves
+into the dialog and back to the button afterwards, and Escape, the close button or a click on
+the backdrop closes it.</p>
+
+<p><code>title=</code> heads and names the dialog; <code>button=</code> is the button text,
+<code>Open</code> by default; a dialog without a title takes the button text as its
+heading. A name that is not letters, digits, <code>_</code> and <code>-</code> is an error
+under the strict check, as is a <code>{modal}</code> that never closes. The colours are
+<code>--pad-modal-accent</code>, <code>-on</code>, <code>-text</code>, <code>-muted</code>,
+<code>-line</code>, <code>-surface</code> and <code>-backdrop</code> on
+<code>.pad-modal</code>.</p>
+{/ignore}

@@ -1,0 +1,16 @@
+{meta title='Tags by name'}
+<h1>Tags by name</h1>
+<p class="lead">All {$tagsCount} built-in tags from A to Z.</p>
+
+<nav class="jump" aria-label="Letters">{letters}<a href="#letter-{$letter}">{$letter}</a>{/letters}</nav>
+
+{letters}
+<section class="section" id="letter-{$letter}">
+  <div class="section-head"><h2>{$letter}</h2><span>{$count} {echo $count eq 1 ? 'tag' : 'tags'}</span></div>
+  <ul class="list">
+    {tags}
+    <li><a class="name" href="?tag/{$name}">&#123;{$name}&#125;</a> <span class="about">{$about} <a class="meta" href="?groups#{$group}">{$groupLabel}</a></span></li>
+    {/tags}
+  </ul>
+</section>
+{/letters}

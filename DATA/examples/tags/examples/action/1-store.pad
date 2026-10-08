@@ -1,0 +1,6 @@
+{meta title='An action over a store', about='Reverse, the first two and the sum of a stored list - the store keeps its order.'}
+{sequence '1..6', push='six'}
+<p>reverse: {action six, reverse}{$sequence} {/action}</p>
+<p>first=2: {action six, first=2}{$sequence} {/action}</p>
+<p>sum:     {action:sum six}{$sum}{/action:sum}</p>
+<p>store:   {pull six}{$sequence} {/pull}</p>

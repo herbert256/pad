@@ -1,0 +1,6 @@
+{meta title='Booleans and escaped values', about='disabled is written bare while busy, a false aria value stays the text false, and the quote in the title is escaped.'}
+{set $busy = TRUE}
+{set $help = 'Saves the "draft" now'}
+<button {attrs disabled=$busy, title=$help, aria-expanded='false', data-step=2}>Save</button>
+<button {attrs disabled=FALSE, title=$help}>Publish</button>
+<pre>{attrs disabled=$busy, title=$help, aria-expanded='false', data-step=2}</pre>

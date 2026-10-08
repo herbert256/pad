@@ -1,0 +1,6 @@
+{meta title='Value and flag side by side', about='A stored list and its flags against the type prime, in a two-row table.'}
+{sequence '10..17', push='teens'}
+<table>
+  <tr><th>n</th>{pull teens}<td>{$sequence}</td>{/pull}</tr>
+  <tr><th>prime</th>{flag teens, prime}<td>{$sequence}</td>{/flag}</tr>
+</table>

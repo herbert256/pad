@@ -1,0 +1,42 @@
+{meta title='Guide - PAD + web components'}
+<header class="example-head">
+  <h1>Web components on a PAD page</h1>
+  <p class="lede">
+    Custom elements and shadow DOM are the browser's own components. PAD writes them with their
+    shadow root already in place - declarative shadow DOM - and a small module adds behaviour.
+  </p>
+</header>
+
+<h2>1. A PAD custom tag writes the element</h2>
+<p>A <code>.pad</code> file in <code>_tags/</code> is a tag of the application. It writes the custom element, and
+   {open}shadow{close} writes its shadow root as a <code>&lt;template shadowrootmode="open"&gt;</code> - with the
+   stylesheet inlined, since a shadow root takes no styles from the page and a <code>&lt;style&gt;</code> in a
+   template would have its braces read as PAD tags:</p>
+{highlight 'pad', file='_tags/card.pad'}
+
+<h2>2. The page uses it like any tag</h2>
+<p>Parameters for what the tag writes, content for the light DOM the browser slots in -
+   <code>slot="footer"</code> goes to the <code>&lt;slot name="footer"&gt;</code> of the root:</p>
+{highlight 'pad'}
+{card title='Revenue', tone='good'}
+  <p class="stat">{$revenue}</p>
+  <a slot="footer" href="?report">Details</a>
+{/card}
+{/highlight}
+
+<h2>3. A module upgrades it</h2>
+<p><code>customElements.define</code> in a module of <code>www/</code>. The element finds the root PAD rendered in
+   <code>this.shadowRoot</code> and only adds behaviour; before the module ran, the element already showed:</p>
+{source only='www:elements/tabs.js'}
+
+<h2>4. Data, posts and forms</h2>
+<ul>
+  <li>Attributes carry values (<code>value="{open}$mine{close}"</code>) and JSON (<code>items="{open}^items{close}"</code>);
+      CSS can style by an attribute before any script runs: <code>:host([value="3"])</code>.</li>
+  <li>A post sends the session's CSRF token in the <code>X-CSRF-Token</code> header, read from
+      <code>&lt;meta name="csrf-token"&gt;</code>; the page answers the JSON of <code>$padExpose</code>.</li>
+  <li>A form-associated element - <code>static formAssociated = true</code> and
+      <code>ElementInternals.setFormValue</code> - posts its value with a {open}form{close} like an
+      <code>&lt;input&gt;</code>, and <code>padValidate</code> checks it on the server.</li>
+  <li>A library works the same: Lit reads PAD's JSON from an attribute into a property.</li>
+</ul>

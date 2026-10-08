@@ -1,0 +1,38 @@
+{meta title='Alpine'}
+
+<p>Alpine adds behaviour to HTML with attributes - and PAD writes that HTML. Both use braces,
+and PAD reads every <code>{open}</code> of a template as the start of a tag, so the state of a
+component comes from the page's PHP as JSON instead:</p>
+
+{ignore}
+<pre><code>&lt;div x-data="{^profile}"&gt;                &lt;!-- $profile = [ 'name' =&gt; 'Ada', 'likes' =&gt; 12 ] --&gt;
+  &lt;h2 x-text="name"&gt;&lt;/h2&gt;
+  &lt;button @click="likes++"&gt;♥ &lt;span x-text="likes"&gt;&lt;/span&gt;&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+{/ignore}
+
+<p>The ^ sigil writes a field as JSON escaped for the attribute: a quote or a brace in a value
+stays text. Three ways keep the braces apart:</p>
+
+<ul>
+  <li><b>State from PHP</b> - <code>x-data="{open}^field{close}"</code>, as above.</li>
+  <li><b>Components in a file</b> - <code>Alpine.data('tabs', list =&gt; (...))</code> in a script of
+      <code>www/</code>, called by name with PAD's data: <code>x-data="tabs({open}^tabs{close})"</code>.
+      Load the page's scripts before Alpine, and Alpine with <code>defer</code>.</li>
+  <li><b>A space after the brace</b> - <code>{ open: false }</code> is no PAD tag; fine for a short
+      object.</li>
+</ul>
+
+<h2>Talking back</h2>
+
+<p>A component asks the page that wrote it: <code>?page&amp;padFormat=json</code> answers what
+the page's PHP names in <code>$padExpose</code> ({manual 'data_answers'}). A post carries the
+session's token in an <code>X-CSRF-Token</code> header, read from
+<code>&lt;meta name="csrf-token" content="{open}csrf token{close}"&gt;</code>. A form's rules can live in
+PHP for both sides - <code>padValidateClient ( $rules )</code> for the browser,
+<code>padValidate ( $rules )</code> for the post ({manual 'client_validation'}) - and
+<code>padSse()</code> streams events an <code>EventSource</code> in <code>x-init</code> turns into
+state ({manual 'server_sent_events'}).</p>
+
+<p>The Alpine application shows each of these, with its template, PHP and script:
+<a href="{$padHost}alpine/">alpine</a>.</p>

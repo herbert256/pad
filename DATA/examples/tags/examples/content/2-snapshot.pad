@@ -1,0 +1,7 @@
+{meta title='Source or snapshot', about='Named on the opening tag the content renders with today\'s values; named on the closing tag it is rendered once and kept.'}
+{set $price = 10}
+{content 'contentLive'}the price is {$price}{/content}
+{content}the price was {$price}{/content 'contentFixed'}
+{set $price = 12}
+<p>Live: {contentLive}</p>
+<p>Snapshot: {contentFixed}</p>

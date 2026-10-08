@@ -1,0 +1,6 @@
+{tabs}
+  {sections}<button slot="tab" role="tab" id="tab-{$key}" aria-controls="panel-{$key}" aria-selected="{first@sections ? 'true' : 'false'}">{$label}</button>{/sections}
+  {sections}<section slot="panel" role="tabpanel" id="panel-{$key}" aria-labelledby="tab-{$key}"><p>{$text}</p></section>{/sections}
+{/tabs}
+
+<script type="module" src="{$padRoot}webcomponents/elements/tabs.js"></script>

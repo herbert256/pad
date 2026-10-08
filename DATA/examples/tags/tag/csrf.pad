@@ -1,0 +1,21 @@
+{ignore}
+<p><code>{csrf}</code> writes <code>&lt;input type="hidden" name="padCsrfToken" value="..."&gt;</code>
+with the token of the visitor's session: 64 hex characters, made on first use - the session
+starts here when the visitor has none. A form carries it back, and <code>padCsrfValid()</code>
+in the page's PHP tells whether the request brought the session's token, in that field or an
+<code>X-CSRF-Token</code> header. <code>{csrf token}</code> is the bare token, for a script
+that sends the header itself.</p>
+
+<p>The token is one per session, not one per form: two tabs and the back button keep working.
+A POST made from another site can make the browser send the session cookie, but cannot read
+the page to learn the token.</p>
+
+<p>With <code>$padCsrf = TRUE</code> in the configuration every <code>&lt;form method="post"&gt;</code>
+that posts back to the site gets the field without asking, and every POST, PUT, PATCH or
+DELETE without the token is answered 403 before the application runs. A
+<a href="?tag/form">{form}</a> writes the field by itself as well. <code>{csrf}</code> is for a
+form the page builds some other way, or for an application that checks posts itself.</p>
+
+<p>The token differs per visitor, so a page holding one is never stored in the page cache, and
+the examples here are shown, not run.</p>
+{/ignore}

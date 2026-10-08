@@ -1,0 +1,13 @@
+{ignore}
+<p><code>{classes}</code> writes the value of a <code>class</code> attribute:
+<code>&lt;div class="{classes 'panel', active=$isActive, invalid=$hasErrors}"&gt;</code>. An
+item without a name is always in - a text of one or more names separated by spaces, or an array
+of them. An item <code>name=condition</code> adds the name when the condition is true; an empty
+array counts as false. The result is deduplicated, in the order the names first appear, and
+escaped.</p>
+
+<p>It replaces the chains of <code>{if}</code> that conditional classes otherwise need, and the
+names may contain dashes - <code>is-open=$open</code>. Like <a href="?tag/attrs"><code>&#123;attrs&#125;</code></a>
+it reads its items raw, so any name is a class name, never an engine option. Inside a loop, a
+property reads as a condition: <code>first=first@items</code>.</p>
+{/ignore}

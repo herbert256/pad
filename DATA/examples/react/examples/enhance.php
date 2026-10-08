@@ -1,0 +1,5 @@
+<?php
+
+  $people = reactData ( 'team' );
+
+?>

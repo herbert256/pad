@@ -1,0 +1,6 @@
+{meta title='One row template, two lists', about='The stored content is rendered as the body of two loops, with the fields of each row.'}
+{content 'contentRow'}<li><strong>{$name}</strong> - {$role}</li>{/content}
+<h4>Staff</h4>
+<ul>{contentStaff content='contentRow'}{/contentStaff}</ul>
+<h4>Volunteers</h4>
+<ul>{contentHelpers}{contentRow}{/contentHelpers}</ul>

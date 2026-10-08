@@ -1,0 +1,9 @@
+{meta title='A snippet as content', about='The pair form - the content is rendered first, so a value of the page goes into the text that is copied.'}
+<div style="width:100%; max-width:640px">
+  <p>Put this in <code>apps/{$app}/.env</code>:</p>
+  {copy label='Copy settings'}
+  padSqlDriver=sqlite
+  padSqlDatabase={$app}/{$app}.sqlite
+  padSqlSetup=_install/schema.sql
+  {/copy}
+</div>

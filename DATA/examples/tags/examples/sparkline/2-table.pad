@@ -1,0 +1,7 @@
+{meta title='A line per table row', about='Inside a loop, data= names a field of the row that holds a list.'}
+<table>
+  <tr><th>Share</th><th>Ten days</th><th>Last</th></tr>
+  {shares}
+  <tr><td>{$name}</td><td>{sparkline data='closes', title=$name}</td><td>{$last}</td></tr>
+  {/shares}
+</table>

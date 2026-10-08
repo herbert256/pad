@@ -1,0 +1,28 @@
+{ignore}
+<p><code>{trans 'cart.title'}</code> looks the key up in the translation catalog of the
+request's locale and writes its text. A catalog is a flat JSON object in
+<code>_lang/&lt;locale&gt;.json</code> - <code>_lang/en.json</code>, <code>_lang/nl.json</code>.
+The catalogs are looked up from the page's directory up to the application root and then
+<code>_common</code>, the most specific winning; for a locale <code>nl_NL</code> the files
+<code>nl_NL.json</code>, <code>nl-NL.json</code> and <code>nl.json</code> all count. A key no
+catalog knows is written as the key itself, so a missing translation shows rather than
+disappearing.</p>
+
+<p>The locale is <code>$padLocale</code>. With <code>$padLocales</code> listing several, a
+<code>?lang=</code> value, the <code>padLang</code> cookie or the browser's
+<code>Accept-Language</code> picks among them.</p>
+
+<h3>Plurals and substitutions</h3>
+<p>A text with forms separated by <code>|</code> is plural: two forms are one and other, three
+are zero, one and other. <code>count=</code> picks the form and replaces <code>%d</code> in it.
+Every other <code>name=value</code> replaces <code>:name</code> in the text. The items are
+read raw, as <a href="?tag/attrs"><code>{attrs}</code></a> reads them, so a substitution may be
+called anything.</p>
+
+<h3>Escaping</h3>
+<p>The catalog's text is the application's own and is written as it stands, markup included.
+A substitution is data: it is written as <code>{$x}</code> writes a field, sanitized - and so
+is a key that no catalog knows. The <code>trans</code> pipe does the same for a value:
+<code>{echo 'cart.title' | trans}</code>. A <code>{trans}</code> without a key is a strict
+error.</p>
+{/ignore}

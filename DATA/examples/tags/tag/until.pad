@@ -1,0 +1,15 @@
+{ignore}
+<p><code>{until condition}</code> is <a href="?tag/while">{while}</a> with the test turned
+round: it renders its content for as long as the condition is false, and stops as soon as it
+is true. <code>{until $count eq 0}</code> reads as the sentence it is - often clearer than the
+equivalent <code>{while $count ne 0}</code>.</p>
+
+<p>Everything else is shared with <code>{while}</code>, which is the same handler: the
+condition is evaluated anew before every pass, written on the closing tag
+(<code>{until} ... {/until condition}</code>) it is tested after each pass so the content renders
+at least once, and <a href="?tag/break">{break}</a>, <a href="?tag/cease">{cease}</a> and
+<a href="?tag/continue">{continue}</a> work inside it.</p>
+
+<p>The loop is stopped after 10000 passes when its condition never becomes true - an error
+under the strict syntax check - and a missing condition or closing tag is an error too.</p>
+{/ignore}

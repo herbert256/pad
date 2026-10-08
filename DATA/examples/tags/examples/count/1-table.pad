@@ -1,0 +1,12 @@
+{meta title='A table only when there are rows', about='The heading and table render for a list with rows; an empty list gets the @else@ text.'}
+{count 'countOpen'}
+  <h4>Open orders</h4>
+  <table>{countOpen}<tr><td>{$number}</td><td>{$customer}</td></tr>{/countOpen}</table>
+@else@
+  <p>No open orders.</p>
+{/count}
+{count 'countLate'}
+  <h4>Late orders</h4>
+@else@
+  <p>No late orders.</p>
+{/count}

@@ -1,0 +1,24 @@
+{ignore}
+<p>The body between <code>&#123;define 'card'&#125;</code> and <code>&#123;/define&#125;</code>
+becomes the template of a new tag, <code>&#123;card&#125;</code>, exactly as if it stood in
+<code>_tags/card.pad</code>. Defining prints nothing; every use of the tag renders the body,
+where the use stands and with the fields there.</p>
+
+<p>Everything a file-based custom tag can do works in the body: <code>&#123;#name&#125;</code>
+reads a parameter of the use, <a href="?tag/parms"><code>&#123;parms&#125;</code></a> declares
+them (a bare name required, <code>name=default</code> filling in),
+<code>&#64;content&#64;</code> takes the content of a pair use in, and
+<a href="?tag/slot"><code>&#123;slot&#125;</code></a>s take named fills. A define can use
+itself, for rows below the current one.</p>
+
+<p>The body is kept as written and rendered at each use, so a field in it is read at the use,
+not at the definition. A define exists from the point it is walked - like a
+<code>&#123;content&#125;</code> or <code>&#123;data&#125;</code> store - so a use above the
+<code>&#123;define&#125;</code> is an unknown tag. <code>&#123;define:card&#125;</code> asserts
+that the name is a define.</p>
+
+<p>Under the strict check a name that is a built-in or application tag, or already a
+<a href="?tag/macro"><code>&#123;macro&#125;</code></a>, is an error, and so is a define
+without a name or without a body. Use a define for markup with a frame - content and slots;
+use a macro when the parameters should read as plain fields.</p>
+{/ignore}

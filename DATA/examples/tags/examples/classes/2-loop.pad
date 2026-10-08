@@ -1,0 +1,6 @@
+{meta title='Per row of a loop', about='Each row\'s classes from its own fields and from the loop\'s properties.'}
+<ul>
+  {tasks}
+    <li class="{classes 'task', done=$done, first=first@tasks, urgent=$days lt 2}">{$title}: <code>{classes 'task', done=$done, first=first@tasks, urgent=$days lt 2}</code></li>
+  {/tasks}
+</ul>

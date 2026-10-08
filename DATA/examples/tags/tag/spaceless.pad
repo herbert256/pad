@@ -1,0 +1,18 @@
+{ignore}
+<p><code>{spaceless}</code> renders its content first and then removes every run of whitespace
+that stands between a <code>&gt;</code> and a <code>&lt;</code>, newlines included, and the
+whitespace at both ends. <code>&lt;li&gt;a&lt;/li&gt; &lt;li&gt;b&lt;/li&gt;</code> becomes
+<code>&lt;li&gt;a&lt;/li&gt;&lt;li&gt;b&lt;/li&gt;</code>; the text inside an element keeps its
+spaces.</p>
+
+<p>That matters where whitespace shows: between <code>inline-block</code> elements a newline in
+the template is a visible gap, and in a <code>&lt;pre&gt;</code> or a JSON-like attribute every
+character counts. The template can stay indented for the reader while the output is compact.</p>
+
+<p>For one tag at a time the <code>~</code> whitespace control does the same job without a
+pair: <code>{~items~}</code> takes the whitespace on both sides of the tag, newlines included.
+<a href="?tag/tidy"><code>{tidy}</code></a> goes the other way and indents the markup.</p>
+
+<p>The tag only makes sense as a pair: written alone, the strict check reports that it never
+closes.</p>
+{/ignore}

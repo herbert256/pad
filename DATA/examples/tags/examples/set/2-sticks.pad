@@ -1,0 +1,7 @@
+{meta title='A total that outlives the loop', about='A set inside a loop sticks; a variable written on the loop tag itself is unwound when the loop ends.'}
+{set $sum = 0, $note = 'before'}
+{sequence '1..4', name='num', $note = 'inside'}
+  {set $sum = $sum + $num}
+  <p>{$num}: running total {$sum}, note {$note}</p>
+{/sequence}
+<p>After the loop: total {$sum}, note {$note}</p>

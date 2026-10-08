@@ -1,0 +1,13 @@
+{meta title='Paths into nested data', about='Field names descend into objects; a key=value step picks the matching row.'}
+{data 'atShop'}
+{
+  "name": "Corner Shop",
+  "owner": { "name": "Eve", "phone": "555-0142" },
+  "items": [
+    { "sku": "k1", "title": "Kettle", "price": 24 },
+    { "sku": "k2", "title": "Teapot", "price": 18 }
+  ]
+}
+{/data}
+<p>Owner: {at 'owner.name@atShop'}, phone {at 'owner.phone@atShop'}</p>
+<p>Item k2: {at "items.sku='k2'.title@atShop"} at {at "items.sku='k2'.price@atShop"}</p>

@@ -1,0 +1,10 @@
+<div class="frameworks">
+  {counters}
+  <div class="card framework" style="--framework: {$colour}">
+    <div class="framework-head"><strong>{$framework}</strong><span class="badge">{$kilobytes} kB</span></div>
+    <div data-island="{$island}" data-props="{^props}"><div class="counter"><div class="counter-value">{$props.start}</div></div></div>
+  </div>
+  {/counters}
+</div>
+<p class="muted small">The weight is what the browser fetches for the island the first time - the component, its framework's adapter
+   and every chunk they import, uncompressed. A second island of the same framework costs only its component.</p>

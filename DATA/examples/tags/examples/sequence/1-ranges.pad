@@ -1,0 +1,4 @@
+{meta title='Ranges and lists', about='A range, a range with a step and an explicit list, each with its own variable name.'}
+<p>{sequence '1..10'}{$sequence} {/sequence}</p>
+<p>{sequence range='0..50', increment=10, name='tens'}{$tens} {/sequence}</p>
+<p>{sequence list='red;green;blue', name='colour'}{$colour}{if not last@sequence}, {/if}{/sequence}</p>

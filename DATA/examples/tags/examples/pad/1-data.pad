@@ -1,0 +1,7 @@
+{meta title='A carrier for data=', about='With data= the content renders once per row, under the name the tag is given.'}
+{data 'colours'}["red", "green", "blue"]{/data}
+<ul>
+  {pad data='colours', name='colour'}
+    <li>{current@colour}: {$colours}</li>
+  {/pad}
+</ul>

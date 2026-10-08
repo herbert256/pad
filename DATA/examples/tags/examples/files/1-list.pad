@@ -1,0 +1,6 @@
+{meta title='A folder of the application', about='base=\'app\' reads the directory from the application\'s root; sort makes the order the file system keeps irrelevant.'}
+<ul>
+{files '_data/filesDemo', base='app', sort='item'}
+  <li>{$item} {if $ext}<small>({$ext})</small>{else}<small>(directory)</small>{/if}</li>
+{/files}
+</ul>

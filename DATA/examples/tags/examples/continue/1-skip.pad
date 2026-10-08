@@ -1,0 +1,7 @@
+{meta title='Skipping rows', about='Rows that are out of stock are skipped; the loop goes on with the next one.'}
+<ul>
+{products}
+  {if $stock eq 0}{continue}{/if}
+  <li>{$name}: {$stock} left</li>
+{/products}
+</ul>

@@ -1,0 +1,8 @@
+{meta title='A form field, three ways', about='Values given in order, by name, or left to the default.'}
+{macro 'macroEntry', label, kind='text', value=''}
+  <p><label>{$label} <input type="{$kind}" name="{$label}" value="{$value}"></label></p>
+{/macro}
+
+{macroEntry 'E-mail', 'email'}
+{macroEntry label='Name', value='Ada'}
+{macroEntry 'City'}

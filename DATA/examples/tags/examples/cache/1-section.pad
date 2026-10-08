@@ -1,0 +1,4 @@
+{meta title='A named section', about='The squares are computed on the first request and served from the cache for the next ten minutes.'}
+{cache 'cacheSquares', ttl=600}
+  <p>{sequence '1..8', name='n'}{$n | * @}{notLast@n}, {/notLast@n}{/sequence}</p>
+{/cache}

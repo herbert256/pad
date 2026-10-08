@@ -1,0 +1,20 @@
+{meta title='Tags by option'}
+<h1>Tags by option</h1>
+<p class="lead">Every option a tag takes of its own, and what it does there. The handling
+options every tag takes - <code>sort</code>, <code>where</code>, <code>first</code>,
+<code>rows</code>, <code>group</code> and the rest - are not listed here.</p>
+
+<table class="options-table">
+  <thead><tr><th scope="col">Option</th><th scope="col">Tag</th><th scope="col">Meaning</th></tr></thead>
+  <tbody>
+  {optionRows}
+    {tags}
+    <tr>
+      {first@tags}<td class="opt" rowspan="{$count}">{$option}</td>{/first@tags}
+      <td><a class="name" href="?tag/{$name}">&#123;{$name}&#125;</a></td>
+      <td>{!meaning}</td>
+    </tr>
+    {/tags}
+  {/optionRows}
+  </tbody>
+</table>

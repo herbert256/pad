@@ -1,0 +1,28 @@
+<div class="todos" x-data="todos({^todos})">
+
+  <form class="todo-add" @submit.prevent="add()">
+    <input class="input" x-model="text" placeholder="Something to do ..." aria-label="A new todo" maxlength="80">
+    <button>Add</button>
+  </form>
+
+  <div class="bar"><span :style="'width:' + progress() + '%'"></span></div>
+  <p class="muted small"><span x-text="done()"></span> of <span x-text="list.length"></span> done
+     <span x-show="syncing" x-cloak> &middot; saving ...</span></p>
+
+  <ul class="todo-list">
+    <template x-for="todo in list" :key="todo.id">
+      <li :class="todo.done && 'is-done'">
+        <label><input type="checkbox" :checked="todo.done" @change="toggle(todo)"> <span x-text="todo.text"></span></label>
+        <button class="btn-icon btn-ghost" @click="remove(todo)" :aria-label="'Remove ' + todo.text">×</button>
+      </li>
+    </template>
+  </ul>
+
+  <button class="btn-sm btn-ghost" @click="clear()" x-show="done() > 0" x-cloak>Clear the done ones</button>
+
+  <ul class="todo-list" x-show="false">
+    {todos}<li>{$text}</li>{/todos}
+  </ul>
+</div>
+
+<script src="{$padRoot}alpine/examples/todos.js"></script>

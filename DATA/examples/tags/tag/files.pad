@@ -1,0 +1,24 @@
+{ignore}
+<p><code>{files 'dir', base='app'}</code> scans a directory and iterates its entries, one
+occurrence each, with five fields: <code>path</code> (the full path), <code>file</code> (the
+name), <code>ext</code> (the extension, empty for a directory), <code>item</code> (the entry
+relative to the scanned directory, the extension taken off a file - the name a page is
+addressed by) and <code>dir</code> (the part of <code>item</code> before its last slash).</p>
+
+<p><code>base=</code> says what the directory is relative to: <code>app</code> the
+application, <code>data</code> DATA/, <code>pad</code> the path as given; otherwise it is read
+from the file system root. Whatever the base, the directory must lie inside the applications,
+the engine or DATA - anything else is an error. A directory that is not there is an error
+under the strict check, an empty list without it.</p>
+
+<p><code>recursive</code> walks every subdirectory and lists the files below; <code>mask</code>
+and <code>exclude</code> keep or drop names by a shell pattern, <code>onlyFiles</code> and
+<code>onlyDirs</code> keep one kind, and names starting with a dot are left out unless
+<code>includeHidden</code> is given. <code>.</code> and <code>..</code> never come along.</p>
+
+<p>The entries come in the order the file system keeps them, which differs between machines:
+add <code>sort='item'</code> (any handling option works) when the order matters. The tag
+reads a <code>group</code> parameter of its own as well, but the handling option of that name
+takes it first, so it cannot be used. <a href="?tag/dir">{dir}</a> is the plain version - the
+names only.</p>
+{/ignore}

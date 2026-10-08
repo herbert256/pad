@@ -1,0 +1,3 @@
+{meta title='A loop property as condition', about='first@ and last@ of the loop around read as a value.'}
+{set $fruit = 'apple, pear, plum'}
+<p>{sequence list=$fruit, name='fruit'}{if not first@fruit}, {/if}{$fruit}{if last@fruit}.{/if}{/sequence}</p>

@@ -1,0 +1,16 @@
+{ignore}
+<p><code>{file}</code> renders its content as usual - fields, loops, tags - and writes the
+result to a file instead of to the page; the tag itself shows nothing. The file goes under
+DATA/: <code>dir=</code> is the directory below it, <code>name=</code> the name
+(<code>file</code> by default) and <code>ext=</code> the extension (<code>ext</code> by
+default). An existing file of that name is overwritten.</p>
+
+<p><code>date</code> adds today's date (<code>_2026-10-08</code>) to the name,
+<code>stamp</code> a time stamp, and <code>id=8</code> a random suffix of eight characters, so
+one run does not overwrite the last.</p>
+
+<p>No name the web server would run is written - <code>.php</code>, <code>.phtml</code>,
+<code>.phar</code> ... anywhere in it - nor one it reads as configuration, any part starting
+with a dot such as <code>.htaccess</code>: that is a PAD error, and nothing is written. The tag
+writes files, so its examples are shown, not run.</p>
+{/ignore}

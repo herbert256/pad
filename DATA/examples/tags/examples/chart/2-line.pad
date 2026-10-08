@@ -1,0 +1,9 @@
+{meta title='Two lines from a data block', about='A comma list in value= draws a line per field, each named at its end.'}
+{data 'visits'}
+  [ { "day": "Mon", "desktop": 420, "mobile": 610 },
+    { "day": "Tue", "desktop": 380, "mobile": 650 },
+    { "day": "Wed", "desktop": 455, "mobile": 590 },
+    { "day": "Thu", "desktop": 510, "mobile": 700 },
+    { "day": "Fri", "desktop": 470, "mobile": 820 } ]
+{/data}
+{chart 'line', data='visits', label='day', value='desktop, mobile', title='Visits this week', width=480, height=240}

@@ -1,0 +1,24 @@
+{ignore}
+<p><code>{accordion}</code> turns every <a href="?tag/tab"><code>{tab}</code></a> inside it
+into a <code>&lt;details&gt;</code> element with the tab's label as its
+<code>&lt;summary&gt;</code>. The browser opens and closes the items, from the keyboard as
+well, a screen reader hears "collapsed" or "expanded", and a find in the page opens the item
+it finds a match in. There is no script.</p>
+
+<p>The items are collected the way <a href="?tag/tabs"><code>{tabs}</code></a> collects
+them, so they may come from a loop or stand in an <code>{if}</code>. Without options every
+item starts closed and each opens on its own.</p>
+
+<ul>
+  <li><code>single</code> gives the items one shared <code>name</code>: opening one closes the
+  one that was open.</li>
+  <li><code>open=</code> names the item open at the start, by its number from 1 or its label;
+  <code>open</code> alone opens them all.</li>
+</ul>
+
+<p>Under the strict check an item without a label, text between the items, an accordion
+without items, an <code>open=</code> naming no item, and a bare <code>open</code> on a
+<code>single</code> accordion (which can only have one open) are errors. The colours are
+<code>--pad-accordion-accent</code>, <code>-text</code>, <code>-muted</code>,
+<code>-line</code> and <code>-hover</code> on <code>.pad-accordion</code>.</p>
+{/ignore}

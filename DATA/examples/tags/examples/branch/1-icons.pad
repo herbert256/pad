@@ -1,0 +1,14 @@
+{meta title='Folders and files', about='A row with children gets a folder and its list; a leaf gets the @else@ part.'}
+{data 'branchFiles'}
+[
+  { "name": "photos", "children": [
+      { "name": "2026", "children": [ { "name": "harbour.jpg" } ] },
+      { "name": "cat.jpg" } ] },
+  { "name": "notes.txt" }
+]
+{/data}
+<ul>
+{tree 'branchFiles'}
+  <li>{branch}&#128193; {$name}<ul>{recurse}</ul>@else@&#128196; {$name}{/branch}</li>
+{/tree}
+</ul>

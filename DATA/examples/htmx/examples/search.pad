@@ -1,0 +1,23 @@
+<div class="toolbar">
+  <div class="search">
+    <input class="input" type="search" name="q" value="{$q}" placeholder="Search - try lamp, audio or usb" autocomplete="off"
+           aria-label="Search the products" hx-get="?examples/search" hx-trigger="input changed delay:250ms, search"
+           hx-target="#results" hx-push-url="true" hx-indicator="#searching">
+  </div>
+  <span id="searching" class="htmx-indicator spinner" aria-hidden="true"></span>
+</div>
+
+<div id="results">
+{fragment 'results'}
+  <p class="muted small">{$count} {if $count eq 1}product{else}products{/if}{if $q} for <mark>{$q}</mark>{/if}</p>
+  <table class="table">
+    <thead><tr><th>Product</th><th>Category</th><th class="num">Price</th></tr></thead>
+    <tbody>
+      {found}
+      <tr><td>{$emoji} {$name}</td><td><span class="badge">{$category}</span></td><td class="num">{$price | currency('EUR')}</td></tr>
+      {/found}
+    </tbody>
+  </table>
+  {if $count eq 0}<div class="empty-state"><span class="big">🔎</span>Nothing in the catalogue matches.</div>{/if}
+{/fragment}
+</div>

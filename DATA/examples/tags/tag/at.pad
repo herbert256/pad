@@ -1,0 +1,22 @@
+{ignore}
+<p><code>{at 'path'}</code> answers the value an @ expression points at - the same notation a
+field can carry, <code>{$name@staff}</code>, written as a tag with the path as a quoted
+parameter. The part after the <code>@</code> says where to look: a data set made with
+<a href="?tag/data">{data}</a>, an array of the page, a <code>_data/</code> file, a stored
+sequence, or an enclosing level by name.</p>
+
+<p>The part before the <code>@</code> is a path through that data, its steps separated by
+dots. A plain step is a field name - <code>owner.phone@shop</code> descends into the
+<code>owner</code> object. A step <code>id='b2'</code> picks, among the rows at that point, the
+one whose <code>id</code> field is <code>b2</code>, so <code>{at "id='b2'.name@staff"}</code> is
+the name of the row with that id. Steps can be chained as deep as the data goes:
+<code>{at "country.id='f0_162'.province.id='f0_17460'.name@mondial"}</code>. A row can also be
+named by its key - <code>1.city@cities</code> - and <code>@globals</code> searches the page's
+variables: <code>{at 'order.total@globals'}</code>. In a <code>{data}</code> set a bare field
+name searches the rows and answers the first one that has it.</p>
+
+<p>The tag asserts its path: under the strict syntax check a path that reaches nothing - or an
+empty value - is an error naming the path. The field form (<code>{$name@staff}</code>) is
+searched more leniently, which is what <code>optional</code> lookups rest on. Use the
+<code>lookup</code> pipe to find one row by a key for every row of a loop.</p>
+{/ignore}

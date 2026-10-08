@@ -1,0 +1,27 @@
+{ignore}
+<p><code>{shadow}</code> writes <code>&lt;template shadowrootmode="open"&gt;</code> around its
+rendered content. Placed inside a custom element, it is that element's shadow root: the
+browser builds the root while it parses the page, so the element shows - with encapsulated
+styles and slotted light DOM - before any script has run, and a module that defines the
+element later finds the root ready in <code>this.shadowRoot</code>. Like
+<code>{tidy}</code>, the tag runs twice: the content renders first, then the template tags go
+around it.</p>
+
+<p>A shadow root takes no styles from the page, and a <code>&lt;style&gt;</code> written into
+the template would have its braces read as PAD tags. <code>css=</code> therefore inlines
+stylesheet files instead, as one <code>&lt;style&gt;</code> at the start of the root: a
+<code>.css</code> file of the application, or with <code>www:</code> one in its
+<code>www/</code> directory - the file rule of <a href="?tag/source"><code>{source}</code></a>.
+Each file is read once a request. <code>mode='closed'</code> makes a closed root,
+<code>focus</code> adds <code>shadowrootdelegatesfocus</code>.</p>
+
+<p>The usual home of <code>{shadow}</code> is a custom tag in <code>_tags/</code> that writes a
+custom element, combined with <a href="?tag/parms"><code>{parms}</code></a>; the first example
+uses <code>_tags/shadowCard.pad</code> with its stylesheet <code>_tags/shadowCard.css</code>.
+Inside the pair, <code>{#name}</code> is <code>{shadow}</code>'s own parameter - in a custom
+tag, put the tag's parameters to use outside the pair, or carry one in with
+<code>{set $value = {#value}}</code> before it.</p>
+
+<p>A stylesheet that is not there or is no <code>.css</code> file, a mode that is neither open
+nor closed, and a pair that never closes are errors.</p>
+{/ignore}

@@ -1,0 +1,27 @@
+<div x-data="search({^result})">
+
+  <div class="toolbar">
+    <div class="search">
+      <input class="input" type="search" x-model.debounce.250ms="q" @input.debounce.250ms="ask()" placeholder="Search - try lamp, audio or usb" aria-label="Search the products">
+    </div>
+    <span class="spinner" x-show="busy" x-cloak aria-hidden="true"></span>
+  </div>
+
+  <p class="muted small"><span x-text="count">{$result.count}</span> found - the first eight shown</p>
+
+  <div class="grid results">
+    <template x-for="item in items" :key="item.id">
+      <div class="card result">
+        <span class="result-emoji" x-text="item.emoji"></span>
+        <div>
+          <strong x-text="item.name"></strong>
+          <div class="muted small" x-text="item.category + ' · € ' + item.price.toFixed(2)"></div>
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <p class="empty-state" x-show="count === 0" x-cloak>Nothing in the catalogue matches.</p>
+</div>
+
+<script src="{$padRoot}alpine/examples/search.js"></script>

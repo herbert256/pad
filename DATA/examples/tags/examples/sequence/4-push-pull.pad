@@ -1,0 +1,6 @@
+{meta title='Store and reuse', about='push stores the primes without printing; pull and the store\'s own name read them back.'}
+{sequence prime, rows=6, push='primes'}
+<p>Stored: {pull 'primes'}{$sequence} {/pull}</p>
+<p>Reversed: {pull 'primes', reverse}{$sequence} {/pull}</p>
+<p>As a tag: {primes}[{$primes}]{/primes}</p>
+<p>Term 8 of fibonacci, in an expression: {echo sequence:fibonacci(8)}</p>

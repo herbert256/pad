@@ -1,0 +1,6 @@
+{meta title='Another children field, sorted, with depth', about='children= names the field; sort applies at every level; depth@tree counts the levels.'}
+<ul>
+{tree data='folders', children='sub', sort='name'}
+  <li>{$name} <small>(depth {depth@tree}, {current@tree} of {count@tree})</small>{branch}<ul>{recurse}</ul>{/branch}</li>
+{/tree}
+</ul>

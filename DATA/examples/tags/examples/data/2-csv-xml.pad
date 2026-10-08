@@ -1,0 +1,14 @@
+{meta title='CSV and XML', about='The first CSV line names the fields; XML elements under the root are the rows, attributes the fields.'}
+{data 'dataPrices'}
+fruit,price
+Apple,0.40
+Pear,0.55
+{/data}
+{data 'dataStock'}
+<stock>
+  <item fruit="Apple" boxes="12"/>
+  <item fruit="Pear" boxes="3"/>
+</stock>
+{/data}
+<p>{dataPrices}{$fruit} costs {$price}. {/dataPrices}</p>
+<p>{dataStock}{$fruit}: {$boxes} boxes. {/dataStock}</p>

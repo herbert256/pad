@@ -1,0 +1,11 @@
+<p class="muted">The page came at once. The chart below is asked for after it - watch the skeleton.</p>
+
+<div id="chart" class="chart-frame" hx-get="?examples/lazy" hx-trigger="load" hx-swap="innerHTML">
+{fragment 'chart'}
+  {if $slow}
+    {chart 'bar', data='sales', label='month', value='online, shop, wholesale', stacked, title='Sales per month, in thousands'}
+  {else}
+    <div class="skeleton" style="height: 300px" aria-label="The chart is coming"></div>
+  {/if}
+{/fragment}
+</div>

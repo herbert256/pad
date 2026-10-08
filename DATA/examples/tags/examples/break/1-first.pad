@@ -1,0 +1,7 @@
+{meta title='Stop at the first match', about='The loop stops at the first score above 90; the rest of that pass and the rows after it are dropped.'}
+<ul>
+{scores}
+  {if $points gt 90}<li>{$player} scored {$points} - found one, stop.</li>{break}{/if}
+  <li>{$player}: {$points}</li>
+{/scores}
+</ul>

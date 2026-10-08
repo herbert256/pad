@@ -1,0 +1,1 @@
+{define 'card'}{parms title, tone='info'}<div class="{#tone}"><h2>{#title}</h2>@content@{slot 'foot'}<p>@content@</p>{/slot}</div>{/define}{card title='One'}{$x}{slot 'foot'}F{/slot}{/card}{card title='Two', tone='warn'}two{/card}

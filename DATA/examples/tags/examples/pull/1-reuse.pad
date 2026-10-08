@@ -1,0 +1,5 @@
+{meta title='Store once, read twice', about='The squares are generated once and pulled as they are and reversed.'}
+{sequence square, rows=6, push='squares'}
+<p>{pull 'squares'}{$sequence} {/pull}</p>
+<p>{pull 'squares', reverse}{$sequence} {/pull}</p>
+<p>{pull:squares sum}Sum: {$sequence}{/pull:squares}</p>

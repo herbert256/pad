@@ -1,0 +1,6 @@
+{meta title='With handling options', about='where, sort and first work on the rows as on any data.'}
+<ul>
+  {collection 'collectionBooks', where='$year lt 1965', sort='title DESC', first=1}
+    <li>{$title} - {$year}</li>
+  {/collection}
+</ul>

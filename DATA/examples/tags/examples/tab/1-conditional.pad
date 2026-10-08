@@ -1,0 +1,9 @@
+{meta title='A tab in an if', about='A tab only shows up when its condition holds - the hand-over skips the if around it.'}
+{set $hasReviews = 0}
+{tabs}
+  {tab 'Overview'}<p>A kettle in brushed steel.</p>{/tab}
+  {if $hasReviews gt 0}
+    {tab 'Reviews'}<p>The reviews.</p>{/tab}
+  {/if}
+  {tab 'Delivery'}<p>Delivered the next working day.</p>{/tab}
+{/tabs}

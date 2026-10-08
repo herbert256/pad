@@ -1,0 +1,17 @@
+{ignore}
+<p><code>{flag '1..10', even}</code> runs a sequence in <em>flag</em> mode: every value is
+tested against the named type and replaced by <code>1</code> when it belongs to it and
+<code>0</code> when it does not - here <code>0 1 0 1 0 1 0 1 0 1</code>. Where
+<a href="?tag/keep">{keep}</a> and <a href="?tag/remove">{remove}</a> filter, <code>{flag}</code>
+keeps every position, so the flags line up with the original list. It is the same run as
+<code>{sequence '1..10', flag, even}</code>.</p>
+
+<p>Because the flags are numbers, actions can count with them: <code>{flag '1..20', prime,
+sum}</code> is 8, the number of primes up to 20. Without a range the candidates run from
+<code>from</code> upward and <code>rows</code> says how many flags; a stored sequence named
+bare works as the source too. The prefix form <code>{flag:prime rows=10}</code> names the type
+in the tag and takes no range.</p>
+
+<p>The current value is <code>{$sequence}</code> - the flag, not the original number. To show
+both side by side, flag a stored list and pull the store beside it, as in the example.</p>
+{/ignore}

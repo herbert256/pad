@@ -1,0 +1,6 @@
+{meta title='Once per key', about='Three uses of a component each push its script line; once= keeps only the first, the bare once drops a repeated text.'}
+{sequence 3, name='use'}
+  {push 'pushScripts', once='chart'}<li>script src="chart.js" (pushed by use {$use})</li>{/push}
+  {push 'pushScripts', once}<li>link href="chart.css"</li>{/push}
+{/sequence}
+<ul>{stack 'pushScripts'}</ul>

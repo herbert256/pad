@@ -1,0 +1,17 @@
+{ignore}
+<p><code>{textarea}</code> is <a href="?tag/input">{input}</a> for a multi-line text: a
+<code>&lt;label for&gt;</code> when <code>label=</code> is given, then a
+<code>&lt;textarea&gt;</code> with the name and an id. The text inside is <code>value=</code>
+before a post and what was sent after a post of its <a href="?tag/form">{form}</a> - escaped
+both times, so markup in it stays text.</p>
+
+<p>The tag takes <code>label</code>, <code>value</code>, <code>id</code> and
+<code>rules</code>; every other item - <code>rows=</code>, <code>cols=</code>,
+<code>maxlength=</code>, <code>placeholder=</code>, a bare <code>required</code> - is an
+attribute of the text area.</p>
+
+<p>The error the validation found for it follows the text area as for an input, with
+<code>aria-invalid</code> and <code>aria-describedby</code>. <code>rules=</code> follows the
+same rules as on <code>{input}</code>: only in a named form written in the page's own
+template.</p>
+{/ignore}

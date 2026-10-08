@@ -1,6 +1,6 @@
 <?php
 
-  // Fetches the probe - a loop, a pipe and a sequence, rendered with all five info modes on
+  // Fetches the probe - a loop, a pipe and a sequence, rendered with four info modes on
   // and every option of each - and asserts that every mode recorded something for that very
   // request: not that artifacts exist, but that this fetch grew them.
   //
@@ -9,7 +9,6 @@
   // without it - an engine that stops clearing the report appends to the stale tree and
   // the two roots no longer parse.
 
-  $traceBefore = count ( glob ( DATA . 'trace/probe/*' ) ?: [] );
   $trackBefore = count ( glob ( DATA . 'track/requests/*' ) ?: [] );
   $xmlFile     = DATA . '_xml/compact/include/probe.xml';
   $dbBefore    = (int) padDb ( "field count(*) from track_request" );
@@ -39,7 +38,6 @@
 
     clearstatcache ();
 
-    $traceAfter = count ( glob ( DATA . 'trace/probe/*' ) ?: [] );
     $trackAfter = count ( glob ( DATA . 'track/requests/*' ) ?: [] );
     $xmlText    = file_exists ( $xmlFile ) ? file_get_contents ( $xmlFile ) : '';
     $xmlOne     = ! str_contains ( $xmlText, '<stale' )
@@ -47,7 +45,7 @@
     $dbAfter    = (int) padDb ( "field count(*) from track_request" );
     $xref       = file_get_contents ( $xrefFile );
 
-    if ( $traceAfter > $traceBefore and $trackAfter > $trackBefore
+    if ( $trackAfter > $trackBefore
          and $xmlOne and $dbAfter > $dbBefore and str_contains ( $xref, 'regression/info;probe' ) )
       break;
 
@@ -58,7 +56,6 @@
   file_put_contents ( $xrefFile, $xrefKeep );
 
   $vStats = ( is_array ( $stats ) and isset ( $stats ['total'] ) )      ? 'yes' : 'NO';
-  $vTrace = ( $traceAfter > $traceBefore )                              ? 'yes' : 'NO';
   $vTrack = ( $trackAfter > $trackBefore and $dbAfter > $dbBefore )     ? 'yes' : 'NO';
   $vXml   = ( $xmlOne )                                                 ? 'yes' : 'NO';
   $vXref  = ( str_contains ( $xref, 'regression/info;probe' ) )         ? 'yes' : 'NO';

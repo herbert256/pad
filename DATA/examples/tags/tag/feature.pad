@@ -1,0 +1,20 @@
+{ignore}
+<p><code>{feature 'search2'}</code> renders its content while the flag is on for this visitor,
+and the part after its own <code>{else}</code> - or the <code>&#64;else&#64;</code> half - while it is
+off. The flags are the setting <code>$padFeatures</code>, normally in
+<code>_config/config.php</code>, name =&gt; what decides it:</p>
+
+<ul>
+  <li><code>TRUE</code> or <code>FALSE</code> - on or off for everybody;</li>
+  <li>a number from 0 to 1 - on for that share of the visitors, decided per visitor and the
+      same on every visit: by a hash of the flag's name and the user's id, or for a guest a
+      random id in a long-lived <code>padFeatureId</code> cookie;</li>
+  <li>the name of a function - called with the user's row (NULL for a guest).</li>
+</ul>
+
+<p><code>padFeatureOverride ( 'search2', TRUE )</code> fixes a flag for the rest of the request,
+whatever the setting says - for a test or a preview - and <code>padFeature ( 'search2' )</code>
+asks from PHP. A name that is no flag is FALSE and, under the strict check, an error.</p>
+
+<p>A share depends on the visitor, so that example is shown, not run.</p>
+{/ignore}

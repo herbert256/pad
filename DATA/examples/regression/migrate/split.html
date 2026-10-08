@@ -1,0 +1,1 @@
+[create table a (x varchar(9) default 'it''s; ok')] [insert into a values ("q;q")] [create trigger t after insert on a begin update a set x = case when 1 then 'y' end; delete from a; end] [create procedure p() begin select 1; select 2; end] [select 3] mysql: [insert into a values ('a\';b')] [select 4]

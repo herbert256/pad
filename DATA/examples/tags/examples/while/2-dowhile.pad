@@ -1,0 +1,4 @@
+{meta title='The condition on the closing tag', about='Tested after each pass: the content renders once even though the condition is false from the start.'}
+{set $tries = 7}
+<p>Before: {while $tries lt 3}[{$tries}]{increment $tries}{/while} - nothing.</p>
+<p>After: {while}[{$tries}]{increment $tries}{/while $tries lt 3} - one pass.</p>

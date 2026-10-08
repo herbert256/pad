@@ -1,0 +1,4 @@
+{meta title='A search result', about='Twenty words around the first match of the query, every word that starts with a search word marked.'}
+<p>Results for <strong>{$q}</strong>:</p>
+<p>{excerpt $body, words=20, highlight=$q}</p>
+<p>The first twenty words, no query: {excerpt $body, words=20}</p>

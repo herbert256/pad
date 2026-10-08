@@ -1,0 +1,12 @@
+{ignore}
+<p><code>{close}</code> answers PAD's stand-in for the character <code>&#125;</code>, which is
+turned back into the brace when the page is written out. In between it is text: no tag can
+end on it, and a pipe or another tag that receives it sees no syntax.</p>
+
+<p>It is the partner of <a href="?tag/open"><code>{open}</code></a>. A lone closing brace in a
+template is an orphan for the strict check; <code>{close}</code> writes it on purpose. For whole
+blocks with braces, use <a href="?tag/ignore"><code>&#123;ignore&#125;</code></a>.</p>
+
+<p>Not to be confused with the <code>close=</code> option of a data tag, which writes a text
+once after the last occurrence.</p>
+{/ignore}

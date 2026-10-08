@@ -1,0 +1,15 @@
+{meta title='Search'}
+<h1>Search</h1>
+
+{if $tagsSearch eq ''}
+  <p class="lead">Type a word in the search box - a tag's name, or a word of what it does.</p>
+{elseif $hits eq 0}
+  <p class="lead">No tag matches <strong>{$tagsSearch}</strong>. Try the <a href="?names">list by name</a>.</p>
+{else}
+  <p class="lead">{$hits} {echo $hits eq 1 ? 'tag matches' : 'tags match'} <strong>{$tagsSearch}</strong>.</p>
+  <ul class="list">
+    {found}
+    <li><a class="name" href="?tag/{$name}">&#123;{$name}&#125;</a> <span class="about">{$about} <a class="meta" href="?groups#{$group}">{$groupLabel}</a></span></li>
+    {/found}
+  </ul>
+{/if}

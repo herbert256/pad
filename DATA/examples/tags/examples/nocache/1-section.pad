@@ -1,0 +1,9 @@
+{meta title='A live part in a cached section', about='The list is kept five minutes; the greeting renders on every request - try ?examples/nocache/1-section&visitor=Ann.'}
+{cache 'nocacheDemo', ttl=300}
+  <p>{nocache}Hello, {$nocacheVisitor}!{/nocache}</p>
+  <ul>
+  {nocacheProducts}
+    <li>{$name}</li>
+  {/nocacheProducts}
+  </ul>
+{/cache}

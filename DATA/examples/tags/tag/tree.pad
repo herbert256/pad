@@ -1,0 +1,24 @@
+{ignore}
+<p><code>{tree 'menu'}</code> renders its content - the body - once for every top row, like
+any data tag. The difference is inside the body: <a href="?tag/recurse">{recurse}</a> renders
+that same body again for the children of the current row, each child a row of its own, and so
+on down to any depth. Menus, category trees, folder listings and threaded comments are all
+one body written once.</p>
+
+<p>The children of a row are the array in its <code>children</code> field; the
+<code>children='items'</code> option names another field, used at every depth. A row
+without children - the field missing or empty - renders nothing at its <code>{recurse}</code>.
+<a href="?tag/branch">{branch}</a> ... <code>{/branch}</code> renders only for a row that has
+children, so the <code>&lt;ul&gt;</code> around a <code>{recurse}</code> is left out for a
+leaf, and its <code>&#64;else&#64;</code> part renders for a leaf instead.</p>
+
+<p>Every list of the tree is a level named as the tree is: <code>depth@tree</code> is 1 for the
+top rows and one more per level down, and <code>first@tree</code>, <code>current@tree</code>,
+<code>count@tree</code> speak of the list being rendered. The handling options
+<code>sort</code>, <code>where</code> and <code>reverse</code> written on the tree apply to
+every list, the children included. The <code>&#64;else&#64;</code> part of the tree itself shows when
+there are no rows at all.</p>
+
+<p>Under the strict syntax check a tree without rows named, a name nothing holds, or a tree
+without its closing tag is an error.</p>
+{/ignore}

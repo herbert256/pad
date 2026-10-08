@@ -1,0 +1,28 @@
+{ignore}
+<p><code>{meta}</code> says in the template what a page with PHP would say in its
+<code>.php</code> - so a plain <code>.pad</code>, or an <code>.html</code> file dropped into
+the application, can set its title or its layout. Like
+<a href="?tag/extends"><code>{extends}</code></a> it is no tag that renders: the
+<code>{meta}</code> tags are read while the page is assembled - after the PHP of
+<code>_inits.php</code> and of the page itself, before the template renders - and taken out
+of the text. Their values are expressions and may use the PHP's variables.</p>
+
+<ul>
+  <li><code>layout=</code> frames the page with a layout, exactly as <code>{extends}</code>
+  does.</li>
+  <li><code>cache=</code> is the page's own cache time in an application whose page cache is
+  on; <code>0</code> or <code>false</code> keeps the page out. It is read from the file before
+  the cache is consulted, so only a plain value counts there.</li>
+  <li><code>access=</code> and <code>sitemap=</code> are kept for others to read:
+  <code>padMeta ( 'access' )</code> for the page being built, <code>padMeta ( 'sitemap',
+  'reports/monthly' )</code> from another page's file; <code>sitemap=false</code> leaves a page
+  out of <a href="?tag/sitemap"><code>{sitemap}</code></a>.</li>
+  <li>Any other name becomes a variable of the page: <code>title=</code> is
+  <code>$title</code>, which the wrapper's <code>&lt;title&gt;</code> shows.</li>
+</ul>
+
+<p>A page may hold more than one <code>{meta}</code>. Every example on this site starts with one
+- its title and about line are what the indexes show. The tag must stand directly in the
+page's own template, outside any other tag; anywhere else it is an error under the strict
+check, as is a name that is not a valid variable name.</p>
+{/ignore}

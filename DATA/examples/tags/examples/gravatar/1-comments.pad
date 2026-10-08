@@ -1,0 +1,6 @@
+{meta title='Comments with Gravatars', about='An img per address, made from its SHA-256 hash; default=identicon for addresses Gravatar does not know.'}
+<div style="display:grid; gap:12px">
+  {comments}
+  <div style="display:flex; gap:10px; align-items:flex-start">{gravatar $email, size=40, default='identicon', alt=$name} <div><strong>{$name}</strong><br>{$text}</div></div>
+  {/comments}
+</div>

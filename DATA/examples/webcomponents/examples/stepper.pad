@@ -1,0 +1,15 @@
+{if $ordered}
+  <div class="callout is-good"><p><strong>Ordered:</strong> {$qty} × size {$size} - the stepper's value came with the post like any field.</p></div>
+{/if}
+
+{form 'order', error, class='stack'}
+  <label for="qty">Quantity</label>
+  {stepper name='qty', value=$qty, min=1, max=12}
+  {if $qtyError}<span class="error">{$qtyError}</span>{/if}
+
+  {input 'size', label='Size - s, m or l', class='input', value=$size}
+
+  <button>Order</button>
+{/form}
+
+<script type="module" src="{$padRoot}webcomponents/elements/stepper.js"></script>

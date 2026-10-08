@@ -1,0 +1,7 @@
+{meta title='A flowchart', about='Nodes of several shapes, labelled edges and a dashed loop back.'}
+{diagram title='Handling an order'}
+  A([Order placed]) --> B{In stock?}
+  B -->|no| C[Order from supplier]
+  C -.->|delivered| B
+  B -->|yes| D[Take payment] --> E[(Orders database)] --> F((Shipped))
+{/diagram}

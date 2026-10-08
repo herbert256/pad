@@ -1,0 +1,11 @@
+{cache 'manual-nocache', ttl=60}
+  {set $built = $built + 1}
+  <p>Cached: built {$built} time(s), {nocache}live: visit {$visit}{/nocache}</p>
+{/cache}
+
+{set $visit = 2}
+
+{cache 'manual-nocache', ttl=60}
+  {set $built = $built + 1}
+  <p>Cached: built {$built} time(s), {nocache}live: visit {$visit}{/nocache}</p>
+{/cache}

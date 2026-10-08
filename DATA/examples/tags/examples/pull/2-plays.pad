@@ -1,0 +1,5 @@
+{meta title='Plays over a store', about='The same twelve numbers kept, removed and flagged against the type even.'}
+{sequence '1..12', push='dozen'}
+<p>keep:   {pull 'dozen', keep, even}{$sequence} {/pull}</p>
+<p>remove: {pull 'dozen', remove, even}{$sequence} {/pull}</p>
+<p>flag:   {pull 'dozen', flag, even}{$sequence}{/pull}</p>

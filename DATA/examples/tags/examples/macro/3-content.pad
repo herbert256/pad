@@ -1,0 +1,10 @@
+{meta title='A pair use and @content@', about='The content of a pair use goes where the body has @content@.'}
+{macro 'macroBox', heading}
+  <section style="border-left:3px solid #2a6fd6; padding:2px 12px; margin:6px 0">
+    <strong>{$heading}</strong>
+    <div>@content@</div>
+  </section>
+{/macro}
+
+{macroBox 'Tip'}Press <kbd>/</kbd> to search.{/macroBox}
+{macroBox heading='Note'}Prices include VAT.{/macroBox}

@@ -1,0 +1,32 @@
+<table class="table">
+  <thead><tr><th>Name</th><th>E-mail</th><th>City</th><th></th></tr></thead>
+  <tbody hx-target="closest tr" hx-swap="outerHTML">
+  {rows}
+  {fragment 'row'}
+    {if $editing}
+    <tr class="is-editing">
+      <td><input class="input{if $errName} is-invalid{/if}" name="name" value="{$name}" aria-label="Name">{if $errName}<span class="error">{$errName}</span>{/if}</td>
+      <td><input class="input{if $errEmail} is-invalid{/if}" name="email" value="{$email}" aria-label="E-mail">{if $errEmail}<span class="error">{$errEmail}</span>{/if}</td>
+      <td><input class="input{if $errCity} is-invalid{/if}" name="city" value="{$city}" aria-label="City">{if $errCity}<span class="error">{$errCity}</span>{/if}</td>
+      <td class="actions">
+        <button class="btn-sm" hx-post="?examples/edit&id={$id}&padFragment=row" hx-include="closest tr">Save</button>
+        <button class="btn-sm btn-ghost" hx-get="?examples/edit&id={$id}&padFragment=row">Cancel</button>
+      </td>
+    </tr>
+    {else}
+    <tr>
+      <td><strong>{$name}</strong></td>
+      <td>{$email}</td>
+      <td>{$city}</td>
+      <td class="actions"><button class="btn-sm btn-ghost" hx-get="?examples/edit&id={$id}&mode=edit&padFragment=row">Edit</button></td>
+    </tr>
+    {/if}
+  {/fragment}
+  {/rows}
+  </tbody>
+</table>
+
+<p class="small muted" style="margin-top: 14px">
+  Your edits stay in your session.
+  <button class="btn-sm btn-ghost" hx-post="?examples/edit&reset" hx-select="table" hx-target="previous table" hx-swap="outerHTML">Undo them all</button>
+</p>

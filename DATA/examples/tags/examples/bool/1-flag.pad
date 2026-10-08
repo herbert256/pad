@@ -1,0 +1,5 @@
+{meta title='A flag tested twice', about='The expression is evaluated once; the flag answers in two places, with an @else@ part.'}
+{set $stock = 3}
+{bool 'boolInStock'}$stock gt 0{/bool}
+<p>{boolInStock}In stock.@else@Sold out.{/boolInStock}</p>
+<p>{boolInStock}<button>Add to cart</button>@else@<button disabled>Notify me</button>{/boolInStock}</p>

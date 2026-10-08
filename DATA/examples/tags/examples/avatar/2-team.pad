@@ -1,0 +1,6 @@
+{meta title='A team list', about='An avatar per row - the colour comes from a hash of the name.'}
+<ul style="list-style:none; padding:0; display:grid; gap:10px">
+  {team}
+  <li style="display:flex; align-items:center; gap:10px">{avatar $name, size=36} <span><strong>{$name}</strong> - {$role}</span></li>
+  {/team}
+</ul>

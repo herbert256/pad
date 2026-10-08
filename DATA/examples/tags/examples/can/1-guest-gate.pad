@@ -1,0 +1,6 @@
+{meta title='A gate that takes a guest', about='read-post takes ?array $user, so a guest is asked too - inside {posts}, $posts is the row of the occurrence.'}
+<ul>
+{posts}
+  <li>{can 'read-post', $posts}<a href="#">{$title}</a>{else}{$title} - not published yet{/can}</li>
+{/posts}
+</ul>

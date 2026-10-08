@@ -1,8 +1,7 @@
 <?php
 
-  $title = 'Counter Demo - PAD + React';
+  // The start value comes from the server; everything after it is React state.
 
-  // Initial counter value from server
   $initialCount = 10;
 
 ?>

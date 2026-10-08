@@ -1,0 +1,6 @@
+{highlight 'php', lines, mark='3'}
+  <?php
+    $orders = db ( "ARRAY * FROM orders WHERE status = {0}", [ 'open' ] );
+    $total  = padArrSum ( $orders, 'amount' );
+  ?>
+{/highlight}

@@ -1,0 +1,5 @@
+{meta title='Fixed and conditional names', about='panel is always in; active and invalid only when their condition holds - a repeated name is written once.'}
+{set $isActive = TRUE}
+{set $hasErrors = FALSE}
+<div class="{classes 'panel panel-large', active=$isActive, invalid=$hasErrors, 'panel'}">The panel</div>
+<pre>class="{classes 'panel panel-large', active=$isActive, invalid=$hasErrors, 'panel'}"</pre>

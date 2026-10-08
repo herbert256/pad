@@ -1,0 +1,23 @@
+{ignore}
+<p>Where nothing caches, <code>&#123;nocache&#125;</code> is invisible: its content renders as
+any content does. It matters inside a <a href="?tag/cache"><code>&#123;cache&#125;</code></a>
+section (or a tag's <code>cache=</code> option) that is rendering, and on a page the page cache
+may keep. There the part is stored as its source rather than as its output; a hit hands back
+the stored rendering with each part rendered again for this request.</p>
+
+<p>A part inside a loop gets the fields of its rows back as they were when the section was
+stored, so <code>&#123;topProducts&#125;...&#123;nocache&#125;&#123;stock $id&#125;&#123;/nocache&#125;...</code>
+looks up the live stock of each cached product. In a section the part renders where the
+section stands, with the page's fields.</p>
+
+<p>A page-cache hit runs no PHP - not the page's, nor an <code>_inits.php</code> - so a part
+there sees what a request has without it: request and session values, the configuration, the
+<code>_lib</code> functions and the application's tags. A page-cache entry with parts is never
+answered with a 304 from the entry alone, nor does a hit renew it.</p>
+
+<p>A <a href="?tag/form"><code>&#123;form&#125;</code></a>'s CSRF token or a
+<a href="?tag/nonce"><code>&#123;nonce&#125;</code></a> inside a part no longer keeps a section
+out of the fragment cache: the part renders for each visitor. <code>&#123;nocache&#125;</code>
+takes no parameter, and is always a pair - a single <code>&#123;nocache&#125;</code> is an
+error under the strict check.</p>
+{/ignore}

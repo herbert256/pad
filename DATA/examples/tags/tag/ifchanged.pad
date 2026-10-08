@@ -1,0 +1,21 @@
+{ignore}
+<p><code>{ifchanged $customer}</code> compares its value with the value it had the previous
+time it ran in the same loop. The content renders when the value is different - and always on
+the first row - so in a list sorted on that field it renders once at the start of every
+group: the classic group heading. When the value is the same as before, the
+<code>&#64;else&#64;</code> part renders instead, if the tag has one.</p>
+
+<p>With several values - <code>{ifchanged $year, $month}</code> - the content renders when any
+of them changed. Sort the rows first (the <code>sort</code> option, or in the query): the tag
+only looks one row back, so an unsorted list gets a heading every time the value flips.</p>
+
+<p>The memory belongs to one run of the enclosing loop - the nearest level that is not an
+<code>{if}</code>, a <code>{case}</code> or another <code>{ifchanged}</code> - so the tag may
+stand inside an <code>{if}</code> in the loop, and a loop that runs again (an inner loop on the
+next outer row) starts afresh. Several <code>{ifchanged}</code> tags in one row are kept apart
+by position: the second one of a row is compared with the second one of the row before.</p>
+
+<p>Under the strict syntax check an <code>{ifchanged}</code> without a value, or without its
+closing tag, is an error. The <a href="?tag/case">{case}</a> and <a href="?tag/if">{if}</a> tags
+compare with fixed values; <code>{ifchanged}</code> compares with the row before.</p>
+{/ignore}

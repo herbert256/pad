@@ -1,0 +1,19 @@
+{ignore}
+<p><code>{switch 'odd', 'even'}</code> prints one of its values and moves one step on, so the
+next time it runs it prints the next one, and after the last it starts over. Written inside a
+loop it gives alternating values per row - a class or a background colour for zebra stripes -
+without counting anything yourself.</p>
+
+<p>The position is remembered for the whole request and is keyed on the tag's text as written.
+Two <code>{switch}</code> tags written exactly alike therefore share one rotation, even in
+different loops: the second loop goes on where the first one stopped. Write them differently
+(another value, or other spacing) to give each its own rotation. A nested pass - a
+<code>{code}</code> or <code>{sandbox}</code> evaluation - takes its rotation steps back when it
+returns.</p>
+
+<p>The rotation does not follow the row number, so a <code>{switch}</code> inside an
+<code>{if}</code> only steps on the rows where it runs. When the colour must follow the row
+itself, use the loop's property: <code>{even@items ? 'even' : 'odd'}</code>.</p>
+
+<p>Under the strict syntax check a <code>{switch}</code> with no values is an error.</p>
+{/ignore}

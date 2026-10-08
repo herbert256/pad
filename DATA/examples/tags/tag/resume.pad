@@ -1,0 +1,19 @@
+{ignore}
+<p><code>{resume reverse}</code> picks up the sequence that was stored last - by
+<code>push=</code> or <code>name=</code> on a <a href="?tag/sequence">{sequence}</a> - runs the
+action or play written with it, and writes the result back over that store. It prints
+nothing: read the store afterwards with <a href="?tag/pull">{pull}</a> or by its own name.</p>
+
+<p>Each <code>{resume}</code> works on what the one before left, so a list can be built in
+steps: <code>{resume add=10}</code> then <code>{resume reverse}</code> turns
+<code>1 2 3</code> into <code>13 12 11</code>. Plays work as well as actions -
+<code>{resume keep, prime}</code> filters the store, <code>{resume add=100}</code> transforms
+every value.</p>
+
+<p>It always acts on the store pushed last; it takes no store name. A store named in the tag is
+not read as one, and the prefix form <code>{resume:name}</code> is an error - <em>there is no
+type named 'resume'</em>. A <code>{resume}</code> before anything was pushed is an error
+too: <em>nothing has been pushed</em>. It has nothing to do with
+<a href="?tag/cease">{cease}</a> or loops; to apply an action without changing the store, use
+<a href="?tag/action">{action}</a> or <a href="?tag/pull">{pull}</a>.</p>
+{/ignore}

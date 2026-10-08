@@ -1,0 +1,22 @@
+<div class="shop">
+  <div id="shelf" class="grid shelf">
+  {products}
+  {fragment 'item'}
+    <div class="card item" id="item-{$id}">
+      <div class="item-top"><span class="item-emoji">{$emoji}</span>{if $inCart}<span class="badge is-accent">{$inCart} in cart</span>{/if}</div>
+      <strong>{$name}</strong>
+      <div class="muted small">{$price | currency('EUR')} &middot; {if $stock}{$stock} in stock{else}sold out{/if}</div>
+      <div class="item-buttons">
+        <button class="btn-sm" hx-post="?examples/cart&id={$id}&op=add&padFragment=item" hx-target="#item-{$id}" hx-swap="outerHTML">+ Add</button>
+        {if $inCart}<button class="btn-sm btn-ghost" hx-post="?examples/cart&id={$id}&op=remove&padFragment=item" hx-target="#item-{$id}" hx-swap="outerHTML">−</button>{/if}
+      </div>
+    </div>
+    {if $posted}
+      <span id="cart-count" hx-swap-oob="true">{$cartCount}</span>
+      {cartSummary}
+    {/if}
+  {/fragment}
+  {/products}
+  </div>
+  {cartSummary}
+</div>
