@@ -1,0 +1,22 @@
+<div class="cols-2">
+  <div>
+    <div class="panel-title">{if $dev}The dev server runs: {$dev}{else}The build: www/islands/build/{/if}</div>
+    <p class="muted small">{if $dev}{open}vite{close} asks the dev server - every save shows at once.{else}Start <code>npm run dev</code> in <code>_frontend/</code> and reload: {open}vite{close} then asks the dev server instead.{/if}</p>
+    <div class="panel-title" style="margin-top: 18px">What {open}vite 'src/main.js'{close} wrote into the head</div>
+    {echo $written | highlight('html')}
+  </div>
+  <div>
+    <div class="panel-title">The server's time, ticking in a Solid island</div>
+    <div class="clock-box" data-island="Clock" data-props="{^clock}"><span class="clock">-</span></div>
+  </div>
+</div>
+
+{if $sourceCount}
+<div class="panel-title" style="margin-top: 26px">The manifest - every source and what it became</div>
+<table class="table">
+  <thead><tr><th>Source</th><th>File</th><th>Kind</th><th>CSS</th></tr></thead>
+  <tbody>
+    {sources}<tr><td><code>{$source}</code></td><td><code>{$file}</code></td><td>{$kind}</td><td><code>{$css}</code></td></tr>{/sources}
+  </tbody>
+</table>
+{/if}

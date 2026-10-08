@@ -17,7 +17,8 @@
   // the file hot of the build directory: the dev server's configureServer hook writes it when
   // it starts and removes it when it stops, so a page uses the build again by itself.
   //
-  // padViteTags      the tags of the entries, for the request's application
+  // padViteTags      the tags of the entries, for the request's application - once a page,
+  //                  or with $once FALSE as they would be written, to show them
   // padViteDev       the dev server's address, '' when there is none
   // padViteManifest  the manifest, read once a request
   // padViteChunk     the CSS and the chunks of one entry, every import followed once
@@ -27,11 +28,21 @@
   // public path: $padRoot, the application, the build directory - for a vite.config.js with
   // base: '/<mount>/<app>/build/' or relative paths ('./').
 
-  function padViteTags ( $entries, $react = FALSE ) {
+  function padViteTags ( $entries, $react = FALSE, $once = TRUE ) {
 
     global $padRoot, $padApp, $padViteBuild;
 
-    static $written = [];
+    static $page = [];
+
+    // What a page's PHP asks to show - $once FALSE - is not what the page wrote: the {vite}
+    // of the template still writes it.
+
+    $local = [];
+
+    if ( $once )
+      $written = &$page;
+    else
+      $written = &$local;
 
     $dev  = padViteDev ();
     $html = '';

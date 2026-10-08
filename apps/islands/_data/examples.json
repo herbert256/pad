@@ -1,0 +1,56 @@
+{
+  "groups": [
+    {
+      "key":   "frameworks",
+      "title": "Any framework",
+      "text":  "One runtime mounts the components of every framework on the islands PAD writes - React, Vue, Svelte, Preact and Solid on one page, each fetched only when an island of it is there."
+    },
+    {
+      "key":   "build",
+      "title": "Built with Vite",
+      "text":  "The components are compiled by Vite and linked by {vite}: the build in production, the dev server with hot reload while it runs."
+    }
+  ],
+  "examples": [
+    {
+      "page":   "examples/frameworks",
+      "group":  "frameworks",
+      "icon":   "🧪",
+      "title":  "Five frameworks, one page",
+      "lede":   "The same counter written five times - React, Vue, Svelte, Preact and Solid - each an island with its start value from PAD, and beside it what its framework cost in bytes, read from the build's manifest.",
+      "server": [ "{^field}", "{vite}", "padViteChunk" ],
+      "client": [ "react()", "vue()", "svelte()", "preact()", "solid()" ],
+      "files":  [ "_frontend/src/main.js", "_frontend/src/islands/Counter.react.jsx", "_frontend/src/islands/Counter.vue", "_frontend/src/islands/Counter.svelte", "_frontend/src/islands/Counter.preact.js", "_frontend/src/islands/Counter.solid.jsx" ]
+    },
+    {
+      "page":   "examples/loading",
+      "group":  "frameworks",
+      "icon":   "⏱️",
+      "title":  "Load when it is needed",
+      "lede":   "data-load says when an island's code is fetched: at once, when the browser is idle, or when it scrolls into view. The log says when each one came.",
+      "server": [ "data-load" ],
+      "client": [ "IntersectionObserver", "requestIdleCallback", "import()" ],
+      "files":  [ "_frontend/src/pad-islands.js", "_frontend/src/islands/LoadLog.preact.js" ]
+    },
+    {
+      "page":   "examples/shared",
+      "group":  "frameworks",
+      "icon":   "🔗",
+      "title":  "Three frameworks, one cart",
+      "lede":   "A React shelf, a Vue summary and a Svelte badge share one store; adding posts to PAD, which keeps the cart in the session and answers it to all three.",
+      "server": [ "padSession", "$padExpose" ],
+      "client": [ "store()", "post()" ],
+      "files":  [ "_frontend/src/islands/Shelf.react.jsx", "_frontend/src/islands/CartSummary.vue", "_frontend/src/islands/CartBadge.svelte", "_frontend/src/pad-islands.js" ]
+    },
+    {
+      "page":   "examples/build",
+      "group":  "build",
+      "icon":   "🏗️",
+      "title":  "From source to page",
+      "lede":   "What {vite 'src/main.js'} writes for this request and why: the manifest the build left, the chunks of each island, and the dev server that takes over while it runs.",
+      "server": [ "{vite}", "$padViteBuild", "build/hot" ],
+      "client": [ "type=module", "modulepreload" ],
+      "files":  [ "_frontend/vite.config.js", "_frontend/package.json", "_frontend/src/islands/Clock.solid.jsx" ]
+    }
+  ]
+}

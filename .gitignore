@@ -16,3 +16,9 @@ www/wasm/pad-bundle.json
 !/apps/structure/.env
 !/apps/regression/*/.env
 !/apps/regression/env/_config/.env
+
+# The Vite project of the islands application installs its packages beside it; its build in
+# www/islands/build/ is tracked, so the application runs without node. The dev server's
+# address file goes with the dev server.
+/apps/islands/_frontend/node_modules/
+/www/islands/build/hot

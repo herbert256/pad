@@ -1,5 +1,6 @@
 <p>A component written in JSX, TypeScript, a Vue or Svelte file needs a build. Vite makes it -
-and PAD links the result by the name of the source, so a template never names a hashed file:</p>
+and PAD links the result by the name of the source, so a template never names a hashed file
+(the islands application builds its components this way):</p>
 
 
 <pre><code>&lt;div data-island="Cart" data-props="{^cart}"&gt;&lt;/div&gt;
@@ -43,7 +44,9 @@ function padHot () {
         fs.mkdirSync(path.dirname(file), { recursive: true });
         fs.writeFileSync(file, `http://localhost:${port}`);
       });
-      process.on('exit', () =&gt; fs.rmSync(file, { force: true }));
+      process.once('exit', () =&gt; fs.rmSync(file, { force: true }));
+      for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP'])
+        process.once(signal, () =&gt; process.exit());
     }
   };
 }</code></pre>

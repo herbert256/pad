@@ -1,0 +1,58 @@
+{meta title='Guide - PAD + islands'}
+<header class="example-head">
+  <h1>Islands of any framework</h1>
+  <p class="lede">
+    PAD writes the page and marks the islands; one small runtime mounts a component of any
+    framework on each; Vite builds the components and {open}vite{close} links the build.
+  </p>
+</header>
+
+<h2>1. The island, in the template</h2>
+<p>An element names its component and carries its props - the ^ sigil writes a field as JSON for the
+   attribute - and <code>data-load</code> says when its code is fetched. What stands inside shows
+   until the component takes over.</p>
+{highlight 'pad'}
+<div data-island="VueCounter" data-load="visible" data-props="{^counter}">
+  <p>{$counter.start}</p>
+</div>
+
+{vite 'src/main.js'}
+{/highlight}
+
+<h2>2. The registry, in the build</h2>
+<p><code>_frontend/src/main.js</code> names every island and pairs it with its framework. Both are
+   fetched by <code>import()</code> when an island of the name is due - a page without a Vue island
+   loads no Vue:</p>
+{highlight 'js', file='_frontend/src/main.js'}
+
+<h2>3. An adapter per framework</h2>
+<p>An adapter is a dozen lines: it mounts a component on an element with props and answers how to
+   unmount it. Each is a module of its own, so it travels with its framework:</p>
+{highlight 'js', file='_frontend/src/adapters/svelte.js'}
+
+<h2>4. Talking to PAD, and to each other</h2>
+<p><code>pad-islands.js</code> also exports <code>get(page, params)</code> - the JSON of a page's
+   <code>$padExpose</code> - <code>post(page, body)</code> with the session's CSRF token, and
+   <code>store(name, initial)</code>: state any framework subscribes to. A React island writes it, a
+   Vue and a Svelte island show it.</p>
+
+<h2>5. Build and dev server</h2>
+<div class="cols-2">
+  <div>
+{highlight 'bash'}
+cd apps/islands/_frontend
+npm install
+npm run build     # www/islands/build/ with .vite/manifest.json
+npm run dev       # the dev server; build/hot holds its address
+{/highlight}
+  </div>
+  <div>
+    <p>{open}vite 'src/main.js'{close} reads the manifest and writes the entry's CSS, its chunks as
+       <code>modulepreload</code> and its module script. While <code>npm run dev</code> runs, a hook of
+       <code>vite.config.js</code> writes the dev server's address into <code>build/hot</code>, and
+       {open}vite{close} asks the dev server instead - a save in the editor shows at once.</p>
+  </div>
+</div>
+
+<div class="callout"><p>Each framework compiles its own files: <code>*.react.jsx</code>, <code>*.solid.jsx</code>, <code>*.vue</code>,
+   <code>*.svelte</code>. Preact needs no compiler - its components are written with <code>htm</code>.</p></div>

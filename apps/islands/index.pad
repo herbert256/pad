@@ -1,0 +1,52 @@
+<section class="hero">
+
+  <div>
+    <span class="eyebrow"><b>●</b> Any framework, one runtime</span>
+    <h1>Islands of any kind<br><span class="grad">on one PAD page.</span></h1>
+    <p class="lede">
+      PAD writes the page and marks the places that move. A small runtime mounts a component on
+      each - React here, Vue there, Svelte, Preact or Solid - and fetches a framework only when
+      an island of it is on the page. Vite builds them; {open}vite{close} links the build.
+    </p>
+    <div class="hero-actions">
+      <a class="btn" href="?examples/frameworks">See all five</a>
+      <a class="btn btn-ghost" href="?guide">How it fits together</a>
+    </div>
+  </div>
+
+  <div class="hero-code">
+{highlight 'pad'}
+<div data-island="VueCounter" data-props="{^vue}"></div>
+<div data-island="SvelteCounter" data-load="visible"
+     data-props="{^svelte}"></div>
+
+{vite 'src/main.js'}
+{/highlight}
+{highlight 'js'}
+islands({
+  VueCounter:    vue(() => import('./Counter.vue')),
+  SvelteCounter: svelte(() => import('./Counter.svelte'))
+});
+{/highlight}
+  </div>
+
+</section>
+
+{groups}
+<div class="group-head">
+  <h2>{$title}</h2>
+  <span class="badge">{$count} examples</span>
+</div>
+<p class="group-text">{$text}</p>
+<div class="grid">
+  {examples}
+  <a class="card" href="?{$page}">
+    <span class="card-icon" aria-hidden="true">{$icon}</span>
+    <span class="card-go" aria-hidden="true">→</span>
+    <h3>{$title}</h3>
+    <p>{$lede}</p>
+    <div class="chips">{server}<code class="chip is-server">{$server}</code>{/server}{client}<code class="chip is-client">{$client}</code>{/client}</div>
+  </a>
+  {/examples}
+</div>
+{/groups}
