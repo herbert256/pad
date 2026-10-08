@@ -2372,6 +2372,50 @@ date are an error under the strict check.
 
 ---
 
+### datatable
+Rows as a complete, accessible HTML table (`lib/datatable.php`) - a header from the field names,
+numbers right-aligned and formatted alike down their column, a totals row, header links that
+sort and page links that page, all on the server.
+
+```html
+{datatable data='orders', columns='number, customer, total', totals='total'}
+{datatable data='orders', format="total:currency('EUR'), date:date('j M')", sortable, striped}
+{datatable data='cities', rows=10, sortable, caption='Largest cities'}
+{datatable totals='amount'}
+  month,amount
+  Jan,12400
+{/datatable}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| `data` | The rows - a `{data}` store, a page array or a `_data` file, as for `{chart}`; as a pair the content is the rows (JSON, YAML, XML or CSV, told apart on sight, `type=` names it) |
+| `columns` | The fields shown and their order, default every field of the first row |
+| `labels` | The header of each column, in the order of `columns` - default the field name as a headline (`order_date` is Order Date) |
+| `format` | A pipe per column, `column:pipe` - `total:money, date:date('j M Y')` - run as `{echo $value \| pipe}` |
+| `totals` | Columns summed - over every row, not only the page shown - in a totals row with Total in its first cell |
+| `sortable` | Each header a link that sorts on the server: `?sort=total&dir=desc` on the same page |
+| `rows` | Rows per page, with page links below (`?page=2`) made from the `{pager}`'s items |
+| `query` | A prefix for the three request names - `query='o_'` reads `o_sort`, `o_dir`, `o_page` - for two tables on one page |
+| `striped` | Every other row shaded |
+| `caption` | The table's `<caption>` |
+
+**Behavior:** a column whose filled values are all numbers is right-aligned, shows the most
+decimals any of its values has and is grouped by thousands - unless its name says it identifies
+(`id`, `number`, `no`, `code`, `year`, `zip` ...), then the digits stand as they are. A sort
+accepts only a column the table shows (anything else leaves the order as it came) and is stable;
+a header link sorts ascending, on the sorted column the other way, and goes back to page 1;
+the sorted column carries `aria-sort`. The links keep the request's other values (not the
+engine's `pad*`) through `$padGo`. Everything from the data is escaped. Colours are
+`--pad-datatable-*` custom properties with `light-dark()` defaults, the style written once per
+page. No rows answers nothing and the `@else@` shows; no data, a column no row has, a `totals`
+or `format` naming no column, a total of a column that is not numbers, labels that do not match
+the columns and `rows` below 1 are strict errors.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2900,6 +2944,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `diagram` | Output | A flowchart or sequence diagram from Mermaid-style lines, laid out on the server as inline SVG |
 | `map` | Output | A choropleth map of the world or a region as inline SVG, a colour step per value |
 | `timeline` | Output | Events on a time axis as inline SVG - cards above and below, spans as bars, or a vertical list |
+| `datatable` | Output | Rows as an accessible HTML table - aligned numbers, totals, sorting and paging links |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
