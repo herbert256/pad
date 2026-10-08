@@ -68,8 +68,10 @@ try { commit = execSync('git rev-parse --short HEAD', { cwd: home }).toString().
 const bundle = { app, built: new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC', commit, files, base64 };
 writeFileSync(join(out, 'pad-bundle.js'), 'window.PAD_BUNDLE = ' + JSON.stringify(bundle) + ';\n');
 
-// PHP: the runtime bundled into one classic script, the binary beside it. The loader imports
-// its .wasm as a URL; that import is left empty, the binary is handed in as wasmBinary.
+// PHP: the runtime bundled into one classic script, the binary beside it. The loader names
+// its .wasm as a URL - an import, or new URL(..., import.meta.url) from @php-wasm 3.1.57 on;
+// the import is left empty and import.meta.url is the page's address, as nothing fetches
+// it: the binary is handed in as wasmBinary.
 
 const esbuild  = require('esbuild');
 const loader   = join(dirname(require.resolve('@php-wasm/web-8-4')), 'asyncify', 'php_8_4.js');
@@ -86,6 +88,8 @@ await esbuild.build({
   entryPoints: [entry], outfile: join(out, 'php.js'), bundle: true, format: 'iife',
   platform: 'browser', target: 'es2022', minify: true, legalComments: 'none',
   loader: { '.wasm': 'empty' }, logLevel: 'error',
+  define: { 'import.meta.url': 'location.href' },   // a classic script has no import.meta: the loader's
+                                                    // new URL('./.../php_8_4.wasm', import.meta.url) threw
   external: [ 'worker_threads', 'fs', 'path', 'os', 'crypto', 'child_process', 'url', 'module', 'events' ]   // Node only, never reached here
 });
 
