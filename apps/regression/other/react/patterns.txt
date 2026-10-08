@@ -1,0 +1,147 @@
+<header class="example-head">
+  <h1>Patterns</h1>
+  <p class="lede">
+    Every way the two meet, one page each - the live example on top, the template, the PHP and
+    the component under it. Purple is PAD on the server, blue is React in the browser.
+  </p>
+</header>
+
+
+<div class="group-head">
+  <h2>Server to React</h2>
+  <span class="badge">4 examples</span>
+</div>
+<p class="group-text">The data is in the HTML before the first paint: PHP gathers it, PAD writes it into the page, React picks it up. No second request, no loading spinner.</p>
+<div class="grid">
+  
+  <a class="card" href="?examples/props">
+    <span class="card-icon" aria-hidden="true">🏝️</span>
+    <span class="card-go" aria-hidden="true">→</span>
+    <h3>Islands with props</h3>
+    <p>PHP prepares the data, the ^ sigil writes a field as JSON into a data attribute, and one small runtime mounts a component on every island of the page - each with its own state.</p>
+    <div class="chips"><code class="chip is-server">{^field}</code><code class="chip is-server">a {loop} of islands</code><code class="chip is-client">PadReact.island</code><code class="chip is-client">props</code></div>
+  </a>
+  
+  <a class="card" href="?examples/enhance">
+    <span class="card-icon" aria-hidden="true">🌱</span>
+    <span class="card-go" aria-hidden="true">→</span>
+    <h3>Progressive enhancement</h3>
+    <p>PAD renders a complete table - with JavaScript off it is all there. React then takes the same element over and adds search and sorting, and can show you what the server sent.</p>
+    <div class="chips"><code class="chip is-server">{people}</code><code class="chip is-server">{^people}</code><code class="chip is-client">serverHtml</code><code class="chip is-client">useMemo</code></div>
+  </a>
+  
+  <a class="card" href="?examples/products">
+    <span class="card-icon" aria-hidden="true">📦</span>
+    <span class="card-go" aria-hidden="true">→</span>
+    <h3>Data files with a tag</h3>
+    <p>A custom tag of the application reads _data/products.json and writes it into a data attribute; a product grid filters and sorts it in the browser. Bare React, no runtime.</p>
+    <div class="chips"><code class="chip is-server">_tags/json.php</code><code class="chip is-server">_data/</code><code class="chip is-client">dataset</code><code class="chip is-client">createRoot</code></div>
+  </a>
+  
+  <a class="card" href="?examples/topic">
+    <span class="card-icon" aria-hidden="true">💬</span>
+    <span class="card-go" aria-hidden="true">→</span>
+    <h3>Providers with {reactData}</h3>
+    <p>Four providers in _providers/ query the database, each building on the one before it; {reactData} writes every answer as a mount point and React draws the forum topic.</p>
+    <div class="chips"><code class="chip is-server">{reactData}</code><code class="chip is-server">_providers/</code><code class="chip is-server">db()</code><code class="chip is-client">getAttribute(&#039;data&#039;)</code></div>
+  </a>
+  
+</div>
+
+<div class="group-head">
+  <h2>React back to PAD</h2>
+  <span class="badge">5 examples</span>
+</div>
+<p class="group-text">The component asks the server again while it runs - the same pages answer JSON, a single fragment, or take a post - and PAD stays the one that knows.</p>
+<div class="grid">
+  
+  <a class="card" href="?examples/search">
+    <span class="card-icon" aria-hidden="true">🔎</span>
+    <span class="card-go" aria-hidden="true">→</span>
+    <h3>One page, two answers</h3>
+    <p>The page renders HTML for the browser and answers JSON to fetch(): the same PHP filters, sorts and pages the catalogue, and $padExpose names what may leave the server.</p>
+    <div class="chips"><code class="chip is-server">$padExpose</code><code class="chip is-server">padFormat=json</code><code class="chip is-client">useEffect</code><code class="chip is-client">AbortController</code></div>
+  </a>
+  
+  <a class="card" href="?examples/feedback">
+    <span class="card-icon" aria-hidden="true">✉️</span>
+    <span class="card-go" aria-hidden="true">→</span>
+    <h3>Forms checked by PAD</h3>
+    <p>React posts the form with the session&#039;s CSRF token in a header; padValidate checks the fields and answers a message per field, or the new list of messages.</p>
+    <div class="chips"><code class="chip is-server">padValidate</code><code class="chip is-server">$padCsrf</code><code class="chip is-server">padSession</code><code class="chip is-client">controlled inputs</code><code class="chip is-client">X-CSRF-Token</code></div>
+  </a>
+  
+  <a class="card" href="?examples/cart">
+    <span class="card-icon" aria-hidden="true">🛒</span>
+    <span class="card-go" aria-hidden="true">→</span>
+    <h3>Islands sharing server state</h3>
+    <p>Two islands, one cart kept in the PHP session: the shelf posts, the server answers the cart, and an event tells the other island - a reload shows the same cart.</p>
+    <div class="chips"><code class="chip is-server">padSession</code><code class="chip is-server">$padExpose</code><code class="chip is-client">CustomEvent</code><code class="chip is-client">useEffect</code></div>
+  </a>
+  
+  <a class="card" href="?examples/chart">
+    <span class="card-icon" aria-hidden="true">📈</span>
+    <span class="card-go" aria-hidden="true">→</span>
+    <h3>PAD draws, React steers</h3>
+    <p>React holds the controls; PAD renders the {chart} as SVG and answers just that {fragment}. The first chart is in the HTML before any script ran.</p>
+    <div class="chips"><code class="chip is-server">{chart}</code><code class="chip is-server">{fragment}</code><code class="chip is-server">padFragment</code><code class="chip is-client">dangerouslySetInnerHTML</code></div>
+  </a>
+  
+  <a class="card" href="?examples/live">
+    <span class="card-icon" aria-hidden="true">📡</span>
+    <span class="card-go" aria-hidden="true">→</span>
+    <h3>Live polling</h3>
+    <p>A status board asks its page for fresh JSON every few seconds and stops while the tab is hidden; padCache counts the asks of every visitor.</p>
+    <div class="chips"><code class="chip is-server">$padExpose</code><code class="chip is-server">padCacheGet</code><code class="chip is-client">setInterval</code><code class="chip is-client">visibilitychange</code></div>
+  </a>
+  
+</div>
+
+<div class="group-head">
+  <h2>React basics</h2>
+  <span class="badge">5 examples</span>
+</div>
+<p class="group-text">State, events, forms and composition - plain React, mounted in a PAD page.</p>
+<div class="grid">
+  
+  <a class="card" href="?examples/counter">
+    <span class="card-icon" aria-hidden="true">🔢</span>
+    <span class="card-go" aria-hidden="true">→</span>
+    <h3>Counter with history</h3>
+    <p>The start value comes from PHP in a data attribute; the step size, the undo history and the statistics are React state.</p>
+    <div class="chips"><code class="chip is-server">data-*</code><code class="chip is-client">useState</code></div>
+  </a>
+  
+  <a class="card" href="?examples/components">
+    <span class="card-icon" aria-hidden="true">🧩</span>
+    <span class="card-go" aria-hidden="true">→</span>
+    <h3>Composition</h3>
+    <p>Small components - a card, a button, a todo item - put together into bigger ones with props and children.</p>
+    <div class="chips"><code class="chip is-client">props</code><code class="chip is-client">children</code></div>
+  </a>
+  
+  <a class="card" href="?examples/form">
+    <span class="card-icon" aria-hidden="true">📝</span>
+    <span class="card-go" aria-hidden="true">→</span>
+    <h3>Controlled form</h3>
+    <p>Every field is React state and checked as you type - nothing leaves the browser. Compare it with the form PAD checks.</p>
+    <div class="chips"><code class="chip is-client">useState</code><code class="chip is-client">onSubmit</code></div>
+  </a>
+  
+  <a class="card" href="?examples/toggle">
+    <span class="card-icon" aria-hidden="true">💡</span>
+    <span class="card-go" aria-hidden="true">→</span>
+    <h3>Toggles</h3>
+    <p>A switch component used three times - each copy keeps its own state.</p>
+    <div class="chips"><code class="chip is-client">useState</code></div>
+  </a>
+  
+  <a class="card" href="?examples/click">
+    <span class="card-icon" aria-hidden="true">🖱️</span>
+    <span class="card-go" aria-hidden="true">→</span>
+    <h3>Click handler</h3>
+    <p>An event handler that reads where you clicked and leaves a ripple there.</p>
+    <div class="chips"><code class="chip is-client">onClick</code><code class="chip is-client">useRef</code></div>
+  </a>
+  
+</div>

@@ -1,0 +1,150 @@
+{
+  "groups": [
+    {
+      "key":   "in",
+      "title": "Server to React",
+      "text":  "The data is in the HTML before the first paint: PHP gathers it, PAD writes it into the page, React picks it up. No second request, no loading spinner."
+    },
+    {
+      "key":   "back",
+      "title": "React back to PAD",
+      "text":  "The component asks the server again while it runs - the same pages answer JSON, a single fragment, or take a post - and PAD stays the one that knows."
+    },
+    {
+      "key":   "basics",
+      "title": "React basics",
+      "text":  "State, events, forms and composition - plain React, mounted in a PAD page."
+    }
+  ],
+  "examples": [
+    {
+      "page":   "examples/props",
+      "group":  "in",
+      "icon":   "🏝️",
+      "title":  "Islands with props",
+      "lede":   "PHP prepares the data, the ^ sigil writes a field as JSON into a data attribute, and one small runtime mounts a component on every island of the page - each with its own state.",
+      "server": [ "{^field}", "a {loop} of islands" ],
+      "client": [ "PadReact.island", "props" ],
+      "files":  [ "www:pad-react.js" ]
+    },
+    {
+      "page":   "examples/enhance",
+      "group":  "in",
+      "icon":   "🌱",
+      "title":  "Progressive enhancement",
+      "lede":   "PAD renders a complete table - with JavaScript off it is all there. React then takes the same element over and adds search and sorting, and can show you what the server sent.",
+      "server": [ "{people}", "{^people}" ],
+      "client": [ "serverHtml", "useMemo" ]
+    },
+    {
+      "page":   "examples/products",
+      "group":  "in",
+      "icon":   "📦",
+      "title":  "Data files with a tag",
+      "lede":   "A custom tag of the application reads _data/products.json and writes it into a data attribute; a product grid filters and sorts it in the browser. Bare React, no runtime.",
+      "server": [ "_tags/json.php", "_data/" ],
+      "client": [ "dataset", "createRoot" ],
+      "files":  [ "_tags/json.php" ]
+    },
+    {
+      "page":   "examples/topic",
+      "group":  "in",
+      "icon":   "💬",
+      "title":  "Providers with {reactData}",
+      "lede":   "Four providers in _providers/ query the database, each building on the one before it; {reactData} writes every answer as a mount point and React draws the forum topic.",
+      "server": [ "{reactData}", "_providers/", "db()" ],
+      "client": [ "getAttribute('data')" ],
+      "files":  [ "_providers/topic.php", "_providers/board_from_topic.php", "_providers/user_from_topic.php", "_providers/posts_from_topic.php" ]
+    },
+    {
+      "page":   "examples/search",
+      "group":  "back",
+      "icon":   "🔎",
+      "title":  "One page, two answers",
+      "lede":   "The page renders HTML for the browser and answers JSON to fetch(): the same PHP filters, sorts and pages the catalogue, and $padExpose names what may leave the server.",
+      "server": [ "$padExpose", "padFormat=json" ],
+      "client": [ "useEffect", "AbortController" ]
+    },
+    {
+      "page":   "examples/feedback",
+      "group":  "back",
+      "icon":   "✉️",
+      "title":  "Forms checked by PAD",
+      "lede":   "React posts the form with the session's CSRF token in a header; padValidate checks the fields and answers a message per field, or the new list of messages.",
+      "server": [ "padValidate", "$padCsrf", "padSession" ],
+      "client": [ "controlled inputs", "X-CSRF-Token" ]
+    },
+    {
+      "page":   "examples/cart",
+      "group":  "back",
+      "icon":   "🛒",
+      "title":  "Islands sharing server state",
+      "lede":   "Two islands, one cart kept in the PHP session: the shelf posts, the server answers the cart, and an event tells the other island - a reload shows the same cart.",
+      "server": [ "padSession", "$padExpose" ],
+      "client": [ "CustomEvent", "useEffect" ]
+    },
+    {
+      "page":   "examples/chart",
+      "group":  "back",
+      "icon":   "📈",
+      "title":  "PAD draws, React steers",
+      "lede":   "React holds the controls; PAD renders the {chart} as SVG and answers just that {fragment}. The first chart is in the HTML before any script ran.",
+      "server": [ "{chart}", "{fragment}", "padFragment" ],
+      "client": [ "dangerouslySetInnerHTML" ]
+    },
+    {
+      "page":   "examples/live",
+      "group":  "back",
+      "icon":   "📡",
+      "title":  "Live polling",
+      "lede":   "A status board asks its page for fresh JSON every few seconds and stops while the tab is hidden; padCache counts the asks of every visitor.",
+      "server": [ "$padExpose", "padCacheGet" ],
+      "client": [ "setInterval", "visibilitychange" ]
+    },
+    {
+      "page":   "examples/counter",
+      "group":  "basics",
+      "icon":   "🔢",
+      "title":  "Counter with history",
+      "lede":   "The start value comes from PHP in a data attribute; the step size, the undo history and the statistics are React state.",
+      "server": [ "data-*" ],
+      "client": [ "useState" ]
+    },
+    {
+      "page":   "examples/components",
+      "group":  "basics",
+      "icon":   "🧩",
+      "title":  "Composition",
+      "lede":   "Small components - a card, a button, a todo item - put together into bigger ones with props and children.",
+      "server": [ ],
+      "client": [ "props", "children" ]
+    },
+    {
+      "page":   "examples/form",
+      "group":  "basics",
+      "icon":   "📝",
+      "title":  "Controlled form",
+      "lede":   "Every field is React state and checked as you type - nothing leaves the browser. Compare it with the form PAD checks.",
+      "server": [ ],
+      "client": [ "useState", "onSubmit" ]
+    },
+    {
+      "page":   "examples/toggle",
+      "group":  "basics",
+      "icon":   "💡",
+      "title":  "Toggles",
+      "lede":   "A switch component used three times - each copy keeps its own state.",
+      "server": [ ],
+      "client": [ "useState" ]
+    },
+    {
+      "page":   "examples/click",
+      "group":  "basics",
+      "icon":   "🖱️",
+      "title":  "Click handler",
+      "lede":   "An event handler that reads where you clicked and leaves a ripple there.",
+      "server": [ ],
+      "client": [ "onClick", "useRef" ]
+    }
+  ]
+}

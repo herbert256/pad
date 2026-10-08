@@ -143,7 +143,7 @@ the result into 1 or 0. The engine's `$padData` is not a name a provider or tag 
 {reactData id='posts', provider='posts', $id=$id}
 
 <div id="react-app"></div>
-<script type="text/babel" src="/react/topic/display.js"></script>
+<script type="text/babel" src="/react/examples/topic.js"></script>
 ```
 
 ---
@@ -164,7 +164,7 @@ const topic = JSON.parse(topicElem.getAttribute('data'));  // WORKS!
 
 ### Complete React Component Example
 
-**www/react/topic/display.js:**
+**www/react/examples/topic.js:**
 ```javascript
 function TopicDisplay() {
   // Get data from all reactData divs
@@ -229,6 +229,75 @@ $padExpose = [ 'orders' ];
 fetch('?orders&padFormat=json').then(r => r.json()).then(data => setOrders(data.orders));
 // or: fetch('?orders', { headers: { Accept: 'application/json' } })
 ```
+
+The page's first answer can go into the props with `{^orders}`, so the component shows data
+at once and asks again only when the visitor changes something - the same PHP serves both.
+
+---
+
+## Pattern 3: Islands and a small runtime
+
+The react application (`apps/react/`, `www/react/pad-react.js`) mounts its components on
+*islands*: an element naming the component, its props as JSON in `data-props`, and HTML of
+PAD's own inside that shows until React takes the element over.
+
+```html
+<!-- props.pad - one island per row of a PAD loop -->
+{members}
+  <div data-island="MemberCard" data-props="{^card}">
+    <strong>{$name}</strong>
+  </div>
+{/members}
+```
+
+```javascript
+// www/react/examples/props.js
+function MemberCard({ name, role, skills }) { ... }
+
+PadReact.island('MemberCard', MemberCard);   // every [data-island=MemberCard], its own root
+```
+
+Each island is its own React root with its own state. The runtime passes what PAD rendered
+inside as `props.serverHtml` - a component can keep it, as the chart example keeps the SVG.
+
+---
+
+## Talking back to PAD
+
+**Posts with the CSRF token.** With `$padCsrf` on, a post without the session's token is
+answered 403 before the page runs. Write the token where a script can read it and send it in
+the `X-CSRF-Token` header; the page validates as for any form and answers JSON.
+
+```html
+<meta name="csrf-token" content="{csrf token}">
+```
+
+```php
+// feedback.php
+if ( padRequestIs ( 'POST' ) )
+  $errors = padValidate ( [ 'email' => 'required|email', 'message' => 'required|min:10' ] );
+
+$padExpose = [ 'errors', 'wall' ];
+```
+
+```javascript
+fetch('?feedback&padFormat=json', {
+  method: 'POST',
+  headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content },
+  body: new URLSearchParams(form)
+});
+```
+
+**One rendered part.** `{fragment 'chart'}...{/fragment}` in a template is answered alone to
+`?page&padFragment=chart` - a component can let PAD render what it does well (a `{chart}`, a
+`{markdown}` text, a table) and put the HTML in place.
+
+**State on the server.** Keep what several islands share in the session (`padSession`,
+`padSessionPut`) and let every change answer the whole state; one island tells the others
+with an event on `window`. A reload starts every island from the session again.
+
+**Polling.** A component can ask a page's JSON on an interval - stop it while
+`document.hidden` is true, so a forgotten tab does not keep the server busy.
 
 ---
 

@@ -1,0 +1,14 @@
+<div data-island="TeamTable" data-props="{^people}">
+  <table class="table">
+    <thead>
+      <tr><th>Name</th><th>Role</th><th>Team</th><th>City</th><th class="num">Commits</th></tr>
+    </thead>
+    <tbody>
+      {people}
+      <tr><td>{$name}</td><td>{$role}</td><td>{$team}</td><td>{$city}</td><td class="num">{$commits}</td></tr>
+      {/people}
+    </tbody>
+  </table>
+</div>
+
+<script type="text/babel" src="{$padRoot}react/examples/enhance.js"></script>

@@ -1,9 +1,16 @@
 <?php
 
-  $title = 'Home - PAD + React';
+  // The home page: the examples in their groups for the cards, and what the server says to
+  // the island at the top - asked again by its button as JSON, the same page with
+  // padFormat=json, which answers only what $padExpose names.
 
-  // Server-side data that can be used by React
-  $serverMessage = 'Hello from PAD Server!';
-  $serverTime = date('Y-m-d H:i:s');
+  $groups = reactGroups ();
+
+  $hello = [ 'message'  => 'Hello from PAD',
+             'php'      => PHP_VERSION,
+             'time'     => date ( 'H:i:s' ),
+             'patterns' => count ( reactData ( 'examples' ) ['examples'] ) ];
+
+  $padExpose = [ 'hello' ];
 
 ?>

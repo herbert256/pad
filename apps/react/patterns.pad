@@ -1,0 +1,26 @@
+<header class="example-head">
+  <h1>Patterns</h1>
+  <p class="lede">
+    Every way the two meet, one page each - the live example on top, the template, the PHP and
+    the component under it. Purple is PAD on the server, blue is React in the browser.
+  </p>
+</header>
+
+{groups}
+<div class="group-head">
+  <h2>{$title}</h2>
+  <span class="badge">{$count} examples</span>
+</div>
+<p class="group-text">{$text}</p>
+<div class="grid">
+  {examples}
+  <a class="card" href="?{$page}">
+    <span class="card-icon" aria-hidden="true">{$icon}</span>
+    <span class="card-go" aria-hidden="true">→</span>
+    <h3>{$title}</h3>
+    <p>{$lede}</p>
+    <div class="chips">{server}<code class="chip is-server">{$server}</code>{/server}{client}<code class="chip is-client">{$client}</code>{/client}</div>
+  </a>
+  {/examples}
+</div>
+{/groups}

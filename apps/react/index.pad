@@ -1,67 +1,63 @@
-{# The page carries the server time, into the text and into a data attribute, so it differs on
-   every request. The crawl reads the word random here and compares it with the digits masked
-   instead, which still checks the markup React is handed. #}
-<h1>Welcome to PAD + React</h1>
+{# The island carries the server time, so the page differs on every request: the stored
+   answer is a pattern. #}
+<section class="hero">
 
-<p>
-  This application demonstrates how to combine <strong>PAD</strong> (server-side template engine)
-  with <strong>React</strong> (client-side JavaScript framework).
-</p>
+  <div>
+    <span class="eyebrow"><b>●</b> PHP renders &middot; React reacts</span>
+    <h1>Server pages,<br><span class="grad">living islands.</span></h1>
+    <p class="lede">
+      PAD builds the page on the server - the data, the HTML, the routing by file name. React
+      takes over the parts that move: an island here, a widget there, each handed its data by
+      PAD and talking back to PAD while it runs.
+    </p>
+    <div class="hero-actions">
+      <a class="btn" href="?patterns">See the patterns</a>
+      <a class="btn btn-ghost" href="?guide">Build your own</a>
+    </div>
+  </div>
 
-<div class="info-box">
-  <strong>How it works:</strong>
-  <ul style="margin-top: 10px; margin-left: 20px;">
-    <li>PAD handles routing (?page URLs), server-side data, and initial HTML</li>
-    <li>React is loaded globally in _inits.pad and available on every page</li>
-    <li>You can embed React components anywhere in your PAD templates</li>
-    <li>Server data from PHP can be passed to React components via data attributes or window object</li>
-  </ul>
+  <div data-island="HelloServer" data-props="{^hello}">
+    <div class="island-fallback">PAD says: <strong>{$hello.message}</strong> at {$hello.time} - React takes this box over in a moment.</div>
+  </div>
+
+</section>
+
+<div class="flow">
+  <div class="flow-step">
+    <h3>PHP gathers</h3>
+    <p>The page's <code>.php</code> reads the database, a <code>_data/</code> file, the session.</p>
+  </div>
+  <div class="flow-step">
+    <h3>PAD writes</h3>
+    <p>The template places the islands and hands each its props: <code>data-props="{open}^field{close}"</code>.</p>
+  </div>
+  <div class="flow-step is-client">
+    <h3>React mounts</h3>
+    <p><code>PadReact.island()</code> finds the islands and renders a component on each.</p>
+  </div>
+  <div class="flow-step is-client">
+    <h3>React asks back</h3>
+    <p>The same pages answer JSON, one fragment, or a post - <code>padFormat=json</code>, <code>padFragment</code>.</p>
+  </div>
 </div>
 
-<h2>Server-Side Data from PAD</h2>
-<p>Message: <code>{$serverMessage}</code></p>
-<p>Server Time: <code>{$serverTime}</code></p>
-
-<h2>React Component Example</h2>
-<p>Below is a simple React component rendered on the client:</p>
-
-<!-- React component will be rendered here -->
-<div id="welcome-component"></div>
-
-<script type="text/babel" src="{$padRoot}react/index/welcome.js"></script>
-
-<h2>React Component with Server Data</h2>
-<p>This component receives data from PAD's server-side PHP:</p>
-
-<!-- Pass server data to React via JavaScript variable -->
-<div id="users-component"
-     data-server-message="{$serverMessage}"
-     data-server-time="{$serverTime}"
-     data-users-json="{json 'users' | ignore}"></div>
-
-<script>
-  // Parse from data attribute
-  const elem = document.getElementById('users-component');
-  window.serverData = {
-    serverMessage: elem.dataset.serverMessage,
-    serverTime: elem.dataset.serverTime,
-    users: JSON.parse(elem.dataset.usersJson)
-  };
-</script>
-
-<script type="text/babel" src="{$padRoot}react/index/users.js"></script>
-
-<h2>Next Steps</h2>
-<ul style="margin-left: 20px; line-height: 1.8;">
-  <li>Visit the <a href="?examples">Examples</a> page to see more React patterns</li>
-  <li>Visit the <a href="?examples/counter">Counter Demo</a> to see a complete example</li>
-  <li>Create new pages by adding <code>.php</code> and <code>.pad</code> files</li>
-  <li>React is automatically loaded on every page via <code>_inits.pad</code></li>
-  <li>Learn more about React at <a href="https://react.dev" target="_blank">react.dev</a></li>
-</ul>
-
-<div class="info-box" style="margin-top: 30px;">
-  <strong>Development Mode:</strong> This application uses React development builds and Babel standalone
-  for in-browser JSX transformation. For production, you should use a build tool like Vite or Create React App
-  to compile JSX and use production builds of React.
+{groups}
+<div class="group-head">
+  <h2>{$title}</h2>
+  <span class="badge">{$count} examples</span>
 </div>
+<p class="group-text">{$text}</p>
+<div class="grid">
+  {examples}
+  <a class="card rise" href="?{$page}">
+    <span class="card-icon" aria-hidden="true">{$icon}</span>
+    <span class="card-go" aria-hidden="true">→</span>
+    <h3>{$title}</h3>
+    <p>{$lede}</p>
+    <div class="chips">{server}<code class="chip is-server">{$server}</code>{/server}{client}<code class="chip is-client">{$client}</code>{/client}</div>
+  </a>
+  {/examples}
+</div>
+{/groups}
+
+<script type="text/babel" src="{$padRoot}react/index.js"></script>

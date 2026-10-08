@@ -1641,7 +1641,7 @@ strict syntax check - `pad_check` with only an app checks every page), `pad_trac
 | `nono` | Plain PHP | PHP application without PAD templating |
 | `pad` | Standard | PAD framework introduction and reference |
 | `playground` | Standard | Type a template and its JSON data and see the result - local requests only, no PHP functions, shareable through the URL hash |
-| `react` | Standard | PAD + React integration examples |
+| `react` | Standard | PAD + React: components mounted on islands of PAD pages, JSON answers to `fetch()`, forms checked by PAD with the CSRF header, `{fragment}`s, a cart in the session, polling - fourteen examples, each with its sources |
 | `reference` | Standard | Cross-reference and directory utilities |
 | `regression/main` | Standard | Automated regression testing for PAD - the runner for the eight suites and the fresh build |
 | `regression/pages` | Test | The pages suite: every test is a real page, fetched over HTTP and compared with the answer beside it |
@@ -1726,6 +1726,9 @@ and is swapped in. The first region brings a small inline script.
 See [REACT.md](docs/REACT.md) for complete React integration documentation including:
 - Pattern 1: Static data with {json} tag
 - Pattern 2: Dynamic data with {reactData} tag and providers
+- Pattern 3: Islands - `<div data-island="Name" data-props="{^field}">` mounted by the react
+  app's runtime (`www/react/pad-react.js`); talking back with `$padExpose` JSON, posts with the
+  `X-CSRF-Token` header, `{fragment}`s, session state and polling
 - Critical: Using `getAttribute('data')` NOT `dataset.data`
 - File organization and common patterns
 

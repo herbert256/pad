@@ -1,0 +1,13 @@
+<div data-island="TeamStats" data-props="{^stats}">
+  <p class="island-fallback">{$stats.people} people, {$stats.commits} commits</p>
+</div>
+
+<div class="grid" style="margin-top: 22px">
+  {members}
+  <div data-island="MemberCard" data-props="{^card}">
+    <div class="card"><strong>{$name}</strong><br><span class="muted">{$role}</span></div>
+  </div>
+  {/members}
+</div>
+
+<script type="text/babel" src="{$padRoot}react/examples/props.js"></script>

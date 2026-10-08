@@ -19,9 +19,14 @@
   // title was _common's page name.
   $padCommon = FALSE;
 
+  // CSRF protection: a post without the session's token is answered 403 before the page
+  // runs. The wrapper writes the token into <meta name="csrf-token">, and PadReact.post
+  // (www/react/pad-react.js) sends it back in an X-CSRF-Token header.
+  $padCsrf = TRUE;
+
   $padSqlHost     = padEnv ( 'padSqlHost' );
   $padSqlDatabase = padEnv ( 'padSqlDatabase' );
   $padSqlUser     = padEnv ( 'padSqlUser' );
   $padSqlPassword = padEnv ( 'padSqlPassword' );
-  
+
 ?>
