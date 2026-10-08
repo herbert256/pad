@@ -1,0 +1,7 @@
+{meta title='One row', about='The content renders once, with the columns of the first row as fields; @else@ when there is none.'}
+{record "name, email, city from customers where id=103"}
+  <h3>{$name}</h3>
+  <p>{$email}, {$city}</p>
+@else@
+  <p>No such customer.</p>
+{/record}

@@ -1,0 +1,13 @@
+{meta title='A sequence diagram', about='Participants, numbered messages, dashed replies, an alt frame and a note.'}
+{diagram type='sequence', title='Paying an order'}
+  participant S as Shop
+  participant B as Bank
+  autonumber
+  S ->> B: Charge 42.00
+  alt Enough funds
+    B -->> S: Approved
+  else Declined
+    B -->> S: Refused
+  end
+  Note over S,B: The card number never reaches the shop
+{/diagram}

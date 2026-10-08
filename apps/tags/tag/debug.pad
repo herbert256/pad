@@ -1,0 +1,24 @@
+{ignore}
+<p><code>{debug $order}</code> writes the value where the tag stands, as a
+<code>&lt;details&gt;</code> box with its type and size in the summary - <code>array(3)</code>,
+<code>string(12)</code>, <code>int</code> - and nested arrays as a tree you can fold open.
+Unlike <a href="?tag/dump">{dump}</a> the request goes on: the rest of the page renders as
+usual, so several <code>{debug}</code> tags can follow a value through a loop.</p>
+
+<p>The items are read raw, the way <a href="?tag/attrs">{attrs}</a> reads them. A plain
+<code>$name</code> is looked up as a field or a page array, and when it does not exist the box
+says <em>missing</em> instead of ending the request under the strict syntax check. Any other
+item - <code>$price * 2</code>, <code>count@items</code> - is evaluated as an expression, and
+<code>total=$price * 2</code> puts the label <code>total</code> on the box. Values whose name
+looks like a credential (passwords, tokens, keys) show redacted, as in the debug toolbar.</p>
+
+<p><code>{debug}</code> without items shows two boxes: <em>fields here</em> - the rows of the
+enclosing levels, innermost first - and <em>application variables</em>, every global that is
+not the engine's own.</p>
+
+<p>Only a local request gets anything: the command line, or a loopback request with nothing
+forwarded. Every other visitor gets an empty string, and <code>$padDiagnostics = FALSE</code>
+switches it off for every web request. A page or a <a href="?tag/cache">{cache}</a> section
+holding a debug box is never stored in the page or fragment cache, so no later visitor is
+served what a local request was shown.</p>
+{/ignore}

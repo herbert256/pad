@@ -1,0 +1,21 @@
+{ignore}
+<p><code>{barcode}</code> encodes its first parameter as a one-dimensional barcode and writes
+it as inline SVG (<code>lib/barcode.php</code>) - the bars of a product, a ticket or a parcel
+label, drawn on the server, no font or image needed.</p>
+
+<p>Without <code>type</code> the tag decides by the text: twelve or thirteen digits are an
+EAN-13, anything else Code 128. An EAN-13, EAN-8 or UPC-A number may be written without its
+check digit, which is then computed and added; a number written with it has the digit
+checked. These codes draw their guard bars longer and set the digits under the bars in their
+groups. Code 128 takes printable ASCII, and packs a run of four digits or more two to a
+symbol, so long numbers stay short.</p>
+
+<p><code>scale</code> is the width of the thinnest bar; keep it at 2 or more for a printed
+label a scanner has to read. <code>plain</code> leaves the human-readable digits out. The
+colours are fixed - black on white unless <code>color</code> and <code>background</code> say
+otherwise - since a scanner needs the contrast.</p>
+
+<p>A wrong check digit, a wrong length for the type, a character Code 128 cannot hold or an
+unknown type is an error under the strict check, and the tag writes nothing. For a code a
+phone camera reads, see <a href="?tag/qr">{qr}</a>.</p>
+{/ignore}

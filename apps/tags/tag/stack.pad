@@ -1,0 +1,14 @@
+{ignore}
+<p><code>{stack 'name'}</code> prints the text that <a href="?tag/push"><code>{push}</code></a>
+tags added to the stack of that name, in the order they were pushed. The tag itself only
+prints a marker; the marker is filled in once the whole page has rendered. So a
+<code>{stack}</code> in the wrapper's <code>&lt;head&gt;</code> gets the pushes of every
+component further down, and a stack below a push and a stack above it get the same text.</p>
+
+<p>A stack nothing was pushed to prints nothing. From PHP, <code>padStackPush ( 'scripts',
+$html )</code> adds to a stack like a <code>{push}</code> does. A <code>{stack}</code>
+without a name is an error under the strict check.</p>
+
+<p><a href="?tag/toc"><code>{toc}</code></a> works with the same kind of marker, filled in
+after the page has rendered.</p>
+{/ignore}

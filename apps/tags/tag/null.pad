@@ -1,0 +1,16 @@
+{ignore}
+<p><code>{null}</code> answers NULL, the level's third state next to the hit of
+<a href="?tag/true">{true}</a> and the else of <a href="?tag/false">{false}</a>. In the null
+state nothing of the pair renders: not the content and not its <code>@else@</code> part
+either. Alone it prints nothing.</p>
+
+<p>What a NULL does fire is the <code>null='name'</code> option every tag takes: the stored
+<a href="?tag/content">{content}</a> of that name renders in the level's place. An
+<code>else=</code> option does not fire on NULL - it is kept for FALSE, an empty list and an
+empty text. A tag of your own (or a PHP call) that answers NULL for "there is no such thing"
+therefore has its own way out, separate from "there is something, and it is empty".</p>
+
+<p>The engine reads INF and NAN as NULL too. <code>{null}</code> is mainly there to show and
+test that difference, and to switch a block off so thoroughly that even its else part
+stays away.</p>
+{/ignore}

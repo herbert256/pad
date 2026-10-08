@@ -1,0 +1,15 @@
+{ignore}
+<p><code>{check "..."}</code> asks the database whether a row exists and answers TRUE or
+FALSE: on a hit the content renders, otherwise the <code>&#64;else&#64;</code> branch does (or
+nothing). It is the template form of <code>db ( "CHECK ..." )</code>, and CHECK has a form of
+its own: a bare table followed by a WHERE clause - <code>{check "orders where status='open'"}</code>,
+never <code>{check "* from orders ..."}</code>.</p>
+
+<p>Nothing of the row is read, so no field of it is available in the content - use
+<a href="?tag/record">{record}</a> when the row itself is wanted. For a test on a value that
+is already in a variable, <a href="?tag/if">{if}</a> is the tag.</p>
+
+<p>As with the other database tags, a request value belongs in a placeholder in PHP:
+<code>$taken = db ( "CHECK users WHERE email='{0}'", [ $email ] );</code> and then
+<code>{if $taken}</code>.</p>
+{/ignore}

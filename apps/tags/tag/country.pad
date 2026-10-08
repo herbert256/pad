@@ -1,0 +1,17 @@
+{ignore}
+<p><code>{country}</code> turns a country code into its flag (<code>lib/country.php</code>).
+The code may be the two-letter alpha-2 (<code>NL</code>), the three-letter alpha-3
+(<code>NLD</code>, as passports and sports use it) or the English name, in any case; the
+table holds the 249 entries of ISO 3166-1 with the names as CLDR gives them.</p>
+
+<p>The flag is the code written as two regional indicator symbols - text, not an image - which
+a system with flag emoji draws as the flag and one without (Windows) as the two letters.
+Alone it is <code>&lt;span class="pad-country" role="img" aria-label="Netherlands"&gt;</code>,
+with the name as its tooltip too. With <code>name</code> the English name is written beside
+it and the flag becomes decoration, so a screen reader says the name once.</p>
+
+<p>A code that is no country is an error under the strict check, naming the nearest country
+when the text is close to a name; without the check the text is written as it was given.
+<code>padCountry ( $code )</code> answers <code>[ alpha-2, alpha-3, name ]</code> to PHP. To
+colour countries by a value, see <a href="?tag/map">{map}</a>.</p>
+{/ignore}

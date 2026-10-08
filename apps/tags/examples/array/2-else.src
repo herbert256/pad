@@ -1,0 +1,8 @@
+{meta title='Options and an empty result', about='Handling options work on the rows; @else@ shows when there are none.'}
+{array "number, total from orders where status='open'", name='open', sort='total DESC', first=5}
+  {first@open}<table>{/first@open}
+  <tr><td>{$number}</td><td>{$total | currency('EUR')}</td></tr>
+  {last@open}</table>{/last@open}
+@else@
+  <p>No open orders.</p>
+{/array}

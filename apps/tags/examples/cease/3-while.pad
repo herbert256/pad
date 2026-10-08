@@ -1,0 +1,8 @@
+{meta title='Ceasing a while', about='In a {while} the current pass finishes and no further pass follows, whatever the condition says.'}
+{set $round = 0}
+<ul>
+{while $round lt 10}
+  {increment $round}
+  <li>round {$round}{if $round eq 3}{cease} (the last){/if}</li>
+{/while}
+</ul>

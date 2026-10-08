@@ -1,0 +1,6 @@
+{meta title='Look at the state mid-page', about='The request stops at the dump; the rows above it were processed, the paragraph below never is.'}
+{orders}
+  <p>{$number}: {$total}</p>
+  {if $total gt 1000}{dump}{/if}
+{/orders}
+<p>This paragraph is never rendered when an order above 1000 is there.</p>

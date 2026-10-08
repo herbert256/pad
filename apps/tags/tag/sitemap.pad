@@ -1,0 +1,24 @@
+{ignore}
+<p><code>{sitemap}...{/sitemap}</code> walks the application's directories and makes a row of
+every page - in PAD every page is a file, so no list of routes is needed to know them. Each
+row has <code>page</code> (<code>docs/intro</code>), <code>url</code> (the absolute address,
+<code>?docs/intro</code>, or the clean form under <code>$padCleanUrls</code>) and
+<code>lastmod</code> (<code>Y-m-d</code>, the newest of the page's files). The rows come per
+directory: its index first, then its other pages, then its subdirectories; a directory's index
+has the directory as its url.</p>
+
+<p>Left out are the entries that are no pages to visit: <code>_</code> and dot entries, a
+directory holding a <code>_guard.php</code>, a bracketed route (<code>products/[id]</code>),
+a page with no template whose PHP only redirects, restarts or writes, a page whose template
+says <code>{meta sitemap=false}</code>, and every page or directory listed in
+<code>$padSitemapSkip</code>.</p>
+
+<p>A first parameter limits the list to one directory - <code>{sitemap 'docs'}</code> - for a
+menu of a section. The rows are ordinary data, so the handling options apply:
+<code>first=</code>, <code>where=</code>, <code>sort='lastmod DESC'</code> for "recently
+changed".</p>
+
+<p>With <code>$padSitemap = TRUE</code> in the configuration the same list answers
+<code>?sitemap.xml</code> as the sitemap protocol's XML, and <code>?robots.txt</code> points to
+it, as long as the application has no page of that name.</p>
+{/ignore}

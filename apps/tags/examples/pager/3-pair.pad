@@ -1,0 +1,15 @@
+{meta title='Markup of your own', about='As a pair the pager hands the links over as rows: kind, page, label and href.'}
+<p>{letters page=$letterPage ?? 2, rows=4}{$letters} {/letters}</p>
+<p>
+{pager 'letters'}
+  {if $href eq ''}
+    <span style="color:#999">{$label}</span>
+  {elseif $kind eq 'current'}
+    <strong>[{$label}]</strong>
+  {else}
+    <a href="{$href}">{$label}</a>
+  {/if}
+@else@
+  Everything fits on one page.
+{/pager}
+</p>

@@ -1,0 +1,23 @@
+{ignore}
+<p>Everything between <code>&#123;ignore&#125;</code> and <code>&#123;/ignore&#125;</code> is written out as it
+stands: the characters PAD reads as syntax - <code>{ } | = , @</code> - are swapped for
+stand-ins before the engine looks at the content, and turned back into the real characters
+when the page is written. Nothing inside runs: no tag, no field, no comment.</p>
+
+<p>It is what inline code with braces needs. A <code>&lt;script&gt;</code> with an object
+literal, a <code>&lt;style&gt;</code> with its selector blocks, a JSON sample in a
+<code>&lt;pre&gt;</code> - without <code>&#123;ignore&#125;</code> each <code>{ ... }</code> would be
+read as a tag, and the strict check would report it. External files are better still; the
+pair is for the few lines that belong in the page.</p>
+
+<p>The same protection comes in two more forms. The <code>ignore</code> option on any tag wraps
+that tag's content in <code>&#123;ignore&#125;</code>: <code>{data 'config' ignore}</code>,
+<code>{markdown ignore}</code>. The <code>ignore</code> pipe escapes a value:
+<code>{echo $json | ignore}</code>. For a single brace in text,
+<a href="?tag/open"><code>{open}</code></a> and <a href="?tag/close"><code>{close}</code></a>
+are enough. <a href="?tag/highlight"><code>{highlight}</code></a> takes its content as it
+stands too, so a coloured code sample needs no <code>&#123;ignore&#125;</code>.</p>
+
+<p>An <code>&#123;ignore&#125;</code> without its <code>&#123;/ignore&#125;</code> protects nothing; the strict
+check names it rather than blaming some tag inside.</p>
+{/ignore}

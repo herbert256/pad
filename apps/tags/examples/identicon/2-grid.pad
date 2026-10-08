@@ -1,0 +1,4 @@
+{meta title='A wall of identicons', about='Ten user ids, ten patterns - title= names each for a screen reader.'}
+<div style="display:flex; flex-wrap:wrap; gap:10px">
+  {sequence '1..10', name='id'}{identicon 'user-' . $id, size=48, title='User ' . $id}{/sequence}
+</div>

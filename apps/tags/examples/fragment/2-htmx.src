@@ -1,0 +1,5 @@
+{meta title='Swapped by htmx', about='The search field asks this page for the fragment named like its target; htmx swaps the answer in.'}
+<input type="search" name="q" hx-get="?orders" hx-trigger="keyup changed delay:300ms" hx-target="#order-list">
+{fragment 'order-list'}
+  <ul id="order-list">{orders}<li>{$number}: {$customer}</li>{/orders}</ul>
+{/fragment}

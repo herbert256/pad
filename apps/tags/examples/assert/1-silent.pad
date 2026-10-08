@@ -1,0 +1,6 @@
+{meta title='Silent in a page', about='With $padAssert off, as here, the asserts render nothing - not even the one on a field that does not exist.'}
+{set $total = 42}
+<p>Before the asserts.</p>
+{assert $total eq 42, 'the cart total'}
+{assert $missing gt 0, 'never evaluated'}
+<p>After the asserts - nothing between the two paragraphs.</p>

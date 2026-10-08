@@ -1,0 +1,17 @@
+{ignore}
+<p><code>{pad}...{/pad}</code> is the plainest tag there is: it returns TRUE and does nothing
+else, so its content renders once. It exists as a carrier for what every tag can do -
+<code>data=</code>, <code>content=</code>, <code>name=</code>, level variables, pipes, the
+handling options and properties - on a tag that adds no meaning of its own.</p>
+
+<p>With <code>data='store'</code> the content repeats once per row of that data, and
+<code>name=</code> gives the level a name for its properties: <code>{current@rows}</code>.
+Variables assigned on the tag - <code>{pad $who = 'world'}</code> - exist inside it and are
+gone after the closing tag. A pipe on the closing tag, <code>{/pad | upper}</code>, works on
+the whole rendered content.</p>
+
+<p><code>pad</code> is also what the <code>pad:</code> type prefix names: <code>{pad:if}</code>
+is the built-in <a href="?tag/if">{if}</a> even where the application has a tag of that name.
+A <code>{pad}</code> is the natural wrapper when a block of template needs options but no
+data tag fits.</p>
+{/ignore}

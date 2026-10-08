@@ -1,0 +1,15 @@
+{meta title='What the trace writes', about='root.txt for a two-row loop: the level path, the event number, what it started from, the event and the result.'}
+{trace}{sequence '1..2'}{$sequence}{/sequence}{/trace}
+
+{# DATA/trace/<page>/<id>-0/root.txt - beside it trace/local.txt and trace/sequence/local.txt
+1        1             trace     start
+1/1      2             occur     start
+2        3             level     start     {sequence '1..2'}
+2/1      4             occur     start
+2/1      5      4      occur     end       1
+2/2      6             occur     start
+2/2      7      6      occur     end       2
+2        8      3      level     end       12
+1/1      9      2      occur     end       12
+1        10     1      trace     end       12
+#}

@@ -1,0 +1,21 @@
+{ignore}
+<p><code>{ajax 'name'}</code> does not render the page itself. It writes an empty
+<code>&lt;div&gt;</code> and a small script; once the page is in the browser, the script
+requests the named page with <code>&amp;padInclude</code> - bare, without its wrappers - and
+puts the answer in the div. The page around it is sent at once, and a slow part arrives when
+it is ready. When the request fails, the div shows the status text.</p>
+
+<p>The div's id is <code>padAjax</code> followed by a hash of the page and its query, so the
+markup is the same on every request. Variables assigned on the tag -
+<code>{ajax 'orders', $status = 'open'}</code> - go on the query string, and
+<code>fragment='name'</code> asks for one <a href="?tag/fragment">{fragment}</a> of the page
+alone: the page renders whole on the server, but only that part is sent back.</p>
+
+<p>With <code>app='other'</code> the page belongs to another application. Under the strict
+check the page must exist, in this application or the one named - a typo is reported when
+the template renders, not later as a 404 in the visitor's browser.</p>
+
+<p>Compare <a href="?tag/page">{page}</a>, which renders the page on the server in the same
+request, and <a href="?tag/get">{get}</a>, which fetches it on the server as a second request.
+For a part that re-renders on clicks and forms, see <a href="?tag/live">{live}</a>.</p>
+{/ignore}

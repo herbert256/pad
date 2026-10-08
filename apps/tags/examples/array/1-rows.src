@@ -1,0 +1,6 @@
+{meta title='A row per occurrence', about='The content renders once per row, the columns as fields.'}
+<ul>
+  {array "name, city from customers order by name"}
+    <li>{$name} - {$city}</li>
+  {/array}
+</ul>

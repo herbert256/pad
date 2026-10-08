@@ -1,0 +1,13 @@
+{meta title='Several values and @else@', about='A change in either value renders the heading; an unchanged row renders the @else@ part.'}
+{data 'ifchangedPosts'}
+year,month,post
+2026,September,Launch
+2026,September,First fix
+2026,October,Autumn release
+2027,October,Next year
+{/data}
+<ul>
+{ifchangedPosts}
+  <li>{ifchanged $year, $month}<strong>{$month} {$year}</strong>@else@&mdash; same month{/ifchanged}: {$post}</li>
+{/ifchangedPosts}
+</ul>

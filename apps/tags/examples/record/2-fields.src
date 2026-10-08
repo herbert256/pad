@@ -1,0 +1,6 @@
+{meta title='Every column', about='fields@record walks the columns of the row as name and value.'}
+{record "* from products where code='S10_1678'"}
+  <dl>
+    {fields@record}<dt>{$name}</dt><dd>{$value}</dd>{/fields@record}
+  </dl>
+{/record}

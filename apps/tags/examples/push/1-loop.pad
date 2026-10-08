@@ -1,0 +1,6 @@
+{meta title='Pushes from a loop', about='Each row pushes a line to a stack printed above the loop; the stack is filled in after the page rendered.'}
+<p>Cities with a delivery today:</p>
+<ul>{stack 'pushDelivery'}</ul>
+{deliveries}
+  {if $today}{push 'pushDelivery'}<li>{$city}</li>{/push}{/if}
+{/deliveries}

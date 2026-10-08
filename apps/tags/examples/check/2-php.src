@@ -1,0 +1,5 @@
+{meta title='The same from PHP', about='With a request value the check belongs in PHP, through a placeholder.'}
+{# signup.php: $taken = db ( "CHECK users WHERE email='{0}'", [ $email ] ); #}
+{if $taken}
+  <p>That address already has an account.</p>
+{/if}

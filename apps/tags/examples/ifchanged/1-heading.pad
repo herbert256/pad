@@ -1,0 +1,5 @@
+{meta title='A heading per group', about='Sorted on the city, the heading renders once at the start of each city.'}
+{offices sort='city'}
+  {ifchanged $city}<h4>{$city}</h4>{/ifchanged}
+  <p>{$person}</p>
+{/offices}

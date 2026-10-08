@@ -1,0 +1,13 @@
+{ignore}
+<p><code>{exit}</code> calls <code>padExit()</code> and never comes back. The output buffers
+are emptied first, so nothing that was rendered before the tag ships either: the answer is
+status 200 with an empty body. The exit sequence still runs - the session is closed, the
+web headers are sent, the info and trace scopes that were open are ended - which is why a
+PAD application stops this way and never with PHP's <code>exit</code> or <code>die</code>.</p>
+
+<p>From PHP the same is <code>padExit ()</code>, and <code>padExit ( 404 )</code> with a status
+code. To answer with an error status and the application's error page, use
+<code>padAbort ( 404 )</code>; to send the visitor elsewhere,
+<a href="?tag/redirect">{redirect}</a>; to stop with a report, <a href="?tag/error">{error}</a>
+or <a href="?tag/dump">{dump}</a>.</p>
+{/ignore}

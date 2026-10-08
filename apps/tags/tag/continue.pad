@@ -1,0 +1,19 @@
+{ignore}
+<p><code>{continue}</code> abandons what is left of the current pass of a loop - everything of
+the loop's content after the tag is dropped - and the loop carries on with its next row, like
+PHP's <code>continue</code>. It is usually written inside an <code>{if}</code>, to skip the
+rows that do not qualify. The rows are untouched; that is the difference with
+<a href="?tag/break">{break}</a>, which empties them.</p>
+
+<p>Without a parameter it works on the nearest enclosing level that is not an
+<code>{if}</code> or a <code>{case}</code>: the data tag, <a href="?tag/sequence">{sequence}</a>,
+<a href="?tag/while">{while}</a> or other loop the tag stands in. With a name -
+<code>{continue 'orders'}</code>, the tag's name or its <code>name=</code> - it reaches an outer
+loop: the inner loop is abandoned with the rest of the outer pass. A level number or a
+negative offset (<code>-2</code>: two levels up) picks the level by position.</p>
+
+<p>Under the strict syntax check a name that no enclosing level has, or an offset past the
+page, is an error rather than a silent fall-back to the nearest loop; so is loop control with
+no loop around it. To skip rows that can be told apart by their fields alone, the
+<code>where</code> option on the loop is simpler.</p>
+{/ignore}

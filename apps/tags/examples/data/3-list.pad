@@ -1,0 +1,7 @@
+{meta title='Ranges, lists and a source parameter', about='A range, an evaluated list, and data given as the second parameter instead of content.'}
+{data 'dataLetters'}a..f{/data}
+{data 'dataSums'}(1 + 1, 2 * 3, 10 - 7){/data}
+{data 'dataSteps', '1..4'}
+<p>{dataLetters}{$dataLetters} {/dataLetters}</p>
+<p>{dataSums}{$dataSums} {/dataSums}</p>
+<p>{dataSteps}step {$dataSteps}{notLast@dataSteps}, {/notLast@dataSteps}{/dataSteps}</p>

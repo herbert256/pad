@@ -1,0 +1,5 @@
+{meta title='Another page instead', about='When there is nothing to show, the page is replaced by another one in the same request.'}
+{if $count eq 0}
+  {restart 'empty'}
+{/if}
+{orders}<p>{$number}</p>{/orders}

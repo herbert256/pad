@@ -1,0 +1,23 @@
+{ignore}
+<p><code>{collection 'blog'}</code> turns the Markdown files of <code>_content/blog/</code>
+into rows - a small flat-file CMS. Each <code>.md</code> file is one occurrence: the keys of
+its front matter (YAML between two <code>---</code> lines) are its fields, and three more are
+added: <code>slug</code> (the file name without <code>.md</code>), <code>body</code> (the
+Markdown written as HTML by the <a href="?tag/markdown">{markdown}</a> renderer) and
+<code>source</code> (the Markdown text as it was).</p>
+
+<p>The body is HTML, so print it raw with <code>{!body}</code> - <code>{$body}</code> would
+escape it. Raw HTML written in the Markdown itself is escaped unless the tag has the
+<code>html</code> option, which is meant for files the site's own authors write.</p>
+
+<p>The rows come in file name order; every handling option works on them -
+<code>sort='date DESC'</code>, <code>first=10</code>, <code>where='$draft ne 1'</code>,
+<code>page=</code> with a <a href="?tag/pager">{pager}</a>. For the page that shows one post,
+<code>slug=$slug</code> reads that file alone; a slug that names no file gives no rows, so the
+<code>&#64;else&#64;</code> branch can say "not found".</p>
+
+<p>The directory is looked up like a <code>_data</code> file: the page's own directory, then
+each parent up to the application root, then the <code>_common</code> application. A
+collection without a name, or one that has no directory, is an error under the strict check.
+From PHP, <code>padCollection ( 'blog' )</code> gives the same rows.</p>
+{/ignore}

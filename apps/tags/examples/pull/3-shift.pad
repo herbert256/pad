@@ -1,0 +1,4 @@
+{meta title='Taking values out', about='shift=2 shows the first two values and removes them from the store; the next pull starts at 3.'}
+{sequence '1..6', push='queue'}
+<p>Taken: {pull 'queue', shift=2}{$sequence} {/pull}</p>
+<p>Left:  {pull 'queue'}{$sequence} {/pull}</p>

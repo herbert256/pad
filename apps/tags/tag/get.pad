@@ -1,0 +1,19 @@
+{ignore}
+<p><code>{get 'name'}</code> asks the web server for another page of this application and
+puts what comes back in place of the tag. Unlike <a href="?tag/page">{page}</a>, which builds
+the page inside the current request, this is a real second HTTP request: the page runs in a
+fresh process, with its own variables, and sees nothing of the page that asked for it.</p>
+
+<p>The page is fetched with <code>&amp;padInclude</code>, so it renders bare - without its
+<code>_inits.pad</code>/<code>_exits.pad</code> wrappers. Every variable assigned on the tag,
+<code>{get 'badge', $colour = 'red'}</code>, goes along on the query string, where the other
+page finds it as a request value. The answer is inserted as a value: its braces are text and
+are not parsed again.</p>
+
+<p>The fetch goes to the server's own address, never to the host a request names. Under the
+strict check a page that does not exist is an error before any request is made. Because it
+costs a round trip, <code>{get}</code> is for the case where the isolation of a separate
+request is the point; <a href="?tag/page">{page}</a> is faster and shares the request. Remote
+addresses are fetched with <a href="?tag/curl">{curl}</a>; a stored content block is read
+with <code>{content:name}</code>.</p>
+{/ignore}

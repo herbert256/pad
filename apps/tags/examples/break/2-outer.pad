@@ -1,0 +1,9 @@
+{meta title='Breaking out of two loops', about='Named, break leaves the outer loop too - the search ends at the first hit.'}
+{set $target = 12}
+<p>
+{sequence '1..6', name='x'}
+  {sequence '1..6', name='y'}
+    {if $x * $y eq $target}First pair: {$x} &times; {$y} = {$target}{break 'x'}{/if}
+  {/sequence}
+{/sequence}
+</p>

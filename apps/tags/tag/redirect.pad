@@ -1,0 +1,20 @@
+{ignore}
+<p><code>{redirect 'name'}</code> answers the request with a <code>302 Found</code> and a
+<code>Location</code> header, and ends it there: nothing after the tag runs and nothing of the
+page is sent. The browser then asks for the new address itself, so its address bar shows it -
+the pattern after a form post, where a reload must not post again.</p>
+
+<p>Variables assigned on the tag - <code>{redirect 'list', $status = 'open'}</code> - are added
+to the new address's query string. A page name stays on this site and is resolved as
+<a href="?tag/page">{page}</a> resolves one; under the strict check a plain page name that does
+not exist is an error, instead of a clean 302 into a 404.</p>
+
+<p>An absolute <code>http://</code> or <code>https://</code> address is sent as written, with
+the assigned values added in front of any <code>#fragment</code>. That means a target taken from
+the request can leave the site: the template must check it first. <code>padRedirect()</code> in
+PHP takes page names only and never leaves the site; called without a page it goes back to the
+page that was asked for.</p>
+
+<p>To show another page without a round trip, keeping the address, use
+<a href="?tag/restart">{restart}</a>.</p>
+{/ignore}

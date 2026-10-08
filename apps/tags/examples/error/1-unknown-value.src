@@ -1,0 +1,7 @@
+{meta title='A value that must not occur', about='An unknown status ends the request with a report naming it, instead of rendering an empty cell.'}
+{case $status}
+  {when 'open'}    <span class="open">Open</span>
+  {when 'paid'}    <span class="paid">Paid</span>
+  {when 'shipped'} <span class="done">Shipped</span>
+  {else}           {error 'unknown order status'}
+{/case}

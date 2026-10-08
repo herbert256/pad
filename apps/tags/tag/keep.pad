@@ -1,0 +1,18 @@
+{ignore}
+<p><code>{keep '1..50', square}</code> runs a sequence in <em>keep</em> mode: every value is
+held against the named type, and only the members stay - here <code>1 4 9 16 25 36 49</code>.
+It is the same run as <code>{sequence '1..50', keep, square}</code>, with the play as the tag
+name; <a href="?tag/remove">{remove}</a> is its inverse, <a href="?tag/flag">{flag}</a> marks
+instead of filtering, and <a href="?tag/make">{make}</a> transforms.</p>
+
+<p>The values can come from a range, from a stored sequence (<code>{keep primes, palindrome}</code>),
+or from nowhere in particular: <code>{keep palindrome, from=100, rows=5}</code> offers the
+numbers from 100 upward and keeps the first five palindromes - <code>101 111 121 131 141</code>.
+Because filtering happens while the list is built, <code>rows</code> counts the values kept,
+not the candidates offered. The prefix form <code>{keep:prime from=10, rows=4}</code> names the type
+in the tag; it takes no range parameter - bound it with <code>from</code>, <code>to</code> and
+<code>rows</code>. A store is named bare, not quoted.</p>
+
+<p>The current value is <code>{$sequence}</code>. Actions written after the type work on the
+kept values: <code>{keep '1..20', prime, sum}</code> is 77.</p>
+{/ignore}

@@ -1,0 +1,17 @@
+{ignore}
+<p><code>{recurse}</code> is where the children of the current row go. It renders the body of
+the enclosing <a href="?tag/tree">{tree}</a> - the content as written between
+<code>{tree}</code> and <code>{/tree}</code> - again, once for every child, each child a row of
+its own with its own fields. Inside that body <code>{recurse}</code> works again one level
+down, so the tree is rendered to any depth. A row without children renders nothing here.</p>
+
+<p>The new list is a level named as the tree is: <code>depth@tree</code> is one more than the
+level above, and <code>first@tree</code>, <code>current@tree</code> and <code>count@tree</code>
+speak of the children being rendered. The tree's <code>sort</code>, <code>where</code> and
+<code>reverse</code> options are carried along, so children are ordered and filtered as their
+parents were.</p>
+
+<p>Usually it stands inside <a href="?tag/branch">{branch}</a>, so the list markup around it
+only appears for a row that has children. The tag takes no parameters; under the strict syntax
+check a <code>{recurse}</code> outside a tree is an error.</p>
+{/ignore}

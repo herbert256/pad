@@ -1,0 +1,27 @@
+{ignore}
+<p>As a pair, <code>{markdown}</code> renders its content first - its fields and tags resolve
+like anywhere else - and then reads the result as Markdown and writes the HTML. The text is
+dedented first, so a block indented along with the template does not turn into a code block.
+With a parameter instead, <code>{markdown $post.body}</code> writes the value of the parameter,
+the way the <code>markdown</code> pipe does.</p>
+
+<p>The converter is built in (<code>lib/markdown.php</code>), a CommonMark subset: ATX and
+setext headings, paragraphs, emphasis and strong emphasis, code spans, fenced code blocks
+(with a <code>language-</code> class) and indented ones, bullet and ordered lists (nested,
+tight or loose, with a start number), links, images, autolinks, block quotes, thematic breaks,
+hard line breaks and backslash escapes. Reference-style links, tables and footnotes are not
+supported.</p>
+
+<h3>Safety</h3>
+<p>Raw HTML in the text is escaped, and a link or image whose address names a scheme other
+than http, https, mailto, ftp or tel - <code>javascript:</code>, <code>data:</code> - keeps only
+its text. The bare <code>html</code> option lets the author's own markup through; use it only
+for text the application wrote. The HTML made from a value stays a value: a
+<code>{php:getcwd}</code> in a post is shown, not run.</p>
+
+<h3>Braces</h3>
+<p>Because the content is rendered before it is read as Markdown, a <code>{</code> in it starts
+a tag. A code sample with braces needs the <code>ignore</code> option, which keeps the whole
+content as text - fields included. A pair that is never closed, and the single form without a
+value, are strict errors.</p>
+{/ignore}

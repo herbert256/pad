@@ -1,0 +1,21 @@
+{ignore}
+<p><code>{carousel}</code> lays every <a href="?tag/tab"><code>{tab}</code></a> inside it out
+as a slide in a horizontal row that scrolls and snaps (CSS scroll snap). Each slide has
+previous and next links, and below the row there is a dot per slide - plain links to the
+slides' ids, so the carousel works without JavaScript. The previous link of the first slide
+goes to the last and the next link of the last to the first. There is no autoplay.</p>
+
+<p>The label of a <code>{tab}</code> is the slide's caption, and is optional here - unlike in
+<a href="?tag/tabs"><code>{tabs}</code></a> and <a href="?tag/accordion"><code>{accordion}</code></a>.
+<code>label=</code> names the whole carousel for a screen reader. The markup follows the
+WAI-ARIA carousel pattern: a region with <code>aria-roledescription="carousel"</code>, each
+slide a group announced as "slide 2 of 4" with its caption.</p>
+
+<p>A small script, written once per page with the CSP nonce when one is asked for, makes it
+smoother: the links scroll only the row instead of the page, and the dot of the slide in view
+is marked, also after a swipe. Scrolling is smooth unless reduced motion is asked for;
+printed, the slides stand under each other. Under the strict check a carousel that never
+closes, one without slides or with text between its slides is an error. The colours are
+<code>--pad-carousel-accent</code>, <code>-text</code>, <code>-muted</code>,
+<code>-surface</code> and <code>-dot</code> on <code>.pad-carousel</code>.</p>
+{/ignore}

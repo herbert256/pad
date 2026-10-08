@@ -1,0 +1,19 @@
+{ignore}
+<p><code>{array "..."}</code> runs its parameter as a query and makes every row it answers an
+occurrence of the tag: the content renders once per row, with the row's columns as fields -
+<code>{$name}</code>, <code>{$email}</code>. It is the template form of
+<code>db ( "ARRAY ..." )</code>; the tag name is the command word, so the parameter starts
+after the SELECT.</p>
+
+<p>A query that answers no rows renders nothing, or the <code>&#64;else&#64;</code> branch when the
+content has one. Every handling option works on the rows as on any data -
+<code>first=</code>, <code>sort=</code>, <code>where=</code>, <code>page=</code> with a
+<a href="?tag/pager">{pager}</a> after it - and the loop properties are there:
+<code>{first@array}</code>, <code>{current@array}</code>. Sorting and limiting are usually
+cheaper in the SQL itself.</p>
+
+<p>Most pages fetch their rows in PHP instead - <code>$orders = db ( "ARRAY * FROM orders" );</code>
+and then <code>{orders}...{/orders}</code> - which keeps SQL out of the template and lets a
+request value go in through a placeholder. <code>{array}</code> is handy for a quick listing.
+With <code>name=</code> the rows can come from the page's sample in the designer preview.</p>
+{/ignore}

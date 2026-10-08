@@ -1,0 +1,24 @@
+{ignore}
+<p><code>{tabs}</code> builds a tab set from the <a href="?tag/tab"><code>{tab}</code></a>
+pairs inside it. Every tab is a radio button with a label, and the CSS shows the panel whose
+radio is checked - there is no script at all. The browser gives the set what a tab list
+needs: one stop in the tab order, the arrow keys moving between the tabs, and a screen reader
+hearing the label and "checked". Each panel is a <code>region</code> named by its tab.
+Printed, every panel shows.</p>
+
+<p>The tag runs twice. On its first walk it opens a collection; every <code>{tab}</code>
+below it renders its content and hands it to that collection instead of printing it. A tab
+may stand deeper than directly inside - in an <code>{if}</code>, or in a loop that makes a
+tab per row. On the end walk the set is built from what was handed over.</p>
+
+<p><code>active=</code> names the tab shown first, by its number from 1 or by its label;
+without it the first tab is shown. No fragment goes into the address, so two sets on one
+page keep their own choice and the back button keeps its meaning. The ids are made from the
+labels, so they are the same on every request.</p>
+
+<p>Under the strict check these are errors: a <code>{tabs}</code> that never closes, text
+between the tabs (it would never show - put it inside a tab), a set without any tab, and an
+<code>active=</code> that names no tab. The colours are the custom properties
+<code>--pad-tabs-accent</code>, <code>-text</code>, <code>-muted</code> and
+<code>-line</code> on <code>.pad-tabs</code>.</p>
+{/ignore}

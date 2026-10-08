@@ -1,0 +1,9 @@
+{meta title='Until a limit is passed', about='Doubling a value until it passes 100 - the condition is tested before each pass.'}
+{set $amount = 3}
+<ul>
+{until $amount gt 100}
+  <li>{$amount}</li>
+  {set $amount = $amount * 2}
+{/until}
+</ul>
+<p>Stopped at {$amount}.</p>

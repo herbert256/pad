@@ -1,0 +1,36 @@
+{ignore}
+<p><code>{datatable}</code> writes a whole table from rows of data: a header from the field
+names, a body, an optional totals row, header links that sort and page links that page - all
+on the server, without JavaScript. The rows come from <code>data=</code> (a
+<a href="?tag/data"><code>{data}</code></a> store, a page array or a <code>_data</code>
+file, as for <a href="?tag/chart"><code>{chart}</code></a>), or, as a pair, from the content:
+JSON, YAML, XML or CSV, told apart on sight. The tag writes the table once - it does not
+iterate the rows like a data tag does.</p>
+
+<h3>Columns and numbers</h3>
+
+<p><code>columns=</code> picks the fields and their order, <code>labels=</code> gives their
+headers; otherwise every field of the first row shows, its name made a headline. A column
+whose values are all numbers is right-aligned, written with the most decimals any of its
+values has and grouped by thousands - unless its name says it identifies (<code>id</code>,
+<code>number</code>, <code>code</code>, <code>year</code> ...), then the digits stand as
+they are. <code>format=</code> gives a column a pipe instead, run as
+<code>{echo $value | pipe}</code>. <code>totals=</code> sums columns in a last row, over all
+rows. Everything from the data is escaped.</p>
+
+<h3>Sorting and paging</h3>
+
+<p>With <code>sortable</code> each header is a link to the same page with
+<code>?sort=column&amp;dir=asc</code> or <code>desc</code>. Only a column the table shows is
+accepted - anything else leaves the rows as they came - and the sort is stable; the sorted
+column carries <code>aria-sort</code>. <code>rows=</code> shows that many rows a page with
+page links below, built from the <a href="?tag/pager"><code>{pager}</code></a>'s items. The
+links keep the request's other values. <code>query=</code> prefixes the three request
+names, so two tables on one page sort and page apart.</p>
+
+<p>A table without rows answers nothing, and its <code>@else@</code> part shows. Under the
+strict check these are errors: no data at all, a column no row has, a <code>totals=</code> or
+<code>format=</code> naming a column the table does not show, a total of a column that is not
+numbers, a number of labels that differs from the number of columns, and <code>rows=</code>
+below 1.</p>
+{/ignore}

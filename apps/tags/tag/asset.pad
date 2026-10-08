@@ -1,0 +1,19 @@
+{ignore}
+<p><code>{asset 'charts.css'}</code> answers the address of <code>www/&lt;app&gt;/charts.css</code>
+with <code>?v=</code> and the first ten hex digits of a hash of the file's contents:
+<code>/charts/charts.css?v=1f3a9c0b2e</code>. The hash is made once per request. A changed file
+gets a new address, so the server can send its assets with a cache lifetime of a year and a
+browser still fetches the new version the moment it changes - no build step, no manifest.</p>
+
+<p>With the bare <code>tag</code> option it writes the element itself: a
+<code>&lt;link rel="stylesheet"&gt;</code> for a <code>.css</code> file, a
+<code>&lt;script defer&gt;</code> for <code>.js</code> and a
+<code>&lt;script type="module"&gt;</code> for <code>.mjs</code>, carrying the request's nonce
+when <code>$padCsp</code> asks for one. From PHP, <code>padAsset ( 'charts.css' )</code> and
+<code>padAssetTag ( 'app.js' )</code> give the same.</p>
+
+<p>A name never leaves <code>www/&lt;app&gt;/</code>. A file that is not there is written as
+the plain address and, under the strict check, reported as an error. The hash follows the
+file, so the examples are shown rather than run. For the bundles of a Vite build, use
+<a href="?tag/vite"><code>{vite}</code></a>.</p>
+{/ignore}

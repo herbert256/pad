@@ -1,0 +1,10 @@
+{meta title='One file by its slug', about='slug= picks a single file; a slug that names none shows the else branch.'}
+{collection 'collectionBooks', slug='solaris'}
+  <p><strong>{$title}</strong> - file {$slug}.md</p>
+  <pre>{$source}</pre>
+{/collection}
+{collection 'collectionBooks', slug='missing'}
+  <p>{$title}</p>
+@else@
+  <p>There is no book named missing.</p>
+{/collection}

@@ -1,0 +1,5 @@
+{meta title='A required row', about='No customer for the order: the error is raised, the event hook and the error action take it from there.'}
+{if not $customer}
+  {error 'order without a customer'}
+{/if}
+<h2>{$customer.name}</h2>

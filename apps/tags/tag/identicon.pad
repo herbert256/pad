@@ -1,0 +1,16 @@
+{ignore}
+<p><code>{identicon}</code> gives every account a picture of its own without asking for one:
+a symmetric pattern on a 5 by 5 grid and a colour, both taken from a SHA-256 hash of the
+value (<code>lib/identicon.php</code>). Nothing leaves the server, and the same value is
+always the same picture.</p>
+
+<p>The value is trimmed and lower-cased before it is hashed, so every spelling of an e-mail
+address is one picture. Fifteen nibbles of the hash fill the left three columns, mirrored to
+the right; the colour is a hue from the last bytes at a saturation and lightness that read on
+the light square behind it, <code>--pad-identicon-background</code> on
+<code>.pad-identicon</code> (a <code>light-dark()</code> default, written once per page).</p>
+
+<p>Unlike <a href="?tag/avatar">{avatar}</a> the picture says nothing of the value: the
+accessible name is <code>Identicon</code>, or <code>title</code>, never the address itself.
+An empty value is an error under the strict check.</p>
+{/ignore}

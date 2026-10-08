@@ -1,0 +1,12 @@
+{meta title='After the head of the wrapper', about='In _inits.pad: the head goes out at once, and the browser loads site.css while the page renders.'}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{$title}</title>
+  <link rel="stylesheet" href="{asset 'site.css'}">
+</head>
+{flush}
+<body>
+  @page@
+</body>
+</html>

@@ -1,0 +1,11 @@
+<?php
+
+  $sales = [
+    [ 'month' => 'Jan', 'amount' => 12400 ],
+    [ 'month' => 'Feb', 'amount' =>  9500 ],
+    [ 'month' => 'Mar', 'amount' => 14300 ],
+    [ 'month' => 'Apr', 'amount' => 16100 ],
+    [ 'month' => 'May', 'amount' => 15200 ],
+    [ 'month' => 'Jun', 'amount' => 18750 ] ];
+
+?>

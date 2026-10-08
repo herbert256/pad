@@ -1,0 +1,13 @@
+{meta title='JSON rows', about='An array of objects becomes rows with fields, iterated by the name it was given.'}
+{data 'dataPlanets'}
+[
+  { "name": "Mercury", "moons": 0 },
+  { "name": "Earth",   "moons": 1 },
+  { "name": "Mars",    "moons": 2 }
+]
+{/data}
+<ul>
+{dataPlanets}
+  <li>{$name}: {$moons} {echo $moons eq 1 ? 'moon' : 'moons'}</li>
+{/dataPlanets}
+</ul>

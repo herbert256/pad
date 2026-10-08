@@ -1,0 +1,21 @@
+{ignore}
+<p><code>{diff $old, $new}</code> compares two texts and writes the new one with what changed
+marked: the words that went out as <code>&lt;del&gt;</code>, the words that came in as
+<code>&lt;ins&gt;</code>. The differences are found by Myers' algorithm, the shortest edit
+script, as <code>git diff</code> finds them. In a run of changes the deletions come before the
+insertions, and the space between two changed words joins the change, so a rewritten phrase
+reads as one change instead of a patchwork.</p>
+
+<p><code>lines</code> compares line by line, in one column: the old and the new line number, a
+sign and the line. <code>side</code> puts the two versions next to each other, a changed line
+beside its counterpart. In both a changed line that has a counterpart marks the words that
+changed within it; a line without one is struck or added whole. <code>from=</code> and
+<code>to=</code> name the two versions.</p>
+
+<p>Everything of both texts is escaped. A screen reader hears where each deletion and insertion
+starts and ends, from words in pseudo-elements that are hidden from the eye. The colours are
+custom properties on <code>.pad-diff</code> - <code>--pad-diff-del</code>,
+<code>--pad-diff-ins</code> and their <code>-mark</code> forms, <code>-text</code>,
+<code>-muted</code>, <code>-line</code> - with <code>light-dark()</code> defaults written once a
+page. A <code>{diff}</code> without the second text is a strict error.</p>
+{/ignore}

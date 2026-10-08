@@ -1,0 +1,7 @@
+{meta title='Weeks and days as rows', about='As a pair the weeks are rows, each with its days, each day with its events.'}
+<table>
+  <tr><th>Week</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th><th>Su</th></tr>
+  {calendar '2026-09', data='shifts'}
+  <tr><th>{$week}</th>{days}<td class="{$class}">{if not $other}{$day}{events}<br><small>{$who}</small>{/events}{/if}</td>{/days}</tr>
+  {/calendar}
+</table>
