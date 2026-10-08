@@ -1706,6 +1706,34 @@ unusable max or an unknown icon is an error under the strict check.
 
 ---
 
+### icon
+An interface icon from PAD's own set of 79, drawn on a 24 by 24 grid as lines, circles and
+rectangles (`lib/icon.php`) and written as inline SVG in the colour of the text around it - no
+icon font, no sprite, no request.
+
+```html
+{icon 'arrow-right'}
+<button>{icon 'trash', size=16} Delete</button>
+<a href="?next">{icon 'chevron-right', label='Next page'}</a>
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The name: arrows and chevrons (`arrow-right`, `chevron-down`, `external`, `refresh`, `sort`, `maximize` ...), marks (`check`, `x`, `plus`, `minus`, `info`, `alert`, `help`, `star`, `heart`, `flag`, `tag` ...), layout (`home`, `menu`, `grid`, `list`, `search`, `filter`, `settings`, `link` ...), people (`user`, `users`, `mail`, `message`, `phone`, `bell` ...), time and places (`calendar`, `clock`, `globe`, `map-pin`, `sun`, `moon`, `cloud`), files (`file`, `folder`, `copy`, `edit`, `trash`, `download`, `upload`, `image`, `camera`, `cart` ...), media (`play`, `pause`, `stop`), security (`lock`, `unlock`, `key`, `eye`, `eye-off`, `power`) and code (`code`, `terminal`, `database`, `bar-chart`) - `padIconNames ()` lists them all |
+| `size` | Width and height in pixels, default 20 |
+| `label` | The accessible name: the icon becomes `role="img"` with `aria-label` and `<title>` |
+| `stroke` | The line width on the 24-unit grid, default 2 |
+
+**Behavior:** `stroke="currentColor"`, round caps and joins, `fill="none"`, so an icon takes the
+text colour and the class `pad-icon pad-icon-<name>` for styling. Without `label` it is
+decoration - `aria-hidden="true"`, `focusable="false"` - for an icon beside the text it goes
+with; an icon alone in a button or link needs `label`. No name, or a name not in the set, is an
+error under the strict check, naming the icons close to it (`did you mean arrow-left?`).
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2214,6 +2242,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `placeholder` | Output | Grey image placeholder as inline SVG, a size or a ratio, fluid |
 | `progress` | Output | Accessible progress bar (native `<progress>`) or step dots |
 | `rating` | Output | Stars or hearts for a score as inline SVG, parts clipped, said in words |
+| `icon` | Output | One of 79 built-in line icons as inline SVG in `currentColor` |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
