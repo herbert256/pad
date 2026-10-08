@@ -86,7 +86,7 @@ await esbuild.build({
   entryPoints: [entry], outfile: join(out, 'php.js'), bundle: true, format: 'iife',
   platform: 'browser', target: 'es2022', minify: true, legalComments: 'none',
   loader: { '.wasm': 'empty' }, logLevel: 'error',
-  external: [ 'worker_threads', 'fs', 'path', 'os', 'crypto', 'child_process', 'url', 'module' ]   // Node only, never reached here
+  external: [ 'worker_threads', 'fs', 'path', 'os', 'crypto', 'child_process', 'url', 'module', 'events' ]   // Node only, never reached here
 });
 
 execSync(`rm -f ${JSON.stringify(entry)}`);
