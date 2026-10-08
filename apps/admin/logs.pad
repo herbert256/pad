@@ -1,0 +1,65 @@
+<div class="grid2">
+
+  <section class="card scroll">
+    <h2>{icon 'file', size=18} Log files ({$fileCount})</h2>
+    {if $fileCount}
+      <table class="list">
+        <thead><tr><th>Application</th><th>Date</th><th class="right">Size</th><th>Last entry</th></tr></thead>
+        <tbody>
+          {fileRows}
+            <tr>
+              <td>{$app}</td>
+              <td><a href="?logs&amp;app={$app}&amp;date={$date}" {if $current}aria-current="page"{/if}>{if $current}<strong>{$date}</strong>{else}{$date}{/if}</a></td>
+              <td class="right">{$size}</td>
+              <td class="dim">{$ago}</td>
+            </tr>
+          {/fileRows}
+        </tbody>
+      </table>
+    {else}
+      <p class="dim">Nothing logged yet - <code>padLog ( 'message', 'info' )</code> does, from PHP.</p>
+    {/if}
+  </section>
+
+  {if $hasPhpLog}
+    <section class="card">
+      <h2>{icon 'alert', size=18} PHP error log, newest first</h2>
+      <pre class="wrap">{$phpLogText}</pre>
+    </section>
+  {/if}
+
+</div>
+
+{if $viewing}
+  <section class="card scroll">
+    <form class="bar" method="get">
+      <input type="hidden" name="logs" value="">
+      <input type="hidden" name="app" value="{$app}">
+      <input type="hidden" name="date" value="{$date}">
+      <label>Level
+        <select name="level">
+          <option value="">every level</option>
+          {levelRows}<option value="{$name}" {if $selected}selected{/if}>{$name}</option>{/levelRows}
+        </select>
+      </label>
+      <label>Text <input type="search" name="q" value="{$grep}"></label>
+      <button>{icon 'filter', size=16} Filter</button>
+      <span class="dim">{$lineCount} lines, newest first</span>
+    </form>
+    <table class="list mono">
+      <tbody>
+        {lineRows}
+          <tr>
+            <td class="nowrap dim">{$at}</td>
+            <td>{if $level ne ''}<span class="badge {$tone}">{$level}</span>{/if}</td>
+            <td style="word-break:break-word">{$text}</td>
+          </tr>
+        {/lineRows}
+      </tbody>
+    </table>
+    <form method="post" style="margin-top:12px">
+      <input type="hidden" name="action" value="delete">
+      <button class="danger" data-confirm="Remove this log file?">{icon 'trash', size=16} Remove this log file</button>
+    </form>
+  </section>
+{/if}

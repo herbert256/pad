@@ -1,0 +1,110 @@
+<section class="card">
+  <p>{if $description ne ''}{$description}{else}<i class="dim">This application has no README introduction.</i>{/if}</p>
+  <div class="bar">
+    {if $appLink ne ''}<a class="button" href="{$appLink}">{icon 'external', size=16} Open</a>{/if}
+    <a class="button" href="?files&amp;app={$app}">{icon 'folder', size=16} Files</a>
+    <a class="button" href="{$padRoot}edit/?app={$app}">{icon 'edit', size=16} Edit</a>
+    <a class="button" href="?search&amp;app={$app}">{icon 'search', size=16} Search</a>
+    {if $isApp}
+      <a class="button" href="?console&amp;app={$app}&amp;command=lint">{icon 'check', size=16} Lint</a>
+      <a class="button" href="?console&amp;app={$app}&amp;command=test">{icon 'play', size=16} Test</a>
+    {/if}
+  </div>
+</section>
+
+{if $isDown}
+  <section class="card warn">
+    <h2>{icon 'power', size=18} Down for maintenance since {$downSince}</h2>
+    {if $downText ne ''}<p>{$downText}</p>{/if}
+    <form method="post">
+      <input type="hidden" name="action" value="up">
+      <button class="primary">{icon 'play', size=16} Bring it up</button>
+    </form>
+  </section>
+{/if}
+
+<div class="grid2">
+
+  <section class="card">
+    <h2>{icon 'info', size=18} Facts</h2>
+    <table class="facts">{facts}<tr><th>{$label}</th><td>{$value}</td></tr>{/facts}</table>
+    <h2 style="margin-top:16px">File kinds</h2>
+    <p>{kinds}<span class="badge">.{$ext} {$count}</span>{/kinds}</p>
+  </section>
+
+  <section class="card">
+    <h2>{icon 'database', size=18} Under DATA/</h2>
+    <table class="facts">
+      {state}<tr><th>{$label}</th><td><a href="?{$page}">{$value}</a></td></tr>{/state}
+    </table>
+    {if $canDown}{if $isDown eq 0}
+      <details>
+        <summary>Take it down for maintenance</summary>
+        <form method="post" class="bar" style="margin-top:10px">
+          <input type="hidden" name="action" value="down">
+          <label>Secret (optional) <input type="text" name="secret" autocomplete="off"></label>
+          <label>Retry after (s) <input type="number" name="retry" value="60" min="0"></label>
+          <label>Message <input type="text" name="message" placeholder="Back at ten"></label>
+          <button class="danger" data-confirm="Every request to {$app} will answer 503. Go on?">{icon 'power', size=16} Take down</button>
+        </form>
+      </details>
+    {/if}{/if}
+  </section>
+
+</div>
+
+<section class="card">
+  <h2>{icon 'grid', size=18} PAD parts</h2>
+  {if $partCount}
+    <table class="list">
+      <thead><tr><th>Part</th><th>What it is</th><th class="right">Files</th></tr></thead>
+      <tbody>
+        {parts}<tr><td><a href="?files&amp;app={$app}&amp;dir={$part}"><code>{$part}</code></a></td><td>{$what}</td><td class="right">{$count}</td></tr>{/parts}
+      </tbody>
+    </table>
+  {else}
+    <p class="dim">Pages only - none of the _ directories or files.</p>
+  {/if}
+</section>
+
+{if $configCount}
+  <section class="card">
+    <h2>{icon 'settings', size=18} Configuration</h2>
+    <table class="list">
+      <thead><tr><th>Setting</th><th>Value in _config/</th></tr></thead>
+      <tbody>{configRows}<tr><td><code>${$name}</code></td><td><code>{$value}</code></td></tr>{/configRows}</tbody>
+    </table>
+  </section>
+{/if}
+
+{if $isApp}
+  <section class="card">
+    <h2>{icon 'file', size=18} Pages ({$pageCount})</h2>
+    <div class="bar"><input type="search" data-filter="#pages" placeholder="filter the pages"></div>
+    <div class="scroll">
+      <table class="list" id="pages">
+        <thead><tr><th>Page</th><th>Files</th><th></th></tr></thead>
+        <tbody>
+          {pageRows}
+            <tr>
+              <td>{if $href ne ''}<a href="{$href}">{$page}</a>{else}{$page} <span class="badge info">route</span>{/if}</td>
+              <td>
+                {if $pad}<a class="badge" href="?files&amp;app={$app}&amp;file={$page}.pad">.pad</a>{/if}
+                {if $html}<a class="badge" href="?files&amp;app={$app}&amp;file={$page}.html">.html</a>{/if}
+                {if $php}<a class="badge" href="?files&amp;app={$app}&amp;file={$page}.php">.php</a>{/if}
+              </td>
+              <td><a href="?console&amp;app={$app}&amp;command=render&amp;page={$page}">render</a></td>
+            </tr>
+          {/pageRows}
+        </tbody>
+      </table>
+    </div>
+  </section>
+{/if}
+
+{if $hasReadme}
+  <section class="card markdown">
+    <h2>{icon 'help', size=18} README.md</h2>
+    {!readme}
+  </section>
+{/if}

@@ -1,0 +1,59 @@
+{if $enabled eq 0}
+  <p class="flash warn">The commands are switched off: $adminCommands in _config/config.php.</p>
+{/if}
+
+<section class="card">
+  <form method="post" action="?console" class="bar">
+    <label>Command
+      <select name="command">
+        {commandRows}<option value="{$key}" {if $selected}selected{/if}>{$label}</option>{/commandRows}
+      </select>
+    </label>
+    <label>Application
+      <select name="app">
+        <option value="">-</option>
+        {appRows}<option value="{$name}" {if $selected}selected{/if}>{$name}</option>{/appRows}
+      </select>
+    </label>
+    <label>Page (render) <input type="text" name="page" value="{$pageName}" placeholder="index"></label>
+    <button class="primary" {if $enabled eq 0}disabled{/if}>{icon 'play', size=16} Run</button>
+  </form>
+  <p class="dim">The command runs on this server as the web server's user, at most a few minutes. A * marks a command that changes something.</p>
+</section>
+
+{if $runError ne ''}
+  <p class="flash error">{$runError}</p>
+{/if}
+
+{if $ran}
+  <section class="card">
+    <h2>{icon 'terminal', size=18} <code>{$line}</code></h2>
+    <p>
+      {if $exitCode eq 0}<span class="status-ok">exit 0</span>{else}<span class="status-bad">exit {$exitCode}</span>{/if}
+      <span class="dim">- {$ms} ms</span>
+    </p>
+    <pre class="console wrap">{$output}</pre>
+  </section>
+{/if}
+
+<section class="card scroll">
+  <h2>{icon 'clock', size=18} History</h2>
+  {if $histCount}
+    <table class="list">
+      <thead><tr><th>When</th><th>Who</th><th>Command</th><th class="right">Exit</th><th class="right">ms</th></tr></thead>
+      <tbody>
+        {history}
+          <tr>
+            <td class="nowrap">{$when}</td>
+            <td>{$user}</td>
+            <td><code>{$line}</code></td>
+            <td class="right">{if $code eq 0}<span class="badge ok">0</span>{else}<span class="badge bad">{$code}</span>{/if}</td>
+            <td class="right">{$ms}</td>
+          </tr>
+        {/history}
+      </tbody>
+    </table>
+  {else}
+    <p class="dim">Nothing has been run from here yet.</p>
+  {/if}
+</section>

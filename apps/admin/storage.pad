@@ -1,0 +1,35 @@
+<div class="grid2">
+
+  <section class="card scroll">
+    <h2>{icon 'database', size=18} <code>{$dataPath}</code> - {$totalText}</h2>
+    <table class="list">
+      <thead><tr><th>Directory</th><th class="right">Size</th><th class="right">Files</th><th>What it holds</th><th></th></tr></thead>
+      <tbody>
+        {dirRows}
+          <tr>
+            <td class="nowrap"><code>{$dir}</code></td>
+            <td class="right nowrap">{$size}</td>
+            <td class="right">{$files}</td>
+            <td class="dim">{$what}</td>
+            <td>
+              {if $clear}
+                <form method="post" class="inline">
+                  <input type="hidden" name="dir" value="{$dir}">
+                  <button class="small danger" data-confirm="Empty DATA/{$dir}?">{icon 'trash', size=14} Empty</button>
+                </form>
+              {/if}
+            </td>
+          </tr>
+        {/dirRows}
+      </tbody>
+    </table>
+  </section>
+
+  {if $hasChart}
+    <section class="card">
+      <h2>{icon 'bar-chart', size=18} Share of DATA/</h2>
+      {chart 'donut', data='chartRows', label='dir', value='mb', title='DATA/ by directory, MB'}
+    </section>
+  {/if}
+
+</div>

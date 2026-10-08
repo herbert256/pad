@@ -1,0 +1,42 @@
+{if $isGit eq 0}
+  <section class="card"><p>The PAD home is no git checkout, or git is not installed.</p></section>
+{else}
+
+  <div class="grid2">
+
+    <section class="card">
+      <h2>{icon 'link', size=18} Checkout</h2>
+      <table class="facts">{facts}<tr><th>{$label}</th><td><code>{$value}</code></td></tr>{/facts}</table>
+    </section>
+
+    <section class="card scroll">
+      <h2>{icon 'edit', size=18} Not committed ({$changeCount})</h2>
+      {if $changeCount}
+        <table class="list">
+          <tbody>{changeRows}<tr><td class="nowrap"><span class="badge {$tone}">{$state}</span></td><td><code>{$file}</code></td></tr>{/changeRows}</tbody>
+        </table>
+      {else}
+        <p class="dim">Nothing - the working tree is clean.</p>
+      {/if}
+    </section>
+
+  </div>
+
+  <section class="card scroll">
+    <h2>{icon 'clock', size=18} The last commits</h2>
+    <table class="list">
+      <thead><tr><th>Commit</th><th>When</th><th>Who</th><th>What</th></tr></thead>
+      <tbody>
+        {commitRows}
+          <tr>
+            <td><code>{$hash}</code></td>
+            <td class="nowrap" title="{$when}">{$ago}</td>
+            <td class="nowrap">{$author}</td>
+            <td>{$subject}</td>
+          </tr>
+        {/commitRows}
+      </tbody>
+    </table>
+  </section>
+
+{/if}
