@@ -160,6 +160,12 @@
     if ( count ( (array) ( $GLOBALS ['padExpose'] ?? [] ) ) )
       $padWebVary [] = 'Accept';
 
+    // An answer that names the visitor's origin (lib/cors.php) depends on Origin; the CORS
+    // step said so early, and this header replaces that one.
+
+    if ( $GLOBALS ['padCorsVary'] ?? FALSE )
+      $padWebVary [] = 'Origin';
+
     if ( $padWebVary )
       padHeader ( 'Vary: ' . implode ( ', ', $padWebVary ) );
 

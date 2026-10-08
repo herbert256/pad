@@ -21,6 +21,9 @@
   // time. The page cache's 'db' backend is not one of them: its tables are shaped for
   // pages by ETag, and its purge would take the copies kept for a failing source.
   //
+  // While a test fakes the fetches (lib/curlFake.php) the cache is passed by, read and
+  // write: a copy kept of a fake answer would be served to the real requests after it.
+  //
   // The key is the application and the padCurl input as given, so two pages asking the
   // same thing share one copy. An entry is the time it was fetched and the output as JSON
   // - a fetched document is text, and JSON keeps the store free of unserialize.
@@ -31,7 +34,7 @@
 
     $ttl = max ( 0, (int) $ttl );
 
-    if ( ! $padCurlCache or ! $ttl )
+    if ( ! $padCurlCache or ! $ttl or padCurlFaking () )
       return padCurl ( $input ) + [ 'cache' => 'miss' ];
 
     $key   = padCurlCacheKey ( $input );
@@ -55,7 +58,7 @@
     $ttl     = max ( 0, (int) $ttl );
     $results = [];
 
-    if ( ! $padCurlCache or ! $ttl ) {
+    if ( ! $padCurlCache or ! $ttl or padCurlFaking () ) {
       foreach ( padCurlMulti ( $inputs ) as $name => $output )
         $results [$name] = $output + [ 'cache' => 'miss' ];
       return $results;

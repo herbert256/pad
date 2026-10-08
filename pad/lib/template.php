@@ -198,6 +198,45 @@
 
   }
 
+  // The tags that own an {else}: {if} and {case}, and the condition tags of the login,
+  // the gates and the feature flags (lib/auth.php, gate.php, feature.php). An {else}
+  // belongs to the tag being run only when every one of them is balanced in the text in
+  // front of it - one inside a nested pair is that pair's. The condition tags may stand
+  // without a parameter, {auth}, so the bare form counts as an opening too.
+
+  const padElseOwners = [ 'if', 'case', 'auth', 'guest', 'can', 'cannot', 'feature' ];
+
+  function padElseFree ( $string ) {
+
+    foreach ( padElseOwners as $tag )
+      if ( substr_count ( $string, '{' . $tag . ' ' ) + substr_count ( $string, '{' . $tag . '}' )
+           != substr_count ( $string, '{/' . $tag . '}' ) + substr_count ( $string, '{/' . $tag . ' ' ) )
+        return FALSE;
+
+    return TRUE;
+
+  }
+
+  // A condition tag's own {else}: the content is cut to the part in front of it when the
+  // condition holds, to the part after it when not - TRUE then; FALSE when there is none,
+  // and the tag answers the way any tag does, its @else@ half rendering on FALSE.
+
+  function padElseCut ( &$content, $held ) {
+
+    $at = strpos ( $content, '{else}' );
+
+    while ( $at !== FALSE and ! padElseFree ( substr ( $content, 0, $at ) ) )
+      $at = strpos ( $content, '{else}', $at + 6 );
+
+    if ( $at === FALSE )
+      return FALSE;
+
+    $content = $held ? substr ( $content, 0, $at ) : substr ( $content, $at + 6 );
+
+    return TRUE;
+
+  }
+
   function padSplit ( $needle, $haystack, &$before, &$after ) {
 
     $array = explode ( $needle, $haystack, 2 );

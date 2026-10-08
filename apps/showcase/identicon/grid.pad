@@ -1,0 +1,4 @@
+{meta title='A wall of identicons', about='Twenty user ids, twenty patterns - each mirrored left to right, each in a colour of its own.'}
+<div style="display:grid; grid-template-columns:repeat(5, 56px); gap:12px; justify-content:center">
+  {sequence '1..20', name='id'}{identicon 'user-' . $id, size=56, title='User ' . $id}{/sequence}
+</div>

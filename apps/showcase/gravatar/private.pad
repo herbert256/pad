@@ -1,0 +1,10 @@
+{meta title='No request to a third party', about='fallback= draws the picture on the server instead - the initials of the name, or the identicon of the address - so no visitor is sent to Gravatar.'}
+<div style="display:grid; gap:16px">
+  {comments}
+  <div style="display:flex; gap:12px; align-items:flex-start">
+    {gravatar $email, size=40, fallback='avatar', alt=$name}
+    {gravatar $email, size=40, fallback='identicon', alt=$name}
+    <div><strong>{$name}</strong><br>{$text}</div>
+  </div>
+  {/comments}
+</div>

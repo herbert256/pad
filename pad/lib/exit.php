@@ -102,20 +102,26 @@
   // The session is closed as it stands, not through padCloseSession: a refusal can come
   // before inits/parms.php has taken the $padSessionVars names in, and writing the globals
   // back then would empty every one of them - a stale form would log the visitor out.
+  //
+  // An application with an error page for the status - _errors/403.pad, lib/errorPage.php -
+  // answers with that page instead, the line as its $message; rendered first, as the
+  // buffers it would otherwise land in are emptied after.
 
   function padRefuse ( $stop, $text ) {
+
+    $page = padErrorPageRender ( $stop, $text );
 
     padEmptyBuffers ( $ignored );
 
     if ( ! headers_sent () ) {
       http_response_code ( $stop );
-      header ( 'Content-Type: text/plain; charset=UTF-8' );
+      header ( 'Content-Type: ' . ( $page === FALSE ? 'text/plain' : 'text/html' ) . '; charset=UTF-8' );
       header ( 'Cache-Control: no-cache, no-store' );
       if ( ( $GLOBALS ['padOutputType'] ?? 'web' ) == 'web' )
         padSecurityHeaders ();
     }
 
-    echo $text;
+    echo ( $page === FALSE ) ? $text : $page;
 
     if ( session_status () === PHP_SESSION_ACTIVE )
       session_write_close ();

@@ -18,6 +18,7 @@ See [herbert256.github.io/pad/apps/](https://herbert256.github.io/pad/apps/) for
 | File | Description |
 |------|-------------|
 | [ANALYSE.md](ANALYSE.md) | Code analysis and architecture overview |
+| [COMPARISON.md](COMPARISON.md) | PAD feature by feature against Laravel, Symfony, Rails and Django |
 | [APP.md](APP.md) | Application development guide - creating apps, template syntax, tags, patterns |
 | [DATABASE.md](DATABASE.md) | Database operations - db() function, template tags, PAD Select subsystem |
 | [GPL.md](GPL.md) | Full GNU General Public License v3.0 text |

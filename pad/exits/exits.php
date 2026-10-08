@@ -50,6 +50,16 @@
   if ( padLive () !== '' )
     $padOutput = padLiveAnswer ();
 
+  // A {toc} is filled in once every heading of the page is written, the answer of a live
+  // request included - lib/toc.php.
+
+  $padOutput = padTocFill ( $padOutput );
+
+  // A page with a {pdf} answers the document of what it rendered instead (lib/pdf.php).
+
+  if ( padPdfAsked () )
+    $padOutput = padPdfAnswer ( $padOutput );
+
   // The development check of the finished HTML - duplicate ids, images without alt, fields
   // without a label, broken ?page links - for a local request that asks for it, on what the
   // templates wrote, before tidy rearranges it (lib/outputCheck.php).

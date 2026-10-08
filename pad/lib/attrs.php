@@ -10,13 +10,15 @@
   // name is an HTML attribute name; an item without one is [ '', expression ]).
 
   // Whether the tag on this level takes its items raw - the built-in {attrs}, {classes},
-  // {trans}, {debug}, {parms}, {assert}, and the form tags {form}, {input} and {textarea}.
+  // {trans}, {debug}, {parms}, {assert}, the form tags {form}, {input} and {textarea},
+  // {can} and {cannot}, and {jsonview}, whose values may be arrays - a row, an answer of an
+  // API - that an expression cannot hold.
 
   function padParmsRaw () {
 
     global $pad, $padTag, $padType;
 
-    return in_array ( $padTag [$pad] ?? '', [ 'attrs', 'classes', 'trans', 'debug', 'parms', 'form', 'input', 'textarea', 'assert' ] ) and ( $padType [$pad] ?? '' ) == 'pad';
+    return in_array ( $padTag [$pad] ?? '', [ 'attrs', 'classes', 'trans', 'debug', 'parms', 'form', 'input', 'textarea', 'assert', 'can', 'cannot', 'jsonview' ] ) and ( $padType [$pad] ?? '' ) == 'pad';
 
   }
 

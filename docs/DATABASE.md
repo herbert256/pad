@@ -317,6 +317,17 @@ page cache) stays MySQL. The `regression/sqlite` application runs on it.
 
 ---
 
+## Migrations and Seeders
+
+An application's schema lives in `_migrations/` as changes run in name order -
+`2026_10_01_120000_create_orders.sql` with an optional `..._create_orders.down.sql`, or a
+`.php` returning `[ 'up' => ..., 'down' => ... ]` - recorded in `pad_migrations` in batches;
+`_seeds/*.php` fill it. `pad migrate shop` (`--status`, `--rollback[=n]`, `--fresh --force`,
+`--pretend`, `--seed`, `--new=name`), `pad seed shop`; from PHP `padMigrate`,
+`padMigrateStatus`, `padMigrateRollback`, `padSeed`, and `padFactory` with the `padFake*`
+generators for test data. MySQL and SQLite alike; on MySQL a DDL statement commits by itself,
+so keep one change per migration. See `docs/reference/HELPERS.md`.
+
 ## Database Library Functions
 
 | Function | Description |

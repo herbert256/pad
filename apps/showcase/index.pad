@@ -1,0 +1,38 @@
+<main class="page home">
+
+  <section class="hero">
+    <div class="hero-text">
+      <span class="kicker">PAD · tags</span>
+      <h1>Tags that draw,<br><span class="shine">format and interact.</span></h1>
+      <p class="lead">Diagrams, maps, timelines, avatars and icons as SVG; tables, diffs,
+      tables of contents and JSON views; thumbnails, video and PDF; tabs, modals and carousels
+      without JavaScript of your own; chess boards and puzzles. Every one rendered on the
+      server from a tag.</p>
+      <ul class="stats">
+        <li><b>{$tagCount}</b> tags</li>
+        <li><b>{$exampleCount}</b> examples</li>
+      </ul>
+    </div>
+  </section>
+
+  {sections}
+  <section class="family" id="{$family}">
+    <header class="family-head">
+      <h2>{$label}</h2>
+      <span class="family-line">{$tagline}</span>
+    </header>
+    <div class="cards">
+      {examples}
+      <article class="card">
+        <div class="card-chart" inert>{page $page}</div>
+        <div class="card-body">
+          <a class="card-title" href="?{$page}">{$title}</a>
+          <span class="card-text">{$text}</span>
+        </div>
+      </article>
+      {/examples}
+    </div>
+  </section>
+  {/sections}
+
+</main>

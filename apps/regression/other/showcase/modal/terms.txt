@@ -1,0 +1,37 @@
+<div style="width:100%; max-width:560px">
+  <h2>Checkout</h2>
+  <p>Your order: 1 × Aurora electric kettle, <strong>€ 79.00</strong></p>
+  <p>
+    <label><input type="checkbox" required> I accept the terms of sale</label>
+  </p>
+  <style>:where(.pad-modal){--pad-modal-accent:#2a78d6;--pad-modal-on:#ffffff;--pad-modal-text:#1f1f1d;--pad-modal-muted:#62615c;--pad-modal-line:#e4e3df;--pad-modal-surface:#ffffff;--pad-modal-backdrop:rgba(20,20,18,.45);}@supports (color:light-dark(#000,#fff)){:where(.pad-modal){--pad-modal-accent:light-dark(#2a78d6,#5598e7);--pad-modal-on:light-dark(#ffffff,#0d1b2e);--pad-modal-text:light-dark(#1f1f1d,#ecebe6);--pad-modal-muted:light-dark(#62615c,#a9a8a0);--pad-modal-line:light-dark(#e4e3df,#3a3a37);--pad-modal-surface:light-dark(#ffffff,#1f1f1d);--pad-modal-backdrop:light-dark(rgba(20,20,18,.45),rgba(0,0,0,.65));}}.pad-modal-button{display:inline-flex;align-items:center;gap:.4em;padding:.55em 1.1em;border:0;border-radius:8px;background:var(--pad-modal-accent);color:var(--pad-modal-on);font:inherit;font-weight:600;text-decoration:none;cursor:pointer}.pad-modal-button:hover{filter:brightness(1.08)}.pad-modal-button:focus-visible,.pad-modal-close:focus-visible{outline:2px solid var(--pad-modal-accent);outline-offset:2px}button.pad-modal-button,button.pad-modal-close{display:none}@media (scripting:enabled){button.pad-modal-button{display:inline-flex}button.pad-modal-close{display:flex}a.pad-modal-link{display:none}}.pad-modal{width:min(36rem,calc(100vw - 2rem));max-height:calc(100vh - 4rem);padding:0;border:1px solid var(--pad-modal-line);border-radius:14px;background:var(--pad-modal-surface);color:var(--pad-modal-text);box-shadow:0 20px 50px rgba(0,0,0,.3)}.pad-modal::backdrop{background:rgba(20,20,18,.5)}.pad-modal:target:not([open]){display:block;position:fixed;inset:0;margin:auto;height:fit-content;z-index:2147483000;overflow:auto;box-shadow:0 0 0 100vmax var(--pad-modal-backdrop)}.pad-modal-frame{padding:1.2em 1.4em 1.4em}.pad-modal-head{display:flex;align-items:flex-start;gap:1em;margin-bottom:.6em}.pad-modal-title{flex:1;margin:0;font-size:1.2em;line-height:1.3}.pad-modal-close{display:flex;align-items:center;justify-content:center;flex:none;width:2em;height:2em;margin:-.3em -.5em 0 0;padding:0;border:0;border-radius:50%;background:transparent;color:var(--pad-modal-muted);font:inherit;font-size:1.3em;line-height:1;text-decoration:none;cursor:pointer}.pad-modal-close:hover{background:var(--pad-modal-line);color:var(--pad-modal-text)}.pad-modal-body>:first-child{margin-top:0}.pad-modal-body>:last-child{margin-bottom:0}</style><button type="button" class="pad-modal-button" commandfor="pad-modal-terms" command="show-modal">Read the terms</button><a class="pad-modal-button pad-modal-link" id="pad-modal-terms-open" href="#pad-modal-terms">Read the terms</a><dialog class="pad-modal" id="pad-modal-terms" aria-labelledby="pad-modal-terms-title" closedby="any"><div class="pad-modal-frame"><div class="pad-modal-head"><h2 class="pad-modal-title" id="pad-modal-terms-title">Terms of sale</h2><button type="button" class="pad-modal-close" commandfor="pad-modal-terms" command="close" aria-label="Close"><span aria-hidden="true">&#215;</span></button><a class="pad-modal-close pad-modal-link" href="#pad-modal-terms-open" aria-label="Close"><span aria-hidden="true">&#215;</span></a></div><div class="pad-modal-body"><p>These terms apply to every order placed in this shop.</p>
+    <ol>
+      <li>Prices include VAT; shipping is free above € 50.</li>
+      <li>You may return an unused product within 30 days for a full refund.</li>
+      <li>Every appliance carries a two-year warranty from the date of delivery.</li>
+      <li>Your data is used to deliver your order and never sold.</li>
+    </ol>
+    <p>Questions? Write to <a href="mailto:shop@example.com">shop@example.com</a>.</p></div></div></dialog><script>(function () {
+  if (window.padModalReady) return;
+  window.padModalReady = true;
+  var native = 'command' in HTMLButtonElement.prototype;
+  document.addEventListener('click', function (e) {
+    var target = e.target;
+    if (target.matches && target.matches('dialog.pad-modal[open]')) { target.close(); return; }
+    var button = target.closest && target.closest('button.pad-modal-button, button.pad-modal-close');
+    if (!button || native) return;
+    var dialog = document.getElementById(button.getAttribute('commandfor'));
+    if (!dialog) return;
+    if (button.getAttribute('command') === 'close') dialog.close();
+    else if (!dialog.open) dialog.showModal();
+  });
+  function arrived() {
+    var id = '';
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch (error) { return; }
+    var dialog = id && document.getElementById(id);
+    if (dialog && dialog.matches('dialog.pad-modal') && !dialog.open) dialog.showModal();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', arrived);
+  else arrived();
+})();</script>
+</div>

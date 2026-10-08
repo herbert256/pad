@@ -1,0 +1,12 @@
+{meta title='A comment thread', about='Each comment says how long ago it was posted; hover a time for the full date, and the datetime attribute carries the exact moment.'}
+<ol style="list-style:none;margin:0;padding:0;max-width:32em;display:grid;gap:16px">
+  {comments}
+  <li style="display:grid;grid-template-columns:40px 1fr;gap:12px">
+    <span aria-hidden="true" style="width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;background:{$color}">{$name | left(1)}</span>
+    <div>
+      <strong>{$name}</strong> <small style="opacity:.65">· {timeago $posted}</small>
+      <p style="margin:4px 0 0;line-height:1.5">{$text}</p>
+    </div>
+  </li>
+  {/comments}
+</ol>

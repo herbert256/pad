@@ -1,0 +1,7 @@
+2026_10_01_090000_create_customers: 2 - create table customers ( id integer primary key autoincrement, name varchar(80) not null, city varchar(40) not null default &#039;Nowhere; really&#039;, email varchar(120) )
+2026_10_02_100000_create_orders: 2 - create table orders ( id integer primary key autoincrement, customer_id integer not null references customers (id), total decimal(8,2) not null, placed varchar(10) not null )
+2026_10_03_110000_order_trigger: 1 - create trigger orders_logged after insert on orders begin insert into order_log (order_id, note) values (new.id, &#039;placed&#039;); insert into order_log (order_id, note) values (new.id, case when new.total &gt; 100 then &#039;big&#039; else &#039;small&#039; end); end
+tables: pad_migrations
+no    2026_10_01_090000_create_customers
+no    2026_10_02_100000_create_orders
+no    2026_10_03_110000_order_trigger

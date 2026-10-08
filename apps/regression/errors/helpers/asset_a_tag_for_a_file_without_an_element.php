@@ -1,0 +1,5 @@
+<?php
+
+  padAssetTag ( 'logo.png' );
+
+?>

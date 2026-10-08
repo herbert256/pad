@@ -1,0 +1,10 @@
+{meta title='Search results', about='Each result cut to 24 words around the first match of the query, every match marked.'}
+<div>
+  <p>Results for <strong>{$q}</strong></p>
+  {results}
+    <article>
+      <h3><a href="{$url}">{$title}</a></h3>
+      <p>{excerpt $body, words=24, highlight=$q}</p>
+    </article>
+  {/results}
+</div>

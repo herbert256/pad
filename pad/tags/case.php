@@ -35,8 +35,7 @@
 
     $padCaseElse = strpos ( $padContent, '{else}' );
 
-    while ( $padCaseElse !== FALSE and ! ( padCheckTag ( 'case', substr ( $padContent, 0, $padCaseElse ) )
-                                       and padCheckTag ( 'if',   substr ( $padContent, 0, $padCaseElse ) ) ) )
+    while ( $padCaseElse !== FALSE and ! padElseFree ( substr ( $padContent, 0, $padCaseElse ) ) )
       $padCaseElse = strpos ( $padContent, '{else}', $padCaseElse+6 );
 
     $padCaseSeen = [];
@@ -115,15 +114,14 @@
 
   // An {else} of our own ends the last branch and opens the default one, the same way
   // {if} takes it: the part in front of it when that last {when} matches, the part after it
-  // when nothing has matched at all. padCheckTag skips an {else} belonging to a nested tag -
-  // a {case}, and an {if}, the other owner of an {else}: a branch holding
+  // when nothing has matched at all. padElseFree skips an {else} belonging to a nested tag -
+  // a {case}, an {if} or a condition tag, the other owners of an {else}: a branch holding
   // {if}...{else}...{/if} was split at the if's {else}, and in the strict pre-scan above
   // every {when} after it stood 'behind the {else}'.
 
   $padChk = strpos ( $padContent, '{else}' );
 
-  while ( $padChk !== FALSE and ! ( padCheckTag ( 'case', substr ( $padContent, 0, $padChk ) )
-                                and padCheckTag ( 'if',   substr ( $padContent, 0, $padChk ) ) ) )
+  while ( $padChk !== FALSE and ! padElseFree ( substr ( $padContent, 0, $padChk ) ) )
     $padChk = strpos ( $padContent, '{else}', $padChk+6 );
 
   if ( $padChk !== FALSE ) {

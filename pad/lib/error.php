@@ -45,11 +45,14 @@
   // Raised while the application's _events/error.php hook runs, an error is the hook's own
   // failure - a db() or a fetch to a tracker that is down - which lib/events.php logs and
   // sets aside. Handed to the error action like any other, under pad and boot it was the
-  // error reported, and the one the hook had been told about was gone.
+  // error reported, and the one the hook had been told about was gone. An error page being
+  // rendered (lib/errorPage.php) and the health check's probes (lib/health.php) catch their
+  // own failures the same way.
 
   function padErrorHook ( $error, $file, $line ) {
 
-    if ( $GLOBALS ['padEventErrorBusy'] ?? FALSE )
+    if ( ( $GLOBALS ['padEventErrorBusy'] ?? FALSE ) or ( $GLOBALS ['padErrorPageBusy'] ?? FALSE )
+         or ( $GLOBALS ['padHealthBusy'] ?? FALSE ) )
       throw new ErrorException ( $error, 0, E_USER_ERROR, $file, $line );
 
   }

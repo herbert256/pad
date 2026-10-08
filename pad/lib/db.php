@@ -37,6 +37,11 @@
     if ( padReplaying () and padReplayWrites ( $sql ) )
       return 0;
 
+    // A pretend migration (lib/migrate.php) sends nothing: the statement is collected.
+
+    if ( isset ( $GLOBALS ['padMigratePretend'] ) )
+      return padMigratePretendDb ( $sql, $vars );
+
     $connect = padDbApp ();
 
     if ( $connect === NULL )

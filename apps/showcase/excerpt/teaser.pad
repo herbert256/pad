@@ -1,0 +1,9 @@
+{meta title='Teasers from HTML', about='The first 25 words of each post body - its tags dropped with html, an ellipsis where it goes on.'}
+<div>
+  {posts}
+    <article>
+      <h3>{$title}</h3>
+      <p><small>{$date}</small> {excerpt $body, words=25, html}</p>
+    </article>
+  {/posts}
+</div>

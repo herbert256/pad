@@ -281,6 +281,38 @@
   $padMailFrom      = '';
   $padMailKeep      = 100;
 
+  // Custom error pages (lib/errorPage.php): TRUE renders _errors/<status>.pad of the
+  // application - 404, 403, 500, 503 - when it has one, inside its own _errors/_inits.pad
+  // when there is one; FALSE keeps the plain text answers.
+
+  $padErrorPages = TRUE;
+
+  // The health check (lib/health.php): TRUE answers ?up - 200 with a small JSON body when
+  // the checks pass, 503 when one fails - for a load balancer or an uptime monitor, when
+  // the application has no page of that name.
+
+  $padHealth = FALSE;
+
+  // Cross-origin requests (lib/cors.php): [] sends no CORS header. Set, e.g.
+  // [ 'origins' => [ 'https://app.example.com' ], 'methods' => [ 'GET', 'POST' ],
+  //   'headers' => [ 'Content-Type' ], 'credentials' => FALSE, 'maxAge' => 600 ],
+  // a request from a listed origin gets the Access-Control-* headers and a preflight
+  // OPTIONS request is answered 204 before the application runs.
+
+  $padCors = [];
+
+  // Feature flags (lib/feature.php): name => TRUE, FALSE, a share between 0 and 1 of the
+  // visitors (the same visitor always gets the same answer), or the name of a function
+  // that decides. padFeature ( 'name' ) and {feature 'name'} read them.
+
+  $padFeatures = [];
+
+  // Remember-me (lib/auth.php): the name of an application function that finds a user's
+  // row by its id - padLogin ( $user, TRUE ) needs it; the cookie is checked against the
+  // row it answers, so a new password ends every remember-me cookie made before it.
+
+  $padAuthRemember = '';
+
   $padGzip      = FALSE;
   $padCookies   = TRUE;
   $padNoNo      = FALSE;

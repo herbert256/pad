@@ -88,22 +88,40 @@
     $padRouteFound = $padRouteFound ?: [ 'page' => $padSitemapAsk, 'vars' => [] ];
   }
 
-  if ( ! $padRouteFound ) {
+  // ?up is the health check's (lib/health.php) on the same terms: the application's own page
+  // of that name wins, and whether the engine answers waits for the configuration, in
+  // $padHealthAsk for inits/health.php.
 
-    while ( ob_get_level () )
-      ob_end_clean ();
+  $padHealthAsk = FALSE;
 
-    if ( ! headers_sent () ) {
-      http_response_code ( 404 );
-      header ( 'Content-Type: text/plain; charset=UTF-8' );
-    }
-
-    echo padLocal () ? "Page '" . padMakeSafe ( $padPage, 100 ) . "' not found" : 'Page not found';
-
-    $stop = 404;
-    include PAD . 'exits/exit.php';
-
+  if ( $padPage === 'up' and ( ! $padRouteFound or str_contains ( $padRouteFound ['page'], '[' ) ) ) {
+    $padHealthAsk  = TRUE;
+    $padRouteFound = $padRouteFound ?: [ 'page' => 'up', 'vars' => [] ];
   }
+
+  // A page that is not there is a 404, the visitor's request rather than a server fault -
+  // it was a 500 boot error. The name is shown to this machine's own requests only
+  // (padNotFound, lib/errorPage.php).
+  //
+  // It waits for the configuration when the answer could be another: the application has
+  // an error page for it (_errors/404.pad), which only a configured request can render, or
+  // it is down for maintenance (lib/maintenance.php), which answers every page 503. The
+  // name waits in $padNotFound, on a stand-in page, for inits/notFound.php.
+
+  $padNotFound = '';
+
+  // Only a well-formed name waits: it becomes the stand-in page the configuration and the
+  // plain PHP of a $padNoNo application see, so a name with .. in it is answered at once.
+
+  if ( ! $padRouteFound and ( padErrorPageFileAny ( 404 ) or padMaintenanceFileExists () )
+       and preg_match ( '#^[A-Za-z0-9_-][A-Za-z0-9_.-]*(/[A-Za-z0-9_-][A-Za-z0-9_.-]*)*$#D', $padPage )
+       and ! str_contains ( $padPage, '..' ) ) {
+    $padNotFound   = $padPage;
+    $padRouteFound = [ 'page' => $padPage, 'vars' => [] ];
+  }
+
+  if ( ! $padRouteFound )
+    padNotFound ( $padPage );
 
   // A clean URL route binds its bracketed segments as variables of the request: they are
   // set before the request values are promoted (inits/parms.php), so ?id=7 cannot replace

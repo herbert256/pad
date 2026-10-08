@@ -1,0 +1,22 @@
+{meta title='Contents in a sidebar', about='Three heading levels as a bulleted list beside the text - levels= picks the levels, list= the kind of list, and a heading with its own id keeps it.'}
+<div style="display:flex;gap:28px;align-items:flex-start;line-height:1.5">
+  <aside style="flex:0 0 13em;font-size:14px">
+    {toc levels='2-4', list='ul', title='On this page'}
+  </aside>
+  <div style="flex:1;min-width:0">
+    <h2 id="install">Installation</h2>
+    <p>Clone the repository and point the web server at <code>www/</code>.</p>
+    <h3>Requirements</h3>
+    <p>PHP 8.1 or newer; a database only when the application uses one.</p>
+    <h4>Extensions</h4>
+    <p>mbstring is required, intl is used when it is there.</p>
+    <h3>First run</h3>
+    <p>Open the hello application to see a page and its template.</p>
+    <h2>Configuration</h2>
+    <p>Settings stand in <code>_config/config.php</code> and in <code>.env</code> files.</p>
+    <h3>Error handling</h3>
+    <p>Choose what happens when something goes wrong: a page, a log line or a dump.</p>
+    <h2>Deployment</h2>
+    <p>Copy the files; there is no build step.</p>
+  </div>
+</div>

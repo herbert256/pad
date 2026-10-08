@@ -25,6 +25,9 @@
   // Every remote fetch that finished - not a _data/ file answered on the spot - is told to
   // the application's _events/curl.php through padCurlEvent.
   //
+  // padCurlFake (lib/curlFake.php) makes padCurl answer from a test's fakes instead of the
+  // wire, for the rest of the request - padCurlMulti, and so padPrefetch, with it.
+  //
   // padNoCurl is the fallback when ext-curl is missing: it just reads the URL as a file.
   // padCurlOpt sets a default that the caller's own options can override, and padCurlError
   // records the failure in the same array with result 999 instead of throwing.
@@ -361,8 +364,11 @@
       return $output;
     }
 
+    // While a test fakes the fetches (lib/curlFake.php) the answer is the fake's, and
+    // nothing goes on the wire.
+
     $start  = hrtime ( TRUE );
-    $output = padCurlWire ( $output );
+    $output = padCurlFaking () ? padCurlFakeAnswer ( $output ) : padCurlWire ( $output );
 
     padCurlEvent ( $output, ( hrtime ( TRUE ) - $start ) / 1e6 );
 
@@ -432,7 +438,8 @@
   // one fetch at a time leaves eleven of them idle. Everything the caller of padCurl may
   // rely on holds here too - same option defaults, same output shape, same 999-with-ERROR
   // on a failed transfer - except $padCurlLast, which is only meaningful for one fetch and
-  // is left alone. Without ext-curl the inputs are simply fetched one by one.
+  // is left alone. Without ext-curl the inputs are simply fetched one by one, and so they
+  // are while a test fakes the fetches, each answered by padCurl from the fakes.
   //
   // The loop must always end. A window below one admitted nothing, so nothing ever flew and
   // the queue never shrank - it is clamped to at least one. And a curl_multi call that
@@ -444,7 +451,7 @@
     $window  = max ( 1, (int) $window );
     $results = [];
 
-    if ( ! function_exists ( 'curl_multi_init' ) ) {
+    if ( ! function_exists ( 'curl_multi_init' ) or padCurlFaking () ) {
 
       foreach ( $inputs as $key => $input )
         $results [$key] = padCurl ( $input );

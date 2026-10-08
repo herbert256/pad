@@ -1,0 +1,11 @@
+{meta title='A tab per row', about='The tabs made in a loop - one per plan of the data, its features inside.'}
+<div style="width:100%; max-width:640px">
+  {tabs}
+    {plans}
+      {tab $name}
+        <p><strong>{$price}</strong> a month - {$about}</p>
+        <ul>{features}<li>{$features}</li>{/features}</ul>
+      {/tab}
+    {/plans}
+  {/tabs}
+</div>

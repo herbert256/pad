@@ -10,6 +10,7 @@ This directory contains PAD applications and examples.
 | [alpine](alpine/README.md) | Standard | PAD + Alpine: state from PHP with `x-data="{^field}"`, components with `Alpine.data`, live search, one set of rules for both sides, a list in the session, server-sent events |
 | [apps](apps/README.md) | Standard | Lists all PAD applications with descriptions from README files |
 | [charts](charts/README.md) | Standard | A showcase of the {chart} tag - a pulldown per chart family, every example with its data, its tag and the chart side by side |
+| [showcase](showcase/README.md) | Standard | A showcase of the tags that draw, format and interact - a pulldown per group, every example its template beside the result |
 | [classicModels](classicModels/README.md) | Standard | PAD Select over the Classic Models sample database |
 | [cli](cli/README.md) | CLI | The `pad` command - new, serve, render, lint, export, test - and the command-line application |
 | [demo](demo/README.md) | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
@@ -46,6 +47,8 @@ This directory contains PAD applications and examples.
 | [regression/events](regression/events/README.md) | Test | Regression test for the `_events/` hooks - each page shows what its hook heard |
 | [regression/remote](regression/remote/README.md) | Test | Regression test for remote data with a ttl cache and parallel fetching - pages that fetch their own |
 | [regression/sqlite](regression/sqlite/README.md) | Test | Regression test for SQLite as the application database - built from a .sql file, no server |
+| [regression/migrate](regression/migrate/README.md) | Test | Regression test for migrations, seeders and fake data - an SQLite database built by `_migrations/`, filled by `_seeds/` |
+| [regression/queue](regression/queue/README.md) | Test | Regression test for the job queue and the scheduler - jobs queued and worked in one request, the schedule at fixed moments |
 | [regression/env](regression/env/README.md) | Test | Regression test for `padEnv` in a configuration file, the application cache's flush and parallel rate-limit hits |
 | [regression/error_pad](regression/error_pad/README.md) | Test | Regression test for the 'pad' error action - the index turns NO when the action stops behaving |
 | [regression/error_php](regression/error_php/README.md) | Test | Regression test for the 'php' error action - the index turns NO when the action stops behaving |
@@ -61,6 +64,10 @@ This directory contains PAD applications and examples.
 | [regression/try_log](regression/try_log/README.md) | Test | Regression test for the try guards under the 'log' action - caught, logged, and the page renders clean |
 | [regression/try_pad](regression/try_pad/README.md) | Test | Regression test for the try guards under the 'pad' action - caught and reported into the page |
 | [regression/toolbar](regression/toolbar/README.md) | Test | Regression test for the debug toolbar - a local page carries it, a fragment and a forwarded request do not |
+| [regression/errorpages](regression/errorpages/README.md) | Test | Regression test for `$padErrorPages` - every refusal answered with the application's `_errors/` page, its status kept, a failing page the plain line |
+| [regression/maintenance](regression/maintenance/README.md) | Test | Regression test for maintenance mode - 503 with Retry-After for every page, the secret's cookie let through, up again |
+| [regression/health](regression/health/README.md) | Test | Regression test for `$padHealth` - `?up` as JSON, 503 when a check fails, nothing of the credentials shown |
+| [regression/cors](regression/cors/README.md) | Test | Regression test for `$padCors` - the Access-Control headers per origin, a preflight answered 204 before the CSRF check |
 | [regression/cli](regression/cli/README.md) | Test | Regression test for the pad command - render, new, lint, serve and export, each a NO when it stops behaving |
 | [regression/site](regression/site/README.md) | Test | The fixture pad export is tested on - links in every form, a page in a subdirectory, assets |
 | [regression/reload](regression/reload/README.md) | Test | Regression test for live reload - a local page carries the script and its stamp, a fragment, a forwarded request and an export do not |

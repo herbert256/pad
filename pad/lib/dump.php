@@ -57,6 +57,31 @@
     if ( ! headers_sent () )
       header ( 'HTTP/1.0 500 Internal Server Error' );
 
+    // A visitor gets the application's own page for a failure when it has one -
+    // _errors/500.pad (lib/errorPage.php) - with the request id in $id, the report on disk;
+    // this machine keeps the full report. A page that fails itself leaves the plain line.
+
+    if ( ! padLocal () and padErrorPageFile ( 500 ) ) {
+
+      if ( ! isset ( $GLOBALS ['padDumpToDirDone'] ) )
+        padDumpToDir ( $info );
+
+      $padErrorPage = padErrorPageRender ( 500, 'Internal Server Error' );
+
+      if ( $padErrorPage !== FALSE ) {
+        padEmptyBuffers ( $padIgnored );
+        if ( ! headers_sent () ) {
+          header ( 'Content-Type: text/html; charset=UTF-8' );
+          header ( 'Cache-Control: no-cache, no-store' );
+        }
+        echo $padErrorPage;
+        $padSent   = TRUE;
+        $padOutput = '';
+        return;
+      }
+
+    }
+
     padEmptyBuffers ( $padIgnored );
 
     if ( $padOutputType == 'web' )

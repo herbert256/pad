@@ -1,0 +1,9 @@
+{meta title='Upcoming events', about='The two largest units by default, a past= text for an event that has started, and the full moment in the title on hover.'}
+<ul style="list-style:none;margin:0;padding:0;min-width:24em">
+  {events}
+  <li style="display:flex;justify-content:space-between;gap:24px;padding:10px 0;border-bottom:1px solid rgba(128,128,128,.25)">
+    <strong>{$name}</strong>
+    <span style="opacity:.8">{countdown $starts, past='Sold out'}</span>
+  </li>
+  {/events}
+</ul>
