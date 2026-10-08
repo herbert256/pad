@@ -262,6 +262,14 @@
   $padSitemap     = FALSE;
   $padSitemapSkip = [];
 
+  // Vite builds ({vite} - lib/vite.php): the scripts and stylesheets of an entry come from the
+  // manifest Vite writes into www/<app>/<$padViteBuild>/.vite/manifest.json. While the dev
+  // server runs - $padViteDev names it, or the file hot in that directory holds its address -
+  // they come from the dev server instead, with hot module replacement.
+
+  $padViteBuild = 'build';
+  $padViteDev   = '';
+
   // Template emails ({mail}, padMail - lib/mail.php): 'file' writes every message as an .eml
   // under DATA/mail/<app>/ instead of sending it - development needs no mail server; 'mail'
   // sends through PHP's mail(); any other value names a function of the application that

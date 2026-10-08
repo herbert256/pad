@@ -34,7 +34,7 @@
                            'trans', 'nonce', 'csrf', 'stack', 'recurse', 'parent', 'extends',
                            'meta', 'parms', 'assert', 'flush', 'sparkline', 'chart', 'input',
                            'textarea', 'pager', 'sitemap', 'qr', 'barcode', 'calendar', 'highlight',
-                           'validator', 'source' ];
+                           'validator', 'source', 'vite' ];
 
   const editBranchTags = [ 'else', 'elseif', 'when' ];
 

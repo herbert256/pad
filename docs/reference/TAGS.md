@@ -1350,6 +1350,34 @@ the coloured text alone.
 
 ---
 
+### vite
+The scripts and stylesheets of a Vite build, linked by the name of their source.
+
+```html
+{vite 'src/main.js'}                       <!-- the entry's CSS, its chunks preloaded, the script -->
+{vite 'src/main.jsx', 'src/admin.js', react}
+```
+
+| Option | Description |
+|--------|-------------|
+| parameters | The entries, as `build.rollupOptions.input` names them |
+| `react` | With the dev server: the preamble the React plugin needs for fast refresh, first |
+
+**Behavior:** in production the manifest Vite writes - `www/<app>/<$padViteBuild>/.vite/manifest.json`
+(`build.manifest: true`, `build.outDir` that directory) - gives per entry a
+`<link rel="stylesheet">` for its CSS and the CSS of every chunk it imports, a
+`<link rel="modulepreload">` for every such chunk, and its `<script type="module">`; a dynamic
+import is left to load when asked for. The addresses are `$padRoot`, the application and
+`$padViteBuild` (default `build`) - the build's `base`. While the dev server runs - `$padViteDev`
+names it, or the file `hot` in the build directory holds its address (a `configureServer` hook
+writes it at start and removes it at stop) - the tags point at the dev server instead:
+`@vite/client`, then the sources as they are, for hot module replacement. A file goes out once a
+page, however many `{vite}` tags name it; a script carries the request's nonce when `$padCsp`
+asks for one. An entry the manifest does not have, and a build without a manifest while no dev
+server runs, are errors.
+
+---
+
 ### source
 The files behind a page as tabs, each coloured as `{highlight}` colours it - the code shown
 is read from the files that run, so it never drifts from them.

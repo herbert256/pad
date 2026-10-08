@@ -1,0 +1,61 @@
+<p>A component written in JSX, TypeScript, a Vue or Svelte file needs a build. Vite makes it -
+and PAD links the result by the name of the source, so a template never names a hashed file:</p>
+
+
+<pre><code>&lt;div data-island="Cart" data-props="{^cart}"&gt;&lt;/div&gt;
+
+{vite 'src/main.js'}</code></pre>
+
+
+<p>In production that is the entry's stylesheet, its chunks as <code>modulepreload</code> and its
+<code>&lt;script type="module"&gt;</code>, from the manifest the build wrote. While the dev server
+runs it is the dev server - with hot module replacement, a save in the editor shows at once.</p>
+
+<h2>The build</h2>
+
+<p>Vite writes into the application's <code>www/</code> directory - <code>build/</code> unless
+<code>$padViteBuild</code> says otherwise - with its manifest on, and its <code>base</code> the
+address of that directory:</p>
+
+
+<pre><code>// vite.config.js
+import fs from 'node:fs';
+import path from 'node:path';
+
+export default {
+  base: '/myapp/build/',
+  build: {
+    outDir: '../../www/myapp/build',
+    manifest: true,
+    rollupOptions: { input: [ 'src/main.js' ] }
+  },
+  plugins: [ padHot() ]
+}
+
+// the dev server's address in build/hot while it runs - {vite} asks it then
+function padHot () {
+  const file = '../../www/myapp/build/hot';
+  return {
+    name: 'pad-hot',
+    configureServer ( server ) {
+      server.httpServer.once('listening', () =&gt; {
+        const { port } = server.httpServer.address();
+        fs.mkdirSync(path.dirname(file), { recursive: true });
+        fs.writeFileSync(file, `http://localhost:${port}`);
+      });
+      process.on('exit', () =&gt; fs.rmSync(file, { force: true }));
+    }
+  };
+}</code></pre>
+
+
+<ul>
+  <li><code>$padViteDev = 'http://localhost:5173'</code> names the dev server outright, without the
+      file.</li>
+  <li><code>{vite 'src/main.jsx', react}</code> writes the preamble the React plugin needs for
+      fast refresh, when the dev server is asked.</li>
+  <li>A file goes out once a page however many entries name it; a script carries the request's
+      nonce when <code>$padCsp</code> asks for one.</li>
+  <li>An entry the manifest does not have, and a build without a manifest while no dev server
+      runs, are errors.</li>
+</ul>

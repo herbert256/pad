@@ -137,6 +137,15 @@ With `every` PAD calls the producer on that interval and sends what it answers (
 nothing, `FALSE` ends); `for` bounds the stream (60 s). The session is closed first - the
 visitor's other requests do not wait - and nothing is cached, compressed or buffered.
 
+## Vite builds
+
+`{vite 'src/main.js'}` links the scripts and stylesheets of a Vite build by the name of their
+source: from the manifest of `www/<app>/build/.vite/manifest.json` (`$padViteBuild`) - the
+entry's CSS, its chunks as `modulepreload`, its `<script type="module">` - or, while the dev
+server runs (`$padViteDev`, or the address in `build/hot`), from the dev server with hot module
+replacement; `react` adds the fast-refresh preamble. A component compiled this way is mounted on
+the islands PAD writes as before - no Babel in the browser.
+
 ## Sitemap from the file tree
 
 `{sitemap}...{/sitemap}` lists every page of the application - `{$page}`, `{$url}`,
@@ -1092,6 +1101,11 @@ $padCheckSyntax = true;
 // Values are text, never template code (see Values Are Text). Off, every value is
 // re-read as template source.
 $padProtectValues = true;
+
+// Vite: {vite 'src/main.js'} reads www/<app>/<$padViteBuild>/.vite/manifest.json; while the dev
+// server runs ($padViteDev, or its address in that directory's hot file) it is asked instead.
+$padViteBuild = 'build';
+$padViteDev   = '';
 
 // The locale and timezone - {trans}, currency, localDate. With $padLocales listing several,
 // ?lang=, the padLang cookie or Accept-Language picks among them.
