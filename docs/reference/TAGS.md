@@ -2246,6 +2246,53 @@ answers the bytes.
 
 ---
 
+### diagram
+A flowchart or a sequence diagram from a few lines of text in the content, written the
+Mermaid way and laid out on the server as inline SVG (`lib/diagram.php`) - no JavaScript.
+
+```html
+{diagram}
+  A([Order placed]) --> B{In stock?}
+  B -->|yes| C[Take payment] --> D((Shipped))
+  B -.->|no| E[(Supplier)]
+{/diagram}
+
+{diagram type='sequence'}
+  Shop ->> Bank: Charge
+  Bank -->> Shop: Approved
+{/diagram}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| `type` | `flowchart` (default) or `sequence` - a first line `sequenceDiagram` says so too |
+| `direction` | `TB` (default), `BT`, `LR` or `RL` - else a first line `graph LR` / `flowchart LR` names it |
+| `edges` | `orthogonal` (default, rounded turns in channels of their own), `straight` or `curved` |
+| `title` | The accessible name, default `Flowchart` / `Sequence diagram` |
+
+**Behavior:** a flowchart line is a chain of nodes and edges: `A[Box]`, `B(Rounded)`,
+`C([Stadium])`, `D{Decision?}`, `E((Circle))`, `F[(Database)]`, `G{{Hexagon}}` - a quoted
+text keeps its brackets, `<br>` breaks a line, long texts wrap - joined by `-->` (arrow),
+`---` (line), `-.->` / `-.-` (dashed), `==>` / `===` (thick), a label as `-->|text|` or
+`-- text -->`, `&` for several nodes on one side (`A & B --> C`), `%%` a comment. The layout
+is layered: cycles broken by a depth-first walk, ranks by the longest path, a dummy node per
+rank a long edge crosses, the order in a rank by barycentre sweeps keeping the fewest
+crossings, positions by isotonic regression; node sizes follow their text, ports spread along
+a side, labels sit on a plate half way and step aside for each other. A sequence diagram
+takes `participant A as Alice`, `actor U`, messages `->>` (arrow), `-->>` (dashed), `->` /
+`-->` (no head), `-x` (cross), `-)` (open), `Note left of|right of|over A[,B]: text`, frames
+`loop`, `alt` / `else`, `opt`, `par` / `and`, `critical`, `break` closed by `end`, and
+`autonumber`. The content is read as it stands - the braces of `B{Paid?}` need no
+`{ignore}`. role="img" with a `<title>` and a `<desc>` that says every edge or message; the
+colours are `--pad-diagram-node`, `-border`, `-decision`, `-decision-border`, `-round`,
+`-round-border`, `-edge` and `-note` on `.pad-chart-diagram`, `light-dark()` defaults. A
+diagram without nodes answers nothing and its `@else@` shows; a line it cannot read, an
+unknown type, direction or edges value are errors under the strict check.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2771,6 +2818,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `img` | Output | Resized, cached thumbnail of a picture, with a 2x srcset |
 | `video` | Output | YouTube or Vimeo as a poster and play button, the iframe only on a click; a local file as `<video>` |
 | `pdf` | Output | The rendered content sent as a PDF, written in plain PHP - fonts, tables, JPEG pictures |
+| `diagram` | Output | A flowchart or sequence diagram from Mermaid-style lines, laid out on the server as inline SVG |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |

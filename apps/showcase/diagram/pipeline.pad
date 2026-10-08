@@ -1,0 +1,8 @@
+{meta title='A deploy pipeline, left to right', about='direction=LR and curved edges: a build fans out to three checks with &, and all of them have to pass before the release.'}
+{diagram direction='LR', edges='curved', title='Deploy pipeline'}
+  code([Commit]) --> build[Build]
+  build --> unit[Tests] & lint[Lint] & audit[Audit]
+  unit & lint & audit --> gate{Green?}
+  gate -->|yes| live((Live))
+  gate -.->|no| code
+{/diagram}

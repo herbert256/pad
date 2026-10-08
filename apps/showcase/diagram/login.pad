@@ -1,0 +1,20 @@
+{meta title='Signing in with a provider', about='A sequence diagram - lifelines, numbered messages, replies dashed, an alt frame with its else and a note.'}
+{diagram type='sequence', title='OAuth sign-in'}
+  actor U as User
+  participant B as Browser
+  participant A as App
+  participant P as Provider
+  autonumber
+  U ->> B: Sign in
+  B ->> P: Authorize
+  P -->> B: Redirect with a code
+  B ->> A: GET /callback
+  A ->> P: Exchange the code
+  alt Code is valid
+    P -->> A: Access token
+    A -->> B: Signed in
+  else Expired
+    A -->> B: Try again
+  end
+  Note over A,P: The token never reaches the browser
+{/diagram}
