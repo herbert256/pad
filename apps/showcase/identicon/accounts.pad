@@ -1,0 +1,9 @@
+{meta title='Accounts at a glance', about='An identicon per e-mail address: trimmed and lower-cased first, so every spelling of one address is one picture.'}
+<table style="border-collapse:collapse; width:100%">
+  {accounts}
+  <tr style="border-bottom:1px solid rgba(127,127,127,.25)">
+    <td style="padding:8px 12px 8px 0; width:48px">{identicon $email, size=40}</td>
+    <td style="padding:8px 0"><strong>{$email}</strong><br><small style="opacity:.7">{$joined}</small></td>
+  </tr>
+  {/accounts}
+</table>

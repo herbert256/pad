@@ -1592,6 +1592,31 @@ No name, or another shape, is an error under the strict check.
 
 ---
 
+### identicon
+A GitHub-style identicon as inline SVG - a symmetric 5 by 5 pattern and a colour from a SHA-256
+hash of the value (`lib/identicon.php`): every account its own picture, nothing sent anywhere.
+
+```html
+{identicon $email}
+{identicon $user.id, size=32, title='Your identicon'}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The value - an e-mail address, a user id, a key |
+| `size` | Width and height in pixels, default 64 |
+| `title` | The accessible name, default `Identicon` - the value itself, often an address, is not written into the page |
+
+**Behavior:** the value is trimmed and lower-cased before it is hashed, so every spelling of
+an address is one picture. Fifteen nibbles of the hash fill the left three columns, mirrored
+to the right; the colour is a hue from the last bytes at a saturation and lightness that read
+on the light square behind it, `--pad-identicon-background` (`light-dark()` on
+`.pad-identicon`, written once per page). An empty value is an error under the strict check.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2096,6 +2121,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `feature` | Web | Content while a feature flag is on; `{else}` |
 | `asset` | Web | The versioned address of a file of `www/<app>/`; `tag` writes the element |
 | `avatar` | Output | Initials avatar as inline SVG, coloured by a hash of the name |
+| `identicon` | Output | Symmetric 5x5 identicon as inline SVG from a SHA-256 hash |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
