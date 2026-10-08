@@ -926,6 +926,7 @@ Code: `pad/lib/chart.php` (bar, line, sparkline) and `pad/lib/chart/` (the other
 {lorem paragraphs=3, seed=7}                    # placeholder text, classic start, reproducible; words=, sentences=, varied
 {tabs active='Specs'}{tab 'Overview'}...{/tab}{tab 'Specs'}...{/tab}{/tabs}   # CSS-only tabs: radios, arrow keys
 {accordion single, open=1}{tab 'Question'}Answer{/tab}...{/accordion}   # <details> items, one open
+{modal 'terms', title='Terms', button='Read the terms'}...{/modal}   # <dialog>, works with and without JS
 ```
 Every one is rendered on the server; the `showcase` application has examples of each.
 

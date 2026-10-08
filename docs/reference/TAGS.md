@@ -2004,6 +2004,38 @@ a loop. The browser opens and closes an item, from the keyboard too, a screen re
 
 ---
 
+### modal
+A dialog over the page - an HTML `<dialog>` with the content, and the button that opens it
+(`lib/modal.php`).
+
+```html
+{modal 'terms', title='Terms of sale', button='Read the terms'}
+  <p>These terms apply to every order ...</p>
+{/modal}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The name - letters, digits, `_` and `-`; the dialog's id is `pad-modal-<name>` |
+| `title` | The heading of the dialog, which names it; the button's text when not given |
+| `button` | The text of the button that opens it, default `Open` |
+
+**Behavior:** the button opens the dialog as a modal in the first way the browser can: the HTML
+invoker commands (`commandfor`, `command="show-modal"`) where it has them, with no script at
+all; a small script, once per page with the CSP nonce, calling `showModal()` and `close()`
+where it has not; and with scripting off a link to the dialog's id, which the CSS shows as an
+overlay (`:target`) with a close link back to the opener - `@media (scripting)` decides between
+the button and the links, and a browser too old for that query gets the links. Opened, the page
+behind is inert, the focus moves into the dialog and back to the button, and Escape, the close
+button or a click on the backdrop (`closedby="any"`) closes it. An address ending in
+`#pad-modal-<name>` opens it on arrival. The colours are `--pad-modal-accent`, `-on`, `-text`,
+`-muted`, `-line`, `-surface` and `-backdrop` on `.pad-modal`, `light-dark()` defaults, written
+once per page. A modal without a valid name is an error under the strict check.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2522,6 +2554,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `lorem` | Output | Lorem ipsum placeholder text - words, sentences or paragraphs, the same for the same seed |
 | `tabs` | Output | Panels behind a row of tabs - radio buttons and CSS, no JavaScript; `{tab}` is one item |
 | `accordion` | Output | Items that open on a click - every `{tab}` a `<details>`, one open at a time with `single` |
+| `modal` | Output | A `<dialog>` and its opening button - invoker commands, a small script, or a link without scripting |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
