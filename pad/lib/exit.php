@@ -114,7 +114,10 @@
     padEmptyBuffers ( $ignored );
 
     if ( ! headers_sent () ) {
-      http_response_code ( $stop );
+      // The status line with its phrase, not the code alone: Apache under mod_php has no
+      // phrase of its own for some codes padAbort takes - 418 among them - and sent 500
+      // in their place.
+      header ( "HTTP/1.1 $stop " . padAbortPhrase ( $stop ), TRUE, $stop );
       header ( 'Content-Type: ' . ( $page === FALSE ? 'text/plain' : 'text/html' ) . '; charset=UTF-8' );
       header ( 'Cache-Control: no-cache, no-store' );
       if ( ( $GLOBALS ['padOutputType'] ?? 'web' ) == 'web' )
