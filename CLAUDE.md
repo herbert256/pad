@@ -942,6 +942,7 @@ Code: `pad/lib/chart.php` (bar, line, sparkline) and `pad/lib/chart/` (the other
 {timeago $created}                           # <time datetime title>5 minutes ago</time> - the ago pipe's words
 {emoji 'rocket'}  {$text | emoji}             # role="img" aria-label="rocket" 🚀; the pipe replaces :shortcodes: in text
 {country 'NL'}  {country 'NLD', name}         # the flag (role="img", named Netherlands); name writes the name beside it
+{jsonview $response, open=2}                 # foldable <details> tree, typed colours, counts on folded nodes; pair: JSON content
 ```
 Every one is rendered on the server; the `showcase` application has examples of each.
 

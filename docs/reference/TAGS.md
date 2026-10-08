@@ -2544,6 +2544,36 @@ strict error that names the nearest country when the text is close to a name.
 
 ---
 
+### jsonview
+A JSON value or a PHP array as a tree to fold open and shut (`lib/jsonview.php`) - each object and
+list a `<details>`, no script.
+
+```html
+{jsonview $response, open=1, title='GET /orders/42'}
+{jsonview data='settings'}
+{jsonview}
+  {"id": 42, "paid": true, "lines": [ ... ]}
+{/jsonview}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The value - a `$field` holding a list (a page array, a row) or a text; a text that is a JSON object or list is decoded |
+| `data` | A `{data}` store, a page array or a `_data` file by name - a `.json` file read as it is written |
+| `open` | The levels shown unfolded, default 2; 0 folds everything |
+| `title` | A label for the outermost level |
+
+**Behavior:** as a pair the content is the JSON, taken as it stands, so its braces need no
+`{ignore}`. The tag reads its items raw, as `{debug}` does, so a `$field` that holds an array is
+that array. Keys, strings, numbers, booleans and null each have a colour - `--pad-jsonview-*`
+custom properties with `light-dark()` defaults, the style written once per page; a folded node
+says how many keys or items it holds. Content that is no JSON, an unknown option, a second value,
+a `data` name that names nothing and no value at all are strict errors.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -3078,6 +3108,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `timeago` | Output | How long ago a moment was, in a time element with the exact moment |
 | `emoji` | Output | An emoji by its shortcode, labelled for screen readers; also an `emoji` pipe |
 | `country` | Output | A country's flag emoji and English name from an ISO 3166 code |
+| `jsonview` | Output | A JSON value or PHP array as a foldable, coloured tree of details elements |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |

@@ -72,15 +72,15 @@
     "elseif" "emoji" "error" "exception" "excerpt" "exists" "exit" "extends"
     "false" "feature" "field" "file" "files" "flag" "flash" "flush"
     "foo" "form" "fragment" "get" "gravatar" "guest" "highlight" "icon"
-    "identicon" "if" "ifchanged" "ignore" "img" "increment" "input" "keep"
-    "live" "lorem" "mail" "make" "map" "markdown" "meta" "modal"
-    "nonce" "null" "open" "output" "pad" "page" "pager" "parent"
-    "parms" "pdf" "placeholder" "poll" "progress" "pull" "push" "qr"
-    "rating" "reactData" "record" "recurse" "redirect" "remove" "restart" "resume"
-    "sandbox" "sequence" "set" "sitemap" "slot" "spaceless" "sparkline" "stack"
-    "sudoku" "switch" "tab" "tabs" "textarea" "tidy" "timeago" "timeline"
-    "toc" "trace" "trans" "tree" "true" "until" "video" "when"
-    "while"))
+    "identicon" "if" "ifchanged" "ignore" "img" "increment" "input" "jsonview"
+    "keep" "live" "lorem" "mail" "make" "map" "markdown" "meta"
+    "modal" "nonce" "null" "open" "output" "pad" "page" "pager"
+    "parent" "parms" "pdf" "placeholder" "poll" "progress" "pull" "push"
+    "qr" "rating" "reactData" "record" "recurse" "redirect" "remove" "restart"
+    "resume" "sandbox" "sequence" "set" "sitemap" "slot" "spaceless" "sparkline"
+    "stack" "sudoku" "switch" "tab" "tabs" "textarea" "tidy" "timeago"
+    "timeline" "toc" "trace" "trans" "tree" "true" "until" "video"
+    "when" "while"))
 
 (tag_name
   name: (identifier) @tag
@@ -94,15 +94,15 @@
     "elseif" "emoji" "error" "exception" "excerpt" "exists" "exit" "extends"
     "false" "feature" "field" "file" "files" "flag" "flash" "flush"
     "foo" "form" "fragment" "get" "gravatar" "guest" "highlight" "icon"
-    "identicon" "if" "ifchanged" "ignore" "img" "increment" "input" "keep"
-    "live" "lorem" "mail" "make" "map" "markdown" "meta" "modal"
-    "nonce" "null" "open" "output" "pad" "page" "pager" "parent"
-    "parms" "pdf" "placeholder" "poll" "progress" "pull" "push" "qr"
-    "rating" "reactData" "record" "recurse" "redirect" "remove" "restart" "resume"
-    "sandbox" "sequence" "set" "sitemap" "slot" "spaceless" "sparkline" "stack"
-    "sudoku" "switch" "tab" "tabs" "textarea" "tidy" "timeago" "timeline"
-    "toc" "trace" "trans" "tree" "true" "until" "video" "when"
-    "while"))
+    "identicon" "if" "ifchanged" "ignore" "img" "increment" "input" "jsonview"
+    "keep" "live" "lorem" "mail" "make" "map" "markdown" "meta"
+    "modal" "nonce" "null" "open" "output" "pad" "page" "pager"
+    "parent" "parms" "pdf" "placeholder" "poll" "progress" "pull" "push"
+    "qr" "rating" "reactData" "record" "recurse" "redirect" "remove" "restart"
+    "resume" "sandbox" "sequence" "set" "sitemap" "slot" "spaceless" "sparkline"
+    "stack" "sudoku" "switch" "tab" "tabs" "textarea" "tidy" "timeago"
+    "timeline" "toc" "trace" "trans" "tree" "true" "until" "video"
+    "when" "while"))
 
 ((function_name) @function.builtin
   (#any-of? @function.builtin
