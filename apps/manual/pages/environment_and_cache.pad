@@ -11,9 +11,9 @@ to make from one request to the next, and a rate limit counts how often a visito
 <p><code>padEnv ( 'KEY', $default )</code> looks in three places and answers the first that
 has the key: the real environment of the server (<code>getenv</code>, <code>$_ENV</code>,
 <code>$_SERVER</code> - what Apache's <code>SetEnv</code> or PHP-FPM's <code>env[...]</code>
-sets), then the application's <code>_config/.env</code>, then <code>.env</code> in the PAD
-home. Without the key it answers the default - a closure as the default is called. This
-manual has a <code>_config/.env</code> of its own:</p>
+sets), then the <code>.env</code> in the application's root - <code>apps/shop/.env</code> -
+then <code>.env</code> in the PAD home. Without the key it answers the default - a closure as
+the default is called. This manual has a <code>.env</code> of its own:</p>
 
 <pre><code>MANUAL_SITE_NAME="PAD manual"
 MANUAL_PAGE_SIZE=20
@@ -50,7 +50,7 @@ lines"                            a quoted value may run over several lines</cod
   <li>A key that starts with <code>HTTP_</code> is never read from the real environment:
   those are the headers of the request, which the client sends.</li>
   <li>No URL reaches <code>apps/</code> - the web server serves <code>www/</code> only - so an
-  application's <code>_config/.env</code> is not served. The repository's
+  application's <code>.env</code> is not served. The repository's
   <code>.gitignore</code> keeps the <code>.env</code> of the PAD home out of git; keep an
   application's out the same way when it holds a real secret.</li>
   <li>Each file is read once per request, the first time a key is asked for.</li>
@@ -106,7 +106,7 @@ on the account that is tried.</p>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
   <tr><th>function</th><th>what it does</th></tr>
-  <tr><td><code>padEnv ( $key, $default = NULL )</code></td><td>the value of an environment key - the real environment, then <code>_config/.env</code>, then the PAD home's <code>.env</code>, else the default</td></tr>
+  <tr><td><code>padEnv ( $key, $default = NULL )</code></td><td>the value of an environment key - the real environment, then the application's <code>.env</code>, then the PAD home's <code>.env</code>, else the default</td></tr>
   <tr><td><code>padCacheGet ( $key, $default = NULL )</code></td><td>the value kept under the key, else the default</td></tr>
   <tr><td><code>padCachePut ( $key, $value, $ttl = 3600 )</code></td><td>keeps the value for <code>$ttl</code> seconds - <code>NULL</code> for ever; TRUE when it is kept</td></tr>
   <tr><td><code>padCacheHas ( $key )</code></td><td>whether the key holds a value that has not expired</td></tr>

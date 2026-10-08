@@ -4,12 +4,13 @@
 
 Regression test for `padEnv` where it is needed first: in a configuration file. This
 application's `_config/config.php` reads `$padSqlPassword` with `padEnv` from the `.env` file
-beside it - which works because the engine loads its library before it reads any
-configuration. The index page shows that password and every key of the fixture, read with
+in the application's root - which works because the engine loads its library before it reads
+any configuration. The index page shows that password and every key of the fixture, read with
 `padEnv`: bare, exported, double- and single-quoted values, escapes, `${OTHER}` references, a
 value over two lines, the words true, false, null and empty, a key set twice, and two keys the
 real environment answers instead of the file - except a request header, which is never the
-environment.
+environment. A key that stands only in `_config/.env`, where the file was read before it
+moved to the root, answers the default.
 
 The application cache is here too, for what needs an application of its own: the flush
 removes every entry of the application - which in a shared application would take the
@@ -22,7 +23,8 @@ each with its answer in `regression/regression/env/`.
 
 | File | Description |
 |------|-------------|
-| `_config/.env` | The fixture - every form a line of a `.env` file takes; no real secret |
+| `.env` | The fixture - every form a line of a `.env` file takes; no real secret |
+| `_config/.env` | A key in the old place, which `padEnv` no longer reads |
 | `_config/config.php` | Reads `$padSqlPassword` with `padEnv`, `_common` off |
 | `index.php/pad` | Every key of the fixture, read with `padEnv`, and the password the configuration read |
 | `cache.php/pad` | Two entries and a rate limit, before and after `padCacheFlush` |

@@ -9,9 +9,9 @@ to make from one request to the next, and a rate limit counts how often a visito
 <p><code>padEnv ( 'KEY', $default )</code> looks in three places and answers the first that
 has the key: the real environment of the server (<code>getenv</code>, <code>$_ENV</code>,
 <code>$_SERVER</code> - what Apache's <code>SetEnv</code> or PHP-FPM's <code>env[...]</code>
-sets), then the application's <code>_config/.env</code>, then <code>.env</code> in the PAD
-home. Without the key it answers the default - a closure as the default is called. This
-manual has a <code>_config/.env</code> of its own:</p>
+sets), then the <code>.env</code> in the application's root - <code>apps/shop/.env</code> -
+then <code>.env</code> in the PAD home. Without the key it answers the default - a closure as
+the default is called. This manual has a <code>.env</code> of its own:</p>
 
 <pre><code>MANUAL_SITE_NAME="PAD manual"
 MANUAL_PAGE_SIZE=20
@@ -51,7 +51,7 @@ MANUAL_DEBUG=false</code></pre>
 
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// apps/manual/_config/.env holds MANUAL_SITE_NAME,<br>  // MANUAL_PAGE_SIZE and MANUAL_DEBUG.<br><br>  </span><span style="color: #0000BB">$site  </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_SITE_NAME'</span><span style="color: #007700">, </span><span style="color: #DD0000">'My site' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$rows  </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_PAGE_SIZE'</span><span style="color: #007700">, </span><span style="color: #0000BB">25 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$debug </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_DEBUG'</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'on' </span><span style="color: #007700">: </span><span style="color: #DD0000">'off'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$maps  </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_MAPS_KEY'</span><span style="color: #007700">, </span><span style="color: #DD0000">'not set' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// apps/manual/.env holds MANUAL_SITE_NAME,<br>  // MANUAL_PAGE_SIZE and MANUAL_DEBUG.<br><br>  </span><span style="color: #0000BB">$site  </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_SITE_NAME'</span><span style="color: #007700">, </span><span style="color: #DD0000">'My site' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$rows  </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_PAGE_SIZE'</span><span style="color: #007700">, </span><span style="color: #0000BB">25 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$debug </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_DEBUG'</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'on' </span><span style="color: #007700">: </span><span style="color: #DD0000">'off'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$maps  </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_MAPS_KEY'</span><span style="color: #007700">, </span><span style="color: #DD0000">'not set' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
         
         
           <td style="vertical-align:top"><pre><code style="color: #000000">&lt;ul&gt;<br>  &lt;li&gt;Site: <b>{<font color="green"><font color="red">$</font>site</font>}</b>&lt;/li&gt;<br>  &lt;li&gt;Rows a page: <b>{<font color="green"><font color="red">$</font>rows</font>}</b>&lt;/li&gt;<br>  &lt;li&gt;Debugging: <b>{<font color="green"><font color="red">$</font>debug</font>}</b>&lt;/li&gt;<br>  &lt;li&gt;Maps key: <b>{<font color="green"><font color="red">$</font>maps</font>}</b>&lt;/li&gt;<br>&lt;/ul&gt;</code></pre></td>
@@ -110,7 +110,7 @@ lines"                            a quoted value may run over several lines</cod
   <li>A key that starts with <code>HTTP_</code> is never read from the real environment:
   those are the headers of the request, which the client sends.</li>
   <li>No URL reaches <code>apps/</code> - the web server serves <code>www/</code> only - so an
-  application's <code>_config/.env</code> is not served. The repository's
+  application's <code>.env</code> is not served. The repository's
   <code>.gitignore</code> keeps the <code>.env</code> of the PAD home out of git; keep an
   application's out the same way when it holds a real secret.</li>
   <li>Each file is read once per request, the first time a key is asked for.</li>
@@ -287,7 +287,7 @@ on the account that is tried.</p>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
   <tr><th>function</th><th>what it does</th></tr>
-  <tr><td><code>padEnv ( $key, $default = NULL )</code></td><td>the value of an environment key - the real environment, then <code>_config/.env</code>, then the PAD home's <code>.env</code>, else the default</td></tr>
+  <tr><td><code>padEnv ( $key, $default = NULL )</code></td><td>the value of an environment key - the real environment, then the application's <code>.env</code>, then the PAD home's <code>.env</code>, else the default</td></tr>
   <tr><td><code>padCacheGet ( $key, $default = NULL )</code></td><td>the value kept under the key, else the default</td></tr>
   <tr><td><code>padCachePut ( $key, $value, $ttl = 3600 )</code></td><td>keeps the value for <code>$ttl</code> seconds - <code>NULL</code> for ever; TRUE when it is kept</td></tr>
   <tr><td><code>padCacheHas ( $key )</code></td><td>whether the key holds a value that has not expired</td></tr>

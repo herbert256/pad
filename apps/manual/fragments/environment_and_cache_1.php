@@ -1,6 +1,6 @@
 <?php
 
-  // apps/manual/_config/.env holds MANUAL_SITE_NAME,
+  // apps/manual/.env holds MANUAL_SITE_NAME,
   // MANUAL_PAGE_SIZE and MANUAL_DEBUG.
 
   $site  = padEnv ( 'MANUAL_SITE_NAME', 'My site' );

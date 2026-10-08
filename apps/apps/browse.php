@@ -139,8 +139,8 @@
       $appFiles = padArrSortBy ( $appFiles, fn ( $one ) => strtolower ( $one ['name'] ) );
 
       // If a file is requested, load its source - a file the listing shows, and no other:
-      // a name with a part that starts with a dot is never listed, yet _config/.env - where
-      // padEnv finds an application's passwords and keys - was shown in full to anyone who
+      // a name with a part that starts with a dot is never listed, yet .env - where padEnv
+      // finds an application's passwords and keys - was shown in full to anyone who
       // typed it, as was a file of any other kind.
       if ($file && preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $file) && !preg_match('#(^|/)\.#', $file)
           && in_array(pathinfo($file, PATHINFO_EXTENSION), $appExts)) {

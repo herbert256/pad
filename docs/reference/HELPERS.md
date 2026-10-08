@@ -487,7 +487,7 @@ Edge rules:
 
 | Function | What it answers |
 |----------|-----------------|
-| `padEnv ( $key, $default = NULL )` | The value of an environment key: the real environment (`getenv`, `$_ENV`, `$_SERVER`) first, then the application's `_config/.env`, then `.env` in the PAD home, else the default - a Closure default is called |
+| `padEnv ( $key, $default = NULL )` | The value of an environment key: the real environment (`getenv`, `$_ENV`, `$_SERVER`) first, then the `.env` in the application's root (`apps/shop/.env`), then `.env` in the PAD home, else the default - a Closure default is called |
 
 `pad/lib/env.php`. Machine-specific values and secrets - a database password, an API key, a
 debug switch - stay out of the code and out of git. The engine loads `pad/lib/` before it
@@ -535,7 +535,7 @@ Edge rules:
 - Each file is read once per request, kept in a static rather than a global, so its secrets
   are not among the variables a dump lists.
 - No URL reaches `apps/` - the web server serves `www/` only - so an application's
-  `_config/.env` is never served. The repository's `.gitignore` keeps `/.env`, the PAD home's
+  `.env` is never served, and the apps browser and `{highlight file=}` refuse every dotfile. The repository's `.gitignore` keeps `/.env`, the PAD home's
   file, out of git.
 
 ### Cache and rate limits

@@ -5,12 +5,16 @@
   // from a .env file beside the code, so one application runs unchanged on a laptop and on
   // a production server, and the secrets never reach git.
   //
+  //   apps/shop/.env                                         the application's own file
+  //   .env                                                   the PAD home's, for every app
+  //
   //   $padSqlPassword = padEnv ( 'DB_PASSWORD' );            in _config/config.php
   //   $debug          = padEnv ( 'APP_DEBUG', FALSE );       in a page's .php
   //
   // padEnv         the value of a key: the real environment first (getenv, $_ENV, $_SERVER),
-  //                then the application's _config/.env, then .env in the PAD home, else
-  //                the default (a Closure default is called)
+  //                then the .env in the application's root, then .env in the PAD home,
+  //                else the default (a Closure default is called) - a _config/.env is not
+  //                read
   // padEnvReal     a key's value in the real environment of the process, or NULL
   // padEnvFile     the pairs of one .env file, read and parsed once per request
   // padEnvParse    the pairs of a .env text: KEY=VALUE lines, # comments, export in front,
@@ -45,7 +49,7 @@
 
     $home = rtrim ( $GLOBALS ['padHome'] ?? dirname ( PAD ), '/' );
 
-    foreach ( [ APP . '_config/.env', "$home/.env" ] as $file ) {
+    foreach ( [ APP . '.env', "$home/.env" ] as $file ) {
 
       $pairs = padEnvFile ( $file );
 
