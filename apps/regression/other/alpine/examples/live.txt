@@ -1,0 +1,22 @@
+<div x-data="live('?examples/live&stream')" x-init="open()">
+
+  <div class="toolbar">
+    <span class="badge" :class="state === 'open' ? 'is-good' : 'is-bad'" x-text="state === 'open' ? 'receiving' : state"></span>
+    <button class="btn-sm" @click="open()" x-show="state !== 'open'" x-cloak>Listen again</button>
+    <button class="btn-sm btn-ghost" @click="close()" x-show="state === 'open'" x-cloak>Stop</button>
+  </div>
+
+  <div class="grid tiles">
+    <div class="panel"><div class="panel-title">Server time</div><div class="tile" x-text="last.time ?? '-'"></div></div>
+    <div class="panel"><div class="panel-title">Load</div><div class="tile" x-text="last.load ?? '-'"></div></div>
+    <div class="panel"><div class="panel-title">Memory, kB</div><div class="tile" x-text="last.memory ?? '-'"></div></div>
+    <div class="panel"><div class="panel-title">Events</div><div class="tile" x-text="count"></div></div>
+  </div>
+
+  <div class="panel spark">
+    <div class="panel-title">Load, the last thirty seconds</div>
+    <svg viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true"><polyline :points="points()" fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke"></polyline></svg>
+  </div>
+</div>
+
+<script src="/pad/alpine/examples/live.js"></script>

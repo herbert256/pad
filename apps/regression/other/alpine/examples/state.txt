@@ -1,0 +1,40 @@
+<div class="cols-2">
+
+  <div class="card profile" x-data="{&quot;name&quot;:&quot;Ada Fernández&quot;,&quot;role&quot;:&quot;Lead engineer&quot;,&quot;city&quot;:&quot;Amsterdam&quot;,&quot;bio&quot;:&quot;Builds things that render on the server and wake up in the browser.&quot;,&quot;likes&quot;:12,&quot;liked&quot;:false,&quot;skills&quot;:[&quot;PHP&quot;,&quot;PAD&quot;,&quot;Alpine&quot;,&quot;SQL&quot;],&quot;skill&quot;:&quot;&quot;}">
+    <div class="profile-head">
+      <span class="avatar">AF</span>
+      <div>
+        <h3 x-text="name">Ada Fern&aacute;ndez</h3>
+        <div class="muted small"><span x-text="role">Lead engineer</span> &middot; <span x-text="city">Amsterdam</span></div>
+      </div>
+    </div>
+    <p x-text="bio">Builds things that render on the server and wake up in the browser.</p>
+    <div class="chips">
+      <template x-for="one in skills" :key="one"><span class="badge" x-text="one"></span></template>
+    </div>
+    <div class="profile-actions">
+      <button @click="liked = ! liked; likes += liked ? 1 : -1" :class="liked && 'is-liked'">
+        <span x-text="liked ? '♥' : '♡'"></span> <span x-text="likes">12</span>
+      </button>
+      <form class="add-skill" @submit.prevent="skill.trim() && skills.push(skill.trim()); skill = ''">
+        <input class="input" x-model="skill" placeholder="Add a skill" aria-label="Add a skill">
+      </form>
+    </div>
+
+    <details class="panel state-dump">
+      <summary>The state as Alpine holds it</summary>
+      <pre x-text="JSON.stringify($data, null, 2)"></pre>
+    </details>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">Edit it live</div>
+    <p class="muted small">Two components, each with its own copy of the same JSON - change one, the other stays as PAD wrote it.</p>
+    <div x-data="{&quot;name&quot;:&quot;Ada Fernández&quot;,&quot;role&quot;:&quot;Lead engineer&quot;,&quot;city&quot;:&quot;Amsterdam&quot;,&quot;bio&quot;:&quot;Builds things that render on the server and wake up in the browser.&quot;,&quot;likes&quot;:12,&quot;liked&quot;:false,&quot;skills&quot;:[&quot;PHP&quot;,&quot;PAD&quot;,&quot;Alpine&quot;,&quot;SQL&quot;],&quot;skill&quot;:&quot;&quot;}" class="stack-fields">
+      <label class="label">Name <input class="input" x-model="name"></label>
+      <label class="label">Role <input class="input" x-model="role"></label>
+      <p class="small">Preview: <strong x-text="name"></strong>, <span x-text="role"></span></p>
+    </div>
+  </div>
+
+</div>

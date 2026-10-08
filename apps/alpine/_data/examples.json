@@ -1,0 +1,71 @@
+{
+  "groups": [
+    {
+      "key":   "state",
+      "title": "State from the server",
+      "text":  "Alpine lives in the HTML PAD writes. Its state comes from the page's PHP as JSON in the attribute - the ^ sigil writes it - or as the argument of a component registered in a file of www/."
+    },
+    {
+      "key":   "talk",
+      "title": "Talking back to PAD",
+      "text":  "A component asks the page again: the JSON of $padExpose, a post with the session's token, a stream of events. The server keeps the truth."
+    }
+  ],
+  "examples": [
+    {
+      "page":   "examples/state",
+      "group":  "state",
+      "icon":   "🧊",
+      "title":  "State from PHP",
+      "lede":   "x-data=\"{^profile}\": the page's PHP prepares an array, the ^ sigil writes it as JSON into the attribute, and Alpine makes it live - no braces of Alpine's in the template at all.",
+      "server": [ "{^field}" ],
+      "client": [ "x-data", "x-model", "x-text" ]
+    },
+    {
+      "page":   "examples/components",
+      "group":  "state",
+      "icon":   "🧩",
+      "title":  "Components in a file",
+      "lede":   "Tabs, an accordion and a dialog registered with Alpine.data in www/alpine/ - the template calls them by name and hands them PAD's data as the argument: x-data=\"accordion({^faq})\".",
+      "server": [ "{^field}", "{faq}" ],
+      "client": [ "Alpine.data", "x-show", "x-transition" ],
+      "files":  [ "www:examples/components.js" ]
+    },
+    {
+      "page":   "examples/search",
+      "group":  "talk",
+      "icon":   "🔎",
+      "title":  "Live search",
+      "lede":   "x-model.debounce feeds a fetch of the same page with padFormat=json; the PHP that rendered the first results answers the next ones as JSON - $padExpose names what may leave.",
+      "server": [ "$padExpose", "padFormat=json" ],
+      "client": [ "x-model.debounce", "x-for", "fetch" ]
+    },
+    {
+      "page":   "examples/form",
+      "group":  "talk",
+      "icon":   "📝",
+      "title":  "One set of rules",
+      "lede":   "The rules live in the page's PHP: padValidate checks the post with them, padValidateClient hands them to Alpine, and {validator} checks them in the browser first - the same messages on both sides.",
+      "server": [ "padValidateClient", "padValidate", "{validator}" ],
+      "client": [ "@blur", "padValidate.check" ]
+    },
+    {
+      "page":   "examples/todos",
+      "group":  "talk",
+      "icon":   "✅",
+      "title":  "A list PAD keeps",
+      "lede":   "Every change shows at once and is posted to the page, which keeps the list in the session and answers it - the server's answer is the list. Reload, and it is still there.",
+      "server": [ "padSession", "$padExpose" ],
+      "client": [ "x-for", "@submit.prevent", "fetch POST" ]
+    },
+    {
+      "page":   "examples/live",
+      "group":  "talk",
+      "icon":   "📡",
+      "title":  "Server-sent events",
+      "lede":   "padSse sends the server's numbers every second as JSON; the component opens an EventSource in x-init and closes it when the stream says it is done.",
+      "server": [ "padSse", "every=" ],
+      "client": [ "EventSource", "x-init" ]
+    }
+  ]
+}

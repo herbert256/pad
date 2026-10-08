@@ -1,0 +1,40 @@
+<div class="cols-2" x-data="signup({^start})">
+
+  <form novalidate @submit.prevent="send()" class="stack-fields">
+    <label class="label">Name <input class="input" name="name" x-model="form.name" @blur="leave('name')" :class="errors.name && 'is-invalid'"></label>
+    <span class="error" x-text="errors.name" x-show="errors.name" x-cloak></span>
+
+    <label class="label">E-mail <input class="input" name="email" type="email" x-model="form.email" @blur="leave('email')" :class="errors.email && 'is-invalid'"></label>
+    <span class="error" x-text="errors.email" x-show="errors.email" x-cloak></span>
+
+    <label class="label">Team
+      <select class="input" name="team" x-model="form.team" @change="leave('team')" :class="errors.team && 'is-invalid'">
+        <option value="">Choose ...</option>
+        <option value="web">Web</option>
+        <option value="platform">Platform</option>
+        <option value="data">Data</option>
+        <option value="sales">Sales - not one of the rules</option>
+      </select>
+    </label>
+    <span class="error" x-text="errors.team" x-show="errors.team" x-cloak></span>
+
+    <label class="label">Seats <input class="input" name="seats" x-model="form.seats" @blur="leave('seats')" :class="errors.seats && 'is-invalid'"></label>
+    <span class="error" x-text="errors.seats" x-show="errors.seats" x-cloak></span>
+
+    <label class="small check-line"><input type="checkbox" x-model="browser"> Check in the browser first</label>
+    <button :disabled="busy">Book</button>
+    <p class="small" x-text="note" x-show="note" x-cloak></p>
+  </form>
+
+  <div>
+    <div class="panel-title">Booked in your session</div>
+    <template x-for="(one, at) in people" :key="at">
+      <div class="card booked"><strong x-text="one.name"></strong> <span class="badge" x-text="one.team"></span> <span class="muted small" x-text="one.seats + ' seats'"></span></div>
+    </template>
+    <p class="muted small" x-show="people.length === 0">Nobody yet.</p>
+  </div>
+
+</div>
+
+{validator}
+<script src="{$padRoot}alpine/examples/form.js"></script>

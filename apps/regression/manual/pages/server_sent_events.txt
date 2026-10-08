@@ -54,6 +54,8 @@ what it answers as the event named by <code>event</code>: an array goes as JSON,
   <li><code>$send ( $event, $data, $id )</code> answers whether the visitor is still
       connected; a long loop stops when it says no. Text data that runs over lines goes as
       several <code>data:</code> lines, which the browser joins again.</li>
+  <li>An event needs data: the browser drops one whose data is empty, so an event a page
+      closes the stream on says something - <code>$send ( 'done', 'done' )</code>.</li>
   <li>The browser reconnects by itself and sends the id of the last event it had - the
       producer gets it as its second argument, <code>padSseLastId()</code> reads it anywhere.</li>
   <li>The session is written and closed before the first event, so the visitor's other
@@ -63,5 +65,7 @@ what it answers as the event named by <code>event</code>: an array goes as JSON,
       <code>X-Accel-Buffering: no</code> asks nginx not to hold the events back.</li>
 </ul>
 
-<p>The htmx application streams rows of HTML that its sse extension swaps in:
-<a href="http://localhost/pad/htmx/?examples/live">htmx/?examples/live</a>.</p>
+<p>The htmx application streams rows of HTML that its sse extension swaps in
+(<a href="http://localhost/pad/htmx/?examples/live">htmx/?examples/live</a>), the Alpine application JSON
+an <code>EventSource</code> turns into state
+(<a href="http://localhost/pad/alpine/?examples/live">alpine/?examples/live</a>).</p>

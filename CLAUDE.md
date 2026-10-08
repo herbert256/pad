@@ -1669,6 +1669,7 @@ strict syntax check - `pad_check` with only an app checks every page), `pad_trac
 | App | Type | Description |
 |-----|------|-------------|
 | `_common` | Shared | Shared resources and utilities for all applications |
+| `alpine` | Standard | PAD + Alpine: state from PHP with `x-data="{^field}"`, components in `www/` with `Alpine.data`, live search over `$padExpose`, one set of rules for both sides, a list kept in the session, server-sent events |
 | `apps` | Standard | Lists all PAD applications with descriptions from README files |
 | `charts` | Standard | A showcase of the `{chart}` tag - a pulldown per chart family (21 kinds), every example a page of three cells: the data, the tag, the chart |
 | `classicModels` | Standard | PAD Select over the Classic Models sample database |

@@ -1,0 +1,48 @@
+<section class="hero">
+
+  <div>
+    <span class="eyebrow"><b>●</b> Behaviour in the markup</span>
+    <h1>PAD writes the page.<br><span class="grad">Alpine wakes it up.</span></h1>
+    <p class="lede">
+      Alpine adds behaviour to HTML with a few attributes - and PAD writes that HTML. Both
+      like braces, so the trick is to let each have its own: PAD hands Alpine its state as JSON
+      with the ^ sigil, and longer components live in a file of <code>www/</code>.
+    </p>
+    <div class="hero-actions">
+      <a class="btn" href="?examples/state">Start with state from PHP</a>
+      <a class="btn btn-ghost" href="?guide">Braces, data and requests</a>
+    </div>
+  </div>
+
+  <div class="hero-code">
+{highlight 'pad'}
+<div x-data="{^profile}">          <!-- $profile from the page's PHP -->
+  <h2 x-text="name"></h2>
+  <button @click="likes++">
+    ♥ <span x-text="likes"></span>
+  </button>
+</div>
+{/highlight}
+    <p class="small muted">The template holds no brace of Alpine's: the state is the JSON of a PHP array.</p>
+  </div>
+
+</section>
+
+{groups}
+<div class="group-head">
+  <h2>{$title}</h2>
+  <span class="badge">{$count} examples</span>
+</div>
+<p class="group-text">{$text}</p>
+<div class="grid">
+  {examples}
+  <a class="card" href="?{$page}">
+    <span class="card-icon" aria-hidden="true">{$icon}</span>
+    <span class="card-go" aria-hidden="true">→</span>
+    <h3>{$title}</h3>
+    <p>{$lede}</p>
+    <div class="chips">{server}<code class="chip is-server">{$server}</code>{/server}{client}<code class="chip is-client">{$client}</code>{/client}</div>
+  </a>
+  {/examples}
+</div>
+{/groups}

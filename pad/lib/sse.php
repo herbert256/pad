@@ -85,7 +85,12 @@
 
     else {
 
+      // Each call is timed from the start, not from the end of the call before: the time a
+      // producer and its send take would otherwise add up, and thirty calls a second apart
+      // were twenty-nine within thirty seconds.
+
       $start = microtime ( TRUE );
+      $tick  = 0;
 
       while ( TRUE ) {
 
@@ -97,10 +102,15 @@
         if ( $answer !== NULL and $answer !== TRUE and ! padSseSend ( $event, $answer ) )
           break;
 
-        if ( connection_aborted () or microtime ( TRUE ) - $start + $every > $for )
+        $next = $start + ( ++$tick ) * $every;
+
+        if ( connection_aborted () or $next - $start > $for )
           break;
 
-        usleep ( (int) ( $every * 1000000 ) );
+        $wait = $next - microtime ( TRUE );
+
+        if ( $wait > 0 )
+          usleep ( (int) ( $wait * 1000000 ) );
 
       }
 

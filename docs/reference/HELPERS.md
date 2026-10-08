@@ -885,4 +885,6 @@ Edge rules:
   request holds it, and the visitor's next page waited for the stream to end. A stream holds
   a PHP worker while it runs - keep `for` short and let `EventSource` reconnect.
 - After `{flush}` or anything else that sent the headers, `padSse` is refused.
+- An event needs data: the browser drops one whose data is empty - `$send ( 'done', 'done' )`,
+  not `$send ( 'done' )`, for the event a client closes the stream on.
 

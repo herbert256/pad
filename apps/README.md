@@ -7,6 +7,7 @@ This directory contains PAD applications and examples.
 | Directory | Type | Description |
 |-----------|------|-------------|
 | [_common](_common/README.md) | Shared | Shared resources and utilities for all applications |
+| [alpine](alpine/README.md) | Standard | PAD + Alpine: state from PHP with `x-data="{^field}"`, components with `Alpine.data`, live search, one set of rules for both sides, a list in the session, server-sent events |
 | [apps](apps/README.md) | Standard | Lists all PAD applications with descriptions from README files |
 | [charts](charts/README.md) | Standard | A showcase of the {chart} tag - a pulldown per chart family, every example with its data, its tag and the chart side by side |
 | [classicModels](classicModels/README.md) | Standard | PAD Select over the Classic Models sample database |

@@ -1,0 +1,57 @@
+<header class="example-head">
+  <h1>Alpine on a PAD page</h1>
+  <p class="lede">
+    Alpine reads attributes, PAD writes them. Both love braces - so give each its own, hand
+    Alpine its state as JSON, and let it talk back to the page that wrote it.
+  </p>
+</header>
+
+<h2>1. The braces</h2>
+<p>PAD reads every <code>{</code> of a template as the start of a tag; Alpine writes objects
+   with them. Three ways that never collide:</p>
+<div class="grid">
+  <div class="card">
+    <h3>State from PHP</h3>
+    <p>The ^ sigil writes a field as JSON, escaped for the attribute - <code>x-data="{^profile}"</code>.
+       No brace of Alpine's in the template, and a quote in a value stays text.</p>
+  </div>
+  <div class="card">
+    <h3>Components in a file</h3>
+    <p><code>Alpine.data('tabs', ...)</code> in a script of <code>www/</code>, called by name:
+       <code>x-data="tabs({^tabs})"</code> - the file never meets the PAD parser.</p>
+  </div>
+  <div class="card">
+    <h3>A space after the brace</h3>
+    <p><code>x-data="{ open: false }"</code> written as <code>{ open: false }</code> -
+       a brace with a space after it is no PAD tag. It works for a short object; prefer the other two.</p>
+  </div>
+</div>
+
+<h2>2. Load order</h2>
+<p>The application's scripts first, Alpine last and deferred - a page's components register
+   themselves on <code>alpine:init</code> before Alpine walks the page:</p>
+<style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight" data-lang="html"><code><span class="hl-tag">&lt;script</span> <span class="hl-att">src</span>=<span class="hl-str">&quot;alpine-app.js&quot;</span><span class="hl-tag">&gt;</span><span class="hl-tag">&lt;/script</span><span class="hl-tag">&gt;</span>                         <span class="hl-com">&lt;!-- pad.get, pad.post --&gt;</span>
+<span class="hl-tag">&lt;script</span> defer <span class="hl-att">src</span>=<span class="hl-str">&quot;https://unpkg.com/alpinejs@3/dist/cdn.min.js&quot;</span><span class="hl-tag">&gt;</span><span class="hl-tag">&lt;/script</span><span class="hl-tag">&gt;</span>
+...
+<span class="hl-tag">&lt;script</span> <span class="hl-att">src</span>=<span class="hl-str">&quot;examples/search.js&quot;</span><span class="hl-tag">&gt;</span><span class="hl-tag">&lt;/script</span><span class="hl-tag">&gt;</span>                    <span class="hl-com">&lt;!-- Alpine.data(&#039;search&#039;, ...) --&gt;</span></code></pre>
+
+<h2>3. Talking back</h2>
+<p>A page answers JSON when asked - <code>?page&amp;padFormat=json</code> - with only what its PHP
+   names in <code>$padExpose</code>; the templates do not run for it. A post carries the session's
+   token in a header, read from <code>&lt;meta name="csrf-token" content="{csrf token}"&gt;</code>:</p>
+<style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight" data-lang="js"><code><span class="hl-kwd">const</span> answer = <span class="hl-kwd">await</span> pad<span class="hl-pun">.</span><span class="hl-fn">get</span><span class="hl-pun">(</span><span class="hl-str">&#039;examples/search&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">{</span> q: <span class="hl-kwd">this</span><span class="hl-pun">.</span>q <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span>   <span class="hl-com">// the JSON of $padExpose</span>
+<span class="hl-kwd">const</span> saved  = <span class="hl-kwd">await</span> pad<span class="hl-pun">.</span><span class="hl-fn">post</span><span class="hl-pun">(</span><span class="hl-str">&#039;examples/todos&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">{</span> op: <span class="hl-str">&#039;add&#039;</span><span class="hl-pun">,</span> text <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span> <span class="hl-com">// X-CSRF-Token sent</span></code></pre>
+
+<h2>4. One set of rules</h2>
+<p>Keep a form's rules in PHP: <code>padValidate ( $rules )</code> checks the post,
+   <code>padValidateClient ( $rules )</code> hands them to the component, {validator} brings the
+   checker, and <code>padValidate.field ( rules.email, value, form )</code> answers in the server's
+   words.</p>
+
+<h2>5. Events from the server</h2>
+<p><code>padSse()</code> streams JSON events; an <code>EventSource</code> opened in
+   <code>x-init</code> - in a component that closes it again in <code>destroy()</code> - turns them
+   into state.</p>
+
+<div class="callout"><p>Values are text: whatever a visitor typed, the ^ sigil writes it as JSON escaped for the attribute,
+   and <code>x-text</code> puts it in as text. Avoid <code>x-html</code> with data that is not yours.</p></div>

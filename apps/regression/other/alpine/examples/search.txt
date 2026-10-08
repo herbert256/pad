@@ -1,0 +1,27 @@
+<div x-data="search({&quot;q&quot;:&quot;&quot;,&quot;count&quot;:24,&quot;items&quot;:[{&quot;id&quot;:1,&quot;name&quot;:&quot;Aurora Headphones&quot;,&quot;category&quot;:&quot;Audio&quot;,&quot;price&quot;:189,&quot;rating&quot;:4.6,&quot;stock&quot;:14,&quot;emoji&quot;:&quot;🎧&quot;,&quot;blurb&quot;:&quot;Over-ear, noise cancelling, forty hours on a charge&quot;},{&quot;id&quot;:2,&quot;name&quot;:&quot;Pebble Earbuds&quot;,&quot;category&quot;:&quot;Audio&quot;,&quot;price&quot;:79,&quot;rating&quot;:4.2,&quot;stock&quot;:32,&quot;emoji&quot;:&quot;🎶&quot;,&quot;blurb&quot;:&quot;Small enough to forget, loud enough to notice&quot;},{&quot;id&quot;:3,&quot;name&quot;:&quot;Boom Speaker&quot;,&quot;category&quot;:&quot;Audio&quot;,&quot;price&quot;:129,&quot;rating&quot;:4.4,&quot;stock&quot;:8,&quot;emoji&quot;:&quot;🔊&quot;,&quot;blurb&quot;:&quot;Waterproof, pairs with a second one for stereo&quot;},{&quot;id&quot;:4,&quot;name&quot;:&quot;Studio Microphone&quot;,&quot;category&quot;:&quot;Audio&quot;,&quot;price&quot;:99,&quot;rating&quot;:4.5,&quot;stock&quot;:0,&quot;emoji&quot;:&quot;🎙️&quot;,&quot;blurb&quot;:&quot;USB condenser with a mute button that clicks&quot;},{&quot;id&quot;:5,&quot;name&quot;:&quot;Nimbus Laptop 14&quot;,&quot;category&quot;:&quot;Computing&quot;,&quot;price&quot;:1299,&quot;rating&quot;:4.7,&quot;stock&quot;:5,&quot;emoji&quot;:&quot;💻&quot;,&quot;blurb&quot;:&quot;Fourteen inches, one kilo, a whole day of battery&quot;},{&quot;id&quot;:6,&quot;name&quot;:&quot;Atlas Monitor 27&quot;,&quot;category&quot;:&quot;Computing&quot;,&quot;price&quot;:349,&quot;rating&quot;:4.3,&quot;stock&quot;:11,&quot;emoji&quot;:&quot;🖥️&quot;,&quot;blurb&quot;:&quot;1440p at 144 Hz, USB-C with power delivery&quot;},{&quot;id&quot;:7,&quot;name&quot;:&quot;Glide Mouse&quot;,&quot;category&quot;:&quot;Computing&quot;,&quot;price&quot;:39,&quot;rating&quot;:4.1,&quot;stock&quot;:54,&quot;emoji&quot;:&quot;🖱️&quot;,&quot;blurb&quot;:&quot;Silent clicks, three devices, one button to switch&quot;},{&quot;id&quot;:8,&quot;name&quot;:&quot;Tactile Keyboard&quot;,&quot;category&quot;:&quot;Computing&quot;,&quot;price&quot;:119,&quot;rating&quot;:4.8,&quot;stock&quot;:21,&quot;emoji&quot;:&quot;⌨️&quot;,&quot;blurb&quot;:&quot;Hot-swappable switches in a seventy-five percent frame&quot;}]})">
+
+  <div class="toolbar">
+    <div class="search">
+      <input class="input" type="search" x-model.debounce.250ms="q" @input.debounce.250ms="ask()" placeholder="Search - try lamp, audio or usb" aria-label="Search the products">
+    </div>
+    <span class="spinner" x-show="busy" x-cloak aria-hidden="true"></span>
+  </div>
+
+  <p class="muted small"><span x-text="count">24</span> found - the first eight shown</p>
+
+  <div class="grid results">
+    <template x-for="item in items" :key="item.id">
+      <div class="card result">
+        <span class="result-emoji" x-text="item.emoji"></span>
+        <div>
+          <strong x-text="item.name"></strong>
+          <div class="muted small" x-text="item.category + ' · € ' + item.price.toFixed(2)"></div>
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <p class="empty-state" x-show="count === 0" x-cloak>Nothing in the catalogue matches.</p>
+</div>
+
+<script src="/pad/alpine/examples/search.js"></script>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{csrf token}">
+  <title>{$title}</title>
+  <link rel="stylesheet" href="{$padRoot}alpine/alpine.css?v={$alpineVersion}">
+  <!-- The application's own helpers first - pad.get, pad.post, the request log - then Alpine,
+       deferred: the components of a page register themselves before Alpine starts -->
+  <script src="{$padRoot}alpine/alpine-app.js?v={$alpineVersion}"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.17.4/dist/cdn.min.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+
+    <a class="brand" href="?index" aria-label="PAD + Alpine home">
+      <svg class="brand-mark" viewBox="0 0 32 20" aria-hidden="true"><path d="M10 0 20 10 10 20 0 10z"/><path d="M22 0 32 10 22 20 12 10z" opacity=".55"/></svg>
+      <span>PAD <em>+</em> Alpine</span>
+    </a>
+
+    <nav class="menu" aria-label="Sections">
+      {local:nav.json}
+        <a href="?{$page}"{if $navSection eq $section} class="is-active" aria-current="page"{/if}>{$label}</a>
+      {/local:nav.json}
+    </nav>
+
+    <button type="button" class="theme" data-theme-toggle aria-label="Switch between light and dark">
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    </button>
+
+  </div>
+</header>
+
+<main class="wrap main">
+@page@
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><strong>PAD</strong> writes the HTML and keeps the data &middot; <strong>Alpine</strong> brings the parts of it to life where they stand</p>
+    <p class="footer-small">Alpine comes from unpkg.com &middot; the components are in <code>www/alpine/</code>, the pages in <code>apps/alpine/</code></p>
+  </div>
+</footer>
+
+</body>
+</html>

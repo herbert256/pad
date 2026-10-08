@@ -1,0 +1,51 @@
+<div class="cols-2">
+
+  <section>
+    <div class="panel-title">Accordion - accordion({^faq})</div>
+    <div class="accordion" x-data="accordion([{&quot;q&quot;:&quot;Why not write the state in the template?&quot;,&quot;a&quot;:&quot;Alpine writes objects with braces, and PAD reads every brace of a template as the start of a tag. Let PAD write the JSON instead.&quot;},{&quot;q&quot;:&quot;Where do the components live?&quot;,&quot;a&quot;:&quot;In www/alpine/examples/components.js - a file the web server sends as it is, so its braces never meet the template parser.&quot;},{&quot;q&quot;:&quot;Does it work without JavaScript?&quot;,&quot;a&quot;:&quot;The answers are in the HTML PAD wrote; x-cloak and x-show only fold them away once Alpine runs.&quot;}])">
+      
+      <div class="accordion-item" :class="isOpen(1) && 'is-open'">
+        <button class="accordion-head" @click="toggle(1)" :aria-expanded="isOpen(1)">Why not write the state in the template?<span aria-hidden="true">+</span></button>
+        <div class="accordion-body" x-show="isOpen(1)" x-transition>Alpine writes objects with braces, and PAD reads every brace of a template as the start of a tag. Let PAD write the JSON instead.</div>
+      </div>
+      
+      <div class="accordion-item" :class="isOpen(2) && 'is-open'">
+        <button class="accordion-head" @click="toggle(2)" :aria-expanded="isOpen(2)">Where do the components live?<span aria-hidden="true">+</span></button>
+        <div class="accordion-body" x-show="isOpen(2)" x-transition>In www/alpine/examples/components.js - a file the web server sends as it is, so its braces never meet the template parser.</div>
+      </div>
+      
+      <div class="accordion-item" :class="isOpen(3) && 'is-open'">
+        <button class="accordion-head" @click="toggle(3)" :aria-expanded="isOpen(3)">Does it work without JavaScript?<span aria-hidden="true">+</span></button>
+        <div class="accordion-body" x-show="isOpen(3)" x-transition>The answers are in the HTML PAD wrote; x-cloak and x-show only fold them away once Alpine runs.</div>
+      </div>
+      
+    </div>
+  </section>
+
+  <section>
+    <div class="panel-title">Tabs - tabs({^tabs})</div>
+    <div class="tabs" x-data="tabs([{&quot;key&quot;:&quot;server&quot;,&quot;label&quot;:&quot;Server&quot;,&quot;text&quot;:&quot;PAD renders the page, with every value escaped for where it stands.&quot;},{&quot;key&quot;:&quot;wire&quot;,&quot;label&quot;:&quot;Wire&quot;,&quot;text&quot;:&quot;The state crosses as JSON in an attribute - no second request.&quot;},{&quot;key&quot;:&quot;client&quot;,&quot;label&quot;:&quot;Client&quot;,&quot;text&quot;:&quot;Alpine reads it and keeps the component live in the browser.&quot;}])">
+      <div class="pills" role="tablist">
+        <template x-for="tab in list" :key="tab.key">
+          <button class="pill" role="tab" :class="tab.key === active && 'is-on'" :aria-selected="tab.key === active" @click="active = tab.key" x-text="tab.label"></button>
+        </template>
+      </div>
+      <p class="panel tab-text" x-text="current().text">PAD renders the page, with every value escaped for where it stands.</p>
+    </div>
+
+    <div class="panel-title" style="margin-top: 26px">Dialog - dialog()</div>
+    <div x-data="dialog()">
+      <button @click="show()">Open the dialog</button>
+      <div class="backdrop" x-show="open" x-transition.opacity x-cloak @click.self="hide()" @keydown.escape.window="hide()">
+        <div class="dialog" role="dialog" aria-modal="true" aria-label="A dialog" x-show="open" x-transition>
+          <h3>Rendered by PAD, shown by Alpine</h3>
+          <p class="muted">This box was in the page from the start; Alpine only decides when it shows.</p>
+          <button class="btn-ghost" @click="hide()" x-ref="close">Close</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script src="/pad/alpine/examples/components.js"></script>

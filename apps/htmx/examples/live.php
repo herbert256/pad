@@ -23,7 +23,7 @@
 
       }
 
-      $send ( 'done', '' );
+      $send ( 'done', 'done' );
 
     }, [ 'retry' => 5000 ] );
 
