@@ -1,0 +1,11 @@
+{meta title='A reaction bar', about='Reactions under a post, each emoji from its shortcode in a span with role img and its name as the label a screen reader says.'}
+<div style="max-width:30em">
+  <p style="margin:0 0 14px;line-height:1.5"><strong>Release 3.0 is out</strong> - charts, tables and a faster first render.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:8px">
+    {reactions}
+    <button type="button" style="display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;border:1px solid rgba(128,128,128,.35);background:transparent;color:inherit;font:inherit;font-size:15px">
+      {emoji $code} <span style="font-size:13px;font-variant-numeric:tabular-nums">{$count}</span>
+    </button>
+    {/reactions}
+  </div>
+</div>

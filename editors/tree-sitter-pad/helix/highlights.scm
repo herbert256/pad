@@ -69,17 +69,17 @@
     "chess" "classes" "close" "code" "collection" "content" "continue" "copy"
     "count" "countdown" "crossword" "csrf" "curl" "data" "datatable" "debug"
     "decrement" "diagram" "diff" "dir" "dump" "echo" "else" "elseif"
-    "error" "exception" "excerpt" "exists" "exit" "extends" "false" "feature"
-    "field" "file" "files" "flag" "flash" "flush" "foo" "form"
-    "fragment" "get" "gravatar" "guest" "highlight" "icon" "identicon" "if"
-    "ifchanged" "ignore" "img" "increment" "input" "keep" "live" "lorem"
-    "mail" "make" "map" "markdown" "meta" "modal" "nonce" "null"
-    "open" "output" "pad" "page" "pager" "parent" "parms" "pdf"
-    "placeholder" "poll" "progress" "pull" "push" "qr" "rating" "reactData"
-    "record" "recurse" "redirect" "remove" "restart" "resume" "sandbox" "sequence"
-    "set" "sitemap" "slot" "spaceless" "sparkline" "stack" "sudoku" "switch"
-    "tab" "tabs" "textarea" "tidy" "timeago" "timeline" "toc" "trace"
-    "trans" "tree" "true" "until" "video" "when" "while"))
+    "emoji" "error" "exception" "excerpt" "exists" "exit" "extends" "false"
+    "feature" "field" "file" "files" "flag" "flash" "flush" "foo"
+    "form" "fragment" "get" "gravatar" "guest" "highlight" "icon" "identicon"
+    "if" "ifchanged" "ignore" "img" "increment" "input" "keep" "live"
+    "lorem" "mail" "make" "map" "markdown" "meta" "modal" "nonce"
+    "null" "open" "output" "pad" "page" "pager" "parent" "parms"
+    "pdf" "placeholder" "poll" "progress" "pull" "push" "qr" "rating"
+    "reactData" "record" "recurse" "redirect" "remove" "restart" "resume" "sandbox"
+    "sequence" "set" "sitemap" "slot" "spaceless" "sparkline" "stack" "sudoku"
+    "switch" "tab" "tabs" "textarea" "tidy" "timeago" "timeline" "toc"
+    "trace" "trans" "tree" "true" "until" "video" "when" "while"))
 
 (tag_name
   name: (identifier) @tag
@@ -90,37 +90,39 @@
     "chess" "classes" "close" "code" "collection" "content" "continue" "copy"
     "count" "countdown" "crossword" "csrf" "curl" "data" "datatable" "debug"
     "decrement" "diagram" "diff" "dir" "dump" "echo" "else" "elseif"
-    "error" "exception" "excerpt" "exists" "exit" "extends" "false" "feature"
-    "field" "file" "files" "flag" "flash" "flush" "foo" "form"
-    "fragment" "get" "gravatar" "guest" "highlight" "icon" "identicon" "if"
-    "ifchanged" "ignore" "img" "increment" "input" "keep" "live" "lorem"
-    "mail" "make" "map" "markdown" "meta" "modal" "nonce" "null"
-    "open" "output" "pad" "page" "pager" "parent" "parms" "pdf"
-    "placeholder" "poll" "progress" "pull" "push" "qr" "rating" "reactData"
-    "record" "recurse" "redirect" "remove" "restart" "resume" "sandbox" "sequence"
-    "set" "sitemap" "slot" "spaceless" "sparkline" "stack" "sudoku" "switch"
-    "tab" "tabs" "textarea" "tidy" "timeago" "timeline" "toc" "trace"
-    "trans" "tree" "true" "until" "video" "when" "while"))
+    "emoji" "error" "exception" "excerpt" "exists" "exit" "extends" "false"
+    "feature" "field" "file" "files" "flag" "flash" "flush" "foo"
+    "form" "fragment" "get" "gravatar" "guest" "highlight" "icon" "identicon"
+    "if" "ifchanged" "ignore" "img" "increment" "input" "keep" "live"
+    "lorem" "mail" "make" "map" "markdown" "meta" "modal" "nonce"
+    "null" "open" "output" "pad" "page" "pager" "parent" "parms"
+    "pdf" "placeholder" "poll" "progress" "pull" "push" "qr" "rating"
+    "reactData" "record" "recurse" "redirect" "remove" "restart" "resume" "sandbox"
+    "sequence" "set" "sitemap" "slot" "spaceless" "sparkline" "stack" "sudoku"
+    "switch" "tab" "tabs" "textarea" "tidy" "timeago" "timeline" "toc"
+    "trace" "trans" "tree" "true" "until" "video" "when" "while"))
 
 ((function_name) @function.builtin
   (#any-of? @function.builtin
     "abbreviate" "after" "afterLast" "ago" "before" "beforeLast" "between" "bold"
     "bytes" "capitalize" "close" "contains" "currency" "cut" "date" "default"
-    "encodeHigh" "escape" "exists" "highlight" "html" "ignore" "in" "left"
-    "like" "localDate" "lookup" "lower" "markdown" "matches" "max_len" "mid"
-    "nbsp" "now" "open" "optional" "ordinal" "range" "replace" "right"
-    "sanitize" "slashes" "slug" "stripLow" "stripslashes" "substr" "tag" "time"
-    "timestamp" "trans" "trim" "truncate" "ucwords" "upper" "url" "white"))
+    "emoji" "encodeHigh" "escape" "exists" "highlight" "html" "ignore" "in"
+    "left" "like" "localDate" "lookup" "lower" "markdown" "matches" "max_len"
+    "mid" "nbsp" "now" "open" "optional" "ordinal" "range" "replace"
+    "right" "sanitize" "slashes" "slug" "stripLow" "stripslashes" "substr" "tag"
+    "time" "timestamp" "trans" "trim" "truncate" "ucwords" "upper" "url"
+    "white"))
 
 ((function_name) @function
   (#not-any-of? @function
     "abbreviate" "after" "afterLast" "ago" "before" "beforeLast" "between" "bold"
     "bytes" "capitalize" "close" "contains" "currency" "cut" "date" "default"
-    "encodeHigh" "escape" "exists" "highlight" "html" "ignore" "in" "left"
-    "like" "localDate" "lookup" "lower" "markdown" "matches" "max_len" "mid"
-    "nbsp" "now" "open" "optional" "ordinal" "range" "replace" "right"
-    "sanitize" "slashes" "slug" "stripLow" "stripslashes" "substr" "tag" "time"
-    "timestamp" "trans" "trim" "truncate" "ucwords" "upper" "url" "white"))
+    "emoji" "encodeHigh" "escape" "exists" "highlight" "html" "ignore" "in"
+    "left" "like" "localDate" "lookup" "lower" "markdown" "matches" "max_len"
+    "mid" "nbsp" "now" "open" "optional" "ordinal" "range" "replace"
+    "right" "sanitize" "slashes" "slug" "stripLow" "stripslashes" "substr" "tag"
+    "time" "timestamp" "trans" "trim" "truncate" "ucwords" "upper" "url"
+    "white"))
 
 (arguments
   (identifier) @attribute

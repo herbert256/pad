@@ -2495,6 +2495,31 @@ nothing; a moment that is no date is a strict error.
 
 ---
 
+### emoji
+An emoji by its GitHub or Slack shortcode, as a labelled image (`lib/emoji.php`); the `emoji` pipe
+replaces the shortcodes in a text.
+
+```html
+{emoji 'rocket'}                   <!-- <span class="pad-emoji" role="img" aria-label="rocket">🚀</span> -->
+{emoji ':tada:', label='Party!'}
+{$comment | emoji}                 <!-- 'Shipped :rocket:' becomes 'Shipped 🚀' -->
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The shortcode, with or without colons, any case - `+1`, `heart`, `white_check_mark` |
+| `label` | The name a screen reader says, default the emoji's name |
+
+**Behavior:** a few hundred common shortcodes with their aliases - faces, hands, people at work,
+animals, food, travel, objects and symbols, keycaps. An emoji with a text form as well (❤ ☀ ✔)
+carries the variation selector that asks for the colour picture. The pipe leaves a shortcode it
+does not know, and a time like `10:30:00`, as written. An unknown shortcode in the tag is a
+strict error that names the nearest one (`did you mean ':rocket:'?`).
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -3027,6 +3052,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `toc` | Output | A table of contents from the page's own rendered headings, ids added |
 | `countdown` | Output | The time left until a moment in words, in a time element, optionally ticking |
 | `timeago` | Output | How long ago a moment was, in a time element with the exact moment |
+| `emoji` | Output | An emoji by its shortcode, labelled for screen readers; also an `emoji` pipe |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
