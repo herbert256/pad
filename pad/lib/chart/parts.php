@@ -16,6 +16,26 @@
   //   distribution.php  histogram and boxplot
   //   calendar.php   calendar
   //   gantt.php      gantt
+  //   area.php       area and stream
+  //   multiples.php  multiples
+  //   candlestick.php  candlestick
+  //   dual.php       dual
+  //   spiral.php     spiral
+  //   radial.php     rose and radialbar
+  //   funnel.php     funnel and pyramid
+  //   waffle.php     waffle
+  //   marimekko.php  marimekko
+  //   parliament.php parliament
+  //   venn.php       venn
+  //   density.php    density and violin
+  //   bullet.php     bullet
+  //   rings.php      rings
+  //   parallel.php   parallel
+  //   proportional.php  proportional
+  //   chord.php      chord
+  //   arc.php        arc
+  //   pack.php       pack
+  //   orgchart.php   orgchart
   //
   // A field option names a field of the rows; left out, the kind takes the first field of
   // the first row that fits - a numeric one for a number, another one for a name.

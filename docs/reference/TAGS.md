@@ -1109,6 +1109,30 @@ Draw a chart as inline SVG - no JavaScript, so it works in print and caches like
 {chart 'boxplot', data='salaries', label='team', value='salary'}
 {chart 'calendar', data='commits', date='day', value='count', year=2026}
 {chart 'gantt', data='plan', label='task', from='begin', to='until', progress='done'}
+{chart 'area', data='energy', label='year', value='coal, gas, wind, solar', stacked}
+{chart 'stream', data='listening', label='month', value='pop, rock, jazz'}
+{chart 'multiples', data='climate', by='city', label='month', value='temperature'}
+{chart 'candlestick', data='share', label='day', volume='volume'}
+{chart 'dual', data='results', label='month', value='revenue', line='margin'}
+{chart 'spiral', data='sales', label='month', value='amount', turn='year'}
+{chart 'rose', data='deaths', label='month', value='disease, wounds, other'}
+{chart 'radialbar', data='funds', label='class', value='raised', to=5000}
+{chart 'funnel', data='shop', label='step', value='visitors'}
+{chart 'pyramid', data='people', label='age', value='men, women'}
+{chart 'waffle', data='energy', label='use', value='kwh', cells=100}
+{chart 'marimekko', data='market', label='region', value='alpha, beta, gamma, other'}
+{chart 'parliament', data='election', label='party', value='seats'}
+{chart 'venn', data='speakers', sets='speaks', value='students'}
+{chart 'density', data='trials', label='group', value='ms'}
+{chart 'violin', data='scores', label='class', value='score'}
+{chart 'bullet', data='kpis', label='kpi', value='actual', target='goal', bands='50, 75'}
+{chart 'rings', data='today', label='goal', value='done', to='target'}
+{chart 'parallel', data='cars', value='mpg, cylinders, horsepower, weight', color='origin'}
+{chart 'proportional', data='emissions', label='country', value='mt'}
+{chart 'chord', data='migration', source='from', target='to', value='people'}
+{chart 'arc', data='coauthors', source='author', target='with', value='papers'}
+{chart 'pack', data='files', levels='folder', label='file', value='kb'}
+{chart 'orgchart', data='staff', id='id', parent='boss', label='name', sub='role'}
 ```
 
 **Kinds:**
@@ -1133,6 +1157,30 @@ Draw a chart as inline SVG - no JavaScript, so it works in print and caches like
 | `boxplot` | A box per group of `label` - all values in one without it - from the first to the third quartile, the median across, whiskers to the furthest values within 1.5 box heights, the values past them as dots | `label`, `value` |
 | `calendar` | A square per day, a column per week (Monday first), the day's sum of `value` - else a count of its rows - in seven steps, an empty day in the grid colour; from the Monday before the first `date` to the last, or the whole `year` | `date`, `value`, `year` |
 | `gantt` | A row per task (`label`), a bar from `from` to `to` - dates, or plain numbers when all are; `color` colours by a field with a legend, `progress` (0-100) draws the part done full and the rest light, `mark` a dashed line at a date | `label`, `from`, `to`, `color`, `progress`, `mark` |
+| `area` | Filled areas over the `label` axis, a line on each and a legend for several `value` fields; `stacked` lays them on top of each other (the top edge the running total), `percent` stacks every column to 100% - no negative values when stacked; a column per label carries all values in its tooltip | `label`, `value`, `stacked`, `percent` |
+| `stream` | A streamgraph: the `value` fields stacked in smooth curves around a wandering middle (the wiggle offset, early peaks inside), no value axis, the labels below and a legend above | `label`, `value` |
+| `multiples` | Small multiples: a small line over a wash per group of `by`, all on one scale that takes in zero and the same x positions, in a grid of `columns` (default: the count that gives the best panel shape); the ticks left of the first column, the first and last label under the bottom row | `by`, `label`, `value`, `columns` |
+| `candlestick` | A candle per row (`label` the day): the body from `open` to `close`, the wick from `low` to `high` - green when it closed at or above its open, red when lower; `volume` adds light bars in the lower fifth on a scale of their own; the price axis needs no zero | `label`, `open`, `high`, `low`, `close`, `volume` |
+| `dual` | Two measures on two axes: `value` as bars on the left axis, `line` as a line with ringed points on the right one, each axis's ticks in its series' colour and the right ticks on the left's grid lines when their zeros can line up; a legend names both | `label`, `value`, `line` |
+| `spiral` | A long series wound clockwise from twelve o'clock along an Archimedean spiral, `period` rows (12) to a turn; each row a segment of the band in seven steps of one hue, the scale below; the `label`s of the first turn around the outside, `turn` names each turn where it begins | `label`, `value`, `period`, `turn` |
+| `rose` | Nightingale's polar area chart: a wedge per row of one angle, the first centred on twelve o'clock, its area its value (radius by the square root); several `value` fields lie outward as rings, a colour each with a legend; names around the circle, rings of round numbers | `label`, `value` |
+| `radialbar` | A ring per row, the first outside, an arc from twelve o'clock over three quarters of the circle as far as its value against `to` - else round numbers past the highest value - on a light track of its colour; the name at the start of the track, the value at the end of the arc | `label`, `value`, `to` |
+| `funnel` | The rows top to bottom as centred bars as wide as their value against the largest, joined by light bands; the value in the bar, the share of the first step on the right, the share of the step before in the band | `label`, `value` |
+| `pyramid` | One `value` field: a triangle in layers, the first row at the apex, each layer's area its value, named beside it with value and share. Two fields (`value='men, women'`): a population pyramid - the first to the left, the second to the right of a middle column naming the rows, the first row at the bottom, mirrored ticks below, a legend | `label`, `value` |
+| `waffle` | A grid of `cells` squares (100, a 10 x 10 grid; 4 to 2500), each part its share in its colour by the largest remainder so they add up exactly, filled row by row from the top left; a legend with value and share; past eight parts the smallest folded into a grey 'Other' | `label`, `value`, `cells` |
+| `marimekko` | A column per row as wide as its total of the `value` fields (two or more - else every numeric field), each field stacked as its share of the column to 100%, the percentage in each part with room; a 0-100% axis on the left, names and totals below, a legend | `label`, `value` |
+| `parliament` | A dot per seat in rows of half circles, the parties filling wedges from left to right in the order of the rows; the total and the seats a majority needs in the middle, a legend with the seats; whole seats, 5000 at most | `label`, `value` |
+| `venn` | Two or three sets as circles, each one's area its size, the overlaps matched (two exactly, three pair by pair); a row names a set or an overlap in `sets` ('A', 'A&B' or 'A, B'), and a set's size counts its overlaps; light fills, names outside, the count of each region where it has room | `sets`, `value` |
+| `density` | A smooth curve per group of `label` (Gaussian kernel density, `bandwidth` or else Silverman's rule) over one value axis - a light wash, its line, the median dashed, a legend for several groups | `label`, `value`, `bandwidth` |
+| `violin` | A shape per group of `label` on a vertical value axis: the density mirrored around its middle, cut at the lowest and highest value, all groups on one scale - the quartiles as a thick bar and the median as a light dot inside | `label`, `value`, `bandwidth` |
+| `bullet` | A track per row with a thin bar of `value` and `target` (a field, or one number) as a short upright line; `bands` - up to four, a number a percentage of the scale, a name a field holding the threshold - split the track into grey steps; `to` ends the scale (a number or a field), else round numbers past the row's highest | `label`, `value`, `target`, `bands`, `to` |
+| `rings` | Concentric progress rings, one per row (eight at most, the first outermost): an arc of `value` against `to` - a number (100) or a field of the row - clockwise from twelve over a light track, full past the goal; a legend with value, goal and share | `label`, `value`, `to` |
+| `parallel` | Parallel coordinates: an upright axis per measure of `value` (two or more, else every numeric field), each scaled to its own round range, named on top; a line per row, coloured by `color` with a legend or else one lighter colour | `label`, `value`, `color` |
+| `proportional` | A circle per row - a square with `square` - whose area is `value`, side by side on a common baseline, wrapping into lines, the value and `label` under each | `label`, `value`, `square` |
+| `chord` | Flows between the members of one group: a node an arc around the circle as long as all that flows out of and into it, a ribbon per flow through the middle as wide as the flow, in the colour of its source; without `value` a row counts one | `source`, `target`, `value` |
+| `arc` | Nodes on a line in the order they first appear, a dot as large as its number of links, its name under it (turned when names would touch); a link a half circle above the line, `value` for thicker links | `source`, `target`, `value` |
+| `pack` | The treemap's hierarchy as circles in circles: a part a circle with the area of its value, the parts of a group packed largest first inside a light circle, coloured by the outermost group with a legend | `label`, `value`, `levels` |
+| `orgchart` | A tree top down: a box per row named by `label` (a second line from `sub`), under the row whose `id` its `parent` holds; rows without a known parent are roots side by side, each branch under the top its own colour; an id twice or a circle is an error | `id`, `parent`, `label`, `sub` |
 | `sparkline` | See below | `label`, `value` |
 
 **As a pair** the content between the tags is the data, when neither `data` nor `sequence`
@@ -1165,7 +1213,7 @@ is one that nothing reads under the strict check. The handling options (`row`, `
 | `value` | The field that holds the number - by default the first numeric field; a comma list draws a series each (eight at most) |
 | `label` | The field for the category axis - by default the first other field, else the row number |
 | `title` | The accessible name; by default made from value and label |
-| `width`, `height` | The size, default 600 x 300 (pie, donut, sunburst 480 x 280; sankey, network, treemap, radar 600 x 400; gauge 320 x 200; calendar 720 x 150); `.pad-chart { max-width: 100%; height: auto }` in the page's CSS makes it shrink with its container |
+| `width`, `height` | The size, default 600 x 300 (pie, donut, sunburst, rose, radialbar, rings, parliament, venn, waffle 480 x 280; sankey, network, treemap, radar, chord, pack, orgchart, parallel, multiples 600 x 400; gauge 320 x 200; calendar 720 x 150; spiral 480 x 420); `.pad-chart { max-width: 100%; height: auto }` in the page's CSS makes it shrink with its container |
 
 **Accessibility:** `role="img"`, labelled by a `<title>` and a `<desc>` that lists the values;
 each bar, point, slice, cell, flow and node has its own `<title>`, the tooltip on hover - a
@@ -1959,7 +2007,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `tidy` | Output | Format HTML |
 | `spaceless` | Output | Remove whitespace between HTML tags |
 | `markdown` | Output | Markdown written as HTML, raw HTML escaped |
-| `chart` | Output | A chart as inline SVG - 21 kinds, from bar and line to gauge, calendar and gantt |
+| `chart` | Output | A chart as inline SVG - 46 kinds, from bar and line to candlestick, chord and org chart |
 | `sparkline` | Output | Word-sized line chart as inline SVG |
 | `qr` | Output | QR code as inline SVG |
 | `barcode` | Output | EAN-13, EAN-8, UPC-A or Code 128 barcode as inline SVG |

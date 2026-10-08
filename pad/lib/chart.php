@@ -22,8 +22,11 @@
   // padChart           the SVG: bar, line or sparkline of one series
   //
   // The other kinds - several series, hbar, pie, donut, scatter, bubble, heatmap, sankey,
-  // network, treemap, sunburst - are drawn by the files of lib/chart/, on the same opening,
-  // style and number format.
+  // network, treemap, sunburst, gauge, radar, waterfall, histogram, boxplot, calendar, gantt,
+  // area, stream, multiples, candlestick, dual, spiral, rose, radialbar, funnel, pyramid,
+  // waffle, marimekko, parliament, venn, density, violin, bullet, rings, parallel,
+  // proportional, chord, arc, pack and orgchart - are drawn by the files of lib/chart/, on
+  // the same opening, style and number format.
   //
   // Accessible: the svg has role="img" and is labelled by its <title> and a <desc> that
   // lists the values, so a screen reader hears the data; each bar and point carries a
@@ -137,9 +140,9 @@
     $padData [$pad] = padDefaultData ();
 
     $wide  = ( $kind == 'sparkline' );
-    $round = in_array ( $kind, [ 'pie', 'donut', 'sunburst' ] );
-    $tall  = in_array ( $kind, [ 'sankey', 'network', 'treemap', 'radar' ] );
-    $size  = [ 'gauge' => [ 320, 200 ], 'calendar' => [ 720, 150 ] ] [$kind] ?? NULL;
+    $round = in_array ( $kind, [ 'pie', 'donut', 'sunburst', 'rose', 'radialbar', 'rings', 'parliament', 'venn', 'waffle' ] );
+    $tall  = in_array ( $kind, [ 'sankey', 'network', 'treemap', 'radar', 'chord', 'pack', 'orgchart', 'parallel', 'multiples' ] );
+    $size  = [ 'gauge' => [ 320, 200 ], 'calendar' => [ 720, 150 ], 'spiral' => [ 480, 420 ] ] [$kind] ?? NULL;
 
     $width  = max ( 20, (int) padTagParm ( 'width',  $size [0] ?? ( $wide ? 120 : ( $round ? 480 : 600 ) ) ) );
     $height = max ( 10, (int) padTagParm ( 'height', $size [1] ?? ( $wide ? 32  : ( $round ? 280 : ( $tall ? 400 : 300 ) ) ) ) );
@@ -165,6 +168,31 @@
       case 'boxplot':   return padChartBoxplot   ( $rows, $width, $height );
       case 'calendar':  return padChartCalendar  ( $rows, $width, $height );
       case 'gantt':     return padChartGantt     ( $rows, $width, $height );
+
+      case 'area':
+      case 'stream':       return padChartArea         ( $kind, $rows, $width, $height );
+      case 'multiples':    return padChartMultiples    ( $rows, $width, $height );
+      case 'candlestick':  return padChartCandlestick  ( $rows, $width, $height );
+      case 'dual':         return padChartDual         ( $rows, $width, $height );
+      case 'spiral':       return padChartSpiral       ( $rows, $width, $height );
+      case 'rose':
+      case 'radialbar':    return padChartRadial       ( $kind, $rows, $width, $height );
+      case 'funnel':
+      case 'pyramid':      return padChartFunnel       ( $kind, $rows, $width, $height );
+      case 'waffle':       return padChartWaffle       ( $rows, $width, $height );
+      case 'marimekko':    return padChartMarimekko    ( $rows, $width, $height );
+      case 'parliament':   return padChartParliament   ( $rows, $width, $height );
+      case 'venn':         return padChartVenn         ( $rows, $width, $height );
+      case 'violin':
+      case 'density':      return padChartDensity      ( $kind, $rows, $width, $height );
+      case 'bullet':       return padChartBullet       ( $rows, $width, $height );
+      case 'rings':        return padChartRings        ( $rows, $width, $height );
+      case 'parallel':     return padChartParallel     ( $rows, $width, $height );
+      case 'proportional': return padChartProportional ( $rows, $width, $height );
+      case 'chord':        return padChartChord        ( $rows, $width, $height );
+      case 'arc':          return padChartArcDiagram   ( $rows, $width, $height );
+      case 'pack':         return padChartPack         ( $rows, $width, $height );
+      case 'orgchart':     return padChartOrg          ( $rows, $width, $height );
 
     }
 

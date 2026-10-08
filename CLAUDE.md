@@ -747,6 +747,14 @@ through; `padCollection('blog')` gives the rows to PHP.
 {chart 'histogram', data='people', value='height', bins=12}  # also boxplot (label= groups)
 {chart 'calendar', data='commits', date='day', value='count', year=2026}
 {chart 'gantt', data='plan', label='task', from='begin', to='until', progress='done', mark='2026-10-07'}
+{chart 'area', data='energy', label='year', value='coal, gas, wind', stacked}   # percent; also stream, multiples (by=)
+{chart 'candlestick', data='share', label='day', volume='volume'}   # open/high/low/close; dual: value= bars, line= right axis
+{chart 'funnel', data='shop', label='step', value='visitors'}       # pyramid: one field a triangle, two back to back
+{chart 'waffle', data='energy', cells=100}                          # also marimekko, parliament, venn (sets=), rose, radialbar
+{chart 'bullet', data='kpis', value='actual', target='goal', bands='50, 75'}   # also rings, proportional
+{chart 'violin', data='scores', label='class', value='score'}       # also density, parallel (value= the axes), spiral (period=)
+{chart 'chord', data='migration', source='from', target='to', value='people'}  # also arc
+{chart 'orgchart', data='staff', id='id', parent='boss', label='name', sub='role'}  # pack: the treemap's options
 {chart 'bar', label='month', value='amount'}                 # a pair: the content is the data -
   month,amount                                               #   JSON, YAML, XML or CSV, told
   Jan,12400                                                  #   apart on sight (type= names it)
@@ -1629,7 +1637,7 @@ strict syntax check - `pad_check` with only an app checks every page), `pad_trac
 |-----|------|-------------|
 | `_common` | Shared | Shared resources and utilities for all applications |
 | `apps` | Standard | Lists all PAD applications with descriptions from README files |
-| `charts` | Standard | A showcase of the `{chart}` tag - a pulldown per chart family (21 kinds), every example a page of three cells: the data, the tag, the chart |
+| `charts` | Standard | A showcase of the `{chart}` tag - a pulldown per chart family (46 kinds), every example a page of three cells: the data, the tag, the chart |
 | `classicModels` | Standard | PAD Select over the Classic Models sample database |
 | `cli` | CLI | The `pad` command (`apps/cli/pad`): new, serve, render, lint, export, test - and the cli application |
 | `demo` | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
