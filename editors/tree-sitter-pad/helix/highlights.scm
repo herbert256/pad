@@ -67,17 +67,17 @@
     "avatar" "barcode" "block" "bool" "branch" "break" "cache" "calendar"
     "can" "cannot" "case" "cease" "chart" "check" "chess" "classes"
     "close" "code" "collection" "content" "continue" "count" "crossword" "csrf"
-    "curl" "data" "debug" "decrement" "dir" "dump" "echo" "else"
-    "elseif" "error" "exception" "exists" "exit" "extends" "false" "feature"
-    "field" "file" "files" "flag" "flash" "flush" "foo" "form"
-    "fragment" "get" "gravatar" "guest" "highlight" "icon" "identicon" "if"
-    "ifchanged" "ignore" "increment" "input" "keep" "live" "mail" "make"
-    "markdown" "meta" "nonce" "null" "open" "output" "pad" "page"
-    "pager" "parent" "parms" "placeholder" "progress" "pull" "push" "qr"
-    "rating" "reactData" "record" "recurse" "redirect" "remove" "restart" "resume"
-    "sandbox" "sequence" "set" "sitemap" "slot" "spaceless" "sparkline" "stack"
-    "sudoku" "switch" "textarea" "tidy" "trace" "trans" "tree" "true"
-    "until" "when" "while"))
+    "curl" "data" "debug" "decrement" "diff" "dir" "dump" "echo"
+    "else" "elseif" "error" "exception" "exists" "exit" "extends" "false"
+    "feature" "field" "file" "files" "flag" "flash" "flush" "foo"
+    "form" "fragment" "get" "gravatar" "guest" "highlight" "icon" "identicon"
+    "if" "ifchanged" "ignore" "increment" "input" "keep" "live" "mail"
+    "make" "markdown" "meta" "nonce" "null" "open" "output" "pad"
+    "page" "pager" "parent" "parms" "placeholder" "progress" "pull" "push"
+    "qr" "rating" "reactData" "record" "recurse" "redirect" "remove" "restart"
+    "resume" "sandbox" "sequence" "set" "sitemap" "slot" "spaceless" "sparkline"
+    "stack" "sudoku" "switch" "textarea" "tidy" "trace" "trans" "tree"
+    "true" "until" "when" "while"))
 
 (tag_name
   name: (identifier) @tag
@@ -86,17 +86,17 @@
     "avatar" "barcode" "block" "bool" "branch" "break" "cache" "calendar"
     "can" "cannot" "case" "cease" "chart" "check" "chess" "classes"
     "close" "code" "collection" "content" "continue" "count" "crossword" "csrf"
-    "curl" "data" "debug" "decrement" "dir" "dump" "echo" "else"
-    "elseif" "error" "exception" "exists" "exit" "extends" "false" "feature"
-    "field" "file" "files" "flag" "flash" "flush" "foo" "form"
-    "fragment" "get" "gravatar" "guest" "highlight" "icon" "identicon" "if"
-    "ifchanged" "ignore" "increment" "input" "keep" "live" "mail" "make"
-    "markdown" "meta" "nonce" "null" "open" "output" "pad" "page"
-    "pager" "parent" "parms" "placeholder" "progress" "pull" "push" "qr"
-    "rating" "reactData" "record" "recurse" "redirect" "remove" "restart" "resume"
-    "sandbox" "sequence" "set" "sitemap" "slot" "spaceless" "sparkline" "stack"
-    "sudoku" "switch" "textarea" "tidy" "trace" "trans" "tree" "true"
-    "until" "when" "while"))
+    "curl" "data" "debug" "decrement" "diff" "dir" "dump" "echo"
+    "else" "elseif" "error" "exception" "exists" "exit" "extends" "false"
+    "feature" "field" "file" "files" "flag" "flash" "flush" "foo"
+    "form" "fragment" "get" "gravatar" "guest" "highlight" "icon" "identicon"
+    "if" "ifchanged" "ignore" "increment" "input" "keep" "live" "mail"
+    "make" "markdown" "meta" "nonce" "null" "open" "output" "pad"
+    "page" "pager" "parent" "parms" "placeholder" "progress" "pull" "push"
+    "qr" "rating" "reactData" "record" "recurse" "redirect" "remove" "restart"
+    "resume" "sandbox" "sequence" "set" "sitemap" "slot" "spaceless" "sparkline"
+    "stack" "sudoku" "switch" "textarea" "tidy" "trace" "trans" "tree"
+    "true" "until" "when" "while"))
 
 ((function_name) @function.builtin
   (#any-of? @function.builtin

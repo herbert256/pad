@@ -1854,6 +1854,36 @@ check.
 
 ---
 
+### diff
+What changed between two texts - word by word in the flow of the text, or line by line in
+one column or side by side - with `<del>` and `<ins>` marked and styled (`lib/diff.php`).
+
+```html
+{diff $draft, $final}
+{diff $old, $new, lines, from='Monday', to='Friday'}
+{diff $before, $after, side, from='before', to='after'}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first and second parameter | The old and the new text |
+| `lines` | Compare line by line: a table of the old and the new line number, a sign and the line |
+| `side` | The lines side by side, a changed line beside its counterpart, line numbers on both |
+| `from`, `to` | Names of the two versions - the column heads beside each other, a caption in one column |
+
+**Behavior:** Myers' O(ND) algorithm finds the shortest edit script, as git diff does. In a
+run of changes the deletions come before the insertions, and the space between two changed
+words joins the change. A changed line with a counterpart marks the words that changed
+within it; a line without one is struck or added whole. Everything of the texts is escaped.
+A screen reader hears where each deletion and insertion starts and ends - words in
+pseudo-elements hidden from the eye. The colours are `--pad-diff-del`, `-del-mark`, `-ins`,
+`-ins-mark`, `-text`, `-muted` and `-line` on `.pad-diff`, `light-dark()` defaults, written
+once per page. A missing second text is an error under the strict check.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2367,6 +2397,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `chess` | Output | A chess position from FEN as inline SVG - pieces, coordinates, marked squares, arrows |
 | `sudoku` | Output | A sudoku grid as a table, givens bold - solved on the server with `solve` |
 | `crossword` | Output | Words and clues laid out as a numbered crossword grid (SVG) with the Across and Down lists |
+| `diff` | Output | The differences between two texts - words inline, or lines in one column or side by side |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
