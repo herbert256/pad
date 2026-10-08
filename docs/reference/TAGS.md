@@ -1943,6 +1943,40 @@ check.
 
 ---
 
+### tabs
+Panels behind a row of tabs, without JavaScript - a radio button and a label per tab, the CSS
+showing the panel of the checked one (`lib/tabs.php`). The items are `{tab}` pairs, which
+`{accordion}` and `{carousel}` take as well.
+
+```html
+{tabs active='Specs'}
+  {tab 'Overview'}<p>A 1.7 litre kettle ...</p>{/tab}
+  {tab 'Specs'}<table>...</table>{/tab}
+{/tabs}
+
+{tabs}{plans}{tab $name}<p>{$price}</p>{/tab}{/plans}{/tabs}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| `active` | The tab shown first - its number from 1, or its label; the first one when not given |
+| `{tab 'label'}` | One tab: the first parameter is its label, the content its panel |
+
+**Behavior:** a `{tab}` renders its content and hands it to the nearest `{tabs}`,
+`{accordion}` or `{carousel}` below it instead of printing it - it may stand in an `{if}` or
+in a loop that makes a tab per row. The set is a radio group: one stop in the tab order, the
+arrow keys move between the tabs, a screen reader hears the label and 'checked'; each panel is
+a `region` named by its tab. No fragment goes into the address, so two sets on a page keep
+their choices; printed, every panel shows. The ids are made from the labels, the same on every
+request. The colours are `--pad-tabs-accent`, `-text`, `-muted` and `-line` on `.pad-tabs`,
+`light-dark()` defaults, written once per page. A `{tab}` outside an owner, a tab without a
+label, text between the tabs, a set without a tab and an `active=` naming no tab are errors
+under the strict check.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2459,6 +2493,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `diff` | Output | The differences between two texts - words inline, or lines in one column or side by side |
 | `excerpt` | Output | A text cut to whole words around the first search match, the matches marked |
 | `lorem` | Output | Lorem ipsum placeholder text - words, sentences or paragraphs, the same for the same seed |
+| `tabs` | Output | Panels behind a row of tabs - radio buttons and CSS, no JavaScript; `{tab}` is one item |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |

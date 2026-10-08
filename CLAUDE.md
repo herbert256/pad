@@ -924,6 +924,7 @@ Code: `pad/lib/chart.php` (bar, line, sparkline) and `pad/lib/chart/` (the other
 {diff $old, $new}                              # word diff with <del>/<ins>, escaped; lines, side, from=, to=
 {excerpt $body, words=24, highlight=$q}         # whole words around the first match, <mark>ed, escaped; html
 {lorem paragraphs=3, seed=7}                    # placeholder text, classic start, reproducible; words=, sentences=, varied
+{tabs active='Specs'}{tab 'Overview'}...{/tab}{tab 'Specs'}...{/tab}{/tabs}   # CSS-only tabs: radios, arrow keys
 ```
 Every one is rendered on the server; the `showcase` application has examples of each.
 

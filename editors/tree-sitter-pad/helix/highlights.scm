@@ -76,8 +76,8 @@
     "output" "pad" "page" "pager" "parent" "parms" "placeholder" "progress"
     "pull" "push" "qr" "rating" "reactData" "record" "recurse" "redirect"
     "remove" "restart" "resume" "sandbox" "sequence" "set" "sitemap" "slot"
-    "spaceless" "sparkline" "stack" "sudoku" "switch" "textarea" "tidy" "trace"
-    "trans" "tree" "true" "until" "when" "while"))
+    "spaceless" "sparkline" "stack" "sudoku" "switch" "tab" "tabs" "textarea"
+    "tidy" "trace" "trans" "tree" "true" "until" "when" "while"))
 
 (tag_name
   name: (identifier) @tag
@@ -95,8 +95,8 @@
     "output" "pad" "page" "pager" "parent" "parms" "placeholder" "progress"
     "pull" "push" "qr" "rating" "reactData" "record" "recurse" "redirect"
     "remove" "restart" "resume" "sandbox" "sequence" "set" "sitemap" "slot"
-    "spaceless" "sparkline" "stack" "sudoku" "switch" "textarea" "tidy" "trace"
-    "trans" "tree" "true" "until" "when" "while"))
+    "spaceless" "sparkline" "stack" "sudoku" "switch" "tab" "tabs" "textarea"
+    "tidy" "trace" "trans" "tree" "true" "until" "when" "while"))
 
 ((function_name) @function.builtin
   (#any-of? @function.builtin
