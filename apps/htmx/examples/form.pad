@@ -1,0 +1,19 @@
+<label class="small switch-line"><input type="checkbox" checked data-toggle-rules="#signup form"> Check in the browser first - turn it off to see PAD's answer to a bad post</label>
+
+<div id="signup">
+{fragment 'signup'}
+  {if $done}
+    <div class="callout is-good rise">
+      <p><strong>Welcome aboard, {$name}!</strong> PAD checked the post against the rules of the form and the page's PHP ran for a good one only.</p>
+      <p><button class="btn-sm btn-ghost" hx-get="?examples/form" hx-target="#signup">Sign up someone else</button></p>
+    </div>
+  {else}
+    {form 'signup', client, error, hx-post='?examples/form', hx-target='#signup', class='stack'}
+      {input 'name', label='Name', rules='required|max:40', class='input'}
+      {input 'email', type='email', label='E-mail', rules='required|email', class='input'}
+      {input 'age', label='Age', rules='integer|min:18', class='input'}
+      <button>Sign up</button>
+    {/form}
+  {/if}
+{/fragment}
+</div>

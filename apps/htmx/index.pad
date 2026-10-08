@@ -1,0 +1,52 @@
+<section class="hero">
+
+  <div>
+    <span class="eyebrow"><b>●</b> HTML over the wire</span>
+    <h1>The server renders.<br><span class="grad">htmx swaps it in.</span></h1>
+    <p class="lede">
+      htmx asks the server for a part of the page and puts the answer where it belongs. PAD
+      already speaks that language: every {open}fragment{close} of a template can be asked for
+      alone - by its name, or by the element htmx swaps - so one template serves the whole page
+      and every piece of it.
+    </p>
+    <div class="hero-actions">
+      <a class="btn" href="?examples/search">Start with active search</a>
+      <a class="btn btn-ghost" href="?guide">How PAD answers htmx</a>
+    </div>
+  </div>
+
+  <div class="hero-code">
+{highlight 'pad'}
+<input name="q" hx-get="?products"
+       hx-trigger="input changed delay:300ms"
+       hx-target="#results">
+
+<ul id="results">
+  {fragment 'results'}
+    {products}<li>{$name}</li>{/products}
+  {/fragment}
+</ul>
+{/highlight}
+    <p class="small muted">The request carries <code>HX-Target: results</code>; PAD answers that fragment alone.</p>
+  </div>
+
+</section>
+
+{groups}
+<div class="group-head">
+  <h2>{$title}</h2>
+  <span class="badge">{$count} examples</span>
+</div>
+<p class="group-text">{$text}</p>
+<div class="grid">
+  {examples}
+  <a class="card" href="?{$page}">
+    <span class="card-icon" aria-hidden="true">{$icon}</span>
+    <span class="card-go" aria-hidden="true">→</span>
+    <h3>{$title}</h3>
+    <p>{$lede}</p>
+    <div class="chips">{server}<code class="chip is-server">{$server}</code>{/server}{client}<code class="chip is-client">{$client}</code>{/client}</div>
+  </a>
+  {/examples}
+</div>
+{/groups}

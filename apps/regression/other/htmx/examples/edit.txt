@@ -1,0 +1,66 @@
+<table class="table">
+  <thead><tr><th>Name</th><th>E-mail</th><th>City</th><th></th></tr></thead>
+  <tbody hx-target="closest tr" hx-swap="outerHTML">
+  
+  
+    
+    <tr>
+      <td><strong>Ada Fern&aacute;ndez</strong></td>
+      <td>ada@example.com</td>
+      <td>Amsterdam</td>
+      <td class="actions"><button class="btn-sm btn-ghost" hx-get="?examples/edit&id=1&mode=edit&padFragment=row">Edit</button></td>
+    </tr>
+    
+  
+  
+  
+    
+    <tr>
+      <td><strong>Bram Visser</strong></td>
+      <td>bram@example.com</td>
+      <td>Utrecht</td>
+      <td class="actions"><button class="btn-sm btn-ghost" hx-get="?examples/edit&id=2&mode=edit&padFragment=row">Edit</button></td>
+    </tr>
+    
+  
+  
+  
+    
+    <tr>
+      <td><strong>Chen Wei</strong></td>
+      <td>chen@example.com</td>
+      <td>Rotterdam</td>
+      <td class="actions"><button class="btn-sm btn-ghost" hx-get="?examples/edit&id=3&mode=edit&padFragment=row">Edit</button></td>
+    </tr>
+    
+  
+  
+  
+    
+    <tr>
+      <td><strong>Dalia Haddad</strong></td>
+      <td>dalia@example.com</td>
+      <td>Eindhoven</td>
+      <td class="actions"><button class="btn-sm btn-ghost" hx-get="?examples/edit&id=4&mode=edit&padFragment=row">Edit</button></td>
+    </tr>
+    
+  
+  
+  
+    
+    <tr>
+      <td><strong>Emeka Obi</strong></td>
+      <td>emeka@example.com</td>
+      <td>Groningen</td>
+      <td class="actions"><button class="btn-sm btn-ghost" hx-get="?examples/edit&id=5&mode=edit&padFragment=row">Edit</button></td>
+    </tr>
+    
+  
+  
+  </tbody>
+</table>
+
+<p class="small muted" style="margin-top: 14px">
+  Your edits stay in your session.
+  <button class="btn-sm btn-ghost" hx-post="?examples/edit&reset" hx-select="table" hx-target="previous table" hx-swap="outerHTML">Undo them all</button>
+</p>

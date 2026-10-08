@@ -1,0 +1,16 @@
+<table class="table">
+  <thead><tr><th>Order</th><th>Customer</th><th>Status</th><th class="num">Amount</th></tr></thead>
+  <tbody>
+  {fragment 'rows'}
+    {orders}
+    <tr{if $next} hx-get="?examples/scroll&p={$next}&padFragment=rows" hx-trigger="revealed" hx-swap="afterend"{/if}>
+      <td>#{$number}</td>
+      <td>{$customer}</td>
+      <td><span class="badge status-{$status}">{$status}</span></td>
+      <td class="num">{$amount | currency('EUR')}</td>
+    </tr>
+    {/orders}
+  {/fragment}
+  </tbody>
+</table>
+<p class="muted small">Scroll down - every fifteenth row asks for the next fifteen. Ninety in all.</p>

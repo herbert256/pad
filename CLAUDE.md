@@ -682,7 +682,9 @@ it out) when the app caches; `access=`/`sitemap=` are kept for `padMeta('access'
 ```
 `?orders&padFragment=order-list` (or `$padFragmentOnly` set in PHP) answers with that
 fragment alone - for HTMX swaps and `{ajax 'orders', fragment='order-list'}`; a normal
-request renders the whole page. The page cache answers a script's request for a part -
+request renders the whole page. An htmx request needs no parameter when its target is named
+like the fragment: `hx-target="#order-list"` sends `HX-Target: order-list`, and a page with
+that fragment answers it alone (one without renders whole). The page cache answers a script's request for a part -
 `HX-Request`, `X-Requested-With`, `Turbo-Frame`, `X-Up-Target` - fresh and never stores a
 fragment the PHP chose, since its key is the address.
 
@@ -1676,6 +1678,7 @@ strict syntax check - `pad_check` with only an app checks every page), `pad_trac
 | `edit` | Standard | A browser editor for every application, behind a login, this machine only by default - file tree with new, copy, rename, delete, upload and trash; Monaco with PAD colouring, completion, hover, go-to-definition and PAD's own checks, PHP completion; preview, history, search, git, a terminal, an Xdebug step debugger; the framework's own pad/ in the tree too |
 | `examples` | Standard | Search the harvested examples of DATA/examples and view one with its sources beside the rendered result |
 | `hello` | Minimal | Hello World example demonstrating page pairing |
+| `htmx` | Standard | PAD + htmx: active search, lazy loading, infinite scroll, inline editing, forms, out-of-band updates and server-sent events - htmx asks for a part, PAD answers its `{fragment}` (by `HX-Target`), each example with a request log and its sources |
 | `manual` | Standard | Interactive documentation and examples |
 | `nono` | Plain PHP | PHP application without PAD templating |
 | `pad` | Standard | PAD framework introduction and reference |

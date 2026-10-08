@@ -22,4 +22,5 @@
 <ul>
   <li><code>{open}ajax 'orders', fragment='order-list'{close}</code> fetches only that fragment of the page into its div.</li>
   <li>HTMX: <code>&lt;div hx-get="?orders&amp;padFragment=order-list" hx-trigger="every 5s"&gt;</code> swaps in the fresh list.</li>
+  <li>An HTMX request needs no <code>padFragment</code> when it swaps an element named like the fragment: <code>hx-target="#order-list"</code> sends <code>HX-Target: order-list</code>, and a page with a fragment of that name answers it alone. A page without one renders whole, as it would otherwise. See {manual 'htmx'}.</li>
 </ul>

@@ -34,6 +34,17 @@
 
   $padFragmentOnly = is_string ( $_REQUEST ['padFragment'] ?? NULL ) ? $_REQUEST ['padFragment'] : '';
   $padFragmentSent = FALSE;
+
+  // htmx names the element it swaps in an HX-Target header: a request of it that names no
+  // fragment itself gets the fragment called like that element, when the page has one -
+  // hx-get="?orders" hx-target="#order-list" needs no padFragment. A page without such a
+  // fragment renders whole, as before (padFragmentMissing).
+
+  $padFragmentTarget = ( $padFragmentOnly === '' and ( $_SERVER ['HTTP_HX_REQUEST'] ?? '' ) === 'true'
+                         and preg_match ( '/^[A-Za-z][A-Za-z0-9_-]*$/', (string) ( $_SERVER ['HTTP_HX_TARGET'] ?? '' ) ) );
+
+  if ( $padFragmentTarget )
+    $padFragmentOnly = $_SERVER ['HTTP_HX_TARGET'];
   $padStrCnt    = -1;
   $padStrFunCnt = 0;
   $padInfo      = '';

@@ -7,8 +7,8 @@
   //   {/fragment}
   //
   // A normal request renders the whole page, the fragment in its place. A request that
-  // names a fragment - the padFragment parameter, or $padFragmentOnly set by the page's PHP,
-  // say when an HX-Request header is there - gets that fragment's rendering and nothing
+  // names a fragment - the padFragment parameter, the HX-Target header of an htmx request
+  // (inits/vars.php), or $padFragmentOnly set by the page's PHP - gets that fragment's rendering and nothing
   // else: the page renders up to the end of the fragment, which then ends the request
   // through exits/exits.php as the whole response, unwrapped and untidied, the way a
   // padInclude request is. One template serves the full page and the region an HTMX swap
@@ -28,13 +28,15 @@
 
   }
 
-  // At the end of the request, a fragment that was asked for and never came.
+  // At the end of the request, a fragment that was asked for and never came. The element
+  // an htmx request swaps (HX-Target) only asks when the page has a fragment of its name:
+  // without one the page has rendered whole, and that is the answer.
 
   function padFragmentMissing () {
 
-    global $padFragmentOnly, $padFragmentSent, $padCheckSyntax;
+    global $padFragmentOnly, $padFragmentSent, $padFragmentTarget, $padCheckSyntax;
 
-    if ( (string) $padFragmentOnly === '' or $padFragmentSent )
+    if ( (string) $padFragmentOnly === '' or $padFragmentSent or ( $padFragmentTarget ?? FALSE ) )
       return;
 
     if ( $padCheckSyntax )

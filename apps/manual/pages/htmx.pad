@@ -1,0 +1,54 @@
+{meta title='htmx'}
+
+<p>htmx asks the server for a part of the page and swaps the answer in - HTML over the wire,
+no JavaScript of your own. A PAD template already has names on its parts: every
+{tag 'fragment'} can be asked for alone, so the template that renders the first visit also
+answers every question htmx asks after it.</p>
+
+{ignore}
+<pre><code>&lt;input name="q" hx-get="?products" hx-trigger="input changed delay:300ms" hx-target="#results"&gt;
+
+&lt;ul id="results"&gt;
+  {fragment 'results'}
+    {products}&lt;li&gt;{$name}&lt;/li&gt;{/products}
+  {/fragment}
+&lt;/ul&gt;</code></pre>
+{/ignore}
+
+<h2>Which part answers</h2>
+
+<ul>
+  <li><b>By the target.</b> htmx sends the id of the element it swaps in <code>HX-Target</code>; a
+      request of htmx that names no fragment itself gets the fragment called like that element,
+      when the page has one - and the whole page when it has none.</li>
+  <li><b>By the address.</b> <code>&amp;padFragment=rows</code> names the fragment outright - for a
+      target without an id (<code>hx-target="closest tr"</code>, <code>this</code>) or a part other
+      than the target.</li>
+  <li><b>By the PHP.</b> <code>$padFragmentOnly = 'row'</code> decides in the page's PHP. A fragment
+      inside a loop answers with the first row it renders: narrow the rows to the one asked
+      for.</li>
+</ul>
+
+<h2>Posts and forms</h2>
+
+<ul>
+  <li>With <code>$padCsrf</code> on, a post needs the session's token. A {tag 'form'} carries it;
+      for an <code>hx-post</code> on anything else put it on the body once:
+      <code>&lt;body hx-headers="{open}^headers{close}"&gt;</code> with
+      <code>$headers = [ 'X-CSRF-Token' =&gt; padCsrfToken () ]</code>.</li>
+  <li>A {tag 'form'} with <code>rules=</code> posted through htmx comes back as its own fragment -
+      refilled, with PAD's messages - and with <code>client</code> the browser checks the same
+      rules first ({manual 'client_validation'}).</li>
+  <li>Elements of an answer marked <code>hx-swap-oob="true"</code> go where their id is: the
+      count in the header, a summary beside a list.</li>
+</ul>
+
+<h2>Pushed by the server</h2>
+
+<p><code>padSse()</code> ({manual 'server_sent_events'}) streams events; with htmx's sse
+extension (<code>hx-ext="sse" sse-connect="?ticker"</code>) every event's HTML is swapped in as
+it arrives.</p>
+
+<p>The htmx application shows all of it, each example with its template and PHP:
+<a href="{$padHost}htmx/">htmx</a> - active search, lazy loading, infinite scroll, inline
+editing, forms, out-of-band updates and server-sent events.</p>

@@ -44,6 +44,8 @@
       'request/statuses'          => 'A missing page answers 404, and a status the page sets with http_response_code() stands',
       'request/gone'              => 'The fixture for request/statuses: a page that answers 410 itself',
       'request/redirect'          => 'A redirecting page, seen unfollowed - status and destination - and followed to where it lands',
+      'fragments/targets'         => 'An htmx request answered by the fragment named like the element it swaps (HX-Target) - the whole page when there is none or htmx did not ask, and padFragment winning over the header',
+      'fragments/target'          => 'The fixture for fragments/targets: a page with one fragment between other HTML',
       'sse/ticks'                 => 'padSse with a producer that sends its own events - the retry first, a named event with an id and JSON, text over two lines, a plain message',
       'sse/every'                 => 'padSse calling the producer on an interval - an array sent as the named event, NULL sending nothing, FALSE ending the stream',
       'sse/headers'               => 'A stream as the browser gets it: text/event-stream, no-cache, no proxy buffering, and the last id back as a header or query value with its line break taken out',

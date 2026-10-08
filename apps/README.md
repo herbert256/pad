@@ -16,6 +16,7 @@ This directory contains PAD applications and examples.
 | [edit](edit/README.md) | Standard | A browser editor for every application, behind a login - file management, PAD and PHP colouring, completion and checks, preview, history, a terminal, a step debugger |
 | [examples](examples/README.md) | Standard | Search the harvested examples and view one with its sources beside the rendered result |
 | [hello](hello/README.md) | Minimal | Hello World example demonstrating page pairing |
+| [htmx](htmx/README.md) | Standard | PAD + htmx: active search, lazy loading, infinite scroll, inline editing, forms, out-of-band updates, server-sent events - htmx asks for a part, PAD answers its fragment |
 | [manual](manual/README.md) | Standard | Interactive documentation and examples |
 | [nono](nono/README.md) | Plain PHP | PHP application without PAD templating |
 | [pad](pad/README.md) | Standard | PAD framework introduction and reference |

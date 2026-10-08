@@ -662,7 +662,10 @@
 
   // client on a {form}: the rules its template gives its fields, as the browser's checker
   // reads them, in data-pad-rules - and the error= text in data-pad-error, for the checker
-  // to show above the fields when a send fails. Only a named form with rules has any.
+  // to show above the fields when a send fails. Only a named form with rules has any. The
+  // form gets novalidate: the browser's own checks of type="email" and required stopped the
+  // send before the checker saw it, with messages of their own.
+
 
   function padFormClientAttrs ( $name, $take ) {
 
@@ -679,7 +682,7 @@
     $error = $take ['error'] ?? NULL;
     $error = ( $error === TRUE ) ? padFormErrorText : $error;
 
-    return ' data-pad-rules="' . padFormEscape ( json_encode ( padValidateClient ( $rules ), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) ) . '"'
+    return ' novalidate data-pad-rules="' . padFormEscape ( json_encode ( padValidateClient ( $rules ), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) ) . '"'
          . ( ( is_scalar ( $error ) && $error !== FALSE && (string) $error !== '' ) ? ' data-pad-error="' . padFormEscape ( $error ) . '"' : '' );
 
   }

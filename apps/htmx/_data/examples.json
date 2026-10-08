@@ -1,0 +1,84 @@
+{
+  "groups": [
+    {
+      "key":   "swap",
+      "title": "Parts of a page",
+      "text":  "htmx asks for a part, PAD answers just that part: a {fragment} of the same template, picked by the element htmx swaps. One template for the whole page and for every piece of it."
+    },
+    {
+      "key":   "write",
+      "title": "Changing data",
+      "text":  "Posts, edits and carts - the server keeps the state and answers the HTML that shows it, CSRF token and validation included."
+    },
+    {
+      "key":   "push",
+      "title": "From the server",
+      "text":  "Parts that come by themselves: after the page, as you scroll, or pushed by the server as events."
+    }
+  ],
+  "examples": [
+    {
+      "page":   "examples/search",
+      "group":  "swap",
+      "icon":   "🔎",
+      "title":  "Active search",
+      "lede":   "The results update as you type. htmx asks the page again with hx-target=\"#results\"; PAD answers the {fragment 'results'} of the same template - the element's name is enough.",
+      "server": [ "{fragment}", "HX-Target" ],
+      "client": [ "hx-get", "hx-trigger delay", "hx-push-url" ]
+    },
+    {
+      "page":   "examples/lazy",
+      "group":  "swap",
+      "icon":   "⏳",
+      "title":  "Lazy loading",
+      "lede":   "The page arrives at once; the slow part - a chart PAD draws - is asked for when the page has loaded, and a skeleton stands in until it comes.",
+      "server": [ "{fragment}", "{chart}" ],
+      "client": [ "hx-get", "hx-trigger=\"load\"" ]
+    },
+    {
+      "page":   "examples/scroll",
+      "group":  "push",
+      "icon":   "📜",
+      "title":  "Infinite scroll",
+      "lede":   "The last row asks for the next page when it scrolls into view and replaces itself with it - a fragment of rows that ends with the next asker.",
+      "server": [ "{fragment}", "&padFragment=rows" ],
+      "client": [ "hx-trigger=\"revealed\"", "hx-swap=\"outerHTML\"" ]
+    },
+    {
+      "page":   "examples/edit",
+      "group":  "write",
+      "icon":   "✏️",
+      "title":  "Inline editing",
+      "lede":   "A row turns into a form and back. Each answer is one row of the same loop - the PHP narrows the rows to the one asked for, padValidate checks the post, the session keeps the edits.",
+      "server": [ "padValidate", "padSession", "&padFragment=row" ],
+      "client": [ "hx-get", "hx-post", "hx-include", "hx-target=\"closest tr\"" ]
+    },
+    {
+      "page":   "examples/form",
+      "group":  "write",
+      "icon":   "📝",
+      "title":  "Forms without reloads",
+      "lede":   "A {form} with rules= posts through htmx and comes back as its own fragment - refilled with PAD's messages, or as a thank-you. The same rules are checked in the browser first.",
+      "server": [ "{form client}", "rules=", "padPosted" ],
+      "client": [ "hx-post", "hx-swap=\"outerHTML\"" ]
+    },
+    {
+      "page":   "examples/cart",
+      "group":  "write",
+      "icon":   "🛒",
+      "title":  "Out-of-band updates",
+      "lede":   "One answer, two places: the button that was pressed gets its new state, and the cart badge in the header updates too, swapped by its id with hx-swap-oob.",
+      "server": [ "{fragment}", "padSession" ],
+      "client": [ "hx-post", "hx-swap-oob" ]
+    },
+    {
+      "page":   "examples/live",
+      "group":  "push",
+      "icon":   "📡",
+      "title":  "Server-sent events",
+      "lede":   "The server pushes HTML: padSse sends a rendered row every second, and htmx's sse extension swaps each one into the page as it arrives.",
+      "server": [ "padSse" ],
+      "client": [ "hx-ext=\"sse\"", "sse-swap", "sse-close" ]
+    }
+  ]
+}

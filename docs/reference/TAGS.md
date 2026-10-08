@@ -650,7 +650,8 @@ messages stay with `padValidate`'s third argument.
 **In the browser too:** `client` on a named form whose fields have rules checks them in the
 browser as well - the same rules, the same messages (`pad/lib/validate.js`, written into the
 page once, behind the first such form). The rules go in a `data-pad-rules` attribute, the
-`error=` text in `data-pad-error`; a field is checked when it is left, again while it is typed
+`error=` text in `data-pad-error`, and the form gets `novalidate` - the browser's own checks
+would stop the send first, with messages of their own; a field is checked when it is left, again while it is typed
 in once it showed a message, and every field when the form is sent - a form that fails is not
 sent, the first field with a message gets the focus. The messages stand where the server's
 would, in a `<span class="error" id="<id>-error">` with `aria-invalid` and
@@ -1644,6 +1645,12 @@ response, bare and untidied like a `padInclude` request; the rest of the page do
 The first fragment of the name to finish is sent. A fragment that never rendered is an error
 under the strict check, an empty 404 otherwise - keep conditions inside the fragment. For
 HTMX (`hx-get="?orders&padFragment=order-list"`) and `{ajax 'orders', fragment='order-list'}`.
+
+**htmx's target:** a request htmx makes (`HX-Request: true`) that names no fragment itself
+asks for the one called like the element it swaps - the `HX-Target` header, its id: with
+`hx-target="#order-list"` no `padFragment` is needed. When the page has no fragment of that
+name it renders whole, as before - for a target without an id, or another part than the
+target, name the fragment in the address.
 
 ---
 
