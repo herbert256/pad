@@ -1,37 +1,64 @@
-<div data-island="FeedbackWall" data-props="{&quot;wall&quot;:[],&quot;rules&quot;:{&quot;name&quot;:{&quot;label&quot;:&quot;Name&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;max&quot;,&quot;40&quot;,&quot;:label must be at most :n characters&quot;,&quot;40&quot;]]},&quot;email&quot;:{&quot;label&quot;:&quot;Email&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;email&quot;,&quot;&quot;,&quot;:label must be a valid e-mail address&quot;,&quot;&quot;]]},&quot;mood&quot;:{&quot;label&quot;:&quot;Mood&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;in&quot;,&quot;happy,curious,puzzled&quot;,&quot;:label must be one of :n&quot;,&quot;happy, curious, puzzled&quot;]]},&quot;message&quot;:{&quot;label&quot;:&quot;Message&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;min&quot;,&quot;10&quot;,&quot;:label must be at least :n characters&quot;,&quot;10&quot;],[&quot;max&quot;,&quot;280&quot;,&quot;:label must be at most :n characters&quot;,&quot;280&quot;]]}}}">
-  <p class="island-fallback">The form needs JavaScript - it posts with fetch().</p>
-</div>
+// The browser's half of padValidate (lib/form.php): the same rules, the same messages, so
+// a visitor sees what the server would say before the form leaves - and the server still
+// checks every post. PAD writes this file into the page as one inline script, once:
+// behind the first {form ..., client}, or where {validator} stands.
+//
+//   padValidate.check(rules, values)   { field: message } for the fields that broke a rule,
+//                                      rules as padValidateClient() exports them, values
+//                                      a plain object (a list for a field named tags[])
+//   padValidate.field(spec, value, values, label)
+//                                      the message of one field, '' when it holds
+//   padValidate.form(form)             checks a <form data-pad-rules> and shows the
+//                                      messages the way {input} does; true when it holds
+//
+// Every form with data-pad-rules is checked when it is sent, and a field again when it is
+// left or - once it showed a message - while it is typed in. Its values are read as the
+// post would carry them (FormData): the last value of a name, every value of name[].
+//
+// A rule the browser cannot judge as PHP does - a regex PCRE writes another way than
+// JavaScript - passes here and is left to the server.
 
-<script>
 (function () {
+
   'use strict';
+
   if (window.padValidate) return;
+
   var numberPattern = /^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/;
   var intPattern = /^[+-]?(0|[1-9]\d*)$/;
   var emailPattern = /^[A-Za-z0-9.!#$%&'*+\/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$/;
+
   function trim(value) {
     return typeof value === 'string' ? value.trim() : value;
   }
+
   function empty(value) {
     return value === '' || value === null || value === undefined || (Array.isArray(value) && value.length === 0);
   }
+
+  // PHP's (float) of a text: the number its start spells, 0 when it spells none.
   function toNumber(value) {
     var found = String(value).match(/^\s*[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?/);
     return found ? parseFloat(found[0]) : 0;
   }
+
+  // mb_strlen counts characters, not the UTF-16 units of .length.
   function length(value) {
     return Array.from(String(value)).length;
   }
+
   function email(value) {
     if (value.length > 320 || !emailPattern.test(value)) return false;
     var at = value.lastIndexOf('@');
     var local = value.slice(0, at);
     return local.length <= 64 && local.charAt(0) !== '.' && local.slice(-1) !== '.' && local.indexOf('..') < 0;
   }
+
   function url(value) {
     if (!/^https?:\/\//i.test(value) || /\s/.test(value)) return false;
     try { return new URL(value).hostname !== ''; } catch (e) { return false; }
   }
+
   function date(value) {
     var iso = value.match(/^(\d{4})-(\d{1,2})-(\d{1,2})(?:[T ]\d{1,2}:\d{2}(?::\d{2})?)?$/);
     if (iso) {
@@ -43,6 +70,9 @@
     if (dmy) return date(dmy[3] + '-' + (value.charAt(dmy[1].length) === '/' ? dmy[1] + '-' + dmy[2] : dmy[2] + '-' + dmy[1]));
     return !/^\d+$/.test(value) && !isNaN(Date.parse(value));
   }
+
+  // A PCRE pattern as JavaScript knows it: its delimiters taken off, the flags JavaScript
+  // has kept. null when it cannot be read - the server judges that one alone.
   function regex(pattern) {
     var open = pattern.charAt(0);
     var close = { '(': ')', '{': '}', '[': ']', '<': '>' }[open] || open;
@@ -52,6 +82,7 @@
     if (/[^imsuxXUAD]/.test(flags) || /[xXUAD]/.test(flags)) return null;
     try { return new RegExp(pattern.slice(1, end), flags.replace(/[^imsu]/g, '')); } catch (e) { return null; }
   }
+
   function rule(name, arg, value, values, number) {
     if (Array.isArray(value)) {
       if (name === 'required') return value.length > 0;
@@ -76,9 +107,14 @@
     }
     return true;
   }
+
   function message(text, label, shown) {
     return text.replace(/:label|:n/g, function (token) { return token === ':label' ? label : shown; });
   }
+
+  // One field: the message of the first rule it breaks, as padValidate takes them - an empty
+  // value is judged by required and accepted alone, a list where one value belongs is
+  // refused whatever the rules say.
   function field(spec, value, values, label) {
     value = trim(value === undefined || value === null ? '' : value);
     label = label || spec.label;
@@ -90,6 +126,7 @@
     }
     return '';
   }
+
   function check(rules, values) {
     var errors = {};
     Object.keys(rules || {}).forEach(function (name) {
@@ -98,9 +135,13 @@
     });
     return errors;
   }
+
+  // ---------------------------------------------------------------- forms in the page
+
   function rulesOf(form) {
     try { return JSON.parse(form.getAttribute('data-pad-rules') || '{}'); } catch (e) { return {}; }
   }
+
   function valuesOf(form, rules) {
     var data = new FormData(form);
     var values = {};
@@ -110,17 +151,22 @@
     });
     return values;
   }
+
   function controlsOf(form, name) {
     return Array.prototype.filter.call(form.elements, function (one) { return one.name === name; });
   }
+
+  // The text of the field's <label>, made fit for a sentence as padValidateLabel makes it.
   function labelOf(form, control) {
     if (!control || !control.id) return '';
     var label = form.querySelector('label[for="' + (window.CSS && CSS.escape ? CSS.escape(control.id) : control.id) + '"]');
     return label ? label.textContent.trim().replace(/[\s:*]+$/, '') : '';
   }
+
   function idOf(name, control) {
     return (control && control.id) || name.replace(/[^A-Za-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '');
   }
+
   function show(form, name, text) {
     var controls = controlsOf(form, name);
     var last = controls[controls.length - 1];
@@ -151,6 +197,7 @@
     }
     span.textContent = text;
   }
+
   function banner(form, on) {
     var text = form.getAttribute('data-pad-error');
     var shown = form.querySelector(':scope > .error[role="alert"]');
@@ -165,6 +212,7 @@
       shown.remove();
     }
   }
+
   function checkOne(form, name) {
     var rules = rulesOf(form);
     if (!rules[name]) return true;
@@ -174,6 +222,7 @@
     show(form, name, problem);
     return !problem;
   }
+
   function checkForm(form) {
     var rules = rulesOf(form);
     var values = valuesOf(form, rules);
@@ -188,9 +237,13 @@
     if (first && first.focus) first.focus();
     return !first;
   }
+
   function ruled(target) {
     return target && target.form && target.form.hasAttribute('data-pad-rules') && target.name ? target.form : null;
   }
+
+  // Captured on the document, so a form that fails stops here - before a live region, htmx
+  // or any other script that sends forms got the event.
   document.addEventListener('submit', function (event) {
     var form = event.target;
     if (!form.hasAttribute || !form.hasAttribute('data-pad-rules')) return;
@@ -199,11 +252,13 @@
       event.stopImmediatePropagation();
     }
   }, true);
+
   document.addEventListener('focusout', function (event) {
     var form = ruled(event.target);
     if (form && (event.target.value !== '' || document.getElementById(idOf(event.target.name, event.target) + '-error')))
       checkOne(form, event.target.name);
   });
+
   ['input', 'change'].forEach(function (type) {
     document.addEventListener(type, function (event) {
       var form = ruled(event.target);
@@ -211,7 +266,7 @@
         checkOne(form, event.target.name);
     });
   });
+
   window.padValidate = { check: check, field: field, form: checkForm };
+
 })();
-</script>
-<script type="text/babel" src="/pad/react/examples/feedback.js"></script>

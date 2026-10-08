@@ -647,6 +647,41 @@ rules are errors, strict check or not - each would be rules nothing checks. A ru
 braces writes them as `&open;` and `&close;`, and a backslash as `\\`: `rules='regex:/^\\d&open;4&close;$/'`. Custom
 messages stay with `padValidate`'s third argument.
 
+**In the browser too:** `client` on a named form whose fields have rules checks them in the
+browser as well - the same rules, the same messages (`pad/lib/validate.js`, written into the
+page once, behind the first such form). The rules go in a `data-pad-rules` attribute, the
+`error=` text in `data-pad-error`; a field is checked when it is left, again while it is typed
+in once it showed a message, and every field when the form is sent - a form that fails is not
+sent, the first field with a message gets the focus. The messages stand where the server's
+would, in a `<span class="error" id="<id>-error">` with `aria-invalid` and
+`aria-describedby`. The server still checks every post. `client` on a form without a name, or
+without a field with rules, is an error.
+
+```html
+{form 'signup', client, error}
+  {input 'email', type='email', label='E-mail', rules='required|email'}
+{/form}
+```
+
+---
+
+### validator
+The browser's checker of `padValidate`'s rules, for a form a component draws.
+
+```html
+<div x-data="{ rules: {^rules}, form: {}, errors: {} }">
+  <input x-model="form.email" @blur="errors = padValidate.check(rules, form)">
+</div>
+{validator}
+```
+
+**Behavior:** Writes `pad/lib/validate.js` as one inline script - once a page, also when a
+`{form ..., client}` brought it already - carrying the request's nonce when `$padCsp` asks
+for one. The script defines `padValidate.check(rules, values)` (the message of every field
+that broke a rule), `padValidate.field(spec, value, values)` and `padValidate.form(form)`;
+`rules` is what `padValidateClient($rules)` exports in the page's PHP - the list
+`padValidate($rules)` checks the post with.
+
 ---
 
 ### input

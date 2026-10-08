@@ -67,8 +67,8 @@
     <span class="card-icon" aria-hidden="true">✉️</span>
     <span class="card-go" aria-hidden="true">→</span>
     <h3>Forms checked by PAD</h3>
-    <p>React posts the form with the session&#039;s CSRF token in a header; padValidate checks the fields and answers a message per field, or the new list of messages.</p>
-    <div class="chips"><code class="chip is-server">padValidate</code><code class="chip is-server">$padCsrf</code><code class="chip is-server">padSession</code><code class="chip is-client">controlled inputs</code><code class="chip is-client">X-CSRF-Token</code></div>
+    <p>One list of rules for both sides: the browser checks the form with them first, then React posts it with the session&#039;s CSRF token in a header and padValidate answers a message per field, or the new list of messages.</p>
+    <div class="chips"><code class="chip is-server">padValidate</code><code class="chip is-server">padValidateClient</code><code class="chip is-server">$padCsrf</code><code class="chip is-server">padSession</code><code class="chip is-client">controlled inputs</code><code class="chip is-client">X-CSRF-Token</code></div>
   </a>
   
   <a class="card" href="?examples/cart">

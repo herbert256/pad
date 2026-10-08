@@ -602,6 +602,16 @@ page's own template (and its `_inits.pad`/`_exits.pad`) is read, literal rules o
 a snippet, custom tag, `{page}` or layout, from a variable, in an `action=`/GET form or on a
 file field are errors.
 
+`client` on the form checks the same rules in the browser too, with the same messages, before
+the form leaves (`pad/lib/validate.js`, written once a page). For a form a component draws,
+keep the rules in PHP - `padValidate ( $rules )` checks the post, `padValidateClient ( $rules )`
+exports them for `padValidate.check ( rules, values )` in the browser, `{validator}` brings the
+checker:
+```
+{form 'signup', client, error}{input 'email', label='E-mail', rules='required|email'}{/form}
+<div x-data="{ rules: {^rules}, form: {}, errors: {} }">...</div>{validator}
+```
+
 ### Data Definition
 ```
 {data 'colors'}
@@ -1343,6 +1353,8 @@ Output: `Alice, Bob, Charlie`
 | `padNonce()` | This request's CSP nonce (`{nonce}`), named by `'nonce'` in `$padCsp` |
 | `padFlash($message, $type)` | A message for the next request - `padFlash('Saved.'); padRedirect('list');` then `{flash}<p class="{$type}">{$message}</p>{/flash}` |
 | `padValidate($rules, $data, $messages)` | `['email' => 'required\|email']` - one message per failing field, shown by `{input}` |
+| `padValidateClient($rules, $messages)` | The same rules for the browser's checker - each with the message padValidate would give |
+| `padFormRules($form)` | The `rules=` the page's template gives the fields of a named form |
 
 ### Field Access
 

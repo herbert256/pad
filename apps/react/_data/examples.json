@@ -70,8 +70,8 @@
       "group":  "back",
       "icon":   "✉️",
       "title":  "Forms checked by PAD",
-      "lede":   "React posts the form with the session's CSRF token in a header; padValidate checks the fields and answers a message per field, or the new list of messages.",
-      "server": [ "padValidate", "$padCsrf", "padSession" ],
+      "lede":   "One list of rules for both sides: the browser checks the form with them first, then React posts it with the session's CSRF token in a header and padValidate answers a message per field, or the new list of messages.",
+      "server": [ "padValidate", "padValidateClient", "$padCsrf", "padSession" ],
       "client": [ "controlled inputs", "X-CSRF-Token" ]
     },
     {

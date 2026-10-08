@@ -1,0 +1,194 @@
+<p>The rules a form's fields carry are checked on the server, after the post. With
+<code>client</code> on the <b>{form}</b> the browser checks them too, as the visitor types and
+before the form leaves - with the same rules and the same messages, so the two never
+disagree. The server still checks every post: the browser's check only saves a round trip.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/client_validation_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/client_validation_1.pad</font>
+            </th>
+          
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The server checks every post against the same rules - the browser's check only saves<br>  // the visitor a round trip.<br><br>  </span><span style="color: #007700">if ( </span><span style="color: #0000BB">padPosted </span><span style="color: #007700">( </span><span style="color: #DD0000">'signup' </span><span style="color: #007700">) ) {<br><br>    </span><span style="color: #0000BB">padFlash </span><span style="color: #007700">( </span><span style="color: #DD0000">'Welcome aboard.' </span><span style="color: #007700">);<br><br>    </span><span style="color: #0000BB">padRedirect </span><span style="color: #007700">();<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>signup<font color="black">'</font><font color="black">,</font> client<font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">input </font><font color="red"><font color="black">'</font>name<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Name<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>max<font color="black">:</font>40<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">input </font><font color="red"><font color="black">'</font>email<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>email<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>E-mail<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>email<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">input </font><font color="red"><font color="black">'</font>age<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Age<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>integer<font color="black">|</font>min<font color="black">:</font>18<font color="black">'</font></font>}</b><br>  &lt;button&gt;Sign up&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<ul>
+  <li>The form gets its rules in a <code>data-pad-rules</code> attribute, and the first such form
+      of the page brings a small script along. A field is checked when it is left, again
+      while it is typed in once it showed a message, and every field when the form is sent - a
+      form that fails is not sent, and the first field with a message gets the focus.</li>
+  <li>The messages stand where <b>{input}</b> puts the server's - a
+      <code>&lt;span class="error"&gt;</code> after the field, tied to it with
+      <code>aria-invalid</code> and <code>aria-describedby</code> - in the words of the field's
+      label; the form's <code>error=</code> shows above the fields.</li>
+  <li>A form with <code>client</code> needs a name and fields with <code>rules=</code>. A
+      <code>regex:</code> rule JavaScript cannot read as PCRE does is left to the server.</li>
+</ul>
+
+<h2>Forms a component draws</h2>
+
+<p>A React, Vue or Alpine form is no <b>{form}</b> of the template. Keep the rules in the page's
+PHP instead - one list for both sides: <code>padValidate ( $rules )</code> checks the post, and
+<code>padValidateClient ( $rules )</code> exports the same list for the browser, every rule
+with the message padValidate would give:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/client_validation_2.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/client_validation_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// One list of rules for both sides: padValidate checks the post with it, and the<br>  // component that draws the form gets it as padValidateClient exports it.<br><br>  </span><span style="color: #0000BB">$rules </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'required|email'</span><span style="color: #007700">, </span><span style="color: #DD0000">'qty' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'integer|min:1|max:10' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$client </span><span style="color: #007700">= </span><span style="color: #0000BB">json_encode </span><span style="color: #007700">( </span><span style="color: #0000BB">padValidateClient </span><span style="color: #007700">( </span><span style="color: #0000BB">$rules </span><span style="color: #007700">), </span><span style="color: #0000BB">JSON_PRETTY_PRINT </span><span style="color: #007700">| </span><span style="color: #0000BB">JSON_UNESCAPED_SLASHES </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>client</font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <pre>{
+    &quot;email&quot;: {
+        &quot;label&quot;: &quot;Email&quot;,
+        &quot;number&quot;: false,
+        &quot;list&quot;: false,
+        &quot;single&quot;: &quot;:label must be a single value&quot;,
+        &quot;rules&quot;: [
+            [
+                &quot;required&quot;,
+                &quot;&quot;,
+                &quot;:label is required&quot;,
+                &quot;&quot;
+            ],
+            [
+                &quot;email&quot;,
+                &quot;&quot;,
+                &quot;:label must be a valid e-mail address&quot;,
+                &quot;&quot;
+            ]
+        ]
+    },
+    &quot;qty&quot;: {
+        &quot;label&quot;: &quot;Qty&quot;,
+        &quot;number&quot;: true,
+        &quot;list&quot;: false,
+        &quot;single&quot;: &quot;:label must be a single value&quot;,
+        &quot;rules&quot;: [
+            [
+                &quot;integer&quot;,
+                &quot;&quot;,
+                &quot;:label must be a whole number&quot;,
+                &quot;&quot;
+            ],
+            [
+                &quot;min&quot;,
+                &quot;1&quot;,
+                &quot;:label must be at least :n&quot;,
+                &quot;1&quot;
+            ],
+            [
+                &quot;max&quot;,
+                &quot;10&quot;,
+                &quot;:label must be at most :n&quot;,
+                &quot;10&quot;
+            ]
+        ]
+    }
+}</pre>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<p><b>{validator}</b> in the template brings the checker without a form, and the component asks
+it:</p>
+
+
+<pre><code>&lt;div x-data="{ rules: {^rules}, form: {}, errors: {} }"&gt;
+  &lt;input x-model="form.email" @blur="errors = padValidate.check(rules, form)"&gt;
+  &lt;span class="error" x-text="errors.email"&gt;&lt;/span&gt;
+&lt;/div&gt;
+{validator}</code></pre>
+
+
+<p><code>padValidate.check ( rules, values )</code> answers the message of every field that broke
+a rule; <code>padValidate.field ( rules.email, value, values )</code> one field's, empty when it
+holds. A field named <code>tags[]</code> takes a list.</p>

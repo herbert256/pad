@@ -1,0 +1,48 @@
+<pre>{
+    &quot;email&quot;: {
+        &quot;label&quot;: &quot;Email&quot;,
+        &quot;number&quot;: false,
+        &quot;list&quot;: false,
+        &quot;single&quot;: &quot;:label must be a single value&quot;,
+        &quot;rules&quot;: [
+            [
+                &quot;required&quot;,
+                &quot;&quot;,
+                &quot;:label is required&quot;,
+                &quot;&quot;
+            ],
+            [
+                &quot;email&quot;,
+                &quot;&quot;,
+                &quot;:label must be a valid e-mail address&quot;,
+                &quot;&quot;
+            ]
+        ]
+    },
+    &quot;qty&quot;: {
+        &quot;label&quot;: &quot;Qty&quot;,
+        &quot;number&quot;: true,
+        &quot;list&quot;: false,
+        &quot;single&quot;: &quot;:label must be a single value&quot;,
+        &quot;rules&quot;: [
+            [
+                &quot;integer&quot;,
+                &quot;&quot;,
+                &quot;:label must be a whole number&quot;,
+                &quot;&quot;
+            ],
+            [
+                &quot;min&quot;,
+                &quot;1&quot;,
+                &quot;:label must be at least :n&quot;,
+                &quot;1&quot;
+            ],
+            [
+                &quot;max&quot;,
+                &quot;10&quot;,
+                &quot;:label must be at most :n&quot;,
+                &quot;10&quot;
+            ]
+        ]
+    }
+}</pre>

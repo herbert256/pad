@@ -75,7 +75,7 @@
     "push" "qr" "reactData" "record" "recurse" "redirect" "remove" "restart"
     "resume" "sandbox" "sequence" "set" "sitemap" "slot" "spaceless" "sparkline"
     "stack" "switch" "textarea" "tidy" "trace" "trans" "tree" "true"
-    "until" "when" "while"))
+    "until" "validator" "when" "while"))
 
 (tag_name
   name: (identifier) @tag
@@ -92,7 +92,7 @@
     "push" "qr" "reactData" "record" "recurse" "redirect" "remove" "restart"
     "resume" "sandbox" "sequence" "set" "sitemap" "slot" "spaceless" "sparkline"
     "stack" "switch" "textarea" "tidy" "trace" "trans" "tree" "true"
-    "until" "when" "while"))
+    "until" "validator" "when" "while"))
 
 ((function_name) @function.builtin
   (#any-of? @function.builtin

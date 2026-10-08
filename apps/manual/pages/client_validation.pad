@@ -1,0 +1,45 @@
+{meta title='Validation in the browser'}
+
+<p>The rules a form's fields carry are checked on the server, after the post. With
+<code>client</code> on the {tag 'form'} the browser checks them too, as the visitor types and
+before the form leaves - with the same rules and the same messages, so the two never
+disagree. The server still checks every post: the browser's check only saves a round trip.</p>
+
+{example 'fragments/client_validation_1', skipResult}
+
+<ul>
+  <li>The form gets its rules in a <code>data-pad-rules</code> attribute, and the first such form
+      of the page brings a small script along. A field is checked when it is left, again
+      while it is typed in once it showed a message, and every field when the form is sent - a
+      form that fails is not sent, and the first field with a message gets the focus.</li>
+  <li>The messages stand where {tag 'input'} puts the server's - a
+      <code>&lt;span class="error"&gt;</code> after the field, tied to it with
+      <code>aria-invalid</code> and <code>aria-describedby</code> - in the words of the field's
+      label; the form's <code>error=</code> shows above the fields.</li>
+  <li>A form with <code>client</code> needs a name and fields with <code>rules=</code>. A
+      <code>regex:</code> rule JavaScript cannot read as PCRE does is left to the server.</li>
+</ul>
+
+<h2>Forms a component draws</h2>
+
+<p>A React, Vue or Alpine form is no {tag 'form'} of the template. Keep the rules in the page's
+PHP instead - one list for both sides: <code>padValidate ( $rules )</code> checks the post, and
+<code>padValidateClient ( $rules )</code> exports the same list for the browser, every rule
+with the message padValidate would give:</p>
+
+{example 'fragments/client_validation_2'}
+
+<p>{tag 'validator'} in the template brings the checker without a form, and the component asks
+it:</p>
+
+{ignore}
+<pre><code>&lt;div x-data="{ rules: {^rules}, form: {}, errors: {} }"&gt;
+  &lt;input x-model="form.email" @blur="errors = padValidate.check(rules, form)"&gt;
+  &lt;span class="error" x-text="errors.email"&gt;&lt;/span&gt;
+&lt;/div&gt;
+{validator}</code></pre>
+{/ignore}
+
+<p><code>padValidate.check ( rules, values )</code> answers the message of every field that broke
+a rule; <code>padValidate.field ( rules.email, value, values )</code> one field's, empty when it
+holds. A field named <code>tags[]</code> takes a list.</p>

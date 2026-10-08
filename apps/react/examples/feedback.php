@@ -5,6 +5,15 @@
   // configuration it carries the session's token in an X-CSRF-Token header, or PAD answers 403
   // before this file runs. padValidate answers a message per field that broke its rules;
   // with none the message goes on the wall. The answer to the post is the JSON of $padExpose.
+  //
+  // One list of rules for both sides: padValidate checks the post with it, and the component
+  // gets it as padValidateClient exports it, for the browser's checker that {validator} in
+  // the template brings - the same rules, the same messages, before the post leaves.
+
+  $rules = [ 'name'    => 'required|max:40',
+             'email'   => 'required|email',
+             'mood'    => 'required|in:happy,curious,puzzled',
+             'message' => 'required|min:10|max:280' ];
 
   $wall   = padSession ( 'reactWall', [] );
   $errors = [];
@@ -12,10 +21,7 @@
 
   if ( padRequestIs ( 'POST' ) ) {
 
-    $errors = padValidate ( [ 'name'    => 'required|max:40',
-                              'email'   => 'required|email',
-                              'mood'    => 'required|in:happy,curious,puzzled',
-                              'message' => 'required|min:10|max:280' ] );
+    $errors = padValidate ( $rules );
 
     if ( ! $errors ) {
 
@@ -31,7 +37,7 @@
 
   }
 
-  $start     = [ 'wall' => $wall ];
+  $start     = [ 'wall' => $wall, 'rules' => padValidateClient ( $rules ) ];
   $padExpose = [ 'saved', 'errors', 'wall' ];
 
 ?>

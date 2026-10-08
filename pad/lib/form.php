@@ -13,6 +13,11 @@
   // padFormValue   what a field shows: the posted value when its form came back, else
   //                the default the template gave
   // padFormError   the message padValidate left for a field, when its form came back
+  // padValidateClient  rules as the browser's checker reads them - each with the message
+  //                padValidate would give - for {form ..., client} and for a component that
+  //                checks with the same rules the page's PHP checks with (lib/validate.js)
+  // padFormRules   the rules the page's template gives the fields of its named forms, or
+  //                of one of them
   //
   // The tags - {form}, {input}, {textarea} - are pad/tags/form.php, input.php and
   // textarea.php, built on padFormOpen, padFormInput and padFormTextarea below.
@@ -596,10 +601,11 @@
 
     global $padFormStack, $padFormErrors, $padUploadErrors;
 
-    [ $name, $take, $attrs ] = padFormItems ( 'form', [ 'method', 'error' ] );
+    [ $name, $take, $attrs ] = padFormItems ( 'form', [ 'method', 'error', 'client' ] );
 
     $method = strtolower ( (string) ( $take ['method'] ?? 'post' ) );
-    $open   = '<form method="' . padFormEscape ( $method ) . '"' . ( $attrs ? ' ' . implode ( ' ', $attrs ) : '' ) . '>';
+    $client = padFormClientAttrs ( $name, $take );
+    $open   = '<form method="' . padFormEscape ( $method ) . '"' . ( $attrs ? ' ' . implode ( ' ', $attrs ) : '' ) . $client . '>';
 
     // The token only goes along to this site, as padCsrfForms decides (lib/csrf.php): a
     // {form} with an action= on another site handed the session's token to that site, which
@@ -612,7 +618,7 @@
         $open .= '<input type="hidden" name="' . padFormName . '" value="' . padFormEscape ( $name ) . '">';
     }
 
-    $padFormStack [] = [ 'name' => $name, 'method' => $method, 'open' => $open ];
+    $padFormStack [] = [ 'name' => $name, 'method' => $method, 'open' => $open, 'client' => $client !== '' ];
 
     $error = $take ['error'] ?? NULL;
     $error = ( $error === TRUE ) ? padFormErrorText : $error;
@@ -649,7 +655,107 @@
     if ( isset ( $GLOBALS ['padCsrfIssued'] ) and str_contains ( $open, padCsrfField () ) )
       $GLOBALS ['padFormTokened'] [] = $open;
 
-    return padProtect ( $open ) . $content . padProtect ( '</form>' );
+    return padProtect ( $open ) . $content . padProtect ( '</form>' )
+         . ( ( $form ['client'] ?? FALSE ) ? padValidateScript () : '' );
+
+  }
+
+  // client on a {form}: the rules its template gives its fields, as the browser's checker
+  // reads them, in data-pad-rules - and the error= text in data-pad-error, for the checker
+  // to show above the fields when a send fails. Only a named form with rules has any.
+
+  function padFormClientAttrs ( $name, $take ) {
+
+    if ( ! padAttrsTrue ( $take ['client'] ?? FALSE ) )
+      return '';
+
+    $rules = padFormRules ( $name );
+
+    if ( $name === '' or ! $rules ) {
+      padError ( "client on {form" . ( $name !== '' ? " '$name'" : '' ) . "} checks the rules= of its fields in the browser, and " . ( $name === '' ? 'the form has no name' : 'none of its fields has rules=' ) );
+      return '';
+    }
+
+    $error = $take ['error'] ?? NULL;
+    $error = ( $error === TRUE ) ? padFormErrorText : $error;
+
+    return ' data-pad-rules="' . padFormEscape ( json_encode ( padValidateClient ( $rules ), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) ) . '"'
+         . ( ( is_scalar ( $error ) && $error !== FALSE && (string) $error !== '' ) ? ' data-pad-error="' . padFormEscape ( $error ) . '"' : '' );
+
+  }
+
+  // The rules as lib/validate.js reads them: per field its label (the name made readable,
+  // the <label> of the field wins in a form), whether it is a number - min and max then
+  // compare values, not lengths - and a list (name[]), the message of a list where one
+  // value belongs, and per rule [ name, argument, message, the argument as the message
+  // shows it ]. A rule that does not exist is the error padValidate makes of it.
+
+  function padValidateClient ( $rules, $messages = [] ) {
+
+    if ( ! is_array ( $rules ) ) {
+      padError ( 'padValidateClient: the rules are an array - [ \'email\' => \'required|email\' ]' );
+      return [];
+    }
+
+    $client = [];
+
+    foreach ( $rules as $field => $list ) {
+
+      $list   = is_array ( $list ) ? $list : explode ( '|', (string) $list );
+      $list   = array_values ( array_filter ( array_map ( 'trim', $list ), 'strlen' ) );
+      $number = (bool) array_intersect ( array_map ( 'strtolower', $list ), [ 'numeric', 'integer' ] );
+      $one    = [];
+
+      foreach ( $list as $rule ) {
+
+        $parts = explode ( ':', $rule, 2 );
+        $name  = strtolower ( $parts [0] );
+        $arg   = $parts [1] ?? '';
+
+        if ( ! in_array ( $name, padValidateRules, TRUE ) ) {
+          padValidateUnknown ( $rule );
+          continue;
+        }
+
+        [ $text, $shown ] = padValidateMessage ( $field, $name, $arg, $number, $messages );
+
+        $one [] = [ $name, $arg, $text, (string) $shown ];
+
+      }
+
+      $client [$field] = [ 'label'  => padValidateName ( $field ),
+                           'number' => $number,
+                           'list'   => str_ends_with ( (string) $field, '[]' ),
+                           'single' => padValidateMessage ( $field, 'single', '', $number, $messages ) [0],
+                           'rules'  => $one ];
+
+    }
+
+    return $client;
+
+  }
+
+  // The checker itself, lib/validate.js, as one inline script - once a page, behind the
+  // first {form ..., client} or where {validator} stands. It is the engine's own script,
+  // so it carries this request's nonce when the Content-Security-Policy asks for one.
+
+  function padValidateScript () {
+
+    global $padCsp;
+
+    static $written = FALSE;
+
+    if ( $written )
+      return '';
+
+    $written = TRUE;
+    $nonce   = str_contains ( (string) $padCsp, "'nonce'" ) ? ' nonce="' . padNonce () . '"' : '';
+
+    // The file's comment lines and blank lines stay in the file: the page gets the code.
+
+    $code = preg_replace ( '~^[ \t]*(//[^\n]*)?\n~m', '', file_get_contents ( PAD . 'lib/validate.js' ) );
+
+    return padProtect ( "<script$nonce>\n" . $code . '</script>' );
 
   }
 
@@ -828,13 +934,17 @@
 
   }
 
-  // The rules of the request's page, read once from the text build/page.php kept.
+  // The rules of the request's page, read once from the text build/page.php kept: every
+  // named form's, or given a name that form's alone - [ field => rules ], [] for a form the
+  // template does not have.
 
-  function padFormRules () {
+  function padFormRules ( $form = NULL ) {
 
     global $padFormRules, $padFormText;
 
-    return $padFormRules ??= padFormRulesOf ( $padFormText ?? '' );
+    $padFormRules ??= padFormRulesOf ( $padFormText ?? '' );
+
+    return ( $form === NULL ) ? $padFormRules : ( $padFormRules [ (string) $form ] ?? [] );
 
   }
 
