@@ -1646,6 +1646,37 @@ under the strict check.
 
 ---
 
+### progress
+An accessible progress bar - the native `<progress>` element, styled on the server, under a
+line with its label and percentage (`lib/progress.php`); with `steps` a row of step dots. No
+script, it prints.
+
+```html
+{progress 72, max=100, label='Upload'}
+{progress $done, label=$file, color='success', size='small'}
+{progress 3, max=5, steps, label='Checkout'}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The value, clamped to 0 ... `max` |
+| `max` | What the value counts to, default 100 (for `steps` a whole number up to 50, the number of steps) |
+| `label` | Shown above the bar and the accessible name, default `Progress` (not shown) |
+| `color` | A colour slot: `accent` (default), `success`, `warning`, `danger`, `neutral` |
+| `size` | `small`, `medium` (default) or `large` - the height of the bar or the dots |
+| `steps` | A dot per step joined by a line: the steps up to the value filled, the current one ringed |
+
+**Behavior:** the bar is `<progress value max aria-label>` with the rounded percentage as its
+fallback text; the steps are `role="progressbar"` with `aria-valuenow`, `-min`, `-max` and
+`aria-valuetext="Step 3 of 5"`. The visible label line is `aria-hidden`, so it is not read
+twice. Colours are `--pad-progress-track`, `-text` and one per slot on `.pad-progress`, with
+`light-dark()` defaults, written once per page. A value that is no number, an unusable max,
+an unknown colour or size is an error under the strict check.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2152,6 +2183,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `avatar` | Output | Initials avatar as inline SVG, coloured by a hash of the name |
 | `identicon` | Output | Symmetric 5x5 identicon as inline SVG from a SHA-256 hash |
 | `placeholder` | Output | Grey image placeholder as inline SVG, a size or a ratio, fluid |
+| `progress` | Output | Accessible progress bar (native `<progress>`) or step dots |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
