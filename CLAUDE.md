@@ -938,6 +938,7 @@ Code: `pad/lib/chart.php` (bar, line, sparkline) and `pad/lib/chart/` (the other
 {timeline data='releases', date='when', label='what'}   # cards on a time axis; from=/to= spans, vertical for long lists
 {datatable data='orders', columns='number, customer, total', totals='total', sortable, rows=10}   # a whole table: totals row, server-side sort and page links
 {toc levels='2,3', title='Contents'}         # the page's own h2/h3, nested and linked - filled in after the page rendered
+{countdown '2026-12-31 00:00', units=3, live}   # 84 days, 3 hours, 12 minutes in a <time>; live ticks; past='...'
 ```
 Every one is rendered on the server; the `showcase` application has examples of each.
 

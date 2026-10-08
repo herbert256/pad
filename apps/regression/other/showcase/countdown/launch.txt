@@ -1,0 +1,25 @@
+/^\<section style\="text\-align\:center;padding\:28px 36px;border\-radius\:16px;background\:linear\-gradient\(135deg,\#2a78d6,\#7c5cff\);color\:\#fff;max\-width\:30em"\>
+  \<p style\="margin\:0;font\-size\:13px;letter\-spacing\:\.12em;text\-transform\:uppercase;opacity\:\.85"\>Version 3\.0 launches in\<\/p\>
+  \<p style\="margin\:10px 0 12px;font\-size\:30px;font\-weight\:700;font\-variant\-numeric\:tabular\-nums"\>\<time class\="pad\-countdown" datetime\="[0-9T:+\-]{25}" title\="[^"]+" role\="timer" data\-pad\-countdown\="\d+" data\-pad\-units\="3" data\-pad\-past\="We are live\!"\>\d+ days?, \d+ hours?, \d+ minutes?\<\/time\>\<script\>\(function \(\) \{
+  if \(window\.padCountdownReady\) return;
+  window\.padCountdownReady \= true;
+  var units \= \[\['day', 86400\], \['hour', 3600\], \['minute', 60\], \['second', 1\]\];
+  function words\(seconds, count, past\) \{
+    if \(seconds \<\= 0\) return past;
+    var parts \= units\.map\(function \(unit\) \{ var n \= Math\.floor\(seconds \/ unit\[1\]\); seconds \-\= n \* unit\[1\]; return \[n, unit\[0\]\]; \}\);
+    while \(parts\.length \> 1 && parts\[0\]\[0\] \=\=\= 0\) parts\.shift\(\);
+    return parts\.slice\(0, count\)\.filter\(function \(part\) \{ return part\[0\]; \}\)
+      \.map\(function \(part\) \{ return part\[0\] \+ ' ' \+ part\[1\] \+ \(part\[0\] \=\=\= 1 \? '' \: 's'\); \}\)\.join\(', '\);
+  \}
+  function tick\(\) \{
+    document\.querySelectorAll\('time\[data\-pad\-countdown\]'\)\.forEach\(function \(time\) \{
+      var left \= Math\.floor\(\(\+time\.getAttribute\('data\-pad\-countdown'\) \- Date\.now\(\)\) \/ 1000\);
+      var text \= words\(left, \+time\.getAttribute\('data\-pad\-units'\) \|\| 2, time\.getAttribute\('data\-pad\-past'\)\);
+      if \(time\.textContent \!\=\= text\) time\.textContent \= text;
+    \}\);
+  \}
+  tick\(\);
+  setInterval\(tick, 1000\);
+\}\)\(\);\<\/script\>\<\/p\>
+  \<p style\="margin\:0;font\-size\:14px;opacity\:\.85"\>[^<]+\<\/p\>
+\<\/section\>$/

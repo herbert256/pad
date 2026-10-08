@@ -2444,6 +2444,34 @@ No heading of those levels writes nothing. Colours are `--pad-toc-*` custom prop
 
 ---
 
+### countdown
+The time left until a moment, in words, inside a `<time datetime>` (`lib/countdown.php`) -
+optionally ticking every second in the browser.
+
+```html
+{countdown '2026-12-31 00:00'}                         <!-- 84 days, 3 hours -->
+{countdown $launch, units=3, live, past='We are live!'}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The moment - a date in text, a Unix timestamp or a date object |
+| `units` | How many units are shown, 1 to 4 (days, hours, minutes, seconds), default 2 |
+| `past` | The text once the moment has gone, default `ended` |
+| `live` | A small script, once per page, counts down every second from the browser's clock |
+| `now` | Count from this moment instead of now |
+| `format` | The PHP date format of the full moment in the `title`, default `l j F Y, H:i` |
+
+**Behavior:** the words start at the largest unit that is not zero and take `units` of them,
+a zero one among them left out: `84 days, 3 hours`, `5 minutes, 12 seconds`, `1 day`. Now is
+`padNow`'s, so `padNowFreeze` (or `now=`) holds a test still. `live` adds `role="timer"` and the
+moment in milliseconds; the script counts the same way and carries this request's nonce when
+`$padCsp` asks for one. A moment that is no date and `units` outside 1-4 are strict errors.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2974,6 +3002,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `timeline` | Output | Events on a time axis as inline SVG - cards above and below, spans as bars, or a vertical list |
 | `datatable` | Output | Rows as an accessible HTML table - aligned numbers, totals, sorting and paging links |
 | `toc` | Output | A table of contents from the page's own rendered headings, ids added |
+| `countdown` | Output | The time left until a moment in words, in a time element, optionally ticking |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
