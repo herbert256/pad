@@ -1,0 +1,9 @@
+{meta title='An invoice as PDF', about='The rendered content becomes the response: an A4 document named invoice-2026-114.pdf.'}
+{pdf file='invoice-{$number}', title='Invoice {$number}'}
+  <h1>Invoice {$number}</h1>
+  <p>To: <b>{$customer}</b></p>
+  <table>
+    <tr><th>Item</th><th align="right">Amount</th></tr>
+    {lines}<tr><td>{$item}</td><td align="right">{$amount}</td></tr>{/lines}
+  </table>
+{/pdf}

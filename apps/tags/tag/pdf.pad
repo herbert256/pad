@@ -1,0 +1,33 @@
+{ignore}
+<p><code>{pdf}</code> turns HTML into a PDF on the server with a writer in plain PHP
+(<code>lib/pdf.php</code>): PDF 1.4, the standard fonts every reader has, no library and no
+headless browser. A pair renders its content as ever - fields, loops, tags - and the
+response becomes the PDF of it (<code>application/pdf</code>, with the file name) instead of
+the page; the page cache and tidy are left out. Written as a single tag,
+<code>{pdf download}</code>, the whole page is the document. Several <code>{pdf}</code> pairs
+on one page make one document, the first one's options counting.</p>
+
+<h3>What is read</h3>
+<p><code>h1</code>-<code>h6</code>, <code>p</code>, <code>b</code>/<code>strong</code>,
+<code>i</code>/<code>em</code>, <code>u</code>, <code>code</code>, <code>a</code> (a link of the
+document for an http, https or mailto address), <code>br</code>, <code>ul</code>/<code>ol</code>/<code>li</code>
+(nested), <code>blockquote</code>, <code>pre</code>, <code>hr</code>, tables with
+<code>colspan</code> and <code>align</code> - the header row repeated on every page - and
+<code>img</code>: a JPEG of <code>www/&lt;application&gt;/</code> or a <code>data:</code>
+address. Another picture is its alt text, any other element its text, and script, style, svg
+and form fields are left out. The text is WinAnsi (a <code>?</code> for what it lacks) and is
+measured with the real font widths, so lines wrap where a reader draws them; past one page
+there is "2 / 5" at the foot. The document carries no date, so the same page is the same
+bytes.</p>
+
+<h3>Preview and nesting</h3>
+<p>With <code>preview</code> the page stays a page: the content is shown on a sheet with links
+"Open name.pdf" and "Download", and the same address with <code>&amp;padPdf</code> answers
+the document. Only the page the request asked for answers a PDF: a <code>{pdf}</code> inside
+a page included by <a href="?tag/page">{page}</a> shows its content on its sheet, and the
+response stays the including page's.</p>
+
+<p>An unknown <code>size</code> or <code>font</code> is an error under the strict check. From
+PHP, <code>padPdf ( $html, [ 'size' =&gt; 'Letter' ] )</code> answers the bytes - for a
+mail attachment, say.</p>
+{/ignore}

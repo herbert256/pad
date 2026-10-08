@@ -1,0 +1,21 @@
+{ignore}
+<p><code>{toc}</code> writes a table of contents of the page it stands in, from the page's own
+rendered headings - <code>&lt;h2&gt;</code> and <code>&lt;h3&gt;</code> by default - as a
+<code>&lt;nav&gt;</code> with nested, linked lists. Like <code>{stack}</code>, the tag writes a
+marker that is filled in once the whole page has rendered, so the headings below it are listed
+too, including the ones a loop, a snippet or a <code>{markdown}</code> produced.</p>
+
+<p>A heading without an id gets one to link to: the slug of its text, with <code>-2</code>,
+<code>-3</code> behind a repeat, never an id the page already has. A heading with an id keeps
+it. A level one deeper nests one list deeper, never more than one step in, so a page that skips
+from <code>&lt;h2&gt;</code> to <code>&lt;h4&gt;</code> still gives a sound list. The title is a
+paragraph rather than a heading, so the contents never list themselves. Without a heading of
+the chosen levels, the tag writes nothing.</p>
+
+<p>The marker is filled in when the request's page ends and also when a <code>{page}</code> pass
+ends for a page it renders, so a <code>{toc}</code> in such a page lists the headings of that
+page alone - which is how the examples here list their own headings and not those of this page.
+Colours are <code>--pad-toc-*</code> custom properties with <code>light-dark()</code> defaults.
+Levels outside 1 to 6 and a list other than <code>ol</code> or <code>ul</code> are strict
+errors.</p>
+{/ignore}
