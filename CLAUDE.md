@@ -917,6 +917,7 @@ Code: `pad/lib/chart.php` (bar, line, sparkline) and `pad/lib/chart/` (the other
 {progress 72, max=100, label='Upload'}       # styled <progress> with label and %; steps for dots, color=, size=
 {rating 4.5, max=5}                           # stars as SVG, half stars clipped, aria '4.5 out of 5'; icon='heart'
 {icon 'arrow-right', size=20, label='Next'}   # built-in line icon in currentColor; decorative unless label=
+{gravatar $email, size=64, default='identicon'} # gravatar.com img (sha256, lazy, no referrer); fallback='avatar' stays local
 ```
 Every one is rendered on the server; the `showcase` application has examples of each.
 

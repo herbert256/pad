@@ -1,0 +1,9 @@
+{meta title='Comments with Gravatars', about='The picture each address registered at gravatar.com - only its SHA-256 hash leaves the page, lazily, without a referrer.'}
+<div style="display:grid; gap:16px">
+  {comments}
+  <div style="display:flex; gap:12px; align-items:flex-start">
+    {gravatar $email, size=40, default='identicon', alt=$name}
+    <div><strong>{$name}</strong><br>{$text}</div>
+  </div>
+  {/comments}
+</div>

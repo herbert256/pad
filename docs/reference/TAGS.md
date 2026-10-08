@@ -1734,6 +1734,34 @@ error under the strict check, naming the icons close to it (`did you mean arrow-
 
 ---
 
+### gravatar
+The Gravatar picture of an e-mail address as an `<img>` (`lib/gravatar.php`) - only the
+SHA-256 hash of the address leaves the page - or, with `fallback`, a local SVG drawn on the
+server and no request to a third party at all.
+
+```html
+{gravatar $email, size=64, default='identicon', alt=$name}
+{gravatar $email, fallback='avatar', alt=$name}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The e-mail address - trimmed and lower-cased before it is hashed |
+| `size` | Width and height in pixels, default 64; `srcset` asks twice that for a sharp screen |
+| `default` | What Gravatar shows for an unknown address: `mp` (default), `identicon`, `monsterid`, `wavatar`, `retro`, `robohash`, `blank`, `404`, or an `https://` image address |
+| `alt` | The image text - the person's name - default `Avatar` |
+| `fallback` | `avatar` draws the `{avatar}` initials of `alt` (or of the address) instead, `identicon` the `{identicon}` of the address - no `<img>`, no outside request |
+
+**Behavior:** the image is `https://www.gravatar.com/avatar/<sha256>?s=<size>&d=<default>` with
+`width`/`height`, `loading="lazy"`, `decoding="async"` and `referrerpolicy="no-referrer"`, class
+`pad-gravatar`. Showing it tells Gravatar the visitor's IP address; for a page under a
+privacy policy that allows no outside requests, or a test without network, use `fallback`.
+A missing address, an unknown default or fallback is an error under the strict check.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2243,6 +2271,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `progress` | Output | Accessible progress bar (native `<progress>`) or step dots |
 | `rating` | Output | Stars or hearts for a score as inline SVG, parts clipped, said in words |
 | `icon` | Output | One of 79 built-in line icons as inline SVG in `currentColor` |
+| `gravatar` | Output | Gravatar `<img>` from the SHA-256 of an address, or a local avatar fallback |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
