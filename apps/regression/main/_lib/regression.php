@@ -569,6 +569,13 @@
     $got  = getSuiteHostless ( $got  );
     $body = getSuiteHostless ( $body );
 
+    // A pattern answer walks the whole page with its lazy [\s\S]*? gaps, and a page of a
+    // megabyte - the charts index - used up PHP's default of a million backtracks:
+    // preg_match answered FALSE, which read as no match, and a page that held every part
+    // of its pattern failed.
+
+    ini_set ( 'pcre.backtrack_limit', '10000000' );
+
     if ( str_starts_with ( $expect, 'HTTP ' ) ) {
 
       $expectLines   = padExplode ( $expect, "\n" );
