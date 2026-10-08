@@ -340,7 +340,7 @@
 
     // The same action rule the shared walker applies: a page with no template that
     // redirects, restarts or writes is a fixture for a scenario, not a test - the request
-    // group's hop fixture is exactly that.
+    // group's hop fixture is exactly that, and so is authhop, which padAuthRequire sends on.
 
     foreach ( array_keys ( $names ) as $name )
       if ( ! file_exists ( "$dir$name.pad" ) and ! file_exists ( "$dir$name.html" )
@@ -351,6 +351,7 @@
         if ( str_contains ( $source, 'padRedirect'      )
           or str_contains ( $source, 'padBack'          )
           or str_contains ( $source, 'padRestart'       )
+          or str_contains ( $source, 'padAuthRequire'   )
           or str_contains ( $source, 'padFilePut'       )
           or str_contains ( $source, 'padDeleteDataDir' ) )
           unset ( $names [$name] );

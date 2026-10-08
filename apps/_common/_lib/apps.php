@@ -43,6 +43,7 @@
         if ( str_contains ( $source, 'padRedirect'      )
           or str_contains ( $source, 'padBack'          )
           or str_contains ( $source, 'padRestart'       )
+          or str_contains ( $source, 'padAuthRequire'   )
           or str_contains ( $source, 'padFilePut'       )
           or str_contains ( $source, 'padDeleteDataDir' ) )
           continue;
