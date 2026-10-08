@@ -23,13 +23,13 @@
     </header>
     <div class="cards">
       {examples}
-      <a class="card" href="?{$page}">
-        <span class="card-chart">{page $page}</span>
-        <span class="card-body">
-          <span class="card-title">{$title}</span>
+      <article class="card">
+        <div class="card-chart" inert>{page $page}</div>
+        <div class="card-body">
+          <a class="card-title" href="?{$page}">{$title}</a>
           <span class="card-text">{$text}</span>
-        </span>
-      </a>
+        </div>
+      </article>
       {/examples}
     </div>
   </section>
