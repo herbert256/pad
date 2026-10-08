@@ -14,6 +14,7 @@ pad - the PAD command
   pad test <app> [name] [--record]      the application's own tests, in apps/<app>/_tests/
   pad test --all [--brief]              the tests of every application that has them
   pad sample <app> [page]               the page rendered once, its variables kept in _samples/
+  pad types <app> [page ...] [--out=f]  TypeScript types of the pages' variables and JSON answers
   pad help                              this list
 
 Without a command word, pad runs the cli application: pad [page].

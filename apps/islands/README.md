@@ -11,6 +11,7 @@ One runtime mounts components of any framework - React, Vue, Svelte, Preact, Sol
 | `examples/frameworks` | One counter in five frameworks on one page, each with its start value from PAD and its weight read from the manifest |
 | `examples/loading` | `data-load` - at once, when the browser is idle, when the island scrolls into view - with a log of what came when |
 | `examples/shared` | A React shelf, a Vue summary and a Svelte badge sharing one store, the cart kept by PAD in the session |
+| `examples/typed` | A TypeScript island whose props are typed by `pad types` from the page's own data - `npm run types`, `npm run check` |
 | `examples/build` | What `{vite 'src/main.js'}` wrote for the request, the manifest it read, and the dev server that takes over |
 
 ## The runtime
@@ -41,6 +42,8 @@ cd apps/islands/_frontend
 npm install
 npm run build      # www/islands/build/ with .vite/manifest.json - tracked in git
 npm run dev        # the dev server; its address goes into www/islands/build/hot
+npm run types      # pad types: src/types/pad.d.ts from the samples and JSON answers of the pages
+npm run check      # tsc --noEmit: the TypeScript islands against those types
 ```
 
 Each framework compiles its own files (`vite.config.js`): React `*.react.jsx`, Solid

@@ -1228,6 +1228,7 @@ pad lint shop [dir]           # every page rendered under the strict check, erro
 pad export demo out/          # a static copy: page.html files with rewritten links, www/demo/ assets
 pad test shop [name]          # the app's own tests in apps/shop/_tests/ (--record, --all)
 pad sample shop orders        # the page run once, its variables kept in apps/shop/_samples/orders.json
+pad types shop orders         # TypeScript: OrdersVars from the sample, OrdersAnswer from padFormat=json
 pad help
 ```
 
@@ -1705,7 +1706,7 @@ strict syntax check - `pad_check` with only an app checks every page), `pad_trac
 | `examples` | Standard | Search the harvested examples of DATA/examples and view one with its sources beside the rendered result |
 | `hello` | Minimal | Hello World example demonstrating page pairing |
 | `htmx` | Standard | PAD + htmx: active search, lazy loading, infinite scroll, inline editing, forms, out-of-band updates and server-sent events - htmx asks for a part, PAD answers its `{fragment}` (by `HX-Target`), each example with a request log and its sources |
-| `islands` | Standard | Islands of any framework: one runtime mounts React, Vue, Svelte, Preact and Solid components on PAD's islands, each framework fetched when needed, a store they share, built by Vite (`_frontend/`) and linked by `{vite}` |
+| `islands` | Standard | Islands of any framework: one runtime mounts React, Vue, Svelte, Preact and Solid components on PAD's islands, each framework fetched when needed, a store they share, a TypeScript island typed by `pad types`, built by Vite (`_frontend/`) and linked by `{vite}` |
 | `manual` | Standard | Interactive documentation and examples |
 | `nono` | Plain PHP | PHP application without PAD templating |
 | `pad` | Standard | PAD framework introduction and reference |

@@ -1,0 +1,41 @@
+{meta title='TypeScript types'}
+
+<p>A component that reads PAD's data - the props of an island, the JSON of a page - knows its
+shape only from what the PHP happens to make. <code>pad types</code> writes that shape down as
+TypeScript, made from the data itself:</p>
+
+{ignore}
+<pre><code>pad types shop orders                         # to standard output
+pad types shop orders --out=www/shop/src/types/pad.d.ts</code></pre>
+{/ignore}
+
+<ul>
+  <li><code>OrdersVars</code> - the variables of the page's PHP, read from its sample
+      (<code>_samples/orders.json</code>, see {manual 'samples'}); a page without a sample gets one
+      captured first.</li>
+  <li><code>OrdersAnswer</code> - the JSON the page answers with <code>padFormat=json</code>, what its
+      <code>$padExpose</code> names ({manual 'data_answers'}), when it answers one.</li>
+  <li>Without pages, every page that has a sample. The types are only as good as the sample: a
+      list that was empty is <code>unknown[]</code>, a value that was <code>null</code> is
+      <code>null</code> - capture the page with data that shows every field.</li>
+</ul>
+
+<p>How a value becomes a type:</p>
+
+{example 'fragments/typescript_types_1'}
+
+<p>A list of rows is one row type - a key some rows lack is optional (<code>gift?</code>), a key
+whose rows disagree gets a union - and other lists are a union of their items. A component then
+types its props from the declarations, and <code>tsc --noEmit</code> fails on a field the PHP does
+not have:</p>
+
+{ignore}
+<pre><code>import type { OrdersVars } from './types/pad';
+
+type Order = OrdersVars['orders'][number];
+
+export default function OrderRow(order: Order) { ... }</code></pre>
+{/ignore}
+
+<p>The islands application types one island this way (<code>examples/typed</code>), its
+<code>npm run types</code> and <code>npm run check</code> doing both steps.</p>

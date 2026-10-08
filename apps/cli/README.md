@@ -118,6 +118,20 @@ the name of the file to standard error:
 Review the file before committing it: it holds whatever the page read, real data included.
 A page rendered on the command line with the `web` output type is written as `console`.
 
+
+## TypeScript types
+
+`pad types <app> [page ...] [--out=file]` writes TypeScript declarations of what pages hold,
+for the components that read them: `<Page>Vars`, the variables of the page's PHP - read from its
+sample, captured first as `pad sample` captures it when the page has none - and `<Page>Answer`,
+the JSON the page answers with `padFormat=json` (what its `$padExpose` names), when it answers
+one. A list of rows is one row type, a key some rows lack optional. Without pages, every page
+with a sample; without `--out`, standard output.
+
+```bash
+./pad types shop orders                                   # export interface OrdersVars { ... }
+./pad types islands examples/typed --out=apps/islands/_frontend/src/types/pad.d.ts
+```
 ## Exit Status
 
 The process status reports how the request ended, so scripts can test it: 0 when the

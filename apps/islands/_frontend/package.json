@@ -2,14 +2,21 @@
   "name": "pad-islands",
   "private": true,
   "type": "module",
-  "scripts": { "dev": "vite", "build": "vite build" },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "types": "cd ../../.. && php apps/cli/pad types islands examples/typed --out=apps/islands/_frontend/src/types/pad.d.ts",
+    "check": "tsc --noEmit"
+  },
   "devDependencies": {
     "vite": "^6",
     "@vitejs/plugin-react": "^4",
     "@vitejs/plugin-vue": "^5",
     "@sveltejs/vite-plugin-svelte": "^5",
     "vite-plugin-solid": "^2",
-    "typescript": "^5"
+    "typescript": "^5",
+    "@types/react": "^18.3",
+    "@types/react-dom": "^18.3"
   },
   "dependencies": {
     "react": "^18.3.1",

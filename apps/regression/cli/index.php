@@ -13,6 +13,8 @@
   //   test    the _tests of the scratch application - a pass, a failing {assert}, a test
   //           without an answer and --record writing it - and of regression/site, whose
   //           test pages no URL reaches
+  //   types   a page's variables and JSON answer as TypeScript, its sample captured first,
+  //           to standard output and to the file --out names
   //
   // A plain load only offers the link; verdict.php runs it on every load.
 
@@ -88,6 +90,27 @@
                 and $codeW1 === 0 and str_contains ( $outW1, '<h1>Hello from Shop!</h1>' )
                 and $codeW2 === 0 and str_contains ( $outW2, '<h1>Hello from Shop!</h1>' )
                 and $codeH  === 0 and str_contains ( $outH,  '<p>http://example.org/sub/ /sub/shop/?</p>' ) ) ? 'yes' : 'NO';
+
+    // types - a page of the scratch application with data and a JSON answer: pad types
+    // captures its sample, then writes its variables and its answer as TypeScript, to
+    // standard output and with --out to a file
+
+    file_put_contents ( "$home/apps/shop/orders.php", '<?php $orders = [ [ "id" => 1, "total" => 9.5 ], [ "id" => 2, "total" => 12, "gift" => true ] ]; $padExpose = [ "orders" ]; ?>' );
+    file_put_contents ( "$home/apps/shop/orders.pad", '{orders}{$id} {/orders}' );
+
+    list ( $codeY1, $outY1 ) = cliCheckRun ( [ 'types', 'shop', 'orders' ], $env );
+    list ( $codeY2 )         = cliCheckRun ( [ 'types', 'shop', "--out=$home/types/pad.d.ts" ], $env );
+    list ( $codeY3 )         = cliCheckRun ( [ 'types', 'no/such/app' ], $env );
+
+    $written = (string) @file_get_contents ( "$home/types/pad.d.ts" );
+
+    $types = ( $codeY1 === 0
+               and str_contains ( $outY1, 'export interface OrdersVars {' )
+               and str_contains ( $outY1, "  orders: {\n    id: number;\n    total: number;\n    gift?: boolean;\n  }[];" )
+               and str_contains ( $outY1, 'export interface OrdersAnswer {' )
+               and file_exists ( "$home/apps/shop/_samples/orders.json" )
+               and $codeY2 === 0 and str_contains ( $written, 'export interface OrdersAnswer {' )
+               and $codeY3 === 1 ) ? 'yes' : 'NO';
 
     // test - the scratch application gets its _tests
 

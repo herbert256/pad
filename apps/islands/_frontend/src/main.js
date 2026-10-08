@@ -16,6 +16,8 @@ islands({
   CartSummary:   vue(()    => import('./islands/CartSummary.vue')),
   CartBadge:     svelte(() => import('./islands/CartBadge.svelte')),
 
+  OrderCard:     react(()  => import('./islands/OrderCard.react.tsx')),
+
   LoadLog:       preact(() => import('./islands/LoadLog.preact.js')),
   Clock:         solid(()  => import('./islands/Clock.solid.jsx'))
 });

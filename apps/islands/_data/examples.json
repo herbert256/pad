@@ -43,6 +43,16 @@
       "files":  [ "_frontend/src/islands/Shelf.react.jsx", "_frontend/src/islands/CartSummary.vue", "_frontend/src/islands/CartBadge.svelte", "_frontend/src/pad-islands.js" ]
     },
     {
+      "page":   "examples/typed",
+      "group":  "build",
+      "icon":   "🔷",
+      "title":  "Typed props",
+      "lede":   "The island is TypeScript, and the type of its props is written by pad types from the page's own data: the order the PHP makes, captured as the page's sample. A field the PHP does not have fails the check, not the visitor.",
+      "server": [ "pad types", "_samples/", "$padExpose" ],
+      "client": [ ".tsx", "tsc --noEmit" ],
+      "files":  [ "_frontend/src/islands/OrderCard.react.tsx", "_frontend/src/types/pad.d.ts", "examples/_samples/typed.json" ]
+    },
+    {
       "page":   "examples/build",
       "group":  "build",
       "icon":   "🏗️",

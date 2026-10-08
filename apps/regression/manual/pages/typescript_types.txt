@@ -1,0 +1,107 @@
+<p>A component that reads PAD's data - the props of an island, the JSON of a page - knows its
+shape only from what the PHP happens to make. <code>pad types</code> writes that shape down as
+TypeScript, made from the data itself:</p>
+
+
+<pre><code>pad types shop orders                         # to standard output
+pad types shop orders --out=www/shop/src/types/pad.d.ts</code></pre>
+
+
+<ul>
+  <li><code>OrdersVars</code> - the variables of the page's PHP, read from its sample
+      (<code>_samples/orders.json</code>, see <a href="/pad/manual/?pages/samples">Samples</a>); a page without a sample gets one
+      captured first.</li>
+  <li><code>OrdersAnswer</code> - the JSON the page answers with <code>padFormat=json</code>, what its
+      <code>$padExpose</code> names (<a href="/pad/manual/?pages/data_answers">Data answers</a>), when it answers one.</li>
+  <li>Without pages, every page that has a sample. The types are only as good as the sample: a
+      list that was empty is <code>unknown[]</code>, a value that was <code>null</code> is
+      <code>null</code> - capture the page with data that shows every field.</li>
+</ul>
+
+<p>How a value becomes a type:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/typescript_types_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/typescript_types_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $orders </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">9.5</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ada' </span><span style="color: #007700">] ],<br>              [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">12</span><span style="color: #007700">,  </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bram' </span><span style="color: #007700">], </span><span style="color: #DD0000">'gift' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">] ];<br><br>  </span><span style="color: #0000BB">$types </span><span style="color: #007700">= </span><span style="color: #0000BB">padTypeScriptInterface </span><span style="color: #007700">( </span><span style="color: #DD0000">'OrdersVars'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'orders' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$orders</span><span style="color: #007700">, </span><span style="color: #DD0000">'note' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">NULL </span><span style="color: #007700">] );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>types</font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <pre>export interface OrdersVars {
+  orders: {
+    id: number;
+    total: number;
+    customer: {
+      name: string;
+    };
+    gift?: boolean;
+  }[];
+  note: null;
+}
+</pre>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<p>A list of rows is one row type - a key some rows lack is optional (<code>gift?</code>), a key
+whose rows disagree gets a union - and other lists are a union of their items. A component then
+types its props from the declarations, and <code>tsc --noEmit</code> fails on a field the PHP does
+not have:</p>
+
+
+<pre><code>import type { OrdersVars } from './types/pad';
+
+type Order = OrdersVars['orders'][number];
+
+export default function OrderRow(order: Order) { ... }</code></pre>
+
+
+<p>The islands application types one island this way (<code>examples/typed</code>), its
+<code>npm run types</code> and <code>npm run check</code> doing both steps.</p>

@@ -13,7 +13,8 @@ answers a page from the server it starts on a free port; `export` writes the
 `regression/site` fixture as static files, its links rewritten - from a subdirectory too -
 its assets copied; `test` runs the scratch application's `_tests` - a pass, a failing
 `{assert}`, a test without an answer that `--record` then writes - and those of
-`regression/site`, whose test pages no URL reaches. The crawl compares the verdict,
+`regression/site`, whose test pages no URL reaches; `types` writes a page's variables and JSON
+answer as TypeScript, its sample captured first, to standard output and to `--out`. The crawl compares the verdict,
 so a command that stops behaving turns its yes into a NO.
 
 ## Files
