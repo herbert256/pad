@@ -1,0 +1,5 @@
+{meta title='Taking from the front', about='shift takes values out of the store - each shift starts where the last one ended.'}
+{sequence '1..7', push='line'}
+<p>{action:shift line, 3}{$sequence} {/action:shift}</p>
+<p>{action:shift line, 3}{$sequence} {/action:shift}</p>
+<p>Left: {pull line}{$sequence} {/pull}</p>

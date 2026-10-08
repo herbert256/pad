@@ -1,0 +1,5 @@
+{meta title='A data set, and the number of rows', about='{count} tests a {data} set; the number itself is the count@ property.'}
+{data 'countTasks'}["Write", "Review", "Publish"]{/data}
+{count 'countTasks'}
+  <p>{countTasks}{first@countTasks}There are {count@countTasks} tasks: {/first@countTasks}{$countTasks}{notLast@countTasks}, {/notLast@countTasks}{/countTasks}.</p>
+{/count}

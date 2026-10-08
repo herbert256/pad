@@ -1,0 +1,5 @@
+{meta title='Counting matches', about='A counter that did not exist starts at 1 and keeps its value after the loop.'}
+{sequence '1..20', name='number'}
+  {if $number % 3 eq 0}{increment $threes}{/if}
+{/sequence}
+<p>Between 1 and 20, {$threes} numbers are divisible by 3.</p>

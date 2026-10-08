@@ -1,0 +1,9 @@
+{meta title='Places left', about='Each booking takes one place off; when none are left the next guests go on the waiting list.'}
+{set $places = 3}
+<ul>
+{bookings}
+  {if $places eq 0}<li>{$guest}: waiting list</li>{continue}{/if}
+  {decrement $places}
+  <li>{$guest}: booked, {$places} left</li>
+{/bookings}
+</ul>

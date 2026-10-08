@@ -1,0 +1,6 @@
+{meta title='Numbering across loops', about='One counter numbers the rows of two separate lists in a single run.'}
+{set $line = 100}
+{data 'incrementFruit'}["apple", "pear"]{/data}
+{data 'incrementVeg'}["leek", "kale", "beet"]{/data}
+<p>{incrementFruit}{increment $line}{$line}: {$incrementFruit}<br>{/incrementFruit}</p>
+<p>{incrementVeg}{increment $line}{$line}: {$incrementVeg}<br>{/incrementVeg}</p>
