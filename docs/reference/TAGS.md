@@ -2520,6 +2520,30 @@ strict error that names the nearest one (`did you mean ':rocket:'?`).
 
 ---
 
+### country
+A country's flag from its ISO 3166-1 code, optionally with its English name (`lib/country.php`).
+
+```html
+{country 'NL'}             <!-- <span class="pad-country" role="img" aria-label="Netherlands">🇳🇱</span> -->
+{country 'NLD', name}      <!-- the flag and Netherlands beside it -->
+{country $code, name}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | An alpha-2 code (`NL`), an alpha-3 code (`NLD`) or the English name, any case |
+| `name` | Writes the name beside the flag; the flag is then decoration (`aria-hidden`) |
+
+**Behavior:** the flag is the code written as two regional indicator symbols, which a system with
+flag emoji draws as the flag and one without (Windows) as the two letters. The table holds the
+249 entries of ISO 3166-1 with alpha-2, alpha-3 and the English name as CLDR gives it;
+`padCountry($code)` answers `[ alpha-2, alpha-3, name ]` to PHP. A code that is no country is a
+strict error that names the nearest country when the text is close to a name.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -3053,6 +3077,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `countdown` | Output | The time left until a moment in words, in a time element, optionally ticking |
 | `timeago` | Output | How long ago a moment was, in a time element with the exact moment |
 | `emoji` | Output | An emoji by its shortcode, labelled for screen readers; also an `emoji` pipe |
+| `country` | Output | A country's flag emoji and English name from an ISO 3166 code |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
