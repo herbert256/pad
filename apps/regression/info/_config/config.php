@@ -2,10 +2,12 @@
 
   $padCommon = FALSE;
 
-  // The five info modes by name, and then every option each of them honours - the same
-  // set the 'all' selector carries, spelled out so the reference sees each mode chosen.
+  // Four info modes by name, and then every option each of them honours, spelled out so the
+  // reference sees each mode chosen. Not trace: it wrote some 90 files for every request of
+  // this application, and every ./ci.sh run left them under DATA/trace/ - half a million
+  // files nothing ever removed.
 
-  $padInfo = 'stats,trace,track,xml,xref';
+  $padInfo = 'stats,track,xml,xref';
 
   $padInfoTrackFileRequest = TRUE;
   $padInfoTrackFileData    = TRUE;
@@ -15,48 +17,5 @@
   $padInfoXmlParms         = TRUE;
   $padInfoXmlTidy          = TRUE;
   $padInfoXmlCompact       = TRUE;
-  $padInfoTraceLines       = TRUE;
-  $padInfoTraceDouble      = TRUE;
-  $padInfoTraceDefault     = TRUE;
-  $padInfoTraceKeepEmpty   = TRUE;
-  $padInfoTraceRoot        = TRUE;
-  $padInfoTraceDump        = TRUE;
-  $padInfoTraceTree        = TRUE;
-  $padInfoTraceLocal       = TRUE;
-  $padInfoTraceTypes       = TRUE;
-  $padInfoTraceMore        = TRUE;
-  $padInfoTraceStartEnd    = TRUE;
-  $padInfoTraceStartEndLvl = TRUE;
-  $padInfoTraceStartEndOcc = TRUE;
-  $padInfoTraceStatus      = TRUE;
-  $padInfoTraceChilds      = TRUE;
-  $padInfoTraceAddLine     = TRUE;
-  $padInfoTraceLocalChk    = TRUE;
-  $padInfoTraceOccurs      = TRUE;
-  $padInfoTraceOccursSmart = FALSE;
-  $padInfoTraceInitsExits  = TRUE;
-  $padInfoTraceTypesDir    = TRUE;
-  $padInfoTraceBuild       = TRUE;
-  $padInfoTraceParse       = TRUE;
-  $padInfoTraceParms       = TRUE;
-  $padInfoTraceContent     = TRUE;
-  $padInfoTraceTrue        = TRUE;
-  $padInfoTraceFalse       = TRUE;
-  $padInfoTraceLevelBase   = TRUE;
-  $padInfoTraceResultLvl   = TRUE;
-  $padInfoTraceResultOcc   = TRUE;
-  $padInfoTraceFlags       = TRUE;
-  $padInfoTraceDataLvl     = TRUE;
-  $padInfoTraceDataOcc     = TRUE;
-  $padInfoTraceStore       = TRUE;
-  $padInfoTraceSequence    = TRUE;
-  $padInfoTraceVar         = TRUE;
-  $padInfoTraceField       = TRUE;
-  $padInfoTraceEval        = TRUE;
-  $padInfoTraceCall        = TRUE;
-  $padInfoTraceSql         = TRUE;
-  $padInfoTracePut         = TRUE;
-  $padInfoTraceGet         = TRUE;
-  $padInfoTraceCurl        = TRUE;
 
 ?>

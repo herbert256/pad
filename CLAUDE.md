@@ -1948,7 +1948,7 @@ strict syntax check - `pad_check` with only an app checks every page), `pad_trac
 | `regression/error_pad` | Test | Regression test for the 'pad' error action |
 | `regression/error_php` | Test | Regression test for the 'php' error action |
 | `regression/error_stop` | Test | Regression test for the 'stop' error action |
-| `regression/info` | Test | Regression test for the five info modes, every option on |
+| `regression/info` | Test | Regression test for four info modes - stats, track, xml, xref - every option on; trace is off |
 | `regression/output_console` | Test | Regression test for the 'console' output type |
 | `regression/output_download` | Test | Regression test for the 'download' output type |
 | `regression/output_file` | Test | Regression test for the 'file' output type |

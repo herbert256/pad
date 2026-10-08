@@ -55,7 +55,7 @@ This directory contains PAD applications and examples.
 | [regression/error_pad](regression/error_pad/README.md) | Test | Regression test for the 'pad' error action - the index turns NO when the action stops behaving |
 | [regression/error_php](regression/error_php/README.md) | Test | Regression test for the 'php' error action - the index turns NO when the action stops behaving |
 | [regression/error_stop](regression/error_stop/README.md) | Test | Regression test for the 'stop' error action - the index turns NO when the action stops behaving |
-| [regression/info](regression/info/README.md) | Test | Regression test for the five info modes with every option on - a NO line per mode that stops recording |
+| [regression/info](regression/info/README.md) | Test | Regression test for four info modes - stats, track, xml, xref - with every option on - a NO line per mode that stops recording |
 | [regression/output_console](regression/output_console/README.md) | Test | Regression test for the 'console' output type - the index turns NO when the writer stops behaving |
 | [regression/output_download](regression/output_download/README.md) | Test | Regression test for the 'download' output type - the index turns NO when the writer stops behaving |
 | [regression/output_file](regression/output_file/README.md) | Test | Regression test for the 'file' output type - the index turns NO when the writer stops behaving |
