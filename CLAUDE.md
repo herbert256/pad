@@ -913,6 +913,7 @@ Code: `pad/lib/chart.php` (bar, line, sparkline) and `pad/lib/chart/` (the other
 ```
 {avatar 'Herbert Jebbink', size=48, shape='square'}   # initials in a circle/square, colour from a hash of the name
 {identicon $email, size=64}                   # a symmetric 5x5 pattern from a sha256 hash, own colour
+{placeholder '600x300', text='Hero image'}    # grey SVG box with crossing lines; ratio='16:9', fluid
 ```
 Every one is rendered on the server; the `showcase` application has examples of each.
 

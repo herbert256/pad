@@ -1617,6 +1617,35 @@ on the light square behind it, `--pad-identicon-background` (`light-dark()` on
 
 ---
 
+### placeholder
+A grey image placeholder as inline SVG - crossing lines and the size or a text in the middle
+(`lib/placeholder.php`): wireframes and layouts that wait for their pictures, no placeholder
+service.
+
+```html
+{placeholder '600x300', text='Hero image'}
+{placeholder ratio='16:9', fluid}
+{placeholder ratio='4:3', width=320}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The size, `width x height` (`600x300`) |
+| `ratio` | Proportions instead of a size (`16:9`), drawn `width` pixels wide |
+| `width` | The width of a box drawn from `ratio`, default 640 |
+| `text` | Written in the middle and the accessible name, by default the size (`600 × 300`) or the ratio |
+| `fluid` | As wide as the container (`width="100%"`), the height following from the view box |
+
+**Behavior:** the view box is the size itself, so a box scales without distortion and the
+text stays centred; the label's font follows the box, shrunk to fit a narrow one. The colours
+are `--pad-placeholder-surface`, `-line` and `-text` on `.pad-placeholder` with `light-dark()`
+defaults, written once per page. A size or ratio that is not two whole numbers is an error
+under the strict check.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2122,6 +2151,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `asset` | Web | The versioned address of a file of `www/<app>/`; `tag` writes the element |
 | `avatar` | Output | Initials avatar as inline SVG, coloured by a hash of the name |
 | `identicon` | Output | Symmetric 5x5 identicon as inline SVG from a SHA-256 hash |
+| `placeholder` | Output | Grey image placeholder as inline SVG, a size or a ratio, fluid |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
