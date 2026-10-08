@@ -1762,6 +1762,37 @@ A missing address, an unknown default or fallback is an error under the strict c
 
 ---
 
+### chess
+A chess position from FEN as inline SVG - the board, the pieces drawn as shapes of PAD's own
+(no font, no image), the coordinates, marked squares and arrows (`lib/chess.php`).
+
+```html
+{chess 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1'}
+{chess $fen, flip, highlight='d1, d8', arrow='g5-d8'}
+{chess '8/8/8/4k3/8/8/4K3/8', size=240, title='Opposition'}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The position in FEN - the placement alone will do; side to move, castling, en passant and the two counters are checked when written |
+| `flip` | Black at the bottom |
+| `highlight` | Squares to mark, `'e2, e4'` |
+| `arrow` | Arrows, `'e2-e4, g1-f3'` - from the middle of one square to the middle of the other, over the pieces |
+| `size` | Width and height in pixels, default 360 - shrinks to fit a narrower container |
+| `title` | The accessible name, default `Chess position, White to move` |
+
+**Behavior:** `role="img"` with `<title>` and a `<desc>` that lists every piece by side and
+kind (`White: king g1; rooks a1, f1; pawns ...`), the side to move, castling, en passant, the
+marks and the arrows. The colours are `--pad-chess-light`, `-dark`, `-white`, `-black`,
+`-ink`, `-mark`, `-arrow` and `-text` on `.pad-chess`, `light-dark()` defaults, written once
+per page; the ids come from the board itself. A FEN with a wrong rank count, an unknown
+piece letter or a wrong field, and a square or arrow that is not on the board, are errors
+under the strict check.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2272,6 +2303,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `rating` | Output | Stars or hearts for a score as inline SVG, parts clipped, said in words |
 | `icon` | Output | One of 79 built-in line icons as inline SVG in `currentColor` |
 | `gravatar` | Output | Gravatar `<img>` from the SHA-256 of an address, or a local avatar fallback |
+| `chess` | Output | A chess position from FEN as inline SVG - pieces, coordinates, marked squares, arrows |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
