@@ -1977,6 +1977,33 @@ under the strict check.
 
 ---
 
+### accordion
+Items that open and close on a click, without JavaScript - every `{tab}` a `<details>` with its
+label as the `<summary>` (`lib/accordion.php`).
+
+```html
+{accordion single, open=1}
+  {tab 'Can I return it?'}<p>Within 30 days ...</p>{/tab}
+  {tab 'Is there a warranty?'}<p>Two years ...</p>{/tab}
+{/accordion}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| `single` | One item open at a time: the items share a `name` - the exclusive accordion of HTML |
+| `open` | The item open at first - its number from 1 or its label; `open` alone opens every item |
+
+**Behavior:** the `{tab}` items are collected as `{tabs}` collects them, so they may come from
+a loop. The browser opens and closes an item, from the keyboard too, a screen reader hears
+'collapsed' or 'expanded', and a find in the page opens the item it finds in. The colours are
+`--pad-accordion-accent`, `-text`, `-muted`, `-line` and `-hover` on `.pad-accordion`,
+`light-dark()` defaults, written once per page. A tab without a label, `open` alone on a
+`single` accordion and an `open=` naming no item are errors under the strict check.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2494,6 +2521,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `excerpt` | Output | A text cut to whole words around the first search match, the matches marked |
 | `lorem` | Output | Lorem ipsum placeholder text - words, sentences or paragraphs, the same for the same seed |
 | `tabs` | Output | Panels behind a row of tabs - radio buttons and CSS, no JavaScript; `{tab}` is one item |
+| `accordion` | Output | Items that open on a click - every `{tab}` a `<details>`, one open at a time with `single` |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
