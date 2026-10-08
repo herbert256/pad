@@ -1,0 +1,64 @@
+<p>A page usually answers once. With <code>padSse()</code> in its PHP it keeps the
+connection open and sends events while they happen - what the browser's
+<code>EventSource</code> reads, and what htmx's sse extension, a React or an Alpine component
+listen to. There is no template: the stream is the whole answer.</p>
+
+
+<pre><code>&lt;?php
+
+  // ticker.php - the producer sends the events itself
+  padSse ( function ( $send, $lastId ) {
+    foreach ( [ 'one', 'two', 'three' ] as $n =&gt; $word ) {
+      $send ( 'word', [ 'n' =&gt; $n, 'word' =&gt; $word ], $n );
+      sleep ( 1 );
+    }
+  }, [ 'retry' =&gt; 3000 ] );
+
+?&gt;</code></pre>
+
+
+<p>The browser side is a few lines, with no library:</p>
+
+
+<pre><code>const source = new EventSource('?ticker');
+source.addEventListener('word', event =&gt; show(JSON.parse(event.data)));</code></pre>
+
+
+<h2>On an interval</h2>
+
+<p>Given <code>every</code>, PAD calls the producer itself, every so many seconds, and sends
+what it answers as the event named by <code>event</code>: an array goes as JSON,
+<code>NULL</code> sends nothing that round, <code>FALSE</code> ends the stream.</p>
+
+
+<pre><code>&lt;?php
+
+  // stats.php - a fresh number every two seconds, for at most a minute
+  padSse ( fn () =&gt; [ 'orders' =&gt; db ( "FIELD count(*) FROM orders" ) ],
+           [ 'every' =&gt; 2, 'for' =&gt; 60, 'event' =&gt; 'stats' ] );
+
+?&gt;</code></pre>
+
+
+<table border="1" cellpadding="4">
+  <tr><th>Option</th><th>Meaning</th></tr>
+  <tr><td><code>every</code></td><td>Seconds between two calls of the producer; without it the producer is called once and loops itself</td></tr>
+  <tr><td><code>for</code></td><td>How long a stream with <code>every</code> runs at most - 60 seconds unless said otherwise</td></tr>
+  <tr><td><code>event</code></td><td>The name of the event an answer of the producer is sent as - <code>message</code> unless said otherwise</td></tr>
+  <tr><td><code>retry</code></td><td>Milliseconds the browser waits before it reconnects when the stream ended</td></tr>
+</table>
+
+<h2>What to know</h2>
+
+<ul>
+  <li><code>$send ( $event, $data, $id )</code> answers whether the visitor is still
+      connected; a long loop stops when it says no. Text data that runs over lines goes as
+      several <code>data:</code> lines, which the browser joins again.</li>
+  <li>The browser reconnects by itself and sends the id of the last event it had - the
+      producer gets it as its second argument, <code>padSseLastId()</code> reads it anywhere.</li>
+  <li>The session is written and closed before the first event, so the visitor's other
+      requests do not wait for the stream; read what the producer needs from it first.</li>
+  <li>A stream holds a PHP worker for as long as it runs: keep <code>for</code> short and let
+      the browser reconnect. Nothing of the answer is cached, compressed or buffered by PAD;
+      <code>X-Accel-Buffering: no</code> asks nginx not to hold the events back.</li>
+</ul>

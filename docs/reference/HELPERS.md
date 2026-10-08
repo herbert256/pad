@@ -27,6 +27,7 @@ no Composer. They are loaded on every request, like every file in `pad/lib/`.
 | [Environment and cache](#environment-and-cache) | `padEnv`, `padRemember`, `padCacheGet`, `padRateLimit`, ... | environment_and_cache |
 | [Dates and logging](#dates-and-logging) | `padNow`, `padAgo`, `padLog`, ... | dates_and_logging |
 | [Hashing and encryption](#hashing-and-encryption) | `padHash`, `padEncrypt`, `padDecrypt`, ... | hashing_and_encryption |
+| [Server-sent events](#server-sent-events) | `padSse`, `padSseSend`, `padSseLastId` | server_sent_events |
 
 ---
 
@@ -832,3 +833,56 @@ Edge rules:
   one - `user.id` for a signed `user[id]` (the page would read that one):
   `FALSE`. A field the body adds - a form posted to the link - leaves it valid. The signature is compared with `hash_equals`. The values are visible in the link:
   sign what must not change, seal (`padEncrypt`) what must not be read.
+
+---
+
+## Server-sent events
+
+<!-- helpers: server-sent events -->
+
+`pad/lib/sse.php` - manual page *Server-sent events*.
+
+| Function | Answers |
+|----------|---------|
+| `padSse ( $producer, $options = [] )` | Streams the events the producer sends as `text/event-stream` and ends the request - the page's PHP is the whole answer |
+| `padSseSend ( $event, $data = '', $id = NULL )` | Writes one event past PAD's output buffers - an array as JSON, text over several `data:` lines - and answers whether the visitor is still connected |
+| `padSseLastId ()` | The id of the last event the browser had, sent back on a reconnect (`Last-Event-ID`, or `lastEventId` in the query) |
+
+```php
+<?php                                         // ticker.php - the producer loops itself
+
+  padSse ( function ( $send, $lastId ) {
+    for ( $n = (int) $lastId + 1; $n <= 10; $n++ ) {
+      if ( ! $send ( 'tick', [ 'n' => $n ], $n ) )
+        break;
+      sleep ( 1 );
+    }
+  }, [ 'retry' => 3000 ] );
+
+?>
+```
+
+```php
+<?php                                         // stats.php - PAD calls the producer every 2 s
+
+  padSse ( fn () => [ 'orders' => db ( "FIELD count(*) FROM orders" ) ],
+           [ 'every' => 2, 'for' => 60, 'event' => 'stats' ] );
+
+?>
+```
+
+- **Options.** `every` - seconds between two calls of the producer, which then answers the
+  data of one event: an array or text is sent as `event`, `NULL` sends nothing that round,
+  `FALSE` ends the stream; without it the producer is called once with `$send` and the last
+  id. `for` - how long such a loop runs at most, 60 seconds unless said otherwise. `event` -
+  the name answers are sent as, `message` unless said otherwise (a `message` event is written
+  without an `event:` line). `retry` - the milliseconds the browser waits before it
+  reconnects. Another key, a producer that is no function or a number below zero is reported.
+- **The answer.** `Content-Type: text/event-stream`, `Cache-Control: no-cache, no-store`,
+  `X-Accel-Buffering: no` (nginx), the security headers; no gzip, `Content-Length`, ETag or
+  page cache. A line break in an event name or id is taken out - it would end the field.
+- **The session** is written and closed before the first event: PHP locks it for as long as a
+  request holds it, and the visitor's next page waited for the stream to end. A stream holds
+  a PHP worker while it runs - keep `for` short and let `EventSource` reconnect.
+- After `{flush}` or anything else that sent the headers, `padSse` is refused.
+

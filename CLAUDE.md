@@ -120,6 +120,23 @@ level of the page or wrapper (strict mode says so elsewhere) and does nothing in
 rendered by `{page}`, for a non-web output type, or in a request answered with one fragment or
 live region.
 
+## Server-sent events
+
+A page whose PHP calls `padSse()` keeps the connection open and streams events - what
+`EventSource`, htmx's sse extension or a component listen to; there is no template:
+
+```php
+padSse ( function ( $send, $lastId ) {               // the producer loops itself
+  $send ( 'tick', [ 'n' => 1 ], 1 );                 // event, data (an array goes as JSON), id
+}, [ 'retry' => 3000 ] );
+
+padSse ( fn () => [ 'orders' => $count ], [ 'every' => 2, 'for' => 60, 'event' => 'stats' ] );
+```
+
+With `every` PAD calls the producer on that interval and sends what it answers (`NULL` sends
+nothing, `FALSE` ends); `for` bounds the stream (60 s). The session is closed first - the
+visitor's other requests do not wait - and nothing is cached, compressed or buffered.
+
 ## Sitemap from the file tree
 
 `{sitemap}...{/sitemap}` lists every page of the application - `{$page}`, `{$url}`,
@@ -1362,6 +1379,14 @@ Output: `Alice, Bob, Charlie`
 | `padFileGet($file, $default)` | Read file contents - a relative path is under `DATA/` |
 | `padFilePut($file, $data, $append)` | Write file contents - under `DATA/` only, a relative path there too; never a name the web server runs (`.php`, `.phtml` ...) or reads as configuration (`.htaccess`, `.user.ini`) |
 | `padFileCheck($file)` | Validate file path |
+
+### Server-sent events
+
+| Function | Description |
+|----------|-------------|
+| `padSse($producer, $options)` | Stream events as `text/event-stream` and end the request - `every`, `for`, `event`, `retry` |
+| `padSseSend($event, $data, $id)` | One event; whether the visitor is still connected |
+| `padSseLastId()` | The id the browser sends back on a reconnect |
 
 ### Mail
 
