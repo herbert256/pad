@@ -1,0 +1,16 @@
+<p><code>{copy}</code> shows a text in a <code>&lt;pre&gt;&lt;code&gt;</code> block that
+selects as a whole with one click, and beside it a button that puts the text on the
+clipboard. The button needs scripting: a small script, written once per page (with the CSP
+nonce when one is asked for), copies through <code>navigator.clipboard</code>, or through the
+selection on a page over plain http, and says "Copied" on the button and to a screen reader.
+Without scripting there is no button and the text is selected and copied by hand.</p>
+
+<p>The single tag takes the text as its first parameter - a value, so it is escaped and
+never read as template. As a pair the content is the text: it is rendered first, then
+trimmed, so fields and tags inside it are resolved -
+<code>{copy}padSqlDatabase={$app}.sqlite{/copy}</code>.</p>
+
+<p><code>label=</code> sets the text of the button. A single <code>{copy}</code> without a
+text is an error under the strict check. The colours are <code>--pad-copy-accent</code>,
+<code>-text</code>, <code>-muted</code>, <code>-line</code>, <code>-surface</code> and
+<code>-done</code> on <code>.pad-copy</code>.</p>

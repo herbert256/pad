@@ -1,0 +1,14 @@
+<p><code>{increment $counter}</code> adds one to the variable and prints nothing. A variable
+that does not exist yet, or holds an empty text (an empty request value, a
+<code>{set $n = ''}</code>), starts at 1. The variable is a global, like one made by
+<a href="?tag/set">{set}</a>: its new value outlives the loop or block the tag stands in, which
+is what makes it the step of a <a href="?tag/while">{while}</a> loop.</p>
+
+<p>It is the short form of <code>{set $counter = $counter + 1}</code>, without the error the
+longer form gives when the variable does not exist yet. <a href="?tag/decrement">{decrement}</a>
+is its mirror image. The tag takes the variable by name - <code>$counter</code>, the <code>$</code> written - so it
+never evaluates it.</p>
+
+<p>A value that is no number cannot be counted: <code>{increment}</code> on a word or a list is
+an error naming the variable, and so is counting an engine variable such as
+<code>$padPage</code>.</p>

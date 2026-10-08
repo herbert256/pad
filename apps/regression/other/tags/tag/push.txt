@@ -1,0 +1,21 @@
+<p><code>{push 'name'}</code> renders its content where it stands - with the variables of that
+spot - prints nothing there, and adds the rendering to the stack of that name. A
+<a href="?tag/stack"><code>{stack 'name'}</code></a> anywhere in the page prints everything
+pushed to it, in the order it was pushed. This is how a component deep in a page brings the
+script or stylesheet it needs into the <code>&lt;head&gt;</code> of the wrapper. Like
+<code>{tidy}</code> it runs twice: first to ask for the end walk, then with the rendered
+content.</p>
+
+<p><code>once='key'</code> keeps only the first push of that key to the stack: a later one is
+skipped before its content even renders - for a component used ten times that needs its
+script once. <code>once</code> without a key compares the rendered text instead and drops a
+push whose text the stack already holds.</p>
+
+<p>A push inside a <a href="?tag/cache"><code>{cache}</code></a> section is stored with the
+section and made again on every hit, so a cached component still brings its script. A plain
+<code>{page}</code> or <code>{code}</code> pass adds to the page's stacks; a sandbox, clean or
+reset pass keeps its pushes to itself. From PHP:
+<code>padStackPush ( 'scripts', $html, $once )</code>.</p>
+
+<p>Under the strict check a push without a stack name, and a push that never closes, are
+errors.</p>

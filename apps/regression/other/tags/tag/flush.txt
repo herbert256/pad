@@ -1,0 +1,17 @@
+<p><code>{flush}</code> sends what has been rendered above it to the browser now, instead of
+with the rest when the whole page is done. Put after the wrapper's <code>&lt;/head&gt;</code>,
+it lets the browser fetch the stylesheets, scripts and fonts the head names while a slow part
+of the page - a large table, a remote fetch - is still rendering. The page's PHP runs before
+any of the template, so what a flush wins is the rendering below it.</p>
+
+<p>The first flush switches off, for that request, everything that needs the whole body at
+once: tidy, gzip of the whole body, the ETag and its 304, <code>Content-Length</code> and the
+page cache. The headers go out with the first part, so a header or cookie set after the flush
+is lost. A <code>{stack}</code> in the part already sent gets only the pushes made before the
+flush.</p>
+
+<p>It stands at the top level of the page or its wrapper. Inside another tag, or in a page
+whose PHP returns data, the strict check reports it. In a page rendered inside another (a
+<code>{page}</code>), for an output type other than web, and in a request answered with one
+fragment or the post of a live region, it does nothing - which is why the example is shown
+rather than run.</p>

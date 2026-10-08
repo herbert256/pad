@@ -1,0 +1,20 @@
+<p><code>{vite 'src/main.js'}</code> writes the tags that load an entry of a Vite build. In
+production it reads the manifest Vite writes - <code>www/&lt;app&gt;/build/.vite/manifest.json</code>
+(<code>build.manifest: true</code>, <code>build.outDir</code> that directory) - and gives per
+entry a <code>&lt;link rel="stylesheet"&gt;</code> for its CSS and the CSS of every chunk it
+imports, a <code>&lt;link rel="modulepreload"&gt;</code> for every such chunk, and its
+<code>&lt;script type="module"&gt;</code>. A dynamic import is left to load when asked for. The
+addresses are made of <code>$padRoot</code>, the application and <code>$padViteBuild</code>
+(default <code>build</code>), which is the build's <code>base</code>.</p>
+
+<p>While the dev server runs - <code>$padViteDev</code> names it, or the file <code>hot</code>
+in the build directory holds its address - the tags point at the dev server instead:
+<code>@vite/client</code> first, then the sources as they are, for hot module replacement. The
+<code>react</code> option adds the fast-refresh preamble the React plugin needs in that mode.</p>
+
+<p>A file goes out once a page, however many <code>{vite}</code> tags name it, and a script
+carries the request's nonce when <code>$padCsp</code> asks for one. A <code>{vite}</code>
+without an entry, an entry the manifest does not have, and a build without a manifest while no
+dev server runs are errors. The output depends on a build, so the examples are shown rather than
+run; the islands application uses it for real. For a plain file of <code>www/</code>, use
+<a href="?tag/asset"><code>{asset}</code></a>.</p>

@@ -1,0 +1,8 @@
+<p><code>{guest}</code> renders its content when nobody is logged in to this application, and
+the part after its own <code>{else}</code> - or the <code>&#64;else&#64;</code> half - when someone is.
+It is <a href="?tag/auth">{auth}</a> turned round, without the user's row: the fields of the
+user are <code>{auth}</code>'s to give.</p>
+
+<p>Like <code>{auth}</code> it never starts a session to find out: a visitor without a session
+cookie is a guest at once. The pair must close - a lone <code>{guest}</code> is an error under
+the strict check.</p>

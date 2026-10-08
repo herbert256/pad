@@ -1,0 +1,12 @@
+<p><code>{true}</code> answers TRUE - the plain hit of a level. Written as a pair, its content
+renders exactly once and there is no data to iterate; written alone it prints nothing. It is
+the fixed "yes" of the three constant tags, beside <a href="?tag/false">{false}</a> and
+<a href="?tag/null">{null}</a>.</p>
+
+<p>Its use is as a neutral level to hang options on. Every tag takes the generic options, so
+<code>{true tidy}...{/true}</code> tidies a stretch of HTML, <code>{true toContent='box'}</code>
+keeps its rendered content in a store, and <code>{true $total = 0}...{/true}</code> gives a
+block a variable of its own that is unwound when the block closes. In tests it switches a
+branch on without changing anything else.</p>
+
+<p>Because it is a hit, an <code>&#64;else&#64;</code> part of a <code>{true}</code> never renders.</p>

@@ -1,0 +1,15 @@
+<p><code>{tidy}</code> renders its content first - fields and tags inside resolve as usual - and
+then passes the result through PHP's <code>tidy</code> extension as a fragment: unclosed elements
+are closed, the markup is repaired and indented by the settings of
+<code>$padTidyConfig</code>. Only the body of the fragment comes back, never a
+<code>&lt;html&gt;</code> around it.</p>
+
+<p>The content of a <code>&lt;textarea&gt;</code>, of a <code>&lt;template&gt;</code> and of a
+custom element is held out of the pass and put back unchanged, so a form value keeps its
+whitespace and a component's markup is not rewritten.</p>
+
+<p>Without the tidy extension the content is returned untouched - the result depends on the
+server, which is why the example is shown rather than run. The <code>tidy</code> option does
+the same for any tag (<code>{items tidy}...{/items}</code>), and <code>$padTidy</code> in the
+configuration tidies whole pages. To only take out whitespace between tags, use
+<a href="?tag/spaceless"><code>{spaceless}</code></a>, which needs no extension.</p>

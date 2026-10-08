@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Every PAD tag · PAD tags</title>
+  <link rel="stylesheet" href="tags.css">
+  <script src="tags.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+
+    <a class="brand" href="?index">
+      <span class="brand-mark" aria-hidden="true">&#123;&#125;</span>
+      <span>PAD <b>tags</b></span>
+    </a>
+
+    <nav class="menu" aria-label="Indexes">
+      <a class="menu-link is-active" href="?index" aria-current="page">Home</a><a class="menu-link" href="?names">A-Z</a><a class="menu-link" href="?groups">Groups</a><a class="menu-link" href="?forms">Forms</a><a class="menu-link" href="?options">Options</a><a class="menu-link" href="?cheatsheet">Cheat sheet</a>
+    </nav>
+
+    <form class="search" action="" method="get" role="search">
+      <input type="hidden" name="search" value="">
+      <label class="sr-only" for="q">Search the tags</label>
+      <input type="search" id="q" name="q" value="" placeholder="Search 139 tags" autocomplete="off">
+    </form>
+
+    <button type="button" class="theme" id="theme" aria-label="Switch between light and dark">
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    </button>
+
+  </div>
+</header>
+
+<main class="page">
+
+<section class="hero">
+  <h1>Every PAD tag</h1>
+  <p class="lead">A page for each built-in tag of PAD: what it does in one line, its syntax and
+  the options that belong to it, a longer description and live examples - every result
+  rendered by the tag it documents. Find a tag by name, by group, by form or by option, or
+  search for it.</p>
+  <ul class="stats">
+    <li><b>139</b> tags</li>
+    <li><b>19</b> groups</li>
+    <li><b>317</b> examples</li>
+  </ul>
+</section>
+
+<div class="cards">
+  
+  <a class="card" href="?names">
+    <h2>By name</h2>
+    <p>Every tag from A to Z, with its one line.</p>
+  </a>
+  
+  <a class="card" href="?groups">
+    <h2>By group</h2>
+    <p>The tags by what they are for - conditions, loops, forms, charts ...</p>
+  </a>
+  
+  <a class="card" href="?forms">
+    <h2>By form</h2>
+    <p>Single tags, tag pairs, and the tags that can be either.</p>
+  </a>
+  
+  <a class="card" href="?options">
+    <h2>By option</h2>
+    <p>Every option a tag takes of its own, and the tags that take it.</p>
+  </a>
+  
+  <a class="card" href="?cheatsheet">
+    <h2>Cheat sheet</h2>
+    <p>The syntax of every tag on one page.</p>
+  </a>
+  
+</div>
+
+<h2>The groups</h2>
+<div class="cards">
+  
+  <section class="card">
+    <h3><a href="?groups#conditions">Conditions</a> <span class="count">7</span></h3>
+    <p>Choosing what renders</p>
+    <div class="tagcloud"><a href="?tag/case" title="Renders the one branch whose {when} matches a value, with an {else} for none.">case</a><a href="?tag/false" title="The constant FALSE: its content is skipped and its @else@ part renders instead.">false</a><a href="?tag/if" title="Renders its content only when a condition holds, with elseif and else branches.">if</a><a href="?tag/ifchanged" title="Renders its content when a value differs from the previous row of the loop around it - a heading per group.">ifchanged</a><a href="?tag/null" title="The constant NULL: its content is dropped, the @else@ part too, and a null= option fires.">null</a><a href="?tag/switch" title="Answers the next value of a rotating list on every call - striped rows without a counter.">switch</a><a href="?tag/true" title="The constant TRUE: its content renders once, as a level of its own.">true</a></div>
+  </section>
+  
+  <section class="card">
+    <h3><a href="?groups#loops">Loops and trees</a> <span class="count">8</span></h3>
+    <p>Repeating, stopping and recursing</p>
+    <div class="tagcloud"><a href="?tag/branch" title="Inside a {tree}: renders its content only when the current row has children, its @else@ part for a leaf.">branch</a><a href="?tag/break" title="Leaves a loop at once: the rest of the current pass is dropped and no further row follows.">break</a><a href="?tag/cease" title="Ends a loop gracefully: the current pass finishes, and no further row follows.">cease</a><a href="?tag/continue" title="Skips the rest of the current pass of a loop and goes on with its next row.">continue</a><a href="?tag/recurse" title="Inside a {tree}: renders the tree&#039;s body once more for the children of the current row.">recurse</a><a href="?tag/tree" title="Renders a tree of rows: its body for every row, and {recurse} renders it again for the row&#039;s children.">tree</a><a href="?tag/until" title="Renders its content again and again until a condition becomes true.">until</a><a href="?tag/while" title="Renders its content again and again for as long as a condition holds.">while</a></div>
+  </section>
+  
+  <section class="card">
+    <h3><a href="?groups#values">Variables and stores</a> <span class="count">8</span></h3>
+    <p>Setting, counting and keeping values</p>
+    <div class="tagcloud"><a href="?tag/at" title="Looks a value up in a data set by a path of names and conditions - the @ notation as a tag.">at</a><a href="?tag/bool" title="Reduces its content or a value to TRUE or FALSE and keeps it under a name, for a later {name} to test.">bool</a><a href="?tag/content" title="Keeps a piece of template under a name instead of printing it, for a later {name} to render.">content</a><a href="?tag/count" title="Renders its content only when a named data set or page array holds at least one element.">count</a><a href="?tag/data" title="Turns its content - JSON, XML, YAML, CSV, a list or a range - into a named data set for a later tag to iterate.">data</a><a href="?tag/decrement" title="Takes one off a variable, starting it at -1 when it does not exist yet.">decrement</a><a href="?tag/increment" title="Adds one to a variable, starting it at 1 when it does not exist yet.">increment</a><a href="?tag/set" title="Assigns one or more variables, as globals that outlive the level the tag stands in.">set</a></div>
+  </section>
+  
+  <section class="card">
+    <h3><a href="?groups#database">Database</a> <span class="count">5</span></h3>
+    <p>Rows and values straight from SQL</p>
+    <div class="tagcloud"><a href="?tag/array" title="Runs a SQL query on the application database and repeats its content once per row.">array</a><a href="?tag/check" title="Asks the application database whether a row exists, and renders its content only when one does.">check</a><a href="?tag/collection" title="Reads a folder of Markdown files from _content/ and repeats its content once per file, the front matter as fields.">collection</a><a href="?tag/field" title="Runs a SQL query on the application database and prints the single value it answers.">field</a><a href="?tag/record" title="Runs a SQL query on the application database and renders its content with the first row&#039;s columns as fields.">record</a></div>
+  </section>
+  
+  <section class="card">
+    <h3><a href="?groups#pages">Pages and execution</a> <span class="count">8</span></h3>
+    <p>Other pages, code and live parts</p>
+    <div class="tagcloud"><a href="?tag/ajax" title="Writes an empty div and a script that has the browser fetch another page into it after the page has loaded.">ajax</a><a href="?tag/code" title="Runs its content as PAD source in a separate engine pass and outputs what that pass produced.">code</a><a href="?tag/get" title="Fetches another page of the application over HTTP, as a second request, and inserts its output.">get</a><a href="?tag/live" title="A region of the page that re-renders on the server when something in it is clicked, submitted or changed, and swaps itself in.">live</a><a href="?tag/pad" title="A tag with no behaviour of its own: its content renders once, or per row with data=, carrying the generic options.">pad</a><a href="?tag/page" title="Renders another page of the application - its PHP and its template - in place of the tag.">page</a><a href="?tag/restart" title="Abandons the page being built and renders another page in its place, in the same request.">restart</a><a href="?tag/sandbox" title="Runs its content as PAD source in an isolated pass that cannot see or leave behind anything of the page.">sandbox</a></div>
+  </section>
+  
+  <section class="card">
+    <h3><a href="?groups#navigation">Navigation</a> <span class="count">3</span></h3>
+    <p>Redirects, page links and the site map</p>
+    <div class="tagcloud"><a href="?tag/pager" title="Page links for a tag written with the page option: first and last, a window round the current page, previous and next.">pager</a><a href="?tag/redirect" title="Sends the browser to another page or address with a 302 and ends the request.">redirect</a><a href="?tag/sitemap" title="Lists the pages of the application, read from the file tree, as rows with page, url and lastmod.">sitemap</a></div>
+  </section>
+  
+  <section class="card">
+    <h3><a href="?groups#forms">Forms and security</a> <span class="count">7</span></h3>
+    <p>Fields, validation, tokens and messages</p>
+    <div class="tagcloud"><a href="?tag/csrf" title="The hidden form field holding the CSRF token of the visitor&#039;s session, or the bare token.">csrf</a><a href="?tag/flash" title="The flash messages of this request - set with padFlash on the page before - one occurrence each.">flash</a><a href="?tag/form" title="A form that posts back to the page, carrying the session&#039;s CSRF token and its own name, its fields refilling when it came back.">form</a><a href="?tag/input" title="A form field with its label that refills from what its form sent and shows the error validation found for it.">input</a><a href="?tag/nonce" title="This request&#039;s Content-Security-Policy nonce, for a script or style the policy lets run.">nonce</a><a href="?tag/textarea" title="A text area with its label that refills from what its form sent and shows the error validation found for it.">textarea</a><a href="?tag/validator" title="The browser&#039;s checker of the validation rules as one inline script, for a form a component draws.">validator</a></div>
+  </section>
+  
+  <section class="card">
+    <h3><a href="?groups#access">Users and access</a> <span class="count">5</span></h3>
+    <p>Who is logged in and what they may do</p>
+    <div class="tagcloud"><a href="?tag/auth" title="Renders its content when a user is logged in, with the user&#039;s row as its data, and its else half for a guest.">auth</a><a href="?tag/can" title="Renders its content when the user may do something a gate decides, and its else half when not.">can</a><a href="?tag/cannot" title="Renders its content when the user may not do something a gate decides - can turned round.">cannot</a><a href="?tag/feature" title="Renders its content while a feature flag is on for this visitor, and its else half while it is off.">feature</a><a href="?tag/guest" title="Renders its content when nobody is logged in, and its else half for a user.">guest</a></div>
+  </section>
+  
+  <section class="card">
+    <h3><a href="?groups#files">Files</a> <span class="count">4</span></h3>
+    <p>Reading the file system</p>
+    <div class="tagcloud"><a href="?tag/dir" title="Lists the names in a directory, one occurrence each - the plain version of files.">dir</a><a href="?tag/exists" title="Renders its content when a file or directory is there, its else half when not.">exists</a><a href="?tag/file" title="Writes its rendered content to a file under DATA/ instead of to the page.">file</a><a href="?tag/files" title="Scans a directory and iterates its entries, with path, file, ext, item and dir for each.">files</a></div>
+  </section>
+  
+  <section class="card">
+    <h3><a href="?groups#network">Network and mail</a> <span class="count">2</span></h3>
+    <p>Remote data and outgoing mail</p>
+    <div class="tagcloud"><a href="?tag/curl" title="Fetches a URL and answers the body of the response, optionally kept in a cache for a number of seconds.">curl</a><a href="?tag/mail" title="Renders a template, or its own content, to an e-mail with an HTML and a text part, and sends it.">mail</a></div>
+  </section>
+  
+  <section class="card">
+    <h3><a href="?groups#output">Output control</a> <span class="count">14</span></h3>
+    <p>What is sent, how and when</p>
+    <div class="tagcloud"><a href="?tag/asset" title="The address of a file of www/&lt;app&gt;/ with a version of its contents, safe behind a far-future cache header.">asset</a><a href="?tag/cache" title="Keeps a named section of the page rendered for a number of seconds - the fragment cache.">cache</a><a href="?tag/close" title="Writes a literal closing brace that the template engine does not read as the end of a tag.">close</a><a href="?tag/echo" title="Evaluates an expression and prints the result - the general output tag, and the one to put in front of a pipe.">echo</a><a href="?tag/flush" title="Sends the page rendered so far to the browser at once, so it can load the stylesheets while a slow part below renders.">flush</a><a href="?tag/foo" title="A built-in demo tag that answers a fixed line, there to show how the type prefixes resolve a name.">foo</a><a href="?tag/ignore" title="Keeps PAD from reading the braces in its content as tags - for inline JavaScript, CSS, JSON and code samples.">ignore</a><a href="?tag/open" title="Writes a literal opening brace that the template engine does not read as the start of a tag.">open</a><a href="?tag/output" title="Switches how the running request answers - a web page, the console, a file, a download, JSON or CSV.">output</a><a href="?tag/reactData" title="Writes the mount point of a React component, its data from a provider in _providers/ as JSON in an attribute.">reactData</a><a href="?tag/spaceless" title="Takes out the whitespace between HTML tags, and at both ends of the content.">spaceless</a><a href="?tag/tidy" title="Rewrites the HTML it wraps as tidied, indented markup through PHP&#039;s tidy extension.">tidy</a><a href="?tag/trans" title="Writes the text a key has in the _lang/ catalog of the request&#039;s locale, with plural forms and substitutions.">trans</a><a href="?tag/vite" title="Links the scripts and stylesheets of a Vite build by the name of their source - or the dev server while it runs.">vite</a></div>
+  </section>
+  
+  <section class="card">
+    <h3><a href="?groups#text">Text and formatting</a> <span class="count">12</span></h3>
+    <p>Markdown, code, diffs, dates and words</p>
+    <div class="tagcloud"><a href="?tag/attrs" title="Writes HTML attributes from values - quoted and escaped, a true boolean attribute bare, a false one left out.">attrs</a><a href="?tag/classes" title="Builds a class list from fixed names and names that are in only while their condition holds.">classes</a><a href="?tag/countdown" title="The time left until a moment, in words inside a time element - ticking every second in the browser when asked.">countdown</a><a href="?tag/diff" title="Shows what changed between two texts - word by word in the flow of the text, or line by line in one column or side by side.">diff</a><a href="?tag/emoji" title="An emoji by its GitHub or Slack shortcode, as a labelled image a screen reader names.">emoji</a><a href="?tag/excerpt" title="Cuts a long text to whole words with an ellipsis, centred on the first match of search words, every match marked.">excerpt</a><a href="?tag/highlight" title="Colours source code on the server - PAD, PHP, HTML, CSS, JavaScript, JSON, YAML, SQL or shell - with optional line numbers and marked lines.">highlight</a><a href="?tag/lorem" title="Placeholder text - Lorem ipsum and Latin words - in words, sentences or paragraphs, the same text for the same seed.">lorem</a><a href="?tag/markdown" title="Renders its content, or the value of its parameter, as Markdown and writes the HTML.">markdown</a><a href="?tag/source" title="Shows the files behind a page as tabs, each coloured as highlight colours it - the code shown is the code that runs.">source</a><a href="?tag/timeago" title="How long ago a moment was, in words, inside a time element that keeps the exact moment as its datetime and title.">timeago</a><a href="?tag/toc" title="A table of contents of the page from its own rendered headings, nested and linked - filled in once the page has rendered.">toc</a></div>
+  </section>
+  
+  <section class="card">
+    <h3><a href="?groups#graphics">Charts and codes</a> <span class="count">8</span></h3>
+    <p>Charts, maps, diagrams and barcodes as SVG</p>
+    <div class="tagcloud"><a href="?tag/barcode" title="Draws a barcode as inline SVG - EAN-13, EAN-8, UPC-A or Code 128, encoded on the server.">barcode</a><a href="?tag/calendar" title="Writes a month as a calendar table with its events, or hands over its weeks and days as rows for markup of your own.">calendar</a><a href="?tag/chart" title="Draws a chart as inline SVG on the server - 46 kinds, from bars and lines to sankeys, maps of a hierarchy and org charts.">chart</a><a href="?tag/diagram" title="Draws a flowchart or a sequence diagram from Mermaid-style lines of text, laid out on the server as inline SVG.">diagram</a><a href="?tag/map" title="Draws a choropleth map as inline SVG - every country coloured by a value of its row - of the world or one of its regions.">map</a><a href="?tag/qr" title="Draws a QR code as inline SVG, encoded on the server - no image library, no remote service.">qr</a><a href="?tag/sparkline" title="Draws a word-sized line chart as inline SVG - no axes, the last point marked - to stand in a sentence or a table cell.">sparkline</a><a href="?tag/timeline" title="Draws events on a time axis as inline SVG - cards above and below the axis, spans as bars, or one under the other.">timeline</a></div>
+  </section>
+  
+  <section class="card">
+    <h3><a href="?groups#pictures">Pictures and media</a> <span class="count">11</span></h3>
+    <p>Avatars, icons, ratings, images and video</p>
+    <div class="tagcloud"><a href="?tag/avatar" title="Draws an initials avatar as inline SVG - the letters of a name in a circle coloured by a hash of it, no image needed.">avatar</a><a href="?tag/country" title="Writes a country&#039;s flag from its ISO 3166 code or English name, optionally with the name beside it.">country</a><a href="?tag/gravatar" title="Writes the Gravatar picture of an e-mail address as an img - only a hash of the address leaves the page - or a local avatar instead.">gravatar</a><a href="?tag/icon" title="Writes an interface icon from PAD&#039;s own set of 79 as inline SVG, drawn in the colour of the text around it.">icon</a><a href="?tag/identicon" title="Draws a GitHub-style identicon as inline SVG - a symmetric 5 by 5 pattern and a colour from a hash of the value.">identicon</a><a href="?tag/img" title="Writes a picture of the application&#039;s www directory as a thumbnail of the size the page shows it at, resized once with GD.">img</a><a href="?tag/pdf" title="Sends what its content renders as a PDF instead of the page - a writer in plain PHP, the standard fonts, no library.">pdf</a><a href="?tag/placeholder" title="Draws a grey image placeholder as inline SVG - crossing lines and the size or a text in the middle.">placeholder</a><a href="?tag/progress" title="Writes an accessible progress bar - the native progress element, styled, with its label and percentage - or a row of step dots.">progress</a><a href="?tag/rating" title="Draws a score as stars or hearts in inline SVG - whole ones filled, a part of one clipped - and says it in words.">rating</a><a href="?tag/video" title="Shows a YouTube or Vimeo video as its poster with a play button, loading the player only when pressed - or a video file as a video element.">video</a></div>
+  </section>
+  
+  <section class="card">
+    <h3><a href="?groups#widgets">Widgets</a> <span class="count">9</span></h3>
+    <p>Tabs, modals, tables and more without JavaScript</p>
+    <div class="tagcloud"><a href="?tag/accordion" title="Items that open and close on a click, each a details element - no JavaScript.">accordion</a><a href="?tag/carousel" title="Slides in a row that scrolls and snaps sideways, with arrow links and dots - no JavaScript needed.">carousel</a><a href="?tag/copy" title="A text in a code block with a button that copies it to the clipboard.">copy</a><a href="?tag/datatable" title="Rows as a complete HTML table - formatted numbers, a totals row, sorting and paging on the server.">datatable</a><a href="?tag/jsonview" title="A JSON value or a PHP array as a tree that folds open and shut, coloured by type.">jsonview</a><a href="?tag/modal" title="A dialog over the page with the button that opens it - works with and without JavaScript.">modal</a><a href="?tag/poll" title="A vote among a few answers, once per visitor, then the results as bars with percentages.">poll</a><a href="?tag/tab" title="One item of a tabs, accordion or carousel: its label and its content, handed to that owner.">tab</a><a href="?tag/tabs" title="Panels behind a row of tabs, switched by radio buttons and CSS - no JavaScript.">tabs</a></div>
+  </section>
+  
+  <section class="card">
+    <h3><a href="?groups#games">Games</a> <span class="count">3</span></h3>
+    <p>Boards and puzzles</p>
+    <div class="tagcloud"><a href="?tag/chess" title="A chess position from FEN as an SVG board, with marked squares and arrows.">chess</a><a href="?tag/crossword" title="A crossword made from a list of words: a numbered SVG grid with the Across and Down clues.">crossword</a><a href="?tag/sudoku" title="A sudoku as a table, the givens bold - and with solve, solved on the server.">sudoku</a></div>
+  </section>
+  
+  <section class="card">
+    <h3><a href="?groups#layout">Layouts and components</a> <span class="count">10</span></h3>
+    <p>Extending, blocks, slots, stacks and fragments</p>
+    <div class="tagcloud"><a href="?tag/block" title="A named region of a layout or wrapper - and a page&#039;s override of it.">block</a><a href="?tag/extends" title="Frames the page with a layout instead of its directories&#039; wrappers.">extends</a><a href="?tag/fragment" title="A named part of the page that a request can ask for alone - for htmx and ajax swaps.">fragment</a><a href="?tag/meta" title="The page&#039;s metadata - a title, a layout, a cache time or any value - read while the page is assembled.">meta</a><a href="?tag/parent" title="Inside an overriding block: the content of the block it overrides.">parent</a><a href="?tag/parms" title="Declares the parameters of a custom tag, with defaults, at the top of its template.">parms</a><a href="?tag/push" title="Renders its content and adds it to a named stack, for a stack tag elsewhere in the page to print.">push</a><a href="?tag/shadow" title="The shadow root of a custom element, rendered on the server as declarative shadow DOM.">shadow</a><a href="?tag/slot" title="A named place in a custom tag&#039;s template - and the fill a caller gives it.">slot</a><a href="?tag/stack" title="Prints everything pushed to a named stack, from above or below it in the page.">stack</a></div>
+  </section>
+  
+  <section class="card">
+    <h3><a href="?groups#debug">Debugging and errors</a> <span class="count">7</span></h3>
+    <p>Looking inside, and stopping on purpose</p>
+    <div class="tagcloud"><a href="?tag/assert" title="A condition a test run holds the page to; silent everywhere else.">assert</a><a href="?tag/debug" title="Shows values as a collapsible tree in the page, for a local request only, while rendering goes on.">debug</a><a href="?tag/dump" title="Stops the request and shows the debug dump of the engine&#039;s state at that point.">dump</a><a href="?tag/error" title="Raises a PAD error from the template, handled as the configured error action says.">error</a><a href="?tag/exception" title="Throws a real PHP exception from the template, to exercise the error handling.">exception</a><a href="?tag/exit" title="Ends the request at once, with an empty body - the PAD way to stop instead of PHP&#039;s exit.">exit</a><a href="?tag/trace" title="Switches the execution trace on for just the part of the page it wraps.">trace</a></div>
+  </section>
+  
+  <section class="card">
+    <h3><a href="?groups#sequences">Sequences</a> <span class="count">8</span></h3>
+    <p>Number sequences and what is done to them</p>
+    <div class="tagcloud"><a href="?tag/action" title="Runs one sequence action - reverse, sum, first and the rest - over a store, a range or a type, and iterates the result.">action</a><a href="?tag/flag" title="Replaces every value of a sequence with 1 or 0: whether it belongs to a sequence type.">flag</a><a href="?tag/keep" title="Keeps only the values of a sequence that belong to a sequence type.">keep</a><a href="?tag/make" title="Replaces every value of a sequence with what a sequence type makes of it.">make</a><a href="?tag/pull" title="Iterates a stored sequence, optionally through plays and actions.">pull</a><a href="?tag/remove" title="Removes the values of a sequence that belong to a sequence type - the inverse of keep.">remove</a><a href="?tag/resume" title="Transforms the sequence pushed last, in place, through an action or a play.">resume</a><a href="?tag/sequence" title="Generates a range, a list or one of 80 mathematical sequences, and iterates its values.">sequence</a></div>
+  </section>
+  
+</div>
+
+</main>
+
+<footer class="foot">
+  <p>139 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<p><code>{jsonview}</code> shows a value as a JSON tree: every object and list is a
+<code>&lt;details&gt;</code> element that opens and closes on a click, with no script. Keys,
+strings, numbers, booleans and null each have their own colour, and a folded node says how
+many keys or items it holds.</p>
+
+<p>The value comes from one of three places:</p>
+<ul>
+  <li>the first parameter - a field holding an array (a page array, a row) or a text; the
+  tag reads its items raw, as <a href="?tag/debug"><code>{debug}</code></a> does, so a field
+  that holds an array is that array. A text that reads as a JSON object or list is
+  decoded.</li>
+  <li><code>data=</code> - a <a href="?tag/data"><code>{data}</code></a> store, a page array
+  or a <code>_data</code> file by name.</li>
+  <li>as a pair, the content - JSON taken as it stands, before the level walks it, so its
+  braces need no <code>&#123;ignore&#125;</code>.</li>
+</ul>
+
+<p><code>open=</code> is the number of levels shown unfolded, 2 by default, and
+<code>0</code> folds everything. <code>title=</code> labels the outermost level.</p>
+
+<p>Under the strict check these are errors: content that is no JSON, a second value, an
+unknown option (only <code>open</code>, <code>title</code> and <code>data</code> are read), a
+<code>data=</code> name that names nothing, an <code>open=</code> that is no number, and no
+value at all. The colours are <code>--pad-jsonview-*</code> custom properties.</p>

@@ -1,0 +1,20 @@
+<p><code>{parms}</code> stands at the top of a custom tag's template - a <code>.pad</code>
+file in <code>_tags/</code> or <code>_common</code> - and declares which parameters the tag
+takes. It prints nothing.</p>
+
+<ul>
+  <li>A name alone is required: a caller that leaves it out gets an error - <q>the {card} needs
+  the parameter title=</q>.</li>
+  <li><code>name=default</code> is optional: what the caller left out is filled in with the
+  default, and reads as <code>{#name}</code> exactly like a given parameter.</li>
+</ul>
+
+<p>Once a tag declares its parameters, the strict check also reports a parameter that the
+caller gives but the tag does not declare - <q>the tag {card} has no parameter 'titel' - it declares title, tone</q> -
+so a typo at the call is caught instead of silently ignored. The items are read raw, as
+<a href="?tag/attrs"><code>{attrs}</code></a> reads them, so a default may be any
+expression.</p>
+
+<p>A <code>{parms}</code> outside any custom tag's template is an error under the strict
+check. The examples use the application's tag <code>_tags/parmsBadge.pad</code>, which
+starts with <code>{parms label, tone='info', count=0}</code>.</p>

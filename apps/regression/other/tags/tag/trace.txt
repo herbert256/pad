@@ -1,0 +1,20 @@
+<p><code>{trace}</code> ... <code>{/trace}</code> records how the engine processes its
+content: every level that starts and ends, every occurrence of a loop, the tags met and the
+content each level produced, with line numbers. It is the trace that
+<code>$padInfo = 'trace'</code> writes for a whole request, narrowed to the part you are
+interested in - a slow loop, a condition that takes the wrong branch - so the trace stays
+readable.</p>
+
+<p>The page itself is not changed: the content renders exactly as without the tag. The trace
+goes to files under <code>DATA/trace/&lt;page&gt;/&lt;request id&gt;-&lt;n&gt;/</code> -
+<code>root.txt</code> with the outline, one line per event, and a <code>local.txt</code> per tag below it. On
+the way in the tag parks the request's own info settings and loads the default trace set
+(<code>pad/config/info/trace.php</code>: levels, occurrences, line numbers and results on;
+the noisier internals off); at <code>{/trace}</code> it closes the scope and puts back what was
+parked, so nothing outside the pair is traced.</p>
+
+<p>A request cannot switch tracing on by itself - <code>$padInfo</code> is never filled from
+the query string. For a whole page use <code>$padInfo = 'trace'</code> in
+<code>_config/config.php</code>, or render it with
+<code>php editors/render.php app page --trace</code>. To look at a value rather than the
+execution, use <a href="?tag/debug">{debug}</a>.</p>

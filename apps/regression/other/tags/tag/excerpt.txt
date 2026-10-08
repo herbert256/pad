@@ -1,0 +1,18 @@
+<p><code>{excerpt $body, words=24}</code> writes the first 24 words of the text and an ellipsis
+where it goes on - always whole words, never a word cut in half. A text no longer than
+<code>words</code> stays whole, without an ellipsis.</p>
+
+<p>With <code>highlight=</code> it is a search result: the query is split into words at
+everything that is no letter or digit, a word matches at the start of a word whatever its case -
+<code>templ</code> finds <code>Templates</code> - and the whole matched word is put in a
+<code>&lt;mark&gt;</code>. The window of <code>words</code> words is centred on the first match
+and moved in where it would run past either end, with an ellipsis on each side that was cut.</p>
+
+<p>Everything of the text is escaped piece by piece; the only markup that comes out is the
+<code>&lt;mark&gt;</code> around a match. For a text that is HTML - a post body, a rendered
+page - the <code>html</code> option drops its tags and reads its entities first, so the words
+counted are the words a reader sees.</p>
+
+<p>The mark colours are <code>--pad-excerpt-mark</code> and <code>--pad-excerpt-marked</code>
+on <code>.pad-excerpt</code>, with <code>light-dark()</code> defaults written once a page. A
+<code>words</code> that is no number of 1 or more is a strict error.</p>

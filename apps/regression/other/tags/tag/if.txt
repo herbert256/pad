@@ -1,0 +1,17 @@
+<p>The content between <code>{if}</code> and <code>{/if}</code> renders when the condition is
+true. Inside it, <code>{elseif condition}</code> starts a branch that is tried when every
+branch before it failed, and <code>{else}</code> the branch that renders when none held. Only
+one branch ever renders.</p>
+
+<p>The condition is a PAD expression: fields (<code>$count</code>), literals, the comparison
+operators <code>eq ne gt lt ge le</code> (or <code>== != &gt; &lt; &gt;= &lt;=</code>),
+<code>and</code>, <code>or</code>, <code>not</code>, <code>range (a, b)</code>,
+<code>in ('a', 'b')</code>, <code>like</code> and <code>matches</code>. A bare value is tested
+for its truth - write a comparison when a value is meant: <code>{if $count eq 0}</code>.</p>
+
+<p>A property of an enclosing loop reads as a value in the condition:
+<code>{if first@items}</code>, <code>{if current@items eq 2}</code>.</p>
+
+<p>Under the strict syntax check (the default) a field that does not exist is an error rather
+than an empty value, so a typo in a condition is reported instead of silently taking the
+else branch.</p>

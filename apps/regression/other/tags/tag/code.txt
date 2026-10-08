@@ -1,0 +1,27 @@
+<p><code>{code}...{/code}</code> takes its content as PAD source and renders it in a
+separate engine pass - a fresh build, as if the content were a little page of its own - and
+outputs what that pass produced. Inside, everything a page can do works: tags, fields,
+expressions, <code>{set}</code>.</p>
+
+<p>Its main use is as a pipe. A value is text in PAD: a field holding
+<code>{echo 1 + 1}</code> prints those characters, it does not run them. Piping the value into
+<code>code</code> - <code>{echo $snippet | code}</code> - is the explicit way to say that it
+is a template, for a snippet kept in a database or a file.</p>
+
+<p>By default the pass shares the page's state: it sees the variables and the stores, and
+what it sets stays behind. Four options change how isolated it is:</p>
+<ul>
+  <li><code>sandbox</code> - nothing in, nothing out; the same as the
+  <a href="?tag/sandbox">{sandbox}</a> tag and the <code>sandbox</code> pipe;</li>
+  <li><code>reset</code> - the levels and the stores start empty and are put back afterwards,
+  while variables are shared as in a plain pass;</li>
+  <li><code>clean</code> - the pass sees everything, and what it created or changed is
+  undone when it ends;</li>
+  <li><code>function='name'</code> - the pass runs inside a PHP function, so variables
+  get a scope of their own; what it creates is copied out unless <code>sandbox</code> is
+  given too.</li>
+</ul>
+
+<p>The same four options are read by <a href="?tag/page">{page}</a>, which runs a whole page
+in such a pass. To show braces without running them, the opposite tool is
+<a href="?tag/ignore">&#123;ignore&#125;</a>.</p>

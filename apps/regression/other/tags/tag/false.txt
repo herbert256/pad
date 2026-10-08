@@ -1,0 +1,15 @@
+<p><code>{false}</code> answers FALSE, which is the level's "else" state: the content does
+not render, and the <code>&#64;else&#64;</code> part of the pair renders in its place. Alone it prints
+nothing. It is the fixed "no" beside <a href="?tag/true">{true}</a> and
+<a href="?tag/null">{null}</a>.</p>
+
+<p>The common use is switching a block of a template off without deleting it: change
+<code>{true}</code> to <code>{false}</code>, or wrap the block in <code>{false}</code> ...
+<code>{/false}</code> - unlike a comment, the content still has to be a valid template. It is
+also the simplest way to see what a tag's <code>&#64;else&#64;</code> or <code>else=</code> option does,
+since nothing else influences the outcome.</p>
+
+<p>The <code>else='name'</code> option, which every tag takes, puts a stored
+<a href="?tag/content">{content}</a> in place of a level that answered FALSE, an empty list or
+an empty text. That is where <code>{false}</code> and <code>{null}</code> differ: a NULL fires
+<code>null=</code>, not <code>else=</code>.</p>

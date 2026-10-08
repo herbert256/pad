@@ -1,0 +1,25 @@
+<p><code>{slot}</code> gives a custom tag - a template in <code>_tags/</code> or
+<code>_common</code>, or an <code>_include</code> snippet used as a pair - more than one
+place for the caller's content. Like <a href="?tag/block"><code>{block}</code></a> it plays
+two roles depending on where it stands.</p>
+
+<ul>
+  <li>A <code>{slot 'name'}</code> pair standing <em>directly in the content</em> of a custom
+  tag where it is used is a <em>fill</em>. It is taken out of the content when the tag opens
+  and kept for that one use of the tag; the rest of the content goes to the template's
+  <code>&#64;content&#64;</code>. <code>{slot 'name'/}</code> there is an empty fill.</li>
+  <li>Every other <code>{slot}</code> - in the tag's template - is a <em>place</em>: the fill
+  renders there, or, when the caller gave none, the slot's own content as a default.</li>
+</ul>
+
+<p>A default that holds <code>&#64;content&#64;</code> is a frame around the fill:
+<code>{slot 'footer'}&lt;footer&gt;&#64;content&#64;&lt;/footer&gt;{/slot}</code> renders the footer
+element only when there is a fill to put in it; otherwise its <code>&#64;else&#64;</code> part, or
+nothing. A fill is the caller's text: it renders with the caller's variables, and a
+<code>{#name}</code> or <code>{slot}</code> inside it belongs to the caller's own tag, which
+is how a template passes a slot of its own on to a tag it uses. From a tag's PHP,
+<code>padSlotFill ( 'footer' )</code> reads a fill.</p>
+
+<p>Under the strict check a slot without a name, and a slot outside any custom tag, are
+errors. The examples use the application's tag <code>_tags/slotCard.pad</code>, a card with a
+<code>title</code> slot (default <q>Untitled</q>) and a framed <code>footer</code> slot.</p>

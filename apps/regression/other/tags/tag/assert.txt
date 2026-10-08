@@ -1,0 +1,18 @@
+<p><code>{assert $total eq 42, 'the cart total'}</code> states something that must be true at
+that point of the page. It always renders nothing. What it does depends on
+<code>$padAssert</code>: off - the default, and so in production - the tag is skipped
+entirely, the condition is not even evaluated, so an assert on a field that is not there
+costs nothing and raises nothing. On, a condition that holds passes quietly and a false one is
+a PAD error: <code>assert failed: $total eq 42 - the cart total</code>.</p>
+
+<p><code>pad test &lt;app&gt;</code> switches <code>$padAssert</code> on for its run. An
+application's tests live in <code>_tests/</code>: <code>cart.pad</code> (with
+<code>cart.php</code> for its data) is the test page and <code>cart.txt</code> its expected
+answer; a failing assert fails the test, with the condition, the message and the template
+position as its report. So the checks can stand in the real pages and templates, and the
+tests exercise them.</p>
+
+<p>The parameters are read as written, not evaluated in advance - the condition is an
+expression with its own operators, evaluated only after the switch has been asked. With
+asserts on, an <code>{assert}</code> without a condition is an error of its own. To raise
+an error unconditionally, use <a href="?tag/error">{error}</a>.</p>

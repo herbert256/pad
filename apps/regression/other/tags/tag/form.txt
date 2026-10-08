@@ -1,0 +1,44 @@
+<p><code>{form 'contact'}</code> writes a <code>&lt;form method="post"&gt;</code> round its
+content that posts back to the page it stands in. A posting form carries two hidden fields:
+the visitor's CSRF token (<code>padCsrfToken</code>, the session starts on demand) and its
+own name (<code>padForm</code>). In the page's PHP, <code>padPosted('contact')</code> is TRUE
+when this form came back, so a page with two forms knows which one was sent. A form with
+<code>method='get'</code> carries neither - its fields end up in the address.</p>
+
+<p>Every item besides the name, <code>method</code>, <code>error</code> and
+<code>client</code> is an attribute of the <code>&lt;form&gt;</code> tag - <code>class=</code>,
+<code>id=</code>, <code>action=</code>, <code>enctype=</code> - written the way
+<a href="?tag/attrs">{attrs}</a> writes them. The token only goes to this site: a form whose
+<code>action=</code>, or the <code>formaction=</code> of a button in it, points to another
+site gets none. A posting form holding a file field gets
+<code>enctype="multipart/form-data"</code> unless it names one itself.</p>
+
+<h3>Fields that refill</h3>
+
+<p>The <a href="?tag/input">{input}</a> and <a href="?tag/textarea">{textarea}</a> fields
+inside know which form they are in. When that form came back they show what was sent,
+escaped, and the message <code>padValidate</code> left for them - a field of the same name in
+another form of the page stays as it was. A GET form refills from the query string once it
+holds more than the page's name. With <code>error=</code> a form that came back with errors
+starts with <code>&lt;div class="error" role="alert"&gt;</code> holding the message;
+<code>error</code> alone says "Please correct the errors below."</p>
+
+<h3>Rules in the template</h3>
+
+<p>The fields of a named form can carry their own rules: <code>rules='required|email'</code>.
+They are read from the page's own text before any PHP runs and a post of the form is checked
+against them there, so <code>padPosted('contact')</code> is TRUE only for a post that kept
+them, and <code>padFormFailed('contact')</code> for one that broke them - that one renders the
+form again, refilled, with the messages. Only the page's own template (with its
+<code>_inits.pad</code> and <code>_exits.pad</code>) is read: rules in a snippet, a custom tag,
+a <a href="?tag/page">{page}</a> or a layout, rules from a variable, rules in a GET form or one
+with <code>action=</code>, and an unknown rule are errors, strict check or not - each would be
+a check that never runs. That is also why the examples with rules on this page are shown, not
+run: they are rendered here through <code>{page}</code>.</p>
+
+<p><code>client</code> checks the same rules in the browser as well, with the same messages,
+before the form leaves: the form gets <code>novalidate</code>, its rules in
+<code>data-pad-rules</code>, and the checker script (see <a href="?tag/validator">{validator}</a>)
+follows it once a page. A form with <code>client</code> needs a name and at least one field
+with rules. The pair must close - a lone <code>{form}</code> is an error under the strict
+check.</p>

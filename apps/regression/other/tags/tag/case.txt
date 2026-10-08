@@ -1,0 +1,22 @@
+<p><code>{case value}</code> evaluates its value once and keeps only the branch of the first
+<code>{when}</code> that matches it. A <code>{when}</code> may list several values separated by
+commas - <code>{when 'yellow', 'amber'}</code> - and matches when any of them is equal. Each
+value is an expression of its own, so <code>{when $limit}</code> or <code>{when 2 * 5}</code>
+work too. The comparison is PHP's loose <code>==</code>, so <code>{when 3}</code> matches the
+text <code>'3'</code>.</p>
+
+<p>A branch runs from its <code>{when}</code> to the next one (or to <code>{else}</code> or
+<code>{/case}</code>). <code>{else}</code> opens the default branch, rendered when no
+<code>{when}</code> matched; without it nothing renders in that case. <code>{when 'default'}</code>
+is not a default - it is an ordinary branch matching the text <code>default</code>. A nested
+<code>{case}</code> or <code>{if}</code> inside a branch keeps its own <code>{when}</code> and
+<code>{else}</code>.</p>
+
+<p>Under the strict syntax check the tag is held to its shape: a <code>{case}</code> without a
+value, without any <code>{when}</code> or without its <code>{/case}</code> is an error; so is
+text standing before the first <code>{when}</code> (it would never render), a <code>{when}</code>
+behind the <code>{else}</code>, a <code>{when}</code> without a value, and a value listed twice
+- only the first one could ever answer.</p>
+
+<p>For a yes/no test use <a href="?tag/if">{if}</a>; for a heading each time a value changes
+inside a loop, <a href="?tag/ifchanged">{ifchanged}</a>.</p>

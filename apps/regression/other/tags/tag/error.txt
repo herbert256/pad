@@ -1,0 +1,28 @@
+<p><code>{error 'message'}</code> calls <code>padError()</code> - the same function the engine
+uses for its own errors - from a template. What happens next is up to
+<code>$padErrorAction</code> in <code>_config/config.php</code>:</p>
+
+<ul>
+  <li><code>pad</code> (the default): the request ends with status 500 and the error report -
+  the message, where in the template it stands, the stack - for a local request; any other
+  visitor gets the request id, or the application's <code>_errors/500.pad</code>, while the
+  report is logged.</li>
+  <li><code>stop</code> and <code>exit</code>: the request ends with status 500, without the
+  report page.</li>
+  <li><code>dump</code>: the full dump is written to <code>DATA/dumps/</code> and the error
+  logged; the page goes on.</li>
+  <li><code>log</code>: the error is logged and the page goes on; <code>ignore</code>: the page
+  goes on and nothing is logged.</li>
+  <li><code>boot</code> and <code>php</code>: the boot handler, or PHP's own exception
+  handling, takes over.</li>
+</ul>
+
+<p>In every case the application's <code>_events/error.php</code> hook runs first, with
+<code>$error</code>, <code>$file</code> and <code>$line</code>. When the request survives,
+the tag itself renders nothing: <code>padError()</code> returns FALSE.</p>
+
+<p>Use it to stop on a state a page must never reach - an unknown value in a
+<a href="?tag/case">{case}</a>, a required row that is not there. For a check that only test
+runs should hold the page to, use <a href="?tag/assert">{assert}</a>; to end the request
+quietly, <a href="?tag/exit">{exit}</a>; to throw a real PHP exception instead,
+<a href="?tag/exception">{exception}</a>.</p>

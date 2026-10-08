@@ -1,0 +1,20 @@
+<p><code>{content 'name'}</code> ... <code>{/content}</code> stores its content under that name
+and prints nothing. The content is kept as template source, unrendered: fields and tags in it
+are resolved each time it is used, with the values of that moment and of that place. Written
+once, it can be rendered many times - <code>{name}</code> or <code>{content:name}</code> - or
+handed to another tag as its body with <code>content='name'</code>, so one row template serves
+several loops.</p>
+
+<p>With the name on the closing tag instead - <code>{content}</code> ... <code>{/content
+'name'}</code> - the content is rendered first, where it stands, and the finished text is
+kept: a snapshot that no longer changes with the variables.</p>
+
+<p>Without content, a second parameter gives the text: <code>{content 'hi', 'Hello'}</code>.
+A field there - <code>{content 'c', $text}</code> - is a value, and like every value it stays
+text when the content is rendered: braces in it never run as tags.</p>
+
+<p>Stored content is also what the <code>else=</code>, <code>null=</code> and <code>notOk=</code>
+options of every tag put in place of a level that came up empty - see
+<a href="?tag/false">{false}</a> and <a href="?tag/null">{null}</a>. Under the strict syntax
+check a <code>{content}</code> without a name, or with the name of a built-in or application
+tag, is an error.</p>

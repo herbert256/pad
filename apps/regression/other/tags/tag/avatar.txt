@@ -1,0 +1,20 @@
+<p><code>{avatar}</code> draws the initials of a name as an inline SVG (<code>lib/avatar.php</code>)
+- the picture a user list or a comment shows for someone without a photo. Nothing is fetched
+or stored: the same name is the same picture on every page and in every e-mail.</p>
+
+<p>The letters are the first letters of the first and last word of the name; a single word
+gives one letter, and an e-mail address is read by the words before its <code>@</code>, split
+on dots, dashes and underscores. A name without letters is drawn as <code>?</code>. The
+background is one of ten palette colours picked by a SHA-256 hash of the lower-cased name,
+and the letters are white or near-black, whichever has the higher WCAG contrast on it.</p>
+
+<p>The colours are the custom properties <code>--pad-avatar-1</code> ... <code>-10</code> and
+<code>--pad-avatar-ink-&lt;n&gt;</code> on <code>.pad-avatar</code>, with
+<code>light-dark()</code> defaults written once per page in a <code>&lt;style&gt;</code> (with
+the request's nonce when <code>$padCsp</code> asks for one). The SVG is
+<code>role="img"</code>, named by the name or by <code>label</code>.</p>
+
+<p>No name, or a shape other than <code>circle</code> or <code>square</code>, is an error
+under the strict check. For a pattern that does not reveal the name, see
+<a href="?tag/identicon">{identicon}</a>; for a person's own picture,
+<a href="?tag/gravatar">{gravatar}</a>.</p>

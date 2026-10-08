@@ -1,0 +1,21 @@
+<p><code>{source}</code> reads the template and the PHP of a page and shows them as tabs, each
+file coloured as <a href="?tag/highlight"><code>&#123;highlight&#125;</code></a> colours it. Because
+the code is read from the files that run, a page that explains itself can never show a sample
+that has drifted from what it does. Without a parameter it is the page being rendered - inside
+a <code>{page}</code>, the page that <code>{page}</code> renders.</p>
+
+<p><code>files=</code> adds more files after the page's, as a text with commas: a path of the
+application (<code>_lib/orders.php</code>, <code>_tags/card.pad</code>) or <code>www:</code>
+followed by a file of the application's <code>www/</code> directory (<code>www:orders.js</code>).
+<code>only=</code> shows its files alone. A label carries <code>data-side="server"</code> for a
+file of the application and <code>"client"</code> for one under <code>www/</code> - what runs on
+the server, and what the browser gets.</p>
+
+<p>The tabs are a radio button and a label per file, then a panel per file, and work by CSS
+alone. The default look is written once a page under <code>:where()</code>, so the page's own
+CSS wins: style <code>.pad-source</code>, <code>.pad-source &gt; label</code> and
+<code>.pad-source-panel</code>.</p>
+
+<p>It follows the file rule of <code>{highlight file=}</code>: never a file outside the
+application or its <code>www/</code> directory, under <code>_config/</code> or a dotfile. Such a
+file, one that is not there, and a page that has neither a template nor PHP are errors.</p>

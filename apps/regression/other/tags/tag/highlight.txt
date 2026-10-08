@@ -1,0 +1,23 @@
+<p><code>{highlight 'php'}</code> ... <code>{/highlight}</code> writes its content as coloured
+source code: every piece HTML-escaped and wrapped in a <code>&lt;span class="hl-..."&gt;</code>
+- comments, strings, numbers, keywords, variables, tags, attributes, functions - inside
+<code>&lt;pre class="pad-highlight" data-lang="php"&gt;&lt;code&gt;</code>. It is done on the
+server by <code>lib/highlight.php</code>; no JavaScript library is loaded.</p>
+
+<p>The content is taken as it stands, before the engine walks it: the braces of PHP, CSS, JSON
+or of PAD itself need no <a href="?tag/ignore"><code>&#123;ignore&#125;</code></a>, and a field
+inside is shown rather than resolved. The indent the lines share is taken off, so the sample can
+be indented with the template. One exception: a <code>&#123;# comment #&#125;</code> is gone before any tag
+sees it, so a PAD sample keeps none.</p>
+
+<p><code>file=</code> colours a file of the application instead of the content - its language
+from the extension unless the first parameter says otherwise. It never reads a file outside the
+application, under <code>_config/</code> or a dotfile; such a name, or one that is not there,
+is a strict error, as is a language that does not exist. <code>lines</code> numbers the lines
+and <code>mark</code> sets some apart.</p>
+
+<p>The default colours are written once a page under <code>:where()</code>, following the
+page's <code>color-scheme</code>, so the page's own CSS wins. The <code>highlight</code> pipe
+does the same for a value - <code>{$query | highlight('sql')}</code> - and
+<a href="?tag/source"><code>{source}</code></a> shows the files behind a page as tabs, each
+coloured this way.</p>

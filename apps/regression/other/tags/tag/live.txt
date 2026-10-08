@@ -1,0 +1,26 @@
+<p><code>{live 'name'}...{/live}</code> makes a part of the page interactive without
+JavaScript of the application's own. The content is wrapped in
+<code>&lt;div data-pad-live="name"&gt;</code>, and the first region of the page brings a small
+inline script. Inside the region three attributes raise an event:</p>
+<ul>
+  <li><code>pad-click="event"</code> on any element - a click;</li>
+  <li><code>pad-submit="event"</code> on a form - its fields come along as request values;</li>
+  <li><code>pad-change="event"</code> on a field - its name and value come along.</li>
+</ul>
+<p><code>pad-value="..."</code> gives the event a value.</p>
+
+<p>An event posts <code>padLive</code>, <code>padEvent</code> and <code>padValue</code> to
+the page's own URL. The page runs as it always does - its PHP reads
+<code>padLiveEvent()</code> and <code>padLiveValue()</code> and changes its data - and the
+answer is the inner content of that one region, which the script swaps in. Nothing else of the
+page is sent.</p>
+
+<p>State lives where a page keeps it: the session (names listed in
+<code>$padSessionVars</code>), a database, or the value the event carries, as the counter
+example does with <code>pad-value</code>. With <code>$padCsrf</code> on, the region carries
+the session's token in <code>data-pad-csrf</code> and the script sends it with every event.</p>
+
+<p>Under the strict check a <code>{live}</code> without a name or without its closing tag is an
+error, and so is an event posted for a region the page does not render. For a part that is
+only loaded later, not re-rendered, see <a href="?tag/ajax">{ajax}</a>; htmx and similar
+libraries get the same partial answers through <a href="?tag/fragment">{fragment}</a>.</p>

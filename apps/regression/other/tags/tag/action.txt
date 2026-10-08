@@ -1,0 +1,20 @@
+<p><code>{action primes, reverse}</code> ... <code>{/action}</code> applies one of the sequence
+actions to a list and iterates what comes out, the current value in
+<code>{$sequence}</code>. The list is usually a store pushed earlier, but a range
+(<code>{action sum, '31..40'}</code>, 355) or a type with its options
+(<code>{action:reverse prime, rows=5}</code>, <code>11 7 5 3 2</code>) works too. Store and
+action may be written in either order, and the prefix form names the action in the tag:
+<code>{action:reverse primes}</code>, <code>{action:shift primes, 2}</code>.</p>
+
+<p>The actions are those of <a href="?tag/sequence">{sequence}</a>: orderings
+(<code>reverse</code>, <code>sort</code>, <code>shuffle</code>), selections
+(<code>first=n</code>, <code>last=n</code>, <code>element</code>, <code>slice</code>),
+aggregates that leave a single value (<code>sum</code>, <code>average</code>,
+<code>median</code>, <code>count</code>, <code>minimum</code>, <code>maximum</code>) and
+<code>dedup</code>. An aggregate's value is also there under the action's name -
+<code>{$sum}</code>.</p>
+
+<p>The store is read, not rewritten: after <code>{action primes, reverse}</code> the store still
+holds its original order - except for <code>shift</code> and <code>pop</code>, which take
+values out of it. To transform a store in place, use <a href="?tag/resume">{resume}</a>; to
+apply several actions and plays to a store at once, <a href="?tag/pull">{pull}</a>.</p>

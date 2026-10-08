@@ -1,0 +1,15 @@
+<p><code>{count 'orders'}</code> is an "is there anything in it" test: its content renders when
+the data set or the page array named <code>orders</code> holds at least one element, and its
+<code>&#64;else&#64;</code> part renders when it is empty. A typical use is a heading and a table that
+only appear when there are rows, with a "nothing found" text otherwise.</p>
+
+<p>Despite its name the tag prints no number. The number of rows of a loop is the
+<code>count@orders</code> property, readable inside the loop and in conditions. The name is
+looked up as a <a href="?tag/data">{data}</a> set first, then as a variable of the page. A
+variable that does not exist, or is NULL, holds nothing; one that holds a single plain value
+counts as holding that value.</p>
+
+<p>Write the name quoted: <code>{count 'orders'}</code>. <code>{count $orders}</code> evaluates
+the array itself as the name, which is an error. Inside a loop, the data tag's own
+<code>&#64;else&#64;</code> part already shows when it has no rows - <code>{count}</code> is for
+markup <em>around</em> the loop.</p>

@@ -1,7 +1,7 @@
 {ignore}
 <p><code>{can 'edit-post', $post}</code> asks a gate whether the user logged in may do
 something, and renders its content when the answer is yes; the part after its own
-<code>{else}</code>, or the <code>@else@</code> half, renders when it is no. The gates are
+<code>{else}</code>, or the <code>&#64;else&#64;</code> half, renders when it is no. The gates are
 functions the application defines once, in a file of its <code>_lib/</code>:</p>
 
 <pre><code>padGate ( 'edit-post', fn ( array $user, array $post ) =&gt; $user ['id'] === $post ['author'] );</code></pre>

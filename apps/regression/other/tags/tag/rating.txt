@@ -1,0 +1,16 @@
+<p><code>{rating}</code> shows a score as a row of stars - or hearts - in inline SVG
+(<code>lib/rating.php</code>). The whole icons up to the score are filled, the rest empty, and
+a part of one is filled as far as the score goes: 3.75 fills three stars and three quarters
+of the fourth.</p>
+
+<p>The part is a nested <code>&lt;svg&gt;</code> as wide as the part - no
+<code>clipPath</code>, so no id that two ratings on one page could share - measured over the
+drawn icon, so 0.5 is exactly half. The whole is <code>role="img"</code>, with the score in
+words as its <code>aria-label</code> and <code>&lt;title&gt;</code>: <code>4.5 out of
+5</code>, or <code>label</code>.</p>
+
+<p>The colours are <code>--pad-rating-star</code>, <code>-heart</code> and <code>-empty</code>
+on <code>.pad-rating</code>, with <code>light-dark()</code> defaults written once per page;
+the fill attributes carry the light ones for a reader without the style. A score that is no
+number, a max that is no whole number from 1 to 20 or an unknown icon is an error under the
+strict check. The tag only shows a score; to collect votes see <a href="?tag/poll">{poll}</a>.</p>

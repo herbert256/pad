@@ -1,0 +1,37 @@
+<style>:where(.pad-copy){--pad-copy-accent:#2a78d6;--pad-copy-text:#1f1f1d;--pad-copy-muted:#62615c;--pad-copy-line:#e4e3df;--pad-copy-surface:#f6f5f2;--pad-copy-done:#127a52;}@supports (color:light-dark(#000,#fff)){:where(.pad-copy){--pad-copy-accent:light-dark(#2a78d6,#5598e7);--pad-copy-text:light-dark(#1f1f1d,#ecebe6);--pad-copy-muted:light-dark(#62615c,#a9a8a0);--pad-copy-line:light-dark(#e4e3df,#3a3a37);--pad-copy-surface:light-dark(#f6f5f2,#232321);--pad-copy-done:light-dark(#127a52,#4fc794);}}.pad-copy{display:flex;align-items:stretch;gap:.5em;margin:0 0 1em;padding:.35em .35em .35em .9em;border:1px solid var(--pad-copy-line);border-radius:10px;background:var(--pad-copy-surface)}.pad-copy-text{flex:1;align-self:center;margin:0;overflow-x:auto;color:var(--pad-copy-text);font:.92em/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;user-select:all}.pad-copy-text code{font:inherit;background:none;padding:0}.pad-copy-button{display:none;flex:none;align-items:center;padding:.4em .9em;border:1px solid var(--pad-copy-line);border-radius:7px;background:transparent;color:var(--pad-copy-muted);font:inherit;font-size:.88em;font-weight:600;cursor:pointer}@media (scripting:enabled){.pad-copy-button{display:inline-flex}}.pad-copy-button:hover{color:var(--pad-copy-text);border-color:var(--pad-copy-muted)}.pad-copy-button:focus-visible{outline:2px solid var(--pad-copy-accent);outline-offset:2px}.pad-copy-button.is-copied{color:var(--pad-copy-done);border-color:var(--pad-copy-done)}.pad-copy-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}</style><div class="pad-copy"><pre class="pad-copy-text" id="pad-copy-4475073a"><code>padSqlDriver=sqlite
+padSqlDatabase=shop/shop.sqlite</code></pre><button type="button" class="pad-copy-button" data-pad-copy="pad-copy-4475073a" data-pad-label="Copy settings">Copy settings</button><span class="pad-copy-status" role="status"></span></div><script>(function () {
+  if (window.padCopyReady) return;
+  window.padCopyReady = true;
+  function fallback(element) {
+    var range = document.createRange();
+    range.selectNodeContents(element);
+    var selection = getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    var done = document.execCommand && document.execCommand('copy');
+    return done ? Promise.resolve() : Promise.reject(new Error('copy'));
+  }
+  function say(button, text, copied) {
+    var status = button.parentNode.querySelector('.pad-copy-status');
+    button.textContent = text;
+    button.classList.toggle('is-copied', copied);
+    if (status) status.textContent = copied ? 'Copied to the clipboard' : text;
+    clearTimeout(button.padCopyTimer);
+    button.padCopyTimer = setTimeout(function () {
+      button.textContent = button.getAttribute('data-pad-label');
+      button.classList.remove('is-copied');
+      if (status) status.textContent = '';
+    }, 2000);
+  }
+  document.addEventListener('click', function (e) {
+    var button = e.target.closest && e.target.closest('button[data-pad-copy]');
+    if (!button) return;
+    var element = document.getElementById(button.getAttribute('data-pad-copy'));
+    if (!element) return;
+    var text = element.textContent;
+    var copy = navigator.clipboard && window.isSecureContext
+      ? navigator.clipboard.writeText(text) : fallback(element);
+    copy.then(function () { say(button, 'Copied', true); },
+              function () { say(button, 'Select and copy', false); });
+  });
+})();</script>

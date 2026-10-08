@@ -1,0 +1,11 @@
+<p><code>{decrement $counter}</code> takes one off the variable and prints nothing. A variable
+that does not exist yet, or holds an empty text, starts at -1. The variable is a global: the
+new value outlives the loop or block the tag stands in, so it can count down the condition of
+an <a href="?tag/until">{until}</a> or <a href="?tag/while">{while}</a> loop.</p>
+
+<p>It is the short form of <code>{set $counter = $counter - 1}</code> and the mirror image of
+<a href="?tag/increment">{increment}</a>. The variable is taken by name - <code>$counter</code>, the
+<code>$</code> written - and is never evaluated as an expression.</p>
+
+<p>A value that is no number is an error naming the variable, and so is counting an engine
+variable such as <code>$padPage</code>.</p>

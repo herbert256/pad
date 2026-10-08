@@ -1,0 +1,26 @@
+<p><code>{attrs}</code> stands inside an HTML start tag and writes the attributes its items
+describe, separated by spaces: <code>&lt;button {attrs disabled=$busy, title=$help}&gt;</code>.
+Each value is escaped for the attribute, so a quote in a value cannot end it. The items are
+read raw - <code>content=</code>, <code>data=</code> or <code>print=</code> are attribute names
+here, not the options they are on other tags.</p>
+
+<h3>True, false and the rest</h3>
+<p>A boolean HTML attribute - <code>disabled</code>, <code>checked</code>,
+<code>selected</code>, <code>required</code>, <code>hidden</code>, <code>readonly</code> and the
+like - is written bare when its value is true and left out otherwise. Any other attribute is left
+out for FALSE and NULL, written bare for TRUE, and otherwise written with its value: the text
+<code>'false'</code> stays <code>aria-expanded="false"</code>, an empty text is an empty
+attribute, an array is joined with spaces. A name alone - <code>{attrs required}</code> - is a
+bare attribute.</p>
+
+<h3>Attributes from an array</h3>
+<p>An item without a name whose value is an array adds its keys as attributes. Those keys are
+data, often a visitor's, so some are left out: a key that is no attribute name, an event handler
+(<code>on...</code>), a script library's directive in any spelling (<code>@</code>,
+<code>:</code>, <code>x-</code>, <code>v-</code>, <code>hx-</code>, <code>ng-</code>,
+<code>wire:</code> and more), an iframe's <code>srcdoc</code>, and a URL attribute whose value
+names a scheme that runs script (<code>javascript:</code>, <code>vbscript:</code>,
+<code>data:</code> other than <code>data:image/</code>).</p>
+
+<p>For the <code>class</code> attribute, <a href="?tag/classes"><code>&#123;classes&#125;</code></a>
+builds the list from conditions.</p>

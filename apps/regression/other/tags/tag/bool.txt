@@ -1,0 +1,20 @@
+<p><code>{bool 'name'}</code> ... <code>{/bool}</code> works out a yes or no once and keeps it
+under a name; the tag prints nothing. The content is read as an expression -
+<code>$stock gt 0</code>, <code>1</code>, <code>$isAdmin and $active</code> - and its truth
+is the flag: blank content, <code>0</code> or a false comparison give FALSE, anything else
+TRUE.</p>
+
+<p>Later, <code>{name}</code> ... <code>{/name}</code> (or <code>{bool:name}</code> ...
+<code>{/bool:name}</code> when the name is also something else) renders its content when the
+flag is TRUE and its <code>&#64;else&#64;</code> part when it is FALSE. In an expression the flag is
+read with <code>flag:name</code>. The flag keeps the value it had when it was stored, even
+when the variables in the expression change afterwards.</p>
+
+<p>Without content, a second parameter gives the value: <code>{bool 'open', $hours}</code> -
+the value's own truth by PHP's rule, so blank and <code>'0'</code> are FALSE and anything else
+TRUE. A value is never run as template or expression. With neither content nor value the flag
+is FALSE.</p>
+
+<p>Under the strict syntax check a <code>{bool}</code> without a name, or with the name of a
+built-in or application tag, is an error. For a test used once, <a href="?tag/if">{if}</a> is
+simpler; a flag pays off when the same test is asked in several places.</p>

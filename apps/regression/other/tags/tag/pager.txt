@@ -1,0 +1,26 @@
+<p><code>{pager 'products'}</code> writes the page links for a tag that the <code>page</code>
+handling option slices - <code>{products page=$pg ?? 1, rows=12}</code>. While that tag
+renders, its paging books the current page, the rows per page and the number of rows it pages
+through (after the options written before <code>page</code>, such as a <code>where</code>);
+the pager reads that booking. So the paged tag must come first: under the strict check a pager
+without a paged tag of that name before it is an error.</p>
+
+<p>Written alone the tag answers <code>&lt;nav class="pager" aria-label="Pagination"&gt;</code>
+with links: previous, the first page, a window of pages around the current one, the last page,
+next. The current page is marked <code>aria-current="page"</code>, a gap of pages left out is
+<code>…</code>, and a previous or next that does not exist is a disabled
+<code>&lt;span&gt;</code>. The labels <code>pager.label</code>, <code>pager.previous</code> and
+<code>pager.next</code> come from the application's <code>_lang/</code> catalog when it has
+them. When everything fits on one page the pager answers nothing.</p>
+
+<p>Each link is <code>$padGo</code> with the page the request asked for, the request's other
+query values kept and the page value set - so a search or filter in the address survives. The
+value is the variable the <code>page</code> option was written with (<code>page=$pg</code>
+gives <code>&amp;pg=3</code>), or <code>query=</code>.</p>
+
+<p>Written as a pair the pager hands the links over as rows for markup of your own:
+<code>kind</code> (<code>prev</code>, <code>next</code>, <code>page</code>,
+<code>current</code>, <code>gap</code>), <code>page</code>, <code>label</code> and
+<code>href</code> - empty for a gap and for a missing previous or next. A single page gives no
+rows, so the pair shows its <code>&#64;else&#64;</code> branch. A table of the Select subsystem is
+paged by its SQL limit; the pager then counts the same query to know the total.</p>

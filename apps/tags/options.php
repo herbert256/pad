@@ -1,5 +1,5 @@
 <?php
 
-  $options = tagsByOption ();
+  $optionRows = tagsByOption ();
 
 ?>

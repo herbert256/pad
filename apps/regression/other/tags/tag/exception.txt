@@ -1,0 +1,17 @@
+<p><code>{exception 'message'}</code> executes <code>throw new Exception ('message')</code>
+inside the tag's handler. Where <a href="?tag/error">{error}</a> reports an error the polite
+way, through <code>padError()</code>, this one behaves like PHP code that fails - a database
+library that throws, a division by zero - so it is the tag to try out how an application and
+its configuration deal with such a failure.</p>
+
+<p>With <code>$padErrorTry</code> on (the default) the engine runs every tag handler inside a
+try guard: the exception is caught there and handed to the configured
+<code>$padErrorAction</code>, the same way as an error - under <code>pad</code> the request
+ends with status 500 and the report (the request id for a visitor who is not local), under
+<code>log</code> or <code>ignore</code> the page renders on without the tag. With the guards
+off it reaches PHP's exception handler: the error action records it and the request ends there
+as a failure, whatever the action.</p>
+
+<p>It is mainly there for testing: the regression suites use it to prove that every error
+action and every guard behaves as documented. In application code, prefer
+<a href="?tag/error">{error}</a>.</p>

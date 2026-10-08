@@ -1,0 +1,16 @@
+<div id="padAjaxb7a9d28a2351580773f7f02822bb95f7"></div>
+
+<script>
+  padAjaxb7a9d28a2351580773f7f02822bb95f7 = new XMLHttpRequest();
+  padAjaxb7a9d28a2351580773f7f02822bb95f7.onreadystatechange=function() {
+    if (padAjaxb7a9d28a2351580773f7f02822bb95f7.readyState === 4) {
+      if (padAjaxb7a9d28a2351580773f7f02822bb95f7.status === 200) {
+        document.getElementById("padAjaxb7a9d28a2351580773f7f02822bb95f7").innerHTML=padAjaxb7a9d28a2351580773f7f02822bb95f7.responseText;
+      } else {
+        document.getElementById("padAjaxb7a9d28a2351580773f7f02822bb95f7").innerHTML=padAjaxb7a9d28a2351580773f7f02822bb95f7.statusText;
+      }
+    }
+  }
+  padAjaxb7a9d28a2351580773f7f02822bb95f7.open("GET","http://localhost/pad/tags/?examples/ajax/parts/note&padInclude",true);
+  padAjaxb7a9d28a2351580773f7f02822bb95f7.send();
+</script>

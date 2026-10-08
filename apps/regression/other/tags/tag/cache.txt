@@ -1,0 +1,26 @@
+<p><code>{cache 'name', ttl=300}</code> ... <code>{/cache}</code> renders its content once and
+keeps the result; for the next <code>ttl</code> seconds every request gets the stored rendering
+and nothing inside the section runs - no tag, no query, no remote fetch. It is for the parts of
+a page that cost more than the rest: a list of best sellers, a menu built from the database, a
+report over a year of orders. The PHP of the page runs before the template, so it runs on a hit
+too; put the expensive work in the template, inside the section.</p>
+
+<p>The name is the section's key within the application. <code>vary=</code> adds whatever else
+the rendering depends on - a user id, a country, a page number - and keeps one copy per value.
+When what the section shows has changed, <code>padFragmentForget ( 'name' )</code> drops it at
+once (with a vary value as its second argument to drop one copy), and
+<code>padFragmentForget ()</code> drops them all.</p>
+
+<p>The <code>cache=&lt;seconds&gt;</code> option does the same for any tag:
+<code>{topProducts cache=3600}...{/topProducts}</code> is keyed on the page, the tag as written
+and its evaluated parameters, and skips the tag's own handler on a hit. Closing pipes and end
+options run on a stored rendering as on a fresh one. What the section leaves for the rest of the
+page is kept with it and made again on a hit: its <code>{push}</code>es, and the booking of a
+paged tag for a <code>{pager}</code> further down.</p>
+
+<p>Some renderings are never stored: one that holds the visitor's CSRF token (a
+<code>{form}</code>, <code>{csrf}</code>, a live region) or the request's
+<code>{nonce}</code>, and a request for one response fragment or the post of a live region.
+<code>$padFragmentCache</code> chooses the store - <code>'file'</code> (the default, under
+<code>DATA/cache/fragments/</code>), <code>'apcu'</code>, or <code>FALSE</code> to render every
+time. A <code>{cache}</code> without a name, or without its closing tag, is a strict error.</p>

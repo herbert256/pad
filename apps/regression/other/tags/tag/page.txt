@@ -1,0 +1,37 @@
+<p><code>{page 'name'}</code> builds another page of the same application in a nested engine
+pass and puts its output where the tag stands. It is not a second request: the page's PHP runs
+in this request, its template renders, and the result is the tag's value. The page is named
+from the application root, as in a URL, and resolved as the router resolves one - a directory
+means its <code>index</code>, a <code>.html</code> template counts, and a clean URL route
+binds its segments, so <code>{page 'products/42'}</code> renders <code>products/[id].pad</code>
+with <code>$id</code> set to 42.</p>
+
+<p>By default the page renders bare (<code>include</code> is TRUE): the
+<code>_inits.pad</code> and <code>_exits.pad</code> wrappers are not added a second time.
+The page's directory guards still decide - a <code>_guard.php</code> that refuses makes the
+tag render as nothing instead of refusing the whole request. A page that does not exist is an
+error under the strict check; without it the tag is empty and the rest of the page lives.</p>
+
+<h3>How isolated the page is</h3>
+
+<p>A plain <code>{page}</code> shares the request: it reads the variables set before it, and
+what its PHP creates stays behind for the rest of the page. Four options change that, the same
+four <a href="?tag/code">{code}</a> takes:</p>
+<ul>
+  <li><code>sandbox</code> - the page sees nothing of the page around it and leaves nothing
+  behind (the <a href="?tag/sandbox">{sandbox}</a> tag runs content this way);</li>
+  <li><code>reset</code> - the levels and stores are cleared for the pass, the variables
+  stay;</li>
+  <li><code>clean</code> - the page sees everything, but what it changes is undone
+  afterwards;</li>
+  <li><code>function='name'</code> - the page's PHP runs inside a PHP function, with a scope
+  of its own.</li>
+</ul>
+
+<h3>Other applications</h3>
+
+<p>With <code>app='other'</code> the page belongs to another application, with its own
+configuration, <code>_lib</code> and database, so it cannot be built here: it is fetched over
+HTTP. By default the browser fetches it, as <a href="?tag/ajax">{ajax}</a> does;
+<code>ajax=false</code> has the server fetch it and insert its body. For a page of this
+application fetched as a real second request, see <a href="?tag/get">{get}</a>.</p>

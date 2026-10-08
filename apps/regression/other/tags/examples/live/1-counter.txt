@@ -1,0 +1,52 @@
+<div data-pad-live="liveCounter">
+  <p>Clicked 0 times</p>
+  <button pad-click="add" pad-value="0">Add one</button>
+  <button pad-click="reset">Reset</button>
+</div><script>(function () {
+  if (window.padLiveReady) return;
+  window.padLiveReady = true;
+  function send(region, fields) {
+    var body = new URLSearchParams();
+    fields.forEach(function (field) { body.append(field[0], field[1]); });
+    body.set('padLive', region.getAttribute('data-pad-live'));
+    var token = region.getAttribute('data-pad-csrf');
+    if (token && !body.has('padCsrfToken')) body.set('padCsrfToken', token);
+    region.setAttribute('aria-busy', 'true');
+    fetch(location.href, { method: 'POST', body: body, credentials: 'same-origin' })
+      .then(function (response) {
+        return response.text().then(function (text) {
+          if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
+          return text;
+        });
+      })
+      .then(function (html) { region.innerHTML = html; region.removeAttribute('data-pad-live-error'); })
+      .catch(function (error) { region.setAttribute('data-pad-live-error', error.message); })
+      .then(function () { region.removeAttribute('aria-busy'); });
+  }
+  function event(element, attribute, value) {
+    return [['padEvent', element.getAttribute(attribute)], ['padValue', element.hasAttribute('pad-value') ? element.getAttribute('pad-value') : value]];
+  }
+  document.addEventListener('click', function (e) {
+    var element = e.target.closest('[pad-click]');
+    var region = element && element.closest('[data-pad-live]');
+    if (!region) return;
+    e.preventDefault();
+    send(region, event(element, 'pad-click', ''));
+  });
+  document.addEventListener('submit', function (e) {
+    var form = e.target;
+    var region = form.hasAttribute('pad-submit') && form.closest('[data-pad-live]');
+    if (!region) return;
+    e.preventDefault();
+    var fields = [];
+    new FormData(form).forEach(function (value, key) { if (typeof value === 'string') fields.push([key, value]); });
+    send(region, fields.concat(event(form, 'pad-submit', '')));
+  });
+  document.addEventListener('change', function (e) {
+    var element = e.target.closest('[pad-change]');
+    var region = element && element.closest('[data-pad-live]');
+    if (!region) return;
+    var value = element.type === 'checkbox' ? (element.checked ? element.value : '') : element.value;
+    send(region, (element.name ? [[element.name, value]] : []).concat(event(element, 'pad-change', value)));
+  });
+})();</script>

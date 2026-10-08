@@ -1,0 +1,22 @@
+<p><code>{chess}</code> draws a chess position as inline SVG: the board, the pieces as
+shapes of PAD's own (no font, no image), the coordinates along the edges, and optionally
+marked squares and arrows - for the last move, a plan or a threat. It is drawn on the server
+and needs no script.</p>
+
+<p>The position is written in FEN (Forsyth-Edwards Notation). Only the first field, the
+placement of the pieces rank by rank from rank 8, is required:
+<code>{chess '8/8/8/4k3/8/8/4K3/8'}</code>. When the other fields are written - side to move,
+castling rights, en passant square, half-move clock and move number - they are checked, and
+the side to move is part of the description.</p>
+
+<p><code>flip</code> turns the board so Black plays up. <code>highlight=</code> marks squares
+and <code>arrow=</code> draws arrows from the middle of one square to the middle of another,
+over the pieces. <code>size=</code> sets the width and height in pixels.</p>
+
+<p>The board is an image for a screen reader (<code>role="img"</code>) with a title and a
+description listing every piece by side and kind, the side to move, the marks and the arrows.
+Under the strict check a FEN with a wrong number of ranks, an unknown piece letter or a wrong
+field is an error, as is a square or an arrow that is not on the board. The colours are
+<code>--pad-chess-light</code>, <code>-dark</code>, <code>-white</code>, <code>-black</code>,
+<code>-ink</code>, <code>-mark</code>, <code>-arrow</code> and <code>-text</code> on
+<code>.pad-chess</code>.</p>

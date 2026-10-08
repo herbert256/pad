@@ -1,0 +1,36 @@
+<p><code>{data 'name'}</code> ... <code>{/data}</code> reads its content as data and keeps it
+under that name; it prints nothing. A later <code>{name}</code> ... <code>{/name}</code>
+iterates it like any page array - fields, properties, the handling options
+(<code>sort</code>, <code>where</code>, <code>first</code> ...) - and so do
+<code>data='name'</code> on another tag, <code>{data:name}</code>, <a href="?tag/tree">{tree}</a>
+and the <code>lookup</code> pipe.</p>
+
+<h3>Formats</h3>
+<p>The format is recognised from the content itself:</p>
+<ul>
+  <li><strong>JSON</strong> - starts with <code>[</code> or <code>{</code>. An array of objects
+  gives rows with fields; a plain array gives values, read with <code>{$name}</code>.</li>
+  <li><strong>XML</strong> - starts with <code>&lt;</code>. The elements under the root are the
+  rows, their attributes and child elements the fields.</li>
+  <li><strong>YAML</strong> - starts with <code>---</code>, or with a <code>- item</code> or
+  <code>key: value</code> line. It needs PHP's yaml extension.</li>
+  <li><strong>A list</strong> - <code>('a', 'b', 2 * 3)</code> in parentheses: every element is
+  evaluated as an expression.</li>
+  <li><strong>A range</strong> - <code>1..10</code> or <code>a..z</code>.</li>
+  <li><strong>CSV</strong> - anything else of several lines: the first line names the fields,
+  each further line is a row.</li>
+</ul>
+<p>When the start does not tell, <code>type='csv'</code> (or another format) says it. A one-line
+name of a file in the application's <code>_data/</code> directory reads that file.</p>
+
+<h3>Other forms</h3>
+<p>Without content, a second parameter is the source: <code>{data 'steps', '1..5'}</code>. A
+value from a field there is data, never template: a field holding a parenthesised list is
+refused, since its elements would run as expressions. With the name on the closing tag -
+<code>{data}</code> ... <code>{/data 'name'}</code> - the content is rendered first and the
+result read as data, so fields and tags inside it are resolved.</p>
+
+<p>Content with braces - JSON objects - is read as written: a JSON object in the content is
+not taken for a tag. Under the strict syntax check a <code>{data}</code> without a name is an
+error, and so is a name that is already a built-in or application tag, since
+<code>{name}</code> would never reach the store.</p>

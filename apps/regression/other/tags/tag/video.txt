@@ -1,0 +1,26 @@
+<p><code>{video}</code> embeds a YouTube or Vimeo video without letting the video site run
+anything before the visitor asks for it (<code>lib/video.php</code>). The page shows a poster
+with a play button; only a click on the button puts the player's iframe in the poster's place
+and moves the focus into it.</p>
+
+<p>The poster of a YouTube video is its thumbnail on i.ytimg.com - an image, no script and no
+cookie - and the player comes from youtube-nocookie.com with <code>autoplay=1&amp;rel=0</code>.
+A Vimeo video gets a quiet drawn poster unless <code>poster</code> names a picture, and its
+player is asked with <code>dnt=1</code>. The small script that swaps poster and player is
+written once per request, with the CSP nonce when <code>$padCsp</code> asks for one. Without
+script the button is hidden and a <code>&lt;noscript&gt;</code> link to the video on its own
+site stands in its place.</p>
+
+<p>A file of <code>www/&lt;application&gt;/</code> - <code>.mp4</code>, <code>.webm</code>,
+<code>.ogv</code> or <code>.mov</code> - is written as <code>&lt;video controls
+preload="none" playsinline&gt;</code> with its poster: nothing is loaded before play.
+A start time is written in the address - <code>t=</code>, <code>start=</code> or
+<code>#t=</code>, as <code>90</code>, <code>1m30s</code> or <code>1:30</code>; the
+<code>start</code> option says the same, but it is also the handling option that skips
+occurrences, and as such it currently leaves the tag with nothing to write.
+<code>ratio</code> sets the proportion of the box. The
+colours are <code>--pad-video-*</code> custom properties on <code>.pad-video</code>.</p>
+
+<p><code>title</code> is required - it is what a screen reader says for the button and the
+player. A missing title and an address that is no known video are errors under the strict
+check.</p>

@@ -10,13 +10,13 @@ one body written once.</p>
 without children - the field missing or empty - renders nothing at its <code>{recurse}</code>.
 <a href="?tag/branch">{branch}</a> ... <code>{/branch}</code> renders only for a row that has
 children, so the <code>&lt;ul&gt;</code> around a <code>{recurse}</code> is left out for a
-leaf, and its <code>@else@</code> part renders for a leaf instead.</p>
+leaf, and its <code>&#64;else&#64;</code> part renders for a leaf instead.</p>
 
 <p>Every list of the tree is a level named as the tree is: <code>depth@tree</code> is 1 for the
 top rows and one more per level down, and <code>first@tree</code>, <code>current@tree</code>,
 <code>count@tree</code> speak of the list being rendered. The handling options
 <code>sort</code>, <code>where</code> and <code>reverse</code> written on the tree apply to
-every list, the children included. The <code>@else@</code> part of the tree itself shows when
+every list, the children included. The <code>&#64;else&#64;</code> part of the tree itself shows when
 there are no rows at all.</p>
 
 <p>Under the strict syntax check a tree without rows named, a name nothing holds, or a tree

@@ -1,0 +1,13 @@
+<p><code>{restart 'name'}</code> throws away everything the current page has rendered and runs
+the named page instead - its <code>_inits</code>, PHP, template and <code>_exits</code> - as if
+it had been asked for. There is no round trip to the browser, so the address bar keeps the
+original URL, and the request's values are still there.</p>
+
+<p>Variables assigned on the tag - <code>{restart 'list', $message = 'Saved'}</code> - become
+global variables of the new page; a plain named option is not passed on. From PHP,
+<code>padRestart ( 'list', [ 'message' =&gt; 'Saved' ] )</code> does the same.</p>
+
+<p>The switch does not happen inside the tag: it records the wish, and the engine starts over
+at its next step. Pages that keep restarting each other are stopped after twenty restarts with
+an error. Use <a href="?tag/redirect">{redirect}</a> instead when the browser should end up on
+the new address - after a form post, so that a reload does not post again.</p>

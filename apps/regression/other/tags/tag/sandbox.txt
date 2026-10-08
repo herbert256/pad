@@ -1,0 +1,15 @@
+<p><code>{sandbox}...{/sandbox}</code> does what <a href="?tag/code">{code}</a> does - renders
+its content as PAD source in a separate engine pass - with the pass sandboxed. It is
+<code>{code sandbox}</code> under a name of its own.</p>
+
+<p>Sandboxed means: going in, the page's variables are hidden and the data, content, bool and
+sequence stores are emptied; coming out, everything is restored and what the pass set is gone.
+A field of the page is missing inside - write <code>{echo $city ?? 'default'}</code> when a
+snippet may run either way - and a <code>{push}</code> made inside fills the pass's own stacks,
+not the page's.</p>
+
+<p>The pipe form, <code>{echo $snippet | sandbox}</code>, runs a value as a template in the
+same isolation. It is the safer choice for template text that comes from outside the code -
+an editor, a database - when that text should not read or change the page's state. It is not a
+security boundary for untrusted authors on its own: the template language can still call what
+<code>$padPhpFunctions</code> allows.</p>

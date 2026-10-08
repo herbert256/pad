@@ -1,0 +1,25 @@
+<p><code>{calendar}</code> shows a month. The month is the first parameter
+(<code>'2026-10'</code>); without it, the request value named by <code>query</code>
+(<code>?month=2026-11</code>) - the value the links to the month before and after set - and
+otherwise this month, by <code>padNow</code>, so <code>padNowFreeze</code> holds it still in a
+test. A month that cannot be read is an error under the strict check.</p>
+
+<p>Written alone it answers a complete table: the month in the caption between links to its
+neighbours (keeping the other request values, as <a href="?tag/pager">{pager}</a> does), a
+column per weekday, a cell per day with its <code>&lt;time&gt;</code> and its events as a
+list. Today has <code>aria-current="date"</code>. A small default look rides along under
+<code>:where()</code>, so the page's own CSS wins.</p>
+
+<p>The events come from <code>data=</code> - a <code>{data}</code> store, a page array or a
+<code>_data</code> file. <code>date</code> names the field with the day and
+<code>title</code> the text; left out, the first field that reads as a date and the first
+other text field are taken. <code>link</code> makes an event's text a link.</p>
+
+<p>Written as a pair it hands over the weeks as rows instead: <code>$week</code> (the ISO
+number) and <code>days</code>, in which every day is a row with <code>$date</code>,
+<code>$day</code>, <code>$weekday</code>, <code>$month</code>, <code>$other</code> (a day of
+the month before or after), <code>$today</code>, <code>$weekend</code>, <code>$count</code>,
+<code>$class</code> (<code>other today weekend events</code>, as they apply) and
+<code>events</code>, the data rows of that date. A store named <code>events</code> hides the
+day's field of that name - <code>{level:events}</code> reaches it then. For a whole year of
+values as coloured squares, see <a href="?tag/chart">{chart 'calendar'}</a>.</p>

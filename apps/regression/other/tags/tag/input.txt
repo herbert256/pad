@@ -1,0 +1,24 @@
+<p><code>{input 'email', type='email', label='E-mail'}</code> writes a
+<code>&lt;label for&gt;</code> and an <code>&lt;input&gt;</code> with the name and an id - the
+name with every character an id cannot hold made a dash, so <code>user[email]</code> gets the
+id <code>user-email</code>. The name is required: a field without one is an error under the
+strict check.</p>
+
+<p>The tag takes <code>type</code>, <code>label</code>, <code>value</code>, <code>id</code>,
+<code>checked</code> and <code>rules</code> itself; every other item is an attribute of the
+input, written as <a href="?tag/attrs">{attrs}</a> writes it - a bare word such as
+<code>required</code> is a bare attribute, a false value leaves the attribute out.</p>
+
+<p>Before a post a field shows <code>value=</code>. After a post of its own
+<a href="?tag/form">{form}</a> it shows the posted value, escaped, found where PHP files the
+name (<code>user[email]</code> is <code>$_POST['user']['email']</code>). A checkbox or radio is
+checked when the posted value is its own value - before a post when <code>checked</code> is
+given - and its label comes after it. A password or file field is never refilled; a submit,
+button, reset or image input has no label and no error.</p>
+
+<p>When <code>padValidate</code> - or the field's own <code>rules=</code> - found something
+wrong, the message follows the field in <code>&lt;span class="error" id="email-error"&gt;</code>,
+worded with the field's label, and the field gets <code>aria-invalid="true"</code> and
+<code>aria-describedby</code>, so a screen reader says the message with the field. A file
+field shows why <code>padUpload</code> refused its file the same way. Outside a
+<code>{form}</code> the tag still writes the field, but it never refills.</p>

@@ -1,0 +1,16 @@
+<div id="padAjax96c2d26a95ce2c4f785f3a012a53754e"></div>
+
+<script>
+  padAjax96c2d26a95ce2c4f785f3a012a53754e = new XMLHttpRequest();
+  padAjax96c2d26a95ce2c4f785f3a012a53754e.onreadystatechange=function() {
+    if (padAjax96c2d26a95ce2c4f785f3a012a53754e.readyState === 4) {
+      if (padAjax96c2d26a95ce2c4f785f3a012a53754e.status === 200) {
+        document.getElementById("padAjax96c2d26a95ce2c4f785f3a012a53754e").innerHTML=padAjax96c2d26a95ce2c4f785f3a012a53754e.responseText;
+      } else {
+        document.getElementById("padAjax96c2d26a95ce2c4f785f3a012a53754e").innerHTML=padAjax96c2d26a95ce2c4f785f3a012a53754e.statusText;
+      }
+    }
+  }
+  padAjax96c2d26a95ce2c4f785f3a012a53754e.open("GET","http://localhost/pad/tags/?examples/ajax/parts/list&padInclude&padFragment=ajaxItems",true);
+  padAjax96c2d26a95ce2c4f785f3a012a53754e.send();
+</script>

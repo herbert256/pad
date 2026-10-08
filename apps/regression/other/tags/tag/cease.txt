@@ -1,0 +1,16 @@
+<p><code>{cease}</code> is the soft stop of a loop. The pass it stands in renders to its end -
+content after the tag included - and then the loop stops: every row after the current one is
+dropped. Compare <a href="?tag/break">{break}</a>, which also drops the rest of the current
+pass, and <a href="?tag/continue">{continue}</a>, which only skips the rest of this pass and
+goes on.</p>
+
+<p>Inside a <a href="?tag/while">{while}</a> or <a href="?tag/until">{until}</a>, which has no
+rows but re-tests its condition, <code>{cease}</code> lets the current pass finish and asks for
+no further one, whatever the condition says.</p>
+
+<p>The parameter picks the loop as for the other loop-control tags: none for the nearest
+enclosing level that is not an <code>{if}</code> or <code>{case}</code>, a name
+(<code>{cease 'orders'}</code>, a tag's name or its <code>name=</code>) for an outer loop, or a
+level number or negative offset. Ceasing an outer loop from an inner one lets the inner loop
+finish its rows, and the outer loop ends after the current row. A name no enclosing level has
+is an error under the strict syntax check.</p>

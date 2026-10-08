@@ -1,0 +1,20 @@
+<p><code>{poll}</code> asks one question with the answers of <code>options=</code> as radio
+buttons. A visitor votes once per poll: the answer is kept in the session, and a visitor who
+has voted sees the results instead of the form - a bar per answer with its share in percent.
+With <code>results</code> everyone sees the results, also before voting, which makes a
+results page.</p>
+
+<p>The form is built on a <a href="?tag/live"><code>{live}</code></a> region and posts to the
+page itself: with scripting on the vote goes in the background and the results are swapped
+in; with scripting off it is an ordinary form post and the page comes back with them.
+<code>$padCsrf</code> protects it like any other form. A GET request starts no session for a
+visitor without one.</p>
+
+<p>The votes are counted per answer in <code>DATA/poll/&lt;app&gt;/&lt;name&gt;.json</code>
+under an exclusive lock. An answer taken out of <code>options=</code> keeps its count in the
+file but shows no more. From PHP, <code>padPollVote ( $name, $answer )</code> adds a vote and
+<code>padPollCounts ( $name )</code> reads the counts.</p>
+
+<p>A name that is not a valid file name is always an error; fewer than two answers is one under
+the strict check. Because what it shows depends on the votes stored and on the visitor's
+session, the examples below are shown but not run.</p>
