@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>PAD admin - {$title}</title>
+  {asset 'admin.css', tag}
+  {asset 'admin.js', tag}
+</head>
+<body class="{echo $adminIn ? 'in' : 'out'}">
+
+{if $adminIn}
+
+  <aside class="side">
+    <a class="brand" href="?index"><span class="logo" aria-hidden="true">&#123;&#125;</span> PAD admin</a>
+    <nav aria-label="Console">
+      {adminMenu}
+        {if $head ne ''}
+          <div class="head">{$head}</div>
+        {else}
+          <a href="?{$page}" {if $current}aria-current="page"{/if}>{icon $icon, size=16} {$label}</a>
+        {/if}
+      {/adminMenu}
+    </nav>
+    <div class="who">
+      {icon 'user', size=16} {$adminWho} <span class="dim">on {$adminHost}</span>
+      <form method="post" action="?logout"><button class="link">{icon 'log-out', size=16} Log out</button></form>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="top">
+      <h1>{$title}</h1>
+      <div class="tools">
+        <a href="{$padRoot}edit/">{icon 'edit', size=16} Editor</a>
+        <a href="{$padRoot}manual/">{icon 'help', size=16} Manual</a>
+      </div>
+    </header>
+    {flash}<p class="flash {$type}" role="status">{$message}</p>{/flash}
+
+{/if}
+
+@page@
+
+{if $adminIn}
+  </main>
+{/if}
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<section class="card scroll">
+  <h2>{icon 'power', size=18} Down now</h2>
+  {if $downCount}
+    <table class="list">
+      <thead><tr><th>Application</th><th>Since</th><th class="right">Retry-After</th><th>Message</th><th>Secret</th><th></th></tr></thead>
+      <tbody>
+        {downRows}
+          <tr>
+            <td><a href="?application&amp;app={$app}">{$app}</a></td>
+            <td class="nowrap">{$when} <span class="dim">({$ago})</span></td>
+            <td class="right">{$retry} s</td>
+            <td>{$message}</td>
+            <td>{if $secret}<span class="badge info">yes</span>{else}<span class="badge">no</span>{/if}</td>
+            <td>
+              <form method="post" class="inline">
+                <input type="hidden" name="action" value="up">
+                <input type="hidden" name="app" value="{$app}">
+                <button class="small primary">{icon 'play', size=14} Bring up</button>
+              </form>
+            </td>
+          </tr>
+        {/downRows}
+      </tbody>
+    </table>
+  {else}
+    <p>Every application is up.</p>
+  {/if}
+</section>
+
+<section class="card">
+  <h2>{icon 'power', size=18} Take an application down</h2>
+  <p class="dim">Every web request then answers 503 with a Retry-After - the application's _errors/503.pad when it has one, else the message.
+     With a secret, <code>?secret</code> at the application's address gives that browser a cookie that lets it through for twelve hours.
+     The command line is never held back.</p>
+  <form method="post" class="bar">
+    <input type="hidden" name="action" value="down">
+    <label>Application
+      <select name="app" required>
+        <option value="">- choose -</option>
+        {appRows}<option value="{$name}">{$name}</option>{/appRows}
+      </select>
+    </label>
+    <label>Secret (optional) <input type="text" name="secret" autocomplete="off"></label>
+    <label>Retry after (s) <input type="number" name="retry" value="60" min="0"></label>
+    <label>Message <input type="text" name="message" placeholder="Back at ten" size="30"></label>
+    <button class="danger" data-confirm="Take this application down?">{icon 'power', size=16} Take down</button>
+  </form>
+</section>

@@ -1,0 +1,21 @@
+<section class="card">
+  <h2>{icon 'clock', size=18} The cron line</h2>
+  <p class="dim">One line in the crontab runs what every application has due, every minute:</p>
+  <pre>{$cronLine}</pre>
+</section>
+
+{if $scheduleCount eq 0}
+  <section class="card"><p>No application has a <code>_schedule.php</code>.</p></section>
+{/if}
+
+{scheduleRows}
+  <section class="card">
+    <h2>{icon 'calendar', size=18} <a href="?application&amp;app={$app}">{$app}</a>
+      <a class="dim" href="?files&amp;app={$app}&amp;file=_schedule.php">_schedule.php</a></h2>
+    <pre class="{echo $code ? 'status-bad' : ''}">{$listing}</pre>
+    <form method="post" style="margin-top:10px">
+      <input type="hidden" name="app" value="{$app}">
+      <button data-confirm="Run what {$app} has due this minute?">{icon 'play', size=16} Run what is due now</button>
+    </form>
+  </section>
+{/scheduleRows}

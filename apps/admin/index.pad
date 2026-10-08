@@ -1,0 +1,54 @@
+<section class="tiles">
+  {tiles}
+    <a class="tile {echo $warn ? 'warn' : ''}" href="?{$page}"><strong>{$value}</strong><span>{$label}</span></a>
+  {/tiles}
+</section>
+
+{if $downCount}
+  <section class="card warn">
+    <h2>{icon 'power', size=18} Down for maintenance</h2>
+    <ul>
+      {downList}<li><a href="?application&amp;app={$app}">{$app}</a> - since {$since}{if $message ne ''}: {$message}{/if}</li>{/downList}
+    </ul>
+  </section>
+{/if}
+
+<div class="grid2">
+
+  <section class="card">
+    <h2>{icon 'info', size=18} System</h2>
+    <table class="facts">
+      {facts}<tr><th>{$label}</th><td>{$value}</td></tr>{/facts}
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>{icon 'database', size=18} Disk</h2>
+    {chart 'gauge', value=$diskUsed, unit='%', bands='70, 90', title='Disk used'}
+    <p class="center dim">{$diskText}</p>
+  </section>
+
+  <section class="card">
+    <h2>{icon 'clock', size=18} Changed last</h2>
+    <table class="list">
+      {recent}
+        <tr>
+          <td><a href="?application&amp;app={$app}">{$app}</a></td>
+          <td><a href="?files&amp;app={$app}&amp;file={$file}">{$file}</a></td>
+          <td class="dim nowrap">{$ago}</td>
+        </tr>
+      {/recent}
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>{icon 'bar-chart', size=18} DATA/ in MB</h2>
+    {if $dataChart}
+      {chart 'hbar', data='dataSizes', label='dir', value='mb'}
+    {else}
+      <p class="dim">DATA/ is empty.</p>
+    {/if}
+    <p><a href="?storage">Storage</a></p>
+  </section>
+
+</div>

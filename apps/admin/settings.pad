@@ -1,0 +1,38 @@
+<p class="dim">The defaults of <code>pad/config/config.php</code>. An application changes one in its own <code>_config/config.php</code>; <code>_common</code>'s count for every application that runs with it.</p>
+
+<div class="bar"><input type="search" data-filter="#settings" placeholder="filter the settings" size="40"></div>
+
+<section class="card scroll">
+  <h2>{icon 'settings', size=18} {$settingCount} settings</h2>
+  <table class="list" id="settings">
+    <thead><tr><th>Setting</th><th>Default</th><th>What it does</th><th>Changed by</th></tr></thead>
+    <tbody>
+      {settingRows}
+        <tr>
+          <td class="nowrap"><code>${$name}</code></td>
+          <td><pre class="wrap" style="max-height:120px;padding:2px 6px">{$value}</pre></td>
+          <td class="dim" style="min-width:260px">{$about}</td>
+          <td>{apps}<a class="badge info" href="?application&amp;app={$app}">{$app}</a>{/apps}</td>
+        </tr>
+      {/settingRows}
+    </tbody>
+  </table>
+</section>
+
+<section class="card scroll">
+  <details>
+    <summary><strong>Every _config/ setting of every application ({$overrideCount})</strong></summary>
+    <table class="list">
+      <thead><tr><th>Application</th><th>Setting</th><th>Value</th></tr></thead>
+      <tbody>
+        {overrideRows}
+          <tr>
+            <td><a href="?application&amp;app={$app}">{$app}</a></td>
+            <td><code>${$name}</code>{if $known eq 0} <span class="badge">own</span>{/if}</td>
+            <td><code>{$value}</code></td>
+          </tr>
+        {/overrideRows}
+      </tbody>
+    </table>
+  </details>
+</section>

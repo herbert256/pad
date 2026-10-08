@@ -1,0 +1,33 @@
+<form class="bar" method="get">
+  <input type="hidden" name="search" value="">
+  <label>Text <input type="search" name="q" value="{$searchFor}" minlength="2" required autofocus size="40"></label>
+  <label>In
+    <select name="app">
+      <option value="">every application</option>
+      {appRows}<option value="{$name}" {if $selected}selected{/if}>{$name}</option>{/appRows}
+    </select>
+  </label>
+  <label class="nowrap"><span><input type="checkbox" name="case" value="1" {if $searchCase}checked{/if}> match case</span></label>
+  <button class="primary">{icon 'search', size=16} Search</button>
+</form>
+
+{if $asked}
+  <section class="card scroll">
+    <h2>{$hitCount} lines in {$searched} files searched{if $truncated} - the first {$searchMax} only{/if}</h2>
+    {if $hitCount}
+      <table class="list">
+        <thead><tr><th>Application</th><th>File</th><th class="right">Line</th><th>Text</th></tr></thead>
+        <tbody>
+          {hits}
+            <tr>
+              <td class="nowrap"><a href="?application&amp;app={$app}">{$app}</a></td>
+              <td class="nowrap"><a href="?files&amp;app={$app}&amp;file={$file}">{$file}</a></td>
+              <td class="right">{$line}</td>
+              <td><code>{$text}</code></td>
+            </tr>
+          {/hits}
+        </tbody>
+      </table>
+    {/if}
+  </section>
+{/if}

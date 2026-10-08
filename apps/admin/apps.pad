@@ -1,0 +1,35 @@
+<div class="bar">
+  <label>Filter <input type="search" data-filter="#apps" placeholder="name, description, badge" autofocus></label>
+  <span class="dim">{$appCount} applications</span>
+  {if $showAll}
+    <a href="?apps">hide the regression test applications</a>
+  {else}
+    <a href="?apps&amp;all=1">show the {$hidden} regression test applications too</a>
+  {/if}
+</div>
+
+<div class="card scroll">
+  <table class="list" id="apps">
+    <thead>
+      <tr><th>Application</th><th>Description</th><th class="right">Pages</th><th>Has</th><th></th></tr>
+    </thead>
+    <tbody>
+      {appRows}
+        <tr>
+          <td class="nowrap">
+            <a href="?application&amp;app={$name}"><strong>{$name}</strong></a>
+            {if $down}<span class="badge bad">down</span>{/if}
+          </td>
+          <td>{if $description ne ''}{$description}{else}<i class="dim">no README introduction</i>{/if}</td>
+          <td class="right">{$pages}</td>
+          <td>{badgeRows}<span class="badge">{$badge}</span>{/badgeRows}</td>
+          <td class="nowrap">
+            {if $link ne ''}<a href="{$link}" title="open" aria-label="open {$name}">{icon 'external', size=16}</a>{/if}
+            <a href="?files&amp;app={$name}" title="files" aria-label="files of {$name}">{icon 'folder', size=16}</a>
+            <a href="{$padRoot}edit/?app={$name}" title="edit" aria-label="edit {$name}">{icon 'edit', size=16}</a>
+          </td>
+        </tr>
+      {/appRows}
+    </tbody>
+  </table>
+</div>

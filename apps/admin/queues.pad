@@ -1,0 +1,80 @@
+<form class="bar" method="get">
+  <input type="hidden" name="queues" value="">
+  <label>Application
+    <select name="app" onchange="this.form.submit()">
+      <option value="">every application with a queue</option>
+      {appRows}<option value="{$name}" {if $selected}selected{/if}>{$name}</option>{/appRows}
+    </select>
+  </label>
+  <noscript><button>Show</button></noscript>
+</form>
+
+{if $queueAppCount eq 0}
+  <section class="card"><p>No application has queued a job yet - <code>padQueue ( 'name', $data )</code> does, from a page's PHP.</p></section>
+{/if}
+
+{queueApps}
+  <section class="card scroll">
+    <h2>{icon 'list', size=18} <a href="?application&amp;app={$name}">{$name}</a></h2>
+
+    {if $queueCount}
+      <table class="list">
+        <thead><tr><th>Queue</th><th class="right">Due</th><th class="right">Delayed</th><th class="right">Running</th><th></th></tr></thead>
+        <tbody>
+          {queues}
+            <tr>
+              <td>{$queue}</td><td class="right">{$due}</td><td class="right">{$delayed}</td><td class="right">{$running}</td>
+              <td class="right">
+                <form method="post" class="inline">
+                  <input type="hidden" name="app" value="{$name}"><input type="hidden" name="action" value="flush"><input type="hidden" name="queue" value="{$queue}">
+                  <button class="small danger" data-confirm="Remove every waiting job of {$queue}?">{icon 'trash', size=14} Flush</button>
+                </form>
+              </td>
+            </tr>
+          {/queues}
+        </tbody>
+      </table>
+    {else}
+      <p class="dim">Nothing is waiting.</p>
+    {/if}
+
+    <div class="bar" style="margin-top:12px">
+      <form method="post" class="inline">
+        <input type="hidden" name="app" value="{$name}"><input type="hidden" name="action" value="work">
+        <button {if $hasJobs eq 0}disabled title="this application has no _jobs/"{/if}>{icon 'play', size=16} Work the due jobs once</button>
+      </form>
+      {if $failedCount}
+        <form method="post" class="inline">
+          <input type="hidden" name="app" value="{$name}"><input type="hidden" name="action" value="retry"><input type="hidden" name="id" value="all">
+          <button>{icon 'refresh', size=16} Retry every failed job</button>
+        </form>
+        <form method="post" class="inline">
+          <input type="hidden" name="app" value="{$name}"><input type="hidden" name="action" value="flush-failed">
+          <button class="danger" data-confirm="Remove every failed job of {$name}?">{icon 'trash', size=16} Remove the failed jobs</button>
+        </form>
+      {/if}
+    </div>
+
+    {if $failedCount}
+      <h3>Failed ({$failedCount})</h3>
+      <table class="list">
+        <thead><tr><th>Id</th><th>Queue</th><th>Job</th><th class="right">Tries</th><th>Failed</th><th>Why</th><th></th></tr></thead>
+        <tbody>
+          {failedRows}
+            <tr>
+              <td><code>{$id}</code></td><td>{$queue}</td><td>{$job}</td><td class="right">{$attempts}</td>
+              <td class="nowrap">{$when}</td>
+              <td>{$why}<details><summary class="dim">data</summary><pre>{$payload}</pre></details></td>
+              <td>
+                <form method="post" class="inline">
+                  <input type="hidden" name="app" value="{$name}"><input type="hidden" name="action" value="retry"><input type="hidden" name="id" value="{$id}">
+                  <button class="small">{icon 'refresh', size=14} Retry</button>
+                </form>
+              </td>
+            </tr>
+          {/failedRows}
+        </tbody>
+      </table>
+    {/if}
+  </section>
+{/queueApps}

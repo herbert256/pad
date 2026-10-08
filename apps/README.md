@@ -7,6 +7,7 @@ This directory contains PAD applications and examples.
 | Directory | Type | Description |
 |-----------|------|-------------|
 | [_common](_common/README.md) | Shared | Shared resources and utilities for all applications |
+| [admin](admin/README.md) | Standard | The web console of the installation: applications, files, search, the pad command, maintenance, queues, schedules, logs, error dumps, mail outbox, storage, PHP, settings, git and users - behind a login, this machine only |
 | [alpine](alpine/README.md) | Standard | PAD + Alpine: state from PHP with `x-data="{^field}"`, components with `Alpine.data`, live search, one set of rules for both sides, a list in the session, server-sent events |
 | [apps](apps/README.md) | Standard | Lists all PAD applications with descriptions from README files |
 | [charts](charts/README.md) | Standard | A showcase of the {chart} tag - a pulldown per chart family, every example with its data, its tag and the chart side by side |

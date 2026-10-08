@@ -1,0 +1,31 @@
+<main class="login">
+
+  <h1><span class="logo" aria-hidden="true">&#123;&#125;</span> PAD admin</h1>
+
+  {if $loginSetup eq 1}
+    <p class="dim">Nobody can log in yet. Make the first user - more can be added in the console later.</p>
+  {else}
+    <p class="dim">The console of the PAD installation on this server.</p>
+  {/if}
+
+  {if $loginHint eq 1}
+    <p class="flash error" role="alert">The first user can only be made from this machine.</p>
+  {/if}
+
+  {if $loginError ne ''}
+    <p class="flash error" role="alert">{$loginError}</p>
+  {/if}
+
+  {form 'login'}
+    <p>{input 'name', label='Name', autocomplete='username', required, autofocus}</p>
+    {if $loginSetup eq 1}
+      <p>{input 'password', type='password', label='Password', autocomplete='new-password', required, minlength=8}</p>
+      <p>{input 'again', type='password', label='Password again', autocomplete='new-password', required, minlength=8}</p>
+      <p><button type="submit" class="primary">Make the user and log in</button></p>
+    {else}
+      <p>{input 'password', type='password', label='Password', autocomplete='current-password', required}</p>
+      <p><button type="submit" class="primary">Log in</button></p>
+    {/if}
+  {/form}
+
+</main>

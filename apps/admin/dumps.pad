@@ -1,0 +1,42 @@
+{if $viewing}
+
+  <section class="card">
+    <p><a href="?dumps">{icon 'arrow-left', size=14} every report</a> - <code>DATA/dumps/{$report}</code></p>
+    <div class="bar">
+      {partRows}<a class="button small" href="?dumps&amp;report={$report}&amp;part={$part}" {if $current}aria-current="page" style="border-color:var(--accent)"{/if}>{$label}</a>{/partRows}
+    </div>
+    <iframe class="mail" sandbox title="The report's {$part}" srcdoc="{$partHtml}"></iframe>
+    <form method="post" style="margin-top:12px">
+      <input type="hidden" name="action" value="delete"><input type="hidden" name="report" value="{$report}">
+      <button class="danger" data-confirm="Remove this report?">{icon 'trash', size=16} Remove this report</button>
+    </form>
+  </section>
+
+{else}
+
+  <section class="card scroll">
+    <h2>{icon 'alert', size=18} {$reportCount} reports</h2>
+    {if $reportCount}
+      <table class="list">
+        <thead><tr><th>When</th><th>Application</th><th>Page</th><th>Error</th></tr></thead>
+        <tbody>
+          {reportRows}
+            <tr>
+              <td class="nowrap"><a href="?dumps&amp;report={$report}">{$when}</a></td>
+              <td>{$app}</td>
+              <td>{$page}</td>
+              <td>{$error}</td>
+            </tr>
+          {/reportRows}
+        </tbody>
+      </table>
+      <form method="post" style="margin-top:12px">
+        <input type="hidden" name="action" value="delete-all">
+        <button class="danger" data-confirm="Remove every error report?">{icon 'trash', size=16} Remove every report</button>
+      </form>
+    {else}
+      <p>No error reports - the 'dump' error action and the try guards write them when something fails.</p>
+    {/if}
+  </section>
+
+{/if}

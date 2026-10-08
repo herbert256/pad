@@ -1,0 +1,51 @@
+<div class="grid2">
+
+  <section class="card">
+    <h2>{icon 'code', size=18} PHP {$facts.0.value}</h2>
+    <table class="facts">{facts}<tr><th>{$label}</th><td>{$value}</td></tr>{/facts}</table>
+  </section>
+
+  <section class="card">
+    <h2>{icon 'zap', size=18} OPcache</h2>
+    {if $hasOpcache}
+      <table class="facts">{opcacheRows}<tr><th>{$label}</th><td>{$value}</td></tr>{/opcacheRows}</table>
+    {else}
+      <p class="dim">OPcache does not run for this server API - every request compiles the scripts again.</p>
+    {/if}
+  </section>
+
+</div>
+
+<div class="grid2">
+
+  <section class="card scroll">
+    <h2>{icon 'settings', size=18} Settings</h2>
+    <table class="list">
+      <tbody>{iniRows}<tr><td><code>{$name}</code></td><td>{$value}</td></tr>{/iniRows}</tbody>
+    </table>
+  </section>
+
+  <section class="card scroll">
+    <h2>{icon 'grid', size=18} Extensions PAD uses</h2>
+    <table class="list">
+      <tbody>
+        {extRows}
+          <tr>
+            <td><code>{$ext}</code></td>
+            <td>{if $loaded}<span class="badge ok">{$version}</span>{else}<span class="badge">missing</span>{/if}</td>
+            <td class="dim">{$what}</td>
+          </tr>
+        {/extRows}
+      </tbody>
+    </table>
+    <details style="margin-top:10px"><summary>Every loaded extension</summary><p>{$allExtText}</p></details>
+  </section>
+
+</div>
+
+<section class="card">
+  <details>
+    <summary><strong>phpinfo ()</strong> <span class="dim">- without the environment and the request variables</span></summary>
+    <div class="phpinfo scroll">{!phpinfo}</div>
+  </details>
+</section>

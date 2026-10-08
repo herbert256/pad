@@ -1,0 +1,66 @@
+{if $viewing}
+
+  <section class="card">
+    <p><a href="?mail&amp;app={$app}">{icon 'arrow-left', size=14} the outbox</a></p>
+    <table class="facts">{mailHead}<tr><th>{$name}</th><td>{$value}</td></tr>{/mailHead}</table>
+  </section>
+
+  {if $hasHtml}
+    <section class="card">
+      <h2>HTML</h2>
+      <iframe class="mail" sandbox title="The HTML part of the mail" srcdoc="{$mailHtml}"></iframe>
+    </section>
+  {/if}
+
+  <section class="card">
+    <h2>Text</h2>
+    <pre class="wrap">{$mailText}</pre>
+  </section>
+
+  <section class="card">
+    <details><summary>Source</summary><pre class="wrap">{$mailRaw}</pre></details>
+    <form method="post" style="margin-top:12px">
+      <input type="hidden" name="action" value="delete"><input type="hidden" name="app" value="{$app}"><input type="hidden" name="mail" value="{$mail}">
+      <button class="danger" data-confirm="Remove this mail?">{icon 'trash', size=16} Remove this mail</button>
+    </form>
+  </section>
+
+{else}
+
+  <form class="bar" method="get">
+    <input type="hidden" name="mail" value="">
+    <label>Application
+      <select name="app" onchange="this.form.submit()">
+        <option value="">every application</option>
+        {appRows}<option value="{$name}" {if $selected}selected{/if}>{$name}</option>{/appRows}
+      </select>
+    </label>
+    <noscript><button>Show</button></noscript>
+  </form>
+
+  <section class="card scroll">
+    <h2>{icon 'mail', size=18} {$mailCount} mails</h2>
+    {if $mailCount}
+      <table class="list">
+        <thead><tr><th>When</th><th>Application</th><th>To</th><th>Subject</th></tr></thead>
+        <tbody>
+          {mailRows}
+            <tr>
+              <td class="nowrap">{$when}</td>
+              <td>{$app}</td>
+              <td>{$to}</td>
+              <td><a href="?mail&amp;app={$app}&amp;mail={$mail}">{if $subject ne ''}{$subject}{else}(no subject){/if}</a></td>
+            </tr>
+          {/mailRows}
+        </tbody>
+      </table>
+      <form method="post" style="margin-top:12px">
+        <input type="hidden" name="action" value="delete-all"><input type="hidden" name="app" value="{$app}">
+        <button class="danger" data-confirm="Remove these mails?">{icon 'trash', size=16} Remove {if $app ne ''}the mails of {$app}{else}every mail{/if}</button>
+      </form>
+    {else}
+      <p>The outbox is empty. While <code>$padMailTransport</code> is 'file', the default, every mail an application sends lands here instead of leaving the server.</p>
+    {/if}
+  </section>
+
+{/if}

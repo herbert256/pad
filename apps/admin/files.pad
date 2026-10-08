@@ -1,0 +1,69 @@
+<form class="bar" method="get">
+  <input type="hidden" name="files" value="">
+  <label>Application
+    <select name="app" onchange="this.form.submit()">
+      <option value="">- choose -</option>
+      {appRows}<option value="{$name}" {if $selected}selected{/if}>{$name}</option>{/appRows}
+    </select>
+  </label>
+  {if $app ne ''}{if $hasWww}
+    <label>Root
+      <select name="root" onchange="this.form.submit()">
+        <option value="app" {if $root eq 'app'}selected{/if}>apps/{$app}/</option>
+        <option value="www" {if $root eq 'www'}selected{/if}>www/{$app}/</option>
+      </select>
+    </label>
+  {/if}{/if}
+  <noscript><button>Show</button></noscript>
+</form>
+
+{if $app ne ''}
+
+  <p class="crumbs">
+    {crumbs}{notFirst@crumbs} / {/notFirst@crumbs}<a href="?files&amp;app={$app}&amp;root={$root}&amp;dir={$dir}">{$label}</a>{/crumbs}
+  </p>
+
+  <div class="browser">
+
+    <nav class="card" aria-label="Files">
+      <ul class="tree">
+        {if $hasParent}
+          <li><a href="?files&amp;app={$app}&amp;root={$root}&amp;dir={$parentDir}">{icon 'arrow-up', size=14} ..</a></li>
+        {/if}
+        {dirRows}
+          <li><a href="?files&amp;app={$app}&amp;root={$root}&amp;dir={$path}">{icon 'folder', size=14} {$name}</a></li>
+        {/dirRows}
+        {fileRows}
+          <li><a href="?files&amp;app={$app}&amp;root={$root}&amp;dir={$dir}&amp;file={$path}" {if $current}class="current" aria-current="page"{/if}>{icon 'file', size=14} {$name}</a></li>
+        {/fileRows}
+      </ul>
+    </nav>
+
+    <div>
+      {if $fileName ne ''}
+        <section class="card">
+          <h2>{icon 'file', size=18} {$fileName}</h2>
+          <p class="dim">
+            {$fileInfo}
+            - <a href="{$padRoot}edit/?app={$app}">open in the editor</a>
+            {if $isMarkdown} - <a href="?files&amp;app={$app}&amp;root={$root}&amp;file={$fileName}&amp;as=text">as text</a>{/if}
+            {if $isMdText} - <a href="?files&amp;app={$app}&amp;root={$root}&amp;file={$fileName}">as Markdown</a>{/if}
+          </p>
+          {if $notShown ne ''}
+            <p class="flash warn">{$notShown}</p>
+          {elseif $isMarkdown}
+            <div class="markdown">{!shown}</div>
+          {else}
+            <div class="source">{!shown}</div>
+          {/if}
+        </section>
+      {else}
+        <section class="card"><p class="dim">Choose a file on the left.</p></section>
+      {/if}
+    </div>
+
+  </div>
+
+{else}
+  <section class="card"><p class="dim">Choose an application.</p></section>
+{/if}
