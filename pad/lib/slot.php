@@ -1,7 +1,7 @@
 <?php
 
-  // Named slots and declared parameters for custom tags - an application or _common tag, or
-  // an _include snippet used as a pair: the tags whose template takes the caller's content
+  // Named slots and declared parameters for custom tags - an application or _common tag, a
+  // {define} or {macro} of the template, or an _include snippet used as a pair: the tags whose template takes the caller's content
   // in at @content@.
   //
   //   {card title='Revenue'}                    _tags/card.pad
@@ -33,7 +33,7 @@
 
   function padSlotType ( $type ) {
 
-    return in_array ( $type, [ 'app', 'common', 'include' ] );
+    return in_array ( $type, [ 'app', 'common', 'include', 'define', 'macro' ] );
 
   }
 

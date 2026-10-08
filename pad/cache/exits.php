@@ -13,7 +13,24 @@
   // out as application/json the first time and as text/html from the first hit on - the
   // same bytes, the same ETag.
 
-  if ( ! padCacheStorable () ) {
+  // A page-cache hit that rendered the page's {nocache} parts leaves the entry as it is:
+  // stored again, its age would start over on every hit and it would never go stale.
+
+  if ( $padNocacheHit )
+    return;
+
+  // A page with {nocache} parts is stored as its text with the parts as their source, under
+  // an ETag no response carries (lib/nocache.php); any other page as it went out.
+
+  if ( $padNocacheKept ) {
+    $padCacheBody     = padNocachePack ( $padNocacheBody, $padNocacheKept );
+    $padCacheBodyEtag = padNocacheEtag ( $padCacheBody );
+  } else {
+    $padCacheBody     = $padOutput;
+    $padCacheBodyEtag = $padEtag;
+  }
+
+  if ( ! padCacheStorable ( $padNocacheKept ? $padNocacheBody : $padOutput ) ) {
 
     if ( $padCacheEtag )
       padCacheDelete ( $padCacheUrl, $padCacheEtag );
@@ -22,9 +39,9 @@
 
   }
 
-  if ( $padEtag == $padCacheEtag )
+  if ( $padCacheBodyEtag == $padCacheEtag )
 
-    padCacheUpdate ($padCacheUrl, $padEtag);
+    padCacheUpdate ($padCacheUrl, $padCacheBodyEtag);
 
   else {
 
@@ -32,9 +49,9 @@
       padCacheDelete ($padCacheUrl, $padCacheEtag);
 
     if ( $padCacheServerGzip )
-      padCacheStore ($padCacheUrl, $padEtag, padZip($padOutput));
+      padCacheStore ($padCacheUrl, $padCacheBodyEtag, padZip($padCacheBody));
     else
-      padCacheStore ($padCacheUrl, $padEtag, $padOutput);
+      padCacheStore ($padCacheUrl, $padCacheBodyEtag, $padCacheBody);
 
   }
 

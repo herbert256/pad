@@ -36,7 +36,7 @@
     'padSlot', 'padSlotFrom', 'padSectionRows'
   ] );
 
-  define ( 'padStrSto', ['padDataStore','padContentStore','padBoolStore','pqStore','padStackStore'] );
+  define ( 'padStrSto', ['padDataStore','padContentStore','padBoolStore','pqStore','padStackStore','padDefineStore','padMacroStore'] );
   define ( 'padStrDat', ['padData','padCurrent','padSetLvl','padSetOcc','padPrm','padOpt'] );
 
   define ( 'padOptionsStart', ['track', 'before', 'dedup', 'page', 'sort', 'ignore', 'print', 'parent', 'trace', 'pre'] );
