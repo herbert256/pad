@@ -15,6 +15,14 @@
 
 <p>Everything that changes the rendering must be in the key. Add it with <code>vary</code>: <code>{open}cache 'basket', vary=$userId{close}</code> keeps one copy per user. PHP that runs before the template - the page's own <code>.php</code> - runs on a hit too; the saving is the work done inside the section.</p>
 
+<h2>Parts that stay live</h2>
+
+<p>A <code>{open}nocache{close}...{open}/nocache{close}</code> part of a section renders on every request, the hit included: the section is stored with the part as its source, and the part renders again in the stored rendering. Inside a loop of the section it gets the fields of its row back.</p>
+
+{example 'fragments/cache_2'}
+
+<p>The same works for the page cache: a page it keeps renders its <code>{open}nocache{close}</code> parts on every hit. No PHP runs on such a hit - not the page's, nor an <code>_inits.php</code> - so there a part sees the request and session values, <code>_lib</code> and the application's tags.</p>
+
 <h2>Settings and housekeeping</h2>
 
 <ul>

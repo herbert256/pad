@@ -27,3 +27,19 @@
   <li><code>{open}parms title, tone='plain'{close}</code> at the top of the template declares the parameters: a name alone is required, <code>name=default</code> fills in what the caller left out. Both read as <code>{open}#title{close}</code>.</li>
   <li>A required parameter left out is an error, and so - under the strict check - is a parameter the tag does not declare: <code>{open}card title='x', titel='y'{close}</code> is reported by name.</li>
 </ul>
+
+<h2>Components written in the template</h2>
+
+<p>A component used on one page only needs no file of its own. <code>{open}define 'name'{close}...{open}/define{close}</code> writes it in the template: from there on <code>{open}name{close}</code> renders the body as <code>_tags/name.pad</code> would - <code>{open}parms{close}</code>, <code>{open}#name{close}</code>, {construct 'content'} and slots work alike.</p>
+
+{example 'fragments/components_3'}
+
+<p>A <code>{open}macro{close}</code> is called the way a function is: its parameters are declared on it - a name alone required, <code>name=default</code> filling in - given in their order or by name, and read as fields, <code>{open}$label{close}</code>.</p>
+
+{example 'fragments/components_4'}
+
+<ul>
+  <li>Both render at every use, in its place and with its fields; both can use themselves, for the rows below the current one.</li>
+  <li>A define or macro exists from the point it is walked, as a <code>{open}content{close}</code> store does: a use before it is an unknown tag.</li>
+  <li>A macro given too many values, missing a required one, or given a name it does not declare is an error.</li>
+</ul>

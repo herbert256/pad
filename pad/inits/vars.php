@@ -11,7 +11,7 @@
   // The pqStore / padLastPush / padLastPull guards keep a sequence store alive across a
   // restart, and $padInclude records how the request arrived.
   //
-  // The four stores of padStrSto are declared here rather than on first write. A nested pass
+  // The stores of padStrSto are declared here rather than on first write. A nested pass
   // that runs inside a PHP function body - padCode() and padSandbox() - binds the globals it
   // can see at the moment it opens, so a store that does not exist yet is never bound, and
   // start/start/resetPad.php cannot empty what is not set either. Writing {data 'x'} then
@@ -66,6 +66,16 @@
   $padDataStore    = $padDataStore    ?? [];
   $padContentStore = $padContentStore ?? [];
   $padBoolStore    = $padBoolStore    ?? [];
+  $padDefineStore  = $padDefineStore  ?? [];
+  $padMacroStore   = $padMacroStore   ?? [];
+
+  // The {nocache} parts of this run, and a page-cache hit whose parts it renders
+  // (lib/nocache.php, cache/inits.php, build/build.php).
+
+  $padNocacheSource = [];
+  $padNocacheRows   = [];
+  $padNocacheHit    = NULL;
+  $padNocacheBuilt  = FALSE;
 
   // The {push} stacks start empty on every run, a restart's included: what the abandoned
   // page pushed belongs to a page that is not sent.

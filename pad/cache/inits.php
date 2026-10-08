@@ -13,7 +13,7 @@
   // If-Modified-Since is good enough, otherwise 200 with the stored body - so the page is
   // never built at all.
 
-  global $padCacheServerNoData;
+  global $padCacheServerNoData, $padCacheServerGzip, $padNocacheHit;
 
   include PAD . 'config/cache.php';
 
@@ -89,6 +89,28 @@
 
     $padCacheAge  = $padCacheUrlRow ['age']  ?? $padCacheUrlRow [0] ?? 0;
     $padCacheEtag = $padCacheUrlRow ['etag'] ?? $padCacheUrlRow [1] ?? '';
+
+    // A page with {nocache} parts is no answer as it is stored: the request goes on, and
+    // build/build.php renders the stored text with the parts in it instead of building the
+    // page - no _inits.php, no page PHP (lib/nocache.php). Its ETag is one no response
+    // carries, so there is no 304 to answer from the entry either.
+
+    if ( padNocacheEtagIs ( $padCacheEtag ) ) {
+
+      if ( $padCacheAge >= $padCacheMax and ! $padCacheServerNoData ) {
+
+        $padNocacheHit = padCacheBody ( $padCacheEtag );
+
+        if ( $padNocacheHit and $padCacheServerGzip )
+          $padNocacheHit = @padUnzip ( $padNocacheHit );
+
+        $padNocacheHit = padNocacheUnpack ( $padNocacheHit ) ?: NULL;
+
+      }
+
+      return;
+
+    }
 
     if ( $padCacheAge >= $padCacheMax ) {
 

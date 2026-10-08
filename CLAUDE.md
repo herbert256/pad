@@ -787,6 +787,19 @@ other `{slot}` is where a fill goes, its content the default (`@content@` in it 
 fill). `{parms}`: a bare name is required, `name=default` fills in; an undeclared parameter
 is an error under the strict check.
 
+### Tags defined in the template (define / macro)
+```
+{define 'card'}{parms title}<div><h2>{#title}</h2>@content@</div>{/define}   # an _tags/card.pad without the file
+{card title='Revenue'}{$revenue}{/card}
+
+{macro 'entry', label, type='text'}<label>{$label} <input type="{$type}"></label>{/macro}
+{entry 'E-mail', 'email'}  {entry label='Name'}                 # in order or by name; fields {$label}
+```
+A `{define}` is a custom tag: `{#name}`, `{parms}`, `@content@`, slots. A `{macro}` declares its
+parameters - a name alone required, `name=default` filling in - and they are the fields of its one
+row. Both render at each use, in its place; both exist from where they are walked on (a use before
+is an unknown tag), and may use themselves. `define:`/`macro:` assert the kind.
+
 ### Web components (declarative shadow DOM)
 ```
 <pad-card>                                   # in a custom tag, _tags/card.pad
@@ -847,6 +860,13 @@ are attribute names (dashes allowed), never engine options.
 ```
 `$padFragmentCache` = `'file'` (default), `'apcu'` or `FALSE`; `padFragmentForget('name')`
 drops a section when what it shows has changed.
+
+```
+{cache 'top-products', ttl=300}{topProducts}<li>{$name} {nocache}{stock $id}{/nocache}</li>{/topProducts}{/cache}
+```
+A `{nocache}` part of a cached section - or of a page the page cache keeps - renders on every
+request, the hit included; inside a loop it gets its row's fields back. A page-cache hit runs no
+PHP, so there a part sees the request, the session, `_lib` and the application's tags only.
 
 ### Remote data with a cache
 ```
