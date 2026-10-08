@@ -2068,6 +2068,35 @@ reduced motion is asked for; printed, the slides stand under each other. The col
 
 ---
 
+### copy
+A text with a copy-to-clipboard button - the text in a `<pre><code>` that selects as a whole
+with one click, so it is copied by hand where the button cannot run (`lib/copy.php`).
+
+```html
+{copy 'composer require pad/pad'}
+{copy $command, label='Copy command'}
+{copy label='Copy settings'}
+  padSqlDatabase={$app}/{$app}.sqlite
+{/copy}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The text, a value - escaped |
+| `label` | The button's text, default `Copy` |
+
+**Behavior:** as a pair the content is rendered first and becomes the text, trimmed. The button
+shows when scripting is on (`@media (scripting: enabled)`): a small script, once per page with
+the CSP nonce, puts the text on the clipboard - `navigator.clipboard`, or the selection and
+`execCommand` on a page over plain http - and says 'Copied' on the button and, through a status
+region beside it, to a screen reader. The colours are `--pad-copy-accent`, `-text`, `-muted`,
+`-line`, `-surface` and `-done` on `.pad-copy`, `light-dark()` defaults, written once per page.
+A `{copy}` without a text is an error under the strict check.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2588,6 +2617,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `accordion` | Output | Items that open on a click - every `{tab}` a `<details>`, one open at a time with `single` |
 | `modal` | Output | A `<dialog>` and its opening button - invoker commands, a small script, or a link without scripting |
 | `carousel` | Output | Slides that scroll and snap sideways, previous/next and dot links - no autoplay |
+| `copy` | Output | A text with a copy-to-clipboard button, selectable by hand without scripting |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
