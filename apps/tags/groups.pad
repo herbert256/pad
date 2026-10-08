@@ -1,0 +1,16 @@
+{meta title='Tags by group'}
+<h1>Tags by group</h1>
+<p class="lead">The tags by what they are for, in {$tagsGroupCnt} groups.</p>
+
+<nav class="jump" aria-label="Groups">{groups}<a href="#{$key}">{$label}</a>{/groups}</nav>
+
+{groups}
+<section class="section" id="{$key}">
+  <div class="section-head"><h2>{$label}</h2><span>{$tagline} - {$count} {echo $count eq 1 ? 'tag' : 'tags'}</span></div>
+  <ul class="list">
+    {tags}
+    <li><a class="name" href="?tag/{$name}">&#123;{$name}&#125;</a> <span class="about">{$about}</span></li>
+    {/tags}
+  </ul>
+</section>
+{/groups}

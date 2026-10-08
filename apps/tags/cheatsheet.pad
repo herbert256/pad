@@ -1,0 +1,17 @@
+{meta title='Cheat sheet'}
+<h1>Cheat sheet</h1>
+<p class="lead">The syntax of every tag, by group.</p>
+
+{sheet}
+<section class="section" id="{$key}">
+  <div class="section-head"><h2>{$label}</h2></div>
+  <div class="cheat">
+    {tags}
+    <div class="cheat-item">
+      <a class="name" href="?tag/{$name}">{$name}</a> <span class="about">{$about}</span>
+      <pre class="code"><code>{!syntaxHtml}</code></pre>
+    </div>
+    {/tags}
+  </div>
+</section>
+{/sheet}
