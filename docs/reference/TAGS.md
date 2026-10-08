@@ -1349,6 +1349,33 @@ the coloured text alone.
 
 ---
 
+### source
+The files behind a page as tabs, each coloured as `{highlight}` colours it - the code shown
+is read from the files that run, so it never drifts from them.
+
+```html
+{source}                                          the page asked for: its template and PHP
+{source 'examples/props', files='www:props.js'}   another page, then a file in www/<app>/
+{source only='_tags/card.pad, www:card.js'}       those files alone
+```
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The page whose `.pad` (or `.html`) and `.php` come first; default the page asked for |
+| `files` | Files after the page's, a text with commas: a file of the application, or `www:` one in its `www/` directory |
+| `only` | Those files alone, without the page's |
+
+**Behavior:** a radio button and a label per file, then a panel per file: the tabs work by
+CSS alone, no script. A label carries `data-side="server"` for a file of the application and
+`"client"` for one under `www/` - what runs on the server, what the browser gets. The rule of
+`{highlight file=}`: never a file outside the application or its `www/` directory, under
+`_config/` or a dotfile - such a file, one that is not there and a page that has neither a
+template nor PHP are errors. The default look - tabs, panels - is written once a page under
+`:where()`, so the page's CSS wins; style `.pad-source`, `.pad-source > label` and
+`.pad-source-panel`.
+
+---
+
 ### ignore
 Escape PAD syntax in content.
 

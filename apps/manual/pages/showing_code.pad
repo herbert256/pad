@@ -1,0 +1,24 @@
+{meta title='Showing code'}
+
+<p>A manual, a tutorial, a gallery of examples shows code. {tag 'highlight'} colours it on
+the server - no JavaScript library - in PHP, PAD, HTML, CSS, JavaScript, JSON, YAML, SQL or
+bash, with numbered and marked lines:</p>
+
+{example 'fragments/showing_code_1'}
+
+<p>The content is taken as it stands, braces and all; <code>file=</code> shows a file of the
+application instead, and the <code>highlight</code> pipe colours a value.</p>
+
+<h2>The files behind a page</h2>
+
+<p>{tag 'source'} shows files as tabs, each coloured the same way - by default the page asked
+for, its template and its PHP. <code>files=</code> adds files after them and <code>only=</code>
+names the files alone; <code>www:</code> in front of a name is a file in the application's
+<code>www/</code> directory, the script or stylesheet the browser gets:</p>
+
+{example 'fragments/showing_code_2'}
+
+<p>The code is read from the files that run, so what a page shows can never drift from what
+it does. The tabs need no script; a label says <code>data-side="server"</code> or
+<code>"client"</code>. Neither tag shows a file outside the application, under
+<code>_config/</code> or a dotfile.</p>

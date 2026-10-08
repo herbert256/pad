@@ -344,31 +344,21 @@ a.card:hover .card-go { transform: translateX(4px); color: var(--react); }
 [data-island]:not(.is-mounted) { opacity: .75; }
 .island-fallback { padding: 12px 14px; border-radius: var(--radius-sm); border: 1px dashed var(--line); color: var(--muted); font-size: 14px; }
 
-/* ---------------------------------------------------------------- source viewer: radio tabs */
+/* ---------------------------------------------------------------- the files of an example: {source} */
 
-.source { border-radius: var(--radius); overflow: hidden; border: 1px solid #1f2633; background: #0d1117; box-shadow: var(--shadow); color-scheme: dark; }
-.source > input { position: absolute; opacity: 0; pointer-events: none; }
-.source > label {
-  display: inline-block; padding: 11px 16px; cursor: pointer;
+.pad-source { margin: 0; border-radius: var(--radius); overflow: hidden; border: 1px solid #1f2633; background: #0d1117; box-shadow: var(--shadow); color-scheme: dark; }
+.pad-source > label {
+  padding: 11px 16px; opacity: 1;
   font: 600 13px/1.2 var(--mono); color: #8b949e; border-bottom: 2px solid transparent;
 }
-.source > label:hover { color: #e6edf3; }
-.source > label::before { content: ''; display: inline-block; width: 8px; height: 8px; margin-right: 8px; border-radius: 2px; vertical-align: 1px; }
-.source > label.is-server::before { background: #a690ff; }
-.source > label.is-client::before { background: #5ccfee; }
-.source > input:checked + label { color: #fff; border-bottom-color: #5ccfee; background: rgba(255, 255, 255, .04); }
-.source > input:focus-visible + label { outline: 2px solid #5ccfee; outline-offset: -2px; }
-.source-panel { display: none; border-top: 1px solid #1f2633; max-height: 560px; overflow: auto; }
-.source .pad-highlight { margin: 0; border-radius: 0; background: #0d1117; color: #d7dae6; padding: 16px 18px; font-size: 13px; }
-.source > input:nth-of-type(1):checked ~ .source-panel:nth-of-type(1),
-.source > input:nth-of-type(2):checked ~ .source-panel:nth-of-type(2),
-.source > input:nth-of-type(3):checked ~ .source-panel:nth-of-type(3),
-.source > input:nth-of-type(4):checked ~ .source-panel:nth-of-type(4),
-.source > input:nth-of-type(5):checked ~ .source-panel:nth-of-type(5),
-.source > input:nth-of-type(6):checked ~ .source-panel:nth-of-type(6),
-.source > input:nth-of-type(7):checked ~ .source-panel:nth-of-type(7),
-.source > input:nth-of-type(8):checked ~ .source-panel:nth-of-type(8),
-.source > input:nth-of-type(9):checked ~ .source-panel:nth-of-type(9) { display: block; }
+.pad-source > label:hover { color: #e6edf3; }
+.pad-source > label::before { content: ''; display: inline-block; width: 8px; height: 8px; margin-right: 8px; border-radius: 2px; vertical-align: 1px; }
+.pad-source > label[data-side="server"]::before { background: #a690ff; }
+.pad-source > label[data-side="client"]::before { background: #5ccfee; }
+.pad-source > input:checked + label { color: #fff; border-bottom-color: #5ccfee; background: rgba(255, 255, 255, .04); }
+.pad-source > input:focus-visible + label { outline: 2px solid #5ccfee; outline-offset: -2px; }
+.pad-source-panel { border-top: 1px solid #1f2633; max-height: 560px; overflow: auto; }
+.pad-source .pad-highlight { margin: 0; border-radius: 0; background: #0d1117; color: #d7dae6; padding: 16px 18px; font-size: 13px; }
 
 /* ---------------------------------------------------------------- the shared React pieces (ui.js) */
 

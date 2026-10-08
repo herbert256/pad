@@ -797,6 +797,8 @@ Code: `pad/lib/chart.php` (bar, line, sparkline) and `pad/lib/chart/` (the other
 {highlight 'php', lines, mark='3'}<?php echo $x; ?>{/highlight}   # pad php html css js json yaml sql bash
 {highlight file='_data/products.json'}                           # a file of the app, language from its extension
 {$query | highlight('sql')}                                       # a value - escaped, so no sanitize on top
+{source}                                     # the page's own template and PHP as tabs, coloured
+{source 'orders', files='_lib/orders.php, www:orders.js'}           # another page, more files (www: = www/<app>/)
 ```
 
 ### QR codes and barcodes

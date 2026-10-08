@@ -1,0 +1,139 @@
+<p>A manual, a tutorial, a gallery of examples shows code. <b>{highlight}</b> colours it on
+the server - no JavaScript library - in PHP, PAD, HTML, CSS, JavaScript, JSON, YAML, SQL or
+bash, with numbered and marked lines:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/showing_code_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>php<font color="black">'</font><font color="black">,</font> lines<font color="black">,</font> mark=<font color="black">'</font>3<font color="black">'</font></font>}</b><br>  <span style="color: #0000BB">&lt;?php<br>    $orders </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"ARRAY * FROM orders WHERE status = {0}"</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'open' </span><span style="color: #007700">] );<br>    </span><span style="color: #0000BB">$total  </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrSum </span><span style="color: #007700">( </span><span style="color: #0000BB">$orders</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">?&gt;<br></span><b>{/<font color="blue">highlight</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="php"><code><span class="hl-line" data-line="1"><span class="hl-tag">&lt;?php</span></span>
+<span class="hl-line" data-line="2">  <span class="hl-var">$orders</span> <span class="hl-pun">=</span> <span class="hl-fn">db</span> <span class="hl-pun">(</span> <span class="hl-str">&quot;ARRAY * FROM orders WHERE status = {0}&quot;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;open&#039;</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line hl-mark" data-line="3">  <span class="hl-var">$total</span>  <span class="hl-pun">=</span> <span class="hl-fn">padArrSum</span> <span class="hl-pun">(</span> <span class="hl-var">$orders</span><span class="hl-pun">,</span> <span class="hl-str">&#039;amount&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="4"><span class="hl-tag">?&gt;</span></span></code></pre>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<p>The content is taken as it stands, braces and all; <code>file=</code> shows a file of the
+application instead, and the <code>highlight</code> pipe colours a value.</p>
+
+<h2>The files behind a page</h2>
+
+<p><b>{source}</b> shows files as tabs, each coloured the same way - by default the page asked
+for, its template and its PHP. <code>files=</code> adds files after them and <code>only=</code>
+names the files alone; <code>www:</code> in front of a name is a file in the application's
+<code>www/</code> directory, the script or stylesheet the browser gets:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/showing_code_2.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/showing_code_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Nothing to compute - this file is here to be shown by the tab beside the template.<br><br>  </span><span style="color: #0000BB">$shown </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">source </font><font color="red">only=<font color="black">'</font>fragments/showing_code_2.pad<font color="black">,</font> fragments/showing_code_2.php<font color="black">'</font></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <code style="color: #000000"></code>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<p>The code is read from the files that run, so what a page shows can never drift from what
+it does. The tabs need no script; a label says <code>data-side="server"</code> or
+<code>"client"</code>. Neither tag shows a file outside the application, under
+<code>_config/</code> or a dotfile.</p>
