@@ -1,0 +1,7 @@
+{meta title='Content to a file', about='The content renders as usual and goes to DATA/exports/orders.csv instead of the page.'}
+{file dir='exports', name='orders', ext='csv'}
+number,customer,total
+{orders}{$number},{$customer},{$total}
+{/orders}
+{/file}
+<p>The export is written.</p>

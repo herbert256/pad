@@ -1,0 +1,27 @@
+{ignore}
+<p><code>{curl 'https://...'}</code> fetches a URL and answers the body of the response as the
+tag's value - a value, so braces in it stay text. <code>url=</code> or the first parameter gives
+the address; <code>SELF://</code> at its start becomes this site's own host and mount prefix,
+so an application can call itself wherever it is served. A <code>$name=value</code> written on
+the tag is added to the URL as a query value.</p>
+
+<p>The tag's parameters as a whole are the input of <code>padCurl()</code>: <code>post=</code>
+makes the request a POST with that body, <code>user=</code> and <code>password=</code> are
+basic authentication, and <code>get=</code>, <code>cookies=</code>, <code>headers=</code> and
+<code>options=</code> (curl options by name) are arrays. Any answer but HTTP 200 is a PAD error,
+and nothing of the failing answer goes into the page.</p>
+
+<h3>A cache</h3>
+
+<p>With <code>ttl=600</code> the answer is kept ten minutes: the requests in that time are
+answered from the copy. When the source fails after the ttl the last good copy is served and the
+failure goes to the error log (and to the application's <code>_events/curl.php</code>); only a
+good answer is kept. <code>$padCurlCache</code> picks the store - <code>'file'</code> (the
+default), <code>'apcu'</code>, <code>'redis'</code>, <code>'memcached'</code> or
+<code>FALSE</code>. <code>data='https://...'</code> on a tag takes the same <code>ttl=</code>
+and reads the answer as data, and <code>padPrefetch</code> in the page's PHP fetches several
+sources in parallel.</p>
+
+<p>In tests <code>padCurlFake</code> answers every fetch from fakes. A remote fetch is neither
+deterministic nor allowed here, so the examples are shown, not run.</p>
+{/ignore}

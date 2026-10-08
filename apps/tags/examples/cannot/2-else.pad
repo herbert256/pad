@@ -1,0 +1,7 @@
+{meta title='With an else', about='{cannot} owns its {else} too: the part after it renders when the gate says yes.'}
+{set $note = [ 'title' => 'Minutes', 'published' => TRUE, 'author' => 7 ]}
+{cannot 'edit-post', $note}
+  <p>You cannot change these minutes.</p>
+{else}
+  <p><a href="#edit">Change the minutes</a></p>
+{/cannot}

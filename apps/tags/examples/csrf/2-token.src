@@ -1,0 +1,7 @@
+{meta title='The bare token for a script', about='{csrf token} is the token alone - a fetch sends it back in the X-CSRF-Token header.'}
+<meta name="csrf-token" content="{csrf token}">
+
+<script>{ignore}
+  const token = document.querySelector('meta[name="csrf-token"]').content;
+  fetch('?orders/save', { method: 'POST', headers: { 'X-CSRF-Token': token }, body: new FormData(form) });
+{/ignore}</script>

@@ -1,0 +1,8 @@
+{meta title='The hidden field', about='A form the page writes as plain HTML carries the session\'s token back; padCsrfValid () checks it in the PHP.'}
+<form method="post" action="?orders/save">
+  {csrf}
+  <input name="number" value="1042">
+  <button>Save</button>
+</form>
+
+{# renders: <input type="hidden" name="padCsrfToken" value="9f2c...64 hex characters..."> #}

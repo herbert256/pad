@@ -1,0 +1,7 @@
+{meta title='A script the policy lets run', about='The nonce on the script tag is the one in this response\'s Content-Security-Policy header - a script without it is blocked.'}
+{# _config/config.php: $padCsp = "default-src 'self'; script-src 'self' 'nonce'"; #}
+<script nonce="{nonce}">{ignore}
+  document.documentElement.classList.add('js');
+{/ignore}</script>
+
+{# renders: <script nonce="kq3Z0d9wQ1m2bH8sVf7aXyPc"> - a new value every request #}

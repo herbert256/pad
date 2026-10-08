@@ -1,0 +1,3 @@
+{meta title='Directories only, or all but some', about='onlyDirs keeps the directories; exclude drops the names that match its pattern.'}
+<p>Directories: {files '_data/filesDemo', base='app', onlyDirs}{$item}{/files}</p>
+<p>Not text: {files '_data/filesDemo', base='app', onlyFiles, exclude='*.txt', sort='item'}{notFirst@files}, {/notFirst@files}{$file}{/files}</p>

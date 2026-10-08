@@ -1,0 +1,6 @@
+{meta title='Rules on the fields', about='The rules stand on the fields - checked before the page\'s PHP, the message above and beside the fields when a post broke them.'}
+{form 'contact', error='Please correct the errors below.'}
+  {input 'email', type='email', label='E-mail', rules='required|email'}
+  {textarea 'message', label='Message', rows=6, rules='required|max:2000'}
+  <button>Send</button>
+{/form}

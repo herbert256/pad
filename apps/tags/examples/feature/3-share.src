@@ -1,0 +1,8 @@
+{meta title='A share of the visitors', about='0.25 is on for a quarter of the visitors - decided per user, or per a long-lived cookie, and the same on every visit.'}
+{# _config/config.php: $padFeatures = [ 'search2' => 0.25, 'beta' => 'isBetaTester' ]; #}
+{feature 'search2'}
+  <form action="?search2">...</form>
+{else}
+  <form action="?search">...</form>
+{/feature}
+{feature 'beta'}<p>Thanks for testing the beta.</p>{/feature}

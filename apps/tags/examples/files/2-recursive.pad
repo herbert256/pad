@@ -1,0 +1,7 @@
+{meta title='Recursive, files only, by mask', about='recursive walks the subdirectories too; item keeps the path below the scanned directory, dir the part before its last slash.'}
+<table>
+  <tr><th>item</th><th>file</th><th>dir</th></tr>
+{files '_data/filesDemo', base='app', recursive, onlyFiles, mask='*.txt', sort='item'}
+  <tr><td>{$item}</td><td>{$file}</td><td>{$dir}</td></tr>
+{/files}
+</table>

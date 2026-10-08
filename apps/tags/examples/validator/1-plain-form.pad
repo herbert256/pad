@@ -1,0 +1,7 @@
+{meta title='Rules from PHP, checked in the browser', about='The page exports its rules with padValidateClient; any form carrying them in data-pad-rules is checked by the script {validator} writes.'}
+<form method="get" novalidate data-pad-rules="{^signupRules}">
+  <label for="v-email">E-mail</label> <input name="email" id="v-email">
+  <label for="v-age">Age</label> <input name="age" id="v-age" type="number">
+  <button>Check</button>
+</form>
+{validator}

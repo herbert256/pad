@@ -110,7 +110,7 @@
       $first = strtok ( (string) file_get_contents ( $file ), "\n" );
       $title = preg_match ( "/title='((?:[^'\\\\]|\\\\.)*)'/", $first, $m ) ? stripslashes ( $m [1] ) : basename ( $file );
       $about = preg_match ( "/about='((?:[^'\\\\]|\\\\.)*)'/", $first, $m ) ? stripslashes ( $m [1] ) : '';
-      $page  = substr ( $file, strlen ( APP ), $run ? -4 : 0 );
+      $page  = substr ( $file, strlen ( APP ), $run ? -4 : NULL );
 
       $examples [] = [ 'page' => $page, 'title' => $title, 'about' => $about, 'run' => $run ];
 

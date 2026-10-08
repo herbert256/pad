@@ -1,0 +1,6 @@
+{meta title='Nobody logged in', about='Without a padLogin the else half renders - the user\'s row is not there.'}
+{auth}
+  <p>Hello {$name} - <a href="#logout">log out</a></p>
+{else}
+  <p><a href="#login">Log in</a> to see your orders.</p>
+{/auth}

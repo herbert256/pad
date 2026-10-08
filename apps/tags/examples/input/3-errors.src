@@ -1,0 +1,10 @@
+{meta title='The message beside the field', about='After a post padValidate found wrong, the field shows the posted value and its message, tied to it for a screen reader.'}
+{# contact.php: if ( padPosted ( 'contact' ) ) $errors = padValidate ( [ 'email' => 'required|email' ] ); #}
+{form 'contact'}
+  {input 'email', type='email', label='E-mail'}
+  <button>Send</button>
+{/form}
+
+{# after posting "ann@" the field renders as:
+<label for="email">E-mail</label><input type="email" name="email" id="email" value="ann@"
+  aria-invalid="true" aria-describedby="email-error"><span class="error" id="email-error">E-mail must be a valid e-mail address</span> #}

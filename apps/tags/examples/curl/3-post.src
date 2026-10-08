@@ -1,0 +1,3 @@
+{meta title='A post with credentials', about='post= makes it a POST; user= and password= are basic authentication; a $name=value set on the tag goes into the query string.'}
+{curl 'https://api.example.com/orders', post='number=1042&status=paid', user='shop', password=$apiKey | ignore}
+{curl 'SELF://shop/?orders', $status='open' | ignore}

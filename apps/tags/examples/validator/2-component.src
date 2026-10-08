@@ -1,0 +1,7 @@
+{meta title='A component asks the checker', about='An Alpine form drawn in the browser checks with padValidate.check - the same rules and messages padValidate ( $rules ) gives the post.'}
+{# signup.php: $rules = [ 'email' => 'required|email' ]; $check = padValidateClient ( $rules ); #}
+<div x-data="{ rules: {^check}, form: {}, errors: {} }">
+  <input x-model="form.email" @blur="errors = padValidate.check(rules, form)">
+  <span class="error" x-text="errors.email"></span>
+</div>
+{validator}

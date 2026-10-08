@@ -1,0 +1,3 @@
+{meta title='Counted and joined', about='The entries are data like any other: a property of the loop, a separator between them.'}
+{set $folder = APP . '_data/filesDemo/archive'}
+<p>{dir $folder}{first@dir}{count@dir} reports: {/first@dir}{notFirst@dir}, {/notFirst@dir}{$dir}{/dir}</p>

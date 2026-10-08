@@ -1,0 +1,5 @@
+{meta title='Kept for ten minutes', about='ttl=600 answers from a copy for ten minutes, and serves the last good copy when the source fails afterwards.'}
+{pad data='https://api.example.com/rates.json', ttl=600}
+  <p>{$code}: {$rate}</p>
+{/pad}
+{curl 'https://api.example.com/rates.json', ttl=600 | ignore}

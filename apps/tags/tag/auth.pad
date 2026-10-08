@@ -1,0 +1,18 @@
+{ignore}
+<p><code>{auth}</code> renders its content once when a user is logged in to this application -
+by <code>padLogin ( $row )</code> or <code>padAttempt ( ... )</code> - with the user's row as its
+data: every field of it is a <code>{$field}</code> inside, <code>{$name}</code>,
+<code>{$email}</code>. The password and token fields were never kept, so they are not there.</p>
+
+<p>For a guest the part after its own <code>{else}</code> renders, or the <code>@else@</code>
+half. The tag owns that <code>{else}</code>: an <a href="?tag/if">{if}</a> around it keeps its
+own. <a href="?tag/guest">{guest}</a> is the reverse and hands over no data.</p>
+
+<p>Reading the user never starts a session the visitor did not bring - a guest's page makes no
+session - but a request that brings the remember-me cookie is logged in here, the first time
+anything asks. <code>padUser ( 'name' )</code>, <code>padUserId ()</code> and
+<code>padAuthCheck ()</code> ask the same from PHP.</p>
+
+<p>The examples run without a login, so the runnable one shows the guest's half; the other is
+shown, not run.</p>
+{/ignore}

@@ -1,0 +1,8 @@
+{meta title='The user\'s row as data', about='After padLogin every field of the row is a field inside - the password and token fields were never kept.'}
+{# login.php: if ( padAttempt ( $password, $row ['password'], $row ) ) padRedirectIntended (); #}
+{auth}
+  <p>Hello {$name} ({$email}) - <a href="?logout">log out</a></p>
+  {if $role eq 'admin'}<a href="?admin">Administration</a>{/if}
+@else@
+  <p><a href="?login">Log in</a></p>
+{/auth}

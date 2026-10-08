@@ -1,0 +1,6 @@
+{meta title='Rules on a text area', about='rules= is checked before the page\'s PHP runs; a post that broke it renders the form again, refilled, the message under the field.'}
+{form 'contact', error}
+  {input 'email', type='email', label='E-mail', rules='required|email'}
+  {textarea 'message', label='Message', rows=6, rules='required|max:2000'}
+  <button>Send</button>
+{/form}

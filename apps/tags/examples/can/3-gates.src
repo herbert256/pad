@@ -1,0 +1,8 @@
+{meta title='Defining the gates', about='The gates live in a file of _lib/; padGateBefore decides before every gate - here an admin may do anything.'}
+{# _lib/gates.php:
+  padGate       ( 'edit-post', fn ( array $user, array $post ) => $user ['id'] === $post ['author'] );
+  padGateBefore ( fn ( array $user, string $ability ) => $user ['role'] == 'admin' ? TRUE : NULL );
+#}
+{posts}
+  <p>{$title} {can 'edit-post', $posts}<a href="?edit&amp;id={$id}">Edit</a>{/can}</p>
+{/posts}

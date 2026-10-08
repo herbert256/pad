@@ -1,0 +1,7 @@
+{meta title='Post, redirect, show', about='The page that took the post flashes and redirects; the page the browser lands on shows the message once.'}
+{# save.php:  padFlash ( 'Thanks, your message was sent.' ); padRedirect ( 'contact' ); #}
+
+{# contact.pad - the next request: #}
+{flash}
+  <p class="notice {$type}" role="status">{$message}</p>
+{/flash}

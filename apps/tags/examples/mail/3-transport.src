@@ -1,0 +1,8 @@
+{meta title='Where the mail goes', about='$padMailTransport decides: file (the default, an .eml under DATA/mail/<app>/), PHP\'s mail(), or a function of the application.'}
+{# _config/config.php:
+   $padMailTransport = 'file';         // DATA/mail/<app>/*.eml - no mail server needed
+   $padMailTransport = 'mail';         // PHP mail()
+   $padMailTransport = 'smtpSend';     // _lib function, given the message array
+   $padMailFrom      = 'Shop <shop@example.com>';
+#}
+{mail to='Ann <ann@example.com>', cc='bob@example.com', subject='Welcome'}<p>Hello Ann</p>{/mail}
