@@ -15,6 +15,6 @@ PAD;
 
   $tagOptions = [];
 
-  $tagSee     = [ 'parms', 'block', 'shadow' ];
+  $tagSee     = [ 'parms', 'define', 'macro', 'block', 'shadow' ];
 
 ?>

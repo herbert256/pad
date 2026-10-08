@@ -1,0 +1,8 @@
+{meta title='Per row of a cached loop', about='Each part gets the fields of its row back, so the stock is looked up live for every cached product.'}
+{cache 'top-products', ttl=300}
+  <ul>
+  {topProducts}
+    <li>{$name} {nocache}- {stock $id} left{/nocache}</li>
+  {/topProducts}
+  </ul>
+{/cache}

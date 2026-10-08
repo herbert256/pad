@@ -189,7 +189,7 @@
 </section>
 
 <section class="section" id="output">
-  <div class="section-head"><h2>Output control</h2><span>What is sent, how and when - 14 tags</span></div>
+  <div class="section-head"><h2>Output control</h2><span>What is sent, how and when - 15 tags</span></div>
   <ul class="list">
     
     <li><a class="name" href="?tag/asset">&#123;asset&#125;</a> <span class="about">The address of a file of www/&lt;app&gt;/ with a version of its contents, safe behind a far-future cache header.</span></li>
@@ -205,6 +205,8 @@
     <li><a class="name" href="?tag/foo">&#123;foo&#125;</a> <span class="about">A built-in demo tag that answers a fixed line, there to show how the type prefixes resolve a name.</span></li>
     
     <li><a class="name" href="?tag/ignore">&#123;ignore&#125;</a> <span class="about">Keeps PAD from reading the braces in its content as tags - for inline JavaScript, CSS, JSON and code samples.</span></li>
+    
+    <li><a class="name" href="?tag/nocache">&#123;nocache&#125;</a> <span class="about">Marks a part of a cached page or {cache} section that renders again on every request, the hit included.</span></li>
     
     <li><a class="name" href="?tag/open">&#123;open&#125;</a> <span class="about">Writes a literal opening brace that the template engine does not read as the start of a tag.</span></li>
     
@@ -345,14 +347,18 @@
 </section>
 
 <section class="section" id="layout">
-  <div class="section-head"><h2>Layouts and components</h2><span>Extending, blocks, slots, stacks and fragments - 10 tags</span></div>
+  <div class="section-head"><h2>Layouts and components</h2><span>Extending, blocks, slots, stacks and fragments - 12 tags</span></div>
   <ul class="list">
     
     <li><a class="name" href="?tag/block">&#123;block&#125;</a> <span class="about">A named region of a layout or wrapper - and a page&#039;s override of it.</span></li>
     
+    <li><a class="name" href="?tag/define">&#123;define&#125;</a> <span class="about">Writes a custom tag in the template itself - what a _tags/name.pad file is, without the file.</span></li>
+    
     <li><a class="name" href="?tag/extends">&#123;extends&#125;</a> <span class="about">Frames the page with a layout instead of its directories&#039; wrappers.</span></li>
     
     <li><a class="name" href="?tag/fragment">&#123;fragment&#125;</a> <span class="about">A named part of the page that a request can ask for alone - for htmx and ajax swaps.</span></li>
+    
+    <li><a class="name" href="?tag/macro">&#123;macro&#125;</a> <span class="about">A template function: declared parameters, given in order or by name, read as fields inside its body.</span></li>
     
     <li><a class="name" href="?tag/meta">&#123;meta&#125;</a> <span class="about">The page&#039;s metadata - a title, a layout, a cache time or any value - read while the page is assembled.</span></li>
     

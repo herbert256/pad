@@ -1,0 +1,10 @@
+{meta title='Used inside a loop', about='The macro\'s own parameters are its fields, and the row round the use stays visible behind them.'}
+{macro 'macroPrice', amount}
+  <li>{$product}: € {$amount | number_format(@, 2)}</li>
+{/macro}
+
+<ul>
+{macroProducts}
+  {macroPrice $price}
+{/macroProducts}
+</ul>

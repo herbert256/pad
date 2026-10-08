@@ -493,6 +493,12 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/nocache">nocache</a> <span class="about">Marks a part of a cached page or {cache} section that renders again on every request, the hit included.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">nocache</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/nocache</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">cache</span> <span class="hl-str">&#039;name&#039;</span>, <span class="hl-opt">ttl</span>=<span class="hl-num">300</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">nocache</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/nocache</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/cache</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/open">open</a> <span class="about">Writes a literal opening brace that the template engine does not read as the start of a tag.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">open</span><span class="hl-brc">}</span></code></pre>
     </div>
@@ -864,6 +870,15 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/define">define</a> <span class="about">Writes a custom tag in the template itself - what a _tags/name.pad file is, without the file.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">define</span> <span class="hl-str">&#039;name&#039;</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-var">#parm</span><span class="hl-brc">}</span> ... <span class="hl-var">@content@</span> ... <span class="hl-brc">{</span><span class="hl-tag">/define</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">define</span> <span class="hl-str">&#039;name&#039;</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">parms</span> title, <span class="hl-opt">tone</span>=<span class="hl-str">&#039;info&#039;</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">slot</span> <span class="hl-str">&#039;footer&#039;</span><span class="hl-brc">}</span><span class="hl-var">@content@</span><span class="hl-brc">{</span><span class="hl-tag">/slot</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/define</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">name</span> <span class="hl-opt">parm</span>=<span class="hl-str">&#039;value&#039;</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">name</span> <span class="hl-opt">parm</span>=<span class="hl-str">&#039;value&#039;</span><span class="hl-brc">}</span> content <span class="hl-brc">{</span><span class="hl-tag">slot</span> <span class="hl-str">&#039;footer&#039;</span><span class="hl-brc">}</span>fill<span class="hl-brc">{</span><span class="hl-tag">/slot</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/name</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">define:name</span> ...<span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/extends">extends</a> <span class="about">Frames the page with a layout instead of its directories&#039; wrappers.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">extends</span> <span class="hl-str">&#039;layout&#039;</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">extends</span> <span class="hl-var">$layout</span><span class="hl-brc">}</span></code></pre>
@@ -872,6 +887,16 @@
     <div class="cheat-item">
       <a class="name" href="?tag/fragment">fragment</a> <span class="about">A named part of the page that a request can ask for alone - for htmx and ajax swaps.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">fragment</span> <span class="hl-str">&#039;name&#039;</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/fragment</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/macro">macro</a> <span class="about">A template function: declared parameters, given in order or by name, read as fields inside its body.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">macro</span> <span class="hl-str">&#039;name&#039;</span>, required, <span class="hl-opt">optional</span>=<span class="hl-str">&#039;default&#039;</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-var">$required</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$optional</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/macro</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">name</span> <span class="hl-str">&#039;value&#039;</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">name</span> <span class="hl-str">&#039;value&#039;</span>, <span class="hl-str">&#039;other&#039;</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">name</span> <span class="hl-opt">required</span>=<span class="hl-str">&#039;value&#039;</span>, <span class="hl-opt">optional</span>=<span class="hl-var">$x</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">name</span> <span class="hl-str">&#039;value&#039;</span><span class="hl-brc">}</span> content for <span class="hl-var">@content@</span> <span class="hl-brc">{</span><span class="hl-tag">/name</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">macro:name</span> ...<span class="hl-brc">}</span></code></pre>
     </div>
     
     <div class="cheat-item">

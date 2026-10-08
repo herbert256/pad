@@ -1,0 +1,22 @@
+<p><code>&#123;macro 'entry', label, type='text'&#125; ... &#123;/macro&#125;</code> declares a
+tag <code>&#123;entry&#125;</code> with two parameters. Defining prints nothing; each use
+renders the body once, with the values of that use as the fields of the macro's one row:
+<code>&#123;$label&#125;</code>, <code>&#123;$type&#125;</code>.</p>
+
+<p>A use gives values in their declared order (<code>&#123;entry 'E-mail', 'email'&#125;</code>),
+by name (<code>&#123;entry label='Name'&#125;</code>), or both. A parameter written alone in
+the declaration is required; one with <code>=default</code> fills in when the use leaves it
+out, its default evaluated at the use. Inside the body the fields round the use stay visible
+behind the parameters, so a macro used inside a loop can read the row as well.</p>
+
+<p>A pair use hands its content to <code>&#64;content&#64;</code>, and
+<a href="?tag/slot"><code>&#123;slot&#125;</code></a>s work as in a
+<a href="?tag/define"><code>&#123;define&#125;</code></a>. A macro can call itself. A value given
+to a macro is text, never template, as every value is. <code>&#123;macro:entry&#125;</code>
+asserts that the name is a macro.</p>
+
+<p>Under the strict check a required parameter left out, more values than parameters, a named
+parameter the macro does not declare, and a parameter named like an option every tag takes are
+errors. The difference with <code>&#123;define&#125;</code>: a define reads its parameters as
+<code>&#123;#name&#125;</code> like a custom tag file, a macro declares them and reads them as
+fields.</p>

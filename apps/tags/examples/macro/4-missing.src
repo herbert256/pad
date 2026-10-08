@@ -1,0 +1,8 @@
+{meta title='A required parameter left out', about='Under the strict check this is an error naming the macro and the parameter.'}
+{macro 'entry', label, kind='text'}
+  <label>{$label} <input type="{$kind}"></label>
+{/macro}
+
+{entry kind='email'}      the required label is missing - an error
+{entry 'Name', 'text', 'x'}   one value too many - an error
+{entry 'Name', size=20}   size is not a parameter of entry - an error

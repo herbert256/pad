@@ -17,6 +17,6 @@ PAD;
     'ttl'  => 'The seconds the rendering is kept, 300 when not given.',
     'vary' => 'Whatever else the rendering depends on: <code>vary=$userId</code> keeps a copy per user, <code>vary=$country</code> one per country.' ];
 
-  $tagSee     = [ 'fragment', 'push', 'stack', 'curl' ];
+  $tagSee     = [ 'nocache', 'fragment', 'push', 'stack', 'curl' ];
 
 ?>

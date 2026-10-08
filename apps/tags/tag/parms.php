@@ -14,6 +14,6 @@ PAD;
 
   $tagOptions = [];
 
-  $tagSee     = [ 'slot', 'shadow', 'attrs' ];
+  $tagSee     = [ 'slot', 'define', 'macro', 'shadow', 'attrs' ];
 
 ?>
