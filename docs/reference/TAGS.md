@@ -2201,6 +2201,51 @@ with `light-dark()` steps on `.pad-video`. An address that is no known video and
 
 ---
 
+### pdf
+What the content renders, sent as a PDF instead of the page - a writer in plain PHP
+(`lib/pdf.php`): PDF 1.4, the standard fonts every reader has, no library, no browser.
+
+```html
+{pdf file='invoice-2026-114', size='A4'}
+  <h1>Invoice {$number}</h1>
+  <table>{lines}<tr><td>{$item}</td><td align="right">{$amount}</td></tr>{/lines}</table>
+{/pdf}
+{pdf preview, file='invoice'}...{/pdf}      # the content on a sheet, links to ?page&padPdf
+{pdf download}                              # single: the whole page as an attachment
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| `file` | The file name of the document, default the page's name (`.pdf` is added) |
+| `download` | Sent as an attachment (`Content-Disposition: attachment`) instead of shown inline |
+| `size` | `A4` (default), `Letter`, `A5` or `Legal` |
+| `landscape` | The page turned |
+| `font` | `helvetica` (default), `times` or `courier` - code is always Courier |
+| `title` | The document's title, default its first heading |
+| `preview` | The page stays a page: the content on a sheet with links "Open name.pdf" and "Download" - the same page asked with `&padPdf` (`padPdf=download` for the attachment) answers the PDF |
+
+**Behavior:** a pair renders its content as ever, and the page's response becomes the PDF of
+it (`application/pdf`, `Content-Disposition` with the name) - exits/exits.php makes it in
+place of the page, tidy and the page cache left out; several `{pdf}` pairs are one document,
+the first one's options counting. The HTML read: `h1`-`h6`, `p`, `b`/`strong`, `i`/`em`,
+`u`, `code`, `a` (blue, and a link of the document for an http, https or mailto address),
+`br`, `ul`/`ol`/`li` (nested), `blockquote`, `pre`, `hr`, `table`/`tr`/`th`/`td` (a grid with
+`colspan`, `align=` or `text-align`, the columns as wide as their content asks, the header
+row repeated on every page) and `img` - a JPEG of `www/<application>/` or a `data:` address,
+embedded as it is; another picture is its alt text, any other element its text, and script,
+style, svg and form fields are left out. The text is WinAnsi (a `?` for what it lacks) and
+measured with the AFM widths of Helvetica and Times, so lines wrap where a reader draws
+them; pages get margins and, past one, "2 / 5" at the foot. Only the page a request asked
+for answers a document: inside a `{page}` the content is shown on its sheet (the
+`--pad-pdf-*` colours, `light-dark()`), and a data (json, csv) or live answer goes first.
+The document carries no date, so the same page is the same bytes. An unknown `size` or
+`font` is an error under the strict check. From PHP: `padPdf ( $html, [ 'size' => 'Letter' ] )`
+answers the bytes.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -2725,6 +2770,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `poll` | Web | A vote once per visitor, results as bars - a live region, a plain form without scripting |
 | `img` | Output | Resized, cached thumbnail of a picture, with a 2x srcset |
 | `video` | Output | YouTube or Vimeo as a poster and play button, the iframe only on a click; a local file as `<video>` |
+| `pdf` | Output | The rendered content sent as a PDF, written in plain PHP - fonts, tables, JPEG pictures |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |

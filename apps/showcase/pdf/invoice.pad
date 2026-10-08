@@ -1,0 +1,18 @@
+{meta title='An invoice as PDF', about='An order rendered on a sheet, the same template one click away as an A4 PDF made in plain PHP.'}
+{pdf preview, file='invoice-{$invoice}', title='Invoice {$invoice}'}
+  <img src="photos/logo.jpg" width="56" height="56" alt="Harbour Supplies">
+  <h1>Invoice {$invoice}</h1>
+  <p><b>Harbour Supplies</b><br>Kaai 3, 1781 AA Den Helder<br>info@harbour.example</p>
+  <p>To: <b>{$customer.name}</b><br>{$customer.street}<br>{$customer.city}</p>
+  <p>Issued {$issued} - due {$due}</p>
+  <table>
+    <tr><th>Item</th><th align="right">Qty</th><th align="right">Price</th><th align="right">Amount</th></tr>
+    {lines}
+    <tr><td>{$item}</td><td align="right">{$qty}</td><td align="right">{$price | currency('EUR', 'nl_NL')}</td><td align="right">{$amount | currency('EUR', 'nl_NL')}</td></tr>
+    {/lines}
+    <tr><td colspan="3" align="right">Subtotal</td><td align="right">{$subtotal | currency('EUR', 'nl_NL')}</td></tr>
+    <tr><td colspan="3" align="right">VAT 21%</td><td align="right">{$vat | currency('EUR', 'nl_NL')}</td></tr>
+    <tr><td colspan="3" align="right"><b>Total</b></td><td align="right"><b>{$total | currency('EUR', 'nl_NL')}</b></td></tr>
+  </table>
+  <p>Please pay within 30 days to <b>NL91 ABNA 0417 1643 00</b>, quoting invoice {$invoice}.</p>
+{/pdf}
