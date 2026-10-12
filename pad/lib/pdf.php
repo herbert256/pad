@@ -994,14 +994,57 @@
 
     $header = ( $laid and $laid [0] [2] ) ? $laid [0] : NULL;
 
-    foreach ( $laid as $k => $row ) {
+    foreach ( $laid as $k => $row )
+      foreach ( padPdfRowParts ( $doc, $row, $header, $pad ) as $part => $piece ) {
 
-      if ( padPdfRoom ( $doc, $row [1] ) and $header and $k > 0 )
-        padPdfRow ( $doc, $header, $widths, $ctx, $pad );
+        if ( padPdfRoom ( $doc, $piece [1] ) and $header and ( $k > 0 or $part > 0 ) )
+          padPdfRow ( $doc, $header, $widths, $ctx, $pad );
 
-      padPdfRow ( $doc, $row, $widths, $ctx, $pad );
+        padPdfRow ( $doc, $piece, $widths, $ctx, $pad );
+
+      }
+
+  }
+
+  // A row taller than an empty page - below the header row - in parts that each fit one,
+  // every cell's lines continued in the next part: set whole, its lines ran past the bottom
+  // of the page, down to y = -1843, and were lost.
+
+  function padPdfRowParts ( $doc, $row, $header, $pad ) {
+
+    list ( $set, $height, $head ) = $row;
+
+    $room = $doc ['h'] - 2 * $doc ['margin'] - ( $header ? $header [1] : 0 ) - 1;
+
+    if ( $height <= $room )
+      return [ $row ];
+
+    $per   = [];
+    $parts = 1;
+
+    foreach ( $set as $i => list ( $cell, , $lines ) ) {
+      $per [$i] = max ( 1, (int) floor ( ( $room - 2 * $pad ) / ( $cell ['style'] ['size'] * 1.3 ) ) );
+      $parts    = max ( $parts, (int) ceil ( count ( $lines ) / $per [$i] ) );
+    }
+
+    $pieces = [];
+
+    for ( $p = 0; $p < $parts; $p++ ) {
+
+      $pieceSet    = [];
+      $pieceHeight = 9.5 * 1.3 + 2 * $pad;
+
+      foreach ( $set as $i => list ( $cell, $wide, $lines ) ) {
+        $part        = array_slice ( $lines, $p * $per [$i], $per [$i] );
+        $pieceSet [] = [ $cell, $wide, $part ];
+        $pieceHeight = max ( $pieceHeight, count ( $part ) * $cell ['style'] ['size'] * 1.3 + 2 * $pad );
+      }
+
+      $pieces [] = [ $pieceSet, $pieceHeight, $head ];
 
     }
+
+    return $pieces;
 
   }
 
