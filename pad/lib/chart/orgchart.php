@@ -96,9 +96,17 @@
     }
 
     if ( count ( $seen ) < count ( $nodes ) ) {
+      // Named by a node on the circle itself: walked up the bosses from one no root reaches
+      // until a node comes round again - that one could hang below the circle.
+
       if ( $padCheckSyntax ) {
-        $lost = array_keys ( array_diff_key ( $nodes, $seen ) );
-        padError ( "the org chart goes round in a circle through '" . padMakeSafe ( (string) $lost [0], 40 ) . "'" );
+        $at     = array_keys ( array_diff_key ( $nodes, $seen ) ) [0];
+        $walked = [];
+        while ( $at !== NULL and ! isset ( $walked [$at] ) ) {
+          $walked [$at] = TRUE;
+          $at = $boss [$at];
+        }
+        padError ( "the org chart goes round in a circle through '" . padMakeSafe ( (string) $at, 40 ) . "'" );
       }
       $nodes = array_intersect_key ( $nodes, $seen );
     }

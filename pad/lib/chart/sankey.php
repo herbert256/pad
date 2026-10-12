@@ -97,9 +97,25 @@
     }
 
     if ( $done < count ( $nodes ) ) {
+      // Named by a node on the circle itself: walked back from one still waiting for its
+      // inflow until a node comes round again - the first waiting one could only be fed by
+      // the circle, Hub below Grid and Storage.
+
       if ( $padCheckSyntax ) {
-        $circle = array_keys ( array_filter ( $degree ) );
-        padError ( "the flows of the sankey go round in a circle through '" . padMakeSafe ( (string) $circle [0], 40 ) . "'" );
+        $prev = [];
+        foreach ( $links as list ( $s, $t ) )
+          $prev [$t] [] = $s;
+        $at     = array_keys ( array_filter ( $degree ) ) [0];
+        $walked = [];
+        while ( ! isset ( $walked [$at] ) ) {
+          $walked [$at] = TRUE;
+          foreach ( $prev [$at] ?? [] as $from )
+            if ( $degree [$from] ) {
+              $at = $from;
+              break;
+            }
+        }
+        padError ( "the flows of the sankey go round in a circle through '" . padMakeSafe ( (string) $at, 40 ) . "'" );
       }
       return '';
     }
