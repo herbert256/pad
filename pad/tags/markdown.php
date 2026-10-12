@@ -19,7 +19,10 @@
 
   if ( ! $padPair [$pad] ) {
 
-    if ( trim ( (string) $padParm ) === '' and $padCheckSyntax )
+    // A pair without its close is a {markdown} without a parameter: one written with an
+    // empty value - a comment nobody wrote - renders nothing.
+
+    if ( ! in_array ( 'parm', array_column ( $padParms [$pad] ?? [], 'padPrmKind' ) ) and $padCheckSyntax )
       padError ( "the pair {markdown} never closes" );
 
     return padMarkdown ( $padParm, $padMdHtml );
