@@ -52,9 +52,12 @@
     if ( $depth > 3 )
       return;
 
-    foreach ( scandir ( APPS . $prefix ) ?: [] as $dir ) {
+    // A directory this process may not read is passed over, as the walk of the files is:
+    // one directly in apps/ failed the list of applications, and with it every page.
 
-      if ( $dir [0] === '.' or $dir [0] === '_' or ! is_dir ( APPS . "$prefix$dir" ) )
+    foreach ( @scandir ( APPS . $prefix ) ?: [] as $dir ) {
+
+      if ( $dir [0] === '.' or $dir [0] === '_' or ! is_dir ( APPS . "$prefix$dir" ) or ! is_readable ( APPS . "$prefix$dir" ) )
         continue;
 
       if ( ! preg_match ( '/^[A-Za-z0-9][A-Za-z0-9_-]*$/D', $dir ) )
@@ -305,9 +308,12 @@
     $dir   = APPS . "$app/$prefix";
     $pages = $dirs = [];
 
-    foreach ( scandir ( $dir ) ?: [] as $item ) {
+    // A directory this process may not read is passed over: one inside an application
+    // failed its page and the list of applications.
 
-      if ( $item [0] === '.' or $item [0] === '_' )
+    foreach ( @scandir ( $dir ) ?: [] as $item ) {
+
+      if ( $item [0] === '.' or $item [0] === '_' or ! is_readable ( $dir . $item ) )
         continue;
 
       if ( is_dir ( $dir . $item ) ) {
