@@ -658,24 +658,44 @@
 
     $text = padMarkdownEscape ( $text );
 
-    // Emphasis and line breaks. A pattern that gives up on a pathological text (PCRE's
+    // Line breaks, then emphasis. A pattern that gives up on a pathological text (PCRE's
     // backtrack limit) leaves the text as it was rather than empty. (*COMMIT) after an
     // opening run ends the search when that run finds nothing to close it: every run after
     // it has fewer closing runs left, so none of them can match either - without it the
     // lazy scan ran from each run to the end of the text, and 160 kB of **a took seconds.
 
+    $text = preg_replace ( '/(?: {2,}|\\\\)\n/', "<br />\n", $text ) ?? $text;
+    $text = preg_replace ( '/ +\n/',            "\n",        $text ) ?? $text;
+
+    return padMarkdownEmphasis ( $text, 0, $hold );
+
+  }
+
+  // Each kind of emphasis in turn, the strongest first. A finished element is held, its
+  // content read for the kinds after its own first, so a later kind cannot open inside it
+  // and close after it: **foo **bar** baz** was <strong>foo *<em>bar</strong> baz</em>*.
+
+  function padMarkdownEmphasis ( $text, $from, &$hold ) {
+
     $marks = [
-      '/(?<![*\w])\*\*\*(?=\S)(*COMMIT)(.+?)(?<=\S)\*\*\*(?![*\w])/s' => '<em><strong>$1</strong></em>',
-      '/\*\*(?=[^\s*])(*COMMIT)(.+?)(?<=[^\s*])\*\*/s'                => '<strong>$1</strong>',
-      '/(?<!\w)__(?=[^\s_])(*COMMIT)(.+?)(?<=[^\s_])__(?!\w)/s'       => '<strong>$1</strong>',
-      '/\*(?=[^\s*])(*COMMIT)(.+?)(?<=[^\s*])\*/s'                    => '<em>$1</em>',
-      '/(?<!\w)_(?=[^\s_])(*COMMIT)(.+?)(?<=[^\s_])_(?!\w)/s'         => '<em>$1</em>',
-      '/(?: {2,}|\\\\)\n/'                                            => "<br />\n",
-      '/ +\n/'                                                        => "\n"
+      [ '/(?<![*\w])\*\*\*(?=\S)(*COMMIT)(.+?)(?<=\S)\*\*\*(?![*\w])/s', '<em><strong>', '</strong></em>' ],
+      [ '/\*\*(?=[^\s*])(*COMMIT)(.+?)(?<=[^\s*])\*\*/s',                '<strong>',     '</strong>'      ],
+      [ '/(?<!\w)__(?=[^\s_])(*COMMIT)(.+?)(?<=[^\s_])__(?!\w)/s',       '<strong>',     '</strong>'      ],
+      [ '/\*(?=[^\s*])(*COMMIT)(.+?)(?<=[^\s*])\*/s',                    '<em>',         '</em>'          ],
+      [ '/(?<!\w)_(?=[^\s_])(*COMMIT)(.+?)(?<=[^\s_])_(?!\w)/s',         '<em>',         '</em>'          ]
     ];
 
-    foreach ( $marks as $pattern => $replace )
-      $text = preg_replace ( $pattern, $replace, $text ) ?? $text;
+    for ( $k = $from; $k < count ( $marks ); $k++ ) {
+
+      list ( $pattern, $open, $close ) = $marks [$k];
+
+      $text = preg_replace_callback ( $pattern,
+        function ( $m ) use ( $open, $close, $k, &$hold ) {
+          return padMarkdownHold ( $open . padMarkdownEmphasis ( $m [1], $k + 1, $hold ) . $close, $hold );
+        },
+        $text ) ?? $text;
+
+    }
 
     return $text;
 
