@@ -89,11 +89,13 @@
   // $key is NULL for the root without a title - with one, the title - an int for an item of
   // a list, shown as its index, and a string for a key of an object, quoted as JSON writes
   // it.
+  //
+  // $path holds the objects and the references the node stands inside of: one met again -
+  // a row holding itself, a tree with parent links - is cut as *RECURSION*, as print_r cuts
+  // it, where it went round until the stack guard ended the request. Below 512 levels -
+  // json_decode's own depth - a value is cut as well.
 
-  function padJsonviewNode ( $key, $value, $depth, $open, $inList ) {
-
-    if ( is_object ( $value ) )
-      $value = padToArray ( $value );
+  function padJsonviewNode ( $key, $value, $depth, $open, $inList, $path = [], $ref = '' ) {
 
     if ( $key === NULL )
       $label = '';
@@ -105,8 +107,22 @@
       $label = '<span class="pad-jsonview-key">' . padChartAttr ( json_encode ( (string) $key, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) )
              . '</span><span class="pad-jsonview-colon">:</span> ';
 
+    if ( is_object ( $value ) ) {
+      $ref   = 'o' . spl_object_id ( $value );
+      $value = padToArray ( $value );
+    }
+
     if ( ! is_array ( $value ) )
       return $label . padJsonviewScalar ( $value );
+
+    if ( $ref !== '' and isset ( $path [$ref] ) )
+      return $label . '<span class="pad-jsonview-cut">*RECURSION*</span>';
+
+    if ( $depth >= 512 )
+      return $label . '<span class="pad-jsonview-cut">… deeper than 512 levels</span>';
+
+    if ( $ref !== '' )
+      $path [$ref] = TRUE;
 
     $list = array_is_list ( $value );
 
@@ -120,8 +136,10 @@
     $what  = $list ? ( $count == 1 ? 'item' : 'items' ) : ( $count == 1 ? 'key' : 'keys' );
     $items = '';
 
-    foreach ( $value as $one => $inner )
-      $items .= '<li>' . padJsonviewNode ( $one, $inner, $depth + 1, $open, $list ) . '</li>';
+    foreach ( $value as $one => $inner ) {
+      $id = is_array ( $inner ) ? ReflectionReference::fromArrayElement ( $value, $one ) : NULL;
+      $items .= '<li>' . padJsonviewNode ( $one, $inner, $depth + 1, $open, $list, $path, $id ? 'r' . $id->getId () : '' ) . '</li>';
+    }
 
     return '<details' . ( $depth < $open ? ' open' : '' ) . '><summary>' . $label
          . "<span class=\"pad-jsonview-brace\">$first</span>"
@@ -194,6 +212,7 @@
          . '.pad-jsonview-index,.pad-jsonview-colon,.pad-jsonview-brace,.pad-jsonview-fold{color:var(--pad-jsonview-muted)}'
          . '.pad-jsonview-title{font-weight:600}'
          . '.pad-jsonview-count{color:var(--pad-jsonview-muted);font-size:.85em;font-style:italic}'
+         . '.pad-jsonview-cut{color:var(--pad-jsonview-muted);font-style:italic}'
          . '</style>';
 
   }
