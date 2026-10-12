@@ -4,7 +4,7 @@
   // givens bold, the empty cells open, and with solve the solution filled in by a
   // backtracking solver in another colour.
   //
-  //   {sudoku '53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8.79'}
+  //   {sudoku '53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8..79'}
   //   {sudoku $puzzle, solve, title='Saturday puzzle'}
   //
   // padSudokuCells   the 81 cells of a text - 0 for an empty one - or the reason it is no
@@ -24,7 +24,12 @@
 
   function padSudokuCells ( $text ) {
 
-    $text  = preg_replace ( '/[\s|+]+/', '', (string) $text );
+    // A line of a drawn grid between its bands - ------+-------+------ - is no row: its
+    // dashes were read as 38 empty cells. A line of dashes alone is one when it holds a +,
+    // or more than the nine a row of empty cells has.
+
+    $text  = preg_replace ( '/^[ \t]*(?=[-+=| \t]*\+|[-=| \t]{10,}[ \t]*$)[-+=| \t]+$/m', '', (string) $text );
+    $text  = preg_replace ( '/[\s|+]+/', '', $text );
     $cells = [];
 
     foreach ( str_split ( $text ) as $char )
