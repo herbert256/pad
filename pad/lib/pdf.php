@@ -147,8 +147,7 @@
 
     $store = padPdfStore ();
     $opts  = $store ['opts'];
-
-    $html = $store ['whole'] ? $page : padUnprotect ( padUnescape ( padStackFill ( implode ( "\n", $store ['parts'] ) ) ) );
+    $html  = padPdfHtml ( $page );
 
     $padTidy        = FALSE;
     $padMyTidy      = FALSE;
@@ -159,6 +158,22 @@
               . '; filename="' . padPdfName ( $opts ['file'] ?? '' ) . '.pdf"' );
 
     return padPdf ( $html, $opts );
+
+  }
+
+  // The HTML the document is made of: the whole page, or the parts of the {pdf} pairs with
+  // their tables of contents filled from their own headings - the page's are filled when
+  // the page is written out, after the parts were taken, and a {toc} in a document was its
+  // raw marker in the PDF.
+
+  function padPdfHtml ( $page ) {
+
+    $store = padPdfStore ();
+
+    if ( $store ['whole'] )
+      return $page;
+
+    return padTocFill ( padUnprotect ( padUnescape ( padStackFill ( implode ( "\n", $store ['parts'] ) ) ) ) );
 
   }
 
