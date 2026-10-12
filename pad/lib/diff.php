@@ -41,19 +41,30 @@
     if ( $n + $m <= 1000 )
       return padDiffGreedy ( $a, $b );
 
+    // The common start and end are measured by index and cut off once: taken off a word at
+    // a time with array_shift and array_unshift, each moving the whole rest, two texts of
+    // 50 000 words that differed at both ends took eleven seconds.
+
+    $start = $end = 0;
+
+    while ( $start < $n and $start < $m and $a [$start] === $b [$start] )
+      $start++;
+
+    while ( $end < $n - $start and $end < $m - $start and $a [$n - 1 - $end] === $b [$m - 1 - $end] )
+      $end++;
+
     $head = $tail = [];
 
-    while ( $n and $m and $a [0] === $b [0] ) {
-      $head [] = [ '=', array_shift ( $a ), array_shift ( $b ) ];
-      $n--;
-      $m--;
-    }
+    for ( $i = 0; $i < $start; $i++ )
+      $head [] = [ '=', $a [$i], $b [$i] ];
 
-    while ( $n and $m and $a [$n - 1] === $b [$m - 1] ) {
-      array_unshift ( $tail, [ '=', array_pop ( $a ), array_pop ( $b ) ] );
-      $n--;
-      $m--;
-    }
+    for ( $i = $end; $i > 0; $i-- )
+      $tail [] = [ '=', $a [$n - $i], $b [$m - $i] ];
+
+    $a = array_slice ( $a, $start, $n - $start - $end );
+    $b = array_slice ( $b, $start, $m - $start - $end );
+    $n = count ( $a );
+    $m = count ( $b );
 
     if ( ! $n or ! $m ) {
       $body = [];
