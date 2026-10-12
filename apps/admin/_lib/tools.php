@@ -8,6 +8,7 @@
   // adminRemove     a directory and everything below it - only ever below DATA/
   // adminText       a text as HTML, an entity in it shown as written
   // adminPhpinfoBody phpinfo ()'s page without the request's headers and environment
+  // adminGitLast    the last commit: hash, subject, author, time
   // adminRelative   a relative path a request names, checked: no dot segments, no hidden
   //                 names, nothing outside the characters a PAD file name uses; '' otherwise
   // adminRun        the pad command (apps/cli/pad) with arguments, in a child process:
@@ -185,6 +186,20 @@
   function adminGit ( $args ) {
 
     return adminProcess ( array_merge ( [ 'git', '-C', rtrim ( adminHome (), '/' ) ], $args ), 20 );
+
+  }
+
+  // The last commit: [ hash, subject, author, time ], empty without git. The fields are
+  // parted by a unit separator, the subject last: parted by |, a subject with a pipe in it -
+  // common in this repository - was cut there, its rest taken for the author.
+
+  function adminGitLast ( $git = NULL ) {
+
+    $git ??= adminGit ( [ 'log', '-1', '--format=%h%x1f%ct%x1f%an%x1f%s' ] );
+
+    [ $hash, $time, $author, $subject ] = array_pad ( $git [0] === 0 ? explode ( "\x1f", trim ( $git [1] ), 4 ) : [], 4, '' );
+
+    return [ $hash, $subject, $author, $time ];
 
   }
 

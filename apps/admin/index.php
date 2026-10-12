@@ -46,10 +46,9 @@
 
   // The system.
 
-  $git = adminGit ( [ 'log', '-1', '--format=%h|%s|%an|%ct' ] );
   $branch = adminGit ( [ 'rev-parse', '--abbrev-ref', 'HEAD' ] );
 
-  [ $gitHash, $gitSubject, $gitAuthor, $gitTime ] = array_pad ( $git [0] === 0 ? explode ( '|', $git [1], 4 ) : [], 4, '' );
+  [ $gitHash, $gitSubject, $gitAuthor, $gitTime ] = adminGitLast ();
 
   $facts = [
     [ 'label' => 'PAD home',       'value' => rtrim ( adminHome (), '/' ) ],
