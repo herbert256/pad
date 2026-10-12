@@ -64,12 +64,17 @@
   // An e-mail address counts by the part before its @, its dots, dashes and underscores
   // separating words: herbert.jebbink@example.com is HJ, as Herbert Jebbink is.
 
+  // One name in two Unicode spellings - Åsa composed, or A and a ring - is one name, its
+  // first letters taken whole; a handle's leading @ is no address: @herbert was a '?'.
+
   function padAvatarInitials ( $name ) {
 
-    $name = trim ( (string) $name );
+    $name = padAvatarName ( $name );
 
-    if ( str_contains ( $name, '@' ) )
+    if ( preg_match ( '/^[^@\s]+@/u', $name ) )
       $name = strstr ( $name, '@', TRUE );
+    else
+      $name = ltrim ( $name, '@' );
 
     $words = preg_split ( '/[\s._\-]+/u', $name, -1, PREG_SPLIT_NO_EMPTY );
     $words = array_values ( array_filter ( $words, fn ( $word ) => preg_match ( '/^[\p{L}\p{N}]/u', $word ) ) );
@@ -77,18 +82,26 @@
     if ( ! $words )
       return '?';
 
-    $first = mb_strtoupper ( mb_substr ( $words [0], 0, 1 ) );
+    $letter = fn ( $word ) => mb_strtoupper ( preg_match ( '/^\X/u', $word, $match ) ? $match [0] : mb_substr ( $word, 0, 1 ) );
 
     if ( count ( $words ) == 1 )
-      return $first;
+      return $letter ( $words [0] );
 
-    return $first . mb_strtoupper ( mb_substr ( end ( $words ), 0, 1 ) );
+    return $letter ( $words [0] ) . $letter ( end ( $words ) );
+
+  }
+
+  function padAvatarName ( $name ) {
+
+    $name = trim ( (string) $name );
+
+    return class_exists ( 'Normalizer' ) ? ( Normalizer::normalize ( $name, Normalizer::FORM_C ) ?: $name ) : $name;
 
   }
 
   function padAvatarSlot ( $name ) {
 
-    $hash = hash ( 'sha256', mb_strtolower ( trim ( (string) $name ) ) );
+    $hash = hash ( 'sha256', mb_strtolower ( padAvatarName ( $name ) ) );
 
     return hexdec ( substr ( $hash, 0, 8 ) ) % count ( PAD_AVATAR_PALETTE ) + 1;
 
