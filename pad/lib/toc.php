@@ -92,6 +92,12 @@
     $taken    = array_fill_keys ( array_map ( 'padTocId', $found [1] ), TRUE );
     $headings = [];
 
+    // The number a repeated heading's id goes on from: each counted up from -2 through every
+    // id its text had taken already, and a long listing of cards with the same heading took
+    // seconds.
+
+    $next = [];
+
     // Every heading of the levels any {toc} of the page asks for gets its id now, once.
 
     $wanted = [];
@@ -111,7 +117,7 @@
 
     $before = $output;
     $output = preg_replace_callback ( '/<h([1-6])(\s[^>]*)?>((?:(?!<\/?h[1-6][\s>]).)*+)<\/h\1\s*>/is',
-      function ( $match ) use ( &$taken, &$headings, $wanted ) {
+      function ( $match ) use ( &$taken, &$headings, &$next, $wanted ) {
 
         $level = (int) $match [1];
         $attrs = $match [2] ?? '';
@@ -134,9 +140,10 @@
           $base = padStrSlug ( html_entity_decode ( padUnprotect ( padUnescape ( $text ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' ) );
           $base = ( $base === '' ) ? 'section' : $base;
           $id   = $base;
-          for ( $n = 2; isset ( $taken [$id] ); $n++ )
+          for ( $n = $next [$base] ?? 2; isset ( $taken [$id] ); $n++ )
             $id = "$base-$n";
-          $taken [$id] = TRUE;
+          $next  [$base] = $n;
+          $taken [$id]   = TRUE;
           $attrs = ' id="' . $id . '"' . $attrs;
         }
 

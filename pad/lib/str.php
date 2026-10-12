@@ -55,9 +55,15 @@
     $text      = padStrText ( $text,      'padStrSlug', FALSE );
     $separator = padStrText ( $separator, 'padStrSlug', FALSE );
 
-    if ( function_exists ( 'transliterator_transliterate' ) )
-      $text = transliterator_transliterate ( 'Any-Latin; Latin-ASCII', $text ) ?: $text;
-    elseif ( function_exists ( 'iconv' ) )
+    // One transliterator for the request: made anew for every text it took 40 µs - a {toc}
+    // of twenty thousand headings spent most of a second on it.
+
+    static $latin = NULL;
+
+    if ( function_exists ( 'transliterator_transliterate' ) ) {
+      $latin ??= Transliterator::create ( 'Any-Latin; Latin-ASCII' );
+      $text    = ( $latin ? $latin->transliterate ( $text ) : FALSE ) ?: $text;
+    } elseif ( function_exists ( 'iconv' ) )
       $text = @iconv ( 'UTF-8', 'ASCII//TRANSLIT//IGNORE', $text ) ?: $text;
 
     // The runs are cut to one space and trimmed before the separator goes in, so it is used
