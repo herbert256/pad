@@ -298,12 +298,15 @@
 
       $line = [ 'name' => $name, 'job' => $entry ['job'], 'status' => '', 'ms' => 0, 'error' => '', 'id' => '' ];
 
-      // The record is read again for each entry: a run of another process may have written
-      // it while an earlier entry of this one ran.
+      // The minute is taken before the entry runs - the record read and written under its
+      // lock in one go - so a second asker in the same minute, another process or the
+      // admin's run while cron's is going, finds it taken and passes it by. Read before the
+      // run and written after it, both askers ran the entry.
 
-      $last = padScheduleState () [$name] ?? NULL;
+      $last = padScheduleRecord ( $name, [ 'minute' => $minute, 'time' => time (), 'status' => 'running',
+                                           'ms' => 0, 'error' => '', 'id' => '' ], TRUE );
 
-      if ( $last and ( $last ['minute'] ?? 0 ) == $minute ) {
+      if ( $last === FALSE ) {
         $ran [] = [ 'status' => 'ran' ] + $line;
         continue;
       }
@@ -318,7 +321,7 @@
                                    'status' => $line ['status'],
                                    'ms'     => $line ['ms'],
                                    'error'  => $line ['error'],
-                                   'id'     => $line ['id'] ?: ( $last ['id'] ?? '' ) ] );
+                                   'id'     => $line ['id'] ] );
 
       $ran [] = $line;
 
@@ -410,9 +413,12 @@
   }
 
   // The record is read, changed and written under a lock, so two entries ending at once in
-  // two processes both stay in it.
+  // two processes both stay in it. A run without an id keeps the one the entry had - the
+  // job it queued last. With $claim the entry's minute is taken before it runs: FALSE when
+  // the record holds that minute already - another asker ran it or is running it - else
+  // the record it held before, NULL for none.
 
-  function padScheduleRecord ( $name, $run ) {
+  function padScheduleRecord ( $name, $run, $claim = FALSE ) {
 
     $file = padScheduleFile ();
     $dir  = dirname ( $file );
@@ -427,13 +433,23 @@
 
     try {
 
-      $state          = padScheduleState ();
-      $state [$name]  = $run;
+      $state = padScheduleState ();
+      $last  = $state [$name] ?? NULL;
+
+      if ( $claim and $last and ( $last ['minute'] ?? 0 ) == $run ['minute'] )
+        return FALSE;
+
+      if ( ( $run ['id'] ?? '' ) === '' )
+        $run ['id'] = $last ['id'] ?? '';
+
+      $state [$name] = $run;
 
       ksort ( $state );
 
       padFilePut ( $file, json_encode ( $state, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
                                               | JSON_INVALID_UTF8_SUBSTITUTE ) );
+
+      return $last;
 
     } finally {
 
