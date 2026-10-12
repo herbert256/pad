@@ -1357,6 +1357,87 @@
             }
         },
         {
+            "field": "name",
+            "data": {
+                "name": " "
+            },
+            "server": "",
+            "client": {
+                "name": {
+                    "label": "Name",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required",
+                            "",
+                            ":label is required",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "nick",
+            "data": {
+                "nick": " ab "
+            },
+            "server": "",
+            "client": {
+                "nick": {
+                    "label": "Nick",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "min",
+                            "3",
+                            ":label must be at least :n characters",
+                            "3"
+                        ],
+                        [
+                            "max",
+                            "5",
+                            ":label must be at most :n characters",
+                            "5"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "email",
+            "data": {
+                "email": "ada@example.com "
+            },
+            "server": "Email must be a valid e-mail address",
+            "client": {
+                "email": {
+                    "label": "Email",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required",
+                            "",
+                            ":label is required",
+                            ""
+                        ],
+                        [
+                            "email",
+                            "",
+                            ":label must be a valid e-mail address",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
             "field": "born",
             "data": {
                 "born": "2026-10-08"
