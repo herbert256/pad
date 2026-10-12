@@ -4,7 +4,8 @@
   // by lib/highlight.php: pad, php, html (xml, svg), css, js (ts), json, yaml, sql or bash.
   // The content is taken as it stands, before the level walks it - the braces of PHP, CSS,
   // JSON or of PAD itself need no {ignore} - and the indent its lines share is taken off.
-  // A {# comment #} is gone before any tag sees it, so a PAD sample keeps none.
+  // A {# comment #} is gone before any tag sees it, so a PAD sample keeps none; its ~
+  // whitespace control is kept, as code to show (padTildeKeep in lib/level.php).
   //
   // file= colours a file of the application instead - 'orders.php', '_data/products.json'
   // - never one outside it, under _config/ or a dotfile; the language then defaults to the

@@ -389,8 +389,43 @@ function padSplitOnUnquotedColon ( $str ) {
     if ( ! is_string ( $text ) or ! str_contains ( $text, '~' ) )
       return $text;
 
+    $kept = [];
+    $text = padTildeKeep ( $text, $kept );
+
     $text = preg_replace ( '/\s*\{~(?=[\/A-Za-z_$!#&?^@])/', '{', $text );
     $text = preg_replace ( '/(\{[\/A-Za-z_$!#&?^@][^{}]*?)~\}\s*/', '$1}', $text );
+
+    return $kept ? strtr ( $text, $kept ) : $text;
+
+  }
+
+  // The content of a {highlight} pair is code shown as it stands - a sample of the ~ syntax
+  // lost every ~ and the line breaks beside them. It is set aside while the rest is
+  // stripped; the pair's own tags keep their ~.
+
+  function padTildeKeep ( $text, &$kept ) {
+
+    if ( ! str_contains ( $text, 'highlight' ) )
+      return $text;
+
+    preg_match_all ( '/\{~?(\/?)highlight(?=[\s}~|])[^{}]*\}/', $text, $tags, PREG_SET_ORDER | PREG_OFFSET_CAPTURE );
+
+    $depth = 0;
+    $spans = [];
+
+    foreach ( $tags as $tag ) {
+      if ( $tag [1] [0] === '' ) {
+        if ( $depth++ == 0 )
+          $from = $tag [0] [1] + strlen ( $tag [0] [0] );
+      } elseif ( $depth > 0 and --$depth == 0 )
+        $spans [] = [ $from, $tag [0] [1] ];
+    }
+
+    foreach ( array_reverse ( $spans ) as list ( $from, $to ) ) {
+      $mark          = "\u{E0F8}" . count ( $kept ) . "\u{E0F9}";
+      $kept [$mark]  = substr ( $text, $from, $to - $from );
+      $text          = substr ( $text, 0, $from ) . $mark . substr ( $text, $to );
+    }
 
     return $text;
 
