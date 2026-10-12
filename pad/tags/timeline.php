@@ -30,15 +30,22 @@
   $padTimelineRows   = padChartRows ( $padTimelineSource, 'timeline' );
   $padData [$pad]    = padDefaultData ();
 
-  // The fields: a date= field else the first that reads as a date, then the texts.
+  // The fields: a date= field else the first that reads as a date, then the texts. A bare
+  // number of up to four digits is a year only when no field reads as a date: rows as a
+  // database gives them, an id first, were drawn in the years 0001, 0002 ...
 
-  $padTimelineDates = $padTimelineTexts = [];
+  $padTimelineDates = $padTimelineYears = $padTimelineTexts = [];
 
   foreach ( padChartRow ( reset ( $padTimelineRows ) ?: [] ) as $padTimelineKey => $padTimelineField )
-    if ( is_scalar ( $padTimelineField ) and padTimelineDate ( $padTimelineField ) !== FALSE and ( ! is_numeric ( $padTimelineField ) or preg_match ( '/^\d{1,4}$/', trim ( $padTimelineField ) ) ) )
+    if ( is_scalar ( $padTimelineField ) and ! is_numeric ( $padTimelineField ) and padTimelineDate ( $padTimelineField ) !== FALSE )
       $padTimelineDates [] = (string) $padTimelineKey;
+    elseif ( is_scalar ( $padTimelineField ) and preg_match ( '/^\d{1,4}$/', trim ( (string) $padTimelineField ) ) and padTimelineDate ( $padTimelineField ) !== FALSE )
+      $padTimelineYears [] = (string) $padTimelineKey;
     elseif ( is_scalar ( $padTimelineField ) and ! is_numeric ( $padTimelineField ) )
       $padTimelineTexts [] = (string) $padTimelineKey;
+
+  if ( ! $padTimelineDates )
+    $padTimelineDates = $padTimelineYears;
 
   $padTimelineFrom    = (string) padTagParm ( 'from' );
   $padTimelineTo      = (string) padTagParm ( 'to' );
