@@ -51,6 +51,13 @@
 
     $named = $sets;
 
+    // A set of none - nobody keeps rabbits - is named in the description and left out of the
+    // picture, where it made the whole chart vanish without a word.
+
+    foreach ( $sizes as list ( $members, $v ) )
+      if ( count ( $members ) == 1 and $v <= 0 )
+        $sets = array_values ( array_diff ( $sets, $members ) );
+
     if ( count ( $sets ) > 3 ) {
       if ( $padCheckSyntax )
         padError ( 'the venn chart has ' . count ( $sets ) . ' sets - three at most' );
