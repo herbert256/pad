@@ -915,6 +915,12 @@ Edge rules:
 | `padFeatureOverride ( $name, $on )` | Fixes a flag for the rest of the request - NULL undoes it |
 | `padFeatureId ( $id = NULL )` | The stable id shares are decided by - `user:<id>` or the `padFeatureId` cookie; given, it is used for the rest of the request |
 
+The function `$padAuthRemember` names gets the id a remember-me cookie holds before its
+signature is checked - the signature holds the user's password hash, so the row must be found
+first. It is a visitor's value: an integer, or a plain token of letters, digits and
+`_ . @ + : -`, at most 128 - any other is never handed over. Look it up with a placeholder,
+never pasted into SQL: `db ( "RECORD * FROM users WHERE id={0}", [ $id ] )`.
+
 ## Migrations and fake data
 
 `pad/lib/migrate.php`, `pad/lib/fake.php` - the `pad migrate` and `pad seed` commands.

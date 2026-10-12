@@ -518,9 +518,14 @@
     // passed for it and reading entry 1 ended the request - a visitor's cookie is never an
     // error, only dropped.
 
+    // The id goes to the application's finder before the signature can be checked - the
+    // signature holds the user's password hash - so it is a visitor's value: one a login can
+    // have written alone, a number or a plain token, never text with quotes or spaces that a
+    // finder pasting it into SQL would run.
+
     if ( is_array ( $data ) and array_is_list ( $data ) and count ( $data ) == 2
          and is_int ( $data [1] ) and $data [1] >= padNow ()->getTimestamp ()
-         and ( is_int ( $data [0] ) or is_string ( $data [0] ) ) )
+         and ( is_int ( $data [0] ) or is_string ( $data [0] ) and preg_match ( '/^[A-Za-z0-9_.@+:-]{1,128}$/D', $data [0] ) ) )
       $user = $finder ( $data [0] );
 
     if ( is_object ( $user ) )
