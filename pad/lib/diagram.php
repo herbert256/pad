@@ -1189,7 +1189,7 @@
 
     global $padCheckSyntax;
 
-    $people = $events = $bad = [];
+    $people = $events = $bad = $frames = [];
     $number = FALSE;
     $id     = '[\p{L}\p{N}_]+';
 
@@ -1228,19 +1228,28 @@
         if ( ( $m [3] ?? '' ) !== '' )
           $person ( $m [3] );
         $events [] = [ 'note', strtolower ( $m [1] ), $m [2], ( $m [3] ?? '' ) !== '' ? $m [3] : $m [2], trim ( $m [4] ) ];
-      } elseif ( preg_match ( '/^(loop|alt|opt|par|critical|break)\b\s*(.*)$/i', $line, $m ) )
+      } elseif ( preg_match ( '/^(loop|alt|opt|par|critical|break)\b\s*(.*)$/i', $line, $m ) ) {
         $events [] = [ 'open', strtolower ( $m [1] ), trim ( $m [2] ) ];
-      elseif ( preg_match ( '/^(else|and|option)\b\s*(.*)$/i', $line, $m ) )
+        $frames [] = [ $at + 1, strtolower ( $m [1] ) ];
+      } elseif ( preg_match ( '/^(else|and|option)\b\s*(.*)$/i', $line, $m ) and $frames )
         $events [] = [ 'else', trim ( $m [2] ) ];
-      elseif ( strcasecmp ( $line, 'end' ) == 0 )
+      elseif ( strcasecmp ( $line, 'end' ) == 0 and $frames ) {
         $events [] = [ 'end' ];
-      else
+        array_pop ( $frames );
+      } else
         $bad [] = [ $at + 1, $line ];
 
     }
 
     if ( $bad and $padCheckSyntax )
       padError ( 'the sequence diagram cannot read line ' . $bad [0] [0] . ": '" . padMakeSafe ( $bad [0] [1], 60 ) . "' - write A ->> B: text, B -->> A: text, Note over A: text, loop ... end" );
+
+    // An else or an end outside any frame is a line it cannot read, and a frame never closed
+    // is named, where both passed without a word: the strays vanished, and the open loop was
+    // closed under the last message.
+
+    if ( $frames and $padCheckSyntax )
+      padError ( 'the sequence diagram has a ' . $frames [0] [1] . ' on line ' . $frames [0] [0] . ' that no end closes' );
 
     if ( ! $people )
       return '';
