@@ -697,6 +697,19 @@
     $rankOf = padDiagramRanksOnly ( $nodes, $edges );
     $gaps   = [];
 
+    // Every rank an edge crosses is a node of its own in the layout. Past twenty thousand -
+    // 0.4 s and 46 MB; a chain of a thousand steps with an edge from the first to each is
+    // half a million - the layout ran out of memory instead of saying so.
+
+    $crossed = 0;
+    foreach ( $edges as list ( $a, $b ) )
+      $crossed += max ( 0, abs ( $rankOf [$a] - $rankOf [$b] ) - 1 );
+
+    if ( $crossed > 20000 ) {
+      padError ( "the diagram is too large to lay out: its edges cross $crossed ranks between their ends, more than 20000 - draw it in parts" );
+      return '';
+    }
+
     foreach ( $edges as list ( $a, $b, $label ) )
       if ( $label !== '' and $a !== $b ) {
         $r    = min ( $rankOf [$a], $rankOf [$b] );
