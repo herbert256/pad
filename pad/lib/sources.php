@@ -82,7 +82,7 @@
     if ( ! $at )
       return '';
 
-    return padSourceStyle () . '<div class="pad-source">' . $tabs . $panels . '</div>';
+    return padSourceStyle ( $at ) . '<div class="pad-source">' . $tabs . $panels . '</div>';
 
   }
 
@@ -129,12 +129,22 @@
   }
 
   // The tabs by CSS: a radio is hidden, its label is the tab, and the n-th checked radio shows
-  // the n-th panel. The code itself looks as {highlight} makes it look.
+  // the n-th panel. The code itself looks as {highlight} makes it look. The rules for twelve
+  // tabs come with the look; a {source} of more brings the rule of each further tab, once a
+  // page - past the twelfth, a tab showed nothing.
 
-  function padSourceStyle () {
+  function padSourceStyle ( $tabs = 0 ) {
+
+    $more = '';
+
+    for ( $n = 13; $n <= $tabs; $n++ )
+      if ( padWidgetOnce ( "style:sources:$n" ) )
+        $more .= ":where(.pad-source>input:nth-of-type($n):checked~.pad-source-panel:nth-of-type($n)){display:block}";
+
+    $more = ( $more === '' ) ? '' : '<style' . padStyleNonce () . ">$more</style>";
 
     if ( ! padWidgetOnce ( 'style:sources' ) )
-      return '';
+      return $more;
 
     $css = ':where(.pad-source){margin:1em 0;border:1px solid rgba(127,127,127,.3);border-radius:8px;overflow:hidden}'
          . ':where(.pad-source>input){position:absolute;opacity:0;pointer-events:none}'
@@ -147,7 +157,7 @@
     for ( $n = 1; $n <= 12; $n++ )
       $css .= ":where(.pad-source>input:nth-of-type($n):checked~.pad-source-panel:nth-of-type($n)){display:block}";
 
-    return '<style' . padStyleNonce () . ">$css</style>";
+    return '<style' . padStyleNonce () . ">$css</style>" . $more;
 
   }
 
