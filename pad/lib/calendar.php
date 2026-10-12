@@ -62,7 +62,7 @@
       $weeks [ count ( $weeks ) - 1 ] ['days'] [] = [
         'date'    => $date,
         'day'     => (int) $day->format ( 'j' ),
-        'weekday' => $day->format ( 'D' ),
+        'weekday' => padCalendarWord ( $day, 'EEE', 'D' ),
         'month'   => $day->format ( 'Y-m' ),
         'other'   => $other,
         'today'   => $date == $today,
@@ -82,6 +82,33 @@
   // weekdays, a cell per day with its events as a list - their title= field, each a link
   // when link= names a field that holds one.
 
+  // A month or a weekday in the locale of the request, as localDate writes it - the link
+  // labels came from the locale's catalog while a Dutch page said "October 2026" and "Mon
+  // Tue". An English locale, and a server without intl, write PHP's own English names.
+
+  function padCalendarWord ( $day, $pattern, $format ) {
+
+    static $formats = [];
+
+    $locale = padLocaleOf ( '' );
+
+    if ( ! class_exists ( 'IntlDateFormatter' ) or preg_match ( '/^en(?:[_-]|$)/i', $locale ) )
+      return $day->format ( $format );
+
+    if ( ! array_key_exists ( "$locale $pattern", $formats ) )
+      try {
+        $formats ["$locale $pattern"] = new IntlDateFormatter ( $locale, IntlDateFormatter::NONE, IntlDateFormatter::NONE,
+                                                                'UTC', IntlDateFormatter::GREGORIAN, $pattern );
+      } catch ( Throwable $e ) {
+        $formats ["$locale $pattern"] = NULL;
+      }
+
+    $word = $formats ["$locale $pattern"] ? $formats ["$locale $pattern"]->format ( $day ) : FALSE;
+
+    return ( $word === FALSE ) ? $day->format ( $format ) : $word;
+
+  }
+
   // A calendar whose month the parameter fixes has no links to the months around it: the
   // parameter wins over the request value, and following them showed the same month again.
 
@@ -96,7 +123,7 @@
     $html = padCalendarStyle () . '<table class="pad-calendar">'
           . '<caption>'
           . ( $links ? '<a class="pad-calendar-prev" href="' . $h ( padPagerHref ( $query, $prev ) ) . '" rel="prev" aria-label="' . $h ( $catalog ['calendar.previous'] ?? 'Previous month' ) . '">‹</a> ' : '' )
-          . '<span>' . $h ( $first->format ( 'F Y' ) ) . '</span>'
+          . '<span>' . $h ( padCalendarWord ( $first, 'LLLL y', 'F Y' ) ) . '</span>'
           . ( $links ? ' <a class="pad-calendar-next" href="' . $h ( padPagerHref ( $query, $next ) ) . '" rel="next" aria-label="' . $h ( $catalog ['calendar.next'] ?? 'Next month' ) . '">›</a>' : '' )
           . '</caption><thead><tr>';
 
