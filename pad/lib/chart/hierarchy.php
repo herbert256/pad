@@ -26,8 +26,11 @@
 
     $root = [ 'name' => '', 'value' => 0, 'children' => [] ];
 
-    foreach ( (array) $rows as $row ) {
+    $index = 0;
 
+    foreach ( (array) $rows as $key => $row ) {
+
+      $index++;
       $row = padChartRow ( $row );
       $v   = $row [$vField] ?? NULL;
 
@@ -37,7 +40,10 @@
       $path = [];
       foreach ( $groups as $group )
         $path [] = padChartText ( $row, $group );
-      $path [] = padChartText ( $row, $lField );
+      // Without a field for the names a part is named by its key or its row number, as in
+      // the other kinds, where every row was the part '' and they added up to one block.
+
+      $path [] = ( $lField !== '' ) ? padChartText ( $row, $lField ) : ( is_string ( $key ) ? $key : (string) $index );
 
       $node = &$root;
       $node ['value'] += $v;
