@@ -36,7 +36,7 @@
     $text = mb_scrub ( (string) $text, 'UTF-8' );
 
     if ( $html )
-      $text = html_entity_decode ( strip_tags ( preg_replace ( '#<(script|style)\b.*?</\1>#is', ' ', (string) $text ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+      $text = html_entity_decode ( strip_tags ( padExcerptCode ( $text ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
 
     $tokens = preg_split ( '/\s+/u', trim ( (string) $text ), -1, PREG_SPLIT_NO_EMPTY );
     $terms  = padExcerptTerms ( $query );
@@ -68,6 +68,38 @@
     $after  = ( $start + count ( $tokens ) < $count ) ? ' ' . $ellipsis : '';
 
     return padExcerptStyle () . '<span class="pad-excerpt">' . padExcerptEscape ( $before ) . implode ( ' ', $out ) . padExcerptEscape ( $after ) . '</span>';
+
+  }
+
+  // HTML without its scripts and styles, a space where each stood - an opener without its
+  // closer loses its own tag. One pass from closer to closer: the lazy pattern scanned to
+  // the end of the text from every opener without one, seconds for half a megabyte, and
+  // gave up past a megabyte - the whole excerpt lost.
+
+  function padExcerptCode ( $html ) {
+
+    $out  = '';
+    $at   = 0;
+    $none = [];
+
+    while ( preg_match ( '#<(script|style)\b#i', $html, $open, PREG_OFFSET_CAPTURE, $at ) ) {
+
+      $name  = strtolower ( $open [1] [0] );
+      $from  = $open [0] [1];
+      $close = isset ( $none [$name] ) ? FALSE : stripos ( $html, "</$name", $from );
+
+      if ( $close === FALSE ) {
+        $none [$name] = TRUE;
+        $close        = $from;
+      }
+
+      $end  = strpos ( $html, '>', $close );
+      $out .= substr ( $html, $at, $from - $at ) . ' ';
+      $at   = ( $end === FALSE ) ? strlen ( $html ) : $end + 1;
+
+    }
+
+    return $out . substr ( $html, $at );
 
   }
 
