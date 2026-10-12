@@ -56,6 +56,11 @@
     $unit   = (string) padTagParm ( 'unit' );
     $target = padTagParm ( 'target' );
     $bands  = array_values ( array_filter ( array_map ( 'trim', explode ( ',', (string) padTagParm ( 'bands' ) ) ), 'is_numeric' ) );
+
+    // The thresholds in their order on the scale, whichever way they were written: '85, 60'
+    // drew an amber arc backwards and a red one over the green.
+
+    sort ( $bands, SORT_NUMERIC );
     $shown  = padChartNumber ( $value ) . $unit;
     $title  = (string) padTagParm ( 'title', $label !== '' ? $label : 'Gauge' );
 
