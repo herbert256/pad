@@ -24,8 +24,8 @@
     list ( $numbers, $names ) = padChartGuess ( $rows );
 
     $used  = [];
-    $value = padChartPick ( 'value', $numbers, $used );
     $field = padChartPick ( 'sets',  $names,   $used );
+    $value = padChartPick ( 'value', $numbers, $used );
     $sets  = $sizes = $desc = [];
 
     foreach ( (array) $rows as $row ) {

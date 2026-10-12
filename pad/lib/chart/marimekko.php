@@ -19,7 +19,7 @@
 
     list ( $numbers, $names ) = padChartGuess ( $rows );
 
-    $fields = padChartFields ( padTagParm ( 'value' ) ) ?: $numbers;
+    $fields = padChartFields ( padTagParm ( 'value' ) ) ?: array_values ( array_diff ( $numbers, [ (string) padTagParm ( 'label' ) ] ) );
     $used   = $fields;
     $label  = padChartPick ( 'label', $names, $used );
 
