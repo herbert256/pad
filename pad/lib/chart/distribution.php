@@ -106,6 +106,12 @@
     $ticks = padChartTicks ( 0, max ( $counts ), $height < 200 ? 3 : 5 );
     $ticks = array_values ( array_filter ( $ticks, fn ( $t ) => abs ( $t - round ( $t ) ) < 1e-9 ) );
 
+    // Counts are whole: the ticks of 2.5 kept 0, 5 and 10 - the axis then reaches on to
+    // the tallest bar.
+
+    while ( end ( $ticks ) < max ( $counts ) )
+      $ticks [] = end ( $ticks ) + ( count ( $ticks ) > 1 ? $ticks [1] - $ticks [0] : 1 );
+
     list ( $svg, $left, $y ) = padChartValueAxis ( $svg, $ticks, $width, $height, 10, 24 );
 
     $plotW = $width - $left - 10;
