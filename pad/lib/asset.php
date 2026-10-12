@@ -83,7 +83,11 @@
 
     $name = trim ( $file );
 
-    if ( ! preg_match ( '#^[A-Za-z0-9_@+~-][A-Za-z0-9_.@+~/-]*$#D', $name )
+    // Letters of any script and spaces too - a camera's "IMG 2041.jpg", a designer's
+    // "Zürich.jpg" - as the address is written with every part of it encoded; the check below
+    // www/<app>/ is a realpath's.
+
+    if ( ! preg_match ( '#^[\p{L}\p{N}_@+~-][\p{L}\p{M}\p{N}_.@+~/ -]*$#uD', $name )
          or in_array ( '..', explode ( '/', $name ), TRUE ) or str_contains ( $name, '//' ) ) {
       padError ( "$function: '" . padMakeSafe ( $name, 80 ) . "' is no file name below www/<application>/" );
       return NULL;
