@@ -233,6 +233,22 @@
 
   }
 
+  // A process and every process below it, found before any is stopped: pad lint and pad test
+  // start renders of their own, four at a time, and a timeout stopped only the command - the
+  // renders went on, and a killed parent's children can no longer be found by it.
+
+  function adminProcessTree ( $pid ) {
+
+    $tree = [ $pid ];
+
+    foreach ( preg_split ( '/\s+/', trim ( (string) @shell_exec ( 'pgrep -P ' . (int) $pid . ' 2>/dev/null' ) ) ) as $child )
+      if ( ctype_digit ( $child ) )
+        $tree = array_merge ( $tree, adminProcessTree ( (int) $child ) );
+
+    return $tree;
+
+  }
+
   function adminProcess ( $command, $timeout = NULL ) {
 
     global $adminTimeout;
@@ -269,6 +285,9 @@
         break;
 
       if ( microtime ( TRUE ) - $start > $timeout ) {
+        foreach ( array_reverse ( adminProcessTree ( (int) $status ['pid'] ) ) as $one )
+          if ( $one != $status ['pid'] )
+            function_exists ( 'posix_kill' ) ? @posix_kill ( $one, 9 ) : @exec ( 'kill -9 ' . (int) $one );
         proc_terminate ( $proc, 9 );
         $out .= "\n[stopped after $timeout seconds]";
         $status = [ 'exitcode' => -1 ];
