@@ -499,6 +499,12 @@
 
       case 'pre':
 
+        // The line break right after <pre> is no line, as HTML has it: a code block written
+        // as <pre> and the code on the next line began with a blank line in every PDF.
+
+        if ( $el->firstChild and $el->firstChild->nodeType == XML_TEXT_NODE )
+          $el->firstChild->nodeValue = preg_replace ( '/^\r?\n/', '', $el->firstChild->nodeValue );
+
         $ctx ['mono'] = TRUE;
         $ctx ['pre']  = TRUE;
         $ctx ['size'] = 9;
