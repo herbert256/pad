@@ -68,11 +68,12 @@
       $edges [] = $edges [0] + 1;
 
     // Whole numbers are counted in bins of whole numbers: a bin from 2.5 to 5 of days holds
-    // 3, 4 and 5, and its neighbour two - bins of unequal content under equal widths.
+    // 3, 4 and 5, and its neighbour two - bins of unequal content under equal widths. The
+    // last edge lies past the highest value, which the bin below would share with its own.
 
     $step = $edges [1] - $edges [0];
 
-    if ( $step != floor ( $step ) and ! array_filter ( $values, fn ( $v ) => $v != floor ( $v ) ) ) {
+    if ( ! array_filter ( $values, fn ( $v ) => $v != floor ( $v ) ) ) {
       $step  = ceil ( $step );
       $edges = [];
       for ( $edge = floor ( min ( $values ) / $step ) * $step; ! $edges or end ( $edges ) <= max ( $values ); $edge += $step )
