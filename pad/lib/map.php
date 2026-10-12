@@ -34,8 +34,16 @@
       $countries = json_decode ( file_get_contents ( PAD . 'lib/map/world.json' ), TRUE ) ['countries'];
       $index     = [];
 
-      foreach ( $countries as $code => list ( $alpha3, $name, $others ) )
-        foreach ( array_merge ( [ $code, $alpha3, $name ], $others ) as $key )
+      // The codes and the own names first, the aliases after them: an alias never takes a
+      // name that is another country's own - DR Congo listed Congo, the Congo's name, and
+      // being read first it took it.
+
+      foreach ( $countries as $code => list ( $alpha3, $name ) )
+        foreach ( [ $code, $alpha3, $name ] as $key )
+          $index [ mb_strtolower ( $key ) ] ??= $code;
+
+      foreach ( $countries as $code => list ( , , $others ) )
+        foreach ( $others as $key )
           $index [ mb_strtolower ( $key ) ] ??= $code;
 
     }
