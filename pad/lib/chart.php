@@ -148,12 +148,14 @@
 
     $sequence = padTagParm ( 'sequence' );
 
-    // A gauge of one number needs no rows: {chart 'gauge', value=72}.
-
     if ( $handled !== NULL )
       $rows = $handled;
+    // A gauge of one number needs no rows - a value that is no number too: a metric that
+    // could not be read, '' or 'n/a', draws nothing and its @else@ shows, where the chart
+    // was "without data" it never needed.
+
     elseif ( $kind == 'gauge' and ! isset ( $padPrm [$pad] ['data'] ) and ( $sequence === '' or $sequence === TRUE )
-         and trim ( (string) $source ) === '' and is_numeric ( padTagParm ( 'value' ) ) )
+         and trim ( (string) $source ) === '' and isset ( $padPrm [$pad] ['value'] ) )
       $rows = [];
     else
       $rows = padChartRows ( $source );

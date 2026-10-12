@@ -30,8 +30,14 @@
       $value = $row [$field] ?? NULL;
     }
 
-    if ( ! padChartFinite ( $value ) )
+    // No number to show - a metric that could not be read: nothing, and the @else@ shows;
+    // its options are read all the same, or the strict check named them as unread.
+
+    if ( ! padChartFinite ( $value ) ) {
+      foreach ( [ 'from', 'to', 'label', 'unit', 'target', 'bands', 'title' ] as $option )
+        padTagParm ( $option );
       return '';
+    }
 
     $value = $value + 0;
     $from  = padTagParm ( 'from', 0 );
