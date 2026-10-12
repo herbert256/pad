@@ -44,6 +44,18 @@
     if ( padChartBasicDate ( $when ) )
       $when = substr ( $when, 0, 4 ) . '-' . substr ( $when, 4, 2 ) . '-' . substr ( $when, 6, 2 );
 
+    // A week date - 2026-W42-1, 2026W42 - and an ordinal date - 2026-285 - name one day, as
+    // ISO 8601 writes them: PHP reads them as a day moved from the first of January, which
+    // the rule against moves below refused, and the event was left out.
+
+    if ( preg_match ( '/^(\d{4})-?W(\d{2})(?:-?([1-7]))?(.*)$/', $when, $m ) and $m [2] >= 1 and $m [2] <= 53 ) {
+      $day = ( new DateTimeImmutable ( 'now', new DateTimeZone ( 'UTC' ) ) )->setISODate ( (int) $m [1], (int) $m [2], (int) ( $m [3] ?: 1 ) );
+      if ( (int) $day->format ( 'o' ) != (int) $m [1] )
+        return FALSE;
+      $when = $day->format ( 'Y-m-d' ) . $m [4];
+    } elseif ( preg_match ( '/^(\d{4})-(\d{3})((?:[T ].*)?)$/', $when, $m ) and $m [2] >= 1 and $m [2] <= 365 + (int) checkdate ( 2, 29, (int) $m [1] ) )
+      $when = ( new DateTimeImmutable ( $m [1] . '-01-01', new DateTimeZone ( 'UTC' ) ) )->modify ( '+' . ( $m [2] - 1 ) . ' days' )->format ( 'Y-m-d' ) . $m [3];
+
     // Text is a date when it names a day of a month of a year - a time and a zone may come
     // with it - and nothing it cannot read: -44 was tomorrow, 1990s the clock time of today
     // in 1990, tomorrow a moment that moved on every request and 2026-02-30 the 2nd of March.
