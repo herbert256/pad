@@ -86,15 +86,25 @@
   }
 
   // A column whose name says it identifies - id, order_number, zipCode, year - shows its
-  // numbers as they are: 10,100 is no order number. A short word - id, no, nr, num, ean -
-  // stands alone, after an underscore or as a capital after a lower-case letter or digit
-  // (orderId, customerID): ending a name in any case, paid, bid, mean and valid were
-  // identifiers too and their amounts went ungrouped. A long one ends any name: zipcode.
+  // numbers as they are: 10,100 is no order number. The last word of the name decides -
+  // after an underscore, a dash or a space, or a capital (orderId, customerID) - by what
+  // it ends in: number, code, year, zip, phone, isbn, id, no, nr, num or ean, so userid,
+  // ORDERNO and invoicenr as many schemas spell them. The amounts among such words - paid,
+  // bid, mean, per_annum - are grouped as any: ending a name in id or num, their numbers
+  // went ungrouped; held to a capital or an underscore before the short word, userid and
+  // orderno went grouped.
+
+  const padDatatableAmounts = '/(?:paid|valid|mean|annum|liquid|fluid|humid|solid|platinum|aluminum)$|^(?:bids?|mid|kids)$/';
 
   function padDatatableIdentifier ( $field ) {
 
-    return (bool) preg_match ( '/(?i:number|code|year|zip|phone|isbn)$|(?:^|_)(?i:id|ids|no|nr|num|ean)$'
-                             . '|[a-z0-9](?:Id|ID|Ids|IDs|No|Nr|Num|Ean|EAN)$/', $field );
+    $words = preg_split ( '/[^A-Za-z0-9]+|(?<=[a-z0-9])(?=[A-Z])/', (string) $field, -1, PREG_SPLIT_NO_EMPTY );
+    $last  = strtolower ( (string) end ( $words ) );
+
+    if ( preg_match ( padDatatableAmounts, $last ) )
+      return FALSE;
+
+    return (bool) preg_match ( '/(?:number|code|year|zip|phone|isbn|id|ids|no|nr|num|ean)$/', $last );
 
   }
 
