@@ -392,6 +392,19 @@
       $chain []     = $b;
       $chains [$e]  = $chain;
 
+      // An edge with a label across ranks carries it at the dummy in its middle, as large as
+      // the label, so its rank makes room for it: half way along the path the label was put
+      // beside the node of that rank, which covered it.
+
+      $label = (string) ( $edges [$e] [2] ?? '' );
+
+      if ( $label !== '' and count ( $chain ) > 2 ) {
+        $mid                      = $chain [ intdiv ( count ( $chain ) - 1, 2 ) ];
+        $nodes [$mid] ['w']       = padDiagramWidth ( $label ) + 8;
+        $nodes [$mid] ['h']       = 18;
+        $nodes [$mid] ['carries'] = $e;
+      }
+
     }
 
     $ranks = $up = $down = [];
@@ -824,11 +837,21 @@
           return NULL;
         };
 
-        foreach ( [ 0.5, 0.35, 0.65, 0.22, 0.78, 0.5 ] as $part ) {
-          list ( $x, $y ) = padDiagramMiddle ( $paths [$e], $part );
-          if ( ! ( $other = $clash ( $x, $y ) ) )
-            break;
-        }
+        $carrier = NULL;
+
+        foreach ( $chains [$e] ?? [] as $one )
+          if ( ( $nodes [$one] ['carries'] ?? NULL ) === $e )
+            $carrier = $one;
+
+        if ( $carrier !== NULL ) {
+          list ( $x, $y ) = $flip ( [ $nodes [$carrier] ['cross'], $nodes [$carrier] ['main'] ] );
+          $other = $clash ( $x, $y );
+        } else
+          foreach ( [ 0.5, 0.35, 0.65, 0.22, 0.78, 0.5 ] as $part ) {
+            list ( $x, $y ) = padDiagramMiddle ( $paths [$e], $part );
+            if ( ! ( $other = $clash ( $x, $y ) ) )
+              break;
+          }
 
         // Nowhere along its edge: beside the label in the way, across the flow.
 
