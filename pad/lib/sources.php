@@ -73,6 +73,12 @@
       $lang  = pathinfo ( $path, PATHINFO_EXTENSION );
       $lang  = padHighlightKnown ( $lang ) ? $lang : 'text';
 
+      // An .html file of the application is a template as a .pad is, its tags coloured as
+      // PAD's - a page's .html was coloured as HTML alone; one under www/ is a plain file.
+
+      if ( strtolower ( $lang ) == 'html' and ! $www )
+        $lang = 'pad';
+
       $tabs   .= '<input type="radio" name="' . $group . '" id="' . $id . '"' . ( $at == 1 ? ' checked' : '' ) . '>'
                . '<label for="' . $id . '" data-side="' . ( $www ? 'client' : 'server' ) . '">' . htmlspecialchars ( $shown ) . '</label>';
       $panels .= '<div class="pad-source-panel">' . padHighlight ( file_get_contents ( $path ), $lang, TRUE ) . '</div>';
