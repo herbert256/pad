@@ -79,7 +79,13 @@
 
   }
 
+  // A tree writes ten thousand values at most - a list past them ends in a line saying how
+  // many more there are, its count the whole: a posted list of 300 000 items took 221 MB of
+  // markup and ended the request at a memory_limit of 128 MB.
+
   function padJsonviewHtml ( $value, $open, $title ) {
+
+    $GLOBALS ['padJsonviewLeft'] = 10000;
 
     return padJsonviewStyle () . '<div class="pad-jsonview">'
          . padJsonviewNode ( $title !== '' ? $title : NULL, $value, 0, $open, FALSE ) . '</div>';
@@ -136,7 +142,15 @@
     $what  = $list ? ( $count == 1 ? 'item' : 'items' ) : ( $count == 1 ? 'key' : 'keys' );
     $items = '';
 
+    $shown = 0;
+
     foreach ( $value as $one => $inner ) {
+      if ( ( $GLOBALS ['padJsonviewLeft'] ?? 1 ) <= 0 ) {
+        $items .= '<li><span class="pad-jsonview-cut">… ' . ( $count - $shown ) . ' more</span></li>';
+        break;
+      }
+      $GLOBALS ['padJsonviewLeft'] = ( $GLOBALS ['padJsonviewLeft'] ?? 1 ) - 1;
+      $shown++;
       $id = is_array ( $inner ) ? ReflectionReference::fromArrayElement ( $value, $one ) : NULL;
       $items .= '<li>' . padJsonviewNode ( $one, $inner, $depth + 1, $open, $list, $path, $id ? 'r' . $id->getId () : '' ) . '</li>';
     }
