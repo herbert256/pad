@@ -44,6 +44,12 @@
       if ( $word === '' or ! preg_match ( '/^\p{L}+$/u', $word ) )
         return "the word of '$line' is no word of letters";
 
+      // A word of one letter is no run of squares: it was put on a letter of another word,
+      // crossing nothing, and listed as a Down entry of one square.
+
+      if ( count ( $letters ) < 2 )
+        return "the word $word is one letter - a word of the grid has two at least";
+
       if ( $clue === '' )
         return "the word $word has no clue";
 
