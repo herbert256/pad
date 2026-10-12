@@ -46,6 +46,8 @@
     }
 
     $items = [];
+    $gaps  = [];
+    $read  = 0;
     $index = 0;
 
     foreach ( (array) $rows as $row ) {
@@ -57,34 +59,43 @@
       // A rose keeps the place of a row without a value - its angle is data: a wind rose
       // that left E out turned every direction after it, S no longer at the bottom.
 
-      foreach ( $fields as $field ) {
+      // A rose with no value read at all has no points: its @else@ shows, where it drew an
+      // empty rose of zeros. A missing value is told as missing, not as 0.
+
+      $gap = [];
+
+      foreach ( $fields as $i => $field ) {
         $v = $row [$field] ?? NULL;
         if ( ! padChartFinite ( $v ) or $v < 0 ) {
           if ( $kind != 'rose' )
             continue 2;
-          $v = 0;
-        }
+          $v       = 0;
+          $gap [$i] = TRUE;
+        } else
+          $read++;
         $values [] = $v + 0;
       }
+
+      $gaps [ count ( $items ) ] = $gap;
 
       $name     = padChartText ( $row, $label );
       $items [] = [ $name !== '' ? $name : (string) $index, $values ];
 
     }
 
-    if ( ! $items )
+    if ( ! $items or ! $read )
       return '';
 
     $title = (string) padTagParm ( 'title', implode ( ' and ', array_map ( 'ucfirst', $fields ) ) . ( $label !== '' ? " by $label" : '' ) );
 
     if ( $kind == 'rose' )
-      return padChartRose ( $items, $fields, $title, $width, $height );
+      return padChartRose ( $items, $fields, $title, $width, $height, $gaps );
 
     return padChartRadialBar ( $items, $title, $width, $height );
 
   }
 
-  function padChartRose ( $items, $fields, $title, $width, $height ) {
+  function padChartRose ( $items, $fields, $title, $width, $height, $gaps = [] ) {
 
     $k     = count ( $fields );
     $n     = count ( $items );
@@ -95,10 +106,10 @@
 
     $desc = [];
 
-    foreach ( $items as list ( $name, $values ) ) {
+    foreach ( $items as $at => list ( $name, $values ) ) {
       $parts = [];
       foreach ( $fields as $i => $field )
-        $parts [] = ( $k > 1 ? "$field " : '' ) . padChartNumber ( $values [$i] );
+        $parts [] = ( $k > 1 ? "$field " : '' ) . ( isset ( $gaps [$at] [$i] ) ? 'no value' : padChartNumber ( $values [$i] ) );
       $desc [] = "$name: " . implode ( ', ', $parts );
     }
 
