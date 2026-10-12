@@ -29,7 +29,10 @@
 
   function padTocMarker ( $levels, $title, $list ) {
 
-    $hex = bin2hex ( json_encode ( [ $levels, $title, $list ] ) );
+    // A broken byte in the title is a stand-in character, as {$t} shows it, where the JSON
+    // of the options was nothing and the request ended - later the seal's digits as text.
+
+    $hex = bin2hex ( json_encode ( [ $levels, $title, $list ], JSON_INVALID_UTF8_SUBSTITUTE ) );
 
     return "\u{E0F6}" . padMarkSeal ( $hex ) . $hex . "\u{E0F7}";
 
