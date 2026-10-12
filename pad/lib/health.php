@@ -35,9 +35,13 @@
     if ( trim ( (string) ( $padSqlDatabase ?? '' ) ) !== '' )
       $checks ['database'] = padHealthDatabase () ? 'ok' : 'fail';
 
+    // A check of the engine's that failed stays failed: the application's own answer under
+    // the same name - 'database' => TRUE - can add a failure, never answer one away.
+
     if ( is_file ( APP . '_health.php' ) )
       foreach ( padHealthHook ( APP . '_health.php' ) as $name => $value )
-        $checks [$name] = $value;
+        if ( ( $checks [$name] ?? 'ok' ) === 'ok' )
+          $checks [$name] = $value;
 
     return $checks;
 
