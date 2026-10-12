@@ -139,6 +139,8 @@
       foreach ( $list as $rule )
         if ( ! in_array ( strtolower ( explode ( ':', $rule, 2 ) [0] ), padValidateRules, TRUE ) )
           padValidateUnknown ( $rule );
+        elseif ( strtolower ( explode ( ':', $rule, 2 ) [0] ) == 'regex' and ( $why = padValidatePattern ( explode ( ':', $rule, 2 ) [1] ?? '' ) ) !== '' )
+          padError ( "padValidate: the rule $rule is no pattern - $why" );
 
       // A list belongs to a field named for one - tags[] - and a field of one value posted
       // as a list is refused whatever its rules: name[]=x passed required and color[]=red
@@ -225,6 +227,29 @@
 
     return $date ['error_count'] == 0 and $date ['year'] !== FALSE and $date ['month'] !== FALSE and $date ['day'] !== FALSE
        and checkdate ( $date ['month'], $date ['day'], $date ['year'] );
+
+  }
+
+  // Why a regex: rule is no pattern PCRE reads - '' when it is one. Such a rule failed every
+  // value with "is not valid", the author told nothing, and the browser let it pass: an
+  // error, as a misspelled rule is.
+
+  function padValidatePattern ( $pattern ) {
+
+    $why = '';
+
+    set_error_handler ( function ( $type, $message ) use ( &$why ) {
+      $why = preg_replace ( '/^preg_match\(\):\s*/', '', $message );
+      return TRUE;
+    } );
+
+    try {
+      $read = preg_match ( (string) $pattern, '' ) !== FALSE;
+    } finally {
+      restore_error_handler ();
+    }
+
+    return $read ? '' : ( $why !== '' ? $why : 'PCRE cannot read it' );
 
   }
 
@@ -921,10 +946,12 @@
     if ( $tag == 'input' and strtolower ( (string) padFormRulesLiteral ( $items ['take'] ['type'] ?? "''" ) ) == 'file' )
       return padError ( "the rules of $where are never checked - a file field is checked by padUpload" );
 
-    foreach ( explode ( '|', $list ) as $rule ) {
-      $rule = strtolower ( trim ( explode ( ':', $rule, 2 ) [0] ) );
+    foreach ( explode ( '|', $list ) as $whole ) {
+      $rule = strtolower ( trim ( explode ( ':', $whole, 2 ) [0] ) );
       if ( $rule !== '' and ! in_array ( $rule, padValidateRules, TRUE ) )
         return padError ( "the rules of $where have no rule named '$rule' - there are " . implode ( ', ', padValidateRules ) );
+      if ( $rule == 'regex' and ( $why = padValidatePattern ( explode ( ':', trim ( $whole ), 2 ) [1] ?? '' ) ) !== '' )
+        return padError ( "the rules of $where have a regex: that is no pattern - $why" );
     }
 
     if ( isset ( $rules [$named] [$name] ) and $rules [$named] [$name] !== $list )
