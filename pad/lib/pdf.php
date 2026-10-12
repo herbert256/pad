@@ -285,6 +285,11 @@
     $dom = new DOMDocument ();
     $old = libxml_use_internal_errors ( TRUE );
 
+    // A byte that is no UTF-8 becomes one replacement: on such a byte libxml read the rest
+    // of the document as Latin-1, and every later été was Ã©tÃ©.
+
+    $html = mb_scrub ( (string) $html, 'UTF-8' );
+
     $dom->loadHTML ( '<?xml encoding="utf-8"?><html><body>' . $html . '</body></html>', LIBXML_NONET | LIBXML_COMPACT );
 
     libxml_clear_errors ();
