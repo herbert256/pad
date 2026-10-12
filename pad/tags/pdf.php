@@ -52,7 +52,10 @@
     if ( $padPdfAsked )
       padPdfAsk ( NULL, $padPdfOpts );
 
-    return ( $padPdfPreview and ! $padPdfNested ) ? padPdfLinks ( $padPdfOpts ['file'] ) : '';
+    // The links to open and download it belong to the page's view, not to the document
+    // that is the whole page: asked for, it held its own dead "Open x.pdf Download".
+
+    return ( $padPdfPreview and ! $padPdfNested and ! $padPdfAsked ) ? padPdfLinks ( $padPdfOpts ['file'] ) : '';
 
   }
 
