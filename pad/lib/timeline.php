@@ -106,8 +106,10 @@
   }
 
   // Round ticks for the time axis, moment => text: whole years in steps of 1, 2, 5, 10, 25,
-  // 50 or 100; else months in steps of 1, 3 or 6; else days in steps of 1, 2, 7 or 14 -
-  // the smallest step that leaves each tick its room.
+  // 50, 100 and on by ten; else months in steps of 1, 3 or 6; else days in steps of 1, 2,
+  // 7 or 14 - the smallest step that leaves each tick its room. The years stopped at 100:
+  // one date far off - a millisecond timestamp - wrote hundreds of thousands of ticks, a
+  // page of tens of megabytes, or ran out of memory.
 
   function padTimelineTicks ( $low, $high, $plotW ) {
 
@@ -125,6 +127,9 @@
           $step = $try;
           break;
         }
+
+      while ( $years / $step > $room )
+        $step *= 10;
 
       $year = (int) ( ceil ( (int) $start->format ( 'Y' ) / $step ) * $step );
       $t    = $start->setDate ( $year, 1, 1 );
@@ -159,7 +164,7 @@
 
     }
 
-    for ( ; $t->getTimestamp () <= $high; $t = $t->modify ( $next ) )
+    for ( ; $t->getTimestamp () <= $high and count ( $ticks ) <= 2 * $room; $t = $t->modify ( $next ) )
       if ( $t->getTimestamp () >= $low )
         $ticks [ $t->getTimestamp () ] = $t->format ( $form );
 
