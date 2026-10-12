@@ -41,8 +41,8 @@
   }
 
   if ( $padProgressSteps )
-    return padProgressSteps ( $padProgressValue, $padProgressMax, (string) padTagParm ( 'label' ), $padProgressColor, $padProgressSize );
+    return padProgressSteps ( $padProgressValue, $padProgressMax, padParmText ( padTagParm ( 'label' ) ), $padProgressColor, $padProgressSize );
 
-  return padProgress ( $padProgressValue, $padProgressMax, (string) padTagParm ( 'label' ), $padProgressColor, $padProgressSize );
+  return padProgress ( $padProgressValue, $padProgressMax, padParmText ( padTagParm ( 'label' ) ), $padProgressColor, $padProgressSize );
 
 ?>

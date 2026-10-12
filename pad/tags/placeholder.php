@@ -40,7 +40,7 @@
 
   // Without a text, a box drawn from a ratio says its ratio, one drawn from a size its size.
 
-  $padPlaceholderText = (string) padTagParm ( 'text', $padPlaceholderRatio !== '' ? preg_replace ( '/\s+/', '', $padPlaceholderRatio ) : '' );
+  $padPlaceholderText = padParmText ( padTagParm ( 'text', $padPlaceholderRatio !== '' ? preg_replace ( '/\s+/', '', $padPlaceholderRatio ) : '' ) );
 
   return padPlaceholder ( $padPlaceholderSize [0], $padPlaceholderSize [1], $padPlaceholderText, (bool) padTagParm ( 'fluid', FALSE ) );
 

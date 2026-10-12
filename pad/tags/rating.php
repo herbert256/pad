@@ -30,6 +30,6 @@
     $padRatingIcon = 'star';
   }
 
-  return padRating ( $padRatingValue, $padRatingMax, $padRatingIcon, (int) padTagParm ( 'size', 20 ), (string) padTagParm ( 'label' ) );
+  return padRating ( $padRatingValue, $padRatingMax, $padRatingIcon, (int) padTagParm ( 'size', 20 ), padParmText ( padTagParm ( 'label' ) ) );
 
 ?>
