@@ -22,7 +22,8 @@
   // padViteDev       the dev server's address, '' when there is none
   // padViteManifest  the manifest, read once a request
   // padViteChunk     the CSS and the chunks of one entry, every import followed once
-  // padViteNonce     the nonce attribute a script gets when the policy asks for one
+  // padViteNonce     the nonce attribute every tag gets when the policy asks for one - a
+  //                  stylesheet without it was not applied under a style-src 'nonce'
   //
   // A file goes out once a page however many entries name it. The addresses are the build's
   // public path: $padRoot, the application, the build directory - for a vite.config.js with
@@ -98,13 +99,13 @@
       foreach ( $css as $file )
         if ( ! isset ( $written ["css:$file"] ) ) {
           $written ["css:$file"] = TRUE;
-          $styles .= '<link rel="stylesheet" href="' . htmlspecialchars ( $base . $file ) . "\">\n";
+          $styles .= '<link rel="stylesheet" href="' . htmlspecialchars ( $base . $file ) . '"' . padViteNonce () . ">\n";
         }
 
       foreach ( $chunks as $file )
         if ( ! isset ( $written ["js:$file"] ) ) {
           $written ["js:$file"] = TRUE;
-          $preloads .= '<link rel="modulepreload" href="' . htmlspecialchars ( $base . $file ) . "\">\n";
+          $preloads .= '<link rel="modulepreload" href="' . htmlspecialchars ( $base . $file ) . '"' . padViteNonce () . ">\n";
         }
 
       $file = $manifest [$entry] ['file'];
@@ -115,7 +116,7 @@
       if ( preg_match ( '/\.css$/i', $file ) ) {
         if ( ! isset ( $written ["css:$file"] ) ) {
           $written ["css:$file"] = TRUE;
-          $styles .= '<link rel="stylesheet" href="' . htmlspecialchars ( $base . $file ) . "\">\n";
+          $styles .= '<link rel="stylesheet" href="' . htmlspecialchars ( $base . $file ) . '"' . padViteNonce () . ">\n";
         }
         continue;
       }
