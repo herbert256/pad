@@ -204,14 +204,23 @@
       $b = $n - 1;
     }
 
-    $inset = 8 * $depth;
-    $x0    = max ( 4, $x [$a] - max ( 50, $boxW [$a] / 2 + 6 ) + $inset );
-    $x1    = $x [$b] + max ( 50, $boxW [$b] / 2 + 6 ) - $inset;
-    $tabW  = padDiagramWidth ( $kind ) + 14;
+    // An inner frame is inset, but never past the room of its tab and its conditions: eight
+    // frames round one column went on inward and then out on the right, past the frames
+    // round them - earlier a negative width, a rect no browser draws. Deeper than that,
+    // frames lie on each other.
+
+    $from = $x [$a] - max ( 50, $boxW [$a] / 2 + 6 );
+    $to   = $x [$b] + max ( 50, $boxW [$b] / 2 + 6 );
+    $tabW = padDiagramWidth ( $kind ) + 14;
+    $need = $tabW + 16;
 
     foreach ( $parts as $k => list ( , $text ) )
       if ( $text !== '' )
-        $x1 = max ( $x1, ( $k ? $x0 + 8 : $x0 + $tabW + 8 ) + padDiagramWidth ( "[$text]" ) + 8 );
+        $need = max ( $need, ( $k ? 8 : $tabW + 8 ) + padDiagramWidth ( "[$text]" ) + 8 );
+
+    $inset = min ( 8 * $depth, max ( 0, ( $to - $from - $need ) / 2 ) );
+    $x0    = max ( 4, $from + $inset );
+    $x1    = max ( $to - $inset, $x0 + $need );
 
     return [ $x0, $x1 ];
 
