@@ -9,6 +9,7 @@
   // adminText       a text as HTML, an entity in it shown as written
   // adminPhpinfoBody phpinfo ()'s page without the request's headers and environment
   // adminGitLast    the last commit: hash, subject, author, time
+  // adminLogToday   the lines every application logged today
   // adminRelative   a relative path a request names, checked: no dot segments, no hidden
   //                 names, nothing outside the characters a PAD file name uses; '' otherwise
   // adminRun        the pad command (apps/cli/pad) with arguments, in a child process:
@@ -379,6 +380,22 @@
       adminDone ( "$app is up again.", $page, $vars );
 
     }
+
+  }
+
+  // The lines logged today by every application, its log found by its whole name as padLog
+  // writes it: a glob one directory deep missed regression/queue and every other name with
+  // a / in it.
+
+  function adminLogToday () {
+
+    $lines = 0;
+
+    foreach ( array_keys ( adminApps () ) as $app )
+      if ( is_file ( $file = DATA . "logs/$app/" . date ( 'Y-m-d' ) . '.log' ) )
+        $lines += substr_count ( (string) @file_get_contents ( $file ), "\n" );
+
+    return $lines;
 
   }
 

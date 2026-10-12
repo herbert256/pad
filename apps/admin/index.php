@@ -20,10 +20,7 @@
   $dumpCount = count ( adminDumpReports () );
   $mailCount = count ( glob ( DATA . 'mail/*/*.eml' ) ?: [] ) + count ( glob ( DATA . 'mail/*/*/*.eml' ) ?: [] );
 
-  $logToday = 0;
-
-  foreach ( glob ( DATA . 'logs/*/' . date ( 'Y-m-d' ) . '.log' ) ?: [] as $file )
-    $logToday += substr_count ( (string) file_get_contents ( $file ), "\n" );
+  $logToday = adminLogToday ();
 
   // The disk DATA/ lives on.
 
