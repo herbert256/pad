@@ -154,8 +154,14 @@
     $padCache       = FALSE;
     $padContentType = 'application/pdf';
 
+    // The name as it is for a browser that reads filename* (RFC 6266), its ASCII letters for
+    // one that does not.
+
+    $name  = padPdfName ( $opts ['file'] ?? '' );
+    $ascii = trim ( preg_replace ( '/[^A-Za-z0-9._-]+/', '-', $name ), '.-' );
+
     padHeader ( 'Content-Disposition: ' . ( ( $opts ['download'] ?? FALSE ) ? 'attachment' : 'inline' )
-              . '; filename="' . padPdfName ( $opts ['file'] ?? '' ) . '.pdf"' );
+              . '; filename="' . ( $ascii !== '' ? $ascii : 'document' ) . '.pdf"; filename*=UTF-8\'\'' . rawurlencode ( "$name.pdf" ) );
 
     return padPdf ( $html, $opts );
 
@@ -271,11 +277,16 @@
 
     // The page as it was asked: on a bracketed route the file's name was id.pdf.
 
-    $page = (string) ( $padPageAsked ?? '' ) !== '' ? (string) $padPageAsked : (string) $padPage;
-    $name = preg_replace ( '/\.pdf$/i', '', (string) $file );
-    $name = trim ( preg_replace ( '/[^A-Za-z0-9._-]+/', '-', basename ( $name !== '' ? $name : $page ) ), '.-' );
+    // Letters of every script and digits stay, where all but ASCII went - Überblick was
+    // berblick.pdf, 発注書 document.pdf - and a slash of the name given is a dash, where it
+    // threw away all before it: invoice-2026/114 was 114.pdf.
 
-    return ( $name !== '' ) ? $name : 'document';
+    $page = (string) ( $padPageAsked ?? '' ) !== '' ? (string) $padPageAsked : (string) $padPage;
+    $name = preg_replace ( '/\.pdf$/i', '', mb_scrub ( (string) $file, 'UTF-8' ) );
+    $name = ( $name !== '' ) ? str_replace ( [ '/', '\\' ], '-', $name ) : basename ( $page );
+    $name = trim ( preg_replace ( '/[^\p{L}\p{M}\p{N}._-]+/u', '-', $name ), '.-' );
+
+    return ( $name !== '' ) ? mb_substr ( $name, 0, 120 ) : 'document';
 
   }
 
