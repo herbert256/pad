@@ -28,8 +28,13 @@
 
       $path = padCorrectPath ( $one->getPathname() );
 
-      $list [] = [ 'url' => substr ( str_replace ( DATA , '', $path ), 0, -11),
-                   'txt' => padFileGet ($path) ];
+      // The report opens in the console's error dumps page: DATA/ is never served by the
+      // web server, so a link to the file itself reached nothing - and served the whole of
+      // DATA/ to the network while a www/DATA link made it reachable.
+
+      $list [] = [ 'url'    => substr ( str_replace ( DATA , '', $path ), 0, -11),
+                   'report' => trim ( substr ( str_replace ( DATA . 'dumps/', '', $path ), 0, -11 ), '/' ),
+                   'txt'    => padFileGet ($path) ];
 
     }
 
