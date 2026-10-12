@@ -1,7 +1,7 @@
 <?php
 
   // Runs the pad command - apps/cli/pad - with $args in a child process, with the
-  // environment plus $env, and returns [ exit code, stdout ]. The php binary is the one
+  // environment plus $env, and returns [ exit code, stdout, stderr ]. The php binary is the one
   // running this page when that is the command-line one (php -S), else the one beside it.
 
   function cliCheckRun ( $args, $env = [] ) {
@@ -16,12 +16,12 @@
       return [ -1, '' ];
 
     $out = stream_get_contents ( $pipes [1] );
-    stream_get_contents ( $pipes [2] );
+    $err = stream_get_contents ( $pipes [2] );
 
     fclose ( $pipes [1] );
     fclose ( $pipes [2] );
 
-    return [ proc_close ( $proc ), $out ];
+    return [ proc_close ( $proc ), $out, $err ];
 
   }
 

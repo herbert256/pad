@@ -114,13 +114,26 @@
 
     $written = (string) @file_get_contents ( "$home/types/pad.d.ts" );
 
+    // two pages whose names make one type name are refused, both named
+
+    foreach ( [ 'order_list', 'order-list' ] as $typesOne ) {
+      file_put_contents ( "$home/apps/shop/$typesOne.php", '<?php $n = 1; ?>' );
+      file_put_contents ( "$home/apps/shop/$typesOne.pad", '{$n}' );
+    }
+
+    list ( $codeY4, , $errY4 ) = cliCheckRun ( [ 'types', 'shop', 'order_list', 'order-list' ], $env );
+
+    foreach ( [ 'order_list', 'order-list' ] as $typesOne )
+      array_map ( 'unlink', [ "$home/apps/shop/$typesOne.php", "$home/apps/shop/$typesOne.pad" ] );
+
     $types = ( $codeY1 === 0
                and str_contains ( $outY1, 'export interface OrdersVars {' )
                and str_contains ( $outY1, "  orders: {\n    id: number;\n    total: number;\n    gift?: boolean;\n  }[];" )
                and str_contains ( $outY1, 'export interface OrdersAnswer {' )
                and file_exists ( "$home/apps/shop/_samples/orders.json" )
                and $codeY2 === 0 and str_contains ( $written, 'export interface OrdersAnswer {' )
-               and $codeY3 === 1 ) ? 'yes' : 'NO';
+               and $codeY3 === 1
+               and $codeY4 === 1 and str_contains ( $errY4, "'order_list' and 'order-list' both make the type name OrderListVars" ) ) ? 'yes' : 'NO';
 
     // test - the scratch application gets its _tests
 

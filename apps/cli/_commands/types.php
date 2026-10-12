@@ -53,6 +53,23 @@
              . ( $typesPages ? ' ' . implode ( ' ', $typesPages ) : '' ) . ".\n"
              . "// Made from the data itself: run the command again when a page's data changes.\n";
 
+  // Two pages whose names make one type name - orders/list and orders_list, é/x and x -
+  // are refused, named both: their interfaces merged without a word, each claiming the
+  // other's fields, or two declarations of one name failed tsc.
+
+  $typesNames = [];
+
+  foreach ( $typesPages as $typesPage ) {
+
+    $typesName = padTypeScriptName ( $typesPage );
+
+    if ( isset ( $typesNames [$typesName] ) and $typesNames [$typesName] !== $typesPage )
+      return cliFail ( "the pages '{$typesNames [$typesName]}' and '$typesPage' both make the type name {$typesName}Vars - rename one, or type it in a run of its own" );
+
+    $typesNames [$typesName] = $typesPage;
+
+  }
+
   foreach ( $typesPages as $typesPage ) {
 
     $typesAt     = strrpos ( $typesPage, '/' );
