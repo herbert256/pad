@@ -90,9 +90,17 @@
     if ( ! is_finite ( $high ) or $high <= 0 )
       return '';
 
-    foreach ( $items as $i => list ( $name, $values ) )
-      $desc [] = "$name: " . padChartNumber ( $values [0] )
-               . ( $i ? ' (' . $share ( $values [0], $first ) . ' of the first, ' . $share ( $values [0], $items [$i - 1] [1] [0] ) . ' of the step before)' : '' );
+    // The shares a step has - none of a step of 0 - where the brackets were written whatever
+    // they held: "B: 5 ( of the first,  of the step before)".
+
+    foreach ( $items as $i => list ( $name, $values ) ) {
+      $parts = [];
+      if ( $i and ( $one = $share ( $values [0], $first ) ) !== '' )
+        $parts [] = "$one of the first";
+      if ( $i and ( $one = $share ( $values [0], $items [$i - 1] [1] [0] ) ) !== '' )
+        $parts [] = "$one of the step before";
+      $desc [] = "$name: " . padChartNumber ( $values [0] ) . ( $parts ? ' (' . implode ( ', ', $parts ) . ')' : '' );
+    }
 
     list ( $id, $svg ) = padChartOpen ( 'funnel', $items, $desc, $title, $width, $height );
 
