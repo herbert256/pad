@@ -171,15 +171,30 @@
       $t    = $start->setTime ( 0, 0 )->modify ( 'monday this week' );
       $form = 'M j';
       $next = '+' . max ( 1, (int) ceil ( $days / 7 / $room ) ) . ' weeks';
-    } else {
-      $months = max ( 1, (int) ceil ( $days / 30.4 / $room ) );
+    } elseif ( ( $months = max ( 1, (int) ceil ( $days / 30.4 / $room ) ) ) <= 12 ) {
       $months = $months <= 1 ? 1 : ( $months <= 3 ? 3 : ( $months <= 6 ? 6 : 12 ) );
       $t      = $start->setDate ( (int) $start->format ( 'Y' ), 1, 1 )->setTime ( 0, 0 );
       $form   = $days > 400 ? 'M Y' : 'M';
       $next   = "+$months months";
+    } else {
+
+      // Years in steps of 2, 5, 10, 25, 50, 100 and on by ten, where the step stopped at a
+      // year: an open end of 9999-12-31 wrote 7973 labels on top of each other.
+
+      foreach ( [ 2, 5, 10, 25, 50, 100 ] as $years )
+        if ( $years * 12 >= $months )
+          break;
+
+      while ( $years * 12 < $months )
+        $years *= 10;
+
+      $t    = $start->setDate ( (int) ( ceil ( (int) $start->format ( 'Y' ) / $years ) * $years ), 1, 1 )->setTime ( 0, 0 );
+      $form = 'Y';
+      $next = "+$years years";
+
     }
 
-    for ( ; $t->getTimestamp () <= $high; $t = $t->modify ( $next ) )
+    for ( ; $t->getTimestamp () <= $high and count ( $ticks ) <= 2 * $room; $t = $t->modify ( $next ) )
       if ( $t->getTimestamp () >= $low )
         $ticks [ $t->getTimestamp () ] = $t->format ( $form );
 
