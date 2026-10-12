@@ -63,8 +63,15 @@
       $iqr  = ( $q3 - $q1 ) / 1.34;
       $h    = ( $band !== '' ) ? $band + 0 : 0.9 * ( $iqr > 0 ? min ( $sd, $iqr ) : $sd ) * $n ** -0.2;
 
+      // The fallbacks finite too: values near 1e300 overflow their squares, the standard
+      // deviation is INF, and the bandwidth was that - the axis ran from -INF and the chart
+      // ended on a cast.
+
       if ( ! ( $h > 0 ) or ! is_finite ( $h ) )
-        $h = ( $sd > 0 ) ? $sd : max ( abs ( $mean ) * 0.1, 1e-9 );
+        $h = ( $sd > 0 and is_finite ( $sd ) ) ? $sd : ( ( end ( $values ) - $values [0] ) / 10 ?: max ( abs ( $mean ) * 0.1, 1e-9 ) );
+
+      if ( ! ( $h > 0 ) or ! is_finite ( $h ) )
+        $h = 1;
 
       $sets [$name] = [ $values, $h, $q1, $med, $q3 ];
 
