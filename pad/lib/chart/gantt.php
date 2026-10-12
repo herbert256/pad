@@ -21,7 +21,7 @@
     $dates = $other = [];
 
     foreach ( $first as $key => $field )
-      if ( is_scalar ( $field ) and ! is_numeric ( $field ) and padChartStamp ( $field ) !== FALSE )
+      if ( $field instanceof DateTimeInterface or is_scalar ( $field ) and ! is_numeric ( $field ) and padChartStamp ( $field ) !== FALSE )
         $dates [] = (string) $key;
       elseif ( is_scalar ( $field ) and ! is_numeric ( $field ) )
         $other [] = (string) $key;
@@ -38,9 +38,14 @@
 
     $numeric = TRUE;
 
+    // A date object of the page's PHP is a date, as in the other date charts: it made no
+    // number, and no task either.
+
     foreach ( $rows as $row ) {
       $a = $row [$fField] ?? '';
       $b = $row [$tField] ?? '';
+      if ( $a instanceof DateTimeInterface or $b instanceof DateTimeInterface )
+        $numeric = FALSE;
       if ( ! is_scalar ( $a ) or ! is_scalar ( $b ) or trim ( (string) $a ) === '' or trim ( (string) $b ) === '' )
         continue;
       if ( ! is_numeric ( $a ) or ! is_numeric ( $b ) )

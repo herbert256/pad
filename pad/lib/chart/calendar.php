@@ -21,6 +21,15 @@
 
   function padChartStamp ( $when ) {
 
+    // A date object of the page's PHP is its moment with its offset: cast to text it ended
+    // the gantt on "could not be converted to string".
+
+    if ( $when instanceof DateTimeInterface )
+      $when = $when->format ( 'Y-m-d H:i:sP' );
+
+    if ( ! is_scalar ( $when ) )
+      return FALSE;
+
     // Read as the characters it holds: a field inside a data= literal came with the
     // stand-ins of a value, and Oct 8, 2026 was no date.
 
