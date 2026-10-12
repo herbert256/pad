@@ -15,11 +15,12 @@
   // the month of today - padNow, so padNowFreeze holds it still. A week starts on Monday,
   // or on Sunday with sunday.
 
-  // 'YYYY-MM' of a text, or NULL.
+  // 'YYYY-MM' of a text, or NULL - for what is no text too: ?month[]=x in the request was
+  // turned into text, and the warning ended the request of every page with a {calendar}.
 
   function padCalendarMonth ( $text ) {
 
-    $text = trim ( (string) $text );
+    $text = trim ( is_scalar ( $text ) ? (string) $text : '' );
 
     if ( ! preg_match ( '/^(\d{4})-(\d{1,2})$/', $text, $m ) or $m [2] < 1 or $m [2] > 12 )
       return NULL;
