@@ -327,18 +327,30 @@
   function adminRedact ( $source ) {
 
     $w = '\w*(?:' . adminRedactWords () . ')\w*';
-    $q = '([\'"])((?:\\\\.|(?!\2).)*)\2';
 
-    $source = preg_replace ( '/(\$' . $w . '\s*=\s*)' . $q . '/i',                        '$1$2*REDACTED*$2', $source );
-    $source = preg_replace ( '/([\'"]' . $w . '[\'"]\s*=>\s*)' . $q . '/i',              '$1$2*REDACTED*$2', $source );
-    $source = preg_replace ( '/(\[\s*[\'"]' . $w . '[\'"]\s*\]\s*=\s*)' . $q . '/i',     '$1$2*REDACTED*$2', $source );
-    $source = preg_replace ( '/(->' . $w . '\s*=\s*)' . $q . '/i',                        '$1$2*REDACTED*$2', $source );
-    $source = preg_replace ( '/(define\s*\(\s*[\'"]' . $w . '[\'"]\s*,\s*)' . $q . '/i', '$1$2*REDACTED*$2', $source );
-    $source = preg_replace ( '/("' . $w . '"\s*:\s*)"(?:\\\\.|[^"\\\\])*"/i',               '$1"*REDACTED*"',   $source );
-    $source = preg_replace ( '/^(\s*-?\s*' . $w . '\s*:[ \t]+)(?!\*REDACTED\*)(\S.*)$/im', '$1*REDACTED*',     $source );
-    $source = preg_replace ( '/(<(' . $w . ')\b[^>]*>)[^<]*(<\/\2>)/i',                   '$1*REDACTED*$3',   $source );
-    $source = preg_replace ( '/^(\s*' . $w . '\s*=\s*)(\S.*)$/im',                         '$1*REDACTED*',     $source );
-    $source = preg_replace ( '#(\b[a-z][a-z0-9+.-]*://[^/\s:@\'"]*:)[^@\s\'"/]+(@)#i',     '$1*REDACTED*$2',   $source );
+    // A quoted value as runs of plain characters with its escapes between, each run
+    // possessive, per kind of quote: a group repeated per character ran out of PCRE's JIT
+    // stack on a value of some ten thousand characters - a key, a certificate - and the
+    // redaction answered nothing. A step that still fails shows nothing rather than the
+    // text it could not clean.
+
+    $q = '(?:(\')((?:[^\'\\\\]++|\\\\.)*+)\'|(")((?:[^"\\\\]++|\\\\.)*+)")';
+    $r = '$1$2$4*REDACTED*$2$4';
+
+    foreach ( [
+      '/(\$' . $w . '\s*=\s*)' . $q . '/i'                        => $r,
+      '/([\'"]' . $w . '[\'"]\s*=>\s*)' . $q . '/i'              => $r,
+      '/(\[\s*[\'"]' . $w . '[\'"]\s*\]\s*=\s*)' . $q . '/i'     => $r,
+      '/(->' . $w . '\s*=\s*)' . $q . '/i'                        => $r,
+      '/(define\s*\(\s*[\'"]' . $w . '[\'"]\s*,\s*)' . $q . '/i' => $r,
+      '/("' . $w . '"\s*:\s*)"(?:[^"\\\\]++|\\\\.)*+"/i'            => '$1"*REDACTED*"',
+      '/^(\s*-?\s*' . $w . '\s*:[ \t]+)(?!\*REDACTED\*)(\S.*)$/im' => '$1*REDACTED*',
+      '/(<(' . $w . ')\b[^>]*>)[^<]*(<\/\2>)/i'                   => '$1*REDACTED*$3',
+      '/^(\s*' . $w . '\s*=\s*)(\S.*)$/im'                         => '$1*REDACTED*',
+      '#(\b[a-z][a-z0-9+.-]*://[^/\s:@\'"]*:)[^@\s\'"/]+(@)#i'     => '$1*REDACTED*$2'
+    ] as $pattern => $replace )
+      if ( ( $source = preg_replace ( $pattern, $replace, (string) $source ) ) === NULL )
+        return '';
 
     return $source;
 
