@@ -16,13 +16,13 @@
   $padProgressSize  = strtolower ( trim ( (string) padTagParm ( 'size', 'medium' ) ) );
   $padProgressSteps = (bool) padTagParm ( 'steps', FALSE );
 
-  if ( ! is_numeric ( $padProgressValue ) ) {
+  if ( ! is_numeric ( $padProgressValue ) or ! is_finite ( (float) $padProgressValue ) ) {
     if ( $padCheckSyntax )
       padError ( "the progress has no number for its value: '" . padMakeSafe ( $padProgressValue, 20 ) . "' - {progress 72}" );
     $padProgressValue = 0;
   }
 
-  if ( ! is_numeric ( $padProgressMax ) or $padProgressMax <= 0 or ( $padProgressSteps and ( $padProgressMax != (int) $padProgressMax or $padProgressMax > 50 ) ) ) {
+  if ( ! is_numeric ( $padProgressMax ) or $padProgressMax <= 0 or ! is_finite ( (float) $padProgressMax ) or ( $padProgressSteps and ( $padProgressMax != (int) $padProgressMax or $padProgressMax > 50 ) ) ) {
     if ( $padCheckSyntax )
       padError ( "the progress has no usable max '" . padMakeSafe ( $padProgressMax, 20 ) . "' - a number above 0" . ( $padProgressSteps ? ', for steps a whole number up to 50' : '' ) );
     $padProgressMax = $padProgressSteps ? 5 : 100;

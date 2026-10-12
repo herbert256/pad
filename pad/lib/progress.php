@@ -60,9 +60,15 @@
 
   function padProgressNumber ( $number ) {
 
-    $text = number_format ( (float) $number, 4, '.', '' );
+    $text = rtrim ( rtrim ( number_format ( (float) $number, 4, '.', '' ), '0' ), '.' );
 
-    return rtrim ( rtrim ( $text, '0' ), '.' );
+    // A number too small for four decimals keeps its digits - an exponent is a number to the
+    // element - where max="0" made the bar empty under a text that said 50%.
+
+    if ( (float) $text == 0 and (float) $number != 0 )
+      $text = sprintf ( '%.6g', (float) $number );
+
+    return $text;
 
   }
 
