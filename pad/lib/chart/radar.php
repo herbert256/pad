@@ -41,8 +41,17 @@
         $values [] = $v + 0;
       }
 
+      // A name a row before had is told apart by its number - Phone (2) - where the second
+      // row silently took the first one's place and its polygon was lost.
+
       $name = padChartText ( $row, $label );
-      $series [ $name !== '' ? $name : "Row $index" ] = $values;
+      $name = ( $name !== '' ) ? $name : "Row $index";
+      $base = $name;
+
+      for ( $n = 2; isset ( $series [$name] ); $n++ )
+        $name = "$base ($n)";
+
+      $series [$name] = $values;
 
     }
 
