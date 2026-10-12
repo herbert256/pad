@@ -44,8 +44,12 @@
   // reading the others; a slug that is not a plain file name, or names no file, answers no
   // rows, so the page can show its @else@. $html lets raw HTML in the bodies through, for
   // a collection whose files the site's authors write; by default it is escaped.
+  //
+  // Only a slug left out (NULL) reads every file. An empty one names no file: the post page
+  // asked as ?post&slug= - a link with its slug missing - showed every post, each body read
+  // and rendered.
 
-  function padCollection ( $name, $slug = '', $html = FALSE ) {
+  function padCollection ( $name, $slug = NULL, $html = FALSE ) {
 
     $dir = padCollectionDir ( (string) $name );
 
@@ -55,7 +59,7 @@
       return [];
     }
 
-    if ( $slug !== '' and $slug !== NULL and $slug !== FALSE ) {
+    if ( $slug !== NULL ) {
 
       if ( ! preg_match ( '/^[A-Za-z0-9_-][A-Za-z0-9_.-]*$/', (string) $slug ) or ! is_file ( "$dir$slug.md" ) )
         return [];

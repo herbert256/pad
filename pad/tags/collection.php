@@ -10,6 +10,6 @@
   if ( trim ( (string) $padParm ) === '' and $padCheckSyntax )
     padError ( "the {collection} needs a name - {collection 'blog'} reads _content/blog/" );
 
-  return padCollection ( $padParm, padTagParm ( 'slug' ), (bool) padTagParm ( 'html' ) );
+  return padCollection ( $padParm, padTagParm ( 'slug', NULL ), (bool) padTagParm ( 'html' ) );
 
 ?>
