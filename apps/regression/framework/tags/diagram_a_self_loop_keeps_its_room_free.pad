@@ -1,0 +1,8 @@
+{diagram direction='LR'}
+A[Fetch] -->|retry on failure| A
+A --> B[Parse]
+{/diagram}
+{diagram}
+A[Start] --> B[Fetch] & C[Parse]
+B -->|again| B
+{/diagram}

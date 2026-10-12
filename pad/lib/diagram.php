@@ -528,6 +528,18 @@
       foreach ( $list as $i => $id )
         $pos [$id] = $i;
 
+    // A loop of a node on itself stands to its right - a wider one for each further loop -
+    // with its label beside it: the room it takes is kept free, beside the node in its rank
+    // (TB, BT) or in the gap after its rank (LR, RL), where it was drawn over the next node.
+
+    $loopRoom = $loopCount = [];
+
+    foreach ( $edges as list ( $a, $b, $label ) )
+      if ( $a === $b ) {
+        $k              = $loopCount [$a] = ( $loopCount [$a] ?? -1 ) + 1;
+        $loopRoom [$a]  = max ( $loopRoom [$a] ?? 0, 30 + 22 * $k + ( $label !== '' ? padDiagramWidth ( $label ) + 8 : 0 ) );
+      }
+
     // The main axis: each rank as deep as its deepest node, the gaps between as wide as
     // their labels ask.
 
@@ -540,8 +552,15 @@
       foreach ( $list as $id )
         $depth = max ( $depth, $vertical ? $nodes [$id] ['h'] : $nodes [$id] ['w'] );
 
+      $gap = $gaps [$r] ?? 44;
+
+      if ( ! $vertical )
+        foreach ( $list as $id )
+          if ( isset ( $loopRoom [$id] ) )
+            $gap = max ( $gap, $nodes [$id] ['w'] / 2 + $loopRoom [$id] - $depth / 2 + 10 );
+
       $main [$r] = [ $at, $depth ];
-      $at       += $depth + ( $gaps [$r] ?? 44 );
+      $at       += $depth + $gap;
 
     }
 
@@ -552,7 +571,8 @@
     // The cross axis: packed, then each rank moved toward its neighbours, down and up.
 
     $size  = fn ( $id ) => $vertical ? $nodes [$id] ['w'] : $nodes [$id] ['h'];
-    $space = fn ( $a, $b ) => ( $size ( $a ) + $size ( $b ) ) / 2 + ( ( $nodes [$a] ['shape'] == 'dummy' or $nodes [$b] ['shape'] == 'dummy' ) ? 14 : 30 );
+    $space = fn ( $a, $b ) => ( $size ( $a ) + $size ( $b ) ) / 2 + ( ( $nodes [$a] ['shape'] == 'dummy' or $nodes [$b] ['shape'] == 'dummy' ) ? 14 : 30 )
+                            + ( $vertical ? ( $loopRoom [$a] ?? 0 ) : 0 );
     $cross = [];
 
     foreach ( $ranks as $list ) {
