@@ -12,7 +12,7 @@
   // chart drew every row in stored order, and a where= failed on a field no row had.
 
   if ( padChartHandles () ) {
-    $padData [$pad] = padData ( padChartRows ( $padChartSource ) );
+    $padData [$pad] = padData ( padChartRows ( $padChartSource, 'sparkline' ) );
     include PAD . 'handling/handling.php';
     $padChartRows       = $padData [$pad];
     $padHandDone [$pad] = TRUE;

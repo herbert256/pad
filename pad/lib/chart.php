@@ -59,7 +59,7 @@
 
     if ( ! isset ( $padPrm [$pad] ['data'] ) ) {
       if ( $padCheckSyntax )
-        padError ( "the chart has no data - data='name', sequence='name' or the data between {chart} and {/chart}" );
+        padError ( "the $what has no data - data='name', sequence='name' or the data between {" . $what . "} and {/$what}" );
       return [];
     }
 
@@ -162,7 +162,7 @@
          and trim ( (string) $source ) === '' and isset ( $padPrm [$pad] ['value'] ) )
       $rows = [];
     else
-      $rows = padChartRows ( $source );
+      $rows = padChartRows ( $source, $kind == 'sparkline' ? 'sparkline' : 'chart' );
 
     $padData [$pad] = padDefaultData ();
 
