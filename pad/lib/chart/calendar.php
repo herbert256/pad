@@ -26,6 +26,12 @@
     if ( $when === '' )
       return FALSE;
 
+    // Eight digits that name a day - 20261012, ISO 8601's basic form, as strtotime reads it -
+    // are that day: as seconds they were a moment of 1970, and only 1970 to 1973 is one.
+
+    if ( padChartBasicDate ( $when ) )
+      $when = substr ( $when, 0, 4 ) . '-' . substr ( $when, 4, 2 ) . '-' . substr ( $when, 6, 2 );
+
     // Text is a date when it names a day of a month of a year - a time and a zone may come
     // with it - and nothing it cannot read: -44 was tomorrow, 1990s the clock time of today
     // in 1990, tomorrow a moment that moved on every request and 2026-02-30 the 2nd of March.
@@ -60,6 +66,12 @@
       return FALSE;
 
     return ( new DateTimeImmutable ( $local->format ( 'Y-m-d H:i:s' ), new DateTimeZone ( 'UTC' ) ) )->getTimestamp ();
+
+  }
+
+  function padChartBasicDate ( $when ) {
+
+    return (bool) preg_match ( '/^(\d{4})(\d{2})(\d{2})$/', (string) $when, $m ) and checkdate ( (int) $m [2], (int) $m [3], (int) $m [1] );
 
   }
 

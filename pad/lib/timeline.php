@@ -21,7 +21,8 @@
   // --pad-timeline-line and --pad-timeline-muted.
 
   // A date as [ moment, precision ] - 'year', 'month', 'day' or 'time' - else FALSE. A
-  // number of one to four digits is a year: 1969 is a year, not 1969 seconds into 1970.
+  // number of one to four digits is a year: 1969 is a year, not 1969 seconds into 1970, and
+  // 0 the year 0, not the first second of 1970.
 
   function padTimelineDate ( $value ) {
 
@@ -30,7 +31,7 @@
     if ( $value === '' )
       return FALSE;
 
-    if ( preg_match ( '/^\d{1,4}$/', $value ) and (int) $value > 0 )
+    if ( preg_match ( '/^\d{1,4}$/', $value ) )
       return [ ( new DateTimeImmutable ( sprintf ( '%04d-01-01', (int) $value ), new DateTimeZone ( 'UTC' ) ) )->getTimestamp (), 'year' ];
 
     if ( preg_match ( '/^(\d{4})-(\d{1,2})$/', $value, $match ) and $match [2] >= 1 and $match [2] <= 12 )
@@ -45,7 +46,7 @@
     if ( $stamp === FALSE )
       return FALSE;
 
-    if ( ctype_digit ( $value ) )
+    if ( ctype_digit ( $value ) and ! padChartBasicDate ( $value ) )
       return [ $stamp, 'time' ];
 
     return [ $stamp, ( gmdate ( 'His', $stamp ) === '000000' ) ? 'day' : 'time' ];
