@@ -87,9 +87,7 @@
     // The ids the page has already, so a made one never takes one of them - read as the
     // browser reads them, entities and all: id="intro&#45;2" is intro-2.
 
-    preg_match_all ( padTocIdPattern, $output, $found, PREG_SET_ORDER );
-
-    $taken    = array_fill_keys ( array_map ( fn ( $one ) => padTocId ( padTocIdValue ( $one ) ), $found ), TRUE );
+    $taken    = padTocIds ( $output );
     $headings = [];
 
     // The number a repeated heading's id goes on from: each counted up from -2 through every
@@ -142,8 +140,8 @@
         // The link's href is escaped from the id itself: one written with an entity -
         // id="a&amp;b" - was escaped a second time and led to a target that is not there.
 
-        if ( preg_match ( padTocIdPattern, $attrs, $has ) and padTocIdValue ( $has ) !== '' )
-          $id = padTocId ( padTocIdValue ( $has ) );
+        if ( ( $own = padTocIdOf ( $attrs ) ) !== NULL and $own !== '' )
+          $id = padTocId ( $own );
         else {
           $base = padStrSlug ( html_entity_decode ( padUnprotect ( padUnescape ( $text ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' ) );
           $base = ( $base === '' ) ? 'section' : $base;
@@ -178,14 +176,37 @@
 
   }
 
-  // An id attribute, quoted or not: id=intro was no id - a made one took its name, and a
-  // heading with one got a second id attribute.
+  // The ids of the page: the id attribute of every start tag, a quoted value passed over
+  // whole. Searched for anywhere, id=intro in a paragraph's text took the made id of an
+  // Intro heading - intro-2, every anchor of the page one up - and the "id = 5" of a
+  // heading's x-on:click handler was taken for the heading's id, linked as #5.
 
-  const padTocIdPattern = '/\sid\s*=\s*(?:"([^"]*)"|\'([^\']*)\'|([^\s"\'>]+))/i';
+  function padTocIds ( $html ) {
 
-  function padTocIdValue ( $match ) {
+    preg_match_all ( '/<[a-z][^\s\/<>]*+([^"\'<>]*+(?:(?:"[^"]*+"|\'[^\']*+\')[^"\'<>]*+)*+)>/i', $html, $tags );
 
-    return ( $match [1] ?? '' ) . ( $match [2] ?? '' ) . ( $match [3] ?? '' );
+    $ids = [];
+
+    foreach ( $tags [1] as $attrs )
+      if ( ( $id = padTocIdOf ( $attrs ) ) !== NULL )
+        $ids [ padTocId ( $id ) ] = TRUE;
+
+    return $ids;
+
+  }
+
+  // The value of the id attribute in a tag's attributes, quoted or not - id=intro is an id
+  // as id="intro" is - or NULL when it has none.
+
+  function padTocIdOf ( $attrs ) {
+
+    preg_match_all ( '/([^\s"\'<>\/=]++)(?:\s*+=\s*+(?:"([^"]*+)"|\'([^\']*+)\'|([^\s"\'<>]++)))?/', $attrs, $all, PREG_SET_ORDER );
+
+    foreach ( $all as $one )
+      if ( strtolower ( $one [1] ) === 'id' )
+        return ( $one [2] ?? '' ) . ( $one [3] ?? '' ) . ( $one [4] ?? '' );
+
+    return NULL;
 
   }
 
