@@ -428,6 +428,21 @@
 
   }
 
+  // The application a maintenance post names: one there is, or - to bring it up - one whose
+  // record is still there: the record of an application that is gone, renamed or removed,
+  // was listed, but its "Bring up" was refused as no application.
+
+  function adminMaintenanceApp ( $action ) {
+
+    $app = adminAppAsked ();
+
+    if ( $app === '' and $action == 'up' and isset ( padMaintenanceList () [ adminField ( 'app' ) ] ) )
+      $app = adminField ( 'app' );
+
+    return $app;
+
+  }
+
   function adminDone ( $message, $page, $vars = [], $type = 'ok' ) {
 
     padFlash ( $message, $type );

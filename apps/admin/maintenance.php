@@ -8,8 +8,8 @@
 
   if ( adminPost () ) {
 
-    $app    = adminAppAsked ();
     $action = adminField ( 'action' );
+    $app    = adminMaintenanceApp ( $action );
 
     if ( $app === '' or $app === 'admin' or $app === '_common' )
       adminDone ( 'Choose an application.', 'maintenance', [], 'error' );
