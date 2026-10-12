@@ -7,8 +7,8 @@
   // text, else the first field that reads as a date and the first other text; link= names a
   // field with a link for the event. sunday starts the weeks on Sunday instead of Monday.
   //
-  // Written as a single tag it answers a table: the month with links to its neighbours, a
-  // column per weekday, a cell per day with its events. Written as a pair it hands the
+  // Written as a single tag it answers a table: the month - with links to its neighbours
+  // when no parameter fixes it - a column per weekday, a cell per day with its events. Written as a pair it hands the
   // weeks over as rows instead - week, and days: date, day, weekday, month, other, today,
   // weekend, count, events and class - for markup of the template's own.
 
@@ -47,6 +47,6 @@
   if ( $padPair [$pad] )
     return $padCalendarWeeks;
 
-  return padCalendarHtml ( $padCalendarMonth, $padCalendarWeeks, $padCalendarTitle, $padCalendarLink, $padCalendarQuery );
+  return padCalendarHtml ( $padCalendarMonth, $padCalendarWeeks, $padCalendarTitle, $padCalendarLink, $padCalendarQuery, trim ( (string) $padParm ) === '' );
 
 ?>

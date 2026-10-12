@@ -1419,7 +1419,8 @@ A month as a calendar, with its events (`lib/calendar.php`).
 | `sunday` | Weeks start on Sunday instead of Monday |
 
 **Behavior:** as a single tag it answers a table - the month in its caption between links to
-the month before and after (keeping the other request values, as `{pager}` does), a column
+the month before and after (keeping the other request values, as `{pager}` does; none when the
+first parameter fixes the month), a column
 per weekday, a cell per day with its `<time>` and its events as a list; today has
 `aria-current="date"`. A small default look rides along under `:where()`, so the page's CSS
 wins. As a pair it hands over the weeks as rows - `$week` (ISO number) and `days` - and

@@ -82,7 +82,10 @@
   // weekdays, a cell per day with its events as a list - their title= field, each a link
   // when link= names a field that holds one.
 
-  function padCalendarHtml ( $month, $weeks, $tField, $lField, $query ) {
+  // A calendar whose month the parameter fixes has no links to the months around it: the
+  // parameter wins over the request value, and following them showed the same month again.
+
+  function padCalendarHtml ( $month, $weeks, $tField, $lField, $query, $links = TRUE ) {
 
     $catalog = padTransCatalog ();
     $h       = fn ( $t ) => htmlspecialchars ( padUnprotectQuotes ( (string) $t ), ENT_QUOTES, 'UTF-8' );
@@ -92,9 +95,9 @@
 
     $html = padCalendarStyle () . '<table class="pad-calendar">'
           . '<caption>'
-          . '<a class="pad-calendar-prev" href="' . $h ( padPagerHref ( $query, $prev ) ) . '" rel="prev" aria-label="' . $h ( $catalog ['calendar.previous'] ?? 'Previous month' ) . '">‹</a> '
+          . ( $links ? '<a class="pad-calendar-prev" href="' . $h ( padPagerHref ( $query, $prev ) ) . '" rel="prev" aria-label="' . $h ( $catalog ['calendar.previous'] ?? 'Previous month' ) . '">‹</a> ' : '' )
           . '<span>' . $h ( $first->format ( 'F Y' ) ) . '</span>'
-          . ' <a class="pad-calendar-next" href="' . $h ( padPagerHref ( $query, $next ) ) . '" rel="next" aria-label="' . $h ( $catalog ['calendar.next'] ?? 'Next month' ) . '">›</a>'
+          . ( $links ? ' <a class="pad-calendar-next" href="' . $h ( padPagerHref ( $query, $next ) ) . '" rel="next" aria-label="' . $h ( $catalog ['calendar.next'] ?? 'Next month' ) . '">›</a>' : '' )
           . '</caption><thead><tr>';
 
     foreach ( $weeks [0] ['days'] as $day )
