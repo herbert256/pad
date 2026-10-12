@@ -478,7 +478,12 @@
     $data  = ( count ( $parts ) == 2 ) ? json_decode ( (string) padCryptUnB64 ( $parts [0] ), TRUE ) : NULL;
     $user  = NULL;
 
-    if ( is_array ( $data ) and count ( $data ) == 2 and is_int ( $data [1] ) and $data [1] >= padNow ()->getTimestamp ()
+    // The payload the engine writes is the list of id and expiry: a JSON object of two keys
+    // passed for it and reading entry 1 ended the request - a visitor's cookie is never an
+    // error, only dropped.
+
+    if ( is_array ( $data ) and array_is_list ( $data ) and count ( $data ) == 2
+         and is_int ( $data [1] ) and $data [1] >= padNow ()->getTimestamp ()
          and ( is_int ( $data [0] ) or is_string ( $data [0] ) ) )
       $user = $finder ( $data [0] );
 
