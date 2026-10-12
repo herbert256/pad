@@ -109,7 +109,7 @@
 
     while ( TRUE ) {
 
-      if ( ! preg_match ( '/\G\s*([\p{L}\p{N}_]+)/u', $line, $match, 0, $at ) )
+      if ( ! preg_match ( '/\G\s*([\p{L}\p{M}\p{N}_]+)/u', $line, $match, 0, $at ) )
         return NULL;
 
       $at   += strlen ( $match [0] );
@@ -235,6 +235,26 @@
 
   }
 
+  // A word of wide characters that does not fit on a line is broken between them, as those
+  // scripts break - it has no spaces, and stood on one line far wider than its box.
+
+  function padDiagramPieces ( $word, $max ) {
+
+    if ( mb_strwidth ( $word ) <= $max or mb_strwidth ( $word ) == mb_strlen ( $word ) )
+      return [ $word ];
+
+    $pieces = [ '' ];
+
+    foreach ( mb_str_split ( $word ) as $char )
+      if ( end ( $pieces ) !== '' and mb_strwidth ( end ( $pieces ) . $char ) > $max )
+        $pieces [] = $char;
+      else
+        $pieces [ count ( $pieces ) - 1 ] .= $char;
+
+    return $pieces;
+
+  }
+
   function padDiagramWrap ( $text, $max = 24 ) {
 
     $lines = [];
@@ -247,14 +267,15 @@
       $line = '';
 
       foreach ( preg_split ( '/\s+/u', trim ( $part ) ) as $word )
-        if ( $line === '' )
-          $line = $word;
-        elseif ( mb_strlen ( "$line $word" ) <= $max )
-          $line .= " $word";
-        else {
-          $lines [] = $line;
-          $line     = $word;
-        }
+        foreach ( padDiagramPieces ( $word, $max ) as $k => $piece )
+          if ( $line === '' )
+            $line = $piece;
+          elseif ( ! $k and mb_strwidth ( "$line $piece" ) <= $max )
+            $line .= " $piece";
+          else {
+            $lines [] = $line;
+            $line     = $piece;
+          }
 
       $lines [] = $line;
 
@@ -266,9 +287,12 @@
 
   // The width of a text at the diagram's 12px, about.
 
+  // A wide character - Chinese, Japanese, Korean - takes the room of two: thirteen of them
+  // ran some twenty pixels past both sides of their box.
+
   function padDiagramWidth ( $text ) {
 
-    return mb_strlen ( (string) $text ) * 7;
+    return mb_strwidth ( (string) $text ) * 7;
 
   }
 
@@ -1225,7 +1249,7 @@
 
     $people = $events = $bad = $frames = [];
     $number = FALSE;
-    $id     = '[\p{L}\p{N}_]+';
+    $id     = '[\p{L}\p{M}\p{N}_]+';
 
     // A declaration says what a participant is, with or without a name to show: actor U
     // after U had sent a message was a box, actor U as User a person.
