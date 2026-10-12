@@ -40,13 +40,13 @@
     // timezone (padChartStamp) - written in UTC they showed 22:00 of the day before for
     // midnight in Amsterdam.
 
-    if ( ctype_digit ( $value ) )
-      return [ padChartStamp ( $value ), 'time' ];
-
     $stamp = padChartStamp ( $value );
 
     if ( $stamp === FALSE )
       return FALSE;
+
+    if ( ctype_digit ( $value ) )
+      return [ $stamp, 'time' ];
 
     return [ $stamp, ( gmdate ( 'His', $stamp ) === '000000' ) ? 'day' : 'time' ];
 

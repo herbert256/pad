@@ -53,6 +53,12 @@
 
     $local = $moment->setTimezone ( padDateZone () );
 
+    // A moment past the year 9999 - a millisecond timestamp, 1760000000000 - is no day a
+    // calendar shows: written back as 57742-03-07 it was read as 2002.
+
+    if ( (int) $local->format ( 'Y' ) > 9999 )
+      return FALSE;
+
     return ( new DateTimeImmutable ( $local->format ( 'Y-m-d H:i:s' ), new DateTimeZone ( 'UTC' ) ) )->getTimestamp ();
 
   }
