@@ -13,7 +13,11 @@
   // from light to dark; a day has its tooltip, the months are named above their first
   // week, Monday, Wednesday and Friday on the left.
 
-  // A date as seconds since 1970, UTC: digits alone are such a number already.
+  // A date as seconds since 1970 of its wall clock, written as if in UTC - what gmdate reads
+  // back as the day and time a reader sees. A date written without a zone is taken as it
+  // stands; a moment - a Unix timestamp, a date with its offset or zone - as it is in the
+  // application's timezone, the one today is: a timestamp and an offset date fell on their
+  // UTC day, the day before for an event at local midnight east of Greenwich.
 
   function padChartStamp ( $when ) {
 
@@ -22,7 +26,16 @@
     if ( $when === '' )
       return FALSE;
 
-    return ctype_digit ( $when ) ? (int) $when : strtotime ( "$when UTC" );
+    try {
+      $moment = ctype_digit ( $when ) ? new DateTimeImmutable ( "@$when" ) : new DateTimeImmutable ( $when, padDateZone () );
+    } catch ( Throwable $e ) {
+      return FALSE;
+    }
+
+    $local = $moment->setTimezone ( padDateZone () );
+
+    return gmmktime ( (int) $local->format ( 'G' ), (int) $local->format ( 'i' ), (int) $local->format ( 's' ),
+                      (int) $local->format ( 'n' ), (int) $local->format ( 'j' ), (int) $local->format ( 'Y' ) );
 
   }
 

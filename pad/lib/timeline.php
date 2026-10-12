@@ -36,10 +36,14 @@
     if ( preg_match ( '/^(\d{4})-(\d{1,2})$/', $value, $match ) and $match [2] >= 1 and $match [2] <= 12 )
       return [ gmmktime ( 0, 0, 0, (int) $match [2], 1, (int) $match [1] ), 'month' ];
 
-    if ( ctype_digit ( $value ) )
-      return [ (int) $value, 'time' ];
+    // A timestamp, and a date with its offset, as the wall clock of the application's
+    // timezone (padChartStamp) - written in UTC they showed 22:00 of the day before for
+    // midnight in Amsterdam.
 
-    $stamp = strtotime ( "$value UTC" );
+    if ( ctype_digit ( $value ) )
+      return [ padChartStamp ( $value ), 'time' ];
+
+    $stamp = padChartStamp ( $value );
 
     if ( $stamp === FALSE )
       return FALSE;
