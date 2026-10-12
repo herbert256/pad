@@ -238,15 +238,38 @@
   // start renders of their own, four at a time, and a timeout stopped only the command - the
   // renders went on, and a killed parent's children can no longer be found by it.
 
+  // pgrep is run as the console runs its commands, through proc_open: shell_exec - which a
+  // hardened host disables while it leaves proc_open - ended the page with an Error the @
+  // does not hold back, and the command was never stopped.
+
   function adminProcessTree ( $pid ) {
 
     $tree = [ $pid ];
+    $list = '';
+    $proc = @proc_open ( [ 'pgrep', '-P', (string) (int) $pid ], [ 1 => [ 'pipe', 'w' ], 2 => [ 'file', '/dev/null', 'w' ] ], $pipes );
 
-    foreach ( preg_split ( '/\s+/', trim ( (string) @shell_exec ( 'pgrep -P ' . (int) $pid . ' 2>/dev/null' ) ) ) as $child )
+    if ( is_resource ( $proc ) ) {
+      $list = (string) stream_get_contents ( $pipes [1] );
+      fclose ( $pipes [1] );
+      proc_close ( $proc );
+    }
+
+    foreach ( preg_split ( '/\s+/', trim ( $list ) ) as $child )
       if ( ctype_digit ( $child ) )
         $tree = array_merge ( $tree, adminProcessTree ( (int) $child ) );
 
     return $tree;
+
+  }
+
+  function adminProcessKill ( $pid ) {
+
+    if ( function_exists ( 'posix_kill' ) )
+      return @posix_kill ( $pid, 9 );
+
+    $proc = @proc_open ( [ 'kill', '-9', (string) (int) $pid ], [ 1 => [ 'file', '/dev/null', 'w' ], 2 => [ 'file', '/dev/null', 'w' ] ], $pipes );
+
+    return is_resource ( $proc ) and proc_close ( $proc ) === 0;
 
   }
 
@@ -288,7 +311,7 @@
       if ( microtime ( TRUE ) - $start > $timeout ) {
         foreach ( array_reverse ( adminProcessTree ( (int) $status ['pid'] ) ) as $one )
           if ( $one != $status ['pid'] )
-            function_exists ( 'posix_kill' ) ? @posix_kill ( $one, 9 ) : @exec ( 'kill -9 ' . (int) $one );
+            adminProcessKill ( $one );
         proc_terminate ( $proc, 9 );
         $out .= "\n[stopped after $timeout seconds]";
         $status = [ 'exitcode' => -1 ];
