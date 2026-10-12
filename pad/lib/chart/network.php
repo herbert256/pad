@@ -50,17 +50,20 @@
         if ( ! isset ( $nodes [$node] ) )
           $nodes [$node] = [ count ( $nodes ), 0 ];
 
-      if ( $s !== $t ) {
-        $nodes [$s] [1]++;
-        $nodes [$t] [1]++;
-      }
-
       $key = serialize ( [ $s, $t ] );
+
+      // A node's links are counted once per link, as the lines and the description have them,
+      // where every row of one link counted again: "A: 5 links" beside "2 links" in all.
 
       if ( isset ( $links [$key] ) )
         $links [$key] [2] += $v;
-      else
+      else {
         $links [$key] = [ $s, $t, $v + 0 ];
+        if ( $s !== $t ) {
+          $nodes [$s] [1]++;
+          $nodes [$t] [1]++;
+        }
+      }
 
     }
 
