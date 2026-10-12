@@ -292,12 +292,8 @@
 
   function padChessStyle () {
 
-    static $written = FALSE;
-
-    if ( $written )
+    if ( ! padWidgetOnce ( 'style:chess' ) )
       return '';
-
-    $written = TRUE;
 
     $roles = [ 'light' => [ '#f0d9b5', '#c9b38f' ], 'dark'  => [ '#b58863', '#8b6748' ],
                'white' => [ '#ffffff', '#f4f3ee' ], 'black' => [ '#2b2a28', '#22211f' ],

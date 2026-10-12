@@ -281,12 +281,8 @@
 
   function padDatatableStyle () {
 
-    static $written = FALSE;
-
-    if ( $written )
+    if ( ! padWidgetOnce ( 'style:datatable' ) )
       return '';
-
-    $written = TRUE;
 
     $roles = [ 'text'   => [ '#1f1f1d', '#ecebe6' ],
                'muted'  => [ '#6b6a66', '#9d9c93' ],

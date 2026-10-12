@@ -746,12 +746,9 @@
 
     global $padCsp;
 
-    static $written = FALSE;
-
-    if ( $written )
+    if ( ! padWidgetOnce ( 'script:validate' ) )
       return '';
 
-    $written = TRUE;
     $nonce   = str_contains ( (string) $padCsp, "'nonce'" ) ? ' nonce="' . padNonce () . '"' : '';
 
     // The file's comment lines and blank lines stay in the file: the page gets the code.

@@ -173,12 +173,8 @@
 
   function padTocStyle () {
 
-    static $written = FALSE;
-
-    if ( $written )
+    if ( ! padWidgetOnce ( 'style:toc' ) )
       return '';
-
-    $written = TRUE;
 
     $roles = [ 'text'   => [ '#3d3c39', '#d6d5cd' ],
                'line'   => [ '#e4e3df', '#3a3a37' ],

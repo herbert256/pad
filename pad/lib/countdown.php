@@ -72,12 +72,8 @@
 
     global $padCsp;
 
-    static $written = FALSE;
-
-    if ( $written )
+    if ( ! padWidgetOnce ( 'script:countdown' ) )
       return '';
-
-    $written = TRUE;
 
     $nonce = ( is_string ( $padCsp ?? NULL ) and str_contains ( $padCsp, "'nonce'" ) )
            ? ' nonce="' . padChartAttr ( padNonce () ) . '"' : '';

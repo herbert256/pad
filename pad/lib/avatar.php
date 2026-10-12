@@ -133,12 +133,9 @@
 
   function padAvatarStyle () {
 
-    static $written = FALSE;
-
-    if ( $written )
+    if ( ! padWidgetOnce ( 'style:avatar' ) )
       return '';
 
-    $written = TRUE;
     $light   = $both = $rules = '';
 
     foreach ( PAD_AVATAR_PALETTE as $slot => list ( $day, $night ) ) {

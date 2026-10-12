@@ -58,12 +58,9 @@
 
   function padPlaceholderStyle () {
 
-    static $written = FALSE;
-
-    if ( $written )
+    if ( ! padWidgetOnce ( 'style:placeholder' ) )
       return '';
 
-    $written = TRUE;
     $roles   = [ 'surface' => [ '#e4e3df', '#2c2c2a' ],
                  'line'    => [ '#c3c2bc', '#454542' ],
                  'text'    => [ '#6b6a65', '#a3a29b' ] ];

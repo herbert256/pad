@@ -96,12 +96,8 @@
 
   function padExcerptStyle () {
 
-    static $written = FALSE;
-
-    if ( $written )
+    if ( ! padWidgetOnce ( 'style:excerpt' ) )
       return '';
-
-    $written = TRUE;
 
     return '<style>'
          . ':where(.pad-excerpt){--pad-excerpt-mark:#fde68a;--pad-excerpt-marked:#1a1a19}'

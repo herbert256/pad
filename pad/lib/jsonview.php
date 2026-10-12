@@ -152,12 +152,8 @@
 
   function padJsonviewStyle () {
 
-    static $written = FALSE;
-
-    if ( $written )
+    if ( ! padWidgetOnce ( 'style:jsonview' ) )
       return '';
-
-    $written = TRUE;
 
     $roles = [ 'key'     => [ '#7a3e9d', '#c8a2f0' ],
                'string'  => [ '#1a7f4b', '#7fd4a0' ],

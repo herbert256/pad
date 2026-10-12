@@ -255,8 +255,6 @@
 
     global $padCsp;
 
-    static $written = [ 'style' => FALSE, 'script' => FALSE ];
-
     $html = '';
 
     $nonce = ( is_string ( $padCsp ?? NULL ) and str_contains ( $padCsp, "'nonce'" ) )
@@ -318,14 +316,11 @@
 })();
 SCRIPT;
 
-    if ( ! $written ['style'] )
+    if ( padWidgetOnce ( 'style:video' ) )
       $html .= "<style$nonce>$css</style>";
 
-    if ( $script and ! $written ['script'] )
+    if ( $script and padWidgetOnce ( 'script:video' ) )
       $html .= "<script$nonce>$code</script>";
-
-    $written ['style']  = TRUE;
-    $written ['script'] = $written ['script'] || $script;
 
     return $html;
 

@@ -343,12 +343,8 @@
 
   function padCrosswordStyle () {
 
-    static $written = FALSE;
-
-    if ( $written )
+    if ( ! padWidgetOnce ( 'style:crossword' ) )
       return '';
-
-    $written = TRUE;
 
     $roles = [ 'square' => [ '#ffffff', '#1f1f1d' ], 'line'   => [ '#2b2a28', '#c3c2b7' ],
                'number' => [ '#52514e', '#a3a29b' ], 'letter' => [ '#1a1a19', '#f4f3ee' ],

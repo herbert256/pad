@@ -92,12 +92,8 @@
 
   function padIdenticonStyle () {
 
-    static $written = FALSE;
-
-    if ( $written )
+    if ( ! padWidgetOnce ( 'style:identicon' ) )
       return '';
-
-    $written = TRUE;
 
     return '<style' . padIdenticonNonce () . '>'
          . ':where(.pad-identicon){--pad-identicon-background:#f0f0ee}'

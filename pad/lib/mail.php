@@ -218,7 +218,19 @@
 
     $GLOBALS ['padSectionsNext'] = TRUE;
 
-    $out = trim ( padUnprotect ( padUnescape ( padCode ( $source ) ) ) );
+    // An output of its own: the CSS and script a tag writes once (padWidgetOnce) go into
+    // the mail as well, and the page's own stay the page's.
+
+    static $mails = 0;
+
+    $scopeWas                   = $GLOBALS ['padOnceScope'] ?? NULL;
+    $GLOBALS ['padOnceScope']   = 'mail' . ( ++$mails );
+
+    try {
+      $out = trim ( padUnprotect ( padUnescape ( padCode ( $source ) ) ) );
+    } finally {
+      $GLOBALS ['padOnceScope'] = $scopeWas;
+    }
 
     // A field's value arrives escaped for HTML - the sanitize step of every field - which
     // the text part, read as it is, must not show: Zo&euml; is Zoë there.

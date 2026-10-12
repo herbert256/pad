@@ -249,12 +249,8 @@
 
   function padSudokuStyle () {
 
-    static $written = FALSE;
-
-    if ( $written )
+    if ( ! padWidgetOnce ( 'style:sudoku' ) )
       return '';
-
-    $written = TRUE;
 
     $roles = [ 'line'   => [ '#b9b8b2', '#4a4a46' ], 'box'    => [ '#2b2a28', '#c3c2b7' ],
                'given'  => [ '#1a1a19', '#f4f3ee' ], 'solved' => [ '#2a78d6', '#5598e7' ],

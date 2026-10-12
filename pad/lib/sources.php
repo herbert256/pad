@@ -122,12 +122,8 @@
 
   function padSourceStyle () {
 
-    static $written = FALSE;
-
-    if ( $written )
+    if ( ! padWidgetOnce ( 'style:sources' ) )
       return '';
-
-    $written = TRUE;
 
     $css = ':where(.pad-source){margin:1em 0;border:1px solid rgba(127,127,127,.3);border-radius:8px;overflow:hidden}'
          . ':where(.pad-source>input){position:absolute;opacity:0;pointer-events:none}'

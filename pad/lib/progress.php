@@ -71,12 +71,9 @@
 
   function padProgressStyle () {
 
-    static $written = FALSE;
-
-    if ( $written )
+    if ( ! padWidgetOnce ( 'style:progress' ) )
       return '';
 
-    $written = TRUE;
     $roles   = [ 'track'   => [ '#e4e3df', '#3a3a37' ],
                  'text'    => [ '#52514e', '#c3c2b7' ],
                  'accent'  => [ '#2a78d6', '#3987e5' ],

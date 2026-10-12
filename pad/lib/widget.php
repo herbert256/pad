@@ -9,8 +9,9 @@
   //                  widgets of two nested passes, never share one - the same widget drawn
   //                  twice in a request gets a number behind the second (as padChartOpen):
   //                  -n2, which no item of the first - -1, -2 - can be
-  // padWidgetOnce    TRUE the first time a key is asked for in this request - the CSS and
-  //                  the script of a kind go out with the first widget of that kind only
+  // padWidgetOnce    TRUE the first time a key is asked for in its output - the CSS and
+  //                  the script of a kind go out with the first widget of that kind only;
+  //                  the tags that draw keep their style to one per output with it too
   // padWidgetColors  the custom properties of a class with their light-dark() defaults: a
   //                  page saying color-scheme: light dark gets the dark steps in dark mode,
   //                  a browser without light-dark() keeps the light ones
@@ -47,14 +48,30 @@
 
   }
 
+  // Once per output: the page, a {cache} section that is being kept - it comes back on
+  // other pages, where nothing else wrote its CSS and script - and a mail rendered during
+  // the request ($padOnceScope, lib/mail.php). Remembered for the PHP process, a section
+  // was kept without the style or the script an earlier widget of its page had written -
+  // a video's play button did nothing elsewhere - and a mail took the page's style.
+
   function padWidgetOnce ( $key ) {
+
+    global $pad, $padFragment, $padOnceScope;
 
     static $done = [];
 
-    if ( isset ( $done [$key] ) )
+    $scope = (string) ( $padOnceScope ?? '' );
+
+    for ( $i = $pad ?? -1; $i >= 0; $i-- )
+      if ( is_array ( $padFragment [$i] ?? NULL ) and ! $padFragment [$i] ['hit'] ) {
+        $scope .= '|' . $padFragment [$i] ['key'];
+        break;
+      }
+
+    if ( isset ( $done [$scope] [$key] ) )
       return FALSE;
 
-    $done [$key] = TRUE;
+    $done [$scope] [$key] = TRUE;
 
     return TRUE;
 

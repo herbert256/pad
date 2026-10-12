@@ -391,12 +391,8 @@
 
   function padDiffStyle () {
 
-    static $written = FALSE;
-
-    if ( $written )
+    if ( ! padWidgetOnce ( 'style:diff' ) )
       return '';
-
-    $written = TRUE;
 
     $roles = [ 'del'      => [ '#fbe1e1', '#4a1f22' ], 'del-mark' => [ '#f3b4b4', '#7a2e33' ],
                'ins'      => [ '#dcf5e6', '#163b27' ], 'ins-mark' => [ '#a8e2bf', '#1f6340' ],

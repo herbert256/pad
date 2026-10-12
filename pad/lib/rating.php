@@ -85,12 +85,9 @@
 
   function padRatingStyle () {
 
-    static $written = FALSE;
-
-    if ( $written )
+    if ( ! padWidgetOnce ( 'style:rating' ) )
       return '';
 
-    $written = TRUE;
     $roles   = [ 'star'  => [ '#e09a00', '#f5b82e' ],
                  'heart' => [ '#d93b5a', '#f0627d' ],
                  'empty' => [ '#dddcd7', '#3d3d3a' ] ];
