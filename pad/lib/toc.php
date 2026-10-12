@@ -101,7 +101,12 @@
     if ( ! $wanted )
       return $output;
 
-    $output = preg_replace_callback ( '/<h([1-6])(\s[^>]*)?>(.*?)<\/h\1\s*>/is',
+    // A heading reaches to its closer, never past another heading's tag: one left unclosed
+    // - <h3>Orders<h3> - scanned on to the end of the page, and past a megabyte the scan
+    // gave up and the whole page was gone. A failing pass leaves the page as it was.
+
+    $before = $output;
+    $output = preg_replace_callback ( '/<h([1-6])(\s[^>]*)?>((?:(?!<\/?h[1-6][\s>]).)*+)<\/h\1\s*>/is',
       function ( $match ) use ( &$taken, &$headings, $wanted ) {
 
         $level = (int) $match [1];
@@ -132,7 +137,7 @@
 
         return "<h$level$attrs>$inner</h$level>";
 
-      }, $output );
+      }, $output ) ?? $before;
 
     return preg_replace_callback ( '/\x{E0F6}(\d{16})([0-9a-f]*)\x{E0F7}/u', function ( $match ) use ( $headings ) {
 
@@ -147,7 +152,7 @@
 
       return $mine ? padTocHtml ( $mine, (string) $title, $list == 'ul' ? 'ul' : 'ol' ) : '';
 
-    }, $output );
+    }, $output ) ?? $output;
 
   }
 
