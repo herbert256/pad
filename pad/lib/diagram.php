@@ -722,7 +722,10 @@
 
     // The channels: the segments of a gap that must go across get a line of their own, the
     // ones going right ordered from the right, the ones going left from the left, so a turn
-    // does not cut through another edge's way down.
+    // does not cut through another edge's way down. A gap is the two ranks it lies between,
+    // not where a segment starts: from the sloping outline of a diamond or a circle every
+    // segment started elsewhere, was alone in its "gap", and the runs of five branches lay
+    // a pixel apart, one line.
 
     $bends = $gapSegments = [];
 
@@ -730,7 +733,7 @@
       for ( $i = 1; $i < count ( $chain ); $i++ ) {
         list ( $p, $q ) = $segment ( $e, $i );
         if ( abs ( $p [0] - $q [0] ) > 1 )
-          $gapSegments [ round ( $p [1] ) . ':' . round ( $q [1] ) ] [] = [ $e, $i, $p, $q ];
+          $gapSegments [ round ( $nodes [ $chain [$i - 1] ] ['main'] ) . ':' . round ( $nodes [ $chain [$i] ] ['main'] ) ] [] = [ $e, $i, $p, $q ];
       }
 
     foreach ( $gapSegments as $list ) {
