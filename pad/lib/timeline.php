@@ -34,8 +34,11 @@
     if ( preg_match ( '/^\d{1,4}$/', $value ) )
       return [ ( new DateTimeImmutable ( sprintf ( '%04d-01-01', (int) $value ), new DateTimeZone ( 'UTC' ) ) )->getTimestamp (), 'year' ];
 
+    // A month is built as a year is: gmmktime put the years 0 to 100 in 1970 to 2069, and
+    // 0079-08 was August 1979.
+
     if ( preg_match ( '/^(\d{4})-(\d{1,2})$/', $value, $match ) and $match [2] >= 1 and $match [2] <= 12 )
-      return [ gmmktime ( 0, 0, 0, (int) $match [2], 1, (int) $match [1] ), 'month' ];
+      return [ ( new DateTimeImmutable ( sprintf ( '%04d-%02d-01', (int) $match [1], (int) $match [2] ), new DateTimeZone ( 'UTC' ) ) )->getTimestamp (), 'month' ];
 
     // A timestamp, and a date with its offset, as the wall clock of the application's
     // timezone (padChartStamp) - written in UTC they showed 22:00 of the day before for
