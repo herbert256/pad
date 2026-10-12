@@ -134,7 +134,7 @@
     $series = array_fill_keys ( array_map ( 'ucfirst', $fields ), [] );
     $index  = 0;
 
-    foreach ( (array) $rows as $row ) {
+    foreach ( (array) $rows as $key => $row ) {
 
       $index++;
       $row    = padChartRow ( $row );
@@ -148,7 +148,7 @@
       }
 
       $text      = padChartText ( $row, $label );
-      $labels [] = ( $label !== '' and $text !== '' ) ? $text : (string) $index;
+      $labels [] = ( $label !== '' and $text !== '' ) ? $text : ( is_string ( $key ) ? $key : (string) $index );
 
       foreach ( array_keys ( $series ) as $i => $name )
         $series [$name] [] = $values [$i];

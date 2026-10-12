@@ -267,7 +267,13 @@
             break;
           }
 
-      $points [] = [ is_scalar ( $l ) ? (string) $l : (string) $index, $v + 0 ];
+      // No label field: the key of an object of label: value - { "Rent": 900 } is a row of
+      // one field under the key Rent - else the row's number.
+
+      if ( ! is_scalar ( $l ) )
+        $l = is_string ( $key ) ? $key : $index;
+
+      $points [] = [ (string) $l, $v + 0 ];
 
     }
 
