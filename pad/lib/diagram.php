@@ -49,7 +49,10 @@
 
     foreach ( preg_split ( '/\r?\n/', $source ) as $number => $line ) {
 
-      $line = rtrim ( trim ( preg_replace ( '/%%.*$/', '', $line ) ), ';' );
+      // A comment is a line of its own that starts with %%, as Mermaid has it: a %% anywhere
+      // cut the line there, and a node "Save 10%%" could not be read.
+
+      $line = preg_match ( '/^\s*%%/', $line ) ? '' : rtrim ( trim ( $line ), ';' );
 
       if ( $line === '' )
         continue;
@@ -1291,7 +1294,10 @@
 
     foreach ( preg_split ( '/\r?\n/', $source ) as $at => $line ) {
 
-      $line = trim ( preg_replace ( '/%%.*$/', '', $line ) );
+      // A comment is a line of its own, as in a flowchart: "Discount 50%% today" was
+      // "Discount 50".
+
+      $line = preg_match ( '/^\s*%%/', $line ) ? '' : trim ( $line );
 
       if ( $line === '' or strcasecmp ( $line, 'sequenceDiagram' ) == 0 )
         continue;
