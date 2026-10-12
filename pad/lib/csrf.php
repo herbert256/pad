@@ -137,12 +137,26 @@
 
     }
 
+    // What the walk cannot settle as a browser does - a <textarea> or a <style> in an <svg>
+    // past a <foreignObject>, a <noscript> with scripting on, <!-- in a script - is settled
+    // closed: a <base href> anywhere in the page's text that sends elsewhere is the base,
+    // and a formaction= anywhere in a form's text up to the next form that does keeps its
+    // token out. A decoy </form> in such a place ended the form early for the walk, and the
+    // button after it - inside the form for the browser - posted the token to another site.
+
+    preg_match_all ( '/<base\s[^>]*?\bhref\s*=\s*(?:"([^"]*)"|\'([^\']*)\'|([^\s>]+))/i', $html, $raw, PREG_SET_ORDER );
+
+    foreach ( $raw as $one )
+      if ( ! padCsrfActionHere ( $href = ( $one [1] ?? '' ) . ( $one [2] ?? '' ) . ( $one [3] ?? '' ), NULL ) )
+        $base = $href;
+
     $out  = '';
     $done = 0;
 
-    foreach ( $forms as $form )
+    foreach ( $forms as $i => $form )
 
-      if ( padCsrfFormAttrs ( $form ['attrs'], $base ) and padCsrfControlsAttrs ( $form ['controls'], $base ) ) {
+      if ( padCsrfFormAttrs ( $form ['attrs'], $base ) and padCsrfControlsAttrs ( $form ['controls'], $base )
+           and ! padCsrfRawElsewhere ( substr ( $html, $form ['at'], ( $forms [$i + 1] ['at'] ?? strlen ( $html ) ) - $form ['at'] ), $base ) ) {
 
         if ( $add and ! $form ['token'] ) {
           $out .= substr ( $html, $done, $form ['start'] - $done ) . padCsrfField ();
@@ -166,6 +180,24 @@
       }
 
     return $out . substr ( $html, $done );
+
+  }
+
+  // Whether a formaction= anywhere in a text - read as text, whatever surrounds it - sends a
+  // form elsewhere.
+
+  function padCsrfRawElsewhere ( $text, $base ) {
+
+    if ( stripos ( $text, 'formaction' ) === FALSE )
+      return FALSE;
+
+    preg_match_all ( '/[\s"\'\/]formaction\s*=\s*(?:"([^"]*)"|\'([^\']*)\'|([^\s>]+))/i', $text, $raw, PREG_SET_ORDER );
+
+    foreach ( $raw as $one )
+      if ( ! padCsrfActionHere ( ( $one [1] ?? '' ) . ( $one [2] ?? '' ) . ( $one [3] ?? '' ), $base ) )
+        return TRUE;
+
+    return FALSE;
 
   }
 
