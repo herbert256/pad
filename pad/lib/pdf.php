@@ -904,6 +904,13 @@
 
     padPdfTableRows ( $table, $rows );
 
+    // The caption above the grid, in the caption's style, where it was left out: the rows
+    // were read, the caption never.
+
+    foreach ( $table->childNodes as $child )
+      if ( $child instanceof DOMElement and strtolower ( $child->tagName ) == 'caption' )
+        padPdfElement ( $doc, $child, $ctx );
+
     if ( ! $rows )
       return;
 
