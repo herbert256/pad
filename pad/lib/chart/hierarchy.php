@@ -41,9 +41,14 @@
       foreach ( $groups as $group )
         $path [] = padChartText ( $row, $group );
       // Without a field for the names a part is named by its key or its row number, as in
-      // the other kinds, where every row was the part '' and they added up to one block.
+      // the other kinds, where every row was the part '' and they added up to one block -
+      // unless there are levels: then the last level is the part, where every row of a group
+      // became a part of its own, numbered.
 
-      $path [] = ( $lField !== '' ) ? padChartText ( $row, $lField ) : ( is_string ( $key ) ? $key : (string) $index );
+      if ( $lField !== '' )
+        $path [] = padChartText ( $row, $lField );
+      elseif ( ! $groups )
+        $path [] = is_string ( $key ) ? $key : (string) $index;
 
       $node = &$root;
       $node ['value'] += $v;
