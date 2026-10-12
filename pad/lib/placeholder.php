@@ -23,6 +23,9 @@
     $font   = min ( 40, $height / 3.2, $width / 9, $width * 0.8 / max ( 1, mb_strlen ( $label ) * 0.58 ) );
     $font   = max ( 6, round ( $font ) );
     $pad    = round ( $font * 0.7 );
+    // A box too small for the label's pill - 1 or 2 pixels in a direction - is drawn without
+    // it, where the pill had a negative width, height and rx: invalid SVG.
+
     $boxW   = min ( $width - 2, round ( mb_strlen ( $label ) * $font * 0.58 + 2 * $pad ) );
     $boxH   = min ( $height - 2, round ( $font * 1.9 ) );
     $boxX   = round ( ( $width - $boxW ) / 2, 1 );
@@ -35,10 +38,12 @@
          . '<title>' . padPlaceholderAttr ( $label ) . '</title>'
          . "<rect class=\"ph-surface\" width=\"$width\" height=\"$height\" fill=\"#e4e3df\"/>"
          . "<path class=\"ph-line\" d=\"M0,0L$width,{$height}M$width,0L0,$height\" stroke=\"#c3c2bc\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\" fill=\"none\"/>"
-         . "<rect class=\"ph-surface\" x=\"$boxX\" y=\"$boxY\" width=\"$boxW\" height=\"$boxH\" rx=\"" . round ( $boxH / 2 ) . '" fill="#e4e3df"/>'
-         . '<text class="ph-text" x="' . ( $width / 2 ) . '" y="' . ( $height / 2 ) . '" dy=".35em" text-anchor="middle" fill="#6b6a65"'
-         . " font-family=\"system-ui,-apple-system,'Segoe UI',sans-serif\" font-size=\"$font\" font-weight=\"500\">"
-         . padPlaceholderAttr ( $label ) . '</text></svg>';
+         . ( ( $boxW < 1 or $boxH < 1 ) ? '' :
+             "<rect class=\"ph-surface\" x=\"$boxX\" y=\"$boxY\" width=\"$boxW\" height=\"$boxH\" rx=\"" . round ( $boxH / 2 ) . '" fill="#e4e3df"/>'
+           . '<text class="ph-text" x="' . ( $width / 2 ) . '" y="' . ( $height / 2 ) . '" dy=".35em" text-anchor="middle" fill="#6b6a65"'
+           . " font-family=\"system-ui,-apple-system,'Segoe UI',sans-serif\" font-size=\"$font\" font-weight=\"500\">"
+           . padPlaceholderAttr ( $label ) . '</text>' )
+         . '</svg>';
 
   }
 
