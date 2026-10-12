@@ -65,11 +65,21 @@
     if ( ! $nodes )
       return '';
 
+    // A node's boss: its parent when that is another node of the chart. Compared as text -
+    // 007 under 7 was made a root, numbers alike - and the same for the lines, the
+    // description and the tooltips: a person who is their own parent, the usual mark of the
+    // top in HR data, was drawn at the top and described as "Maria - under Maria".
+
+    $boss = [];
+
+    foreach ( $nodes as $id => $node )
+      $boss [$id] = ( $node ['parent'] !== '' and $node ['parent'] !== (string) $id and isset ( $nodes [$node ['parent']] ) ) ? $node ['parent'] : NULL;
+
     $roots = [];
 
     foreach ( $nodes as $id => $node )
-      if ( $node ['parent'] !== '' and $node ['parent'] != $id and isset ( $nodes [$node ['parent']] ) )
-        $nodes [$node ['parent']] ['kids'] [] = $id;
+      if ( $boss [$id] !== NULL )
+        $nodes [ $boss [$id] ] ['kids'] [] = $id;
       else
         $roots [] = $id;
 
@@ -99,7 +109,7 @@
     $desc = [];
     foreach ( $nodes as $id => $node )
       $desc [] = $node ['name'] . ( $node ['sub'] !== '' ? ', ' . $node ['sub'] : '' )
-               . ( isset ( $nodes [$node ['parent']] ) ? ' - under ' . $nodes [$node ['parent']] ['name'] : '' );
+               . ( $boss [$id] !== NULL ? ' - under ' . $nodes [ $boss [$id] ] ['name'] : '' );
 
     // The columns: a node without children takes one, a node is over its children. Too
     // narrow for that, the children without children of their own are listed under their
@@ -214,10 +224,10 @@
       $fill = ( $i < 0 ) ? 'pc-co' : padChartSlot ( $i );
       $line = ( $i < 0 or $i >= 8 ) ? 'pc-edge' : 'pc-l' . ( $i + 1 );
       $at   = ' x="' . padChartXY ( $x ) . '" y="' . padChartXY ( $y ) . '" width="' . padChartXY ( $w ) . "\" height=\"$boxH\" rx=\"6\"";
-      $boss = isset ( $nodes [$node ['parent']] ) ? ' - under ' . $nodes [$node ['parent']] ['name'] : '';
+      $under = ( $boss [$id] !== NULL ) ? ' - under ' . $nodes [ $boss [$id] ] ['name'] : '';
 
       $svg .= "<rect class=\"pc-mark $fill\" fill-opacity=\"0.16\"$at><title>"
-            . padChartAttr ( $node ['name'] . ( $node ['sub'] !== '' ? ', ' . $node ['sub'] : '' ) . $boss ) . '</title></rect>'
+            . padChartAttr ( $node ['name'] . ( $node ['sub'] !== '' ? ', ' . $node ['sub'] : '' ) . $under ) . '</title></rect>'
             . "<rect class=\"$line\" style=\"stroke-width:1.5\" pointer-events=\"none\"$at/>";
 
       $tx = $x + $w / 2;
