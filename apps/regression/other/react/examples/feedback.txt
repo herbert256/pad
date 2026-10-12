@@ -104,6 +104,9 @@
   function valuesOf(form, rules) {
     var data = new FormData(form);
     var values = {};
+    data.forEach(function (one, name) {
+      if (typeof one === 'string') values[name] = one;
+    });
     Object.keys(rules).forEach(function (name) {
       var all = data.getAll(name).filter(function (one) { return typeof one === 'string'; });
       values[name] = rules[name].list ? all : (all.length ? all[all.length - 1] : '');

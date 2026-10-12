@@ -142,9 +142,14 @@
     try { return JSON.parse(form.getAttribute('data-pad-rules') || '{}'); } catch (e) { return {}; }
   }
 
+  // Every field of the form, as the post carries it - the other field of same: has no rules
+  // of its own, and read as empty it refused every confirmation that matched.
   function valuesOf(form, rules) {
     var data = new FormData(form);
     var values = {};
+    data.forEach(function (one, name) {
+      if (typeof one === 'string') values[name] = one;
+    });
     Object.keys(rules).forEach(function (name) {
       var all = data.getAll(name).filter(function (one) { return typeof one === 'string'; });
       values[name] = rules[name].list ? all : (all.length ? all[all.length - 1] : '');
