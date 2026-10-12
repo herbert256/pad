@@ -21,8 +21,10 @@
   $padSudokuSolved = NULL;
 
   if ( padTagParm ( 'solve', FALSE ) ) {
-    $padSudokuSolved = padSudokuSolve ( $padSudokuCells );
-    if ( $padSudokuSolved === NULL and $padCheckSyntax )
+    $padSudokuSolved = padSudokuSolve ( $padSudokuCells, $padSudokuMany );
+    if ( $padSudokuMany and $padCheckSyntax )
+      padError ( "the sudoku '" . padMakeSafe ( $padParm, 90 ) . "' has more than one solution - a given is missing" );
+    elseif ( $padSudokuSolved === NULL and $padCheckSyntax )
       padError ( "the sudoku '" . padMakeSafe ( $padParm, 90 ) . "' has no solution" );
     elseif ( $padSudokuSolved === FALSE and $padCheckSyntax )
       padError ( "the sudoku '" . padMakeSafe ( $padParm, 90 ) . "' is too hard to solve here - it may have no solution, or many" );

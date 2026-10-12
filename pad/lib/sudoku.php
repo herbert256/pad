@@ -9,8 +9,8 @@
   //
   // padSudokuCells   the 81 cells of a text - 0 for an empty one - or the reason it is no
   //                  puzzle as a string
-  // padSudokuSolve   the cells solved, NULL when there is no solution, FALSE when the
-  //                  search gave up before it could tell
+  // padSudokuSolve   the cells solved - the first of many, which $many says - NULL when
+  //                  there is no solution, FALSE when the search gave up before it could tell
   // padSudoku        the table
   //
   // The text has a digit 1-9 for a given and . 0 _ or - for an empty cell; whitespace and
@@ -67,7 +67,11 @@
   // The solver: a bit per digit for what each row, column and box holds, and depth first
   // from what has the fewest ways to go.
 
-  function padSudokuSolve ( $cells ) {
+  // A puzzle has one solution: the search goes on past the first for a second, and $many
+  // says it found one - a grid of nothing, or one given too few, was shown as "its
+  // solution", one of thousands. Out of steps after the first, the first stands.
+
+  function padSudokuSolve ( $cells, &$many = NULL ) {
 
     $rows   = $cols = $boxes = array_fill ( 0, 9, 0 );
     $budget = 50000;
@@ -80,9 +84,14 @@
         $boxes [ padSudokuBox ( $i ) ] |= $bit;
       }
 
-    $found = padSudokuSearch ( $cells, $rows, $cols, $boxes, $budget );
+    $solutions = [];
+    $found     = padSudokuSearch ( $cells, $rows, $cols, $boxes, $budget, $solutions );
+    $many      = ( count ( $solutions ) > 1 );
 
-    return ( $found === TRUE ) ? $cells : ( ( $found === FALSE ) ? NULL : FALSE );
+    if ( $solutions )
+      return $solutions [0];
+
+    return ( $found === NULL ) ? FALSE : NULL;
 
   }
 
@@ -124,7 +133,7 @@
 
   // TRUE solved - the cells filled in -, FALSE no solution, NULL the budget spent.
 
-  function padSudokuSearch ( &$cells, &$rows, &$cols, &$boxes, &$budget ) {
+  function padSudokuSearch ( &$cells, &$rows, &$cols, &$boxes, &$budget, &$solutions ) {
 
     if ( --$budget < 0 )
       return NULL;
@@ -143,8 +152,10 @@
         }
       }
 
-    if ( $best < 0 )
-      return TRUE;
+    if ( $best < 0 ) {
+      $solutions [] = $cells;
+      return count ( $solutions ) > 1;
+    }
 
     if ( $low == 0 )
       return FALSE;
@@ -198,7 +209,7 @@
       $cells [$i] = $digit;
       $rows [$r] |= $bit; $cols [$c] |= $bit; $boxes [$b] |= $bit;
 
-      $found = padSudokuSearch ( $cells, $rows, $cols, $boxes, $budget );
+      $found = padSudokuSearch ( $cells, $rows, $cols, $boxes, $budget, $solutions );
 
       if ( $found !== FALSE )
         return $found;
