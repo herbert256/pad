@@ -18,7 +18,10 @@
 
   if ( $padPair [$pad] ) {
 
-    $padCopyText = trim ( $padContent );
+    // The indent the lines share is the template's, not the snippet's: trimmed at its ends
+    // only, every line after the first was copied shifted by where the tag stands.
+
+    $padCopyText = trim ( padChartDedent ( $padContent ) );
     $padContent  = padCopy ( $padCopyText, $padCopyText, $padCopyLabel );
 
     return TRUE;
