@@ -31,8 +31,15 @@
     if ( $padHighlightLang === '' )
       $padHighlightLang = pathinfo ( $padHighlightPath, PATHINFO_EXTENSION );
 
-  } else
-    $padHighlightText = $padContent;
+  } else {
+
+    // An @else@ of the sample is text to show like the rest, not a branch of the tag: the
+    // sample was cut off there.
+
+    $padHighlightText = $padFalseSplit ? $padContent . '@else@' . $padFalse : $padContent;
+    $padFalse         = '';
+
+  }
 
   $padContent = '';
 

@@ -98,6 +98,7 @@
   $padForceTagName  = '';
   $padForceDataName = '';
   $padFalse         = '';
+  $padFalseSplit    = FALSE;
   $padNextPadLevel = 0;
   $padHtmlAttrJson = FALSE;
 
