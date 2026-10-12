@@ -51,9 +51,22 @@ async function main() {
     const suites = path.join(tmp, 'suites');
     fs.mkdirSync(docroot);
     fs.mkdirSync(suites);
-    fs.writeFileSync(path.join(docroot, 'index.php'), '<?php echo "ok"; ?>');
+    // The trigger: ok for the whole gate; asked for one suite (&suite=), it writes that
+    // suite's result with the run token it was given, as the runner does - one failing test
+    // whose want and got are long, HTML-escaped as the runner keeps them.
+    fs.writeFileSync(path.join(docroot, 'index.php'), `<?php
+      if ( isset ( $_GET ['suite'] ) ) {
+        $want = str_repeat ( 'a', 500 ) . '<b>{x}</b>' . str_repeat ( 'z', 300 );
+        $got  = str_repeat ( 'a', 500 ) . '<b>{y}</b>' . str_repeat ( 'z', 300 );
+        $esc  = fn ( $s ) => str_replace ( [ '{', '}' ], [ '&open;', '&close;' ], htmlspecialchars ( $s ) );
+        file_put_contents ( getenv ( 'STUB_SUITES' ) . '/' . basename ( $_GET ['suite'] ) . '.json', json_encode ( [
+          'summary' => '2 pages, 2 tests, 1 failed', 'failed' => 1, 'new' => 0, 'when' => time (), 'run' => $_GET ['ciRun'],
+          'tests' => [ [ 'name' => 'long/one', 'status' => 'FAILED', 'url' => 'http://x/?long/one', 'want' => $esc ( $want ), 'got' => $esc ( $got ) ],
+                       [ 'name' => 'fine', 'status' => 'ok' ] ] ] ) );
+      }
+      echo "ok"; ?>`);
     const port = await freePort();
-    const stub = spawn('php', ['-S', '127.0.0.1:' + port, '-t', docroot], { stdio: 'ignore' });
+    const stub = spawn('php', ['-S', '127.0.0.1:' + port, '-t', docroot], { stdio: 'ignore', env: Object.assign({}, process.env, { STUB_SUITES: suites }) });
     const run = 'mcptoken12345';
     const commit = (spawnSync('git', ['-C', home, 'rev-parse', '--short', 'HEAD'], { encoding: 'utf8' }).stdout || '').trim();
     const when = Math.floor(Date.now() / 1000) + 30;
@@ -117,7 +130,7 @@ async function main() {
 
         const list = await request('tools/list');
         const names = list.result.tools.map((t) => t.name);
-        for (const n of ['pad_render', 'pad_check', 'pad_trace', 'pad_apps', 'pad_pages', 'pad_builtins', 'pad_reference', 'pad_test'])
+        for (const n of ['pad_render', 'pad_check', 'pad_trace', 'pad_php', 'pad_compare', 'pad_case', 'pad_apps', 'pad_pages', 'pad_builtins', 'pad_reference', 'pad_test'])
             expect('tools/list has ' + n, names.includes(n), names);
         expect('every tool has an object input schema', list.result.tools.every((t) => t.inputSchema && t.inputSchema.type === 'object' && t.description), list.result.tools);
 
@@ -133,6 +146,16 @@ async function main() {
         expect('pad_render passes request values', !r.error && r.text.trim() === '7', r);
         r = await call('pad_render', { app: 'shop', template: 'a\n{if 1 eq 1}never closed' });
         expect('pad_render reports a PAD error', r.error && r.text.includes('never closes') && r.text.includes('tag: {if 1 eq 1}, line 2'), r);
+        r = await call('pad_render', { app: 'shop', template: '<i>{$who}</i>{rows}[{$n}]{/rows}', data: { who: 'Ann', rows: [{ n: 1 }, { n: 2 }] } });
+        expect('pad_render gives a template the variables of data', !r.error && r.text.trim() === '<i>Ann</i>[1][2]', r);
+        r = await call('pad_render', { app: 'shop', page: 'orders', data: { customer: 'Bob', orders: [{ id: 7, amount: 1 }], total: 0 } });
+        expect('pad_render gives a page\'s own template the variables of data instead of its PHP', !r.error && r.text.includes('Orders for BOB') && r.text.includes('<li>7: ') && !r.text.includes('Total'), r);
+        r = await call('pad_render', { app: 'shop', template: '{$x}', data: [1, 2] });
+        expect('pad_render refuses data that is no object', r.error && r.text.includes('data must be a JSON object'), r);
+        const samples = path.join(home, 'DATA', 'samples', 'shop');
+        expect('pad_render leaves no sample behind', !fs.existsSync(samples) || fs.readdirSync(samples).every((f) => !f.startsWith('mcpData')), samples);
+        r = await call('pad_render', { app: 'shop', page: 'nosuchpage' });
+        expect('pad_render starts an answer that was no 200 with its status', r.error && r.text.startsWith('HTTP 404\n') && r.text.includes("Page 'nosuchpage' not found"), r);
         r = await call('pad_render', { app: 'nosuchapp' });
         expect('pad_render refuses an unknown application', r.error && r.text.includes('no application'), r);
         r = await call('pad_render', { app: '../etc' });
@@ -142,6 +165,8 @@ async function main() {
         expect('pad_check names an undefined field and the variables there are', !r.error && r.text.startsWith('error') && r.text.includes("'$customer'") && r.text.includes('variables: none'), r);
         r = await call('pad_check', { app: 'shop', page: 'orders', template: '<p>{$customer}</p>' });
         expect('pad_check passes a template the page\'s data satisfies', !r.error && r.text.startsWith('ok'), r);
+        r = await call('pad_check', { app: 'shop', template: '<p>{$customer}</p>', data: { customer: 'Ann' } });
+        expect('pad_check passes a template the data satisfies', !r.error && r.text.startsWith('ok'), r);
         r = await call('pad_check', { app: 'shop', page: 'broken' });
         expect('pad_check places an error on its line in the page', r.text.includes('never closes') && r.text.includes('line 3'), r);
         r = await call('pad_check', { app: 'shop', page: 'twice' });
@@ -154,6 +179,35 @@ async function main() {
         r = await call('pad_trace', { app: 'shop', page: 'orders' });
         expect('pad_trace returns the trace of the request', !r.error && r.text.includes('trace: DATA/trace/orders/') && /level\s+start\s+\{orders callback='double'\}/.test(r.text), r);
 
+        r = await call('pad_php', { app: 'shop', code: "return padStrSlug ( 'Hello World' );" });
+        expect('pad_php answers what the code returned', !r.error && r.text === "=> 'hello-world'", r);
+        r = await call('pad_php', { app: 'shop', code: "echo 'said';" });
+        expect('pad_php answers what the code echoed', !r.error && r.text === 'said', r);
+        r = await call('pad_php', { app: 'shop', code: "echo 'x';\n$a = [];\nreturn $a [5];" });
+        expect('pad_php throws a warning, on the snippet\'s own line', r.error && r.text === 'x\nErrorException: Undefined array key 5 in snippet line 3', r);
+        r = await call('pad_php', { app: 'shop', code: "return padStrLimit ( 'abc', -1 );" });
+        expect('pad_php answers a padError instead of ending on it', r.error && r.text.startsWith('ErrorException: PAD: padStrLimit') && r.text.includes(' in pad/lib/str.php:'), r);
+        r = await call('pad_php', { app: 'shop', code: 'return function_exists ( "padTagParm" ) && isset ( $GLOBALS ["padApp"] ) ? $GLOBALS ["padApp"] : "no";' });
+        expect('pad_php runs in the booted application', !r.error && r.text === "=> 'shop'", r);
+        r = await call('pad_php', { app: 'shop', code: 'return (;' });
+        expect('pad_php reports a parse error', r.error && r.text.startsWith('ParseError: ') && r.text.includes('snippet line 1'), r);
+
+        r = await call('pad_compare', { app: 'shop', code: 'return 6 * 7;' });
+        expect('pad_compare runs a snippet on HEAD and the working tree', !r.error && /^old: HEAD [0-9a-f]{9}\nnew: working tree\n/.test(r.text) && r.text.includes('the same on both:\n\n=> 42'), r);
+        r = await call('pad_compare', { app: 'shop', template: '{$who}', data: { who: 'Ann' } });
+        expect('pad_compare renders a template with data on both', !r.error && r.text.includes('the same on both:\n\nAnn'), r);
+        r = await call('pad_compare', { app: 'shop', template: '{if 1 eq 1}x' });
+        expect('pad_compare reads an error on both sides alike, wherever each engine lives', !r.error && r.text.includes('the same on both') && r.text.includes('never closes'), r);
+        r = await call('pad_compare', { app: 'shop', template: 'x', ref: 'no-such-ref-at-all' });
+        expect('pad_compare names a ref git does not know', r.error && r.text.includes("git knows no commit 'no-such-ref-at-all'"), r);
+        r = await call('pad_compare', { app: 'shop', template: 'x', ref: 'HEAD..HEAD~1' });
+        expect('pad_compare takes one commit, not a range', r.error && r.text.includes('is not a commit'), r);
+
+        r = await call('pad_case', { app: 'shop', page: 'orders' });
+        expect('pad_case needs the regression runner', r.error && r.text.includes('there is no regression runner'), r);
+        r = await call('pad_case', { app: 'shop', page: 'nosuch' });
+        expect('pad_case names a test page that is not there', r.error && r.text.includes("there is no page 'nosuch'"), r);
+
         r = await call('pad_apps', {});
         expect('pad_apps lists the applications', r.text.split('\n').includes('shop'), r);
         r = await call('pad_pages', { app: 'shop' });
@@ -162,6 +216,8 @@ async function main() {
 
         r = await call('pad_builtins', { kind: 'tags' });
         expect('pad_builtins lists the tags with their reference line', /^if - .+/m.test(r.text) && r.text.includes('## tags'), r);
+        r = await call('pad_builtins', { kind: 'functions' });
+        expect('pad_builtins gives a whole first sentence, not the first line of the file', /^abbreviate - .* in a template\.$/m.test(r.text), r.text.split('\n').slice(0, 3));
         r = await call('pad_builtins', {});
         expect('pad_builtins lists every kind', ['tags', 'functions', 'options', 'properties', 'prefixes', 'sequences', 'operators'].every((k) => r.text.includes('## ' + k)), r);
 
@@ -182,6 +238,11 @@ async function main() {
         r = await call('pad_test', {});
         expect('pad_test reports a failed run', !r.error && r.text.startsWith('FAILED') && r.text.includes('manual       2 pages, 2 tests, 1 failed'), r);
         expect('pad_test lists the failing test with what was wanted', r.text.includes('manual: pages/broken (failed)') && r.text.includes('want: the answer') && r.text.includes('got:  something else'), r);
+        r = await call('pad_test', { suite: 'errors' });
+        expect('pad_test runs one suite and reads the result of its own run', !r.error && r.text.startsWith('errors: FAILED - 2 pages, 2 tests, 1 failed'), r);
+        expect('pad_test shows where a long want and got part, unescaped', r.text.includes('want and got part at character 504 (line 1), after "aaaa') && r.text.includes('a<b>{"\n  want: "x"\n  got:  "y"'), r);
+        r = await call('pad_test', { suite: 'nosuite' });
+        expect('pad_test refuses a suite there is not', r.error && r.text.includes("no suite 'nosuite'"), r);
 
         // a php that ends without reading the template it is handed - one that fails to start,
         // a wrong binary - closes the pipe under a large write; the server answers the call

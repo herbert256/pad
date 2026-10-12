@@ -1890,10 +1890,14 @@ engine does; the built-in names in its highlight queries are written by
 `editors/mcp/pad-mcp.js` lets an assistant ask the engine instead of this file - register it
 with `claude mcp add pad -- node /Users/herbert/pad/editors/mcp/pad-mcp.js`. Its tools:
 `pad_render` and `pad_check` (a page, or a template string not saved anywhere, through the
-strict syntax check - `pad_check` with only an app checks every page), `pad_trace`,
-`pad_apps`, `pad_pages`, `pad_builtins`, `pad_reference` (a tag or function in
-`docs/reference`) and `pad_test` (`./ci.sh` with the failing tests). Tested by
-`node editors/mcp/test.js`, the `mcp` line of `./ci.sh`.
+strict syntax check - `data` gives it variables without PHP; `pad_check` with only an app
+checks every page), `pad_trace`, `pad_php` (PHP run in a booted application - a `padError`
+comes back as the answer), `pad_compare` (the same render or snippet on `HEAD` - a snapshot
+from git - and on the working tree, with where they part: a fix shown, a new case shown to fail
+on the old engine), `pad_case` (one regression test judged as its suite judges it), `pad_apps`,
+`pad_pages`, `pad_builtins`, `pad_reference` (a tag or function in `docs/reference`) and
+`pad_test` (`./ci.sh`, or one `suite`, with where each failing test's want and got part).
+Tested by `node editors/mcp/test.js`, the `mcp` line of `./ci.sh`.
 
 ---
 
