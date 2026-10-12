@@ -17,8 +17,7 @@
     $failed += count ( glob ( DATA . "queue/$one/_failed/*.json" ) ?: [] );
   }
 
-  $dumpCount = count ( glob ( DATA . 'dumps/*/*', GLOB_ONLYDIR ) ?: [] )
-             + count ( glob ( DATA . 'dumps/*/*/*', GLOB_ONLYDIR ) ?: [] );
+  $dumpCount = count ( adminDumpReports () );
   $mailCount = count ( glob ( DATA . 'mail/*/*.eml' ) ?: [] ) + count ( glob ( DATA . 'mail/*/*/*.eml' ) ?: [] );
 
   $logToday = 0;

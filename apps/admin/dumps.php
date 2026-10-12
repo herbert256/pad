@@ -46,12 +46,7 @@
 
       $rel = substr ( str_replace ( '\\', '/', $one->getPath () ), strlen ( $root ) );
 
-      $owner = '';
-
-      foreach ( array_keys ( adminApps () ) as $name )
-        if ( str_starts_with ( "$rel/", "$name/" ) and strlen ( $name ) > strlen ( $owner ) )
-          $owner = $name;
-
+      $owner  = adminDumpOwner ( $rel );
       $inside = $owner === '' ? $rel : substr ( $rel, strlen ( $owner ) + 1 );
 
       $reportRows [] = [ 'report' => $rel, 'app' => $owner, 'page' => dirname ( $inside ) === '.' ? '' : dirname ( $inside ),

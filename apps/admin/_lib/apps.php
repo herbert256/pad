@@ -13,6 +13,8 @@
   // adminAppInfo       what the application page and the list show of one: its pages,
   //                    files, size, the PAD directories it has, its state under DATA/
   // adminAppPages      the pages of an application, as the router reaches them
+  // adminDumpReports   the error reports under DATA/dumps/: path => the application
+  // adminDumpOwner     the application a report's path belongs to
   // adminReadmeIntro   the Introduction section of a README.md, as one line
 
   function adminHome () {
@@ -203,11 +205,52 @@
       'queued'     => adminQueueCount ( $app ),
       'failed'     => count ( glob ( DATA . "queue/$app/_failed/*.json" ) ?: [] ),
       'logs'       => count ( glob ( DATA . "logs/$app/*.log" ) ?: [] ),
-      'dumps'      => count ( glob ( DATA . "dumps/$app/*", GLOB_ONLYDIR ) ?: [] ),
+      'dumps'      => count ( array_keys ( adminDumpReports (), $app, TRUE ) ),
       'mails'      => count ( glob ( DATA . "mail/$app/*.eml" ) ?: [] ),
       'migrations' => count ( preg_grep ( '/\.down\.sql$/', glob ( $dir . '_migrations/*.{sql,php}', GLOB_BRACE ) ?: [] , PREG_GREP_INVERT ) ),
       'tests'      => count ( glob ( $dir . '_tests/*.txt' ) ?: [] )
     ];
+
+  }
+
+  // The error reports: a directory below DATA/dumps/ with an _ERROR.html, as its path below
+  // it => the application it belongs to. Counted as directories, the dashboard and the
+  // application page said the page directories - two for five reports, or one too many for
+  // each page of an application with reports of its own.
+
+  function adminDumpReports () {
+
+    $root    = DATA . 'dumps/';
+    $reports = [];
+
+    if ( ! is_dir ( $root ) )
+      return $reports;
+
+    try {
+
+      foreach ( new RecursiveIteratorIterator ( new RecursiveDirectoryIterator ( $root, FilesystemIterator::SKIP_DOTS ) ) as $one )
+        if ( $one->getFilename () === '_ERROR.html' ) {
+          $rel = substr ( str_replace ( '\\', '/', $one->getPath () ), strlen ( $root ) );
+          $reports [$rel] = adminDumpOwner ( $rel );
+        }
+
+    } catch ( Throwable $e ) { }
+
+    return $reports;
+
+  }
+
+  // The application a report belongs to: the longest name that starts its path.
+
+  function adminDumpOwner ( $rel ) {
+
+    $owner = '';
+
+    foreach ( array_keys ( adminApps () ) as $name )
+      if ( str_starts_with ( "$rel/", "$name/" ) and strlen ( $name ) > strlen ( $owner ) )
+        $owner = $name;
+
+    return $owner;
 
   }
 
