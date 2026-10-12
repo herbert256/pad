@@ -48,9 +48,18 @@
 
   // A bcrypt hash of a random password nobody knows: padAttempt checks a password against
   // it when there is no user, so an unknown name costs about the time a known one does and
-  // the answer's timing does not tell which names exist. Cost 10, PHP's default before 8.4.
+  // the answer's timing does not tell which names exist. bcrypt spends the cost its hash
+  // names, so the stand-in names the cost padHash's own hashes have - PHP's default, 12
+  // since 8.4 and 10 before: a fixed cost 10 answered an unknown name in a quarter of a
+  // known one's time on 8.4, and one request's timing told which names exist.
 
-  const padAuthDummyHash = '$2y$10$wdmCvg/UL8JQI.fIFBlaE.21id6Fbc4b68z.v2d54tagiHzJyzDNO';
+  function padAuthDummyHash () {
+
+    $cost = defined ( 'PASSWORD_BCRYPT_DEFAULT_COST' ) ? PASSWORD_BCRYPT_DEFAULT_COST : 10;
+
+    return sprintf ( '$2y$%02d$', $cost ) . 'wdmCvg/UL8JQI.fIFBlaE.21id6Fbc4b68z.v2d54tagiHzJyzDNO';
+
+  }
 
   function padLogin ( $user, $remember = FALSE ) {
 
@@ -168,7 +177,7 @@
     $rehash = NULL;
 
     if ( ! is_string ( $hash ) or $hash === '' or ! is_array ( $user ) ) {
-      padHashCheck ( (string) ( is_scalar ( $password ) ? $password : '' ), padAuthDummyHash );
+      padHashCheck ( (string) ( is_scalar ( $password ) ? $password : '' ), padAuthDummyHash () );
       return FALSE;
     }
 
