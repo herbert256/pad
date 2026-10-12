@@ -485,7 +485,10 @@
         padPdfSpace ( $doc, 0 );
         padPdfMarkerLine ( $doc );
 
-        $number = $el->hasAttribute ( 'start' ) ? (int) $el->getAttribute ( 'start' ) : 1;
+        // start= read as HTML reads an integer - spaces, a sign, digits, the rest ignored - and
+        // one with no digits left out: start="" counted from 0, where a browser counts from 1.
+
+        $number = preg_match ( '/^[ \t\n\f\r]*([-+]?[0-9]+)/', $el->getAttribute ( 'start' ), $start ) ? (int) $start [1] : 1;
         $inner  = $ctx;
         $inner ['indent'] = padPdfIndent ( $doc, $inner ['indent'], 18 );
 
