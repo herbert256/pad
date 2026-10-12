@@ -305,6 +305,14 @@
 
   function padChartTicks ( $min, $max, $count = 5 ) {
 
+    // Values that differ only in their last bits - 0.3 beside 0.1 + 0.2 - are one value: a
+    // step below the float spacing at the lowest tick, added to it, gave it back unchanged,
+    // the loop of the ticks never ended and took the request down with 2 GB of memory. The
+    // count of the ticks is bounded as well.
+
+    if ( $min != $max and abs ( $max - $min ) <= max ( abs ( $min ), abs ( $max ) ) * 1e-12 )
+      $max = $min;
+
     if ( $min == $max ) {
       if     ( $max > 0 ) $min = 0;
       elseif ( $max < 0 ) $max = 0;
@@ -325,7 +333,7 @@
     $digits = max ( 10, 10 - (int) floor ( log10 ( $step ) ) );
     $ticks  = [];
 
-    for ( $tick = $low; $tick <= $high + $step / 2; $tick += $step )
+    for ( $tick = $low; $tick <= $high + $step / 2 and count ( $ticks ) < 1000; $tick += $step )
       $ticks [] = round ( $tick, $digits );
 
     return $ticks;
