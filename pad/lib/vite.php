@@ -52,21 +52,27 @@
 
       $dev = rtrim ( $dev, '/' ) . '/';
 
+      // The React preamble the first time a {vite} of the page asks for react, before its
+      // entry: it came only with @vite/client, and after a {vite} without react - a layout's
+      // - the React modules threw "can't detect preamble" under the dev server.
+
+      if ( $react and ! isset ( $written ['@react'] ) ) {
+
+        $written ['@react'] = TRUE;
+
+        $html .= '<script type="module"' . padViteNonce () . ">\n"
+               . "  import RefreshRuntime from '" . $dev . "@react-refresh'\n"
+               . "  RefreshRuntime.injectIntoGlobalHook(window)\n"
+               . "  window.\$RefreshReg\$ = () => {}\n"
+               . "  window.\$RefreshSig\$ = () => (type) => type\n"
+               . "  window.__vite_plugin_react_preamble_installed__ = true\n"
+               . "</script>\n";
+
+      }
+
       if ( ! isset ( $written ['@client'] ) ) {
-
         $written ['@client'] = TRUE;
-
-        if ( $react )
-          $html .= '<script type="module"' . padViteNonce () . ">\n"
-                 . "  import RefreshRuntime from '" . $dev . "@react-refresh'\n"
-                 . "  RefreshRuntime.injectIntoGlobalHook(window)\n"
-                 . "  window.\$RefreshReg\$ = () => {}\n"
-                 . "  window.\$RefreshSig\$ = () => (type) => type\n"
-                 . "  window.__vite_plugin_react_preamble_installed__ = true\n"
-                 . "</script>\n";
-
         $html .= '<script type="module" src="' . htmlspecialchars ( $dev . '@vite/client' ) . '"' . padViteNonce () . "></script>\n";
-
       }
 
       foreach ( $entries as $entry )
