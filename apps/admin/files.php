@@ -50,7 +50,11 @@
     if ( $file !== '' and adminGet ( 'dir', NULL ) === NULL )
       $dir = str_contains ( $file, '/' ) ? dirname ( $file ) : '';
 
-    if ( $dir !== '' and ( ! is_dir ( $base . $dir ) or adminNestedApp ( $base . $dir ) and $root == 'app' ) )
+    // A directory a link leads to outside the root is not listed, as a file there is not
+    // shown: its names and sizes were.
+
+    if ( $dir !== '' and ( ! is_dir ( $base . $dir ) or adminNestedApp ( $base . $dir ) and $root == 'app'
+                           or ! str_starts_with ( (string) realpath ( $base . $dir ) . '/', realpath ( $base ) . '/' ) ) )
       $dir = '';
 
     // The crumbs above the tree: the root, then each directory down to this one.

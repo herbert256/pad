@@ -258,7 +258,9 @@
   }
 
   // Every file under a directory, its own _xxx directories included when $deep, never what
-  // starts with a dot nor what belongs to an application nested in it.
+  // starts with a dot nor what belongs to an application nested in it. A link is passed
+  // over: it leads out of the application - the search read and showed the files a link
+  // pointed to, where the files page refuses them - or round in a circle.
 
   function adminFilesIn ( $dir, $deep = TRUE ) {
 
@@ -267,7 +269,7 @@
 
     foreach ( scandir ( $dir ) ?: [] as $item ) {
 
-      if ( $item [0] === '.' )
+      if ( $item [0] === '.' or is_link ( $dir . $item ) )
         continue;
 
       if ( is_dir ( $dir . $item ) ) {
