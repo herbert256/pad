@@ -20,7 +20,10 @@
   // Opened as a modal the dialog is what the browser makes of one: the page behind inert,
   // the focus moved in and back to the button on closing, Escape and a click on the backdrop
   // (closedby="any", and the script for a browser without it) close it. The title names the
-  // dialog (aria-labelledby); an address ending in the dialog's id opens it on arrival.
+  // dialog (aria-labelledby); an address ending in the dialog's id opens it on arrival, and
+  // so does a link to it on the page. With scripting on, the no-script overlay of a targeted
+  // dialog stays off: it showed the dialog again once it was closed, now no dialog the close
+  // button or Escape reached - a dialog opened by its address could not be closed.
   //
   // The id is the modal's name - pad-modal-terms - so a link elsewhere can open it too: ?page#pad-modal-terms.
   //
@@ -76,6 +79,7 @@
       . '.pad-modal::backdrop{background:rgba(20,20,18,.5)}'
       . '.pad-modal:target:not([open]){display:block;position:fixed;inset:0;margin:auto;height:fit-content;z-index:2147483000;'
       .   'overflow:auto;box-shadow:0 0 0 100vmax var(--pad-modal-backdrop)}'
+      . '@media (scripting:enabled){.pad-modal:target:not([open]){display:none}}'
       . '.pad-modal-frame{padding:1.2em 1.4em 1.4em}'
       . '.pad-modal-head{display:flex;align-items:flex-start;gap:1em;margin-bottom:.6em}'
       . '.pad-modal-title{flex:1;margin:0;font-size:1.2em;line-height:1.3}'
@@ -116,6 +120,7 @@
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', arrived);
   else arrived();
+  window.addEventListener('hashchange', arrived);
 })();
 SCRIPT );
 
