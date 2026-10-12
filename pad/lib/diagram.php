@@ -77,7 +77,7 @@
           break;
         }
 
-        $label = trim ( ( $match ['label'] ?? '' ) !== '' ? $match ['label'] : ( $match ['text'] ?? '' ), " \"" );
+        $label = padDiagramFlat ( trim ( ( $match ['label'] ?? '' ) !== '' ? $match ['label'] : ( $match ['text'] ?? '' ), " \"" ) );
         $style = str_contains ( $kind, '.' ) ? 'dashed' : ( str_contains ( $kind, '=' ) ? 'thick' : 'solid' );
         $arrow = str_ends_with ( $kind, '>' );
 
@@ -217,11 +217,23 @@
 
   }
 
+  // A text on one line - an edge's label, a message, a participant's name, a description:
+  // its <br> a space, where it was printed as &lt;br&gt;; a node and a note break there.
+
+  function padDiagramFlat ( $text ) {
+
+    return trim ( preg_replace ( '/\s*<br\s*\/?>\s*/i', ' ', (string) $text ) );
+
+  }
+
   function padDiagramWrap ( $text, $max = 24 ) {
 
     $lines = [];
 
-    foreach ( preg_split ( '/<br\s*\/?>|\\\\n/i', (string) $text ) as $part ) {
+    // <br> alone, as it says and as Mermaid has it: a backslash and an n broke too, and
+    // C:\new\backup was drawn as "C:" over "ew\backup", with no way to write it.
+
+    foreach ( preg_split ( '/<br\s*\/?>/i', (string) $text ) as $part ) {
 
       $line = '';
 
@@ -657,7 +669,7 @@
     }
 
     foreach ( $edges as list ( $a, $b, $label ) )
-      $desc [] = $nodes [$a] ['text'] . ' → ' . $nodes [$b] ['text'] . ( $label !== '' ? " ($label)" : '' );
+      $desc [] = padDiagramFlat ( $nodes [$a] ['text'] ) . ' → ' . padDiagramFlat ( $nodes [$b] ['text'] ) . ( $label !== '' ? " ($label)" : '' );
 
     // A node of no edge is told too - alone, it was left out of the description of a chart
     // with any edge, and a screen reader never heard of it.
@@ -668,7 +680,7 @@
 
     foreach ( $nodes as $id => $node )
       if ( ! isset ( $linked [$id] ) )
-        $desc [] = $node ['text'];
+        $desc [] = padDiagramFlat ( $node ['text'] );
 
     // A gap as wide as the labels of the edges that leave the rank before it: in LR the
     // text lies along the edge.
@@ -1217,22 +1229,22 @@
       if ( strcasecmp ( $line, 'autonumber' ) == 0 )
         $number = TRUE;
       elseif ( preg_match ( "/^(participant|actor)\s+($id)(?:\s+as\s+(.+))?$/iu", $line, $m ) )
-        $person ( $m [2], isset ( $m [3] ) ? trim ( $m [3] ) : NULL, strtolower ( $m [1] ) == 'actor' );
+        $person ( $m [2], isset ( $m [3] ) ? padDiagramFlat ( $m [3] ) : NULL, strtolower ( $m [1] ) == 'actor' );
       elseif ( preg_match ( "/^($id)\s*(-->>|->>|-->|->|--x|-x|--\)|-\))\s*($id)\s*(?::\s*(.*))?$/u", $line, $m ) ) {
         $person ( $m [1] );
         $person ( $m [3] );
         $head      = str_ends_with ( $m [2], '>>' ) ? 'arrow' : ( str_ends_with ( $m [2], 'x' ) ? 'cross' : ( str_ends_with ( $m [2], ')' ) ? 'open' : 'none' ) );
-        $events [] = [ 'message', $m [1], $m [3], trim ( $m [4] ?? '' ), str_starts_with ( $m [2], '--' ), $head ];
+        $events [] = [ 'message', $m [1], $m [3], padDiagramFlat ( $m [4] ?? '' ), str_starts_with ( $m [2], '--' ), $head ];
       } elseif ( preg_match ( "/^note\s+(over|left of|right of)\s+($id)(?:\s*,\s*($id))?\s*:\s*(.*)$/iu", $line, $m ) ) {
         $person ( $m [2] );
         if ( ( $m [3] ?? '' ) !== '' )
           $person ( $m [3] );
         $events [] = [ 'note', strtolower ( $m [1] ), $m [2], ( $m [3] ?? '' ) !== '' ? $m [3] : $m [2], trim ( $m [4] ) ];
       } elseif ( preg_match ( '/^(loop|alt|opt|par|critical|break)\b\s*(.*)$/i', $line, $m ) ) {
-        $events [] = [ 'open', strtolower ( $m [1] ), trim ( $m [2] ) ];
+        $events [] = [ 'open', strtolower ( $m [1] ), padDiagramFlat ( $m [2] ) ];
         $frames [] = [ $at + 1, strtolower ( $m [1] ) ];
       } elseif ( preg_match ( '/^(else|and|option)\b\s*(.*)$/i', $line, $m ) and $frames )
-        $events [] = [ 'else', trim ( $m [2] ) ];
+        $events [] = [ 'else', padDiagramFlat ( $m [2] ) ];
       elseif ( strcasecmp ( $line, 'end' ) == 0 and $frames ) {
         $events [] = [ 'end' ];
         array_pop ( $frames );
@@ -1355,7 +1367,7 @@
           $y       += 8;
           $rows []  = [ 'note', $y, $event, $lines, $h ];
           $y       += $h;
-          $desc []  = 'Note: ' . $event [4];
+          $desc []  = 'Note: ' . padDiagramFlat ( $event [4] );
 
           foreach ( $stack as $k => $frame ) {
             $stack [$k] [2] = min ( $frame [2], $col [ $event [2] ], $col [ $event [3] ] );
@@ -1471,7 +1483,7 @@
 
         list ( $x0, $x1 ) = padDiagramNoteSpan ( $event, $lines, $x [ $col [ $event [2] ] ], $x [ $col [ $event [3] ] ] );
 
-        $svg .= '<g><title>' . padChartAttr ( 'Note: ' . $event [4] ) . '</title>'
+        $svg .= '<g><title>' . padChartAttr ( 'Note: ' . padDiagramFlat ( $event [4] ) ) . '</title>'
               . '<rect class="pd-note" x="' . $X ( $x0 ) . '" y="' . $X ( $top ) . '" width="' . $X ( $x1 - $x0 ) . '" height="' . $X ( $h ) . '" rx="2"/>'
               . padDiagramText ( $lines, ( $x0 + $x1 ) / 2, $top + $h / 2 ) . '</g>';
 
