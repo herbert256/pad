@@ -58,7 +58,7 @@
                   'lit' => '(?<=:[ \t])(?:true|false|null|~)(?=[ \t]*$)',
                   'num' => '(?<=:[ \t]|-[ \t])-?\d+(?:\.\d+)?(?=[ \t]*$)' ],
 
-      'pad'  => [ 'com' => '\{#.*?#\}|\{--\s.*?--\}|<!--.*?-->',
+      'pad'  => [ 'com' => '\{#(?![A-Za-z_]\w*\s*[}|])(?:[^{#]++|\{(?!#)|#(?!\}))*+#\}|\{--\s.*?--\}|<!--.*?-->',
                   'tag' => '(?<=\{)\/?[A-Za-z][\w:@]*',
                   'brc' => '[{}]',
                   'htm' => '<\/?[A-Za-z][\w-]*|\/?>',
@@ -127,7 +127,21 @@
     foreach ( $rules as $name => $rule )
       $parts [] = "(?P<$name>$rule)";
 
-    if ( preg_match_all ( '/' . implode ( '|', $parts ) . '/ms', $text, $matches, PREG_SET_ORDER | PREG_OFFSET_CAPTURE | PREG_UNMATCHED_AS_NULL ) === FALSE )
+    // A PAD comment is one as the engine reads it (padCommentStrip): {# closes at the first
+    // #} with no {# before it, and is no comment as the option sigil {#title}; {-- closes at
+    // the first --}. A {-- after the last --} can never close: it is hidden from the scan -
+    // the same length, the text shown is the text given. Each opener that never closed
+    // scanned on to the end of the text, and fifty thousand took seconds.
+
+    $scan = $text;
+
+    if ( $lang == 'pad' and str_contains ( $text, '{--' ) ) {
+      $from = strrpos ( $text, '--}' );
+      $from = ( $from === FALSE ) ? 0 : $from + 3;
+      $scan = substr ( $text, 0, $from ) . str_replace ( '{--', "{\x01-", substr ( $text, $from ) );
+    }
+
+    if ( preg_match_all ( '/' . implode ( '|', $parts ) . '/ms', $scan, $matches, PREG_SET_ORDER | PREG_OFFSET_CAPTURE | PREG_UNMATCHED_AS_NULL ) === FALSE )
       return padHighlightEscape ( $text );
 
     $html = '';
@@ -136,6 +150,8 @@
     foreach ( $matches as $match ) {
 
       list ( $token, $offset ) = $match [0];
+
+      $token = substr ( $text, $offset, strlen ( $token ) );
 
       foreach ( array_keys ( $rules ) as $name )
         if ( isset ( $match [$name] [0] ) )
