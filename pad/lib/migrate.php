@@ -557,8 +557,20 @@
           $trigger = TRUE;
         elseif ( $trigger and ( $word == 'begin' or $word == 'case' ) )
           $depth++;
-        elseif ( $trigger and $word == 'end' )
-          $depth = max ( 0, $depth - 1 );
+        elseif ( $trigger and $word == 'end' ) {
+
+          // END IF, END LOOP, END WHILE and END REPEAT close a statement whose opening word
+          // is not counted - IF is a function as well - and END CASE the CASE that is: the
+          // word after END is taken along, so its CASE does not open another block.
+
+          if ( preg_match ( '/\G\s+(if|loop|while|repeat|case)\b/Ai', $sql, $after, 0, $i + strlen ( $match [0] ) ) ) {
+            if ( strtolower ( $after [1] ) == 'case' )
+              $depth = max ( 0, $depth - 1 );
+            $match [0] .= $after [0];
+          } else
+            $depth = max ( 0, $depth - 1 );
+
+        }
 
         $now .= $match [0];
         $i   += strlen ( $match [0] ) - 1;

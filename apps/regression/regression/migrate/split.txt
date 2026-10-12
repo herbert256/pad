@@ -6,3 +6,7 @@
 mysql:
 [insert into a values (&#039;a\&#039;;b&#039;)]
 [select 4]
+
+blocks:
+[create trigger u before insert on a for each row begin if new.x &lt; 0 then set new.x = 0; end if; case when new.x &gt; 9 then set new.x = 9; else set new.x = 1; end case; end]
+[select 5]
