@@ -187,6 +187,12 @@
 
     $rehash = NULL;
 
+    // A row read as an object is the row padLogin takes too - refused, the right password
+    // failed without a word.
+
+    if ( is_object ( $user ) )
+      $user = padToArray ( $user );
+
     if ( ! is_string ( $hash ) or $hash === '' or ! is_array ( $user ) ) {
       padHashCheck ( (string) ( is_scalar ( $password ) ? $password : '' ), padAuthDummyHash () );
       return FALSE;
