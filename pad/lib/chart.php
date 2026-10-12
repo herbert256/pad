@@ -334,6 +334,13 @@
     if ( ! is_finite ( (float) $n ) )
       return is_nan ( (float) $n ) ? '' : ( (float) $n > 0 ? '∞' : '-∞' );
 
+    // A whole number - an int, or the text of one PHP's integers hold - is written with all
+    // its digits: as a float past 2^53 it was rounded, the Mersenne prime 2^61-1 an even
+    // ...952.
+
+    if ( is_int ( $n ) or is_string ( $n ) and filter_var ( trim ( $n ), FILTER_VALIDATE_INT ) !== FALSE )
+      return number_format ( (int) trim ( (string) $n ), 0, '.', ',' );
+
     $n = (float) $n;
 
     // The decimals a number has: a rest below the float's own precision is noise - 0.1 +
