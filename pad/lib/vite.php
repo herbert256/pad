@@ -109,6 +109,17 @@
 
       $file = $manifest [$entry] ['file'];
 
+      // A stylesheet input - input: [ 'src/main.js', 'src/app.css' ] - is a stylesheet: as a
+      // module script the browser refused it (text/css) and the page stayed unstyled.
+
+      if ( preg_match ( '/\.css$/i', $file ) ) {
+        if ( ! isset ( $written ["css:$file"] ) ) {
+          $written ["css:$file"] = TRUE;
+          $styles .= '<link rel="stylesheet" href="' . htmlspecialchars ( $base . $file ) . "\">\n";
+        }
+        continue;
+      }
+
       if ( ! isset ( $written ["js:$file"] ) ) {
         $written ["js:$file"] = TRUE;
         $scripts .= '<script type="module" src="' . htmlspecialchars ( $base . $file ) . '"' . padViteNonce () . "></script>\n";
