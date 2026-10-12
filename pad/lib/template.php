@@ -151,6 +151,8 @@
   // the same name off by one, and that pair's {/tag} was left an orphan. The end of an
   // opener is found by brace depth, so a parameter holding a tag of its own, {tag x={$y}/},
   // is read to its real end; like level/tag.php, the slash must stand right before the }.
+  // Any white space may follow the name, as the tag parser reads it: an {if written over
+  // two lines was no opener here, and the pair around it closed at its {/if}.
 
   function padOpenCount ( $string, $tag ) {
 
@@ -163,7 +165,7 @@
       $offset = $pos + strlen ( $open );
       $next   = $string [$offset] ?? '';
 
-      if ( $next == '}' or ( $next == ' ' and ! padOpenSelfClosing ( $string, $offset ) ) )
+      if ( $next == '}' or ( $next !== '' and ctype_space ( $next ) and ! padOpenSelfClosing ( $string, $offset ) ) )
         $count++;
 
     }
@@ -193,8 +195,24 @@
 
   function padCheckTag ($tag, $string) {
 
-    return ( substr_count($string, "{".$tag.' ') == substr_count($string, "{/" . $tag.'}')
-                                                  + substr_count($string, "{/" . $tag.' ') ) ;
+    return padPairBalanced ( $string, $tag );
+
+  }
+
+  // Whether the pairs of a tag in front of a place are all closed, the openings and the
+  // closings counted as the tag parser reads them: with or without the pad: prefix that
+  // names the built-in tag, any white space after the name - a line break too - and a pipe
+  // on the closer. Counting only {tag and a space, or {tag}, left a nested {pad:if ...} or
+  // an {if written over two lines unseen, and its {else}, {elseif or {when was taken for
+  // the enclosing tag's: a valid template ended in an error, and with the strict check off
+  // the wrong half showed - a guest saw what {auth} keeps for the logged in.
+
+  function padPairBalanced ( $string, $tag ) {
+
+    $tag = preg_quote ( $tag, '/' );
+
+    return preg_match_all ( '/\{(?:pad:)?' . $tag . '[\s}]/', $string )
+        == preg_match_all ( '/\{\/(?:pad:)?' . $tag . '[\s}|]/', $string );
 
   }
 
@@ -209,8 +227,7 @@
   function padElseFree ( $string ) {
 
     foreach ( padElseOwners as $tag )
-      if ( substr_count ( $string, '{' . $tag . ' ' ) + substr_count ( $string, '{' . $tag . '}' )
-           != substr_count ( $string, '{/' . $tag . '}' ) + substr_count ( $string, '{/' . $tag . ' ' ) )
+      if ( ! padPairBalanced ( $string, $tag ) )
         return FALSE;
 
     return TRUE;
