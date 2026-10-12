@@ -89,13 +89,20 @@
       if ( $j % $everyCol == 0 )
         $svg .= '<text x="' . padChartXY ( $left + ( $j + 0.5 ) * $cellW ) . '" y="' . padChartXY ( $gridB + 15 ) . '" text-anchor="middle">' . padChartAttr ( $name ) . '</text>';
 
-    foreach ( $rowNames as $i => $r )
-      foreach ( $colNames as $j => $c ) {
+    // The cells there are, row by row in the order of the columns - not every pair of a row
+    // and a column: 20,000 rows of a cell each took ten seconds.
 
-        if ( ! isset ( $cells [$r] [$c] ) )
-          continue;
+    $colAt = array_flip ( $colNames );
 
-        $v = $cells [$r] [$c];
+    foreach ( $rowNames as $i => $r ) {
+
+      $row = $cells [$r] ?? [];
+
+      uksort ( $row, fn ( $a, $b ) => $colAt [$a] <=> $colAt [$b] );
+
+      foreach ( $row as $c => $v ) {
+
+        $j = $colAt [$c];
         $x = $left + $j * $cellW;
         $y = $top  + $i * $cellH;
 
@@ -108,6 +115,8 @@
           $svg .= '<text' . ( $step ( $v ) >= 4 ? ' class="pc-in"' : '' ) . ' x="' . padChartXY ( $x + $cellW / 2 ) . '" y="' . padChartXY ( $y + $cellH / 2 + 4 ) . '" text-anchor="middle" pointer-events="none">' . $text . '</text>';
 
       }
+
+    }
 
     // The scale: the lowest value, the seven steps, the highest.
 
