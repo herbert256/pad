@@ -189,14 +189,11 @@
 
   function padPdfSheet ( $content, $file, $nested ) {
 
-    static $styled = FALSE;
+    // Once per output - the page, a {cache} section being kept, a mail - as the widgets have
+    // it, where once per PHP process: a kept section was stored without it, and on a page
+    // where it came back alone the sheet had no paper, no shadow and no table rules.
 
-    $style = '';
-
-    if ( ! $styled ) {
-      $styled = TRUE;
-      $style  = padPdfStyle ();
-    }
+    $style = padWidgetOnce ( 'style:pdf' ) ? padPdfStyle () : '';
 
     return padProtect ( $style . '<div class="pad-pdf"><div class="pad-pdf-sheet">' )
          . $content
