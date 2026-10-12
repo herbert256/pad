@@ -9,7 +9,7 @@
   // the first field that is no number. value= is the number - else the first numeric
   // field, else every row counts as one. Rows of one day add up. The days run from the
   // Monday before the first date to the last date, or over the whole year= when it is
-  // given. A day without a value is drawn in the grid colour, the others in seven steps
+  // given - the latest weeks that fit the width, ten years at most. A day without a value is drawn in the grid colour, the others in seven steps
   // from light to dark; a day has its tooltip, the months are named above their first
   // week, Monday, Wednesday and Friday on the left.
 
@@ -99,8 +99,13 @@
     } else
       return '';
 
-    if ( $last->diff ( $first )->days > 3660 )
-      $first = $last->modify ( '-3660 days' );
+    // The latest weeks a column of at least 3px each fits in the width - more than about
+    // four years in 720px drew the latest days outside the picture - and ten years at most.
+
+    $keep = min ( 3660, 7 * ( max ( 1, (int) floor ( ( $width - 34 ) / 3 ) ) - 1 ) );
+
+    if ( $last->diff ( $first )->days > $keep )
+      $first = $last->modify ( "-$keep days" );
 
     $start = $first->modify ( '-' . ( (int) $first->format ( 'N' ) - 1 ) . ' days' );
     $weeks = intdiv ( $last->diff ( $start )->days, 7 ) + 1;
