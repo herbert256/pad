@@ -173,6 +173,16 @@
       return NULL;
     }
 
+    // A picture beyond 64 megapixels is refused before it is decoded - GD's memory is not
+    // PHP's, and a PNG of 97 KB of 10,000 by 10,000 took 250 MB on every view that missed
+    // its thumbnail; one of 40,000 by 40,000 asked for some 6 GB.
+
+    if ( $info [0] * $info [1] > 64000000 ) {
+      if ( $padCheckSyntax )
+        padError ( "the img tag will not resize www/$padApp/$name - " . $info [0] . ' x ' . $info [1] . ' pixels, 64 megapixels at most' );
+      return NULL;
+    }
+
     $type = $types [ $info [2] ];
     $turn = 1;
 
