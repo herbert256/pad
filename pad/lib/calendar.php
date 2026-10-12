@@ -111,6 +111,8 @@
 
   // A calendar whose month the parameter fixes has no links to the months around it: the
   // parameter wins over the request value, and following them showed the same month again.
+  // Nor is there a link past the months it can show - 10000-01, -0001-12 - which it refused
+  // and showed this month instead.
 
   function padCalendarHtml ( $month, $weeks, $tField, $lField, $query, $links = TRUE ) {
 
@@ -122,9 +124,9 @@
 
     $html = padCalendarStyle () . '<table class="pad-calendar">'
           . '<caption>'
-          . ( $links ? '<a class="pad-calendar-prev" href="' . $h ( padPagerHref ( $query, $prev ) ) . '" rel="prev" aria-label="' . $h ( $catalog ['calendar.previous'] ?? 'Previous month' ) . '">‹</a> ' : '' )
+          . ( ( $links and padCalendarMonth ( $prev ) !== NULL ) ? '<a class="pad-calendar-prev" href="' . $h ( padPagerHref ( $query, $prev ) ) . '" rel="prev" aria-label="' . $h ( $catalog ['calendar.previous'] ?? 'Previous month' ) . '">‹</a> ' : '' )
           . '<span>' . $h ( padCalendarWord ( $first, 'LLLL y', 'F Y' ) ) . '</span>'
-          . ( $links ? ' <a class="pad-calendar-next" href="' . $h ( padPagerHref ( $query, $next ) ) . '" rel="next" aria-label="' . $h ( $catalog ['calendar.next'] ?? 'Next month' ) . '">›</a>' : '' )
+          . ( ( $links and padCalendarMonth ( $next ) !== NULL ) ? ' <a class="pad-calendar-next" href="' . $h ( padPagerHref ( $query, $next ) ) . '" rel="next" aria-label="' . $h ( $catalog ['calendar.next'] ?? 'Next month' ) . '">›</a>' : '' )
           . '</caption><thead><tr>';
 
     foreach ( $weeks [0] ['days'] as $day )
