@@ -101,8 +101,6 @@
       $desc [] = $node ['name'] . ( $node ['sub'] !== '' ? ', ' . $node ['sub'] : '' )
                . ( isset ( $nodes [$node ['parent']] ) ? ' - under ' . $nodes [$node ['parent']] ['name'] : '' );
 
-    list ( $id, $svg ) = padChartOpen ( 'orgchart', $nodes, $desc, $title, $width, $height );
-
     // The columns: a node without children takes one, a node is over its children. Too
     // narrow for that, the children without children of their own are listed under their
     // node in its one column.
@@ -116,6 +114,11 @@
       $list    = TRUE;
       $columns = padChartOrgColumns ( $nodes, $roots, $list, $leaves );
     }
+
+    // Still too narrow - forty reports, one with an assistant of her own - the picture
+    // grows to a column of 96px each, where the boxes of 30px lay half under each other.
+
+    $width = max ( $width, 20 + 96 * $columns );
 
     $place = [];
     $at    = 0;
@@ -135,6 +138,13 @@
     $listStep  = $boxH + 8;
     $spare     = $height - 20 - $boxH * ( $depth + 1 ) - $under * $listStep;
     $levelStep = $boxH + max ( 16, min ( 48, $depth ? $spare / $depth : 0 ) );
+
+    // A tree taller than the height given - a team of thirty listed under its boss, a chain
+    // of thirty levels - grows the picture to its last box, where they were drawn below it.
+
+    $height = max ( $height, (int) ceil ( 12 + $depth * $levelStep + $under * $listStep + $boxH ) );
+
+    list ( $id, $svg ) = padChartOpen ( 'orgchart', $nodes, $desc, $title, $width, $height );
 
     $box = function ( $id ) use ( $place, $colW, $boxW, $levelStep, $listStep ) {
       list ( $col, $level, $row ) = $place [$id];
