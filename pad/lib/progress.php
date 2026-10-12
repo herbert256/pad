@@ -27,6 +27,14 @@
     $name    = ( trim ( (string) $label ) !== '' ) ? trim ( (string) $label ) : 'Progress';
     $head    = ( trim ( (string) $label ) !== '' ) ? '<span class="pg-label">' . padProgressAttr ( $label ) . '</span>' : '';
 
+    // Rounded, but 100% only once it is done and 0% only before it began: an upload at 99.6
+    // of 100 was written and announced as done.
+
+    if ( $percent == 100 and $value < $max )
+      $percent = 99;
+    elseif ( $percent == 0 and $value > 0 )
+      $percent = 1;
+
     return padProgressStyle ()
          . "<div class=\"pad-progress pg-$color pg-$size\">"
          . "<span class=\"pg-head\" aria-hidden=\"true\">$head<span class=\"pg-value\">$percent%</span></span>"
