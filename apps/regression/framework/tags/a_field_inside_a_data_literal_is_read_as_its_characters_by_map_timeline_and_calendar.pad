@@ -1,0 +1,4 @@
+{set $d = 'Oct 8, 2026'}{set $k = 'Korea, Republic of'}
+{timeline data='[{"when":"{$d}","what":"x"},{"when":"2026-10-01","what":"y"}]', date='when', label='what'}
+{map data='[{"c":"{$k}","n":1}]', key='c', value='n'}
+{calendar '2026-10', data='[{"when":"{$d}","what":"x"}]', date='when'}{days}{if $count gt 0}{$date}: {$count};{/if}{/days}{/calendar}

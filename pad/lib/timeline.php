@@ -26,7 +26,7 @@
 
   function padTimelineDate ( $value ) {
 
-    $value = trim ( (string) $value );
+    $value = trim ( padUnprotect ( (string) $value ) );
 
     if ( $value === '' )
       return FALSE;

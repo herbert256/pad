@@ -55,11 +55,14 @@
   // The country a key names - ISO alpha-2, alpha-3 or an English name, in any case - as its
   // alpha-2 code, else ''.
 
+  // A key is looked up as the characters it holds: a field inside a data= literal came with
+  // the stand-ins of a value - "Korea, Republic of" with another comma - and was on no map.
+
   function padMapCode ( $key ) {
 
     list ( , $index ) = padMapCountries ();
 
-    return $index [ mb_strtolower ( trim ( (string) $key ) ) ] ?? '';
+    return $index [ mb_strtolower ( trim ( padUnprotect ( (string) $key ) ) ) ] ?? '';
 
   }
 

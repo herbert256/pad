@@ -21,7 +21,10 @@
 
   function padChartStamp ( $when ) {
 
-    $when = trim ( (string) $when );
+    // Read as the characters it holds: a field inside a data= literal came with the
+    // stand-ins of a value, and Oct 8, 2026 was no date.
+
+    $when = trim ( padUnprotect ( (string) $when ) );
 
     if ( $when === '' )
       return FALSE;
