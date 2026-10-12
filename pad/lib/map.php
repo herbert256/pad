@@ -63,17 +63,20 @@
 
   }
 
-  // The views as [ west, south, east, north ] in degrees.
+  // The views as [ west, south, east, north ] in degrees: africa reaches Cabo Verde in the
+  // west and Mauritius and the Seychelles in the east, oceania Palau, Guam, Micronesia and
+  // the Marshall Islands north of the equator - the islands across the 180th meridian,
+  // Samoa and Tonga, are not in it and are named in the title (padMap).
 
   function padMapViews () {
 
     return [ 'world'         => [ -180, -58,  180, 84 ],
              'europe'        => [ -25,   34,   42, 71.5 ],
-             'africa'        => [ -19,  -36,   53, 38 ],
+             'africa'        => [ -26,  -36,   60, 38 ],
              'asia'          => [  25,   -11, 150, 56 ],
              'north-america' => [ -170,   7,  -50, 84 ],
              'south-america' => [ -83,  -56,  -33, 14 ],
-             'oceania'       => [ 110,  -48,  180, 0 ] ];
+             'oceania'       => [ 110,  -48,  180, 22 ] ];
 
   }
 
@@ -138,6 +141,21 @@
 
     if ( ! $desc )
       $desc [] = 'No values';
+
+    // A country with a value that the view does not show is named in the title, as a key
+    // that is no country is: its value was dropped from the picture without a word, while
+    // it still set the colour scale.
+
+    $outside = [];
+
+    foreach ( $values as $code => $value ) {
+      $box = $countries [$code] [3];
+      if ( $box [2] < $x0 or $box [0] > $x1 or $box [3] < $y0 or $box [1] > $y1 )
+        $outside [] = $countries [$code] [1];
+    }
+
+    if ( $outside )
+      $title .= ' (not in this view: ' . implode ( ', ', array_slice ( $outside, 0, 10 ) ) . ')';
 
     list ( $id, $svg ) = padChartOpen ( 'map', [ $view, $values ], $desc, $title, $width, $height );
 
