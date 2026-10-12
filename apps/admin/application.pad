@@ -59,7 +59,7 @@
     <table class="list">
       <thead><tr><th>Part</th><th>What it is</th><th class="right">Files</th></tr></thead>
       <tbody>
-        {parts}<tr><td><a href="?files&amp;app={$app}&amp;dir={$part | url}"><code>{$part}</code></a></td><td>{$what}</td><td class="right">{$count}</td></tr>{/parts}
+        {parts}<tr><td><a href="?files&amp;app={$app}&amp;{$kind}={$part | url}"><code>{$part}</code></a></td><td>{$what}</td><td class="right">{$count}</td></tr>{/parts}
       </tbody>
     </table>
   {else}

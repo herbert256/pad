@@ -155,9 +155,12 @@
     $dir   = $row ['dir'];
     $parts = [];
 
+    // A part is a directory or a file - _guard.php, _schedule.php - and its link opens it as
+    // what it is: a file linked as a directory opened the application's root.
+
     foreach ( adminAppParts () as $part => $what )
       if ( file_exists ( $dir . $part ) )
-        $parts [] = [ 'part' => $part, 'what' => $what,
+        $parts [] = [ 'part' => $part, 'what' => $what, 'kind' => is_dir ( $dir . $part ) ? 'dir' : 'file',
                       'count' => is_dir ( $dir . $part ) ? count ( adminFilesIn ( $dir . $part ) ) : 1 ];
 
     $files = $bytes = $lines = $newest = 0;
