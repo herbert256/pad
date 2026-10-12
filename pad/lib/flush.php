@@ -92,6 +92,13 @@
       if ( $padCsrf and ( isset ( $_COOKIE [ session_name () ] ) or preg_match ( '/<form\b|\{form\b/i', $padOut [0] ) ) )
         padCsrfToken ();
 
+      // A visitor who brought a session has it opened now, while it still can be: below the
+      // flush the login could not be read - {auth}, {guest}, {can} and padUser took a
+      // logged-in user for a guest, and the menu after </head> said "Log in".
+
+      if ( isset ( $_COOKIE [ session_name () ] ) )
+        padSessionStart ();
+
       padWebHeaders ( 200 );
 
     }
