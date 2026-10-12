@@ -128,10 +128,30 @@
     if ( is_bool ( $value ) )
       return $value ? 'yes' : 'no';
 
-    if ( $column ['numeric'] and is_numeric ( trim ( (string) $value ) ) )
-      return number_format ( trim ( (string) $value ) + 0, $column ['decimals'], '.', $column ['plain'] ? '' : ',' );
+    // An identifier shows its number as it is - 0612345678 is no 612345678 - and the others
+    // are formatted from their digits: through a float a reference of 23 digits came out
+    // 12,345,678,901,234,567,741,440.
+
+    if ( $column ['numeric'] and is_numeric ( $number = trim ( (string) $value ) ) )
+      return $column ['plain'] ? $number : padDatatableNumber ( $number, $column ['decimals'] );
 
     return (string) $value;
+
+  }
+
+  // A number grouped by thousands with the column's decimals - on its digits when it is
+  // written plainly with no more decimals than that, else through number_format.
+
+  function padDatatableNumber ( $number, $decimals ) {
+
+    if ( ! preg_match ( '/^([+-]?)(\d+)(?:\.(\d*))?$/', $number, $match ) or strlen ( $match [3] ?? '' ) > $decimals )
+      return number_format ( $number + 0, $decimals, '.', ',' );
+
+    $whole    = ltrim ( $match [2], '0' ) ?: '0';
+    $fraction = str_pad ( $match [3] ?? '', $decimals, '0' );
+    $sign     = ( $match [1] == '-' and trim ( $whole . $fraction, '0' ) !== '' ) ? '-' : '';
+
+    return $sign . strrev ( implode ( ',', str_split ( strrev ( $whole ), 3 ) ) ) . ( $decimals ? ".$fraction" : '' );
 
   }
 
