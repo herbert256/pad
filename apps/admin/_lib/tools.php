@@ -93,16 +93,28 @@
   // was followed - emptying DATA/cache deleted what a link there pointed to, a users file
   // or DATA/keys, and left the link.
 
+  // Nor is any link on the way to it followed: the path as written below DATA/ must be the
+  // path it really is - a directory of DATA/cache that was a link to DATA/admin was offered
+  // to empty, and emptying it deleted the console's users.
+
   function adminRemove ( $path ) {
 
     $data = realpath ( DATA );
+    $path = (string) $path;
+    $rel  = NULL;
 
-    if ( is_link ( $path ) )
-      $real = ( $dir = realpath ( dirname ( $path ) ) ) === FALSE ? FALSE : $dir . DIRECTORY_SEPARATOR . basename ( $path );
-    else
-      $real = realpath ( $path );
+    foreach ( [ DATA, $data . DIRECTORY_SEPARATOR ] as $root )
+      if ( $rel === NULL and $data !== FALSE and str_starts_with ( $path, $root ) )
+        $rel = trim ( substr ( $path, strlen ( $root ) ), '/' );
 
-    if ( $data === FALSE or $real === FALSE or ! str_starts_with ( $real, $data . DIRECTORY_SEPARATOR ) )
+    if ( $rel === NULL or $rel === '' )
+      return 0;
+
+    $want = $data . DIRECTORY_SEPARATOR . $rel;
+    $dir  = realpath ( dirname ( $want ) );
+    $real = ( $dir === dirname ( $want ) ) ? ( is_link ( $want ) ? $want : realpath ( $want ) ) : FALSE;
+
+    if ( $real !== $want )
       return 0;
 
     if ( is_link ( $real ) or is_file ( $real ) )
