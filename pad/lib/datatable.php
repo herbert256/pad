@@ -86,11 +86,15 @@
   }
 
   // A column whose name says it identifies - id, order_number, zipCode, year - shows its
-  // numbers as they are: 10,100 is no order number.
+  // numbers as they are: 10,100 is no order number. A short word - id, no, nr, num, ean -
+  // stands alone, after an underscore or as a capital after a lower-case letter or digit
+  // (orderId, customerID): ending a name in any case, paid, bid, mean and valid were
+  // identifiers too and their amounts went ungrouped. A long one ends any name: zipcode.
 
   function padDatatableIdentifier ( $field ) {
 
-    return (bool) preg_match ( '/(^|_|[a-z])(id|ids|no|nr|num|number|code|year|zip|postcode|phone|ean|isbn)$/i', $field );
+    return (bool) preg_match ( '/(?i:number|code|year|zip|phone|isbn)$|(?:^|_)(?i:id|ids|no|nr|num|ean)$'
+                             . '|[a-z0-9](?:Id|ID|Ids|IDs|No|Nr|Num|Ean|EAN)$/', $field );
 
   }
 
