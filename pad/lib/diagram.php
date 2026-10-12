@@ -398,6 +398,12 @@
     if ( $shape == 'diamond' )
       return $main * ( 1 - $off / $cross );
 
+    // A hexagon is pointed left and right: across a horizontal flow an edge ends on its
+    // slanted sides, where the outline of a box left the arrowheads short of them.
+
+    if ( $shape == 'hexagon' and ! $vertical )
+      return $main - ( $h / 3 ) * ( $off / $cross );
+
     $r  = ( $shape == 'round' ) ? min ( $w, $h ) / 2 : 4;
     $in = max ( 0, $off - ( $cross - $r ) );
 
