@@ -7,8 +7,10 @@
   //                 (padLoopback) - naming this machine in its Host header, unless
   //                 $adminRemote opens it up. The Host check keeps out a page on another
   //                 site that has its own name resolve to 127.0.0.1 (DNS rebinding).
-  // adminStore      DATA/admin/, where the users are kept
+  // adminStore      DATA/admin/, where the users are kept - a test points $adminStore
+  //                 at a scratch directory
   // adminUsers      name => [ hash, stamp, created, login ]
+  // adminUsersChange  a change of the users, read and written under the store's lock
   // adminUserAdd    a new user; answers the stamp its session carries
   // adminUserPassword  a new password for a user - and a new stamp, which ends its sessions
   // adminUserDelete removes a user - never the last one
@@ -37,7 +39,7 @@
 
   function adminStore () {
 
-    return DATA . 'admin/';
+    return $GLOBALS ['adminStore'] ?? DATA . 'admin/';
 
   }
 
@@ -71,6 +73,44 @@
 
   }
 
+  // A change of the users - $change gets them by reference and answers what the caller
+  // answers - read, made and written under DATA/admin/users.lock, so two at once both
+  // land. Without it the one that wrote last put back what the other had changed: a login
+  // that ended after its user was removed brought the user back, and one that ended after
+  // a new password brought back the old one and the stamp of every session it had ended.
+
+  function adminUsersChange ( $change ) {
+
+    $dir = adminStore ();
+
+    if ( ! is_dir ( $dir ) and ! @mkdir ( $dir, 0700, TRUE ) )
+      throw new RuntimeException ( 'DATA/admin/ can not be made' );
+
+    $lock = @fopen ( $dir . 'users.lock', 'c' );
+
+    if ( $lock )
+      flock ( $lock, LOCK_EX );
+
+    try {
+
+      $users  = adminUsers ();
+      $answer = $change ( $users );
+
+      adminUsersSave ( $users );
+
+      return $answer;
+
+    } finally {
+
+      if ( $lock ) {
+        flock  ( $lock, LOCK_UN );
+        fclose ( $lock );
+      }
+
+    }
+
+  }
+
   function adminUserName ( $name ) {
 
     $name = trim ( (string) $name );
@@ -98,50 +138,55 @@
 
     $name     = adminUserName ( $name );
     $password = adminUserPasswordOk ( $password );
-    $users    = adminUsers ();
+    $user     = [ 'hash' => padHash ( $password ), 'stamp' => bin2hex ( random_bytes ( 8 ) ),
+                  'created' => time (), 'login' => 0 ];
 
-    if ( isset ( $users [$name] ) )
-      throw new RuntimeException ( "there is a user named '$name' already" );
+    return adminUsersChange ( function ( &$users ) use ( $name, $user ) {
 
-    $users [$name] = [ 'hash' => padHash ( $password ), 'stamp' => bin2hex ( random_bytes ( 8 ) ),
-                       'created' => time (), 'login' => 0 ];
+      if ( isset ( $users [$name] ) )
+        throw new RuntimeException ( "there is a user named '$name' already" );
 
-    adminUsersSave ( $users );
+      $users [$name] = $user;
 
-    return $users [$name] ['stamp'];
+      return $user ['stamp'];
+
+    } );
 
   }
 
   function adminUserPassword ( $name, $password ) {
 
     $password = adminUserPasswordOk ( $password );
-    $users    = adminUsers ();
+    $hash     = padHash ( $password );
+    $stamp    = bin2hex ( random_bytes ( 8 ) );
 
-    if ( ! isset ( $users [$name] ) )
-      throw new RuntimeException ( 'there is no such user' );
+    return adminUsersChange ( function ( &$users ) use ( $name, $hash, $stamp ) {
 
-    $users [$name] ['hash']  = padHash ( $password );
-    $users [$name] ['stamp'] = bin2hex ( random_bytes ( 8 ) );
+      if ( ! isset ( $users [$name] ) )
+        throw new RuntimeException ( 'there is no such user' );
 
-    adminUsersSave ( $users );
+      $users [$name] ['hash']  = $hash;
+      $users [$name] ['stamp'] = $stamp;
 
-    return $users [$name] ['stamp'];
+      return $stamp;
+
+    } );
 
   }
 
   function adminUserDelete ( $name ) {
 
-    $users = adminUsers ();
+    adminUsersChange ( function ( &$users ) use ( $name ) {
 
-    if ( ! isset ( $users [$name] ) )
-      throw new RuntimeException ( 'there is no such user' );
+      if ( ! isset ( $users [$name] ) )
+        throw new RuntimeException ( 'there is no such user' );
 
-    if ( count ( $users ) == 1 )
-      throw new RuntimeException ( 'the last user stays: nobody could log in anymore' );
+      if ( count ( $users ) == 1 )
+        throw new RuntimeException ( 'the last user stays: nobody could log in anymore' );
 
-    unset ( $users [$name] );
+      unset ( $users [$name] );
 
-    adminUsersSave ( $users );
+    } );
 
   }
 
@@ -158,11 +203,29 @@
     if ( ! padHashCheck ( (string) $password, $hash ) or ! $user )
       return '';
 
-    $users [$name] ['login'] = time ();
+    // The password was checked outside the lock - it takes a while - so the login time is
+    // written to the user as the store holds it now, and only while it is still there with
+    // the password that was checked: a user removed or given a new password meanwhile is
+    // not logged in.
 
-    try { adminUsersSave ( $users ); } catch ( RuntimeException $e ) { }
+    try {
 
-    return (string) $user ['stamp'];
+      return adminUsersChange ( function ( &$users ) use ( $name, $user ) {
+
+        if ( ( $users [$name] ['stamp'] ?? '' ) !== $user ['stamp'] )
+          return '';
+
+        $users [$name] ['login'] = time ();
+
+        return (string) $user ['stamp'];
+
+      } );
+
+    } catch ( RuntimeException $e ) {
+
+      return (string) $user ['stamp'];
+
+    }
 
   }
 
