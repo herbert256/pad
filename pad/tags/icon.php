@@ -19,7 +19,7 @@
     return '';
   }
 
-  $padIconSvg = padIcon ( $padIconName, (int) padTagParm ( 'size', 20 ), padParmText ( padTagParm ( 'label' ) ), padTagParm ( 'stroke', 2 ) );
+  $padIconSvg = padIcon ( $padIconName, (int) padWidgetNumber ( 'icon', 'size', 20 ), padParmText ( padTagParm ( 'label' ) ), padWidgetNumber ( 'icon', 'stroke', 2 ) );
 
   if ( $padIconSvg === '' and $padCheckSyntax ) {
     $padIconLike = padIconSimilar ( $padIconName );

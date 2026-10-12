@@ -21,6 +21,6 @@
     $padAvatarShape = 'circle';
   }
 
-  return padAvatar ( $padAvatarName, (int) padTagParm ( 'size', 48 ), $padAvatarShape, padParmText ( padTagParm ( 'label' ) ) );
+  return padAvatar ( $padAvatarName, (int) padWidgetNumber ( 'avatar', 'size', 48 ), $padAvatarShape, padParmText ( padTagParm ( 'label' ) ) );
 
 ?>

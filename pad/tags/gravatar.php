@@ -33,7 +33,7 @@
     $padGravatarFallback = '';
   }
 
-  return padGravatar ( $padGravatarEmail, (int) padTagParm ( 'size', 64 ), $padGravatarDefault,
+  return padGravatar ( $padGravatarEmail, (int) padWidgetNumber ( 'gravatar', 'size', 64 ), $padGravatarDefault,
                        padParmText ( padTagParm ( 'alt' ) ), $padGravatarFallback );
 
 ?>

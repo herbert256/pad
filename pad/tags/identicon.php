@@ -11,6 +11,6 @@
   if ( trim ( (string) $padParm ) === '' and $padCheckSyntax )
     padError ( 'the identicon has no value - {identicon $email}' );
 
-  return padIdenticon ( padParmText ( $padParm ), (int) padTagParm ( 'size', 64 ), padParmText ( padTagParm ( 'title' ) ) );
+  return padIdenticon ( padParmText ( $padParm ), (int) padWidgetNumber ( 'identicon', 'size', 64 ), padParmText ( padTagParm ( 'title' ) ) );
 
 ?>

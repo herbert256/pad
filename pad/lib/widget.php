@@ -23,6 +23,26 @@
   // tags of the page around them - a tag that hands its rendering back through $padContent
   // at the end walk has it spliced into the text its parent goes on to scan.
 
+  // A number option of a tag that draws - size=, stroke= - or its default, named under the
+  // strict check: '1.5em', 'small' and 'large' were drawn at the 8px minimum without a word,
+  // where the same tags name every other option they cannot use.
+
+  function padWidgetNumber ( $tag, $option, $default ) {
+
+    global $padCheckSyntax;
+
+    $value = padTagParm ( $option, $default );
+
+    if ( is_numeric ( $value ) and is_finite ( (float) $value ) )
+      return $value + 0;
+
+    if ( $padCheckSyntax )
+      padError ( "the $tag has no usable $option '" . padMakeSafe ( is_scalar ( $value ) ? (string) $value : '', 20 ) . "' - a number of pixels" );
+
+    return $default;
+
+  }
+
   function padWidgetId ( $kind, $seed ) {
 
     global $pad, $padFragment;
