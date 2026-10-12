@@ -206,7 +206,9 @@
   // The address is this page as it was asked - its route and its own request values - with
   // padPdf: made from the page's name alone, a page picked by a value, ?invoice&id=114,
   // gave the document of another request, and on a bracketed route the link named the
-  // file, products/[id], which no address reaches.
+  // file, products/[id], which no address reaches. The page's own key stays out only when
+  // it is bare: ?invoice=114 hands the page $invoice = 114, and its links asked
+  // ?invoice&padPdf=, the document of no invoice.
 
   function padPdfLinks ( $file ) {
 
@@ -217,7 +219,7 @@
     $vars  = [];
 
     foreach ( $_GET as $key => $value )
-      if ( (string) $key !== $asked and ! str_starts_with ( (string) $key, 'pad' ) )
+      if ( ( (string) $key !== $asked or $value !== '' ) and ! str_starts_with ( (string) $key, 'pad' ) )
         $vars [$key] = $value;
 
     $url      = htmlspecialchars ( padUrl ( '', $vars + [ 'padPdf' => '' ] ), ENT_QUOTES );
