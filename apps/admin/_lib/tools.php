@@ -10,6 +10,7 @@
   // adminPhpinfoBody phpinfo ()'s page without the request's headers and environment
   // adminGitLast    the last commit: hash, subject, author, time
   // adminLogToday   the lines every application logged today
+  // adminRemoteShown a remote's address without its user and password
   // adminRelative   a relative path a request names, checked: no dot segments, no hidden
   //                 names, nothing outside the characters a PAD file name uses; '' otherwise
   // adminRun        the pad command (apps/cli/pad) with arguments, in a child process:
@@ -187,6 +188,16 @@
   function adminGit ( $args ) {
 
     return adminProcess ( array_merge ( [ 'git', '-C', rtrim ( adminHome (), '/' ) ], $args ), 20 );
+
+  }
+
+  // A remote's address without the user and password it may hold: up to the last @, since
+  // a password with a / or an @ in it - unencoded - ended the cut early and the rest of it
+  // was shown.
+
+  function adminRemoteShown ( $remote ) {
+
+    return preg_replace ( '#//.*@#', '//', (string) $remote );
 
   }
 

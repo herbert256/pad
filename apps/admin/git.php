@@ -21,7 +21,7 @@
     $facts = [
       [ 'label' => 'Branch',   'value' => $branch ],
       [ 'label' => 'Upstream', 'value' => $upstream [0] === 0 ? trim ( $upstream [1] ) . " - $ahead ahead, $behind behind" : 'none' ],
-      [ 'label' => 'Remote',   'value' => preg_replace ( '#//[^/@]+@#', '//', $remote ) ],
+      [ 'label' => 'Remote',   'value' => adminRemoteShown ( $remote ) ],
       [ 'label' => 'Head',     'value' => trim ( adminGit ( [ 'log', '-1', '--format=%H' ] ) [1] ) ]
     ];
 
