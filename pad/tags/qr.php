@@ -18,6 +18,16 @@
   // quoted text - a mailto: made from a field - travels with the stand-ins of { } | = , @
   // ' " \ and arrives HTML-escaped, and those went into the code: the @ scanned as
   // U+E040, a & as &amp;.
+  // A code of nothing scans as nothing and has no name to be heard by: an empty text drew a
+  // symbol of zero bytes with an empty title, without a word.
+
+  if ( is_array ( $padParm ) or padParmText ( $padParm ) === '' ) {
+    if ( $padCheckSyntax )
+      padError ( "the qr code has no text - {qr 'https://example.com'}" );
+    foreach ( [ 'size', 'title', 'color', 'background' ] as $padQrOption )
+      padTagParm ( $padQrOption );
+    return '';
+  }
 
   $padQrSvg = padQr ( padParmText ( $padParm ), $padQrLevel,
                       max ( 21, (int) padTagParm ( 'size', 160 ) ),
