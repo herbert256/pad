@@ -126,8 +126,10 @@
   }
 
   // Without the yaml extension: one key: value per line, a quoted or plain scalar, a
-  // [a, b] list, or a key: followed by - item lines. true, false, null and numbers are
-  // read as such, a date stays text - what yaml_parse makes of the same lines.
+  // [a, b] list, or a key: followed by - item lines, indented or not. true, false, null and
+  // numbers are read as such, a date stays text - what yaml_parse makes of the same lines.
+  // A comma inside quotes is no item's end, and a comment after a quoted value is no part
+  // of it.
 
   function padFrontMatterLines ( $yaml ) {
 
@@ -139,10 +141,11 @@
       if ( trim ( $line ) === '' or str_starts_with ( ltrim ( $line ), '#' ) )
         continue;
 
-      if ( $last !== '' and preg_match ( '/^\s+-\s*(.*)$/', $line, $m ) ) {
+      if ( $last !== '' and ( preg_match ( '/^\s+-\s*(.*)$/', $line, $m )
+           or ( ( $meta [$last] === NULL or is_array ( $meta [$last] ) ) and preg_match ( '/^-(?:\s+(.*))?$/', $line, $m ) ) ) ) {
         if ( ! is_array ( $meta [$last] ) )
           $meta [$last] = [];
-        $meta [$last] [] = padFrontMatterScalar ( $m [1] );
+        $meta [$last] [] = padFrontMatterScalar ( $m [1] ?? '' );
         continue;
       }
 
@@ -153,7 +156,7 @@
       $value = trim ( $m [2] );
 
       if ( preg_match ( '/^\[(.*)\]$/', $value, $list ) )
-        $meta [$last] = trim ( $list [1] ) === '' ? [] : array_map ( 'padFrontMatterScalar', explode ( ',', $list [1] ) );
+        $meta [$last] = trim ( $list [1] ) === '' ? [] : array_map ( 'padFrontMatterScalar', padFrontMatterItems ( $list [1] ) );
       else
         $meta [$last] = ( $value === '' ) ? NULL : padFrontMatterScalar ( $value );
 
@@ -163,12 +166,49 @@
 
   }
 
+  // The items of a [a, 'b, c'] list: split on the commas outside quotes.
+
+  function padFrontMatterItems ( $text ) {
+
+    $items = [];
+    $item  = '';
+    $quote = '';
+
+    for ( $i = 0, $n = strlen ( $text ); $i < $n; $i++ ) {
+
+      $c = $text [$i];
+
+      if ( $quote === '' and $c === ',' ) {
+        $items [] = $item;
+        $item     = '';
+        continue;
+      }
+
+      if ( $quote === '' and ( $c === '"' or $c === "'" ) and trim ( $item ) === '' )
+        $quote = $c;
+      elseif ( $quote === '"' and $c === '\\' and $i + 1 < $n )
+        $c .= $text [++$i];
+      elseif ( $quote === "'" and $c === "'" and ( $text [$i + 1] ?? '' ) === "'" )
+        $c .= $text [++$i];
+      elseif ( $quote !== '' and $c === $quote )
+        $quote = '';
+
+      $item .= $c;
+
+    }
+
+    $items [] = $item;
+
+    return $items;
+
+  }
+
   function padFrontMatterScalar ( $value ) {
 
     $value = trim ( $value );
 
-    if ( preg_match ( '/^"(.*)"$/', $value, $m ) ) return stripcslashes ( $m [1] );
-    if ( preg_match ( "/^'(.*)'$/", $value, $m ) ) return str_replace ( "''", "'", $m [1] );
+    if ( preg_match ( '/^"((?:[^"\\\\]|\\\\.)*)"(?:\s+#.*)?$/s', $value, $m ) ) return stripcslashes ( $m [1] );
+    if ( preg_match ( "/^'((?:[^']|'')*)'(?:\\s+#.*)?$/s", $value, $m ) ) return str_replace ( "''", "'", $m [1] );
 
     $value = preg_replace ( '/\s+#.*$/', '', $value );
     $lower = strtolower ( $value );
