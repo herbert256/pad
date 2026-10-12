@@ -328,6 +328,12 @@
 
   function padChartNumber ( $n ) {
 
+    // A share that overflows - a value near 1e300 over one near 1e-300 - is infinite: it is
+    // written as such, where its log10 cast to an int ended the request.
+
+    if ( ! is_finite ( (float) $n ) )
+      return is_nan ( (float) $n ) ? '' : ( (float) $n > 0 ? '∞' : '-∞' );
+
     $n = (float) $n;
 
     for ( $needed = 0; $needed < 15; $needed++ ) {
