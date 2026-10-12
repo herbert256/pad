@@ -126,17 +126,18 @@
               . '<text x="' . ( $left - 6 ) . '" y="' . padChartXY ( $at ( $tick ) + 4 ) . '" text-anchor="end">' . padChartNumber ( $tick ) . '</text>';
     }
 
-    // The category labels, thinned out when they would overlap.
+    // The category labels, thinned out when they would overlap - under the plot shortened
+    // to their band first, and thinned only when a band holds less than about six characters.
 
     $every = $horizontal ? max ( 1, (int) ceil ( 13 / max ( 1, $band ) ) )
-                         : max ( 1, (int) ceil ( $labelWidth / max ( 1, $band ) ) );
+                         : max ( 1, (int) ceil ( min ( $labelWidth, 48 ) / max ( 1, $band ) ) );
 
     foreach ( $labels as $i => $label )
       if ( $i % $every == 0 ) {
         if ( $horizontal )
           $svg .= '<text x="' . ( $left - 6 ) . '" y="' . padChartXY ( $mid ( $i ) + 4 ) . '" text-anchor="end">' . padChartAttr ( padChartFit ( $label, $left - 10 ) ) . '</text>';
         else
-          $svg .= '<text x="' . padChartXY ( $mid ( $i ) ) . '" y="' . ( $height - 8 ) . '" text-anchor="middle">' . padChartAttr ( $label ) . '</text>';
+          $svg .= '<text x="' . padChartXY ( $mid ( $i ) ) . '" y="' . ( $height - 8 ) . '" text-anchor="middle">' . padChartAttr ( padChartFit ( $label, $band * $every - 8 ) ) . '</text>';
       }
 
     $base = $at ( 0 );

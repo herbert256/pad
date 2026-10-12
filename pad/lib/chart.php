@@ -593,17 +593,19 @@
       $svg .= '<line class="pc-grid" x1="' . $left . '" x2="' . ( $width - $right ) . '" y1="' . padChartXY ( $y ( $tick ) ) . '" y2="' . padChartXY ( $y ( $tick ) ) . '"/>'
             . '<text x="' . ( $left - 6 ) . '" y="' . padChartXY ( $y ( $tick ) + 4 ) . '" text-anchor="end">' . padChartNumber ( $tick ) . '</text>';
 
-    // The category labels under the plot, thinned out when they would overlap.
+    // The category labels under the plot, shortened to their band, and thinned out only
+    // when a band holds less than about six characters: long names were thinned instead -
+    // of two bars only the first was named.
 
     $labelWidth = 0;
     foreach ( $points as $point )
       $labelWidth = max ( $labelWidth, mb_strlen ( $point [0] ) * 6.5 + 8 );
 
-    $every = max ( 1, (int) ceil ( $labelWidth / max ( 1, $band ) ) );
+    $every = max ( 1, (int) ceil ( min ( $labelWidth, 48 ) / max ( 1, $band ) ) );
 
     foreach ( $points as $i => $point )
       if ( $i % $every == 0 )
-        $svg .= '<text x="' . padChartXY ( $x ( $i ) ) . '" y="' . ( $height - 8 ) . '" text-anchor="middle">' . padChartAttr ( $point [0] ) . '</text>';
+        $svg .= '<text x="' . padChartXY ( $x ( $i ) ) . '" y="' . ( $height - 8 ) . '" text-anchor="middle">' . padChartAttr ( padChartFit ( $point [0], $band * $every - 8 ) ) . '</text>';
 
     $base = $y ( 0 );
 
