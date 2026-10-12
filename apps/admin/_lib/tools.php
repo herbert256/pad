@@ -192,13 +192,14 @@
 
   }
 
-  // A remote's address without the user and password it may hold: up to the last @, since
-  // a password with a / or an @ in it - unencoded - ended the cut early and the rest of it
-  // was shown.
+  // A remote's address without the user and password it may hold: a password up to the last
+  // @, since one with a / or an @ in it - unencoded - ended the cut early and the rest of it
+  // was shown; a user alone up to the first /, and a port left alone - cut to the last @
+  // always, an @ in the path took the host with it: https://scope/r.git.
 
   function adminRemoteShown ( $remote ) {
 
-    return preg_replace ( '#//.*@#', '//', (string) $remote );
+    return preg_replace ( '#//(?:[^/@:\s]*:(?![0-9]+(?:/|$)).*|[^/@\s]*)@#', '//', (string) $remote );
 
   }
 
