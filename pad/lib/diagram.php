@@ -921,13 +921,19 @@
               break;
           }
 
-        // Nowhere along its edge: beside the label in the way, across the flow.
+        // Nowhere along its edge: beside the label in the way, across the flow - and beside
+        // the next one in the way, on the same side, until it stands free: moved once, it
+        // could land on a label moved there before, and the two were written on one spot.
 
-        if ( $other ) {
-          if ( $vertical )
-            $x = $other [0] + ( $x >= $other [0] ? 1 : -1 ) * ( ( $other [2] + $w ) / 2 + 4 );
-          else
-            $y = $other [1] + ( $y >= $other [1] ? 1 : -1 ) * 21;
+        for ( $step = 0, $sign = 0; $other and $step <= count ( $labels ); $step++ ) {
+          if ( $vertical ) {
+            $sign = $sign ?: ( $x >= $other [0] ? 1 : -1 );
+            $x    = $other [0] + $sign * ( ( $other [2] + $w ) / 2 + 4 );
+          } else {
+            $sign = $sign ?: ( $y >= $other [1] ? 1 : -1 );
+            $y    = $other [1] + $sign * 21;
+          }
+          $other = $clash ( $x, $y );
         }
 
         $labels [$e] = [ $x, $y, $w ];
