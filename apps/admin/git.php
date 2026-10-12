@@ -25,10 +25,7 @@
       [ 'label' => 'Head',     'value' => trim ( adminGit ( [ 'log', '-1', '--format=%H' ] ) [1] ) ]
     ];
 
-    foreach ( explode ( "\n", adminGit ( [ 'status', '--porcelain', '--untracked-files=normal' ] ) [1] ) as $line )
-      if ( strlen ( $line ) > 3 )
-        $changeRows [] = [ 'state' => trim ( substr ( $line, 0, 2 ) ), 'file' => substr ( $line, 3 ),
-                           'tone' => match ( trim ( substr ( $line, 0, 2 ) ) ) { '??' => 'info', 'D' => 'bad', 'A' => 'ok', default => 'warn' } ];
+    $changeRows = adminGitChanges ( adminGit ( [ 'status', '--porcelain', '--untracked-files=normal' ] ) [1] );
 
     foreach ( explode ( "\n", adminGit ( [ 'log', '-40', '--format=%h%x1f%ct%x1f%an%x1f%s' ] ) [1] ) as $line )
       if ( substr_count ( $line, "\x1f" ) == 3 ) {

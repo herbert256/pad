@@ -11,6 +11,7 @@
   // adminGitLast    the last commit: hash, subject, author, time
   // adminLogToday   the lines every application logged today
   // adminRemoteShown a remote's address without its user and password
+  // adminGitChanges the changes git status lists, as rows
   // adminRelative   a relative path a request names, checked: no dot segments, no hidden
   //                 names, nothing outside the characters a PAD file name uses; '' otherwise
   // adminRun        the pad command (apps/cli/pad) with arguments, in a child process:
@@ -198,6 +199,23 @@
   function adminRemoteShown ( $remote ) {
 
     return preg_replace ( '#//.*@#', '//', (string) $remote );
+
+  }
+
+  // The changes of git status --porcelain as rows: a line in that form alone - two letters
+  // of state, a space, the file - since the output holds what git says on stderr too, and a
+  // warning ("warning: in the working copy of ...") was listed as a change.
+
+  function adminGitChanges ( $text ) {
+
+    $rows = [];
+
+    foreach ( explode ( "\n", (string) $text ) as $line )
+      if ( preg_match ( '/^([ MADRCUT?!]{2}) (.+)$/', $line, $m ) )
+        $rows [] = [ 'state' => trim ( $m [1] ), 'file' => $m [2],
+                     'tone'  => match ( trim ( $m [1] ) ) { '??' => 'info', 'D' => 'bad', 'A' => 'ok', default => 'warn' } ];
+
+    return $rows;
 
   }
 
