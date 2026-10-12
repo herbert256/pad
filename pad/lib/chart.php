@@ -509,9 +509,23 @@
 
   function padChartOpen ( $kind, $hash, $desc, $title, $width, $height, $more = TRUE ) {
 
+    global $pad, $padFragment;
+
     static $drawn = [];
 
-    $id = 'pad-chart-' . substr ( md5 ( serialize ( [ $kind, $hash, $title, $width, $height ] ) ), 0, 8 );
+    // Inside a {cache} section that is rendering to be kept, the section's key is part of the
+    // id too: kept, the chart came back on a later request beside the same chart drawn then,
+    // and the two had one id - as padWidgetId has it for the widgets.
+
+    $seed = [ $kind, $hash, $title, $width, $height ];
+
+    for ( $i = $pad ?? -1; $i >= 0; $i-- )
+      if ( is_array ( $padFragment [$i] ?? NULL ) and ! $padFragment [$i] ['hit'] ) {
+        $seed [] = $padFragment [$i] ['key'];
+        break;
+      }
+
+    $id = 'pad-chart-' . substr ( md5 ( serialize ( $seed ) ), 0, 8 );
 
     $drawn [$id] = ( $drawn [$id] ?? 0 ) + 1;
 
