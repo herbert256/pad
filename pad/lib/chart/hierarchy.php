@@ -146,9 +146,12 @@
 
     arsort ( $areas );
 
+    // A part too small to have an area - 1e330 times smaller than the whole - is drawn as
+    // nothing, where its area of 0.0 divided the page down.
+
     $worst = function ( $row, $side ) {
       $sum = array_sum ( $row );
-      if ( $sum <= 0 or $side <= 0 )
+      if ( $sum <= 0 or $side <= 0 or min ( $row ) <= 0 )
         return INF;
       return max ( $side * $side * max ( $row ) / ( $sum * $sum ), $sum * $sum / ( $side * $side * min ( $row ) ) );
     };

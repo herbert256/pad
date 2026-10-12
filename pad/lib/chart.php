@@ -332,6 +332,11 @@
         break;
     }
 
+    // Past fifteen decimals - 5e-324 - a number is written as a power of ten, not as zeros.
+
+    if ( $n != 0 and abs ( $n ) < 1e-14 )
+      return sprintf ( '%.3g', $n );
+
     $decimals = ( $needed <= 3 or $n == 0 ) ? $needed : min ( $needed, max ( 2, 1 - (int) floor ( log10 ( abs ( $n ) ) ) ) );
 
     return number_format ( $n, $decimals, '.', ',' );
