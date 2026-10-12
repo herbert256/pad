@@ -173,16 +173,17 @@
 
   }
 
-  // The CSS and the chunks an entry needs: its own CSS, then for every chunk it imports - and
-  // every chunk those import - the chunk and its CSS, each once. A dynamic import is left to
-  // load when it is asked for.
+  // The CSS and the chunks an entry needs: every chunk it imports - and every chunk those
+  // import - each once, and the CSS of them all. A dynamic import is left to load when it is
+  // asked for.
 
   function padViteChunk ( $manifest, $entry ) {
 
-    $css    = [];
     $chunks = [];
     $seen   = [];
     $todo   = [ $entry ];
+    $done   = [];
+    $css    = padViteCss ( $manifest, $entry, $done );
 
     while ( $todo ) {
 
@@ -197,15 +198,32 @@
       if ( $name !== $entry )
         $chunks [] = $one ['file'];
 
-      foreach ( $one ['css'] ?? [] as $file )
-        $css [] = $file;
-
       foreach ( $one ['imports'] ?? [] as $import )
         $todo [] = $import;
 
     }
 
     return [ array_values ( array_unique ( $css ) ), array_values ( array_unique ( $chunks ) ) ];
+
+  }
+
+  // The CSS of a chunk in the order of Vite's own build (getCssFilesForChunk): the CSS of what
+  // it imports first, depth first, then its own - the entry's rules last, so they win over a
+  // shared chunk's of the same weight, as under the dev server. The entry's own CSS was
+  // linked first, and the page looked otherwise built than in development.
+
+  function padViteCss ( $manifest, $name, &$done ) {
+
+    if ( isset ( $done [$name] ) or ! isset ( $manifest [$name] ) )
+      return [];
+
+    $done [$name] = TRUE;
+    $css          = [];
+
+    foreach ( $manifest [$name] ['imports'] ?? [] as $import )
+      $css = array_merge ( $css, padViteCss ( $manifest, $import, $done ) );
+
+    return array_merge ( $css, $manifest [$name] ['css'] ?? [] );
 
   }
 
