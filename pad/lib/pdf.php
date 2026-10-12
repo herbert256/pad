@@ -384,11 +384,38 @@
         continue;
       }
 
+      // A link that holds a picture alone - a linked logo - is the picture, the link over it,
+      // where the picture was its alt text.
+
+      if ( $name == 'a' and ( $only = padPdfOnlyImage ( $child ) ) ) {
+        padPdfParagraph ( $doc, $runs, $ctx );
+        $runs = [];
+        $href = trim ( $child->getAttribute ( 'href' ) );
+        padPdfImage ( $doc, $only, $ctx, preg_match ( '#^(https?://|mailto:)#i', $href ) ? $href : '' );
+        continue;
+      }
+
       padPdfInline ( $child, $ctx, $runs );
 
     }
 
     padPdfParagraph ( $doc, $runs, $ctx );
+
+  }
+
+  // The one picture an element holds, with nothing but white space beside it - else NULL.
+
+  function padPdfOnlyImage ( $el ) {
+
+    $image = NULL;
+
+    foreach ( $el->childNodes as $node )
+      if ( $node instanceof DOMElement and strtolower ( $node->tagName ) == 'img' and ! $image )
+        $image = $node;
+      elseif ( $node instanceof DOMElement or ( $node instanceof DOMText and trim ( $node->data ) !== '' ) )
+        return NULL;
+
+    return $image;
 
   }
 
@@ -1176,7 +1203,7 @@
   // Pictures: a JPEG goes into the document as it is.
   // ------------------------------------------------------------------------------------
 
-  function padPdfImage ( &$doc, $el, $ctx ) {
+  function padPdfImage ( &$doc, $el, $ctx, $link = '' ) {
 
     $file = padPdfImageData ( trim ( $el->getAttribute ( 'src' ) ) );
     $alt  = trim ( $el->getAttribute ( 'alt' ) );
@@ -1243,6 +1270,9 @@
 
     padPdfOps ( $doc, 'q ' . padPdfN ( $w ) . ' 0 0 ' . padPdfN ( $h ) . ' ' . padPdfN ( $x ) . ' ' . padPdfN ( $doc ['y'] )
                     . ' cm /' . $doc ['images'] [$key] ['name'] . ' Do Q' );
+
+    if ( $link !== '' )
+      $doc ['pages'] [ count ( $doc ['pages'] ) - 1 ] ['links'] [] = [ $x, $doc ['y'], $x + $w, $doc ['y'] + $h, $link ];
 
     padPdfAfter ( $doc, 6 );
 
