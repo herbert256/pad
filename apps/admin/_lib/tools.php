@@ -9,7 +9,7 @@
   // adminRelative   a relative path a request names, checked: no dot segments, no hidden
   //                 names, nothing outside the characters a PAD file name uses; '' otherwise
   // adminRun        the pad command (apps/cli/pad) with arguments, in a child process:
-  //                 [ exit code, output, milliseconds ]
+  //                 [ exit code, output, milliseconds ] - none while $adminCommands is off
   // adminGit        git in the PAD home, the same way
   // adminRedact     source text with the values of passwords, keys and secrets left out
   // adminTail       the last lines of a file, read from its end
@@ -132,7 +132,16 @@
 
   }
 
+  // With $adminCommands off nothing starts, whichever page asks - the queues' retry, flush
+  // and work and the schedule's run and listing as well as the console, where only the
+  // console looked at the switch and the others ran the command all the same.
+
   function adminRun ( $args, $timeout = NULL ) {
+
+    global $adminCommands;
+
+    if ( ! $adminCommands )
+      return [ -1, 'The commands are switched off: $adminCommands in _config/config.php.', 0 ];
 
     return adminProcess ( array_merge ( [ adminPhp (), APPS . 'cli/pad' ], $args ), $timeout );
 
