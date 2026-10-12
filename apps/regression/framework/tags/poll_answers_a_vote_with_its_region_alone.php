@@ -9,9 +9,15 @@
 
   $pollUrl = $padHost . 'regression/framework/?tags/poll_shows_its_answers_as_a_form_before_a_vote&padInclude';
 
-  $pollLive  = padCurl ( [ 'url' => $pollUrl, 'post' => [ 'padLive' => 'pad-poll-fw-form', 'padEvent' => 'vote', 'padValue' => '',
-                                                          'padPoll' => 'fw-form', 'padPollAnswer' => 'Go' ] ] );
-  $pollPlain = padCurl ( [ 'url' => $pollUrl, 'post' => [ 'padPoll' => 'fw-form', 'padPollAnswer' => 'PHP' ] ] );
+  // A vote counts from a session the poll was shown to: the page is asked first, and its
+  // session posts the vote.
+
+  $pollSeen  = padCurl ( $pollUrl );
+  $pollLive  = padCurl ( [ 'url' => $pollUrl, 'cookies' => $pollSeen ['cookies'],
+                           'post' => [ 'padLive' => 'pad-poll-fw-form', 'padEvent' => 'vote', 'padValue' => '',
+                                       'padPoll' => 'fw-form', 'padPollAnswer' => 'Go' ] ] );
+  $plainSeen = padCurl ( $pollUrl );
+  $pollPlain = padCurl ( [ 'url' => $pollUrl, 'cookies' => $plainSeen ['cookies'], 'post' => [ 'padPoll' => 'fw-form', 'padPollAnswer' => 'PHP' ] ] );
 
   $vote  = $pollLive ['result'] . ': ' . pollWords ( $pollLive ['data'] );
   $again = $pollPlain ['result'] . ': ' . ( str_contains ( $pollPlain ['data'], '<style>' ) ? 'the page - ' : 'the region - ' )

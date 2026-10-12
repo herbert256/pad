@@ -109,16 +109,19 @@
     $voted = padPollVoted ( $name );
     $note  = '';
 
-    // A vote: an answer of the poll, once per visitor, counted only with a session to
-    // remember it in.
+    // A vote: an answer of the poll, once per visitor, counted only from a session that was
+    // shown the poll before - the form marks it - where the voting post started the session
+    // itself: a post without the cookie, a loop or a form on another site, voted again and
+    // again, one request a vote.
 
     $posted = padPollPosted ( $name );
+    $app    = $GLOBALS ['padApp'];
 
     if ( $posted !== FALSE and $voted === '' ) {
 
       if ( ! in_array ( $posted, $answers, TRUE ) )
         $note = 'Choose one of the answers.';
-      elseif ( ! padSessionStart () )
+      elseif ( ! padSessionExists () or ! padSessionStart () or empty ( $_SESSION ['padPollShown'] [$app] [$name] ) )
         $note = 'Your vote could not be counted - this site keeps no session for you.';
       else {
         padPollVote ( $name, $posted );
@@ -133,8 +136,11 @@
 
     if ( $voted !== '' or $results )
       $inner = padPollResults ( $id, $name, $answers, $title, $voted );
-    else
+    else {
+      if ( padSessionStart () )
+        $_SESSION ['padPollShown'] [$app] [$name] = TRUE;
       $inner = padPollForm ( $id, $name, $answers, $title, padWidgetAttr ( $button ), $note );
+    }
 
     return padPollStyle () . padLiveWrap ( $id, padProtect ( $inner ) );
 
