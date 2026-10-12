@@ -942,7 +942,11 @@
 
         $k  = $loops [$a] = ( $loops [$a] ?? -1 ) + 1;
         $n  = $nodes [$a];
-        $x  = $n ['x'] + $n ['w'] / 2 - ( $n ['shape'] == 'diamond' ? $n ['w'] / 4 : 0 );
+        // On a diamond it starts on the outline, 8 above the middle: a quarter of the width
+        // in from the tip, a decision of more than a few words had the loop and its label
+        // inside it, hidden by its fill.
+
+        $x  = $n ['x'] + ( $n ['shape'] == 'diamond' ? $n ['w'] / 2 * max ( 0, 1 - 16 / max ( 1, $n ['h'] ) ) : $n ['w'] / 2 );
         $y  = $n ['y'];
         $r  = 34 + 22 * $k;
         $d  = 'M' . $X ( $x ) . ',' . $Y ( $y - 8 ) . 'C' . $X ( $x + $r ) . ',' . $Y ( $y - 28 - 6 * $k ) . ' ' . $X ( $x + $r ) . ',' . $Y ( $y + 28 + 6 * $k ) . ' ' . $X ( $x + 6 ) . ',' . $Y ( $y + 10 );
