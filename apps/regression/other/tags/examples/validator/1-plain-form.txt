@@ -51,7 +51,11 @@
     if (end <= 0 || /[A-Za-z0-9\\\s]/.test(open)) return null;
     var flags = pattern.slice(end + 1);
     if (/[^imsuxXUAD]/.test(flags) || /[xXUAD]/.test(flags)) return null;
-    try { return new RegExp(pattern.slice(1, end), flags.replace(/[^imsu]/g, '')); } catch (e) { return null; }
+    var body = pattern.slice(1, end);
+    var bare = body.replace(/\\\\/g, '');
+    if (/\\([AzZQERhHKGeNXCagoLlUuvV]|x\{)/.test(bare) || /\[:\^?[a-z]+:\]/.test(bare)) return null;
+    if (flags.indexOf('u') < 0 ? /\\[pP]/.test(bare) : /\\[wWdDbB]/.test(bare)) return null;
+    try { return new RegExp(body, flags.replace(/[^imsu]/g, '')); } catch (e) { return null; }
   }
   function rule(name, arg, value, values, number) {
     if (Array.isArray(value)) {
@@ -71,7 +75,7 @@
       case 'min':      return size >= toNumber(arg);
       case 'max':      return size <= toNumber(arg);
       case 'in':       return arg.split(',').map(function (one) { return one.trim(); }).indexOf(value) >= 0;
-      case 'regex':    var pattern = regex(arg); return pattern ? pattern.test(value) : true;
+      case 'regex':    var pattern = regex(arg); return pattern && (pattern.unicode || !/[^\x00-\x7f]/.test(value)) ? pattern.test(value) : true;
       case 'same':     var other = values[arg]; return typeof other !== 'object' && value === trim(String(other === undefined ? '' : other));
       case 'date':     return date(value);
     }

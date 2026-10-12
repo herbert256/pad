@@ -72,7 +72,11 @@
   }
 
   // A PCRE pattern as JavaScript knows it: its delimiters taken off, the flags JavaScript
-  // has kept. null when it cannot be read - the server judges that one alone.
+  // has kept. null when it cannot be read, or JavaScript would read it another way - the
+  // server judges that one alone: an escape of PCRE's own (\A, \z, \R, \x{41} ...) is a
+  // plain letter here, [[:alnum:]] a set of its characters, \p a p without u, and under u
+  // PHP takes \w, \d and \b of every script, JavaScript of ASCII alone - José was refused.
+  // Without u PCRE reads the bytes of a value: one beyond ASCII is the server's too.
   function regex(pattern) {
     var open = pattern.charAt(0);
     var close = { '(': ')', '{': '}', '[': ']', '<': '>' }[open] || open;
@@ -80,7 +84,11 @@
     if (end <= 0 || /[A-Za-z0-9\\\s]/.test(open)) return null;
     var flags = pattern.slice(end + 1);
     if (/[^imsuxXUAD]/.test(flags) || /[xXUAD]/.test(flags)) return null;
-    try { return new RegExp(pattern.slice(1, end), flags.replace(/[^imsu]/g, '')); } catch (e) { return null; }
+    var body = pattern.slice(1, end);
+    var bare = body.replace(/\\\\/g, '');
+    if (/\\([AzZQERhHKGeNXCagoLlUuvV]|x\{)/.test(bare) || /\[:\^?[a-z]+:\]/.test(bare)) return null;
+    if (flags.indexOf('u') < 0 ? /\\[pP]/.test(bare) : /\\[wWdDbB]/.test(bare)) return null;
+    try { return new RegExp(body, flags.replace(/[^imsu]/g, '')); } catch (e) { return null; }
   }
 
   function rule(name, arg, value, values, number) {
@@ -101,7 +109,7 @@
       case 'min':      return size >= toNumber(arg);
       case 'max':      return size <= toNumber(arg);
       case 'in':       return arg.split(',').map(function (one) { return one.trim(); }).indexOf(value) >= 0;
-      case 'regex':    var pattern = regex(arg); return pattern ? pattern.test(value) : true;
+      case 'regex':    var pattern = regex(arg); return pattern && (pattern.unicode || !/[^\x00-\x7f]/.test(value)) ? pattern.test(value) : true;
       case 'same':     var other = values[arg]; return typeof other !== 'object' && value === trim(String(other === undefined ? '' : other));
       case 'date':     return date(value);
     }

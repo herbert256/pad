@@ -1217,6 +1217,98 @@
             }
         },
         {
+            "field": "name",
+            "data": {
+                "name": "José Müller"
+            },
+            "server": "",
+            "client": {
+                "name": {
+                    "label": "Name",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "regex",
+                            "/^[\\w\\s-]+$/u",
+                            ":label is not valid",
+                            "/^[\\w\\s-]+$/u"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "name",
+            "data": {
+                "name": "José"
+            },
+            "server": "",
+            "client": {
+                "name": {
+                    "label": "Name",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "regex",
+                            "/^.{5}$/",
+                            ":label is not valid",
+                            "/^.{5}$/"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "zip",
+            "data": {
+                "zip": "1234"
+            },
+            "server": "",
+            "client": {
+                "zip": {
+                    "label": "Zip",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "regex",
+                            "/\\A\\d{4}\\z/",
+                            ":label is not valid",
+                            "/\\A\\d{4}\\z/"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "slug",
+            "data": {
+                "slug": "abc-1"
+            },
+            "server": "",
+            "client": {
+                "slug": {
+                    "label": "Slug",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "regex",
+                            "/^[[:alnum:]-]+$/",
+                            ":label is not valid",
+                            "/^[[:alnum:]-]+$/"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
             "field": "confirm",
             "data": {
                 "password": "secret",
