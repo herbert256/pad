@@ -54,10 +54,16 @@
       $index++;
       $values = [];
 
+      // A rose keeps the place of a row without a value - its angle is data: a wind rose
+      // that left E out turned every direction after it, S no longer at the bottom.
+
       foreach ( $fields as $field ) {
         $v = $row [$field] ?? NULL;
-        if ( ! padChartFinite ( $v ) or $v < 0 )
-          continue 2;
+        if ( ! padChartFinite ( $v ) or $v < 0 ) {
+          if ( $kind != 'rose' )
+            continue 2;
+          $v = 0;
+        }
         $values [] = $v + 0;
       }
 
