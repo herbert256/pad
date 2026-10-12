@@ -294,11 +294,22 @@
 
   }
 
-  // A number as an axis or a tooltip writes it: thousands grouped, at most two decimals.
+  // A number as an axis or a tooltip writes it: thousands grouped, as many decimals as it
+  // has up to three - the ticks of a step of 0.025 - and beyond that two, or two digits
+  // past its leading zeros for a small one: error rates and probabilities all read 0.00,
+  // ticks at 0.025 and 0.075 were labelled 0.03 and 0.08.
 
   function padChartNumber ( $n ) {
 
-    $decimals = ( abs ( $n - round ( $n ) ) < 1e-9 ) ? 0 : ( ( abs ( $n * 10 - round ( $n * 10 ) ) < 1e-9 ) ? 1 : 2 );
+    $n = (float) $n;
+
+    for ( $needed = 0; $needed < 15; $needed++ ) {
+      $scaled = $n * 10 ** $needed;
+      if ( abs ( $scaled - round ( $scaled ) ) <= 1e-9 * abs ( $scaled ) )
+        break;
+    }
+
+    $decimals = ( $needed <= 3 or $n == 0 ) ? $needed : min ( $needed, max ( 2, 1 - (int) floor ( log10 ( abs ( $n ) ) ) ) );
 
     return number_format ( $n, $decimals, '.', ',' );
 
