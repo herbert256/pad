@@ -349,10 +349,22 @@
       '/^(\s*' . $w . '\s*=\s*)(\S.*)$/im'                         => '$1*REDACTED*',
       '#(\b[a-z][a-z0-9+.-]*://[^/\s:@\'"]*:)[^@\s\'"/]+(@)#i'     => '$1*REDACTED*$2'
     ] as $pattern => $replace )
-      if ( ( $source = preg_replace ( $pattern, $replace, (string) $source ) ) === NULL )
+      if ( ( $source = preg_replace_callback ( $pattern, fn ( $m ) => adminRedactLines ( $m, $replace ), (string) $source ) ) === NULL )
         return '';
 
     return $source;
+
+  }
+
+  // The replacement of a redacted match - its $n the groups - with the line breaks the value
+  // held after it: a secret over several lines, an XML element or a PHP string, became one,
+  // and every line after it was numbered too low in the search and on the files page.
+
+  function adminRedactLines ( $match, $replace ) {
+
+    $out = preg_replace_callback ( '/\$(\d)/', fn ( $group ) => $match [ $group [1] ] ?? '', $replace );
+
+    return $out . str_repeat ( "\n", max ( 0, substr_count ( $match [0], "\n" ) - substr_count ( $out, "\n" ) ) );
 
   }
 
