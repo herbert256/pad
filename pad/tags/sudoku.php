@@ -24,6 +24,10 @@
     $padSudokuSolved = padSudokuSolve ( $padSudokuCells );
     if ( $padSudokuSolved === NULL and $padCheckSyntax )
       padError ( "the sudoku '" . padMakeSafe ( $padParm, 90 ) . "' has no solution" );
+    elseif ( $padSudokuSolved === FALSE and $padCheckSyntax )
+      padError ( "the sudoku '" . padMakeSafe ( $padParm, 90 ) . "' is too hard to solve here - it may have no solution, or many" );
+    if ( $padSudokuSolved === FALSE )
+      $padSudokuSolved = NULL;
   }
 
   return padSudoku ( $padSudokuCells, $padSudokuSolved, (string) padTagParm ( 'title' ) );

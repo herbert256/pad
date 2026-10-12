@@ -9,13 +9,18 @@
   //
   // padSudokuCells   the 81 cells of a text - 0 for an empty one - or the reason it is no
   //                  puzzle as a string
-  // padSudokuSolve   the cells solved, or NULL when there is no solution
+  // padSudokuSolve   the cells solved, NULL when there is no solution, FALSE when the
+  //                  search gave up before it could tell
   // padSudoku        the table
   //
   // The text has a digit 1-9 for a given and . 0 _ or - for an empty cell; whitespace and
   // the | and + of a drawn grid are passed over, so a puzzle can be written in nine lines.
-  // The solver fills the cell with the fewest candidates first - every puzzle with a
-  // solution is solved in a few milliseconds, the hardest in well under a second.
+  // The solver places first what has the fewest ways to go: the cell with the fewest
+  // candidates, or the digit with the fewest places left in a row, column or box - a
+  // digit with one place is filled without a guess, one with none ends the branch. Every
+  // published puzzle is solved in a few milliseconds; the search gives up after 50,000
+  // steps, about a second, where the cell alone took a minute over a sparse puzzle with no
+  // solution and the request ran into its time limit.
 
   function padSudokuCells ( $text ) {
 
@@ -55,12 +60,12 @@
   }
 
   // The solver: a bit per digit for what each row, column and box holds, and depth first
-  // from the empty cell with the fewest candidates - none left is a dead end, one left is
-  // filled without a guess.
+  // from what has the fewest ways to go.
 
   function padSudokuSolve ( $cells ) {
 
-    $rows = $cols = $boxes = array_fill ( 0, 9, 0 );
+    $rows   = $cols = $boxes = array_fill ( 0, 9, 0 );
+    $budget = 50000;
 
     foreach ( $cells as $i => $digit )
       if ( $digit ) {
@@ -70,7 +75,9 @@
         $boxes [ padSudokuBox ( $i ) ] |= $bit;
       }
 
-    return padSudokuSearch ( $cells, $rows, $cols, $boxes ) ? $cells : NULL;
+    $found = padSudokuSearch ( $cells, $rows, $cols, $boxes, $budget );
+
+    return ( $found === TRUE ) ? $cells : ( ( $found === FALSE ) ? NULL : FALSE );
 
   }
 
@@ -80,41 +87,121 @@
 
   }
 
-  function padSudokuSearch ( &$cells, &$rows, &$cols, &$boxes ) {
+  // The 27 units - the rows, the columns and the boxes - as lists of their cells.
 
+  function padSudokuUnits () {
+
+    static $units = NULL;
+
+    if ( $units === NULL ) {
+
+      $units = [];
+
+      for ( $u = 0; $u < 9; $u++ ) {
+
+        $row = $col = $box = [];
+
+        for ( $k = 0; $k < 9; $k++ ) {
+          $row [] = $u * 9 + $k;
+          $col [] = $k * 9 + $u;
+          $box [] = ( intdiv ( $u, 3 ) * 3 + intdiv ( $k, 3 ) ) * 9 + ( $u % 3 ) * 3 + $k % 3;
+        }
+
+        array_push ( $units, $row, $col, $box );
+
+      }
+
+    }
+
+    return $units;
+
+  }
+
+  // TRUE solved - the cells filled in -, FALSE no solution, NULL the budget spent.
+
+  function padSudokuSearch ( &$cells, &$rows, &$cols, &$boxes, &$budget ) {
+
+    if ( --$budget < 0 )
+      return NULL;
+
+    $open = [];
     $best = -1;
-    $free = 0;
     $low  = 10;
 
     foreach ( $cells as $i => $digit )
       if ( ! $digit ) {
-        $open  = ~ ( $rows [ intdiv ( $i, 9 ) ] | $cols [ $i % 9 ] | $boxes [ padSudokuBox ( $i ) ] ) & 0x3FE;
-        $count = substr_count ( decbin ( $open ), '1' );
+        $open [$i] = ~ ( $rows [ intdiv ( $i, 9 ) ] | $cols [ $i % 9 ] | $boxes [ padSudokuBox ( $i ) ] ) & 0x3FE;
+        $count     = substr_count ( decbin ( $open [$i] ), '1' );
         if ( $count < $low ) {
-          list ( $best, $free, $low ) = [ $i, $open, $count ];
-          if ( $count <= 1 )
-            break;
+          $best = $i;
+          $low  = $count;
         }
       }
 
     if ( $best < 0 )
       return TRUE;
 
-    $r = intdiv ( $best, 9 );
-    $c = $best % 9;
-    $b = padSudokuBox ( $best );
+    if ( $low == 0 )
+      return FALSE;
 
-    for ( $digit = 1; $digit <= 9; $digit++ )
-      if ( $free & ( 1 << $digit ) ) {
-        $bit = 1 << $digit;
-        $cells [$best] = $digit;
-        $rows [$r] |= $bit; $cols [$c] |= $bit; $boxes [$b] |= $bit;
-        if ( padSudokuSearch ( $cells, $rows, $cols, $boxes ) )
-          return TRUE;
-        $rows [$r] &= ~$bit; $cols [$c] &= ~$bit; $boxes [$b] &= ~$bit;
-      }
+    // A digit with fewer places in a unit than the cell has candidates goes first; one with
+    // no place left is a dead end.
 
-    $cells [$best] = 0;
+    $choices = NULL;
+
+    if ( $low > 1 )
+      foreach ( padSudokuUnits () as $unit )
+        for ( $digit = 1; $digit <= 9; $digit++ ) {
+
+          $bit    = 1 << $digit;
+          $places = [];
+
+          foreach ( $unit as $i )
+            if ( $cells [$i] == $digit )
+              continue 2;
+            elseif ( ! $cells [$i] and ( $open [$i] & $bit ) )
+              $places [] = $i;
+
+          if ( ! $places )
+            return FALSE;
+
+          if ( count ( $places ) < $low ) {
+            $low     = count ( $places );
+            $choices = [];
+            foreach ( $places as $i )
+              $choices [] = [ $i, $digit ];
+            if ( $low == 1 )
+              break 2;
+          }
+
+        }
+
+    if ( $choices === NULL ) {
+      $choices = [];
+      for ( $digit = 1; $digit <= 9; $digit++ )
+        if ( $open [$best] & ( 1 << $digit ) )
+          $choices [] = [ $best, $digit ];
+    }
+
+    foreach ( $choices as [ $i, $digit ] ) {
+
+      $bit = 1 << $digit;
+      $r   = intdiv ( $i, 9 );
+      $c   = $i % 9;
+      $b   = padSudokuBox ( $i );
+
+      $cells [$i] = $digit;
+      $rows [$r] |= $bit; $cols [$c] |= $bit; $boxes [$b] |= $bit;
+
+      $found = padSudokuSearch ( $cells, $rows, $cols, $boxes, $budget );
+
+      if ( $found !== FALSE )
+        return $found;
+
+      $rows [$r] &= ~$bit; $cols [$c] &= ~$bit; $boxes [$b] &= ~$bit;
+      $cells [$i] = 0;
+
+    }
 
     return FALSE;
 
