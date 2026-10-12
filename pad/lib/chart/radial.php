@@ -215,7 +215,14 @@
 
     list ( $id, $svg ) = padChartOpen ( 'radialbar', [ $items, $scale ], $desc, $title, $width, $height );
 
-    $r     = max ( 20, min ( $height / 2 - 18, $width / 2 - 30 ) );
+    // As much room beside the rings as the widest number of the scale takes, written from
+    // the outer ring outward: in a square chart 12,500 ran off the left edge.
+
+    $tickW = 0;
+    foreach ( $ticks as $tick )
+      $tickW = max ( $tickW, padChartWidth ( padChartNumber ( $tick ) ) );
+
+    $r     = max ( 20, min ( $height / 2 - 18, $width / 2 - max ( 30, $tickW + 12 ) ) );
     $cx    = $width / 2;
     $cy    = $height / 2 + 2;
     $hole  = $r * 0.22;
