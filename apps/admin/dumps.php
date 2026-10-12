@@ -91,7 +91,7 @@
     unset ( $one );
 
     $partText = (string) file_get_contents ( $root . "$report/$part" );
-    $partHtml = str_ends_with ( $part, '.html' ) ? $partText : '<pre>' . htmlspecialchars ( $partText ) . '</pre>';
+    $partHtml = adminText ( str_ends_with ( $part, '.html' ) ? $partText : '<pre>' . adminText ( $partText ) . '</pre>' );
 
   }
 

@@ -6,6 +6,7 @@
   // adminWhen       a time as 2026-10-08 14:03, with how long ago
   // adminDirSize    [ bytes, files ] of everything below a directory
   // adminRemove     a directory and everything below it - only ever below DATA/
+  // adminText       a text as HTML, an entity in it shown as written
   // adminRelative   a relative path a request names, checked: no dot segments, no hidden
   //                 names, nothing outside the characters a PAD file name uses; '' otherwise
   // adminRun        the pad command (apps/cli/pad) with arguments, in a child process:
@@ -111,6 +112,16 @@
     @rmdir ( $real );
 
     return $count;
+
+  }
+
+  // A text as HTML, every & of it written as &amp; - for the bytes of a file, printed with
+  // {!...}: the sanitize chain of {$x} leaves an entity that is there alone, so a mail's
+  // &lt;b&gt; read as <b> in its source and became an element in its sandboxed frame.
+
+  function adminText ( $text ) {
+
+    return htmlspecialchars ( (string) $text, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' );
 
   }
 

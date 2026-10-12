@@ -8,17 +8,17 @@
   {if $hasHtml}
     <section class="card">
       <h2>HTML</h2>
-      <iframe class="mail" sandbox title="The HTML part of the mail" srcdoc="{$mailHtml}"></iframe>
+      <iframe class="mail" sandbox title="The HTML part of the mail" srcdoc="{!mailHtml}"></iframe>
     </section>
   {/if}
 
   <section class="card">
     <h2>Text</h2>
-    <pre class="wrap">{$mailText}</pre>
+    <pre class="wrap">{!mailText}</pre>
   </section>
 
   <section class="card">
-    <details><summary>Source</summary><pre class="wrap">{$mailRaw}</pre></details>
+    <details><summary>Source</summary><pre class="wrap">{!mailRaw}</pre></details>
     <form method="post" style="margin-top:12px">
       <input type="hidden" name="action" value="delete"><input type="hidden" name="app" value="{$app}"><input type="hidden" name="mail" value="{$mail}">
       <button class="danger" data-confirm="Remove this mail?">{icon 'trash', size=16} Remove this mail</button>

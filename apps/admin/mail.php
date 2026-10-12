@@ -56,10 +56,10 @@
     $viewing  = 1;
     $message  = adminMailRead ( DATA . "mail/$app/$mail" );
     $title    = $message ['headers'] ['subject'] ?? $mail;
-    $mailText = $message ['text'];
-    $mailHtml = $message ['html'];
-    $mailRaw  = $message ['raw'];
-    $hasHtml  = $mailHtml !== '' ? 1 : 0;
+    $mailText = adminText ( $message ['text'] );
+    $mailHtml = adminText ( $message ['html'] );
+    $mailRaw  = adminText ( $message ['raw'] );
+    $hasHtml  = $message ['html'] !== '' ? 1 : 0;
 
     foreach ( [ 'from', 'to', 'cc', 'bcc', 'reply-to', 'date', 'subject' ] as $name )
       if ( isset ( $message ['headers'] [$name] ) )
