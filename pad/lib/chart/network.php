@@ -73,7 +73,11 @@
     if ( ! $links )
       return '';
 
-    $desc = [ count ( $nodes ) . ( count ( $nodes ) == 1 ? ' node, ' : ' nodes, ' ) . count ( $links ) . ( count ( $links ) == 1 ? ' link' : ' links' ) ];
+    // Past 300 nodes the force is not computed: the description says so, where the nodes
+    // stayed on their circle without a word.
+
+    $desc = [ count ( $nodes ) . ( count ( $nodes ) == 1 ? ' node, ' : ' nodes, ' ) . count ( $links ) . ( count ( $links ) == 1 ? ' link' : ' links' )
+              . ( ( $layout == 'force' and count ( $nodes ) > 300 ) ? ' - more than 300 nodes, set on a circle, not laid out by force' : '' ) ];
     foreach ( $links as list ( $s, $t, $v ) )
       $desc [] = "$s → $t" . ( $vField !== '' ? ': ' . padChartNumber ( $v ) : '' );
 

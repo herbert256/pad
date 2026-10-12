@@ -1246,7 +1246,7 @@ Draw a chart as inline SVG - no JavaScript, so it works in print and caches like
 | `bubble` | A scatter whose dots have the area of `size` | `x`, `y`, `size`, `label`, `color`, `trend` |
 | `heatmap` | A grid of the categories `x` (columns) and `y` (rows), each cell one of seven steps of one hue; rows with the same cell add up | `x`, `y`, `value` |
 | `sankey` | Flows from `source` to `target` as wide as `value`, in columns along the longest path; flows that go round in a circle are an error | `source`, `target`, `value` |
-| `network` | Nodes and the links between them; `layout='force'` (default, the same picture for the same data) or `'radial'`, `arrows` for the direction, `value` for thicker links | `source`, `target`, `value`, `layout`, `arrows` |
+| `network` | Nodes and the links between them; `layout='force'` (default, the same picture for the same data; past 300 nodes they are set on a circle, which the description says) or `'radial'`, `arrows` for the direction, `value` for thicker links | `source`, `target`, `value`, `layout`, `arrows` |
 | `treemap` | Nested rectangles (squarified), `levels` the fields above the parts, outermost first | `label`, `value`, `levels` |
 | `sunburst` | The same hierarchy as rings around the total | `label`, `value`, `levels` |
 | `gauge` | One number on a half ring from `from` (0) to `to` (100); `bands` - one or two thresholds - colour the track green, amber, red; `target` marks a value; `unit` follows the number. `value` is the number itself, or the field of the first row - so a gauge needs no data | `value`, `from`, `to`, `bands`, `target`, `label`, `unit` |
