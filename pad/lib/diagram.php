@@ -191,6 +191,32 @@
 
   }
 
+  // Where a frame of a sequence diagram stands across - [ x0, x1 ] - round the columns its
+  // messages touch, an inner one inset, and wide enough for the tab and the condition of
+  // each of its parts.
+
+  function padDiagramFrameSpan ( $frame, $x, $boxW, $n ) {
+
+    list ( $kind, , , $a, $b, $parts, $depth ) = $frame;
+
+    if ( $b < 0 ) {
+      $a = 0;
+      $b = $n - 1;
+    }
+
+    $inset = 8 * $depth;
+    $x0    = max ( 4, $x [$a] - max ( 50, $boxW [$a] / 2 + 6 ) + $inset );
+    $x1    = $x [$b] + max ( 50, $boxW [$b] / 2 + 6 ) - $inset;
+    $tabW  = padDiagramWidth ( $kind ) + 14;
+
+    foreach ( $parts as $k => list ( , $text ) )
+      if ( $text !== '' )
+        $x1 = max ( $x1, ( $k ? $x0 + 8 : $x0 + $tabW + 8 ) + padDiagramWidth ( "[$text]" ) + 8 );
+
+    return [ $x0, $x1 ];
+
+  }
+
   function padDiagramWrap ( $text, $max = 24 ) {
 
     $lines = [];
@@ -1307,6 +1333,12 @@
     }
 
     $bottom = $y + 20;
+    // A frame reaches past its columns as far as its conditions need, and the picture with
+    // it: a long condition was written past the frame and the edge of the picture, cut off.
+
+    foreach ( $frames as $frame )
+      $right = max ( $right, padDiagramFrameSpan ( $frame, $x, $boxW, $n ) [1] + 4 - 12 );
+
     $width  = (int) ceil ( $right + 12 );
     $height = (int) ceil ( $bottom + $boxH + 12 );
 
@@ -1336,15 +1368,10 @@
 
     foreach ( $frames as list ( $kind, $top, $end, $a, $b, $parts, $depth ) ) {
 
-      if ( $b < 0 ) {
-        $a = 0;
-        $b = $n - 1;
-      }
+      list ( $x0, $x1 ) = padDiagramFrameSpan ( [ $kind, $top, $end, $a, $b, $parts, $depth ], $x, $boxW, $n );
 
-      $inset = 8 * $depth;
-      $x0    = max ( 4, $x [$a] - max ( 50, $boxW [$a] / 2 + 6 ) + $inset );
-      $x1    = min ( $width - 4, $x [$b] + max ( 50, $boxW [$b] / 2 + 6 ) - $inset );
-      $tabW  = padDiagramWidth ( $kind ) + 14;
+      $x1   = min ( $width - 4, $x1 );
+      $tabW = padDiagramWidth ( $kind ) + 14;
 
       $svg .= '<rect class="pd-frame" x="' . $X ( $x0 ) . '" y="' . $X ( $top ) . '" width="' . $X ( $x1 - $x0 ) . '" height="' . $X ( $end - $top ) . '"/>'
             . '<path class="pd-tab" d="M' . $X ( $x0 ) . ',' . $X ( $top ) . 'h' . $X ( $tabW ) . 'v12l-6,6H' . $X ( $x0 ) . 'Z"/>'
