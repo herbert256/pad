@@ -149,6 +149,16 @@
 
   function padMarkdownItem ( $line ) {
 
+    // A tab after the marker - lists as editors and document exports write them - is spaces
+    // up to the next tab stop, where the line was no list item but a paragraph.
+
+    if ( preg_match ( '/^( {0,3}(?:[-+*]|\d{1,9}[.)]))([ \t]*\t[ \t]*)/', $line, $tab ) ) {
+      $spaces = '';
+      foreach ( str_split ( $tab [2] ) as $char )
+        $spaces .= ( $char == "\t" ) ? str_repeat ( ' ', 4 - ( strlen ( $tab [1] ) + strlen ( $spaces ) ) % 4 ) : ' ';
+      $line = $tab [1] . $spaces . substr ( $line, strlen ( $tab [0] ) );
+    }
+
     if ( ! preg_match ( '/^( {0,3})([-+*]|(\d{1,9})([.)]))( +|$)(.*)$/', $line, $m ) )
       return FALSE;
 
@@ -454,11 +464,12 @@
 
       }
 
-      // Blank lines at the end of an item belong between it and the next one.
+      // Blank lines at the end of an item belong between it and the next one - not the first
+      // line of an empty item, which is its content: "- a\n-\n- c" was a loose list.
 
       $trailing = FALSE;
 
-      while ( $body and trim ( end ( $body ) ) === '' ) {
+      while ( count ( $body ) > 1 and trim ( end ( $body ) ) === '' ) {
         array_pop ( $body );
         $trailing = TRUE;
       }
