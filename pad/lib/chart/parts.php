@@ -151,8 +151,21 @@
         $values [] = $value + 0;
       }
 
-      $text      = padChartText ( $row, $label );
-      $labels [] = ( $label !== '' and $text !== '' ) ? $text : ( is_string ( $key ) ? $key : (string) $index );
+      // No label=: the first field that is no number, as for one series - the months under
+      // the bars, where several series showed the row numbers.
+
+      $text = '';
+
+      if ( $label !== '' )
+        $text = padChartText ( $row, $label );
+      else
+        foreach ( $row as $field )
+          if ( is_scalar ( $field ) and ! is_numeric ( $field ) ) {
+            $text = (string) $field;
+            break;
+          }
+
+      $labels [] = ( $text !== '' ) ? $text : ( is_string ( $key ) ? $key : (string) $index );
 
       foreach ( array_keys ( $series ) as $i => $name )
         $series [$name] [] = $values [$i];
