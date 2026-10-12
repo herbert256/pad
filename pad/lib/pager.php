@@ -159,8 +159,8 @@
 
     foreach ( $items as $item ) {
 
-      $href  = htmlspecialchars ( $item ['href'], ENT_QUOTES, 'UTF-8' );
-      $label = htmlspecialchars ( $item ['label'], ENT_QUOTES, 'UTF-8' );
+      $href  = htmlspecialchars ( padUnprotectQuotes ( (string) $item ['href'] ), ENT_QUOTES, 'UTF-8' );
+      $label = htmlspecialchars ( padUnprotectQuotes ( (string) $item ['label'] ), ENT_QUOTES, 'UTF-8' );
 
       if ( $item ['kind'] == 'prev' or $item ['kind'] == 'next' ) {
 

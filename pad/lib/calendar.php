@@ -84,7 +84,7 @@
   function padCalendarHtml ( $month, $weeks, $tField, $lField, $query ) {
 
     $catalog = padTransCatalog ();
-    $h       = fn ( $t ) => htmlspecialchars ( (string) $t, ENT_QUOTES, 'UTF-8' );
+    $h       = fn ( $t ) => htmlspecialchars ( padUnprotectQuotes ( (string) $t ), ENT_QUOTES, 'UTF-8' );
     $first   = new DateTimeImmutable ( "$month-01", new DateTimeZone ( 'UTC' ) );
     $prev    = $first->modify ( '-1 month' )->format ( 'Y-m' );
     $next    = $first->modify ( '+1 month' )->format ( 'Y-m' );

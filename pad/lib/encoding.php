@@ -152,7 +152,11 @@
   // characters they stand for. exits.php restores a stand-in only after every escaper has
   // run, so one that came in with the request - %EE%80%A2 is U+E022 - passed htmlentities
   // untouched and came out a live quote: title="{$name}" with ?name=x%EE%80%A2%20onclick=...
-  // closed the attribute. An escaper reads it as the quote it will be, and escapes that.
+  // closed the attribute. An escaper reads it as the quote it will be, and escapes that -
+  // the pipes, the field's sanitize step, {attrs}, the forms, and the escape helpers of the
+  // tags that draw (padChartAttr, padQrAttr and their like), which escaped the stand-in as
+  // the text it was: {qr ..., color=$c} and {countdown ..., past=$p} wrote an attribute a
+  // visitor's value closed and filled with an event handler.
 
   function padUnprotectQuotes ( $string ) {
 

@@ -188,7 +188,7 @@
 
   function padToolbarEsc ( $text ) {
 
-    return htmlspecialchars ( (string) $text, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' );
+    return htmlspecialchars ( padUnprotectQuotes ( (string) $text ), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' );
 
   }
 

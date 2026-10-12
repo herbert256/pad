@@ -115,7 +115,7 @@
 
     $csrf = ( $GLOBALS ['padCsrf'] ?? FALSE ) ? ' data-pad-csrf="' . padCsrfToken () . '"' : '';
 
-    return '<div data-pad-live="' . htmlspecialchars ( $name ) . '"' . $csrf . '>' . $content . '</div>' . $script;
+    return '<div data-pad-live="' . htmlspecialchars ( padUnprotectQuotes ( (string) $name ), ENT_QUOTES, 'UTF-8' ) . '"' . $csrf . '>' . $content . '</div>' . $script;
 
   }
 

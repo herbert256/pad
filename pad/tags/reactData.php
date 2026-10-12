@@ -34,7 +34,7 @@
   $padProviders [$padReactId] = $padReact;
 
   return '<div id="' 
-       . htmlspecialchars ( (string) $padReactId, ENT_QUOTES, 'UTF-8' )
+       . htmlspecialchars ( padUnprotectQuotes ( (string) $padReactId ), ENT_QUOTES, 'UTF-8' )
        . '" data="' 
        . padJsonForHtmlAttr ( $padReact ) 
        . '"></div>';

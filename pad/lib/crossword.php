@@ -217,7 +217,7 @@
 
   function padCrossword ( $placed, $skipped, $solution, $title ) {
 
-    $h    = fn ( $t ) => htmlspecialchars ( (string) $t, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' );
+    $h    = fn ( $t ) => htmlspecialchars ( padUnprotectQuotes ( (string) $t ), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' );
     $grid = [];
 
     foreach ( $placed as list ( $word, $row, $col, $across ) )

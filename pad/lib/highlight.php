@@ -207,7 +207,7 @@
 
   function padHighlightEscape ( $text ) {
 
-    return htmlspecialchars ( $text, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' );
+    return htmlspecialchars ( padUnprotectQuotes ( (string) $text ), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' );
 
   }
 

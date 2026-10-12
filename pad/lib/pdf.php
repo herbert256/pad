@@ -193,8 +193,8 @@
     $url  = htmlspecialchars ( $padGo . $padPage . '&padPdf', ENT_QUOTES );
 
     return '<p class="pad-pdf-links"><a class="pad-pdf-open" href="' . $url . '" type="application/pdf">Open '
-         . htmlspecialchars ( $name ) . '.pdf</a> <a class="pad-pdf-download" href="' . $url . '=download"'
-         . ' type="application/pdf" download="' . htmlspecialchars ( $name ) . '.pdf">Download</a></p>';
+         . htmlspecialchars ( padUnprotectQuotes ( (string) $name ) ) . '.pdf</a> <a class="pad-pdf-download" href="' . $url . '=download"'
+         . ' type="application/pdf" download="' . htmlspecialchars ( padUnprotectQuotes ( (string) $name ) ) . '.pdf">Download</a></p>';
 
   }
 

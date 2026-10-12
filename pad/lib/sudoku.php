@@ -126,7 +126,7 @@
 
   function padSudoku ( $cells, $solved, $title ) {
 
-    $h      = fn ( $t ) => htmlspecialchars ( (string) $t, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' );
+    $h      = fn ( $t ) => htmlspecialchars ( padUnprotectQuotes ( (string) $t ), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' );
     $givens = count ( array_filter ( $cells ) );
     $name   = $solved ? "Sudoku with its solution, $givens givens" : "Sudoku, $givens givens";
 
