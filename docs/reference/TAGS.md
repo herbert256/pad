@@ -2460,7 +2460,7 @@ no tiles, no remote service.
 | Option | Description |
 |--------|-------------|
 | first parameter | The view: `world` (default), `europe`, `africa`, `asia`, `north-america`, `south-america` or `oceania` |
-| `data` | The rows - a `{data}` store, a page array or a `_data` file, as for `{chart}`; as a pair the content is the rows (JSON, YAML, XML or CSV) |
+| `data` | The rows - a `{data}` store, a page array or a `_data` file, as for `{chart}`; as a pair the content is the rows (JSON, YAML, XML or CSV). A row that is a value alone takes its key as the country: `[ 'NL' => 1200, 'BE' => 800 ]` |
 | `key` | The field with the country: its ISO 3166 alpha-2 or alpha-3 code or its English name, in any case - else the first field that is no number |
 | `value` | The number - else the first numeric field |
 | `scale` | `linear` (default: seven steps from the lowest value to the highest) or `quantile` (seven steps by rank) |
