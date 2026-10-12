@@ -157,7 +157,10 @@
     if ( ! is_finite ( $scale ) or $scale <= 0 )
       return '';
 
-    $x = $y = $h = [];
+    $x = $y = $h = $into = [];
+
+    foreach ( $links as list ( $s, $t, $v ) )
+      $into [ (string) $t ] [] = [ $s, $v ];
 
     foreach ( $columns as $c => $list ) {
 
@@ -166,13 +169,14 @@
 
       if ( $c > 0 ) {
         // A node's name as an array key is an integer when it reads as one, so the names
-        // are compared loosely.
+        // are compared as text - loosely, 1, 01 and 1.0 were one node - and the flows into
+        // a node are looked up, not searched for in every link: 10,000 nodes took seconds.
 
         $centre = [];
         foreach ( $list as $node ) {
           $sum = $weight = 0;
-          foreach ( $links as list ( $s, $t, $v ) )
-            if ( $t == $node and isset ( $y [$s] ) ) {
+          foreach ( $into [ (string) $node ] ?? [] as list ( $s, $v ) )
+            if ( isset ( $y [$s] ) ) {
               $sum    += ( $y [$s] + $h [$s] / 2 ) * $v;
               $weight += $v;
             }
