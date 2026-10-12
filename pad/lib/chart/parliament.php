@@ -33,9 +33,12 @@
       }
 
       if ( $seats > 0 )
-        $parties [] = [ $name, (int) $seats ];
+        $parties [] = [ $name, $seats ];
 
     }
+
+    // Counted as numbers before they are whole ones: a count past the largest integer -
+    // 1e19 - ended the page with a PHP warning instead of the chart's own message.
 
     $total = array_sum ( array_column ( $parties, 1 ) );
 
@@ -44,9 +47,14 @@
 
     if ( $total > 5000 ) {
       if ( $padCheckSyntax )
-        padError ( "the parliament has $total seats - 5000 at most" );
+        padError ( "the parliament has " . padChartNumber ( $total ) . " seats - 5000 at most" );
       return '';
     }
+
+    foreach ( $parties as $i => list ( $name, $seats ) )
+      $parties [$i] [1] = (int) $seats;
+
+    $total = (int) $total;
 
     $majority = intdiv ( $total, 2 ) + 1;
     $desc     = [];
