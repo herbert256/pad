@@ -431,9 +431,14 @@
 
   // One cookie per application, as the login is: the name carries the application.
 
+  // The name of the remember-me cookie of this application: its name as it stands, the /
+  // between its parts a ~ - a character a cookie's name may hold, an application's never,
+  // and one PHP keeps (a . it reads back as _). Every character that was no letter or digit
+  // was a _, and a/b, a_b and a-b shared one cookie: a visit to one dropped the other's.
+
   function padAuthCookieName () {
 
-    return 'padRemember_' . preg_replace ( '/[^A-Za-z0-9]/', '_', padAuthApp () );
+    return 'padRemember_' . strtr ( preg_replace ( '#[^A-Za-z0-9_/-]#', '_', padAuthApp () ), '/', '~' );
 
   }
 
