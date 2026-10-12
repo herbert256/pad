@@ -19,7 +19,7 @@
     $padHighlightPath = realpath ( APP . ltrim ( $padHighlightFile, '/' ) );
 
     if ( $padHighlightPath === FALSE or ! is_file ( $padHighlightPath ) or ! str_starts_with ( $padHighlightPath, $padHighlightApp . DIRECTORY_SEPARATOR )
-         or preg_match ( '#(^|/)(_config/|\.)#', substr ( $padHighlightPath, strlen ( $padHighlightApp ) + 1 ) ) ) {
+         or padSourceHidden ( substr ( $padHighlightPath, strlen ( $padHighlightApp ) + 1 ) ) ) {
       if ( $padCheckSyntax )
         padError ( "there is no file '" . padMakeSafe ( $padHighlightFile, 60 ) . "' of the application to highlight" );
       return '';

@@ -110,10 +110,21 @@
     if ( $root === FALSE or $path === FALSE or ! is_file ( $path ) or ! str_starts_with ( $path, $root . DIRECTORY_SEPARATOR ) )
       return FALSE;
 
-    if ( preg_match ( '#(^|/)(_config/|\.)#', substr ( $path, strlen ( $root ) + 1 ) ) )
+    if ( padSourceHidden ( substr ( $path, strlen ( $root ) + 1 ) ) )
       return FALSE;
 
     return $path;
+
+  }
+
+  // Whether a file of the application is kept from being shown: one under _config/ or a
+  // dotfile - in any case of its letters, which realpath keeps as the caller wrote them on a
+  // file system that ignores case (_CONFIG/config.php showed the configuration on a Mac),
+  // and with the separators of Windows.
+
+  function padSourceHidden ( $relative ) {
+
+    return (bool) preg_match ( '#(^|/)(_config/|\.)#i', str_replace ( '\\', '/', $relative ) );
 
   }
 
