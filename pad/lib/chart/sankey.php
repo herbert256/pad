@@ -37,7 +37,11 @@
       $s   = padChartText ( $row, $sField );
       $t   = padChartText ( $row, $tField );
 
-      if ( ! padChartFinite ( $v ) or $v <= 0 or $s === $t )
+      // A flow without one of its ends is left out, as network, chord and arc leave it: the
+      // blanks were one node '', and an inflow and an outflow without a name went round a
+      // circle through it that the data did not have.
+
+      if ( ! padChartFinite ( $v ) or $v <= 0 or $s === $t or trim ( $s ) === '' or trim ( $t ) === '' )
         continue;
 
       $key = serialize ( [ $s, $t ] );
