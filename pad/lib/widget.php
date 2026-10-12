@@ -7,7 +7,8 @@
   // padWidgetId      a deterministic id: made from the widget's own content, so a widget
   //                  served from the fragment cache and one rendered next to it, or the
   //                  widgets of two nested passes, never share one - the same widget drawn
-  //                  twice in a request gets a number behind the second (as padChartOpen)
+  //                  twice in a request gets a number behind the second (as padChartOpen):
+  //                  -n2, which no item of the first - -1, -2 - can be
   // padWidgetOnce    TRUE the first time a key is asked for in this request - the CSS and
   //                  the script of a kind go out with the first widget of that kind only
   // padWidgetColors  the custom properties of a class with their light-dark() defaults: a
@@ -29,7 +30,7 @@
 
     $drawn [$id] = ( $drawn [$id] ?? 0 ) + 1;
 
-    return ( $drawn [$id] > 1 ) ? $id . '-' . $drawn [$id] : $id;
+    return ( $drawn [$id] > 1 ) ? $id . '-n' . $drawn [$id] : $id;
 
   }
 
