@@ -104,7 +104,7 @@
     elseif ( $inList )
       $label = '<span class="pad-jsonview-index">' . (int) $key . '</span><span class="pad-jsonview-colon">:</span> ';
     else
-      $label = '<span class="pad-jsonview-key">' . padChartAttr ( json_encode ( (string) $key, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) )
+      $label = '<span class="pad-jsonview-key">' . padChartAttr ( json_encode ( (string) $key, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE ) )
              . '</span><span class="pad-jsonview-colon">:</span> ';
 
     if ( is_object ( $value ) ) {
