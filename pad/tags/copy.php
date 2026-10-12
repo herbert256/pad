@@ -22,7 +22,18 @@
     // only, every line after the first was copied shifted by where the tag stands.
 
     $padCopyText = trim ( padChartDedent ( $padContent ) );
-    $padContent  = padCopy ( $padCopyText, $padCopyText, $padCopyLabel );
+
+    // A pair with nothing to copy is the error the single tag without its text is: it drew
+    // an empty box with a button that copied nothing.
+
+    if ( $padCopyText === '' ) {
+      if ( $padCheckSyntax )
+        padError ( "the {copy} needs its text - {copy 'npm install pad'} or {copy}...{/copy}" );
+      $padContent = '';
+      return TRUE;
+    }
+
+    $padContent = padCopy ( $padCopyText, $padCopyText, $padCopyLabel );
 
     return TRUE;
 
