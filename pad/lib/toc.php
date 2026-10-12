@@ -84,11 +84,12 @@
     if ( ! is_string ( $output ) or ! str_contains ( $output, "\u{E0F6}" ) )
       return $output;
 
-    // The ids the page has already, so a made one never takes one of them.
+    // The ids the page has already, so a made one never takes one of them - read as the
+    // browser reads them, entities and all: id="intro&#45;2" is intro-2.
 
     preg_match_all ( '/\sid\s*=\s*["\']([^"\']*)["\']/i', $output, $found );
 
-    $taken    = array_fill_keys ( $found [1], TRUE );
+    $taken    = array_fill_keys ( array_map ( 'padTocId', $found [1] ), TRUE );
     $headings = [];
 
     // Every heading of the levels any {toc} of the page asks for gets its id now, once.
@@ -124,8 +125,11 @@
         if ( $text === '' )
           return $match [0];
 
+        // The link's href is escaped from the id itself: one written with an entity -
+        // id="a&amp;b" - was escaped a second time and led to a target that is not there.
+
         if ( preg_match ( '/\sid\s*=\s*["\']([^"\']*)["\']/i', $attrs, $has ) and $has [1] !== '' )
-          $id = $has [1];
+          $id = padTocId ( $has [1] );
         else {
           $base = padStrSlug ( html_entity_decode ( padUnprotect ( padUnescape ( $text ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' ) );
           $base = ( $base === '' ) ? 'section' : $base;
@@ -156,6 +160,14 @@
       return $mine ? padTocHtml ( $mine, (string) $title, $list == 'ul' ? 'ul' : 'ol' ) : '';
 
     }, $output ) ?? $output;
+
+  }
+
+  // An id attribute's value as the browser reads it.
+
+  function padTocId ( $value ) {
+
+    return html_entity_decode ( $value, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
 
   }
 
