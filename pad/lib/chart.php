@@ -122,8 +122,12 @@
       if ( trim ( $line ) !== '' )
         $indent = min ( $indent, strlen ( $line ) - strlen ( ltrim ( $line, " \t" ) ) );
 
+    // Without an indent to take off the text is the same lines all the same - the blank line
+    // after the tag left out - where it came back as it was: a diagram's "cannot read line
+    // N" named another line for content not indented than for content that was.
+
     if ( $indent == PHP_INT_MAX or $indent == 0 )
-      return $source;
+      return implode ( "\n", $lines );
 
     foreach ( $lines as $key => $line )
       $lines [$key] = substr ( $line, min ( $indent, strlen ( $line ) - strlen ( ltrim ( $line, " \t" ) ) ) );
