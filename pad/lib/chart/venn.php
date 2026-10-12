@@ -192,7 +192,11 @@
       $anchor = ( $ux > 0.35 ) ? 'start' : ( $ux < -0.35 ? 'end' : 'middle' );
       $tx     = $x + $ux * ( $r [$i] + 6 );
       $ty     = $y + $uy * ( $r [$i] + 6 ) + ( $uy > 0.35 ? 11 : ( $uy < -0.35 ? 0 : 4 ) );
-      $svg   .= '<text x="' . padChartXY ( $tx ) . '" y="' . padChartXY ( $ty ) . "\" text-anchor=\"$anchor\">" . padChartAttr ( padChartFit ( $sets [$i], $width * 0.4 ) ) . '</text>';
+      // Fitted to the room between the anchor and the edge it reads toward: fitted to 40% of
+      // the width, a name of 27 letters ran off the picture on both sides.
+
+      $room   = ( $anchor == 'end' ) ? $tx - 4 : ( $anchor == 'start' ? $width - $tx - 4 : 2 * min ( $tx, $width - $tx ) - 8 );
+      $svg   .= '<text x="' . padChartXY ( $tx ) . '" y="' . padChartXY ( $ty ) . "\" text-anchor=\"$anchor\">" . padChartAttr ( padChartFit ( $sets [$i], min ( $width * 0.4, $room ) ) ) . '</text>';
     }
 
     // The count of every region, at the point of it furthest from any edge on a grid of
