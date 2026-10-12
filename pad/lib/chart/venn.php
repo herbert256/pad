@@ -188,7 +188,11 @@
       $ux     = $x - $mid [0];
       $uy     = $y - $mid [1];
       $len    = sqrt ( $ux * $ux + $uy * $uy );
-      list ( $ux, $uy ) = ( $len > 1e-6 ) ? [ $ux / $len, $uy / $len ] : [ 0, -1 ];
+      // A circle at the middle - sets of one size that overlap completely - takes a way of
+      // its own, up, down or round, where every name went up and they were written on top
+      // of each other.
+
+      list ( $ux, $uy ) = ( $len > 1e-6 ) ? [ $ux / $len, $uy / $len ] : [ sin ( 2 * M_PI * $i / $n ), - cos ( 2 * M_PI * $i / $n ) ];
       $anchor = ( $ux > 0.35 ) ? 'start' : ( $ux < -0.35 ? 'end' : 'middle' );
       $tx     = $x + $ux * ( $r [$i] + 6 );
       $ty     = $y + $uy * ( $r [$i] + 6 ) + ( $uy > 0.35 ? 11 : ( $uy < -0.35 ? 0 : 4 ) );
