@@ -140,9 +140,11 @@
     $users = editUsers ( $base );
     $user  = $users [ (string) $name ] ?? NULL;
 
-    static $none = NULL;
+    // A name that is no user is checked against the engine's stand-in hash, of the cost of
+    // a real one (lib/auth.php): one check, as for a user. A stand-in made here first cost a
+    // hash more in every request, and an unknown name took twice the time of a known one.
 
-    $hash = $user ['hash'] ?? ( $none ??= padHash ( bin2hex ( random_bytes ( 8 ) ) ) );
+    $hash = $user ['hash'] ?? padAuthDummyHash ();
 
     if ( ! padHashCheck ( (string) $password, $hash ) or ! $user )
       return '';

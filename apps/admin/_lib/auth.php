@@ -190,15 +190,16 @@
 
   }
 
-  // A name that is no user still costs a hash check, so the answer takes as long either way.
+  // A name that is no user still costs a hash check, so the answer takes as long either way:
+  // one check against the engine's stand-in, which has the cost of a real hash
+  // (lib/auth.php). A stand-in made here first cost a hash more - in every web request, a
+  // process of its own - and an unknown name took twice the time of a known one.
 
   function adminUserCheck ( $name, $password ) {
 
-    static $none = NULL;
-
     $users = adminUsers ();
     $user  = $users [ (string) $name ] ?? NULL;
-    $hash  = $user ['hash'] ?? ( $none ??= padHash ( bin2hex ( random_bytes ( 8 ) ) ) );
+    $hash  = $user ['hash'] ?? padAuthDummyHash ();
 
     if ( ! padHashCheck ( (string) $password, $hash ) or ! $user )
       return '';
