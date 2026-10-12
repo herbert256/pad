@@ -109,6 +109,24 @@
       if ( isset ( $fields [$at] ) and ! ctype_digit ( $fields [$at] ) )
         return "the " . ( $at == 4 ? 'halfmove clock' : 'move number' ) . " is '{$fields [$at]}', not a number";
 
+    // What no game can reach is no position, where the fields were checked by their shape
+    // alone: an en passant square is behind the pawn that just moved two squares - on rank 6
+    // with White to move, on 3 with Black - a right to castle needs the king and the rook on
+    // their squares, and the moves are counted from 1.
+
+    if ( $passant !== '-' ) {
+      $file = ord ( $passant [0] ) - 97;
+      if ( $passant [1] != ( $side == 'w' ? '6' : '3' ) or ( $squares [ $file . ',' . ( $side == 'w' ? 5 : 4 ) ] ?? '' ) !== ( $side == 'w' ? 'p' : 'P' ) )
+        return "the en passant square is '$passant', where no pawn just moved two squares past it";
+    }
+
+    foreach ( [ 'K' => [ '4,1', '7,1' ], 'Q' => [ '4,1', '0,1' ], 'k' => [ '4,8', '7,8' ], 'q' => [ '4,8', '0,8' ] ] as $right => list ( $king, $rook ) )
+      if ( str_contains ( $castling, $right ) and ( ( $squares [$king] ?? '' ) !== ( ctype_upper ( $right ) ? 'K' : 'k' ) or ( $squares [$rook] ?? '' ) !== ( ctype_upper ( $right ) ? 'R' : 'r' ) ) )
+        return "the castling right $right has no king and rook on their squares";
+
+    if ( isset ( $fields [5] ) and (int) $fields [5] < 1 )
+      return "the move number is {$fields [5]}, where the first move is 1";
+
     return [ $squares, $side, $castling, $passant ];
 
   }
