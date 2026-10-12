@@ -42,18 +42,24 @@
   $padMapValues = [];
   $padMapMissed = [];
 
-  foreach ( (array) $padMapRows as $padMapRow ) {
+  // A row that is a value alone - [ 'NL' => 1200, 'BE' => 800 ], the natural shape of a
+  // map's data - is the value of the country its key names: the key was never read, the
+  // map drew nothing and its title listed an empty name as not on the map.
 
-    $padMapRow  = padChartRow ( $padMapRow );
-    $padMapCode = padMapCode ( padChartText ( $padMapRow, $padMapKey ) );
-    $padMapNum  = $padMapRow [$padMapValue] ?? NULL;
+  foreach ( (array) $padMapRows as $padMapName => $padMapRow ) {
+
+    $padMapAlone = ( is_scalar ( $padMapRow ) and is_string ( $padMapName ) );
+    $padMapRow   = padChartRow ( $padMapRow );
+    $padMapName  = $padMapAlone ? $padMapName : padChartText ( $padMapRow, $padMapKey );
+    $padMapCode  = padMapCode ( $padMapName );
+    $padMapNum   = $padMapRow [$padMapValue] ?? NULL;
 
     if ( ! padChartFinite ( $padMapNum ) )
       continue;
 
-    if ( $padMapCode === '' )
-      $padMapMissed [] = padChartText ( $padMapRow, $padMapKey );
-    else
+    if ( $padMapCode === '' and trim ( $padMapName ) !== '' )
+      $padMapMissed [] = $padMapName;
+    elseif ( $padMapCode !== '' )
       $padMapValues [$padMapCode] [0] = ( $padMapValues [$padMapCode] [0] ?? 0 ) + $padMapNum;
 
   }
