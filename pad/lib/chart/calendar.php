@@ -30,9 +30,14 @@
     // with it - and nothing it cannot read: -44 was tomorrow, 1990s the clock time of today
     // in 1990, tomorrow a moment that moved on every request and 2026-02-30 the 2nd of March.
 
+    // A weekday the date names - Mon, 12 Oct 2026, as RSS, mail and HTTP write one - moves
+    // nothing and is no reason to refuse it; any other relative part is.
+
     if ( ! ctype_digit ( $when ) ) {
-      $parts = date_parse ( $when );
-      if ( $parts ['error_count'] or $parts ['warning_count'] or isset ( $parts ['relative'] )
+      $parts    = date_parse ( $when );
+      $relative = $parts ['relative'] ?? [];
+      unset ( $relative ['weekday'], $relative ['weekdays'] );
+      if ( $parts ['error_count'] or $parts ['warning_count'] or array_filter ( $relative )
            or $parts ['year'] === FALSE or $parts ['month'] === FALSE or $parts ['day'] === FALSE )
         return FALSE;
     }
