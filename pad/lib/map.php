@@ -173,7 +173,10 @@
     // By rank instead: the values in order, spread evenly over the steps - one large value
     // no longer leaves every other country in the lightest step.
 
-    if ( $scale == 'quantile' and count ( $all ) > 1 ) {
+    // Values all alike have one rank: they take the step the linear scale gives them, where
+    // the quantile scale put them in the lightest and the linear one in the darkest.
+
+    if ( $scale == 'quantile' and count ( array_unique ( $all, SORT_REGULAR ) ) > 1 ) {
       $ranks = array_values ( array_unique ( $all, SORT_REGULAR ) );
       sort ( $ranks );
       $last  = max ( 1, count ( $ranks ) - 1 );
