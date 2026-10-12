@@ -12,6 +12,7 @@
   //                 [ exit code, output, milliseconds ] - none while $adminCommands is off
   // adminGit        git in the PAD home, the same way
   // adminRedact     source text with the values of passwords, keys and secrets left out
+  // adminSearchLines  the lines of a text holding what is searched for, its secrets left out
   // adminTail       the last lines of a file, read from its end
   // adminDone       a flash message and a redirect - the end of every post
 
@@ -222,6 +223,27 @@
     $source = preg_replace ( '/^(\s*\w*(?:' . $words . ')\w*\s*=\s*)(\S.*)$/im', '$1*REDACTED*', $source );
 
     return $source;
+
+  }
+
+  // The lines of a text that hold what is searched for - line number => line - searched in
+  // the text as the console shows it, its secrets left out: matched against the raw text,
+  // a search for $myToken = 'ab found the line where $myToken = 'ax did not, and one search
+  // per character spelled out the value the line it showed hid.
+
+  function adminSearchLines ( $text, $for, $case ) {
+
+    $lines = [];
+    $text  = adminRedact ( $text );
+
+    if ( ( $case ? strpos ( $text, $for ) : stripos ( $text, $for ) ) === FALSE )
+      return $lines;
+
+    foreach ( explode ( "\n", $text ) as $number => $line )
+      if ( ( $case ? strpos ( $line, $for ) : stripos ( $line, $for ) ) !== FALSE )
+        $lines [$number] = $line;
+
+    return $lines;
 
   }
 

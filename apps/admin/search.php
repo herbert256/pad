@@ -31,15 +31,7 @@
 
         $searched++;
 
-        $text = (string) file_get_contents ( $file );
-
-        if ( ( $searchCase ? strpos ( $text, $searchFor ) : stripos ( $text, $searchFor ) ) === FALSE )
-          continue;
-
-        foreach ( explode ( "\n", $text ) as $number => $line ) {
-
-          if ( ( $searchCase ? strpos ( $line, $searchFor ) : stripos ( $line, $searchFor ) ) === FALSE )
-            continue;
+        foreach ( adminSearchLines ( (string) file_get_contents ( $file ), $searchFor, $searchCase ) as $number => $line ) {
 
           if ( count ( $hits ) >= $searchMax ) {
             $truncated = 1;
@@ -47,7 +39,7 @@
           }
 
           $hits [] = [ 'app' => $name, 'file' => substr ( $file, strlen ( $one ['dir'] ) ), 'line' => $number + 1,
-                       'text' => mb_strimwidth ( trim ( adminRedact ( $line ) ), 0, 220, '...' ) ];
+                       'text' => mb_strimwidth ( trim ( $line ), 0, 220, '...' ) ];
 
         }
 
