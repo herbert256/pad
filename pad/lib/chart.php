@@ -336,9 +336,13 @@
 
     $n = (float) $n;
 
+    // The decimals a number has: a rest below the float's own precision is noise - 0.1 +
+    // 0.2 - but no more than that, where a tolerance of a billionth of the number took .75
+    // of two billion for noise and wrote 2,000,000,001.
+
     for ( $needed = 0; $needed < 15; $needed++ ) {
       $scaled = $n * 10 ** $needed;
-      if ( abs ( $scaled - round ( $scaled ) ) <= 1e-9 * abs ( $scaled ) )
+      if ( abs ( $scaled - round ( $scaled ) ) <= abs ( $scaled ) * 16 * PHP_FLOAT_EPSILON )
         break;
     }
 
