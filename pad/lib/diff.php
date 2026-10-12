@@ -22,6 +22,141 @@
 
   function padDiffOps ( $a, $b ) {
 
+    return padDiffGroup ( padDiffScript ( array_values ( $a ), array_values ( $b ) ) );
+
+  }
+
+  // The edit script, ungrouped. A small pair goes through Myers' greedy walk as it is; a
+  // large one is first cut where a shortest script passes - the middle snake, found by a
+  // walk from each end that keeps one frontier, not one per distance - and its two halves
+  // diffed the same way. The greedy walk alone kept a snapshot of the frontier for every
+  // distance: memory as the square of the differences, 187 MB for two different texts of
+  // a thousand words, past PHP's memory limit.
+
+  function padDiffScript ( $a, $b ) {
+
+    $n = count ( $a );
+    $m = count ( $b );
+
+    if ( $n + $m <= 1000 )
+      return padDiffGreedy ( $a, $b );
+
+    $head = $tail = [];
+
+    while ( $n and $m and $a [0] === $b [0] ) {
+      $head [] = [ '=', array_shift ( $a ), array_shift ( $b ) ];
+      $n--;
+      $m--;
+    }
+
+    while ( $n and $m and $a [$n - 1] === $b [$m - 1] ) {
+      array_unshift ( $tail, [ '=', array_pop ( $a ), array_pop ( $b ) ] );
+      $n--;
+      $m--;
+    }
+
+    if ( ! $n or ! $m ) {
+      $body = [];
+      foreach ( $a as $one ) $body [] = [ '-', $one ];
+      foreach ( $b as $one ) $body [] = [ '+', $one ];
+    } else {
+      [ $x, $y ] = padDiffBisect ( $a, $b );
+      $body = ( $x === NULL )
+            ? array_merge ( array_map ( fn ( $one ) => [ '-', $one ], $a ), array_map ( fn ( $one ) => [ '+', $one ], $b ) )
+            : array_merge ( padDiffScript ( array_slice ( $a, 0, $x ), array_slice ( $b, 0, $y ) ),
+                            padDiffScript ( array_slice ( $a, $x ),    array_slice ( $b, $y ) ) );
+    }
+
+    return array_merge ( $head, $body, $tail );
+
+  }
+
+  // Where the forward walk from the start and the backward walk from the end meet - the
+  // point a shortest script passes - as [ x, y ]; [ NULL, NULL ] when the two have nothing
+  // in common. As diff-match-patch's bisect has it, with a frontier per direction.
+
+  function padDiffBisect ( $a, $b ) {
+
+    $n      = count ( $a );
+    $m      = count ( $b );
+    $maxD   = intdiv ( $n + $m + 1, 2 );
+    $offset = $maxD;
+    $v1     = array_fill ( 0, 2 * $maxD + 2, -1 );
+    $v2     = $v1;
+    $delta  = $n - $m;
+    $front  = ( $delta % 2 != 0 );
+
+    $v1 [$offset + 1] = 0;
+    $v2 [$offset + 1] = 0;
+
+    $k1start = $k1end = $k2start = $k2end = 0;
+
+    for ( $d = 0; $d < $maxD; $d++ ) {
+
+      for ( $k1 = -$d + $k1start; $k1 <= $d - $k1end; $k1 += 2 ) {
+
+        $i  = $offset + $k1;
+        $x1 = ( $k1 == -$d or ( $k1 != $d and $v1 [$i - 1] < $v1 [$i + 1] ) ) ? $v1 [$i + 1] : $v1 [$i - 1] + 1;
+        $y1 = $x1 - $k1;
+
+        while ( $x1 < $n and $y1 < $m and $a [$x1] === $b [$y1] ) {
+          $x1++;
+          $y1++;
+        }
+
+        $v1 [$i] = $x1;
+
+        if ( $x1 > $n )
+          $k1end += 2;
+        elseif ( $y1 > $m )
+          $k1start += 2;
+        elseif ( $front ) {
+          $j = $offset + $delta - $k1;
+          if ( $j >= 0 and $j < count ( $v2 ) and $v2 [$j] != -1 and $x1 >= $n - $v2 [$j] )
+            return [ $x1, $y1 ];
+        }
+
+      }
+
+      for ( $k2 = -$d + $k2start; $k2 <= $d - $k2end; $k2 += 2 ) {
+
+        $i  = $offset + $k2;
+        $x2 = ( $k2 == -$d or ( $k2 != $d and $v2 [$i - 1] < $v2 [$i + 1] ) ) ? $v2 [$i + 1] : $v2 [$i - 1] + 1;
+        $y2 = $x2 - $k2;
+
+        while ( $x2 < $n and $y2 < $m and $a [$n - $x2 - 1] === $b [$m - $y2 - 1] ) {
+          $x2++;
+          $y2++;
+        }
+
+        $v2 [$i] = $x2;
+
+        if ( $x2 > $n )
+          $k2end += 2;
+        elseif ( $y2 > $m )
+          $k2start += 2;
+        elseif ( ! $front ) {
+          $j = $offset + $delta - $k2;
+          if ( $j >= 0 and $j < count ( $v1 ) and $v1 [$j] != -1 ) {
+            $x1 = $v1 [$j];
+            $y1 = $offset + $x1 - $j;
+            if ( $x1 >= $n - $x2 )
+              return [ $x1, $y1 ];
+          }
+        }
+
+      }
+
+    }
+
+    return [ NULL, NULL ];
+
+  }
+
+  // Myers' greedy walk, every distance's frontier kept to walk back through.
+
+  function padDiffGreedy ( $a, $b ) {
+
     $n     = count ( $a );
     $m     = count ( $b );
     $max   = $n + $m;
@@ -81,7 +216,7 @@
 
     }
 
-    return padDiffGroup ( array_reverse ( $ops ) );
+    return array_reverse ( $ops );
 
   }
 
