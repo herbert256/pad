@@ -447,7 +447,7 @@
 
         $number = max ( 1, (int) ( $el->getAttribute ( 'start' ) ?: 1 ) );
         $inner  = $ctx;
-        $inner ['indent'] += 18;
+        $inner ['indent'] = padPdfIndent ( $doc, $inner ['indent'], 18 );
 
         foreach ( $el->childNodes as $item ) {
 
@@ -468,7 +468,7 @@
       case 'li':
 
         $inner = $ctx;
-        $inner ['indent'] += 18;
+        $inner ['indent'] = padPdfIndent ( $doc, $inner ['indent'], 18 );
         $doc ['marker'] = [ "\x95", $inner ];
         padPdfFlow ( $doc, $el, $inner );
         padPdfMarker ( $doc );
@@ -477,7 +477,7 @@
 
       case 'blockquote': case 'dd':
 
-        $ctx ['indent'] += 20;
+        $ctx ['indent'] = padPdfIndent ( $doc, $ctx ['indent'], 20 );
 
         if ( $name == 'blockquote' ) {
           $ctx ['italic'] = TRUE;
@@ -645,6 +645,16 @@
       padPdfLine ( $doc, $line, $doc ['margin'] + $ctx ['indent'], padPdfWidthLeft ( $doc, $ctx ), $doc ['y'] + $ctx ['size'] * 0.3, $ctx ['align'] );
 
     }
+
+  }
+
+  // An indent a list, a quote or a definition adds to, up to half the page's text width:
+  // thirty quotes in each other set the text off the right edge of the page, a character a
+  // line.
+
+  function padPdfIndent ( $doc, $indent, $by ) {
+
+    return max ( $indent, min ( $indent + $by, ( $doc ['w'] - 2 * $doc ['margin'] ) / 2 ) );
 
   }
 
