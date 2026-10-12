@@ -32,6 +32,11 @@
 
   }
 
+  // A string is matched as a run of plain characters with its escapes between, each run
+  // possessive: as a group repeated per character, a string of some nine thousand - a base64
+  // picture, an HTML template - ran out of PCRE's JIT stack, and the whole text went
+  // uncoloured.
+
   function padHighlightRules ( $lang ) {
 
     $kwJs  = 'async|await|break|case|catch|class|const|continue|default|delete|do|else|export|extends|finally|for|from|function|if|import|in|instanceof|let|new|of|return|static|super|switch|this|throw|try|typeof|var|void|while|yield';
@@ -40,8 +45,8 @@
 
     return [
 
-      'json' => [ 'key' => '"(?:[^"\\\\\n]|\\\\.)*"(?=\s*:)',
-                  'str' => '"(?:[^"\\\\\n]|\\\\.)*"',
+      'json' => [ 'key' => '"[^"\\\\\n]*+(?:\\\\.[^"\\\\\n]*+)*+"(?=\s*:)',
+                  'str' => '"[^"\\\\\n]*+(?:\\\\.[^"\\\\\n]*+)*+"',
                   'num' => '-?\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b',
                   'lit' => '\b(?:true|false|null)\b',
                   'pun' => '[{}\[\],:]' ],
@@ -78,7 +83,7 @@
                   'pun' => '[{}();:,]' ],
 
       'js'   => [ 'com' => '\/\/[^\n]*|\/\*.*?\*\/',
-                  'str' => '"(?:[^"\\\\\n]|\\\\.)*"|\'(?:[^\'\\\\\n]|\\\\.)*\'|`(?:[^`\\\\]|\\\\.)*`',
+                  'str' => '"[^"\\\\\n]*+(?:\\\\.[^"\\\\\n]*+)*+"|\'[^\'\\\\\n]*+(?:\\\\.[^\'\\\\\n]*+)*+\'|`[^`\\\\]*+(?:\\\\.[^`\\\\]*+)*+`',
                   'kwd' => "\\b(?:$kwJs)\\b",
                   'lit' => '\b(?:true|false|null|undefined|NaN|Infinity)\b',
                   'num' => '\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b|\b0x[0-9a-fA-F]+\b',
@@ -86,7 +91,7 @@
                   'pun' => '[{}\[\]();,.]|=>' ],
 
       'sql'  => [ 'com' => '--[^\n]*|\/\*.*?\*\/',
-                  'str' => '\'(?:[^\']|\'\')*\'',
+                  'str' => '\'[^\']*+(?:\'\'[^\']*+)*\'',
                   'key' => '"[^"\n]*"|`[^`\n]*`',
                   'kwd' => "(?i)\\b(?:$kwSql)\\b(?-i)",
                   'num' => '\b\d+(?:\.\d+)?\b',
@@ -94,7 +99,7 @@
                   'pun' => '[(),;.*=<>]' ],
 
       'bash' => [ 'com' => '(?<![^\s])#[^\n]*',
-                  'str' => '"(?:[^"\\\\]|\\\\.)*"|\'[^\']*\'',
+                  'str' => '"[^"\\\\]*+(?:\\\\.[^"\\\\]*+)*+"|\'[^\']*\'',
                   'var' => '\$\{[^}\n]*\}|\$[\w@#?$!*-]',
                   'kwd' => "\\b(?:$kwSh)\\b",
                   'opt' => '(?<=\s)--?[A-Za-z][\w-]*',
