@@ -659,8 +659,15 @@
     foreach ( $edges as list ( $a, $b, $label ) )
       $desc [] = $nodes [$a] ['text'] . ' → ' . $nodes [$b] ['text'] . ( $label !== '' ? " ($label)" : '' );
 
-    if ( ! $edges )
-      foreach ( $nodes as $node )
+    // A node of no edge is told too - alone, it was left out of the description of a chart
+    // with any edge, and a screen reader never heard of it.
+
+    $linked = [];
+    foreach ( $edges as list ( $a, $b ) )
+      $linked [$a] = $linked [$b] = TRUE;
+
+    foreach ( $nodes as $id => $node )
+      if ( ! isset ( $linked [$id] ) )
         $desc [] = $node ['text'];
 
     // A gap as wide as the labels of the edges that leave the rank before it: in LR the
