@@ -13,4 +13,11 @@
   if ( in_array ( $padPage, [ 'live/counter', 'request/livecsrf' ] ) )
     $padCsrf = TRUE;
 
+  // The remember-me test writes a form before its {auth}: its token checked on the post.
+
+  if ( $padPage == 'request/rememberform' ) {
+    $padCsrf         = TRUE;
+    $padAuthRemember = 'pagesRememberFind';
+  }
+
 ?>

@@ -17,6 +17,14 @@
 
   $padBuildLib  = include PAD . 'build/libs.php';
 
+  // A remember-me cookie logs its user in now, after _lib - where the application's finder
+  // is - and before the guards ask for the user and anything of the page is written: the
+  // login makes a new session, and made at the first {auth}, {can} or padUser of the page
+  // it dropped the CSRF token a form above it had already written - the post was refused.
+
+  if ( (string) ( $padAuthRemember ?? '' ) !== '' )
+    padAuthRemembered ();
+
   // The directory guards decide before any _inits.php runs. A refused request is answered
   // 403; a page a {page} tag includes renders as nothing when its guard refuses - an
   // allowed page must not show a guarded one's content, nor be refused for holding it.
