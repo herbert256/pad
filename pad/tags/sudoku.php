@@ -7,7 +7,10 @@
   // caption. A puzzle with a wrong cell count, two equal givens that see each other or -
   // asked to solve - no solution is reported.
 
-  $padSudokuCells = padSudokuCells ( $padParm );
+  // The puzzle as the characters it holds: the | box marks of a puzzle in a field came as
+  // their stand-ins, refused as no cell.
+
+  $padSudokuCells = padSudokuCells ( is_string ( $padParm ) ? padUnprotect ( $padParm ) : $padParm );
 
   if ( is_string ( $padSudokuCells ) ) {
     if ( $padCheckSyntax )

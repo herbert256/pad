@@ -9,7 +9,10 @@
   // module (default 2), title= the accessible name, else the text; plain leaves the
   // digits under the bars out; color= and background= change the black on white.
 
-  $padBarcodeText = trim ( (string) $padParm );
+  // The text as the characters it holds, the stand-ins of a field inside it turned back -
+  // a , of SKU-{$sku} came as U+E02C, which no barcode encodes.
+
+  $padBarcodeText = trim ( padUnprotect ( (string) $padParm ) );
   $padBarcodeType = strtolower ( (string) padTagParm ( 'type', preg_match ( '/^\d{12,13}$/', $padBarcodeText ) ? 'ean13' : 'code128' ) );
 
   $padBarcodeSvg = padBarcode ( $padBarcodeText, $padBarcodeType,

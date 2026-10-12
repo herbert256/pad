@@ -14,7 +14,11 @@
     $padQrLevel = 'M';
   }
 
-  $padQrSvg = padQr ( (string) $padParm, $padQrLevel,
+  // The text is encoded as the characters it holds: a field inside the quoted text - a
+  // mailto: made from a field - travels with the stand-ins of { } | = , @ ' " \ that the
+  // page's write-out turns back, and those went into the code: the @ scanned as U+E040.
+
+  $padQrSvg = padQr ( padUnprotect ( (string) $padParm ), $padQrLevel,
                       max ( 21, (int) padTagParm ( 'size', 160 ) ),
                       (string) padTagParm ( 'title' ),
                       (string) padTagParm ( 'color', '#000' ),
