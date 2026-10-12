@@ -323,15 +323,34 @@
       if ( $event [1] === NULL )
         continue;
 
-      $x0     = $x ( $event [0] );
-      $x1     = max ( $x0 + 4, $x ( $event [1] ) );
-      $inside = padChartWidth ( $event [3] ) + 12 <= $x1 - $x0;
-      $reach  = $inside ? $x1 : $x1 + 6 + padChartWidth ( $event [3] );
+      // A label that does not fit in its bar stands beside it - right of it, or left of it
+      // when only there is room - and is cut to the room there is: right of a bar near the
+      // edge it ran off the picture.
 
-      for ( $lane = 0; isset ( $spanLanes [$lane] ) and $spanLanes [$lane] > $x0 - 6; $lane++ );
+      $x0    = $x ( $event [0] );
+      $x1    = max ( $x0 + 4, $x ( $event [1] ) );
+      $label = $event [3];
+      $wide  = padChartWidth ( $label );
+      $side  = ( $wide + 12 <= $x1 - $x0 ) ? 'in' : 'right';
+
+      if ( $side != 'in' ) {
+        $roomR = $width - $right - $x1 - 6;
+        $roomL = $x0 - 6 - $left;
+        $side  = ( $wide <= $roomR or $roomR >= $roomL ) ? 'right' : 'left';
+        $room  = ( $side == 'right' ) ? $roomR : $roomL;
+        if ( $wide > $room ) {
+          $label = padChartFit ( $label, $room );
+          $wide  = padChartWidth ( $label );
+        }
+      }
+
+      $from  = ( $side == 'left' ) ? $x0 - 6 - $wide : $x0;
+      $reach = ( $side == 'right' ) ? $x1 + 6 + $wide : $x1;
+
+      for ( $lane = 0; isset ( $spanLanes [$lane] ) and $spanLanes [$lane] > $from - 6; $lane++ );
 
       $spanLanes [$lane] = $reach;
-      $spans [$k]        = [ $x0, $x1, $lane, $inside ];
+      $spans [$k]        = [ $x0, $x1, $lane, $side, $label ];
 
     }
 
@@ -457,15 +476,17 @@
 
     }
 
-    foreach ( $spans as $k => list ( $x0, $x1, $lane, $inside ) ) {
+    foreach ( $spans as $k => list ( $x0, $x1, $lane, $side, $label ) ) {
 
       $event = $events [$k];
       $slot  = padChartSlot ( $groups [ $event [5] ] ?? 0 );
       $y     = $spanTop + $lane * 24;
+      $at    = [ 'in' => $x0 + 6, 'right' => $x1 + 6, 'left' => $x0 - 6 ] [$side];
 
       $marks .= '<g class="pc-mark"><title>' . padChartAttr ( padTimelineSay ( $event ) ) . '</title>'
               . "<rect class=\"$slot\" x=\"" . padChartXY ( $x0 ) . '" y="' . padChartXY ( $y ) . '" width="' . padChartXY ( $x1 - $x0 ) . '" height="18" rx="4"/>'
-              . '<text' . ( $inside ? ' class="pc-in"' : '' ) . ' x="' . padChartXY ( $inside ? $x0 + 6 : $x1 + 6 ) . '" y="' . padChartXY ( $y + 13 ) . '">' . padChartAttr ( $event [3] ) . '</text></g>';
+              . '<text' . ( $side == 'in' ? ' class="pc-in"' : '' ) . ' x="' . padChartXY ( $at ) . '" y="' . padChartXY ( $y + 13 ) . '"'
+              . ( $side == 'left' ? ' text-anchor="end"' : '' ) . '>' . padChartAttr ( $label ) . '</text></g>';
 
     }
 
@@ -523,8 +544,12 @@
 
       $svg .= '<g class="pc-mark"><title>' . padChartAttr ( padTimelineSay ( $event ) ) . '</title>';
 
+      // A date is cut to its column, as a card's text is: a long format= started left of
+      // the picture.
+
       foreach ( $dates as $i => $date )
-        $svg .= '<text class="pt-date" x="' . ( $lineX - 14 ) . '" y="' . padChartXY ( $y + 18 + $i * 14 ) . '" text-anchor="end">' . ( $i ? '– ' : '' ) . padChartAttr ( $date ) . '</text>';
+        $svg .= '<text class="pt-date" x="' . ( $lineX - 14 ) . '" y="' . padChartXY ( $y + 18 + $i * 14 ) . '" text-anchor="end">'
+              . padChartAttr ( padChartFit ( ( $i ? '– ' : '' ) . $date, $lineX - 18 ) ) . '</text>';
 
       if ( $event [1] === NULL )
         $svg .= "<circle class=\"pt-dot $slot\" cx=\"$lineX\" cy=\"" . padChartXY ( $y + 14 ) . '" r="6"/>';
