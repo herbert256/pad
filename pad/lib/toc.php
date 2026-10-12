@@ -114,9 +114,17 @@
     // A heading reaches to its closer, never past another heading's tag: one left unclosed
     // - <h3>Orders<h3> - scanned on to the end of the page, and past a megabyte the scan
     // gave up and the whole page was gone. A failing pass leaves the page as it was.
+    //
+    // A comment, and an element whose content is no part of the page - a script, a style, a
+    // textarea, a template - is passed over up to its closer (one left open, to the end of
+    // the page): a script's "<h2>" + title + "</h2>" got an id="title" that broke the
+    // script, and a commented-out heading was listed, linked to an anchor that is not there.
 
     $before = $output;
-    $output = preg_replace_callback ( '/<h([1-6])(\s[^>]*)?>((?:(?!<\/?h[1-6][\s>]).)*+)<\/h\1\s*>/is',
+    $output = preg_replace_callback ( '/<h([1-6])(\s[^>]*)?>((?:(?!<\/?h[1-6][\s>]).)*+)<\/h\1\s*>'
+                                    . '|<!--(?:[^-]++|-(?!->))*+(?:-->)?(*SKIP)(*FAIL)'
+                                    . '|<(script|style|textarea|template|title|xmp|iframe|noembed|noframes)(?=[\s\/>])'
+                                    .   '(?:[^<]++|<(?!\/\4[\s\/>]))*+(*SKIP)(*FAIL)/is',
       function ( $match ) use ( &$taken, &$headings, &$next, $wanted ) {
 
         $level = (int) $match [1];
