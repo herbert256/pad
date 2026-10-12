@@ -247,8 +247,8 @@
       if ( $value !== '' )
         $v = $row [$value] ?? NULL;
       else
-        foreach ( $row as $field )
-          if ( is_numeric ( $field ) ) {
+        foreach ( $row as $name => $field )
+          if ( $name !== $label and is_numeric ( $field ) ) {
             $v = $field;
             break;
           }

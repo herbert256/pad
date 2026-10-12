@@ -94,10 +94,14 @@
   function padChartPick ( $option, $guessed, &$used ) {
 
     $field = (string) padTagParm ( $option );
+    $label = ( $option == 'label' ) ? '' : (string) padTagParm ( 'label' );
+
+    // The field label= names is no other field's guess, whenever it is picked: years and
+    // week numbers as labels were drawn as the values - 2024: 2,024.
 
     if ( $field === '' )
       foreach ( $guessed as $name )
-        if ( ! in_array ( $name, $used, TRUE ) ) {
+        if ( ! in_array ( $name, $used, TRUE ) and $name !== $label ) {
           $field = $name;
           break;
         }

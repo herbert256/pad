@@ -29,7 +29,7 @@
 
     list ( $numbers, $names ) = padChartGuess ( $rows );
 
-    $fields = padChartFields ( padTagParm ( 'value' ) ) ?: array_slice ( $numbers, 0, 1 );
+    $fields = padChartFields ( padTagParm ( 'value' ) ) ?: array_slice ( array_values ( array_diff ( $numbers, [ (string) padTagParm ( 'label' ) ] ) ), 0, 1 );
     $used   = $fields;
     $label  = padChartPick ( 'label', $names, $used );
     $most   = ( $kind == 'pyramid' ) ? 2 : 1;
