@@ -81,11 +81,6 @@
 
   ob_start ();
   phpinfo ( INFO_ALL & ~INFO_ENVIRONMENT & ~INFO_VARIABLES );
-  $phpinfo = (string) ob_get_clean ();
-
-  if ( preg_match ( '#<body[^>]*>(.*)</body>#s', $phpinfo, $match ) )
-    $phpinfo = $match [1];
-  else
-    $phpinfo = '<pre>' . htmlspecialchars ( $phpinfo ) . '</pre>';
+  $phpinfo = adminPhpinfoBody ( (string) ob_get_clean () );
 
 ?>

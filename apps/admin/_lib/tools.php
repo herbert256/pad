@@ -7,6 +7,7 @@
   // adminDirSize    [ bytes, files ] of everything below a directory
   // adminRemove     a directory and everything below it - only ever below DATA/
   // adminText       a text as HTML, an entity in it shown as written
+  // adminPhpinfoBody phpinfo ()'s page without the request's headers and environment
   // adminRelative   a relative path a request names, checked: no dot segments, no hidden
   //                 names, nothing outside the characters a PAD file name uses; '' otherwise
   // adminRun        the pad command (apps/cli/pad) with arguments, in a child process:
@@ -122,6 +123,20 @@
   function adminText ( $text ) {
 
     return htmlspecialchars ( (string) $text, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' );
+
+  }
+
+  // The body of phpinfo ()'s page, without what the request brought: under mod_php the
+  // module tables hold the Apache environment and every request header - the console's own
+  // session cookie, which is httponly, put in the page for any script to read, and the
+  // secrets of a SetEnv. The masks of the call keep out only PHP's own lists of them.
+
+  function adminPhpinfoBody ( $phpinfo ) {
+
+    if ( ! preg_match ( '#<body[^>]*>(.*)</body>#s', $phpinfo, $match ) )
+      return '<pre>' . adminText ( $phpinfo ) . '</pre>';
+
+    return preg_replace ( '#<h2>(?:Apache Environment|HTTP Headers Information)</h2>\s*<table>.*?</table>#s', '', $match [1] ) ?? '';
 
   }
 
