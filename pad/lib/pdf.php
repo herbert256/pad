@@ -1144,11 +1144,25 @@
       $doc ['images'] [$key] = [ 'name' => 'Im' . ( count ( $doc ['images'] ) + 1 ), 'data' => $data,
                                  'w' => $pw, 'h' => $ph, 'channels' => $channels ];
 
-    // The size is the element's width and height in CSS pixels - 0.75 of a point - else the
-    // picture's own, never wider than the column nor taller than a page.
+    // The size is the element's width and height in CSS pixels - 0.75 of a point - or with a
+    // % a share of the column and of a page, else the picture's own, never wider than the
+    // column nor taller than a page. A size that is no number above 0 counts as none: 100%
+    // was 100 pixels, a negative width flipped the scale and drew the picture larger than
+    // the page, and 1e999 wrote nan and lost every line after it.
 
-    $w = (float) $el->getAttribute ( 'width' );
-    $h = (float) $el->getAttribute ( 'height' );
+    $room = padPdfWidthLeft ( $doc, $ctx );
+    $tall = $doc ['h'] - 2 * $doc ['margin'] - 20;
+
+    $size = function ( $attr, $whole ) {
+      $attr = trim ( $attr );
+      $n    = (float) $attr;
+      if ( ! ( $n > 0 ) or ! is_finite ( $n ) )
+        return 0;
+      return str_ends_with ( $attr, '%' ) ? $whole * min ( $n, 100 ) / 100 / 0.75 : $n;
+    };
+
+    $w = $size ( $el->getAttribute ( 'width' ),  $room );
+    $h = $size ( $el->getAttribute ( 'height' ), $tall );
 
     if ( $w and ! $h ) $h = $w * $ph / $pw;
     if ( $h and ! $w ) $w = $h * $pw / $ph;
@@ -1156,9 +1170,6 @@
 
     $w *= 0.75;
     $h *= 0.75;
-
-    $room = padPdfWidthLeft ( $doc, $ctx );
-    $tall = $doc ['h'] - 2 * $doc ['margin'] - 20;
 
     $scale = min ( 1, $room / $w, $tall / $h );
     $w    *= $scale;
