@@ -142,16 +142,27 @@
 
     } elseif ( $days > 60 ) {
 
+      // The steps go on past six months as the room asks - a year, two, four: in a narrow
+      // picture six months were ticks a third of a label apart, written over each other. A
+      // step of a year or more falls on the first of January and is written as the year.
+
       $months = $days / 30.44;
-      $step   = ( $months <= $room ) ? 1 : ( ( $months / 3 <= $room ) ? 3 : 6 );
+      $step   = 12;
+      foreach ( [ 1, 3, 6, 12 ] as $try )
+        if ( $months / $try <= $room ) {
+          $step = $try;
+          break;
+        }
+      while ( $months / $step > $room )
+        $step *= 2;
       $month  = (int) $start->format ( 'n' );
       $t      = $start->setDate ( (int) $start->format ( 'Y' ), $month, 1 );
       if ( $t->getTimestamp () < $low )
         $t = $t->modify ( '+1 month' );
-      while ( ( (int) $t->format ( 'n' ) - 1 ) % $step )
+      while ( ( (int) $t->format ( 'Y' ) * 12 + (int) $t->format ( 'n' ) - 1 ) % $step )
         $t = $t->modify ( '+1 month' );
       $next = "+$step months";
-      $form = 'M Y';
+      $form = ( $step >= 12 ) ? 'Y' : 'M Y';
 
     } elseif ( $days < 1 and $high > $low ) {
 
@@ -171,14 +182,16 @@
 
     } else {
 
-      $step = 14;
-      foreach ( [ 1, 2, 7, 14 ] as $try )
+      $step = 28;
+      foreach ( [ 1, 2, 7, 14, 28 ] as $try )
         if ( $days / $try <= $room ) {
           $step = $try;
           break;
         }
+      while ( $days / $step > $room )
+        $step *= 2;
 
-      $t    = ( $step == 7 or $step == 14 ) ? $start->modify ( 'monday this week' ) : $start;
+      $t    = ( $step >= 7 ) ? $start->modify ( 'monday this week' ) : $start;
       $next = "+$step days";
       $form = 'M j';
 
