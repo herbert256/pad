@@ -328,6 +328,9 @@
 
     $w = '\w*(?:' . adminRedactWords () . ')\w*';
 
+    // The password of an address up to its last @ - an unencoded @ or / in it left "ss" of
+    // p@ss, and all of se/cr/et, in sight - a port left alone.
+    //
     // A quoted value as runs of plain characters with its escapes between, each run
     // possessive, per kind of quote: a group repeated per character ran out of PCRE's JIT
     // stack on a value of some ten thousand characters - a key, a certificate - and the
@@ -347,7 +350,7 @@
       '/^(\s*-?\s*(?<name>[\w.-]+)\s*:[ \t]+)(?!\*REDACTED\*)(\S.*)$/m' => '$1*REDACTED*',
       '/(<(?<name>[\w.-]+)\b[^>]*>)[^<]*(<\/\2>)/i'                => '$1*REDACTED*$3',
       '/^(\s*' . $w . '\s*=\s*)(\S.*)$/im'                         => '$1*REDACTED*',
-      '#(\b[a-z][a-z0-9+.-]*://[^/\s:@\'"]*:)[^@\s\'"/]+(@)#i'     => '$1*REDACTED*$2'
+      '#(\b[a-z][a-z0-9+.-]*://[^/\s:@\'"]*:)(?![0-9]+(?:/|[\s\'"]|$))[^\s\'"]*(@)(?=[^@\s\'"]*(?:[\s\'"]|$))#im' => '$1*REDACTED*$2'
     ] as $pattern => $replace )
       if ( ( $source = preg_replace_callback ( $pattern, fn ( $m ) => ( isset ( $m ['name'] ) and ! adminRedactName ( $m ['name'] ) )
                                                                     ? $m [0] : adminRedactLines ( $m, $replace ), (string) $source ) ) === NULL )
