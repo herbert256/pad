@@ -119,15 +119,35 @@
     $peak   = 0;
 
     foreach ( $sets as $name => list ( $values, $h ) ) {
-      for ( $s = 0; $s <= $steps; $s++ ) {
-        $at = $low + ( $high - $low ) * $s / $steps;
+
+      $points = [];
+      for ( $s = 0; $s <= $steps; $s++ )
+        $points [] = $low + ( $high - $low ) * $s / $steps;
+
+      // A bell narrower than the steps falls between them - one outlier stretches the axis
+      // far beyond its bandwidth: the curve is read at the middle value of each pixel's
+      // values too, and a bandwidth to either side of it.
+
+      if ( ( $high - $low ) / $steps > $h / 2 ) {
+        $pixels = [];
+        foreach ( $values as $v )
+          $pixels [ (int) floor ( ( $v - $low ) / ( $high - $low ) * $plotW ) ] [] = $v;
+        foreach ( $pixels as $in ) {
+          $v = $in [ intdiv ( count ( $in ), 2 ) ];
+          array_push ( $points, $v - $h, $v, $v + $h );
+        }
+        sort ( $points );
+      }
+
+      foreach ( $points as $at ) {
         $curves [$name] [] = [ $at, $d = $kde ( $values, $h, $at ) ];
         $peak = max ( $peak, $d );
       }
+
     }
 
     $base = $top + $plotH;
-    $y    = fn ( $d ) => $base - $d / ( $peak * 1.08 ) * $plotH;
+    $y    = fn ( $d ) => $base - $d / ( ( $peak ?: 1 ) * 1.08 ) * $plotH;
 
     foreach ( $ticks as $tick )
       $svg .= '<line class="pc-grid" x1="' . padChartXY ( $x ( $tick ) ) . '" x2="' . padChartXY ( $x ( $tick ) ) . '" y1="' . padChartXY ( $top ) . '" y2="' . padChartXY ( $base ) . '"/>'
