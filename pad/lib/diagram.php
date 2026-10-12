@@ -1302,6 +1302,9 @@
       if ( $line === '' or strcasecmp ( $line, 'sequenceDiagram' ) == 0 )
         continue;
 
+      // The messages after autonumber are numbered, from 1, as Mermaid numbers them from the
+      // statement on: those before it were numbered too.
+
       if ( strcasecmp ( $line, 'autonumber' ) == 0 )
         $number = TRUE;
       elseif ( preg_match ( "/^(participant|actor)\s+($id)(?:\s+as\s+(.+))?$/iu", $line, $m ) )
@@ -1310,7 +1313,7 @@
         $person ( $m [1] );
         $person ( $m [3] );
         $head      = str_ends_with ( $m [2], '>>' ) ? 'arrow' : ( str_ends_with ( $m [2], 'x' ) ? 'cross' : ( str_ends_with ( $m [2], ')' ) ? 'open' : 'none' ) );
-        $events [] = [ 'message', $m [1], $m [3], padDiagramFlat ( $m [4] ?? '' ), str_starts_with ( $m [2], '--' ), $head ];
+        $events [] = array_merge ( [ 'message', $m [1], $m [3], padDiagramFlat ( $m [4] ?? '' ), str_starts_with ( $m [2], '--' ), $head ], $number ? [ TRUE ] : [] );
       } elseif ( preg_match ( "/^note\s+(over|left of|right of)\s+($id)(?:\s*,\s*($id))?\s*:\s*(.*)$/iu", $line, $m ) ) {
         $person ( $m [2] );
         if ( ( $m [3] ?? '' ) !== '' )
@@ -1425,7 +1428,7 @@
 
           $self     = ( $event [1] === $event [2] );
           $y       += 20;
-          $rows []  = [ 'message', $y, $event, ++$count ];
+          $rows []  = [ 'message', $y, $event, isset ( $event [6] ) ? ++$count : 0 ];
           $y       += $self ? 34 : 14;
           $desc []  = $people [ $event [1] ] [0] . ' to ' . $people [ $event [2] ] [0] . ( $event [3] !== '' ? ': ' . $event [3] : '' );
 
@@ -1573,7 +1576,7 @@
       $b     = $x [ $col [$to] ];
       $class = 'pd-edge' . ( $dashed ? ' pd-dashed' : '' );
       $tip   = '<title>' . padChartAttr ( $people [$from] [0] . ' → ' . $people [$to] [0] . ( $text !== '' ? ": $text" : '' ) ) . '</title>';
-      $label = ( $number ? "$nth. " : '' ) . $text;
+      $label = ( $nth ? "$nth. " : '' ) . $text;
 
       if ( $from === $to ) {
 
