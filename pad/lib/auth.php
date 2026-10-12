@@ -71,7 +71,11 @@
     if ( ! padSessionStart () )
       return padError ( 'padLogin: no session can start - the headers have gone out already' );
 
-    padSessionRegenerate ();
+    // A login on the session id from before it is the fixation the new id prevents - below
+    // a {flush}, on a session already open, it was made on the old id without a word.
+
+    if ( ! padSessionRegenerate () )
+      return padError ( 'padLogin: the session id cannot be renewed - the headers have gone out already' );
 
     $_SESSION ['padAuth'] [ padAuthApp () ] ['user'] = padAuthKeep ( $user );
 
@@ -94,6 +98,13 @@
     global $padSessionVars;
 
     $app = padAuthApp ();
+
+    // A logout that cannot drop the remember-me cookie, or reach the session the login is
+    // in, is no logout - below a {flush} it answered TRUE and the next request was logged in
+    // again.
+
+    if ( headers_sent () and ( isset ( $_COOKIE [ padAuthCookieName () ] ) or ( padSessionExists () and session_status () !== PHP_SESSION_ACTIVE ) ) )
+      return padError ( 'padLogout: the login cannot be forgotten - the headers have gone out already' );
 
     padAuthStore ( 'now', NULL );
     padAuthStore ( 'checked', TRUE );
