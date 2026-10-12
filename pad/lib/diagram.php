@@ -1193,11 +1193,18 @@
     $number = FALSE;
     $id     = '[\p{L}\p{N}_]+';
 
-    $person = function ( $name, $show = NULL, $actor = FALSE ) use ( &$people ) {
+    // A declaration says what a participant is, with or without a name to show: actor U
+    // after U had sent a message was a box, actor U as User a person.
+
+    $person = function ( $name, $show = NULL, $actor = NULL ) use ( &$people ) {
       if ( ! isset ( $people [$name] ) )
-        $people [$name] = [ $show ?? $name, $actor ];
-      elseif ( $show !== NULL )
-        $people [$name] = [ $show, $actor ];
+        $people [$name] = [ $show ?? $name, (bool) $actor ];
+      else {
+        if ( $show !== NULL )
+          $people [$name] [0] = $show;
+        if ( $actor !== NULL )
+          $people [$name] [1] = $actor;
+      }
     };
 
     foreach ( preg_split ( '/\r?\n/', $source ) as $at => $line ) {
