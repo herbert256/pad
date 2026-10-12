@@ -83,6 +83,20 @@
     [ 'email',    'required|email',           [ 'email' => '' ], [ 'email.required' => 'Fill in :label, please' ] ],
     [ 'nick',     'max:5',                    [ 'nick' => 'toolong' ], [ 'nick' => ':label: :n at most' ] ],
     [ 'first_name', 'required',               [ ] ],
+    [ 'email',    'email',                    [ 'email' => 'user@[127.0.0.1]' ] ],
+    [ 'email',    'email',                    [ 'email' => 'a@b.123' ] ],
+    [ 'email',    'email',                    [ 'email' => 'a@1.2.3.4' ] ],
+    [ 'site',     'url',                      [ 'site' => 'https://999.2.3.4' ] ],
+    [ 'site',     'url',                      [ 'site' => 'http://exämple.com' ] ],
+    [ 'site',     'url',                      [ 'site' => 'https://example.com/é' ] ],
+    [ 'site',     'url',                      [ 'site' => 'http://-example.com' ] ],
+    [ 'site',     'url',                      [ 'site' => 'http://example..com' ] ],
+    [ 'site',     'url',                      [ 'site' => 'http://example_x.com' ] ],
+    [ 'site',     'url',                      [ 'site' => 'https://ex%41mple.com' ] ],
+    [ 'site',     'url',                      [ 'site' => 'http://user:p%41ss@[::1]:8080/a?b#c' ] ],
+    [ 'count',    'integer',                  [ 'count' => '9223372036854775808' ] ],
+    [ 'count',    'integer',                  [ 'count' => '-9223372036854775808' ] ],
+    [ 'count',    'integer|max:10',           [ 'count' => '99999999999999999999' ] ],
   ];
 
   $parity = [];

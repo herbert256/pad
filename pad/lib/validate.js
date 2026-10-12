@@ -25,8 +25,11 @@
   if (window.padValidate) return;
 
   var numberPattern = /^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/;
-  var intPattern = /^[+-]?(0|[1-9]\d*)$/;
-  var emailPattern = /^[A-Za-z0-9.!#$%&'*+\/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$/;
+
+  // The pattern of PHP's FILTER_VALIDATE_EMAIL (ext/filter), as it is: a pattern of our own
+  // took a@b.123 and a@1.2.3.4, which PHP refuses, and refused user@[127.0.0.1], which it
+  // takes - a form the server would accept could not be sent.
+  var emailPattern = /^(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))(?:\.(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-+[a-z0-9]+)*\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-+[a-z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))$/i;
 
   // PHP's trim: space, tab, the line ends, NUL and vertical tab - not the no-break space and
   // the other spaces of Unicode that String.prototype.trim takes too, which refused a value
@@ -51,15 +54,113 @@
   }
 
   function email(value) {
-    if (value.length > 320 || !emailPattern.test(value)) return false;
-    var at = value.lastIndexOf('@');
-    var local = value.slice(0, at);
-    return local.length <= 64 && local.charAt(0) !== '.' && local.slice(-1) !== '.' && local.indexOf('..') < 0;
+    return value.length <= 320 && emailPattern.test(value);
   }
 
+  // FILTER_VALIDATE_INT: a whole number PHP's integers hold - past them it is no number to
+  // the server, and integer|max:10 said "at most 10" here, "a whole number" there.
+  function integer(value) {
+    var found = value.match(/^([+-]?)(0|[1-9]\d*)$/);
+    if (!found) return false;
+    var limit = found[1] === '-' ? '9223372036854775808' : '9223372036854775807';
+    return found[2].length < limit.length || (found[2].length === limit.length && found[2] <= limit);
+  }
+
+  // FILTER_VALIDATE_URL of an http or https address, step by step as PHP takes it: every
+  // character one a URL may hold (php_filter_url drops the others, and a dropped one fails
+  // it); the authority parted as parse_url parts it - the user info up to its last @, a port
+  // of up to five characters after the last :, read as strtol reads it; the host a name of
+  // letters, digits and hyphens, a dot only between two of them, or an IPv6 address in
+  // brackets; the user info of the characters RFC 3986 allows. The URL parser of the
+  // browser converted what PHP refuses - http://exämple.com, ex%41mple.com - and refused
+  // what it takes: https://999.2.3.4.
   function url(value) {
-    if (!/^https?:\/\//i.test(value) || /\s/.test(value)) return false;
-    try { return new URL(value).hostname !== ''; } catch (e) { return false; }
+    if (!/^https?:\/\//i.test(value) || /[^A-Za-z0-9$\-_.+!*'(),{}|\\^~\[\]`<>#%";\/?:@&=]/.test(value)) return false;
+    var rest = value.replace(/^https?:\/\//i, '');
+    var authority = rest.slice(0, rest.search(/[\/?#]|$/));
+    var at = authority.lastIndexOf('@');
+    var host = authority.slice(at + 1);
+    if (!(host.charAt(0) === '[' && host.slice(-1) === ']')) {
+      var colon = host.lastIndexOf(':');
+      if (colon >= 0) {
+        var port = host.slice(colon + 1);
+        if (port.length > 5) return false;
+        if (port !== '') {
+          var number = port.match(/^[+-]?\d+/);
+          if (!number || +number[0] < 0 || +number[0] > 65535) return false;
+        }
+        host = host.slice(0, colon);
+      }
+    }
+    if (host === '') return false;
+    if (!(host.charAt(0) === '[' && host.slice(-1) === ']' && ipv6(host.slice(1, -1))) && !hostname(host)) return false;
+    if (at < 0) return true;
+    var info = authority.slice(0, at), split = info.indexOf(':');
+    return userinfo(split < 0 ? info : info.slice(0, split)) && (split < 0 || userinfo(info.slice(split + 1)));
+  }
+
+  function alnum(c) {
+    return /^[A-Za-z0-9]$/.test(c);
+  }
+
+  // _php_filter_validate_domain for a host name: a trailing dot left out, at most 253
+  // characters, a letter or digit first, no hyphen last, a label at most 63 long.
+  function hostname(host) {
+    var end = host.length;
+    if (end > 0 && host.charAt(end - 1) === '.') end--;
+    if (end > 253 || !alnum(host.charAt(0)) || host.slice(-1) === '-') return false;
+    for (var i = 0, size = 1; i < end; i++) {
+      var c = host.charAt(i);
+      if (c === '.') {
+        if (host.charAt(i + 1) === '.' || !alnum(host.charAt(i - 1)) || !alnum(host.charAt(i + 1))) return false;
+        size = 1;
+      } else {
+        if (size > 63 || (c !== '-' && !alnum(c))) return false;
+        size++;
+      }
+    }
+    return true;
+  }
+
+  function ipv4(text) {
+    var parts = text.split('.');
+    return parts.length === 4 && parts.every(function (one) { return /^(0|[1-9]\d{0,2})$/.test(one) && +one <= 255; });
+  }
+
+  // _php_filter_validate_ipv6: groups of one to four hex digits, one :: at most, an IPv4
+  // address as the last two groups.
+  function ipv6(text) {
+    if (text.indexOf(':') < 0) return false;
+    var blocks = 0, compressed = false, at = 0, end = text.length;
+    var dot = text.indexOf('.');
+    if (dot >= 0) {
+      var start = text.lastIndexOf(':', dot) + 1;
+      if (!ipv4(text.slice(start))) return false;
+      end = start;
+      if (end < 2) return false;
+      if (text.charAt(end - 2) !== ':') end--;
+      blocks = 2;
+    }
+    while (at < end) {
+      if (text.charAt(at) === ':') {
+        if (++at >= end) return false;
+        if (text.charAt(at) === ':') {
+          if (compressed) return false;
+          compressed = true;
+          blocks++;
+          if (++at === end) return blocks <= 8;
+        } else if (at - 1 === 0) return false;
+      }
+      var digits = text.slice(at, end).match(/^[0-9A-Fa-f]*/)[0].length;
+      at += digits;
+      if (digits < 1 || digits > 4 || ++blocks > 8) return false;
+    }
+    return (compressed && blocks <= 8) || blocks === 8;
+  }
+
+  // is_userinfo_valid: a %-escape there starts with a digit.
+  function userinfo(text) {
+    return /^(?:[A-Za-z0-9\-._~!$&'()*+,;=:]|%[0-9][0-9A-Fa-f])*$/.test(text);
   }
 
   // padValidateDate takes what date_parse reads as a day of a month of a year - more forms
@@ -119,7 +220,7 @@
       case 'email':    return email(value);
       case 'url':      return url(value);
       case 'numeric':  return numberPattern.test(value);
-      case 'integer':  return intPattern.test(value);
+      case 'integer':  return integer(value);
       case 'min':      return size >= toNumber(arg);
       case 'max':      return size <= toNumber(arg);
       case 'in':       return arg.split(',').map(trim).indexOf(value) >= 0;

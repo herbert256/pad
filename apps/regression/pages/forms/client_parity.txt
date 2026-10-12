@@ -1904,6 +1904,334 @@
                     ]
                 }
             }
+        },
+        {
+            "field": "email",
+            "data": {
+                "email": "user@[127.0.0.1]"
+            },
+            "server": "",
+            "client": {
+                "email": {
+                    "label": "Email",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "email",
+                            "",
+                            ":label must be a valid e-mail address",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "email",
+            "data": {
+                "email": "a@b.123"
+            },
+            "server": "Email must be a valid e-mail address",
+            "client": {
+                "email": {
+                    "label": "Email",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "email",
+                            "",
+                            ":label must be a valid e-mail address",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "email",
+            "data": {
+                "email": "a@1.2.3.4"
+            },
+            "server": "Email must be a valid e-mail address",
+            "client": {
+                "email": {
+                    "label": "Email",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "email",
+                            "",
+                            ":label must be a valid e-mail address",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "site",
+            "data": {
+                "site": "https://999.2.3.4"
+            },
+            "server": "",
+            "client": {
+                "site": {
+                    "label": "Site",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "url",
+                            "",
+                            ":label must be a valid web address",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "site",
+            "data": {
+                "site": "http://exämple.com"
+            },
+            "server": "Site must be a valid web address",
+            "client": {
+                "site": {
+                    "label": "Site",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "url",
+                            "",
+                            ":label must be a valid web address",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "site",
+            "data": {
+                "site": "https://example.com/é"
+            },
+            "server": "Site must be a valid web address",
+            "client": {
+                "site": {
+                    "label": "Site",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "url",
+                            "",
+                            ":label must be a valid web address",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "site",
+            "data": {
+                "site": "http://-example.com"
+            },
+            "server": "Site must be a valid web address",
+            "client": {
+                "site": {
+                    "label": "Site",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "url",
+                            "",
+                            ":label must be a valid web address",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "site",
+            "data": {
+                "site": "http://example..com"
+            },
+            "server": "Site must be a valid web address",
+            "client": {
+                "site": {
+                    "label": "Site",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "url",
+                            "",
+                            ":label must be a valid web address",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "site",
+            "data": {
+                "site": "http://example_x.com"
+            },
+            "server": "Site must be a valid web address",
+            "client": {
+                "site": {
+                    "label": "Site",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "url",
+                            "",
+                            ":label must be a valid web address",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "site",
+            "data": {
+                "site": "https://ex%41mple.com"
+            },
+            "server": "Site must be a valid web address",
+            "client": {
+                "site": {
+                    "label": "Site",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "url",
+                            "",
+                            ":label must be a valid web address",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "site",
+            "data": {
+                "site": "http://user:p%41ss@[::1]:8080/a?b#c"
+            },
+            "server": "",
+            "client": {
+                "site": {
+                    "label": "Site",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "url",
+                            "",
+                            ":label must be a valid web address",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "count",
+            "data": {
+                "count": "9223372036854775808"
+            },
+            "server": "Count must be a whole number",
+            "client": {
+                "count": {
+                    "label": "Count",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "integer",
+                            "",
+                            ":label must be a whole number",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "count",
+            "data": {
+                "count": "-9223372036854775808"
+            },
+            "server": "",
+            "client": {
+                "count": {
+                    "label": "Count",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "integer",
+                            "",
+                            ":label must be a whole number",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "count",
+            "data": {
+                "count": "99999999999999999999"
+            },
+            "server": "Count must be a whole number",
+            "client": {
+                "count": {
+                    "label": "Count",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "integer",
+                            "",
+                            ":label must be a whole number",
+                            ""
+                        ],
+                        [
+                            "max",
+                            "10",
+                            ":label must be at most :n",
+                            "10"
+                        ]
+                    ]
+                }
+            }
         }
     ]
 }
