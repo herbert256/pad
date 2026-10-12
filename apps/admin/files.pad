@@ -20,7 +20,7 @@
 {if $app ne ''}
 
   <p class="crumbs">
-    {crumbs}{notFirst@crumbs} / {/notFirst@crumbs}<a href="?files&amp;app={$app}&amp;root={$root}&amp;dir={$dir}">{$label}</a>{/crumbs}
+    {crumbs}{notFirst@crumbs} / {/notFirst@crumbs}<a href="?files&amp;app={$app}&amp;root={$root}&amp;dir={$dir | url}">{$label}</a>{/crumbs}
   </p>
 
   <div class="browser">
@@ -28,13 +28,13 @@
     <nav class="card" aria-label="Files">
       <ul class="tree">
         {if $hasParent}
-          <li><a href="?files&amp;app={$app}&amp;root={$root}&amp;dir={$parentDir}">{icon 'arrow-up', size=14} ..</a></li>
+          <li><a href="?files&amp;app={$app}&amp;root={$root}&amp;dir={$parentDir | url}">{icon 'arrow-up', size=14} ..</a></li>
         {/if}
         {dirRows}
-          <li><a href="?files&amp;app={$app}&amp;root={$root}&amp;dir={$path}">{icon 'folder', size=14} {$name}</a></li>
+          <li><a href="?files&amp;app={$app}&amp;root={$root}&amp;dir={$path | url}">{icon 'folder', size=14} {$name}</a></li>
         {/dirRows}
         {fileRows}
-          <li><a href="?files&amp;app={$app}&amp;root={$root}&amp;dir={$dir}&amp;file={$path}" {if $current}class="current" aria-current="page"{/if}>{icon 'file', size=14} {$name}</a></li>
+          <li><a href="?files&amp;app={$app}&amp;root={$root}&amp;dir={$dir | url}&amp;file={$path | url}" {if $current}class="current" aria-current="page"{/if}>{icon 'file', size=14} {$name}</a></li>
         {/fileRows}
       </ul>
     </nav>
@@ -46,8 +46,8 @@
           <p class="dim">
             {$fileInfo}
             - <a href="{$padRoot}edit/?app={$app}">open in the editor</a>
-            {if $isMarkdown} - <a href="?files&amp;app={$app}&amp;root={$root}&amp;file={$fileName}&amp;as=text">as text</a>{/if}
-            {if $isMdText} - <a href="?files&amp;app={$app}&amp;root={$root}&amp;file={$fileName}">as Markdown</a>{/if}
+            {if $isMarkdown} - <a href="?files&amp;app={$app}&amp;root={$root}&amp;file={$fileName | url}&amp;as=text">as text</a>{/if}
+            {if $isMdText} - <a href="?files&amp;app={$app}&amp;root={$root}&amp;file={$fileName | url}">as Markdown</a>{/if}
           </p>
           {if $notShown ne ''}
             <p class="flash warn">{$notShown}</p>

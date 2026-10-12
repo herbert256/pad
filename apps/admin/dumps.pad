@@ -3,7 +3,7 @@
   <section class="card">
     <p><a href="?dumps">{icon 'arrow-left', size=14} every report</a> - <code>DATA/dumps/{$report}</code></p>
     <div class="bar">
-      {partRows}<a class="button small" href="?dumps&amp;report={$report}&amp;part={$part}" {if $current}aria-current="page" style="border-color:var(--accent)"{/if}>{$label}</a>{/partRows}
+      {partRows}<a class="button small" href="?dumps&amp;report={$report | url}&amp;part={$part | url}" {if $current}aria-current="page" style="border-color:var(--accent)"{/if}>{$label}</a>{/partRows}
     </div>
     <iframe class="mail" sandbox title="The report's {$part}" srcdoc="{!partHtml}"></iframe>
     <form method="post" style="margin-top:12px">
@@ -22,7 +22,7 @@
         <tbody>
           {reportRows}
             <tr>
-              <td class="nowrap"><a href="?dumps&amp;report={$report}">{$when}</a></td>
+              <td class="nowrap"><a href="?dumps&amp;report={$report | url}">{$when}</a></td>
               <td>{$app}</td>
               <td>{$page}</td>
               <td>{$error}</td>

@@ -59,7 +59,7 @@
     <table class="list">
       <thead><tr><th>Part</th><th>What it is</th><th class="right">Files</th></tr></thead>
       <tbody>
-        {parts}<tr><td><a href="?files&amp;app={$app}&amp;dir={$part}"><code>{$part}</code></a></td><td>{$what}</td><td class="right">{$count}</td></tr>{/parts}
+        {parts}<tr><td><a href="?files&amp;app={$app}&amp;dir={$part | url}"><code>{$part}</code></a></td><td>{$what}</td><td class="right">{$count}</td></tr>{/parts}
       </tbody>
     </table>
   {else}
@@ -89,11 +89,11 @@
             <tr>
               <td>{if $href ne ''}<a href="{$href}">{$page}</a>{else}{$page} <span class="badge info">route</span>{/if}</td>
               <td>
-                {if $pad}<a class="badge" href="?files&amp;app={$app}&amp;file={$page}.pad">.pad</a>{/if}
-                {if $html}<a class="badge" href="?files&amp;app={$app}&amp;file={$page}.html">.html</a>{/if}
-                {if $php}<a class="badge" href="?files&amp;app={$app}&amp;file={$page}.php">.php</a>{/if}
+                {if $pad}<a class="badge" href="?files&amp;app={$app}&amp;file={$page | url}.pad">.pad</a>{/if}
+                {if $html}<a class="badge" href="?files&amp;app={$app}&amp;file={$page | url}.html">.html</a>{/if}
+                {if $php}<a class="badge" href="?files&amp;app={$app}&amp;file={$page | url}.php">.php</a>{/if}
               </td>
-              <td><a href="?console&amp;app={$app}&amp;command=render&amp;page={$page}">render</a></td>
+              <td><a href="?console&amp;app={$app}&amp;command=render&amp;page={$page | url}">render</a></td>
             </tr>
           {/pageRows}
         </tbody>
