@@ -68,7 +68,7 @@
       $crumbs [] = [ 'label' => $part, 'dir' => $walked ];
     }
 
-    foreach ( scandir ( $base . ( $dir === '' ? '' : "$dir/" ) ) ?: [] as $item ) {
+    foreach ( @scandir ( $base . ( $dir === '' ? '' : "$dir/" ) ) ?: [] as $item ) {
 
       if ( $item [0] === '.' )
         continue;
@@ -106,6 +106,8 @@
         $notShown = 'This file lies outside the application.';
       elseif ( ! isset ( $textKinds [$ext] ) )
         $notShown = "A .$ext file is not shown as text.";
+      elseif ( ! is_readable ( $real ) )
+        $notShown = 'This file cannot be read by the web server.';
       elseif ( filesize ( $real ) > $adminMaxFile )
         $notShown = 'This file is larger than ' . adminBytes ( $adminMaxFile ) . ' - open it in the editor.';
       else {

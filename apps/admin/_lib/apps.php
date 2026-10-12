@@ -260,16 +260,18 @@
   // Every file under a directory, its own _xxx directories included when $deep, never what
   // starts with a dot nor what belongs to an application nested in it. A link is passed
   // over: it leads out of the application - the search read and showed the files a link
-  // pointed to, where the files page refuses them - or round in a circle.
+  // pointed to, where the files page refuses them - or round in a circle. So is what this
+  // process may not read: one such file or directory anywhere in apps/ failed the search
+  // of every application and the application page.
 
   function adminFilesIn ( $dir, $deep = TRUE ) {
 
     $dir  = rtrim ( $dir, '/' ) . '/';
     $list = [];
 
-    foreach ( scandir ( $dir ) ?: [] as $item ) {
+    foreach ( @scandir ( $dir ) ?: [] as $item ) {
 
-      if ( $item [0] === '.' or is_link ( $dir . $item ) )
+      if ( $item [0] === '.' or is_link ( $dir . $item ) or ! is_readable ( $dir . $item ) )
         continue;
 
       if ( is_dir ( $dir . $item ) ) {
