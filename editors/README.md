@@ -13,9 +13,10 @@
 | `emacs/` | Emacs | `pad-mode` derived from `mhtml-mode` with PAD font-lock and `{-- --}` comments | `(add-to-list 'load-path ".../editors/emacs") (require 'pad-mode)` |
 | `padrun.sh` | shared | Renders a `.pad` file through `http://localhost/pad/` (used by the Sublime build and the VS Code task) | - |
 | `mcp/` | AI assistants (Claude Code, any MCP client) | An MCP server: render a page or a template string (with variables of its own, `data`), the strict syntax check of a template, a page or a whole application, the trace of a request, PHP run in a booted application, the same render on the engine of another commit with the difference, one regression test, one suite or all of them, the applications, pages and built-ins, the reference | `claude mcp add pad -- node .../editors/mcp/pad-mcp.js` - see `mcp/README.md` |
+| `claude/` | Claude Code | A plugin with the language server (PAD's own error after every edit of a page, without asking), the MCP server and a bug-hunting skill, in a marketplace of its own; it runs the servers of the checkout it is used in | `claude plugin marketplace add .../editors/claude` + `claude plugin install pad@pad` - see `claude/README.md` |
 | `render.php` | shared | Renders a page of any application on the command line, no server needed: `php editors/render.php <app> [<page>]`, with `--source=<file>\|-` a template text in place of the page's own, `--query=a=1`, `--trace`, `--host=<base>` - status 1 and the JSON error of `pad/error/claude.php` when PAD reports one (used by the language server and the MCP server) | - |
 | `reference.js` | shared | The `docs/reference` sections and the built-in names, read for the language server's hover and the MCP server's lookups | - |
-| `fixture/` | tests | The application `shop` the tooling tests run against (`editors/lsp/test.js`, `editors/mcp/test.js`) | - |
+| `fixture/` | tests | The application `shop` the tooling tests run against (`editors/lsp/test.js`, `editors/mcp/test.js`, `editors/claude/test.js`) | - |
 
 JetBrains IDEs (PhpStorm): install the bundled "TextMate Bundles" plugin,
 then Settings > Editor > TextMate Bundles > `+` and select `editors/vscode/pad`

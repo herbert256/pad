@@ -1899,6 +1899,16 @@ on the old engine), `pad_case` (one regression test judged as its suite judges i
 `pad_test` (`./ci.sh`, or one `suite`, with where each failing test's want and got part).
 Tested by `node editors/mcp/test.js`, the `mcp` line of `./ci.sh`.
 
+### Claude Code plugin
+
+`editors/claude` is a plugin marketplace with the plugin `pad`: the language server - after
+every Edit or Write of a `.pad`/`.html` page Claude Code gets PAD's own error, no call needed -
+the MCP server, and the skill `pad-bug-hunt` (reproduce, prove against the old engine, where a
+regression case goes and the answer form its suite reads, the gate). `claude plugin marketplace
+add /Users/herbert/pad/editors/claude`, `claude plugin install pad@pad --scope local`; its
+launcher runs the servers of the checkout it is used in. Tested by `node editors/claude/test.js`,
+the `claude` line of `./ci.sh`.
+
 ---
 
 ## Applications Overview

@@ -143,7 +143,8 @@ fi
 
 # The editor tooling's own tests speak to it as an editor or an assistant would, against the
 # fixture application in editors/fixture/apps: the language server over LSP, the MCP server
-# over MCP - its pad_test runs this very script in the test rig's doctored world. The Tree-sitter
+# over MCP - its pad_test runs this very script in the test rig's doctored world - and the
+# Claude Code plugin, whose launcher must start those two from a project. The Tree-sitter
 # check proves the committed parser is generated from grammar.js and the queries name only
 # what the parser has, and runs the corpus when the tree-sitter CLI is installed. The validate
 # line runs the browser's checker of padValidate's rules (pad/lib/validate.js) over the cases
@@ -151,7 +152,7 @@ fi
 # node - a machine without it cannot run the tooling either, and says so instead of failing.
 
 if [ -z "$CI_SUITES" ]; then
-  for tool in lsp:editors/lsp/test.js mcp:editors/mcp/test.js treesitter:editors/tree-sitter-pad/test/check.js validate:apps/regression/pages/forms/_parity.js; do
+  for tool in lsp:editors/lsp/test.js mcp:editors/mcp/test.js claude:editors/claude/test.js treesitter:editors/tree-sitter-pad/test/check.js validate:apps/regression/pages/forms/_parity.js; do
     if ! command -v node > /dev/null 2>&1; then
       printf '%-12s %s\n' "${tool%%:*}" "skipped - node is not installed"
     elif out=$(node "$padHome/${tool#*:}" 2>&1); then
