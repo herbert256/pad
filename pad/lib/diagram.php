@@ -993,12 +993,24 @@
       }
 
       $points = $paths [$e];
+      $last   = end ( $points );
+      $before = $points [ count ( $points ) - 2 ];
+
+      // A curve arrives along the flow - its last control point lies straight before its
+      // end - so its head points that way and it is shortened along it: taken from the
+      // chord, the head lay sideways on the box and the curve ended off its base.
+
+      if ( $edgeForm == 'curved' ) {
+        $along = $vertical ? [ $last [0], ( $before [1] + $last [1] ) / 2 ] : [ ( $before [0] + $last [0] ) / 2, $last [1] ];
+        if ( $along != $last )
+          $before = $along;
+      }
 
       if ( $arrow )
-        $points [ count ( $points ) - 1 ] = padDiagramShorten ( $points [ count ( $points ) - 2 ], end ( $points ), $style == 'thick' ? 9 : 7 );
+        $points [ count ( $points ) - 1 ] = padDiagramShorten ( $before, $last, $style == 'thick' ? 9 : 7 );
 
       $svg .= "<g class=\"pc-mark\">$tip<path class=\"$class\" d=\"" . padDiagramPath ( $points, $edgeForm, $vertical, $X, $Y ) . '"/>'
-            . ( $arrow ? padDiagramHead ( $paths [$e] [ count ( $paths [$e] ) - 2 ], end ( $paths [$e] ), $X, $Y, $style ) : '' ) . '</g>';
+            . ( $arrow ? padDiagramHead ( $before, $last, $X, $Y, $style ) : '' ) . '</g>';
 
     }
 
