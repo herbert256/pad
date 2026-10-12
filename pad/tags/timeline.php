@@ -18,7 +18,9 @@
   //
   // Across the page by default: a time axis with round ticks - years, months or days by
   // the span - the cards above and below it, out of each other's way. vertical lays the
-  // events one under the other instead, dates left and cards right, for a long list.
+  // events one under the other instead, dates left and cards right, for a long list - and
+  // more than 150 events are laid out so whatever is asked: finding each card its place
+  // across the page takes time with the cube of their number, 28 seconds for 800.
   // width= is the width (720, vertical 600), height= follows from the cards unless given;
   // title= names the timeline for a screen reader. A timeline without events answers
   // nothing, and its @else@ shows.
@@ -64,7 +66,7 @@
 
   $padTimelineTitle = (string) padTagParm ( 'title', 'Timeline' );
 
-  if ( padTagParm ( 'vertical', FALSE ) )
+  if ( padTagParm ( 'vertical', FALSE ) or count ( $padTimelineEvents ) > 150 )
     return padTimelineColumn ( $padTimelineEvents, $padTimelineGroups, $padTimelineTitle, max ( 200, (int) padTagParm ( 'width', 600 ) ) );
 
   return padTimeline ( $padTimelineEvents, $padTimelineGroups, $padTimelineTitle,
