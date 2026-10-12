@@ -83,15 +83,23 @@
 
   }
 
+  // A link is taken away itself, its own directory checked to be below DATA/: resolved, it
+  // was followed - emptying DATA/cache deleted what a link there pointed to, a users file
+  // or DATA/keys, and left the link.
+
   function adminRemove ( $path ) {
 
     $data = realpath ( DATA );
-    $real = realpath ( $path );
+
+    if ( is_link ( $path ) )
+      $real = ( $dir = realpath ( dirname ( $path ) ) ) === FALSE ? FALSE : $dir . DIRECTORY_SEPARATOR . basename ( $path );
+    else
+      $real = realpath ( $path );
 
     if ( $data === FALSE or $real === FALSE or ! str_starts_with ( $real, $data . DIRECTORY_SEPARATOR ) )
       return 0;
 
-    if ( is_file ( $real ) or is_link ( $real ) )
+    if ( is_link ( $real ) or is_file ( $real ) )
       return @unlink ( $real ) ? 1 : 0;
 
     $count = 0;
