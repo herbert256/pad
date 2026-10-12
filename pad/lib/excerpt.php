@@ -18,7 +18,9 @@
 
     $terms = [];
 
-    foreach ( preg_split ( '/[^\p{L}\p{N}_]+/u', (string) $query, -1, PREG_SPLIT_NO_EMPTY ) as $term )
+    // A broken byte - ?q=%FF - made preg_split answer FALSE and ended the request.
+
+    foreach ( preg_split ( '/[^\p{L}\p{N}_]+/u', mb_scrub ( (string) $query, 'UTF-8' ), -1, PREG_SPLIT_NO_EMPTY ) as $term )
       $terms [ mb_strtolower ( $term, 'UTF-8' ) ] = $term;
 
     $terms = array_keys ( $terms );
@@ -30,6 +32,8 @@
   }
 
   function padExcerpt ( $text, $words, $query, $html, $ellipsis ) {
+
+    $text = mb_scrub ( (string) $text, 'UTF-8' );
 
     if ( $html )
       $text = html_entity_decode ( strip_tags ( preg_replace ( '#<(script|style)\b.*?</\1>#is', ' ', (string) $text ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
