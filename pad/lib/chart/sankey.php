@@ -215,7 +215,11 @@
 
     }
 
-    // The nodes, named beside them: on the right, and on the left in the last column.
+    // The nodes, named beside them: on the right, and on the left in the last column - cut
+    // to the room before the next column, the whole name in the tooltip: in a chain of long
+    // names each ran over the next column's node and name.
+
+    $room = ( $width - 20 - $nodeW ) / max ( 1, $last ) - $nodeW - 12;
 
     foreach ( $nodes as $node => $i ) {
 
@@ -225,7 +229,7 @@
       $end = ( $column [$node] == $last );
 
       $svg .= '<text x="' . padChartXY ( $end ? $x [$node] - 6 : $x [$node] + $nodeW + 6 ) . '" y="' . padChartXY ( $y [$node] + $h [$node] / 2 + 4 ) . '"'
-            . ( $end ? ' text-anchor="end"' : '' ) . '>' . padChartAttr ( $node ) . '</text>';
+            . ( $end ? ' text-anchor="end"' : '' ) . '>' . padChartAttr ( padChartFit ( $node, $room ) ) . '</text>';
 
     }
 
