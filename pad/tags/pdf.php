@@ -16,6 +16,11 @@
   //
   // Like {live} a pair runs twice: first to ask for the end walk, then on the rendered
   // content.
+  //
+  // A {cache} section round it is not kept (padFragmentKeepNot): on a hit the tag did not
+  // run, and the request that asked for the document got the page's HTML.
+
+  padFragmentKeepNot ();
 
   $padPdfOpts = [ 'file'      => (string) padTagParm ( 'file',      ''          ),
                   'download'  => (bool)   padTagParm ( 'download',  FALSE       ),

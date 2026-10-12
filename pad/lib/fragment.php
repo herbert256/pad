@@ -108,10 +108,24 @@
 
       $body = padNocacheCut ( $padResult [$pad], $nocache );
 
-      if ( padFragmentStorable ( $body, $fragment ['stacks'] ) )
+      if ( ( $fragment ['keep'] ?? TRUE ) and padFragmentStorable ( $body, $fragment ['stacks'] ) )
         padFragmentPut ( $fragment ['key'], $body, $fragment ['ttl'], $fragment ['stacks'], $fragment ['pagers'], $nocache );
 
     }
+
+  }
+
+  // The sections being kept round this level are not kept after all - what a {pdf} in one
+  // makes is the answer of the request, and on a hit its handler did not run: the first
+  // request got the document, every later one the page's HTML.
+
+  function padFragmentKeepNot () {
+
+    global $pad, $padFragment;
+
+    for ( $i = $pad; $i >= 0; $i-- )
+      if ( is_array ( $padFragment [$i] ?? NULL ) and ! $padFragment [$i] ['hit'] )
+        $padFragment [$i] ['keep'] = FALSE;
 
   }
 
