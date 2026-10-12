@@ -94,6 +94,24 @@
 
   }
 
+  // A secret that may be set - by pad down and by the admin console alike: 6 to 64 letters,
+  // digits, _ and -, and no page of the application. It is asked as ?<secret>, the name of
+  // a page: one that is a page every visitor asks for gave all of them the cookie (index,
+  // the front page), and one no address can ask for (a b, x&y) locked out its developer.
+
+  function padMaintenanceSecretValid ( $app, $secret ) {
+
+    if ( ! is_string ( $secret ) or ! preg_match ( '/^[A-Za-z0-9_-]{6,64}$/D', $secret ) )
+      return FALSE;
+
+    foreach ( [ '', '.pad', '.html', '.php' ] as $ext )
+      if ( file_exists ( APPS . "$app/$secret$ext" ) )
+        return FALSE;
+
+    return TRUE;
+
+  }
+
   function padMaintenanceUp ( $app ) {
 
     $file = padMaintenanceFile ( $app );

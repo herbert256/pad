@@ -13,15 +13,8 @@
 
     $action = adminField ( 'action' );
 
-    if ( $action == 'down' and $app !== 'admin' and $app !== '_common' ) {
-      padMaintenanceDown ( $app, adminField ( 'secret' ), (int) adminField ( 'retry', '60' ), adminField ( 'message' ) );
-      adminDone ( "$app is down for maintenance.", 'application', [ 'app' => $app ] );
-    }
-
-    if ( $action == 'up' ) {
-      padMaintenanceUp ( $app );
-      adminDone ( "$app is up again.", 'application', [ 'app' => $app ] );
-    }
+    if ( $action == 'up' or ( $action == 'down' and $app !== 'admin' and $app !== '_common' ) )
+      adminMaintenance ( $app, $action, 'application', [ 'app' => $app ] );
 
   }
 

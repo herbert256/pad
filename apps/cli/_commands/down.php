@@ -10,6 +10,9 @@
   if ( ! defined ( 'DATA' ) )
     define ( 'DATA', cliHome () . '/DATA/' );
 
+  if ( ! defined ( 'APPS' ) )
+    define ( 'APPS', cliHome () . '/apps/' );
+
   include_once cliHome () . '/pad/lib/maintenance.php';
 
   $downArgs    = array_slice ( $argv, 2 );
@@ -46,6 +49,9 @@
 
   if ( ! cliApp ( $downApp ) )
     return cliFail ( "there is no application named '$downApp' - pad down <app>" );
+
+  if ( $downSecret !== '' and ! padMaintenanceSecretValid ( $downApp, $downSecret ) )
+    return cliFail ( "the secret '$downSecret' is a page of $downApp - every visitor of it would be let through" );
 
   if ( ! padMaintenanceDown ( $downApp, $downSecret, $downRetry, $downMessage ) )
     return cliFail ( "could not write DATA/maintenance/$downApp.json" );

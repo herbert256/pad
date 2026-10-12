@@ -14,15 +14,7 @@
     if ( $app === '' or $app === 'admin' or $app === '_common' )
       adminDone ( 'Choose an application.', 'maintenance', [], 'error' );
 
-    if ( $action == 'down' ) {
-      padMaintenanceDown ( $app, adminField ( 'secret' ), (int) adminField ( 'retry', '60' ), adminField ( 'message' ) );
-      adminDone ( "$app is down for maintenance.", 'maintenance' );
-    }
-
-    if ( $action == 'up' ) {
-      padMaintenanceUp ( $app );
-      adminDone ( "$app is up again.", 'maintenance' );
-    }
+    adminMaintenance ( $app, $action, 'maintenance' );
 
   }
 

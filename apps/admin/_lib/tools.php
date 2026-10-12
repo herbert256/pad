@@ -351,6 +351,37 @@
 
   // A value printed in <pre>: PAD's own value escaping takes care of the HTML.
 
+  // Taking an application down or up from the console, under the rules of pad down: the
+  // secret a valid one, and the message what happened - it said "is down" when nothing was
+  // written, and "is up again" of one that was not down.
+
+  function adminMaintenance ( $app, $action, $page, $vars = [] ) {
+
+    if ( $action == 'down' ) {
+
+      $secret = trim ( adminField ( 'secret' ) );
+
+      if ( $secret !== '' and ! padMaintenanceSecretValid ( $app, $secret ) )
+        adminDone ( 'A secret is 6 to 64 letters, digits, _ and -, and not the name of a page of the application.', $page, $vars, 'error' );
+
+      if ( ! padMaintenanceDown ( $app, $secret, (int) adminField ( 'retry', '60' ), adminField ( 'message' ) ) )
+        adminDone ( "$app could not be taken down: DATA/maintenance/ cannot be written.", $page, $vars, 'error' );
+
+      adminDone ( "$app is down for maintenance.", $page, $vars );
+
+    }
+
+    if ( $action == 'up' ) {
+
+      if ( ! padMaintenanceUp ( $app ) )
+        adminDone ( "$app was not down.", $page, $vars, 'error' );
+
+      adminDone ( "$app is up again.", $page, $vars );
+
+    }
+
+  }
+
   function adminDone ( $message, $page, $vars = [], $type = 'ok' ) {
 
     padFlash ( $message, $type );
