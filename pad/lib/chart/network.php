@@ -6,7 +6,8 @@
   // first two that are no number. value= names a numeric field that makes a link thicker;
   // arrows marks the direction of each link. layout='force' (the default) lets linked
   // nodes pull together and all nodes push apart - computed here, from a circle, so the
-  // same data draws the same picture - and layout='radial' sets the nodes on a circle. A
+  // same data draws the same picture - and layout='radial' sets the nodes on a circle; past
+  // 300 nodes the force is not computed, a layout of seconds, and they stay on the circle. A
   // node is larger the more links it has; up to forty nodes are named beside them.
 
   function padChartNetwork ( $rows, $width, $height ) {
