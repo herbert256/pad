@@ -61,7 +61,11 @@
 
     if ( $slug !== NULL ) {
 
-      if ( ! preg_match ( '/^[A-Za-z0-9_-][A-Za-z0-9_.-]*$/', (string) $slug ) or ! is_file ( "$dir$slug.md" ) )
+      // The file's name as written, in its case: on a file system that ignores case,
+      // slug=FIRST served first.md - a second address of every post, with another slug.
+
+      if ( ! preg_match ( '/^[A-Za-z0-9_-][A-Za-z0-9_.-]*$/', (string) $slug ) or ! is_file ( "$dir$slug.md" )
+           or ! in_array ( "$slug.md", scandir ( $dir ) ?: [], TRUE ) )
         return [];
 
       $files = [ "$dir$slug.md" ];
