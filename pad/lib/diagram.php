@@ -1396,12 +1396,18 @@
     // participant, centred on its line, and a long word beside one were wider than the
     // picture and cut off.
 
+    // A message to oneself takes the room of its label as it is drawn - its number in front,
+    // where the room was the text's alone and "12. text" ran past the edge.
+
     $shift = 0;
+    $nth   = 0;
 
     foreach ( $events as $event )
-      if ( $event [0] == 'message' and $event [1] === $event [2] )
-        $right = max ( $right, $x [ $col [ $event [1] ] ] + 44 + padDiagramWidth ( $event [3] ) );
-      elseif ( $event [0] == 'note' ) {
+      if ( $event [0] == 'message' ) {
+        $label = isset ( $event [6] ) ? ( ++$nth ) . '. ' . $event [3] : $event [3];
+        if ( $event [1] === $event [2] )
+          $right = max ( $right, $x [ $col [ $event [1] ] ] + 44 + padDiagramWidth ( $label ) );
+      } elseif ( $event [0] == 'note' ) {
         list ( $x0, $x1 ) = padDiagramNoteSpan ( $event, padDiagramNoteLines ( $event, $x, $col ),
                                                  $x [ $col [ $event [2] ] ], $x [ $col [ $event [3] ] ] );
         $right = max ( $right, $x1 );
