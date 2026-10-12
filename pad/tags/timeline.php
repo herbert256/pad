@@ -65,11 +65,18 @@
     return FALSE;
   }
 
+  // A row without a value in the color= field is drawn in the colour of the rest and has no
+  // legend entry, where it was a group of its own - a swatch with no name. Without any
+  // group, every row has the first colour.
+
   $padTimelineGroups = [];
 
   foreach ( $padTimelineEvents as $padTimelineEvent )
-    if ( ! isset ( $padTimelineGroups [ $padTimelineEvent [5] ] ) )
+    if ( $padTimelineEvent [5] !== '' and ! isset ( $padTimelineGroups [ $padTimelineEvent [5] ] ) )
       $padTimelineGroups [ $padTimelineEvent [5] ] = count ( $padTimelineGroups );
+
+  if ( in_array ( '', array_column ( $padTimelineEvents, 5 ), TRUE ) )
+    $padTimelineGroups [''] = $padTimelineGroups ? 8 : 0;
 
   $padTimelineTitle = (string) padTagParm ( 'title', 'Timeline' );
 

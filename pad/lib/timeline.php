@@ -308,7 +308,7 @@
     $top   = 8;
 
     if ( count ( $groups ) > 1 ) {
-      list ( $legend, $legendH ) = padChartLegend ( array_keys ( $groups ), $left, 8, $width - $left - $right );
+      list ( $legend, $legendH ) = padChartLegend ( array_diff ( array_keys ( $groups ), [ '' ] ), $left, 8, $width - $left - $right );
       $top += $legendH + 4;
     } else
       $legend = '';
@@ -528,7 +528,7 @@
     $top   = 10;
 
     if ( count ( $groups ) > 1 ) {
-      list ( $legend, $legendH ) = padChartLegend ( array_keys ( $groups ), $cardX, 8, $cardW );
+      list ( $legend, $legendH ) = padChartLegend ( array_diff ( array_keys ( $groups ), [ '' ] ), $cardX, 8, $cardW );
       $top += $legendH + 6;
     } else
       $legend = '';
