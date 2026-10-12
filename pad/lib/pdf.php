@@ -1373,6 +1373,21 @@
 
   }
 
+  // A link's address as a URI action takes it - seven bits - and as a browser follows the
+  // same href: a byte past ASCII or a space percent-encoded, a backslash of a web address a
+  // slash. They were left out: https://ex.com/€ü linked to the site's root, "d e" to "de".
+
+  function padPdfUri ( $uri ) {
+
+    $uri = trim ( (string) $uri );
+
+    if ( preg_match ( '#^https?:#i', $uri ) )
+      $uri = str_replace ( '\\', '/', $uri );
+
+    return preg_replace_callback ( '/[^\x21-\x7E]/', fn ( $byte ) => sprintf ( '%%%02X', ord ( $byte [0] ) ), $uri );
+
+  }
+
   function padPdfString ( $text ) {
 
     return strtr ( $text, [ '\\' => '\\\\', '(' => '\\(', ')' => '\\)' ] );
@@ -1433,7 +1448,7 @@
       $annots = [];
       foreach ( $page ['links'] as list ( $x0, $y0, $x1, $y1, $uri ) )
         $annots [] = $add ( '<< /Type /Annot /Subtype /Link /Rect [' . padPdfN ( $x0 ) . ' ' . padPdfN ( $y0 ) . ' ' . padPdfN ( $x1 ) . ' ' . padPdfN ( $y1 ) . ']'
-                          . ' /Border [0 0 0] /A << /S /URI /URI (' . padPdfString ( preg_replace ( '/[^\x21-\x7E]/', '', $uri ) ) . ') >> >>' ) . ' 0 R';
+                          . ' /Border [0 0 0] /A << /S /URI /URI (' . padPdfString ( padPdfUri ( $uri ) ) . ') >> >>' ) . ' 0 R';
 
       $kids [] = $add ( "<< /Type /Page /Parent $tree 0 R /MediaBox [0 0 " . padPdfN ( $doc ['w'] ) . ' ' . padPdfN ( $doc ['h'] ) . ']'
                       . " /Resources $resources /Contents $stream 0 R" . ( $annots ? ' /Annots [' . implode ( ' ', $annots ) . ']' : '' ) . ' >>' ) . ' 0 R';
