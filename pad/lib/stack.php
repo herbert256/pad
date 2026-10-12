@@ -13,7 +13,9 @@
   // from exits/exits.php. The marker carries a number made from the stack's name rather
   // than the name itself: a pipe on the tag - {stack 'css' | upper} - cannot change it,
   // and the same name makes the same marker on every request, so a {stack} inside a
-  // cached fragment still finds its stack.
+  // cached fragment still finds its stack. It is sealed (padMarkSeal): a value carrying a
+  // marker's characters and the number of a stack is text, where the stack's scripts were
+  // written into it a second time.
   //
   // once= keeps the first push of a key and drops the later ones, per stack - a 'chart' in
   // the scripts and a 'chart' in the styles are two different things. once without a key
@@ -27,7 +29,9 @@
 
   function padStackMarker ( $name ) {
 
-    return "\u{E0F0}" . crc32 ( (string) $name ) . "\u{E0F1}";
+    $number = crc32 ( (string) $name );
+
+    return "\u{E0F0}" . padMarkSeal ( "stack $number" ) . $number . "\u{E0F1}";
 
   }
 
@@ -104,7 +108,8 @@
 
     // A stack nothing pushed to prints nothing.
 
-    return preg_replace ( '/\x{E0F0}\d+\x{E0F1}/u', '', $output );
+    return preg_replace_callback ( '/\x{E0F0}(\d{16})(\d+)\x{E0F1}/u',
+      fn ( $match ) => hash_equals ( padMarkSeal ( "stack $match[2]" ), $match [1] ) ? '' : $match [0], $output );
 
   }
 

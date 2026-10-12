@@ -92,7 +92,7 @@
 
     $wanted = [];
 
-    preg_match_all ( '/\x{E0F6}([0-9a-f]{16})([0-9a-f]*)\x{E0F7}/u', $output, $markers, PREG_SET_ORDER );
+    preg_match_all ( '/\x{E0F6}(\d{16})([0-9a-f]*)\x{E0F7}/u', $output, $markers, PREG_SET_ORDER );
 
     foreach ( $markers as $marker )
       foreach ( (array) ( padTocOptions ( $marker [1], $marker [2] ) [0] ?? [] ) as $level )
@@ -134,7 +134,7 @@
 
       }, $output );
 
-    return preg_replace_callback ( '/\x{E0F6}([0-9a-f]{16})([0-9a-f]*)\x{E0F7}/u', function ( $match ) use ( $headings ) {
+    return preg_replace_callback ( '/\x{E0F6}(\d{16})([0-9a-f]*)\x{E0F7}/u', function ( $match ) use ( $headings ) {
 
       $options = padTocOptions ( $match [1], $match [2] );
 

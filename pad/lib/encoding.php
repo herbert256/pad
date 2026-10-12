@@ -107,7 +107,8 @@
 
   // The seal of a marker the engine writes into the page to fill in later - {toc}, {stack} -
   // so text that came in with a value is never taken for one: a keyed hash of what the
-  // marker holds, 16 hex digits. The key is this installation's (DATA/keys/markers.key),
+  // marker holds, 16 decimal digits - a pipe on the tag, {stack 'css' | upper}, changes no
+  // digit. The key is this installation's (DATA/keys/markers.key),
   // the same on every request, so a marker inside a cached fragment still holds; when no
   // key file can be kept, one of this request.
 
@@ -122,7 +123,7 @@
       $key = $key ?? random_bytes ( 32 );
     }
 
-    return substr ( hash_hmac ( 'sha256', (string) $text, $key ), 0, 16 );
+    return sprintf ( '%016d', hexdec ( substr ( hash_hmac ( 'sha256', (string) $text, $key ), 0, 13 ) ) );
 
   }
 
