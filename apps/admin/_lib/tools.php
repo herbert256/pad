@@ -212,17 +212,46 @@
 
   }
 
+  // The words a name of a secret holds - one list for the sources and the settings.
+
+  function adminRedactWords () {
+
+    return 'password|passwd|pwd|pass|secret|token|apikey|api_key|appkey|app_key|credential|private|salt|cipher|key';
+
+  }
+
+  // The values of passwords, keys and secrets left out of source text, in the ways they are
+  // written: a PHP variable, an array key or element, a property or a define () with a
+  // quoted value - an escaped quote inside it read as part of it -, a JSON or YAML key, an
+  // XML element, a name=value line of a .env, and the password of an address. A value that
+  // is computed - an expression, a function's argument, a heredoc - is not recognised.
+
   function adminRedact ( $source ) {
 
-    $words = 'password|passwd|pwd|pass|secret|token|apikey|api_key|appkey|app_key|credential|private|salt|cipher|key';
+    $w = '\w*(?:' . adminRedactWords () . ')\w*';
+    $q = '([\'"])((?:\\\\.|(?!\2).)*)\2';
 
-    // $padSqlPassword = '...';  'password' => '...';  padSqlPassword=...  (a .env-like line)
-
-    $source = preg_replace ( '/(\$\w*(?:' . $words . ')\w*\s*=\s*)([\'"])(.+?)\2/i', '$1$2*REDACTED*$2', $source );
-    $source = preg_replace ( '/([\'"]\w*(?:' . $words . ')\w*[\'"]\s*=>\s*)([\'"])(.+?)\2/i', '$1$2*REDACTED*$2', $source );
-    $source = preg_replace ( '/^(\s*\w*(?:' . $words . ')\w*\s*=\s*)(\S.*)$/im', '$1*REDACTED*', $source );
+    $source = preg_replace ( '/(\$' . $w . '\s*=\s*)' . $q . '/i',                        '$1$2*REDACTED*$2', $source );
+    $source = preg_replace ( '/([\'"]' . $w . '[\'"]\s*=>\s*)' . $q . '/i',              '$1$2*REDACTED*$2', $source );
+    $source = preg_replace ( '/(\[\s*[\'"]' . $w . '[\'"]\s*\]\s*=\s*)' . $q . '/i',     '$1$2*REDACTED*$2', $source );
+    $source = preg_replace ( '/(->' . $w . '\s*=\s*)' . $q . '/i',                        '$1$2*REDACTED*$2', $source );
+    $source = preg_replace ( '/(define\s*\(\s*[\'"]' . $w . '[\'"]\s*,\s*)' . $q . '/i', '$1$2*REDACTED*$2', $source );
+    $source = preg_replace ( '/("' . $w . '"\s*:\s*)"(?:\\\\.|[^"\\\\])*"/i',               '$1"*REDACTED*"',   $source );
+    $source = preg_replace ( '/^(\s*-?\s*' . $w . '\s*:[ \t]+)(?!\*REDACTED\*)(\S.*)$/im', '$1*REDACTED*',     $source );
+    $source = preg_replace ( '/(<(' . $w . ')\b[^>]*>)[^<]*(<\/\2>)/i',                   '$1*REDACTED*$3',   $source );
+    $source = preg_replace ( '/^(\s*' . $w . '\s*=\s*)(\S.*)$/im',                         '$1*REDACTED*',     $source );
+    $source = preg_replace ( '#(\b[a-z][a-z0-9+.-]*://[^/\s:@\'"]*:)[^@\s\'"/]+(@)#i',     '$1*REDACTED*$2',   $source );
 
     return $source;
+
+  }
+
+  function adminRedactValue ( $name, $value ) {
+
+    if ( preg_match ( '/' . adminRedactWords () . '/i', $name ) and $value !== '' and $value !== NULL )
+      return '*REDACTED*';
+
+    return $value;
 
   }
 
@@ -244,15 +273,6 @@
         $lines [$number] = $line;
 
     return $lines;
-
-  }
-
-  function adminRedactValue ( $name, $value ) {
-
-    if ( preg_match ( '/password|passwd|secret|token|key|salt|credential/i', $name ) and $value !== '' and $value !== NULL )
-      return '*REDACTED*';
-
-    return $value;
 
   }
 

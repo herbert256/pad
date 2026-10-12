@@ -73,10 +73,11 @@
 
   $pageCount = count ( $pageRows );
 
-  // The README, as Markdown - its own raw HTML escaped.
+  // The README, as Markdown - its own raw HTML escaped, its secrets left out as the files
+  // page leaves them out of it.
 
   $readmeFile = APPS . "$app/README.md";
-  $readme     = is_file ( $readmeFile ) ? padMarkdown ( (string) file_get_contents ( $readmeFile ) ) : '';
+  $readme     = is_file ( $readmeFile ) ? padMarkdown ( adminRedact ( (string) file_get_contents ( $readmeFile ) ) ) : '';
   $hasReadme  = $readme !== '' ? 1 : 0;
 
   // The settings its _config/config.php makes.
