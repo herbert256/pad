@@ -75,7 +75,11 @@
     foreach ( $nodes as $node => $i )
       $longest = max ( $longest, padChartWidth ( padChartFit ( $node, 110 ) ) );
 
-    $step = ( $width - 32 ) / max ( 1, $n - 1 );
+    // Level when they fit at the step they will have, with the room level names take at the
+    // sides: the step before those margins let names of 104px stand 96px apart.
+
+    $side = max ( 16, min ( $longest / 2 + 4, $width / 4 ) );
+    $step = ( $width - 2 * $side ) / max ( 1, $n - 1 );
 
     if ( $n == 1 or $step >= $longest + 8 ) {
       $turn   = 0;
