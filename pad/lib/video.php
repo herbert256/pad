@@ -119,7 +119,7 @@
 
     list ( $site, $id, $start, $short ) = $video;
 
-    $start = (int) ( $opts ['start'] ?? 0 ) ?: $start;
+    $start = padVideoStart ( $opts ['start'] ?? '' ) ?: $start;
 
     if ( $site == 'youtube' ) {
       $embed = "https://www.youtube-nocookie.com/embed/$id?autoplay=1&rel=0" . ( $start ? "&start=$start" : '' );
