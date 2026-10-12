@@ -102,8 +102,8 @@
 
     $xs = array_column ( $pos, 0 );
     $ys = array_column ( $pos, 1 );
-    $x0 = min ( $xs );  $xw = max ( $xs ) - $x0 ?: 1;
-    $y0 = min ( $ys );  $yw = max ( $ys ) - $y0 ?: 1;
+    $x0 = min ( $xs );  $xw = max ( $xs ) - $x0;
+    $y0 = min ( $ys );  $yw = max ( $ys ) - $y0;
 
     $padLeft  = ( $layout == 'radial' and $named ) ? $longest + 18 : 16;
     $padRight = $named ? $longest + 18 : 16;
@@ -111,8 +111,11 @@
     $padTop   = ( $layout == 'radial' and $named ) ? 30 : 16;
     $plotH    = max ( 1, $height - 2 * $padTop );
 
-    $px = fn ( $i ) => $padLeft + ( $pos [$i] [0] - $x0 ) / $xw * $plotW;
-    $py = fn ( $i ) => $padTop + ( $pos [$i] [1] - $y0 ) / $yw * $plotH;
+    // A direction without a span - two nodes over each other, sin(pi) is 1.2e-16 - is the
+    // middle line, where that rounding was stretched over the whole width.
+
+    $px = fn ( $i ) => $xw < 1e-9 ? $padLeft + $plotW / 2 : $padLeft + ( $pos [$i] [0] - $x0 ) / $xw * $plotW;
+    $py = fn ( $i ) => $yw < 1e-9 ? $padTop + $plotH / 2 : $padTop + ( $pos [$i] [1] - $y0 ) / $yw * $plotH;
     $pr = fn ( $node ) => min ( 12, 4 + 1.5 * sqrt ( $nodes [$node] [1] ) );
 
     if ( $arrows )
