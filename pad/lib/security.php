@@ -29,6 +29,18 @@
 
   }
 
+  // The nonce attribute of a <style> the engine writes itself - a chart's, a widget's, a
+  // tag's - when the policy asks for one ('nonce' in $padCsp): under a style-src 'nonce'
+  // they were refused, and every chart drew its bars black. Not of anything a page wrote.
+
+  function padStyleNonce () {
+
+    global $padCsp;
+
+    return ( is_string ( $padCsp ?? NULL ) and str_contains ( $padCsp, "'nonce'" ) ) ? ' nonce="' . padNonce () . '"' : '';
+
+  }
+
   function padSecurityHeaders () {
 
     global $padSecurityHeaders, $padCsp;

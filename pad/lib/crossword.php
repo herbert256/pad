@@ -357,7 +357,7 @@
       $both  .= "--pad-crossword-$role:light-dark($day,$night);";
     }
 
-    return '<style>'
+    return '<style' . padStyleNonce () . '>'
          . ":where(.pad-crossword){{$light}}"
          . "@supports (color:light-dark(#000,#fff)){:where(.pad-crossword){{$both}}}"
          . ':where(.pad-crossword){display:flex;flex-wrap:wrap;gap:20px 32px;align-items:flex-start}'

@@ -282,7 +282,7 @@
       $both  .= "--pad-diagram-$role:light-dark($day,$night);";
     }
 
-    return '<style>'
+    return '<style' . padStyleNonce () . '>'
          . ":where(.pad-chart-diagram){{$light}}"
          . "@supports (color:light-dark(#000,#fff)){:where(.pad-chart-diagram){{$both}}}"
          . '.pad-chart-diagram text{font-size:12px}'

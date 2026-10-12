@@ -107,7 +107,7 @@
 
     for ( $n = 13; $n <= $count; $n++ )
       if ( padWidgetOnce ( "carousel-mark:$n" ) )
-        $css .= padProtect ( '<style>' . padCarouselMark ( $n ) . '</style>' );
+        $css .= padProtect ( '<style' . padStyleNonce () . '>' . padCarouselMark ( $n ) . '</style>' );
 
     return $css;
 

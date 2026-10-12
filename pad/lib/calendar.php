@@ -146,7 +146,7 @@
 
   function padCalendarStyle () {
 
-    return '<style>'
+    return '<style' . padStyleNonce () . '>'
          . ':where(.pad-calendar){border-collapse:collapse;width:100%;table-layout:fixed;font-size:14px}'
          . ':where(.pad-calendar caption){padding:6px;font-weight:600;font-size:16px}'
          . ':where(.pad-calendar caption a){display:inline-block;padding:0 10px;text-decoration:none;color:inherit}'

@@ -307,7 +307,7 @@
       $both  .= "--pad-chess-$role:light-dark($day,$night);";
     }
 
-    return '<style>'
+    return '<style' . padStyleNonce () . '>'
          . ":where(.pad-chess){{$light}}"
          . "@supports (color:light-dark(#000,#fff)){:where(.pad-chess){{$both}}}"
          . ':where(.pad-chess){max-width:100%;max-height:100%;height:auto}'

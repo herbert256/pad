@@ -171,7 +171,7 @@
       $both  .= "--pad-jsonview-$role:light-dark($day,$night);";
     }
 
-    return '<style>'
+    return '<style' . padStyleNonce () . '>'
          . ":where(.pad-jsonview){{$light}}"
          . "@supports (color:light-dark(#000,#fff)){:where(.pad-jsonview){{$both}}}"
          . '.pad-jsonview{font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--pad-jsonview-surface);'

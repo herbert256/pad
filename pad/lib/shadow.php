@@ -34,7 +34,7 @@
     $open = '<template shadowrootmode="' . $mode . '"' . ( $focus ? ' shadowrootdelegatesfocus' : '' ) . '>';
     $text = padShadowCss ( padSourceList ( $css ) );
 
-    return $text === '' ? $open : $open . '<style>' . $text . '</style>';
+    return $text === '' ? $open : $open . '<style' . padStyleNonce () . '>' . $text . '</style>';
 
   }
 

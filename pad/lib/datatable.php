@@ -318,7 +318,7 @@
       $both  .= "--pad-datatable-$role:light-dark($day,$night);";
     }
 
-    return '<style>'
+    return '<style' . padStyleNonce () . '>'
          . ":where(.pad-datatable){{$light}}"
          . "@supports (color:light-dark(#000,#fff)){:where(.pad-datatable){{$both}}}"
          . '.pad-datatable{max-width:100%;overflow-x:auto;color:var(--pad-datatable-text)}'

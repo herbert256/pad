@@ -241,7 +241,7 @@
       $both  .= "--pad-map-$role:light-dark($day,$night);";
     }
 
-    return '<style>'
+    return '<style' . padStyleNonce () . '>'
          . ":where(.pad-chart-map){{$light}}"
          . "@supports (color:light-dark(#000,#fff)){:where(.pad-chart-map){{$both}}}"
          . '.pad-chart-map .pm-land{stroke:var(--pad-map-border);stroke-width:.6px;vector-effect:non-scaling-stroke;stroke-linejoin:round}'

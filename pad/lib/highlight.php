@@ -291,7 +291,7 @@
       $css .= ":where(.pad-highlight .hl-$class){color:$day}"
             . "@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-$class){color:light-dark($day,$night)}}";
 
-    return '<style>' . $css
+    return '<style' . padStyleNonce () . '>' . $css
          . ':where(.pad-highlight .hl-com){font-style:italic}'
          . ':where(.pad-highlight .hl-line){display:inline-block;min-width:100%}'
          . ':where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}'

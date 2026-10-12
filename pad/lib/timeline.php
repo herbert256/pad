@@ -186,7 +186,7 @@
       $both  .= "--pad-timeline-$role:light-dark($day,$night);";
     }
 
-    return '<style>'
+    return '<style' . padStyleNonce () . '>'
          . ":where(.pad-chart-timeline){{$light}}"
          . "@supports (color:light-dark(#000,#fff)){:where(.pad-chart-timeline){{$both}}}"
          . '.pad-chart-timeline .pt-card{fill:var(--pad-timeline-card);stroke:var(--pad-timeline-border);stroke-width:1}'

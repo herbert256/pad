@@ -147,7 +147,7 @@
     for ( $n = 1; $n <= 12; $n++ )
       $css .= ":where(.pad-source>input:nth-of-type($n):checked~.pad-source-panel:nth-of-type($n)){display:block}";
 
-    return "<style>$css</style>";
+    return '<style' . padStyleNonce () . ">$css</style>";
 
   }
 

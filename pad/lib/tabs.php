@@ -196,7 +196,7 @@
 
     for ( $n = 13; $n <= $count; $n++ )
       if ( padWidgetOnce ( "tabs-slot:$n" ) )
-        $css .= padProtect ( '<style>' . padTabsSlot ( $n ) . '</style>' );
+        $css .= padProtect ( '<style' . padStyleNonce () . '>' . padTabsSlot ( $n ) . '</style>' );
 
     return $css;
 

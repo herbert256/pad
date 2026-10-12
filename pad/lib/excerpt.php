@@ -138,7 +138,7 @@
     if ( ! padWidgetOnce ( 'style:excerpt' ) )
       return '';
 
-    return '<style>'
+    return '<style' . padStyleNonce () . '>'
          . ':where(.pad-excerpt){--pad-excerpt-mark:#fde68a;--pad-excerpt-marked:#1a1a19}'
          . '@supports (color:light-dark(#000,#fff)){:where(.pad-excerpt){--pad-excerpt-mark:light-dark(#fde68a,#6b5310);--pad-excerpt-marked:light-dark(#1a1a19,#fdf6dc)}}'
          . ':where(.pad-excerpt mark){background:var(--pad-excerpt-mark);color:var(--pad-excerpt-marked);border-radius:3px;padding:0 2px}'

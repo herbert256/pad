@@ -407,7 +407,7 @@
       $both  .= "--pad-chart-$role:light-dark($day,$night);";
     }
 
-    return '<style>'
+    return '<style' . padStyleNonce () . '>'
          . ":where(.pad-chart){{$light}}"
          . "@supports (color:light-dark(#000,#fff)){:where(.pad-chart){{$both}}}"
          . '.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}'

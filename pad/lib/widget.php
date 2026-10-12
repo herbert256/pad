@@ -96,7 +96,7 @@
     if ( ! padWidgetOnce ( "style:$class" ) )
       return '';
 
-    return padProtect ( '<style>' . padWidgetColors ( $class, $roles ) . $rules . '</style>' );
+    return padProtect ( '<style' . padStyleNonce () . '>' . padWidgetColors ( $class, $roles ) . $rules . '</style>' );
 
   }
 

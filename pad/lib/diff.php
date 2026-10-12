@@ -408,7 +408,7 @@
 
     $hidden = 'position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap';
 
-    return '<style>'
+    return '<style' . padStyleNonce () . '>'
          . ":where(.pad-diff){{$light}}"
          . "@supports (color:light-dark(#000,#fff)){:where(.pad-diff){{$both}}}"
          . ':where(.pad-diff){color:var(--pad-diff-text)}'

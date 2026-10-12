@@ -263,7 +263,7 @@
       $both  .= "--pad-sudoku-$role:light-dark($day,$night);";
     }
 
-    return '<style>'
+    return '<style' . padStyleNonce () . '>'
          . ":where(.pad-sudoku){{$light}}"
          . "@supports (color:light-dark(#000,#fff)){:where(.pad-sudoku){{$both}}}"
          . ':where(.pad-sudoku){border-collapse:collapse;border:3px solid var(--pad-sudoku-box);background:var(--pad-sudoku-cell);font:22px/1 system-ui,sans-serif;margin:0 auto}'

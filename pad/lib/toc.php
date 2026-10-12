@@ -220,7 +220,7 @@
       $both  .= "--pad-toc-$role:light-dark($day,$night);";
     }
 
-    return '<style>'
+    return '<style' . padStyleNonce () . '>'
          . ":where(.pad-toc){{$light}}"
          . "@supports (color:light-dark(#000,#fff)){:where(.pad-toc){{$both}}}"
          . '.pad-toc{border-left:3px solid var(--pad-toc-line);padding:2px 0 2px 14px;color:var(--pad-toc-text);line-height:1.45}'
