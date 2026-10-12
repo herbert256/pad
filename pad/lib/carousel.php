@@ -100,7 +100,7 @@
       . '.pad-carousel-dot{width:.7em;height:.7em;border-radius:50%;background:var(--pad-carousel-dot)}'
       . '.pad-carousel-dot:hover{background:var(--pad-carousel-muted)}'
       . '.pad-carousel a:focus-visible{outline:2px solid var(--pad-carousel-accent);outline-offset:2px}'
-      . '.pad-carousel:not([data-pad-current]):not(:has(.pad-carousel-slide:target)) .pad-carousel-dot:first-child,'
+      . '.pad-carousel:not([data-pad-current]):not(:has(>.pad-carousel-track>.pad-carousel-slide:target))>.pad-carousel-dots>.pad-carousel-dot:first-child,'
       . '.pad-carousel-dot[aria-current]{background:var(--pad-carousel-accent)}'
       . $marks
       . '@media print{.pad-carousel-track{flex-direction:column}.pad-carousel-prev,.pad-carousel-next,.pad-carousel-dots{display:none}}' );
@@ -115,12 +115,14 @@
 
   function padCarouselMark ( $n ) {
 
-    return ".pad-carousel:not([data-pad-current]):has(>.pad-carousel-track>.pad-carousel-slide:nth-child($n):target) .pad-carousel-dot:nth-child($n){background:var(--pad-carousel-accent)}";
+    return ".pad-carousel:not([data-pad-current]):has(>.pad-carousel-track>.pad-carousel-slide:nth-child($n):target)>.pad-carousel-dots>.pad-carousel-dot:nth-child($n){background:var(--pad-carousel-accent)}";
 
   }
 
   // The script: a link of a carousel scrolls its row, not the page; the row's position says
-  // which dot is current, after a click, a swipe or a scroll by the keyboard.
+  // which dot is current, after a click, a swipe or a scroll by the keyboard. A carousel
+  // reaches its own row and dots only - the outer one of two marked the inner one's dots,
+  // and its CSS did the same.
 
   function padCarouselScript () {
 
@@ -129,11 +131,11 @@
   if (window.padCarouselReady) return;
   window.padCarouselReady = true;
   function mark(carousel) {
-    var track = carousel.querySelector('.pad-carousel-track');
+    var track = carousel.querySelector(':scope > .pad-carousel-track');
     if (!track || !track.clientWidth) return;
     var current = Math.round(track.scrollLeft / track.clientWidth);
     carousel.setAttribute('data-pad-current', current + 1);
-    carousel.querySelectorAll('.pad-carousel-dot').forEach(function (dot, index) {
+    carousel.querySelectorAll(':scope > .pad-carousel-dots > .pad-carousel-dot').forEach(function (dot, index) {
       if (index === current) dot.setAttribute('aria-current', 'true');
       else dot.removeAttribute('aria-current');
     });
