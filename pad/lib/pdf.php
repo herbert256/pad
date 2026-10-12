@@ -1354,10 +1354,18 @@
   // UTF-8 to WinAnsi: what the encoding has, and a ? for what it has not. The spaces of
   // typography become a space, a hyphen that only may break is left out.
 
+  // Composed first - an e and its accent apart, as macOS file names and copy-paste give it,
+  // is the é WinAnsi has, where it was "e?" - and the characters that draw nothing left out
+  // as U+200B is: a byte order mark or a joiner was a "?".
+
   function padPdfText ( $text ) {
 
+    if ( class_exists ( 'Normalizer' ) )
+      $text = Normalizer::normalize ( $text, Normalizer::FORM_C ) ?: $text;
+
     $text = strtr ( $text, [ "\u{2009}" => ' ', "\u{200A}" => ' ', "\u{202F}" => ' ', "\u{2002}" => ' ', "\u{2003}" => ' ',
-                             "\u{00AD}" => '', "\u{200B}" => '', "\u{2212}" => '-', "\u{2011}" => '-', "\u{2010}" => '-' ] );
+                             "\u{00AD}" => '', "\u{200B}" => '', "\u{200C}" => '', "\u{200D}" => '', "\u{2060}" => '',
+                             "\u{FEFF}" => '', "\u{2212}" => '-', "\u{2011}" => '-', "\u{2010}" => '-' ] );
 
     $text = mb_convert_encoding ( $text, 'Windows-1252', 'UTF-8' );
 
