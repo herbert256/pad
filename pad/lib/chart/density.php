@@ -160,8 +160,12 @@
 
     foreach ( $curves as $name => $points ) {
 
-      $slot = padChartSlot ( count ( $sets ) > 1 ? $i : 0 );
-      $line = '';
+      // Past eight groups the grey of 'Other', as the fill and the legend have it: the
+      // curves were drawn in the eighth group's colour.
+
+      $slot   = padChartSlot ( count ( $sets ) > 1 ? $i : 0 );
+      $stroke = ( $i < 8 ) ? 'pc-l' . ( $i + 1 ) : 'pc-edge';
+      $line   = '';
 
       foreach ( $points as $s => list ( $at, $d ) )
         $line .= ( $s ? 'L' : 'M' ) . padChartXY ( $x ( $at ) ) . ',' . padChartXY ( $y ( $d ) );
@@ -169,8 +173,8 @@
       $med  = $sets [$name] [3];
       $svg .= '<path class="pc-mark ' . $slot . '" fill-opacity="0.18" d="' . $line . 'L' . padChartXY ( $x ( $high ) ) . ',' . padChartXY ( $base ) . 'L' . padChartXY ( $x ( $low ) ) . ',' . padChartXY ( $base ) . 'Z">'
             . '<title>' . padChartAttr ( $desc [$i] ) . '</title></path>'
-            . '<path class="pc-l' . min ( 8, $i + 1 ) . '" d="' . $line . '"/>'
-            . '<line class="pc-l' . min ( 8, $i + 1 ) . '" style="stroke-width:1.5" stroke-dasharray="4 3" x1="' . padChartXY ( $x ( $med ) ) . '" x2="' . padChartXY ( $x ( $med ) ) . '"'
+            . '<path class="' . $stroke . '" d="' . $line . '"/>'
+            . '<line class="' . $stroke . '" style="stroke-width:1.5" stroke-dasharray="4 3" x1="' . padChartXY ( $x ( $med ) ) . '" x2="' . padChartXY ( $x ( $med ) ) . '"'
             . ' y1="' . padChartXY ( $base ) . '" y2="' . padChartXY ( $y ( $kde ( $sets [$name] [0], $sets [$name] [1], $med ) ) ) . '">'
             . '<title>' . padChartAttr ( "$name: median " . padChartNumber ( $med ) ) . '</title></line>';
 
@@ -230,11 +234,11 @@
         $back  = 'L' . padChartXY ( $c - $w ( $d ) ) . ',' . padChartXY ( $y ( $at ) ) . $back;
       }
 
-      $line = min ( 8, ( $n > 1 ? $i : 0 ) + 1 );
+      $line = ( $n > 1 and $i >= 8 ) ? 'pc-edge' : 'pc-l' . ( ( $n > 1 ? $i : 0 ) + 1 );
       $bar  = max ( 3, min ( 8, $half * 0.16 ) );
 
       $svg .= '<path class="pc-mark ' . $slot . '" fill-opacity="0.35" d="' . $out . $back . 'Z"><title>' . padChartAttr ( $desc [$i] ) . '</title></path>'
-            . '<path class="pc-l' . $line . '" style="stroke-width:1.5" d="' . $out . $back . 'Z"/>'
+            . '<path class="' . $line . '" style="stroke-width:1.5" d="' . $out . $back . 'Z"/>'
             . '<line class="pc-axis" style="stroke-width:1.5" x1="' . padChartXY ( $c ) . '" x2="' . padChartXY ( $c ) . '" y1="' . padChartXY ( $y ( $values [0] ) ) . '" y2="' . padChartXY ( $y ( end ( $values ) ) ) . '"/>'
             . '<line class="pc-axis" style="stroke-width:' . padChartXY ( $bar ) . '" x1="' . padChartXY ( $c ) . '" x2="' . padChartXY ( $c ) . '" y1="' . padChartXY ( $y ( $q1 ) ) . '" y2="' . padChartXY ( $y ( $q3 ) ) . '">'
             . '<title>' . padChartAttr ( "$name: quartiles " . padChartNumber ( $q1 ) . ' – ' . padChartNumber ( $q3 ) ) . '</title></line>'
