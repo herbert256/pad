@@ -185,15 +185,28 @@
 
   // "Open invoice.pdf" and "Download": this page again, asked for its document.
 
+  // The address is this page as it was asked - its route and its own request values - with
+  // padPdf: made from the page's name alone, a page picked by a value, ?invoice&id=114,
+  // gave the document of another request, and on a bracketed route the link named the
+  // file, products/[id], which no address reaches.
+
   function padPdfLinks ( $file ) {
 
-    global $padGo, $padPage;
+    global $padPage, $padPageAsked;
 
-    $name = padPdfName ( $file );
-    $url  = htmlspecialchars ( $padGo . $padPage . '&padPdf', ENT_QUOTES );
+    $name  = padPdfName ( $file );
+    $asked = (string) ( $padPageAsked ?? '' ) !== '' ? (string) $padPageAsked : (string) $padPage;
+    $vars  = [];
+
+    foreach ( $_GET as $key => $value )
+      if ( (string) $key !== $asked and ! str_starts_with ( (string) $key, 'pad' ) )
+        $vars [$key] = $value;
+
+    $url      = htmlspecialchars ( padUrl ( '', $vars + [ 'padPdf' => '' ] ), ENT_QUOTES );
+    $download = htmlspecialchars ( padUrl ( '', $vars + [ 'padPdf' => 'download' ] ), ENT_QUOTES );
 
     return '<p class="pad-pdf-links"><a class="pad-pdf-open" href="' . $url . '" type="application/pdf">Open '
-         . htmlspecialchars ( padUnprotectQuotes ( (string) $name ) ) . '.pdf</a> <a class="pad-pdf-download" href="' . $url . '=download"'
+         . htmlspecialchars ( padUnprotectQuotes ( (string) $name ) ) . '.pdf</a> <a class="pad-pdf-download" href="' . $download . '"'
          . ' type="application/pdf" download="' . htmlspecialchars ( padUnprotectQuotes ( (string) $name ) ) . '.pdf">Download</a></p>';
 
   }
@@ -239,10 +252,13 @@
 
   function padPdfName ( $file ) {
 
-    global $padPage;
+    global $padPage, $padPageAsked;
 
+    // The page as it was asked: on a bracketed route the file's name was id.pdf.
+
+    $page = (string) ( $padPageAsked ?? '' ) !== '' ? (string) $padPageAsked : (string) $padPage;
     $name = preg_replace ( '/\.pdf$/i', '', (string) $file );
-    $name = trim ( preg_replace ( '/[^A-Za-z0-9._-]+/', '-', basename ( $name !== '' ? $name : (string) $padPage ) ), '.-' );
+    $name = trim ( preg_replace ( '/[^A-Za-z0-9._-]+/', '-', basename ( $name !== '' ? $name : $page ) ), '.-' );
 
     return ( $name !== '' ) ? $name : 'document';
 
