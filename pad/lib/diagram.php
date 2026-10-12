@@ -306,7 +306,11 @@
 
   function padDiagramLayout ( &$nodes, $edges, $vertical, $gaps ) {
 
-    $ids  = array_keys ( $nodes );
+    // The ids as the text names them: PHP makes the key of a numeric id - 1 --> 2 --> 3 - an
+    // integer, the edges hold it as text, and the ranks compared the two strictly: no root
+    // matched, every node stayed in rank 0 and the chart was drawn flat.
+
+    $ids  = array_map ( 'strval', array_keys ( $nodes ) );
     $next = array_fill_keys ( $ids, [] );
 
     foreach ( $edges as $e => list ( $a, $b ) )
