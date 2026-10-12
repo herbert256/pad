@@ -16,8 +16,16 @@
     return TRUE;
   } );
 
+  // Booleans as YAML 1.2 has them: true and false alone. libyaml reads YAML 1.1, where NO,
+  // no, n, Off, on, y and yes are booleans too - keys among them: the ISO code of Norway was
+  // false, a field named n lost its name, and a map of NO and NL drew the Netherlands only.
+
+  $padYamlNdocs = 0;
+
   try {
-    $result = yaml_parse ( $data );
+    $result = yaml_parse ( $data, 0, $padYamlNdocs, [ 'tag:yaml.org,2002:bool' => function ( $value ) {
+      return match ( strtolower ( (string) $value ) ) { 'true' => TRUE, 'false' => FALSE, default => (string) $value };
+    } ] );
   } finally {
     restore_error_handler ();
   }
