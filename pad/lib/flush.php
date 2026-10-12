@@ -35,7 +35,27 @@
              and PHP_SAPI != 'cli'
              and $padCacheStop != 200
              and (string) $padFragmentOnly === ''
-             and padLive () === '' );
+             and padLive () === ''
+             and ! padFlushDocument () );
+
+  }
+
+  // Whether the request answers a document instead of the page - a {pdf}: asked for it
+  // with &padPdf, or a {pdf} without preview in the page. It flushes nothing: the head of
+  // the page a flush sent went out in front of the PDF's bytes, the answer text/html.
+
+  function padFlushDocument () {
+
+    if ( isset ( $_GET ['padPdf'] ) )
+      return TRUE;
+
+    preg_match_all ( '/\{(?:pad:)?pdf(?=[\s}])[^}]*\}/', (string) ( $GLOBALS ['padBase'] [0] ?? '' ), $found );
+
+    foreach ( $found [0] as $tag )
+      if ( ! preg_match ( '/\bpreview\b/', $tag ) )
+        return TRUE;
+
+    return FALSE;
 
   }
 
