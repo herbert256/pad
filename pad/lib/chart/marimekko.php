@@ -85,8 +85,11 @@
     $right  = $width - 10;
     $top    = $legendH + 14;
     $bottom = $height - 36;
-    $plotW  = $right - $left;
-    $plotH  = $bottom - $top;
+    // A chart too small for its axis and legend keeps a plot of 1px, where its rectangles
+    // had negative heights and widths - invalid SVG, an error per rect in the browser.
+
+    $plotW  = max ( 1, $right - $left );
+    $plotH  = max ( 1, $bottom - $top );
 
     // The axis: 0 to 100% on the left, in quarters.
 
