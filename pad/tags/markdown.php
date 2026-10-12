@@ -35,9 +35,9 @@
   }
 
   if ( $padProtectValues )
-    $padContent = padProtect ( padMarkdown ( padUnescape ( padUnprotect ( $padContent ) ), $padMdHtml ) );
+    $padContent = padProtect ( padMarkdown ( padUnescape ( padUnprotect ( $padContent ) ), $padMdHtml, TRUE ) );
   else
-    $padContent = padMarkdown ( $padContent, $padMdHtml );
+    $padContent = padMarkdown ( $padContent, $padMdHtml, TRUE );
 
   return TRUE;
 

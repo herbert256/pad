@@ -16,10 +16,12 @@
   // so a field the tag form rendered first - already encoded - and the &open; stand-ins of
   // the ignore option arrive in the page as they were meant.
   //
-  // The text is dedented first: a {markdown} block indented along with the template around
-  // it would otherwise turn into one big code block.
+  // $dedent: the text of a {markdown} pair is dedented first - indented along with the
+  // template around it, it would otherwise turn into one big code block. A value - the
+  // markdown pipe, {markdown $text}, a collection's body - is read as it is written: one
+  // that is all indented code lost its code block.
 
-  function padMarkdown ( $text, $html = FALSE ) {
+  function padMarkdown ( $text, $html = FALSE, $dedent = FALSE ) {
 
     if ( ! is_scalar ( $text ) )
       return '';
@@ -27,7 +29,7 @@
     $text = str_replace ( [ "\r\n", "\r", "\x1A" ], [ "\n", "\n", '' ], (string) $text );
     $text = padMarkdownTabs ( $text );
 
-    $lines = explode ( "\n", padMarkdownDedent ( $text ) );
+    $lines = explode ( "\n", $dedent ? padMarkdownDedent ( $text ) : $text );
     $hold  = [];
 
     $out = padMarkdownBlocks ( $lines, $html, FALSE, $hold );
