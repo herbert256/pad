@@ -162,7 +162,7 @@
          and trim ( (string) $source ) === '' and isset ( $padPrm [$pad] ['value'] ) )
       $rows = [];
     else
-      $rows = padChartRows ( $source, $kind == 'sparkline' ? 'sparkline' : 'chart' );
+      $rows = padChartRows ( $source, ( $GLOBALS ['padTag'] [ $GLOBALS ['pad'] ] ?? '' ) == 'sparkline' ? 'sparkline' : 'chart' );
 
     $padData [$pad] = padDefaultData ();
 
