@@ -24,7 +24,20 @@
 
   function padWidgetId ( $kind, $seed ) {
 
+    global $pad, $padFragment;
+
     static $drawn = [];
+
+    // A widget made inside a {cache} section that is rendering - to be kept - is seeded with
+    // the section's key as well: kept, it comes back on a later request beside a widget of
+    // the same names made then, and the two had one id and one radio group - choosing a tab
+    // in one emptied the other.
+
+    for ( $i = $pad ?? -1; $i >= 0; $i-- )
+      if ( is_array ( $padFragment [$i] ?? NULL ) and ! $padFragment [$i] ['hit'] ) {
+        $seed = [ $seed, $padFragment [$i] ['key'] ];
+        break;
+      }
 
     $id = "pad-$kind-" . substr ( md5 ( serialize ( $seed ) ), 0, 8 );
 
