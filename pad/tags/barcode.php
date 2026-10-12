@@ -9,16 +9,16 @@
   // module (default 2), title= the accessible name, else the text; plain leaves the
   // digits under the bars out; color= and background= change the black on white.
 
-  // The text as the characters it holds, the stand-ins of a field inside it turned back -
-  // a , of SKU-{$sku} came as U+E02C, which no barcode encodes.
+  // The text as the characters it holds (padParmText), a field inside it neither stand-ins
+  // nor escaped - a , of SKU-{$sku} came as U+E02C, which no barcode encodes.
 
-  $padBarcodeText = trim ( padUnprotect ( (string) $padParm ) );
+  $padBarcodeText = trim ( padParmText ( $padParm ) );
   $padBarcodeType = strtolower ( (string) padTagParm ( 'type', preg_match ( '/^\d{12,13}$/', $padBarcodeText ) ? 'ean13' : 'code128' ) );
 
   $padBarcodeSvg = padBarcode ( $padBarcodeText, $padBarcodeType,
                                 max ( 10, (int) padTagParm ( 'height', 60 ) ),
                                 max ( 1, min ( 10, (float) padTagParm ( 'scale', 2 ) ) ),
-                                (string) padTagParm ( 'title' ),
+                                padParmText ( padTagParm ( 'title' ) ),
                                 (bool) padTagParm ( 'plain', FALSE ),
                                 (string) padTagParm ( 'color', '#000' ),
                                 (string) padTagParm ( 'background', '#fff' ),

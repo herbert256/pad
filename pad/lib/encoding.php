@@ -148,6 +148,18 @@
 
   }
 
+  // A tag's text that it computes from - the data of a QR code or a barcode, the name an
+  // avatar takes its initials from, the address a Gravatar is found by - as the characters
+  // it holds: a field inside the quoted text travels with stand-ins and arrives escaped by
+  // its sanitize step, &Aring; for Å, and both went into the code, the hash and the
+  // initials - and into a label, escaped once more.
+
+  function padParmText ( $value ) {
+
+    return html_entity_decode ( padUnprotect ( (string) $value ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+
+  }
+
   // The stand-ins of the two quotes and the backslash in a value about to be escaped, as the
   // characters they stand for. exits.php restores a stand-in only after every escaper has
   // run, so one that came in with the request - %EE%80%A2 is U+E022 - passed htmlentities

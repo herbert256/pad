@@ -10,7 +10,7 @@
   // The puzzle as the characters it holds: the | box marks of a puzzle in a field came as
   // their stand-ins, refused as no cell.
 
-  $padSudokuCells = padSudokuCells ( is_string ( $padParm ) ? padUnprotect ( $padParm ) : $padParm );
+  $padSudokuCells = padSudokuCells ( is_string ( $padParm ) ? padParmText ( $padParm ) : $padParm );
 
   if ( is_string ( $padSudokuCells ) ) {
     if ( $padCheckSyntax )

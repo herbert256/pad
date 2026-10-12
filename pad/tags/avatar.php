@@ -9,7 +9,7 @@
   //   {avatar 'Herbert Jebbink', size=48, shape='circle'}
   //   {users}{avatar $name, size=32} {$name}{/users}
 
-  $padAvatarName  = trim ( (string) $padParm );
+  $padAvatarName  = trim ( padParmText ( $padParm ) );
   $padAvatarShape = strtolower ( trim ( (string) padTagParm ( 'shape', 'circle' ) ) );
 
   if ( $padAvatarName === '' and $padCheckSyntax )
@@ -21,6 +21,6 @@
     $padAvatarShape = 'circle';
   }
 
-  return padAvatar ( $padAvatarName, (int) padTagParm ( 'size', 48 ), $padAvatarShape, (string) padTagParm ( 'label' ) );
+  return padAvatar ( $padAvatarName, (int) padTagParm ( 'size', 48 ), $padAvatarShape, padParmText ( padTagParm ( 'label' ) ) );
 
 ?>

@@ -14,7 +14,7 @@
   //   {gravatar $email, size=64, default='identicon'}
   //   {gravatar $email, fallback='avatar', alt=$name}
 
-  $padGravatarEmail    = trim ( (string) $padParm );
+  $padGravatarEmail    = trim ( padParmText ( $padParm ) );
   $padGravatarDefault  = trim ( (string) padTagParm ( 'default', 'mp' ) );
   $padGravatarFallback = strtolower ( trim ( (string) padTagParm ( 'fallback' ) ) );
 
@@ -34,6 +34,6 @@
   }
 
   return padGravatar ( $padGravatarEmail, (int) padTagParm ( 'size', 64 ), $padGravatarDefault,
-                       (string) padTagParm ( 'alt' ), $padGravatarFallback );
+                       padParmText ( padTagParm ( 'alt' ) ), $padGravatarFallback );
 
 ?>

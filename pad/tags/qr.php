@@ -14,13 +14,14 @@
     $padQrLevel = 'M';
   }
 
-  // The text is encoded as the characters it holds: a field inside the quoted text - a
-  // mailto: made from a field - travels with the stand-ins of { } | = , @ ' " \ that the
-  // page's write-out turns back, and those went into the code: the @ scanned as U+E040.
+  // The text is encoded as the characters it holds (padParmText): a field inside the
+  // quoted text - a mailto: made from a field - travels with the stand-ins of { } | = , @
+  // ' " \ and arrives HTML-escaped, and those went into the code: the @ scanned as
+  // U+E040, a & as &amp;.
 
-  $padQrSvg = padQr ( padUnprotect ( (string) $padParm ), $padQrLevel,
+  $padQrSvg = padQr ( padParmText ( $padParm ), $padQrLevel,
                       max ( 21, (int) padTagParm ( 'size', 160 ) ),
-                      (string) padTagParm ( 'title' ),
+                      padParmText ( padTagParm ( 'title' ) ),
                       (string) padTagParm ( 'color', '#000' ),
                       (string) padTagParm ( 'background', '#fff' ) );
 
