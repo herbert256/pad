@@ -2047,7 +2047,7 @@ words when given, every match in a `<mark>` (`lib/excerpt.php`).
 |--------|-------------|
 | first parameter | The text |
 | `words` | The length in words, default 40 |
-| `highlight` | Search words - a query, split at everything that is no letter or digit |
+| `highlight` | Search words - a query, split at everything that is no letter or digit; the 50 longest, each read for its first 64 letters |
 | `html` | The text is HTML: its tags (and the content of `script` and `style`) dropped, its entities read, before it is cut |
 | `ellipsis` | What stands for the cut-off text, default `…` |
 

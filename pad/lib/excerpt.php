@@ -8,7 +8,8 @@
   //   {excerpt $page.body, words=30, highlight=$q, html}
   //
   // padExcerpt        the excerpt as HTML: escaped, the matches in <mark>
-  // padExcerptTerms   the search words of a query, longest first
+  // padExcerptTerms   the search words of a query, longest first - fifty at most, each cut
+  //                   to 64 letters
   //
   // A search word matches at the start of a word, whatever its case: 'templ' finds
   // Templates, and the whole word is marked. The text is escaped piece by piece
@@ -20,14 +21,18 @@
 
     // A broken byte - ?q=%FF - made preg_split answer FALSE and ended the request.
 
+    // A word matches at the start of a word, so its first 64 letters find what it finds; a
+    // query of thousands of words - a search form that posts - or one word of tens of
+    // thousands of letters made a pattern PCRE refuses to compile, and the request ended.
+
     foreach ( preg_split ( '/[^\p{L}\p{N}_]+/u', mb_scrub ( (string) $query, 'UTF-8' ), -1, PREG_SPLIT_NO_EMPTY ) as $term )
-      $terms [ mb_strtolower ( $term, 'UTF-8' ) ] = $term;
+      $terms [ mb_strtolower ( mb_substr ( $term, 0, 64, 'UTF-8' ), 'UTF-8' ) ] = TRUE;
 
     $terms = array_keys ( $terms );
 
     usort ( $terms, fn ( $a, $b ) => mb_strlen ( $b ) <=> mb_strlen ( $a ) ?: strcmp ( $a, $b ) );
 
-    return $terms;
+    return array_slice ( $terms, 0, 50 );
 
   }
 
