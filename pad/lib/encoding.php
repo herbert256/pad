@@ -105,6 +105,27 @@
 
   }
 
+  // The seal of a marker the engine writes into the page to fill in later - {toc}, {stack} -
+  // so text that came in with a value is never taken for one: a keyed hash of what the
+  // marker holds, 16 hex digits. The key is this installation's (DATA/keys/markers.key),
+  // the same on every request, so a marker inside a cached fragment still holds; when no
+  // key file can be kept, one of this request.
+
+  function padMarkSeal ( $text ) {
+
+    static $key = NULL;
+
+    if ( $key === NULL ) {
+      $file = DATA . 'keys/markers.key';
+      if ( is_file ( $file ) or is_writable ( is_dir ( dirname ( $file ) ) ? dirname ( $file ) : DATA ) )
+        $key = padCryptKeyFile ( $file );
+      $key = $key ?? random_bytes ( 32 );
+    }
+
+    return substr ( hash_hmac ( 'sha256', (string) $text, $key ), 0, 16 );
+
+  }
+
   function padPipeMask ( $string ) {
 
     return str_replace ( [ '{', '}' ], padPipeMarks (), $string );

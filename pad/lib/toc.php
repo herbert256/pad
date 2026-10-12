@@ -23,9 +23,29 @@
   // The colours are CSS custom properties with light and dark defaults on .pad-toc -
   // --pad-toc-text, --pad-toc-line and --pad-toc-accent - which a page overrides.
 
+  // The marker is sealed (padMarkSeal), and only a sealed one is filled: a value carrying the
+  // marker's characters - a search page's "Results for {$q}" - failed any page with a 500,
+  // or planted a table of contents in it.
+
   function padTocMarker ( $levels, $title, $list ) {
 
-    return "\u{E0F6}" . bin2hex ( json_encode ( [ $levels, $title, $list ] ) ) . "\u{E0F7}";
+    $hex = bin2hex ( json_encode ( [ $levels, $title, $list ] ) );
+
+    return "\u{E0F6}" . padMarkSeal ( $hex ) . $hex . "\u{E0F7}";
+
+  }
+
+  // The options of a marker the {toc} tag wrote - levels, title, list - or NULL for any
+  // other text between the marker's characters.
+
+  function padTocOptions ( $seal, $hex ) {
+
+    if ( ! hash_equals ( padMarkSeal ( $hex ), $seal ) or strlen ( $hex ) % 2 )
+      return NULL;
+
+    $options = json_decode ( (string) hex2bin ( $hex ), TRUE );
+
+    return ( is_array ( $options ) and count ( $options ) == 3 ) ? array_values ( $options ) : NULL;
 
   }
 
@@ -72,11 +92,14 @@
 
     $wanted = [];
 
-    preg_match_all ( '/\x{E0F6}([0-9a-f]*)\x{E0F7}/u', $output, $markers );
+    preg_match_all ( '/\x{E0F6}([0-9a-f]{16})([0-9a-f]*)\x{E0F7}/u', $output, $markers, PREG_SET_ORDER );
 
-    foreach ( $markers [1] as $hex )
-      foreach ( (array) ( json_decode ( (string) hex2bin ( $hex ), TRUE ) [0] ?? [] ) as $level )
+    foreach ( $markers as $marker )
+      foreach ( (array) ( padTocOptions ( $marker [1], $marker [2] ) [0] ?? [] ) as $level )
         $wanted [ (int) $level ] = TRUE;
+
+    if ( ! $wanted )
+      return $output;
 
     $output = preg_replace_callback ( '/<h([1-6])(\s[^>]*)?>(.*?)<\/h\1\s*>/is',
       function ( $match ) use ( &$taken, &$headings, $wanted ) {
@@ -111,9 +134,14 @@
 
       }, $output );
 
-    return preg_replace_callback ( '/\x{E0F6}([0-9a-f]*)\x{E0F7}/u', function ( $match ) use ( $headings ) {
+    return preg_replace_callback ( '/\x{E0F6}([0-9a-f]{16})([0-9a-f]*)\x{E0F7}/u', function ( $match ) use ( $headings ) {
 
-      list ( $levels, $title, $list ) = json_decode ( (string) hex2bin ( $match [1] ), TRUE ) + [ [], '', 'ol' ];
+      $options = padTocOptions ( $match [1], $match [2] );
+
+      if ( $options === NULL )
+        return $match [0];
+
+      list ( $levels, $title, $list ) = $options;
 
       $mine = array_values ( array_filter ( $headings, fn ( $one ) => in_array ( $one [0], (array) $levels ) ) );
 
