@@ -163,22 +163,28 @@
   function padChartTrend ( $dots, $xLow, $xHigh, $yLow, $yHigh, $px, $py ) {
 
     $n = count ( $dots );
-    $sx = $sy = $sxx = $sxy = 0;
 
-    foreach ( $dots as $dot ) {
-      $sx  += $dot [0];
-      $sy  += $dot [1];
-      $sxx += $dot [0] * $dot [0];
-      $sxy += $dot [0] * $dot [1];
-    }
-
-    $denominator = $n * $sxx - $sx * $sx;
-
-    if ( $n < 2 or ! is_finite ( $denominator ) or abs ( $denominator ) < 1e-300 )
+    if ( $n < 2 )
       return '';
 
-    $slope     = ( $n * $sxy - $sx * $sy ) / $denominator;
-    $intercept = ( $sy - $slope * $sx ) / $n;
+    // Around the means: the sums of x² and of x, multiplied out, cancelled each other when x
+    // is large beside its spread - Unix times a second apart drew a flat line through dots
+    // on a rising one.
+
+    $mx  = array_sum ( array_column ( $dots, 0 ) ) / $n;
+    $my  = array_sum ( array_column ( $dots, 1 ) ) / $n;
+    $sxx = $sxy = 0;
+
+    foreach ( $dots as $dot ) {
+      $sxx += ( $dot [0] - $mx ) ** 2;
+      $sxy += ( $dot [0] - $mx ) * ( $dot [1] - $my );
+    }
+
+    if ( ! is_finite ( $sxx ) or $sxx <= $n * ( 1e-12 * abs ( $mx ) ) ** 2 or $sxx < 1e-300 )
+      return '';
+
+    $slope     = $sxy / $sxx;
+    $intercept = $my - $slope * $mx;
 
     if ( ! is_finite ( $slope ) or ! is_finite ( $intercept ) )
       return '';
