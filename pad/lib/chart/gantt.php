@@ -33,10 +33,19 @@
     $cField = (string) padTagParm ( 'color' );
     $pField = (string) padTagParm ( 'progress' );
 
+    // Numbers - week 1 to 12 - when every row with both ends has numbers there: an open
+    // task, a start and no end, made the plan a date axis and every week a second of 1970.
+
     $numeric = TRUE;
-    foreach ( $rows as $row )
-      if ( ! is_numeric ( $row [$fField] ?? '' ) or ! is_numeric ( $row [$tField] ?? '' ) )
+
+    foreach ( $rows as $row ) {
+      $a = $row [$fField] ?? '';
+      $b = $row [$tField] ?? '';
+      if ( ! is_scalar ( $a ) or ! is_scalar ( $b ) or trim ( (string) $a ) === '' or trim ( (string) $b ) === '' )
+        continue;
+      if ( ! is_numeric ( $a ) or ! is_numeric ( $b ) )
         $numeric = FALSE;
+    }
 
     $at    = fn ( $v ) => $numeric ? ( is_numeric ( $v ) ? $v + 0 : FALSE ) : padChartStamp ( $v );
     $tasks = $groups = [];
