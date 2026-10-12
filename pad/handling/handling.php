@@ -12,6 +12,13 @@
   // negative option the handler runs between handling/negative/inits.php and exits.php,
   // which turns its selection inside out. A level the handling emptied shows its @else@.
 
+  // A {chart} handles the rows it draws itself, before it draws them - tags/chart.php.
+
+  if ( $padHandDone [$pad] ?? FALSE ) {
+    unset ( $padHandDone [$pad] );
+    return;
+  }
+
   $padHandNegative = $padPrm [$pad] ['negative'] ?? 0 ;
   $padHandBefore   = count ( $padData [$pad] );
   $padHandPaged    = FALSE;

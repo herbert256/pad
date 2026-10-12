@@ -90,6 +90,25 @@
 
   }
 
+  // Whether the chart has handling options to apply to its rows - sort=, first=, where= ...
+  // as any data tag has them; not beside a sequence=, whose rows= is its own.
+
+  function padChartHandles () {
+
+    global $pad, $padParms, $padPrm;
+
+    if ( isset ( $padPrm [$pad] ['sequence'] ) )
+      return FALSE;
+
+    foreach ( $padParms [$pad] ?? [] as $one )
+      if ( $one ['padPrmKind'] == 'option' and is_string ( $one ['padPrmName'] ) and file_exists ( PAD . "handling/types/{$one ['padPrmName']}.php" )
+           and ! in_array ( $one ['padPrmName'], [ 'negative', 'orderly', 'duplicates', 'atLeastOnce', 'left', 'right', 'both', 'sum', 'avg', 'min', 'max' ] ) )
+        return TRUE;
+
+    return FALSE;
+
+  }
+
   // The content of a pair is written indented under its tag: the indent all its lines share
   // is taken off, else the trim of padData would leave YAML's first line out of step with
   // the rest.
@@ -118,7 +137,7 @@
   // kind reads only the options it draws with, so an option of another kind - stacked on
   // a line chart - is one that nothing reads, which the strict check reports.
 
-  function padChartTag ( $kind, $source = '' ) {
+  function padChartTag ( $kind, $source = '', $handled = NULL ) {
 
     global $pad, $padData;
 
@@ -131,7 +150,9 @@
 
     // A gauge of one number needs no rows: {chart 'gauge', value=72}.
 
-    if ( $kind == 'gauge' and ! isset ( $padPrm [$pad] ['data'] ) and ( $sequence === '' or $sequence === TRUE )
+    if ( $handled !== NULL )
+      $rows = $handled;
+    elseif ( $kind == 'gauge' and ! isset ( $padPrm [$pad] ['data'] ) and ( $sequence === '' or $sequence === TRUE )
          and trim ( (string) $source ) === '' and is_numeric ( padTagParm ( 'value' ) ) )
       $rows = [];
     else
