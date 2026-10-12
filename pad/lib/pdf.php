@@ -444,8 +444,9 @@
       case 'ul': case 'ol':
 
         padPdfSpace ( $doc, 0 );
+        padPdfMarkerLine ( $doc );
 
-        $number = max ( 1, (int) ( $el->getAttribute ( 'start' ) ?: 1 ) );
+        $number = $el->hasAttribute ( 'start' ) ? (int) $el->getAttribute ( 'start' ) : 1;
         $inner  = $ctx;
         $inner ['indent'] = padPdfIndent ( $doc, $inner ['indent'], 18 );
 
@@ -457,7 +458,7 @@
           $doc ['marker'] = [ $name == 'ol' ? ( $number++ ) . '.' : "\x95", $inner ];
 
           padPdfFlow ( $doc, $item, padPdfAlign ( $item, $inner ) );
-          padPdfMarker ( $doc );
+          padPdfMarkerLine ( $doc );
           padPdfAfter ( $doc, 3 );
 
         }
@@ -471,7 +472,7 @@
         $inner ['indent'] = padPdfIndent ( $doc, $inner ['indent'], 18 );
         $doc ['marker'] = [ "\x95", $inner ];
         padPdfFlow ( $doc, $el, $inner );
-        padPdfMarker ( $doc );
+        padPdfMarkerLine ( $doc );
         padPdfAfter ( $doc, 3 );
         return;
 
@@ -880,6 +881,27 @@
   // The marker of a list item - a bullet or a number - right before the first line of the
   // item, when that line is set; an item with no line of its own gets it at the cursor.
 
+  // A marker still waiting where its item has no line of text to stand at - the item starts
+  // with a table, a picture or a list of its own, or is empty - stands on a line of its own,
+  // where it was dropped, or a nested list's marker took its place: of an ordered list "5."
+  // and "6." were missing.
+
+  function padPdfMarkerLine ( &$doc ) {
+
+    if ( $doc ['marker'] === NULL )
+      return;
+
+    $ctx    = $doc ['marker'] [1];
+    $height = $ctx ['size'] * 1.38;
+
+    padPdfRoom ( $doc, $height );
+
+    $doc ['y'] -= $height;
+
+    padPdfMarker ( $doc, $doc ['y'] + $ctx ['size'] * 0.3 );
+
+  }
+
   function padPdfMarker ( &$doc, $base = NULL ) {
 
     if ( $doc ['marker'] === NULL )
@@ -913,6 +935,7 @@
     $rows = [];
 
     padPdfTableRows ( $table, $rows );
+    padPdfMarkerLine ( $doc );
 
     // The caption above the grid, in the caption's style, where it was left out: the rows
     // were read, the caption never.
@@ -1160,6 +1183,8 @@
     }
 
     list ( $data, $pw, $ph, $channels ) = $file;
+
+    padPdfMarkerLine ( $doc );
 
     $key = md5 ( $data );
 
