@@ -113,11 +113,15 @@
 
   }
 
-  // A field of a row as text: a scalar, else ''.
+  // A field of a row as text: a scalar, a date object of the page's PHP as its moment with
+  // its offset - its event was left out without a word - else ''.
 
   function padChartText ( $row, $field ) {
 
     $value = ( $field !== '' ) ? ( $row [$field] ?? '' ) : '';
+
+    if ( $value instanceof DateTimeInterface )
+      return $value->format ( 'Y-m-d H:i:sP' );
 
     return is_scalar ( $value ) ? (string) $value : '';
 
