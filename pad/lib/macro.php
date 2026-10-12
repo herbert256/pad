@@ -112,7 +112,8 @@
 
   // The fields of one use of a {macro}: the values given in their order, then those given
   // by name, then the defaults - evaluated now, where the macro is used. A required
-  // parameter left out, a value too many and a name the macro does not declare are errors.
+  // parameter left out, a value too many, a parameter given both in its order and by name
+  // and a name the macro does not declare are errors.
 
   function padMacroRow ( $name ) {
 
@@ -133,9 +134,11 @@
 
     foreach ( $macro ['parms'] as $index => [ $parm, $expr ] ) {
 
-      if ( $index < $given )
+      if ( $index < $given ) {
+        if ( array_key_exists ( $parm, $padPrm [$pad] ) )
+          padError ( "the macro {" . $name . "} was given $parm twice - in its order and by name" );
         $row [$parm] = $padOpt [$pad] [$index+1];
-      elseif ( array_key_exists ( $parm, $padPrm [$pad] ) )
+      } elseif ( array_key_exists ( $parm, $padPrm [$pad] ) )
         $row [$parm] = $padPrm [$pad] [$parm];
       elseif ( $expr !== NULL )
         $row [$parm] = padEval ( $expr );
