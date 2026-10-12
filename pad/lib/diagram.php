@@ -152,6 +152,45 @@
 
   // A text in lines of at most $max characters, broken at spaces; <br> breaks it too.
 
+  // A note of a sequence diagram: its lines, wrapped to the width between its participants,
+  // and where it stands across - [ x0, x1 ] - over them, or beside one. The width of the
+  // picture is made with the same two as the drawing.
+
+  function padDiagramNoteLines ( $event, $x, $col ) {
+
+    $span = ( $event [1] == 'over' ) ? abs ( $x [ $col [ $event [2] ] ] - $x [ $col [ $event [3] ] ] ) + 24 : 0;
+
+    return padDiagramWrap ( $event [4], max ( 30, (int) floor ( $span / 7 ) ) );
+
+  }
+
+  function padDiagramNoteSpan ( $event, $lines, $a, $b ) {
+
+    $textW = 0;
+
+    foreach ( $lines as $line )
+      $textW = max ( $textW, padDiagramWidth ( $line ) );
+
+    if ( $event [1] == 'over' ) {
+      $x0 = min ( $a, $b ) - 20;
+      $x1 = max ( $a, $b ) + 20;
+      if ( $x1 - $x0 < $textW + 16 ) {
+        $mid = ( $x0 + $x1 ) / 2;
+        $x0  = $mid - ( $textW + 16 ) / 2;
+        $x1  = $mid + ( $textW + 16 ) / 2;
+      }
+    } elseif ( $event [1] == 'left of' ) {
+      $x1 = $a - 18;
+      $x0 = $x1 - $textW - 16;
+    } else {
+      $x0 = $a + 18;
+      $x1 = $x0 + $textW + 16;
+    }
+
+    return [ $x0, $x1 ];
+
+  }
+
   function padDiagramWrap ( $text, $max = 24 ) {
 
     $lines = [];
@@ -1161,17 +1200,21 @@
 
     $right = $x [$n - 1] + $boxW [$n - 1] / 2;
 
-    foreach ( $events as $event )
-      if ( $event [0] == 'message' and $event [1] === $event [2] )
-        $right = max ( $right, $x [ $col [ $event [1] ] ] + 44 + padDiagramWidth ( $event [3] ) );
-      elseif ( $event [0] == 'note' and $event [1] == 'right of' )
-        $right = max ( $right, $x [ $col [ $event [2] ] ] + 18 + min ( 220, padDiagramWidth ( $event [4] ) + 16 ) );
+    // A note takes the room it is drawn in (padDiagramNoteSpan): one over a single
+    // participant, centred on its line, and a long word beside one were wider than the
+    // picture and cut off.
 
     $shift = 0;
 
     foreach ( $events as $event )
-      if ( $event [0] == 'note' and $event [1] == 'left of' )
-        $shift = max ( $shift, min ( 220, padDiagramWidth ( $event [4] ) + 16 ) + 18 - $x [ $col [ $event [2] ] ] + 12 );
+      if ( $event [0] == 'message' and $event [1] === $event [2] )
+        $right = max ( $right, $x [ $col [ $event [1] ] ] + 44 + padDiagramWidth ( $event [3] ) );
+      elseif ( $event [0] == 'note' ) {
+        list ( $x0, $x1 ) = padDiagramNoteSpan ( $event, padDiagramNoteLines ( $event, $x, $col ),
+                                                 $x [ $col [ $event [2] ] ], $x [ $col [ $event [3] ] ] );
+        $right = max ( $right, $x1 );
+        $shift = max ( $shift, 12 - $x0 );
+      }
 
     foreach ( $x as $i => $value )
       $x [$i] = $value + $shift;
@@ -1206,8 +1249,7 @@
 
         case 'note':
 
-          $span     = ( $event [1] == 'over' ) ? abs ( $x [ $col [ $event [2] ] ] - $x [ $col [ $event [3] ] ] ) + 24 : 0;
-          $lines    = padDiagramWrap ( $event [4], max ( 30, (int) floor ( $span / 7 ) ) );
+          $lines    = padDiagramNoteLines ( $event, $x, $col );
           $h        = 16 * count ( $lines ) + 10;
           $y       += 8;
           $rows []  = [ 'note', $y, $event, $lines, $h ];
@@ -1325,28 +1367,7 @@
 
         list ( , $top, $event, $lines, $h ) = $row;
 
-        $textW = 0;
-        foreach ( $lines as $line )
-          $textW = max ( $textW, padDiagramWidth ( $line ) );
-
-        $a = $x [ $col [ $event [2] ] ];
-        $b = $x [ $col [ $event [3] ] ];
-
-        if ( $event [1] == 'over' ) {
-          $x0 = min ( $a, $b ) - 20;
-          $x1 = max ( $a, $b ) + 20;
-          if ( $x1 - $x0 < $textW + 16 ) {
-            $mid = ( $x0 + $x1 ) / 2;
-            $x0  = $mid - ( $textW + 16 ) / 2;
-            $x1  = $mid + ( $textW + 16 ) / 2;
-          }
-        } elseif ( $event [1] == 'left of' ) {
-          $x1 = $a - 18;
-          $x0 = $x1 - $textW - 16;
-        } else {
-          $x0 = $a + 18;
-          $x1 = $x0 + $textW + 16;
-        }
+        list ( $x0, $x1 ) = padDiagramNoteSpan ( $event, $lines, $x [ $col [ $event [2] ] ], $x [ $col [ $event [3] ] ] );
 
         $svg .= '<g><title>' . padChartAttr ( 'Note: ' . $event [4] ) . '</title>'
               . '<rect class="pd-note" x="' . $X ( $x0 ) . '" y="' . $X ( $top ) . '" width="' . $X ( $x1 - $x0 ) . '" height="' . $X ( $h ) . '" rx="2"/>'
