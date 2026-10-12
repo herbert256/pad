@@ -190,7 +190,10 @@
     $high  = max ( array_map ( fn ( $item ) => $item [1] [0], $items ) );
     $top   = padTagParm ( 'to' );
     $given = ( padChartFinite ( $top ) and $top > 0 );
-    $ticks = padChartTicks ( 0, $given ? $top + 0 : max ( $high, 1e-9 ), 5 );
+    // Nothing yet - every bar 0 - is a scale of 0 to 1, as the rose has it, where it was 0 to
+    // 1e-9: six ticks that all read 0.
+
+    $ticks = padChartTicks ( 0, $given ? $top + 0 : ( $high > 0 ? $high : 1 ), 5 );
     $scale = end ( $ticks );
 
     // to= is the end of the scale itself, the ticks past it left out.
