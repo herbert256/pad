@@ -226,10 +226,17 @@
     $scopeWas                   = $GLOBALS ['padOnceScope'] ?? NULL;
     $GLOBALS ['padOnceScope']   = 'mail' . ( ++$mails );
 
+    // A nested pass, as a {page} is: a {pdf} in the mail is its sheet, where it was asked
+    // for as the answer of the request - the visitor got the mail's invoice, not the page.
+
+    $nestedWas                  = $GLOBALS ['padGuardNested'] ?? FALSE;
+    $GLOBALS ['padGuardNested'] = TRUE;
+
     try {
       $out = trim ( padUnprotect ( padUnescape ( padCode ( $source ) ) ) );
     } finally {
-      $GLOBALS ['padOnceScope'] = $scopeWas;
+      $GLOBALS ['padOnceScope']   = $scopeWas;
+      $GLOBALS ['padGuardNested'] = $nestedWas;
     }
 
     // A field's value arrives escaped for HTML - the sanitize step of every field - which
