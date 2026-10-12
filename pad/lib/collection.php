@@ -215,8 +215,12 @@
 
     $value = trim ( $value );
 
-    if ( preg_match ( '/^"((?:[^"\\\\]|\\\\.)*)"(?:\s+#.*)?$/s', $value, $m ) ) return stripcslashes ( $m [1] );
-    if ( preg_match ( "/^'((?:[^']|'')*)'(?:\\s+#.*)?$/s", $value, $m ) ) return str_replace ( "''", "'", $m [1] );
+    // A quoted value is matched as runs of plain characters with its escapes between, each
+    // run possessive: a group repeated per character ran out of PCRE's JIT stack past some
+    // nine thousand characters, and the value kept its quotes, cut at its first " #".
+
+    if ( preg_match ( '/^"([^"\\\\]*+(?:\\\\.[^"\\\\]*+)*+)"(?:\s+#.*)?$/s', $value, $m ) ) return stripcslashes ( $m [1] );
+    if ( preg_match ( "/^'([^']*+(?:''[^']*+)*+)'(?:\\s+#.*)?$/s", $value, $m ) ) return str_replace ( "''", "'", $m [1] );
 
     $value = preg_replace ( '/\s+#.*$/', '', $value );
     $lower = strtolower ( $value );
