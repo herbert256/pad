@@ -229,8 +229,14 @@
         $top += 16;
       }
 
+      // A name wider than the picture is cut to it, the whole name its title: it ran past
+      // the right edge.
+
+      $shown = padChartFit ( $name, $x + $width - $left - 14 );
+      $whole = ( $shown !== (string) $name ) ? '<title>' . padChartAttr ( $name ) . '</title>' : '';
+
       $svg .= '<rect class="' . padChartSlot ( $i ) . '" x="' . padChartXY ( $left ) . '" y="' . padChartXY ( $top ) . '" width="10" height="10" rx="2"/>'
-            . '<text x="' . padChartXY ( $left + 14 ) . '" y="' . padChartXY ( $top + 9 ) . '">' . padChartAttr ( $name ) . '</text>';
+            . '<text x="' . padChartXY ( $left + 14 ) . '" y="' . padChartXY ( $top + 9 ) . '">' . $whole . padChartAttr ( $shown ) . '</text>';
 
       $left += $w;
 
