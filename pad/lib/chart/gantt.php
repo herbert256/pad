@@ -78,7 +78,16 @@
       return '';
     }
 
-    $show = fn ( $v ) => $numeric ? padChartNumber ( $v ) : gmdate ( 'M j, Y', $v );
+    // Tasks with a time of day - a plan of hours - show it, where every tooltip of an event
+    // day said "Oct 12, 2026 – Oct 12, 2026".
+
+    $timed = FALSE;
+
+    foreach ( $tasks as list ( , $a, $b ) )
+      if ( ! $numeric and ( $a % 86400 or $b % 86400 ) )
+        $timed = TRUE;
+
+    $show = fn ( $v ) => $numeric ? padChartNumber ( $v ) : gmdate ( $timed ? 'M j, Y H:i' : 'M j, Y', $v );
     $desc = [];
 
     foreach ( $tasks as list ( $name, $a, $b, $group, $done ) )
@@ -118,7 +127,7 @@
 
     // The time axis: round numbers, or the first days of months, weeks or days.
 
-    foreach ( padChartGanttTicks ( $low, $high, $numeric, $plotW ) as $tick => $text ) {
+    foreach ( padChartGanttTicks ( $low, $high, $numeric, $plotW, $timed ) as $tick => $text ) {
       $p    = padChartXY ( $x ( $tick ) );
       $svg .= "<line class=\"pc-grid\" x1=\"$p\" x2=\"$p\" y1=\"$top\" y2=\"" . padChartXY ( $height - $bottom ) . '"/>'
             . "<text x=\"$p\" y=\"" . ( $height - 7 ) . '" text-anchor="middle">' . padChartAttr ( $text ) . '</text>';
@@ -156,7 +165,7 @@
   // first of every month, every week or every day - whichever leaves room for its text -
   // and of every quarter on a span of years.
 
-  function padChartGanttTicks ( $low, $high, $numeric, $plotW ) {
+  function padChartGanttTicks ( $low, $high, $numeric, $plotW, $timed = FALSE ) {
 
     $ticks = [];
 
@@ -171,7 +180,17 @@
     $room  = max ( 1, $plotW / 48 );
     $start = new DateTimeImmutable ( '@' . (int) $low );
 
-    if ( $days <= $room ) {
+    // A plan of hours ticks the hours - 1, 2, 3, 6 or 12 at a time - where the finest tick
+    // was a day, the midnight before the first task, and no tick fell inside the plan.
+
+    if ( $timed and $days <= 2 ) {
+      foreach ( [ 1, 2, 3, 6, 12 ] as $hours )
+        if ( $days * 24 / $hours <= $room )
+          break;
+      $t    = $start->setTime ( intdiv ( (int) $start->format ( 'G' ), $hours ) * $hours, 0 );
+      $form = ( gmdate ( 'Ymd', (int) $low ) == gmdate ( 'Ymd', (int) $high ) ) ? 'H:i' : 'M j H:i';
+      $next = "+$hours hours";
+    } elseif ( $days <= $room ) {
       $step = max ( 1, (int) ceil ( $days / $room ) );
       $t    = $start->setTime ( 0, 0 );
       $form = 'M j';
