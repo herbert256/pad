@@ -6,6 +6,11 @@
   $padChartSource = $padContent;
   $padContent     = '';
 
-  return padChartTag ( 'sparkline', $padChartSource );
+  // A chart without points answers FALSE, a miss, so its @else@ shows: the '' it drew
+  // was a value like any other - a hit - and "No sales yet" never appeared.
+
+  $padChartSvg = padChartTag ( 'sparkline', $padChartSource );
+
+  return ( $padChartSvg === '' ) ? FALSE : $padChartSvg;
 
 ?>
