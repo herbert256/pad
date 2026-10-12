@@ -87,9 +87,9 @@
     // The ids the page has already, so a made one never takes one of them - read as the
     // browser reads them, entities and all: id="intro&#45;2" is intro-2.
 
-    preg_match_all ( '/\sid\s*=\s*["\']([^"\']*)["\']/i', $output, $found );
+    preg_match_all ( padTocIdPattern, $output, $found, PREG_SET_ORDER );
 
-    $taken    = array_fill_keys ( array_map ( 'padTocId', $found [1] ), TRUE );
+    $taken    = array_fill_keys ( array_map ( fn ( $one ) => padTocId ( padTocIdValue ( $one ) ), $found ), TRUE );
     $headings = [];
 
     // The number a repeated heading's id goes on from: each counted up from -2 through every
@@ -142,8 +142,8 @@
         // The link's href is escaped from the id itself: one written with an entity -
         // id="a&amp;b" - was escaped a second time and led to a target that is not there.
 
-        if ( preg_match ( '/\sid\s*=\s*["\']([^"\']*)["\']/i', $attrs, $has ) and $has [1] !== '' )
-          $id = padTocId ( $has [1] );
+        if ( preg_match ( padTocIdPattern, $attrs, $has ) and padTocIdValue ( $has ) !== '' )
+          $id = padTocId ( padTocIdValue ( $has ) );
         else {
           $base = padStrSlug ( html_entity_decode ( padUnprotect ( padUnescape ( $text ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' ) );
           $base = ( $base === '' ) ? 'section' : $base;
@@ -175,6 +175,17 @@
       return $mine ? padTocHtml ( $mine, (string) $title, $list == 'ul' ? 'ul' : 'ol' ) : '';
 
     }, $output ) ?? $output;
+
+  }
+
+  // An id attribute, quoted or not: id=intro was no id - a made one took its name, and a
+  // heading with one got a second id attribute.
+
+  const padTocIdPattern = '/\sid\s*=\s*(?:"([^"]*)"|\'([^\']*)\'|([^\s"\'>]+))/i';
+
+  function padTocIdValue ( $match ) {
+
+    return ( $match [1] ?? '' ) . ( $match [2] ?? '' ) . ( $match [3] ?? '' );
 
   }
 
