@@ -146,14 +146,25 @@
     if ( ( $min < 0 and $below == 0 ) or ( $max > 0 and $above == 0 ) or ( $min == 0 and $max == 0 ) )
       return padChartTicks ( min ( 0, $min ), max ( 0, $max ), $count );
 
+    // The step the line needs, compared to it relatively: against a fixed 1e-12 the line of
+    // values below it got a step too small and was drawn outside the plot, and a denormal
+    // value - 5e-324 - had no logarithm.
+
     $need = max ( $max > 0 ? $max / $above : 0, $min < 0 ? - $min / $below : 0 );
+
+    if ( ! ( $need > 0 ) or ! is_finite ( $need ) or ! is_finite ( log10 ( $need ) ) )
+      return padChartTicks ( min ( 0, $min ), max ( 0, $max ), $count );
+
     $step = 10 ** floor ( log10 ( $need ) );
 
     foreach ( [ 1, 2, 2.5, 5, 10 ] as $times )
-      if ( $step * $times >= $need - 1e-12 ) {
+      if ( $step * $times >= $need * ( 1 - 1e-9 ) ) {
         $step *= $times;
         break;
       }
+
+    if ( ! ( $step > 0 ) or ! is_finite ( $step ) )
+      return padChartTicks ( min ( 0, $min ), max ( 0, $max ), $count );
 
     $digits = max ( 10, 10 - (int) floor ( log10 ( $step ) ) );
     $ticks  = [];
