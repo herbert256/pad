@@ -43,10 +43,12 @@
       return FALSE;
     }
 
+    // The local wall clock read again as UTC - not through gmmktime, whose rule for a year
+    // of two digits put 0079-08-24 in 1979.
+
     $local = $moment->setTimezone ( padDateZone () );
 
-    return gmmktime ( (int) $local->format ( 'G' ), (int) $local->format ( 'i' ), (int) $local->format ( 's' ),
-                      (int) $local->format ( 'n' ), (int) $local->format ( 'j' ), (int) $local->format ( 'Y' ) );
+    return ( new DateTimeImmutable ( $local->format ( 'Y-m-d H:i:s' ), new DateTimeZone ( 'UTC' ) ) )->getTimestamp ();
 
   }
 
