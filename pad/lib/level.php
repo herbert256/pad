@@ -402,6 +402,11 @@ function padSplitOnUnquotedColon ( $str ) {
   // The content of a {highlight} pair is code shown as it stands - a sample of the ~ syntax
   // lost every ~ and the line breaks beside them. It is set aside while the rest is
   // stripped; the pair's own tags keep their ~.
+  //
+  // A closing tag pairs with the nearest opening tag before it that has none yet, as the
+  // engine pairs them; an opening tag left over is a single {highlight file=...}. Counted
+  // as an opener that never closed, a single tag in front of a pair kept every pair after
+  // it from being set aside.
 
   function padTildeKeep ( $text, &$kept ) {
 
@@ -410,16 +415,25 @@ function padSplitOnUnquotedColon ( $str ) {
 
     preg_match_all ( '/\{~?(\/?)highlight(?=[\s}~|])[^{}]*\}/', $text, $tags, PREG_SET_ORDER | PREG_OFFSET_CAPTURE );
 
-    $depth = 0;
-    $spans = [];
+    $open  = [];
+    $pairs = [];
 
-    foreach ( $tags as $tag ) {
-      if ( $tag [1] [0] === '' ) {
-        if ( $depth++ == 0 )
-          $from = $tag [0] [1] + strlen ( $tag [0] [0] );
-      } elseif ( $depth > 0 and --$depth == 0 )
-        $spans [] = [ $from, $tag [0] [1] ];
-    }
+    foreach ( $tags as $tag )
+      if ( $tag [1] [0] === '' )
+        $open [] = $tag [0] [1] + strlen ( $tag [0] [0] );
+      elseif ( $open )
+        $pairs [array_pop ( $open )] = $tag [0] [1];
+
+    ksort ( $pairs );
+
+    $spans = [];
+    $last  = -1;
+
+    foreach ( $pairs as $from => $to )
+      if ( $from > $last ) {
+        $spans [] = [ $from, $to ];
+        $last     = $to;
+      }
 
     foreach ( array_reverse ( $spans ) as list ( $from, $to ) ) {
       $mark          = "\u{E0F8}" . count ( $kept ) . "\u{E0F9}";
