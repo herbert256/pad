@@ -603,14 +603,15 @@
             . '<text x="' . ( $left - 6 ) . '" y="' . padChartXY ( $y ( $tick ) + 4 ) . '" text-anchor="end">' . padChartNumber ( $tick ) . '</text>';
 
     // The category labels under the plot, shortened to their band, and thinned out only
-    // when a band holds less than about six characters: long names were thinned instead -
-    // of two bars only the first was named.
+    // when a band holds less than about ten characters: long names were thinned instead -
+    // of two bars only the first was named - and at six every date of a daily axis was cut
+    // to "2026-0…", where every fourth stood whole.
 
     $labelWidth = 0;
     foreach ( $points as $point )
       $labelWidth = max ( $labelWidth, mb_strlen ( $point [0] ) * 6.5 + 8 );
 
-    $every = max ( 1, (int) ceil ( min ( $labelWidth, 48 ) / max ( 1, $band ) ) );
+    $every = max ( 1, (int) ceil ( min ( $labelWidth, 73 ) / max ( 1, $band ) ) );
 
     foreach ( $points as $i => $point )
       if ( $i % $every == 0 )

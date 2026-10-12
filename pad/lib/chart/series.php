@@ -127,10 +127,11 @@
     }
 
     // The category labels, thinned out when they would overlap - under the plot shortened
-    // to their band first, and thinned only when a band holds less than about six characters.
+    // to their band first, and thinned only when a band holds less than about ten characters,
+    // so a date stays whole.
 
     $every = $horizontal ? max ( 1, (int) ceil ( 13 / max ( 1, $band ) ) )
-                         : max ( 1, (int) ceil ( min ( $labelWidth, 48 ) / max ( 1, $band ) ) );
+                         : max ( 1, (int) ceil ( min ( $labelWidth, 73 ) / max ( 1, $band ) ) );
 
     foreach ( $labels as $i => $label )
       if ( $i % $every == 0 ) {
