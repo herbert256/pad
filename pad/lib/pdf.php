@@ -1240,7 +1240,9 @@
     // % a share of the column and of a page, else the picture's own, never wider than the
     // column nor taller than a page. A size that is no number above 0 counts as none: 100%
     // was 100 pixels, a negative width flipped the scale and drew the picture larger than
-    // the page, and 1e999 wrote nan and lost every line after it.
+    // the page, and 1e999 wrote nan and lost every line after it. A size is held to a
+    // million pixels: height="1e308" on a picture wider than tall made its width INF, the
+    // scale 0 and the matrix nan.
 
     $room = padPdfWidthLeft ( $doc, $ctx );
     $tall = $doc ['h'] - 2 * $doc ['margin'] - 20;
@@ -1250,7 +1252,7 @@
       $n    = (float) $attr;
       if ( ! ( $n > 0 ) or ! is_finite ( $n ) )
         return 0;
-      return str_ends_with ( $attr, '%' ) ? $whole * min ( $n, 100 ) / 100 / 0.75 : $n;
+      return str_ends_with ( $attr, '%' ) ? $whole * min ( $n, 100 ) / 100 / 0.75 : min ( $n, 1e6 );
     };
 
     $w = $size ( $el->getAttribute ( 'width' ),  $room );
