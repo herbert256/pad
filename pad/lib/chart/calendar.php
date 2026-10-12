@@ -26,6 +26,17 @@
     if ( $when === '' )
       return FALSE;
 
+    // Text is a date when it names a day of a month of a year - a time and a zone may come
+    // with it - and nothing it cannot read: -44 was tomorrow, 1990s the clock time of today
+    // in 1990, tomorrow a moment that moved on every request and 2026-02-30 the 2nd of March.
+
+    if ( ! ctype_digit ( $when ) ) {
+      $parts = date_parse ( $when );
+      if ( $parts ['error_count'] or $parts ['warning_count'] or isset ( $parts ['relative'] )
+           or $parts ['year'] === FALSE or $parts ['month'] === FALSE or $parts ['day'] === FALSE )
+        return FALSE;
+    }
+
     try {
       $moment = ctype_digit ( $when ) ? new DateTimeImmutable ( "@$when" ) : new DateTimeImmutable ( $when, padDateZone () );
     } catch ( Throwable $e ) {
