@@ -343,16 +343,36 @@
       '/(\[\s*[\'"]' . $w . '[\'"]\s*\]\s*=\s*)' . $q . '/i'     => $r,
       '/(->' . $w . '\s*=\s*)' . $q . '/i'                        => $r,
       '/(define\s*\(\s*[\'"]' . $w . '[\'"]\s*,\s*)' . $q . '/i' => $r,
-      '/("' . $w . '"\s*:\s*)"(?:[^"\\\\]++|\\\\.)*+"/i'            => '$1"*REDACTED*"',
-      '/^(\s*-?\s*' . $w . '\s*:[ \t]+)(?!\*REDACTED\*)(\S.*)$/im' => '$1*REDACTED*',
-      '/(<(' . $w . ')\b[^>]*>)[^<]*(<\/\2>)/i'                   => '$1*REDACTED*$3',
+      '/("(?<name>[\w.-]+)"\s*:\s*)"(?:[^"\\\\]++|\\\\.)*+"/'         => '$1"*REDACTED*"',
+      '/^(\s*-?\s*(?<name>[\w.-]+)\s*:[ \t]+)(?!\*REDACTED\*)(\S.*)$/m' => '$1*REDACTED*',
+      '/(<(?<name>[\w.-]+)\b[^>]*>)[^<]*(<\/\2>)/i'                => '$1*REDACTED*$3',
       '/^(\s*' . $w . '\s*=\s*)(\S.*)$/im'                         => '$1*REDACTED*',
       '#(\b[a-z][a-z0-9+.-]*://[^/\s:@\'"]*:)[^@\s\'"/]+(@)#i'     => '$1*REDACTED*$2'
     ] as $pattern => $replace )
-      if ( ( $source = preg_replace_callback ( $pattern, fn ( $m ) => adminRedactLines ( $m, $replace ), (string) $source ) ) === NULL )
+      if ( ( $source = preg_replace_callback ( $pattern, fn ( $m ) => ( isset ( $m ['name'] ) and ! adminRedactName ( $m ['name'] ) )
+                                                                    ? $m [0] : adminRedactLines ( $m, $replace ), (string) $source ) ) === NULL )
         return '';
 
     return $source;
+
+  }
+
+  // Whether the name of a JSON, YAML or XML value says it is a secret: a secret word as a
+  // word of its own - password, db_pass, clientSecret - or a key of a kind that is one -
+  // apiKey, private_key. Any name holding key or pass hid ordinary data in every kind of
+  // file - "key": "frameworks", passing: 88, a template's key: line - and the search, which
+  // reads the text as it is shown, no longer found it.
+
+  function adminRedactName ( $name ) {
+
+    $words = array_map ( 'strtolower', preg_split ( '/[_\-.\s]+|(?<=[a-z0-9])(?=[A-Z])/', (string) $name ) );
+
+    if ( array_intersect ( $words, [ 'password', 'passwd', 'pwd', 'pass', 'passphrase', 'secret', 'secrets', 'token', 'tokens',
+                                     'credential', 'credentials', 'salt', 'cipher', 'private', 'apikey', 'appkey' ] ) )
+      return TRUE;
+
+    return (bool) preg_match ( '/(api|app|private|secret|access|encryption|signing|master|auth|license|ssh|hmac|jwt|crypt)keys?$/',
+                               implode ( '', $words ) );
 
   }
 
