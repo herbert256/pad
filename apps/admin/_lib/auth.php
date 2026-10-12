@@ -64,6 +64,13 @@
     $temp = $file . '.' . bin2hex ( random_bytes ( 4 ) );
     $json = json_encode ( [ 'users' => (object) $users ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . "\n";
 
+    // The file is made readable by its owner only before the hashes go in: written first,
+    // it stood with the umask's mode - readable by every user of the machine - until the
+    // chmod after the rename.
+
+    @touch ( $temp );
+    @chmod ( $temp, 0600 );
+
     if ( @file_put_contents ( $temp, $json, LOCK_EX ) === FALSE or ! @rename ( $temp, $file ) ) {
       @unlink ( $temp );
       throw new RuntimeException ( 'DATA/admin/users.json can not be written' );

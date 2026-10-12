@@ -475,19 +475,43 @@
 
   }
 
+  // Read, added to and written under a lock: two commands that ended together each wrote the
+  // list it had read, and a line was lost. Readable by its owner only, as the users are.
+
   function adminHistoryAdd ( $line, $code, $ms ) {
 
     global $adminUser;
 
-    $list = json_decode ( (string) @file_get_contents ( adminStore () . 'history.json' ), TRUE );
-    $list = is_array ( $list ) ? $list : [];
+    $dir = adminStore ();
 
-    array_unshift ( $list, [ 'time' => time (), 'user' => (string) $adminUser, 'line' => $line, 'code' => $code, 'ms' => $ms ] );
+    if ( ! is_dir ( $dir ) )
+      @mkdir ( $dir, 0700, TRUE );
 
-    if ( ! is_dir ( adminStore () ) )
-      @mkdir ( adminStore (), 0700, TRUE );
+    $lock = @fopen ( $dir . 'history.lock', 'c' );
 
-    @file_put_contents ( adminStore () . 'history.json', json_encode ( array_slice ( $list, 0, 100 ), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES ), LOCK_EX );
+    if ( $lock )
+      flock ( $lock, LOCK_EX );
+
+    try {
+
+      $list = json_decode ( (string) @file_get_contents ( $dir . 'history.json' ), TRUE );
+      $list = is_array ( $list ) ? $list : [];
+
+      array_unshift ( $list, [ 'time' => time (), 'user' => (string) $adminUser, 'line' => $line, 'code' => $code, 'ms' => $ms ] );
+
+      if ( ! is_file ( $dir . 'history.json' ) and @touch ( $dir . 'history.json' ) )
+        @chmod ( $dir . 'history.json', 0600 );
+
+      @file_put_contents ( $dir . 'history.json', json_encode ( array_slice ( $list, 0, 100 ), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES ), LOCK_EX );
+
+    } finally {
+
+      if ( $lock ) {
+        flock  ( $lock, LOCK_UN );
+        fclose ( $lock );
+      }
+
+    }
 
   }
 
