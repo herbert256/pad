@@ -553,7 +553,10 @@
 
         $word = strtolower ( $match [0] );
 
-        if ( $word == 'trigger' and preg_match ( '/^\s*create\s+((temp|temporary)\s+)?$/i', $now ) )
+        // CREATE [OR REPLACE] [DEFINER = user] [TEMP] TRIGGER - MariaDB's OR REPLACE, and
+        // the DEFINER a dump writes, its parts quoted or not.
+
+        if ( $word == 'trigger' and preg_match ( '/^\s*create\s+(or\s+replace\s+)?(definer\s*=\s*([^\s\'"`]+|\'[^\']*\'|"[^"]*"|`[^`]*`)+\s+)?((temp|temporary)\s+)?$/i', $now ) )
           $trigger = TRUE;
         elseif ( $trigger and ( $word == 'begin' or $word == 'case' ) )
           $depth++;

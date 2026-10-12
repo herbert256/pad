@@ -2,7 +2,7 @@
 
   // How a .sql migration is split into statements: on ; outside quotes and comments, a
   // doubled quote inside a literal, the body of a trigger kept whole - its IF and CASE
-  // statements too -, a DELIMITER line changing the separator, and on MySQL a backslash
+  // statements too, written with OR REPLACE or a DEFINER too -, a DELIMITER line changing the separator, and on MySQL a backslash
   // escape and a # comment.
 
   $sql = "create table a (x varchar(9) default 'it''s; ok'); -- a comment; with a semicolon\n"
@@ -21,5 +21,11 @@
 
   $blocks = padMigrateSplit ( "create trigger u before insert on a for each row begin if new.x < 0 then set new.x = 0; end if; "
                             . "case when new.x > 9 then set new.x = 9; else set new.x = 1; end case; end; select 5", TRUE );
+
+  // MariaDB's CREATE OR REPLACE TRIGGER and the DEFINER a dump writes are triggers as well.
+
+  $forms = padMigrateSplit ( "create or replace trigger v before update on a for each row begin set new.x = 1; set new.y = 2; end; "
+                           . "create definer=`root`@`localhost` trigger w after delete on a for each row begin delete from b; delete from c; end; "
+                           . "create definer='my user'@'%' trigger z after insert on a for each row begin delete from b; delete from c; end; select 6", TRUE );
 
 ?>

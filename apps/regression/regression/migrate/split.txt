@@ -10,3 +10,9 @@ mysql:
 blocks:
 [create trigger u before insert on a for each row begin if new.x &lt; 0 then set new.x = 0; end if; case when new.x &gt; 9 then set new.x = 9; else set new.x = 1; end case; end]
 [select 5]
+
+forms:
+[create or replace trigger v before update on a for each row begin set new.x = 1; set new.y = 2; end]
+[create definer=`root`@`localhost` trigger w after delete on a for each row begin delete from b; delete from c; end]
+[create definer=&#039;my user&#039;@&#039;%&#039; trigger z after insert on a for each row begin delete from b; delete from c; end]
+[select 6]
