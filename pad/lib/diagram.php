@@ -371,78 +371,7 @@
 
   function padDiagramLayout ( &$nodes, $edges, $vertical, $gaps ) {
 
-    // The ids as the text names them: PHP makes the key of a numeric id - 1 --> 2 --> 3 - an
-    // integer, the edges hold it as text, and the ranks compared the two strictly: no root
-    // matched, every node stayed in rank 0 and the chart was drawn flat.
-
-    $ids  = array_map ( 'strval', array_keys ( $nodes ) );
-    $next = array_fill_keys ( $ids, [] );
-
-    foreach ( $edges as $e => list ( $a, $b ) )
-      if ( $a !== $b )
-        $next [$a] [] = [ $b, $e ];
-
-    // The edges that close a cycle, turned.
-
-    $state = $turned = [];
-
-    foreach ( $ids as $root ) {
-
-      if ( isset ( $state [$root] ) )
-        continue;
-
-      $stack          = [ [ $root, 0 ] ];
-      $state [$root]  = 1;
-
-      while ( $stack ) {
-
-        list ( $id, $k ) = end ( $stack );
-
-        if ( $k >= count ( $next [$id] ) ) {
-          $state [$id] = 2;
-          array_pop ( $stack );
-          continue;
-        }
-
-        $stack [ count ( $stack ) - 1 ] [1]++;
-        list ( $to, $e ) = $next [$id] [$k];
-
-        if ( ( $state [$to] ?? 0 ) == 1 )
-          $turned [$e] = TRUE;
-        elseif ( ! isset ( $state [$to] ) ) {
-          $state [$to] = 1;
-          $stack [] = [ $to, 0 ];
-        }
-
-      }
-
-    }
-
-    // The ranks: the longest path from a node without edges coming in.
-
-    $dag = $into = [];
-
-    foreach ( $edges as $e => list ( $a, $b ) )
-      if ( $a !== $b ) {
-        $pair      = isset ( $turned [$e] ) ? [ $b, $a ] : [ $a, $b ];
-        $dag [$e]  = $pair;
-        $into [ $pair [1] ] = ( $into [ $pair [1] ] ?? 0 ) + 1;
-      }
-
-    $rank  = array_fill_keys ( $ids, 0 );
-    $queue = [];
-
-    foreach ( $ids as $id )
-      if ( ! isset ( $into [$id] ) )
-        $queue [] = $id;
-
-    for ( $q = 0; $q < count ( $queue ); $q++ )
-      foreach ( $dag as list ( $a, $b ) )
-        if ( $a === $queue [$q] ) {
-          $rank [$b] = max ( $rank [$b], $rank [$a] + 1 );
-          if ( --$into [$b] == 0 )
-            $queue [] = $b;
-        }
+    list ( $rank, $turned, $dag ) = padDiagramRanking ( $nodes, $edges );
 
     // The chains: every edge as the nodes it passes, a dummy in each rank it crosses.
 
@@ -1006,24 +935,97 @@
 
   }
 
-  // The ranks alone, before the layout: what the gaps for the labels are measured by.
+  // The ranks alone, before the layout: what the gaps for the labels are measured by - the
+  // layout's own, where a relaxation of its own pumped the ranks of a chart with a cycle
+  // up, and the gap a label was given opened between other ranks than the ones its edge
+  // crossed: the label lay over the nodes.
 
   function padDiagramRanksOnly ( $nodes, $edges ) {
 
-    $rank = array_fill_keys ( array_keys ( $nodes ), 0 );
+    return padDiagramRanking ( $nodes, $edges ) [0];
 
-    for ( $round = 0; $round < count ( $nodes ); $round++ ) {
-      $moved = FALSE;
-      foreach ( $edges as list ( $a, $b ) )
-        if ( $a !== $b and $rank [$b] < $rank [$a] + 1 and $rank [$a] + 1 < count ( $nodes ) ) {
-          $rank [$b] = $rank [$a] + 1;
-          $moved     = TRUE;
+  }
+
+  // The ranks of the layout: the edges that close a cycle turned, then the longest path
+  // from a node without edges coming in - the rank, the turned edges and the edges as laid.
+  // The gaps for the labels are measured by these same ranks (padDiagramRanksOnly).
+
+  function padDiagramRanking ( $nodes, $edges ) {
+
+    // The ids as the text names them: PHP makes the key of a numeric id - 1 --> 2 --> 3 - an
+    // integer, the edges hold it as text, and the ranks compared the two strictly: no root
+    // matched, every node stayed in rank 0 and the chart was drawn flat.
+
+    $ids  = array_map ( 'strval', array_keys ( $nodes ) );
+    $next = array_fill_keys ( $ids, [] );
+
+    foreach ( $edges as $e => list ( $a, $b ) )
+      if ( $a !== $b )
+        $next [$a] [] = [ $b, $e ];
+
+    // The edges that close a cycle, turned.
+
+    $state = $turned = [];
+
+    foreach ( $ids as $root ) {
+
+      if ( isset ( $state [$root] ) )
+        continue;
+
+      $stack          = [ [ $root, 0 ] ];
+      $state [$root]  = 1;
+
+      while ( $stack ) {
+
+        list ( $id, $k ) = end ( $stack );
+
+        if ( $k >= count ( $next [$id] ) ) {
+          $state [$id] = 2;
+          array_pop ( $stack );
+          continue;
         }
-      if ( ! $moved )
-        break;
+
+        $stack [ count ( $stack ) - 1 ] [1]++;
+        list ( $to, $e ) = $next [$id] [$k];
+
+        if ( ( $state [$to] ?? 0 ) == 1 )
+          $turned [$e] = TRUE;
+        elseif ( ! isset ( $state [$to] ) ) {
+          $state [$to] = 1;
+          $stack [] = [ $to, 0 ];
+        }
+
+      }
+
     }
 
-    return $rank;
+    // The ranks: the longest path from a node without edges coming in.
+
+    $dag = $into = [];
+
+    foreach ( $edges as $e => list ( $a, $b ) )
+      if ( $a !== $b ) {
+        $pair      = isset ( $turned [$e] ) ? [ $b, $a ] : [ $a, $b ];
+        $dag [$e]  = $pair;
+        $into [ $pair [1] ] = ( $into [ $pair [1] ] ?? 0 ) + 1;
+      }
+
+    $rank  = array_fill_keys ( $ids, 0 );
+    $queue = [];
+
+    foreach ( $ids as $id )
+      if ( ! isset ( $into [$id] ) )
+        $queue [] = $id;
+
+    for ( $q = 0; $q < count ( $queue ); $q++ )
+      foreach ( $dag as list ( $a, $b ) )
+        if ( $a === $queue [$q] ) {
+          $rank [$b] = max ( $rank [$b], $rank [$a] + 1 );
+          if ( --$into [$b] == 0 )
+            $queue [] = $b;
+        }
+
+    return [ $rank, $turned, $dag ];
 
   }
 
