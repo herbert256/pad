@@ -19,7 +19,9 @@
   // padTypeScriptKey        a key as TypeScript writes it - quoted when it is no identifier
   //
   // A list without items is unknown[] - its rows cannot be seen; an empty object Record<string,
-  // unknown>. JSON decoded without assoc keeps the difference between the two: [] and {}.
+  // unknown>. JSON decoded without assoc keeps the difference between the two: [] and {}. An
+  // object is therefore always an object, however empty or numbered: as the array of its
+  // properties, {} among rows was a list and {"0": "a", "1": "b"} a string[].
 
   function padTypeScript ( $value, $indent = '' ) {
 
@@ -36,10 +38,7 @@
       return 'string';
 
     if ( is_object ( $value ) )
-      $value = get_object_vars ( $value ) ?: new ArrayObject;
-
-    if ( $value instanceof ArrayObject )
-      return 'Record<string, unknown>';
+      return padTypeScriptObject ( array_map ( fn ( $one ) => [ $one, TRUE ], get_object_vars ( $value ) ), $indent );
 
     if ( ! is_array ( $value ) )
       return 'unknown';
@@ -84,17 +83,11 @@
     $rows  = [];
     $other = [];
 
-    foreach ( $list as $item ) {
-
-      if ( is_object ( $item ) )
-        $item = get_object_vars ( $item );
-
-      if ( is_array ( $item ) and $item and ! array_is_list ( $item ) )
-        $rows [] = $item;
+    foreach ( $list as $item )
+      if ( padTypeScriptRow ( $item ) )
+        $rows [] = is_object ( $item ) ? get_object_vars ( $item ) : $item;
       else
         $other [ padTypeScript ( $item, $indent ) ] = TRUE;
-
-    }
 
     $types = array_keys ( $other );
 
@@ -155,10 +148,7 @@
 
   function padTypeScriptRow ( $value ) {
 
-    if ( is_object ( $value ) )
-      $value = get_object_vars ( $value );
-
-    return is_array ( $value ) and $value and ! array_is_list ( $value );
+    return is_object ( $value ) or is_array ( $value ) and $value and ! array_is_list ( $value );
 
   }
 
