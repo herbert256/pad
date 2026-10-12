@@ -82,8 +82,16 @@
     $bins   = count ( $edges ) - 1;
     $counts = array_fill ( 0, $bins, 0 );
 
-    foreach ( $values as $v )
-      $counts [ max ( 0, min ( $bins - 1, (int) floor ( ( $v - $edges [0] ) / $step ) ) ) ]++;
+    // The edges themselves decide what the division guesses: 0.3 / 0.1 is 2.9999999999999996.
+
+    foreach ( $values as $v ) {
+      $bin = max ( 0, min ( $bins - 1, (int) floor ( ( $v - $edges [0] ) / $step ) ) );
+      while ( $bin < $bins - 1 and $v >= $edges [$bin + 1] )
+        $bin++;
+      while ( $bin > 0 and $v < $edges [$bin] )
+        $bin--;
+      $counts [$bin]++;
+    }
 
     $range = fn ( $i ) => padChartNumber ( $edges [$i] ) . ' – ' . padChartNumber ( $edges [$i + 1] );
     $desc  = [];
