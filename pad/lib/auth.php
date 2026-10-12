@@ -377,18 +377,24 @@
 
   }
 
-  // The names of the fields kept out of the session and signed into the cookie instead.
+  // The fields kept out of the session and signed into the cookie instead: by their names,
+  // and any value PHP knows as a password hash, whatever its column is called - a hash in
+  // 'hash' or 'pass_hash' went into the session, {auth} and the dumps, and a new password
+  // left every remember-me cookie valid.
 
-  function padAuthSecret ( $name ) {
+  function padAuthSecret ( $name, $value = NULL ) {
 
-    return (bool) preg_match ( '/pass(word|wd|phrase)|^pass$|pwd|secret|token/i', (string) $name );
+    if ( preg_match ( '/pass(word|wd|phrase|code)|^pass$|pass_?hash|pwd|secret|token|hash|^pin$|pin_?code|api_?key|private_?key|totp|otp_|recovery/i', (string) $name ) )
+      return TRUE;
+
+    return is_string ( $value ) and $value !== '' and ( password_get_info ( $value ) ['algo'] ?? NULL ) !== NULL;
 
   }
 
   function padAuthKeep ( $user ) {
 
     foreach ( $user as $name => $value )
-      if ( padAuthSecret ( $name ) )
+      if ( padAuthSecret ( $name, $value ) )
         unset ( $user [$name] );
 
     return $user;
@@ -400,7 +406,7 @@
     $secrets = [];
 
     foreach ( $user as $name => $value )
-      if ( padAuthSecret ( $name ) )
+      if ( padAuthSecret ( $name, $value ) )
         $secrets [$name] = $value;
 
     ksort ( $secrets, SORT_STRING );
