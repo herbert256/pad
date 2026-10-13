@@ -1,0 +1,13 @@
+{data 'countries'}
+---
+- country: NO
+  n: 5
+  on: Off
+  ok: true
+- country: NL
+  n: 3
+  on: yes
+  ok: False
+{/data}
+{countries}{$country} {$n} {$on} {echo $ok ? 'T' : 'F'}; {/countries}
+{map 'europe', data='countries', key='country', value='n'}

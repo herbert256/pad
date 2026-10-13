@@ -1,0 +1,8 @@
+{data 'when'}
+when,what
+0,Year zero
+20261012,Basic ISO date
+20261020,Another
+{/data}
+{timeline data='when', date='when', label='what'}
+{calendar '2026-10', data='when', date='when'}{days}{if $count gt 0}{$date}: {$count}; {/if}{/days}{/calendar}

@@ -21,9 +21,14 @@
   $zero = json_encode ( padRateLimit ( 'fw-rate-zero', 0 ) );
   $text = json_encode ( [ padRateLimit ( 'fw-rate-zero', '1', '60' ), padRateLimitRemaining ( 'fw-rate-zero', '1' ) ] );
 
-  // A window of one second: over the limit, and allowed again once it ended.
+  // A window of one second: over the limit, and allowed again once it ended. The window
+  // counts in whole seconds, so it starts at the beginning of one: begun at x.999 it ended
+  // a millisecond later, and the second hit was let through now and then.
 
   padRateLimitClear ( 'fw-rate-short' );
+
+  for ( $second = time (); time () == $second; )
+    usleep ( 1000 );
 
   $short = [ padRateLimit ( 'fw-rate-short', 1, 1 ), padRateLimit ( 'fw-rate-short', 1, 1 ) ];
 

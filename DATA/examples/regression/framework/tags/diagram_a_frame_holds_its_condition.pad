@@ -1,0 +1,8 @@
+{diagram type='sequence'}
+Shop ->> Bank: Charge 20 EUR
+alt The card was declined by the issuing bank
+Bank -->> Shop: Declined
+else Approved
+Bank -->> Shop: OK
+end
+{/diagram}

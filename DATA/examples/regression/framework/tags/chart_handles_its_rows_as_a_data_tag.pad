@@ -1,0 +1,1 @@
+{data 'sales'}[{"m":"Jan","a":5},{"m":"Feb","a":9},{"m":"Mar","a":2},{"m":"Apr","a":7}]{/data}{chart 'bar', data='sales', sort='a DESC', first=2} {chart 'line', data='sales', where='$a gt 4'} [{sparkline data='sales', value='a', where='$a gt 40'}@else@none{/sparkline}]
