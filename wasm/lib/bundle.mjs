@@ -10,7 +10,7 @@
 //   www/<app>/          its stylesheets, scripts and pictures, without the PHP entry point
 //   runtime/            the PHP side of the runtime's database and storage tools
 //
-// Never packed: .env files - they hold a server's passwords and keys, which a browser that
+// Never packed: .env files - .env, .env.local, prod.env: they hold a server's passwords and keys, which a browser that
 // gets the pack can read; an application sets what it needs offline in _offline.json's env
 // instead - and node_modules, _frontend (a Vite project's sources) and .DS_Store.
 
@@ -38,7 +38,7 @@ export function collect(apps) {
       const key = relative(home, path).split('\\').join('/');
       if (info.isDirectory()) { walk(path, max, keep); continue; }
       if (!keep(key)) continue;
-      if (name === '.env' || name.endsWith('.env')) { skipped.push(key); continue; }
+      if (name === '.env' || name.startsWith('.env.') || name.endsWith('.env')) { skipped.push(key); continue; }
       if (key.startsWith('pad/') && (name.endsWith('.sqlite') || info.size > max)) { left++; continue; }
       if (info.size > max) { skipped.push(key); continue; }
       add(key, readFileSync(path));
