@@ -237,6 +237,9 @@ if (!only || only === 'kanban') {
   answer = await get('http://localhost/kanban/?events');
   check('kanban: the stream asked for as a page says what it is', /<h1>Events<\/h1>/.test(text(answer)), answer);
 
+  answer = await get('http://localhost/kanban/?card&id=3');
+  check('kanban: a card\'s own page, in its new column', /<h1>Photos of the new collection<\/h1>/.test(text(answer)) && /<option value="2" selected>Doing/.test(text(answer)), answer);
+
 }
 
 // ---- the runtime: its calls, DATA/ kept, a database exported and imported --------------

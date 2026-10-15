@@ -45,6 +45,8 @@
   $draft      = $card ?: [ 'id' => 0, 'title' => '', 'body' => '', 'label' => '', 'due' => '', 'column_id' => 0 ];
   $columnList = array_map ( fn ( $c ) => $c + [ 'chosen' => $c ['id'] == $draft ['column_id'] ], array_values ( db ( "ARRAY id, name FROM columns ORDER BY position" ) ?: [] ) );
   $labelList  = array_map ( fn ( $key, $name ) => [ 'key' => $key, 'name' => $name, 'chosen' => $key == $draft ['label'] ], array_keys ( kanbanLabels () ), kanbanLabels () );
+  $cardTitle  = $draft ['title'];
+  $isCard     = $card ? 1 : 0;
   $kanbanPage = $card ? $card ['title'] : 'New card';
 
 ?>
