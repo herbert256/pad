@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f766e">
+  <meta name="csrf-token" content="{csrf token}">
+  <title>{$ledgerPage} · Ledger</title>
+  <link rel="icon" href="{asset 'icon.svg'}" type="image/svg+xml">
+  <link rel="stylesheet" href="{asset 'ledger.css'}">
+  <script src="{asset 'ledger.js'}" defer></script>
+</head>
+<body>
+
+  <header class="top">
+    <a class="brand" href="{$padGo}index"><img src="{asset 'icon.svg'}" alt="" width="30" height="30"><span>Ledger</span></a>
+    <nav>
+      {menu}<a href="{$padGo}{$page}{?month}" aria-current="{$current}">{$label}</a>{/menu}
+    </nav>
+    <form class="month" method="get">
+      <input type="hidden" name="{$ledgerHere}" value="">
+      <label for="month-pick" class="hide">Month</label>
+      <select id="month-pick" name="month" onchange="this.form.submit()">
+        {monthList}<option value="{$value}"{if $chosen} selected{/if}>{$label}</option>{/monthList}
+      </select>
+      <noscript><button>Show</button></noscript>
+    </form>
+    <a class="button primary" href="{$padGo}add{?month}">+ Add</a>
+  </header>
+
+  <main>
+    {flash}<p class="flash {$type}" role="status">{$message}</p>{/flash}
+    @page@
+  </main>
+
+  <footer class="bottom">Ledger runs {$ledgerWhere}.</footer>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<div class="head">
+  <h1>{$monthName}</h1>
+  <span class="dim">{$totals.entries} entries</span>
+</div>
+
+<section class="kpis" aria-label="This month">
+  <div class="kpi in"><span>Income</span><b data-kpi="income">{$totals.income | money}</b></div>
+  <div class="kpi out"><span>Spending</span><b data-kpi="spent">{$totals.spent | money}</b></div>
+  <div class="kpi"><span>Left</span><b data-kpi="left">{$totals.left | money}</b></div>
+  <div class="kpi"><span>Kept</span><b data-kpi="kept">{$totals.kept}%</b></div>
+</section>
+
+<div class="columns">
+
+  <div class="main">
+
+    <section class="card">
+      <h2>Six months</h2>
+      {chart 'bar', data='history', label='month', value='income, spending', title='Income and spending, six months'}
+    </section>
+
+    <section class="card">
+      <h2>Where it went</h2>
+      {if $totals.spent gt 0}
+        {chart 'donut', data='spending', label='category', value='spent', title='Spending by category'}
+      {else}
+        <p class="dim">Nothing spent this month.</p>
+      {/if}
+    </section>
+
+    <section class="card">
+      <h2>Budgets <a class="more" href="{$padGo}budgets{?month}">Change</a></h2>
+      <ul class="budgets">
+        {budgets}
+        <li class="{$state}">
+          <div class="line"><span class="dot" style="background: {$color}"></span><b>{$name}</b><span>{$spent | money} of {$monthly | money}</span></div>
+          {progress $share, max=100, label=$name, color=$tone}
+        </li>
+        @else@
+        <li class="dim">No budgets yet.</li>
+        {/budgets}
+      </ul>
+    </section>
+
+  </div>
+
+  <aside class="side">
+
+    <section class="card quick">
+      <h2>Quick entry</h2>
+      {form 'quick', action='?quick', class='quick-form'}
+        <input type="hidden" name="month" value="{$ledgerMonth}">
+        <label for="q-amount">Amount</label>
+        <input id="q-amount" name="amount" inputmode="decimal" placeholder="12.50" required pattern="[0-9]+([.,][0-9][0-9]?)?">
+        <label for="q-category">Category</label>
+        <select id="q-category" name="category">{spendable}<option value="{$id}">{$name}</option>{/spendable}</select>
+        <label for="q-note">Note</label>
+        <input id="q-note" name="note" placeholder="Coffee" maxlength="120">
+        <button class="button primary">Spend it</button>
+        <p class="said" role="status"></p>
+      {/form}
+    </section>
+
+    <section class="card">
+      <h2>Accounts</h2>
+      <ul class="accounts">
+        {accounts}<li><span>{$name}</span><b class="{if $balance lt 0}neg{/if}">{$balance | money}</b></li>{/accounts}
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Latest <a class="more" href="{$padGo}transactions{?month}">All</a></h2>
+      <ul class="latest">
+        {latest}<li><span class="day">{$day | date('j M')}</span><span class="what">{$note}<small>{$category}</small></span><b class="{if $amount lt 0}neg{else}pos{/if}">{$amount | money}</b></li>
+        @else@<li class="dim">No entries this month.</li>{/latest}
+      </ul>
+    </section>
+
+  </aside>
+
+</div>

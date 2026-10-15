@@ -35,13 +35,13 @@ try {
 const PadApp = require(join(home, 'wasm', 'app', 'pad-app.js'));
 const brief  = process.argv.includes('--brief');
 const only   = process.argv.slice(2).find(a => !a.startsWith('--')) || '';
-const apps   = ['demo', 'notes'];
+const apps   = ['demo', 'notes', 'ledger'];
 const store  = new PadApp.MemoryStore();
 const bundle = Object.assign({ id: 'verify', apps, offline: Object.fromEntries(apps.map(a => [a, offline(a)])), build: 'verify' }, collect(apps));
 
-async function start() {
+async function start(withBundle = bundle, withStore = store) {
   const php = new universal.PHP(await node.loadNodeRuntime('8.4', { emscriptenOptions: { processId: 1 } }));
-  const pad = new PadApp(php, bundle, { store, FS: php[universal.__private__dont__use].FS, mode: 'node', timezone: 'UTC' });
+  const pad = new PadApp(php, withBundle, { store: withStore, FS: php[universal.__private__dont__use].FS, mode: 'node', timezone: 'UTC' });
   await pad.install();
   return pad;
 }
@@ -145,6 +145,59 @@ if (!only || only === 'notes') {
 
   answer = await get('http://localhost/notes/?database&download');
   check('notes: the database file downloads', /attachment; filename="notes.sqlite"/.test(answer.headers['content-disposition'][0]) && text({ bytes: answer.bytes.subarray(0, 15) }) === 'SQLite format 3', answer);
+
+}
+
+// ---- ledger: its migrations, a later version migrating the database a visitor kept, ------
+//      JSON in and out, CSV out and in
+
+if (!only || only === 'ledger') {
+
+  // The version before the budgets: the same pack without that migration, its own store.
+
+  const before = Object.assign({}, bundle, { files: Object.assign({}, bundle.files) });
+  delete before.files['apps/ledger/_migrations/2026_10_01_090000_add_budgets.php'];
+  const kept = new PadApp.MemoryStore();
+  const sql = async (runtime, query) => json(await runtime.handle({ method: 'POST', url: 'http://localhost/_pad/query?db=ledger/ledger.sqlite', body: JSON.stringify({ sql: query }) }));
+
+  let old = await start(before, kept);
+  let answer = await old.request('GET', 'http://localhost/ledger/?transactions&padInclude');
+  const counted = (await sql(old, "SELECT count(*) FROM transactions")).results[0].rows[0][0];
+  const tables = (await sql(old, "SELECT group_concat(name) FROM sqlite_master WHERE type = 'table' AND name IN ('budgets', 'transactions')")).results[0].rows[0][0];
+  check('ledger: the first version builds its database by its migrations and seeds it', answer.status === 200 && counted > 100 && tables === 'transactions', answer);
+
+  let next = await start(bundle, kept);
+  answer = await next.request('GET', 'http://localhost/ledger/');
+  const after = (await sql(next, "SELECT (SELECT count(*) FROM transactions), (SELECT count(*) FROM budgets)")).results[0].rows[0];
+  check('ledger: the next version migrates the database the visitor kept - budgets added, transactions untouched',
+        answer.status === 200 && after[0] === counted && after[1] === 8 && /class="pad-progress|<progress/.test(text(answer)), answer);
+
+  answer = await get('http://localhost/ledger/');
+  check('ledger: the overview of the newest month, with its two charts', /<h1>September 2026<\/h1>/.test(text(answer)) && /pad-chart-bar/.test(text(answer)) && /pad-chart-donut/.test(text(answer)), answer);
+
+  const meta = (text(answer).match(/<meta name="csrf-token" content="([0-9a-f]+)">/) || [])[1];
+  answer = await post('http://localhost/ledger/?quick&padFormat=json', JSON.stringify({ amount: '12.50', category: 4, note: 'Coffee beans', month: '2026-09' }),
+                      { 'content-type': 'application/json', accept: 'application/json', 'x-csrf-token': meta });
+  const quick = json(answer);
+  check('ledger: the quick entry - JSON in, the booking and the new totals out', quick.ok === true && quick.entry.amount === -12.5 && /^€ 2,306.08$/.test(quick.shown.spent), answer);
+
+  answer = await get('http://localhost/ledger/?transactions&month=2026-09&padFormat=csv');
+  const csv = text(answer).split('\n');
+  check('ledger: the transactions as CSV ($padExpose)', /^text\/csv/.test(answer.headers['content-type'][0]) && csv[0].trim() === 'day,category,account,note,amount' && /Coffee beans/.test(text(answer)), answer);
+
+  answer = await get('http://localhost/ledger/?import');
+  let form = await multipart({ padCsrfToken: token(answer), padForm: 'import',
+                               csv: new File(['day,amount,category,note\n2026-10-02,-23.40,Groceries,Market\n2026-10-25,3200,Salary,Salary\nyesterday-ish,x,Fun,broken\n'], 'bank.csv', { type: 'text/csv' }) });
+  answer = await post('http://localhost/ledger/?import', form.body, { 'content-type': form.type });
+  check('ledger: a CSV imported, the row that is no transaction named', /2 transactions imported, 1 rows skipped/.test(text(answer)) && /Line 4: skipped/.test(text(answer)), answer);
+
+  answer = await get('http://localhost/ledger/?index&month=2026-10');
+  check('ledger: ... its month on the overview', /<h1>October 2026<\/h1>/.test(text(answer)) && /&euro; 3,200.00/.test(text(answer)), answer);
+
+  answer = await get('http://localhost/ledger/?add');
+  form = await multipart({ padCsrfToken: token(answer), padForm: 'entry', day: '2026-10-03', amount: 'lots', category: '4', account: '1', note: '' });
+  answer = await post('http://localhost/ledger/?add', form.body, { 'content-type': form.type });
+  check('ledger: an amount that is no amount comes back with its rule\'s message', /class="error"/.test(text(answer)) && /Amount/.test(text(answer)), answer);
 
 }
 

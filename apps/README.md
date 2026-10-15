@@ -22,6 +22,7 @@ This directory contains PAD applications and examples.
 | [hello](hello/README.md) | Minimal | Hello World example demonstrating page pairing |
 | [htmx](htmx/README.md) | Standard | PAD + htmx: active search, lazy loading, infinite scroll, inline editing, forms, out-of-band updates, server-sent events - htmx asks for a part, PAD answers its fragment |
 | [islands](islands/README.md) | Standard | Islands of any framework - React, Vue, Svelte, Preact and Solid on one page through one runtime, built by Vite and linked by `{vite}` |
+| [ledger](ledger/README.md) | Offline | A household budget on SQLite and its migrations - charts, budgets, CSV, a JSON quick entry - that `pad pack ledger` runs in the browser |
 | [manual](manual/README.md) | Standard | Interactive documentation and examples |
 | [nono](nono/README.md) | Plain PHP | PHP application without PAD templating |
 | [notes](notes/README.md) | Offline | A Markdown notebook on SQLite - search, tags, pins, attachments, JSON export and import - that `pad pack notes` runs in the browser |

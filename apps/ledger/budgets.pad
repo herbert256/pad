@@ -1,0 +1,14 @@
+<div class="narrow">
+
+  <h1>Budgets</h1>
+  <p class="lead">What each kind of spending may cost a month - {$planned | money} together. 0 leaves a category without one.</p>
+
+  {form 'budgets', class='budget-form'}
+    {plan}
+    <label class="budget-row" for="budget-{$id}"><span class="dot" style="background: {$color}"></span>{$name}
+      <input id="budget-{$id}" name="budget[{$id}]" value="{$monthly}" inputmode="decimal" size="8"></label>
+    {/plan}
+    <div class="bar"><button class="button primary">Save</button><a class="button" href="{$padGo}index{?month}">Cancel</a></div>
+  {/form}
+
+</div>

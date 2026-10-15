@@ -1932,6 +1932,7 @@ the `claude` line of `./ci.sh`.
 | `hello` | Minimal | Hello World example demonstrating page pairing |
 | `htmx` | Standard | PAD + htmx: active search, lazy loading, infinite scroll, inline editing, forms, out-of-band updates and server-sent events - htmx asks for a part, PAD answers its `{fragment}` (by `HX-Target`), each example with a request log and its sources |
 | `islands` | Standard | Islands of any framework: one runtime mounts React, Vue, Svelte, Preact and Solid components on PAD's islands, each framework fetched when needed, a store they share, a TypeScript island typed by `pad types`, built by Vite (`_frontend/`) and linked by `{vite}` |
+| `ledger` | Offline | A household budget on SQLite built by its `_migrations/` (run on the first request, a later one migrating the kept database) - `{chart}`s, `{progress}` budgets, a `{datatable}`, CSV out (`padFormat=csv`) and in, a quick entry posted as JSON - packed by `pad pack ledger` it runs in the browser |
 | `manual` | Standard | Interactive documentation and examples |
 | `nono` | Plain PHP | PHP application without PAD templating |
 | `notes` | Offline | A Markdown notebook on SQLite - tags, search as you type (a `{fragment}`), pins and colours (`{live}`), pictures and PDFs attached (`padUpload`, `padUploadSend`), a JSON export (`$padExpose`) and import - packed by `pad pack notes` it runs in the browser |
