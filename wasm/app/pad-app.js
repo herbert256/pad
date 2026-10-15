@@ -86,6 +86,7 @@
 
   function headerList(headers) {
     if (!headers) return [];
+    if (Array.isArray(headers)) return headers;
     if (typeof headers.get === 'function' && typeof headers.entries === 'function') return Array.from(headers.entries());
     return Object.entries(headers);
   }

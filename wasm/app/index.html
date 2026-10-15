@@ -268,7 +268,8 @@
 
     function host(pad) {
 
-      const shellDir = location.href.replace(/[?#].*$/, '').replace(/[^/]*$/, '');   // where this page is: a page's script reads it from location
+      const shellHere = location.href.replace(/#.*$/, '');                     // this page's address - a frame's location, after the page was written into it
+      const shellDir = shellHere.replace(/\?.*$/, '').replace(/[^/]*$/, '');
       const blobs = new Map();       // the www/ files, made once
       let pageBlobs = [];            // what a page's own addresses answered, made for that page
       let current = '';
@@ -287,10 +288,10 @@
           url = String(url);
           let target;
           try { target = new URL(url, from || current || pad.base); } catch (e) { return null; }
-          if (target.href.startsWith(shellDir) || target.protocol === 'about:') {
-            const rest = target.protocol === 'about:' ? target.search : target.href.substring(shellDir.length).replace(/^index\.html/, '').replace(/#.*$/, '');
-            target = new URL(rest, from || current || pad.base);
-          }
+          if (target.href.replace(/#.*$/, '') === shellHere || target.protocol === 'about:')
+            target = new URL(from || current || pad.base);          // the frame's own address: the page it shows
+          else if (target.href.startsWith(shellDir))
+            target = new URL(target.href.substring(shellDir.length).replace(/^index\.html/, '').replace(/#.*$/, ''), from || current || pad.base);
           return pad.isMine(target.href) ? target.href : null;
         },
 
@@ -343,6 +344,7 @@
           event.preventDefault();
           const url = PadHost.map(href, page);
           if (!url) { window.open(new URL(href, page).href, '_blank', 'noopener'); return; }
+          if (link.hasAttribute('download')) { save(url, link.getAttribute('download')); return; }
           const asset = pad.asset(url);
           if (asset) { window.open(blobFor(url), '_blank'); return; }
           if (event.metaKey || event.ctrlKey || event.shiftKey || link.target === '_blank')
@@ -406,6 +408,20 @@
           if (mine === seq) failed(error);
         } finally {
           if (mine === seq) { busy.className = 'done'; setTimeout(() => { if (mine === seq) busy.className = ''; }, 400); }
+        }
+      }
+
+      // A link with a download attribute: what its address answers, saved under the name it
+      // gives - or the one the answer gives.
+
+      async function save(url, name) {
+        try {
+          const answer = await pad.request('GET', url, undefined, undefined, 'page');
+          const type = String((answer.headers['content-type'] || [''])[0]);
+          const given = String((answer.headers['content-disposition'] || [''])[0]);
+          download(answer, type, name ? `attachment; filename="${name.replace(/"/g, '')}"` : given || `attachment; filename="${url.split(/[/?&=]/).filter(Boolean).pop() || 'download'}"`);
+        } catch (error) {
+          failed(error);
         }
       }
 
