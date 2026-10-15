@@ -24,6 +24,10 @@ pad - the PAD command
   pad work <app> [--queue=x] [--once]   the queue worker: runs the queued jobs (--max, --sleep, --tries, --timeout)
   pad queue <app> [--failed]            the queues' sizes; --retry=<id|all>, --flush[=queue]
   pad schedule <app> [--list]           what _schedule.php has due this minute; --all for every application
+  pad pack <app>[,<app>...] [dir]       for the browser: PHP as WebAssembly, the engine and the applications in one
+           [--serve[=port]] [--name=x]   directory that runs from the disk or installs offline; their data kept there
+           [--panel=button|key|none]
+  pad pack --install                    the packages the packing needs, into ~/.cache/pad-wasm (node and npm)
   pad down <app> [--secret[=word]]      maintenance: every request 503 until pad up; ?<word> lets you through
            [--retry=s] [--message=x]
   pad down                              the applications that are down

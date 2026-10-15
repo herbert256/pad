@@ -164,6 +164,23 @@ if [ -z "$CI_SUITES" ]; then
   done
 fi
 
+# Offline applications: the runtime of pad pack (wasm/app/pad-app.js) walks the applications
+# a pack carries in Node, on PHP compiled to WebAssembly - wasm/verify-app.mjs, no pack
+# written - and starts again on the data it kept. It needs the @php-wasm packages pad pack
+# --install puts in ~/.cache/pad-wasm; a machine without them says so instead of failing.
+
+if [ -z "$CI_SUITES" ]; then
+  if ! command -v node > /dev/null 2>&1; then
+    printf '%-12s %s\n' wasm "skipped - node is not installed"
+  else
+    wasm=$(node "$padHome/wasm/verify-app.mjs" --brief 2>&1)
+    case $? in
+      0|2) printf '%-12s %s\n' wasm "$wasm" ;;
+      *)   printf '%s\n' "$wasm" >&2; exit=1 ;;
+    esac
+  fi
+fi
+
 # The applications' own tests - the _tests/ directory of every application, run by pad test
 # on the command line (apps/cli/_commands/test.php): a failing test, or one without an
 # answer, fails the gate like a failing suite. Skipped by the rig, like the editors line.

@@ -25,6 +25,8 @@
   //           --once runs the one and fails the other, --failed names why
   //   schedule the scratch application's _schedule.php listed with its next run, and run at
   //           the minute it is due
+  //   pack    an application that is not there, a panel and an option it does not know -
+  //           refused before node, which the packing itself needs, is asked
   //
   // A plain load only offers the link; verdict.php runs it on every load.
 
@@ -244,6 +246,17 @@
                   and $codeQ6 === 0 and preg_match ( '/done\s+note/', $outQ6 ) ) ? 'yes' : 'NO';
 
     padDeleteDataDir ( $home );
+
+    // pack - what it refuses before node is asked: an application that is not there, a
+    // panel it does not know, an option it does not know
+
+    list ( $codeP1, , $errP1 ) = cliCheckRun ( [ 'pack', 'no/such/app' ] );
+    list ( $codeP2, , $errP2 ) = cliCheckRun ( [ 'pack', 'demo', '--panel=side' ] );
+    list ( $codeP3, , $errP3 ) = cliCheckRun ( [ 'pack', 'demo', '--color=red' ] );
+
+    $pack = ( $codeP1 === 1 and str_contains ( $errP1, "there is no application named 'no/such/app'" )
+              and $codeP2 === 1 and str_contains ( $errP2, "--panel is button, key or none, not 'side'" )
+              and $codeP3 === 1 and str_contains ( $errP3, 'pad pack does not know --color=red' ) ) ? 'yes' : 'NO';
 
     // lint
 

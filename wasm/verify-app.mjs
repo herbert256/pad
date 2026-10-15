@@ -1,60 +1,179 @@
-// Checks the runtime of wasm/app.mjs outside a browser: loads @php-wasm/node, installs the
-// pad-bundle.js wasm/app.mjs wrote for an application with the same wasm/app/pad-app.js the
-// page uses, and walks the demo application - pages, a post with its CSRF token through the
-// redirect to the flash message, a form that breaks its rules.
+// Checks the runtime of packed applications (wasm/app/pad-app.js) outside a browser: PHP
+// from @php-wasm/node, the files wasm/lib/bundle.mjs collects for a pack - no pack is
+// written - and the same runtime the page and the service worker use, with DATA/ kept in a
+// store in memory. It walks the applications as a visitor would: pages, posts with their
+// tokens, uploads, the requests a page's own JavaScript makes, the server-sent events, the
+// runtime's database tools - and starts the runtime again on the same store, as a browser
+// does on the next visit, to see that everything was kept.
 //
-//   NODE_PATH=/tmp/pad-wasm/node_modules node wasm/app.mjs demo
-//   npm install --prefix /tmp/pad-wasm @php-wasm/node
-//   NODE_PATH=/tmp/pad-wasm/node_modules node wasm/verify-app.mjs [<directory>]   (DATA/wasm/demo/)
+//   pad pack --install                                          the packages, once
+//   node wasm/verify-app.mjs                                    every check
+//   node wasm/verify-app.mjs demo                               the checks of one application
+//   node wasm/verify-app.mjs --brief                            one line, and the failures - ./ci.sh's wasm line
 //
-// Exits 0 when every step answers as expected.
+// The packages come from NODE_PATH, else ~/.cache/pad-wasm/node_modules. Exits 0 when every
+// step answers as expected, 1 when one does not, 2 when the packages are not there.
 
 import { createRequire } from 'module';
-import { readFileSync } from 'fs';
-import { dirname, join } from 'path';
-import { fileURLToPath, pathToFileURL } from 'url';
-import vm from 'vm';
+import { join } from 'path';
+import { homedir } from 'os';
+import { pathToFileURL } from 'url';
+import { home, collect, offline } from './lib/bundle.mjs';
 
-const here    = dirname(fileURLToPath(import.meta.url));
-const require = createRequire(join(process.env.NODE_PATH || process.cwd(), 'noop.js'));
-const { PHP, loadPHPRuntime } = await import(pathToFileURL(require.resolve('@php-wasm/universal')).href);
-const { loadNodeRuntime } = await import(pathToFileURL(require.resolve('@php-wasm/node')).href);
+const modules = process.env.NODE_PATH || join(homedir(), '.cache', 'pad-wasm', 'node_modules');
+const require = createRequire(join(modules, 'noop.js'));
 
-const dir = process.argv[2] || join(here, '../DATA/wasm/demo');
-const sandbox = { window: {} };
-vm.runInNewContext(readFileSync(join(dir, 'pad-bundle.js'), 'utf8'), sandbox);
-const PadApp = require(join(here, 'app', 'pad-app.js'));
-
-const pad = new PadApp(new PHP(await loadNodeRuntime('8.4', { emscriptenOptions: { processId: 1 } })), sandbox.window.PAD_BUNDLE);
-pad.install();
-
-let failed = 0;
-
-function check(label, ok, answer) {
-  if (!ok) failed++;
-  console.log(`${ok ? 'ok  ' : 'FAIL'} ${label}${ok ? '' : '\n     HTTP ' + answer.status + ' ' + answer.html.slice(0, 300).replace(/\s+/g, ' ')}`);
+let universal, node;
+try {
+  universal = await import(pathToFileURL(require.resolve('@php-wasm/universal')).href);
+  node = await import(pathToFileURL(require.resolve('@php-wasm/node')).href);
+} catch (e) {
+  console.log(`skipped - the @php-wasm packages are not in ${modules} (pad pack --install)`);
+  process.exit(2);
 }
 
-let answer = await pad.request('GET', '');
-check('the home page', answer.status === 200 && /<h1>Welcome to PAD Demo<\/h1>/.test(answer.html), answer);
+const PadApp = require(join(home, 'wasm', 'app', 'pad-app.js'));
+const brief  = process.argv.includes('--brief');
+const only   = process.argv.slice(2).find(a => !a.startsWith('--')) || '';
+const apps   = ['demo'];
+const store  = new PadApp.MemoryStore();
+const bundle = Object.assign({ id: 'verify', apps, offline: Object.fromEntries(apps.map(a => [a, offline(a)])), build: 'verify' }, collect(apps));
 
-answer = await pad.request('GET', '?guestbook');
-const token = (answer.html.match(/name="padCsrfToken" value="([0-9a-f]+)"/) || [])[1];
-check('a form carries the CSRF token', !!token, answer);
+async function start() {
+  const php = new universal.PHP(await node.loadNodeRuntime('8.4', { emscriptenOptions: { processId: 1 } }));
+  const pad = new PadApp(php, bundle, { store, FS: php[universal.__private__dont__use].FS, mode: 'node', timezone: 'UTC' });
+  await pad.install();
+  return pad;
+}
 
-answer = await pad.request('POST', '?guestbook', `padCsrfToken=${token}&action=add&name=Ann&comment=Offline`);
-check('a post is redirected to the flash message', answer.url.endsWith('?guestbook') && /Thank you for signing/.test(answer.html) && /Offline/.test(answer.html), answer);
+let pad = await start();
+let failed = 0, ran = 0;
 
-answer = await pad.request('POST', '?guestbook', 'action=add&name=Bob&comment=x');
-check('a post without the token is refused', answer.status === 403, answer);
+function check(label, ok, answer) {
+  ran++;
+  if (!ok) failed++;
+  const text = answer && answer.bytes ? new TextDecoder().decode(answer.bytes) : '';
+  if (!ok || !brief) console.log(`${ok ? 'ok  ' : 'FAIL'} ${label}${ok || !answer ? '' : '\n     HTTP ' + answer.status + ' ' + text.slice(0, 400).replace(/\s+/g, ' ')}`);
+}
 
-answer = await pad.request('GET', '?contact');
-const again = (answer.html.match(/name="padCsrfToken" value="([0-9a-f]+)"/) || [])[1];
-answer = await pad.request('POST', '?contact', `padCsrfToken=${again}&padForm=contact&name=Ann`);
-check('a form that breaks its rules comes back with messages', /is required/.test(answer.html), answer);
+const text = answer => new TextDecoder().decode(answer.bytes);
+const json = answer => { try { return JSON.parse(text(answer)); } catch (e) { return {}; } };
+const token = answer => (text(answer).match(/name="padCsrfToken" value="([0-9a-f]+)"/) || [])[1];
+const get  = (url, headers) => pad.request('GET', url, undefined, headers);
+const post = (url, body, headers) => pad.request('POST', url, body, headers);
+const call = (path, method = 'GET', body, headers) => pad.handle({ method, url: `http://localhost/_pad/${path}`, body, headers });
 
-answer = await pad.request('GET', '?nosuchpage');
-check('a page that does not exist', answer.status === 404, answer);
+// ---- demo: pages, a post with its token, the 403 and 404 of a server ------------------
 
-console.log(`${failed ? 'not all' : 'all'} steps as expected`);
+if (!only || only === 'demo') {
+
+  let answer = await get('http://localhost/demo/');
+  check('demo: the home page', answer.status === 200 && /<h1>Welcome to PAD Demo<\/h1>/.test(text(answer)), answer);
+
+  answer = await get('?guestbook');
+  const guest = token(answer);
+  check('demo: a form carries the CSRF token', !!guest, answer);
+
+  answer = await post('?guestbook', `padCsrfToken=${guest}&action=add&name=Ann&comment=Offline`);
+  check('demo: a post is redirected to the flash message', answer.url.endsWith('?guestbook') && /Thank you for signing/.test(text(answer)) && /Offline/.test(text(answer)), answer);
+
+  answer = await post('?guestbook', 'action=add&name=Bob&comment=x');
+  check('demo: a post without the token is refused', answer.status === 403, answer);
+
+  answer = await get('?contact');
+  answer = await post('?contact', `padCsrfToken=${token(answer)}&padForm=contact&name=Ann`);
+  check('demo: a form that breaks its rules comes back with messages', /is required/.test(text(answer)), answer);
+
+  answer = await get('?nosuchpage');
+  check('demo: a page that does not exist', answer.status === 404, answer);
+
+  answer = await get('http://localhost/demo/style.css');
+  check('demo: a www/ file comes from the bundle', answer.status === 200 && /text\/css/.test(answer.headers['content-type'][0]), answer);
+
+  answer = await get('http://localhost/nosuchapp/');
+  check('an address of no application of the pack', answer.status === 404, answer);
+
+}
+
+// ---- the runtime: its calls, DATA/ kept, a database exported and imported --------------
+
+if (!only || only === 'runtime') {
+
+  pad.php.writeFile('/pad/verify.php', `<?php
+    @mkdir ( '/pad/DATA/verify', 0777, TRUE );
+    $pdo = new PDO ( 'sqlite:/pad/DATA/verify/shop.sqlite' );
+    $pdo->exec ( "CREATE TABLE IF NOT EXISTS item (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, price REAL, picture BLOB)" );
+    $pdo->exec ( "INSERT INTO item (name, price, picture) VALUES ('it''s', 1.5, X'00FF10'), ('two', NULL, NULL)" );
+    echo 'made';`);
+  await pad.enqueue(async () => { await pad.php.run({ scriptPath: '/pad/verify.php' }); await pad.persist(); });
+
+  let answer = await call('databases');
+  const databases = json(answer).databases || [];
+  const shop = databases.find(d => d.name === 'verify/shop.sqlite');
+  check('runtime: the databases under DATA/, with their tables and rows', shop && shop.tables.some(t => t.name === 'item' && t.rows === 2), answer);
+
+  answer = await call('rows?db=verify/shop.sqlite&table=item');
+  check('runtime: the rows of a table', json(answer).total === 2 && json(answer).columns.join() === 'id,name,price,picture', answer);
+
+  answer = await call('query?db=verify/shop.sqlite', 'POST', JSON.stringify({ sql: "UPDATE item SET price = 2 WHERE name = 'two'; SELECT name, price FROM item ORDER BY id" }));
+  const results = json(answer).results || [];
+  check('runtime: statements in the console, the rows of the last', results.length === 2 && results[0].changes === 1 && results[1].rows[1][1] === 2, answer);
+
+  answer = await call('query?db=verify/shop.sqlite', 'POST', JSON.stringify({ sql: 'SELECT * FROM missing_table' }));
+  check('runtime: a failing statement is named', /statement 1: .*no such table/.test(json(answer).error || ''), answer);
+
+  answer = await call('export?db=verify/shop.sqlite&format=sql');
+  const dump = text(answer);
+  check('runtime: a database exported as SQL', /attachment; filename="shop.sql"/.test(answer.headers['content-disposition'][0])
+        && /CREATE TABLE item/.test(dump) && /VALUES\(1,'it''s',1.5,X'00FF10'\)/.test(dump) && /INSERT INTO sqlite_sequence/.test(dump), answer);
+
+  answer = await call('export?db=verify/shop.sqlite&format=sqlite');
+  const file = answer.bytes;
+  check('runtime: a database exported as the .sqlite file', new TextDecoder().decode(file.subarray(0, 15)) === 'SQLite format 3', answer);
+
+  answer = await call('import?db=verify/copy.sqlite', 'POST', new TextEncoder().encode(dump));
+  check('runtime: SQL imported as a new database', json(answer).tables && json(answer).tables.join() === 'item', answer);
+
+  answer = await call('import?db=verify/shop.sqlite', 'POST', new TextEncoder().encode('this is not SQL;'));
+  check('runtime: an import that is no database is refused, the old one kept', /did not build a database/.test(json(answer).error || ''), answer);
+
+  answer = await call('rows?db=verify/shop.sqlite&table=item');
+  check('runtime: ... and the database is as it was', json(answer).total === 2, answer);
+
+  answer = await call('import?db=verify/back.sqlite', 'POST', file);
+  check('runtime: a .sqlite file imported', json(answer).imported === 'verify/back.sqlite', answer);
+
+  answer = await call('backup');
+  const zip = answer.bytes;
+  check('runtime: a backup of DATA/ as one zip', answer.status === 200 && zip[0] === 0x50 && zip[1] === 0x4b, answer);
+
+  answer = await call('reset?db=verify/copy.sqlite', 'POST');
+  check('runtime: a reset takes the database away', !(json(await call('databases')).databases || []).some(d => d.name === 'verify/copy.sqlite'), answer);
+
+  answer = await call('restore', 'POST', zip);
+  check('runtime: a backup restored', json(answer).restored >= 3 && (json(await call('databases')).databases || []).some(d => d.name === 'verify/copy.sqlite'), answer);
+
+  answer = await call('rows?db=../etc&table=x');
+  check('runtime: a database outside DATA/ is refused', answer.status === 400, answer);
+
+  answer = await call('import?db=verify/x.sqlite');
+  check('runtime: an import is a POST', answer.status === 405, answer);
+
+  // The next visit: a new PHP on the same store.
+
+  pad = await start();
+  answer = await call('rows?db=verify/back.sqlite&table=item');
+  check('runtime: the next visit finds DATA/ as it was left', json(answer).total === 2, answer);
+
+  if (!only || only === 'runtime') {
+    answer = await get('http://localhost/demo/?guestbook');
+    check('runtime: ... the guestbook entry too', /Offline/.test(text(answer)) || only === 'runtime', answer);
+  }
+
+  answer = await call('forget', 'POST');
+  check('runtime: forget empties DATA/', (json(await call('files')).files || []).length === 0, answer);
+
+}
+
+console.log(`${failed ? `${failed} of ${ran} steps not` : `all ${ran} steps`} as expected - ${apps.join(', ')} and the runtime on PHP ${pad.phpVersion} (WebAssembly)`);
 process.exit(failed ? 1 : 0);

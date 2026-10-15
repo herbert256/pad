@@ -33,6 +33,7 @@
     'schedule-list'   => [ 'Schedule - list the entries',                    [ 'schedule', '{app}', '--list' ],   0, 1 ],
     'schedule'        => [ 'Schedule - run what is due now',                 [ 'schedule', '{app}' ],             1, 1 ],
     'types'           => [ 'TypeScript types of the pages',                  [ 'types', '{app}' ],                0, 1 ],
+    'pack'            => [ 'Pack - for the browser, offline (DATA/wasm/)',   [ 'pack', '{app}' ],                 1, 1 ],
     'down'            => [ 'Maintenance - the applications that are down',   [ 'down' ],                          0, 0 ],
     'help'            => [ 'Help - every pad command',                       [ 'help' ],                          0, 0 ]
   ];

@@ -24,6 +24,8 @@ pad render shop search q=shoes     # with request values, as ?search&q=shoes wou
 pad lint shop                      # every page rendered under the strict check
 pad lint shop orders               # only the pages of one directory
 pad export demo out/               # a static copy for any static host
+pad pack notes                     # the application for the browser - PHP as WebAssembly, offline
+pad pack notes,ledger --serve      # several, with a launcher, served on http://127.0.0.1:8090/
 pad test shop                      # the application's own tests, in apps/shop/_tests/
 pad test shop --record             # ... writing the answers that are missing
 pad test --all                     # every application that has tests
@@ -60,6 +62,16 @@ pad help                           # the list
   down still finds it. Query values after the page name cannot be static: such a link lands on the page as it
   renders without them. A page that fails or answers nothing is reported and left out.
 
+- **pack** packs applications for the browser (`wasm/app.mjs`, see `wasm/README.md` and the
+  manual page *Offline applications*): PHP compiled to WebAssembly, the engine, the
+  applications and their `www/` files in one directory, `DATA/wasm/<app>/` unless one is named.
+  Opened from the disk it runs in the tab; served over https or on localhost it installs and
+  works offline; their SQLite databases and everything else under `DATA/` are kept in the
+  browser. The packing runs on node - `pad pack --install` puts the `@php-wasm` packages and
+  esbuild of `wasm/package.json` in `~/.cache/pad-wasm`. `--serve[=port]` serves the result on
+  `http://127.0.0.1:8090/`; `--name`, `--panel` (`button`, `key`, `none`) and `--id` go to the
+  packer.
+
 - **test** runs the application's own tests. A test is a page in `_tests/` - `cart.pad`, and
   `cart.php` when it needs data - next to its answer `cart.txt`: the exact output, a
   `/regex/` over it, or `HTTP 500` with an optional `/regex/` on the next line, the forms
@@ -90,7 +102,7 @@ names another - a second checkout runs its own engine, and the children of `serv
 | File | Description |
 |------|-------------|
 | `pad` | The command: dispatches a command word to `_commands/`, else runs this application |
-| `_commands/` | One file per command - `new`, `serve`, `render`, `lint`, `export`, `test`, `help` - and `lib.php` they share |
+| `_commands/` | One file per command - `new`, `serve`, `render`, `lint`, `export`, `pack`, `test`, `help` ... - and `lib.php` they share |
 | `index.pad` | Default template (outputs "Hello world") |
 | `_config/config.php` | CLI-specific configuration |
 
