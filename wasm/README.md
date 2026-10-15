@@ -95,6 +95,13 @@ The panel's calls are the runtime's own, under `<scope>_pad/` (`databases`, `row
 `state`, `ready`); their PHP side is `wasm/app/pad-runtime.php`, run in the same PHP as the
 pages. `--panel=key` leaves the badge out, `--panel=none` the panel.
 
+The calls that change something - `forget`, `query`, `import`, `reset`, `restore` - are POSTs
+with `X-Pad-Runtime: 1`, which the panel sends and another site cannot (a form it posts into
+the pack carries no header, a fetch that sets one stops at the browser's preflight); the
+service worker answers no form post into `_pad/` at all. SQL from the console or an imported
+file works on its one database: `ATTACH`, `DETACH` and `VACUUM INTO`, which write a file
+wherever their path points, are refused before any statement runs.
+
 ### Files
 
 | File | What it is |

@@ -28,9 +28,13 @@
   const mode    = inShell ? (window.PAD_BUNDLE && window.PAD_BUNDLE.panel) || 'button' : (script && script.dataset.padPanel) || 'button';
   const sw      = !inShell && navigator.serviceWorker;
 
-  const api = inShell
-    ? (path, init) => window.PadHost.api(path, init)
-    : (path, init) => fetch(`${scope}_pad/${path}`, Object.assign({ cache: 'no-store' }, init));
+  // Every call carries the runtime's header: those that change something are refused
+  // without it (pad-app.js api).
+
+  const api = (path, init = {}) => {
+    const call = Object.assign({}, init, { headers: Object.assign({}, init.headers, { 'X-Pad-Runtime': '1' }) });
+    return inShell ? window.PadHost.api(path, call) : fetch(`${scope}_pad/${path}`, Object.assign({ cache: 'no-store' }, call));
+  };
 
   // ---- Over https: the worker kept awake, a new build offered --------------------------
 

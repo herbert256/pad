@@ -102,6 +102,8 @@ async function boot() {
 async function answer(request) {
   const navigate = request.mode === 'navigate';
   const url = new URL(request.url);
+  if (navigate && request.method !== 'GET' && url.pathname.startsWith(`${SCOPE.pathname}_pad/`))
+    return new Response('The runtime\'s calls are not answered to a form - its panel makes them.', { status: 403, headers: { 'content-type': 'text/plain; charset=utf-8' } });
   if (!pad) {
     if (url.pathname === `${SCOPE.pathname}_pad/state`)
       return json({ booting: true, saving: false, error: failure ? String(failure.message || failure) : '', online: navigator.onLine });
@@ -162,7 +164,18 @@ function splash() {
   @keyframes spin { to { transform: rotate(1turn); } }
 </style></head>
 <body><div class="box"><div class="ring"></div><p>Starting PHP in your browser</p><small>${escape(self.PAD_BUNDLE.name)} runs here, without a server</small></div>
-<script>fetch('${SCOPE.pathname}_pad/ready', { cache: 'no-store' }).then(() => location.reload(), () => setTimeout(() => location.reload(), 1000));</script>
+<script>
+  // Loaded again once PHP answers; a PHP that could not start is said, and tried again
+  // after a while - a failing start reloaded this page at once, over and over.
+  let wait = 2000;
+  const again = () => fetch('${SCOPE.pathname}_pad/ready', { cache: 'no-store' }).then(async response => {
+    if (response.ok) return location.reload();
+    document.querySelector('p').textContent = 'PHP could not start: ' + (await response.text()).slice(0, 300);
+    document.querySelector('.ring').style.animation = 'none';
+    setTimeout(again, wait = Math.min(wait * 2, 60000));
+  }, () => setTimeout(again, wait = Math.min(wait * 2, 60000)));
+  again();
+</script>
 </body></html>`, { status: 200, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } });
 }
 

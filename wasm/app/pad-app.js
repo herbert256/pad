@@ -615,21 +615,29 @@
 
     // ---- The runtime's own calls: <scope>_pad/... ------------------------------------
 
+    // The calls that change something - forget, query, import, reset, restore - are POSTs that
+    // carry X-Pad-Runtime: 1, which the panel sends. Another site cannot: a form it posts
+    // into the pack's address carries no header of its own, and a fetch from another origin
+    // that sets one is stopped by the browser's preflight. Without it a page anywhere could
+    // have posted _pad/forget to an installed pack and emptied its data.
+
     async api(call, target, request) {
       const q = target.searchParams;
       const method = String(request.method || 'GET').toUpperCase();
+      const changes = ['forget', 'query', 'import', 'reset', 'restore'].includes(call);
+      if (changes && method !== 'POST') return this.json({ error: `${call} is a POST` }, 405);
+      if (changes && new Map(headerList(request.headers).map(([k, v]) => [k.toLowerCase(), String(v)])).get('x-pad-runtime') !== '1')
+        return this.json({ error: `${call} is the runtime's own call - its panel sends X-Pad-Runtime: 1` }, 403);
       switch (call) {
         case 'ready': return this.json({ ready: true, build: this.bundle.build });
         case 'state': return this.json(Object.assign({ online: !root.navigator || root.navigator.onLine !== false }, this.state, { log: this.logId }));
         case 'info':  return this.json(this.info());
         case 'log':   return this.json({ log: this.log.filter(entry => entry.id > Number(q.get('after') || 0)) });
         case 'forget':
-          if (method !== 'POST') return this.json({ error: 'forget is a POST' }, 405);
           return this.enqueue(() => this.forget());
         case 'databases': case 'rows': case 'files': case 'file': case 'export': case 'backup':
           return this.enqueue(() => this.tool(call, Object.fromEntries(q.entries())));
         case 'query': case 'import': case 'reset': case 'restore': {
-          if (method !== 'POST') return this.json({ error: `${call} is a POST` }, 405);
           const body = bytesOf(request.body) || new Uint8Array(0);
           const input = Object.fromEntries(q.entries());
           if (call === 'query') Object.assign(input, JSON.parse(decoder.decode(body) || '{}'));

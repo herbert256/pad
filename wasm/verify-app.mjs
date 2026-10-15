@@ -61,7 +61,7 @@ const json = answer => { try { return JSON.parse(text(answer)); } catch (e) { re
 const token = answer => (text(answer).match(/name="padCsrfToken" value="([0-9a-f]+)"/) || [])[1];
 const get  = (url, headers) => pad.request('GET', url, undefined, headers);
 const post = (url, body, headers) => pad.request('POST', url, body, headers);
-const call = (path, method = 'GET', body, headers) => pad.handle({ method, url: `http://localhost/_pad/${path}`, body, headers });
+const call = (path, method = 'GET', body, headers) => pad.handle({ method, url: `http://localhost/_pad/${path}`, body, headers: Object.assign({ 'x-pad-runtime': '1' }, headers) });
 
 // ---- demo: pages, a post with its token, the 403 and 404 of a server ------------------
 
@@ -158,7 +158,7 @@ if (!only || only === 'ledger') {
   const before = Object.assign({}, bundle, { files: Object.assign({}, bundle.files) });
   delete before.files['apps/ledger/_migrations/2026_10_01_090000_add_budgets.php'];
   const kept = new PadApp.MemoryStore();
-  const sql = async (runtime, query) => json(await runtime.handle({ method: 'POST', url: 'http://localhost/_pad/query?db=ledger/ledger.sqlite', body: JSON.stringify({ sql: query }) }));
+  const sql = async (runtime, query) => json(await runtime.handle({ method: 'POST', url: 'http://localhost/_pad/query?db=ledger/ledger.sqlite', body: JSON.stringify({ sql: query }), headers: { 'x-pad-runtime': '1' } }));
 
   let old = await start(before, kept);
   let answer = await old.request('GET', 'http://localhost/ledger/?transactions&padInclude');
@@ -302,6 +302,15 @@ if (!only || only === 'runtime') {
 
   answer = await call('rows?db=../etc&table=x');
   check('runtime: a database outside DATA/ is refused', answer.status === 400, answer);
+
+  answer = await pad.handle({ method: 'POST', url: 'http://localhost/_pad/forget' });
+  check('runtime: a call that changes something, without the runtime\'s header, is refused', answer.status === 403 && (json(await call('files')).files || []).length > 0, answer);
+
+  answer = await call('import?db=verify/evil.sqlite', 'POST', new TextEncoder().encode("CREATE TABLE a (x);\n/* hidden */ attach database '/pad/apps/demo/_lib/zz.php' AS evil;\nCREATE TABLE evil.t (c);"));
+  check('runtime: an import that would ATTACH a file of its own is refused, nothing written', /statement 2 would write a file of its own/.test(json(answer).error || '') && !pad.php.fileExists('/pad/apps/demo/_lib/zz.php') && !pad.php.fileExists('/pad/DATA/verify/evil.sqlite'), answer);
+
+  answer = await call('query?db=verify/shop.sqlite', 'POST', JSON.stringify({ sql: "SELECT 1; VACUUM INTO '/pad/apps/demo/_lib/zz.php'" }));
+  check('runtime: ... and so is VACUUM INTO in the console, before any statement runs', /statement 2 would write a file/.test(json(answer).error || '') && !pad.php.fileExists('/pad/apps/demo/_lib/zz.php'), answer);
 
   answer = await call('import?db=verify/x.sqlite');
   check('runtime: an import is a POST', answer.status === 405, answer);
