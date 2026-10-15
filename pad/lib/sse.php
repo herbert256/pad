@@ -33,6 +33,15 @@
   // No gzip, no Content-Length, no ETag, no page cache: the answer is never one piece.
   // X-Accel-Buffering: no asks nginx not to hold the events back; under Apache's
   // mod_deflate a stream has to be left out of compression by the server's configuration.
+  //
+  // In the browser (padWasm, an application packed by pad pack) one PHP answers every
+  // request of the tab, and a stream that held it would hold the whole application: there a
+  // stream is one round, and EventSource - which reconnects by itself, with the last id -
+  // makes the interval. The every form calls its producer once and asks the browser back
+  // after 'every' seconds ('retry' when given); a producer answering FALSE with nothing sent
+  // is answered 204, which tells EventSource to stop. The loop form gets 'retry' (a second
+  // unless given) and ends at the first event sent a tenth of a second after the stream
+  // began, once that event is written: the burst a producer sends at once goes out whole.
 
   function padSse ( $producer, $options = [] ) {
 
@@ -67,6 +76,11 @@
     $padCache       = FALSE;
     $padWebEtag304  = FALSE;
 
+    $send = fn ( $name, $data = '', $id = NULL ) => padSseSend ( $name, $data, $id );
+
+    if ( padWasm () and $every )
+      padSseRound ( $producer, $send, $event, (int) ( $options ['retry'] ?? round ( $every * 1000 ) ) );
+
     padWebHeaders ( 200 );
     padHeader ( 'X-Accel-Buffering: no' );
 
@@ -75,10 +89,13 @@
     if ( $every )
       set_time_limit ( (int) ceil ( $for ) + 30 );
 
+    if ( padWasm () ) {
+      $options ['retry']          = $options ['retry'] ?? 1000;
+      $GLOBALS ['padSseBrowser'] = microtime ( TRUE );
+    }
+
     if ( isset ( $options ['retry'] ) )
       padFlushSend ( 'retry: ' . (int) $options ['retry'] . "\n\n" );
-
-    $send = fn ( $name, $data = '', $id = NULL ) => padSseSend ( $name, $data, $id );
 
     if ( ! $every )
       $producer ( $send, padSseLastId () );
@@ -120,6 +137,35 @@
 
   }
 
+  // The every form in the browser: the producer's one call comes before the headers, its
+  // own sends held back, so that a FALSE with nothing sent can still be answered 204.
+
+  function padSseRound ( $producer, $send, $event, $retry ) {
+
+    global $padSseHold;
+
+    $padSseHold = '';
+    $answer     = $producer ( $send, padSseLastId () );
+    $held       = $padSseHold;
+    $padSseHold = NULL;
+
+    if ( $answer === FALSE and $held === '' )
+      padExit ( 204 );
+
+    padWebHeaders ( 200 );
+    padHeader ( 'X-Accel-Buffering: no' );
+
+    $GLOBALS ['padSent'] = TRUE;
+
+    padFlushSend ( "retry: $retry\n\n$held" );
+
+    if ( $answer !== NULL and $answer !== TRUE and $answer !== FALSE )
+      padSseSend ( $event, $answer );
+
+    padExit ( 200 );
+
+  }
+
   // One event: event:, id: and a data: line for every line of the data. A field cannot
   // hold a line break - it ends the field - so the name and the id lose theirs, and text
   // data is split over data: lines, which the browser joins again with \n.
@@ -140,7 +186,15 @@
     foreach ( explode ( "\n", str_replace ( [ "\r\n", "\r" ], "\n", (string) $data ) ) as $line )
       $text .= "data: $line\n";
 
+    if ( is_string ( $GLOBALS ['padSseHold'] ?? NULL ) ) {
+      $GLOBALS ['padSseHold'] .= "$text\n";
+      return TRUE;
+    }
+
     padFlushSend ( "$text\n" );
+
+    if ( isset ( $GLOBALS ['padSseBrowser'] ) and microtime ( TRUE ) - $GLOBALS ['padSseBrowser'] > 0.1 )
+      padExit ( 200 );
 
     return ! connection_aborted ();
 

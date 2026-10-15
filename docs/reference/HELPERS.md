@@ -24,7 +24,7 @@ no Composer. They are loaded on every request, like every file in `pad/lib/`.
 | [Values](#values) | `padBlank`, `padFilled`, `padValue`, `padRetry`, `padOnce`, ... | values |
 | [Numbers](#numbers) | `padNumberAbbreviate`, `padNumberOrdinal`, ... | numbers |
 | [Requests and sessions](#requests-and-sessions) | `padRequest`, `padSession`, `padOld`, `padUrl`, `padBack`, `padAbort`, ... | requests_and_sessions |
-| [Environment and cache](#environment-and-cache) | `padEnv`, `padRemember`, `padCacheGet`, `padRateLimit`, ... | environment_and_cache |
+| [Environment and cache](#environment-and-cache) | `padEnv`, `padWasm`, `padRemember`, `padCacheGet`, `padRateLimit`, ... | environment_and_cache |
 | [Dates and logging](#dates-and-logging) | `padNow`, `padAgo`, `padLog`, ... | dates_and_logging |
 | [Hashing and encryption](#hashing-and-encryption) | `padHash`, `padEncrypt`, `padDecrypt`, ... | hashing_and_encryption |
 | [Server-sent events](#server-sent-events) | `padSse`, `padSseSend`, `padSseLastId` | server_sent_events |
@@ -493,6 +493,7 @@ Edge rules:
 | Function | What it answers |
 |----------|-----------------|
 | `padEnv ( $key, $default = NULL )` | The value of an environment key: the real environment (`getenv`, `$_ENV`, `$_SERVER`) first, then the `.env` in the application's root (`apps/shop/.env`), then `_common`'s `.env` for an application that runs with `_common`, then `.env` in the PAD home, else the default - a Closure default is called |
+| `padWasm ()` | TRUE when PAD runs on PHP compiled to WebAssembly, in a browser - an application packed by `pad pack` (manual page *Offline applications*). The runtime there passes `PAD_WASM` in `$_SERVER`, which no request can fill; a page asks it to leave out what needs a server (`pad/lib/wasm.php`) |
 
 `pad/lib/env.php`. Machine-specific values and secrets - a database password, an API key, a
 debug switch - stay out of the code and out of git. The engine loads `pad/lib/` before it
@@ -891,6 +892,12 @@ Edge rules:
 - After `{flush}` or anything else that sent the headers, `padSse` is refused.
 - An event needs data: the browser drops one whose data is empty - `$send ( 'done', 'done' )`,
   not `$send ( 'done' )`, for the event a client closes the stream on.
+- **In the browser** (`padWasm ()`, an application packed by `pad pack`) one PHP answers every
+  request of the tab, so a stream is one round and `EventSource` makes the interval by
+  reconnecting. The `every` form calls its producer once and answers `retry:` as the interval
+  (or `retry`); `FALSE` with nothing sent is answered 204, which stops `EventSource`. The loop
+  form gets `retry: 1000` unless said otherwise and ends at the first event sent a tenth of a
+  second after the start, once it is written. `for` does not apply there.
 
 ## Authentication and authorization
 
