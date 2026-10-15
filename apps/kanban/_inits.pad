@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="csrf-token" content="{csrf token}">
+  <title>{$kanbanPage} · Kanban</title>
+  <link rel="icon" href="{asset 'icon.svg'}" type="image/svg+xml">
+  <link rel="stylesheet" href="{asset 'kanban.css'}">
+  <script src="{asset 'kanban.js'}" defer></script>
+</head>
+<body>
+
+  <header class="top">
+    <a class="brand" href="{$padGo}index"><img src="{asset 'icon.svg'}" alt="" width="30" height="30"><span>Kanban</span></a>
+    <span class="live" id="live" hidden><i></i> <span>Live</span></span>
+    <a class="button primary" href="{$padGo}card" data-new-card>+ New card</a>
+  </header>
+
+  <main>
+    {flash}<p class="flash {$type}" role="status">{$message}</p>{/flash}
+    @page@
+  </main>
+
+  <footer class="bottom">Kanban runs {$kanbanWhere}. Open it in two windows: a card moved in one moves in the other.</footer>
+
+</body>
+</html>

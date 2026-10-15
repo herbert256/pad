@@ -1,0 +1,184 @@
+/^\s*\<\!DOCTYPE html\>
+\<html lang\="en"\>
+  \<head\>
+    \<meta charset\="utf\-8"\>
+    \<meta name\="viewport" content\="width\=device\-width, initial\-scale\=1"\>
+    \<meta name\="theme\-color" content\="\#4f46e5"\>
+    \<meta name\="csrf\-token" content\="[0-9a-f]{64}"\>
+    \<title\>
+      Board · Kanban
+    \<\/title\>
+    \<link rel\="icon" href\="\/pad\/kanban\/icon\.svg\?v\=[0-9a-f]+" type\="image\/svg\+xml"\>
+    \<link rel\="stylesheet" href\="\/pad\/kanban\/kanban\.css\?v\=[0-9a-f]+"\>
+    \<script src\="\/pad\/kanban\/kanban\.js\?v\=[0-9a-f]+" defer\>\<\/script\>
+  \<\/head\>
+  \<body\>
+    \<header class\="top"\>
+      \<a class\="brand" href\="\/pad\/kanban\/\?index"\>\<img src\="\/pad\/kanban\/icon\.svg\?v\=[0-9a-f]+" alt\="" width\="30" height\="30"\>\<span\>Kanban\<\/span\>\<\/a\> \<span class\="live" id\="live" hidden\=""\>\<i\>\<\/i\> \<span\>Live\<\/span\>\<\/span\> \<a class\="button primary" href\="\/pad\/kanban\/\?card" data\-new\-card\=""\>\+ New card\<\/a\>
+    \<\/header\>
+    \<main\>
+      \<div class\="board\-head"\>
+        \<h1\>
+          Offline shop
+        \<\/h1\>\<span class\="dim"\>9 cards\<\/span\>
+      \<\/div\>
+      \<div class\="board" id\="board" data\-version\="5"\>
+        \<div class\="columns" id\="columns"\>
+          \<section class\="column" data\-column\="1" aria\-labelledby\="column\-1"\>
+            \<h2 id\="column\-1"\>
+              Backlog \<span class\="count"\>4\<\/span\>
+            \<\/h2\>
+            \<div class\="cards" data\-drop\="1"\>
+              \<article class\="card label\-feature" draggable\="true" data\-card\="1" data\-due\="2026\-10\-24" tabindex\="0"\>
+                \<a class\="title" href\="\/pad\/kanban\/\?card&amp;id\=1"\>Pack the shop for the tablets\<\/a\>
+                \<p\>
+                  Run pad pack shop and put the directory on the intranet \- the tablets install it from…
+                \<\/p\>
+                \<footer\>
+                  \<span class\="chip"\>Feature\<\/span\> \<time datetime\="2026\-10\-24"\>24 Oct\<\/time\> \<span class\="moves"\>\<button type\="button" data\-move\="2" aria\-label\="Move Pack the shop for the tablets to Doing" title\="To Doing"\>→\<\/button\>\<\/span\>
+                \<\/footer\>
+              \<\/article\>
+              \<article class\="card label\-feature" draggable\="true" data\-card\="2" data\-due\="" tabindex\="0"\>
+                \<a class\="title" href\="\/pad\/kanban\/\?card&amp;id\=2"\>Prices in the offline catalogue\<\/a\>
+                \<p\>
+                  The catalogue has to show the prices of the day it was packed\.
+                \<\/p\>
+                \<footer\>
+                  \<span class\="chip"\>Feature\<\/span\> \<span class\="moves"\>\<button type\="button" data\-move\="2" aria\-label\="Move Prices in the offline catalogue to Doing" title\="To Doing"\>→\<\/button\>\<\/span\>
+                \<\/footer\>
+              \<\/article\>
+              \<article class\="card label\-idea" draggable\="true" data\-card\="3" data\-due\="" tabindex\="0"\>
+                \<a class\="title" href\="\/pad\/kanban\/\?card&amp;id\=3"\>Photos of the new collection\<\/a\>
+                \<footer\>
+                  \<span class\="chip"\>Idea\<\/span\> \<span class\="moves"\>\<button type\="button" data\-move\="2" aria\-label\="Move Photos of the new collection to Doing" title\="To Doing"\>→\<\/button\>\<\/span\>
+                \<\/footer\>
+              \<\/article\>
+              \<article class\="card label\-idea" draggable\="true" data\-card\="4" data\-due\="" tabindex\="0"\>
+                \<a class\="title" href\="\/pad\/kanban\/\?card&amp;id\=4"\>Order form remembers the last customer\<\/a\>
+                \<footer\>
+                  \<span class\="chip"\>Idea\<\/span\> \<span class\="moves"\>\<button type\="button" data\-move\="2" aria\-label\="Move Order form remembers the last customer to Doing" title\="To Doing"\>→\<\/button\>\<\/span\>
+                \<\/footer\>
+              \<\/article\>
+            \<\/div\>
+          \<\/section\>
+          \<section class\="column" data\-column\="2" aria\-labelledby\="column\-2"\>
+            \<h2 id\="column\-2"\>
+              Doing \<span class\="count"\>2 \/ 3\<\/span\>
+            \<\/h2\>
+            \<div class\="cards" data\-drop\="2"\>
+              \<article class\="card label\-feature" draggable\="true" data\-card\="5" data\-due\="2026\-10\-18" tabindex\="0"\>
+                \<a class\="title" href\="\/pad\/kanban\/\?card&amp;id\=5"\>Sync orders when the network is back\<\/a\>
+                \<p\>
+                  Export the orders as JSON from the backup page, import them in the office\.
+                \<\/p\>
+                \<footer\>
+                  \<span class\="chip"\>Feature\<\/span\> \<time datetime\="2026\-10\-18"\>18 Oct\<\/time\> \<span class\="moves"\>\<button type\="button" data\-move\="1" aria\-label\="Move Sync orders when the network is back to Backlog" title\="To Backlog"\>←\<\/button\> \<button type\="button" data\-move\="3" aria\-label\="Move Sync orders when the network is back to Review" title\="To Review"\>→\<\/button\>\<\/span\>
+                \<\/footer\>
+              \<\/article\>
+              \<article class\="card label\-bug" draggable\="true" data\-card\="6" data\-due\="2026\-10\-16" tabindex\="0"\>
+                \<a class\="title" href\="\/pad\/kanban\/\?card&amp;id\=6"\>Totals off by a cent\<\/a\>
+                \<p\>
+                  Round once, at the end \- not per line\.
+                \<\/p\>
+                \<footer\>
+                  \<span class\="chip"\>Bug\<\/span\> \<time datetime\="2026\-10\-16"\>16 Oct\<\/time\> \<span class\="moves"\>\<button type\="button" data\-move\="1" aria\-label\="Move Totals off by a cent to Backlog" title\="To Backlog"\>←\<\/button\> \<button type\="button" data\-move\="3" aria\-label\="Move Totals off by a cent to Review" title\="To Review"\>→\<\/button\>\<\/span\>
+                \<\/footer\>
+              \<\/article\>
+            \<\/div\>
+          \<\/section\>
+          \<section class\="column" data\-column\="3" aria\-labelledby\="column\-3"\>
+            \<h2 id\="column\-3"\>
+              Review \<span class\="count"\>1 \/ 2\<\/span\>
+            \<\/h2\>
+            \<div class\="cards" data\-drop\="3"\>
+              \<article class\="card label\-chore" draggable\="true" data\-card\="7" data\-due\="" tabindex\="0"\>
+                \<a class\="title" href\="\/pad\/kanban\/\?card&amp;id\=7"\>Dark mode for the order screen\<\/a\>
+                \<footer\>
+                  \<span class\="chip"\>Chore\<\/span\> \<span class\="moves"\>\<button type\="button" data\-move\="2" aria\-label\="Move Dark mode for the order screen to Doing" title\="To Doing"\>←\<\/button\> \<button type\="button" data\-move\="4" aria\-label\="Move Dark mode for the order screen to Done" title\="To Done"\>→\<\/button\>\<\/span\>
+                \<\/footer\>
+              \<\/article\>
+            \<\/div\>
+          \<\/section\>
+          \<section class\="column" data\-column\="4" aria\-labelledby\="column\-4"\>
+            \<h2 id\="column\-4"\>
+              Done \<span class\="count"\>2\<\/span\>
+            \<\/h2\>
+            \<div class\="cards" data\-drop\="4"\>
+              \<article class\="card label\-chore" draggable\="true" data\-card\="8" data\-due\="" tabindex\="0"\>
+                \<a class\="title" href\="\/pad\/kanban\/\?card&amp;id\=8"\>Install on the first tablet\<\/a\>
+                \<p\>
+                  Opened over https, installed from the address bar \- works in airplane mode\.
+                \<\/p\>
+                \<footer\>
+                  \<span class\="chip"\>Chore\<\/span\> \<span class\="moves"\>\<button type\="button" data\-move\="3" aria\-label\="Move Install on the first tablet to Review" title\="To Review"\>←\<\/button\>\<\/span\>
+                \<\/footer\>
+              \<\/article\>
+              \<article class\="card label\-feature" draggable\="true" data\-card\="9" data\-due\="" tabindex\="0"\>
+                \<a class\="title" href\="\/pad\/kanban\/\?card&amp;id\=9"\>Choose SQLite for the orders\<\/a\>
+                \<p\>
+                  One file, kept in the browser between visits; exported whole from the panel\.
+                \<\/p\>
+                \<footer\>
+                  \<span class\="chip"\>Feature\<\/span\> \<span class\="moves"\>\<button type\="button" data\-move\="3" aria\-label\="Move Choose SQLite for the orders to Review" title\="To Review"\>←\<\/button\>\<\/span\>
+                \<\/footer\>
+              \<\/article\>
+            \<\/div\>
+          \<\/section\>
+        \<\/div\>
+        \<aside class\="feed" aria\-labelledby\="feed\-title"\>
+          \<h2 id\="feed\-title"\>
+            Activity
+          \<\/h2\>
+          \<ol class\="activity" id\="activity"\>
+            \<li\>
+              \<time datetime\="2026\-10\-08 16\:00\:00"\>8 Oct 16\:00\<\/time\>Dark mode for the order screen went to Review
+            \<\/li\>
+            \<li\>
+              \<time datetime\="2026\-10\-07 09\:00\:00"\>7 Oct 09\:00\<\/time\>Totals off by a cent went to Doing
+            \<\/li\>
+            \<li\>
+              \<time datetime\="2026\-10\-06 14\:00\:00"\>6 Oct 14\:00\<\/time\>Sync orders when the network is back went to Doing
+            \<\/li\>
+            \<li\>
+              \<time datetime\="2026\-10\-05 12\:00\:00"\>5 Oct 12\:00\<\/time\>Install on the first tablet went to Done
+            \<\/li\>
+            \<li\>
+              \<time datetime\="2026\-10\-04 10\:00\:00"\>4 Oct 10\:00\<\/time\>Choose SQLite for the orders went to Done
+            \<\/li\>
+          \<\/ol\>
+        \<\/aside\>
+      \<\/div\>
+      \<dialog id\="new\-card" aria\-labelledby\="new\-card\-title"\>
+        \<form method\="post" class\="card\-form"\>
+          \<input type\="hidden" name\="padCsrfToken" value\="[0-9a-f]{64}"\>\<input type\="hidden" name\="padForm" value\="card"\>
+          \<h2 id\="new\-card\-title"\>
+            New card
+          \<\/h2\>\<label for\="title"\>Title\<\/label\>\<input type\="text" name\="title" id\="title" value\="" autofocus\=""\> \<label for\="body"\>Details\<\/label\>
+          \<textarea name\="body" id\="body" rows\="4"\>\<\/textarea\> \<label for\="new\-label"\>Label\<\/label\> \<select id\="new\-label" name\="label"\>
+            \<option value\=""\>
+              None
+            \<\/option\>
+            \<option value\="feature"\>
+              Feature
+            \<\/option\>
+            \<option value\="bug"\>
+              Bug
+            \<\/option\>
+            \<option value\="idea"\>
+              Idea
+            \<\/option\>
+            \<option value\="chore"\>
+              Chore
+            \<\/option\>
+          \<\/select\>
+          \<div class\="bar"\>
+            \<button class\="button primary"\>Add to Backlog\<\/button\>\<button class\="button" type\="button" data\-close\=""\>Cancel\<\/button\>
+          \<\/div\>
+        \<\/form\>
+      \<\/dialog\>
+    \<\/main\>
+    \<footer class\="bottom"\>
+      Kanban runs on PHP [0-9.]+, the board in DATA\/kanban\/kanban\.sqlite\. Open it in two windows\: a card moved in one moves in the other\.
+    \<\/footer\>
+  \<\/body\>
+\<\/html\>\s*$/

@@ -1,0 +1,26 @@
+<div class="narrow">
+
+  <p class="crumbs"><a href="{$padGo}index">← The board</a></p>
+  <h1>{if $draft.id}{$draft.title}{else}New card{/if}</h1>
+
+  {form 'edit', error, class='card-form sheet'}
+    {input 'title', label='Title', value=$draft.title, rules='required|max:100'}
+    {textarea 'body', label='Details', value=$draft.body, rows=6, rules='max:2000'}
+    <div class="row">
+      <div><label for="label">Label</label>
+        <select id="label" name="label"><option value="">None</option>{labelList}<option value="{$key}"{if $chosen} selected{/if}>{$name}</option>{/labelList}</select></div>
+      <div><label for="column">Column</label>
+        <select id="column" name="column">{columnList}<option value="{$id}"{if $chosen} selected{/if}>{$name}</option>{/columnList}</select></div>
+      <div>{input 'due', type='date', label='Due', value=$draft.due}</div>
+    </div>
+    <div class="bar"><button class="button primary">Save</button><a class="button" href="{$padGo}index">Cancel</a></div>
+  {/form}
+
+  {if $draft.id}
+  <details class="danger-zone">
+    <summary>Delete this card…</summary>
+    {form 'remove'}<button class="button danger">Delete “{$draft.title}”</button>{/form}
+  </details>
+  {/if}
+
+</div>

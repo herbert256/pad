@@ -35,7 +35,7 @@ try {
 const PadApp = require(join(home, 'wasm', 'app', 'pad-app.js'));
 const brief  = process.argv.includes('--brief');
 const only   = process.argv.slice(2).find(a => !a.startsWith('--')) || '';
-const apps   = ['demo', 'notes', 'ledger'];
+const apps   = ['demo', 'notes', 'ledger', 'kanban'];
 const store  = new PadApp.MemoryStore();
 const bundle = Object.assign({ id: 'verify', apps, offline: Object.fromEntries(apps.map(a => [a, offline(a)])), build: 'verify' }, collect(apps));
 
@@ -198,6 +198,44 @@ if (!only || only === 'ledger') {
   form = await multipart({ padCsrfToken: token(answer), padForm: 'entry', day: '2026-10-03', amount: 'lots', category: '4', account: '1', note: '' });
   answer = await post('http://localhost/ledger/?add', form.body, { 'content-type': form.type });
   check('ledger: an amount that is no amount comes back with its rule\'s message', /class="error"/.test(text(answer)) && /Amount/.test(text(answer)), answer);
+
+}
+
+// ---- kanban: a move posted as JSON, the columns as a fragment, the event stream ---------
+
+if (!only || only === 'kanban') {
+
+  let answer = await get('http://localhost/kanban/');
+  const meta = (text(answer).match(/<meta name="csrf-token" content="([0-9a-f]+)">/) || [])[1];
+  const version = Number((text(answer).match(/data-version="(\d+)"/) || [])[1]);
+  check('kanban: the board, its nine cards in four columns', (text(answer).match(/<article class="card/g) || []).length === 9 && version === 5, answer);
+
+  answer = await get('http://localhost/kanban/?events', { accept: 'text/event-stream' });
+  check('kanban: the event stream answers one round in the browser - retry, then the board', answer.status === 200 && /^text\/event-stream/.test(answer.headers['content-type'][0])
+        && /^retry: 2000\n\nevent: board\nid: 5\ndata: \{"version":5/.test(text(answer)), answer);
+
+  answer = await post('http://localhost/kanban/?move&padFormat=json', JSON.stringify({ card: 3, column: 2 }),
+                      { 'content-type': 'application/json', accept: 'application/json', 'x-csrf-token': meta });
+  check('kanban: a move posted as JSON - the new version and the counts back', json(answer).ok === true && json(answer).version === 6 && json(answer).counts['2'] === 3, answer);
+
+  answer = await get('http://localhost/kanban/?events', { accept: 'text/event-stream', 'last-event-id': '5' });
+  check('kanban: ... which the stream tells a window that had version 5', /event: board\nid: 6\n/.test(text(answer)) && /went to Doing/.test(text(answer)), answer);
+
+  answer = await get('http://localhost/kanban/?events', { accept: 'text/event-stream', 'last-event-id': '6' });
+  check('kanban: ... and a window that has it nothing', answer.status === 200 && text(answer).trim() === 'retry: 2000', answer);
+
+  answer = await get('http://localhost/kanban/?index&padFragment=columns');
+  check('kanban: the columns as a fragment, the card in its new column', /data-column="2"[\s\S]*data-card="3"[\s\S]*data-column="3"/.test(text(answer)) && !/<header/.test(text(answer)), answer);
+
+  answer = await post('http://localhost/kanban/?move&padFormat=json', JSON.stringify({ card: 3, column: 1 }), { 'content-type': 'application/json' });
+  check('kanban: a move without the token is refused', answer.status === 403, answer);
+
+  answer = await get('http://localhost/kanban/?index');
+  answer = await post('http://localhost/kanban/?index', `padCsrfToken=${token(answer)}&padForm=card&title=Print+the+price+labels&label=chore`);
+  check('kanban: a new card from the dialog\'s form', (text(answer).match(/<article class="card/g) || []).length === 10 && /Print the price labels/.test(text(answer)), answer);
+
+  answer = await get('http://localhost/kanban/?events');
+  check('kanban: the stream asked for as a page says what it is', /<h1>Events<\/h1>/.test(text(answer)), answer);
 
 }
 
