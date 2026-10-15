@@ -1934,6 +1934,7 @@ the `claude` line of `./ci.sh`.
 | `islands` | Standard | Islands of any framework: one runtime mounts React, Vue, Svelte, Preact and Solid components on PAD's islands, each framework fetched when needed, a store they share, a TypeScript island typed by `pad types`, built by Vite (`_frontend/`) and linked by `{vite}` |
 | `manual` | Standard | Interactive documentation and examples |
 | `nono` | Plain PHP | PHP application without PAD templating |
+| `notes` | Offline | A Markdown notebook on SQLite - tags, search as you type (a `{fragment}`), pins and colours (`{live}`), pictures and PDFs attached (`padUpload`, `padUploadSend`), a JSON export (`$padExpose`) and import - packed by `pad pack notes` it runs in the browser |
 | `pad` | Standard | PAD framework introduction and reference |
 | `playground` | Standard | Type a template and its JSON data and see the result - local requests only, no PHP functions, shareable through the URL hash |
 | `react` | Standard | PAD + React: components mounted on islands of PAD pages, JSON answers to `fetch()`, forms checked by PAD with the CSRF header, `{fragment}`s, a cart in the session, polling - fourteen examples, each with its sources |

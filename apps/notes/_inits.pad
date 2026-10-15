@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#d97706">
+  <meta name="csrf-token" content="{csrf token}">
+  <title>{$notesPage} · Notes</title>
+  <link rel="icon" href="{asset 'icon.svg'}" type="image/svg+xml">
+  <link rel="stylesheet" href="{asset 'notes.css'}">
+  <script src="{asset 'notes.js'}" defer></script>
+</head>
+<body>
+
+  <header class="top">
+    <a class="brand" href="{$padGo}index"><img src="{asset 'icon.svg'}" alt="" width="28" height="28"><span>Notes</span></a>
+    <form class="search" method="get" role="search">
+      <input type="hidden" name="index" value="">
+      <input type="search" name="q" value="{$search}" placeholder="Search notes" aria-label="Search notes" autocomplete="off">
+    </form>
+    <nav>
+      <a class="button primary" href="{$padGo}edit">New note</a>
+      <a class="button" href="{$padGo}backup">Backup</a>
+    </nav>
+  </header>
+
+  <main>
+    {flash}<p class="flash {$type}" role="status">{$message}</p>{/flash}
+    @page@
+  </main>
+
+  <footer class="bottom">Notes runs {$notesWhere}. Its notes live in one SQLite database.</footer>
+
+</body>
+</html>

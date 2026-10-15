@@ -1,0 +1,37 @@
+<div class="editor">
+
+  <h1>{if $draft.id}Edit note{else}New note{/if}</h1>
+
+  {form 'note', error}
+
+    {input 'title', label='Title', value=$draft.title, rules='required|max:120', placeholder='What is it about?'}
+
+    <div class="tabs" role="tablist" aria-label="Text">
+      <button type="button" role="tab" data-tab="write" aria-selected="true">Write</button>
+      <button type="button" role="tab" data-tab="preview" aria-selected="false">Preview</button>
+    </div>
+    {textarea 'body', label='Text, in Markdown', value=$draft.body, rows=16, rules='max:20000'}
+    <div id="preview" class="preview body" hidden></div>
+
+    {input 'tags', label='Tags', value=$draftTags, placeholder='work, ideas - separated by commas', rules='max:200'}
+
+    <fieldset class="colors">
+      <legend>Colour</legend>
+      {choices}<label class="color-{$key}"><input type="radio" name="color" value="{$key}"{if $chosen} checked{/if}> {$label}</label>{/choices}
+    </fieldset>
+
+    <div class="drop">
+      <span>Drop a picture, a PDF or a text file here - or choose one</span>
+      {input 'file', type='file', label='Attach a file', accept='image/*,application/pdf,text/plain,text/markdown,text/csv'}
+      <span class="chosen"></span>
+    </div>
+
+    <div class="bar">
+      <button class="button primary">Save</button>
+      <a class="button" href="{$padGo}{$leave}">Cancel</a>
+      <small><kbd>Ctrl</kbd> + <kbd>S</kbd> saves</small>
+    </div>
+
+  {/form}
+
+</div>

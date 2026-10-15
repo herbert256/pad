@@ -24,6 +24,7 @@ This directory contains PAD applications and examples.
 | [islands](islands/README.md) | Standard | Islands of any framework - React, Vue, Svelte, Preact and Solid on one page through one runtime, built by Vite and linked by `{vite}` |
 | [manual](manual/README.md) | Standard | Interactive documentation and examples |
 | [nono](nono/README.md) | Plain PHP | PHP application without PAD templating |
+| [notes](notes/README.md) | Offline | A Markdown notebook on SQLite - search, tags, pins, attachments, JSON export and import - that `pad pack notes` runs in the browser |
 | [pad](pad/README.md) | Standard | PAD framework introduction and reference |
 | [playground](playground/README.md) | Standard | Type a template and its JSON data and see the result - local requests only, shareable through the URL |
 | [react](react/README.md) | Standard | PAD + React: components mounted on islands of PAD pages, JSON answers to `fetch()`, forms checked by PAD, `{fragment}`s, a cart in the session, polling - fourteen examples with their sources |

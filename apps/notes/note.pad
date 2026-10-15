@@ -1,0 +1,49 @@
+{live 'note'}
+<article class="sheet color-{$note.color}">
+
+  <div class="crumbs"><a href="{$padGo}index">← All notes</a></div>
+  <h1>{$note.title}</h1>
+
+  <div class="meta">
+    <span>Changed {$note.day}</span>
+    <span>Written {$note.born}</span>
+    {noteTags}<a class="tag" href="{$padGo}index{?tag}">#{$tag}</a>{/noteTags}
+  </div>
+
+  <div class="controls">
+    <button type="button" class="toggle" pad-click="pin" aria-pressed="{if $note.pinned}true{else}false{/if}">★ {if $note.pinned}Pinned{else}Pin{/if}</button>
+    <div class="swatches" role="group" aria-label="Colour">
+      {swatches}<button type="button" class="swatch color-{$key}" pad-click="color" pad-value="{$key}" aria-pressed="{$on}" title="{$label}" aria-label="{$label}"></button>{/swatches}
+    </div>
+  </div>
+
+  <div class="body">{$note.body | markdown}</div>
+
+  {if $fileCount gt 0}
+  <section class="files">
+    <h2>Files</h2>
+    <ul>
+      {noteFiles}
+      <li>
+        {if $picture}<a href="{$padGo}file&id={$id}"><img src="{$padGo}file&id={$id}" alt="{$name}" loading="lazy"></a>{else}<a class="doc" href="{$padGo}file&id={$id}" aria-label="Open {$name}">📄</a>{/if}
+        <div class="about">
+          <a href="{$padGo}file&id={$id}&download" download="{$name}" title="Download {$name}">{$name}</a>
+          <span>{$bytes}</span>
+          {form 'detach'}<input type="hidden" name="attachment" value="{$id}"><button class="remove" title="Remove {$name}" aria-label="Remove {$name}">×</button>{/form}
+        </div>
+      </li>
+      {/noteFiles}
+    </ul>
+  </section>
+  {/if}
+
+  <div class="actions">
+    <a class="button primary" href="{$padGo}edit&id={$note.id}">Edit</a>
+    <details>
+      <summary class="button danger">Delete…</summary>
+      {form 'delete'}<span>Delete this note and its files?</span><button class="button danger">Delete</button>{/form}
+    </details>
+  </div>
+
+</article>
+{/live}

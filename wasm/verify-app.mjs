@@ -35,7 +35,7 @@ try {
 const PadApp = require(join(home, 'wasm', 'app', 'pad-app.js'));
 const brief  = process.argv.includes('--brief');
 const only   = process.argv.slice(2).find(a => !a.startsWith('--')) || '';
-const apps   = ['demo'];
+const apps   = ['demo', 'notes'];
 const store  = new PadApp.MemoryStore();
 const bundle = Object.assign({ id: 'verify', apps, offline: Object.fromEntries(apps.map(a => [a, offline(a)])), build: 'verify' }, collect(apps));
 
@@ -92,6 +92,59 @@ if (!only || only === 'demo') {
 
   answer = await get('http://localhost/nosuchapp/');
   check('an address of no application of the pack', answer.status === 404, answer);
+
+}
+
+// ---- notes: SQLite, a live region, a fragment, an upload served back, the JSON export ---
+
+async function multipart(fields) {
+  const form = new FormData();
+  for (const [name, value] of Object.entries(fields)) form.append(name, value);
+  const request = new Request('http://localhost/', { method: 'POST', body: form });
+  return { body: new Uint8Array(await request.arrayBuffer()), type: request.headers.get('content-type') };
+}
+
+if (!only || only === 'notes') {
+
+  let answer = await get('http://localhost/notes/');
+  check('notes: the list, built from _install/schema.sql on the first request', answer.status === 200 && (text(answer).match(/<article class="note/g) || []).length === 4, answer);
+
+  const live = (text(answer).match(/data-pad-csrf="([0-9a-f]+)"/) || [])[1];
+  answer = await post('http://localhost/notes/?index', `padLive=notes&padEvent=pin&padValue=3&padCsrfToken=${live}`);
+  check('notes: a {live} click pins a note - the region alone comes back', /class="note color-mint pinned"/.test(text(answer)) && !/<html/.test(text(answer)), answer);
+
+  answer = await get('http://localhost/notes/?index&q=bread&padFragment=list', { 'x-requested-with': 'fetch' });
+  check('notes: a search answered as the fragment alone', (text(answer).match(/<article/g) || []).length === 1 && /Weekend/.test(text(answer)) && !/<header/.test(text(answer)), answer);
+
+  answer = await get('http://localhost/notes/?edit');
+  const editor = token(answer);
+  answer = await post('http://localhost/notes/?preview&padInclude', 'body=' + encodeURIComponent('The **ferry**'), { 'x-csrf-token': editor });
+  check('notes: the preview, posted with the token in X-CSRF-Token', /<strong>ferry<\/strong>/.test(text(answer)), answer);
+
+  answer = await post('http://localhost/notes/?preview&padInclude', 'body=x');
+  check('notes: ... and refused without it', answer.status === 403, answer);
+
+  const picture = new Uint8Array([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, 0, 0, 0, 13, 0x49, 0x48, 0x44, 0x52, 0, 0, 0, 1, 0, 0, 0, 1, 8, 6, 0, 0, 0, 0x1f, 0x15, 0xc4, 0x89,
+                                  0, 0, 0, 13, 0x49, 0x44, 0x41, 0x54, 0x78, 0x9c, 0x63, 0xf8, 0xcf, 0xc0, 0xf0, 0x1f, 0, 5, 0, 1, 0xff, 0x0d, 0x9c, 0xa5, 0x6b, 0, 0, 0, 0, 0x49, 0x45, 0x4e, 0x44, 0xae, 0x42, 0x60, 0x82]);
+  let form = await multipart({ padCsrfToken: editor, padForm: 'note', title: 'Harbour at night', body: '# Lights', tags: 'travel, photos', color: 'sea',
+                               file: new File([picture], 'harbour.png', { type: 'image/png' }) });
+  answer = await post('http://localhost/notes/?edit', form.body, { 'content-type': form.type });
+  check('notes: a note posted with a picture (multipart) is stored and shown', /<h1>Harbour at night<\/h1>/.test(text(answer)) && /Your note is written/.test(text(answer)) && /<img src="\/notes\/\?file&id=1"/.test(text(answer)), answer);
+
+  answer = await get('http://localhost/notes/?file&id=1');
+  check('notes: the picture comes back as image/png (padUploadSend)', answer.status === 200 && answer.headers['content-type'][0] === 'image/png' && answer.bytes.length === picture.length, answer);
+
+  answer = await get('http://localhost/notes/?edit');
+  form = await multipart({ padCsrfToken: token(answer), padForm: 'note', title: '', body: 'no title' });
+  answer = await post('http://localhost/notes/?edit', form.body, { 'content-type': form.type });
+  check('notes: a note without a title comes back with the rule\'s message', /class="error"/.test(text(answer)) && /Title/.test(text(answer)) && /no title/.test(text(answer)), answer);
+
+  answer = await get('http://localhost/notes/?export&padFormat=json');
+  const exported = json(answer).notes || [];
+  check('notes: the JSON export ($padExpose) holds every note with its tags', exported.length === 5 && exported[4].tags.join() === 'photos,travel', answer);
+
+  answer = await get('http://localhost/notes/?database&download');
+  check('notes: the database file downloads', /attachment; filename="notes.sqlite"/.test(answer.headers['content-disposition'][0]) && text({ bytes: answer.bytes.subarray(0, 15) }) === 'SQLite format 3', answer);
 
 }
 
@@ -165,9 +218,13 @@ if (!only || only === 'runtime') {
   answer = await call('rows?db=verify/back.sqlite&table=item');
   check('runtime: the next visit finds DATA/ as it was left', json(answer).total === 2, answer);
 
-  if (!only || only === 'runtime') {
+  if (!only) {
     answer = await get('http://localhost/demo/?guestbook');
-    check('runtime: ... the guestbook entry too', /Offline/.test(text(answer)) || only === 'runtime', answer);
+    check('runtime: ... the guestbook entry too', /Offline/.test(text(answer)), answer);
+    answer = await get('http://localhost/notes/?index');
+    check('runtime: ... the notes database, the new note in it', /Harbour at night/.test(text(answer)) && (text(answer).match(/<article class="note/g) || []).length === 5, answer);
+    answer = await get('http://localhost/notes/?file&id=1');
+    check('runtime: ... and its picture', answer.status === 200 && answer.headers['content-type'][0] === 'image/png', answer);
   }
 
   answer = await call('forget', 'POST');
