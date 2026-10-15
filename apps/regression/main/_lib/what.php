@@ -64,6 +64,8 @@
       'request/demo_takes_a_list_field_as_no_text' => 'The demo forms take a field posted as a list (name[]=x) as no text - no 500, nothing stored',
       'request/ses'               => 'The session fixture bare: some id, pinned by shape',
       'request/up'                => 'The upload fixture bare: no file',
+      'request/upload_send'       => 'padUploadSend answering a stored file: text shown, the same as a download when asked, HTML always downloaded, a path out of DATA 404',
+      'request/sent'              => 'The fixture of upload_send bare: the stored text, shown',
       'request/form_rules_post'   => 'Rules on the fields of the template, checked before the page-s PHP: a post that breaks them comes back refilled with its messages and is not padPosted, an unrendered field is checked too, the page-s own padValidate adds to them',
       'request/form_rules'        => 'The form rules fixture bare: an empty form, not processed',
       'request/contact_valid'     => 'The demo contact form posted without a mistake: stored, redirected, thanked - the store put back',

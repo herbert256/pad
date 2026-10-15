@@ -905,6 +905,19 @@ elseif ( $avatar === FALSE )         // refused - NULL means no file was sent
 The refusal also shows beside `{input 'avatar', type='file', label='Picture'}`, and a
 `{form}` holding a file field posts as `multipart/form-data` by itself.
 
+What is stored under `DATA/` no address reaches; a page sends it back with `padUploadSend`,
+which answers the file as the page's whole answer and ends the request:
+
+```php
+// picture.php - <img src="?picture&id=7">
+$user = db ( "RECORD avatar FROM users WHERE id={0}", [ padRequest ( 'id' ) ] );
+padUploadSend ( $user ['avatar'], 'avatar.png' );        // TRUE as a third argument: a download
+```
+
+Its type is read from its content again; a picture, a PDF or plain text is shown, anything
+else - HTML, SVG, a script, which shown on the site's own address would run with its rights -
+always downloads. A path out of `DATA/`, or to no file, answers 404.
+
 ### Flash Messages
 After a valid post, say what happened on the page the redirect leads to:
 

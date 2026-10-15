@@ -9,6 +9,8 @@
   //                 DATA/uploads/. Answers the record of the stored file, NULL when the
   //                 field brought no file, FALSE when the file was refused
   // padUploadError  why the field's file was refused - {input type='file'} shows it too
+  // padUploadSend   a stored file sent back as the page's whole answer - a picture shown, an
+  //                 attachment downloaded - with its type read from its content again
   // padUploadBytes  '2M', '500K', '1.5G' or a number, as bytes
   //
   // Nothing handled $_FILES before: every application checked the claimed type, if
@@ -87,6 +89,55 @@
       'type'      => $type,
       'extension' => $extension
     ];
+
+  }
+
+  // A stored upload - the 'file' of padUpload's record, a path under DATA - as the whole
+  // answer of the page, and the request ends: its type is read from its content again
+  // (finfo), the name is the one it is downloaded as. A picture, a PDF and plain text are
+  // shown in the browser unless $download asks for a download; anything else - HTML, SVG, a
+  // script, which shown on the site's own address would run with its rights - is always a
+  // download. A path that leaves DATA, or names no file, is answered 404. Kept by nobody on
+  // the way: private, revalidated.
+
+  function padUploadSend ( $file, $name = '', $download = FALSE ) {
+
+    global $padContentType, $padGzip, $padLen, $padCache, $padWebEtag304;
+
+    $file = trim ( str_replace ( '\\', '/', (string) $file ), '/' );
+    $path = DATA . $file;
+
+    if ( $file === '' or str_contains ( "/$file/", '/../' ) or str_contains ( "/$file/", '/./' ) or str_contains ( $file, "\0" ) or ! is_file ( $path ) )
+      return padAbort ( 404 );
+
+    if ( headers_sent () )
+      return padError ( 'padUploadSend: the headers have gone out already - a file is the whole answer of a page, sent from its PHP' );
+
+    $type   = ( new finfo ( FILEINFO_MIME_TYPE ) ) -> file ( $path ) ?: 'application/octet-stream';
+    $inline = ( ! $download and in_array ( $type, [ 'image/png', 'image/jpeg', 'image/gif', 'image/webp', 'image/avif', 'application/pdf', 'text/plain' ], TRUE ) );
+    $name   = padUploadName ( (string) $name !== '' ? $name : basename ( $file ) );
+    $ascii  = trim ( preg_replace ( '/[^A-Za-z0-9._-]+/', '-', $name ), '.-' );
+
+    padCloseSession ();
+    padEmptyBuffers ( $padUploadIgnored );
+
+    $padContentType = $type . ( $type == 'text/plain' ? '; charset=utf-8' : '' );
+    $padGzip        = FALSE;
+    $padLen         = 0;
+    $padCache       = FALSE;
+    $padWebEtag304  = FALSE;
+
+    padWebHeaders ( 200 );
+    padHeader ( 'Content-Disposition: ' . ( $inline ? 'inline' : 'attachment' ) . '; filename="' . ( $ascii !== '' ? $ascii : 'file' )
+                . '"; filename*=UTF-8\'\'' . rawurlencode ( $name ) );
+    padHeader ( 'Content-Length: ' . filesize ( $path ) );
+    padHeader ( 'Cache-Control: private, no-cache' );
+
+    $GLOBALS ['padSent'] = TRUE;
+
+    padFlushSend ( file_get_contents ( $path ) );
+
+    padExit ( 200 );
 
   }
 
