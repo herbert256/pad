@@ -1,0 +1,111 @@
+{meta title='Offline applications'}
+
+<p><code>pad pack</code> puts a whole application - its pages, its PHP, its <code>www/</code> files -
+with the PAD engine and PHP compiled to WebAssembly into one directory. Opened from the disk it
+runs in the browser tab; put on any https host it installs as an application and works offline.
+There is no PHP server at all, and what the application writes - its SQLite database first - is
+kept in the browser between visits.</p>
+
+{ignore}
+<pre><code>pad pack --install            # once: what it packs with, in ~/.cache/pad-wasm
+pad pack notes                # DATA/wasm/notes/
+pad pack notes --serve        # served on http://127.0.0.1:8090/ - installable
+pad pack notes,ledger,kanban  # several, with a launcher</code></pre>
+{/ignore}
+
+{example 'fragments/offline_applications_1'}
+
+<h2>Two ways to run it</h2>
+
+<table border="1" cellpadding="4">
+  <tr><th></th><th>Opened from the disk</th><th>Served over https, or on localhost</th></tr>
+  <tr><td>Start</td><td>double-click <code>index.html</code></td><td>open the address; the browser offers to install it</td></tr>
+  <tr><td>PHP runs</td><td>in the tab</td><td>in the service worker, for every window</td></tr>
+  <tr><td>The pages</td><td>in a frame filling the window, the address after the <code>#</code></td><td>at their own addresses</td></tr>
+  <tr><td>Offline</td><td>always</td><td>after the first visit</td></tr>
+</table>
+
+<p>Both answer every request as a server would: cookies are kept - sessions, CSRF tokens, flash
+messages, a login - any method and header of the page's own JavaScript is passed on, an upload
+arrives in <code>$_FILES</code>, an answer may be binary or a download.</p>
+
+<h2>What is kept</h2>
+
+<p>Everything under <code>DATA/</code> - SQLite databases, uploads, JSON files, sessions - is written
+to the browser's IndexedDB after every request that changed it, and put back when the
+application starts again. A new pack of the same applications finds that data: an application
+that keeps its schema in <code>_migrations/</code> and runs <code>padMigrate()</code> when one is pending
+brings the database a visitor kept up to date - the ledger application does.</p>
+
+<h2>The database</h2>
+
+<p>PHP in the browser has SQLite and no MySQL. An application that is SQLite already
+(<code>padSqlDriver=sqlite</code>, see {manual 'sqlite'}) runs as it is. One written for MySQL on its
+server can switch for the browser in <code>_offline.json</code>, whose <code>env</code> the runtime passes
+where <code>padEnv</code> looks first:</p>
+
+{ignore}
+<pre><code>{
+  "name": "Shop", "short": "Shop", "theme": "#0f766e",
+  "icon": "icon.svg",
+  "icons": { "192": "icon-192.png", "512": "icon-512.png" },
+  "env": {
+    "padSqlDriver": "sqlite",
+    "padSqlDatabase": "shop/shop.sqlite",
+    "padSqlSetup": "_install/schema.sql"
+  }
+}</code></pre>
+{/ignore}
+
+<p><code>.env</code> files are never packed: they hold a server's passwords, and whoever has the pack
+can read it.</p>
+
+<h2>Import and export</h2>
+
+<p>The badge in a corner of every page - or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd> - opens the
+runtime's panel. Its Database tab browses the tables, runs SQL, exports a database as the
+<code>.sqlite</code> file or as SQL that builds it again, and imports either - SQLite checks what comes
+in before it replaces anything. Its Storage tab backs up all of <code>DATA/</code> as one zip and puts
+such a zip back. An application can offer the same from its own pages, on a server as in the
+browser: the database file with <code>padUploadSend</code>, its rows as JSON or CSV with
+<code>$padExpose</code> - the notes application's backup page does both.</p>
+
+<h2>The page's own requests</h2>
+
+<p><code>fetch</code>, <code>XMLHttpRequest</code>, a {tag 'live'} region, an {tag 'ajax'}, htmx asking for a
+{tag 'fragment'}, an <code>EventSource</code> - they all reach PHP in the browser. One PHP answers
+every request of the application, so a stream that held it would hold the application:
+<code>padSse</code> answers one round per connection there, and <code>EventSource</code> comes back after
+the interval by itself, with the last event's id - see {manual 'server_sent_events'}. A page
+that should behave differently in the browser asks <code>padWasm()</code>:</p>
+
+{example 'fragments/offline_applications_2'}
+
+<h2>Limits</h2>
+
+<ul>
+  <li>No MySQL, and no network from PHP: {tag 'curl'}, <code>padCurl</code>, <code>padPrefetch</code> and a
+      fetch of the server's own pages answer nothing offline.</li>
+  <li>No sodium and no intl in the build - <code>padEncrypt</code> and the intl formatting fall back or
+      are not there; the sequence subsystem's large tables are left out.</li>
+  <li>One request at a time: a page that sleeps holds the others.</li>
+  <li>Opened from the disk, an application's module scripts cannot import their neighbours and
+      <code>document.cookie</code> does not show PHP's cookies. Served over https none of this
+      applies.</li>
+</ul>
+
+<h2>The applications</h2>
+
+<p>Three applications are made to show it, each running on this server as well:</p>
+
+<ul>
+  <li><a href="{$padHost}notes/">notes</a> - Markdown notes in SQLite: search as you type, live pins,
+      attachments, a JSON export and import, the database as a download.</li>
+  <li><a href="{$padHost}ledger/">ledger</a> - a household budget built by its migrations: charts,
+      budgets, CSV in and out, a quick entry posted as JSON.</li>
+  <li><a href="{$padHost}kanban/">kanban</a> - a task board: drag and drop posted as JSON, fragments,
+      every open window kept in step by server-sent events.</li>
+</ul>
+
+<p><code>pad pack notes,ledger,kanban</code> packs them together, with a launcher. How it is built -
+the runtime, the service worker, the panel - is in <code>wasm/README.md</code>.</p>

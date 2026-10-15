@@ -81,4 +81,11 @@ why, and the \<b\>\{input\}\<\/b\> file field of the form shows it beside itself
 label\.\<\/p\>
 
 \<p\>A \<b\>\{form\}\<\/b\> holding a file field posts as \<code\>multipart\/form\-data\<\/code\> by itself;
-without that the browser sends only the file's name\.\<\/p\>$/
+without that the browser sends only the file's name\.\<\/p\>
+
+\<p\>What is stored under \<code\>DATA\<\/code\> no address reaches\. A page sends it back with
+\<code\>padUploadSend \( \$record \['file'\], \$record \['name'\] \)\<\/code\>, which answers the file as the
+whole page and ends the request\: its type read from its content again, a picture, a PDF or
+plain text shown, anything else \- HTML, SVG, a script, which shown on the site's own address
+would run with its rights \- downloaded; \<code\>TRUE\<\/code\> as its third argument downloads it in any
+case\. A path out of \<code\>DATA\<\/code\>, or to no file, answers 404\.\<\/p\>$/

@@ -664,6 +664,17 @@ PAD runs on PHP compiled to WebAssembly: `php wasm/build.php` bundles the engine
 packages on jsDelivr, writes the engine into its memory and renders templates in the browser
 tab, with no PAD server. Experimental - see `wasm/README.md` for what was verified.
 
+### Offline Applications
+
+`pad pack notes` puts an application, the engine and PHP compiled to WebAssembly into one
+directory: opened from the disk it runs in the browser tab, served over https it installs as an
+application whose service worker runs PHP for every window, offline after the first visit. What
+the application writes under `DATA/` - its SQLite database, uploads, sessions - is kept in the
+browser's IndexedDB between visits, and a panel exports and imports the database. The page's
+own `fetch`, XHR, `{live}`, `{ajax}`, fragments and `EventSource` reach PHP there as they would
+a server; `padSse` answers one round per connection. Manual page *Offline applications*,
+`wasm/README.md`; the `notes`, `ledger` and `kanban` applications show it.
+
 ### Live Regions
 
 A `{live}` region re-renders on the server when something in it is clicked, submitted or

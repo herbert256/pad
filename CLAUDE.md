@@ -45,7 +45,7 @@ pad/
 ├── editors/  # Editor kits, the language server, the command-line renderer
 ├── docs/     # Documentation
 ├── wasm/     # PAD in the browser: wasm/build.php bundles the engine for www/wasm/ (PHP compiled to WebAssembly);
-│             #   wasm/app.mjs packs a whole application into a directory that runs from file://
+│             #   wasm/app.mjs (pad pack) packs applications to run offline - from file://, or installed over https
 └── DATA/     # Runtime data (logs, cache, dumps) - writable, excluded from git
 ```
 
@@ -280,6 +280,23 @@ PHP; `padMail ( ..., [ 'queue' => TRUE ] )` sends through it.
 one cron line, `* * * * * /path/apps/cli/pad schedule --all`, runs every application's due
 entries; `pad schedule <app> --list` shows each with its next and last run. `padCronMatch`,
 `padCronNext` and `padCronEvery` from PHP.
+
+## Offline applications in the browser
+
+`pad pack notes` packs an application - its pages, PHP, `www/` files - with the engine and PHP
+compiled to WebAssembly into `DATA/wasm/notes/`: opened from the disk it runs in the tab (the
+pages in a frame whose first script routes the page's `fetch`, XHR, `EventSource`, forms and
+uploads to PHP there); served over https or on localhost a service worker runs PHP for every
+window and the application installs and works offline. What it writes under `DATA/` - SQLite
+databases, uploads, sessions - is kept in IndexedDB after every request; cookies in a jar of the
+runtime's own. `pad pack a,b,c` packs several with a launcher; `--serve` serves the result,
+`--panel=button|key|none`, `--name`, `--id`; `pad pack --install` puts the packages in
+`~/.cache/pad-wasm`. `apps/<app>/_offline.json` names the application, its icons and `env`
+values (`padSqlDriver=sqlite` for an application that uses MySQL on its server - `padEnv` reads
+them first); `.env` is never packed. A panel (corner badge, Ctrl+Shift+K) browses the SQLite
+databases, runs SQL, exports them as `.sqlite` or SQL, imports either, backs `DATA/` up as a
+zip. In the browser `padWasm()` is TRUE and `padSse` answers one round per connection. No
+MySQL, no network from PHP. `wasm/README.md`; `notes`, `ledger`, `kanban` are the examples.
 
 ## HTTP fakes for tests
 
@@ -1436,6 +1453,7 @@ pad seed shop [name]          # the seeders of _seeds/
 pad work shop [--once]        # the queue worker; pad queue shop [--failed] for the queues
 pad schedule --all            # what every _schedule.php has due - one cron line, every minute
 pad down shop --secret=word   # maintenance until pad up shop
+pad pack notes [--serve]      # the application for the browser, offline - DATA/wasm/notes/; --install once
 pad help
 ```
 

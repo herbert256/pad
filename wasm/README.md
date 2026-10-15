@@ -151,17 +151,45 @@ node wasm/verify-app.mjs           # every application and the runtime, in Node 
 
 What was verified, and on what, is listed at the end of this file.
 
+## The sample applications
+
+| Application | What it shows offline |
+|-------------|-----------------------|
+| `notes` | SQLite from `padSqlSetup`; a `{live}` list (pins) and note (colour); search as you type through a `{fragment}` fetched by `notes.js`; a preview posted with `X-CSRF-Token`; pictures attached (`padUpload`, multipart) and served back (`padUploadSend`); the notes as JSON (`$padExpose`), the database file as a download, a JSON import |
+| `ledger` | A schema in `_migrations/`, run by `_inits.php` when one is pending - a later migration brings a database a visitor kept up to date; `{chart}`s, `{progress}`, a sortable paged `{datatable}`; a quick entry posted as JSON and answered as JSON; CSV out (`padFormat=csv`) and in |
+| `kanban` | Drag and drop posted as JSON; the columns asked for again as a `{fragment}`; an `EventSource` on `padSse` keeping every open window in step - through the one service worker when installed, through the BroadcastChannel of the runtimes when opened from the disk |
+
+`pad pack notes,ledger,kanban` packs the three with a launcher.
+
 ## Verified
 
-October 2026, `@php-wasm` 3.1.58 (PHP 8.4.25), Chrome 141 on macOS:
+October 2026, `@php-wasm` 3.1.58 (PHP 8.4.25), Chrome 141 (headless, through the DevTools
+protocol) on macOS:
 
-- `wasm/verify-app.mjs`: demo's pages, posts with their token, the 403 and the 404; the
-  runtime's database calls - list, rows, statements, export as SQL and as `.sqlite`, import of
-  both, a refused import leaving the database as it was, reset, backup and restore - and a
-  second start on the same store finding everything.
-- Opened from the disk (headless Chrome, `file://`): demo renders with its stylesheet, a
-  guestbook post through the frame's form, the entry kept in IndexedDB across a reload.
-- Served on localhost: the service worker installs and answers the pages, the data written in
-  the frame mode is there, and with the server stopped the pages still load.
+- `wasm/verify-app.mjs` (55 steps, the `wasm` line of `./ci.sh`): demo's pages, posts, 403 and
+  404; notes - the live pin, the search fragment, the preview with and without its token, a
+  picture uploaded and served back, a rule's message, the JSON export, the database download;
+  ledger - a database made by a version without the budgets migration migrated by the next one,
+  its transactions untouched, the quick entry as JSON, CSV out and in, a rule's message;
+  kanban - a move as JSON, the event stream's one round with and without `Last-Event-ID`, the
+  fragment, a move without the token refused; the runtime's calls - databases, rows,
+  statements, export as SQL and `.sqlite`, both imported, a bad import refused, reset, backup,
+  restore, forget - and a second start on the same store finding everything.
+- In headless Chrome, each application opened from the disk (`file://`), in the frame served
+  over http (`?frame`) and installed with its service worker: notes (live pin, search, preview,
+  upload with the picture shown, live colour, JSON export, the note kept across a reload),
+  ledger (migrated and seeded on first start, the quick entry updating the totals in place, the
+  table sorted on the server, CSV, kept across a reload) and kanban (two windows: a card moved by
+  its arrow and by drag and drop in one shows in the other, a card added in the dialog too, the
+  board kept across a reload).
+- The panel, installed: export as `.sqlite` and SQL downloaded, the table emptied with the
+  console and the `.sqlite` imported back, a backup zip, forget everything; a new build of the
+  pack found, offered in the About tab, taken - the page back on it with the data.
+- The launcher of a pack of four, from the disk and installed; demo served with the server
+  stopped (offline).
+- Installable: Chrome's own check (`Page.getInstallabilityErrors`) finds nothing missing on the
+  pages of a pack of one application and on the launcher of a pack of several - every page the
+  service worker answers links the manifest.
 
-Firefox and Safari were not tried.
+Not verified: Firefox and Safari; a phone; the install prompt clicked by a person; a pack
+served from a real https host.
