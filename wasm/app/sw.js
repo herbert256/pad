@@ -130,13 +130,20 @@ async function answer(request) {
   return new Response([101, 103, 204, 205, 304].includes(status) || request.method === 'HEAD' ? null : bytes, { status, headers });
 }
 
-// The panel's script, last in the page's body: the badge, the keep-alive, the update offer.
+// The panel's script, last in the page's body - the badge, the keep-alive, the update offer -
+// and the manifest in its head, which makes every page of the pack one the browser offers to
+// install, not only the launcher.
 
 function inject(bytes) {
-  const html = new TextDecoder().decode(bytes);
+  let html = new TextDecoder().decode(bytes);
+  const lower = html.toLowerCase();
   const tag = `<script src="${SCOPE.pathname}pad-panel.js" data-pad-scope="${SCOPE.pathname}" data-pad-panel="${self.PAD_BUNDLE.panel}" defer></script>`;
-  const at = html.toLowerCase().lastIndexOf('</body>');
-  return new TextEncoder().encode(at < 0 ? html + tag : html.substring(0, at) + tag + html.substring(at));
+  const at = lower.lastIndexOf('</body>');
+  html = at < 0 ? html + tag : html.substring(0, at) + tag + html.substring(at);
+  const head = lower.indexOf('</head>');
+  if (head >= 0 && !/<link[^>]+rel=["']?manifest/i.test(html.substring(0, head)))
+    html = html.substring(0, head) + `<link rel="manifest" href="${SCOPE.pathname}manifest.webmanifest">` + html.substring(head);
+  return new TextEncoder().encode(html);
 }
 
 function splash() {
