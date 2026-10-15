@@ -189,6 +189,24 @@
 
   }
 
+  // SQL from the console or an imported file works on the one database it was given:
+  // ATTACH (and DETACH) and VACUUM INTO write a file wherever their path points - into an
+  // application's _lib/, which PAD then runs, or over another application's database - and
+  // are refused before any statement runs. The splitter has taken the comments out already.
+
+  function rtStatements ( $sql ) {
+
+    $statements = padMigrateSplit ( $sql, FALSE );
+
+    foreach ( $statements as $n => $statement )
+      if ( preg_match ( '/^\W*(EXPLAIN\s+(QUERY\s+PLAN\s+)?)?(ATTACH|DETACH)\b/i', $statement )
+           or preg_match ( '/^\W*(EXPLAIN\s+(QUERY\s+PLAN\s+)?)?VACUUM\b[\s\S]*\bINTO\b/i', $statement ) )
+        throw new Exception ( 'statement ' . ( $n + 1 ) . ' would write a file of its own (ATTACH, VACUUM INTO) - only the database itself is worked on here' );
+
+    return $statements;
+
+  }
+
   // Every statement runs in turn; the answer of each is its rows, or the rows it changed.
   // The first that fails ends it, named with its place - what ran before it stays done.
 
@@ -197,7 +215,7 @@
     $pdo     = rtOpen ( $db ['file'] );
     $results = [];
 
-    foreach ( padMigrateSplit ( $sql, FALSE ) as $n => $statement ) {
+    foreach ( rtStatements ( $sql ) as $n => $statement ) {
 
       $start = microtime ( TRUE );
 
@@ -303,9 +321,15 @@
       if ( ! mb_check_encoding ( $sql, 'UTF-8' ) )
         throw new Exception ( 'this is no SQLite file and no SQL text' );
 
+      $statements = rtStatements ( $sql );
+
       try {
-        rtOpen ( $work )->exec ( $sql );
+        $build = rtOpen ( $work );
+        foreach ( $statements as $statement )
+          $build->exec ( $statement );
+        $build = NULL;
       } catch ( Throwable $e ) {
+        $build = NULL;
         @unlink ( $work );
         throw new Exception ( 'the SQL did not build a database: ' . $e->getMessage () );
       }
