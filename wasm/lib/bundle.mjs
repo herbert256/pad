@@ -75,16 +75,23 @@ export function offline(app) {
     catch (e) { throw new Error(`apps/${app}/_offline.json is no JSON: ${e.message}`); }
   }
 
+  // Without them: the name from the README's title, the description from the first sentence
+  // of its Introduction - what the apps listing shows.
+
   let title = app.split('/').pop();
   title = title.charAt(0).toUpperCase() + title.substring(1);
+  let description = '';
   const readme = join(home, 'apps', app, 'README.md');
-  if (!settings.name && existsSync(readme)) {
-    const heading = readFileSync(readme, 'utf8').match(/^#\s+(.+)$/m);
-    if (heading) title = heading[1].replace(/\s+application$/i, '').trim();
+  if (existsSync(readme)) {
+    const text = readFileSync(readme, 'utf8');
+    const heading = text.match(/^#\s+(.+)$/m);
+    if (heading && !settings.name) title = heading[1].replace(/\s+application$/i, '').trim();
+    const intro = text.match(/^## Introduction\s*\n+([\s\S]*?)(\n\s*\n|\n## |$)/m);
+    if (intro) description = intro[1].replace(/\s+/g, ' ').trim().replace(/^(.{20,180}?[.!?])\s.*$/, '$1');
   }
 
   return Object.assign({
-    name: title, short: title, description: '', theme: '#2563eb', background: '#ffffff',
+    name: title, short: title, description, theme: '#2563eb', background: '#ffffff',
     icon: '', icons: {}, start: '', env: {}
   }, settings);
 
