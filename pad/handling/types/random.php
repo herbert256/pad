@@ -19,6 +19,13 @@
   $padHandRandOrderly    = $padPrm [$pad] ['orderly']     ?? 0;
   $padHandRandDuplicates = $padPrm [$pad] ['duplicates']  ?? 0;
 
+  // Without duplicates every row comes at most once: more asked than there are rows is all
+  // of them, in a random order - pqRandom drew with repeats then, and the list repeated rows
+  // and left others out, keyed rows came back fewer than there are.
+
+  if ( ! $padHandRandDuplicates and $padHandRandCount !== TRUE )
+    $padHandRandCount = min ( $padHandRandCount, count ( $padHandRandKeys ) );
+
   $padHandRandKeys = pqRandom ( $padHandRandKeys, $padHandRandCount, $padHandRandOrderly, $padHandRandDuplicates );
 
   $padHandRand    = $padData [$pad];
