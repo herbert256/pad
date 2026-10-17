@@ -382,11 +382,13 @@
   // The fields kept out of the session and signed into the cookie instead: by their names,
   // and any value PHP knows as a password hash, whatever its column is called - a hash in
   // 'hash' or 'pass_hash' went into the session, {auth} and the dumps, and a new password
-  // left every remember-me cookie valid.
+  // left every remember-me cookie valid. A name is a secret's as a whole word, not for a
+  // part of it: email_hash (a Gravatar's, public), hashtag, otp_enabled, recovery_email
+  // and pin_code_sent were dropped from the session and padUser answered NULL for them.
 
   function padAuthSecret ( $name, $value = NULL ) {
 
-    if ( preg_match ( '/pass(word|wd|phrase|code)|^pass$|pass_?hash|pwd|secret|token|hash|^pin$|pin_?code|api_?key|private_?key|totp|otp_|recovery/i', (string) $name ) )
+    if ( preg_match ( '/pass(word|wd|phrase|code)|^pass$|pass_?hash|^hash$|pwd|secret|token|^pin$|^pin_?code$|api_?key|private_?key|^t?otp(_?(secret|seed|key))?$|recovery_?codes?/i', (string) $name ) )
       return TRUE;
 
     return is_string ( $value ) and $value !== '' and ( password_get_info ( $value ) ['algo'] ?? NULL ) !== NULL;
