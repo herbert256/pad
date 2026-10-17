@@ -122,8 +122,8 @@
         $data [$padDataKey] = padDataObject ( $padDataRow );
 
     // A RECORD answer of db() is one row, which the fixers below would otherwise take for
-    // a list of fields, one occurrence each. db() keeps the columns of every row it answered
-    // for RECORD, and a row with those columns is known again wherever it arrives. It was one
+    // a list of fields, one occurrence each. db() keeps every row it answered for RECORD, and
+    // a row with its columns and some of its values is known again wherever it arrives. It was one
     // flag that the next padData() of the request took, whatever it was given: a second
     // RECORD read in the same PHP file, or the same record iterated twice, came out one
     // occurrence per field, and a plain list after a RECORD came out as one occurrence
@@ -202,9 +202,22 @@
     if ( ! is_array ( $input ) or ! $input or array_is_list ( $input ) )
       return FALSE;
 
-    foreach ( $padDataSetRecord ?? [] as $columns )
-      if ( ! array_diff_key ( array_flip ( $columns ), $input ) )
-        return TRUE;
+    // Every column of an answered row, and at least one of them still holding that row's value
+    // (loosely - a cast value is the same value). By the columns alone, a key => label map, a
+    // heading list or a settings array that merely shared their names was one record after
+    // any RECORD of the request: [ 'officeCode' => 'Number', 'city' => 'City' ] iterated as
+    // one occurrence with three fields, where it is three.
+
+    foreach ( $padDataSetRecord ?? [] as $row ) {
+
+      if ( array_diff_key ( $row, $input ) )
+        continue;
+
+      foreach ( $row as $key => $value )
+        if ( $value !== NULL and $value !== '' and is_scalar ( $input [$key] ) and $input [$key] == $value )
+          return TRUE;
+
+    }
 
     return FALSE;
 

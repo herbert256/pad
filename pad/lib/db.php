@@ -342,7 +342,14 @@
         $return = array();
       else {
         $return = $fields;
-        $padDataSetRecord [ implode ( "\x1F", array_keys ( $fields ) ) ] = array_keys ( $fields );
+
+        // The row itself is kept, for padDataIsRecord to know it again - its columns alone
+        // made any array of the page holding those keys a record. The last thousand rows.
+
+        $padDataSetRecord [ md5 ( serialize ( $fields ) ) ] = $fields;
+
+        if ( count ( $padDataSetRecord ) > 1000 )
+          array_shift ( $padDataSetRecord );
       }
     elseif ( $command == 'array' and $asWritten and ! $run ['set'] )
       $return = ( $asWritten == 'with' ) ? $rows : '';
