@@ -11,15 +11,20 @@
 # is published under: /pad/manual/?pages/forms is manual/index﹖pagesꤷforms.html (the
 # question mark and the slash of the query in their look-alike characters, the query
 # decoded first - %2F is a slash too), the PAD home is pad/index.html and, a second time,
-# the copy's own index.html. Every link to a saved
-# page or file is rewritten to the relative path of its copy; a link elsewhere - another
-# site, an application left out - stays as it is.
+# the copy's own index.html. A file is saved under its path alone - a ?v= behind a
+# stylesheet or a picture only names its version. Every link to a saved page or file - an
+# href, a src, a poster, each picture of a srcset - is rewritten to the relative path of its
+# copy; a link elsewhere - another site, an application left out - stays as it is. The
+# modules a script imports by a relative name - the chunks a Vite build loads when an
+# island needs them - are fetched along and keep their names beside it.
 #
 # Left out are the pages that act when they are fetched - a build, the suites' test run,
-# recording an answer, every page of develop but its index - and the applications a copy
-# cannot serve: edit (a login on this machine), playground, test and the suites' own test
-# pages. The applications page links each application to the editor; in the copy that
-# link is the read-only browse page, which a static site can show.
+# recording an answer, every page of develop but its index - the months a calendar links to,
+# one after the other without end, and the applications a copy cannot serve: edit and admin
+# (a login on this machine), playground, test and the suites' own test pages. The
+# applications page links each application to the editor; in the copy that link is the
+# read-only browse page, which a static site can show - and the menu's admin is the
+# applications page.
 #
 # The copy is built in a directory of its own and replaces docs/apps once the PAD home was
 # fetched. A page that answers an error - the manual links a few that fail on purpose, to
@@ -51,28 +56,33 @@ php -d memory_limit=2G -- "$padHome" "$host" "$work" <<'PHP' || exit 1
   // The applications whose pages and files are copied.
 
   $apps = [ 'pad', 'manual', 'reference', 'sequence', 'examples', 'apps', 'demo', 'hello',
-            'nono', 'react', 'structure', 'cli', 'classicModels', 'regression/main', 'develop' ];
+            'nono', 'react', 'structure', 'cli', 'classicModels', 'regression/main', 'develop',
+            'tags', 'charts', 'showcase', 'alpine', 'htmx', 'islands', 'webcomponents',
+            'notes', 'ledger', 'kanban' ];
 
   // The pages of those that act when they are fetched, by their query string: the suites'
   // test run, recording an answer, a build, the todo list's post target - and every page of
-  // develop but its index, which only lists its tools.
+  // develop but its index, which only lists its tools. The calendar's months are left out
+  // too: each links to the next, ten thousand years of them.
 
   $skip = [ 'develop'         => '/./',
             'regression/main' => '/^(build|record)(&|$)|(^|&)test(&|=|$)/',
             'reference'       => '/^build(&|$)/',
             'examples'        => '/^build(&|$)/',
-            'demo'            => '/^todoPost(&|$)/' ];
+            'demo'            => '/^todoPost(&|$)|^calendar&(.*&)?month=/' ];
 
   // Links a static copy cannot follow, and the page they lead to in it instead.
 
   $map = [ '#^$#'                        => 'pad/',
-           '#^edit/\?index&app=([^&]+)$#' => 'apps/?browse&app=$1' ];
+           '#^edit/\?index&app=([^&]+)$#' => 'apps/?browse&app=$1',
+           '#^admin/$#'                   => 'apps/' ];
 
-  // The href and src of the tags that link or load: a and area, link, script, img, iframe,
-  // frame, source and embed. A tag shown as text in a code sample is &lt;a, never matched.
+  // The href, src, poster and srcset of the tags that link or load: a and area, link,
+  // script, img, iframe, frame, video, audio, source and embed. A tag shown as text in a code
+  // sample is &lt;a, never matched.
 
-  const pagesTags = '/<(?:a|area|link|script|img|iframe|frame|source|embed)\b[^>]*>/is';
-  const pagesAttr = '/(\s(?:href|src)\s*=\s*)(["\'])(.*?)\2/is';
+  const pagesTags = '/<(?:a|area|link|script|img|iframe|frame|video|audio|source|embed)\b[^>]*>/is';
+  const pagesAttr = '/(\s(href|src|poster|srcset)\s*=\s*)(["\'])(.*?)\3/is';
 
   $queue  = [];
   $seen   = [];
@@ -107,9 +117,15 @@ php -d memory_limit=2G -- "$padHome" "$host" "$work" <<'PHP' || exit 1
       $saved [$rel] = [ 'html' => $html, 'body' => $body ];
 
       if ( $html )
-        foreach ( pagesLinks ( $body ) as $href )
-          if ( ( $to = pagesLocal ( $href, $rel ) ) !== NULL and pagesKind ( $to ) )
-            pagesQueue ( $to );
+        $links = pagesLinks ( $body );
+      elseif ( preg_match ( '/\.m?js$/i', $rel ) )
+        $links = pagesImports ( $body );
+      else
+        $links = [];
+
+      foreach ( $links as $href )
+        if ( ( $to = pagesLocal ( $href, $rel ) ) !== NULL and pagesKind ( $to ) )
+          pagesQueue ( $to );
 
       if ( count ( $saved ) % 500 == 0 )
         echo count ( $saved ) . " fetched, " . count ( $queue ) . " to go\n";
@@ -229,11 +245,36 @@ php -d memory_limit=2G -- "$padHome" "$host" "$work" <<'PHP' || exit 1
     preg_match_all ( pagesTags, $html, $tags );
 
     foreach ( $tags [0] as $tag )
-      if ( preg_match_all ( pagesAttr, $tag, $attrs ) )
-        foreach ( $attrs [3] as $href )
-          $links [] = $href;
+      if ( preg_match_all ( pagesAttr, $tag, $attrs, PREG_SET_ORDER ) )
+        foreach ( $attrs as $attr )
+          if ( strtolower ( $attr [2] ) == 'srcset' )
+            array_push ( $links, ...pagesSrcset ( $attr [4] ) );
+          else
+            $links [] = $attr [4];
 
     return $links;
+
+  }
+
+  // The pictures of a srcset: the candidates split at a comma, each one's width or density
+  // behind a space left off.
+
+  function pagesSrcset ( $srcset ) {
+
+    preg_match_all ( '/(?:^|,)\s*([^\s,]+)/', $srcset, $found );
+
+    return $found [1];
+
+  }
+
+  // The modules a script names by a relative path in quotes - import ... from './x.js',
+  // import ( './x.js' ), the files of a Vite build's preload list, styles among them.
+
+  function pagesImports ( $script ) {
+
+    preg_match_all ( '/(["\'`])(\.\.?\/[^"\'`\s]+?\.(?:m?js|css))\1/', $script, $found );
+
+    return array_unique ( $found [2] );
 
   }
 
@@ -273,6 +314,11 @@ php -d memory_limit=2G -- "$padHome" "$host" "$work" <<'PHP' || exit 1
 
     if ( $path !== '' and ! str_ends_with ( $path, '/' ) and is_file ( "$www$path/index.php" ) )
       $path .= '/';
+
+    // A file is the same file whatever its query - a ?v= only names its version.
+
+    if ( preg_match ( '/\.(?!php$)[A-Za-z0-9]+$/i', $path ) )
+      $query = '';
 
     $rel = $path . ( $query === '' ? '' : "?$query" );
 
@@ -348,7 +394,7 @@ php -d memory_limit=2G -- "$padHome" "$host" "$work" <<'PHP' || exit 1
   }
 
   // The links of a page pointed at the copies, relative to the directory the page is
-  // written to; a link with no copy is counted by where it leads and left as it is.
+  // written to - in a srcset each picture's; a link with no copy is left as it is.
 
   function pagesRewrite ( $html, $rel, $dir ) {
 
@@ -356,30 +402,45 @@ php -d memory_limit=2G -- "$padHome" "$host" "$work" <<'PHP' || exit 1
 
       return preg_replace_callback ( pagesAttr, function ( $attr ) use ( $rel, $dir ) {
 
-        global $names, $alias, $left;
+        if ( strtolower ( $attr [2] ) == 'srcset' )
+          $value = preg_replace_callback ( '/((?:^|,)\s*)([^\s,]+)/',
+                                           fn ( $one ) => $one [1] . ( pagesCopy ( $one [2], $rel, $dir ) ?? $one [2] ), $attr [4] );
+        else
+          $value = pagesCopy ( $attr [4], $rel, $dir ) ?? $attr [4];
 
-        $to = pagesLocal ( $attr [3], $rel );
-
-        for ( $hop = 0; $to !== NULL and isset ( $alias [$to] ) and $hop < 10; $hop++ )
-          $to = $alias [$to];
-
-        if ( $to === NULL )
-          return $attr [0];
-
-        if ( ! isset ( $names [$to] ) ) {
-          $where = explode ( '/', explode ( '?', $to, 2 ) [0] );
-          $where = ( $where [0] == 'regression' and isset ( $where [1] ) ) ? "regression/$where[1]/" : "$where[0]/";
-          $left [$where] = ( $left [$where] ?? 0 ) + 1;
-          return $attr [0];
-        }
-
-        $hash = str_contains ( $attr [3], '#' ) ? '#' . explode ( '#', $attr [3], 2 ) [1] : '';
-
-        return $attr [1] . $attr [2] . htmlspecialchars ( pagesPath ( $dir, $names [$to] ), ENT_QUOTES ) . $hash . $attr [2];
+        return $attr [1] . $attr [3] . $value . $attr [3];
 
       }, $tag [0] );
 
     }, $html );
+
+  }
+
+  // A link as the relative path of its copy, written for an attribute, or NULL when it has
+  // none - a link to the server is counted by where it leads.
+
+  function pagesCopy ( $href, $rel, $dir ) {
+
+    global $names, $alias, $left;
+
+    $to = pagesLocal ( $href, $rel );
+
+    for ( $hop = 0; $to !== NULL and isset ( $alias [$to] ) and $hop < 10; $hop++ )
+      $to = $alias [$to];
+
+    if ( $to === NULL )
+      return NULL;
+
+    if ( ! isset ( $names [$to] ) ) {
+      $where = explode ( '/', explode ( '?', $to, 2 ) [0] );
+      $where = ( $where [0] == 'regression' and isset ( $where [1] ) ) ? "regression/$where[1]/" : "$where[0]/";
+      $left [$where] = ( $left [$where] ?? 0 ) + 1;
+      return NULL;
+    }
+
+    $hash = str_contains ( $href, '#' ) ? '#' . explode ( '#', $href, 2 ) [1] : '';
+
+    return htmlspecialchars ( pagesPath ( $dir, $names [$to] ), ENT_QUOTES ) . $hash;
 
   }
 
