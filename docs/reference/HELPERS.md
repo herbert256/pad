@@ -551,6 +551,7 @@ Edge rules:
 | `padCacheGet ( $key, $default = NULL )` | The value kept under the key, else the default - a Closure default is called |
 | `padCachePut ( $key, $value, $ttl = 3600 )` | Keeps the value for `$ttl` seconds (`NULL` for ever); TRUE when it is kept |
 | `padCacheHas ( $key )` | Whether the key holds a value that has not expired - a kept NULL counts |
+| `padCacheIncrement ( $key, $by = 1, $ttl = 3600 )` | Adds `$by` to the number kept under the key, under the application's lock - requests at once are each counted; the new number (a key holding no number starts from 0, an entry keeps its end of life) |
 | `padCacheForget ( $key )` | Removes the key; TRUE when it held a value |
 | `padCacheFlush ()` | Removes every entry of this application, its rate limits included; TRUE |
 | `padRemember ( $key, $ttl, $callback )` | The kept value, or the callback's answer, kept for `$ttl` seconds |

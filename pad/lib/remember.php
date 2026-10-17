@@ -10,6 +10,8 @@
   // padCacheGet              the value kept under a key, else the default (a Closure is called)
   // padCachePut              keeps a value under a key for $ttl seconds - NULL is for ever
   // padCacheHas              whether a key holds a value that has not expired
+  // padCacheIncrement        adds to the number kept under a key, under the lock - a count
+  //                          of every visitor's requests keeps each of them
   // padCacheForget           removes a key
   // padCacheFlush            removes every key of this application, rate limits included
   // padRemember              the value kept under a key, or the callback's, kept for $ttl
@@ -81,6 +83,42 @@
   }
 
   // TRUE when the key held a value that had not expired yet.
+
+  // Adds $by to the number kept under a key, under the application's lock, so requests that
+  // come at once each count: a padCacheGet and a padCachePut beside each other lost the hits
+  // that came between them - half of thirty at once. A key holding no number starts from 0;
+  // the entry keeps the end of life it had, a new one gets $ttl. Answers the new number.
+
+  function padCacheIncrement ( $key, $by = 1, $ttl = 3600 ) {
+
+    $file = padCacheAppFile ( $key, 'cache', 'padCacheIncrement' );
+
+    if ( $file === '' )
+      return FALSE;
+
+    if ( ! is_int ( $by ) and ! is_float ( $by ) ) {
+      padError ( 'padCacheIncrement: the step must be a number, not ' . get_debug_type ( $by ) );
+      return FALSE;
+    }
+
+    $expires = padCacheAppExpires ( $ttl, 'padCacheIncrement' );
+
+    if ( $expires === NULL )
+      return FALSE;
+
+    return padCacheAppLocked ( function () use ( $file, $by, $expires ) {
+
+      $entry = padCacheAppRead ( $file );
+      $value = ( $entry and is_numeric ( $entry ['value'] ) ) ? $entry ['value'] + $by : $by;
+
+      if ( ( $entry ['expires'] ?? $expires ) >= 0 )
+        padCacheAppWrite ( $file, $value, $entry ['expires'] ?? $expires );
+
+      return $value;
+
+    } );
+
+  }
 
   function padCacheForget ( $key ) {
 
