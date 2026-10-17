@@ -69,7 +69,7 @@
   }
 
   // What a page shows this machine alone: the box of a {debug}, which padDebug writes for a
-  // local request only (lib/debug.php). Built for one, the page went into the cache, and
+  // local request only (tags/_lib/debug.php). Built for one, the page went into the cache, and
   // every visitor after it was answered with the values {debug} keeps from them.
 
   function padCacheLocalOnly ( $html ) {
