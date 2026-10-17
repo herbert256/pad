@@ -274,12 +274,26 @@ async function snapshot(ref, scope) {
     return tree;
 }
 
-// The six snapshots used last stay; the rest go - each is the engine at one commit.
+// The six snapshots used last stay, and so does every one used in the last hour; the rest go -
+// each is the engine at one commit. A call touches its snapshot when it takes it and renders
+// for a minute at the most, so a snapshot another session is still rendering on - the
+// parallel sessions of a hunt each compare against a commit of their own - is never taken
+// from under it: the seventh made while one rendered deleted the oldest, the one in use, and
+// its compare said "they differ" with an engine file missing on the old side. One that goes
+// is renamed out of the way first, so no call finds it half deleted.
+const KEEP = 6;
+const USED = 3600000;
+
 function prune(keep) {
     let list = [];
     try { list = fs.readdirSync(SNAPSHOTS).filter((n) => !n.startsWith('.')).map((n) => path.join(SNAPSHOTS, n)); } catch (e) { return; }
     const aged = list.map((d) => { try { return { d, t: fs.statSync(d).mtimeMs }; } catch (e) { return null; } }).filter(Boolean).sort((x, y) => y.t - x.t);
-    for (const { d } of aged.slice(6)) if (d !== keep) fs.rmSync(d, { recursive: true, force: true });
+    for (const { d, t } of aged.slice(KEEP)) {
+        if (d === keep || Date.now() - t < USED) continue;
+        const gone = path.join(SNAPSHOTS, '.gone-' + crypto.randomBytes(4).toString('hex'));
+        try { fs.renameSync(d, gone); } catch (e) { continue; }
+        fs.rmSync(gone, { recursive: true, force: true });
+    }
 }
 
 // What the working tree holds that the commit does not, in the parts a render reads: the

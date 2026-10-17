@@ -111,6 +111,22 @@ async function main() {
         });
     };
     const notify = (method, params) => server.stdin.write(JSON.stringify({ jsonrpc: '2.0', method, params }) + '\n');
+    // One call on a server of its own, started with the environment given.
+    const once = (env2, name, args) => new Promise((resolve) => {
+        const other = spawn(process.execPath, [path.join(__dirname, 'pad-mcp.js')], { cwd: home, env: env2 });
+        let said = '';
+        other.stdout.setEncoding('utf8');
+        other.stdout.on('data', (d) => {
+            said += d;
+            for (const line of said.split('\n').slice(0, -1)) {
+                const msg = JSON.parse(line);
+                if (msg.id !== 1) continue;
+                other.stdin.end();
+                resolve(msg.result ? { text: msg.result.content.map((c) => c.text).join(''), error: msg.result.isError } : { text: '', rpc: msg.error });
+            }
+        });
+        other.stdin.write(JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name, arguments: args } }) + '\n');
+    });
     const call = async (name, args) => {
         const r = await request('tools/call', { name, arguments: args });
         return r.result ? { text: r.result.content.map((c) => c.text).join(''), error: r.result.isError } : { text: '', rpc: r.error };
@@ -202,6 +218,26 @@ async function main() {
         expect('pad_compare names a ref git does not know', r.error && r.text.includes("git knows no commit 'no-such-ref-at-all'"), r);
         r = await call('pad_compare', { app: 'shop', template: 'x', ref: 'HEAD..HEAD~1' });
         expect('pad_compare takes one commit, not a range', r.error && r.text.includes('is not a commit'), r);
+
+        // the snapshots a new one prunes are the ones nobody used of late: seven used in the
+        // last minutes - what the parallel sessions of a hunt leave, one of them still
+        // rendering on its own - stay beside the one made here, two not used for hours go
+        const snaps = path.join(tmp, 'pad-mcp-snapshots');
+        const made = (name, minutes) => {
+            fs.mkdirSync(path.join(snaps, name), { recursive: true });
+            fs.writeFileSync(path.join(snaps, name, '.complete'), name + '\n');
+            const t = new Date(Date.now() - minutes * 60000);
+            fs.utimesSync(path.join(snaps, name), t, t);
+        };
+        const recent = [1, 2, 3, 4, 5, 6, 7].map((n) => 'recent' + n);
+        recent.forEach((n, i) => made(n, i + 1));
+        made('aged1', 120);
+        made('aged2', 180);
+        const head = (spawnSync('git', ['-C', home, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).stdout || '').trim().slice(0, 12);
+        r = await once(Object.assign({}, env, { TMPDIR: tmp }), 'pad_compare', { app: 'shop', code: 'return 1;' });
+        const left = fs.existsSync(snaps) ? fs.readdirSync(snaps).filter((n) => !n.startsWith('.')).sort() : [];
+        expect('pad_compare keeps every snapshot used in the last hour and prunes the ones not used for hours',
+            !r.error && r.text.includes('the same on both') && left.join(',') === [head].concat(recent).sort().join(','), { r, left });
 
         r = await call('pad_case', { app: 'shop', page: 'orders' });
         expect('pad_case needs the regression runner', r.error && r.text.includes('there is no regression runner'), r);

@@ -82,7 +82,8 @@ running server with `curl -i`.
 `pad_compare` renders on a snapshot of another commit: its `pad/`, `editors/render.php`,
 `home/` and `www/` - with `scope: "all"` its `apps/` too - taken out of git with `git archive`
 into the system's temporary directory (`pad-mcp-snapshots/<commit>`), made once and kept for
-the next call; the six used last stay. No worktree, no checkout, no stash: the repository and
+the next call; the six used last stay, and every one used in the last hour - one another
+session is rendering on is never pruned from under it. No worktree, no checkout, no stash: the repository and
 the working tree are not touched, so it is safe while other work goes on in the checkout. A
 file over a megabyte - the OEIS database of the sequences - is cloned from the working tree when
 it is the same there. By default the applications are the working tree's on both sides, so a
