@@ -313,9 +313,13 @@
           $is_str = TRUE;
           $is_other = FALSE;
 
+          // 'lit' marks a string the template wrote, for the arguments that must be one -
+          // the SQL of a database tag called as a function (eval/parms/tag.php).
+
           $i += 100;
-          $result [$i] [0] = '';
-          $result [$i] [1] = 'VAL';
+          $result [$i] [0]     = '';
+          $result [$i] [1]     = 'VAL';
+          $result [$i] ['lit'] = TRUE;
 
         } else
 
@@ -333,8 +337,9 @@
           $is_other = FALSE;
 
           $i += 100;
-          $result [$i] [0] = '';
-          $result [$i] [1] = 'VAL';
+          $result [$i] [0]     = '';
+          $result [$i] [1]     = 'VAL';
+          $result [$i] ['lit'] = TRUE;
 
         } else
 

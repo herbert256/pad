@@ -8,6 +8,17 @@
   // in protected and the tag works on it as text. Piping into {code} or {sandbox} is the
   // one way to ask for the opposite - run this value as PAD - and there it goes in whole.
 
+  // The SQL of a database tag is the template's own (padDbTagSql, lib/db.php), called as a
+  // function too: field("phone from staff where name = $who") - one string written in the
+  // expression, a value put in as $name. Rebuilt below as the tag's quoted parameter, any
+  // value passed for a string the template wrote: {echo field($q)} ran a whole statement of
+  // the visitor's, field("x from t where city = '" . $city . "'") the SQL a request value
+  // closed the quote of.
+
+  if ( in_array ( $name, [ 'field', 'record', 'array', 'check' ] )
+       and isset ( $parm [0] ) and ! ( $padEvalLiteral [0] ?? FALSE ) and ! is_numeric ( $parm [0] ) )
+    return padError ( "the SQL of $name() is the template's own: give it as a quoted string, and put a value in it as \$name" );
+
   if ( $GLOBALS ['padProtectValues'] and ! in_array ( $name, [ 'code', 'sandbox' ] ) )
     $value = padProtect ( $value );
 

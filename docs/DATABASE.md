@@ -74,6 +74,9 @@ of the row is a variable too. `{$name}` there splices text instead and does not 
 {orders}{field "name from customers where id = $customer_id"}{/orders}
 ```
 
+Called as a function inside an expression the rule is the same: `{echo field("phone from staff
+where name = $who")}` takes one string written there; `field($q)` is refused.
+
 ### {field} - Query Single Value
 
 ```

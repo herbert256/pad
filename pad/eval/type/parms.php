@@ -20,10 +20,13 @@
                          and ( $result [$padEvalNextKey] [1] ?? '' ) != 'OPR' ) ? $padEvalNextKey + 1 : 0;
   }
 
-  $parm = [];
+  // $padEvalLiteral says of each argument whether it is a string the template wrote (parse.php).
+
+  $parm = $padEvalLiteral = [];
   foreach ( $result as $key => $val )
     if ( $key > $k and $key <= $result [$k] [3] - 1 ) {
-      $parm [] = $val[0];
+      $parm []           = $val[0];
+      $padEvalLiteral [] = ! empty ( $val ['lit'] );
       unset ( $result [$key] );
     }
 

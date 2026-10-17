@@ -19,6 +19,9 @@
 
             $result [$now] [0] = $result [$previous] [0] . $result [$now] [0];
 
+            // Joined to another value it is no string the template wrote as it stands.
+
+            unset ( $result [$now] ['lit'] );
             unset ( $result [$previous] );
 
           }
