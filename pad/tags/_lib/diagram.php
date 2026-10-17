@@ -573,13 +573,17 @@
     // A loop of a node on itself stands to its right - a wider one for each further loop -
     // with its label beside it: the room it takes is kept free, beside the node in its rank
     // (TB, BT) or in the gap after its rank (LR, RL), where it was drawn over the next node.
+    // In TB and BT every label of a node's loops stands past the outermost one, so the room
+    // reaches past that loop by the widest label.
 
-    $loopRoom = $loopCount = [];
+    $loopRoom = $loopCount = $loopWide = [];
 
     foreach ( $edges as list ( $a, $b, $label ) )
       if ( $a === $b ) {
         $k              = $loopCount [$a] = ( $loopCount [$a] ?? -1 ) + 1;
-        $loopRoom [$a]  = max ( $loopRoom [$a] ?? 0, 30 + 22 * $k + ( $label !== '' ? padDiagramWidth ( $label ) + 8 : 0 ) );
+        $wide           = $label !== '' ? padDiagramWidth ( $label ) + 8 : 0;
+        $loopWide [$a]  = max ( $loopWide [$a] ?? 0, $wide );
+        $loopRoom [$a]  = $vertical ? 30 + 22 * $k + $loopWide [$a] : max ( $loopRoom [$a] ?? 0, 30 + 22 * $k + $wide );
       }
 
     // The main axis: each rank as deep as its deepest node, the gaps between as wide as
@@ -962,8 +966,16 @@
     // loop's side was put half way along that edge, on the loop's turn, and the loop seemed to
     // run into "yes" and out again.
 
+    // In TB and BT the labels of a node's loops stand past its outermost loop, one under the
+    // other: each past its own loop at the node's middle, two labelled loops on one node had
+    // their plates on one spot, the first also over the second loop's turn.
+
     $side   = ( $direction == 'RL' ) ? -1 : 1;
-    $loops  = $labels = $curves = [];
+    $loops  = $labels = $curves = $loopsOf = [];
+
+    foreach ( $edges as list ( $a, $b ) )
+      if ( $a === $b )
+        $loopsOf [$a] = ( $loopsOf [$a] ?? 0 ) + 1;
 
     foreach ( $edges as $e => list ( $a, $b, $label ) )
       if ( $a === $b ) {
@@ -975,7 +987,8 @@
         $curves []  = [ $x + $r * 0.375, $n ['y'], abs ( $r ) * 0.75, 15 + 2 * $k, 'loop' ];
         if ( $label !== '' ) {
           $w              = padDiagramWidth ( $label ) + 8;
-          $labels [$e]    = $vertical ? [ $x + $r * 0.75 + $side * $w / 2, $n ['y'], $w ]
+          $outer          = padDiagramLoopAt ( $n, $loopsOf [$a] - 1, $side ) [1];
+          $labels [$e]    = $vertical ? [ $x + $outer * 0.75 + $side * $w / 2, $n ['y'] + 21 * ( $k - ( $loopsOf [$a] - 1 ) / 2 ), $w ]
                                       : [ $x + $side * $w / 2, $n ['y'] - 28 - 21 * $k, $w ];
           $boxes []       = [ $labels [$e] [0] - $w / 2, $labels [$e] [1] - 9, $labels [$e] [0] + $w / 2, $labels [$e] [1] + 9 ];
         }
