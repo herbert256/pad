@@ -3,7 +3,8 @@
   // The {record} tag and, through one-line includes, {field} and {array}: runs the tag's
   // parameter as SQL, using the tag name itself as db()'s command word - so {array "* from
   // users"} becomes db("array * from users"). $padTag [$pad] is read at run time, which is
-  // what lets the three tags share this one file; {check} has its own boolean variant.
+  // what lets the three tags share this one file; {check} has its own boolean variant. The
+  // SQL is a quoted string with its values put in as $name (padDbTagSql in lib/db.php).
 
   // In the designer preview a tag with a name the sample holds answers from the sample
   // instead of the database - {array "* from orders", name='orders'} - and a capture of
@@ -12,7 +13,12 @@
   if ( padSampleFound ( padTagParm ( 'name' ), $padSampleValue ) )
     return $padSampleValue;
 
-  $padRecordResult = db ( $padTag [$pad] . ' ' . $padParm );
+  $padRecordSql = padDbTagSql ();
+
+  if ( $padRecordSql === FALSE )
+    return ( $padTag [$pad] == 'field' ) ? '' : [];
+
+  $padRecordResult = db ( $padTag [$pad] . ' ' . $padRecordSql );
 
   if ( $padSampleMode == 'capture' and is_array ( $padSampleData ) and is_string ( padTagParm ( 'name' ) ) and padTagParm ( 'name' ) !== '' )
     $padSampleData [ padTagParm ( 'name' ) ] = $padRecordResult;

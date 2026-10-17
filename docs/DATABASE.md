@@ -56,6 +56,18 @@ answers 0, as if no row changed. Reads run as usual.
 
 The tag name becomes the `db()` command word - `{field "X"}` runs `db("field X")`, and so on. Do NOT write `SELECT` in the tag parameter; the command adds it.
 
+The SQL is the template's own: one quoted string, never an expression or a variable -
+`{field "x from t where city = '" . $city . "'"}` and `{field $q}` are refused. A value goes
+in as `$name`, written bare: it is bound as a quoted, escaped literal of that variable (a
+number as a number, an array as a list), as in the select's `where=`. Inside a loop a field
+of the row is a variable too. `{$name}` there splices text instead and does not match.
+
+```
+{field "phone from staff where name = $who"}
+{array "name from staff where name in ($names)"}{$name}{/array}
+{orders}{field "name from customers where id = $customer_id"}{/orders}
+```
+
 ### {field} - Query Single Value
 
 ```

@@ -10,6 +10,13 @@
   if ( padSampleFound ( padTagParm ( 'name' ), $padSampleValue ) )
     return $padSampleValue ? TRUE : FALSE;
 
-  return db ( $padTag [$pad] . ' ' . $padParm ) ? TRUE : FALSE;
+  // The SQL is a quoted string with its values put in as $name (padDbTagSql in lib/db.php).
+
+  $padCheckSql = padDbTagSql ();
+
+  if ( $padCheckSql === FALSE )
+    return FALSE;
+
+  return db ( $padTag [$pad] . ' ' . $padCheckSql ) ? TRUE : FALSE;
 
 ?>

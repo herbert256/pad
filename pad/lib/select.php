@@ -435,9 +435,10 @@
 
   // Replaces each $name outside a quoted literal with the value of that application
   // variable: a quoted, escaped literal (a number as a number, NULL as NULL), or for a
-  // column list the value as it is, which padSelectColumns then has to accept.
+  // column list the value as it is, which padSelectColumns then has to accept. The
+  // database tags bind their SQL here too (padDbTagSql); $what names the asker.
 
-  function padSelectBind ( $sql, $columns = FALSE ) {
+  function padSelectBind ( $sql, $columns = FALSE, $what = 'the select' ) {
 
     $out   = '';
     $quote = '';
@@ -470,7 +471,7 @@
         $name = $match [1];
 
         if ( ! padValidVar ( $name ) or ! array_key_exists ( $name, $GLOBALS ) )
-          return padError ( "there is no application variable named \$$name for the select" );
+          return padError ( "there is no application variable named \$$name for $what" );
 
         $value = $GLOBALS [$name];
 

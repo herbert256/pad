@@ -443,6 +443,29 @@
 
   }
 
+  // The SQL of a database tag - {field}, {record}, {array}, {check} - is the template's own
+  // text, as the select's where= is: one quoted string, a value put in as $name and bound by
+  // padSelectBind as an escaped literal of that variable. The parameter was any expression,
+  // so a request value concatenated in - {field "x from t where city = '" . $city . "'"} - or
+  // a whole statement in a variable - {field $q} - ran the visitor's SQL, while a value put
+  // in as {$city} reached the database as PAD's inert stand-ins and never matched. FALSE
+  // refuses the tag.
+
+  function padDbTagSql () {
+
+    global $pad, $padParms, $padOpt, $padTag;
+
+    foreach ( $padParms [$pad] ?? [] as $one )
+      if ( $one ['padPrmKind'] == 'parm' and $one ['padPrmName'] === 1 ) {
+        $org = trim ( (string) $one ['padPrmOrg'] );
+        if ( ! is_numeric ( $org ) and ! is_string ( padMetaLiteral ( $org ) ) )
+          return padError ( "the SQL of {" . $padTag [$pad] . "} is the template's own: give it as a quoted string, and put a value in it as \$name" );
+      }
+
+    return padSelectBind ( (string) ( $padOpt [$pad] [1] ?? '' ), FALSE, '{' . $padTag [$pad] . '}' );
+
+  }
+
   // Fills the {0}, {1} ... placeholders in one pass over the statement, so a value that
   // itself holds {1} is never substituted again by the next placeholder. A placeholder the
   // statement writes inside a quoted literal - name = '{0}' - gets the value escaped, as it
