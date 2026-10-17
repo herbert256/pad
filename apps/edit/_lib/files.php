@@ -179,6 +179,14 @@
 
     global $padFileMode;
 
+    // A symbolic link is written through, into the file it points to - editPath has made
+    // sure that lies inside the root. The temporary file renamed over the link itself put
+    // a copy in its place: the link was gone, and the file it pointed to - the one the
+    // save's conflict check had just compared against - kept the old text.
+
+    if ( is_link ( $file ) and ( $target = realpath ( $file ) ) !== FALSE )
+      $file = $target;
+
     $dir = dirname ( $file );
 
     if ( ! is_dir ( $dir ) and ! @mkdir ( $dir, 0755, TRUE ) )
