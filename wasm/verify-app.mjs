@@ -179,9 +179,11 @@ if (!only || only === 'ledger') {
   answer = await post('http://localhost/ledger/?quick&padFormat=json', JSON.stringify({ amount: '12.50', category: 4, note: 'Coffee beans', month: '2026-09' }),
                       { 'content-type': 'application/json', accept: 'application/json', 'x-csrf-token': meta });
   const quick = json(answer);
-  check('ledger: the quick entry - JSON in, the booking and the new totals out', quick.ok === true && quick.entry.amount === -12.5 && /^€ 2,306.08$/.test(quick.shown.spent), answer);
+  check('ledger: the quick entry from the newest month - JSON in, booked today in a month of its own, its totals out',
+        quick.ok === true && quick.entry.amount === -12.5 && quick.month > '2026-09' && quick.entry.day.slice(0, 7) === quick.month
+        && /^€ 12.50$/.test(quick.shown.spent), answer);
 
-  answer = await get('http://localhost/ledger/?transactions&month=2026-09&padFormat=csv');
+  answer = await get(`http://localhost/ledger/?transactions&month=${quick.month}&padFormat=csv`);
   const csv = text(answer).split('\n');
   check('ledger: the transactions as CSV ($padExpose)', /^text\/csv/.test(answer.headers['content-type'][0]) && csv[0].trim() === 'day,category,account,note,amount' && /Coffee beans/.test(text(answer)), answer);
 

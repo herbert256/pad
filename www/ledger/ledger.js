@@ -38,6 +38,12 @@
       said.textContent = answer.error || 'Not booked.';
       return;
     }
+    // Booked in another month than the one shown - today, the first entry of a new month:
+    // the overview of that month.
+    if (answer.month && answer.month !== fields.month) {
+      location.assign('?index&month=' + encodeURIComponent(answer.month));
+      return;
+    }
     for (const [key, value] of Object.entries(answer.shown || {})) {
       const cell = document.querySelector(`[data-kpi="${key}"]`);
       if (!cell || cell.textContent === value) continue;

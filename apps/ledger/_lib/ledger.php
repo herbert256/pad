@@ -233,6 +233,21 @@
 
   }
 
+  // The day the quick entry books on: today in the month shown, the month's last day when
+  // that month is gone by - and today when the month shown is the newest one with
+  // transactions, the overview's own: a new month has none until something is booked in it,
+  // so the overview showed the month before, and every quick entry of the new month was
+  // booked on that month's last day.
+
+  function ledgerQuickDay ( $month, $newest, $today ) {
+
+    if ( str_starts_with ( $today, $month ) or ( $month === $newest and substr ( $today, 0, 7 ) > $month ) )
+      return $today;
+
+    return date ( 'Y-m-t', strtotime ( "$month-01" ) );
+
+  }
+
   function ledgerMoney ( $amount ) {
 
     return ( $amount < 0 ? '−' : '' ) . '€ ' . number_format ( abs ( (float) $amount ), 2, '.', ',' );
