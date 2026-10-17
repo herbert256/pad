@@ -203,13 +203,15 @@
 
     // A hash made with older settings gets a new one for the application to store - and the
     // remember-me cookie is signed with that new one: signed with the old, the documented
-    // UPDATE that follows made it invalid at once.
+    // UPDATE that follows made it invalid at once. Only when the caller takes the new hash:
+    // one that does not keeps the old, and a cookie signed with the new never held.
 
     if ( padHashNeedsRehash ( $hash ) ) {
       $rehash = padHash ( $password );
-      foreach ( $user as $name => $value )
-        if ( $value === $hash )
-          $user [$name] = $rehash;
+      if ( func_num_args () >= 5 )
+        foreach ( $user as $name => $value )
+          if ( $value === $hash )
+            $user [$name] = $rehash;
     }
 
     return padLogin ( $user, $remember );
