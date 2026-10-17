@@ -111,6 +111,16 @@
 
     }
 
+    // A row that is an object - what json_decode answers by default, PDO's FETCH_OBJ, a
+    // model - is the row its properties make (padDataObject). Taken as a value, it was
+    // wrapped under the tag's name: {decoded}{$a}{/decoded} was "not found", where= and sort=
+    // saw no field, and {people}({$name}){/people} printed the tag's name for every row. A
+    // date object, or one that writes itself as text, is a value and stays one.
+
+    foreach ( $data as $padDataKey => $padDataRow )
+      if ( is_object ( $padDataRow ) and ! $padDataRow instanceof DateTimeInterface and ! $padDataRow instanceof Stringable )
+        $data [$padDataKey] = padDataObject ( $padDataRow );
+
     // A RECORD answer of db() is one row, which the fixers below would otherwise take for
     // a list of fields, one occurrence each. db() keeps the columns of every row it answered
     // for RECORD, and a row with those columns is known again wherever it arrives. It was one
@@ -130,6 +140,36 @@
     $data = padDataChkCheckArray  ($data,$name);
 
     return $data;
+
+  }
+
+  // An object as the array it holds - the items of a Traversable, the public properties of
+  // any other - and the objects inside it the same way, so a nested record reads as it does
+  // in decoded JSON: {$address.city}, {tags}...{/tags}. A date object and one that writes
+  // itself as text are values and stay; an object met again on its own way down - a model
+  // pointing back at its parent - stays the object it is, where the walk would never end.
+
+  function padDataObject ( $value, $above = [] ) {
+
+    if ( is_object ( $value ) ) {
+
+      $id = spl_object_id ( $value );
+
+      if ( $value instanceof DateTimeInterface or $value instanceof Stringable or isset ( $above [$id] ) )
+        return $value;
+
+      $above [$id] = TRUE;
+
+      $value = ( $value instanceof Traversable ) ? iterator_to_array ( $value ) : get_object_vars ( $value );
+
+    }
+
+    if ( is_array ( $value ) )
+      foreach ( $value as $key => $item )
+        if ( is_object ( $item ) or is_array ( $item ) )
+          $value [$key] = padDataObject ( $item, $above );
+
+    return $value;
 
   }
 
