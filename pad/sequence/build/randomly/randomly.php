@@ -6,7 +6,24 @@
   // to use as $pqLoop: for a stored sequence the term at a random index of $pqFixed,
   // otherwise a random point on the from/to/increment grid.
 
-  $pqRandomlyRand = $pqRandomlyStart + rand ( 0, $pqRandomlySteps ) * $pqRandomlyInc;
+  // Under unique every step of the window is drawn once before any is drawn again - see
+  // build/randomly/init.php.
+
+  if ( $pqRandomlyOnce and $pqRandomlyDrawn <= $pqRandomlySteps ) {
+
+    $pqRandomlyPick = rand ( $pqRandomlyDrawn, $pqRandomlySteps );
+    $pqRandomlyStep = $pqRandomlySwap [$pqRandomlyPick] ?? $pqRandomlyPick;
+
+    $pqRandomlySwap [$pqRandomlyPick] = $pqRandomlySwap [$pqRandomlyDrawn] ?? $pqRandomlyDrawn;
+    unset ( $pqRandomlySwap [$pqRandomlyDrawn] );
+
+    $pqRandomlyDrawn++;
+
+  } else
+
+    $pqRandomlyStep = rand ( 0, $pqRandomlySteps );
+
+  $pqRandomlyRand = $pqRandomlyStart + $pqRandomlyStep * $pqRandomlyInc;
 
   if ( pqStore ( $pqBuild ) )
     return $pqFixed [$pqRandomlyRand];

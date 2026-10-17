@@ -1,0 +1,7 @@
+{sequence '1..10', push='ten'}
+a[{sequence '1..10', randomly, unique, count}{$sequence}{/sequence}]
+b[{sequence '1..10', randomly, unique, sort}{$sequence} {/sequence}]
+c[{sequence prime, randomly, unique, rows=8, to=30, count}{$sequence}{/sequence}]
+d[{sequence prime, randomly, unique, to=30, sort}{$sequence} {/sequence}]
+e[{pull:ten randomly, unique, count}{$sequence}{/pull:ten}]
+f[{sequence '1;1;2', randomly, unique, sort}{$sequence} {/sequence}]

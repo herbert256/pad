@@ -42,4 +42,16 @@
 
   $pqRandomlySteps = intval ( ( $pqRandomlyEnd - $pqRandomlyStart ) / $pqRandomlyInc );
 
+  // With unique a point of the window is drawn once at most: each iterator offers one draw
+  // per point - per entry of a store, per step of a loop - and a repeat that unique turned
+  // down was a draw lost, so {sequence '1..10', randomly, unique} gave seven or eight of the
+  // ten and {sequence prime, randomly, unique, rows=8, to=30} as few as five of the ten
+  // primes. build/randomly/randomly.php draws the steps as a shuffle does, one at a time:
+  // $pqRandomlyDrawn of them are out, $pqRandomlySwap holds the ones swapped into their
+  // places - a window of any width costs a slot per draw.
+
+  $pqRandomlyOnce  = ( $pqUnique and $pqRandomlySteps >= 0 );
+  $pqRandomlyDrawn = 0;
+  $pqRandomlySwap  = [];
+
 ?>
