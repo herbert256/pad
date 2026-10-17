@@ -16,6 +16,13 @@
 
   $padFlagsBefore = [ $padNull [$pad], $padElse [$pad], $padHit [$pad] ];
 
+  // A tag whose rows came from data= and found none - {pad data='x'} over an empty store - is
+  // a tag that came back empty, as {x} or {data:x} reading the same store is: it answered
+  // TRUE, and no @else@, else= or demand ever saw the empty list.
+
+  if ( $padTagResult === TRUE and padTagParm ( 'data' ) and is_array ( $padData [$pad] ?? NULL ) and ! count ( $padData [$pad] ) )
+    $padTagResult = [];
+
   if     ( $padTagResult === NULL ) $padNull [$pad] = TRUE;
   elseif ( $padTagResult === INF  ) $padNull [$pad] = TRUE;
   elseif ( is_float($padTagResult) && is_nan($padTagResult) ) $padNull [$pad] = TRUE;
