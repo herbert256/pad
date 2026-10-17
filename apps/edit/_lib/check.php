@@ -183,14 +183,15 @@
     if ( ! empty ( $template ['suggest'] ) and is_string ( $template ['suggest'] ) )
       $message .= ' - did you mean ' . $template ['suggest'] . '?';
 
-    // The source map placed it, in this file: that is where it is.
+    // The source map placed it, in this file: that is where it is - its column counts
+    // characters, recounted in the editor's units from the line's text.
 
     $where = (string) ( $template ['path'] ?? '' );
 
     if ( $template and ! $fromSource and $where !== '' and realpath ( $where ) === realpath ( $file ) ) {
-      $length = mb_strlen ( (string) ( $template ['tag'] ?? '' ) );
-      return editMarker ( $text, (int) $template ['line'], (int) ( $template ['column'] ?? 1 ),
-                          $length, $message, 'pad' );
+      $line   = (int) $template ['line'];
+      $before = mb_substr ( explode ( "\n", (string) $text ) [ $line - 1 ] ?? '', 0, max ( 0, (int) ( $template ['column'] ?? 1 ) - 1 ) );
+      return editMarker ( $text, $line, editUnits ( $before ) + 1, editUnits ( (string) ( $template ['tag'] ?? '' ) ), $message, 'pad' );
     }
 
     // In another file of this application - a wrapper, a snippet: said in the message, and
@@ -230,17 +231,17 @@
     if ( ! empty ( $template ['tag'] ) )
       array_unshift ( $candidates, (string) $template ['tag'] );
 
-    // The column counts characters, as the editor's columns and the engine's own do: it was
-    // the byte offset in the line, so every é before the tag put the marker one further
-    // right - under typo}</ in <p>Één {$typo}</p>.
+    // The column counts the editor's units (editUnits): it was the byte offset in the line,
+    // so every é before the tag put the marker one further right - under typo}</ in
+    // <p>Één {$typo}</p>.
 
     foreach ( $candidates as $candidate ) {
       $at = strpos ( $text, $candidate );
       if ( $at !== FALSE ) {
         $line   = substr_count ( $text, "\n", 0, $at ) + 1;
         $start  = ( $line == 1 ) ? 0 : strrpos ( substr ( $text, 0, $at ), "\n" ) + 1;
-        $column = mb_strlen ( substr ( $text, $start, $at - $start ) ) + 1;
-        $marker = editMarker ( $text, $line, $column, mb_strlen ( $candidate ), $message, 'pad' );
+        $column = editUnits ( substr ( $text, $start, $at - $start ) ) + 1;
+        $marker = editMarker ( $text, $line, $column, editUnits ( $candidate ), $message, 'pad' );
         $marker ['other'] = $other;
         return $marker;
       }
@@ -256,14 +257,14 @@
 
   }
 
-  // A marker in the shape Monaco takes: 1-based line and column, in characters, the end on
-  // the same line; a column of 0 marks the whole line.
+  // A marker in the shape Monaco takes: 1-based line and column, in its units (editUnits),
+  // the end on the same line; a column of 0 marks the whole line.
 
   function editMarker ( $text, $line, $column, $length, $message, $source, $severity = 'error' ) {
 
     $lines  = explode ( "\n", (string) $text );
     $line   = max ( 1, min ( (int) $line, count ( $lines ) ) );
-    $width  = mb_strlen ( $lines [ $line - 1 ] ?? '' );
+    $width  = editUnits ( $lines [ $line - 1 ] ?? '' );
 
     if ( $column <= 0 ) {
       $start = 1 + strlen ( $lines [ $line - 1 ] ?? '' ) - strlen ( ltrim ( $lines [ $line - 1 ] ?? '' ) );
@@ -275,6 +276,16 @@
 
     return [ 'line' => $line, 'column' => $start, 'endColumn' => $end, 'message' => (string) $message,
              'source' => $source, 'severity' => $severity ];
+
+  }
+
+  // The length of a text as Monaco counts its columns - a JavaScript string's, in UTF-16
+  // units: an emoji, outside the Basic Multilingual Plane, is two. Counted in characters the
+  // marker stood one column to the left for every emoji before the tag.
+
+  function editUnits ( $text ) {
+
+    return intdiv ( strlen ( mb_convert_encoding ( (string) $text, 'UTF-16LE', 'UTF-8' ) ), 2 );
 
   }
 
