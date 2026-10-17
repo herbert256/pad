@@ -250,12 +250,15 @@
   // either but a refusal, by its line number: its values no longer stand under their names
   // - an amount written -23,40 without quotes is two cells - and cutting it to the header's
   // length booked -23 on a category "40", the category as the note. A line of empty cells
-  // is no row. An export that ends each line in a delimiter the header does not have is
-  // told by the whole file - every line that holds a value has more cells than the header
-  // names and an empty last one - and then each line loses that one last cell: every line
-  // of such a file was refused. Decided line by line, dropping the empty cells past the
-  // header's names hid the overflow of an unquoted -23,40 on a line whose note was empty:
-  // 2026-09-05,-23,40,Groceries, booked -23 on a category "40" again. A byte order mark is
+  // is no row. An export that ends each line in delimiters the header does not have is told
+  // by the whole file: the empty cells past the header's names that every line of at least
+  // the header's length ends in - a footer of fewer cells, Total,-14.50, says nothing about
+  // it - are dropped from those lines; every line of such a file was refused. Decided line
+  // by line, dropping the empty cells past the header's names hid the overflow of an
+  // unquoted -23,40 on a line whose note was empty: 2026-09-05,-23,40,Groceries, booked -23
+  // on a category "40" again. In a file that does end in delimiters such a line looks the
+  // same as a whole one - always so in a file of one line - and an amount of whole units
+  // followed by a cell of one or two digits is refused there too. A byte order mark is
   // read past before the header: in front of a quoted name it made the quote text, and
   // "day" with its quotes was no column day.
 
@@ -279,15 +282,30 @@
 
     }
 
-    $trailing = ( $lines and ! array_filter ( $lines, fn ( $cells ) => count ( $cells ) <= count ( $header ) or trim ( (string) end ( $cells ) ) !== '' ) );
+    $drop = NULL;
+
+    foreach ( $lines as $cells )
+      if ( count ( $cells ) >= count ( $header ) ) {
+        for ( $empty = 0; $empty < count ( $cells ) and trim ( (string) $cells [ count ( $cells ) - 1 - $empty ] ) === ''; $empty++ );
+        $drop = min ( $drop ?? PHP_INT_MAX, $empty, count ( $cells ) - count ( $header ) );
+      }
+
+    $drop   = (int) $drop;
+    $amount = array_search ( 'amount', $header );
 
     foreach ( $lines as $line => $cells ) {
 
-      if ( $trailing )
-        array_pop ( $cells );
+      $count = count ( $cells );
 
-      if ( count ( $cells ) > count ( $header ) ) {
-        $refused [$line] = 'skipped - ' . count ( $cells ) . ' cells where the first row names ' . count ( $header ) . ' - an amount like -23,40 needs quotes: "-23,40"';
+      if ( $drop and $count >= count ( $header ) )
+        $cells = array_slice ( $cells, 0, $count - $drop );
+
+      $split = ( $drop and $amount !== FALSE
+                 and preg_match ( '/^\s*-?\d+\s*$/D', (string) ( $cells [$amount] ?? '' ) )
+                 and preg_match ( '/^\s*\d{1,2}\s*$/D', (string) ( $cells [$amount + 1] ?? '' ) ) );
+
+      if ( count ( $cells ) > count ( $header ) or $split ) {
+        $refused [$line] = 'skipped - ' . $count . ' cells where the first row names ' . count ( $header ) . ' - an amount like -23,40 needs quotes: "-23,40"';
         continue;
       }
 
