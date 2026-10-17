@@ -136,9 +136,15 @@
     // makes the select list decide what a row is: a derived table may not hold two columns
     // of one name, so on MySQL a join of two tables that share one - select * from orders
     // join customers, both with customerNumber - ended the page as soon as it was counted.
+    // The fields decide it as well when they start with distinct or hold an aggregate:
+    // fields='distinct country' had the pages of every customer, and fields='count(*) as n'
+    // a pager over its one row.
 
     if ( $padSelLimit and ! $unionBuild ) {
-      $count = ( in_array ( $padSelStart, [ '', 'ALL' ] ) and ! $padSelGroup and ! $having and trim ( $members ) === '' )
+      $short = ( in_array ( $padSelStart, [ '', 'ALL' ] ) and ! $padSelGroup and ! $having and trim ( $members ) === ''
+                 and ! preg_match ( '/^\s*(all\s+)?distinct(row)?\b/i', (string) $fields )
+                 and ! preg_match ( '/\b(count|sum|avg|min|max|total|group_concat|json_arrayagg|json_objectagg|string_agg|bit_and|bit_or|bit_xor|std|stddev|stddev_pop|stddev_samp|variance|var_pop|var_samp)\s*\(/i', (string) $fields ) );
+      $count = $short
              ? "select 1 from $db $padSelJoin $padSelWhere"
              : "select $base";
       $GLOBALS ['padPagerCount'] [$pad] = "field count(*) from ( $count ) as padPagerCount";

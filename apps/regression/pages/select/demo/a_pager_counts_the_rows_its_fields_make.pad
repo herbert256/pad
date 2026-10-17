@@ -1,0 +1,4 @@
+[{countriesPaged fields='distinct country', order='country', page=1, rows=10}{$country}; {/countriesPaged}]
+({pager 'countriesPaged', window=0}{$kind}:{$page} {/pager})
+[{paymentTotals fields='count(*) as n', page=1, rows=10}{$n}{/paymentTotals}]
+({pager 'paymentTotals', window=0}{$kind}:{$page} {/pager})
