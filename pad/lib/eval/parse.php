@@ -23,7 +23,8 @@
   //
   // Numbers accept a leading sign, decimals, exponents and 0x hex; strings accept both
   // quote styles with \n \r \t \\ \' \" escapes. Whitespace and commas end the current
-  // token and are otherwise ignored, so parameter lists need no special handling.
+  // token and are otherwise ignored, so parameter lists need no special handling - only the
+  // token after a comma inside brackets carries ['arg'], the start of an argument.
 
   // The tokens of an expression, kept for the request: a loop evaluates the same text once
   // per row, and the text alone decides what the validation and the tokeniser make of it.
@@ -259,6 +260,13 @@
 
     $signedNumbers = [];
 
+    // The commas between the arguments of a call - or the items of a [ ] list - are dropped,
+    // but the token each one ends is kept in $commas: the token after it starts an argument,
+    // and padEvalTernary must not run an inline ternary past that start.
+
+    $commas = [];
+    $depth  = 0;
+
     foreach ( $input as $key => $one ) {
 
       if ($skip) {
@@ -402,6 +410,7 @@
         $result [$i] [0] = ')';
         $result [$i] [1] = 'close';
         $is_other = FALSE;
+        $depth--;
 
         continue;
 
@@ -413,6 +422,7 @@
         $result [$i] [0] = '(';
         $result [$i] [1] = 'open';
         $is_other = FALSE;
+        $depth++;
 
         continue;
 
@@ -424,6 +434,7 @@
         $result [$i] [0] = ']';
         $result [$i] [1] = 'a-close';
         $is_other = FALSE;
+        $depth--;
 
         continue;
 
@@ -435,6 +446,7 @@
         $result [$i] [0] = '[';
         $result [$i] [1] = 'a-open';
         $is_other = FALSE;
+        $depth++;
 
         continue;
 
@@ -777,6 +789,8 @@
 
       if ($one == ',') {
         $is_other = FALSE;
+        if ( $depth > 0 )
+          $commas [] = $i;
         continue;
       }
 
@@ -807,6 +821,13 @@
     }
 
     ksort ( $result );
+
+    // The token after each comma - a sign split off its number above included - is marked
+    // as the start of an argument.
+
+    foreach ( $commas as $k )
+      if ( $after = padEvalNextKey ( $result, $k ) )
+        $result [$after] ['arg'] = TRUE;
 
   }
 
