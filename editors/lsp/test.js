@@ -276,6 +276,23 @@ async function main() {
     } finally {
         fs.rmSync(loneDir, { recursive: true, force: true });
     }
+    // a _common holding only an _include/ - no _lib/, no configuration, no _inits.pad - is read
+    // without them: every page died on the missing _common/_lib, and past that rendered empty,
+    // the page put into the @page@ of an _inits.pad that was not there
+    const bareDir = fs.mkdtempSync(path.join(os.tmpdir(), 'pad-lsp-'));
+    try {
+        fs.mkdirSync(path.join(bareDir, 'apps', '_common', '_include'), { recursive: true });
+        fs.writeFileSync(path.join(bareDir, 'apps', '_common', '_include', 'hello.pad'), 'hello');
+        fs.mkdirSync(path.join(bareDir, 'apps', 'mine'), { recursive: true });
+        fs.writeFileSync(path.join(bareDir, 'apps', 'mine', 'page.pad'), '<p>{hello} {$typo}</p>\n');
+        const bareUri = url.pathToFileURL(path.join(bareDir, 'apps', 'mine', 'page.pad')).href;
+        notify('textDocument/didOpen', { textDocument: { uri: bareUri, languageId: 'pad', version: 1, text: '<p>{hello} {$typo}</p>\n' } });
+        g = await diagnosticsFor(bareUri);
+        expect('a page beside a _common with no _lib and no _inits.pad gets its own diagnostics, not the missing _common/_lib',
+            g && g.length === 1 && g[0].message === "Field '$typo' not found" && g[0].range.start.character === 12, g);
+    } finally {
+        fs.rmSync(bareDir, { recursive: true, force: true });
+    }
     g = await diagnosticsFor(uri('included.pad'));
     expect('an error in an included snippet sits on the page\'s tag that includes it, not on a look-alike in a dead branch, and names the snippet\'s file and place',
         g && g[0] && g[0].message === "Field '$lost' not found - in _include/lost.pad:2:4"

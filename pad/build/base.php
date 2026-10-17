@@ -65,8 +65,19 @@
   if ( ! $padCommon )
     return $padBuildBase;
 
+  // A _common _inits.pad without @page@ - or none at all, in a _common holding only its
+  // _include/ or _tags/ - has the page after it, as a directory's has: the page went into
+  // a hole that was not there, and every page of the application rendered empty.
+
   $padBuildCommon = padFileGet ( COMMON . '_inits.pad' );
-  $padSrcBase     = padSrcReplace ( padSrcPieces ( $padBuildCommon, COMMON . '_inits.pad' ), '@page@', $padSrcBase );
+  $padSrcCommon   = padSrcPieces ( $padBuildCommon, COMMON . '_inits.pad' );
+
+  if ( strpos ( $padBuildCommon, '@page@' ) === FALSE ) {
+    $padBuildCommon .= '@page@';
+    $padSrcCommon    = array_merge ( $padSrcCommon, padSrcPieces ( '@page@' ) );
+  }
+
+  $padSrcBase = padSrcReplace ( $padSrcCommon, '@page@', $padSrcBase );
 
   if ( trim ( $padBuildCommon ) !== '' )
     array_unshift ( $padSrcWrap, COMMON . '_inits.pad' );

@@ -11,7 +11,11 @@
   $padBuildLib = '';
   $padSrcLib   = [];
 
-  if ( $padCommon ) {
+  // A _common without a _lib - one holding only _include/ or _tags/, or an empty one beside a
+  // project of one's own - is read without it, as the page's directories are: every page
+  // died on "RecursiveDirectoryIterator(.../_common/_lib): Failed to open directory".
+
+  if ( $padCommon and is_dir ( COMMON . '_lib' ) ) {
     $padBuildDir = rtrim ( COMMON, '/' );
     include PAD . 'build/lib.php';
   }
