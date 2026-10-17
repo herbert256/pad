@@ -17,7 +17,7 @@
 
     $padCall = "$padBuildGuard/_guard.php";
 
-    if ( ! file_exists ( $padCall ) )
+    if ( ! padFileExists ( $padCall ) )
       continue;
 
     include PAD . 'call/_call.php';

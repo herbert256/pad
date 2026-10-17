@@ -87,7 +87,7 @@
       // include. Strict mode names it; the lenient walk falls back to sniffing the type
       // from the data, the way an untyped {data} is read.
 
-      if ( ! file_exists ( PAD . "data/$type.php" ) ) {
+      if ( ! padFileExists ( PAD . "data/$type.php" ) ) {
 
         global $padCheckSyntax;
 

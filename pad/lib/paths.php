@@ -110,14 +110,14 @@
 
       $file = APP2 . $value . "_data/$check";
 
-      if ( file_exists ( $file ) and ! is_dir ( $file ) ) return  $file;
-      if ( file_exists ( "$file.xml"  )                 ) return "$file.xml";
-      if ( file_exists ( "$file.json" )                 ) return "$file.json";
-      if ( file_exists ( "$file.yaml" )                 ) return "$file.yaml";
-      if ( file_exists ( "$file.csv"  )                 ) return "$file.csv";
-      if ( file_exists ( "$file.php"  )                 ) return "$file.php";
-      if ( file_exists ( "$file.curl" )                 ) return "$file.curl";
-      if ( file_exists ( "$file.sql"  )                 ) return "$file.sql";
+      if ( padFileExists ( $file ) and ! is_dir ( $file ) ) return  $file;
+      if ( padFileExists ( "$file.xml"  )                 ) return "$file.xml";
+      if ( padFileExists ( "$file.json" )                 ) return "$file.json";
+      if ( padFileExists ( "$file.yaml" )                 ) return "$file.yaml";
+      if ( padFileExists ( "$file.csv"  )                 ) return "$file.csv";
+      if ( padFileExists ( "$file.php"  )                 ) return "$file.php";
+      if ( padFileExists ( "$file.curl" )                 ) return "$file.curl";
+      if ( padFileExists ( "$file.sql"  )                 ) return "$file.sql";
 
     }
 
@@ -129,14 +129,14 @@
 
     $file = COMMON . "_data/$check";
 
-    if ( file_exists ( $file ) and ! is_dir ( $file ) ) return  $file;
-    if ( file_exists ( "$file.xml"  )                 ) return "$file.xml";
-    if ( file_exists ( "$file.json" )                 ) return "$file.json";
-    if ( file_exists ( "$file.yaml" )                 ) return "$file.yaml";
-    if ( file_exists ( "$file.csv"  )                 ) return "$file.csv";
-    if ( file_exists ( "$file.php"  )                 ) return "$file.php";
-    if ( file_exists ( "$file.curl" )                 ) return "$file.curl";
-    if ( file_exists ( "$file.sql"  )                 ) return "$file.sql";
+    if ( padFileExists ( $file ) and ! is_dir ( $file ) ) return  $file;
+    if ( padFileExists ( "$file.xml"  )                 ) return "$file.xml";
+    if ( padFileExists ( "$file.json" )                 ) return "$file.json";
+    if ( padFileExists ( "$file.yaml" )                 ) return "$file.yaml";
+    if ( padFileExists ( "$file.csv"  )                 ) return "$file.csv";
+    if ( padFileExists ( "$file.php"  )                 ) return "$file.php";
+    if ( padFileExists ( "$file.curl" )                 ) return "$file.curl";
+    if ( padFileExists ( "$file.sql"  )                 ) return "$file.sql";
 
     return '';
 

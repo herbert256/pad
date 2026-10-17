@@ -12,7 +12,7 @@
   // Only a plain name takes the fast path: the expression text went into the include path
   // as it was, so ../ reached any .php file under the engine.
 
-  if ( preg_match ( '/^[A-Za-z][A-Za-z0-9_]*$/', $eval ) and file_exists ( PAD . "functions/$eval.php" ) )
+  if ( preg_match ( '/^[A-Za-z][A-Za-z0-9_]*$/', $eval ) and padFileExists ( PAD . "functions/$eval.php" ) )
     return include PAD . 'eval/fast.php';
 
   // A malformed expression is reported here, in the source's own terms, before the

@@ -68,7 +68,7 @@
 
     }
     elseif ( $padTagSeq [$pad]                                  ) continue;
-    elseif ( ! file_exists ( PAD . "handling/types/$padPrmName.php" ) ) continue;
+    elseif ( ! padFileExists ( PAD . "handling/types/$padPrmName.php" ) ) continue;
 
     $padHandName = $padPrmName;
     $padHandParm = $padPrmValue;

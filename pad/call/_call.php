@@ -12,7 +12,7 @@
 
   include PAD . 'call/_init.php';
 
-  if ( file_exists ( $padCall ) ) {
+  if ( padFileExists ( $padCall ) ) {
 
     if ( $padInfo )
       include PAD . 'events/callStart.php';

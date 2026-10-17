@@ -68,8 +68,8 @@
       if ( $padPrmChk ['padPrmKind'] != 'option' )
         continue;
 
-      if ( file_exists ( PA . $padPrmChk ['padPrmName'] . '.php' )
-           or file_exists ( PT . $padPrmChk ['padPrmName'] )
+      if ( padFileExists ( PA . $padPrmChk ['padPrmName'] . '.php' )
+           or padFileExists ( PT . $padPrmChk ['padPrmName'] )
            or in_array ( $padPrmChk ['padPrmName'], [ 'make', 'keep', 'remove', 'flag' ] ) )
         continue;
 

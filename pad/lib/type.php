@@ -84,8 +84,8 @@
     elseif ( padDataFileName    ( $item                          ) ) return 'local';
     elseif ( padScriptCheck     ( $item                          ) ) return 'script';
     elseif ( padPhpAllowed      ( $item                          ) ) return 'php';
-    elseif ( file_exists        ( PT . $item                     ) ) return 'sequence';
-    elseif ( file_exists        ( PA . "$item.php" ) ) return 'action';
+    elseif ( padFileExists      ( PT . $item                     ) ) return 'sequence';
+    elseif ( padFileExists      ( PA . "$item.php" ) ) return 'action';
 
     return FALSE;
 
@@ -108,7 +108,7 @@
     // trim and ucwords are such names.
 
     if ( $common == 'php' and $goFunction
-         and ( padAppFunctionCheck ( $type ) or file_exists ( PAD . "functions/$type.php" ) ) )
+         and ( padAppFunctionCheck ( $type ) or padFileExists ( PAD . "functions/$type.php" ) ) )
       return 'function';
 
     if ( $common )
@@ -149,8 +149,8 @@
     elseif ( padDataFileName    ( $item                          ) and $type == 'local'    ) return $type;
     elseif ( padScriptCheck     ( $item                          ) and $type == 'script'   ) return $type;
     elseif ( function_exists    ( strstr ( "$item(", '(', TRUE ) ) and $type == 'php'      ) return $type;
-    elseif ( file_exists        ( PT . $item                     ) and $type == 'sequence' ) return $type;
-    elseif ( file_exists        ( PA . "$item.php"               ) and $type == 'action'   ) return $type;
+    elseif ( padFileExists      ( PT . $item                     ) and $type == 'sequence' ) return $type;
+    elseif ( padFileExists      ( PA . "$item.php"               ) and $type == 'action'   ) return $type;
     elseif ( padTypeFunction    ( $item, 0                       ) and $type == 'function' ) return $type;
 
     return FALSE;
@@ -161,7 +161,7 @@
 
         if ( ! padValid          ( $type                       ) ) return FALSE;
     elseif ( padAppFunctionCheck ( $type                       ) ) return 'app';
-    elseif ( file_exists         ( PAD . "functions/$type.php" ) ) return 'pad';
+    elseif ( padFileExists       ( PAD . "functions/$type.php" ) ) return 'pad';
 
     $common = padTypeCommon ( $type );
     if ( $common )
@@ -183,23 +183,23 @@
     if ( ! padValidName ( $type ) or ! padValidName ( $item ) )
       return FALSE;
 
-    if ( $type == 'action' and file_exists ( PA . "$item.php" )                           ) return 'action';
-    if ( $item == 'action' and file_exists ( PA . "$type.php" )                           ) return 'action';
+    if ( $type == 'action' and padFileExists ( PA . "$item.php" )                           ) return 'action';
+    if ( $item == 'action' and padFileExists ( PA . "$type.php" )                           ) return 'action';
 
-    if ( isset ( $pqStore [$type] ) and file_exists ( PA . "$item.php")                   ) return 'action';
-    if ( isset ( $pqStore [$item] ) and file_exists ( PA . "$type.php")                   ) return 'action';
+    if ( isset ( $pqStore [$type] ) and padFileExists ( PA . "$item.php")                   ) return 'action';
+    if ( isset ( $pqStore [$item] ) and padFileExists ( PA . "$type.php")                   ) return 'action';
 
-    if ( isset ( $pqStore [$type] ) and file_exists ( PT . "$item")                       ) return 'make';
-    if ( isset ( $pqStore [$item] ) and file_exists ( PT . "$type")                       ) return 'make';
+    if ( isset ( $pqStore [$type] ) and padFileExists ( PT . "$item")                       ) return 'make';
+    if ( isset ( $pqStore [$item] ) and padFileExists ( PT . "$type")                       ) return 'make';
 
     if ( isset ( $pqStore [$type] ) and file_exists ( PQ . "start/types/$item.php")       ) return $item;
     if ( isset ( $pqStore [$item] ) and file_exists ( PQ . "start/types/$type.php")       ) return $type;
 
-    if ( file_exists ( PT . "$item" )    and file_exists ( PQ . "start/types/$type.php")  ) return $type;
-    if ( file_exists ( PT . "$type" )    and file_exists ( PQ . "start/types/$item.php")  ) return $item;
+    if ( padFileExists ( PT . "$item" )    and file_exists ( PQ . "start/types/$type.php")  ) return $type;
+    if ( padFileExists ( PT . "$type" )    and file_exists ( PQ . "start/types/$item.php")  ) return $item;
 
-    if ( file_exists ( PA . "$item.php" ) and file_exists ( PQ . "start/types/$type.php") ) return $type;
-    if ( file_exists ( PA . "$type.php" ) and file_exists ( PQ . "start/types/$item.php") ) return $item;
+    if ( padFileExists ( PA . "$item.php" ) and file_exists ( PQ . "start/types/$type.php") ) return $type;
+    if ( padFileExists ( PA . "$type.php" ) and file_exists ( PQ . "start/types/$item.php") ) return $item;
 
     return FALSE;
 
