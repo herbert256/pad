@@ -2187,7 +2187,7 @@ once per page. A modal without a valid name is an error under the strict check.
 ### carousel
 Slides in a row that scrolls and snaps sideways (CSS scroll snap), with previous and next links
 on each slide and a dot per slide below - links to the slides' ids, so no JavaScript is needed
-(`lib/carousel.php`).
+(`tags/_lib/carousel.php`).
 
 ```html
 {carousel label='Landscapes'}
