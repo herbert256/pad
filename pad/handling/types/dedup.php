@@ -19,13 +19,13 @@
   $padDedupSeen = [];
 
   foreach ( $padData [$pad] as $padK => $padV)
-    if ( is_array ($padV) and count($padV) == 1 and isset ( $padV [$padName [$pad]] ) ) {
-      $padDedupVal = $padV [$padName [$pad]];
+    if ( is_array ($padV) and count($padV) == 1 ) {
+      $padDedupVal = reset ( $padV );
       $padDedupKey = is_scalar ( $padDedupVal ) ? (string) $padDedupVal : serialize ( $padDedupVal );
       if ( isset ( $padDedupSeen [$padDedupKey] ) )
         continue;
       $padDedupSeen [$padDedupKey] = TRUE;
-      $padDedup [$padK] = [ $padName [$pad] => $padDedupVal ] ;
+      $padDedup [$padK] = $padV;
     }
 
   if ( count ($padDedup) )
