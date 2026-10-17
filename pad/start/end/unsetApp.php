@@ -9,9 +9,7 @@
   // values, and searched them loosely: a page variable holding TRUE matched every name the
   // pass invented, and {code sandbox} on such a page unset nothing at all.
 
-  foreach ( $GLOBALS as $padStrKey => $padStrVal )
-    if ( padValidStore ( $padStrKey ) )
-      if ( ! array_key_exists ( $padStrKey, $padStrApp [$padStrCnt] ) )
-        unset ( $GLOBALS [$padStrKey] );
+  foreach ( array_diff_key ( padAppVars ( $GLOBALS ), $padStrApp [$padStrCnt] ) as $padStrKey => $padStrVal )
+    unset ( $GLOBALS [$padStrKey] );
 
 ?>

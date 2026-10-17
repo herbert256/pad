@@ -39,10 +39,9 @@
   $padStrFunResult = include PAD . 'start/pad/pad.php';
 
   if ( ! $padStrBox and ! $padStrCln )
-    foreach ( get_defined_vars () as $padStrKey => $padStrVal )
-      if ( padValidStore ( $padStrKey ) )
-        if ( ! isset ( $GLOBALS [$padStrKey] ) )
-          $GLOBALS [$padStrKey] = $padStrVal;
+    foreach ( padAppVars ( get_defined_vars () ) as $padStrKey => $padStrVal )
+      if ( ! isset ( $GLOBALS [$padStrKey] ) )
+        $GLOBALS [$padStrKey] = $padStrVal;
 
   $padStrFunCnt--;
 

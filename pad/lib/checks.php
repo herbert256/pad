@@ -335,6 +335,30 @@
 
   }
 
+  // The variables of $vars that padStrPad says a nested pass keeps, each name classified once
+  // for the request, where a pass started and ended with a loop that asked padStrPad for
+  // each of some 450 globals. The values are copied by the loop, never kept as references
+  // (padAppVars says why).
+
+  function padStrPadVars ( $vars ) {
+
+    static $yes = [], $no = [];
+
+    foreach ( array_diff_key ( $vars, $yes, $no ) as $name => $unused )
+      if ( padStrPad ( (string) $name ) )
+        $yes [$name] = TRUE;
+      else
+        $no [$name] = TRUE;
+
+    $out = [];
+
+    foreach ( array_intersect_key ( $vars, $yes ) as $name => $value )
+      $out [$name] = $value;
+
+    return $out;
+
+  }
+
   function padValidFirstChar ($char) {
 
     if ( ctype_alpha ( $char) ) return TRUE;
