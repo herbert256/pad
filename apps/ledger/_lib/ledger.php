@@ -220,11 +220,16 @@
   // - an amount written -23,40 without quotes is two cells - and cutting it to the header's
   // length booked -23 on a category "40", the category as the note. Empty cells past the
   // header's names are no values - an export that ends each line in a delimiter - and a
-  // line of empty cells is no row: every line of such a file was refused.
+  // line of empty cells is no row: every line of such a file was refused. A byte order mark
+  // is read past before the header: in front of a quoted name it made the quote text, and
+  // "day" with its quotes was no column day.
 
   function ledgerCsv ( $handle ) {
 
-    $header  = array_map ( fn ( $h ) => strtolower ( trim ( (string) $h, " \t\n\r\0\x0B\xEF\xBB\xBF" ) ), fgetcsv ( $handle, escape: '' ) ?: [] );
+    if ( fread ( $handle, 3 ) !== "\xEF\xBB\xBF" )
+      rewind ( $handle );
+
+    $header  = array_map ( fn ( $h ) => strtolower ( trim ( (string) $h ) ), fgetcsv ( $handle, escape: '' ) ?: [] );
     $rows    = [];
     $refused = [];
     $line    = 1;
