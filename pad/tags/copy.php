@@ -4,7 +4,7 @@
   // selects as a whole with a click, and a button that puts it on the clipboard: a small
   // script, once per page with the CSP nonce, says 'Copied' on the button and to a screen
   // reader. Without scripting there is no button, and the text is selected and copied by
-  // hand. label= is the button's text, 'Copy' when not given. lib/copy.php.
+  // hand. label= is the button's text, 'Copy' when not given. tags/_lib/copy.php.
   //
   // The text of the single tag is a value, escaped; the content of the pair is template,
   // rendered first - like {live}, the pair asks for the end walk and frames what rendered.

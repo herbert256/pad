@@ -2218,7 +2218,7 @@ reduced motion is asked for; printed, the slides stand under each other. The col
 
 ### copy
 A text with a copy-to-clipboard button - the text in a `<pre><code>` that selects as a whole
-with one click, so it is copied by hand where the button cannot run (`lib/copy.php`).
+with one click, so it is copied by hand where the button cannot run (`tags/_lib/copy.php`).
 
 ```html
 {copy 'composer require pad/pad'}
