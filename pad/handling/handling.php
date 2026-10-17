@@ -98,6 +98,20 @@
     if ( $padHandName == 'end' and isset ( $padPrm [$pad] ['start'] ) )
       $padHandInvert = FALSE;
 
+    // A select table's where is SQL the query applied, and its page and rows the query's
+    // limit: those handlers leave its rows as they are, and inverted, that unchanged
+    // selection became no row at all - in silence. The SQL cannot be turned round here.
+
+    if ( $padHandInvert and $padType [$pad] == 'select'
+         and ( $padHandName == 'where' or ( $padDone [$pad] [$padHandName] ?? '' ) === 'limit' ) ) {
+
+      $padHandInvert = FALSE;
+
+      if ( $padCheckSyntax )
+        padError ( "negative cannot turn round the $padHandName= of a select table, which its SQL applied - write the condition the other way round" );
+
+    }
+
     if ( $padHandInvert )
       include PAD . "handling/negative/inits.php";
 
