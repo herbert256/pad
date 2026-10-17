@@ -143,11 +143,16 @@
 
   }
 
-  // An object as the array it holds - the items of a Traversable, the public properties of
-  // any other - and the objects inside it the same way, so a nested record reads as it does
-  // in decoded JSON: {$address.city}, {tags}...{/tags}. A date object and one that writes
-  // itself as text are values and stay; an object met again on its own way down - a model
-  // pointing back at its parent - stays the object it is, where the walk would never end.
+  // An object as the array it holds - what a JsonSerializable answers, the items of a
+  // Traversable, the public properties of any other - and the objects inside it the same way,
+  // so a nested record reads as it does in decoded JSON: {$address.city}, {tags}...{/tags}. A
+  // date object and one that writes itself as text are values and stay; an object met again
+  // on its own way down - a model pointing back at its parent - stays the object it is, where
+  // the walk would never end.
+  //
+  // An object that says what its data is - jsonSerialize - is that data, as json_encode
+  // writes it: read by its public properties, a model that leaves its password hash out of
+  // its JSON had it written by {^user}, the JSON x-data="{^user}" hands the browser.
 
   function padDataObject ( $value, $above = [] ) {
 
@@ -160,7 +165,12 @@
 
       $above [$id] = TRUE;
 
-      $value = ( $value instanceof Traversable ) ? iterator_to_array ( $value ) : get_object_vars ( $value );
+      if ( $value instanceof JsonSerializable ) {
+        $value = $value -> jsonSerialize ();
+        if ( is_object ( $value ) )
+          return padDataObject ( $value, $above );
+      } else
+        $value = ( $value instanceof Traversable ) ? iterator_to_array ( $value ) : get_object_vars ( $value );
 
     }
 
