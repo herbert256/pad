@@ -34,9 +34,11 @@
     $value = '';
 
   // A date object is its text to a function that takes text (padDateText); date, ago and
-  // localDate take the moment itself.
+  // localDate take the moment itself, and so do time and timestamp, the date function under
+  // other names: as text a moment of another zone was read in the application's zone and
+  // came out hours off.
 
-  if ( ! in_array ( $name, [ 'date', 'ago', 'localDate' ], TRUE ) )
+  if ( ! in_array ( $name, [ 'date', 'time', 'timestamp', 'ago', 'localDate' ], TRUE ) )
     $value = padDateText ( $value );
 
   $padFnNeeds = [ 'replace' => 2, 'between'    => 2, 'range'    => 2,
