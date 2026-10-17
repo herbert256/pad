@@ -9,7 +9,9 @@
   $padSampleMode = padSampleMode ();
   $padSampleData = NULL;
 
-  if ( $padSampleMode )
+  if ( $padSampleMode ) {
     $padCache = FALSE;
+    include_once PAD . 'build/_lib/sample.php';
+  }
 
 ?>
