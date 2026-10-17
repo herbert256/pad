@@ -1,6 +1,6 @@
 <?php
 
-  // {toc} - a table of contents of the page, from its own rendered headings: lib/toc.php.
+  // {toc} - a table of contents of the page, from its own rendered headings: tags/_lib/toc.php.
   //
   //   {toc}                                    the <h2> and <h3>, nested, titled Contents
   //   {toc levels='2-4', title='On this page', list='ul'}

@@ -3,6 +3,8 @@
   // A long listing whose every card has the same heading: each counted up from -2 through
   // every id its text had taken already - twenty thousand took eight seconds.
 
+  include_once PAD . 'tags/_lib/toc.php';
+
   $page  = padTocMarker ( [ 2 ], '', 'ol' ) . str_repeat ( '<h2>Same</h2>', 20000 );
   $start = hrtime ( TRUE );
   $out   = padTocFill ( $page );

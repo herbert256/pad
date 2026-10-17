@@ -5,6 +5,8 @@
   // and its contents list was the raw marker. The part is taken as a {pdf} takes it - the
   // request's own store is put back after, so this page stays a page.
 
+  include_once PAD . 'tags/_lib/toc.php';
+
   $store = &padPdfStore ();
   $was   = $store;
 

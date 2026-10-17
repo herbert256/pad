@@ -2565,7 +2565,7 @@ the columns and `rows` below 1 are strict errors.
 ---
 
 ### toc
-A table of contents of the page from its own rendered headings (`lib/toc.php`), nested and linked,
+A table of contents of the page from its own rendered headings (`tags/_lib/toc.php`), nested and linked,
 written where `{toc}` stands once the whole page has rendered - the headings below it included.
 
 ```html
