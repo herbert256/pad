@@ -121,7 +121,8 @@ async function render(a, tree = CURRENT) {
     let sample = null;
     if (a.data !== undefined) {
         if (template === undefined) {
-            // A directory's index renders in that directory: the sample is named there.
+            // A directory's index renders in that directory, a routed page in the directory of
+            // its bracketed file: the sample is named there.
             const own = pageTemplate(app, page, tree.apps);
             if (!own.text) throw new Error(`the page '${name}' has no template of its own to give the data to`);
             template = own.text;
@@ -137,6 +138,10 @@ async function render(a, tree = CURRENT) {
     const asked = [String(query || '').replace(/^\?/, ''), bare ? 'padInclude' : '', sample ? 'padSample' : ''].filter(Boolean).join('&');
     const args = ['-d', 'auto_prepend_file=' + PREPEND, path.join(tree.home, 'editors', 'render.php'), app, name, '--apps=' + tree.apps];
     if (template !== undefined) args.push('--source=-');
+    // A name made up here - a template's, its data's - is the template's own page: a
+    // bracketed route of its directory, products/[id].pad beside products/mcpData..., took it
+    // for a value, and the sample was looked for under products/[id].
+    if (template !== undefined && name !== page) args.push('--virtual');
     if (asked) args.push('--query=' + asked);
     if (trace) args.push('--trace');
     const env = Object.assign({}, process.env);
@@ -424,13 +429,62 @@ function describe(result, source) {
 // The page's own template and the page it is: <page>.pad or .html, or - as the engine serves
 // the name of a directory - its index.pad or index.html, ?staff being staff/index.pad. Only
 // the first two were read, and the data of pad_render was refused for such a page: "the page
-// 'staff' has no template of its own".
+// 'staff' has no template of its own". A name no file has may be served by a bracketed
+// route, products/42 by products/[id].pad (routePage) - that file is the template then.
 function pageTemplate(app, page, apps = appsDir) {
     const name = page || 'index';
-    const base = path.join(appPath(app, apps), ...name.split('/'));
+    const dir = appPath(app, apps);
+    const base = path.join(dir, ...name.split('/'));
     for (const [file, as] of [[base + '.pad', name], [base + '.html', name], [path.join(base, 'index.pad'), name + '/index'], [path.join(base, 'index.html'), name + '/index']])
         if (isFile(file)) return { text: readText(file), page: as };
+    const routed = routePage(dir, name.split('/'));
+    if (routed) {
+        const at = path.join(dir, ...routed.split('/'));
+        for (const file of [at + '.pad', at + '.html'])
+            if (isFile(file)) return { text: readText(file), page: routed };
+    }
     return { text: '', page: name };
+}
+
+// The page of an application a bracketed route serves for the segments of a name, as
+// pad/lib/route.php (padRouteWalk) finds it: a literal segment first - a page, a directory's
+// index, a directory to go on in - then a [name] page, a [name] directory, a [name+] page
+// taking the rest; the bracketed names in sorted order. null when none does.
+function routePage(dir, segments, prefix = '') {
+    const [segment, ...rest] = segments;
+    const last = rest.length === 0;
+    const literal = /^[a-zA-Z0-9][a-zA-Z0-9_-]*$/.test(segment);
+    const here = path.join(dir, ...prefix.split('/').filter(Boolean));
+    const exists = (base) => ['.php', '.pad', '.html'].some((ext) => isFile(base + ext));
+    if (last) {
+        if (literal && exists(path.join(here, segment))) return prefix + segment;
+        if (literal && isDir(path.join(here, segment)) && exists(path.join(here, segment, 'index'))) return prefix + segment + '/index';
+    } else if (literal && isDir(path.join(here, segment))) {
+        const found = routePage(dir, rest, prefix + segment + '/');
+        if (found) return found;
+    }
+    const names = { pages: [], dirs: [], rests: [] };
+    let entries = [];
+    try { entries = fs.readdirSync(here).sort(); } catch (e) { entries = []; }
+    for (const entry of entries) {
+        const m = entry.match(/^\[([a-zA-Z][a-zA-Z0-9_]*)(\+?)\](\.(php|pad|html))?$/);
+        if (!m || /^(pad|pq)/.test(m[1]) || m[1] === 'GLOBALS' || m[1] === 'this') continue;
+        const isDirectory = isDir(path.join(here, entry));
+        const isPage = !isDirectory && m[3] !== undefined;
+        const list = m[2] && isPage ? names.rests : !m[2] && isDirectory ? names.dirs : !m[2] && isPage ? names.pages : null;
+        if (list && !list.includes(m[1])) list.push(m[1]);
+    }
+    if (last && names.pages.length) return prefix + '[' + names.pages[0] + ']';
+    for (const name of names.dirs) {
+        if (last) {
+            if (exists(path.join(here, '[' + name + ']', 'index'))) return prefix + '[' + name + ']/index';
+            continue;
+        }
+        const found = routePage(dir, rest, prefix + '[' + name + ']/');
+        if (found) return found;
+    }
+    if (names.rests.length) return prefix + '[' + names.rests[0] + '+]';
+    return null;
 }
 
 // The page's own template, for placing an error on its line.

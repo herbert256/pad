@@ -168,6 +168,12 @@ async function main() {
         expect('pad_render gives a page\'s own template the variables of data instead of its PHP', !r.error && r.text.includes('Orders for BOB') && r.text.includes('<li>7: ') && !r.text.includes('Total'), r);
         r = await call('pad_render', { app: 'shop', page: 'admin', data: { who: 'Ann' } });
         expect('pad_render gives the data to the index of a directory the page names, rendered in that directory', !r.error && r.text.includes('<b>admin</b>') && r.text.includes('Ann'), r);
+        r = await call('pad_render', { app: 'shop', page: 'products/42', data: { id: '7' } });
+        expect('pad_render gives the data to the template of a bracketed route the page names, products/[id].pad for products/42', !r.error && r.text.trim() === '<p>Product 7</p>', r);
+        r = await call('pad_render', { app: 'shop', page: 'blog/2026/hello', data: { year: '2026', title: 'Hi' } });
+        expect('pad_render gives the data to a route in a bracketed directory, blog/[year]/[slug].pad', !r.error && r.text.trim() === '<p>2026: Hi</p>', r);
+        r = await call('pad_check', { app: 'shop', page: 'products/42', data: {} });
+        expect('pad_check with data places an error of a routed page in its template', r.text.includes("Field '$id' not found") && r.text.includes('tag: {$id}, line 1'), r);
         r = await call('pad_render', { app: 'shop', template: '{$x}', data: [1, 2] });
         expect('pad_render refuses data that is no object', r.error && r.text.includes('data must be a JSON object'), r);
         const samples = path.join(home, 'DATA', 'samples', 'shop');

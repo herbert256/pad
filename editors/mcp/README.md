@@ -62,7 +62,10 @@ objects iterable as `{rows}...{/rows}` - for the template instead of any PHP: th
 preview's own mechanism (`?padSample`, `pad/lib/sample.php`), with the sample written under
 `DATA/samples/` for a page name of that call only and removed afterwards. No `_inits.php` and no
 page `.php` run. Given with a `page` and no `template`, it is the page's own template that gets
-the variables.
+the variables - a directory's `index`, or the bracketed route that serves the name
+(`products/42` is `products/[id].pad`), rendered in its directory. A page name the server makes
+up for a template or for data goes with `--virtual`, so a bracketed route of that directory does
+not take it for one of its values.
 
 The tools run the pages' PHP as a browser's GET request would - `pad_check` of a whole
 application renders every page of it.

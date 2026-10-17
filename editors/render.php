@@ -4,7 +4,7 @@
   // the language server and the MCP server check a template by having PAD itself render it,
   // and read what went wrong from the engine rather than guessing at it.
   //
-  //   php editors/render.php <app> [<page>] [--apps=<dir>] [--source=<file>|-]
+  //   php editors/render.php <app> [<page>] [--apps=<dir>] [--source=<file>|-] [--virtual]
   //                          [--query=<a=1&b=2>] [--trace] [--host=<base>]
   //
   // The page's output goes to stdout. The status is the engine's own for the command line -
@@ -22,9 +22,12 @@
   // --source renders the template text of a file, or of stdin with -, in place of the
   // page's own: $padPageSource, which inits/page.php and build/page.php honour. The page's
   // .php still runs, and the page need not exist - a template not saved yet, or one written
-  // in no file at all, is checked in the application it belongs to. --query fills $_GET, as
-  // a ?page&a=1 request would. --trace turns the execution trace on for this one request;
-  // it is written under DATA/trace/<page>/. --host (or $PAD_HOST) is the base the web
+  // in no file at all, is checked in the application it belongs to. --virtual says the page
+  // name is one of the caller's own making for that text - the MCP server's for a template
+  // or for data - so a bracketed route of its directory, products/[id].pad, does not take
+  // it as a value and run in its place. --query fills $_GET, as a ?page&a=1 request would.
+  // --trace turns the execution trace on for this one request; it is written under
+  // DATA/trace/<page>/. --host (or $PAD_HOST) is the base the web
   // server serves the applications under, http://localhost/pad/: the request is made to
   // look as if it came there, so $padHost and every URL the engine builds from it - a
   // {get} or a curl of its own pages - point at the real server, not at http://localhost/.
@@ -49,6 +52,8 @@
       $padApps = rtrim ( substr ( $renderArg, 7 ), '/' ) . '/';
     elseif ( str_starts_with ( $renderArg, '--source=' ) )
       $padPageSource = (string) file_get_contents ( substr ( $renderArg, 9 ) == '-' ? 'php://stdin' : substr ( $renderArg, 9 ) );
+    elseif ( $renderArg == '--virtual' )
+      $padPageVirtualOnly = TRUE;
     elseif ( str_starts_with ( $renderArg, '--query=' ) ) {
       parse_str ( substr ( $renderArg, 8 ), $_GET );
       $_REQUEST = $_GET;

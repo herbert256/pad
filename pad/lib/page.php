@@ -39,14 +39,13 @@
 
   // A page whose template an entry point hands over as text ($padPageSource, see
   // inits/page.php): a name padPageCheck would accept the form of, in a directory of the
-  // application that exists - the page's own files need not.
+  // application that exists - the page's own files need not. That directory may be a
+  // bracketed one, blog/[year]/, the home of a routed page whose template is checked there.
 
   function padPageVirtual ( $page ) {
 
-    if ( ! preg_match ( '/^[a-zA-Z0-9][a-zA-Z0-9_\/-]*$/D', $page ) ) return FALSE;
-    if ( strpos ( $page, '//' ) !== FALSE )                         return FALSE;
-    if ( substr ( $page, -1 ) == '/' )                              return FALSE;
-    if ( strpos ( $page, '/_' ) !== FALSE )                         return FALSE;
+    if ( ! preg_match ( '#^((\[[a-zA-Z][a-zA-Z0-9_]*\]|[a-zA-Z0-9][a-zA-Z0-9_-]*)/)*[a-zA-Z0-9][a-zA-Z0-9_-]*$#D', $page ) )
+      return FALSE;
 
     return is_dir ( dirname ( APP . $page ) );
 

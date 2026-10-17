@@ -58,10 +58,14 @@
   // in no file at all. Its page needs no file of its own then, only a well-formed name in
   // a directory of the application: the page's .php runs when there is one, and the
   // directory's _inits and _tags apply. The web entry never sets it, and no request value
-  // fills a pad* name.
+  // fills a pad* name. With $padPageVirtualOnly as well (render.php --virtual) the name is
+  // one the tool made up, a template's or its data's, and a bracketed route that would
+  // answer it does not: products/mcpData... was taken for products/[id], its $id bound to
+  // the made-up name and its sample looked for under products/[id].
 
   $padPageVirtual = ( isset ( $GLOBALS ['padPageSource'] )
-                      and ! $padRouteFound
+                      and ( ! $padRouteFound
+                            or ( ( $GLOBALS ['padPageVirtualOnly'] ?? FALSE ) === TRUE and str_contains ( $padRouteFound ['page'], '[' ) ) )
                       and padPageVirtual ( $padPage ) );
 
   if ( $padPageVirtual )
