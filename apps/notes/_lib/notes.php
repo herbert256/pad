@@ -10,6 +10,19 @@
 
   }
 
+  // A request value that is one text - a search, a tag, a colour, the Markdown to preview:
+  // its text, or the default for a list. ?q[]=x sends one, and the (string) cast that read it warned "Array
+  // to string conversion" - an error under PAD - so every page answered 500; a posted
+  // color[]=x, used as a key, threw.
+
+  function notesText ( $name, $default = '' ) {
+
+    $value = padRequest ( $name, $default );
+
+    return is_scalar ( $value ) ? (string) $value : $default;
+
+  }
+
   function notesNow () {
 
     return date ( 'Y-m-d H:i:s' );

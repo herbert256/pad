@@ -18,8 +18,10 @@
 
   if ( padPosted ( 'edit' ) ) {
 
-    $label  = isset ( kanbanLabels () [ padRequest ( 'label', '' ) ] ) ? padRequest ( 'label' ) : '';
-    $due    = preg_match ( '/^\d{4}-\d\d-\d\d$/', (string) padRequest ( 'due', '' ) ) ? padRequest ( 'due' ) : '';
+    $label  = kanbanText ( 'label' );
+    $label  = isset ( kanbanLabels () [$label] ) ? $label : '';
+    $due    = kanbanText ( 'due' );
+    $due    = preg_match ( '/^\d{4}-\d\d-\d\d$/', $due ) ? $due : '';
     $column = (int) padRequest ( 'column', 0 );
 
     if ( $card ) {

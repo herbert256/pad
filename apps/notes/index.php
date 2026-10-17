@@ -5,7 +5,7 @@
   // pins a note, and this PHP answers the click with the region alone - and a fragment,
   // which notes.js asks for while a search is typed.
 
-  $only = trim ( (string) padRequest ( 'tag', '' ) );
+  $only = trim ( notesText ( 'tag' ) );
 
   if ( padLiveEvent () == 'pin' )
     notesPin ( (int) padLiveValue () );

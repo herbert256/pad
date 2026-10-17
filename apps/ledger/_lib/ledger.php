@@ -30,6 +30,18 @@
 
   }
 
+  // A request value that is one text - a search, an amount, a note: its text, or the default
+  // for a list. ?q[]=x sends one, and the (string) cast that read it warned "Array to string
+  // conversion" - an error under PAD - so the page answered 500.
+
+  function ledgerText ( $name, $default = '' ) {
+
+    $value = padRequest ( $name, $default );
+
+    return is_scalar ( $value ) ? (string) $value : $default;
+
+  }
+
   // The months there are transactions in, the newest first - and the one a page shows: the
   // asked one when there is such a month, else the newest.
 
@@ -43,7 +55,9 @@
 
     $months = ledgerMonths ();
 
-    if ( preg_match ( '/^\d{4}-\d\d$/', (string) $asked ) and in_array ( $asked, $months, TRUE ) )
+    // Asked as ?month[]=x, a list: no month, where the cast warned and every page was a 500.
+
+    if ( is_string ( $asked ) and preg_match ( '/^\d{4}-\d\d$/', $asked ) and in_array ( $asked, $months, TRUE ) )
       return $asked;
 
     return $months [0] ?? date ( 'Y-m' );

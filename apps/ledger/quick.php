@@ -12,14 +12,14 @@
 
   if ( padRequestMethod () == 'POST' ) {
 
-    $amount = str_replace ( ',', '.', trim ( (string) padRequest ( 'amount', '' ) ) );
+    $amount = str_replace ( ',', '.', trim ( ledgerText ( 'amount' ) ) );
     $month  = ledgerMonth ( padRequest ( 'month', '' ) );
     $day    = ledgerQuickDay ( $month, ledgerMonth ( '' ), date ( 'Y-m-d' ) );
     $first  = (int) db ( "FIELD id FROM accounts ORDER BY id LIMIT 1" );
 
     if ( ! preg_match ( '/^[0-9]+(\.[0-9][0-9]?)?$/', $amount ) or (float) $amount <= 0 )
       $error = 'An amount like 12.50, please.';
-    elseif ( ! ( $booked = ledgerBook ( $day, padRequest ( 'category', 0 ), $first, $amount, trim ( (string) padRequest ( 'note', '' ) ) ) ) )
+    elseif ( ! ( $booked = ledgerBook ( $day, padRequest ( 'category', 0 ), $first, $amount, trim ( ledgerText ( 'note' ) ) ) ) )
       $error = 'That category is not there.';
 
     // The month the entry went into is the one shown from now on - a new month's first.

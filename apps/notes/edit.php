@@ -19,7 +19,8 @@
     if ( $attach !== FALSE ) {
 
       $now   = notesNow ();
-      $color = isset ( notesColors () [ padRequest ( 'color', '' ) ] ) ? padRequest ( 'color' ) : 'plain';
+      $color = notesText ( 'color' );
+      $color = isset ( notesColors () [$color] ) ? $color : 'plain';
 
       if ( $draft )
         db ( "UPDATE notes SET title='{0}', body='{1}', color='{2}', updated='{3}' WHERE id={4}",
@@ -43,7 +44,7 @@
 
   $draft     = $draft ?: [ 'id' => 0, 'title' => '', 'body' => '', 'color' => 'plain', 'tags' => [], 'files' => [] ];
   $draftTags = implode ( ', ', array_column ( $draft ['tags'], 'tag' ) );
-  $current   = padRequest ( 'color', $draft ['color'] );
+  $current   = notesText ( 'color', $draft ['color'] );
   $choices   = [];
 
   foreach ( notesColors () as $key => $label )

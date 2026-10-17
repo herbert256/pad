@@ -7,7 +7,8 @@
   if ( padPosted ( 'card' ) ) {
 
     $column = (int) db ( "FIELD id FROM columns ORDER BY position LIMIT 1" );
-    $label  = isset ( kanbanLabels () [ padRequest ( 'label', '' ) ] ) ? padRequest ( 'label' ) : '';
+    $label  = kanbanText ( 'label' );
+    $label  = isset ( kanbanLabels () [$label] ) ? $label : '';
     $id     = db ( "INSERT INTO cards (column_id, position, title, body, label, due, created, updated) VALUES ({0}, {1}, '{2}', '{3}', '{4}', '', '{5}', '{5}')",
                    [ $column, (float) db ( "FIELD coalesce(max(position), 0) FROM cards WHERE column_id={0}", [ $column ] ) + 1,
                      padRequest ( 'title' ), padRequest ( 'body', '' ), $label, kanbanNow () ] );
@@ -26,7 +27,7 @@
   // board reloaded without a word.
 
   $cardFailed = padFormFailed ( 'card' );
-  $cardLabel  = $cardFailed ? (string) padRequest ( 'label', '' ) : '';
+  $cardLabel  = $cardFailed ? kanbanText ( 'label' ) : '';
   $labelList  = array_map ( fn ( $key, $name ) => [ 'key' => $key, 'name' => $name, 'chosen' => $key === $cardLabel ], array_keys ( kanbanLabels () ), kanbanLabels () );
 
 ?>

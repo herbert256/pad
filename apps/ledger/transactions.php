@@ -6,7 +6,7 @@
 
   $only     = (int) padRequest ( 'category', 0 );
   $from     = (int) padRequest ( 'account', 0 );
-  $word     = trim ( (string) padRequest ( 'q', '' ) );
+  $word     = trim ( ledgerText ( 'q' ) );
 
   $rows     = array_map ( fn ( $r ) => array_diff_key ( $r, [ 'id' => 1, 'kind' => 1 ] ), ledgerRows ( $ledgerMonth, $only, $from, $word ) );
   $shown    = count ( $rows );

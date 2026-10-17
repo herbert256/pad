@@ -6,6 +6,8 @@
   if ( padPosted ( 'budgets' ) ) {
 
     foreach ( (array) padRequest ( 'budget', [] ) as $id => $amount ) {
+      if ( ! is_scalar ( $amount ) )
+        continue;
       $amount = (float) str_replace ( ',', '.', (string) $amount );
       if ( $amount > 0 )
         db ( "INSERT OR REPLACE INTO budgets (category_id, monthly) SELECT id, {1} FROM categories WHERE id={0} AND kind = 'expense'", [ (int) $id, round ( $amount, 2 ) ] );

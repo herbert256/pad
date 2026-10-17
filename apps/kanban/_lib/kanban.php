@@ -9,6 +9,18 @@
 
   }
 
+  // A request value that is one text - a label, a day: its text, or the default for a list.
+  // A posted label[]=x, used as a key, threw, and due[]=x warned "Array to string
+  // conversion" - an error under PAD - so the post answered 500.
+
+  function kanbanText ( $name, $default = '' ) {
+
+    $value = padRequest ( $name, $default );
+
+    return is_scalar ( $value ) ? (string) $value : $default;
+
+  }
+
   function kanbanNow () {
 
     return date ( 'Y-m-d H:i:s' );
