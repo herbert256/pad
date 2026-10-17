@@ -21,7 +21,21 @@
   // read it as "render my content", which an {echo} has none of: {echo $flag} and
   // {echo php:is_numeric('5')} printed nothing.
 
-  $padEchoValue = padEval ( $padOpt [$pad] [0] );
+  // A field the tag's pipe lets be missing - | default('-'), | ?? '-', | optional - is no
+  // error, as it is not in {$x | default('-')} (level/var.php): {echo $x | default('-')}
+  // named the field missing.
+
+  $padEchoLenient = ( $padCheckSyntax and preg_match ( '/^\s*(optional|default\b|\?\?)/', $padPipeBefore [$pad] ?? '' ) );
+
+  if ( $padEchoLenient )
+    $padCheckSyntax = FALSE;
+
+  try {
+    $padEchoValue = padEval ( $padOpt [$pad] [0] );
+  } finally {
+    if ( $padEchoLenient )
+      $padCheckSyntax = TRUE;
+  }
 
   return ( $padEchoValue === TRUE ) ? '1' : $padEchoValue;
 

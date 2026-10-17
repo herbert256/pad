@@ -47,8 +47,12 @@
     $keys = array_keys ( $result );
     $next = [];
 
-    foreach ( $keys as $n => $k )
-      $next [$k] = $result [ $keys [$n+1] ?? -1 ] ?? NULL;
+    $after = [];
+
+    foreach ( $keys as $n => $k ) {
+      $next  [$k] = $result [ $keys [$n+1] ?? -1 ] ?? NULL;
+      $after [$k] = $result [ $keys [$n+2] ?? -1 ] ?? NULL;
+    }
 
     foreach ($result as $k => $one)
 
@@ -81,7 +85,14 @@
         // than read as empty - the discipline {$x} already keeps at level/var.php, here
         // inside an expression. padFieldCheck is the same existence test that form uses.
 
-        $coalesce = ( ( $next [$k] [1] ?? '' ) == 'OPR' and ( $next [$k] [0] ?? '' ) == '??' );
+        // So may one piped into a fallback - | ?? '-', | default('-'), | optional - the heads
+        // the {$x | ...} form lets through (level/var.php): {echo $x | default('-')} named the
+        // field missing where {$x | default('-')} printed the dash.
+
+        $coalesce = ( ( ( $next [$k] [1] ?? '' ) == 'OPR' and ( $next [$k] [0] ?? '' ) == '??' )
+                      or ( ( $next [$k] [1] ?? '' ) == 'pipe'
+                           and ( ( ( $after [$k] [1] ?? '' ) == 'OPR' and ( $after [$k] [0] ?? '' ) == '??' )
+                                 or ( in_array ( $after [$k] [1] ?? '', [ 'TYPE', 'other' ], TRUE ) and in_array ( $after [$k] [0] ?? '', [ 'default', 'optional' ], TRUE ) ) ) ) );
 
         // A field that holds a list is there, and is no value here - $x reads a scalar. It
         // was reported as a field that does not exist: {if $items eq 'a'} with $items set.
