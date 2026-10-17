@@ -86,8 +86,12 @@
 
     $GLOBALS ['padSent'] = TRUE;
 
-    if ( $every )
-      set_time_limit ( (int) ceil ( $for ) + 30 );
+    // A stream runs as long as 'for' says, and a while after for its last event - in both
+    // forms: the loop form kept PHP's own limit, which some systems time on the wall clock,
+    // sleeps included, and a producer sending thirty events a second apart was killed before
+    // its last one and its done event - EventSource reconnected and it began again.
+
+    set_time_limit ( (int) ceil ( $for ) + 30 );
 
     if ( padWasm () ) {
       $options ['retry']          = $options ['retry'] ?? 1000;
