@@ -256,16 +256,31 @@ function readText(file) {
     try { return fs.readFileSync(file, 'utf8'); } catch (e) { return ''; }
 }
 
+// The matches of re in a file's text, each with its range and its line. The line starts are
+// found once and each match placed among them by a binary search: the whole text split again
+// for every match made a hover over 20 000 lines assigning a field take twelve seconds.
 function hits(file, text, re, group) {
     const out = [];
+    const starts = [0];
+    for (let i = text.indexOf('\n'); i >= 0; i = text.indexOf('\n', i + 1)) starts.push(i + 1);
+    const place = (offset) => {
+        let lo = 0, hi = starts.length - 1;
+        while (lo < hi) {
+            const mid = (lo + hi + 1) >> 1;
+            if (starts[mid] <= offset) lo = mid; else hi = mid - 1;
+        }
+        return { line: lo, character: offset - starts[lo] };
+    };
     re.lastIndex = 0;
     let m;
     while ((m = re.exec(text)) !== null) {
         const at = m.index + m[0].indexOf(m[group]);
+        const start = place(at);
+        const stop = start.line + 1 < starts.length ? starts[start.line + 1] - 1 : text.length;
         out.push({
             file,
-            range: { start: positionAt(text, at), end: positionAt(text, at + m[group].length) },
-            line: text.split('\n')[positionAt(text, at).line].trim(),
+            range: { start, end: place(at + m[group].length) },
+            line: text.slice(starts[start.line], stop).trim(),
         });
     }
     return out;

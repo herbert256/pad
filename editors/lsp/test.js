@@ -10,6 +10,7 @@ const { spawn } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 const url = require('url');
+const os = require('os');
 
 const home = path.resolve(__dirname, '..', '..');
 const shop = path.join(home, 'editors', 'fixture', 'apps', 'shop');
@@ -178,6 +179,25 @@ async function main() {
     expect('hover on a field shows the line that assigns it', h.includes('orders.php:10') && h.includes('$total = 42;'), h);
     h = await hover('orders.pad', '$total gt', 7);
     expect('hover on an operator says nothing', h === '', h);
+
+    // a hover costs one pass over the file: 20 000 lines assigning the field answer at once,
+    // where each hit split the whole file again and they took twelve seconds
+    const big = fs.mkdtempSync(path.join(os.tmpdir(), 'pad-lsp-'));
+    try {
+        fs.mkdirSync(path.join(big, 'apps', 'q', '_config'), { recursive: true });
+        fs.writeFileSync(path.join(big, 'apps', 'q', '_config', 'config.php'), '<?php $padCommon = FALSE; ?>');
+        fs.writeFileSync(path.join(big, 'apps', 'q', 'page.php'), '<?php\n' + '$total = 1;\n'.repeat(20000) + '?>\n');
+        const bigUri = url.pathToFileURL(path.join(big, 'apps', 'q', 'page.pad')).href;
+        notify('textDocument/didOpen', { textDocument: { uri: bigUri, languageId: 'pad', version: 1, text: '{$total}' } });
+        const started = Date.now();
+        const r2 = await request('textDocument/hover', { textDocument: { uri: bigUri }, position: { line: 0, character: 3 } });
+        const took = Date.now() - started;
+        const shown = r2.result ? r2.result.contents.value : '';
+        expect('hover on a field assigned on 20 000 lines answers within a second and a half', took < 1500 && shown.includes('page.php:2') && shown.includes('page.php:4'), { took, shown: shown.slice(0, 200) });
+        notify('textDocument/didClose', { textDocument: { uri: bigUri } });
+    } finally {
+        fs.rmSync(big, { recursive: true, force: true });
+    }
 
     // go-to-definition along PAD's lookup order
     let d = await definition('orders.pad', 'echo $total', 6);
