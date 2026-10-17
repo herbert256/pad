@@ -1,6 +1,6 @@
 <?php
 
-  // {calendar} - a month as a calendar, lib/calendar.php. The month is the first parameter
+  // {calendar} - a month as a calendar, tags/_lib/calendar.php. The month is the first parameter
   // ('2026-10'), else the request value named by query= ('month') - the links to the months
   // around it set that value - else this month. data= gives events - a {data} store, a page
   // array or a _data file, as for {chart} - date= names their date field and title= their

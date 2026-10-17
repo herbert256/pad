@@ -1398,7 +1398,7 @@ unknown type is an error under the strict check, and writes nothing.
 ---
 
 ### calendar
-A month as a calendar, with its events (`lib/calendar.php`).
+A month as a calendar, with its events (`tags/_lib/calendar.php`).
 
 ```html
 {calendar}                                                   <!-- this month -->
