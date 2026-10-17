@@ -166,6 +166,17 @@
 
     $sql = (string) $sql;
 
+    // MySQL and MariaDB run what an executable comment holds - /*!50000 delete*/, and MariaDB
+    // its own /*M!100100 delete*/ too - which the comments stripped in front and the walk of a
+    // WITH skip as plain ones: a statement holding one is a write when a write word stands in
+    // it at all. /*!40000 ALTER TABLE t DISABLE KEYS */, the line mysqldump writes around every
+    // table, and a /*M!...*/ write in a WITH went to the database during a replay.
+
+    if ( preg_match ( '/\/\*M?!/i', $sql ) and preg_match ( '/\b(' . implode ( '|', $writes ) . ')\b/i', $sql, $match ) ) {
+      $write = strtolower ( $match [1] );
+      return TRUE;
+    }
+
     do {
       $before = $sql;
       $sql    = ltrim ( $sql, " \t\n\r(" );
@@ -198,11 +209,8 @@
 
     $any = strtolower ( $match [1] );
 
-    // MySQL runs what an executable comment holds - /*!update*/ - which the walk skips as a
-    // comment: a statement with one is a write when a write word stands in it at all.
-
-    if ( str_contains ( $sql, '/*!' ) )
-      return $any;
+    // An executable comment - /*!update*/, /*M!update*/ - which the walk would skip, made the
+    // statement a write before it came here (padReplayWrites).
 
     foreach ( [ TRUE, FALSE ] as $mysql ) {
 
