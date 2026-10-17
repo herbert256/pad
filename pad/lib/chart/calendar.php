@@ -19,7 +19,9 @@
   // application's timezone, the one today is: a timestamp and an offset date fell on their
   // UTC day, the day before for an event at local midnight east of Greenwich.
 
-  function padChartStamp ( $when ) {
+  function padChartStamp ( $when, &$real = NULL ) {
+
+    $real = NULL;
 
     // A date object of the page's PHP is its moment with its offset: cast to text it ended
     // the gantt on "could not be converted to string".
@@ -104,6 +106,11 @@
 
     if ( (int) $local->format ( 'Y' ) > 9999 )
       return FALSE;
+
+    // $real is the moment itself, for a timestamp or a date with its zone - what a format
+    // naming the zone or the epoch writes - and NULL for a date that has no zone to name.
+
+    $real = $zoned ? $moment->getTimestamp () : NULL;
 
     return ( new DateTimeImmutable ( $local->format ( 'Y-m-d H:i:s' ), new DateTimeZone ( 'UTC' ) ) )->getTimestamp ();
 

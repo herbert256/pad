@@ -20,7 +20,8 @@
   // .pad-chart-timeline for the rest: --pad-timeline-card, --pad-timeline-border,
   // --pad-timeline-line and --pad-timeline-muted.
 
-  // A date as [ moment, precision ] - 'year', 'month', 'day' or 'time' - else FALSE. A
+  // A date as [ moment, precision, real ] - 'year', 'month', 'day' or 'time', and the real
+  // moment of a date that has a zone (padChartStamp), else NULL - else FALSE. A
   // number of one to four digits is a year: 1969 is a year, not 1969 seconds into 1970, and
   // 0 the year 0, not the first second of 1970.
 
@@ -44,22 +45,29 @@
     // timezone (padChartStamp) - written in UTC they showed 22:00 of the day before for
     // midnight in Amsterdam.
 
-    $stamp = padChartStamp ( $value );
+    $stamp = padChartStamp ( $value, $real );
 
     if ( $stamp === FALSE )
       return FALSE;
 
     if ( ctype_digit ( $value ) and ! padChartBasicDate ( $value ) )
-      return [ $stamp, 'time' ];
+      return [ $stamp, 'time', $real ];
 
-    return [ $stamp, ( gmdate ( 'His', $stamp ) === '000000' ) ? 'day' : 'time' ];
+    return [ $stamp, ( gmdate ( 'His', $stamp ) === '000000' ) ? 'day' : 'time', $real ];
 
   }
 
   // A moment as its precision writes it - 1969, Oct 2026, Oct 8, 2026 - or in the format
-  // given.
+  // given. A format that names the zone or the epoch - e T P O p Z U c r I - writes a
+  // moment that has one ($real: a timestamp, a date with its offset or zone) as it is in
+  // the application's timezone: written from the wall clock as if in UTC, 00:00 in
+  // Amsterdam said GMT (+00:00) and U was off by the offset. A date without a zone has
+  // none to name, and is written in UTC as before.
 
-  function padTimelineShow ( $stamp, $precision, $format = '' ) {
+  function padTimelineShow ( $stamp, $precision, $real = NULL, $format = '' ) {
+
+    if ( $format !== '' and $real !== NULL and preg_match ( '/[eTPOpZUcrI]/', preg_replace ( '/\\\\./s', '', $format ) ) )
+      return ( new DateTimeImmutable ( '@' . $real ) )->setTimezone ( padDateZone () )->format ( $format );
 
     if ( $format !== '' )
       return gmdate ( $format, $stamp );
@@ -88,11 +96,11 @@
         $start = $a [0];
         $end   = $b [0];
         $prec  = $a [1];
-        $when  = padTimelineShow ( $a [0], $a [1], $format ) . ' – ' . padTimelineShow ( $b [0], $b [1], $format );
+        $when  = padTimelineShow ( $a [0], $a [1], $a [2] ?? NULL, $format ) . ' – ' . padTimelineShow ( $b [0], $b [1], $b [2] ?? NULL, $format );
       } elseif ( ( $one = ( $at !== FALSE ) ? $at : $from ) !== FALSE ) {
         list ( $start, $prec ) = $one;
         $end  = NULL;
-        $when = padTimelineShow ( $start, $prec, $format );
+        $when = padTimelineShow ( $start, $prec, $one [2] ?? NULL, $format );
       } else
         continue;
 
