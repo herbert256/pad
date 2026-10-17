@@ -116,7 +116,8 @@
 
     $chunk = padNocacheStrip ( padUnprotect ( padUnescape ( padStackFill ( $chunk ) ) ) );
 
-    if ( $padCsrf )
+    if ( $padCsrf ) {
+
       $chunk = padCsrfForms ( $chunk, TRUE, TRUE );
 
       // A posting form the flush cuts gets no token (lib/csrf.php), so each post of it is
@@ -124,7 +125,8 @@
 
       if ( ( $GLOBALS ['padCsrfSplit'] ?? FALSE ) and $padCheckSyntax )
         padError ( 'a {flush} stands inside a posting form, which then gets no CSRF token - put the flush outside it, after </head>' );
-    else
+
+    } else
       padCsrfBaseKeep ( $chunk );
 
     padFlushSend ( $chunk );
