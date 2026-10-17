@@ -8,6 +8,12 @@
   // chosen handler leaves its outcome in $now, which replaces the operator token as a plain
   // VAL, after which padEvalOpr() is re-entered to fold the next operator in the segment.
 
+  // A date object is its text to an operator (padDateText): compared as an object it stood
+  // above every string.
+
+  $left  = padDateText ( $left  ?? NULL );
+  $right = padDateText ( $right ?? NULL );
+
   $opr = $result [$b] [0];
 
   // The operator as the template wrote it - >= rather than GE - for the messages of the

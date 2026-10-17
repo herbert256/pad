@@ -205,7 +205,18 @@
 
   function padUrlValue ( $parm )  {
 
-    return '&' . urlencode ( $parm ) . '=' . urlencode ( padFieldValue ( $parm ) );
+    return '&' . urlencode ( $parm ) . '=' . urlencode ( padDateText ( padFieldValue ( $parm ) ) );
+
+  }
+
+  // A date object is a value, written Y-m-d H:i:s as {$when} writes it; where text is meant -
+  // an operand, a pipe that takes text, a query value - it is that text: compared as an
+  // object it stood above every string, so a moment of 2020 came after '2030-01-01', and
+  // | upper, . and {?when} ended the page on "could not be converted to string".
+
+  function padDateText ( $value ) {
+
+    return ( $value instanceof DateTimeInterface ) ? $value->format ( 'Y-m-d H:i:s' ) : $value;
 
   }
 
@@ -227,7 +238,7 @@
 
   function padJsonEscape ( $parm )  {
 
-    $value = padArrayCheck ( $parm ) ? padArrayValue ( $parm ) : padFieldValue ( $parm );
+    $value = padArrayCheck ( $parm ) ? padArrayValue ( $parm ) : padDateText ( padFieldValue ( $parm ) );
     $json  = json_encode ( $value, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PARTIAL_OUTPUT_ON_ERROR );
     $json  = str_replace ( [ "\u{E022}", "\u{E027}", "\u{E05C}" ], [ '\u0022', '\u0027', '\u005c' ], $json );
     $json  = htmlspecialchars ( $json, ENT_QUOTES, 'UTF-8' );

@@ -33,6 +33,12 @@
   if ( $value === NULL )
     $value = '';
 
+  // A date object is its text to a function that takes text (padDateText); date, ago and
+  // localDate take the moment itself.
+
+  if ( ! in_array ( $name, [ 'date', 'ago', 'localDate' ], TRUE ) )
+    $value = padDateText ( $value );
+
   $padFnNeeds = [ 'replace' => 2, 'between'    => 2, 'range'    => 2,
                   'mid'     => 1, 'substr'     => 1, 'left'     => 1,
                   'right'   => 1, 'max_len'    => 1, 'like'     => 1,
