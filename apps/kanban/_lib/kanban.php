@@ -101,8 +101,9 @@
   }
 
   // A card to a column: before the card named, or at its end. Its position is halfway
-  // between its new neighbours, so no other card moves. FALSE when the card or the column
-  // is not there.
+  // between its new neighbours, so no other card moves - until there is no room between
+  // them: then the column is numbered 1, 2, 3 ... again first. FALSE when the card or the
+  // column is not there.
 
   function kanbanMove ( $cardId, $columnId, $beforeId = 0 ) {
 
@@ -114,10 +115,13 @@
 
     $before = $beforeId ? db ( "RECORD * FROM cards WHERE id={0} AND column_id={1} AND id != {2}", [ (int) $beforeId, $column ['id'], $card ['id'] ] ) : NULL;
 
-    if ( $before ) {
-      $previous = db ( "FIELD max(position) FROM cards WHERE column_id={0} AND position < {1} AND id != {2}", [ $column ['id'], $before ['position'], $card ['id'] ] );
-      $position = $previous === NULL || $previous === '' ? $before ['position'] - 1 : ( $previous + $before ['position'] ) / 2;
-    } else
+    if ( $before and ( $position = kanbanBetween ( $card, $column, $before ) ) === NULL ) {
+      kanbanRenumber ( $column ['id'] );
+      $before   = db ( "RECORD * FROM cards WHERE id={0}", [ $before ['id'] ] );
+      $position = kanbanBetween ( $card, $column, $before );
+    }
+
+    if ( ! $before )
       $position = (float) db ( "FIELD coalesce(max(position), 0) FROM cards WHERE column_id={0} AND id != {1}", [ $column ['id'], $card ['id'] ] ) + 1;
 
     db ( "UPDATE cards SET column_id={0}, position={1}, updated='{2}' WHERE id={3}", [ $column ['id'], $position, kanbanNow (), $card ['id'] ] );
@@ -125,6 +129,42 @@
     kanbanLog ( $card ['column_id'] == $column ['id'] ? "{$card ['title']} moved within {$column ['name']}" : "{$card ['title']} went to {$column ['name']}", $card ['id'] );
 
     return TRUE;
+
+  }
+
+  // The position halfway between the card a card is dropped before and the one above it,
+  // or one less than the first's - NULL when there is no room. A position is written with
+  // the 14 digits db() gives a number, so after some 45 drops into the same slot the half
+  // was equal to a neighbour once written: the card above got the position of the one
+  // below, and the next drop there, finding nothing above, sent the card to the top. A
+  // card sharing the position of the one dropped before is no room either - which of the
+  // two shows first is a matter of their ids.
+
+  function kanbanBetween ( $card, $column, $before ) {
+
+    if ( db ( "CHECK cards WHERE column_id={0} AND position = {1} AND id != {2} AND id != {3}", [ $column ['id'], $before ['position'], $before ['id'], $card ['id'] ] ) )
+      return NULL;
+
+    $previous = db ( "FIELD max(position) FROM cards WHERE column_id={0} AND position < {1} AND id != {2}", [ $column ['id'], $before ['position'], $card ['id'] ] );
+
+    if ( $previous === NULL or $previous === '' )
+      return $before ['position'] - 1;
+
+    $position = ( $previous + $before ['position'] ) / 2;
+    $written  = (float) (string) $position;
+
+    return ( $written > $previous and $written < $before ['position'] ) ? $position : NULL;
+
+  }
+
+  // A column's cards numbered 1, 2, 3 ... in the order the board shows them.
+
+  function kanbanRenumber ( $columnId ) {
+
+    $ids = array_column ( db ( "ARRAY id FROM cards WHERE column_id={0} ORDER BY position, id", [ (int) $columnId ] ) ?: [], 'id' );
+
+    foreach ( array_values ( $ids ) as $n => $id )
+      db ( "UPDATE cards SET position={0} WHERE id={1}", [ $n + 1, (int) $id ] );
 
   }
 
