@@ -354,7 +354,19 @@
   function padPdfContext () {
 
     return [ 'indent' => 0, 'right' => 0, 'size' => 10.5, 'bold' => FALSE, 'italic' => FALSE, 'mono' => FALSE,
-             'under' => FALSE, 'link' => '', 'align' => 'left', 'color' => '0.12 0.12 0.12', 'pre' => FALSE ];
+             'under' => FALSE, 'link' => '', 'align' => 'left', 'color' => '0.12 0.12 0.12', 'pre' => FALSE,
+             'depth' => 0 ];
+
+  }
+
+  // How deep the walk goes into nested elements; below that an element is its text alone.
+  // libxml reads any depth since LIBXML_PARSEHUGE, and the walk is a recursion: 25,000
+  // nested <div>, 300 KB of HTML, ended the request on PHP's stack instead of answering
+  // a document.
+
+  function padPdfDeep ( &$ctx ) {
+
+    return ++$ctx ['depth'] > 256;
 
   }
 
@@ -366,6 +378,11 @@
   // when a block comes, or at the end.
 
   function padPdfFlow ( &$doc, $node, $ctx ) {
+
+    if ( padPdfDeep ( $ctx ) ) {
+      padPdfParagraph ( $doc, [ [ $node->textContent, $ctx ] ], $ctx );
+      return;
+    }
 
     $runs = [];
 
@@ -624,6 +641,11 @@
 
     if ( padPdfSkip ( $name ) )
       return;
+
+    if ( padPdfDeep ( $ctx ) ) {
+      $runs [] = [ $node->textContent, $ctx ];
+      return;
+    }
 
     if ( $name == 'br' ) {
       $runs [] = [ NULL, $ctx ];
