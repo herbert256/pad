@@ -178,7 +178,7 @@ Configure sequence generation:
 
 ### Advanced Parameters
 - **from/to**: Define range boundaries - see "What from and to count" below
-- **increment**: Step size between values, 1 or more
+- **increment**: Step size between values, 1 or more - a range (`'0..1'`) also counts in a step below 1
 - **rows**: Limit number of results
 - **stop**: Maximum value constraint
 - **skip**: Skip the first N candidates offered, not the first N kept

@@ -365,8 +365,12 @@
     // range() counts in steps, so a step of zero or no step at all never arrives anywhere and
     // is an error rather than an empty answer; a step given the wrong way round is the same
     // walk in reverse, which range() works out from the two ends by itself.
+    //
+    // A step between 0 and 1 is the step it says - '0..3' with increment=0.5 is 0 0.5 1 1.5 2
+    // 2.5 3 and '0.1..0.5' with increment=0.1 counts five tenths - where its whole part, 0,
+    // made it a step of 1 in silence: 0 1 2 3, and 0.1 alone. Letters count in whole steps.
 
-    if ( ! is_numeric ( $increment ) or ! (int) $increment )
+    if ( ! is_numeric ( $increment ) or ! ( $increment + 0 ) )
       $increment = 1;
 
     // '1..z' asks for a range between a number and a letter, which has no meaning; both ends
@@ -398,7 +402,10 @@
 
     }
 
-    $increment = abs ( $increment );
+    if ( ! is_numeric ( $p1 ) and ! (int) $increment )
+      $increment = 1;
+
+    $increment = abs ( is_numeric ( $p1 ) ? $increment + 0 : (int) $increment );
 
     // A step wider than the two ends are apart cannot be taken even once, which range() calls
     // an error: the range is its start alone, as a range counts from its start and stops

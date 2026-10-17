@@ -8,9 +8,10 @@
   // or the try limit exhausted. A random increment (increment=a...b) is re-rolled after
   // every candidate.
   //
-  // An increment below 1 never advances the counter - 0 leaves it where it is and a
-  // negative one walks away from the from <= to condition - so the walk would not end.
-  // The run returns FALSE instead of starting it, and the tag takes its else branch.
+  // An increment below 1 is no step a walk takes - 0 leaves the counter where it is, a
+  // negative one walks away from the from <= to condition, and one between 0 and 1 offers
+  // the types candidates that are no whole number. The run returns FALSE instead of
+  // starting it, and the tag takes its else branch.
   //
   // A random increment is drawn again after every candidate, so it is the largest it can be
   // drawn that decides: '0...2' advances, though a draw of 0 offers the same candidate again.
@@ -24,9 +25,12 @@
 
   // A step below 0 is no step a walk takes: multiple=-3, step=-2 and increment=-1 answered
   // nothing in silence, where multiple=0 is named. Strict mode names them - the multiples of
-  // -3 are kept by keep, multiple=-3 and a play steps down by step=-2, a walk does not.
+  // -3 are kept by keep, multiple=-3 and a play steps down by step=-2, a walk does not. And
+  // so is a step between 0 and 1 - increment=0.5, multiple=0.5, step=0.5 - which answered
+  // nothing in silence as well; a range counts in it (padGetRange). A step of 0 stays the
+  // walk that never starts, the else branch.
 
-  if ( $pqIncTop < 0 and ! $pqRandomInc and ( $GLOBALS ['padCheckSyntax'] ?? FALSE ) )
+  if ( $pqIncTop < 1 and $pqIncTop != 0 and ! $pqRandomInc and ( $GLOBALS ['padCheckSyntax'] ?? FALSE ) )
     padError ( in_array ( $pqSeq, [ 'multiple', 'step' ] )
                ? "The $pqSeq sequence needs a step of 1 or more, not '$pqInc'"
                : "increment= needs a step of 1 or more, not '" . ( $pqInitInc ?? $pqInc ) . "'" );

@@ -41,7 +41,7 @@ Parameters control how sequences are generated (`inits/parms.php`):
 | `sole` | 0 | Generate single value (sets from=to) |
 | `minimal` | PHP_INT_MIN | Minimum acceptable value |
 | `maximal` | PHP_INT_MAX | Maximum acceptable value |
-| `increment` | 1 | Step between iterations, 1 or more |
+| `increment` | 1 | Step between iterations, 1 or more - a range (`'0..1'`) also counts in a step below 1 |
 | `rows` | varies | Maximum number of results |
 | `try` | varies | Maximum iterations to attempt |
 | `stop` | PHP_INT_MAX | Stop when value reaches this |
