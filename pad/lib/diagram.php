@@ -948,7 +948,10 @@
     // A loop's label stands beside the loop on a plate, as an edge's label does, and the
     // labels of the edges step aside for it: in LR the label of the edge leaving the node
     // was put half way along it, in the room kept for the loop, over the loop's label -
-    // "yes" showed, "retry" not - and an edge ran through the text.
+    // "yes" showed, "retry" not - and an edge ran through the text. In LR and RL the edge to
+    // the next rank leaves the node's middle on the loop's side, so the plate stands above
+    // the loop, one over the other for further loops: on the middle line it was read as that
+    // edge's label, and the edge's own label, stepping aside, covered its arrowhead.
 
     $side   = ( $direction == 'RL' ) ? -1 : 1;
     $loops  = $labels = [];
@@ -962,8 +965,9 @@
         if ( $label !== '' ) {
           list ( $x, $r ) = padDiagramLoopAt ( $n, $k, $side );
           $w              = padDiagramWidth ( $label ) + 8;
-          $labels [$e]    = [ $x + $r * 0.75 + $side * $w / 2, $n ['y'], $w ];
-          $boxes []       = [ $labels [$e] [0] - $w / 2, $n ['y'] - 9, $labels [$e] [0] + $w / 2, $n ['y'] + 9 ];
+          $labels [$e]    = $vertical ? [ $x + $r * 0.75 + $side * $w / 2, $n ['y'], $w ]
+                                      : [ $x + $side * $w / 2, $n ['y'] - 28 - 21 * $k, $w ];
+          $boxes []       = [ $labels [$e] [0] - $w / 2, $labels [$e] [1] - 9, $labels [$e] [0] + $w / 2, $labels [$e] [1] + 9 ];
         }
       }
 
