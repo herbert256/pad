@@ -9,7 +9,12 @@
   if ( $query === '' )
     editFail ( 'there is nothing to search for' );
 
-  $pattern = empty ( $body ['regex'] ) ? preg_quote ( $query, '/' ) : str_replace ( '/', '\/', $query );
+  // A slash ends the pattern, so one the query holds is escaped - unless it is escaped
+  // already, after an odd number of backslashes, as JavaScript has a regular expression
+  // written: <\/h1> made <\\/h1>, a backslash and then the end of the pattern.
+
+  $pattern = empty ( $body ['regex'] ) ? preg_quote ( $query, '/' )
+                                       : preg_replace ( '~(?<!\\\\)((?:\\\\\\\\)*)/~', '$1\\\\/', $query );
 
   if ( ! empty ( $body ['word'] ) )
     $pattern = "\\b(?:$pattern)\\b";
