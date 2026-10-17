@@ -2693,7 +2693,7 @@ strict error that names the nearest country when the text is close to a name.
 ---
 
 ### jsonview
-A JSON value or a PHP array as a tree to fold open and shut (`lib/jsonview.php`) - each object and
+A JSON value or a PHP array as a tree to fold open and shut (`tags/_lib/jsonview.php`) - each object and
 list a `<details>`, no script.
 
 ```html

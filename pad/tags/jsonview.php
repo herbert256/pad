@@ -1,7 +1,7 @@
 <?php
 
   // {jsonview $response} - a value as a tree of JSON to fold open and shut, each object and
-  // list a <details>: lib/jsonview.php. The value is the first item - a $field, a list of
+  // list a <details>: tags/_lib/jsonview.php. The value is the first item - a $field, a list of
   // the page or a row included, which is why the tag reads its items raw, as {debug} does
   // (lib/attrs.php) - or data= names it: a {data} store, a page array or a _data file. A
   // text that is JSON is decoded; as a pair the content is the JSON, taken as it stands,
