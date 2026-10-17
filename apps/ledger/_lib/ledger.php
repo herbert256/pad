@@ -43,11 +43,16 @@
   }
 
   // The months there are transactions in, the newest first - and the one a page shows: the
-  // asked one when there is such a month, else the newest.
+  // asked one when there is such a month, else the newest. A day stored as it was typed, by
+  // a version that took one so (ledgerEntryDay), is in no month: 'October 17 2026' was the
+  // month 'October', sorted above every 2026-xx, and each page without ?month showed it,
+  // empty.
 
   function ledgerMonths () {
 
-    return array_column ( db ( "ARRAY DISTINCT substr(day, 1, 7) AS month FROM transactions ORDER BY month DESC" ) ?: [], 'month' );
+    $months = array_column ( db ( "ARRAY DISTINCT substr(day, 1, 7) AS month FROM transactions ORDER BY month DESC" ) ?: [], 'month' );
+
+    return array_values ( array_filter ( $months, fn ( $month ) => preg_match ( '/^\d{4}-\d\d$/D', (string) $month ) ) );
 
   }
 
@@ -263,6 +268,21 @@
       return NULL;
 
     return checkdate ( (int) $month, (int) $day, (int) $year ) ? sprintf ( '%04d-%02d-%02d', $year, $month, $day ) : NULL;
+
+  }
+
+  // The day of a transaction written down, as Y-m-d. The add form's rule - date - lets every
+  // day through that date_parse reads, 17.10.2026 and October 17 2026 too, and the day was
+  // stored as it was typed: read here as the rule read it, NULL when it is no day.
+
+  function ledgerEntryDay ( $text ) {
+
+    $date = date_parse ( is_string ( $text ) ? $text : '' );
+
+    if ( $date ['error_count'] or ! $date ['year'] or ! $date ['month'] or ! $date ['day'] or ! checkdate ( $date ['month'], $date ['day'], $date ['year'] ) )
+      return NULL;
+
+    return sprintf ( '%04d-%02d-%02d', $date ['year'], $date ['month'], $date ['day'] );
 
   }
 

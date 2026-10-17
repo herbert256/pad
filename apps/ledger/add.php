@@ -1,14 +1,14 @@
 <?php
 
   // A transaction written down: a day, an amount, a category, an account, a note. The rules
-  // stand on the fields; a post that kept them is booked - its sign from its category - and
-  // the page goes to the overview of its month.
+  // stand on the fields; a post that kept them is booked - its day as Y-m-d, its sign from
+  // its category - and the page goes to the overview of its month.
 
   if ( padPosted ( 'entry' ) ) {
 
-    $day = padRequest ( 'day' );
+    $day = ledgerEntryDay ( padRequest ( 'day' ) );
 
-    if ( ledgerBook ( $day, padRequest ( 'category' ), padRequest ( 'account' ), str_replace ( ',', '.', padRequest ( 'amount' ) ), padRequest ( 'note', '' ) ) ) {
+    if ( $day and ledgerBook ( $day, padRequest ( 'category' ), padRequest ( 'account' ), str_replace ( ',', '.', padRequest ( 'amount' ) ), padRequest ( 'note', '' ) ) ) {
       padFlash ( 'Booked.' );
       padRedirect ( 'index', [ 'month' => substr ( $day, 0, 7 ) ] );
     }
