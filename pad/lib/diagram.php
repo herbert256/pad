@@ -258,6 +258,19 @@
 
   }
 
+  // Where the k-th loop of a node on itself starts - [ x, r ]: x on the node's side, r how
+  // far the loop reaches from it, negative on the left ($side -1). On a diamond it starts
+  // on the outline, 8 above the middle: a quarter of the width in from the tip, a decision
+  // of more than a few words had the loop and its label inside it, hidden by its fill.
+
+  function padDiagramLoopAt ( $n, $k, $side ) {
+
+    $x = $n ['x'] + $side * ( $n ['shape'] == 'diamond' ? $n ['w'] / 2 * max ( 0, 1 - 16 / max ( 1, $n ['h'] ) ) : $n ['w'] / 2 );
+
+    return [ $x, $side * ( 34 + 22 * $k ) ];
+
+  }
+
   // A text on one line - an edge's label, a message, a participant's name, a description:
   // its <br> a space, where it was printed as &lt;br&gt;; a node and a note break there.
 
@@ -914,8 +927,13 @@
     // the room for it is kept: in RL it was drawn on the right, under the node before, and
     // the room kept on the left stood empty.
 
-    $side  = ( $direction == 'RL' ) ? -1 : 1;
-    $loops = [];
+    // A loop's label stands beside the loop on a plate, as an edge's label does, and the
+    // labels of the edges step aside for it: in LR the label of the edge leaving the node
+    // was put half way along it, in the room kept for the loop, over the loop's label -
+    // "yes" showed, "retry" not - and an edge ran through the text.
+
+    $side   = ( $direction == 'RL' ) ? -1 : 1;
+    $loops  = $labels = [];
 
     foreach ( $edges as $e => list ( $a, $b, $label ) )
       if ( $a === $b ) {
@@ -923,6 +941,12 @@
         $n          = $nodes [$a];
         $far        = $n ['x'] + $side * ( $n ['w'] / 2 + 30 + 22 * $k + ( $label !== '' ? padDiagramWidth ( $label ) + 8 : 0 ) );
         $boxes []   = [ min ( $n ['x'], $far ), $n ['y'] - 28 - 6 * $k, max ( $n ['x'], $far ), $n ['y'] + 28 + 6 * $k ];
+        if ( $label !== '' ) {
+          list ( $x, $r ) = padDiagramLoopAt ( $n, $k, $side );
+          $w              = padDiagramWidth ( $label ) + 8;
+          $labels [$e]    = [ $x + $r * 0.75 + $side * $w / 2, $n ['y'], $w ];
+          $boxes []       = [ $labels [$e] [0] - $w / 2, $n ['y'] - 9, $labels [$e] [0] + $w / 2, $n ['y'] + 9 ];
+        }
       }
 
     $loops = [];
@@ -932,8 +956,6 @@
         $boxes [] = [ $x, $y, $x, $y ];
 
     // The labels sit half way along their edge, on a plate of the background.
-
-    $labels = [];
 
     foreach ( $edges as $e => list ( $a, $b, $label ) )
       if ( $label !== '' and isset ( $paths [$e] ) ) {
@@ -1013,19 +1035,13 @@
 
         $k  = $loops [$a] = ( $loops [$a] ?? -1 ) + 1;
         $n  = $nodes [$a];
-        // On a diamond it starts on the outline, 8 above the middle: a quarter of the width
-        // in from the tip, a decision of more than a few words had the loop and its label
-        // inside it, hidden by its fill.
-
-        $x  = $n ['x'] + $side * ( $n ['shape'] == 'diamond' ? $n ['w'] / 2 * max ( 0, 1 - 16 / max ( 1, $n ['h'] ) ) : $n ['w'] / 2 );
         $y  = $n ['y'];
-        $r  = $side * ( 34 + 22 * $k );
+
+        list ( $x, $r ) = padDiagramLoopAt ( $n, $k, $side );
+
         $d  = 'M' . $X ( $x ) . ',' . $Y ( $y - 8 ) . 'C' . $X ( $x + $r ) . ',' . $Y ( $y - 28 - 6 * $k ) . ' ' . $X ( $x + $r ) . ',' . $Y ( $y + 28 + 6 * $k ) . ' ' . $X ( $x + 6 * $side ) . ',' . $Y ( $y + 10 );
         $svg .= "<g class=\"pc-mark\">$tip<path class=\"$class\" d=\"$d\"/>"
               . ( $arrow ? padDiagramHead ( [ $x + 12 * $side, $y + 14 ], [ $x, $y + 8 ], $X, $Y, $style ) : '' ) . '</g>';
-
-        if ( $label !== '' )
-          $svg .= '<text x="' . $X ( $x + $r * 0.75 + 4 * $side ) . '" y="' . $Y ( $y + 4 ) . '"' . ( $side < 0 ? ' text-anchor="end"' : '' ) . '>' . padChartAttr ( $label ) . '</text>';
 
         continue;
 
