@@ -9,11 +9,12 @@
 
   if ( padRequestIs ( 'POST' ) ) {
 
-    $op = (string) padRequest ( 'op', '' );
-    $id = (int) padRequest ( 'id', 0 );
+    $op   = alpineText ( 'op' );
+    $id   = (int) padRequest ( 'id', 0 );
+    $text = trim ( alpineText ( 'text' ) );
 
-    if ( $op == 'add' and trim ( (string) padRequest ( 'text', '' ) ) !== '' )
-      $todos [] = [ 'id' => max ( array_column ( $todos, 'id' ) ?: [ 0 ] ) + 1, 'text' => mb_substr ( trim ( padRequest ( 'text' ) ), 0, 80 ), 'done' => FALSE ];
+    if ( $op == 'add' and $text !== '' )
+      $todos [] = [ 'id' => max ( array_column ( $todos, 'id' ) ?: [ 0 ] ) + 1, 'text' => mb_substr ( $text, 0, 80 ), 'done' => FALSE ];
 
     foreach ( $todos as $at => $todo ) {
       if ( $op == 'toggle' and $todo ['id'] == $id ) $todos [$at] ['done'] = ! $todo ['done'];

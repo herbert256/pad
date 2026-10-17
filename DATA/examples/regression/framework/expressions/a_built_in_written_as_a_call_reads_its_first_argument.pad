@@ -1,0 +1,1 @@
+{set $s = 'hello'}[{echo trim('  a  ')}][{echo upper($s)}][{echo left($s, 2)}][{if upper($s) eq 'HELLO'}T{else}F{/if}][{echo 'x' . upper($s)}][{echo date('Y', 0)}][{echo $s | replace('l', upper('x'))}][{echo substr($s, 0, 3)}][{echo $s | left(2)}][{$s | left(3)}]

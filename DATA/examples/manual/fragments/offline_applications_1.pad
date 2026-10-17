@@ -1,0 +1,9 @@
+<!-- PAD: VERTICAL -->
+{diagram direction='TB', title='How a packed application answers'}
+  P([A page, its fetch, its EventSource]) --> W[The service worker - or, from the disk, the page around the frame]
+  W --> R[The runtime: pad-app.js]
+  R -->|a www file| B[(The bundle)]
+  R -->|a page| H[PHP as WebAssembly, the PAD engine]
+  H --> S[(SQLite under DATA)]
+  S -.->|after each request| I[(IndexedDB)]
+{/diagram}

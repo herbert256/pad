@@ -1,0 +1,4 @@
+{rows where='$user.name eq "Bob"'}{$a} {/rows}|{rows}{$a}:{$user.name} {/rows}
+{orders}{$id}:{$address.city} {/orders}
+{users}{$name}:{$bought.0.id | optional} {/users}
+{items}{if $a.n eq 1}one:{$a.n}{else}other:{$a.n}{/if} {/items}

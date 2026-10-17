@@ -1,0 +1,51 @@
+<div class="backup">
+
+  <h1>Backup</h1>
+  <p class="lead">Everything Notes holds, to take with you - and to bring back.</p>
+
+  <div class="stats">
+    <div class="stat"><b>{$noteCount}</b><span>notes</span></div>
+    <div class="stat"><b>{$tagCount}</b><span>tags</span></div>
+    <div class="stat"><b>{$fileCount}</b><span>files, {$fileBytes}</span></div>
+    <div class="stat"><b>{$dbBytes}</b><span>the database</span></div>
+  </div>
+
+  <div class="cards">
+
+    <div class="card">
+      <h2>The notes as JSON</h2>
+      <p>Every note with its tags and dates - readable, and what an import here takes back.</p>
+      <a class="button primary" href="{$padGo}export&padFormat=json" download="notes.json">Download notes.json</a>
+    </div>
+
+    <div class="card">
+      <h2>The database</h2>
+      <p>The SQLite file itself, files' records included - any SQLite tool opens it.</p>
+      <a class="button" href="{$padGo}database&download" download="notes.sqlite">Download notes.sqlite</a>
+    </div>
+
+    <div class="card">
+      <h2>Import notes</h2>
+      <p>A notes.json from this page, here or on another machine: its notes are added.</p>
+      {form 'import'}
+        {input 'json', type='file', label='The JSON file', accept='application/json,.json'}
+        <button class="button">Import</button>
+      {/form}
+    </div>
+
+  </div>
+
+  <p class="where">
+    {if $inBrowser}
+      Here the database lives in this browser: PHP compiled to WebAssembly keeps
+      <code>DATA/notes/notes.sqlite</code> in IndexedDB. The badge in the corner - or
+      <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd> - opens the panel, which browses its
+      tables and exports and imports it whole.
+    {else}
+      On this server the database is <code>DATA/notes/notes.sqlite</code>. Packed with
+      <code>pad pack notes</code>, Notes runs in a browser with no server at all - and the file
+      downloaded here can be imported there, in the panel of the packed application.
+    {/if}
+  </p>
+
+</div>

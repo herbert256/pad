@@ -1,0 +1,1 @@
+{data 'rows'}[{"s":"a"},{"s":"b"},{"s":"c"}]{/data}{rows where='$s not in ("a", "b")'}{$s}{/rows}|{rows where='$s not like "a%"'}{$s}{/rows}|{if 5 not in (5, 6)}T{else}F{/if}|{rows}{if $s ne 'a' and $s not in ('b')}{$s}{/if}{/rows}|{rows}{if $s not matches '/^[ab]$/'}{$s}{/if}{/rows}|{if 5 not range (1, 4)}T{else}F{/if}|{if not 5 in (1)}T{else}F{/if}

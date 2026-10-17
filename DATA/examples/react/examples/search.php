@@ -5,9 +5,9 @@
   // $result as JSON - the templates never run for that request. $padExpose is the list of
   // what may leave the server: nothing else of this page does.
 
-  $query    = trim ( (string) padRequest ( 'q', '' ) );
-  $category = (string) padRequest ( 'category', '' );
-  $order    = (string) padRequest ( 'sort', 'name' );
+  $query    = trim ( reactText ( 'q' ) );
+  $category = reactText ( 'category' );
+  $order    = reactText ( 'sort', 'name' );
   $perPage  = 6;
 
   $products   = reactData ( 'products' );

@@ -14,7 +14,7 @@
   if ( $posted ) {
 
     $id    = (int) padRequest ( 'id', 0 );
-    $op    = (string) padRequest ( 'op', '' );
+    $op    = htmxText ( 'op' );
     $stock = array_column ( $products, 'stock', 'id' );
 
     if ( $op == 'clear' ) {
@@ -30,6 +30,13 @@
     padSessionPut ( 'htmxCart', $counts );
 
     $products = array_values ( array_filter ( $products, fn ( $product ) => $product ['id'] == $id ) );
+
+    // A product the shelf does not have - a stale or made-up request - has no card to
+    // answer: a 404, which htmx swaps nothing for, where the empty loop rendered no
+    // {fragment 'item'} and the answer was a 500, "there is no fragment named 'item'".
+
+    if ( ! $products )
+      padAbort ( 404, 'There is no such product' );
 
   }
 

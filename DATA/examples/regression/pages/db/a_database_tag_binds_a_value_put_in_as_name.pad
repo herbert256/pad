@@ -1,0 +1,7 @@
+field:  [{field "phone from staff where name = $who"}]
+array:  [{array "name from staff where name in ($names) order by name"}{$name} {/array}]
+check:  [{check "staff where name = $who"}yes@else@no{/check}]
+record: [{record "name, phone from staff where name = $who"}{$name} {$phone}{/record}]
+odd:    [{field "concat($odd, '|')"}]
+quoted: [{field "count(*) from staff where name = '$who'"}]
+loop:   [{array "name from staff where salary > 2000 order by name"}{$name} {field "phone from staff where name = $name"} {/array}]

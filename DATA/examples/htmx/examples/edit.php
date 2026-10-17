@@ -42,9 +42,9 @@
       continue;
 
     if ( $errors )
-      $contact = array_replace ( $contact, [ 'name'  => (string) padRequest ( 'name' ),
-                                             'email' => (string) padRequest ( 'email' ),
-                                             'city'  => (string) padRequest ( 'city' ) ] );
+      $contact = array_replace ( $contact, [ 'name'  => htmxText ( 'name' ),
+                                             'email' => htmxText ( 'email' ),
+                                             'city'  => htmxText ( 'city' ) ] );
 
     $rows [] = $contact + [ 'editing'  => ( $id and $mode == 'edit' ),
                             'errName'  => $errors ['name']  ?? '',
@@ -52,5 +52,12 @@
                             'errCity'  => $errors ['city']  ?? '' ];
 
   }
+
+  // An id the session does not hold - a stale or made-up request - has no row to answer: a
+  // 404, which htmx swaps nothing for, where the empty loop rendered no {fragment 'row'} and
+  // the answer was a 500, "there is no fragment named 'row' on this page".
+
+  if ( $id and ! $rows )
+    padAbort ( 404, 'There is no such contact' );
 
 ?>

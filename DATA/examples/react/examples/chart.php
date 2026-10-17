@@ -7,7 +7,7 @@
   $kind     = padRequest ( 'kind', 'bar' );
   $kind     = in_array ( $kind, [ 'bar', 'stacked', 'line', 'hbar' ] ) ? $kind : 'bar';
   $months   = max ( 3, min ( 12, (int) padRequest ( 'months', 12 ) ) );
-  $channels = array_values ( array_intersect ( [ 'online', 'shop', 'wholesale' ], explode ( ',', (string) padRequest ( 'channels', 'online,shop,wholesale' ) ) ) );
+  $channels = array_values ( array_intersect ( [ 'online', 'shop', 'wholesale' ], explode ( ',', reactText ( 'channels', 'online,shop,wholesale' ) ) ) );
 
   if ( ! $channels )
     $channels = [ 'online' ];

@@ -1,0 +1,1 @@
+json[{^user}] path[{$user.name}] prefix[{$user:name}] echo[{echo $user.name}] deeper[{$users.first.name}] where[{$users.name=ANN.name}] hash[{echo $user.password_hash ?? 'hidden'}] if[{if $user.name eq 'ANN'}same{else}other{/if}]

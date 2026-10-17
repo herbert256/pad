@@ -1,0 +1,26 @@
+<div class="head">
+  <h1>Transactions <span class="dim">{$monthName}</span></h1>
+  <a class="button" href="{$padGo}transactions&{$csvQuery}" download="{$csvName}">⬇ CSV</a>
+</div>
+
+<form class="filters" method="get">
+  <input type="hidden" name="transactions" value="">
+  <input type="hidden" name="month" value="{$ledgerMonth}">
+  <label>Category
+    <select name="category"><option value="0">All</option>{categoryList}<option value="{$id}"{if $chosen} selected{/if}>{$name}</option>{/categoryList}</select>
+  </label>
+  <label>Account
+    <select name="account"><option value="0">All</option>{accountList}<option value="{$id}"{if $chosen} selected{/if}>{$name}</option>{/accountList}</select>
+  </label>
+  <label>Note <input type="search" name="q" value="{$word}" placeholder="a word"></label>
+  <button class="button">Show</button>
+</form>
+
+<section class="card table">
+  {if $shown gt 0}
+  {datatable data='rows', columns='day, category, account, note, amount', format="amount:money, day:date('D j M')", totals='amount', sortable, rows=15, striped}
+  {else}
+  <p class="dim">No transactions here.</p>
+  {/if}
+  <p class="dim sum">{$shown} transactions, together {$sum | money}.</p>
+</section>

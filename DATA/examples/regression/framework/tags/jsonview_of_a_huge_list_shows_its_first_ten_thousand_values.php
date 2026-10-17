@@ -4,6 +4,8 @@
   // 221 MB, past a memory_limit of 128 MB. The tree writes ten thousand values and says how
   // many more there are; the count of the list stays the whole.
 
+  include_once PAD . 'tags/_lib/jsonview.php';
+
   $huge  = padJsonviewHtml ( array_fill ( 0, 300000, 0 ), 0, '' );
   $items = substr_count ( $huge, '<li>' );
   $more  = preg_match ( '/… ([0-9]+) more/', $huge, $m ) ? $m [1] : 'none';

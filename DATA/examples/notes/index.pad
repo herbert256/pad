@@ -1,0 +1,39 @@
+<div class="layout">
+
+  <aside class="tags" aria-label="Tags">
+    <a href="{$padGo}index" class="{if $only eq ''}on{/if}">All notes <span>{$total}</span></a>
+    {tagList}<a href="{$padGo}index{?tag}" class="{if $tag eq $only}on{/if}">#{$tag} <span>{$uses}</span></a>{/tagList}
+  </aside>
+
+  <section class="list">
+    <div class="list-head">
+      <h1>{if $only}#{$only}{elseif $search}Found for “{$search}”{else}All notes{/if}</h1>
+      <span class="count">{$found} of {$total}</span>
+    </div>
+    <div id="results" data-tag="{$only}">
+      {fragment 'list'}
+      {live 'notes'}
+      <div class="grid">
+        {notes}
+        <article class="note color-{$color}{if $pinned} pinned{/if}">
+          <button type="button" class="pin" pad-click="pin" pad-value="{$id}" aria-pressed="{if $pinned}true{else}false{/if}" title="{if $pinned}Unpin{else}Pin to the top{/if}">★</button>
+          <a class="open" href="{$padGo}note&id={$id}">
+            <h2>{$title}</h2>
+            <p>{$excerpt}</p>
+          </a>
+          <footer>
+            <time datetime="{$updated}">{$day}</time>
+            {if $files gt 0}<span class="clip" title="Attached files">📎 {$files}</span>{/if}
+            {level:tags}<a class="tag" href="{$padGo}index{?tag}">#{$tag}</a>{/level:tags}
+          </footer>
+        </article>
+        @else@
+        <p class="empty">{if $search}Nothing found for “{$search}”.{else}No notes here yet.{/if} <a href="{$padGo}edit">Write one</a>.</p>
+        {/notes}
+      </div>
+      {/live}
+      {/fragment}
+    </div>
+  </section>
+
+</div>

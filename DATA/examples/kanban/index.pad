@@ -1,0 +1,54 @@
+<div class="board-head">
+  <h1>Offline shop</h1>
+  <span class="dim">{$cardTotal} cards</span>
+</div>
+
+<div class="board" id="board" data-version="{$version}">
+
+  <div class="columns" id="columns">
+    {fragment 'columns'}
+    {board}
+    <section class="column{if $over} over{/if}" data-column="{$id}" aria-labelledby="column-{$id}">
+      <h2 id="column-{$id}">{$name} <span class="count">{$count}{if $wip gt 0} / {$wip}{/if}</span></h2>
+      <div class="cards" data-drop="{$id}">
+        {level:cards}
+        <article class="card label-{$label}" draggable="true" data-card="{$id}" data-due="{$due}" tabindex="0">
+          <a class="title" href="{$padGo}card&id={$id}">{$title}</a>
+          {if $excerpt}<p>{$excerpt}</p>{/if}
+          <footer>
+            {if $label}<span class="chip">{$labelName}</span>{/if}
+            {if $due}<time datetime="{$due}">{$dueShown}</time>{/if}
+            <span class="moves">
+              {if $left}<button type="button" data-move="{$left}" aria-label="Move {$title} to {$leftName}" title="To {$leftName}">←</button>{/if}
+              {if $right}<button type="button" data-move="{$right}" aria-label="Move {$title} to {$rightName}" title="To {$rightName}">→</button>{/if}
+            </span>
+          </footer>
+        </article>
+        {/level:cards}
+      </div>
+    </section>
+    {/board}
+    {/fragment}
+  </div>
+
+  <aside class="feed" aria-labelledby="feed-title">
+    <h2 id="feed-title">Activity</h2>
+    <ol class="activity" id="activity">
+      {fragment 'activity'}
+      {activity}<li><time datetime="{$at}">{$when}</time>{$what}</li>{/activity}
+      {/fragment}
+    </ol>
+  </aside>
+
+</div>
+
+<dialog id="new-card" aria-labelledby="new-card-title"{if $cardFailed} open{/if}>
+  {form 'card', class='card-form', error='The card was not added - see the fields below.'}
+    <h2 id="new-card-title">New card</h2>
+    {input 'title', label='Title', rules='required|max:100', autofocus}
+    {textarea 'body', label='Details', rows=4, rules='max:2000'}
+    <label for="new-label">Label</label>
+    <select id="new-label" name="label"><option value="">None</option>{labelList}<option value="{$key}"{if $chosen} selected{/if}>{$name}</option>{/labelList}</select>
+    <div class="bar"><button class="button primary">Add to Backlog</button><button class="button" type="button" data-close>Cancel</button></div>
+  {/form}
+</dialog>

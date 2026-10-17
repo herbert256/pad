@@ -1,0 +1,1 @@
+{cache 'fwPollNocache', ttl=60}kept {nocache}{poll 'fw-poll-nocache', options='Yes, No' | php:substr_count(@, 'padPollAnswer')}{/nocache}{/cache}|{cache 'fwPollNocache', ttl=60}its own {nocache}{poll 'fw-poll-nocache', options='Yes, No' | php:substr_count(@, 'padPollAnswer')}{/nocache}{/cache}

@@ -5,6 +5,8 @@
   // and the same colour, where the marks were dropped and the colour changed. A handle's
   // leading @ is no e-mail address: @herbert was a '?'.
 
+  include_once PAD . 'tags/_lib/avatar.php';
+
   $nfc = "\u{00C5}sa \u{00D6}berg";
   $nfd = "A\u{030A}sa O\u{0308}berg";
 

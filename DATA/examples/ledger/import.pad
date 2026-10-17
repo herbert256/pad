@@ -1,0 +1,25 @@
+<div class="narrow">
+
+  <h1>Import</h1>
+  <p class="lead">Transactions from a CSV file - a bank's export, or one this application wrote on the Transactions page.</p>
+
+  {form 'import', class='entry'}
+    {input 'csv', type='file', label='The CSV file', accept='.csv,text/csv,text/plain'}
+    <div class="bar"><button class="button primary">Import</button></div>
+  {/form}
+
+  {report}
+    {first@report}<h2>Rows not imported</h2><ul class="report">{/first@report}
+    <li>Line {$line}: {$said}</li>
+    {last@report}</ul>{/last@report}
+  {/report}
+
+  <h2>The columns</h2>
+  <p>The first row names them: <code>day</code>, <code>amount</code> and <code>category</code>, and
+  <code>account</code> and <code>note</code> when there are any. Money going out is below zero;
+  a category not known yet is made.</p>
+  <pre>day,amount,category,account,note
+2026-10-02,-23.40,Groceries,Current account,Market
+2026-10-25,3200,Salary,Current account,Salary</pre>
+
+</div>

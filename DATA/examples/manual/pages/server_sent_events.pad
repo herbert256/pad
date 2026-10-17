@@ -65,6 +65,12 @@ what it answers as the event named by <code>event</code>: an array goes as JSON,
   <li>A stream holds a PHP worker for as long as it runs: keep <code>for</code> short and let
       the browser reconnect. Nothing of the answer is cached, compressed or buffered by PAD;
       <code>X-Accel-Buffering: no</code> asks nginx not to hold the events back.</li>
+  <li>In the browser - an application packed by <code>pad pack</code>, see
+      {manual 'offline_applications'} - one PHP answers the whole tab, so a stream is one round
+      there: the <code>every</code> form calls its producer once and asks the browser back after
+      the interval, a <code>FALSE</code> with nothing sent is answered 204 and ends it, and the
+      loop form ends at the first event sent a tenth of a second after it began.
+      <code>padWasm()</code> says where a page runs.</li>
 </ul>
 
 <p>The htmx application streams rows of HTML that its sse extension swaps in

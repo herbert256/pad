@@ -4,6 +4,8 @@
   // cookie, a form on another site - is not counted: the voting post started the session
   // itself, and five posts were five votes.
 
+  include_once PAD . 'tags/_lib/poll.php';
+
   @unlink ( padPollFile ( 'fw-unseen' ) );
 
   $pollUrl = $padHost . 'regression/framework/?tags/poll_of_a_name_of_its_own_shows_its_form&padInclude';

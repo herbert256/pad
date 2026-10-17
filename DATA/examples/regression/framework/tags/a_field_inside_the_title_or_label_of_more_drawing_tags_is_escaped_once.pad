@@ -1,0 +1,16 @@
+sudoku {sudoku '53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8..79', title='{$t}' | php:substr_count(@, 'Q&amp;A Å')};
+chess {chess 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1', title='{$t}' | php:substr_count(@, 'Q&amp;A Å')};
+crossword {crossword title='{$t}'}
+  ECHO: Writes a value
+  HELLO: The first page
+{/crossword | php:substr_count(@, 'Q&amp;A Å')};
+emoji {emoji 'rocket', label='{$t}' | php:substr_count(@, 'Q&amp;A Å')};
+copy {copy 'abc', label='{$t}' | php:substr_count(@, 'Q&amp;A Å')};
+modal {modal 'fw-esc-once', title='{$t}', button='{$t}'}x{/modal | php:substr_count(@, 'Q&amp;A Å')};
+video {video 'https://youtu.be/dQw4w9WgXcQ', title='{$t}' | php:substr_count(@, 'Q&amp;A Å')};
+countdown {countdown '2000-01-01', past='{$t}' | php:substr_count(@, 'Q&amp;A Å')};
+tabs {tabs active='{$t}'}{tab 'B'}b{/tab}{tab '{$t}'}a{/tab}{/tabs | php:substr_count(@, 'Q&amp;A Å')} {tabs active='{$t}'}{tab 'B'}b{/tab}{tab '{$t}'}a{/tab}{/tabs | php:preg_match('/-2-panel. checked/u', @)};
+accordion {accordion open='{$t}'}{tab 'B'}b{/tab}{tab '{$t}'}a{/tab}{/accordion | php:preg_match('/open><summary class..pad-accordion-summary.>Q&amp;A Å/u', @)};
+carousel {carousel label='{$t}'}{tab '{$t}'}a{/tab}{/carousel | php:substr_count(@, 'Q&amp;A Å')};
+poll {poll 'fw-esc-once', title='{$t}', button='{$t}', options='{$t}, B' | php:substr_count(@, 'Q&amp;A Å')};
+img {img 'assets/photo.jpg', width=40, alt='{$t}' | php:substr_count(@, 'Q&amp;A Å')}
