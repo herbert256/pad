@@ -1309,6 +1309,52 @@
             }
         },
         {
+            "field": "code",
+            "data": {
+                "code": "abc"
+            },
+            "server": "",
+            "client": {
+                "code": {
+                    "label": "Code",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "regex",
+                            "/^[^]]+$/",
+                            ":label is not valid",
+                            "/^[^]]+$/"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "code",
+            "data": {
+                "code": "a]b"
+            },
+            "server": "",
+            "client": {
+                "code": {
+                    "label": "Code",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "regex",
+                            "/^[]a-z]+$/",
+                            ":label is not valid",
+                            "/^[]a-z]+$/"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
             "field": "confirm",
             "data": {
                 "password": "secret",

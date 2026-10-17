@@ -202,6 +202,9 @@
     var body = pattern.slice(1, end);
     var bare = body.replace(/\\\\/g, '');
     if (/\\([AzZQERhHKGeNXCagoLlUuvV]|x\{)/.test(bare) || /\[:\^?[a-z]+:\]/.test(bare)) return null;
+    // A ] right after [ or [^ is a literal in PCRE, where JavaScript reads [] as the empty
+    // class and [^] as any character - /^[^]]+$/ could never match and blocked the form.
+    if (/(^|[^\\])\[\^?\]/.test(bare)) return null;
     if (flags.indexOf('u') < 0 ? /\\[pP]/.test(bare) : /\\[wWdDbB]/.test(bare)) return null;
     try { return new RegExp(body, flags.replace(/[^imsu]/g, '')); } catch (e) { return null; }
   }

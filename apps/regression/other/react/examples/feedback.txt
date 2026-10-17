@@ -133,6 +133,7 @@
     var body = pattern.slice(1, end);
     var bare = body.replace(/\\\\/g, '');
     if (/\\([AzZQERhHKGeNXCagoLlUuvV]|x\{)/.test(bare) || /\[:\^?[a-z]+:\]/.test(bare)) return null;
+    if (/(^|[^\\])\[\^?\]/.test(bare)) return null;
     if (flags.indexOf('u') < 0 ? /\\[pP]/.test(bare) : /\\[wWdDbB]/.test(bare)) return null;
     try { return new RegExp(body, flags.replace(/[^imsu]/g, '')); } catch (e) { return null; }
   }

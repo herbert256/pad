@@ -59,6 +59,8 @@
     [ 'name',     'regex:/^.{5}$/',           [ 'name' => 'José' ] ],
     [ 'zip',      'regex:/\A\d{4}\z/',        [ 'zip' => '1234' ] ],
     [ 'slug',     'regex:/^[[:alnum:]-]+$/',  [ 'slug' => 'abc-1' ] ],
+    [ 'code',     'regex:/^[^]]+$/',          [ 'code' => 'abc' ] ],
+    [ 'code',     'regex:/^[]a-z]+$/',        [ 'code' => 'a]b' ] ],
     [ 'confirm',  'same:password',            [ 'password' => 'secret', 'confirm' => 'secret' ] ],
     [ 'confirm',  'same:password',            [ 'password' => 'secret', 'confirm' => 'secrets' ] ],
     [ 'name',     'required',                 [ 'name' => "\u{00A0}" ] ],
