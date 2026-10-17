@@ -26,15 +26,11 @@
                          'prefix'    => [ 'TYPES.md', 'TAGS.md' ],
                          'construct' => [ 'CONSTRUCTS.md' ] ];
 
-  const editSingleTags = [ 'set', 'get', 'echo', 'increment', 'decrement', 'redirect', 'restart',
-                           'exit', 'break', 'continue', 'cease', 'dump', 'error', 'exception',
-                           'open', 'close', 'null', 'true', 'false', 'flag', 'page', 'curl',
-                           'exists', 'at', 'resume', 'switch', 'ajax', 'reactData', 'file',
-                           'make', 'keep', 'remove', 'action', 'debug', 'attrs', 'classes',
-                           'trans', 'nonce', 'csrf', 'stack', 'recurse', 'parent', 'extends',
-                           'meta', 'parms', 'assert', 'flush', 'sparkline', 'chart', 'input',
-                           'textarea', 'pager', 'sitemap', 'qr', 'barcode', 'calendar', 'highlight',
-                           'validator', 'source', 'vite' ];
+  // The tags that never open a pair are the ones completions.json marks single - what
+  // editors/generate.php decides for the language server and the kits. A list of its own here
+  // still held true, false, null, chart and highlight, which the applications write as a pair
+  // more often than not: after {items}{highlight 'pad'}<p>x</p> the editor offered {/items}
+  // and paired the {/highlight} with nothing.
 
   const editBranchTags = [ 'else', 'elseif', 'when' ];
 
@@ -74,13 +70,17 @@
 
     $list = json_decode ( (string) @file_get_contents ( editHome () . '/editors/lsp/completions.json' ), TRUE ) ?: [];
 
-    foreach ( $list as $one )
+    $pad ['single'] = [];
+
+    foreach ( $list as $one ) {
       if ( isset ( $groups [ $one ['detail'] ?? '' ] ) )
         $pad [ $groups [ $one ['detail'] ] ] [] = rtrim ( $one ['label'], ':' );
+      if ( ! empty ( $one ['single'] ) and ( $one ['detail'] ?? '' ) == 'PAD tag' )
+        $pad ['single'] [] = $one ['label'];
+    }
 
     $pad ['actions']    = editNames ( PAD . 'sequence/actions/types' );
     $pad ['constructs'] = editNames ( PAD . 'constructs' );
-    $pad ['single']     = editSingleTags;
     $pad ['branch']     = editBranchTags;
 
     $pad ['docs'] = [];

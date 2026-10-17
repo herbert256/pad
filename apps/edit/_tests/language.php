@@ -13,6 +13,8 @@
   $sameFunctions = count ( $builtin ['functions'] ) == $count ( 'pipe function' ) ? 'yes' : 'no';
   $hasConstructs = in_array ( 'page', $builtin ['constructs'] ) ? 'yes' : 'no';
   $hasActions    = in_array ( 'reverse', $builtin ['actions'] ) ? 'yes' : 'no';
+  $sameSingles   = $builtin ['single'] == array_column ( array_filter ( $json, fn ( $one ) => ! empty ( $one ['single'] ) ), 'label' ) ? 'yes' : 'no';
+  $pairForms     = implode ( ' ', array_intersect ( [ 'true', 'false', 'null', 'chart', 'highlight' ], $builtin ['single'] ) ) ?: 'none';
 
   $ifSummary     = $builtin ['docs'] ['tag'] ['if'] ['summary'] ?? '';
   $upperSummary  = $builtin ['docs'] ['function'] ['upper'] ['summary'] ?? '';
