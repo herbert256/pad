@@ -7,6 +7,12 @@
   // a lock. title= is the question (the name, readable, when not given), button= the
   // button's text ('Vote'), results shows the results before a vote too. lib/poll.php.
 
+  // A {cache} section round it is not kept (padFragmentKeepNot): the poll is this visitor's -
+  // the form or, once voted, the results - and on a hit its handler did not run, so no
+  // session was marked as shown the form, and the vote posted from it was refused.
+
+  padFragmentKeepNot ();
+
   $padPollName = (string) $padParm;
 
   if ( ! preg_match ( '/^[A-Za-z0-9_-]{1,64}$/D', $padPollName ) )

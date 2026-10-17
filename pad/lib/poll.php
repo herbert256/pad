@@ -112,7 +112,9 @@
     // A vote: an answer of the poll, once per visitor, counted only from a session that was
     // shown the poll before - the form marks it - where the voting post started the session
     // itself: a post without the cookie, a loop or a form on another site, voted again and
-    // again, one request a vote.
+    // again, one request a vote. A session that is there but was not shown the poll - it
+    // ended between reading and voting - is asked to vote again on the form that marks it,
+    // where it was told the site keeps no session for it.
 
     $posted = padPollPosted ( $name );
     $app    = $GLOBALS ['padApp'];
@@ -121,8 +123,10 @@
 
       if ( ! in_array ( $posted, $answers, TRUE ) )
         $note = 'Choose one of the answers.';
-      elseif ( ! padSessionExists () or ! padSessionStart () or empty ( $_SESSION ['padPollShown'] [$app] [$name] ) )
+      elseif ( ! padSessionExists () or ! padSessionStart () )
         $note = 'Your vote could not be counted - this site keeps no session for you.';
+      elseif ( empty ( $_SESSION ['padPollShown'] [$app] [$name] ) )
+        $note = 'Your vote could not be counted - please vote again.';
       else {
         padPollVote ( $name, $posted );
         $_SESSION ['padPoll'] [ $GLOBALS ['padApp'] ] [$name] = $posted;
