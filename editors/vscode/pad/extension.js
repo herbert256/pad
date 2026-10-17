@@ -5,16 +5,10 @@ const COMPLETIONS = require('./completions.json');
 // just inside the brace ({~items~}, {~/items})
 const TAG_RE = /\{~?(\/?)([A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)?)([^{}]*)/g;
 
-// built-in tags that never take a closing tag
-const SINGLE_TAGS = new Set([
-    'set', 'get', 'echo', 'increment', 'decrement', 'redirect', 'restart',
-    'exit', 'break', 'continue', 'cease', 'dump', 'error', 'exception',
-    'open', 'close', 'null', 'true', 'false', 'flag', 'page', 'curl',
-    'exists', 'at', 'resume', 'switch', 'ajax', 'reactData', 'file',
-    'make', 'keep', 'remove', 'action',
-    'debug', 'attrs', 'classes', 'trans', 'nonce', 'csrf', 'stack', 'recurse', 'parent',
-    'extends', 'meta', 'parms', 'assert', 'flush', 'sparkline', 'chart', 'input', 'textarea', 'qr', 'barcode', 'calendar', 'highlight',
-]);
+// built-in tags that never take a closing tag: marked single in completions.json, which
+// editors/generate.php writes - the hand-kept list stopped at highlight, and PAD: Close Tag
+// wrote {/icon} after {items}{icon 'x'}
+const SINGLE_TAGS = new Set(COMPLETIONS.filter((c) => c.single).map((c) => c.label));
 
 // The branch words of {if} and {case} divide a pair; they never open one of their own.
 const BRANCH_TAGS = new Set(['else', 'elseif', 'when']);

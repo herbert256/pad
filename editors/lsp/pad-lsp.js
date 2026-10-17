@@ -35,15 +35,10 @@ const KIND = {
 // A ~ just inside the brace is whitespace control - {~items~}, {~/items} - and no part of
 // the name: without it here such a pair was never opened or never closed for the close-tag help.
 const TAG_RE = /\{~?(\/?)([A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)?)([^{}]*)/g;
-const SINGLE_TAGS = new Set([
-    'set', 'get', 'echo', 'increment', 'decrement', 'redirect', 'restart',
-    'exit', 'break', 'continue', 'cease', 'dump', 'error', 'exception',
-    'open', 'close', 'null', 'true', 'false', 'flag', 'page', 'curl',
-    'exists', 'at', 'resume', 'switch', 'ajax', 'reactData', 'file',
-    'make', 'keep', 'remove', 'action',
-    'debug', 'attrs', 'classes', 'trans', 'nonce', 'csrf', 'stack', 'recurse', 'parent',
-    'extends', 'meta', 'parms', 'assert', 'flush', 'sparkline', 'chart', 'input', 'textarea', 'qr', 'barcode', 'calendar', 'highlight',
-]);
+// The built-in tags that never open a pair: marked single in completions.json, which
+// editors/generate.php writes - a hand-kept copy here stopped being updated at highlight, and
+// {items}{icon 'x'}{/ offered icon before items.
+const SINGLE_TAGS = new Set(COMPLETIONS.filter((c) => c.single).map((c) => c.label));
 
 // The branch words of {if} and {case} divide a pair; they never open one of their own.
 const BRANCH_TAGS = new Set(['else', 'elseif', 'when']);

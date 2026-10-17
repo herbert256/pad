@@ -142,6 +142,14 @@ async function main() {
     const closers = (r.result || []).map((c) => c.label);
     expect('close-tag completion skips else, self-closed and commented tags', closers.join(',') === 'if,orders', closers);
 
+    // a tag that never opens a pair - the single tags added since {highlight} too - is no
+    // close-tag candidate
+    const singleUri = uri('orders.pad').replace('orders.pad', 'singles.pad');
+    notify('textDocument/didOpen', { textDocument: { uri: singleUri, languageId: 'pad', version: 1, text: '{items}\n<li>{icon "check"} {$name} {asset "a.css"} {avatar $name} {vite "a.js"}</li>\n{/' } });
+    r = await request('textDocument/completion', { textDocument: { uri: singleUri }, position: { line: 2, character: 2 } });
+    const singleClosers = (r.result || []).map((c) => c.label);
+    expect('close-tag completion skips the tags that are never a pair', singleClosers.join(',') === 'items', singleClosers);
+
     // whitespace control: {~items~} opens a pair and {~/orders~} closes one, the ~ just
     // inside the brace taking the whitespace on that side
     const tildeUri = uri('orders.pad').replace('orders.pad', 'tilde.pad');
