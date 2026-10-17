@@ -383,26 +383,30 @@
   // and any value PHP knows as a password hash, whatever its column is called - a hash in
   // 'hash' or 'pass_hash' went into the session, {auth} and the dumps, and a new password
   // left every remember-me cookie valid. A name is judged by its words - split on _ and -
-  // and where the case changes - so a secret's word anywhere makes it one (recovery_key,
-  // otp_backup_codes, pin_hash, remember_hash, apiKey), and so does a word that is two of them
-  // written together (pincode, totpseed, recoverycodes, pwdhash, userpwd, PINCode), unless
-  // its last word marks a flag, a time, a count or an address: email_hash (a Gravatar's,
-  // public), hashtag, otp_enabled, otp_last_used, recovery_email and pin_code_sent are
-  // ordinary fields of the row.
+  // and where the case changes, PINCode too - so a secret's word anywhere makes it one
+  // (recovery_key, otp_backup_codes, pin_hash, remember_hash, apiKey), and so does a word that
+  // is two of them written together (pincodes, totpseed, recoverycodes, pwdhash, pincodehash,
+  // userpwd), unless its last word marks a flag, a time, a count or an address: hashtag,
+  // otp_enabled, otp_last_used, recovery_email and pin_code_sent are ordinary fields of the
+  // row. So are the public picture hashes in any spelling - email_hash, emailhash, emailHash
+  // (a Gravatar's), avatar_hash, blurhash - a hash written together with a word that is no
+  // secret's - githash, filehash - and pincode, the postal code of an Indian address: taken
+  // for secrets, {auth}{$pincode}{/auth} ended the page and editing the address ended every
+  // remember-me cookie.
 
   function padAuthSecret ( $name, $value = NULL ) {
 
-    $words = array_map ( 'strtolower', preg_split ( '/[_\-\s]+|(?<=[a-z0-9])(?=[A-Z])/', (string) $name, -1, PREG_SPLIT_NO_EMPTY ) );
+    $words = array_map ( 'strtolower', preg_split ( '/[_\-\s]+|(?<=[a-z0-9])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])/', (string) $name, -1, PREG_SPLIT_NO_EMPTY ) );
     $last  = end ( $words );
 
-    $public = ( strtolower ( (string) $name ) === 'email_hash'
+    $public = ( in_array ( implode ( '', $words ), [ 'emailhash', 'avatarhash', 'gravatarhash', 'blurhash' ], TRUE )
                 or in_array ( $last, [ 'enabled', 'disabled', 'sent', 'at', 'on', 'used', 'count', 'email', 'date', 'time', 'set' ], TRUE ) );
 
     if ( ! $public )
       foreach ( $words as $i => $word )
         if ( in_array ( $word, [ 'pass', 'pwd', 'hash', 'salt', 'otp', 'totp', 'pin', 'recovery', 'backup' ], TRUE )
              or preg_match ( '/password|passwd|passphrase|passcode|secret|token|apikey|privatekey/', $word )
-             or preg_match ( '/^(pin|t?otp)(codes?|hash|seed|keys?)$|^recovery(codes?|keys?)$|^(pwd|pass)hash$|.pwd$|.hash$/', $word )
+             or preg_match ( '/^pin(codes|hash|seed|keys?)$|^t?otp(codes?|hash|seed|keys?)$|^recovery(codes?|keys?)$|.pwd$|(pass|pw|pwd|pin|code|otp|user|remember|recovery|backup|reset|auth|login|session|key)hash$/', $word )
              or ( $word === 'key' and in_array ( $words [$i - 1] ?? '', [ 'api', 'app', 'private', 'recovery', 'secret', 'encryption' ], TRUE ) ) )
           return TRUE;
 
