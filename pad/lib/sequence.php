@@ -408,6 +408,16 @@
 
   }
 
+  // A float -0 made 0, any other number as it is - what x + 0 did for the arithmetic of a
+  // sequence type, until PHP's optimizer, sure of a float, took x + 0 for x and dropped it:
+  // under OPcache without Xdebug {sequence modulo=3, from=-3} printed -0 again.
+
+  function pqZero ( $x ) {
+
+    return ( is_float ( $x ) and $x == 0 ) ? 0.0 : $x;
+
+  }
+
   // Whether $x is a whole number an integer predicate can work with: a number, without a
   // fraction, inside the integer range. The membership tests of the integer sequences -
   // prime, even, happy and the rest - answer no for anything else before doing arithmetic on

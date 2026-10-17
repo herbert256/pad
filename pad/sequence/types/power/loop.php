@@ -16,9 +16,9 @@
   if ( $pqParm == 0 and $pqLoop < 0 )
     return FALSE;
 
-  // The + 0 turns the float -0 into 0: printed, it read -0. A negative base raised to a far
+  // pqZero turns the float -0 into 0: printed, it read -0. A negative base raised to a far
   // odd power - (-0.1) ** 401 - underflows to it.
 
-  return $pqParm ** $pqLoop + 0;
+  return pqZero ( $pqParm ** $pqLoop );
 
 ?>
