@@ -218,7 +218,9 @@
   // the rows above it were booked. A line with more cells than the header names is no row
   // either but a refusal, by its line number: its values no longer stand under their names
   // - an amount written -23,40 without quotes is two cells - and cutting it to the header's
-  // length booked -23 on a category "40", the category as the note.
+  // length booked -23 on a category "40", the category as the note. Empty cells past the
+  // header's names are no values - an export that ends each line in a delimiter - and a
+  // line of empty cells is no row: every line of such a file was refused.
 
   function ledgerCsv ( $handle ) {
 
@@ -231,7 +233,10 @@
 
       $line++;
 
-      if ( count ( $cells ) == 1 and trim ( (string) $cells [0] ) === '' )
+      while ( count ( $cells ) > count ( $header ) and trim ( (string) end ( $cells ) ) === '' )
+        array_pop ( $cells );
+
+      if ( implode ( '', array_map ( fn ( $cell ) => trim ( (string) $cell ), $cells ) ) === '' )
         continue;
 
       if ( count ( $cells ) > count ( $header ) ) {
