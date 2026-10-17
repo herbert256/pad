@@ -140,6 +140,14 @@
     if ( $value === NULL or ( ! is_scalar ( $value ) ) )
       $value = '';
 
+    // A value spliced into a format - format='s:{$f}' - is part of the pipe expression run for
+    // every cell, and a request value's php:abs(-3) ran: refused, as in a where=.
+
+    if ( $column ['format'] !== '' and padSpliceInCode ( $column ['format'] ) ) {
+      padError ( "a value spliced into a format= is part of its code: put it in as a pipe the template writes" );
+      return '';
+    }
+
     if ( $column ['format'] !== '' )
       return (string) padEval ( '@ | ' . $column ['format'], $value );
 
