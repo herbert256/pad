@@ -2669,7 +2669,7 @@ strict error that names the nearest one (`did you mean ':rocket:'?`).
 ---
 
 ### country
-A country's flag from its ISO 3166-1 code, optionally with its English name (`lib/country.php`).
+A country's flag from its ISO 3166-1 code, optionally with its English name (`tags/_lib/country.php`).
 
 ```html
 {country 'NL'}             <!-- <span class="pad-country" role="img" aria-label="Netherlands">🇳🇱</span> -->
