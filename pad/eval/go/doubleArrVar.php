@@ -8,8 +8,19 @@
   // data name resolves to - there is no one value to hand on and the operator is an error.
   //
   // Either way doubleVarVar.php does the work once both sides are scalars.
+  //
+  // The logical operators need no one value: they read the array's truth - TRUE when it has
+  // elements, as {if array:rows} and doubleArrArr.php read it - against the value's own. They
+  // went through the sum: {if array:rows and $flag} ended the page on "only an array of
+  // numbers sums to one value", and array:nums = [0, 0] and $flag was false.
 
-  if ( count ( $left ) == 1 ) {
+  if ( in_array ( $opr, [ 'AND', 'OR', 'XOR' ] ) ) {
+
+    $left = count ( $left ) > 0;
+
+    include PAD . 'eval/go/doubleVarVar.php';
+
+  } elseif ( count ( $left ) == 1 ) {
 
     $left = reset ( $left );
 

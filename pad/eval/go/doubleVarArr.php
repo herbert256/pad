@@ -3,9 +3,16 @@
   // scalar OP array, the mirror of doubleArrVar: a one-element array is unwrapped to that
   // element, a longer one is replaced by the sum of its elements when every element and the
   // other operand are numbers, and anything else is an error. doubleVarVar.php does the work
-  // once both sides are scalars.
+  // once both sides are scalars. The logical operators read the array's truth, TRUE when it
+  // has elements, as doubleArrVar.php does.
 
-  if ( count ( $right ) == 1 ) {
+  if ( in_array ( $opr, [ 'AND', 'OR', 'XOR' ] ) ) {
+
+    $right = count ( $right ) > 0;
+
+    include PAD . 'eval/go/doubleVarVar.php';
+
+  } elseif ( count ( $right ) == 1 ) {
 
     $right = reset ( $right );
 
