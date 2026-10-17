@@ -249,10 +249,14 @@
   // the rows above it were booked. A line with more cells than the header names is no row
   // either but a refusal, by its line number: its values no longer stand under their names
   // - an amount written -23,40 without quotes is two cells - and cutting it to the header's
-  // length booked -23 on a category "40", the category as the note. Empty cells past the
-  // header's names are no values - an export that ends each line in a delimiter - and a
-  // line of empty cells is no row: every line of such a file was refused. A byte order mark
-  // is read past before the header: in front of a quoted name it made the quote text, and
+  // length booked -23 on a category "40", the category as the note. A line of empty cells
+  // is no row. An export that ends each line in a delimiter the header does not have is
+  // told by the whole file - every line that holds a value has more cells than the header
+  // names and an empty last one - and then each line loses that one last cell: every line
+  // of such a file was refused. Decided line by line, dropping the empty cells past the
+  // header's names hid the overflow of an unquoted -23,40 on a line whose note was empty:
+  // 2026-09-05,-23,40,Groceries, booked -23 on a category "40" again. A byte order mark is
+  // read past before the header: in front of a quoted name it made the quote text, and
   // "day" with its quotes was no column day.
 
   function ledgerCsv ( $handle ) {
@@ -261,6 +265,7 @@
       rewind ( $handle );
 
     $header  = array_map ( fn ( $h ) => strtolower ( trim ( (string) $h ) ), fgetcsv ( $handle, escape: '' ) ?: [] );
+    $lines   = [];
     $rows    = [];
     $refused = [];
     $line    = 1;
@@ -269,11 +274,17 @@
 
       $line++;
 
-      while ( count ( $cells ) > count ( $header ) and trim ( (string) end ( $cells ) ) === '' )
-        array_pop ( $cells );
+      if ( implode ( '', array_map ( fn ( $cell ) => trim ( (string) $cell ), $cells ) ) !== '' )
+        $lines [$line] = $cells;
 
-      if ( implode ( '', array_map ( fn ( $cell ) => trim ( (string) $cell ), $cells ) ) === '' )
-        continue;
+    }
+
+    $trailing = ( $lines and ! array_filter ( $lines, fn ( $cells ) => count ( $cells ) <= count ( $header ) or trim ( (string) end ( $cells ) ) !== '' ) );
+
+    foreach ( $lines as $line => $cells ) {
+
+      if ( $trailing )
+        array_pop ( $cells );
 
       if ( count ( $cells ) > count ( $header ) ) {
         $refused [$line] = 'skipped - ' . count ( $cells ) . ' cells where the first row names ' . count ( $header ) . ' - an amount like -23,40 needs quotes: "-23,40"';
