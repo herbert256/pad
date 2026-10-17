@@ -1796,7 +1796,7 @@ under the strict check.
 
 ### progress
 An accessible progress bar - the native `<progress>` element, styled on the server, under a
-line with its label and percentage (`lib/progress.php`); with `steps` a row of step dots. No
+line with its label and percentage (`tags/_lib/progress.php`); with `steps` a row of step dots. No
 script, it prints.
 
 ```html

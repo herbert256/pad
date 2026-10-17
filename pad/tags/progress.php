@@ -1,6 +1,6 @@
 <?php
 
-  // {progress 72} - a progress bar, lib/progress.php: the native <progress> element styled,
+  // {progress 72} - a progress bar, tags/_lib/progress.php: the native <progress> element styled,
   // under a line with the label and the percentage. The first parameter is the value; max=
   // is what it counts to (default 100), label= names it - shown, and the accessible name -
   // color= is accent (default), success, warning, danger or neutral, and size= small,
