@@ -39,6 +39,12 @@
 
   }
 
+  // A value spliced into the expression where the guards of the splice do not see it - the
+  // far part of a where= of more than 4 KB - is refused, as the eval sequence refuses it.
+
+  if ( padSpliceInCode ( (string) $padHandParm ) )
+    return padError ( "a value spliced into a where= is part of its code: put it in as \$name" );
+
   $padWhereKeep = $padCurrent [$pad] ?? [];
 
   foreach ( $padData [$pad] as $padWhereKey => $padWhereRow ) {

@@ -218,8 +218,15 @@ function padSplitOnUnquotedColon ( $str ) {
     $before = substr ( $padOut [$pad], $start - $window, $window );
     $open   = strrpos ( $before, '{' );
 
-    if ( $open === FALSE )
+    // No tag opens within the window: text, or the far part of a tag's parameters longer than
+    // the window - where='...' of 4 KB - which nothing here can tell apart. Kept, so the
+    // evaluators still refuse it as part of their code (padSpliceInCode): it went in bare and
+    // unrecorded, and a request value's php:abs(-3) ran past both guards.
+
+    if ( $open === FALSE ) {
+      padSpliceRecord ( $value );
       return $value;
+    }
 
     $inside = ( $open >= $window - 1 ) ? '' : substr ( $before, $open + 1 );
 
