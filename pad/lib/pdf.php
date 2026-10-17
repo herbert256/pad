@@ -370,6 +370,66 @@
 
   }
 
+  // An element that deep as runs: the text the walk would have set - without what padPdfSkip
+  // leaves out, a break where a block or a <br> stands, a picture's alt - in the context of
+  // the cut-off, gathered on a stack of its own instead of a recursion. Its textContent wrote
+  // the code of a <script> and the rules of a <style> in it into the document, and ran its
+  // paragraphs together: <p>First</p><p>Second</p> was the one word FirstSecond.
+
+  function padPdfDeepRuns ( $node, $ctx, &$runs ) {
+
+    $stack = [ $node ];
+
+    while ( $stack ) {
+
+      $item = array_pop ( $stack );
+
+      // The end of a block.
+
+      if ( $item === NULL ) {
+        if ( $runs and end ( $runs ) [0] !== NULL )
+          $runs [] = [ NULL, $ctx ];
+        continue;
+      }
+
+      if ( $item instanceof DOMText ) {
+        $runs [] = [ $item->data, $ctx ];
+        continue;
+      }
+
+      if ( ! ( $item instanceof DOMElement ) )
+        continue;
+
+      $name = strtolower ( $item->tagName );
+
+      if ( padPdfSkip ( $name ) )
+        continue;
+
+      if ( $name == 'br' ) {
+        $runs [] = [ NULL, $ctx ];
+        continue;
+      }
+
+      if ( $name == 'img' ) {
+        $alt = trim ( $item->getAttribute ( 'alt' ) );
+        if ( $alt !== '' )
+          $runs [] = [ $alt, $ctx ];
+        continue;
+      }
+
+      if ( padPdfBlock ( $name ) ) {
+        if ( $runs and end ( $runs ) [0] !== NULL )
+          $runs [] = [ NULL, $ctx ];
+        $stack [] = NULL;
+      }
+
+      for ( $child = $item->lastChild; $child; $child = $child->previousSibling )
+        $stack [] = $child;
+
+    }
+
+  }
+
   // ------------------------------------------------------------------------------------
   // The flow: blocks one under the other, the inline content of each as wrapped lines.
   // ------------------------------------------------------------------------------------
@@ -380,7 +440,9 @@
   function padPdfFlow ( &$doc, $node, $ctx ) {
 
     if ( padPdfDeep ( $ctx ) ) {
-      padPdfParagraph ( $doc, [ [ $node->textContent, $ctx ] ], $ctx );
+      $runs = [];
+      padPdfDeepRuns ( $node, $ctx, $runs );
+      padPdfParagraph ( $doc, $runs, $ctx );
       return;
     }
 
@@ -646,7 +708,7 @@
       return;
 
     if ( padPdfDeep ( $ctx ) ) {
-      $runs [] = [ $node->textContent, $ctx ];
+      padPdfDeepRuns ( $node, $ctx, $runs );
       return;
     }
 
