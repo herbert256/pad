@@ -174,15 +174,18 @@
 
   }
 
+  // The text between the braces is passed over by strcspn, where a loop in PHP looked at
+  // every character of it - for every opener of every pair a page counts.
+
   function padOpenSelfClosing ( $string, $offset ) {
 
     $depth = 1;
     $end   = strlen ( $string );
 
-    for ( $i = $offset; $i < $end; $i++ )
+    for ( $i = $offset + strcspn ( $string, '{}', $offset ); $i < $end; $i += 1 + strcspn ( $string, '{}', $i + 1 ) )
       if ( $string [$i] == '{' )
         $depth++;
-      elseif ( $string [$i] == '}' and ! --$depth )
+      elseif ( ! --$depth )
         return ( $string [$i-1] == '/' );
 
     return FALSE;
