@@ -104,7 +104,7 @@
     $padSelGroup = padSelectGroup  ( $padSelGroup, $rollup );
     $having      = padSelectHaving ( $having );
     $padSelLimit = padSelectLimit  ( $rows, $page );
-    $padSelWhere = padSelectWhere  ( $padSelWhere, $table, $keys );
+    $padSelWhere = padSelectWhere  ( $padSelWhere, $table, $keys, isset ( $prm ['where'] ) );
     $fields      = padSelectFields ( $fields, $db );
     $padSelJoin  = padSelectJoin   ( $padSelJoin, $fields );
     $keys        = padSelectKeys   ( $keys );
@@ -232,48 +232,84 @@
 
   }
 
-  function padSelectWhere ( $where, $table, $keys ) {
+  // $tagWhere: the where= was written on the tag, not taken from the declaration.
+
+  function padSelectWhere ( $where, $table, $keys, $tagWhere = FALSE ) {
 
     global $pad, $padRelations, $padCurrent, $padTag, $padType, $padSetLvl;
 
     if ($where)
       $where = 'where (' . $where . ')';
 
+    $bound = FALSE;
+
     foreach ( padExplode ( $keys, ',' ) as $field )
-      if ( isset ( $padSetLvl [$pad] [$field] ) )
+      if ( isset ( $padSetLvl [$pad] [$field] ) ) {
         padSelectWhereAdd ( $where, "$field", $GLOBALS [$field] );
+        $bound = TRUE;
+      }
+
+    // Each enclosing select is related to this one by the first of this table's names - its
+    // own, then each base= it stands on - that has a relation to the outer table or to a
+    // table of the outer's base= chain. Only the outer's chain was walked: a view of
+    // employees nested in {offices} was related by nothing, and every office listed every
+    // row of the view.
 
     $padSelOuter = '';
 
     for ( $i=$pad-1; $i; $i-- )
       if ( $padType [$i] == 'select' ) {
 
-        $relation    = $padTag [$i] ;
-        $parms       = padSelectGetDB ( $relation ) ;
-        $padSelOuter = $relation;
+        $padSelOuter = $padTag [$i];
 
-        padSelectWhereRelation ( $where, $table, $relation, $padCurrent [$i] );
+        foreach ( padSelectChain ( $table ) as $inner ) {
 
-        while ( isset ( $parms ['base'] ) ) {
-          $relation = $parms ['base'];
-          $parms    = padSelectGetDB ( $relation ) ;
-          padSelectWhereRelation ( $where, $table, $relation, $padCurrent [$i] );
+          $found = FALSE;
+
+          foreach ( padSelectChain ( $padTag [$i] ) as $relation )
+            if ( padSelectWhereRelation ( $where, $inner, $relation, $padCurrent [$i] ) )
+              $found = TRUE;
+
+          if ( $found ) {
+            $bound = TRUE;
+            break;
+          }
+
         }
 
       }
 
-    // A nested select that ends up with no constraint at all - no where of its own, no
-    // key bound, no declared relation to the select it stands in - meets every row
-    // against every row, silently. Strict mode names the missing relation.
+    // A nested select that nothing relates to the select it stands in - no declared
+    // relation, no key bound, no where= of its own on the tag - meets every row against
+    // every row, silently. Strict mode names the missing relation. A view's declared where
+    // is no relation: it holds no value of the outer row, so it filters every office alike.
 
     global $padCheckSyntax;
 
-    if ( $padCheckSyntax and $padSelOuter and $where == '' )
+    if ( $padCheckSyntax and $padSelOuter and ! $bound and ! $tagWhere )
       padError ( "no relation declared between '$padSelOuter' and '$table' - every row meets every row" );
 
     return $where;
 
   }
+
+  // The table and the tables of its base= chain, in that order - a chain that comes back
+  // to a table already in it ends there.
+
+  function padSelectChain ( $table ) {
+
+    global $padSelect;
+
+    $chain = [ $table ];
+
+    while ( is_string ( $base = $padSelect [ end ( $chain ) ] ['base'] ?? NULL ) and ! in_array ( $base, $chain, TRUE ) )
+      $chain [] = $base;
+
+    return $chain;
+
+  }
+
+  // TRUE when a relation between the two is declared, in either direction.
 
   function padSelectWhereRelation ( &$where, $table, $relation, $data ) {
 
@@ -283,6 +319,10 @@
       padSelectWhereKeys ( $where, padSelectRelationKeys ( $padRelations [$relation] [$table], $relation, $table ), $data, 0, $relation );
     elseif ( isset ( $padRelations [$table] [$relation] ) )
       padSelectWhereKeys ( $where, padSelectRelationKeys ( $padRelations [$table] [$relation], $table, $relation ), $data, 1, $relation );
+    else
+      return FALSE;
+
+    return TRUE;
 
   }
 
