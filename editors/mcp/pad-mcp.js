@@ -30,7 +30,8 @@
 // output here.
 //
 // PAD_APPS points the tools at another applications directory (the tests use the fixture in
-// editors/fixture/apps); PAD_PHP names the php binary; PAD_HOST is pad_test's default host.
+// editors/fixture/apps); PAD_PHP names the php binary; PAD_HOST is pad_test's default host;
+// PAD_MCP_SNAPSHOTS is where pad_compare keeps its snapshots, DATA/mcp-snapshots by default.
 
 const fs = require('fs');
 const os = require('os');
@@ -49,7 +50,7 @@ const LIMIT = 60000;               // characters of one answer
 const VIRTUAL = 'mcpTemplate';     // the page name a template without a page renders as
 const PREPEND = path.join(__dirname, 'prepend.php');
 const TRAILER = '\x1ePAD-MCP\x1e';
-const SNAPSHOTS = path.join(os.tmpdir(), 'pad-mcp-snapshots');
+const SNAPSHOTS = process.env.PAD_MCP_SNAPSHOTS ? path.resolve(process.env.PAD_MCP_SNAPSHOTS) : path.join(home, 'DATA', 'mcp-snapshots');
 const SUITES = ['pages', 'common', 'errors', 'framework', 'regression', 'sequence', 'manual', 'other'];
 
 // The tree a render runs on: this checkout, or a snapshot of another commit (pad_compare).
@@ -217,18 +218,34 @@ function run(cmd, args, opts = {}) {
 
 const building = new Map();
 
+// The directory the snapshots live in, made readable and writable by this user alone, and
+// refused when anyone else could have put a snapshot in it: what a snapshot holds - its
+// editors/render.php, its pad/ - runs as the developer. They lived in the system's temporary
+// directory, on Linux the /tmp every user shares, where whoever made pad-mcp-snapshots first
+// owned it, and a <commit>/.complete planted there had its render.php run by the next
+// compare against that commit; now they are under the checkout's own DATA/.
+function snapshots() {
+    try { fs.mkdirSync(path.dirname(SNAPSHOTS), { recursive: true }); fs.mkdirSync(SNAPSHOTS, { mode: 0o700 }); } catch (e) { /* there already, or the check says why */ }
+    let st = null;
+    try { st = fs.lstatSync(SNAPSHOTS); } catch (e) { st = null; }
+    const posix = typeof process.getuid === 'function';
+    if (!st || !st.isDirectory() || (posix && (st.uid !== process.getuid() || (st.mode & 0o022) !== 0)))
+        throw new Error(`${SNAPSHOTS} is not a directory of this user alone - pad_compare runs what a snapshot in it holds, so it does not use it`);
+}
+
 // Another commit as a tree to render on: its pad/, editors/render.php, home/ and www/ - and,
 // with scope 'all', its apps/ - taken out of git with git archive into a directory of its own
-// under the system's temporary directory, made once per commit and kept for the next call. No
-// worktree, no checkout: the repository and its working tree are not touched, so it is safe
-// while other work goes on in the checkout. The applications stay this working tree's unless
-// scope is 'all' - a regression case written today runs on yesterday's engine.
+// under DATA/mcp-snapshots/, made once per commit and kept for the next call. No worktree, no
+// checkout: the repository and its working tree are not touched, so it is safe while other
+// work goes on in the checkout. The applications stay this working tree's unless scope is
+// 'all' - a regression case written today runs on yesterday's engine.
 async function snapshot(ref, scope) {
     if (typeof ref !== 'string' || !/^[A-Za-z0-9][\w./~^@{}-]*$/.test(ref) || ref.includes('..'))
         throw new Error(`'${ref}' is not a commit, branch or tag`);
     const rev = await run('git', ['rev-parse', '--verify', '--quiet', ref + '^{commit}']);
     const sha = rev.out.trim();
     if (rev.code !== 0 || !/^[0-9a-f]{40}$/.test(sha)) throw new Error(`git knows no commit '${ref}'`);
+    snapshots();
     const all = scope === 'all';
     const dir = path.join(SNAPSHOTS, sha.slice(0, 12) + (all ? '-all' : ''));
     const tree = { home: dir, apps: all ? path.join(dir, 'apps') : appsDir, label: `${ref} ${sha.slice(0, 9)}`, sha };

@@ -81,14 +81,15 @@ running server with `curl -i`.
 
 `pad_compare` renders on a snapshot of another commit: its `pad/`, `editors/render.php`,
 `home/` and `www/` - with `scope: "all"` its `apps/` too - taken out of git with `git archive`
-into the system's temporary directory (`pad-mcp-snapshots/<commit>`), made once and kept for
+into the checkout's `DATA/mcp-snapshots/<commit>` - a directory of this user alone, refused
+when anyone else may write to it, since what a snapshot holds is run - made once and kept for
 the next call; the six used last stay, and every one used in the last hour - one another
-session is rendering on is never pruned from under it. No worktree, no checkout, no stash: the repository and
-the working tree are not touched, so it is safe while other work goes on in the checkout. A
-file over a megabyte - the OEIS database of the sequences - is cloned from the working tree when
-it is the same there. By default the applications are the working tree's on both sides, so a
-regression case written today runs on yesterday's engine: that is how a new case is shown to
-fail on the old code.
+session is rendering on is never pruned from under it. No worktree, no checkout, no stash: the
+repository and the working tree are not touched, so it is safe while other work goes on in the
+checkout. A file over a megabyte - the OEIS database of the sequences - is cloned from the
+working tree when it is the same there. By default the applications are the working tree's on
+both sides, so a regression case written today runs on yesterday's engine: that is how a new
+case is shown to fail on the old code.
 
 ## Settings
 
@@ -97,6 +98,7 @@ fail on the old code.
 | `PAD_HOST` | - | The base the web server serves the applications under, e.g. `http://localhost/pad/`: `pad_test`'s and `pad_case`'s default, and the host the command-line renders say they were asked on, so a page that fetches its own URLs reaches the real server |
 | `PAD_PHP` | `php` | The PHP binary |
 | `PAD_APPS` | `apps/` of the checkout | Another applications directory (the tests use `editors/fixture/apps`) |
+| `PAD_MCP_SNAPSHOTS` | `DATA/mcp-snapshots` of the checkout | Where `pad_compare` keeps its snapshots (the tests use a directory of their own) |
 
 The checkout is the one the server file sits in.
 

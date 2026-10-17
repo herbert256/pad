@@ -233,11 +233,30 @@ async function main() {
         recent.forEach((n, i) => made(n, i + 1));
         made('aged1', 120);
         made('aged2', 180);
+        fs.chmodSync(snaps, 0o700);
         const head = (spawnSync('git', ['-C', home, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).stdout || '').trim().slice(0, 12);
-        r = await once(Object.assign({}, env, { TMPDIR: tmp }), 'pad_compare', { app: 'shop', code: 'return 1;' });
+        r = await once(Object.assign({}, env, { PAD_MCP_SNAPSHOTS: snaps }), 'pad_compare', { app: 'shop', code: 'return 1;' });
         const left = fs.existsSync(snaps) ? fs.readdirSync(snaps).filter((n) => !n.startsWith('.')).sort() : [];
         expect('pad_compare keeps every snapshot used in the last hour and prunes the ones not used for hours',
             !r.error && r.text.includes('the same on both') && left.join(',') === [head].concat(recent).sort().join(','), { r, left });
+
+        // a snapshot of HEAD planted where another user could write it - a directory others
+        // may write to, or the system's temporary directory, which on Linux is the /tmp every
+        // user shares - is never run
+        const plant = (dir) => {
+            fs.mkdirSync(path.join(dir, head, 'editors'), { recursive: true });
+            fs.writeFileSync(path.join(dir, head, '.complete'), head + '\n');
+            fs.writeFileSync(path.join(dir, head, 'editors', 'render.php'), '<?php echo "PLANTED"; ?>');
+        };
+        const open = path.join(tmp, 'open', 'pad-mcp-snapshots');
+        plant(open);
+        fs.chmodSync(open, 0o777);
+        r = await once(Object.assign({}, env, { PAD_MCP_SNAPSHOTS: open, TMPDIR: path.dirname(open) }), 'pad_compare', { app: 'shop', template: 'x' });
+        expect('pad_compare refuses a snapshot directory others may write to', r.error && !r.text.includes('PLANTED') && r.text.includes('is not a directory of this user alone'), r);
+        const shared = path.join(tmp, 'shared');
+        plant(path.join(shared, 'pad-mcp-snapshots'));
+        r = await once(Object.assign({}, env, { TMPDIR: shared }), 'pad_compare', { app: 'shop', template: 'x' });
+        expect('pad_compare keeps its snapshots under the checkout\'s DATA, not in the system\'s temporary directory', !r.error && !r.text.includes('PLANTED') && r.text.includes('the same on both:\n\nx'), r);
 
         r = await call('pad_case', { app: 'shop', page: 'orders' });
         expect('pad_case needs the regression runner', r.error && r.text.includes('there is no regression runner'), r);
