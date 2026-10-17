@@ -20,10 +20,12 @@
   // still looking as the candidate cap does - a costly test reached a million candidates in
   // minutes, past PHP's time limit, and the page died with a 500 instead. A pulled store and
   // a fixed or given list end with their data, as inits/limits.php leaves their candidates
-  // unbounded, so time does not cut them either.
+  // unbounded, so time does not cut them either - nor a range or a list a type builds whole
+  // ('build'), which inits/limits.php gives all its rows as it gives a given list: cut, a
+  // slow request answered {sequence '1..200000', count} with the values it reached.
 
   if ( $pqTries > $pqTry
-       or ( ! $pqPull and $pqBuild != 'fixed' and $pqBuild != 'given' and hrtime ( TRUE ) > $pqTriesUntil ) ) {
+       or ( ! $pqPull and ! in_array ( $pqBuild, [ 'fixed', 'given', 'build' ] ) and hrtime ( TRUE ) > $pqTriesUntil ) ) {
     $pqTriesOut = TRUE;
     return FALSE;
   }
@@ -105,14 +107,23 @@
   if ( is_float ($pq)   and is_nan ( $pq )   ) return TRUE;
   if ( $pqMin !== PHP_INT_MIN and is_numeric ($pq) and $pq < $pqMin ) return TRUE;
   if ( $pqMax !== PHP_INT_MAX and is_numeric ($pq) and $pq > $pqMax ) return TRUE;
-  if ( $pqUnique and in_array ($pq, $pqResult) ) return TRUE;
-  if ( $pqSkip and $pqTries <= $pqSkip )         return TRUE;
+  // unique keeps a set of the values kept, $pqUniqueSeen: looked up in $pqResult, every
+  // term was compared with all the terms before it, and {sequence '1..200000', unique,
+  // count} took more than the time a run has and answered 142941.
+
+  if ( $pqUnique ) $pqUniqueKey = pqValueKey ( $pq );
+
+  if ( $pqUnique and isset ( $pqUniqueSeen [$pqUniqueKey] ) ) return TRUE;
+  if ( $pqSkip and $pqTries <= $pqSkip )                    return TRUE;
 
   if ( $pqBuild == 'order' and $pqLoop < $pqOrderFrom )
     return TRUE;
 
   $pqResult [] = $pq;
   $pqOrgHit [] = $pqOrgSet;
+
+  if ( $pqUnique )
+    $pqUniqueSeen [$pqUniqueKey] = TRUE;
 
   if ( count ( $pqPlays ) )
     $pqPlaysHit [] = $pqPlaysSet;

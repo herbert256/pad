@@ -11,8 +11,9 @@
   if ( ! $pqRandomlyBuild )
     return;
 
-  $pqFixed  = $pqResult;
-  $pqResult = [];
+  $pqFixed      = $pqResult;
+  $pqResult     = [];
+  $pqUniqueSeen = [];
 
   // The sampled terms are the run's terms, and what each one was before the plays is
   // recorded again as it is drawn: the ordered pass's record stayed, and {fibonacci

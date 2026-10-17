@@ -50,6 +50,7 @@
   $pqOrgHit     = [];
   $pqRowAt      = [];
   $pqResultBuilt = [];
+  $pqUniqueSeen  = [];
 
   include PQ . 'inits/parms.php';
   include PQ . 'inits/set.php';

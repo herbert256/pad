@@ -373,6 +373,25 @@
 
   }
 
+  // The key a value is told apart by, for a set of the values seen: a number by the number it
+  // spells - 1, '1', '1.0' and 1.0 are one value, as in_array () takes them - anything else
+  // by its text. unique and merge looked every value up in all the values kept so far, and
+  // the run took time with the square of its length.
+
+  function pqValueKey ( $value ) {
+
+    if ( ! is_numeric ( $value ) )
+      return 's' . $value;
+
+    $value = $value + 0;
+
+    if ( is_float ( $value ) and floor ( $value ) == $value and $value >= PHP_INT_MIN and $value < PHP_INT_MAX )
+      $value = (int) $value;
+
+    return is_float ( $value ) ? sprintf ( '%.17g', $value ) : (string) $value;
+
+  }
+
   // Whether $x is a whole number an integer predicate can work with: a number, without a
   // fraction, inside the integer range. The membership tests of the integer sequences -
   // prime, even, happy and the rest - answer no for anything else before doing arithmetic on
