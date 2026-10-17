@@ -12,7 +12,8 @@
   //           .html files, from a subdirectory too, the assets copied, the outside link kept;
   //           and a scratch application with its {img} thumbnails, srcset and {video} poster
   //   test    the _tests of the scratch application - a pass, a failing {assert}, a test
-  //           without an answer and --record writing it - and of regression/site, whose
+  //           without an answer and --record writing it, a pattern over a page of 1.6 MB, a
+  //           pattern that cannot be run, a long line cut - and of regression/site, whose
   //           test pages no URL reaches
   //   types   a page's variables and JSON answer as TypeScript, its sample captured first,
   //           to standard output and to the file --out names
@@ -151,6 +152,18 @@
     file_put_contents ( "$tests/bad.txt",   '' );
     file_put_contents ( "$tests/fresh.pad", 'fresh' );
 
+    // a pattern over a page of 1.6 MB passes as in the suites, with their backtrack limit; a
+    // pattern that cannot be run says so; a failing one-line body of 5000 characters is cut
+
+    file_put_contents ( "$tests/big.php",   '<?php $big = str_repeat ( "x<p>", 400000 ); ?>' );
+    file_put_contents ( "$tests/big.pad",   '{echo $big}END' );
+    file_put_contents ( "$tests/big.txt",   '/^[\s\S]*?x[\s\S]*?END$/' );
+    file_put_contents ( "$tests/odd.pad",   'odd' );
+    file_put_contents ( "$tests/odd.txt",   '/(/' );
+    file_put_contents ( "$tests/wide.php",  '<?php $wide = str_repeat ( "y", 5000 ); ?>' );
+    file_put_contents ( "$tests/wide.pad",  '{$wide}' );
+    file_put_contents ( "$tests/wide.txt",  'z' );
+
     list ( $codeT1, $outT1 ) = cliCheckRun ( [ 'test', 'shop' ],              $env );
     list ( $codeT2, $outT2 ) = cliCheckRun ( [ 'test', 'shop', '--record' ],  $env );
     list ( $codeT3, $outT3 ) = cliCheckRun ( [ 'test', 'regression/site' ] );
@@ -162,6 +175,10 @@
               and str_contains ( $outT1, 'FAIL  bad' )
               and str_contains ( $outT1, 'assert failed: $total eq 42' )
               and str_contains ( $outT1, 'NEW   fresh' )
+              and str_contains ( $outT1, 'ok    big' )
+              and str_contains ( $outT1, 'FAIL  odd - the pattern could not be run' )
+              and str_contains ( $outT1, 'FAIL  wide' )
+              and max ( array_map ( 'strlen', explode ( "\n", $outT1 ) ) ) < 400
               and $codeT2 === 1 and str_contains ( $outT2, 'made  fresh' )
               and trim ( (string) @file_get_contents ( "$tests/fresh.txt" ) ) == 'fresh'
               and $codeT3 === 0 and str_contains ( $outT3, '4 tests, 0 failed' )

@@ -88,9 +88,10 @@
 
       }
 
-      $testWant = trim ( file_get_contents ( $testFile ) );
+      $testWant    = trim ( file_get_contents ( $testFile ) );
+      $testVerdict = testCompare ( $testWant, $testStatus, $testBody );
 
-      if ( testCompare ( $testWant, $testStatus, $testBody ) ) {
+      if ( $testVerdict === TRUE ) {
         if ( ! $testBrief )
           $testLines [] = "  ok    $testName";
         continue;
@@ -110,7 +111,7 @@
       } elseif ( $testBody !== '' )
         $testGot .= "\n              " . str_replace ( "\n", "\n              ", testShort ( $testBody ) );
 
-      $testLines [] = "  FAIL  $testName";
+      $testLines [] = "  FAIL  $testName" . ( is_string ( $testVerdict ) ? " - $testVerdict" : '' );
       $testLines [] = "        want: " . str_replace ( "\n", "\n              ", testShort ( $testWant ) );
       $testLines [] = "        got:  $testGot";
 
@@ -180,7 +181,8 @@
 
   }
 
-  // The three answer forms, judged the way the suites judge them.
+  // The three answer forms, judged the way the suites judge them: TRUE, FALSE, or why a
+  // pattern could not be run at all.
 
   function testCompare ( $want, $status, $body ) {
 
@@ -189,8 +191,10 @@
       $lines   = explode ( "\n", $want, 2 );
       $pattern = trim ( $lines [1] ?? '' );
 
-      return trim ( substr ( $lines [0], 5 ) ) === (string) $status
-             and ( $pattern === '' or @preg_match ( $pattern, $body ) );
+      if ( trim ( substr ( $lines [0], 5 ) ) !== (string) $status )
+        return FALSE;
+
+      return ( $pattern === '' ) ? TRUE : testMatch ( $pattern, $body );
 
     }
 
@@ -198,17 +202,43 @@
       return FALSE;
 
     if ( strlen ( $want ) > 1 and $want [0] == '/' and str_ends_with ( $want, '/' ) )
-      return (bool) @preg_match ( $want, $body );
+      return testMatch ( $want, $body );
 
     return $want === $body;
 
   }
 
+  // A pattern answer walks the whole page with its lazy [\s\S]*? gaps, and a large page used
+  // up PHP's default of a million backtracks: preg_match answered FALSE, read as no match, so
+  // a page of 1.6 MB that held its pattern failed here and passed in the suites, which raise
+  // the limit for it (getSuiteCompare). A pattern that cannot be run is said as such.
+
+  function testMatch ( $pattern, $body ) {
+
+    ini_set ( 'pcre.backtrack_limit', '10000000' );
+
+    error_clear_last ();
+
+    $match = @preg_match ( $pattern, $body );
+
+    if ( $match === FALSE ) {
+      $said = error_get_last () ['message'] ?? '';
+      return 'the pattern could not be run: ' . ( str_starts_with ( $said, 'preg_match(): ' ) ? substr ( $said, 14 ) : preg_last_error_msg () );
+    }
+
+    return $match === 1;
+
+  }
+
+  // The first six lines of a text, each cut at 200 characters - a page of one long line was
+  // printed whole under got, 1.6 MB of it.
+
   function testShort ( $text ) {
 
     $lines = explode ( "\n", $text );
+    $cut   = fn ( $line ) => strlen ( $line ) > 200 ? substr ( $line, 0, 200 ) . ' ... (' . ( strlen ( $line ) - 200 ) . ' more)' : $line;
 
-    return implode ( "\n", array_slice ( $lines, 0, 6 ) ) . ( count ( $lines ) > 6 ? "\n..." : '' );
+    return implode ( "\n", array_map ( $cut, array_slice ( $lines, 0, 6 ) ) ) . ( count ( $lines ) > 6 ? "\n..." : '' );
 
   }
 
