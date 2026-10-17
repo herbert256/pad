@@ -1,6 +1,6 @@
 <?php
 
-  // {icon 'arrow-right'} - an icon from PAD's own set, inline SVG by lib/icon.php: lines in
+  // {icon 'arrow-right'} - an icon from PAD's own set, inline SVG by tags/_lib/icon.php: lines in
   // the colour of the text around it (stroke="currentColor"), on a 24 by 24 grid. size= is
   // the width and height in pixels (default 20), stroke= the line width (default 2). Without
   // label= the icon is decoration, hidden from a screen reader beside the text it goes

@@ -1856,7 +1856,7 @@ unusable max or an unknown icon is an error under the strict check.
 
 ### icon
 An interface icon from PAD's own set of 79, drawn on a 24 by 24 grid as lines, circles and
-rectangles (`lib/icon.php`) and written as inline SVG in the colour of the text around it - no
+rectangles (`tags/_lib/icon.php`) and written as inline SVG in the colour of the text around it - no
 icon font, no sprite, no request.
 
 ```html
