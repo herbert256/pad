@@ -254,6 +254,21 @@ async function main() {
     } finally {
         fs.rmSync(bomDir, { recursive: true, force: true });
     }
+    // an applications directory of one's own with no _common beside it, its application
+    // without a configuration: no _common is as when it is switched off - the page renders,
+    // where its config was included unchecked and line 1 of every page had the missing include
+    const loneDir = fs.mkdtempSync(path.join(os.tmpdir(), 'pad-lsp-'));
+    try {
+        fs.mkdirSync(path.join(loneDir, 'apps', 'mine'), { recursive: true });
+        fs.writeFileSync(path.join(loneDir, 'apps', 'mine', 'page.pad'), '<p>{$typo}</p>\n');
+        const loneUri = url.pathToFileURL(path.join(loneDir, 'apps', 'mine', 'page.pad')).href;
+        notify('textDocument/didOpen', { textDocument: { uri: loneUri, languageId: 'pad', version: 1, text: '<p>{$typo}</p>\n' } });
+        g = await diagnosticsFor(loneUri);
+        expect('a page of an applications directory without _common gets its own diagnostics, not a missing _common config',
+            g && g.length === 1 && g[0].message === "Field '$typo' not found" && g[0].range.start.character === 4, g);
+    } finally {
+        fs.rmSync(loneDir, { recursive: true, force: true });
+    }
     g = await diagnosticsFor(uri('included.pad'));
     expect('an error in an included snippet sits on the page\'s tag that includes it, not on a look-alike in a dead branch, and names the snippet\'s file and place',
         g && g[0] && g[0].message === "Field '$lost' not found - in _include/lost.pad:2:4"

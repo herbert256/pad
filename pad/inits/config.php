@@ -32,9 +32,18 @@
   if ( file_exists ( APP . '_config/config.php' ) )
     include APP . '_config/config.php';
 
+  // No _common beside the applications - the applications directory of a project of one's
+  // own, rendered by editors/render.php --apps= for the language server - is as when it is
+  // switched off: its configuration was included unchecked, and every page of such a
+  // directory died on the missing include.
+
+  if ( ! is_dir ( COMMON ) )
+    $padCommon = FALSE;
+
   if ( $padCommon ) {
     padEnvCommon ( TRUE );
-    include COMMON . '_config/config.php';
+    if ( file_exists ( COMMON . '_config/config.php' ) )
+      include COMMON . '_config/config.php';
   }
 
   if ( $padInfo ) {
@@ -70,6 +79,9 @@
 
   if ( php_sapi_name() == 'cli' and $padOutputType == 'web' and ! isset ( $padSetConfig ['OutputType'] ) )
     $padOutputType = 'console';
+
+  if ( ! is_dir ( COMMON ) )
+    $padCommon = FALSE;
 
   include PAD . 'inits/configCheck.php';
 
