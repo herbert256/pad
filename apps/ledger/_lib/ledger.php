@@ -10,23 +10,54 @@
 
   function ledgerReady () {
 
-    $pending = array_filter ( padMigrateStatus () ?: [], fn ( $one ) => ! $one ['ran'] );
+    // One request brings the books up to date, seeded too, under the lock held exclusively;
+    // every other request takes it shared, so it waits while that is going on and then finds
+    // the books whole. A request that only waited for the migrations' own lock - or that came
+    // once they were recorded, while the seeding ran - rendered the books half made: an empty
+    // Income group, budgets of 0.00.
 
-    if ( ! $pending )
-      return;
+    if ( ! is_dir ( DATA . 'ledger' ) )
+      @mkdir ( DATA . 'ledger', 0755, TRUE );
 
-    // Made from nothing: no migration had run. The examples go in only when this request
-    // ran the migrations - another one that came at the same moment waited for the lock and
-    // found nothing left to run.
+    $lock = @fopen ( DATA . 'ledger/ready.lock', 'c' );
 
-    $fresh = ! array_filter ( padMigrateStatus () ?: [], fn ( $one ) => $one ['ran'] );
-    $ran   = padMigrate ();
+    if ( $lock )
+      flock ( $lock, LOCK_SH );
 
-    if ( $ran === FALSE )
-      return padError ( 'Ledger could not bring its database up to date: ' . padMigrateError () );
+    try {
 
-    if ( $fresh and $ran )
-      padSeed ();
+      if ( ! array_filter ( padMigrateStatus () ?: [], fn ( $one ) => ! $one ['ran'] ) )
+        return;
+
+      if ( $lock ) {
+        flock ( $lock, LOCK_UN );
+        flock ( $lock, LOCK_EX );
+      }
+
+      $status = padMigrateStatus () ?: [];
+
+      if ( ! array_filter ( $status, fn ( $one ) => ! $one ['ran'] ) )
+        return;
+
+      // Made from nothing: no migration had run. The examples go in only then.
+
+      $fresh = ! array_filter ( $status, fn ( $one ) => $one ['ran'] );
+      $ran   = padMigrate ();
+
+      if ( $ran === FALSE )
+        return padError ( 'Ledger could not bring its database up to date: ' . padMigrateError () );
+
+      if ( $fresh and $ran )
+        padSeed ();
+
+    } finally {
+
+      if ( $lock ) {
+        flock ( $lock, LOCK_UN );
+        fclose ( $lock );
+      }
+
+    }
 
   }
 
