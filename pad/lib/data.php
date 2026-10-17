@@ -174,7 +174,7 @@
         if ( is_object ( $value ) )
           return padDataObject ( $value, $above );
       } else
-        $value = ( $value instanceof Traversable ) ? iterator_to_array ( $value ) : get_object_vars ( $value );
+        $value = ( $value instanceof Traversable ) ? padDataItems ( $value ) : get_object_vars ( $value );
 
     }
 
@@ -184,6 +184,30 @@
           $value [$key] = padDataObject ( $item, $above );
 
     return $value;
+
+  }
+
+  // The items of a Traversable, read once - a generator cannot be read again - by their keys,
+  // or as a list when a key comes twice: a generator that yields from two arrays gives the
+  // second's 0, 1 again, and kept by key the second rows overwrote the first, [1 2 3 4] read
+  // as [3 4]. A key no array can hold makes it a list too.
+
+  function padDataItems ( $items ) {
+
+    $keyed = $list = [];
+    $twice = FALSE;
+
+    foreach ( $items as $key => $item ) {
+      $list [] = $item;
+      if ( $twice )
+        continue;
+      if ( ( ! is_int ( $key ) and ! is_string ( $key ) ) or array_key_exists ( $key, $keyed ) )
+        $twice = TRUE;
+      else
+        $keyed [$key] = $item;
+    }
+
+    return $twice ? $list : $keyed;
 
   }
 
