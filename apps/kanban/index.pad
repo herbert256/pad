@@ -43,7 +43,7 @@
 </div>
 
 <dialog id="new-card" aria-labelledby="new-card-title"{if $cardFailed} open{/if}>
-  {form 'card', class='card-form', error='The card needs a title of at most 100 characters.'}
+  {form 'card', class='card-form', error='The card was not added - see the fields below.'}
     <h2 id="new-card-title">New card</h2>
     {input 'title', label='Title', rules='required|max:100', autofocus}
     {textarea 'body', label='Details', rows=4, rules='max:2000'}
