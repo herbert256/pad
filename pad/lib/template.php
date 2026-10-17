@@ -392,13 +392,16 @@
     $increment = abs ( $increment );
 
     // A step wider than the two ends are apart cannot be taken even once, which range() calls
-    // an error; the whole distance is the widest step that means anything here. Letters are
+    // an error: the range is its start alone, as a range counts from its start and stops
+    // before it passes the end - '1..10' with increment=4 is 1 5 9 - and as the loop form
+    // from=1, to=3, increment=5 gives 1. The step was cut down to the distance, which landed
+    // on the end: '1..3', increment=5 answered 1 3 and '0.1..0.5' 0.1 0.5. Letters are
     // measured the way range() walks them, by character code.
 
     $span = is_numeric ( $p1 ) ? abs ( $p2 - $p1 ) : abs ( ord ( $p2 ) - ord ( $p1 ) );
 
     if ( $span and $increment > $span )
-      $increment = $span;
+      return [ is_numeric ( $p1 ) ? $p1 + 0 : $p1 ];
 
     // A range is built whole, so one of more values than $padSeqMaxTries is refused: '1..
     // 100000000' asked PHP for a hundred-million-element array. Strict mode says so; the
