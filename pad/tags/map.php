@@ -44,11 +44,15 @@
 
   // A row that is a value alone - [ 'NL' => 1200, 'BE' => 800 ], the natural shape of a
   // map's data - is the value of the country its key names: the key was never read, the
-  // map drew nothing and its title listed an empty name as not on the map.
+  // map drew nothing and its title listed an empty name as not on the map. So is a row of
+  // one field keyed by a name when no field holds the country - such an object in a {data}
+  // store or as the map's content, whose values became rows of one field under the store's
+  // name: { "NL": 1200 } was a row [ v => 1200 ] keyed NL, and the map said No values.
 
   foreach ( (array) $padMapRows as $padMapName => $padMapRow ) {
 
-    $padMapAlone = ( is_scalar ( $padMapRow ) and is_string ( $padMapName ) );
+    $padMapAlone = ( is_string ( $padMapName ) and ( is_scalar ( $padMapRow )
+                     or ( $padMapKey === '' and count ( padChartRow ( $padMapRow ) ) == 1 ) ) );
     $padMapRow   = padChartRow ( $padMapRow );
     $padMapName  = $padMapAlone ? $padMapName : padChartText ( $padMapRow, $padMapKey );
     $padMapCode  = padMapCode ( $padMapName );

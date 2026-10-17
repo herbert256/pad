@@ -1,0 +1,4 @@
+{data 'mapObject'}{"NL": 1200, "BE": 800, "Germany": 300}{/data}{map 'europe', data='mapObject' | php:preg_replace('/^.*?(<desc[^>]*>[^<]*).*$/s', '$1', @)}|{map 'europe'}{"NL": 1200, "BE": 800}{/map | php:preg_replace('/^.*?(<desc[^>]*>[^<]*).*$/s', '$1', @)}|{map 'europe'}
+NL: 1200
+FR: 700
+{/map | php:preg_replace('/^.*?(<desc[^>]*>[^<]*).*$/s', '$1', @)}
