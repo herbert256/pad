@@ -21,6 +21,11 @@
   // The + 0 turns the float -0 that rounds a small negative value, and that fmod gives for a
   // negative multiple, into 0: printed, it read -0.
 
-  return ceil ( $pqLoop / $pqParm ) * $pqParm + 0;
+  // A multiple of -2 is one of 2: divided by the signed parameter, ceil=-2 rounded the other
+  // way - 1 to 0, as floor=2 does.
+
+  $pqCeilBy = abs ( $pqParm );
+
+  return ceil ( $pqLoop / $pqCeilBy ) * $pqCeilBy + 0;
 
 ?>

@@ -22,6 +22,15 @@
   } else
     $pqIncTop = $pqInc;
 
+  // A step below 0 is no step a walk takes: multiple=-3, step=-2 and increment=-1 answered
+  // nothing in silence, where multiple=0 is named. Strict mode names them - the multiples of
+  // -3 are kept by keep, multiple=-3 and a play steps down by step=-2, a walk does not.
+
+  if ( $pqIncTop < 0 and ! $pqRandomInc and ( $GLOBALS ['padCheckSyntax'] ?? FALSE ) )
+    padError ( in_array ( $pqSeq, [ 'multiple', 'step' ] )
+               ? "The $pqSeq sequence needs a step of 1 or more, not '$pqInc'"
+               : "increment= needs a step of 1 or more, not '" . ( $pqInitInc ?? $pqInc ) . "'" );
+
   if ( $pqIncTop < 1 )
     return FALSE;
 
