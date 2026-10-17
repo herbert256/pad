@@ -289,9 +289,12 @@ function padSplitOnUnquotedColon ( $str ) {
     // A value standing bare as the whole of where= - where={$cond} - would be the per-row
     // expression itself once quoted: a request value with php:abs(-3) in it ran PHP. That is
     // a whole condition from a value, which where.php refuses for where=$cond as well - and
-    // the same for a sequence's eval= (sequence/types/eval/loop.php).
+    // the same for a sequence's eval= (sequence/types/eval/loop.php). In any case, as a file
+    // system that ignores case finds the option for WHERE= and Eval= as well: those passed
+    // the guard and their value ran.
 
-    if ( $quote === '' and preg_match ( '/(^|[\s,])(where|eval)\s*=\s*$/', $inside, $padSpliceOpt ) ) {
+    if ( $quote === '' and preg_match ( '/(^|[\s,])(where|eval)\s*=\s*$/i', $inside, $padSpliceOpt ) ) {
+      $padSpliceOpt [2] = strtolower ( $padSpliceOpt [2] );
       padError ( "{$padSpliceOpt[2]}= is an expression the template writes: give it as a quoted string, and put a value in it as \$name" );
       return "''";
     }
@@ -305,7 +308,7 @@ function padSplitOnUnquotedColon ( $str ) {
     // of the expression, in the other quote, unless it stands in one already; its own quotes
     // are protected, so it closes neither.
 
-    if ( preg_match ( '/(^|[\s,])(where|eval)\s*=\s*$/', substr ( $inside, 0, $quoteAt ) ) ) {
+    if ( preg_match ( '/(^|[\s,])(where|eval)\s*=\s*$/i', substr ( $inside, 0, $quoteAt ) ) ) {
       $other = ( $quote == "'" ) ? '"' : "'";
       if ( substr_count ( substr ( $inside, $quoteAt + 1 ), $other ) % 2 == 0 )
         return $other . $value . $other;
