@@ -22,6 +22,9 @@
   //
   // The two stores are $padDefineStore and $padMacroStore; lib/type.php resolves a name
   // against them as it does against the other stores, define: and macro: assert the kind.
+  //
+  // Read when a page uses one of them: types/pad.php includes this file for {macro},
+  // tags/define.php and types/macro.php - each use of a macro - include it themselves.
 
   // What a {define} or {macro} stores, and the checks of its name - shared by the two tags.
 
