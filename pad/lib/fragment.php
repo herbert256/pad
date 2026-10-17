@@ -69,8 +69,8 @@
       return FALSE;
 
     $padFragment [$pad] ['hit']     = TRUE;
-    $padFragment [$pad] ['body']    = $entry ['body'];
-    $padFragment [$pad] ['stacks']  = $entry ['stacks'];
+    $padFragment [$pad] ['body']    = padFragmentNonce ( $entry ['body'], TRUE );
+    $padFragment [$pad] ['stacks']  = padFragmentNonce ( $entry ['stacks'], TRUE );
     $padFragment [$pad] ['pagers']  = $entry ['pagers'];
     $padFragment [$pad] ['nocache'] = $entry ['nocache'];
 
@@ -106,12 +106,37 @@
       // The {nocache} parts are kept as their source (lib/nocache.php): what they rendered
       // this time - a token of this visitor's among it - is not what is stored.
 
-      $body = padNocacheCut ( $padResult [$pad], $nocache );
+      $body   = padFragmentNonce ( padNocacheCut ( $padResult [$pad], $nocache ), FALSE );
+      $stacks = padFragmentNonce ( $fragment ['stacks'], FALSE );
 
-      if ( ( $fragment ['keep'] ?? TRUE ) and padFragmentStorable ( $body, $fragment ['stacks'] ) )
-        padFragmentPut ( $fragment ['key'], $body, $fragment ['ttl'], $fragment ['stacks'], $fragment ['pagers'], $nocache );
+      if ( ( $fragment ['keep'] ?? TRUE ) and padFragmentStorable ( $body, $stacks ) )
+        padFragmentPut ( $fragment ['key'], $body, $fragment ['ttl'], $stacks, $fragment ['pagers'], $nocache );
 
     }
+
+  }
+
+  // The CSP nonce is the response's, not the section's: kept as a marker, and a hit writes
+  // the nonce of the request it answers there. Kept as it was, it is one no later header
+  // names - so a section holding it was not kept at all, and under a style-src 'nonce' no
+  // section with a chart, a datatable or a widget, whose <style> carries it, was ever kept.
+
+  const padFragmentNonceMark = "\u{E0A0}padNonce\u{E0A0}";
+
+  function padFragmentNonce ( $text, $in ) {
+
+    global $padNonce;
+
+    if ( is_array ( $text ) )
+      return array_map ( fn ( $one ) => padFragmentNonce ( $one, $in ), $text );
+
+    if ( ! is_string ( $text ) )
+      return $text;
+
+    if ( $in )
+      return str_contains ( $text, padFragmentNonceMark ) ? str_replace ( padFragmentNonceMark, padNonce (), $text ) : $text;
+
+    return ( ( $padNonce ?? '' ) !== '' ) ? str_replace ( $padNonce, padFragmentNonceMark, $text ) : $text;
 
   }
 
@@ -132,8 +157,9 @@
   // A rendering that holds something of this visitor's or of this request's is not kept,
   // as the page cache keeps no such page (padCacheStorable): the session's CSRF token - a
   // {form}, {csrf}, a live region - went to every later visitor of the section, who could
-  // post with it on the first one's behalf, and the CSP nonce was one no later header
-  // names, so the section's scripts stopped running. Neither are the visitor's own ids.
+  // post with it on the first one's behalf, and a CSP nonce left in it is one no later
+  // header names (padFragmentNonce keeps the response's as a marker). Neither are the
+  // visitor's own ids.
 
   function padFragmentStorable ( $body, $stacks ) {
 
