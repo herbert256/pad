@@ -19,6 +19,6 @@
 
   }
 
-  return padEmojiHtml ( $padEmojiFound [0], (string) padTagParm ( 'label', $padEmojiFound [1] ) );
+  return padEmojiHtml ( $padEmojiFound [0], padParmText ( padTagParm ( 'label', $padEmojiFound [1] ) ) );
 
 ?>

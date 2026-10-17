@@ -22,7 +22,7 @@
   }
 
   $padCarItems = padTabsItems ( 'carousel', $padContent );
-  $padCarLabel = trim ( (string) padTagParm ( 'label', 'Carousel' ) );
+  $padCarLabel = trim ( padParmText ( padTagParm ( 'label', 'Carousel' ) ) );
 
   $padContent = $padCarItems ? padCarousel ( $padCarItems, $padCarLabel !== '' ? $padCarLabel : 'Carousel' ) : '';
 

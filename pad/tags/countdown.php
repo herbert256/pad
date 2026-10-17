@@ -26,7 +26,7 @@
   }
 
   return padCountdown ( $padCountdownMoment, $padCountdownFrom, (int) $padCountdownUnits,
-                        (string) padTagParm ( 'past', 'ended' ), (bool) padTagParm ( 'live', FALSE ),
+                        padParmText ( padTagParm ( 'past', 'ended' ) ), (bool) padTagParm ( 'live', FALSE ),
                         (string) padTagParm ( 'format', 'l j F Y, H:i' ) );
 
 ?>

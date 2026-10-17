@@ -32,6 +32,6 @@
       $padSudokuSolved = NULL;
   }
 
-  return padSudoku ( $padSudokuCells, $padSudokuSolved, (string) padTagParm ( 'title' ) );
+  return padSudoku ( $padSudokuCells, $padSudokuSolved, padParmText ( padTagParm ( 'title' ) ) );
 
 ?>

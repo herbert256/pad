@@ -27,8 +27,8 @@
 
   }
 
-  $padModalButton = (string) padTagParm ( 'button', 'Open' );
-  $padModalTitle  = (string) padTagParm ( 'title', $padModalButton );
+  $padModalButton = padParmText ( padTagParm ( 'button', 'Open' ) );
+  $padModalTitle  = padParmText ( padTagParm ( 'title', $padModalButton ) );
 
   $padContent = padModal ( (string) $padParm, $padModalTitle, $padModalButton, trim ( $padContent ) );
 

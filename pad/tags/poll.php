@@ -13,7 +13,7 @@
     return padError ( "a {poll} needs a name of letters, digits, _ and -, like {poll 'favorite-language'}" );
 
   $padPollAnswers = array_values ( array_unique ( array_filter (
-                      array_map ( 'trim', explode ( ',', (string) padTagParm ( 'options' ) ) ), 'strlen' ) ) );
+                      array_map ( 'trim', explode ( ',', padParmText ( padTagParm ( 'options' ) ) ) ), 'strlen' ) ) );
 
   if ( count ( $padPollAnswers ) < 2 ) {
     if ( $padCheckSyntax )
@@ -22,8 +22,8 @@
   }
 
   return padPoll ( $padPollName, $padPollAnswers,
-                   (string) padTagParm ( 'title', ucfirst ( str_replace ( [ '-', '_' ], ' ', $padPollName ) ) ),
-                   (string) padTagParm ( 'button', 'Vote' ),
+                   padParmText ( padTagParm ( 'title', ucfirst ( str_replace ( [ '-', '_' ], ' ', $padPollName ) ) ) ),
+                   padParmText ( padTagParm ( 'button', 'Vote' ) ),
                    (bool)   padTagParm ( 'results', FALSE ) );
 
 ?>

@@ -25,6 +25,6 @@
 
   list ( $padCrosswordPlaced, $padCrosswordSkipped ) = padCrosswordLay ( $padCrosswordWords );
 
-  return padCrossword ( $padCrosswordPlaced, $padCrosswordSkipped, (bool) padTagParm ( 'solution', FALSE ), (string) padTagParm ( 'title' ) );
+  return padCrossword ( $padCrosswordPlaced, $padCrosswordSkipped, (bool) padTagParm ( 'solution', FALSE ), padParmText ( padTagParm ( 'title' ) ) );
 
 ?>

@@ -14,7 +14,7 @@
     return TRUE;
   }
 
-  $padCopyLabel = (string) padTagParm ( 'label', 'Copy' );
+  $padCopyLabel = padParmText ( padTagParm ( 'label', 'Copy' ) );
 
   if ( $padPair [$pad] ) {
 

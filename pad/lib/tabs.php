@@ -123,6 +123,12 @@
     if ( $pick === '' or $pick === NULL )
       return 0;
 
+    // A label is read as the characters it holds, as the {tab} reads its own: a field
+    // inside the quoted active= or open= meets the tab named by the same field.
+
+    if ( is_string ( $pick ) )
+      $pick = padParmText ( $pick );
+
     if ( is_numeric ( $pick ) and (int) $pick >= 1 and (int) $pick <= count ( $items ) and (int) $pick == $pick )
       return (int) $pick;
 

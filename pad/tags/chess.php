@@ -41,6 +41,6 @@
     padError ( "the chess board has no square or arrow '" . padMakeSafe ( implode ( ', ', $padChessWrong ), 60 ) . "' - write squares as e4, arrows as e2-e4" );
 
   return padChess ( $padChessPosition, (bool) padTagParm ( 'flip', FALSE ), $padChessMarks, $padChessArrows,
-                    max ( 80, (int) padTagParm ( 'size', 360 ) ), (string) padTagParm ( 'title' ) );
+                    max ( 80, (int) padTagParm ( 'size', 360 ) ), padParmText ( padTagParm ( 'title' ) ) );
 
 ?>

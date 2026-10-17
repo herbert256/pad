@@ -24,7 +24,7 @@
   }
 
   $padTabOwner = padTabsOwner ();
-  $padTabLabel = trim ( (string) $padParm );
+  $padTabLabel = trim ( padParmText ( $padParm ) );
 
   $padTabKind  = padTabsKind ( $padTabOwner );
 

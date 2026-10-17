@@ -15,7 +15,7 @@
   // - is a <video controls preload="none">. title= is required: the button's text, the
   // iframe's title, what a screen reader says.
 
-  $padVideoTitle = trim ( (string) padTagParm ( 'title' ) );
+  $padVideoTitle = trim ( padParmText ( padTagParm ( 'title' ) ) );
 
   if ( $padVideoTitle === '' and $padCheckSyntax )
     padError ( "the video tag needs a title= - the play button's text and the player's name for a screen reader" );

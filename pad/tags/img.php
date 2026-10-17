@@ -19,6 +19,11 @@
     $padImgAlt = '';
   }
 
+  // The text as the characters it holds (padParmText): a field inside the quoted alt=
+  // arrived escaped by its sanitize step, and the tag escaped it again - Q&amp;A.
+
+  $padImgAlt = padParmText ( $padImgAlt );
+
   return padImg ( $padParm, [ 'alt'     => $padImgAlt,
                               'width'   => padTagParm ( 'width',   0         ),
                               'height'  => padTagParm ( 'height',  0         ),
