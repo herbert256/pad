@@ -430,10 +430,16 @@
   // float holds stays the text written, as an over-long integer does: 1e400 became INF, a
   // value no field could be resolved to, and {sequence '3;1e400'} ended the request on
   // "Field '$sequence' not found".
+  //
+  // Every entry is trimmed, as a number already was, and an empty one is no entry: a ';'
+  // after the last item - what a list joined with one after every item gives - was a last
+  // term of nothing, so {sequence '1;2;'} counted 3 and ended on an empty value, '1;;2' had
+  // one between, and 'red; green' gave ' green'.
 
   function padGetList ( $list ) {
 
-    $list = explode ( ';', $list );
+    $list = array_values ( array_filter ( array_map ( 'trim', explode ( ';', $list ) ),
+                                          fn ( $value ) => $value !== '' ) );
 
     foreach ( $list as $key => $value)
       if ( is_numeric ($value) ) {
