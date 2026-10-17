@@ -1131,7 +1131,13 @@
       if (ev.dataTransfer.files && ev.dataTransfer.files.length) { upload(n.path, n.root, ev.dataTransfer.files); return; }
       var from = JSON.parse(ev.dataTransfer.getData('text/x-pad-file') || 'null');
       if (!from || (from.root === n.root && dirname(from.path) === n.path)) return;
-      move(from.root, from.path, n.root, join(n.path, basename(from.path)));
+      // A drag is one slip of the mouse: it asks first, as a delete does. pad/lib dropped on
+      // pad/tags moved at once, after which no page answered, this editor neither, and it
+      // could not be moved back from here.
+      var to = join(n.path, basename(from.path));
+      confirmBox('Move', dropQuestion(E.app, from.root, from.path, n.root, to), 'Move', runsOn(E.app, from.root)).then(function (yes) {
+        if (yes) move(from.root, from.path, n.root, to);
+      });
     });
     return r;
   }
@@ -1352,6 +1358,18 @@
     });
   }
 
+  // The framework and the editor's own files: every page runs on the one, this editor on
+  // both (editRunsOn in _lib/files.php refuses a save of such a .php that does not parse).
+  // Moved away or deleted, nothing answers any more - and from here it cannot be put back.
+  function runsOn(app, root) { return root === 'pad' || app === 'edit'; }
+  function runsOnWarning(app, root) {
+    return runsOn(app, root) ? ' The editor itself runs on ' + (root === 'pad' ? 'the framework' : 'its own files') +
+      ': without it no page may answer any more, this editor neither, and it could not be put back from here.' : '';
+  }
+  function dropQuestion(app, root, path, toRoot, to) {
+    return 'Move ' + rootLabel(app, root) + '/' + path + ' to ' + rootLabel(app, toRoot) + '/' + to + '?' + runsOnWarning(app, root);
+  }
+
   function move(root, path, toRoot, to) {
     var moving = openDocs().filter(function (d) { return (d.app === E.app || root === 'pad') && d.root === root && (d.path === path || d.path.indexOf(path + '/') === 0); });
     var dirty = moving.filter(isDirty);
@@ -1386,7 +1404,7 @@
 
   function deleteNode(n) {
     var what = (n.dir ? 'the folder ' : '') + n.path + (n.dir ? ' and everything in it' : '');
-    return confirmBox('Delete', 'Move ' + what + ' to the trash? It can be put back from the trash.', 'Move to trash', true).then(function (yes) {
+    return confirmBox('Delete', 'Move ' + what + ' to the trash? It can be put back from the trash.' + runsOnWarning(E.app, n.root), 'Move to trash', true).then(function (yes) {
       if (!yes) return;
       return api('delete', { app: E.app, root: n.root, path: n.path }).then(function () {
         var gone = openDocs().filter(function (d) { return (d.app === E.app || n.root === 'pad') && d.root === n.root && (d.path === n.path || d.path.indexOf(n.path + '/') === 0); });
