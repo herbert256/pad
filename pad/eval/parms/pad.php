@@ -24,6 +24,15 @@
 
   }
 
+  // A NULL handed along the chain - parse_url without a query, a function with no answer -
+  // is the empty value it is everywhere else in PAD; the function files hand $value to
+  // PHP's string functions, and {$u | php:parse_url(@, PHP_URL_QUERY) | trim} ended the
+  // request on "Passing null to parameter #1 is deprecated". A NULL field never got here, it
+  // is read as ''; default, optional and ago take '' as they take NULL.
+
+  if ( $value === NULL )
+    $value = '';
+
   $padFnNeeds = [ 'replace' => 2, 'between'    => 2, 'range'    => 2,
                   'mid'     => 1, 'substr'     => 1, 'left'     => 1,
                   'right'   => 1, 'max_len'    => 1, 'like'     => 1,
