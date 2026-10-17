@@ -47,7 +47,6 @@ apps/react/
 ├── _inits.pad, _inits.php # the page: React, the runtime, the menu, the theme switch
 ├── _data/                 # examples.json (the catalogue), products, team, sales, nav
 ├── _lib/react.php         # reactData, reactGroups, reactExample, reactCart, reactText
-├── _tags/source.php       # {source} - the files of an example as tabs
 ├── _tags/json.php         # {json 'products'} - a _data file for an attribute
 ├── _providers/            # the {reactData} providers of the topic example
 ├── _guide/                # the sample files the guide shows
