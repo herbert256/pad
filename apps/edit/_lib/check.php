@@ -188,7 +188,7 @@
     $where = (string) ( $template ['path'] ?? '' );
 
     if ( $template and ! $fromSource and $where !== '' and realpath ( $where ) === realpath ( $file ) ) {
-      $length = strlen ( (string) ( $template ['tag'] ?? '' ) );
+      $length = mb_strlen ( (string) ( $template ['tag'] ?? '' ) );
       return editMarker ( $text, (int) $template ['line'], (int) ( $template ['column'] ?? 1 ),
                           $length, $message, 'pad' );
     }
@@ -230,12 +230,17 @@
     if ( ! empty ( $template ['tag'] ) )
       array_unshift ( $candidates, (string) $template ['tag'] );
 
+    // The column counts characters, as the editor's columns and the engine's own do: it was
+    // the byte offset in the line, so every é before the tag put the marker one further
+    // right - under typo}</ in <p>Één {$typo}</p>.
+
     foreach ( $candidates as $candidate ) {
       $at = strpos ( $text, $candidate );
       if ( $at !== FALSE ) {
         $line   = substr_count ( $text, "\n", 0, $at ) + 1;
-        $column = $at - (int) strrpos ( substr ( $text, 0, $at ), "\n" ) + ( $line == 1 ? 1 : 0 );
-        $marker = editMarker ( $text, $line, $column, strlen ( $candidate ), $message, 'pad' );
+        $start  = ( $line == 1 ) ? 0 : strrpos ( substr ( $text, 0, $at ), "\n" ) + 1;
+        $column = mb_strlen ( substr ( $text, $start, $at - $start ) ) + 1;
+        $marker = editMarker ( $text, $line, $column, mb_strlen ( $candidate ), $message, 'pad' );
         $marker ['other'] = $other;
         return $marker;
       }
@@ -251,14 +256,14 @@
 
   }
 
-  // A marker in the shape Monaco takes: 1-based line and column, the end on the same line;
-  // a column of 0 marks the whole line.
+  // A marker in the shape Monaco takes: 1-based line and column, in characters, the end on
+  // the same line; a column of 0 marks the whole line.
 
   function editMarker ( $text, $line, $column, $length, $message, $source, $severity = 'error' ) {
 
     $lines  = explode ( "\n", (string) $text );
     $line   = max ( 1, min ( (int) $line, count ( $lines ) ) );
-    $width  = strlen ( $lines [ $line - 1 ] ?? '' );
+    $width  = mb_strlen ( $lines [ $line - 1 ] ?? '' );
 
     if ( $column <= 0 ) {
       $start = 1 + strlen ( $lines [ $line - 1 ] ?? '' ) - strlen ( ltrim ( $lines [ $line - 1 ] ?? '' ) );
