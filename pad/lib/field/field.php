@@ -150,8 +150,27 @@
     if ( str_starts_with ($field, '@') and substr_count($field, '@') == 1 )
       $field .= '@*';
 
-    if ( str_contains ( $field, '.' ) and ! str_contains ( $field, '@' )  )
-      $field .= '@*';
+    // A dotted path without an @ - $user.name - is a field and its keys: it is looked for as
+    // a plain field is, in the row, the enclosing rows and then the page's variables, each
+    // from the top. The search in depth is for the @ forms that ask for it - {$abc@*}: with it,
+    // a row without the path read it from a sibling row that had it ({rows}{$user.name}{/rows}
+    // answered Bob on every row, in a time that grew with the square of the rows), and a
+    // row's customer.address.city stood in for the page's $address.city.
+
+    if ( str_contains ( $field, '.' ) and ! str_contains ( $field, '@' )  ) {
+
+      global $padAtShallow;
+
+      $keep         = $padAtShallow ?? FALSE;
+      $padAtShallow = TRUE;
+
+      try {
+        return padAt ( "$field@*", $lvl );
+      } finally {
+        $padAtShallow = $keep;
+      }
+
+    }
 
     return padAt ( $field, $lvl );
 

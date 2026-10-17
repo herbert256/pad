@@ -14,7 +14,12 @@
   if ( ! $padIdx )
     return INF;
 
-  global $padCurrent, $padData, $padOpt, $padPrm, $padSetLvl, $padLvlFunVar, $padSetOcc;
+  global $padCurrent, $padData, $padOpt, $padPrm, $padSetLvl, $padLvlFunVar, $padSetOcc, $padAtShallow;
+
+  // A plain dotted path - $user.name, no @ - is looked for from the top of each store only
+  // (padFieldAt): searched in depth, a row without it took a sibling row's.
+
+  $padAtNoDeep = ( $padAtShallow ?? FALSE ) ? 1 : 0;
 
   $name = end ( $names );
 
@@ -26,25 +31,25 @@
     if ( isset ( $padSetOcc  [$padIdx] [$name] ) ) return $GLOBALS [$name];
   }
 
-  $current = padAtSearch ( $padCurrent [$padIdx], $names );
+  $current = padAtSearch ( $padCurrent [$padIdx], $names, $padAtNoDeep );
   if ( $current !== INF )
     return $current;
 
-  $current = padAtSearch ( $padSetLvl [$padIdx], $names );
+  $current = padAtSearch ( $padSetLvl [$padIdx], $names, $padAtNoDeep );
   if ( $current !== INF )
     return $current;
 
   $padOptAt = $padOpt [$padIdx];
   unset ( $padOptAt [0] );
-  $current = padAtSearch ( $padOptAt , $names );
+  $current = padAtSearch ( $padOptAt , $names, $padAtNoDeep );
   if ( $current !== INF )
     return $current;
 
-  $current = padAtSearch ( $padPrm [$padIdx], $names );
+  $current = padAtSearch ( $padPrm [$padIdx], $names, $padAtNoDeep );
   if ( $current !== INF )
     return $current;
 
-  $current = padAtSearch ( $padLvlFunVar [$padIdx], $names );
+  $current = padAtSearch ( $padLvlFunVar [$padIdx], $names, $padAtNoDeep );
   if ( $current !== INF )
     return $current;
 
@@ -52,7 +57,7 @@
   if ( $current !== INF )
     return $current;
 
-  $current = padAtSearch ( $padData [$padIdx], $names );
+  $current = padAtSearch ( $padData [$padIdx], $names, $padAtNoDeep );
   if ( $current !== INF )
     return $current;
 

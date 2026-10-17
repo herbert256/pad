@@ -8,9 +8,10 @@
   // depth: the deep search of a store came before the globals were tried at all, so a page's
   // $items lost {$items.0} to a {data} block holding [{"items":["X","Y"]}] - [X][Y][Cherry] -
   // and $user.name to a nested "user" of a store. A store the reference names ($type) is
-  // still searched in depth first.
+  // still searched in depth first. A plain dotted path - $user.name, no @ - is looked for from
+  // the top alone (padFieldAt).
 
-  for ( $padAtNoDeep = 1; $padAtNoDeep >= 0; $padAtNoDeep-- ) {
+  for ( $padAtNoDeep = 1; $padAtNoDeep >= ( ( $GLOBALS ['padAtShallow'] ?? FALSE ) ? 1 : 0 ); $padAtNoDeep-- ) {
 
     $check = include PAD . 'at/types/_lib/check.php';
     if ( $check !== INF )
