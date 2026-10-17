@@ -85,6 +85,10 @@
   // A month or a weekday in the locale of the request, as localDate writes it - the link
   // labels came from the locale's catalog while a Dutch page said "October 2026" and "Mon
   // Tue". An English locale, and a server without intl, write PHP's own English names.
+  //
+  // The calendar is Gregorian back to year 0, as PHP's dates and the grid are, and the year
+  // is the grid's (uuuu): ICU's Gregorian calendar turns Julian before October 1582, and a
+  // grid of 1582-10 was captioned september 1582, one of 0000-01 januari 1 - the year 1 BC.
 
   function padCalendarWord ( $day, $pattern, $format ) {
 
@@ -97,8 +101,10 @@
 
     if ( ! array_key_exists ( "$locale $pattern", $formats ) )
       try {
+        $calendar = new IntlGregorianCalendar ( 'UTC', $locale );
+        $calendar->setGregorianChange ( -1.0E300 );
         $formats ["$locale $pattern"] = new IntlDateFormatter ( $locale, IntlDateFormatter::NONE, IntlDateFormatter::NONE,
-                                                                'UTC', IntlDateFormatter::GREGORIAN, $pattern );
+                                                                'UTC', $calendar, $pattern );
       } catch ( Throwable $e ) {
         $formats ["$locale $pattern"] = NULL;
       }
@@ -125,7 +131,7 @@
     $html = padCalendarStyle () . '<table class="pad-calendar">'
           . '<caption>'
           . ( ( $links and padCalendarMonth ( $prev ) !== NULL ) ? '<a class="pad-calendar-prev" href="' . $h ( padPagerHref ( $query, $prev ) ) . '" rel="prev" aria-label="' . $h ( $catalog ['calendar.previous'] ?? 'Previous month' ) . '">‹</a> ' : '' )
-          . '<span>' . $h ( padCalendarWord ( $first, 'LLLL y', 'F Y' ) ) . '</span>'
+          . '<span>' . $h ( padCalendarWord ( $first, 'LLLL uuuu', 'F Y' ) ) . '</span>'
           . ( ( $links and padCalendarMonth ( $next ) !== NULL ) ? ' <a class="pad-calendar-next" href="' . $h ( padPagerHref ( $query, $next ) ) . '" rel="next" aria-label="' . $h ( $catalog ['calendar.next'] ?? 'Next month' ) . '">›</a>' : '' )
           . '</caption><thead><tr>';
 
