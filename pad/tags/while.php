@@ -56,16 +56,15 @@
 
   $padWhile = padEvalBool ( $padWhileOrg );
 
-  if ($padTag [$pad] == 'while') {
+  $padWhileHolds  = ( $padTag [$pad] == 'while' ) ? $padWhile : ! $padWhile;
+  $padWalk [$pad] = $padWhileHolds ? 'next' : '';
 
-    $padWalk [$pad] = (   $padWhile ) ? 'next' : '';
-    return            (   $padWhile ) ? [ 1 => [] ] : NULL;
+  if ( $padWhileHolds )
+    return [ 1 => [] ];
 
-  } else {
+  // A loop that never ran a round is a tag that came back empty and shows its @else@; it
+  // answered nothing, and the branch never showed. One that ran its rounds just ends.
 
-    $padWalk [$pad] = ( ! $padWhile ) ? 'next' : '';
-    return            ( ! $padWhile ) ? [ 1 => [] ] : NULL;
-
-  }
+  return ( $padWhileRound [$pad] == 1 ) ? FALSE : NULL;
 
 ?>
