@@ -62,6 +62,32 @@
 
   }
 
+  // The input of a test written infix is the whole arithmetic and concatenation on its left
+  // (lib/eval/operand.php), reduced to one value here, as brackets around it would be. The
+  // test took the one value just before it: $n + 1 range (9, 9) was 3 + (1 range (9, 9)),
+  // true for n = 3, and $p * $q in (30) was 10 * ('3' in (30)).
+
+  if ( $kind == 'pad' and in_array ( $name, padEval_tests ) and ! $padEvalInCall
+       and $b >= $start and $result [$b] [1] == 'VAL' ) {
+
+    $padEvalFirst = padEvalTestLeft ( $result, $start, $b );
+
+    if ( $padEvalFirst < $b ) {
+
+      padEvalOpr ( $result, $myself, $padEvalFirst, $b );
+
+      $padEvalLast = -1;
+
+      foreach ( $result as $padEvalKey => $padEvalTok )
+        if ( $padEvalKey >= $padEvalFirst and $padEvalKey <= $b )
+          $padEvalLast = $padEvalKey;
+
+      $b = $padEvalLast;
+
+    }
+
+  }
+
   $padEvalPiped = ( $b >= $start and $result [$b] [1] == 'VAL' and ! $padEvalInCall );
 
   if ( $padEvalPiped ) {
