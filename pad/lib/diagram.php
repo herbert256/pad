@@ -196,9 +196,11 @@
 
   // Where a frame of a sequence diagram stands across - [ x0, x1 ] - round the columns its
   // messages touch, an inner one inset, and wide enough for the tab and the condition of
-  // each of its parts.
+  // each of its parts. $inner is how far the frames inside it reach - [ x0, x1 ] - and it
+  // reaches past them: an inner frame widened for a long condition ran out through the
+  // right side of the frame round it, and lay on its left side.
 
-  function padDiagramFrameSpan ( $frame, $x, $boxW, $n ) {
+  function padDiagramFrameSpan ( $frame, $x, $boxW, $n, $inner = NULL ) {
 
     list ( $kind, , , $a, $b, $parts, $depth ) = $frame;
 
@@ -207,10 +209,9 @@
       $b = $n - 1;
     }
 
-    // An inner frame is inset, but never past the room of its tab and its conditions: eight
-    // frames round one column went on inward and then out on the right, past the frames
-    // round them - earlier a negative width, a rect no browser draws. Deeper than that,
-    // frames lie on each other.
+    // An inner frame is inset on the left, and as wide as its tab and its conditions need,
+    // to the right - earlier a negative width, a rect no browser draws; the frames round it
+    // widen with it. Inset past the picture's left edge, frames lie on each other there.
 
     $from = $x [$a] - max ( 50, $boxW [$a] / 2 + 6 );
     $to   = $x [$b] + max ( 50, $boxW [$b] / 2 + 6 );
@@ -221,11 +222,39 @@
       if ( $text !== '' )
         $need = max ( $need, ( $k ? 8 : $tabW + 8 ) + padDiagramWidth ( "[$text]" ) + 8 );
 
-    $inset = min ( 8 * $depth, max ( 0, ( $to - $from - $need ) / 2 ) );
-    $x0    = max ( 4, $from + $inset );
-    $x1    = max ( $to - $inset, $x0 + $need );
+    $x0 = max ( 4, $from + 8 * $depth );
+    $x1 = max ( $to - 8 * $depth, $x0 + $need );
+
+    if ( $inner ) {
+      $x0 = max ( 4, min ( $x0, $inner [0] - 8 ) );
+      $x1 = max ( $x1, $inner [1] + 8 );
+    }
 
     return [ $x0, $x1 ];
+
+  }
+
+  // The innermost open frame closes at $y: it goes to the frames with where it stands, and
+  // the frame round it takes its columns and reaches past it. Frames close inner first, so
+  // each knows what it holds when its own place is worked out.
+
+  function padDiagramFrameClose ( &$stack, &$frames, $y, $x, $boxW, $n ) {
+
+    $frame = array_pop ( $stack );
+    $entry = [ $frame [0], $frame [1], $y, $frame [2], $frame [3], $frame [4], count ( $stack ) ];
+    $span  = padDiagramFrameSpan ( $entry, $x, $boxW, $n, $frame [5] ?? NULL );
+
+    $frames [] = array_merge ( $entry, [ $span ] );
+
+    foreach ( $stack as $k => $outer ) {
+      $stack [$k] [2] = min ( $outer [2], $frame [2] );
+      $stack [$k] [3] = max ( $outer [3], $frame [3] );
+    }
+
+    if ( $stack ) {
+      $k = count ( $stack ) - 1;
+      $stack [$k] [5] = [ min ( $stack [$k] [5] [0] ?? INF, $span [0] ), max ( $stack [$k] [5] [1] ?? -INF, $span [1] ) ];
+    }
 
   }
 
@@ -1483,13 +1512,8 @@
         case 'end':
 
           if ( $stack ) {
-            $y         += 10;
-            $frame      = array_pop ( $stack );
-            $frames []  = [ $frame [0], $frame [1], $y, $frame [2], $frame [3], $frame [4], count ( $stack ) ];
-            foreach ( $stack as $k => $outer ) {
-              $stack [$k] [2] = min ( $outer [2], $frame [2] );
-              $stack [$k] [3] = max ( $outer [3], $frame [3] );
-            }
+            $y += 10;
+            padDiagramFrameClose ( $stack, $frames, $y, $x, $boxW, $n );
           }
 
           break;
@@ -1499,9 +1523,8 @@
     }
 
     while ( $stack ) {
-      $frame     = array_pop ( $stack );
-      $frames [] = [ $frame [0], $frame [1], $y + 10, $frame [2], $frame [3], $frame [4], count ( $stack ) ];
-      $y        += 10;
+      padDiagramFrameClose ( $stack, $frames, $y + 10, $x, $boxW, $n );
+      $y += 10;
     }
 
     $bottom = $y + 20;
@@ -1509,7 +1532,7 @@
     // it: a long condition was written past the frame and the edge of the picture, cut off.
 
     foreach ( $frames as $frame )
-      $right = max ( $right, padDiagramFrameSpan ( $frame, $x, $boxW, $n ) [1] + 4 - 12 );
+      $right = max ( $right, $frame [7] [1] + 4 - 12 );
 
     $width  = (int) ceil ( $right + 12 );
     $height = (int) ceil ( $bottom + $boxH + 12 );
@@ -1538,9 +1561,9 @@
 
     usort ( $frames, fn ( $p, $q ) => [ $p [6], $p [1] ] <=> [ $q [6], $q [1] ] );
 
-    foreach ( $frames as list ( $kind, $top, $end, $a, $b, $parts, $depth ) ) {
+    foreach ( $frames as list ( $kind, $top, $end, $a, $b, $parts, $depth, $span ) ) {
 
-      list ( $x0, $x1 ) = padDiagramFrameSpan ( [ $kind, $top, $end, $a, $b, $parts, $depth ], $x, $boxW, $n );
+      list ( $x0, $x1 ) = $span;
 
       $x1   = min ( $width - 4, $x1 );
       $tabW = padDiagramWidth ( $kind ) + 14;
