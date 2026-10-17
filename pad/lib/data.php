@@ -219,8 +219,12 @@
     // one occurrence with three fields, where it is three - also when the names came in the
     // row's own order, [ 'name' => 'Name', 'salary' => 'Salary' ], the commonest heading list.
     // Exactly the row's columns with every value empty is the row too: a record that had
-    // none. A record whose every value the page formatted cannot be told from such a list;
-    // handed over as a list of one row - [ $totals ] - it is the row it was.
+    // none. Exactly the row's columns with a number the page formatted for show - grouped,
+    // rounded - is the row when that number is one of the row's own: number_format took
+    // '6000' to '6,000.00', no longer loosely the same, and a record of totals stopped being
+    // one the day they all passed a thousand, where '600.00' still was. A record whose every
+    // value the page rewrote otherwise - a name given a capital - cannot be told from a heading
+    // list; handed over as a list of one row - [ $bob ] - it is the row it was.
     // The rows are kept by their columns (padDataKeepRecord), so this is a test per column
     // list, not per row read: a page that read its orders one RECORD at a time made every
     // padData of an associative array after it walk the thousand rows kept.
@@ -230,14 +234,49 @@
       if ( array_diff_key ( $set ['columns'], $input ) )
         continue;
 
-      if ( array_keys ( $input ) === array_keys ( $set ['columns'] ) and ! array_filter ( $input, fn ( $value ) => $value !== NULL and $value !== '' ) )
+      $exact = array_keys ( $input ) === array_keys ( $set ['columns'] );
+
+      if ( $exact and ! array_filter ( $input, fn ( $value ) => $value !== NULL and $value !== '' ) )
         return TRUE;
 
       foreach ( $set ['values'] as $key => $values )
         if ( is_scalar ( $input [$key] ) and isset ( $values [ padDataLoose ( $input [$key] ) ] ) )
           return TRUE;
 
+      if ( $exact )
+        foreach ( $set ['values'] as $key => $values )
+          if ( padDataFormatted ( $input [$key], $values ) )
+            return TRUE;
+
     }
+
+    return FALSE;
+
+  }
+
+  // Whether a value reads as a number written for show - grouped by thousands, given its
+  // decimals: '6,000.00' or '6.000,00' (number_format's two forms), '2,333.33' - and one of
+  // the kept values of its column, rounded to those decimals, is that number. No heading
+  // label reads as such a number, so a list of labels stays a list.
+
+  function padDataFormatted ( $value, $values ) {
+
+    if ( ! is_string ( $value ) )
+      return FALSE;
+
+    $value = trim ( $value );
+    $reads = [];
+
+    if ( preg_match ( '/^(-?(?:\d{1,3}(?:,\d{3})+|\d+))(?:\.(\d+))?$/', $value, $m ) )
+      $reads [] = [ str_replace ( ',', '', $m [1] ) . ( isset ( $m [2] ) ? '.' . $m [2] : '' ), strlen ( $m [2] ?? '' ) ];
+
+    if ( preg_match ( '/^(-?(?:\d{1,3}(?:\.\d{3})+|\d+))(?:,(\d+))?$/', $value, $m ) )
+      $reads [] = [ str_replace ( '.', '', $m [1] ) . ( isset ( $m [2] ) ? '.' . $m [2] : '' ), strlen ( $m [2] ?? '' ) ];
+
+    foreach ( $reads as [ $number, $decimals ] )
+      foreach ( $values as $loose => $count )
+        if ( $loose [0] == 'n' and round ( (float) substr ( $loose, 1 ), $decimals ) == round ( (float) $number, $decimals ) )
+          return TRUE;
 
     return FALSE;
 

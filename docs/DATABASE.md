@@ -51,6 +51,12 @@ A read that does not start with `SELECT` - `WITH`, a bracketed `(SELECT ...) UNI
 `SHOW`, `DESCRIBE`, `EXPLAIN`, `PRAGMA`, `VALUES` - is sent as written and answers its rows
 as `ARRAY` does; a `WITH` that writes answers the rows it changed.
 
+**A RECORD in a page variable** is one row to a tag - `{totals}{$total}{/totals}` is one
+occurrence - while it holds the row's columns and a value still the row's own; a number the
+page formatted (`number_format`, grouped either way, rounded) counts as its own. A record whose
+every value the page rewrote otherwise - a name given a capital - cannot be told from a heading
+list of the same columns: pass it as a list of one row, `$bob = [ $bob ]`.
+
 **During a replay** of recorded traffic (`$padRecord`, `develop/?replay`) `db()` never
 writes: a statement that would change the database - INSERT, UPDATE, DELETE, REPLACE,
 TRUNCATE, LOAD, CREATE, DROP, ALTER, RENAME, GRANT, REVOKE, CALL, LOCK - is not sent and
