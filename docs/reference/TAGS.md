@@ -2593,7 +2593,7 @@ No heading of those levels writes nothing. Colours are `--pad-toc-*` custom prop
 ---
 
 ### countdown
-The time left until a moment, in words, inside a `<time datetime>` (`lib/countdown.php`) -
+The time left until a moment, in words, inside a `<time datetime>` (`tags/_lib/countdown.php`) -
 optionally ticking every second in the browser.
 
 ```html

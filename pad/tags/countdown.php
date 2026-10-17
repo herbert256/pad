@@ -1,7 +1,7 @@
 <?php
 
   // {countdown '2026-12-31 00:00'} - the time left until a moment, in words, inside a
-  // <time datetime>: lib/countdown.php. units= is how many units are shown, 2 when not
+  // <time datetime>: tags/_lib/countdown.php. units= is how many units are shown, 2 when not
   // given - 84 days, 3 hours - and at most 4: days, hours, minutes and seconds. past= is
   // the text once the moment has gone, 'ended' when not given. live adds a small script,
   // once per page, that counts down every second in the browser. now= counts from that
