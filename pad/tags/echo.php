@@ -37,11 +37,13 @@
       $padCheckSyntax = TRUE;
   }
 
-  // A date object is a value the tag's pipe takes as it is - {echo $created | ago} - and is
-  // written as the moment it holds when nothing made it text. Answered to the level, it was
-  // read as data, its properties as three rows, and the pipe got the empty content.
+  // A list or a date object is a value the tag's pipe takes as it is - {echo [3, 1, 2] |
+  // php:max}, {echo php:explode(',', $tags) | php:count}, {echo $created | ago} - and a date
+  // object is written as the moment it holds when nothing made it text. Answered to the
+  // level, either was read as data and the pipe was handed the level's empty content: max()
+  // and count() ended the page on a string given, ago answered empty.
 
-  if ( $padEchoValue instanceof DateTimeInterface ) {
+  if ( is_array ( $padEchoValue ) or $padEchoValue instanceof DateTimeInterface ) {
 
     if ( $padPipeBefore [$pad] ?? '' ) {
       $padEchoValue         = padEval ( $padPipeBefore [$pad], $padEchoValue, TRUE );
