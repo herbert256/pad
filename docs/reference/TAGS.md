@@ -2127,7 +2127,7 @@ under the strict check.
 
 ### accordion
 Items that open and close on a click, without JavaScript - every `{tab}` a `<details>` with its
-label as the `<summary>` (`lib/accordion.php`).
+label as the `<summary>` (`tags/_lib/accordion.php`).
 
 ```html
 {accordion single, open=1}
