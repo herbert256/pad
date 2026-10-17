@@ -36,11 +36,12 @@
   // A date object is its text to a function that takes text (padDateText); date, ago and
   // localDate take the moment itself, and so do time and timestamp, the date function under
   // other names: as text a moment of another zone was read in the application's zone and
-  // came out hours off. A test of a date object against date objects - $d in ($e), $d range
+  // came out hours off - and so it did for Time and DATE, which a file system that ignores
+  // case finds as well. A test of a date object against date objects - $d in ($e), $d range
   // ($e, $f) - reads those as text too, in the zone of the value, so one moment is one text:
   // they stayed objects, and a text never equalled or lay between them.
 
-  if ( ! in_array ( $name, [ 'date', 'time', 'timestamp', 'ago', 'localDate' ], TRUE ) ) {
+  if ( ! in_array ( strtolower ( $name ), [ 'date', 'time', 'timestamp', 'ago', 'localdate' ], TRUE ) ) {
 
     if ( $value instanceof DateTimeInterface and is_array ( $parm ) )
       foreach ( $parm as $padDateKey => $padDateOne )
