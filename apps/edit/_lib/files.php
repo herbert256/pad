@@ -276,6 +276,10 @@
 
   }
 
+  // A copy keeps the mode of what it copies, as a save keeps a file's: a .env closed to the
+  // machine's other users (0600) was copied as 0644, readable by all of them. A directory
+  // made for the copy takes its mode once what it holds is copied into it.
+
   function editCopyTree ( $from, $to ) {
 
     if ( ! is_dir ( $from ) ) {
@@ -283,19 +287,24 @@
         @mkdir ( dirname ( $to ), 0755, TRUE );
       if ( ! @copy ( $from, $to ) )
         editFail ( 'the copy failed: ' . editLastError () );
+      @chmod ( $to, fileperms ( $from ) & 0777 );
       return;
     }
 
     // What is copied is read before the copy is made, so it never walks into itself.
 
     $names = scandir ( $from );
+    $made  = ! is_dir ( $to );
 
-    if ( ! is_dir ( $to ) and ! @mkdir ( $to, 0755, TRUE ) )
+    if ( $made and ! @mkdir ( $to, 0755, TRUE ) )
       editFail ( 'the copy failed: ' . editLastError () );
 
     foreach ( $names as $name )
       if ( $name != '.' and $name != '..' and ! is_link ( "$from/$name" ) )
         editCopyTree ( "$from/$name", "$to/$name" );
+
+    if ( $made )
+      @chmod ( $to, fileperms ( $from ) & 0777 );
 
   }
 
