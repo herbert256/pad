@@ -66,7 +66,7 @@
   function padFlush () {
 
     global $padOut, $padStart, $padFlushRaw, $padTidy, $padMyTidy, $padGzip, $padCache,
-           $padWebEtag304, $padLen, $padCsrf;
+           $padWebEtag304, $padLen, $padCsrf, $padCheckSyntax;
 
     $raw = substr ( $padOut [0], 0, $padStart [0] );
 
@@ -118,6 +118,12 @@
 
     if ( $padCsrf )
       $chunk = padCsrfForms ( $chunk, TRUE, TRUE );
+
+      // A posting form the flush cuts gets no token (lib/csrf.php), so each post of it is
+      // refused 403 - the strict check says why, where nothing did.
+
+      if ( ( $GLOBALS ['padCsrfSplit'] ?? FALSE ) and $padCheckSyntax )
+        padError ( 'a {flush} stands inside a posting form, which then gets no CSRF token - put the flush outside it, after </head>' );
     else
       padCsrfBaseKeep ( $chunk );
 

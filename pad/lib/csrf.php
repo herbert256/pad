@@ -163,6 +163,9 @@
       if ( padCsrfFormAttrs ( $form ['attrs'], $base ) and padCsrfControlsAttrs ( $form ['controls'], $base )
            and ! padCsrfRawElsewhere ( substr ( $html, $form ['at'], ( $forms [$i + 1] ['at'] ?? strlen ( $html ) ) - $form ['at'] ), $base ) ) {
 
+        if ( $add and ! $form ['token'] and $part and ! $form ['closed'] )
+          $GLOBALS ['padCsrfSplit'] = TRUE;
+
         if ( $add and ! $form ['token'] and ( ! $part or $form ['closed'] ) ) {
           $out .= substr ( $html, $done, $form ['start'] - $done ) . padCsrfField ();
           $done = $form ['start'];
