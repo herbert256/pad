@@ -31,7 +31,11 @@
       if ( file_exists ( PAD . "options/$padUnreadName.php" ) )
         continue;
 
-      if ( file_exists ( PAD . "handling/types/$padUnreadName.php" ) )
+      // A sequence takes its handling from the subsystem, not from handling/ - where=, group=
+      // and page= on one did nothing, in silence - so there a handling name is read only when
+      // it is a sequence option or action as well (below).
+
+      if ( file_exists ( PAD . "handling/types/$padUnreadName.php" ) and ! $padTagSeq [$pad] )
         continue;
 
       // A piped tag can carry its pipe functions into the parsed options - {echo $d |
