@@ -39,28 +39,43 @@
 
   let version  = Number(board.dataset.version) || 0;
   let dragging = null;
+  let home     = null;      // where the dragged card stood: a drag that ends without a drop puts it back
   let busy     = false;
+  let again    = false;     // a refresh asked for while one ran or a card was dragged, run once that is over
+
+  // The board is asked for again whatever the answer: a move the server refused - a 403
+  // once the session's token is gone, a 500 - is no JSON, and the card stayed where it was
+  // dropped, though the database has it where it was.
 
   async function move(card, column, before) {
-    const response = await fetch('?move&padFormat=json', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'X-CSRF-Token': token },
-      body: JSON.stringify({ card: Number(card), column: Number(column), before: Number(before) || 0 })
-    });
-    const answer = await response.json();
-    if (answer.version) version = Math.max(version, answer.version);
+    try {
+      const response = await fetch('?move&padFormat=json', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'X-CSRF-Token': token },
+        body: JSON.stringify({ card: Number(card), column: Number(column), before: Number(before) || 0 })
+      });
+      const answer = await response.json();
+      if (answer.version) version = Math.max(version, answer.version);
+    } catch (error) {
+      // shown by the refresh below: the card where the board has it
+    }
     await refresh(card);
   }
 
+  // One refresh at a time, and none while a card is dragged - one asked for then runs when
+  // that is over, where it was dropped: the version had moved on, so a change heard during
+  // a drag was not shown until the next one.
+
   async function refresh(arrived) {
-    if (busy) return;
-    busy = true;
+    if (busy || dragging) { again = true; return; }
+    busy  = true;
+    again = false;
     try {
       const [cards, activity] = await Promise.all([
         fetch('?index&padFragment=columns').then(response => response.text()),
         fetch('?index&padFragment=activity').then(response => response.text())
       ]);
-      if (dragging) return;
+      if (dragging) { again = true; return; }
       const focused = document.activeElement && document.activeElement.closest('.card');
       columns.innerHTML = cards;
       const feed = document.getElementById('activity');
@@ -75,6 +90,7 @@
       }
     } finally {
       busy = false;
+      if (again && !dragging) refresh();
     }
   }
 
@@ -101,15 +117,25 @@
     const card = event.target.closest && event.target.closest('.card');
     if (!card) return;
     dragging = card;
+    home     = { zone: card.parentNode, next: card.nextSibling };
     card.classList.add('dragging');
     event.dataTransfer.effectAllowed = 'move';
     event.dataTransfer.setData('text/plain', card.dataset.card);
   });
 
+  // A drag let go outside a column, or given up with Escape, ends without a drop: the card
+  // goes back to where it stood, where it stayed drawn in the column dragover had last put
+  // it in, though it never moved.
+
   columns.addEventListener('dragend', () => {
-    if (dragging) dragging.classList.remove('dragging');
+    if (dragging) {
+      dragging.classList.remove('dragging');
+      if (home) home.zone.insertBefore(dragging, home.next);
+    }
     dragging = null;
+    home     = null;
     for (const zone of columns.querySelectorAll('.target')) zone.classList.remove('target');
+    if (again) refresh();
   });
 
   columns.addEventListener('dragover', event => {
@@ -130,6 +156,7 @@
     const next = card.nextElementSibling;
     card.classList.remove('dragging');
     dragging = null;
+    home     = null;
     zone.classList.remove('target');
     move(card.dataset.card, zone.dataset.drop, next && next.dataset.card);
   });
