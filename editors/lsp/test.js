@@ -239,6 +239,21 @@ async function main() {
     g = await diagnosticsFor(uri('twice.pad'));
     expect('the error sits where the engine places it, not on an earlier tag of the same text, its column in UTF-16 units past an emoji',
         g && g[0] && g[0].message.includes('never closes') && g[0].range.start.line === 2 && g[0].range.start.character === 10 && g[0].range.end.character === 21, g);
+    // a template saved with a byte order mark, opened as an editor sends it - without one: the
+    // engine counts the mark as a character of line 1, the mark goes on the field all the same
+    const bomDir = fs.mkdtempSync(path.join(os.tmpdir(), 'pad-lsp-'));
+    try {
+        fs.mkdirSync(path.join(bomDir, 'apps', 'b', '_config'), { recursive: true });
+        fs.writeFileSync(path.join(bomDir, 'apps', 'b', '_config', 'config.php'), '<?php $padCommon = FALSE; ?>');
+        fs.writeFileSync(path.join(bomDir, 'apps', 'b', 'bom.pad'), '\ufeff<p>{$typo}</p>\n');
+        const bomUri = url.pathToFileURL(path.join(bomDir, 'apps', 'b', 'bom.pad')).href;
+        notify('textDocument/didOpen', { textDocument: { uri: bomUri, languageId: 'pad', version: 1, text: '<p>{$typo}</p>\n' } });
+        g = await diagnosticsFor(bomUri);
+        expect('an error on line 1 of a template with a byte order mark sits on the field, not one character to the right',
+            g && g[0] && g[0].message.includes("'$typo'") && g[0].range.start.line === 0 && g[0].range.start.character === 4 && g[0].range.end.character === 9, g);
+    } finally {
+        fs.rmSync(bomDir, { recursive: true, force: true });
+    }
     g = await diagnosticsFor(uri('included.pad'));
     expect('an error in an included snippet sits on the page\'s tag that includes it, not on a look-alike in a dead branch, and names the snippet\'s file and place',
         g && g[0] && g[0].message === "Field '$lost' not found - in _include/lost.pad:2:4"

@@ -532,6 +532,19 @@ function fullLine(text, line) {
     return { start: { line, character: 0 }, end: { line, character: (lines[line] || '').length } };
 }
 
+function bomOnDisk(file) {
+    let fd = null;
+    try {
+        fd = fs.openSync(file, 'r');
+        const head = Buffer.alloc(3);
+        return fs.readSync(fd, head, 0, 3, 0) === 3 && head[0] === 0xEF && head[1] === 0xBB && head[2] === 0xBF;
+    } catch (e) {
+        return false;
+    } finally {
+        if (fd !== null) fs.closeSync(fd);
+    }
+}
+
 // A place the engine names in this document - a line, and a column counted in characters
 // (code points) - as a range: the column turned into the UTF-16 units LSP counts, the mark
 // covering the tag when it stands there, else the name or the {tag} it opens on.
@@ -573,6 +586,10 @@ function diagnosticFrom(out, errText, text, file, loc, page) {
     if (where && loc.appDir && where.startsWith(loc.appDir + path.sep) && where !== path.resolve(file))
         message += ' - ' + path.relative(loc.appDir, where).split(path.sep).join('/') + ':' + json.line;
 
+    // A file saved with a byte order mark: the engine counts the mark as the first character of
+    // line 1, the text an editor sends has none - the mark stood one character to the right.
+    const column = (line, col) => line === 1 && col > 1 && !text.startsWith('\ufeff') && bomOnDisk(file) ? col - 1 : col;
+
     // The engine places the error itself when it can: template names the file the tag stands
     // in, its line, and its column counted in characters (code points). In this document the
     // mark goes there - the quoted text below is only found at its first spot, which put "the
@@ -580,7 +597,7 @@ function diagnosticFrom(out, errText, text, file, loc, page) {
     const t = json.template;
     if (t && typeof t.path === 'string' && t.line > 0 && t.column > 0) {
         if (path.resolve(t.path) === path.resolve(file)) {
-            const range = spot(text, t.line, t.column, typeof t.tag === 'string' ? t.tag : '');
+            const range = spot(text, t.line, column(t.line, t.column), typeof t.tag === 'string' ? t.tag : '');
             if (range) return { range, severity: 1, source: 'pad', message };
         } else {
             // In another file - a snippet the page includes, its wrapper, a .pad custom tag:
@@ -595,7 +612,7 @@ function diagnosticFrom(out, errText, text, file, loc, page) {
             for (const by of Array.isArray(t.included) ? t.included : []) {
                 const m = String(by).match(/^(.*):(\d+):(\d+)$/);
                 if (!m || path.resolve(loc.home, m[1]) !== path.resolve(file)) continue;
-                const range = spot(text, +m[2], +m[3], '');
+                const range = spot(text, +m[2], column(+m[2], +m[3]), '');
                 if (range) return { range, severity: 1, source: 'pad', message };
             }
             return { range: fullLine(text, 0), severity: 1, source: 'pad', message };
