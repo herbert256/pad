@@ -1970,7 +1970,7 @@ check.
 
 ### crossword
 A crossword made from a list of words: laid out across and down so they cross, numbered,
-drawn as an empty SVG grid beside the Across and Down clues (`lib/crossword.php`).
+drawn as an empty SVG grid beside the Across and Down clues (`tags/_lib/crossword.php`).
 
 ```html
 {crossword}

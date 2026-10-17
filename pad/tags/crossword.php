@@ -1,6 +1,6 @@
 <?php
 
-  // {crossword} ... {/crossword} - a crossword made from a list of words, lib/crossword.php.
+  // {crossword} ... {/crossword} - a crossword made from a list of words, tags/_lib/crossword.php.
   // The content is a line per word, WORD: clue; it is taken as it stands, before the level
   // walks it, so a clue may hold braces. The words are laid out across and down so they
   // cross, the same way every time; the grid is drawn empty with its numbers, beside the
