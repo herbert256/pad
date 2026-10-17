@@ -183,15 +183,27 @@
     if ( ! empty ( $template ['suggest'] ) and is_string ( $template ['suggest'] ) )
       $message .= ' - did you mean ' . $template ['suggest'] . '?';
 
+    // A file saved with a byte order mark: the editor's model holds none - Monaco keeps the
+    // mark aside - and the engine counts it as the first character of line 1, so there the
+    // marker stood one column to the right, as d23c14f49 found in the language server.
+
+    $bom    = str_starts_with ( (string) $text, "\xEF\xBB\xBF" );
+    $text   = $bom ? substr ( (string) $text, 3 ) : (string) $text;
+    $column = fn ( $line, $col ) => ( $bom and $line == 1 and $col > 1 ) ? $col - 1 : $col;
+
     // The source map placed it, in this file: that is where it is - its column counts
-    // characters, recounted in the editor's units from the line's text.
+    // characters, recounted in the editor's units from the line's text, and it points at the
+    // name the error is about (padSrcNamed), the field or the pipe function: the marker
+    // covers that name, the whole tag only when the tag starts there. It ran from the name
+    // for the tag's length, past the name to the end of the tag and beyond.
 
     $where = (string) ( $template ['path'] ?? '' );
 
     if ( $template and ! $fromSource and $where !== '' and realpath ( $where ) === realpath ( $file ) ) {
-      $line   = (int) $template ['line'];
-      $before = mb_substr ( explode ( "\n", (string) $text ) [ $line - 1 ] ?? '', 0, max ( 0, (int) ( $template ['column'] ?? 1 ) - 1 ) );
-      return editMarker ( $text, $line, editUnits ( $before ) + 1, editUnits ( (string) ( $template ['tag'] ?? '' ) ), $message, 'pad' );
+      $line = (int) $template ['line'];
+      $spot = editSpot ( $text, $line, $column ( $line, (int) ( $template ['column'] ?? 1 ) ), (string) ( $template ['tag'] ?? '' ) );
+      if ( $spot )
+        return editMarker ( $text, $line, $spot [0], $spot [1], $message, 'pad' );
     }
 
     // In another file - a snippet the page includes, its wrapper, a .pad custom tag: said in
@@ -226,7 +238,7 @@
           $byFile = str_starts_with ( $m [1], '/' ) ? $m [1] : editHome () . '/' . $m [1];
           if ( realpath ( $byFile ) !== realpath ( $file ) )
             continue;
-          $spot = editSpot ( $text, (int) $m [2], (int) $m [3], '' );
+          $spot = editSpot ( $text, (int) $m [2], $column ( (int) $m [2], (int) $m [3] ), '' );
           if ( $spot ) {
             $marker = editMarker ( $text, (int) $m [2], $spot [0], $spot [1], $message, 'pad' );
             $marker ['other'] = $other;
