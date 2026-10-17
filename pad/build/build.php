@@ -21,9 +21,12 @@
   // is - and before the guards ask for the user and anything of the page is written: the
   // login makes a new session, and made at the first {auth}, {can} or padUser of the page
   // it dropped the CSRF token a form above it had already written - the post was refused.
+  // padUser asks the session first: a visitor whose session holds the login keeps it -
+  // read on every request, the cookie renewed the session id and the token each time, and
+  // its user replaced a newer login of the session.
 
   if ( (string) ( $padAuthRemember ?? '' ) !== '' )
-    padAuthRemembered ();
+    padUser ();
 
   // The directory guards decide before any _inits.php runs. A refused request is answered
   // 403; a page a {page} tag includes renders as nothing when its guard refuses - an
