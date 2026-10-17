@@ -39,8 +39,8 @@
     $vars  = [];
 
     if ( $search !== '' ) {
-      $where [] = "(title LIKE '%{0}%' OR body LIKE '%{0}%' OR id IN (SELECT note_id FROM tags WHERE tag LIKE '%{0}%'))";
-      $vars  [0] = $search;
+      $where [] = "(title LIKE '%{0}%' ESCAPE '!' OR body LIKE '%{0}%' ESCAPE '!' OR id IN (SELECT note_id FROM tags WHERE tag LIKE '%{0}%' ESCAPE '!'))";
+      $vars  [0] = notesLike ( $search );
     }
 
     if ( $tag !== '' ) {
@@ -62,6 +62,16 @@
     }
 
     return $notes;
+
+  }
+
+  // A search word for LIKE, as it is written: % and _ are LIKE's wildcards, so a search for
+  // either found every note, and 100% every note with 100 in it. They are escaped with the
+  // ! that the queries name in ESCAPE '!'.
+
+  function notesLike ( $word ) {
+
+    return str_replace ( [ '!', '%', '_' ], [ '!!', '!%', '!_' ], (string) $word );
 
   }
 

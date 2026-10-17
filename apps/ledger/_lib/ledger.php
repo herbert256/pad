@@ -151,14 +151,24 @@
 
     if ( $category ) $where [] = 't.category_id = {1}';
     if ( $account  ) $where [] = 't.account_id = {2}';
-    if ( $search !== '' ) $where [] = "t.note LIKE '%{3}%'";
+    if ( $search !== '' ) $where [] = "t.note LIKE '%{3}%' ESCAPE '!'";
 
     return array_values ( db ( "ARRAY t.id, t.day, c.name AS category, a.name AS account, t.note, t.amount, c.kind
                                 FROM transactions t
                                 JOIN categories c ON c.id = t.category_id
                                 JOIN accounts a ON a.id = t.account_id
                                 WHERE " . implode ( ' AND ', $where ) . "
-                                ORDER BY t.day DESC, t.id DESC", [ $month, (int) $category, (int) $account, $search ] ) ?: [] );
+                                ORDER BY t.day DESC, t.id DESC", [ $month, (int) $category, (int) $account, ledgerLike ( $search ) ] ) ?: [] );
+
+  }
+
+  // A search word for LIKE, as it is written: % and _ are LIKE's wildcards, so a search for
+  // either found every transaction of the month. They are escaped with the ! that the query
+  // names in ESCAPE '!'.
+
+  function ledgerLike ( $word ) {
+
+    return str_replace ( [ '!', '%', '_' ], [ '!!', '!%', '!_' ], (string) $word );
 
   }
 
