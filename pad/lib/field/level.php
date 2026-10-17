@@ -23,9 +23,18 @@
   // An object asked for as a list - a stdClass record, an ArrayObject, an iterator, a
   // generator - is the array it holds, as padData reads one it is handed (padDataObject):
   // {user}{$name}{/user} over a stdClass was "there is no tag named 'user'". A date and an
-  // object with __toString stay values. An iterator is read once and its array takes its
-  // place: a generator runs once, and so does a PDOStatement or a NoRewindIterator, which
-  // the type check emptied - the tag over it iterated nothing, in silence.
+  // object with __toString stay values. An iterator that runs once is read once and its
+  // array takes its place: a generator, a PDOStatement or a NoRewindIterator, which the type
+  // check emptied - the tag over it iterated nothing, in silence. Any other object stays the
+  // object the page left: a collection class, an ArrayObject, an IteratorAggregate replaced
+  // by its rows at the first list lookup made a later {$cart.items.1.name}, or a function
+  // calling $cart->total(), fail on an array.
+
+  function padFieldOneShot ( $value ) {
+
+    return $value instanceof Generator or $value instanceof NoRewindIterator or $value instanceof PDOStatement;
+
+  }
 
   function padFieldListOf ( $work, $type ) {
 
@@ -60,7 +69,7 @@
 
       if ( array_key_exists ( $field, $padCurrent [$i] ) ) {
         $work = padFieldListOf ( $padCurrent [$i] [$field], $type );
-        if ( $padCurrent [$i] [$field] instanceof Traversable ) $padCurrent [$i] [$field] = $work;
+        if ( padFieldOneShot ( $padCurrent [$i] [$field] ) ) $padCurrent [$i] [$field] = $work;
         if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
         if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
         elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
@@ -73,7 +82,7 @@
 
     if ( array_key_exists ( $field, $GLOBALS ) ) {
       $work = padFieldListOf ( $GLOBALS [$field], $type );
-      if ( $GLOBALS [$field] instanceof Traversable ) $GLOBALS [$field] = $work;
+      if ( padFieldOneShot ( $GLOBALS [$field] ) ) $GLOBALS [$field] = $work;
       if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
       if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
       elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
