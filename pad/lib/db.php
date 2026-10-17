@@ -333,9 +333,14 @@
         $padDataSetRecord [ implode ( "\x1F", array_keys ( $fields ) ) ] = array_keys ( $fields );
       }
     elseif ( $command == 'array'  ) {
+
+      // Keyed by an id that can be a key: a floating point id - a PHP float since the
+      // drivers answer numbers - ended the request on "Implicit conversion from float 1.5
+      // to int loses precision", and 1.2 and 1.7 would have shared the key 1.
+
       $return = array();
       foreach ( $run ['all'] as $record )
-        if ( isset($record['id']) and !isset($return [$record['id']]) )
+        if ( isset($record['id']) and ( is_int ( $record ['id'] ) or is_string ( $record ['id'] ) ) and !isset($return [$record['id']]) )
           $return [$record['id']] = $record;
         else
           $return [] = $record;
