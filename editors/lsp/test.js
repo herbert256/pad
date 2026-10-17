@@ -6,7 +6,7 @@
 //
 //   node editors/lsp/test.js
 
-const { spawn } = require('child_process');
+const { spawn, spawnSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 const url = require('url');
@@ -290,6 +290,13 @@ async function main() {
         g = await diagnosticsFor(bareUri);
         expect('a page beside a _common with no _lib and no _inits.pad gets its own diagnostics, not the missing _common/_lib',
             g && g.length === 1 && g[0].message === "Field '$typo' not found" && g[0].range.start.character === 12, g);
+        // and its error report says the page is wrapped by nothing: tested after the @page@ was
+        // added, the _common/_inits.pad that is not there was listed as its wrapper
+        const run = spawnSync(process.env.PAD_LSP_PHP || 'php', [path.join(home, 'editors', 'render.php'), 'mine', 'page', '--apps=' + path.join(bareDir, 'apps')], { cwd: home, encoding: 'utf8' });
+        let report = null;
+        try { report = JSON.parse(run.stdout); } catch (e) { report = null; }
+        expect('the error report of a page beside a _common with no _inits.pad names no wrapper',
+            report && report.template && Array.isArray(report.template.wrapped) && report.template.wrapped.length === 0, String(run.stdout).slice(0, 400));
     } finally {
         fs.rmSync(bareDir, { recursive: true, force: true });
     }

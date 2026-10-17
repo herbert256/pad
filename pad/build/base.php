@@ -72,15 +72,18 @@
   $padBuildCommon = padFileGet ( COMMON . '_inits.pad' );
   $padSrcCommon   = padSrcPieces ( $padBuildCommon, COMMON . '_inits.pad' );
 
+  // Listed by what the file holds, before the @page@ is added - tested after, a _common
+  // without an _inits.pad had every error say the page was wrapped by that missing file.
+
+  if ( trim ( $padBuildCommon ) !== '' )
+    array_unshift ( $padSrcWrap, COMMON . '_inits.pad' );
+
   if ( strpos ( $padBuildCommon, '@page@' ) === FALSE ) {
     $padBuildCommon .= '@page@';
     $padSrcCommon    = array_merge ( $padSrcCommon, padSrcPieces ( '@page@' ) );
   }
 
   $padSrcBase = padSrcReplace ( $padSrcCommon, '@page@', $padSrcBase );
-
-  if ( trim ( $padBuildCommon ) !== '' )
-    array_unshift ( $padSrcWrap, COMMON . '_inits.pad' );
 
   return str_replace ( '@page@', $padBuildBase, $padBuildCommon );
 
