@@ -47,6 +47,10 @@ db("SELECT * FROM users WHERE name={0}", [$name]);        // quoted for you
 db("SELECT * FROM users WHERE id IN ({0})", [[1, 2, 3]]);  // a list
 ```
 
+A read that does not start with `SELECT` - `WITH`, a bracketed `(SELECT ...) UNION (SELECT ...)`,
+`SHOW`, `DESCRIBE`, `EXPLAIN`, `PRAGMA`, `VALUES` - is sent as written and answers its rows
+as `ARRAY` does; a `WITH` that writes answers the rows it changed.
+
 **During a replay** of recorded traffic (`$padRecord`, `develop/?replay`) `db()` never
 writes: a statement that would change the database - INSERT, UPDATE, DELETE, REPLACE,
 TRUNCATE, LOAD, CREATE, DROP, ALTER, RENAME, GRANT, REVOKE, CALL, LOCK - is not sent and
@@ -130,8 +134,8 @@ select name, phone
   number, an array as a list for `IN ({$ids})`.
 - `{$name}` is looked up as an option of the tag first, then as a field or a variable of
   the page; under the strict check a name that is neither is an error.
-- The statement must read: `select`, or one of the `array`, `record`, `field` and `check`
-  forms of `db()`. Lines starting with `--` are comments.
+- The statement must read: `select`, a `with` that writes nothing, or one of the `array`,
+  `record`, `field` and `check` forms of `db()`. Lines starting with `--` are comments.
 - `{local:staffByPhone.sql}` names the file explicitly.
 
 ---

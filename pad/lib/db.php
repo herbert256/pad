@@ -242,6 +242,18 @@
     if ($command == 'select')
       $command = 'array';
 
+    // A read that does not start with SELECT - a WITH, a bracketed (select ...) union
+    // (select ...), SHOW, DESCRIBE, EXPLAIN, PRAGMA, VALUES - answers its rows as an array
+    // does, sent as it is written: no verb took it, so it ran and its rows were dropped, and
+    // db("with t as (...) select name from t") answered ''. A WITH that writes answers the
+    // rows it changed, a PRAGMA that sets answers '' as before.
+
+    $asWritten = ( in_array ( $command, [ 'with', 'show', 'describe', 'desc', 'explain', 'pragma', 'values' ] )
+                   or str_starts_with ( $command, '(' ) ) ? $command : '';
+
+    if ( $asWritten )
+      $command = 'array';
+
     // A trailing semicolon ends a statement of one row: the limit added below went after it.
 
     if ( in_array ( $command, [ 'check', 'record', 'field' ] ) )
@@ -279,7 +291,7 @@
     if     ( $command == 'check'  )  $sql = 'select 1 from ' . $rest . $limit . $lock;
     elseif ( $command == 'record' )  $sql = 'select '        . $rest . $limit . $lock;
     elseif ( $command == 'field'  )  $sql = 'select '        . $rest . $limit . $lock;
-    elseif ( $command == 'array'  )  $sql = 'select '        . $rest;
+    elseif ( $command == 'array' and ! $asWritten ) $sql = 'select ' . $rest;
 
     $_SQL [] = $sql;
 
@@ -332,6 +344,8 @@
         $return = $fields;
         $padDataSetRecord [ implode ( "\x1F", array_keys ( $fields ) ) ] = array_keys ( $fields );
       }
+    elseif ( $command == 'array' and $asWritten and ! $run ['set'] )
+      $return = ( $asWritten == 'with' ) ? $rows : '';
     elseif ( $command == 'array'  ) {
 
       // Keyed by an id that can be a key: a floating point id - a PHP float since the
@@ -361,12 +375,12 @@
 
   // Runs one statement on either driver and answers what padDbPart2 shapes the result
   // from - the row count (affected rows for a write, rows returned for a read), the first
-  // row for field and record, every row for array, the new id for insert - or FALSE when
-  // the statement failed.
+  // row for field and record, every row for array, the new id for insert, whether the
+  // statement answered rows at all - or FALSE when the statement failed.
 
   function padDbRun ( $connect, $sql, $command ) {
 
-    $run = [ 'rows' => 0, 'first' => NULL, 'all' => [], 'id' => 0 ];
+    $run = [ 'rows' => 0, 'first' => NULL, 'all' => [], 'id' => 0, 'set' => FALSE ];
 
     if ( $connect instanceof PDO ) {
 
@@ -386,6 +400,7 @@
       if ( $query->columnCount () ) {
         $run ['all']  = $query->fetchAll ( PDO::FETCH_ASSOC );
         $run ['rows'] = count ( $run ['all'] );
+        $run ['set']  = TRUE;
       } else
         $run ['rows'] = $query->rowCount ();
 
@@ -404,11 +419,12 @@
       return FALSE;
 
     $run ['rows'] = mysqli_affected_rows ( $connect );
+    $run ['set']  = ( $query instanceof mysqli_result );
 
-    if ( $run ['rows'] > 0 and ( $command == 'field' or $command == 'record' ) )
+    if ( $run ['set'] and $run ['rows'] > 0 and ( $command == 'field' or $command == 'record' ) )
       $run ['first'] = mysqli_fetch_assoc ( $query );
 
-    if ( $run ['rows'] > 0 and $command == 'array' )
+    if ( $run ['set'] and $run ['rows'] > 0 and $command == 'array' )
       while ( $record = mysqli_fetch_assoc ( $query ) )
         $run ['all'] [] = $record;
 
@@ -468,9 +484,13 @@
 
       }, $sql );
 
+    // A WITH reads when no write stands in it - the replay's test of a statement
+    // (lib/replay.php) - and db() answers its rows.
+
     $verb = strtolower ( strtok ( ltrim ( $sql ), " \t\r\n" ) );
 
-    if ( ! in_array ( $verb, [ 'select', 'array', 'record', 'field', 'check' ] ) )
+    if ( ! in_array ( $verb, [ 'select', 'array', 'record', 'field', 'check', 'with' ] )
+         or ( $verb == 'with' and padReplayWrites ( $sql ) ) )
       return padError ( "the named query " . basename ( $file ) . " must read - it starts with '" . padMakeSafe ( $verb, 20 ) . "'" );
 
     return db ( trim ( $sql ), $vars );
