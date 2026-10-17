@@ -68,8 +68,11 @@
     for ( $i=$pad; $i; $i-- ) {
 
       if ( array_key_exists ( $field, $padCurrent [$i] ) ) {
-        $work = padFieldListOf ( $padCurrent [$i] [$field], $type );
-        if ( padFieldOneShot ( $padCurrent [$i] [$field] ) ) $padCurrent [$i] [$field] = $work;
+        $work = $padCurrent [$i] [$field];
+        if ( is_object ( $work ) ) {
+          $work = padFieldListOf ( $work, $type );
+          if ( padFieldOneShot ( $padCurrent [$i] [$field] ) ) $padCurrent [$i] [$field] = $work;
+        }
         if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
         if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
         elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
@@ -80,9 +83,15 @@
 
     }
 
-    if ( array_key_exists ( $field, $GLOBALS ) ) {
-      $work = padFieldListOf ( $GLOBALS [$field], $type );
-      if ( padFieldOneShot ( $GLOBALS [$field] ) ) $GLOBALS [$field] = $work;
+    // isset first: array_key_exists on $GLOBALS copies the whole symbol table, and only a
+    // NULL global needs it. Only an object is a list or a one-shot to look at.
+
+    if ( isset ( $GLOBALS [$field] ) or array_key_exists ( $field, $GLOBALS ) ) {
+      $work = $GLOBALS [$field];
+      if ( is_object ( $work ) ) {
+        $work = padFieldListOf ( $work, $type );
+        if ( padFieldOneShot ( $GLOBALS [$field] ) ) $GLOBALS [$field] = $work;
+      }
       if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
       if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
       elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
