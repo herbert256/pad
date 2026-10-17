@@ -182,7 +182,22 @@
       foreach ( $route [1] as $name )
         $what .= " $name=" . serialize ( $GLOBALS [$name] ?? '' );
 
-    return md5 ( "$padApp $what " . serialize ( padFragmentVary ( $vary ) ) );
+    return md5 ( "$padApp $what" . padFragmentLocale () . ' ' . serialize ( padFragmentVary ( $vary ) ) );
+
+  }
+
+  // A section is written in the request's locale - {trans}, currency, localDate - as a cached
+  // page is: with several locales each has an entry of its own, where the first visitor's
+  // language was served to every other. An application of one locale keeps the key it had.
+
+  function padFragmentLocale ( $locale = NULL ) {
+
+    global $padLocales, $padLocale;
+
+    if ( count ( (array) ( $padLocales ?? [] ) ) < 2 )
+      return '';
+
+    return ' locale ' . ( $locale ?? $padLocale );
 
   }
 
@@ -322,14 +337,25 @@
 
     global $padApp, $padFragmentCache;
 
+    // A named section is forgotten in every locale it was written in (padFragmentLocale).
+
     if ( $name !== NULL ) {
 
-      $key = md5 ( "$padApp name $name " . serialize ( padFragmentVary ( $vary ) ) );
+      $done    = FALSE;
+      $locales = ( count ( (array) ( $GLOBALS ['padLocales'] ?? [] ) ) < 2 ) ? [ NULL ] : (array) $GLOBALS ['padLocales'];
 
-      if ( $padFragmentCache == 'apcu' and function_exists ( 'apcu_delete' ) )
-        return apcu_delete ( "padFragment:$key" );
+      foreach ( $locales as $locale ) {
 
-      return @unlink ( DATA . "cache/fragments/$key" );
+        $key = md5 ( "$padApp name $name" . padFragmentLocale ( $locale ) . ' ' . serialize ( padFragmentVary ( $vary ) ) );
+
+        if ( $padFragmentCache == 'apcu' and function_exists ( 'apcu_delete' ) )
+          $done = ( apcu_delete ( "padFragment:$key" ) or $done );
+        else
+          $done = ( @unlink ( DATA . "cache/fragments/$key" ) or $done );
+
+      }
+
+      return $done;
 
     }
 
