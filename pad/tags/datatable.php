@@ -1,6 +1,6 @@
 <?php
 
-  // {datatable data='orders'} - the rows as a complete HTML table, lib/datatable.php. The
+  // {datatable data='orders'} - the rows as a complete HTML table, tags/_lib/datatable.php. The
   // rows come from data= - a {data} store, a page array or a _data file, as for {chart} -
   // or, as a pair, from the content: JSON, YAML, XML or CSV, told apart on sight.
   //

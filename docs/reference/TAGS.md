@@ -2521,7 +2521,7 @@ date are an error under the strict check.
 ---
 
 ### datatable
-Rows as a complete, accessible HTML table (`lib/datatable.php`) - a header from the field names,
+Rows as a complete, accessible HTML table (`tags/_lib/datatable.php`) - a header from the field names,
 numbers right-aligned and formatted alike down their column, a totals row, header links that
 sort and page links that page, all on the server.
 
