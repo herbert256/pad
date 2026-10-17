@@ -49,7 +49,7 @@
   // A page behind a _guard.php - in its own directory or any above it, up to the application
   // root - is no example: what a crawl gets there is the guard's answer, a refusal or a
   // login page, and a login page carries its session's own CSRF token, so every harvest
-  // stored a different file. The sitemap leaves the same pages out (lib/sitemap.php).
+  // stored a different file. The sitemap leaves the same pages out (tags/_lib/sitemap.php).
 
   function examplesGuarded ( $app, $item ) {
 

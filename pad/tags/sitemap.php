@@ -1,8 +1,9 @@
 <?php
 
   // {sitemap} ... {/sitemap}: the pages of the application as rows - page, url, lastmod -
-  // generated from the file tree by lib/sitemap.php, for an HTML sitemap or a menu. A first
-  // parameter names a directory, {sitemap 'docs'}, and lists the pages below it only.
+  // generated from the file tree by padSitemapPages (lib/sitemap.php, its walk in
+  // tags/_lib/sitemap.php), for an HTML sitemap or a menu. A first parameter names a
+  // directory, {sitemap 'docs'}, and lists the pages below it only.
 
   $padSitemapDir = trim ( (string) ( $padParm ?? '' ), '/' );
 

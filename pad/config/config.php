@@ -254,7 +254,7 @@
 
   $padCleanUrls = FALSE;
 
-  // The sitemap (lib/sitemap.php): TRUE answers ?sitemap.xml - every page of the application,
+  // The sitemap (tags/_lib/sitemap.php): TRUE answers ?sitemap.xml - every page of the application,
   // from the file tree - and ?robots.txt pointing to it, when the application has no page of
   // that name. $padSitemapSkip lists pages, or directories with all below them, it leaves
   // out, e.g. [ 'admin', 'login' ]. The {sitemap} tag lists the pages whatever this says.
