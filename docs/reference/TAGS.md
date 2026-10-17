@@ -1943,7 +1943,7 @@ under the strict check.
 
 ### sudoku
 A sudoku as a table - the givens bold, the open cells empty, or with `solve` the solution
-filled in by a backtracking solver in another colour (`lib/sudoku.php`).
+filled in by a backtracking solver in another colour (`tags/_lib/sudoku.php`).
 
 ```html
 {sudoku '53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8..79'}

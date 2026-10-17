@@ -1,7 +1,7 @@
 <?php
 
   // {sudoku '53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8..79'} -
-  // a sudoku as a table, lib/sudoku.php. The first parameter is the puzzle, row by row: a
+  // a sudoku as a table, tags/_lib/sudoku.php. The first parameter is the puzzle, row by row: a
   // digit for a given, . or 0 for an empty cell; whitespace is passed over. solve fills
   // the empty cells with the solution, set apart in colour from the givens. title= is a
   // caption. A puzzle with a wrong cell count, two equal givens that see each other or -
