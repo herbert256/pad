@@ -1,0 +1,2 @@
+[{ordersPaged join='customers on customers.customerNumber = orders.customerNumber', where="customers.country = 'Norway'", order='orderNumber', page=1, rows=3}{$orderNumber} {$customerName}; {/ordersPaged}]
+{pager 'ordersPaged', window=0}{$kind}:{$page} {/pager}

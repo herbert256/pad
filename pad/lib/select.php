@@ -120,6 +120,7 @@
     $tail = "$padSelOrder $padSelLimit";
 
     $padSelUnion = padSelectUnion  ( $padSelUnion );
+    $members     = $padSelUnion;
 
     $_UNION [] = $padSelUnion;
 
@@ -130,10 +131,17 @@
     $_SELECT [] = $sql;
 
     // A page cut by the limit: the statement that counts every row is kept for a {pager},
-    // which runs it only when it is asked - lib/pager.php.
+    // which runs it only when it is asked - lib/pager.php. The rows are counted over the
+    // FROM, the joins and the where alone, unless distinct, a group, a having or a union
+    // makes the select list decide what a row is: a derived table may not hold two columns
+    // of one name, so on MySQL a join of two tables that share one - select * from orders
+    // join customers, both with customerNumber - ended the page as soon as it was counted.
 
     if ( $padSelLimit and ! $unionBuild ) {
-      $GLOBALS ['padPagerCount'] [$pad] = "field count(*) from ( select $base ) as padPagerCount";
+      $count = ( in_array ( $padSelStart, [ '', 'ALL' ] ) and ! $padSelGroup and ! $having and trim ( $members ) === '' )
+             ? "select 1 from $db $padSelJoin $padSelWhere"
+             : "select $base";
+      $GLOBALS ['padPagerCount'] [$pad] = "field count(*) from ( $count ) as padPagerCount";
       $GLOBALS ['padPagerRows']  [$pad] = $rows;
     }
 
