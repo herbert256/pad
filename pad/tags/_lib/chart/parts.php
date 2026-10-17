@@ -1,6 +1,6 @@
 <?php
 
-  // The parts the chart kinds share - lib/chart.php draws bar, line and sparkline, the
+  // The parts the chart kinds share - tags/_lib/chart.php draws bar, line and sparkline, the
   // files beside this one the other kinds:
   //
   //   series.php     bar and line with several value fields, stacked bars, hbar

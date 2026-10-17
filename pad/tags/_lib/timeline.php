@@ -25,6 +25,10 @@
   // number of one to four digits is a year: 1969 is a year, not 1969 seconds into 1970, and
   // 0 the year 0, not the first second of 1970.
 
+  // The rows, the dates and the axis are read and drawn as {chart} does, tags/_lib/chart.php.
+
+  include_once PAD . 'tags/_lib/chart.php';
+
   function padTimelineDate ( $value ) {
 
     $value = trim ( padUnprotect ( (string) $value ) );

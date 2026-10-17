@@ -1,11 +1,12 @@
 <?php
 
   // {chart 'bar', data='sales', label='month', value='amount'} - an inline SVG chart, drawn
-  // on the server by lib/chart.php and lib/chart/: bar (or column), hbar, line, sparkline,
-  // pie, donut, scatter, bubble, heatmap, sankey, network, treemap, sunburst, gauge, radar,
-  // waterfall, histogram, boxplot, calendar, gantt, area, stream, multiples, candlestick,
-  // dual, spiral, rose, radialbar, funnel, pyramid, waffle, marimekko, parliament, venn,
-  // density, violin, bullet, rings, parallel, proportional, chord, arc, pack or orgchart.
+  // on the server by tags/_lib/chart.php and tags/_lib/chart/: bar (or column), hbar, line,
+  // sparkline, pie, donut, scatter, bubble, heatmap, sankey, network, treemap, sunburst,
+  // gauge, radar, waterfall, histogram, boxplot, calendar, gantt, area, stream, multiples,
+  // candlestick, dual, spiral, rose, radialbar, funnel, pyramid, waffle, marimekko,
+  // parliament, venn, density, violin, bullet, rings, parallel, proportional, chord, arc,
+  // pack or orgchart.
   // The data is
   // a {data} store, a sequence store, the page's array or a _data file named by data=, or
   // the first rows terms of a sequence= type; title= names the chart for a screen reader.

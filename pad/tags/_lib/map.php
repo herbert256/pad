@@ -25,6 +25,10 @@
   // --pad-map-empty, the borders --pad-map-border - custom properties with light-dark()
   // defaults on .pad-chart-map.
 
+  // The rows, the numbers and the SVG opening are {chart}'s, tags/_lib/chart.php.
+
+  include_once PAD . 'tags/_lib/chart.php';
+
   function padMapCountries () {
 
     static $countries = NULL, $index = NULL;

@@ -5,6 +5,8 @@
   // weekday, and the exemption for the weekday let it through - the event was put on the
   // 14th. A date that names its weekday is still read.
 
+  include_once PAD . 'tags/_lib/chart.php';
+
   $read = [];
 
   foreach ( [ '2026-10-12 +2 weekdays', '2026-10-12 2 weekdays ago', 'Mon, 12 Oct 2026 +1 weekday', 'Mon, 12 Oct 2026', '2026-10-12 +1 week' ] as $one ) {

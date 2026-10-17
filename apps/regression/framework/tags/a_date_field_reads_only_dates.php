@@ -4,6 +4,8 @@
   // or a timestamp - and nothing else: -44 was tomorrow, 1990s today's clock time in 1990,
   // tomorrow a moment that moved on every request, 2026-02-30 the 2nd of March.
 
+  include_once PAD . 'tags/_lib/chart.php';
+
   $read = [];
 
   foreach ( [ '-44', '1990s', 'tomorrow', '2026-02-30', '2026-10-08', 'Oct 8, 2026', '2026-10-08T10:00:00+00:00' ] as $one ) {

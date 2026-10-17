@@ -28,6 +28,10 @@
   // custom properties with light and dark defaults on .pad-datatable - --pad-datatable-text,
   // -line, -head, -stripe, -accent and -muted - which a page overrides.
 
+  // The rows and their fields are read as {chart} reads them, tags/_lib/chart.php.
+
+  include_once PAD . 'tags/_lib/chart.php';
+
   function padDatatableColumns ( $rows, $list ) {
 
     $fields = padChartFields ( $list );

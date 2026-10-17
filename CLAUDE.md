@@ -970,7 +970,7 @@ through; `padCollection('blog')` gives the rows to PHP.
 `role="img"` with `<title>`/`<desc>`; colours are `--pad-chart-*` custom properties on
 `.pad-chart`, following the page's `color-scheme`. A field option left out takes the first
 field that fits; the chart's options keep clear of the handling options (`row`, `group`).
-Code: `pad/lib/chart.php` (bar, line, sparkline) and `pad/lib/chart/` (the other kinds).
+Code: `pad/tags/_lib/chart.php` (bar, line, sparkline) and `pad/tags/_lib/chart/` (the other kinds).
 
 ### Month calendar
 ```

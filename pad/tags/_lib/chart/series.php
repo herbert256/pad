@@ -9,7 +9,7 @@
   //
   // Several series get a legend above the plot, in the fixed order of the slots; up to
   // four lines are also named at their last point. One series in a bar or line chart is
-  // drawn by padChart in lib/chart.php.
+  // drawn by padChart in tags/_lib/chart.php.
 
   function padChartSeries ( $kind, $labels, $series, $title, $width, $height, $stacked ) {
 
