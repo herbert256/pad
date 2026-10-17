@@ -70,6 +70,11 @@
 
     global $padFlashNow;
 
+    // What it shows is this visitor's, so a {cache} section round it is not kept: stored, the
+    // first visitor's message showed to every later one for the ttl, and their own never did.
+
+    padFragmentKeepNot ();
+
     $taken = $padFlashNow ?? [];
     $fresh = [];
 
