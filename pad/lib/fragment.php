@@ -121,7 +121,15 @@
   // names - so a section holding it was not kept at all, and under a style-src 'nonce' no
   // section with a chart, a datatable or a widget, whose <style> carries it, was ever kept.
 
-  const padFragmentNonceMark = "\u{E0A0}padNonce\u{E0A0}";
+  // The marker is sealed (padMarkSeal), as a {stack} marker is: a fixed one that a value
+  // brought into the section unescaped took each later request's real nonce, and a script
+  // injected with it passed the policy.
+
+  function padFragmentNonceMark () {
+
+    return "\u{E0A0}" . padMarkSeal ( 'nonce' ) . "\u{E0A0}";
+
+  }
 
   function padFragmentNonce ( $text, $in ) {
 
@@ -134,9 +142,9 @@
       return $text;
 
     if ( $in )
-      return str_contains ( $text, padFragmentNonceMark ) ? str_replace ( padFragmentNonceMark, padNonce (), $text ) : $text;
+      return str_contains ( $text, padFragmentNonceMark () ) ? str_replace ( padFragmentNonceMark (), padNonce (), $text ) : $text;
 
-    return ( ( $padNonce ?? '' ) !== '' ) ? str_replace ( $padNonce, padFragmentNonceMark, $text ) : $text;
+    return ( ( $padNonce ?? '' ) !== '' ) ? str_replace ( $padNonce, padFragmentNonceMark (), $text ) : $text;
 
   }
 
