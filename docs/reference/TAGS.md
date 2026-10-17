@@ -1767,7 +1767,7 @@ on the light square behind it, `--pad-identicon-background` (`light-dark()` on
 
 ### placeholder
 A grey image placeholder as inline SVG - crossing lines and the size or a text in the middle
-(`lib/placeholder.php`): wireframes and layouts that wait for their pictures, no placeholder
+(`tags/_lib/placeholder.php`): wireframes and layouts that wait for their pictures, no placeholder
 service.
 
 ```html

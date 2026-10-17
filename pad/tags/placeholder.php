@@ -1,7 +1,7 @@
 <?php
 
   // {placeholder '600x300'} - a grey box with crossing lines and its size in the middle, as
-  // inline SVG by lib/placeholder.php: the stand-in for an image that is not there yet. The
+  // inline SVG by tags/_lib/placeholder.php: the stand-in for an image that is not there yet. The
   // first parameter is the size, width x height; text= is written instead of the size, and
   // is the accessible name. ratio= gives the proportions instead - '16:9', drawn width=
   // pixels wide (default 640) and saying its ratio - and fluid makes the box as wide as its
