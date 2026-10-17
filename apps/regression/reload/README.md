@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Regression test for `$padReload` (pad/lib/reload.php). The application's config switches
+Regression test for `$padReload` (pad/exits/_lib/reload.php). The application's config switches
 live reload on for the sample page alone; the verdict fetches it and asserts that a local
 whole page carries the script with the stamp the `&padReload` poll answers, that a file
 saved moves that stamp, that a bare fragment and a forwarded request get no script - the

@@ -762,7 +762,7 @@ $padSqlPassword
 - Set `$padReload = 'local'` in `_config/config.php` for live reload: a local page polls
   `?page&padReload` for the newest file time under the application, its `www/` directory and
   `_common` (`'engine'`: `pad/` too) and reloads itself when a file is saved
-  (`pad/lib/reload.php`); never for a visitor, a fragment, the page cache or `pad export`
+  (`pad/exits/_lib/reload.php`); never for a visitor, a fragment, the page cache or `pad export`
 - Use `{dump}` tag for variable inspection
 - Use `{trace}` tag for execution trace
 - Set `$padCheckOutput = TRUE` to have every local HTML response checked once it has rendered: duplicate ids, images without alt, form fields without a label and `?page` links to pages that do not exist are named in a panel at the end of the page and counted in a `PAD-Output-Check` header (one request: `?page&padCheckOutput`; every application's templates at once: `develop/?links`)

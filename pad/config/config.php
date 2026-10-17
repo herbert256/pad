@@ -136,7 +136,7 @@
   $padToolbar = FALSE;
 
   // Live reload - a local page reloads itself when a file behind it changes; see
-  // lib/reload.php. 'local' (or TRUE) watches the application, its www/ directory and
+  // exits/_lib/reload.php. 'local' (or TRUE) watches the application, its www/ directory and
   // _common; 'engine' pad/ as well. Local requests only, whatever the setting; FALSE never.
 
   $padReload = FALSE;

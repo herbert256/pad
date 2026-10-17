@@ -38,15 +38,17 @@
 
   // The debug toolbar and the live reload script of a local page go in on the way out -
   // after the page cache has stored the page, so a cached copy never carries them
-  // (exits/_lib/toolbar.php, lib/reload.php).
+  // (exits/_lib/toolbar.php, exits/_lib/reload.php).
 
   if ( $padToolbar ) {
     include_once PAD . 'exits/_lib/toolbar.php';
     padToolbarAdd ();
   }
 
-  if ( $padReload )
+  if ( $padReload ) {
+    include_once PAD . 'exits/_lib/reload.php';
     padReloadAdd ();
+  }
 
   include PAD . "exits/output/$padOutputType.php";
 

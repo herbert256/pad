@@ -19,6 +19,9 @@
   // padReloadAnswer  inits/reload.php: a request with padReload in it is answered with the
   //                  current stamp and nothing else
   // padReloadStamp   the newest modification time under the watched directories
+  //
+  // Read only with $padReload on: inits/reload.php and exits/output.php include this file
+  // before they call it.
 
   function padReloadOn () {
 
