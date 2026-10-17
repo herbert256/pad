@@ -12,7 +12,10 @@ Zero-dependency Node server (stdio, Node 18 or newer). Provides:
   pair {if 1 eq 1} never closes`, `Field '$typo' not found`, a PHP error in the paired
   `.php` with its file and line. A `_inits.pad` / `_exits.pad` is checked through the
   `index` page of its directory; snippets in `_include/`, `_tags/` and the other `_xxx`
-  directories have no page of their own and are not rendered. The render runs the page's
+  directories have no page of their own and are not rendered - an error in one a page
+  includes sits on the page's tag that brings it in, its message naming the snippet's file,
+  line and column (`- in _include/footer.pad:2:4`), and one in a wrapper names the wrapper on
+  line 1. The render runs the page's
   `.php` as a GET request on the command line would - the same as opening it in a browser
 - **hover** with the reference text of `docs/reference/*.md` for the tag (`TAGS.md`),
   pipe function (`FUNCTIONS.md`), option (`OPTIONS.md`, `HANDLING.md`), property

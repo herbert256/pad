@@ -125,7 +125,7 @@ async function main() {
     if (alive.exited !== undefined) throw new Error('the language server died on a message that is no object (exit ' + alive.exited + ')');
     expect('a message that is no object leaves the server answering', 'result' in alive, alive);
 
-    for (const f of ['orders.pad', 'admin/report.pad', 'broken.pad', 'undefined.pad', '_include/footer.pad', 'products/[id].pad', 'twice.pad', 'refused.pad']) open(f);
+    for (const f of ['orders.pad', 'admin/report.pad', 'broken.pad', 'undefined.pad', '_include/footer.pad', 'products/[id].pad', 'twice.pad', 'refused.pad', 'included.pad']) open(f);
 
     // completion, as before
     let r = await request('textDocument/completion', { textDocument: { uri: uri('orders.pad') }, position: at('orders.pad', '{badge}', 2) });
@@ -211,6 +211,10 @@ async function main() {
     g = await diagnosticsFor(uri('twice.pad'));
     expect('the error sits where the engine places it, not on an earlier tag of the same text, its column in UTF-16 units past an emoji',
         g && g[0] && g[0].message.includes('never closes') && g[0].range.start.line === 2 && g[0].range.start.character === 10 && g[0].range.end.character === 21, g);
+    g = await diagnosticsFor(uri('included.pad'));
+    expect('an error in an included snippet sits on the page\'s tag that includes it, not on a look-alike in a dead branch, and names the snippet\'s file and place',
+        g && g[0] && g[0].message === "Field '$lost' not found - in _include/lost.pad:2:4"
+        && g[0].range.start.line === 3 && g[0].range.start.character === 0 && g[0].range.end.character === 6, g);
 
     diagnostics.delete(uri('orders.pad'));
     notify('textDocument/didSave', { textDocument: { uri: uri('orders.pad') } });

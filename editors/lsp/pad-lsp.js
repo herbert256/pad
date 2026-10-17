@@ -522,6 +522,21 @@ function fullLine(text, line) {
     return { start: { line, character: 0 }, end: { line, character: (lines[line] || '').length } };
 }
 
+// A place the engine names in this document - a line, and a column counted in characters
+// (code points) - as a range: the column turned into the UTF-16 units LSP counts, the mark
+// covering the tag when it stands there, else the name or the {tag} it opens on.
+function spot(text, line, column, tag) {
+    const lineText = text.split('\n')[line - 1];
+    if (lineText === undefined) return null;
+    const points = [...lineText];
+    let character = 0;
+    for (let i = 0; i < column - 1 && i < points.length; i++) character += points[i].length;
+    const rest = lineText.slice(character);
+    const word = rest.match(/^[$!#&?^]?[A-Za-z_][\w:.@-]*/) || rest.match(/^\{[^{}\n]*\}/);
+    const width = tag && rest.startsWith(tag) ? tag.length : word ? word[0].length : 1;
+    return { start: { line: line - 1, character }, end: { line: line - 1, character: character + width } };
+}
+
 // Where the error belongs in the template: the tag the message quotes ({if 1 eq 1}), the
 // source of the tag the engine was busy with (padBetweenOrg), a quoted name ('$typo') -
 // the first one the text holds. An error raised in a PHP file of this template's own
@@ -551,21 +566,29 @@ function diagnosticFrom(out, errText, text, file, loc, page) {
     // The engine places the error itself when it can: template names the file the tag stands
     // in, its line, and its column counted in characters (code points). In this document the
     // mark goes there - the quoted text below is only found at its first spot, which put "the
-    // pair {if 1 eq 1} never closes" on an earlier {if 1 eq 1} that closes fine. The column is
-    // turned into the UTF-16 units LSP counts, and the mark covers the tag or the name it opens on.
+    // pair {if 1 eq 1} never closes" on an earlier {if 1 eq 1} that closes fine.
     const t = json.template;
-    if (t && typeof t.path === 'string' && path.resolve(t.path) === path.resolve(file) && t.line > 0 && t.column > 0) {
-        const lineText = text.split('\n')[t.line - 1];
-        if (lineText !== undefined) {
-            const points = [...lineText];
-            let character = 0;
-            for (let i = 0; i < t.column - 1 && i < points.length; i++) character += points[i].length;
-            const rest = lineText.slice(character);
-            const tag = typeof t.tag === 'string' ? t.tag : '';
-            const word = rest.match(/^[$!#&?^]?[A-Za-z_][\w:.@-]*/);
-            const width = tag && rest.startsWith(tag) ? tag.length : word ? word[0].length : 1;
-            return { range: { start: { line: t.line - 1, character }, end: { line: t.line - 1, character: character + width } },
-                     severity: 1, source: 'pad', message };
+    if (t && typeof t.path === 'string' && t.line > 0 && t.column > 0) {
+        if (path.resolve(t.path) === path.resolve(file)) {
+            const range = spot(text, t.line, t.column, typeof t.tag === 'string' ? t.tag : '');
+            if (range) return { range, severity: 1, source: 'pad', message };
+        } else {
+            // In another file - a snippet the page includes, its wrapper, a .pad custom tag:
+            // the message names that file and place, and the mark goes on this document's own
+            // tag that brought it in, the first of the includers (file:line:column, innermost
+            // first) that is this document - line 1 when none is. The text search below found
+            // the snippet's tag where this document held the same text, the {$typo} of a branch
+            // that never runs, and named no file.
+            const where = path.resolve(t.path);
+            const shown = loc.appDir && where.startsWith(loc.appDir + path.sep) ? path.relative(loc.appDir, where) : path.relative(loc.home, where);
+            message += ' - in ' + shown.split(path.sep).join('/') + ':' + t.line + ':' + t.column;
+            for (const by of Array.isArray(t.included) ? t.included : []) {
+                const m = String(by).match(/^(.*):(\d+):(\d+)$/);
+                if (!m || path.resolve(loc.home, m[1]) !== path.resolve(file)) continue;
+                const range = spot(text, +m[2], +m[3], '');
+                if (range) return { range, severity: 1, source: 'pad', message };
+            }
+            return { range: fullLine(text, 0), severity: 1, source: 'pad', message };
         }
     }
 
