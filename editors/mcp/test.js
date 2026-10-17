@@ -166,6 +166,8 @@ async function main() {
         expect('pad_render gives a template the variables of data', !r.error && r.text.trim() === '<i>Ann</i>[1][2]', r);
         r = await call('pad_render', { app: 'shop', page: 'orders', data: { customer: 'Bob', orders: [{ id: 7, amount: 1 }], total: 0 } });
         expect('pad_render gives a page\'s own template the variables of data instead of its PHP', !r.error && r.text.includes('Orders for BOB') && r.text.includes('<li>7: ') && !r.text.includes('Total'), r);
+        r = await call('pad_render', { app: 'shop', page: 'admin', data: { who: 'Ann' } });
+        expect('pad_render gives the data to the index of a directory the page names, rendered in that directory', !r.error && r.text.includes('<b>admin</b>') && r.text.includes('Ann'), r);
         r = await call('pad_render', { app: 'shop', template: '{$x}', data: [1, 2] });
         expect('pad_render refuses data that is no object', r.error && r.text.includes('data must be a JSON object'), r);
         const samples = path.join(home, 'DATA', 'samples', 'shop');
@@ -188,7 +190,7 @@ async function main() {
         r = await call('pad_check', { app: 'shop', page: 'twice' });
         expect('pad_check names the line the engine places the error on, not an earlier tag of the same text', r.text.includes('tag: {if 1 eq 1}, line 3 of editors/fixture/apps/shop/twice.pad'), r);
         r = await call('pad_check', { app: 'shop' });
-        expect('pad_check of an application checks every page', r.text.startsWith('9 pages of shop checked: 6 with an error') && r.text.includes('broken') && r.text.includes('undefined'), r);
+        expect('pad_check of an application checks every page', r.text.startsWith('10 pages of shop checked: 6 with an error') && r.text.includes('broken') && r.text.includes('undefined'), r);
         expect('pad_check of an application names a template that is no page name and checks the rest', r.text.includes("orders.old\n  'orders.old' is not a page name") && r.text.includes('refuse refuses'), r);
         expect('pad_check of an application leaves the bracketed route products/[id] out', !r.error && !r.text.includes('[id]'), r);
 
@@ -266,7 +268,7 @@ async function main() {
         r = await call('pad_apps', {});
         expect('pad_apps lists the applications', r.text.split('\n').includes('shop'), r);
         r = await call('pad_pages', { app: 'shop' });
-        expect('pad_pages lists the pages', r.text.includes('pages: admin/report, broken, included, index, orders.old, orders, refused, twice, undefined'), r);
+        expect('pad_pages lists the pages', r.text.includes('pages: admin/index, admin/report, broken, included, index, orders.old, orders, refused, twice, undefined'), r);
         expect('pad_pages lists the application\'s own tags by directory', r.text.includes('_tags: badge') && r.text.includes('admin/_tags: badge') && r.text.includes('_functions: money'), r);
 
         r = await call('pad_builtins', { kind: 'tags' });

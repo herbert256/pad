@@ -121,8 +121,11 @@ async function render(a, tree = CURRENT) {
     let sample = null;
     if (a.data !== undefined) {
         if (template === undefined) {
-            template = pageSource(app, page, tree.apps);
-            if (!template) throw new Error(`the page '${name}' has no template of its own to give the data to`);
+            // A directory's index renders in that directory: the sample is named there.
+            const own = pageTemplate(app, page, tree.apps);
+            if (!own.text) throw new Error(`the page '${name}' has no template of its own to give the data to`);
+            template = own.text;
+            name = own.page;
         }
         const dir = name.includes('/') ? name.slice(0, name.lastIndexOf('/') + 1) : '';
         name = dir + (a.dataName || unique('mcpData'));
@@ -418,10 +421,21 @@ function describe(result, source) {
     return lines.join('\n');
 }
 
+// The page's own template and the page it is: <page>.pad or .html, or - as the engine serves
+// the name of a directory - its index.pad or index.html, ?staff being staff/index.pad. Only
+// the first two were read, and the data of pad_render was refused for such a page: "the page
+// 'staff' has no template of its own".
+function pageTemplate(app, page, apps = appsDir) {
+    const name = page || 'index';
+    const base = path.join(appPath(app, apps), ...name.split('/'));
+    for (const [file, as] of [[base + '.pad', name], [base + '.html', name], [path.join(base, 'index.pad'), name + '/index'], [path.join(base, 'index.html'), name + '/index']])
+        if (isFile(file)) return { text: readText(file), page: as };
+    return { text: '', page: name };
+}
+
 // The page's own template, for placing an error on its line.
 function pageSource(app, page, apps = appsDir) {
-    const base = path.join(appPath(app, apps), ...(page || 'index').split('/'));
-    return readText(base + '.pad') || readText(base + '.html');
+    return pageTemplate(app, page, apps).text;
 }
 
 // The templates of an application that are pages: .pad and .html outside the _xxx
