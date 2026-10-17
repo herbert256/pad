@@ -66,6 +66,39 @@
   }
 
 
+  // The files under a directory, its subdirectories too, in the order the directory hands
+  // them out - the order of a RecursiveDirectoryIterator, which the _lib of an application
+  // was walked with (build/lib.php): its .pad snippets are joined in it, so it stays. A link
+  // to a directory is a file here, as it was there (filetype reads the link itself). Read
+  // with readdir, each handle closed before the walk goes on - the iterators kept theirs
+  // open while a page nested, nine deep, until the process ran out of them - and with one
+  // lstat per entry, where the iterator objects took more for every directory of every pass.
+
+  function padDirFiles ( $dir ) {
+
+    $files = [];
+
+    if ( ! ( $handle = @opendir ( $dir ) ) )
+      return $files;
+
+    $entries = [];
+
+    while ( ( $entry = readdir ( $handle ) ) !== FALSE )
+      if ( $entry !== '.' and $entry !== '..' )
+        $entries [] = $entry;
+
+    closedir ( $handle );
+
+    foreach ( $entries as $entry )
+      if ( @filetype ( "$dir/$entry" ) === 'dir' )
+        array_push ( $files, ...padDirFiles ( "$dir/$entry" ) );
+      else
+        $files [] = "$dir/$entry";
+
+    return $files;
+
+  }
+
   function padFilePut ( $file, $data='', $append=0 ) {
 
     global $padInfo, $padDirMode, $padFileMode;
