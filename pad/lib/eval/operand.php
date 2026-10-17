@@ -65,4 +65,32 @@
 
   }
 
+  // The start of the argument the token at $k stands in, inside the argument list of a call
+  // that begins at $start: the last token up to $k that padEvalParse marked as the start of
+  // an argument - the one after a comma - or $start for the first argument. The marks on the
+  // arguments of a call inside this one - a TYPE token at or after $start whose [3] lies past
+  // them - start no argument of this list.
+
+  function padEvalArgStart ( $result, $start, $k ) {
+
+    $from   = $start;
+    $inside = 0;
+
+    foreach ( $result as $key => $t ) {
+
+      if ( $key < $start ) continue;
+      if ( $key > $k     ) break;
+
+      if ( $key >= $inside and ! empty ( $t ['arg'] ) )
+        $from = $key;
+
+      if ( ( $t [1] ?? '' ) == 'TYPE' and ( $t [3] ?? 0 ) > $key )
+        $inside = max ( $inside, $t [3] );
+
+    }
+
+    return $from;
+
+  }
+
 ?>

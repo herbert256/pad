@@ -42,19 +42,29 @@
     if ( $padEvalKey < $k and ( $padEvalTok [1] ?? '' ) == 'TYPE' and ( $padEvalTok [3] ?? 0 ) > $k )
       $padEvalInCall = TRUE;
 
+  // A test written infix as an argument of a call - php:strval($n in (5)) - takes its input
+  // from its own argument, which starts where padEvalParse marked it (padEvalArgStart): the
+  // value before it stood as an argument of its own, and the test read its parameter list as
+  // its input - var_export($n in (5), 1) was handed three arguments. A test that starts its
+  // argument - php:max(1, in (3)) - has nothing in front of it, as before.
+
+  $padEvalTest    = ( $kind == 'pad' and in_array ( $name, padEval_tests ) );
+  $padEvalArgFrom = ( $padEvalTest and $padEvalInCall ) ? padEvalArgStart ( $result, $start, $k ) : $start;
+  $padEvalTestArg = ( $padEvalTest and ( ! $padEvalInCall or $b >= $padEvalArgFrom ) );
+
   // A test written infix may be denied the way SQL and Python write it - $s not in ('a', 'b'),
   // $name not like 'A%': the value before the not is the test's input, and the not, left
   // standing, denies the test's answer. The test took the not's place as its input - the
   // segment's empty value - and the value and the denied empty test ran together as text,
   // a1, true for every row.
 
-  if ( $kind == 'pad' and in_array ( $name, padEval_tests ) and ! $padEvalInCall
-       and $b >= $start and $result [$b] [1] == 'OPR' and $result [$b] [0] === 'NOT' ) {
+  if ( $padEvalTestArg
+       and $b >= $padEvalArgFrom and $result [$b] [1] == 'OPR' and $result [$b] [0] === 'NOT' ) {
 
     $padEvalNotBefore = FALSE;
 
     foreach ( $result as $padEvalKey => $padEvalTok )
-      if ( $padEvalKey >= $start and $padEvalKey < $b )
+      if ( $padEvalKey >= $padEvalArgFrom and $padEvalKey < $b )
         $padEvalNotBefore = $padEvalKey;
 
     if ( $padEvalNotBefore !== FALSE and $result [$padEvalNotBefore] [1] == 'VAL' )
@@ -67,10 +77,10 @@
   // test took the one value just before it: $n + 1 range (9, 9) was 3 + (1 range (9, 9)),
   // true for n = 3, and $p * $q in (30) was 10 * ('3' in (30)).
 
-  if ( $kind == 'pad' and in_array ( $name, padEval_tests ) and ! $padEvalInCall
-       and $b >= $start and $result [$b] [1] == 'VAL' ) {
+  if ( $padEvalTestArg
+       and $b >= $padEvalArgFrom and $result [$b] [1] == 'VAL' ) {
 
-    $padEvalFirst = padEvalTestLeft ( $result, $start, $b );
+    $padEvalFirst = padEvalTestLeft ( $result, $padEvalArgFrom, $b );
 
     if ( $padEvalFirst < $b ) {
 
@@ -88,7 +98,7 @@
 
   }
 
-  $padEvalPiped = ( $b >= $start and $result [$b] [1] == 'VAL' and ! $padEvalInCall );
+  $padEvalPiped = ( $b >= $padEvalArgFrom and $result [$b] [1] == 'VAL' and ( ! $padEvalInCall or $padEvalTestArg ) );
 
   if ( $padEvalPiped ) {
     $value = $result [$b] [0];
