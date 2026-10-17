@@ -288,23 +288,24 @@ function padSplitOnUnquotedColon ( $str ) {
 
     // A value standing bare as the whole of where= - where={$cond} - would be the per-row
     // expression itself once quoted: a request value with php:abs(-3) in it ran PHP. That is
-    // a whole condition from a value, which where.php refuses for where=$cond as well.
+    // a whole condition from a value, which where.php refuses for where=$cond as well - and
+    // the same for a sequence's eval= (sequence/types/eval/loop.php).
 
-    if ( $quote === '' and preg_match ( '/(^|[\s,])where\s*=\s*$/', $inside ) ) {
-      padError ( "where= is an expression the template writes: give it as a quoted string, and put a value in it as \$name" );
+    if ( $quote === '' and preg_match ( '/(^|[\s,])(where|eval)\s*=\s*$/', $inside, $padSpliceOpt ) ) {
+      padError ( "{$padSpliceOpt[2]}= is an expression the template writes: give it as a quoted string, and put a value in it as \$name" );
       return "''";
     }
 
     if ( $quote === '' )
       return "'$value'";
 
-    // Inside the quoted expression of where= - where='$n eq {$f}' - the option's text is
+    // Inside the quoted expression of where= or eval= - where='$n eq {$f}' - the option's text is
     // evaluated again for every row, and a value standing in it bare became part of that
     // expression: a request value 2 or $n eq php:abs(-3) called PHP. It goes in as a string
     // of the expression, in the other quote, unless it stands in one already; its own quotes
     // are protected, so it closes neither.
 
-    if ( preg_match ( '/(^|[\s,])where\s*=\s*$/', substr ( $inside, 0, $quoteAt ) ) ) {
+    if ( preg_match ( '/(^|[\s,])(where|eval)\s*=\s*$/', substr ( $inside, 0, $quoteAt ) ) ) {
       $other = ( $quote == "'" ) ? '"' : "'";
       if ( substr_count ( substr ( $inside, $quoteAt + 1 ), $other ) % 2 == 0 )
         return $other . $value . $other;
