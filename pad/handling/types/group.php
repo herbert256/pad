@@ -29,6 +29,8 @@
   if ( $padType [$pad] == 'select' )
     return;
 
+  include_once PAD . 'handling/_lib/group.php';
+
   $padGroupKeys = preg_split ( '/[\s,;]+/', trim ( (string) $padHandParm ), -1, PREG_SPLIT_NO_EMPTY );
 
   if ( $padHandParm === TRUE or ! $padGroupKeys ) {

@@ -1,7 +1,8 @@
 <?php
 
   // The aggregate of one field over the rows of a group, for the group handling option
-  // (handling/types/group.php): sum, avg, min or max over the values the rows hold.
+  // (handling/types/group.php, which reads this file): sum, avg, min or max over the values
+  // the rows hold.
   //
   // sum adds the numeric values and leaves out the rest, as SQL leaves out a NULL; its
   // result is rounded to the most decimals among the values added, because float addition
