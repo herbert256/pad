@@ -385,8 +385,8 @@
   // left every remember-me cookie valid. A name is judged by its words - split on _ and -
   // and where the case changes, PINCode too - so a secret's word anywhere makes it one
   // (recovery_key, otp_backup_codes, pin_hash, remember_hash, apiKey), and so does a word that
-  // is two of them written together (pincodes, totpseed, recoverycodes, pwdhash, pincodehash,
-  // userpwd), unless its last word marks a flag, a time, a count or an address: hashtag,
+  // is two of them written together (pincodes, totpseed, recoverycodes, backupcodes,
+  // otpbackupcodes, pwdhash, pincodehash, usersalt, pwdsalt, pinnumber, userpwd), unless its last word marks a flag, a time, a count or an address: hashtag,
   // otp_enabled, otp_last_used, recovery_email and pin_code_sent are ordinary fields of the
   // row. So are the public picture hashes in any spelling - email_hash, emailhash, emailHash
   // (a Gravatar's), avatar_hash, blurhash - a hash written together with a word that is no
@@ -406,7 +406,7 @@
       foreach ( $words as $i => $word )
         if ( in_array ( $word, [ 'pass', 'pwd', 'hash', 'salt', 'otp', 'totp', 'pin', 'recovery', 'backup' ], TRUE )
              or preg_match ( '/password|passwd|passphrase|passcode|secret|token|apikey|privatekey/', $word )
-             or preg_match ( '/^pin(codes|hash|seed|keys?)$|^t?otp(codes?|hash|seed|keys?)$|^recovery(codes?|keys?)$|.pwd$|(pass|pw|pwd|pin|code|otp|user|remember|recovery|backup|reset|auth|login|session|key)hash$/', $word )
+             or preg_match ( '/^pin(codes|hash|seed|keys?|number|num|no)$|^t?otp(codes?|hash|seed|keys?)$|^(recovery|(t?otp)?backup)(codes?|keys?)$|.pwd$|(pass|pw|pwd|pin|code|otp|user|remember|recovery|backup|reset|auth|login|session|key)hash$|(pass|pw|pwd|pin|otp|user|hash|secret|auth|login|key)salt$/', $word )
              or ( $word === 'key' and in_array ( $words [$i - 1] ?? '', [ 'api', 'app', 'private', 'recovery', 'secret', 'encryption' ], TRUE ) ) )
           return TRUE;
 
