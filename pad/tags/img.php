@@ -2,7 +2,7 @@
 
   // {img 'photos/harbour.jpg', width=400, height=300, alt='The harbour at dawn'} - a picture
   // of www/<application>/ as a thumbnail of the size the page shows it at, made once with
-  // GD and kept in www/<application>/_thumbs/ for the web server to send (lib/img.php).
+  // GD and kept in www/<application>/_thumbs/ for the web server to send (tags/_lib/img.php).
   // width= and height= are the box; fit= cover (default: fill it, cut around the centre) or
   // contain (all of it inside); format= jpeg, png or webp, else the source's; quality= 1 to
   // 100 (80). The <img> carries its width and height, loading="lazy", decoding="async" and

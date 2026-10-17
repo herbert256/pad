@@ -2280,7 +2280,7 @@ answers is one under the strict check.
 
 ### img
 A picture of `www/<application>/` as a thumbnail of the size the page shows it at - resized
-once with GD (`lib/img.php`) and kept in `www/<application>/_thumbs/`, where the web server
+once with GD (`tags/_lib/img.php`) and kept in `www/<application>/_thumbs/`, where the web server
 sends it like any asset.
 
 ```html
