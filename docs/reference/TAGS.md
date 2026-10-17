@@ -2644,7 +2644,7 @@ nothing; a moment that is no date is a strict error.
 ---
 
 ### emoji
-An emoji by its GitHub or Slack shortcode, as a labelled image (`lib/emoji.php`); the `emoji` pipe
+An emoji by its GitHub or Slack shortcode, as a labelled image (`tags/_lib/emoji.php`); the `emoji` pipe
 replaces the shortcodes in a text.
 
 ```html
