@@ -19,7 +19,7 @@
     // the data is deep - {$flat.*} ended the request on foreach() rather than answering.
 
     if ( is_object ( $current ) or is_resource ( $current ) )
-      $current = (array) $current;
+      $current = padDataFields ( $current );
 
     if ( ! is_array ( $current ) )
       return INF;
@@ -36,7 +36,7 @@
       if ( padValidStore ($key) ) {
 
         if ( is_object ($value) or is_resource ($value) )
-          $value = (array) $value;
+          $value = padDataFields ( $value );
 
         if ( is_array ($value) and ! str_starts_with ($key, 'pad') ) {
           $check = padAtSearch ( $value, $names );
@@ -61,7 +61,7 @@
     foreach ( $names as $key => $name ) {
 
       if ( is_object ($current) or is_resource ($current) )
-        $current = (array) $current;
+        $current = padDataFields ( $current );
 
       if ( ! is_array ($current) or ! count ($current) )
 
@@ -182,8 +182,8 @@
 
     foreach ( $current as $key => $row ) {
 
-      if ( is_object ( $row ) or is_resource ( $row ) )
-        $row = (array) $row;
+      if ( ( is_object ( $row ) or is_resource ( $row ) ) and ! is_array ( $row = padDataFields ( $row ) ) )
+        continue;
 
       if ( ! isset ( $row [$before] ) )
         continue;

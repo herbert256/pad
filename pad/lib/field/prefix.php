@@ -43,7 +43,7 @@
   function padFieldSearch ($current, $field, $type) {
 
     if ( is_object ($current) or is_resource ($current) )
-      $current = (array) $current;
+      $current = padDataFields ( $current );
 
     // A prefix that names a scalar global holds no fields - not found, not a TypeError.
 

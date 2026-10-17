@@ -187,6 +187,24 @@
 
   }
 
+  // An object as a path or a prefix steps into it - {$user.name}, {$user:name}, a condition
+  // on its rows: a JsonSerializable is the data it answers, the one view of it {^user} and
+  // {user}..{/user} have - read by its properties, {$user.password_hash} printed the hash its
+  // JSON leaves out and {$user.name} differed from the name {^user} wrote - and any other
+  // object, or one that stays an object there (a date, a Stringable), cast as it was.
+
+  function padDataFields ( $value ) {
+
+    if ( $value instanceof JsonSerializable ) {
+      $json = padDataObject ( $value );
+      if ( ! is_object ( $json ) )
+        return $json;
+    }
+
+    return (array) $value;
+
+  }
+
   // Whether a value is a row db() answered for RECORD: named fields holding at least the
   // columns of one of them.
 
