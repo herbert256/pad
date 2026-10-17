@@ -15,9 +15,14 @@
   //              call's error in the JSON answer, never as PAD's HTML error page
   // editLoggedIn the whole rule - this machine and a valid login - which _guard.php asks and
   //              the two entry points, api.php and index.php, ask again
+  // editThisMachine the request is this machine's own: from the loopback address, nothing
+  //              forwarded, naming one of this machine's own names - what only may make the
+  //              first user (login.php), opened up or not
   // editAppAsked the application a link asked for, kept through the login
   // editBody     the call's arguments: the JSON body as it was sent - not trimmed, a file's
   //              whitespace is its own - or, for an upload, the form fields
+
+  const editOwnHosts = [ 'localhost', '127.0.0.1', '[::1]', '::1' ];
 
   function editAllowed () {
 
@@ -29,7 +34,7 @@
     // $editHosts names the hosts a request may name besides this machine's own names, opened
     // up or not: with $editRemote and a host listed, a request naming localhost was refused.
 
-    $hosts = array_merge ( [ 'localhost', '127.0.0.1', '[::1]', '::1' ], (array) $editHosts );
+    $hosts = array_merge ( editOwnHosts, (array) $editHosts );
 
     if ( $editRemote )
       return ! $editHosts or editHostNamed ( $hosts );
@@ -48,6 +53,18 @@
     global $editUser, $editStamp;
 
     return $cli or ( editAllowed () and editUserValid ( editStore (), $editUser, $editStamp ) );
+
+  }
+
+  // Not the machine rule of the guard, which $editRemote opens up and $editHosts widens: with
+  // $editRemote on and no host listed it takes any Host, and the loopback address alone was
+  // taken for this machine - a page on another site whose name rebinds to 127.0.0.1, posting
+  // from the developer's own browser, made the first user with its own password, and with it
+  // had the terminal.
+
+  function editThisMachine () {
+
+    return padLoopback () and editHostNamed ( editOwnHosts );
 
   }
 
