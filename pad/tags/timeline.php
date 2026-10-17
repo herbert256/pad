@@ -1,7 +1,7 @@
 <?php
 
   // {timeline data='releases', date='when', label='what', text='detail'} - events on a time
-  // axis as inline SVG, drawn by lib/timeline.php. data= names the rows as for {chart} - a
+  // axis as inline SVG, drawn by tags/_lib/timeline.php. data= names the rows as for {chart} - a
   // {data} store, a page array or a _data file - and as a pair the content is the rows,
   // JSON, YAML, XML or CSV:
   //

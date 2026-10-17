@@ -6,6 +6,8 @@
   // or for a farther date a page of tens of megabytes and then no memory. Such a row is
   // no date now (padChartStamp stops at the year 9999); the axis is bounded still.
 
+  include_once PAD . 'tags/_lib/timeline.php';
+
   $near  = padTimelineDate ( '1969' ) [0];
   $far   = 1760000000000;
   $ticks = count ( padTimelineTicks ( $near, $far, 648 ) );

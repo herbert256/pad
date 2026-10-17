@@ -2482,7 +2482,7 @@ the strict check.
 ---
 
 ### timeline
-Events on a time axis as inline SVG (`lib/timeline.php`) - cards above and below the axis,
+Events on a time axis as inline SVG (`tags/_lib/timeline.php`) - cards above and below the axis,
 spans as bars, or one under the other for a long list.
 
 ```html
