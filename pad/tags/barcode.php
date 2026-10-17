@@ -1,6 +1,6 @@
 <?php
 
-  // {barcode '8712345678906'} - a barcode as inline SVG, encoded by lib/barcode.php. The
+  // {barcode '8712345678906'} - a barcode as inline SVG, encoded by tags/_lib/barcode.php. The
   // first parameter is the number or text; type= is ean13, ean8, upca or code128 - left
   // out, twelve or thirteen digits are an EAN-13 and anything else Code 128. An EAN or UPC
   // number may leave its check digit off: it is added, and one given is checked.

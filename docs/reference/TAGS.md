@@ -1370,7 +1370,7 @@ check, and writes nothing.
 
 ### barcode
 A barcode as inline SVG - EAN-13, EAN-8, UPC-A or Code 128, encoded on the server
-(`lib/barcode.php`).
+(`tags/_lib/barcode.php`).
 
 ```html
 {barcode '871234567890'}                          <!-- EAN-13, the check digit added -->
