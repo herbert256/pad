@@ -117,7 +117,7 @@
     $chunk = padNocacheStrip ( padUnprotect ( padUnescape ( padStackFill ( $chunk ) ) ) );
 
     if ( $padCsrf )
-      $chunk = padCsrfForms ( $chunk );
+      $chunk = padCsrfForms ( $chunk, TRUE, TRUE );
     else
       padCsrfBaseKeep ( $chunk );
 

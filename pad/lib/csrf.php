@@ -98,7 +98,11 @@
   // site's own logs and history only, and a form with a Save and a Preview button could
   // not post at all without it.
 
-  function padCsrfForms ( $html, $add = TRUE ) {
+  // A part of a page sent ahead by a {flush} ($part) gives no token to a form still open at
+  // its end: the button that sends it - to another site, may be - is in the part to come,
+  // and the token went out with the first part though the form's own check never saw it.
+
+  function padCsrfForms ( $html, $add = TRUE, $part = FALSE ) {
 
     padCsrfBaseKeep ( $html );
 
@@ -113,12 +117,13 @@
 
     foreach ( padCsrfWalk ( $html ) as [ $kind, $name, $at, $end, $attrs ] )
       if ( $kind == 'start' and $name == 'form' and $open === NULL ) {
-        $forms [] = [ 'at' => $at, 'start' => $end, 'end' => strlen ( $html ), 'attrs' => $attrs, 'controls' => [], 'token' => FALSE ];
+        $forms [] = [ 'at' => $at, 'start' => $end, 'end' => strlen ( $html ), 'attrs' => $attrs, 'controls' => [], 'token' => FALSE, 'closed' => FALSE ];
         $open     = array_key_last ( $forms );
         if ( array_key_exists ( 'id', $attrs ) )
           $ids [ padCsrfDecode ( $attrs ['id'] ) ] ??= $open;
       } elseif ( $kind == 'end' and $name == 'form' and $open !== NULL ) {
-        $forms [$open] ['end'] = $at;
+        $forms [$open] ['end']    = $at;
+        $forms [$open] ['closed'] = TRUE;
         $open = NULL;
       } elseif ( $kind == 'start' and ( $name == 'button' or $name == 'input' ) )
         $controls [] = [ $attrs, $open ];
@@ -158,7 +163,7 @@
       if ( padCsrfFormAttrs ( $form ['attrs'], $base ) and padCsrfControlsAttrs ( $form ['controls'], $base )
            and ! padCsrfRawElsewhere ( substr ( $html, $form ['at'], ( $forms [$i + 1] ['at'] ?? strlen ( $html ) ) - $form ['at'] ), $base ) ) {
 
-        if ( $add and ! $form ['token'] ) {
+        if ( $add and ! $form ['token'] and ( ! $part or $form ['closed'] ) ) {
           $out .= substr ( $html, $done, $form ['start'] - $done ) . padCsrfField ();
           $done = $form ['start'];
         }
