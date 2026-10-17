@@ -271,7 +271,7 @@
     if ( ! file_exists ( $from ) )
       editFail ( 'there is nothing to move' );
 
-    if ( file_exists ( $to ) or is_link ( $to ) )
+    if ( ( file_exists ( $to ) or is_link ( $to ) ) and ! editCaseOnly ( $from, $to ) )
       editFail ( "'" . basename ( $to ) . "' exists already" );
 
     if ( is_dir ( $from ) and str_starts_with ( "$to/", rtrim ( $from, '/' ) . '/' ) )
@@ -282,6 +282,26 @@
 
     if ( ! @rename ( $from, $to ) )
       editFail ( 'the move failed: ' . editLastError () );
+
+  }
+
+  // Whether $to is $from itself, its name spelled in another case: on a volume that ignores
+  // case - macOS - README.md "exists" when readme.md does, and the rename that changes only
+  // the case was refused as one onto another file. It is the same entry on the disk (lstat,
+  // so a link to the file is not taken for it), and its directory does not list the new
+  // name: where case counts, a README.md listed beside readme.md is an entry of its own -
+  // a hard link - which rename(2) would leave as it was.
+
+  function editCaseOnly ( $from, $to ) {
+
+    if ( $from === $to or mb_strtolower ( $from ) !== mb_strtolower ( $to ) )
+      return FALSE;
+
+    $a = @lstat ( $from );
+    $b = @lstat ( $to );
+
+    return $a and $b and $a ['dev'] === $b ['dev'] and $a ['ino'] === $b ['ino']
+       and ! in_array ( basename ( $to ), (array) @scandir ( dirname ( $to ) ), TRUE );
 
   }
 
